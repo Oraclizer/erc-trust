@@ -79,7 +79,7 @@ jobs:
       - name: Regenerate release manifest
         run: node scripts/generate-release-manifest.mjs
       - name: Verify release binding
-        run: node scripts/verify-release.mjs
+        run: node scripts/verify-release.mjs --mode=${{ github.event_name == 'pull_request' && 'pr' || 'full' }}
       - name: Check manifest determinism
         run: git diff --exit-code -- evidence/release-manifest.json
       - name: Verify local links

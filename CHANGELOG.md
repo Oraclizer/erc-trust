@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Limited the release manifest to protected implementation, proof, evidence,
+  schema, vector, SDK, lock, and replay inputs. Pull Requests use the protected
+  input mode, while main and candidate-release runs additionally verify the
+  protected source-tree root. Documentation and workflow metadata remain
+  blocking public-surface inputs without forcing unrelated manifest churn.
+- Named the active maintainer and fixed the public tag families to
+  `vX.Y.Z-candidate.N` and `vX.Y.Z`.
 - Superseded the publicly unreachable formal-foundation commit with the
   reachable public revision through a new versioned lock. The immutable
   historical lock, every ERC proof source and statement, all qualification

@@ -45,7 +45,7 @@ jobs:
       - name: Regenerate candidate manifest
         run: node scripts/generate-release-manifest.mjs
       - name: Verify release binding
-        run: node scripts/verify-release.mjs
+        run: node scripts/verify-release.mjs --mode=full
       - name: Verify public repository surface
         run: |
           node scripts/verify-links.mjs

@@ -51,7 +51,7 @@
         "bytes": 476527
       }
     ],
-    "retainedBytesExcludingManifest": 15276728
+    "retainedBytesExcludingManifest": 15274996
   },
   "removedFiles": [
     {
@@ -4360,7 +4360,7 @@
   "validation": {
     "publicReplay": "PASS_7_OF_7_CORE_49_OF_49_SUPPORTING_24_OF_24",
     "runtimeBinding": "PASS_7_SUBJECTS_EXPECTED_HASH_OVERWRITE_0",
-    "releaseBinding": "PASS_765_FILES_RUNTIME_24142",
+    "releaseBinding": "PASS_735_PROTECTED_FILES_RUNTIME_24142",
     "foundry": "PASS_31_OF_31_FUZZ_256_INVARIANT_CALLS_384000",
     "preservedPilot": "PASS_13_OF_13_BINDING_14_FILES",
     "sdk": "PASS_3_OF_3",
