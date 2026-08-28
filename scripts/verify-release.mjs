@@ -9,6 +9,8 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const manifestPath = resolve(root, "evidence", "release-manifest.json");
 const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
 const failures = [];
+const modeArgument = process.argv.find((argument) => argument.startsWith("--mode="));
+const mode = modeArgument?.slice("--mode=".length) ?? "full";
 const sha256 = (data) => createHash("sha256").update(data).digest("hex");
 const canonicalTextBytes = (absolute) =>
   Buffer.from(
@@ -16,6 +18,12 @@ const canonicalTextBytes = (absolute) =>
     "utf8",
   );
 
+if (!new Set(["pr", "full"]).has(mode)) {
+  failures.push(`unsupported verification mode: ${mode}`);
+}
+if (manifest.sourceTree.scope !== "protected-release-inputs-v1") {
+  failures.push(`unsupported source-tree scope: ${manifest.sourceTree.scope}`);
+}
 if (manifest.sourceTree.algorithm !== "sha256-canonical-utf8-lf-lines-v1") {
   failures.push(`unsupported source-tree algorithm: ${manifest.sourceTree.algorithm}`);
 }
@@ -36,7 +44,9 @@ const rootHash = sha256(
     .map((path) => `${manifest.sourceTree.files[path]}  ${path}\n`)
     .join(""),
 );
-if (rootHash !== manifest.sourceTree.root) failures.push("source tree root mismatch");
+if (mode === "full" && rootHash !== manifest.sourceTree.root) {
+  failures.push("source tree root mismatch");
+}
 
 const artifact = JSON.parse(
   readFileSync(resolve(root, manifest.trustToken.artifact), "utf8"),
@@ -56,5 +66,5 @@ if (failures.length) {
   process.exit(1);
 }
 console.log(
-  `release manifest PASS: ${Object.keys(manifest.sourceTree.files).length} files, runtime ${runtime.length} bytes`,
+  `release manifest ${mode} PASS: ${Object.keys(manifest.sourceTree.files).length} protected files, runtime ${runtime.length} bytes`,
 );

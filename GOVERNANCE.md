@@ -1,6 +1,6 @@
 # Governance
 
-ERC-TRUST is currently maintained by Oraclizer. The project is in a
+ERC-TRUST is currently maintained by Jay Kim on behalf of Oraclizer. The project is in a
 pre-standard candidate phase and has no elected governance body, token vote,
 or delegated release committee.
 
@@ -45,6 +45,9 @@ A version tag and GitHub release must:
 - distinguish unaudited candidates from any future audited release;
 - include relevant compatibility and security notes;
 - never reuse or move an existing tag.
+
+Candidate tags use `vX.Y.Z-candidate.N`; later stable tags use `vX.Y.Z`.
+No other tag naming family is used.
 
 No tag or GitHub release currently exists for `0.1.0-candidate.1`.
 

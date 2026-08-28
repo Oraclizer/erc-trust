@@ -67,7 +67,7 @@ Run the generated-artifact and repository checks after a clean Solidity build:
 ```bash
 node scripts/generate-vectors.mjs
 node scripts/generate-release-manifest.mjs
-node scripts/verify-release.mjs
+node scripts/verify-release.mjs --mode=full
 node scripts/verify-links.mjs
 node scripts/verify-public-surface.mjs
 node scripts/verify-repository-health.mjs
@@ -92,13 +92,20 @@ timing varies with CPU, disk, and solver availability; each replay reports the
 exact gate that fails.
 
 Two of these checks compare regenerated files against the committed ones, so
-when your change touches anything the release manifest covers, commit the
-regenerated `vectors/conformance-v1.json` and `evidence/release-manifest.json`
-in the same pull request; otherwise the determinism checks fail with a diff
-showing exactly what moved. The manifest covers the candidate sources,
-schemas, vectors, evidence, scripts, workflows, and the claim-bearing
-documents; contribution process documents are outside it, so an ordinary
-documentation fix does not touch the manifest.
+when your change touches a protected release input, commit the regenerated
+`vectors/conformance-v1.json` and `evidence/release-manifest.json` in the same
+pull request; otherwise the determinism checks fail with a diff showing
+exactly what moved. Protected inputs include implementation and verification
+source, replay evidence, schemas, vectors, toolchain locks, SDK source and
+dependency locks, and release scripts. Ordinary documentation, community
+files, and workflow metadata remain subject to the public-surface and
+repository-health checks but do not change the release-input root.
+
+Pull Requests run `verify-release.mjs --mode=pr` over the protected inputs and
+built runtime. Main and candidate-release workflows run `--mode=full`, which
+also checks the protected source-tree root. A dependency bot change to a
+protected lock file therefore needs a maintainer regeneration commit before
+merge; the bot branch is not granted a manifest bypass.
 
 The repository scanners also refuse project-internal lifecycle identifiers
 (single letters followed by digits used as milestone or gate names) in tracked
