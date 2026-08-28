@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "obligationId": "FAIL-05",
+  "classification": "PARTIAL_THEOREM_GRADE_EVIDENCE",
+  "claimId": "d89531413582f766cbe2bcaf64469e49303f10acda4271e102755c11c293cfd0",
+  "selectorBridge": {
+    "genericDispatcherInputSelector": "0xffffffff",
+    "expectedRevertData": "0x",
+    "typedFailureMutationSelector": "0x8cf60b6f"
+  },
+  "semantics": {
+    "identity": "evm-semantics-v1.0.921-d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+    "schedule": "CANCUN",
+    "boosterEnabled": false,
+    "koreRpcCommand": "/nix/store/wij5nr1s0q3ksvyng4lcybhy467bn9gh-kore-rpc/bin/kore-rpc"
+  },
+  "positive": {
+    "status": "PASS",
+    "claimSha256": "a628ac74a976dac895b0562e962149c412f92ced3d035e311350765044c4c79a",
+    "runtimeBridgeSchemaSha256": "234b10ca6029c3ad6424ab5abf544bdde0cbca0331d1d50213a24d5ab4d085a3",
+    "runtimeBridgeSha256": "b11259227aee2efca94686ef58ddb3e21daaff651ba7d746901114344748e058",
+    "definitionKoreSha256": "bac21e3e90990c4c060bf77ecfe161a70d18900c631dcea5a37343765e6b3e33",
+    "compiledJsonSha256": "5ba6257f64024f7eff4ec99c569db9f9477fd5d2a625f44ed04e091fdf795a50",
+    "proofSha256": "0ac7776746616eaab9fb35b49fb439bc81a9468b44611197116f58c129057045",
+    "kcfgSha256": "f05252130fc0aec5534aed12e19432da3f13ebb2f9d8015b4c2d061da66f2117",
+    "nodes": 4,
+    "edges": 2,
+    "covers": 1,
+    "stuck": 0,
+    "vacuous": 0,
+    "pending": 0,
+    "failing": 0,
+    "admitted": false,
+    "elapsedWallMs": 245480,
+    "maxRssKb": 1069732
+  },
+  "negative": {
+    "mutationId": "FAIL-05-MUT-TYPED-PAYLOAD-001",
+    "kind": "EXECUTABLE_SEMANTIC_MUTANT",
+    "status": "KILLED",
+    "proofStatus": "FAILED_AS_EXPECTED",
+    "claimSha256": "14ede14b7d3224beeabbccbcb578ce504d70ca375a9b772cd9fe98ad5dba0737",
+    "runtimeVerificationSha256": "df6b227bfd1ab5bfc7cfdb364a7da4dea4b5660789e4513f10e78d00dcbe4193",
+    "canonicalSequence": "63f60d7b6f146101d6575f80",
+    "mutantSequence": "638cf60b6f5f526004601cfd",
+    "witnessOutputHex": "8cf60b6f",
+    "failureNode": 139,
+    "failureNodeSha256": "3f5fbaf7be5774838c8792711976d6c00614700e8bd6c8630028c053cdcc3a98",
+    "mutantBridgeSha256": "c49915b31330fe0b49fcf458688fe66fb9abdfcac08ef5904e6f85d78a2269e1",
+    "definitionKoreSha256": "7b022ab7003078bcc125bec2c1a3a98e79eac2be69b3b1cc0c88c3c318454a02",
+    "compiledJsonSha256": "c2f42c77f50c4f299f2bc15517b7cc4e2fe20b5c21c952cbc283519886935cf5",
+    "proofSha256": "5817d3e3c903c0de207bea6fb5fbd72d14bf705f816c730d8c3052b0ea60cb00",
+    "kcfgSha256": "679536ecaee04af991520d7495071cf804915a628ea8cb5e8a37b8028702e1e2",
+    "backendRuntimeError": false,
+    "terminalFailingNodes": 1,
+    "pendingAfterFailFast": 262,
+    "elapsedWallMs": 714580,
+    "maxRssKb": 1108308
+  },
+  "remainingDischargeGates": [
+    "named Isabelle theorem",
+    "generated selector-level checked bridge",
+    "repository-owned independent replay runner"
+  ]
+}

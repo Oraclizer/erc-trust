@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_C0_UINT160_SYMBOLIC_WORD_SOURCE_MANIFEST_V1",
+  "status": "SOURCE_AND_HYPOTHESES_FROZEN_BEFORE_FAMILY_STRICT_ATTEMPTS",
+  "contract": {
+    "path": "evidence/end-to-end-refinement/c0-uint160-symbolic-word-contract-v1.json",
+    "sha256": "c8905753d4b6eb815a99c225a9a1592fbce699c32ba0a1231017912ee108b5c8"
+  },
+  "runtime": {
+    "path": "evidence/end-to-end-refinement/runtime-binding/resolved/native/TrustToken.hex",
+    "fileSha256": "1c2e73fa137a50993301eacf9e70aa73623a5d4673c58cadedb60e12c273f44f",
+    "semanticSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "bytes": 24142
+  },
+  "sourceSlice": {
+    "entryPc": 13727,
+    "acceptPc": 13749,
+    "rejectPc": 2767,
+    "hex": "6001600160a01b0381169283821415919082610acf57",
+    "sha256": "d21c45c4bb9199b0e95d0a374c79b5d2d700f4f3412ea22e3eeffeae6ff2d66e"
+  },
+  "claims": [
+    {
+      "id": "c0-uint160-symbolic-accept",
+      "module": "C0-UINT160-SYMBOLIC-ACCEPT-SPEC",
+      "role": "universal-accept",
+      "targetPc": 13749,
+      "requires": "0 <=Int W andBool W <Int (2 ^Int 160)",
+      "symbolicVariables": [
+        "W"
+      ],
+      "wordStackPattern": "W : 0 : 0 : .WordStack",
+      "symbolicListTail": false,
+      "path": "formal/kevm/reusable/c0/uint160-symbolic-word-v1/claims/c0-uint160-symbolic-accept.k",
+      "sha256": "0defcd131176c202bf4757f9582821de04d386f5465e21e9040dcc957a3117e4",
+      "strictAttemptsAllowed": 1
+    },
+    {
+      "id": "c0-uint160-symbolic-reject-d1",
+      "module": "C0-UINT160-SYMBOLIC-REJECT-D1-SPEC",
+      "role": "hybrid-conditional-universal-reject",
+      "targetPc": 2767,
+      "baseDomain": "(2 ^Int 160) <=Int W andBool W <Int (2 ^Int 256)",
+      "requires": "(2 ^Int 160) <=Int W andBool W <Int (2 ^Int 256) andBool 0 <=Int (maxUInt160 &Int W) andBool (maxUInt160 &Int W) <=Int maxUInt160",
+      "approvedRedundantHypotheses": [
+        "0 <=Int (maxUInt160 &Int W)",
+        "(maxUInt160 &Int W) <=Int maxUInt160"
+      ],
+      "bannedForms": [
+        "(maxUInt160 &Int W) <Int (2 ^Int 160)",
+        "(maxUInt160 &Int W) =/=Int W",
+        "any local semantic or simplification rule",
+        "any carrier conversion"
+      ],
+      "symbolicVariables": [
+        "W"
+      ],
+      "wordStackPattern": "W : 0 : 0 : .WordStack",
+      "symbolicListTail": false,
+      "path": "formal/kevm/reusable/c0/uint160-symbolic-word-v1/claims/c0-uint160-symbolic-reject-d1.k",
+      "sha256": "e5bc848d7263e4ebb2c66ddc0f7f416e04a27d236c0cd8b50491900b6bc4ec41",
+      "strictAttemptsAllowed": 1
+    }
+  ],
+  "canonicalDefinition": {
+    "custodyId": "quarantine-m4-unmerged-20260825-141706/c0-uint48-symbolic-word-v3-20260827/canonical-definition-001",
+    "definitionKoreSha256": "d8ad03e19b362aeea0344ae0ffa1882c228cb72f3ebdfc146b09554862ad2507",
+    "compiledJsonSha256": "0b9f666bf720a3e72b5ce87b3c87fa167928c70af481db8b629bef3f4c864d9c",
+    "compiledBinSha256": "ed68d8f5c769c0523cb1ebba9e7ff9bf1995d147c9a4db4b7aa6fdf64e266c0b",
+    "profile": "LEMMAS-WITHOUT-SLOT-UPDATES"
+  },
+  "inheritedMutation": {
+    "contractPath": "formal/kevm/reusable/c0/d1-d3-slices-v1/mutation-v1.json",
+    "contractSha256": "6c8b9fe807cf55e4894f3b8cc0ebf90b368dc1828b68312f1a3cc8b161fadee2",
+    "strictReceiptPath": "evidence/end-to-end-refinement/c0-d1-d3-strict-representative-receipt-v1.json",
+    "strictReceiptSha256": "b4f542a4251863bc0809d80921b28cf7736b3ec95882e696da23af1e39a4117d",
+    "pc": 13727,
+    "before": "60",
+    "after": "fe"
+  },
+  "hybridComposition": {
+    "isabelleTheoryPath": "formal/isabelle/ERC_TRUST/TRUST_C0_UINT160_Redundant_Hypotheses.thy",
+    "generalBridgeTheoryPath": "formal/isabelle/ERC_TRUST/TRUST_C0_UINT48_Redundant_Hypotheses.thy",
+    "correspondencePath": "evidence/end-to-end-refinement/c0-uint160-k-isabelle-and-correspondence-v1.json",
+    "freezeVerifierPath": "scripts/verify-c0-uint160-hybrid-hypotheses-v1.mjs",
+    "acceptedClassification": "PASS_C0_UINT160_HYBRID_CONDITIONAL_COMPOSITION",
+    "forbiddenClassification": "independent KEVM universal reject PASS"
+  },
+  "proofPlan": {
+    "preProofGates": [
+      "result-blind source generation and check",
+      "hypothesis-freeze verifier",
+      "Isabelle ROOT registration, clean build, proof export, and oracle zero",
+      "K parse-only with backendStarted=false",
+      "parsed claim contains exactly the base domain and two approved redundant hypotheses"
+    ],
+    "strictProofAttemptsPerClaim": 1,
+    "timeoutSeconds": 1800,
+    "workers": 1,
+    "forceSequential": true,
+    "breakEveryStep": true,
+    "booster": false,
+    "assumeDefined": false,
+    "resume": false
+  },
+  "familyCredit": 0,
+  "c0Status": "QUALIFICATION_HELD"
+}

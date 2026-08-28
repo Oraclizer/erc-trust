@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-07-28T18:34:10+09:00",
+  "provider": "Certora Prover",
+  "tool": {
+    "name": "certora-cli",
+    "version": "8.17.1",
+    "serverVersion": "8.17.1"
+  },
+  "job": {
+    "outputNamespace": "10491299",
+    "runHash": "3fbecc448ae64246b3d7fabac50dc74b",
+    "url": "https://prover.certora.com/output/10491299/3fbecc448ae64246b3d7fabac50dc74b",
+    "processExitCode": 0,
+    "terminalResult": "No errors found by Prover!"
+  },
+  "sourceBinding": {
+    "repository": "erc-trust",
+    "baseRevision": "23e5a3c777c3516d7864b9e36bd4a901d916534c",
+    "sourceRevision": null,
+    "submittedWorkingTreeDirty": true,
+    "gitBindingMode": "containingCommitTree",
+    "sameCommitBindingPending": false,
+    "contract": "pilot/src/TrustFreezePilot.sol",
+    "policy": "pilot/src/MockBoundPolicy.sol",
+    "specification": "pilot/certora/TrustFreezePilot.spec",
+    "configuration": "pilot/certora/TrustFreezePilot.conf",
+    "hashAlgorithm": "SHA-256",
+    "hashes": {
+      "pilot/src/TrustFreezePilot.sol": "3d5b9f78d0c0e5e1427fe1875870df12f4d2e2bc9534d58b72e42ad6f0b1be8f",
+      "pilot/src/MockBoundPolicy.sol": "e0f5aad10b41e2e371ca87b4a94edbf4807461e2f053869a3b210a3f0c8be340",
+      "pilot/certora/TrustFreezePilot.spec": "f0efc6a6037335274b896567c5706b798efc488fc897b4aa729d0cb07183bf74",
+      "pilot/certora/TrustFreezePilot.conf": "6a3f0c31bdada96a8f625236438f8b84d24d229ac419865befd1ff8ececf82cc"
+    }
+  },
+  "configuration": {
+    "evmVersion": "cancun",
+    "optimizerRuns": 200,
+    "viaIR": true,
+    "strictSolcOptimizer": true,
+    "ruleSanity": "basic",
+    "multiAssertCheck": true,
+    "waitForResults": "all",
+    "proverArgs": []
+  },
+  "summary": {
+    "overall": "SUCCESS",
+    "topLevelRuleCount": 13,
+    "success": 13,
+    "fail": 0,
+    "sanityFail": 0,
+    "timeout": 0,
+    "unknown": 0,
+    "parametricMutatorInstances": 9,
+    "parametricMutatorInstanceSuccess": 9
+  },
+  "rules": [
+    {
+      "name": "direct_and_staged_freeze_converge",
+      "result": "SUCCESS"
+    },
+    {
+      "name": "rejected_assessment_reverts_and_stutters",
+      "result": "SUCCESS"
+    },
+    {
+      "name": "operational_failure_reverts_and_stutters",
+      "result": "SUCCESS"
+    },
+    {
+      "name": "wrong_route_caller_preserves_target_ticket",
+      "result": "SUCCESS"
+    },
+    {
+      "name": "wrong_route_calldata_preserves_target_ticket",
+      "result": "SUCCESS"
+    },
+    {
+      "name": "cancelled_ticket_cannot_be_used",
+      "result": "SUCCESS"
+    },
+    {
+      "name": "stale_binding_call_preserves_target_ticket",
+      "result": "SUCCESS"
+    },
+    {
+      "name": "consumed_ticket_cannot_replay",
+      "result": "SUCCESS"
+    },
+    {
+      "name": "transfer_respects_frozen_floor",
+      "result": "SUCCESS"
+    },
+    {
+      "name": "can_transfer_query_matches_balance_and_frozen_floor",
+      "result": "SUCCESS"
+    },
+    {
+      "name": "successful_transfer_frame",
+      "result": "SUCCESS"
+    },
+    {
+      "name": "transfer_from_respects_frozen_floor",
+      "result": "SUCCESS"
+    },
+    {
+      "name": "all_external_mutators_are_classified",
+      "result": "SUCCESS",
+      "instances": 9,
+      "instanceSuccess": 9
+    }
+  ],
+  "claimBoundary": "All declared Certora rules passed for this SHA-256-bound candidate. The Git commit containing this record binds the exact source, specification, configuration, artifact hashes, and evidence as the declared pilot conjunct only."
+}

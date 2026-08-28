@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "mutationId": "C1-AUTHORIZATION-CONSUMPTION-OMISSION-v1",
+  "kind": "EXECUTABLE_SEMANTIC_MUTANT",
+  "canonicalPath": "implementation/test/mocks/TrustTokenC1AuthorizationHarness.sol",
+  "canonicalSha256": "dc552211193679af0cb3a968a25e72d1230cfd492920f046c6968c8c87bf1dc1",
+  "mutantPath": "implementation/test/mocks/TrustTokenC1AuthorizationHarnessMutant.sol",
+  "mutantSha256": "6b441911a4941cea9ab626f86caef56cde8402dabaf40d001994cd95d5f5a038",
+  "permittedDelta": "Remove only the production _consumeActionAuthorization call from the C1 package seam",
+  "unchangedSpec": "implementation/certora/TrustC1AuthorizationReplay.spec",
+  "expectedViolations": [
+    "authority_and_delegation_match_exact_command",
+    "command_id_and_nonce_consumed_once_on_success"
+  ],
+  "expectedSanityCollateral": [
+    "structural_rejection_preserves_authorization"
+  ],
+  "productionSourceChanged": false
+}

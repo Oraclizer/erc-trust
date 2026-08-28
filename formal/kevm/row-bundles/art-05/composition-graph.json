@@ -1,0 +1,99 @@
+{
+  "addressWordBoundary": {
+    "addressAndWordRoundTrip": true,
+    "allFixtureJsonNumbersSafe": true,
+    "canonicalGovernorAddress": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+    "canonicalGovernorWord": "0x000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+    "integerTerms": {
+      "CHAIN_ID_INT": "31337",
+      "GOVERNOR_ADDRESS_INT": "1390849295786071768276380950238675083608645509734",
+      "SENDER_INT": "1390849295786071768276380950238675083608645509734",
+      "TOKEN_ADDRESS_INT": "1324161310598743833836268493538283093091898295570",
+      "TX_GAS_LIMIT_INT": "1000000"
+    },
+    "largeIntegerTerms": [
+      "GOVERNOR_ADDRESS_INT",
+      "SENDER_INT",
+      "TOKEN_ADDRESS_INT"
+    ],
+    "mutantGovernorAddress": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92267",
+    "mutantGovernorWord": "0x000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92267",
+    "numberMaxSafeInteger": "9007199254740991",
+    "policy": "authoritative EVM addresses and K integers remain canonical strings until explicit BigInt conversion",
+    "uint160Max": "1461501637330902918203684832716283019655932542975"
+  },
+  "claimBoundary": "theory/import closure hashes stay exact while one full-transaction governor() observation distinguishes the canonical runtime leaf from a one-byte immutable mutant and a separate mutant control proves executability",
+  "claims": {
+    "mutantExecutableControl": {
+      "definitionRole": "one-byte governor immutable runtime-leaf mutant",
+      "expectedExitCode": 0,
+      "module": "TRUST-ART-05-GOVERNOR-MUTANT-CONTROL-SPEC",
+      "path": "formal/kevm/row-bundles/art-05/mutant-control-claim.k",
+      "requiredReturnWord": "0x000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92267",
+      "sha256": "c20cad50be72e4ba418907b5c4b6401e944296856a52064e5f8356314caaecfe"
+    },
+    "positive": {
+      "definitionRole": "canonical exact runtime",
+      "expectedExitCode": 0,
+      "module": "TRUST-ART-05-THEORY-IMPORT-CLOSURE-BINDING-SPEC",
+      "path": "formal/kevm/row-bundles/art-05/claim.k",
+      "requiredReturnWord": "0x000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+      "sha256": "0bb20986f4b391c31c14b5894653e16f4d71735c52d451b85b9c398349f0115c"
+    },
+    "unchangedNegativeDetector": {
+      "definitionRole": "one-byte governor immutable runtime-leaf mutant",
+      "expectedExitCode": 1,
+      "module": "TRUST-ART-05-THEORY-IMPORT-CLOSURE-BINDING-SPEC",
+      "path": "formal/kevm/row-bundles/art-05/claim.k",
+      "requiredContradictionWord": "0x000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92267",
+      "sha256": "0bb20986f4b391c31c14b5894653e16f4d71735c52d451b85b9c398349f0115c"
+    }
+  },
+  "compositionRootSha256": "a2cc126c6434cfec200aafb73a5b46ec20c921c4735de86a149ddbeb38839b9d",
+  "dependencies": {
+    "dischargeInherited": false,
+    "evidenceInherited": false,
+    "graph": {
+      "path": "formal/kevm/row-bundles/art-05/dependency-graph.json",
+      "sha256": "32bac16a6fc4178273575eb9bfea6087b00802dfbc22a213b6254eba8a092bcf"
+    }
+  },
+  "obligationId": "ART-05",
+  "proofSpecPrelude": {
+    "path": "formal/kevm/row-bundles/art-05/proof-prelude.k",
+    "sha256": "cdee82d1dfe927f7cee1925d0535d3a72cea1b96d88c58125eed78954f805f97"
+  },
+  "requiredProperty": "theory_source_and_import_closure_are_hash_bound",
+  "runtimeLeaf": {
+    "byteOffset": 8553,
+    "canonicalByte": "0x66",
+    "canonicalRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "exactByteDifferenceCount": 1,
+    "mutantByte": "0x67",
+    "mutantRuntimeSha256": "8be632ea839589c14e91eacf523379c2cfa8377441b8f6e4cadfbad39eb6c3c4"
+  },
+  "schemaVersion": 2,
+  "sourceBinding": {
+    "sourceBlocks": {
+      "governorAssignmentSha256": "76790636d6785040280cb67444c6a00fb96c9910817835db649a9feec9566c42",
+      "governorDeclarationSha256": "863799c3a3754bcf8daa2f1e7591263f3bca4c3853dcc1c26a3756f624912415"
+    },
+    "trustStorage": {
+      "path": "implementation/src/TrustStorage.sol",
+      "sha256": "881783e28f8ec36e4571f48f407db4b63f8e736237f5e9f1044d916f3c066c6f"
+    },
+    "trustToken": {
+      "path": "implementation/src/TrustToken.sol",
+      "sha256": "dbe06bb25a2b62913bd6428e1de32ba007a214e24ac45f4fd2c0fb55ea22c96a"
+    }
+  },
+  "theoremName": "theory_source_and_import_closure_are_hash_bound",
+  "theoryClosure": {
+    "closureRootSha256": "ce51d00c06ae0a8c348d5da538c0110fdb129877efe9861f0353b7fc21b6d448",
+    "externalImportCount": 1,
+    "localImportEdgeCount": 13,
+    "path": "formal/kevm/row-bundles/art-05/closure-graph.json",
+    "sha256": "f855e3107ba52abc9b1b2d8ffe0d7edfffdc4077f8ff27bc2399f3775455d5f0",
+    "theoryCount": 14
+  }
+}

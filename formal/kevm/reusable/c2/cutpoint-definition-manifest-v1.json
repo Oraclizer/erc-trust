@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_C2_CUTPOINT_AUGMENTED_DEFINITION_V1",
+  "combinedInputPath": "formal/kevm/reusable/c2/c2-staticcall-placement-cutpoint-spec.k",
+  "combinedInputSha256": "f2e47d7af5eba114dab154f92b96a1195fa79a613133cef069ed1ae2b20372f7",
+  "definitionSourcePath": "formal/kevm/reusable/c2/c2-cutpoint-runtime-verification.k",
+  "definitionSourceSha256": "3d0a40457d427c147f864b8d7c13ee45c4cf6e74c6bb82685e787e7ca3f4e3dc",
+  "mainModule": "TRUST-C2-STATICCALL-CUTPOINT-RUNTIME-VERIFICATION",
+  "syntaxModule": "TRUST-C2-STATICCALL-CUTPOINT-RUNTIME-VERIFICATION",
+  "claimSourcePath": "formal/kevm/reusable/c2/c2-staticcall-placement-cutpoint-claim.k",
+  "claimSourceSha256": "486b79aacddace7e20531b7a6d054ea6370fd288ac5189937dcb44c383bde97c",
+  "claimModule": "TRUST-C2-STATICCALL-PLACEMENT-CUTPOINT-CLAIM",
+  "ruleSha256": "3a10ee20395508ebf4112fd24267a1af4d9f9e6804d49b572affe695bc1171c4",
+  "observedPc": 21900,
+  "priority": 1,
+  "modifiedCells": [
+    "k"
+  ],
+  "legacyDefinitionModified": false,
+  "compiledDefinition": null,
+  "proofStatus": "UNPROVED",
+  "credit": 0
+}

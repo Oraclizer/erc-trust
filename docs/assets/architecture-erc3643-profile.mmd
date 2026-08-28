@@ -1,0 +1,33 @@
+%% Source definition for docs/assets/architecture-erc3643-profile.svg
+%%
+%% The rendered diagram is committed as a static SVG rather than embedded as a
+%% GitHub Mermaid block. GitHub renders a Mermaid block inside an iframe whose
+%% src carries a URL fragment, and the browser scrolls that iframe into view on
+%% load, which moves the page away from the top. Keep this file and the SVG in
+%% step when the diagram changes.
+
+flowchart TB
+    subgraph P["1 · Privileged control path"]
+        direction LR
+        O["Authority"] --> A["ERC3643TrustAdapter"] --> G["Sealed ProfileGovernor"]
+    end
+
+    subgraph D["2 · Bound upstream inputs"]
+        direction LR
+        I["Identity Registry"]
+        C["Compliance"]
+        T["Upstream token"]
+    end
+
+    subgraph S["3 · Separated state ownership"]
+        direction LR
+        R["Adapter-owned<br/>TRUST state and receipts"]
+        B["Token-owned<br/>balances and frozen state"]
+    end
+
+    A -->|"read"| I
+    A -->|"read"| C
+    A -->|"exclusive Agent mutation"| T
+    G -->|"owns and seals"| T
+    A --> R
+    T --> B

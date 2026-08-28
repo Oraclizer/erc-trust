@@ -1,0 +1,87 @@
+{
+  "bridge": {
+    "path": "formal/kevm/row-bundles/sep-04/bridge/row-bridge.json",
+    "sha256": "74ccb38d44825a52250c14241fe48235ca87e28f18e92dd5f61b2bde760f1648"
+  },
+  "compositionGraph": {
+    "path": "formal/kevm/row-bundles/sep-04/composition-graph.json",
+    "rootSha256": "8729d58c7a547a884494830b211f3b54c2c9b4574a3d14a721955c69483136cd",
+    "sha256": "3899ed20ac61dbaa8a8ae9770bbbec1f68f741318655abbdd71ef8bf7a567aa5"
+  },
+  "dependencyGraph": {
+    "path": "formal/kevm/row-bundles/sep-04/dependency-graph.json",
+    "sha256": "b2dedd7188a0682ef669eb31ab25624f35184b0097c191951d5689b15a78900f"
+  },
+  "eligibleForDischarge": false,
+  "fixture": {
+    "path": "formal/kevm/row-bundles/sep-04/fixture.json",
+    "sha256": "d6357125ae439813b7dc04f0ca2c4b58c49825c7ae7b82ef6c72d67325d17d34"
+  },
+  "generated": [
+    {
+      "path": "formal/kevm/row-bundles/sep-04/generated/mutant-runtime-bridge.k",
+      "sha256": "9acba0ede1a335d4326d5f2f4cdf55713cde833b3438db65dfd15e9b84e18d77"
+    },
+    {
+      "path": "formal/kevm/row-bundles/sep-04/generated/mutant-runtime-verification.k",
+      "sha256": "e380844cea44b450c03fc3d0f345e22980801b96fe0270fa921c667a8e062bf9"
+    }
+  ],
+  "mutantExecutableControl": {
+    "claimId": null,
+    "graph": null,
+    "module": "TRUST-SEP-04-MUTANT-EVENT-TOPIC-CONTROL-SPEC",
+    "path": "formal/kevm/row-bundles/sep-04/mutant-control-claim.k",
+    "sha256": "153834f856426c26ab31a077f25fec5c00362f0b7415f189e09bcba0eb7f37c8"
+  },
+  "obligationId": "SEP-04",
+  "proofFacts": {
+    "isabelleClosure": null,
+    "mutantControlGraph": null,
+    "negativeGraph": null,
+    "positiveClaimId": null,
+    "positiveGraph": null,
+    "replay": null,
+    "semanticBridgeCertificate": null
+  },
+  "proofStatus": "PASS_OPEN_STATIC_V2",
+  "proofTemplate": {
+    "materializedClaim": {
+      "path": "formal/kevm/row-bundles/sep-04/claim.k",
+      "sha256": "9d0e346a898f84e59c4be1d957c50d9cc9204c0a76372c91b06eba2da0e928c5"
+    },
+    "module": "TRUST-SEP-04-RECEIPT-PREIMAGE-STORAGE-RETURN-FINAL-EVENT-SPEC",
+    "path": "formal/kevm/row-bundles/sep-04/claim-template.k.in",
+    "sha256": "087f45cf923f868421268016eecd39e4e12422f58385d4321055ca90285dba0c"
+  },
+  "requiredProperty": "`receipt_preimage_matches_storage_return_and_final_event`",
+  "runnerDescriptor": {
+    "path": "formal/kevm/row-bundles/sep-04/runner-descriptor.skeleton.json",
+    "sha256": "5d46f34966ed0ead8b53f5c774f8b9adca391e48d65e403f007824eef1c90ec5"
+  },
+  "schemaVersion": 2,
+  "skeletonBundle": {
+    "path": "formal/kevm/row-bundles/sep-04/bundle.skeleton.json",
+    "sha256": "56e7052587cca9f82044fae25d5c224684c5a5b814bb184b06ff6677767a5881"
+  },
+  "status": "OPEN",
+  "tcbBinding": {
+    "actualCurrentLock": {
+      "path": "formal/kevm/dependencies.lock.json",
+      "sha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196"
+    },
+    "blocker": false,
+    "canonicalPlaceholderSha256": "e4fcabd40c8b18e3900050a590b6b80c687d4d115f61bc12439af6099e83434e",
+    "classification": "OPEN_PLACEHOLDER_PENDING_COORDINATOR_BINDING",
+    "productDrift": false,
+    "runtimeBindingManifestDependencyLockSha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196"
+  },
+  "theorem": {
+    "buildStatus": "NOT_RUN_IN_WORKER",
+    "name": "receipt_preimage_matches_storage_return_and_final_event",
+    "path": "formal/kevm/row-bundles/sep-04/isabelle/SEP_04_Receipt_Event_Binding.thy",
+    "session": "ERC_TRUST_SEP_04",
+    "sha256": "10f850af527df8a67a5228e50220794b9cb977896107a10b4e3294cb984af5ba"
+  },
+  "theoremName": "receipt_preimage_matches_storage_return_and_final_event"
+}

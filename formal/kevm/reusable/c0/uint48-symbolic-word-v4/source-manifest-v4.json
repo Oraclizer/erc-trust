@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 4,
+  "kind": "ERC_TRUST_C0_UINT48_SYMBOLIC_WORD_SOURCE_MANIFEST_V4",
+  "status": "D1_SOURCE_AND_HYPOTHESES_FROZEN_BEFORE_SINGLE_STRICT_ATTEMPT",
+  "contract": {
+    "path": "evidence/end-to-end-refinement/c0-uint48-symbolic-word-contract-v4.json",
+    "sha256": "f62f126b8cf30d6a0c3d838d8d0eb7e619f3f24d12dff11816c16d99e70dc8a0"
+  },
+  "inheritedV1SourceManifest": {
+    "path": "formal/kevm/reusable/c0/uint48-symbolic-word-v1/source-manifest-v1.json",
+    "sha256": "a624c81bbc55f2172222a6508536cee7dd138fa1969d6a097039e2e0a5a81cbd"
+  },
+  "definitionReceipt": {
+    "path": "evidence/end-to-end-refinement/c0-uint48-symbolic-word-v3-definition-receipt.json",
+    "sha256": "af9e77a2f82a5587d62345de44e3f8bf6a6afa3a315bc3762afc6a82cb9dbe3a"
+  },
+  "runtime": {
+    "path": "evidence/end-to-end-refinement/runtime-binding/resolved/native/TrustToken.hex",
+    "fileSha256": "1c2e73fa137a50993301eacf9e70aa73623a5d4673c58cadedb60e12c273f44f",
+    "semanticSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "bytes": 24142
+  },
+  "sourceSlice": {
+    "entryPc": 13474,
+    "terminalInstructionPc": 13490,
+    "acceptPc": 13491,
+    "rejectPc": 2767,
+    "hex": "65ffffffffffff811690818103610acf57",
+    "sha256": "2c631141f8ef9d2d782748b60b4c3997b8d231ce2776b3038fd7c26413941492"
+  },
+  "claims": [
+    {
+      "id": "c0-uint48-symbolic-accept",
+      "module": "C0-UINT48-SYMBOLIC-ACCEPT-SPEC",
+      "role": "universal-accept",
+      "targetPc": 13491,
+      "requires": "0 <=Int W andBool W <Int (2 ^Int 48)",
+      "symbolicVariables": [
+        "W"
+      ],
+      "path": "formal/kevm/reusable/c0/uint48-symbolic-word-v1/claims/c0-uint48-symbolic-accept.k",
+      "sha256": "9d6e851daf46d13932179bc9fcaa02b4c2caa171abc38c3204a24f7029f91814",
+      "symbolicListTail": false
+    },
+    {
+      "id": "c0-uint48-symbolic-reject-d1",
+      "module": "C0-UINT48-SYMBOLIC-REJECT-D1-SPEC",
+      "role": "hybrid-conditional-universal-reject",
+      "targetPc": 2767,
+      "baseDomain": "(2 ^Int 48) <=Int W andBool W <Int (2 ^Int 256)",
+      "requires": "(2 ^Int 48) <=Int W andBool W <Int (2 ^Int 256) andBool 0 <=Int (maxUInt48 &Int W) andBool (maxUInt48 &Int W) <=Int maxUInt48",
+      "approvedRedundantHypotheses": [
+        "0 <=Int (maxUInt48 &Int W)",
+        "(maxUInt48 &Int W) <=Int maxUInt48"
+      ],
+      "bannedForms": [
+        "(maxUInt48 &Int W) <Int (2 ^Int 48)",
+        "(maxUInt48 &Int W) =/=Int W",
+        "any local semantic or simplification rule",
+        "any carrier conversion"
+      ],
+      "symbolicVariables": [
+        "W"
+      ],
+      "wordStackPattern": "W : .WordStack",
+      "symbolicListTail": false,
+      "path": "formal/kevm/reusable/c0/uint48-symbolic-word-v4/claims/c0-uint48-symbolic-reject-d1.k",
+      "sha256": "a0472d75e6e9ef7a70e23958d2eb46b25d98b2af585a5489a741f4abbc01db04",
+      "strictAttemptsAllowed": 1
+    },
+    {
+      "id": "c0-uint48-mutation-witness-canonical",
+      "module": "C0-UINT48-MUTATION-WITNESS-CANONICAL-SPEC",
+      "role": "mutation-unchanged-target",
+      "targetPc": 13491,
+      "requires": "true",
+      "symbolicVariables": [],
+      "path": "formal/kevm/reusable/c0/uint48-symbolic-word-v1/claims/c0-uint48-mutation-witness-canonical.k",
+      "sha256": "ba084f4b680951c894247a025e49dd111f15168210db4e8e3e8e96d757fd22af",
+      "symbolicListTail": false
+    },
+    {
+      "id": "c0-uint48-mutation-witness-mutant-target",
+      "module": "C0-UINT48-MUTATION-WITNESS-MUTANT-TARGET-SPEC",
+      "role": "mutation-target-cover",
+      "targetPc": 2767,
+      "requires": "true",
+      "symbolicVariables": [],
+      "path": "formal/kevm/reusable/c0/uint48-symbolic-word-v1/claims/c0-uint48-mutation-witness-mutant-target.k",
+      "sha256": "109c9dcb421903c0cdfd9812fa708753972261e9fde485a29cfa155d9c2854f9",
+      "symbolicListTail": false
+    }
+  ],
+  "mutation": {
+    "runtimePath": "formal/kevm/reusable/c0/uint48-symbolic-word-v1/mutant-runtime.hex",
+    "runtimeSha256": "52b5ae493529d48ade57b1ece00b24c7670622fb97ba02814054bb456fdc9981",
+    "bridgePath": "formal/kevm/reusable/c0/uint48-symbolic-word-v1/mutant-runtime-bridge.k",
+    "bridgeSha256": "3b2d8c9fc4a708054ad9396dbf0d14d591ae20b3145aef9a665645a44eb6b7e6",
+    "verificationPath": "formal/kevm/reusable/c0/uint48-symbolic-word-v1/mutant-runtime-verification.k",
+    "verificationSha256": "e380844cea44b450c03fc3d0f345e22980801b96fe0270fa921c667a8e062bf9",
+    "mutationPath": "formal/kevm/reusable/c0/uint48-symbolic-word-v1/mutation-v1.json",
+    "mutationSha256": "2eed0b99e1ce6eaddf805e90cf9b14b142e876d01b5729f2ef6e5f2be8838399",
+    "definitionStatus": "NOT_COMPILED"
+  },
+  "canonicalDefinition": {
+    "custodyId": "quarantine-m4-unmerged-20260825-141706/c0-uint48-symbolic-word-v3-20260827/canonical-definition-001",
+    "definitionKoreSha256": "d8ad03e19b362aeea0344ae0ffa1882c228cb72f3ebdfc146b09554862ad2507",
+    "compiledJsonSha256": "0b9f666bf720a3e72b5ce87b3c87fa167928c70af481db8b629bef3f4c864d9c",
+    "compiledBinSha256": "ed68d8f5c769c0523cb1ebba9e7ff9bf1995d147c9a4db4b7aa6fdf64e266c0b"
+  },
+  "mutantDefinition": {
+    "custodyId": "quarantine-m4-unmerged-20260825-141706/c0-uint48-symbolic-word-v3-20260827/mutant-definition-001",
+    "definitionKoreSha256": "f2d8494a29466834e3cce3848674e2220354f50bd998ab7509b98c126b0f7b38",
+    "compiledJsonSha256": "7632f988235186daeb855ea4162c92e946f1e58b9c4a5f61135c33e736e5da20",
+    "compiledBinSha256": "14b859067aa348d7f51279fd6f721549eb8238a83f46a1a85e0cc6d1c4005075"
+  },
+  "hybridComposition": {
+    "isabelleTheoryPath": "formal/isabelle/ERC_TRUST/TRUST_C0_UINT48_Redundant_Hypotheses.thy",
+    "correspondencePath": "evidence/end-to-end-refinement/c0-uint48-k-isabelle-and-correspondence-v1.json",
+    "freezeVerifierPath": "scripts/verify-c0-uint48-hybrid-hypotheses-v1.mjs",
+    "acceptedClassification": "PASS_C0_UINT48_HYBRID_CONDITIONAL_COMPOSITION",
+    "forbiddenClassification": "independent KEVM universal reject PASS"
+  },
+  "proofPlan": {
+    "preProofGates": [
+      "result-blind source generation and check",
+      "hypothesis-freeze verifier",
+      "Isabelle ROOT registration and source parse/build readiness",
+      "K parse-only with backendStarted=false",
+      "parsed claim contains the exact base domain and no extra hypothesis beyond the approved two"
+    ],
+    "strictProofAttempts": 1,
+    "timeoutSeconds": 1800,
+    "workers": 1,
+    "forceSequential": true,
+    "breakEveryStep": true,
+    "booster": false,
+    "assumeDefined": false,
+    "resume": false
+  },
+  "familyCredit": 0,
+  "c0Status": "QUALIFICATION_HELD"
+}

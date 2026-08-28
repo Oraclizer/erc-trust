@@ -1,0 +1,166 @@
+{
+  "canonicalObligation": {
+    "classification": "OPEN",
+    "discharged": false,
+    "index": {
+      "path": "evidence/end-to-end-refinement/obligation-evidence-index.json",
+      "sha256": "62150c3d59c6c31e53db435b6aa944a523c5d88b5b9326bec10a9deba253fdad"
+    },
+    "theoremInventory": {
+      "path": "evidence/end-to-end-refinement/theorem-obligations.md",
+      "sha256": "3b6b0910539c58e53db7c6dbf11c8bf0e4a4d9d7aaec6d8b5d233573dc514dba"
+    }
+  },
+  "compilerTemplate": {
+    "artifacts": {
+      "path": "evidence/end-to-end-refinement/runtime-binding/native/bridge-artifacts.json",
+      "sha256": "5e341d1a1b4442e8f3e7e90b268fb8a0870fe9333eed82d2ad59b91ec0c67832"
+    },
+    "byteLength": 24142,
+    "deterministicRootSha256": "44c62545b9545741bce98b313f412914bc976430c5596de6ad735f68d81cd4ab",
+    "manifest": {
+      "path": "evidence/end-to-end-refinement/runtime-binding/manifest.json",
+      "sha256": "97e4a349ff6667f01fb67515998c283383731d69a2fdaa00c06e260c11fcc5bb"
+    },
+    "output": {
+      "path": "evidence/end-to-end-refinement/runtime-binding/native/standard-json-output.json",
+      "sha256": "9697548b65ac0b4fdeff17deca78d9e11e49676dd0d78bd9d94907b24d5ac34e"
+    },
+    "sha256": "e81429838a7274b63c0a53468d8747c887077408a2e504a181460adb400466ce",
+    "subject": "implementation/src/TrustToken.sol:TrustToken"
+  },
+  "constructorResolution": {
+    "constructorInputSha256": "f269741218a9ba8dcb27901a3cdafea5c65a69dc697a670e180e7c4c2c3b0096",
+    "declaration": {
+      "astId": 622,
+      "canonicalType": "uint8",
+      "encodedWord": "0x0000000000000000000000000000000000000000000000000000000000000012",
+      "location": {
+        "length": 32,
+        "start": 6970
+      },
+      "name": "decimals",
+      "sourcePath": "implementation/src/TrustStorage.sol",
+      "sourceSpan": "199:31:5",
+      "value": "18"
+    },
+    "deploymentAddress": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+    "deterministicRootSha256": "b5ce284d6b7017a1feff3244bb67f175303660d86348ce93dbd8065bd39d3a2d",
+    "exactImmutablePatch": true,
+    "fixture": {
+      "path": "evidence/end-to-end-refinement/runtime-binding/resolved/fixture.json",
+      "sha256": "59b93ba41941f61ef357be99d240f6a274730be25ccdbb1a7d686be68ea938f6"
+    },
+    "runtime": {
+      "byteLength": 24142,
+      "ethGetCodeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+      "keccak256": "0x8b16213b4bf922deb63f7caca9117a35cef545921ed5e0bfa840da107151deb2",
+      "path": "evidence/end-to-end-refinement/runtime-binding/resolved/native/TrustToken.hex",
+      "sha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+      "textFileSha256": "1c2e73fa137a50993301eacf9e70aa73623a5d4673c58cadedb60e12c273f44f"
+    },
+    "transactionHash": "0xa60f3eedcf1b14b58b10eb6552c77c80a3ee8d482009c7daabf8cd52dbc0863b"
+  },
+  "dependencies": {
+    "directConsumers": [
+      "ART-06"
+    ],
+    "directPrerequisites": [
+      "ART-02",
+      "ART-04"
+    ],
+    "graph": {
+      "path": "formal/kevm/row-bundles/art-03/dependency-graph.json",
+      "sha256": "a8ea51449eefd45cb2038d97447163d6ca3643dbd5c0adb3f828eedb6232c837"
+    },
+    "transitiveConsumers": [
+      "ART-07"
+    ],
+    "transitivePrerequisites": [
+      "ART-01"
+    ]
+  },
+  "eligibleForDischarge": false,
+  "executableObservation": {
+    "expectedReturnWord": "0x0000000000000000000000000000000000000000000000000000000000000012",
+    "expectedStatus": "EVMC_SUCCESS",
+    "method": "decimals()",
+    "module": "TRUST-ART-03-CONSTRUCTOR-RESOLVED-RUNTIME-BINDING-SPEC",
+    "proofSpec": {
+      "path": "formal/kevm/row-bundles/art-03/claim.k",
+      "sha256": "a48c5c43eefbe63e454e3807bc04c5e6d827c3dbcf91ac1ec0f9206b4359c9d3"
+    },
+    "selector": "0x313ce567",
+    "source": {
+      "path": "implementation/src/TrustStorage.sol",
+      "sha256": "881783e28f8ec36e4571f48f407db4b63f8e736237f5e9f1044d916f3c066c6f"
+    }
+  },
+  "kRuntimeBinding": {
+    "canonicalBridge": {
+      "path": "formal/kevm/generated/trust-runtime-bridge.k",
+      "sha256": "bf8d587f7644d002d05bc7ab16806a39a3354d216cdcad53f504a9bb8b99d836"
+    },
+    "macroRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "runtimeMacro": "#trustTrustTokenRuntime"
+  },
+  "obligationId": "ART-03",
+  "provenanceEvidence": {
+    "ledger": {
+      "path": "evidence/end-to-end-refinement/proof-run-ledger.json",
+      "sha256": "11c3988953fdb7786ab8155f5bb059a4f876e0bc513a2a591a8edfbd6e1483ac"
+    },
+    "nonclaim": "the fixture is a local constructor-resolved artifact and makes no live deployment, address, or topology claim",
+    "passRuns": [
+      "RUN-BINDING-DIRECT-STANDARD-JSON-001",
+      "RUN-FIXTURE-RESOLVED-001",
+      "RUN-FIXTURE-RESOLVED-REPLAY-001"
+    ]
+  },
+  "requiredProperty": "constructor_resolved_local_runtime_is_hash_bound",
+  "schemaVersion": 1,
+  "semanticMutation": {
+    "byteOffset": 7001,
+    "canonicalByte": "0x12",
+    "canonicalWord": "0x0000000000000000000000000000000000000000000000000000000000000012",
+    "declarationAstId": 622,
+    "expectedSemanticDifference": "the unchanged decimals() claim requires ABI uint8(18), while the same selector on the mutant returns ABI uint8(19)",
+    "immutableRange": {
+      "length": 32,
+      "start": 6970
+    },
+    "kind": "EXECUTABLE_SEMANTIC_MUTANT",
+    "mutantBridge": {
+      "path": "formal/kevm/row-bundles/art-03/generated/mutant-runtime-bridge.k",
+      "sha256": "0862dac8bdbbcc4c0c2d54aef673be47f9428e929ffc0ce6937c8b2bf296cc49"
+    },
+    "mutantByte": "0x13",
+    "mutantRuntimeSha256": "f6c26fb38b29f1836f2f37ef456c829f8c3c9db0f521cf7aaf91c5b57b978dfa",
+    "mutantVerification": {
+      "path": "formal/kevm/row-bundles/art-03/generated/mutant-runtime-verification.k",
+      "sha256": "e380844cea44b450c03fc3d0f345e22980801b96fe0270fa921c667a8e062bf9"
+    },
+    "mutantWord": "0x0000000000000000000000000000000000000000000000000000000000000013",
+    "mutationId": "ART-03-MUT-DECIMALS-IMMUTABLE-001"
+  },
+  "status": "OPEN",
+  "tcb": {
+    "actualCurrentLock": {
+      "path": "formal/kevm/dependencies.lock.json",
+      "sha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196"
+    },
+    "binderPolicy": "the discharge binder replaces the OPEN placeholder with the actual current lock hash only when the row becomes DISCHARGED",
+    "canonicalIndexPlaceholder": {
+      "path": "formal/kevm/dependencies.lock.json",
+      "sha256": "e4fcabd40c8b18e3900050a590b6b80c687d4d115f61bc12439af6099e83434e"
+    },
+    "classification": "OPEN_PLACEHOLDER_PENDING_COORDINATOR_BINDING",
+    "productDrift": false,
+    "runtimeBindingManifest": {
+      "dependencyLockSha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196",
+      "path": "evidence/end-to-end-refinement/runtime-binding/manifest.json",
+      "sha256": "97e4a349ff6667f01fb67515998c283383731d69a2fdaa00c06e260c11fcc5bb"
+    },
+    "staticBlocker": false
+  }
+}

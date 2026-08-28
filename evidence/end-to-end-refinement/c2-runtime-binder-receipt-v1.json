@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_C2_RUNTIME_BINDER_RECEIPT_V1",
+  "date": "2026-08-24",
+  "status": "PASS_C2_RUNTIME_QUALIFIED_ACT01_OPEN",
+  "binderPath": "evidence/end-to-end-refinement/c2-cutpoint-observer-binder-v1.json",
+  "binderSha256": "d2f6b420278f61984c01de5b8132cd1a197d901ca763a8e16833c04da47d91ee",
+  "components": {
+    "certoraClassifier": "332e8b9cf53136175407c793112244746c36fff60190c3150355713dd5feebed",
+    "certoraMutation": "8d56d261dc6e8730a81158748bb00d72f67b684322d3f690361484283741928b",
+    "dependencySummary": "2b8d06a00ebddbc032e36daf1824541420ce21f24477b30226b772f44eb8893f",
+    "tokenStaticcallReturn": "125e1b5f4cb784cb12b2cb09496327ac08190a345fcf64522e8654f10b742a67",
+    "returndataCopy": "f3e04edc5d03b0db07bd20ad6e016d3ccde3cfd457af8093396156b015f8c554",
+    "concreteClassifier": "4043c38b3f26439e609b714980bf654b140b9ddec9603963ad67876a5df446b6",
+    "wrongBindingRuntimeNegative": "be0cffc9a05e4161e80854926299139bb627fd06e2002a3342530b6d734a19d1"
+  },
+  "ownership": {
+    "universalOutcomeEchoEvidenceClassification": "Certora Job017",
+    "actualNativeRuntimeConsumption": "strict KEVM",
+    "observerRules": "verification-only K-control cutpoints, priority(1), non-K state framed"
+  },
+  "qualification": {
+    "c2RuntimeQualified": true,
+    "act01Qualified": false,
+    "coreRefinementQualifiedDelta": 0,
+    "legacyQualifiedDelta": 0,
+    "centralCredit": 0
+  },
+  "remainingAct01": ["C0", "C1", "C3", "C4", "C6", "composition", "final strict replay", "current-profile binder"]
+}

@@ -1,0 +1,154 @@
+{
+  "authoritativeCommandTemplate": [
+    "bash",
+    "formal/kevm/row-bundles/run-row-bundle.sh",
+    "--bundle",
+    "<completed-art-04-bundle.json>",
+    "--positive-definition",
+    "<exact-positive-definition-directory>",
+    "--negative-definition",
+    "<exact-negative-definition-directory>",
+    "--output-directory",
+    "<fresh-output-directory>",
+    "--report",
+    "<fresh-replay-report.json>",
+    "--curated-evidence-directory",
+    "<fresh-curated-evidence-directory>",
+    "--isabelle-report",
+    "<fresh-art-04-isabelle-closure-report.json>",
+    "--side-timeout-seconds",
+    "<positive-integer>",
+    "--no-use-booster"
+  ],
+  "completedBundleValidationCommandTemplate": [
+    "python3",
+    "formal/kevm/row-bundles/validate-bundle.py",
+    "<completed-art-04-bundle.json>"
+  ],
+  "coordinatorSuppliedAfterAuthoritativeRuns": {
+    "completedBundlePath": null,
+    "curatedEvidenceDirectory": null,
+    "isabelleClosureReport": null,
+    "negativeDefinitionDirectory": null,
+    "outputDirectory": null,
+    "positiveDefinitionDirectory": null,
+    "replayReport": null
+  },
+  "definitionCompileCommandTemplates": {
+    "negative": [
+      "kevm",
+      "kompile-spec",
+      "formal/kevm/row-bundles/art-04/generated/mutant-runtime-verification.k",
+      "--main-module",
+      "TRUST-RUNTIME-VERIFICATION",
+      "--target",
+      "haskell",
+      "--emit-json",
+      "--output-definition",
+      "<fresh-negative-definition-directory>"
+    ],
+    "positive": [
+      "kevm",
+      "kompile-spec",
+      "formal/kevm/trust-runtime-verification.k",
+      "--main-module",
+      "TRUST-RUNTIME-VERIFICATION",
+      "--target",
+      "haskell",
+      "--emit-json",
+      "--output-definition",
+      "<fresh-positive-definition-directory>"
+    ]
+  },
+  "eligibleForDischarge": false,
+  "inputs": {
+    "claim": {
+      "path": "formal/kevm/row-bundles/art-04/claim.k",
+      "sha256": "6e210b7978f39ff49de779b9d7852033f7612a0100d722e787566684107d655f"
+    },
+    "isabelleClosureScript": {
+      "path": "formal/kevm/row-bundles/art-04/isabelle/run-closure.ps1",
+      "sha256": "1e23aa16234ccf6b28dce6d9dd3386320e9a77314dd35e262aa748a6d76a0e5a"
+    },
+    "negativeRuntimeBridge": {
+      "path": "formal/kevm/row-bundles/art-04/generated/mutant-runtime-bridge.k",
+      "sha256": "90553dd8b5ec79c96fb168eefb681b2cc2134430141b7c99c11a9e59ca7177dd"
+    },
+    "negativeVerification": {
+      "path": "formal/kevm/row-bundles/art-04/generated/mutant-runtime-verification.k",
+      "sha256": "e380844cea44b450c03fc3d0f345e22980801b96fe0270fa921c667a8e062bf9"
+    },
+    "positiveVerification": {
+      "path": "formal/kevm/trust-runtime-verification.k",
+      "sha256": "df6b227bfd1ab5bfc7cfdb364a7da4dea4b5660789e4513f10e78d00dcbe4193"
+    },
+    "skeletonBundle": {
+      "path": "formal/kevm/row-bundles/art-04/bundle.skeleton.json",
+      "sha256": "defb110bd7d8a5b6f2750c262a1a18c55cc19a468c03c87e1787458b074f51ba"
+    }
+  },
+  "interfacePilot": [
+    "FAIL-05",
+    "ART-02",
+    "ART-03"
+  ],
+  "isabelleClosureCommandTemplate": [
+    "powershell",
+    "-File",
+    "formal/kevm/row-bundles/art-04/isabelle/run-closure.ps1",
+    "-IsabelleRoot",
+    "<exact-isabelle-root>",
+    "-AdsFunctor",
+    "<exact-ads-functor-directory>",
+    "-FormalFoundation",
+    "<exact-formal-foundation-directory>",
+    "-OutputDirectory",
+    "<fresh-isabelle-output-directory>"
+  ],
+  "obligationId": "ART-04",
+  "proofFacts": {
+    "claimId": null,
+    "isabelleBuild": null,
+    "negativeDefinitionHashes": null,
+    "negativeGraph": null,
+    "positiveDefinitionHashes": null,
+    "positiveGraph": null,
+    "replay": null
+  },
+  "proofStatus": "PASS_OPEN_STATIC",
+  "repositoryOwnedTools": [
+    {
+      "path": "formal/kevm/row-bundles/run-row-bundle.sh",
+      "sha256": "1ab935de0dd7b40bb108955b60c232f6fa3afdeea62e6eb380a2fe26a0a3dcc1"
+    },
+    {
+      "path": "formal/kevm/row-bundles/validate-bundle.py",
+      "sha256": "a355958d31156a7efd4df21574f639f3218803265a417b517649ddedd41e1d65"
+    },
+    {
+      "path": "formal/kevm/row-bundles/analyze-row-proof.mjs",
+      "sha256": "b404b56b1b38362dc84a1532a43631b8cb456ef2aae4aa373ca6532d697e2dd7"
+    },
+    {
+      "path": "formal/kevm/row-bundles/curate-row-output.py",
+      "sha256": "44f507e8512cb23cfc966f1bb508aa4e31c0421bda6279f4eb4854b85887f4b8"
+    },
+    {
+      "path": "formal/kevm/row-bundles/verify-curated-evidence.py",
+      "sha256": "91c334b3b8501037bb46db4bdd94790397a0925e1732c2a89c13b50d50c9febe"
+    }
+  ],
+  "schemaVersion": 1,
+  "status": "OPEN",
+  "tcbBinding": {
+    "actualCurrentLock": {
+      "path": "formal/kevm/dependencies.lock.json",
+      "sha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196"
+    },
+    "blocker": false,
+    "canonicalPlaceholderSha256": "e4fcabd40c8b18e3900050a590b6b80c687d4d115f61bc12439af6099e83434e",
+    "classification": "OPEN_PLACEHOLDER_PENDING_COORDINATOR_BINDING",
+    "productDrift": false,
+    "runtimeBindingManifestDependencyLockSha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196"
+  }
+}

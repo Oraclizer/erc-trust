@@ -1,0 +1,37 @@
+name: Documentation problem
+description: Report a broken link, ambiguity, encoding defect, or missing explanation
+title: "[Docs] "
+labels: ["documentation"]
+body:
+  - type: input
+    id: location
+    attributes:
+      label: Document and section
+      placeholder: README.md, Architecture, or a stable URL
+    validations:
+      required: true
+  - type: input
+    id: commit
+    attributes:
+      label: Exact commit
+      placeholder: 40-character Git commit
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Explain what is incorrect, ambiguous, inaccessible, or missing.
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: Proposed correction
+  - type: checkboxes
+    id: security
+    attributes:
+      label: Security confirmation
+      options:
+        - label: This report contains no private vulnerability or exploit details.
+          required: true

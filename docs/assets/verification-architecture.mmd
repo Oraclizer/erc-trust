@@ -1,0 +1,42 @@
+%% Source definition for docs/assets/verification-architecture.svg
+%%
+%% The rendered diagram is committed as a static SVG rather than embedded as a
+%% GitHub Mermaid block. Keep this file and the SVG in step when the diagram
+%% changes.
+
+flowchart TB
+    subgraph M["1 · Abstract model"]
+        direction LR
+        F["Reusable foundations<br/>CDSP · regulatory composition"] --> A["ERC-TRUST abstract model"]
+        A --> I["Isabelle/HOL"]
+        I --> P["Checked model claims"]
+    end
+
+    subgraph V["2 · Implementation and bytecode checks"]
+        direction LR
+        S["Solidity reference"] --> FT["Foundry tests<br/>examples · fuzz · invariants"]
+        S --> C["Certora<br/>separate CVL rules"]
+        S --> SC["Pinned solc"]
+        SC --> B["EVM runtime bytecode"]
+        KF["K Framework"] --> KE["KEVM<br/>formal EVM semantics"]
+        H["Foundry-style proof harness"] --> K["Kontrol<br/>selected bytecode proofs"]
+        KE --> K
+        B --> K
+    end
+
+    A -. "mapped obligations" .-> S
+
+    subgraph Q["3 · Claim boundaries"]
+        direction LR
+        E["Current evidence<br/>model proofs + bounded implementation checks"]
+        N["Not claimed<br/>complete Isabelle-to-Solidity-to-EVM theorem"]
+        D["Not included<br/>deployment address · chain · operations"]
+    end
+
+    P --> E
+    FT --> E
+    C --> E
+    K --> E
+    A -.-> N
+    S -.-> N
+    B -.-> D

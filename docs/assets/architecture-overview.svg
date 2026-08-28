@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="780" viewBox="0 0 1120 780" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="ao-title ao-desc">
+  <title id="ao-title">ERC-TRUST action flow</title>
+  <desc id="ao-desc">Four-stage flow. Stage one, command boundary: an operator or delegated authority produces a canonical typed request. Stage two, fail-closed gate: shape, replay, epoch, policy and authority checks precede code-hash-bound dependency reads; a rejected or unavailable read reverts with no authorization or state change. Stage three, typed execution: the TRUST transition kernel selects an execution profile, either the native token owning balances and TRUST state, or the adapter owning TRUST state and receipts while the upstream token owns balances. Stage four: the canonical receipt is emitted last.</desc>
+
+  <defs>
+    <linearGradient id="ao-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#05131d"/>
+      <stop offset=".62" stop-color="#092330"/>
+      <stop offset="1" stop-color="#0b2c39"/>
+    </linearGradient>
+    <pattern id="ao-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0v40" fill="none" stroke="#9ac6cb" stroke-width="1" opacity=".035"/>
+    </pattern>
+    <marker id="ao-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 1.4 9 5 0 8.6Z" fill="#6fb6b6"/>
+    </marker>
+    <marker id="ao-arrow-stop" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 1.4 9 5 0 8.6Z" fill="#c9806e"/>
+    </marker>
+  </defs>
+
+  <rect width="1120" height="780" rx="20" fill="url(#ao-bg)"/>
+  <rect width="1120" height="780" rx="20" fill="url(#ao-grid)"/>
+
+  <g font-family="Inter,Segoe UI,Arial,sans-serif">
+    <!-- stage containers -->
+    <g fill="#071923" fill-opacity=".55" stroke="#244958" stroke-width="1.4">
+      <rect x="40" y="64" width="1040" height="126" rx="16"/>
+      <rect x="40" y="222" width="1040" height="160" rx="16"/>
+      <rect x="40" y="414" width="1040" height="226" rx="16"/>
+    </g>
+
+    <!-- stage badges and titles -->
+    <g>
+      <g fill="#0d2b36" stroke="#67d8c6" stroke-width="1.4">
+        <circle cx="72" cy="96" r="14"/>
+        <circle cx="72" cy="254" r="14"/>
+        <circle cx="72" cy="446" r="14"/>
+        <circle cx="436" cy="708" r="14"/>
+      </g>
+      <g fill="#7ae6d4" font-size="13" font-weight="700" text-anchor="middle">
+        <text x="72" y="101">1</text>
+        <text x="72" y="259">2</text>
+        <text x="72" y="451">3</text>
+        <text x="436" y="713">4</text>
+      </g>
+      <g fill="#b8d4d5" font-size="14" font-weight="700" letter-spacing=".4">
+        <text x="96" y="101">Command boundary</text>
+        <text x="96" y="259">Fail-closed gate</text>
+        <text x="96" y="451">Typed execution</text>
+      </g>
+    </g>
+
+    <!-- edges -->
+    <g fill="none" stroke="#4f8f92" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ao-arrow)">
+      <path d="M545 152 H615"/>
+      <path d="M725 174 V206 H280 V287"/>
+      <path d="M320 316 H380"/>
+      <path d="M485 345 V398 H280 V514"/>
+      <path d="M320 536 H365"/>
+      <path d="M555 536 L700 496"/>
+      <path d="M555 536 L700 584"/>
+      <path d="M950 496 H1010 V692 H720"/>
+      <path d="M990 584 H1045 V716 H720"/>
+    </g>
+    <path d="M590 316 H760" fill="none" stroke="#a06555" stroke-width="1.7" stroke-linecap="round" marker-end="url(#ao-arrow-stop)"/>
+
+    <!-- edge labels -->
+    <g font-size="11" fill="#8fb3b8" text-anchor="middle">
+      <text x="675" y="308">rejected / unavailable</text>
+      <text x="330" y="391">applicable</text>
+      <text x="632" y="482">Native Full</text>
+      <text x="635" y="604">ERC-3643 Verified Full</text>
+    </g>
+
+    <!-- nodes -->
+    <g stroke="#2b5262" stroke-width="1.4" fill="#09202b">
+      <rect x="285" y="130" width="260" height="44" rx="9"/>
+      <rect x="615" y="130" width="220" height="44" rx="9"/>
+      <rect x="90" y="287" width="230" height="58" rx="9"/>
+      <rect x="380" y="287" width="210" height="58" rx="9"/>
+      <rect x="90" y="514" width="230" height="44" rx="9"/>
+      <rect x="700" y="467" width="250" height="58" rx="9"/>
+      <rect x="700" y="555" width="290" height="58" rx="9"/>
+      <rect x="400" y="676" width="320" height="64" rx="10"/>
+    </g>
+    <rect x="760" y="287" width="270" height="58" rx="9" fill="#241a1c" stroke="#a76b5c" stroke-width="1.4"/>
+    <path d="M460 490 L555 536 L460 582 L365 536Z" fill="#0d2b36" stroke="#4f93a8" stroke-width="1.4"/>
+
+    <!-- node text -->
+    <g font-size="13" fill="#dfeded" text-anchor="middle">
+      <text x="415" y="157">Operator or delegated authority</text>
+      <text x="725" y="157">Canonical typed request</text>
+      <text x="205" y="310">Shape · replay · epochs</text>
+      <text x="205" y="329">policy · authority</text>
+      <text x="485" y="310">Code-hash-bound</text>
+      <text x="485" y="329">dependency reads</text>
+      <text x="205" y="541">TRUST transition kernel</text>
+      <text x="460" y="541" fill="#cfe9ee">Execution profile</text>
+      <text x="825" y="490">Native token</text>
+      <text x="825" y="509">balances + TRUST state</text>
+      <text x="845" y="578">Adapter: TRUST state + receipts</text>
+      <text x="845" y="597">upstream token: balances</text>
+    </g>
+    <g font-size="13" text-anchor="middle">
+      <text x="895" y="310" fill="#f0cdc4">Revert</text>
+      <text x="895" y="329" fill="#e0b1a5">no authorization or state change</text>
+    </g>
+    <text x="462" y="713" font-size="14" fill="#e3eeee">Canonical receipt emitted last</text>
+  </g>
+</svg>

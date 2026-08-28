@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 3,
+  "status": "PASS",
+  "classification": "DISCHARGED_CANDIDATE",
+  "eligibleForDischarge": true,
+  "obligationId": "ART-05",
+  "requiredProperty": "theory_source_and_import_closure_are_hash_bound",
+  "theoremName": "theory_source_and_import_closure_are_hash_bound",
+  "immutableReplayBoundFiles": {
+    "claim": { "path": "formal/kevm/row-bundles/art-05/claim.k", "sha256": "0bb20986f4b391c31c14b5894653e16f4d71735c52d451b85b9c398349f0115c" },
+    "bundle": { "path": "formal/kevm/row-bundles/art-05/bundle.json", "sha256": "d5262aeabd08ae98d3ca66bd759ea41296c495ac56c55015083a9d97a6e647c3" },
+    "bridge": { "path": "formal/kevm/row-bundles/art-05/bridge/row-bridge.json", "sha256": "acc76c219547fb9b89b16f335b61eb617f7509b9d60139dcda1c80c5674cc264" },
+    "rowManifest": { "path": "formal/kevm/row-bundles/art-05/bridge/row-manifest.json", "sha256": "e15cac79c0040d535f524523f7f31f78ef69c1d6cae723946318e861822828ce" },
+    "theory": { "path": "formal/kevm/row-bundles/art-05/isabelle/ART_05_Theory_Import_Closure_Binding.thy", "sha256": "fbe318e345e1854bfdc43f575a850cafe411e96ea9045e1849cfd839688b0dcd" }
+  },
+  "claimId": "2c601f4bddb5569250236d5782e3bd759d40fe11b1a1e0434c09b8d656247910",
+  "runtimeBinding": {
+    "runtimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "definitionKoreSha256": "f7a41bbd97d56106fdf781b606e566906ca0d1b84e4b8b733df660ff5c30ee26",
+    "compiledJsonSha256": "6a152a156d65a53822da5f1c12bcea84eaa720a3650ec37fc717fa398c86f513"
+  },
+  "mutation": {
+    "mutationId": "ART-05-MUT-RUNTIME-BRIDGE-LEAF-001",
+    "byteOffset": 8553,
+    "canonicalByte": "0x66",
+    "mutantByte": "0x67",
+    "exactByteDifferenceCount": 1,
+    "mutantRuntimeSha256": "8be632ea839589c14e91eacf523379c2cfa8377441b8f6e4cadfbad39eb6c3c4"
+  },
+  "theoryClosure": {
+    "closureRootSha256": "ce51d00c06ae0a8c348d5da538c0110fdb129877efe9861f0353b7fc21b6d448",
+    "compositionRootSha256": "a2cc126c6434cfec200aafb73a5b46ec20c921c4735de86a149ddbeb38839b9d",
+    "theoryCount": 14,
+    "localImportEdgeCount": 13,
+    "externalImportCount": 1,
+    "isabelleReportSha256": "9fbe613792acbed4737ea10adb93e19b639a0333172a125f569a9b20fbb522bb",
+    "oracleDependencyCount": 0
+  },
+  "canonicalEvidence": {
+    "replay": "evidence/end-to-end-refinement/row-bundles/art-05/replay.json",
+    "artifactsDirectory": "evidence/end-to-end-refinement/row-bundles/art-05/artifacts",
+    "requiredReportFacts": {
+      "status": "PASS",
+      "authoritativeFreshReplayRequired": false,
+      "runnerSourceAndExecutedSha256": "1ab935de0dd7b40bb108955b60c232f6fa3afdeea62e6eb380a2fe26a0a3dcc1",
+      "positiveGraph": { "nodes": 4, "edges": 2, "covers": 1, "terminal": 0, "stuck": 0, "vacuous": 0, "pending": 0, "admitted": false },
+      "negativeGraph": { "nodes": 401, "edges": 32, "covers": 0, "terminal": 1, "stuck": 0, "vacuous": 0, "pending": 262, "admitted": false }
+    },
+    "artifactHashes": {
+      "positive-proof.json": "87b1211eb09456aedd0bc7e2e2cf36e0e553d770a333435a9a8498e224a8a153",
+      "positive-kcfg.json": "cd1edac4c8bb20aac24e3a9399f96695c15f41145ce886bcc6bfa22b9ee8251c",
+      "positive.log": "3a11da35a19f3ab7e8999ae7e2578d3978aad137e7d4aa27fc4da8221835dc6b",
+      "positive-analysis.json": "3d1eb5990a1af55ef6bbb6861ea81ab25a17351a67f1c2b0cf8a8c9e569791ce",
+      "negative-proof.json": "4a650f685e8ebc6a158a5334fd7bd978c187c981679bae6a88093981fcc5b3c4",
+      "negative-kcfg.json": "8afc0b8440a3a8a8f05e3f5d5a470dd82504c53ac6ba13e8f910937c8c0e5af0",
+      "negative.log": "180622333de871c61ce5538446d75b8ef06a5d397e8874dfb72727ce8e5c18f7",
+      "negative-analysis.json": "b7d74a229f0a878e6be8a979d8a32ec2811dee0971bbdff9a37a90bf1461e429",
+      "negative-terminal-node-139.json": "8f59c765d0e36f75d88dd196974b64a6fa4a02ccfe44bfedd3c2cf64831c57e5",
+      "bundle-schema-validation.json": "7d8361ad4539e6d222d0b55dc24def664655b97ab11e9843ccb0bc11811574cf",
+      "isabelle-closure-report.json": "9fbe613792acbed4737ea10adb93e19b639a0333172a125f569a9b20fbb522bb"
+    },
+    "bridgeReverseCheck": {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-05/artifacts/bridge-reverse-check.json",
+      "requiredStatus": "PASS_FINAL_STATIC",
+      "portable": true
+    }
+  },
+  "portableIntegration": {
+    "productCopySetStatus": "EXACT_ALLOWLIST",
+    "canonicalReplay": "evidence/end-to-end-refinement/row-bundles/art-05/replay.json",
+    "canonicalArtifactsDirectory": "evidence/end-to-end-refinement/row-bundles/art-05/artifacts",
+    "executionOnlyMetadataIsNotAProductDependency": true
+  },
+  "checkedConclusion": "The authoritative exact-runtime replay, terminal one-byte semantic counterexample, source identities, and 14-theory import closure are bound to the named ART-05 theorem inputs.",
+  "nonclaims": [
+    "This certificate does not claim correctness of solc or KEVM themselves.",
+    "The negative graph has one terminal semantic counterexample and 262 fail-fast pending branches; it is not a closed negative proof.",
+    "The shared obligation index and proof ledger change only after the repository-owned binder validates canonical evidence."
+  ]
+}

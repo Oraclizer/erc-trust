@@ -1,0 +1,142 @@
+{
+  "authoritativeFreshReplayRequired": false,
+  "bridge": {
+    "reverseCheck": {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-05/artifacts/bridge-reverse-check.json",
+      "sha256": "cd7043c19b11ec88bc192646320eb7120a57f9a92ec1330c2f15f80befc62cd2"
+    },
+    "source": {
+      "path": "formal/kevm/row-bundles/art-05/bridge/row-bridge.json",
+      "sha256": "acc76c219547fb9b89b16f335b61eb617f7509b9d60139dcda1c80c5674cc264"
+    }
+  },
+  "bundle": {
+    "path": "formal/kevm/row-bundles/art-05/bundle.json",
+    "sha256": "d5262aeabd08ae98d3ca66bd759ea41296c495ac56c55015083a9d97a6e647c3"
+  },
+  "bundleSchemaValidation": {
+    "path": "evidence/end-to-end-refinement/row-bundles/art-05/artifacts/bundle-schema-validation.json",
+    "sha256": "7d8361ad4539e6d222d0b55dc24def664655b97ab11e9843ccb0bc11811574cf"
+  },
+  "claimId": "2c601f4bddb5569250236d5782e3bd759d40fe11b1a1e0434c09b8d656247910",
+  "createdAtUtc": "2026-08-04T15:32:32Z",
+  "curatedEvidenceDirectory": "evidence/end-to-end-refinement/row-bundles/art-05/artifacts",
+  "definitions": {
+    "negative": {
+      "compiledJsonSha256": "ca3fc07bdb66ba8d4b16da0befc03a84113f24a86af0c341969c55868e21e231",
+      "definitionKoreSha256": "dad8950af06c0d19056375ee66cb3d3f8868428717342a03e298f099f56dcd1d",
+      "mutationId": "ART-05-MUT-RUNTIME-BRIDGE-LEAF-001"
+    },
+    "positive": {
+      "compiledJsonSha256": "6a152a156d65a53822da5f1c12bcea84eaa720a3650ec37fc717fa398c86f513",
+      "definitionKoreSha256": "f7a41bbd97d56106fdf781b606e566906ca0d1b84e4b8b733df660ff5c30ee26"
+    }
+  },
+  "isabelle": {
+    "closureReport": {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-05/artifacts/isabelle-closure-report.json",
+      "sha256": "9fbe613792acbed4737ea10adb93e19b639a0333172a125f569a9b20fbb522bb"
+    },
+    "oracleDependencyCount": 0,
+    "rowManifest": {
+      "path": "formal/kevm/row-bundles/art-05/bridge/row-manifest.json",
+      "sha256": "e15cac79c0040d535f524523f7f31f78ef69c1d6cae723946318e861822828ce"
+    },
+    "session": "ERC_TRUST_ART_05",
+    "theoremName": "theory_source_and_import_closure_are_hash_bound",
+    "theory": {
+      "path": "formal/kevm/row-bundles/art-05/isabelle/ART_05_Theory_Import_Closure_Binding.thy",
+      "sha256": "fbe318e345e1854bfdc43f575a850cafe411e96ea9045e1849cfd839688b0dcd"
+    }
+  },
+  "negative": {
+    "analysis": {
+      "graph": {
+        "admitted": false,
+        "covers": 0,
+        "edges": 32,
+        "nodes": 401,
+        "pending": 262,
+        "stuck": 0,
+        "terminal": 1,
+        "vacuous": 0
+      },
+      "side": "negative",
+      "status": "PASS"
+    },
+    "backendRuntimeError": false,
+    "elapsedWallSeconds": 885,
+    "kcfg": {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-05/artifacts/negative-kcfg.json",
+      "sha256": "8afc0b8440a3a8a8f05e3f5d5a470dd82504c53ac6ba13e8f910937c8c0e5af0"
+    },
+    "log": {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-05/artifacts/negative.log",
+      "sha256": "180622333de871c61ce5538446d75b8ef06a5d397e8874dfb72727ce8e5c18f7"
+    },
+    "proof": {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-05/artifacts/negative-proof.json",
+      "sha256": "4a650f685e8ebc6a158a5334fd7bd978c187c981679bae6a88093981fcc5b3c4"
+    },
+    "terminalWitness": {
+      "claimRequirementTokens": [
+        "EVMC_SUCCESS </statusCode>",
+        "0x000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92266"
+      ],
+      "nodeId": 139,
+      "path": "evidence/end-to-end-refinement/row-bundles/art-05/artifacts/negative-terminal-node-139.json",
+      "sha256": "8f59c765d0e36f75d88dd196974b64a6fa4a02ccfe44bfedd3c2cf64831c57e5",
+      "tokens": [
+        "EVMC_SUCCESS_NETWORK_EndStatusCode",
+        "BLOBGASUSED_CELL"
+      ]
+    }
+  },
+  "obligationId": "ART-05",
+  "positive": {
+    "analysis": {
+      "graph": {
+        "admitted": false,
+        "covers": 1,
+        "edges": 2,
+        "nodes": 4,
+        "pending": 0,
+        "stuck": 0,
+        "terminal": 0,
+        "vacuous": 0
+      },
+      "side": "positive",
+      "status": "PASS"
+    },
+    "elapsedWallSeconds": 387,
+    "kcfg": {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-05/artifacts/positive-kcfg.json",
+      "sha256": "cd1edac4c8bb20aac24e3a9399f96695c15f41145ce886bcc6bfa22b9ee8251c"
+    },
+    "log": {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-05/artifacts/positive.log",
+      "sha256": "3a11da35a19f3ab7e8999ae7e2578d3978aad137e7d4aa27fc4da8221835dc6b"
+    },
+    "proof": {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-05/artifacts/positive-proof.json",
+      "sha256": "87b1211eb09456aedd0bc7e2e2cf36e0e553d770a333435a9a8498e224a8a153"
+    }
+  },
+  "proofSpec": {
+    "claimId": "2c601f4bddb5569250236d5782e3bd759d40fe11b1a1e0434c09b8d656247910",
+    "module": "TRUST-ART-05-THEORY-IMPORT-CLOSURE-BINDING-SPEC",
+    "path": "formal/kevm/row-bundles/art-05/claim.k",
+    "sha256": "0bb20986f4b391c31c14b5894653e16f4d71735c52d451b85b9c398349f0115c"
+  },
+  "residualNonclaims": [
+    "The row binds exact runtime observation and source/theory/import identities; it does not prove solc or KEVM correctness.",
+    "The terminal semantic negative contains 262 fail-fast pending branches and must not be described as a closed negative proof."
+  ],
+  "runner": {
+    "executedSha256": "1ab935de0dd7b40bb108955b60c232f6fa3afdeea62e6eb380a2fe26a0a3dcc1",
+    "path": "formal/kevm/row-bundles/run-row-bundle.sh",
+    "sourceSha256": "1ab935de0dd7b40bb108955b60c232f6fa3afdeea62e6eb380a2fe26a0a3dcc1"
+  },
+  "schemaVersion": 2,
+  "status": "PASS"
+}

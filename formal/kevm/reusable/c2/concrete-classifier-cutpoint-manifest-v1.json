@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_C2_CONCRETE_CLASSIFIER_CUTPOINT_V1",
+  "inputCanonicalPath": "formal/kevm/reusable/c2/c2-canonical-approval-spec.k",
+  "inputCanonicalSha256": "8bdd9e77d25c0ce678dc9685cc3ace3cd21f3074c1fdf5b6e0f3070bf4366a66",
+  "sourcePath": "formal/kevm/reusable/c2/c2-canonical-approval-concrete-cutpoint-claim.k",
+  "sourceSha256": "f6d5885ab39aac469a78471ffbf0d0c50ea50ba75b2954dce1c4804e540989e0",
+  "module": "TRUST-C2-CANONICAL-APPROVAL-CONCRETE-CUTPOINT-CLAIM",
+  "fromPc": 21907,
+  "toPc": 22155,
+  "evidenceHex": "0x7a8fd43e31749b67ac03c19179bfd5401c8d3542ebb5d20bbf40a897310b8eb8",
+  "evidenceDecimal": "55436291504372292953616306029010650753635915897254335774892813490448480571064",
+  "evidenceSha256": "8fe26fba423e970e49d7b42b1bb7ae3e038178dd432f4e776079fb44e9d22bc3",
+  "universalClassificationOwner": "Certora Job017 TrustPolicyBindingHarness",
+  "exactRuntimeConsumerOwner": "strict KEVM concrete actual-evidence seam",
+  "proofStatus": "UNPROVED",
+  "credit": 0,
+  "nonclaims": [
+    "No universal symbolic-EVIDENCE KEVM theorem",
+    "No C2 runtime or ACT-01 credit before wrong-echo negative and binder"
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-07-26T06:47:52+09:00",
+  "provider": "Certora Prover",
+  "tool": {
+    "name": "certora-cli",
+    "version": "8.17.1"
+  },
+  "job": {
+    "jobId": "10491299",
+    "runHash": "13ad45562f19449282cc0148a7401d68",
+    "url": "https://prover.certora.com/output/10491299/13ad45562f19449282cc0148a7401d68"
+  },
+  "sourceBinding": {
+    "repository": "erc-trust",
+    "revision": "e57cc29d8381ad096f6b127e567d2cb4c95acda8",
+    "submittedWorkingTreeDirty": false,
+    "contract": "pilot/src/TrustFreezePilot.sol",
+    "policy": "pilot/src/MockBoundPolicy.sol",
+    "specification": "pilot/certora/TrustFreezePilot.spec",
+    "configuration": "pilot/certora/TrustFreezePilot.conf",
+    "hashAlgorithm": "SHA-256",
+    "hashes": {
+      "pilot/src/TrustFreezePilot.sol": "a858bc406958c17bd4c086156183a3e935312c5a37480d69e804ffeca6579c5f",
+      "pilot/src/MockBoundPolicy.sol": "cabdb78c8bd449018b841070aabc646dc04be851407a7248c263c0754eb1b9c1",
+      "pilot/certora/TrustFreezePilot.spec": "79f9945a432bdb64ce5c2461727ea2ae45b250c2e4bfc0f53f6f8fbab0880ed7",
+      "pilot/certora/TrustFreezePilot.conf": "7f074881bdb9066bd20e9c94aa4e10e2d34d32fd2dc427bd3a78b94688446603"
+    }
+  },
+  "configuration": {
+    "evmVersion": "cancun",
+    "optimizerRuns": 200,
+    "viaIR": true,
+    "strictSolcOptimizer": true,
+    "ruleSanity": "advanced",
+    "multiAssertCheck": true,
+    "waitForResults": "all"
+  },
+  "summary": {
+    "overall": "NOT_VERIFIED",
+    "topLevelRuleCount": 13,
+    "success": 2,
+    "fail": 7,
+    "sanityFail": 4,
+    "timeout": 0,
+    "unknown": 0
+  },
+  "rules": [
+    {
+      "name": "direct_and_staged_freeze_converge",
+      "result": "FAIL"
+    },
+    {
+      "name": "rejected_assessment_reverts_and_stutters",
+      "result": "SUCCESS"
+    },
+    {
+      "name": "operational_failure_reverts_and_stutters",
+      "result": "FAIL"
+    },
+    {
+      "name": "wrong_route_caller_reverts_and_stutters",
+      "result": "FAIL"
+    },
+    {
+      "name": "wrong_route_calldata_reverts_and_stutters",
+      "result": "FAIL"
+    },
+    {
+      "name": "cancelled_ticket_cannot_be_used",
+      "result": "FAIL"
+    },
+    {
+      "name": "stale_binding_ticket_cannot_be_used",
+      "result": "FAIL"
+    },
+    {
+      "name": "consumed_ticket_cannot_replay",
+      "result": "SANITY_FAIL"
+    },
+    {
+      "name": "transfer_respects_frozen_floor",
+      "result": "SANITY_FAIL"
+    },
+    {
+      "name": "can_transfer_query_matches_balance_and_frozen_floor",
+      "result": "SUCCESS"
+    },
+    {
+      "name": "successful_transfer_frame",
+      "result": "FAIL"
+    },
+    {
+      "name": "transfer_from_respects_frozen_floor",
+      "result": "SANITY_FAIL"
+    },
+    {
+      "name": "all_external_mutators_are_classified",
+      "result": "SANITY_FAIL"
+    }
+  ],
+  "claimBoundary": "This run is failing diagnostic evidence and does not support a verified, secure, complete, or production-ready claim."
+}

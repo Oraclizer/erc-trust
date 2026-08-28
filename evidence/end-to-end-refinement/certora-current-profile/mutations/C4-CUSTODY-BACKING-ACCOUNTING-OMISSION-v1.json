@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "mutationId": "C4-CUSTODY-BACKING-ACCOUNTING-OMISSION-v1",
+  "kind": "EXECUTABLE_SEMANTIC_MUTANT",
+  "canonicalProductionPath": "implementation/src/TrustToken.sol",
+  "canonicalProductionSha256": "dbe06bb25a2b62913bd6428e1de32ba007a214e24ac45f4fd2c0fb55ea22c96a",
+  "mutantProductionPath": "implementation/src/TrustTokenC4CustodyAccountingOmissionMutant.sol",
+  "mutantProductionSha256": "0021c12ad890f37ba2c537babc528a32b125313bfa829511e2696367bd1182a7",
+  "canonicalHarnessPath": "implementation/test/mocks/TrustTokenC4RemainingHarness.sol",
+  "canonicalHarnessSha256": "92fe3539a3399d0ceeb4e696ca1de9c534d4ec1e761994e0782289f1add65103",
+  "mutantHarnessPath": "implementation/test/mocks/TrustTokenC4RemainingHarnessMutant.sol",
+  "mutantHarnessSha256": "14bae55aba50c243e7399c680e3aae63d1636ebd0624ff0191ee33c0e5e246a7",
+  "permittedDelta": "Rename verification target and omit only custody backing increment and decrement",
+  "unchangedSpec": "implementation/certora/TrustC4Remaining.spec",
+  "expectedViolations": [
+    "seize_preserves_beneficial_balance_and_creates_exact_custody",
+    "custody_disposition_consumes_exact_backing_once"
+  ],
+  "productionSourceChanged": false
+}

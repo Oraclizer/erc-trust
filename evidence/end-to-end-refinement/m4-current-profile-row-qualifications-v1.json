@@ -1,0 +1,2992 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_M4_CURRENT_PROFILE_ROW_QUALIFICATIONS_V1",
+  "status": "PASS_OPEN_ROW_REFINEMENT_GATE",
+  "date": "2026-08-28",
+  "sourceAggregate": {
+    "path": "evidence/end-to-end-refinement/c-series-terminal-qualification-v1.json",
+    "sha256": "d7532f897d85bc4efc98ef542d7095ab2d87e2292cc5c409b9ce0378ec451077",
+    "qualifiedPackages": 7,
+    "requiredPackages": 7
+  },
+  "progress": {
+    "coreRefinement": {
+      "qualified": 49,
+      "required": 49,
+      "rows": [
+        "ACT-01",
+        "STATE-04",
+        "STATE-05",
+        "ACT-02",
+        "ACT-03",
+        "ACT-04",
+        "ACT-05",
+        "ACT-06",
+        "ACT-07",
+        "ACT-08",
+        "ACT-09",
+        "RVR-01",
+        "RVR-02",
+        "RVR-03",
+        "BAL-03",
+        "BAL-04",
+        "BAL-06",
+        "BAL-07",
+        "BAL-08",
+        "BAL-09",
+        "REV-01",
+        "REV-02",
+        "REV-03",
+        "REV-04",
+        "REV-05",
+        "REV-06",
+        "REV-07",
+        "REV-08",
+        "REV-09",
+        "REV-10",
+        "REV-11",
+        "ABI-05",
+        "AUTH-01",
+        "AUTH-02",
+        "AUTH-03",
+        "AUTH-04",
+        "AUTH-05",
+        "FAIL-01",
+        "FAIL-02",
+        "FAIL-03",
+        "FAIL-04",
+        "FAIL-08",
+        "EXT-01",
+        "EXT-02",
+        "EXT-03",
+        "SEP-02",
+        "SEP-04",
+        "ART-06",
+        "ART-07"
+      ]
+    },
+    "coreSupporting": {
+      "qualified": 24,
+      "required": 24,
+      "rows": [
+        "STATE-01",
+        "STATE-02",
+        "STATE-03",
+        "STATE-06",
+        "STATE-07",
+        "BAL-01",
+        "BAL-02",
+        "BAL-05",
+        "BAL-10",
+        "ABI-01",
+        "ABI-02",
+        "ABI-03",
+        "ABI-04",
+        "FAIL-05",
+        "EXT-07",
+        "SEP-01",
+        "SEP-03",
+        "SEP-05",
+        "ART-01",
+        "ART-02",
+        "ART-03",
+        "ART-04",
+        "ART-05",
+        "ART-08"
+      ]
+    },
+    "fullAssuranceBacklog": {
+      "qualified": 0,
+      "required": 6,
+      "publicationBlocking": false
+    }
+  },
+  "artifactBudget": {
+    "defaultMaximumNewArtifactsPerRow": 2,
+    "STATE-04": {
+      "newArtifactCount": 2,
+      "artifacts": [
+        "formal/isabelle/ERC_TRUST/TRUST_M4_STATE_04_Current_Profile.thy",
+        "evidence/end-to-end-refinement/m4-current-profile-row-qualifications-v1.json"
+      ],
+      "excessReason": null
+    },
+    "STATE-05": {
+      "newArtifactCount": 1,
+      "artifacts": [
+        "formal/isabelle/ERC_TRUST/TRUST_M4_STATE_05_Current_Profile.thy"
+      ],
+      "excessReason": null
+    },
+    "actionReversalBatch": {
+      "rowCount": 11,
+      "sharedNewArtifactCount": 1,
+      "perRowNewArtifactUpperBound": 1,
+      "artifact": "formal/isabelle/ERC_TRUST/TRUST_M4_Action_Reversal_Row_Corollaries.thy",
+      "excessReason": null
+    },
+    "supportingCurrentProfileBatch": {
+      "rowCount": 24,
+      "qualifiedRowCount": 24,
+      "frozenRowCount": 0,
+      "sharedNewArtifactCount": 1,
+      "perRowNewArtifactUpperBound": 1,
+      "artifact": "evidence/end-to-end-refinement/runtime-binding-current-profile-qualification-v1.json",
+      "excessReason": null
+    },
+    "coreBalanceReversalBatch": {
+      "rowCount": 17,
+      "sharedNewArtifactCount": 1,
+      "perRowNewArtifactUpperBound": 1,
+      "artifact": "formal/isabelle/ERC_TRUST/TRUST_M4_Core_Balance_Reversal_Current_Profile.thy",
+      "excessReason": null
+    },
+    "coreContractBoundaryBatch": {
+      "rowCount": 18,
+      "sharedNewArtifactCount": 1,
+      "perRowNewArtifactUpperBound": 1,
+      "artifact": "formal/isabelle/ERC_TRUST/TRUST_M4_Core_Contract_Boundary_Current_Profile.thy",
+      "excessReason": null
+    },
+    "coreBalanceReversalBatch": {
+      "rowCount": 17,
+      "sharedNewArtifactCount": 1,
+      "perRowNewArtifactUpperBound": 1,
+      "artifact": "formal/isabelle/ERC_TRUST/TRUST_M4_Core_Balance_Reversal_Current_Profile.thy",
+      "excessReason": null
+    },
+    "coreContractBoundaryBatch": {
+      "rowCount": 18,
+      "sharedNewArtifactCount": 1,
+      "perRowNewArtifactUpperBound": 1,
+      "artifact": "formal/isabelle/ERC_TRUST/TRUST_M4_Core_Contract_Boundary_Current_Profile.thy",
+      "excessReason": null
+    }
+  },
+  "rows": [
+    {
+      "rowId": "ACT-01",
+      "completionOrder": 1,
+      "statement": "freeze_success_refines",
+      "status": "PASS_ACT01_CURRENT_PROFILE_RUNTIME_QUALIFICATION",
+      "terminal": true,
+      "receipt": {
+        "path": "evidence/end-to-end-refinement/act01-current-profile-terminal-receipt-v1.json",
+        "sha256": "7631fc1978c94a394ca2d0c76803ac86f44bd185c2ad1d9f65b1706a2bc496be"
+      },
+      "rowRootSha256": "7dcc66ad9292fe6d92fe3276aabd7b2e880e94ba8339c992f267d5cf0cba7809"
+    },
+    {
+      "rowId": "STATE-04",
+      "completionOrder": 2,
+      "statement": "freeze_and_restriction_are_independent",
+      "qualifiedTheorem": "TRUST_M4_STATE_04_Current_Profile.freeze_and_restriction_are_independent",
+      "status": "PASS_STATE04_CURRENT_PROFILE_ROW_COROLLARY",
+      "terminal": true,
+      "nativeRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+      "productionSource": {
+        "path": "implementation/src/TrustToken.sol",
+        "sha256": "dbe06bb25a2b62913bd6428e1de32ba007a214e24ac45f4fd2c0fb55ea22c96a"
+      },
+      "reusableInputs": [
+        {
+          "id": "C-SERIES",
+          "path": "evidence/end-to-end-refinement/c-series-terminal-qualification-v1.json",
+          "sha256": "d7532f897d85bc4efc98ef542d7095ab2d87e2292cc5c409b9ce0378ec451077"
+        },
+        {
+          "id": "C4",
+          "path": "evidence/end-to-end-refinement/c4-terminal-receipt-v1.json",
+          "sha256": "c0f7745147b34e9788c44705fc71c663559ae07f6d67ea3b2c65624d3c5bd85d"
+        },
+        {
+          "id": "C4-FREEZE",
+          "path": "evidence/end-to-end-refinement/c4-freeze-lane-receipt-v1.json",
+          "sha256": "a3c628fae7233998ff1a2425786bcabf04c53c38d86cec95aeb4930cc94c0d1b"
+        }
+      ],
+      "rowSpecificStatement": {
+        "theory": {
+          "path": "formal/isabelle/ERC_TRUST/TRUST_M4_STATE_04_Current_Profile.thy",
+          "sha256": "2732345086f49a32bf0018cdc2ea2590de4c32b34d0ced1b372e1a4237b0a80c"
+        },
+        "positiveTheorems": [
+          "state04_overlay_inhabited",
+          "freeze_preserves_restriction_overlay",
+          "restriction_preserves_freeze_overlay",
+          "freeze_and_restriction_are_independent"
+        ],
+        "isabelleBuild": {
+          "version": "Isabelle2025-2",
+          "runId": "20260828T021301Z",
+          "cleanBuildExitCode": 0,
+          "proofExportExitCode": 0,
+          "bannedSourceForms": 0,
+          "oracleDependencyCount": 0,
+          "buildLogSha256": "2acc563ee1d4a5b18d5dbf917d1ad180ff8c05cc4edf13965ff9f209759194c8"
+        }
+      },
+      "currentProductInhabitant": {
+        "testSourcePath": "implementation/test/TrustActions.unit.t.sol",
+        "functionBlockSha256": "1b3ad629399e094a8db2d5c409f6f9a1913d2ffb7551631901e4ca27bc7c2ad7",
+        "test": "testFreezeAndRestrictionRemainIndependentAndRejectConflation",
+        "foundryVersion": "1.7.1",
+        "terminalPassCount": 1
+      },
+      "distinguishingNegative": {
+        "id": "STATE-04-CONFLATE-FROZEN-WITH-RESTRICTION",
+        "theorem": "state04_conflated_projection_is_distinguished",
+        "sameCoexistenceState": true,
+        "semanticDifference": "The canonical observer retains the nonzero frozen amount while the conflated observer returns zero when restriction is also active.",
+        "verificationOnlyObserverExecuted": true,
+        "compiledMutantRuntimeReplayExecuted": false,
+        "sourcePlan": {
+          "path": "evidence/end-to-end-refinement/row-bundles/state-04/negative/mutation-plan.json",
+          "sha256": "3dd75fff5ede59c5aad10a0fadcbbd6374559a064ad8631e1fd136108a7c38f9"
+        },
+        "compiledMutation": {
+          "path": "evidence/end-to-end-refinement/row-bundles/state-04/negative/mutation.json",
+          "sha256": "ec43ac9c983da1203f185d79411f454ea574d56f318cd63985f5559ab9c90b26"
+        }
+      },
+      "assumptions": [
+        "The C-series aggregate and C4 receipts are exact current-profile terminal inputs.",
+        "The frozen Native runtime and production TrustToken source identities are unchanged.",
+        "The row theorem claims overlay observation independence, not full commutation of action records, receipts, or effect provenance."
+      ],
+      "nonclaims": [
+        "No C0-C6 package proof was rerun.",
+        "No fresh compiled-mutant KEVM replay is claimed.",
+        "No compiler correctness, deployment, external ownership, policy, or legal truth is established.",
+        "Core Refinement remains open at 2 of 49 rows."
+      ],
+      "qualification": {
+        "rowSpecificStatementPass": true,
+        "typedInhabitantPass": true,
+        "distinguishingNegativePass": true,
+        "mutationSemanticReachPass": true,
+        "currentConsumerPass": true,
+        "coreRefinementQualifiedDelta": 1,
+        "supportingQualifiedDelta": 0,
+        "backlogQualifiedDelta": 0,
+        "centralCredit": 0
+      },
+      "rowRootSha256": "18b21de85cd508211347eb052fbd00f87cb3e41d51729617a9a9c42898b65afc"
+    },
+    {
+      "rowId": "STATE-05",
+      "completionOrder": 3,
+      "statement": "case_terminality_is_scoped",
+      "qualifiedTheorem": "TRUST_M4_STATE_05_Current_Profile.case_terminality_is_scoped",
+      "status": "PASS_STATE05_CURRENT_PROFILE_ROW_COROLLARY",
+      "terminal": true,
+      "nativeRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+      "productionSource": {
+        "path": "implementation/src/TrustToken.sol",
+        "sha256": "dbe06bb25a2b62913bd6428e1de32ba007a214e24ac45f4fd2c0fb55ea22c96a"
+      },
+      "reusableInputs": [
+        {
+          "id": "C-SERIES",
+          "path": "evidence/end-to-end-refinement/c-series-terminal-qualification-v1.json",
+          "sha256": "d7532f897d85bc4efc98ef542d7095ab2d87e2292cc5c409b9ce0378ec451077"
+        },
+        {
+          "id": "C4",
+          "path": "evidence/end-to-end-refinement/c4-terminal-receipt-v1.json",
+          "sha256": "c0f7745147b34e9788c44705fc71c663559ae07f6d67ea3b2c65624d3c5bd85d"
+        }
+      ],
+      "rowSpecificStatement": {
+        "theory": {
+          "path": "formal/isabelle/ERC_TRUST/TRUST_M4_STATE_05_Current_Profile.thy",
+          "sha256": "23dffc8e5f2a98820e32f7a9d8e23570a931711fa8597c7ec95cbf4ef02d9a17"
+        },
+        "positiveTheorems": [
+          "case_terminality_is_scoped"
+        ],
+        "isabelleBuild": {
+          "version": "Isabelle2025-2",
+          "runId": "20260828T023709Z",
+          "cleanBuildExitCode": 0,
+          "proofExportExitCode": 0,
+          "bannedSourceForms": 0,
+          "oracleDependencyCount": 0,
+          "buildLogSha256": "a4d55607eb08afd6efa1d3423f2c7e41fbc8cfbb238d7abfd45da19189c81024"
+        }
+      },
+      "currentProductInhabitant": {
+        "testSourcePath": "implementation/test/TrustActions.unit.t.sol",
+        "functionBlockSha256": "fa7b0cddf037bf368ebd90102e26a2b2d00014677c5fb33f4128e29ecdcbad01",
+        "test": "testCaseTerminalityIsScopedAndRejectsGlobalTerminalMutant",
+        "foundryVersion": "1.7.1",
+        "terminalPassCount": 1
+      },
+      "distinguishingNegative": {
+        "id": "STATE-05-GLOBAL-TERMINAL-MUTANT",
+        "theorem": "state05_global_terminal_mutant_is_distinguished",
+        "sameSubjectDistinctCase": true,
+        "semanticDifference": "The canonical state leaves an unrelated case open while the global-terminal mutant reports it terminal.",
+        "verificationOnlyObserverExecuted": true,
+        "compiledMutantRuntimeReplayExecuted": false
+      },
+      "assumptions": [
+        "The C-series aggregate and C4 terminal receipt are exact current-profile inputs.",
+        "The frozen Native runtime and production TrustToken source identities are unchanged.",
+        "The terminal forward action is CONFISCATE, LIQUIDATE, or RECOVER and the comparison case is distinct."
+      ],
+      "nonclaims": [
+        "No C0-C6 package proof was rerun.",
+        "No fresh compiled-mutant KEVM replay is claimed.",
+        "No liveness, deployment, external policy, or legal terminality truth is established.",
+        "Core Refinement remains open at 3 of 49 rows."
+      ],
+      "qualification": {
+        "rowSpecificStatementPass": true,
+        "typedInhabitantPass": true,
+        "distinguishingNegativePass": true,
+        "mutationSemanticReachPass": true,
+        "currentConsumerPass": true,
+        "coreRefinementQualifiedDelta": 1,
+        "supportingQualifiedDelta": 0,
+        "backlogQualifiedDelta": 0,
+        "centralCredit": 0
+      },
+      "rowRootSha256": "4b9cbce129826abcb943743f35a2acc4a2dcaa7a655a4d91ead1a491105ff918"
+    }
+  ],
+  "rowBatches": [
+    {
+      "id": "ACTION_REVERSAL_CURRENT_PROFILE_BATCH_V1",
+      "status": "PASS_ACTION_8_AND_REVERSAL_3_ROW_COROLLARIES",
+      "sourceAggregate": {
+        "path": "evidence/end-to-end-refinement/c-series-terminal-qualification-v1.json",
+        "sha256": "d7532f897d85bc4efc98ef542d7095ab2d87e2292cc5c409b9ce0378ec451077"
+      },
+      "parentTheory": {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_End_To_End_Composition.thy",
+        "sha256": "14572e7d1343c5303c4733bdb5eb4ddbf2ad5344e90c0f544223666ad372495d"
+      },
+      "rowNegativeTheory": {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_M4_Action_Reversal_Row_Corollaries.thy",
+        "sha256": "ae3b862dcdf0ba6b2049b0d4c92e216ce99c8745757ddc7b606854f1be3db355"
+      },
+      "isabelleBuild": {
+        "version": "Isabelle2025-2",
+        "runId": "20260828T030338Z",
+        "cleanBuildExitCode": 0,
+        "proofExportExitCode": 0,
+        "bannedSourceForms": 0,
+        "oracleDependencyCount": 0,
+        "buildLogSha256": "9e4d31b6158b155ff5a9ede738d97351ce578493fd1d4ab445e368b006333fd3"
+      },
+      "packageReceipts": {
+        "C4": {
+          "path": "evidence/end-to-end-refinement/c4-terminal-receipt-v1.json",
+          "sha256": "c0f7745147b34e9788c44705fc71c663559ae07f6d67ea3b2c65624d3c5bd85d"
+        },
+        "C5": {
+          "path": "evidence/end-to-end-refinement/c5-terminal-receipt-v1.json",
+          "sha256": "913a46292382df1bb970ed50b4460c7fe7f103a93fb164c38880f7fdd0cf4b4a"
+        },
+        "C6": {
+          "path": "evidence/end-to-end-refinement/c6-terminal-receipt-v1.json",
+          "sha256": "6afba204a95dfe43455ed9c1896f809461f0ee9652a2ecc6422467be93a29847"
+        }
+      },
+      "productTestSourcePath": "implementation/test/TrustActions.unit.t.sol",
+      "productTestBlocks": {
+        "sixActions": {
+          "test": "testSixActionsAndSeparateReversals",
+          "functionBlockSha256": "19b238961cc9067699a51d032730e563ffcb338cc2d835b227ce5a385345f861"
+        },
+        "custodyConfiscate": {
+          "test": "testConfiscateFromCustodyClosesAndTerminatesCase",
+          "functionBlockSha256": "0337c65c1d5c707717032eabba30d449ec3b77d5f0f07a592b0cdf1262257f99"
+        },
+        "custodyLiquidateRecover": {
+          "test": "testCustodyLiquidateAndRecoverCurrentProfileInhabitantsAndNegatives",
+          "functionBlockSha256": "99fe4e643b65ddcd14aa50159e577e2d99e36066d006275e94d2502373bc439a"
+        }
+      },
+      "commonAssumptions": [
+        "The C-series aggregate and listed package receipts are exact current-profile terminal inputs.",
+        "The frozen Native runtime and production source identities are unchanged."
+      ],
+      "commonNonclaims": [
+        "No C0-C6 package proof was rerun.",
+        "Each row is limited to its named theorem conclusion and listed current product inhabitant.",
+        "No compiler correctness, deployment, external policy, or legal truth is established."
+      ],
+      "qualificationTemplate": {
+        "rowSpecificStatementPass": true,
+        "typedInhabitantPass": true,
+        "distinguishingNegativePass": true,
+        "mutationSemanticReachPass": true,
+        "currentConsumerPass": true,
+        "coreRefinementQualifiedDelta": 1,
+        "supportingQualifiedDelta": 0,
+        "backlogQualifiedDelta": 0,
+        "centralCredit": 0
+      },
+      "rows": [
+        {
+          "rowId": "ACT-02",
+          "completionOrder": 4,
+          "statement": "seize_success_refines",
+          "status": "PASS_ACT02_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "qualifiedTheorem": "TRUST_End_To_End_Composition.seize_success_refines",
+          "packages": [
+            "C4",
+            "C6"
+          ],
+          "testKey": "sixActions",
+          "requiredTestTokens": [
+            "custody.encumberedAmount != 0"
+          ],
+          "negative": {
+            "kind": "EXECUTABLE_PACKAGE_MUTATION",
+            "id": "C4-CUSTODY-BACKING-ACCOUNTING-OMISSION",
+            "packageId": "C4",
+            "mutation": {
+              "path": "evidence/end-to-end-refinement/certora-current-profile/mutations/C4-CUSTODY-BACKING-ACCOUNTING-OMISSION-v1.json",
+              "sha256": "62e484d2e176c99f24e2afebaa2e6090ad0df1783ecfc0aacfce16499df9f4d0"
+            },
+            "semanticViolation": "seize_preserves_beneficial_balance_and_creates_exact_custody"
+          },
+          "rowRootSha256": "745bd48b8f1664c0eafb1d3db8a1a07018b07dad3d240539da6ca15ff61c7128"
+        },
+        {
+          "rowId": "ACT-03",
+          "completionOrder": 5,
+          "statement": "confiscate_direct_success_refines",
+          "status": "PASS_ACT03_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "qualifiedTheorem": "TRUST_End_To_End_Composition.confiscate_direct_success_refines",
+          "packages": [
+            "C4",
+            "C6"
+          ],
+          "testKey": "sixActions",
+          "requiredTestTokens": [
+            "caseTerminal(confiscate.caseId) != false"
+          ],
+          "negative": {
+            "kind": "FORMAL_ROW_OBSERVER_MUTATION",
+            "id": "ACT-03-TERMINAL-FLAG-OMISSION",
+            "theorem": "act03_terminal_flag_omission_is_distinguished"
+          },
+          "rowRootSha256": "5d5853ef705a101c51cc7c2dbfa7f9e89f8bd011473d41e4c35f8139f8d6f9f6"
+        },
+        {
+          "rowId": "ACT-04",
+          "completionOrder": 6,
+          "statement": "confiscate_custody_success_refines",
+          "status": "PASS_ACT04_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "qualifiedTheorem": "TRUST_End_To_End_Composition.confiscate_custody_success_refines",
+          "packages": [
+            "C4",
+            "C6"
+          ],
+          "testKey": "custodyConfiscate",
+          "requiredTestTokens": [
+            "custody must close",
+            "confiscated case must terminate"
+          ],
+          "negative": {
+            "kind": "EXECUTABLE_PACKAGE_MUTATION",
+            "id": "C4-CUSTODY-BACKING-ACCOUNTING-OMISSION",
+            "packageId": "C4",
+            "mutation": {
+              "path": "evidence/end-to-end-refinement/certora-current-profile/mutations/C4-CUSTODY-BACKING-ACCOUNTING-OMISSION-v1.json",
+              "sha256": "62e484d2e176c99f24e2afebaa2e6090ad0df1783ecfc0aacfce16499df9f4d0"
+            },
+            "semanticViolation": "custody_disposition_consumes_exact_backing_once"
+          },
+          "rowRootSha256": "a82ebbd992880c6e71af83487cd075d1638571db6c2a1d425ab5e883e3176056"
+        },
+        {
+          "rowId": "ACT-05",
+          "completionOrder": 7,
+          "statement": "liquidate_direct_success_refines",
+          "status": "PASS_ACT05_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "qualifiedTheorem": "TRUST_End_To_End_Composition.liquidate_direct_success_refines",
+          "packages": [
+            "C4",
+            "C6"
+          ],
+          "testKey": "sixActions",
+          "requiredTestTokens": [
+            "settlement.settlementCommitment != bytes32(0)"
+          ],
+          "negative": {
+            "kind": "FORMAL_ROW_OBSERVER_MUTATION",
+            "id": "ACT-05-SETTLEMENT-OMISSION",
+            "theorem": "act05_settlement_omission_is_distinguished"
+          },
+          "rowRootSha256": "dd398e499c24660b7a218ba0d14bbb9e0812753a08157aa3131c2ec9a81b0467"
+        },
+        {
+          "rowId": "ACT-06",
+          "completionOrder": 8,
+          "statement": "liquidate_custody_success_refines",
+          "status": "PASS_ACT06_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "qualifiedTheorem": "TRUST_End_To_End_Composition.liquidate_custody_success_refines",
+          "packages": [
+            "C4",
+            "C6"
+          ],
+          "testKey": "custodyLiquidateRecover",
+          "requiredTestTokens": [
+            "liquidation closes custody",
+            "custody settlement omission mutant"
+          ],
+          "negative": {
+            "kind": "EXECUTABLE_PACKAGE_MUTATION",
+            "id": "C4-CUSTODY-BACKING-ACCOUNTING-OMISSION",
+            "packageId": "C4",
+            "mutation": {
+              "path": "evidence/end-to-end-refinement/certora-current-profile/mutations/C4-CUSTODY-BACKING-ACCOUNTING-OMISSION-v1.json",
+              "sha256": "62e484d2e176c99f24e2afebaa2e6090ad0df1783ecfc0aacfce16499df9f4d0"
+            },
+            "semanticViolation": "custody_disposition_consumes_exact_backing_once"
+          },
+          "rowRootSha256": "406f8ff08c21fab9619d581649a2bcbb39d4046fc60a1c64e1c1935e32224608"
+        },
+        {
+          "rowId": "ACT-07",
+          "completionOrder": 9,
+          "statement": "restrict_success_refines",
+          "status": "PASS_ACT07_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "qualifiedTheorem": "TRUST_End_To_End_Composition.restrict_success_refines",
+          "packages": [
+            "C4",
+            "C6"
+          ],
+          "testKey": "sixActions",
+          "requiredTestTokens": [
+            "isRestricted(address(this)) != false"
+          ],
+          "negative": {
+            "kind": "FORMAL_ROW_OBSERVER_MUTATION",
+            "id": "ACT-07-RESTRICTION-FLAG-OMISSION",
+            "theorem": "act07_restriction_flag_omission_is_distinguished"
+          },
+          "rowRootSha256": "19fabfc0c6e6d109d6b66ddde9f599cc80c0e3fa9800501789687039446eb54f"
+        },
+        {
+          "rowId": "ACT-08",
+          "completionOrder": 10,
+          "statement": "recover_direct_success_refines",
+          "status": "PASS_ACT08_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "qualifiedTheorem": "TRUST_End_To_End_Composition.recover_direct_success_refines",
+          "packages": [
+            "C4",
+            "C6"
+          ],
+          "testKey": "sixActions",
+          "requiredTestTokens": [
+            "entitlement.consumed != false"
+          ],
+          "negative": {
+            "kind": "FORMAL_ROW_OBSERVER_MUTATION",
+            "id": "ACT-08-ENTITLEMENT-OMISSION",
+            "theorem": "act08_entitlement_omission_is_distinguished"
+          },
+          "rowRootSha256": "9abb840898ca109ed63b409f70bdb8c3d729a3770bb6bb5ed85d60766b9d29ca"
+        },
+        {
+          "rowId": "ACT-09",
+          "completionOrder": 11,
+          "statement": "recover_custody_success_refines",
+          "status": "PASS_ACT09_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "qualifiedTheorem": "TRUST_End_To_End_Composition.recover_custody_success_refines",
+          "packages": [
+            "C4",
+            "C6"
+          ],
+          "testKey": "custodyLiquidateRecover",
+          "requiredTestTokens": [
+            "recovery closes custody",
+            "custody entitlement omission mutant"
+          ],
+          "negative": {
+            "kind": "EXECUTABLE_PACKAGE_MUTATION",
+            "id": "C4-CUSTODY-BACKING-ACCOUNTING-OMISSION",
+            "packageId": "C4",
+            "mutation": {
+              "path": "evidence/end-to-end-refinement/certora-current-profile/mutations/C4-CUSTODY-BACKING-ACCOUNTING-OMISSION-v1.json",
+              "sha256": "62e484d2e176c99f24e2afebaa2e6090ad0df1783ecfc0aacfce16499df9f4d0"
+            },
+            "semanticViolation": "custody_disposition_consumes_exact_backing_once"
+          },
+          "rowRootSha256": "f5dca3214b81cbc1ee60c4de45b8edc00b5d10cd1e5f8fbf9c9dae728c69fec8"
+        },
+        {
+          "rowId": "RVR-01",
+          "completionOrder": 12,
+          "statement": "unfreeze_success_refines",
+          "status": "PASS_RVR01_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "qualifiedTheorem": "TRUST_End_To_End_Composition.unfreeze_success_refines",
+          "packages": [
+            "C5",
+            "C6"
+          ],
+          "testKey": "sixActions",
+          "requiredTestTokens": [
+            "getFrozenTokens(address(this)) != 1"
+          ],
+          "negative": {
+            "kind": "EXECUTABLE_PACKAGE_MUTATION",
+            "id": "C5-EFFECT-PARENT-OMISSION",
+            "packageId": "C5",
+            "mutation": {
+              "path": "evidence/end-to-end-refinement/certora-current-profile/mutations/C5-EFFECT-PARENT-OMISSION-v1.json",
+              "sha256": "238913a24c26ff7270c3e6941fc0711c27fc9ff5a47a0ddc02ce0358598a7c72"
+            },
+            "semanticViolation": "current_effect_head_reversal_restores_prior_state"
+          },
+          "rowRootSha256": "812464e84d64481f2383019a5b2a756769339b94329cfb2084d473b2026191e4"
+        },
+        {
+          "rowId": "RVR-02",
+          "completionOrder": 13,
+          "statement": "release_success_refines",
+          "status": "PASS_RVR02_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "qualifiedTheorem": "TRUST_End_To_End_Composition.release_success_refines",
+          "packages": [
+            "C5",
+            "C6"
+          ],
+          "testKey": "sixActions",
+          "requiredTestTokens": [
+            "caseTerminal(seize.caseId) != false"
+          ],
+          "negative": {
+            "kind": "FORMAL_ROW_OBSERVER_MUTATION",
+            "id": "RVR-02-TERMINAL-FLAG-OMISSION",
+            "theorem": "rvr02_terminal_flag_omission_is_distinguished"
+          },
+          "rowRootSha256": "c6a6e19b7ed83cb02f3725f33d6403e0f96e3e7865d2a8eb8d6eb9193e4557cd"
+        },
+        {
+          "rowId": "RVR-03",
+          "completionOrder": 14,
+          "statement": "unrestrict_success_refines",
+          "status": "PASS_RVR03_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "qualifiedTheorem": "TRUST_End_To_End_Composition.unrestrict_success_refines",
+          "packages": [
+            "C5",
+            "C6"
+          ],
+          "testKey": "sixActions",
+          "requiredTestTokens": [
+            "isRestricted(address(this)) != true"
+          ],
+          "negative": {
+            "kind": "EXECUTABLE_PACKAGE_MUTATION",
+            "id": "C5-EFFECT-PARENT-OMISSION",
+            "packageId": "C5",
+            "mutation": {
+              "path": "evidence/end-to-end-refinement/certora-current-profile/mutations/C5-EFFECT-PARENT-OMISSION-v1.json",
+              "sha256": "238913a24c26ff7270c3e6941fc0711c27fc9ff5a47a0ddc02ce0358598a7c72"
+            },
+            "semanticViolation": "current_effect_head_reversal_restores_prior_state"
+          },
+          "rowRootSha256": "9f49f0c3fc175453e051f3da3957c2f5963f7c921f80cb50c11d933bcaca53eb"
+        }
+      ]
+    },
+    {
+      "id": "SUPPORTING_CURRENT_PROFILE_BATCH_V1",
+      "status": "PASS_SUPPORTING_CURRENT_PROFILE_TWENTY_FOUR",
+      "sourceAggregate": {
+        "path": "evidence/end-to-end-refinement/c-series-terminal-qualification-v1.json",
+        "sha256": "d7532f897d85bc4efc98ef542d7095ab2d87e2292cc5c409b9ce0378ec451077"
+      },
+      "isabelleBuild": {
+        "version": "Isabelle2025-2",
+        "runId": "20260828T030338Z",
+        "cleanBuildExitCode": 0,
+        "proofExportExitCode": 0,
+        "bannedSourceForms": 0,
+        "oracleDependencyCount": 0
+      },
+      "evidenceRefs": {
+        "runtimeFreeze": {
+          "path": "evidence/end-to-end-refinement/m4-runtime-freeze-v1.json",
+          "sha256": "ba18d99f630bad67faee824ec83f1071f478a393639faa087be739d880164d67"
+        },
+        "runtimeBinding": {
+          "path": "evidence/end-to-end-refinement/runtime-binding/manifest.json",
+          "sha256": "97e4a349ff6667f01fb67515998c283383731d69a2fdaa00c06e260c11fcc5bb"
+        },
+        "runtimeBindingQualification": {
+          "path": "evidence/end-to-end-refinement/runtime-binding-current-profile-qualification-v1.json",
+          "sha256": "fb36433285c6e1135bfcac7e0765aa7921d5e6d738911601f36c3c5140d0d191"
+        },
+        "c0": {
+          "path": "evidence/end-to-end-refinement/c0-universal-iff-qualification-v1.json",
+          "sha256": "f5ed07d481e35d9a1f3fd7458004e1a212537c20343cf5685021ef8cf1e7eded"
+        },
+        "d0": {
+          "path": "evidence/end-to-end-refinement/c0-d0-actual-runtime-slice-v1.json",
+          "sha256": "68421c712be0ee1f8b71855995bc1ff94fa953c0260d422a8244cf3a23affd79"
+        },
+        "c1": {
+          "path": "evidence/end-to-end-refinement/c1-terminal-receipt-v1.json",
+          "sha256": "1ecf5ed3da7dda4eee73a1589cfc331d7de5773436da8d4c0990af53d7c690c1"
+        },
+        "c4": {
+          "path": "evidence/end-to-end-refinement/c4-terminal-receipt-v1.json",
+          "sha256": "c0f7745147b34e9788c44705fc71c663559ae07f6d67ea3b2c65624d3c5bd85d"
+        },
+        "c6": {
+          "path": "evidence/end-to-end-refinement/c6-terminal-receipt-v1.json",
+          "sha256": "6afba204a95dfe43455ed9c1896f809461f0ee9652a2ecc6422467be93a29847"
+        },
+        "abi03": {
+          "path": "evidence/end-to-end-refinement/row-bundles/abi-03/replay.json",
+          "sha256": "2b354f0b311f5cadf5d6af9521e857f66bd8c4c5d877bb6de3ea4919aee7f7b0"
+        },
+        "fail05": {
+          "path": "evidence/end-to-end-refinement/kevm/fail-05-generic-dispatcher-revert-20260802T174934Z/independent-replay.json",
+          "sha256": "5711190a34209e0bd6dc1f5d5a7767635348e3bdd173aad0f003d4487dc75ec1"
+        },
+        "art02": {
+          "path": "evidence/end-to-end-refinement/row-bundles/art-02/replay.json",
+          "sha256": "43b52a9e997f2edc337aeb2da5e6f693fae536fa75a9a9e4bba1bfdaffce37a6"
+        },
+        "art03": {
+          "path": "evidence/end-to-end-refinement/row-bundles/art-03/replay.json",
+          "sha256": "58437bb7ae3a8cca7b97cc2921024c6111773c1a067d90dfffb3971564e8fc9e"
+        },
+        "art04": {
+          "path": "evidence/end-to-end-refinement/row-bundles/art-04/replay.json",
+          "sha256": "39983fafb51c7b9f2425ba83bee57ebca0f6e6bb3449b1260b38d2a93634d8e4"
+        },
+        "art05": {
+          "path": "evidence/end-to-end-refinement/row-bundles/art-05/replay.json",
+          "sha256": "a8e2c74ac4e07a3e7a389bc7850c414cae3fe03063e93d135888585d77a2fcf2"
+        },
+        "formalLock": {
+          "path": "formal-dependencies.lock.json",
+          "sha256": "f0bf6cfa4b05bef9e40a1be64b6309ec7722059bdbdacee5c6924df3bb35cab6"
+        },
+        "scope": {
+          "path": "evidence/end-to-end-refinement/m4-core-refinement-scope-v1.json",
+          "sha256": "a94fdd38612e6d77fec2057c67bfa88d71d826234fb6116ab8b23650c88f6f56"
+        }
+      },
+      "theoryRefs": {
+        "retrieve": {
+          "path": "formal/isabelle/ERC_TRUST/TRUST_Retrieve_Relation.thy",
+          "sha256": "dc44636241520700b86f720d125eedc559a9cc207cb092a0ab692058a3f49060"
+        },
+        "state": {
+          "path": "formal/isabelle/ERC_TRUST/TRUST_Compositional_State.thy",
+          "sha256": "db19dac8cd183fc9701423613bfcf2c21a201d3abe623f8dc0b60fa32e87010f"
+        },
+        "concrete": {
+          "path": "formal/isabelle/ERC_TRUST/TRUST_Concrete_Configuration.thy",
+          "sha256": "642daa38742595bb7a00700b08b0a24d74e18d1239eb848f45e197c78ba5ce56"
+        },
+        "transaction": {
+          "path": "formal/isabelle/ERC_TRUST/TRUST_Transaction_Refinement.thy",
+          "sha256": "785726cd1b06f429101068ba7144c028563bb31fc427aca73aa7d2f39ffd52f5"
+        },
+        "boundary": {
+          "path": "formal/isabelle/ERC_TRUST/Claim_Boundary.thy",
+          "sha256": "313549026c3645fbd9bb7eb7da4b32a47c4eb6257d625342de5f0927fd1da7eb"
+        }
+      },
+      "productTestBlocks": {
+        "balance": {
+          "path": "implementation/test/TrustActions.unit.t.sol",
+          "test": "testCustodyBackingAndOwnFrozenFloorDoNotDoubleCount",
+          "functionBlockSha256": "2c245028f39f1f39b2656025b0d6f84032ca5db80f945df0d2be29fe96f4c98a"
+        },
+        "exactCalldata": {
+          "path": "implementation/test/TrustActions.unit.t.sol",
+          "test": "testExactCalldataAndMalformedDependencyReturnAreTyped",
+          "functionBlockSha256": "923f21a84113d251d237492024750aae8bf3da389542022cba586083f2d11ed5"
+        },
+        "erc7943": {
+          "path": "implementation/test/TrustActions.unit.t.sol",
+          "test": "testERC7943ExactUseRoutesAndInterfaceTruth",
+          "functionBlockSha256": "210425b52fc118b1bdbed6ec30c22871399280947269b1888ec286b1e8f48760"
+        },
+        "supply": {
+          "path": "implementation/test/TrustStateful.invariant.t.sol",
+          "test": "invariantSupplyConserved",
+          "functionBlockSha256": "fc90e96d846880d00e900058c9e3831758872aef3d6359baf894437ebf312574"
+        },
+        "sixActions": {
+          "path": "implementation/test/TrustActions.unit.t.sol",
+          "test": "testSixActionsAndSeparateReversals",
+          "functionBlockSha256": "19b238961cc9067699a51d032730e563ffcb338cc2d835b227ce5a385345f861"
+        }
+      },
+      "commonAssumptions": [
+        "The C-series aggregate and referenced evidence are exact current-profile inputs.",
+        "The frozen Native runtime, production source, compiler, and formal-foundation identities are unchanged."
+      ],
+      "commonNonclaims": [
+        "No C0-C6 package proof was rerun.",
+        "Supporting qualification does not qualify any remaining Core row.",
+        "No compiler correctness, deployment, external policy, or legal truth is established."
+      ],
+      "rows": [
+        {
+          "rowId": "STATE-01",
+          "completionOrder": 1,
+          "statement": "current_state_abstraction_well_defined",
+          "status": "PASS_STATE01_CURRENT_PROFILE_SUPPORTING_ROW",
+          "terminal": true,
+          "evidenceKeys": [
+            "runtimeFreeze"
+          ],
+          "theoryFacts": [
+            {
+              "theoryKey": "retrieve",
+              "fact": "current_state_abstraction_well_defined"
+            }
+          ],
+          "testKey": null,
+          "requiredTestTokens": [],
+          "negative": {
+            "kind": "THEOREM_COUNTERPART",
+            "id": "RUNTIME-SUBSTITUTION",
+            "theoryKey": "retrieve",
+            "fact": "alpha_current_rejects_runtime_substitution"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 0,
+            "supportingQualifiedDelta": 1,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "371a3723ec7205d420b72efe5da6c69911cefb7b9ff078f84f3be6ffbe50c315"
+        },
+        {
+          "rowId": "STATE-02",
+          "completionOrder": 2,
+          "statement": "storage_layout_matches_compiler_output",
+          "status": "PASS_STATE02_CURRENT_PROFILE_SUPPORTING_ROW",
+          "terminal": true,
+          "evidenceKeys": [
+            "runtimeBinding",
+            "runtimeBindingQualification"
+          ],
+          "theoryFacts": [],
+          "testKey": null,
+          "requiredTestTokens": [],
+          "negative": {
+            "kind": "SEMANTIC_MUTATION",
+            "id": "STORAGE-LAYOUT-SEMANTIC-MUTATION",
+            "evidenceKey": "runtimeBindingQualification",
+            "semanticClass": "storageLayout"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 0,
+            "supportingQualifiedDelta": 1,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "6f9bb58716f4e83183963f623c3fb52c6cd399e2712894bf1c31f33f34bc5afe"
+        },
+        {
+          "rowId": "STATE-03",
+          "completionOrder": 3,
+          "statement": "finite_storage_keys_nonalias",
+          "status": "PASS_STATE03_CURRENT_PROFILE_SUPPORTING_ROW",
+          "terminal": true,
+          "evidenceKeys": [
+            "runtimeBinding",
+            "runtimeBindingQualification"
+          ],
+          "theoryFacts": [
+            {
+              "theoryKey": "retrieve",
+              "fact": "finite_storage_keys_nonalias"
+            }
+          ],
+          "testKey": null,
+          "requiredTestTokens": [],
+          "negative": {
+            "kind": "DUPLICATE_KEY_COLLAPSE",
+            "id": "FINITE-KEY-PREIMAGE-COLLISION"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 0,
+            "supportingQualifiedDelta": 1,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "d3d7d724721a6e7592283909127f65afd77d391c267d4c95817a68a48e2851e4"
+        },
+        {
+          "rowId": "STATE-06",
+          "completionOrder": 4,
+          "statement": "nonce_projection_is_exact",
+          "status": "PASS_STATE06_CURRENT_PROFILE_SUPPORTING_ROW",
+          "terminal": true,
+          "evidenceKeys": [
+            "c1"
+          ],
+          "theoryFacts": [
+            {
+              "theoryKey": "retrieve",
+              "fact": "nonce_projection_is_exact"
+            }
+          ],
+          "testKey": null,
+          "requiredTestTokens": [],
+          "negative": {
+            "kind": "EXECUTABLE_PACKAGE_MUTATION",
+            "id": "C1-AUTHORIZATION-CONSUMPTION-OMISSION",
+            "evidenceKey": "c1",
+            "mutation": {
+              "path": "evidence/end-to-end-refinement/certora-current-profile/mutations/C1-AUTHORIZATION-CONSUMPTION-OMISSION-v1.json",
+              "sha256": "b293697217292ed0e02567b792d6c74f09f1369abec98b9bacd858267a5688ce"
+            },
+            "semanticViolation": "command_id_and_nonce_consumed_once_on_success"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 0,
+            "supportingQualifiedDelta": 1,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "d46335c49fb48d5e38016258de68ba69500928ea7a7395ebc1fb90ea5aec1354"
+        },
+        {
+          "rowId": "STATE-07",
+          "completionOrder": 5,
+          "statement": "current_state_does_not_assume_history",
+          "status": "PASS_STATE07_CURRENT_PROFILE_SUPPORTING_ROW",
+          "terminal": true,
+          "evidenceKeys": [
+            "runtimeFreeze"
+          ],
+          "theoryFacts": [
+            {
+              "theoryKey": "retrieve",
+              "fact": "current_state_does_not_assume_history"
+            },
+            {
+              "theoryKey": "concrete",
+              "fact": "current_configuration_does_not_contain_transaction_context"
+            }
+          ],
+          "testKey": null,
+          "requiredTestTokens": [],
+          "negative": {
+            "kind": "HISTORY_INJECTION",
+            "id": "CURRENT-STATE-HISTORY-INJECTION"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 0,
+            "supportingQualifiedDelta": 1,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "7fc51ea41a08355c2f7b276b9b6100ffc0886528d025b5b4a24fb13c28145cad"
+        },
+        {
+          "rowId": "BAL-01",
+          "completionOrder": 6,
+          "statement": "custody_backing_equals_active_custody_sum",
+          "status": "PASS_BAL01_CURRENT_PROFILE_SUPPORTING_ROW",
+          "terminal": true,
+          "evidenceKeys": [
+            "runtimeFreeze",
+            "c4"
+          ],
+          "theoryFacts": [
+            {
+              "theoryKey": "state",
+              "fact": "custody_backing_equals_active_custody_sum"
+            }
+          ],
+          "testKey": "balance",
+          "requiredTestTokens": [
+            "physical custody balance"
+          ],
+          "negative": {
+            "kind": "EXECUTABLE_PACKAGE_MUTATION",
+            "id": "C4-CUSTODY-BACKING-ACCOUNTING-OMISSION",
+            "evidenceKey": "c4",
+            "mutation": {
+              "path": "evidence/end-to-end-refinement/certora-current-profile/mutations/C4-CUSTODY-BACKING-ACCOUNTING-OMISSION-v1.json",
+              "sha256": "62e484d2e176c99f24e2afebaa2e6090ad0df1783ecfc0aacfce16499df9f4d0"
+            },
+            "semanticViolation": "custody_disposition_consumes_exact_backing_once"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 0,
+            "supportingQualifiedDelta": 1,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "8a96144fa0e67d5a1af86d363b27da33a397f8d19e637f502e8df550cda8a18f"
+        },
+        {
+          "rowId": "BAL-02",
+          "completionOrder": 7,
+          "statement": "physical_balance_covers_custody_backing",
+          "status": "PASS_BAL02_CURRENT_PROFILE_SUPPORTING_ROW",
+          "terminal": true,
+          "evidenceKeys": [
+            "runtimeFreeze"
+          ],
+          "theoryFacts": [
+            {
+              "theoryKey": "state",
+              "fact": "physical_balance_covers_custody_backing"
+            }
+          ],
+          "testKey": "balance",
+          "requiredTestTokens": [
+            "physical custody balance"
+          ],
+          "negative": {
+            "kind": "BOUND_VIOLATION",
+            "id": "BACKING-EXCEEDS-PHYSICAL"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 0,
+            "supportingQualifiedDelta": 1,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "4af15d19057e1e77b583db95445b936cc3a80cff90728b68fa65c0b097377ba9"
+        },
+        {
+          "rowId": "BAL-05",
+          "completionOrder": 8,
+          "statement": "required_floor_is_additive_without_double_counting",
+          "status": "PASS_BAL05_CURRENT_PROFILE_SUPPORTING_ROW",
+          "terminal": true,
+          "evidenceKeys": [
+            "runtimeFreeze"
+          ],
+          "theoryFacts": [
+            {
+              "theoryKey": "state",
+              "fact": "required_floor_is_additive_without_double_counting"
+            }
+          ],
+          "testKey": "balance",
+          "requiredTestTokens": [
+            "backing plus own frozen floor"
+          ],
+          "negative": {
+            "kind": "DOUBLE_COUNT_FLOOR",
+            "id": "BACKING-AND-FROZEN-DOUBLE-COUNT"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 0,
+            "supportingQualifiedDelta": 1,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "ba4339e8cd83a9050577db2cd33f4f99dc7ec6ab811c5e8d3ad6a65657fea713"
+        },
+        {
+          "rowId": "BAL-10",
+          "completionOrder": 9,
+          "statement": "physical_and_beneficial_supply_sums_agree",
+          "status": "PASS_BAL10_CURRENT_PROFILE_SUPPORTING_ROW",
+          "terminal": true,
+          "evidenceKeys": [
+            "runtimeFreeze"
+          ],
+          "theoryFacts": [],
+          "testKey": "supply",
+          "requiredTestTokens": [
+            "_assertEq(accounted, token.totalSupply(),"
+          ],
+          "negative": {
+            "kind": "SUPPLY_DELTA",
+            "id": "PHYSICAL-BENEFICIAL-SUPPLY-DELTA"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 0,
+            "supportingQualifiedDelta": 1,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "c5fc14020530314fddffad15173ec0725a9adce9cf232251f36827c10779cacb"
+        },
+        {
+          "rowId": "ABI-01",
+          "completionOrder": 10,
+          "statement": "action_calldata_decodes_iff_canonical",
+          "status": "PASS_ABI01_CURRENT_PROFILE_SUPPORTING_ROW",
+          "terminal": true,
+          "evidenceKeys": [
+            "c0",
+            "d0"
+          ],
+          "theoryFacts": [],
+          "testKey": "sixActions",
+          "requiredTestTokens": [
+            "testSixActionsAndSeparateReversals"
+          ],
+          "negative": {
+            "kind": "EXECUTABLE_RUNTIME_MUTATION",
+            "id": "ACTION-SHORT-OR-HIGH-BITS-REJECT",
+            "evidenceKey": "d0"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 0,
+            "supportingQualifiedDelta": 1,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "2ec84c456d59930fc9aa9776fa6ef792fb7e443386e2501dbce561d871fda17a"
+        },
+        {
+          "rowId": "ABI-02",
+          "completionOrder": 11,
+          "statement": "reversal_calldata_decodes_iff_canonical",
+          "status": "PASS_ABI02_CURRENT_PROFILE_SUPPORTING_ROW",
+          "terminal": true,
+          "evidenceKeys": [
+            "c0",
+            "d0"
+          ],
+          "theoryFacts": [],
+          "testKey": "sixActions",
+          "requiredTestTokens": [
+            "executeRegulatoryReversal"
+          ],
+          "negative": {
+            "kind": "EXECUTABLE_RUNTIME_MUTATION",
+            "id": "REVERSAL-SHORT-OR-HIGH-BITS-REJECT",
+            "evidenceKey": "d0"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 0,
+            "supportingQualifiedDelta": 1,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "612327f9a90f0f012a837d9a4b3fa7213b3e89622379704e3ef234574d47ccde"
+        },
+        {
+          "rowId": "ABI-03",
+          "completionOrder": 12,
+          "statement": "trailing_calldata_reverts_and_stutters",
+          "status": "PASS_ABI03_CURRENT_PROFILE_SUPPORTING_ROW",
+          "terminal": true,
+          "evidenceKeys": [
+            "abi03",
+            "d0"
+          ],
+          "theoryFacts": [],
+          "testKey": "exactCalldata",
+          "requiredTestTokens": [
+            "trailing calldata must generic-revert"
+          ],
+          "negative": {
+            "kind": "EXECUTABLE_REPLAY",
+            "id": "TRAILING-CALLDATA-UNCHANGED-CLAIM",
+            "evidenceKey": "abi03"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 0,
+            "supportingQualifiedDelta": 1,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "245ba44f291db7b79fb1a3226b510c7d99dcd09a581171c1e5e4939f650f9786"
+        },
+        {
+          "rowId": "ABI-04",
+          "completionOrder": 13,
+          "statement": "short_head_offset_length_and_high_bits_revert_and_stutter",
+          "status": "PASS_ABI04_CURRENT_PROFILE_SUPPORTING_ROW",
+          "terminal": true,
+          "evidenceKeys": [
+            "c0",
+            "d0"
+          ],
+          "theoryFacts": [],
+          "testKey": "exactCalldata",
+          "requiredTestTokens": [
+            "malformed calldata stutter"
+          ],
+          "negative": {
+            "kind": "EXECUTABLE_RUNTIME_MUTATION",
+            "id": "SHORT-OFFSET-HIGH-BITS-BRANCH",
+            "evidenceKey": "c0"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 0,
+            "supportingQualifiedDelta": 1,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "a8abeb9d762533196d560d845b42b3c8247b5ad4842a314e76ac32a46842de67"
+        },
+        {
+          "rowId": "FAIL-05",
+          "completionOrder": 14,
+          "statement": "generic_dispatcher_revert_is_not_typed_failure",
+          "status": "PASS_FAIL05_CURRENT_PROFILE_SUPPORTING_ROW",
+          "terminal": true,
+          "evidenceKeys": [
+            "fail05"
+          ],
+          "theoryFacts": [
+            {
+              "theoryKey": "transaction",
+              "fact": "generic_dispatcher_revert_is_not_typed_failure"
+            }
+          ],
+          "testKey": null,
+          "requiredTestTokens": [],
+          "negative": {
+            "kind": "EXECUTABLE_REPLAY",
+            "id": "TYPED-FAILURE-DISPATCHER-MUTATION",
+            "evidenceKey": "fail05"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 0,
+            "supportingQualifiedDelta": 1,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "7cf1f151b7201dc965911936696c2b20ff446eb843c863b8a8469c814985fbcf"
+        },
+        {
+          "rowId": "EXT-07",
+          "completionOrder": 15,
+          "statement": "external_truth_is_not_in_the_guarantee",
+          "status": "PASS_EXT07_CURRENT_PROFILE_SUPPORTING_ROW",
+          "terminal": true,
+          "evidenceKeys": [
+            "scope"
+          ],
+          "theoryFacts": [
+            {
+              "theoryKey": "boundary",
+              "fact": "same_core_input_cannot_distinguish_external_legal_truth"
+            },
+            {
+              "theoryKey": "boundary",
+              "fact": "external_worlds_really_disagree"
+            }
+          ],
+          "testKey": null,
+          "requiredTestTokens": [],
+          "negative": {
+            "kind": "EXTERNAL_WORLD_DIVERGENCE",
+            "id": "SAME-CORE-DIFFERENT-LEGAL-WORLD"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 0,
+            "supportingQualifiedDelta": 1,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "65d3ffec8a58730a06c2d9f76040f2718bfc270f7d5c953cdc92dd78d514460e"
+        },
+        {
+          "rowId": "SEP-01",
+          "completionOrder": 16,
+          "statement": "current_state_refinement",
+          "status": "PASS_SEP01_CURRENT_PROFILE_SUPPORTING_ROW",
+          "terminal": true,
+          "evidenceKeys": [
+            "runtimeFreeze"
+          ],
+          "theoryFacts": [
+            {
+              "theoryKey": "retrieve",
+              "fact": "current_state_abstraction_well_defined"
+            },
+            {
+              "theoryKey": "retrieve",
+              "fact": "current_state_does_not_assume_history"
+            }
+          ],
+          "testKey": null,
+          "requiredTestTokens": [],
+          "negative": {
+            "kind": "HISTORY_INJECTION",
+            "id": "CURRENT-STATE-REFINEMENT-HISTORY-INJECTION"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 0,
+            "supportingQualifiedDelta": 1,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "d4e35c7de94cacae0dae1b129de68163d31ae6f228deb3a9fb85e4e25650222e"
+        },
+        {
+          "rowId": "SEP-03",
+          "completionOrder": 17,
+          "statement": "committed_trace_refinement",
+          "status": "PASS_SEP03_CURRENT_PROFILE_SUPPORTING_ROW",
+          "terminal": true,
+          "evidenceKeys": [
+            "c6"
+          ],
+          "theoryFacts": [
+            {
+              "theoryKey": "concrete",
+              "fact": "history_is_an_explicit_witness"
+            },
+            {
+              "theoryKey": "transaction",
+              "fact": "committed_history_excludes_failure_receipts"
+            }
+          ],
+          "testKey": null,
+          "requiredTestTokens": [],
+          "negative": {
+            "kind": "HISTORY_OMISSION",
+            "id": "COMMITTED-HISTORY-PREMISE-OMISSION"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 0,
+            "supportingQualifiedDelta": 1,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "e601442f5488618b924e3cf294df93f188e549abf70e464a066bf26553a9ae99"
+        },
+        {
+          "rowId": "SEP-05",
+          "completionOrder": 18,
+          "statement": "historical_receipt_reconstruction_without_history_is_a_nonclaim",
+          "status": "PASS_SEP05_CURRENT_PROFILE_SUPPORTING_ROW",
+          "terminal": true,
+          "evidenceKeys": [
+            "c6"
+          ],
+          "theoryFacts": [
+            {
+              "theoryKey": "transaction",
+              "fact": "committed_history_excludes_failure_receipts"
+            },
+            {
+              "theoryKey": "concrete",
+              "fact": "current_configuration_does_not_contain_transaction_context"
+            }
+          ],
+          "testKey": null,
+          "requiredTestTokens": [],
+          "negative": {
+            "kind": "FALSE_RECONSTRUCTION",
+            "id": "HISTORY-FREE-RECEIPT-RECONSTRUCTION"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 0,
+            "supportingQualifiedDelta": 1,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "aeb69d485c3d3d82bb0244198ebfd8d8fb022e5c249a293b2dabe608138539fb"
+        },
+        {
+          "rowId": "ART-01",
+          "completionOrder": 19,
+          "statement": "source_compiler_settings_and_standard_json_are_hash_bound",
+          "status": "PASS_ART01_CURRENT_PROFILE_SUPPORTING_ROW",
+          "terminal": true,
+          "evidenceKeys": [
+            "runtimeBinding",
+            "runtimeBindingQualification",
+            "formalLock"
+          ],
+          "theoryFacts": [],
+          "testKey": null,
+          "requiredTestTokens": [],
+          "negative": {
+            "kind": "EXPECTED_HASH_OVERWRITE",
+            "id": "EXPECTED-ARTIFACT-HASH-OVERWRITE",
+            "evidenceKey": "runtimeBindingQualification"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 0,
+            "supportingQualifiedDelta": 1,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "9fd8cf2cf306fec6a592700387503ce8d5611f507908a8234e129a6c3d29c15e"
+        },
+        {
+          "rowId": "ART-02",
+          "completionOrder": 20,
+          "statement": "compiler_output_runtime_bytes_are_hash_bound",
+          "status": "PASS_ART02_CURRENT_PROFILE_SUPPORTING_ROW",
+          "terminal": true,
+          "evidenceKeys": [
+            "art02"
+          ],
+          "theoryFacts": [],
+          "testKey": null,
+          "requiredTestTokens": [],
+          "negative": {
+            "kind": "EXECUTABLE_REPLAY",
+            "id": "ART-02-RUNTIME-SUBSTITUTION",
+            "evidenceKey": "art02"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 0,
+            "supportingQualifiedDelta": 1,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "bf393cb6998e18ce560fbd655e2abce224370e8ca697185f3ffbaa6e139e031c"
+        },
+        {
+          "rowId": "ART-03",
+          "completionOrder": 21,
+          "statement": "constructor_resolved_local_runtime_is_hash_bound",
+          "status": "PASS_ART03_CURRENT_PROFILE_SUPPORTING_ROW",
+          "terminal": true,
+          "evidenceKeys": [
+            "art03"
+          ],
+          "theoryFacts": [],
+          "testKey": null,
+          "requiredTestTokens": [],
+          "negative": {
+            "kind": "EXECUTABLE_REPLAY",
+            "id": "ART-03-RESOLVED-RUNTIME-SUBSTITUTION",
+            "evidenceKey": "art03"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 0,
+            "supportingQualifiedDelta": 1,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "9d6c91191d3f951c52f1470a04f3817a3933c69699f44844b1946a3470f04e89"
+        },
+        {
+          "rowId": "ART-04",
+          "completionOrder": 22,
+          "statement": "storage_layout_abi_ast_and_immutable_references_are_hash_bound",
+          "status": "PASS_ART04_CURRENT_PROFILE_SUPPORTING_ROW",
+          "terminal": true,
+          "evidenceKeys": [
+            "art04"
+          ],
+          "theoryFacts": [],
+          "testKey": null,
+          "requiredTestTokens": [],
+          "negative": {
+            "kind": "EXECUTABLE_REPLAY",
+            "id": "ART-04-COMPILER-METADATA-SUBSTITUTION",
+            "evidenceKey": "art04"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 0,
+            "supportingQualifiedDelta": 1,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "b68794e1daa5d441131b6653b35dbfc6ee294e9875c5a1c9fa59ce446915e912"
+        },
+        {
+          "rowId": "ART-05",
+          "completionOrder": 23,
+          "statement": "theory_source_and_import_closure_are_hash_bound",
+          "status": "PASS_ART05_CURRENT_PROFILE_SUPPORTING_ROW",
+          "terminal": true,
+          "evidenceKeys": [
+            "art05",
+            "formalLock"
+          ],
+          "theoryFacts": [],
+          "testKey": null,
+          "requiredTestTokens": [],
+          "negative": {
+            "kind": "EXECUTABLE_REPLAY",
+            "id": "ART-05-THEORY-IMPORT-SUBSTITUTION",
+            "evidenceKey": "art05"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 0,
+            "supportingQualifiedDelta": 1,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "1dfac30886c3b821113cd50555ae53c7b1d8495bcb8077542a8acdeedf2b0f45"
+        },
+        {
+          "rowId": "ART-08",
+          "completionOrder": 24,
+          "statement": "deployed_address_chain_and_live_topology_are_not_claimed",
+          "status": "PASS_ART08_CURRENT_PROFILE_SUPPORTING_ROW",
+          "terminal": true,
+          "evidenceKeys": [
+            "scope"
+          ],
+          "theoryFacts": [
+            {
+              "theoryKey": "boundary",
+              "fact": "allowed_claim_inventory_is_exact"
+            }
+          ],
+          "testKey": null,
+          "requiredTestTokens": [],
+          "negative": {
+            "kind": "CLAIM_INJECTION",
+            "id": "DEPLOYMENT-OR-LIVE-TOPOLOGY-CLAIM-INJECTION"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 0,
+            "supportingQualifiedDelta": 1,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "11dd8c27f30d47bf78c28c556c47f59d861b214b9833ba4ac5adbda675355fde"
+        }
+      ]
+    },
+    {
+      "id": "CORE_BALANCE_REVERSAL_BATCH_V1",
+      "status": "PASS_CORE_BALANCE_SIX_AND_REVERSAL_ELEVEN",
+      "sourceAggregate": {
+        "path": "evidence/end-to-end-refinement/c-series-terminal-qualification-v1.json",
+        "sha256": "d7532f897d85bc4efc98ef542d7095ab2d87e2292cc5c409b9ce0378ec451077"
+      },
+      "certificateTheory": {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_M4_Core_Balance_Reversal_Current_Profile.thy",
+        "sha256": "9eaec22b842d890832d6e47865b7e28041a6d6ef495a7f2aed70da57f51d18ef"
+      },
+      "isabelleBuild": {
+        "version": "Isabelle2025-2",
+        "runId": "20260828T040406Z",
+        "cleanBuildExitCode": 0,
+        "proofExportExitCode": 0,
+        "bannedSourceForms": 0,
+        "oracleDependencyCount": 0,
+        "buildLogSha256": "624616022725168a34384aa8bb1e46e2ad3d11abbfa7be223cec7a7db76cf3b2"
+      },
+      "evidenceRefs": {
+        "runtimeFreeze": {
+          "path": "evidence/end-to-end-refinement/m4-runtime-freeze-v1.json",
+          "sha256": "ba18d99f630bad67faee824ec83f1071f478a393639faa087be739d880164d67"
+        },
+        "c4freeze": {
+          "path": "evidence/end-to-end-refinement/c4-freeze-lane-receipt-v1.json",
+          "sha256": "a3c628fae7233998ff1a2425786bcabf04c53c38d86cec95aeb4930cc94c0d1b"
+        },
+        "c4": {
+          "path": "evidence/end-to-end-refinement/c4-terminal-receipt-v1.json",
+          "sha256": "c0f7745147b34e9788c44705fc71c663559ae07f6d67ea3b2c65624d3c5bd85d"
+        },
+        "c5": {
+          "path": "evidence/end-to-end-refinement/c5-terminal-receipt-v1.json",
+          "sha256": "913a46292382df1bb970ed50b4460c7fe7f103a93fb164c38880f7fdd0cf4b4a"
+        },
+        "c6": {
+          "path": "evidence/end-to-end-refinement/c6-terminal-receipt-v1.json",
+          "sha256": "6afba204a95dfe43455ed9c1896f809461f0ee9652a2ecc6422467be93a29847"
+        }
+      },
+      "productTestBlocks": {
+        "balance": {
+          "path": "implementation/test/TrustActions.unit.t.sol",
+          "test": "testCustodyBackingAndOwnFrozenFloorDoNotDoubleCount",
+          "functionBlockSha256": "2c245028f39f1f39b2656025b0d6f84032ca5db80f945df0d2be29fe96f4c98a"
+        },
+        "bal08": {
+          "path": "implementation/test/TrustActions.unit.t.sol",
+          "test": "testSeizeCannotSpendUnrelatedBackingAndRejectsBypassMutant",
+          "functionBlockSha256": "cca1b267cbcc99bf396c5a02d7b2e91ba29e2f53fd551b6c5c6ed1f84d69b736"
+        },
+        "freezeLifo": {
+          "path": "implementation/test/TrustActions.unit.t.sol",
+          "test": "testFreezeReplacementLifoAndReversalPolicyFailClosed",
+          "functionBlockSha256": "e59f93bbb28a64cecb21e0218774fae6bb0c0fcf1ae6e0fa3591f1643fa0f203"
+        },
+        "sixActions": {
+          "path": "implementation/test/TrustActions.unit.t.sol",
+          "test": "testSixActionsAndSeparateReversals",
+          "functionBlockSha256": "19b238961cc9067699a51d032730e563ffcb338cc2d835b227ce5a385345f861"
+        },
+        "custodyConfiscate": {
+          "path": "implementation/test/TrustActions.unit.t.sol",
+          "test": "testConfiscateFromCustodyClosesAndTerminatesCase",
+          "functionBlockSha256": "0337c65c1d5c707717032eabba30d449ec3b77d5f0f07a592b0cdf1262257f99"
+        }
+      },
+      "rows": [
+        {
+          "rowId": "BAL-03",
+          "completionOrder": 15,
+          "statement": "beneficial_balance_is_conserved_by_seize",
+          "status": "PASS_BAL03_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "bal03_current_profile_corollary",
+          "evidenceKeys": [
+            "c4"
+          ],
+          "testKey": "sixActions",
+          "requiredTestTokens": [
+            "custody.encumberedAmount != 0"
+          ],
+          "negative": {
+            "kind": "EXECUTABLE_PACKAGE_MUTATION",
+            "id": "C4-CUSTODY-BACKING-ACCOUNTING-OMISSION",
+            "evidenceKey": "c4",
+            "semanticViolation": "seize_preserves_beneficial_balance_and_creates_exact_custody"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "bad1c232b1c32a399c8eb9fb3ec9491d74963f6bda648d83904729f3975e0bb8"
+        },
+        {
+          "rowId": "BAL-04",
+          "completionOrder": 16,
+          "statement": "beneficial_balance_is_conserved_by_release",
+          "status": "PASS_BAL04_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "bal04_current_profile_corollary",
+          "evidenceKeys": [
+            "c5",
+            "c6"
+          ],
+          "testKey": "sixActions",
+          "requiredTestTokens": [
+            "release terminal"
+          ],
+          "negative": {
+            "kind": "EXECUTABLE_PACKAGE_MUTATION",
+            "id": "C5-EFFECT-PARENT-OMISSION",
+            "evidenceKey": "c5",
+            "semanticViolation": "current_effect_head_reversal_restores_prior_state"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "f1561539348b1985ee2c4ec5922b5900937ff2ab73edacb6e282a92e42c7ac4e"
+        },
+        {
+          "rowId": "BAL-06",
+          "completionOrder": 17,
+          "statement": "ordinary_transfer_preserves_backing_and_own_frozen_floor",
+          "status": "PASS_BAL06_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "bal06_current_profile_corollary",
+          "evidenceKeys": [
+            "runtimeFreeze"
+          ],
+          "testKey": "balance",
+          "requiredTestTokens": [
+            "backing plus own frozen floor"
+          ],
+          "negative": {
+            "kind": "PRODUCT_OBSERVER_MUTATION",
+            "id": "ORDINARY-TRANSFER-FLOOR-BYPASS"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "217baf8ff85b53abd6f56ef07cc98325218d4b752b561cdb3f03b5d1f815be0a"
+        },
+        {
+          "rowId": "BAL-07",
+          "completionOrder": 18,
+          "statement": "direct_enforcement_cannot_spend_unrelated_backing",
+          "status": "PASS_BAL07_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "bal07_current_profile_corollary",
+          "evidenceKeys": [
+            "c4"
+          ],
+          "testKey": "balance",
+          "requiredTestTokens": [
+            "direct action cannot spend unrelated custody backing"
+          ],
+          "negative": {
+            "kind": "PRODUCT_OBSERVER_MUTATION",
+            "id": "DIRECT-ENFORCEMENT-BACKING-BYPASS"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "6219d4f02e0434cabd956080ee7e213830a69a6a90b04eab93fe0a8d32af1344"
+        },
+        {
+          "rowId": "BAL-08",
+          "completionOrder": 19,
+          "statement": "seize_cannot_spend_unrelated_backing",
+          "status": "PASS_BAL08_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "bal08_current_profile_corollary",
+          "evidenceKeys": [
+            "c4"
+          ],
+          "testKey": "bal08",
+          "requiredTestTokens": [
+            "seize cannot spend unrelated custody backing",
+            "BAL-08 backing bypass mutant"
+          ],
+          "negative": {
+            "kind": "PRODUCT_OBSERVER_MUTATION",
+            "id": "SEIZE-BACKING-BYPASS"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "6c57f7654b97862b2d9f3372bdc764477bd5dea8e94c9cb4d4d6f2ea3cd67f31"
+        },
+        {
+          "rowId": "BAL-09",
+          "completionOrder": 20,
+          "statement": "custody_disposition_consumes_exact_backing_once",
+          "status": "PASS_BAL09_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "bal09_current_profile_corollary",
+          "evidenceKeys": [
+            "c4",
+            "c6"
+          ],
+          "testKey": "custodyConfiscate",
+          "requiredTestTokens": [
+            "custody must close"
+          ],
+          "negative": {
+            "kind": "EXECUTABLE_PACKAGE_MUTATION",
+            "id": "C4-CUSTODY-BACKING-ACCOUNTING-OMISSION",
+            "evidenceKey": "c4",
+            "semanticViolation": "custody_disposition_consumes_exact_backing_once"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "c99c5b70f2af0c4b1a3f1bdacea8b68e83c84e17a5c814054f96fc4cb2619c1e"
+        },
+        {
+          "rowId": "REV-01",
+          "completionOrder": 21,
+          "statement": "freeze_sets_absolute_target",
+          "status": "PASS_REV01_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "rev01_current_profile_corollary",
+          "evidenceKeys": [
+            "c4freeze"
+          ],
+          "testKey": "freezeLifo",
+          "requiredTestTokens": [
+            "absolute replacement"
+          ],
+          "negative": {
+            "kind": "EXECUTABLE_PACKAGE_MUTATION",
+            "id": "C4-FREEZE-INCREMENTAL",
+            "evidenceKey": "c4freeze",
+            "semanticViolation": "freeze_sets_absolute_target_and_effect_provenance"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "441adc6fc2950986e354193586400ba7d0141cec829e212819ee24a1392e4681"
+        },
+        {
+          "rowId": "REV-02",
+          "completionOrder": 22,
+          "statement": "freeze_effect_head_is_hash_bound",
+          "status": "PASS_REV02_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "rev02_current_profile_corollary",
+          "evidenceKeys": [
+            "c4freeze",
+            "c5"
+          ],
+          "testKey": "freezeLifo",
+          "requiredTestTokens": [
+            "superseded reversal must fail"
+          ],
+          "negative": {
+            "kind": "EXECUTABLE_PACKAGE_MUTATION",
+            "id": "C5-EFFECT-PARENT-OMISSION",
+            "evidenceKey": "c5",
+            "semanticViolation": "current_effect_head_reversal_restores_prior_state"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "7fea1309b76d4af7b96de26db9afd1a8ac55d8056d5b6fb026a6ed63802e20a5"
+        },
+        {
+          "rowId": "REV-03",
+          "completionOrder": 23,
+          "statement": "effect_generation_is_monotonic",
+          "status": "PASS_REV03_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "rev03_current_profile_corollary",
+          "evidenceKeys": [
+            "c4freeze",
+            "c5"
+          ],
+          "testKey": "freezeLifo",
+          "requiredTestTokens": [
+            "unfreeze restores prior amount"
+          ],
+          "negative": {
+            "kind": "PACKAGE_BRANCH_NEGATIVE",
+            "id": "GENERATION-OMISSION",
+            "evidenceKey": "c5"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "3530fd9c512167d15352f18fa42f6801d894d2b938bd972a7a375e671073a684"
+        },
+        {
+          "rowId": "REV-04",
+          "completionOrder": 24,
+          "statement": "unfreeze_requires_current_head",
+          "status": "PASS_REV04_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "rev04_current_profile_corollary",
+          "evidenceKeys": [
+            "c5"
+          ],
+          "testKey": "freezeLifo",
+          "requiredTestTokens": [
+            "superseded reversal must fail"
+          ],
+          "negative": {
+            "kind": "PACKAGE_BRANCH_NEGATIVE",
+            "id": "STALE-UNFREEZE-HEAD",
+            "evidenceKey": "c5"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "6a0556e82835b3aff062ccbf7eae71d10505c6c812c51624481d1902588fb57f"
+        },
+        {
+          "rowId": "REV-05",
+          "completionOrder": 25,
+          "statement": "unrestrict_requires_current_head",
+          "status": "PASS_REV05_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "rev05_current_profile_corollary",
+          "evidenceKeys": [
+            "c5"
+          ],
+          "testKey": "sixActions",
+          "requiredTestTokens": [
+            "unrestrict restoration omission mutant"
+          ],
+          "negative": {
+            "kind": "PACKAGE_BRANCH_NEGATIVE",
+            "id": "STALE-UNRESTRICT-HEAD",
+            "evidenceKey": "c5"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "35173422d85bd2f8cba2574ec212825714b91032a08918d0d80d3f07709aeacd"
+        },
+        {
+          "rowId": "REV-06",
+          "completionOrder": 26,
+          "statement": "release_requires_current_custody_head",
+          "status": "PASS_REV06_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "rev06_current_profile_corollary",
+          "evidenceKeys": [
+            "c5"
+          ],
+          "testKey": "sixActions",
+          "requiredTestTokens": [
+            "release terminal"
+          ],
+          "negative": {
+            "kind": "PACKAGE_BRANCH_NEGATIVE",
+            "id": "STALE-RELEASE-CUSTODY-HEAD",
+            "evidenceKey": "c5"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "f2756b4a1bead3ead1ea699eb2c827dc8e576eae76c80bd99b952b4eb2cd0c09"
+        },
+        {
+          "rowId": "REV-07",
+          "completionOrder": 27,
+          "statement": "successful_reversal_pops_lifo_head",
+          "status": "PASS_REV07_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "rev07_current_profile_corollary",
+          "evidenceKeys": [
+            "c5"
+          ],
+          "testKey": "freezeLifo",
+          "requiredTestTokens": [
+            "unfreeze restores prior amount"
+          ],
+          "negative": {
+            "kind": "EXECUTABLE_PACKAGE_MUTATION",
+            "id": "C5-EFFECT-PARENT-OMISSION",
+            "evidenceKey": "c5",
+            "semanticViolation": "current_effect_head_reversal_restores_prior_state"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "2f9f6fd4e956e6847e76c4c25b4ee57e7d4c694ba63c211748d436286f2ec1ea"
+        },
+        {
+          "rowId": "REV-08",
+          "completionOrder": 28,
+          "statement": "superseded_reversal_stutters",
+          "status": "PASS_REV08_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "rev08_current_profile_corollary",
+          "evidenceKeys": [
+            "c5"
+          ],
+          "testKey": "freezeLifo",
+          "requiredTestTokens": [
+            "stale reversal stutter"
+          ],
+          "negative": {
+            "kind": "PACKAGE_BRANCH_NEGATIVE",
+            "id": "SUPERSEDED-REVERSAL-APPLY",
+            "evidenceKey": "c5"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "df090e173d5d211d524bbf910227d509e24e1741da8fcc8614a29f0f2d2ad7c1"
+        },
+        {
+          "rowId": "REV-09",
+          "completionOrder": 29,
+          "statement": "aba_reversal_stutters",
+          "status": "PASS_REV09_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "rev09_current_profile_corollary",
+          "evidenceKeys": [
+            "c5"
+          ],
+          "testKey": "freezeLifo",
+          "requiredTestTokens": [
+            "superseded reversal must fail"
+          ],
+          "negative": {
+            "kind": "PACKAGE_BRANCH_NEGATIVE",
+            "id": "ABA-HEAD-REUSE",
+            "evidenceKey": "c5"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "95c964add951960112e8a85ca07ca4687c181067ea8ca44f8796675d2a15d33f"
+        },
+        {
+          "rowId": "REV-10",
+          "completionOrder": 30,
+          "statement": "duplicate_reversal_stutters",
+          "status": "PASS_REV10_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "rev10_current_profile_corollary",
+          "evidenceKeys": [
+            "c5"
+          ],
+          "testKey": "sixActions",
+          "requiredTestTokens": [
+            "unfreeze restoration omission mutant"
+          ],
+          "negative": {
+            "kind": "PACKAGE_BRANCH_NEGATIVE",
+            "id": "DUPLICATE-REVERSAL-REUSE",
+            "evidenceKey": "c5"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "b8dd6ef1ec53ecad3f28bb5dbd9df10a430861f3d9d88073c60c60f879e46af3"
+        },
+        {
+          "rowId": "REV-11",
+          "completionOrder": 31,
+          "statement": "out_of_order_reversal_stutters",
+          "status": "PASS_REV11_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "rev11_current_profile_corollary",
+          "evidenceKeys": [
+            "c5"
+          ],
+          "testKey": "freezeLifo",
+          "requiredTestTokens": [
+            "superseded reversal must fail"
+          ],
+          "negative": {
+            "kind": "PACKAGE_BRANCH_NEGATIVE",
+            "id": "OUT-OF-ORDER-REVERSAL-APPLY",
+            "evidenceKey": "c5"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "b9f4a0b08a61744cbb593445246b079fa0f61fb6751e64997ea289e859832902"
+        }
+      ]
+    },
+    {
+      "id": "CORE_CONTRACT_BOUNDARY_BATCH_V1",
+      "status": "PASS_CORE_CONTRACT_BOUNDARY_EIGHTEEN_ROWS",
+      "sourceAggregate": {
+        "path": "evidence/end-to-end-refinement/c-series-terminal-qualification-v1.json",
+        "sha256": "d7532f897d85bc4efc98ef542d7095ab2d87e2292cc5c409b9ce0378ec451077"
+      },
+      "certificateTheory": {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_M4_Core_Contract_Boundary_Current_Profile.thy",
+        "sha256": "ebdef2bfd9cac9d23b3f802b7ed6216e0853941f41a253b11bf337b392248d92"
+      },
+      "isabelleBuild": {
+        "version": "Isabelle2025-2",
+        "runId": "20260828T040406Z",
+        "cleanBuildExitCode": 0,
+        "proofExportExitCode": 0,
+        "bannedSourceForms": 0,
+        "oracleDependencyCount": 0,
+        "buildLogSha256": "624616022725168a34384aa8bb1e46e2ad3d11abbfa7be223cec7a7db76cf3b2"
+      },
+      "evidenceRefs": {
+        "c0": {
+          "path": "evidence/end-to-end-refinement/c0-universal-iff-qualification-v1.json",
+          "sha256": "f5ed07d481e35d9a1f3fd7458004e1a212537c20343cf5685021ef8cf1e7eded"
+        },
+        "c1": {
+          "path": "evidence/end-to-end-refinement/c1-terminal-receipt-v1.json",
+          "sha256": "1ecf5ed3da7dda4eee73a1589cfc331d7de5773436da8d4c0990af53d7c690c1"
+        },
+        "c2": {
+          "path": "evidence/end-to-end-refinement/c2-runtime-binder-receipt-v1.json",
+          "sha256": "40ec60405389d02575f525af89eeac1154f2d8d4ba68daf684332334f5201619"
+        },
+        "c3": {
+          "path": "evidence/end-to-end-refinement/c3-terminal-receipt-v1.json",
+          "sha256": "eb69128c671cdc8d2e93cba502f6d5b327f2e5d9014acd31044dff78c7b26f47"
+        },
+        "c6": {
+          "path": "evidence/end-to-end-refinement/c6-terminal-receipt-v1.json",
+          "sha256": "6afba204a95dfe43455ed9c1896f809461f0ee9652a2ecc6422467be93a29847"
+        },
+        "endTheory": {
+          "path": "formal/isabelle/ERC_TRUST/TRUST_End_To_End_Composition.thy",
+          "sha256": "14572e7d1343c5303c4733bdb5eb4ddbf2ad5344e90c0f544223666ad372495d"
+        }
+      },
+      "productTestBlocks": {
+        "exactCalldata": {
+          "path": "implementation/test/TrustActions.unit.t.sol",
+          "test": "testExactCalldataAndMalformedDependencyReturnAreTyped",
+          "functionBlockSha256": "923f21a84113d251d237492024750aae8bf3da389542022cba586083f2d11ed5"
+        },
+        "rejected": {
+          "path": "implementation/test/TrustActions.unit.t.sol",
+          "test": "testRejectedAndOperationalFailureStutter",
+          "functionBlockSha256": "7cc44368db1a40f6917a7768bb7030c3edafd7cd9e1aaff3878959b497b4bab9"
+        },
+        "replay": {
+          "path": "implementation/test/TrustActions.unit.t.sol",
+          "test": "testReplayFixedActionAndConfiscateTerminality",
+          "functionBlockSha256": "d11cd2050a5e210e4f3f49ee98d5812afb8c6e56c2ceef7768ad0125b08fe5df"
+        },
+        "reverted": {
+          "path": "implementation/test/TrustActions.unit.t.sol",
+          "test": "test_RevertedTransactionLeavesNoLogsOrCommittedArtifacts",
+          "functionBlockSha256": "dd6a56e5362f428aae01838271dc355d527fbaec8b5ec26d2127dfd5a23f8c71"
+        },
+        "erc7943": {
+          "path": "implementation/test/TrustActions.unit.t.sol",
+          "test": "testERC7943ExactUseRoutesAndInterfaceTruth",
+          "functionBlockSha256": "210425b52fc118b1bdbed6ec30c22871399280947269b1888ec286b1e8f48760"
+        }
+      },
+      "rows": [
+        {
+          "rowId": "ABI-05",
+          "completionOrder": 32,
+          "statement": "decoded_command_fields_match_typed_command",
+          "status": "PASS_ABI05_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "abi05_current_profile_corollary",
+          "evidenceKeys": [
+            "c0",
+            "c1"
+          ],
+          "testKey": "exactCalldata",
+          "requiredTestTokens": [
+            "typed operational failure"
+          ],
+          "negative": {
+            "kind": "PACKAGE_BRANCH_NEGATIVE",
+            "id": "DECODED-FIELD-BINDING-MUTATION",
+            "evidenceKey": "c0"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "df8281b695e895f321f03e63179768c87b386e08a5a7ecf905747d3eba6b280a"
+        },
+        {
+          "rowId": "AUTH-01",
+          "completionOrder": 33,
+          "statement": "authority_and_delegation_match_exact_command",
+          "status": "PASS_AUTH01_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "auth01_current_profile_corollary",
+          "evidenceKeys": [
+            "c1"
+          ],
+          "testKey": "replay",
+          "requiredTestTokens": [
+            "action fields must remain hash-bound"
+          ],
+          "negative": {
+            "kind": "EXECUTABLE_PACKAGE_MUTATION",
+            "id": "C1-AUTHORIZATION-CONSUMPTION-OMISSION",
+            "evidenceKey": "c1",
+            "semanticViolation": "authority_and_delegation_match_exact_command"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "9bb43b8eb5920989f77e5056e554d1749df3e774660cb681ed87bab62810d7a1"
+        },
+        {
+          "rowId": "AUTH-02",
+          "completionOrder": 34,
+          "statement": "nonce_identity_is_authority_epoch_tuple",
+          "status": "PASS_AUTH02_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "auth02_current_profile_corollary",
+          "evidenceKeys": [
+            "c1"
+          ],
+          "testKey": "replay",
+          "requiredTestTokens": [
+            "action replay"
+          ],
+          "negative": {
+            "kind": "PACKAGE_BRANCH_NEGATIVE",
+            "id": "NONCE-TUPLE-COLLISION",
+            "evidenceKey": "c1"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "27683009e3961181c23c76f3dbd24c75dcc967d0bee992a71745824803a1cdbf"
+        },
+        {
+          "rowId": "AUTH-03",
+          "completionOrder": 35,
+          "statement": "command_id_and_nonce_are_consumed_once_on_success",
+          "status": "PASS_AUTH03_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "auth03_current_profile_corollary",
+          "evidenceKeys": [
+            "c1"
+          ],
+          "testKey": "replay",
+          "requiredTestTokens": [
+            "replayOk"
+          ],
+          "negative": {
+            "kind": "EXECUTABLE_PACKAGE_MUTATION",
+            "id": "C1-AUTHORIZATION-CONSUMPTION-OMISSION",
+            "evidenceKey": "c1",
+            "semanticViolation": "command_id_and_nonce_consumed_once_on_success"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "d422403b0dd3395a4e2e77ed2258a726b1b140a522578c9594650ca4e96b76e7"
+        },
+        {
+          "rowId": "AUTH-04",
+          "completionOrder": 36,
+          "statement": "rejection_and_operational_failure_do_not_consume_authorization",
+          "status": "PASS_AUTH04_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "auth04_current_profile_corollary",
+          "evidenceKeys": [
+            "c1",
+            "c6"
+          ],
+          "testKey": "rejected",
+          "requiredTestTokens": [
+            "reject nonce stutter",
+            "failure nonce stutter"
+          ],
+          "negative": {
+            "kind": "PACKAGE_BRANCH_NEGATIVE",
+            "id": "FAILURE-CONSUMES-AUTHORIZATION",
+            "evidenceKey": "c1"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "925532162ab32bb1198011781457d359a2ac62cfd114cc8380c032287c2668ff"
+        },
+        {
+          "rowId": "AUTH-05",
+          "completionOrder": 37,
+          "statement": "stale_authority_and_policy_epochs_stutter",
+          "status": "PASS_AUTH05_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "auth05_current_profile_corollary",
+          "evidenceKeys": [
+            "c1"
+          ],
+          "testKey": "replay",
+          "requiredTestTokens": [
+            "fixedActionOk"
+          ],
+          "negative": {
+            "kind": "PACKAGE_BRANCH_NEGATIVE",
+            "id": "STALE-EPOCH-ACCEPTANCE",
+            "evidenceKey": "c1"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "e50502b3ab84731a54414d89242fb5903775d4cd4c6f6e5f1fce1b8a9efc8681"
+        },
+        {
+          "rowId": "FAIL-01",
+          "completionOrder": 38,
+          "statement": "semantic_rejection_reverts_and_stutters",
+          "status": "PASS_FAIL01_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "fail01_current_profile_corollary",
+          "evidenceKeys": [
+            "c1",
+            "c6"
+          ],
+          "testKey": "rejected",
+          "requiredTestTokens": [
+            "rejected must revert",
+            "reject stutter"
+          ],
+          "negative": {
+            "kind": "PACKAGE_BRANCH_NEGATIVE",
+            "id": "REJECTION-COMMITS-STATE",
+            "evidenceKey": "c6"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "0f06f0d8382b59ee7430f053223b963f856444680600889c9b80782f848560ba"
+        },
+        {
+          "rowId": "FAIL-02",
+          "completionOrder": 39,
+          "statement": "dependency_denial_is_typed_rejection",
+          "status": "PASS_FAIL02_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "fail02_current_profile_corollary",
+          "evidenceKeys": [
+            "c2"
+          ],
+          "testKey": "rejected",
+          "requiredTestTokens": [
+            "REJECTED"
+          ],
+          "negative": {
+            "kind": "PACKAGE_BRANCH_NEGATIVE",
+            "id": "DENIAL-MISCLASSIFIED",
+            "evidenceKey": "c2"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "78697b9e43d3e6bb30397543abbb0cc413ff667284f03123001ee9013a35fdb2"
+        },
+        {
+          "rowId": "FAIL-03",
+          "completionOrder": 40,
+          "statement": "dependency_revert_is_typed_operational_failure",
+          "status": "PASS_FAIL03_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "fail03_current_profile_corollary",
+          "evidenceKeys": [
+            "c2"
+          ],
+          "testKey": "rejected",
+          "requiredTestTokens": [
+            "REVERTING"
+          ],
+          "negative": {
+            "kind": "PACKAGE_BRANCH_NEGATIVE",
+            "id": "REVERT-MISCLASSIFIED",
+            "evidenceKey": "c2"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "d2d2d70e80e2d600aa48354d96a113f17ef9ef2dea450d2acd59fec03db39b61"
+        },
+        {
+          "rowId": "FAIL-04",
+          "completionOrder": 41,
+          "statement": "malformed_dependency_return_is_typed_operational_failure",
+          "status": "PASS_FAIL04_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "fail04_current_profile_corollary",
+          "evidenceKeys": [
+            "c2"
+          ],
+          "testKey": "exactCalldata",
+          "requiredTestTokens": [
+            "noncanonical returndata must revert"
+          ],
+          "negative": {
+            "kind": "PACKAGE_BRANCH_NEGATIVE",
+            "id": "MALFORMED-RETURN-ACCEPTED",
+            "evidenceKey": "c2"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "41ebcb91666d4e3ea80c8b9285dc3e2bb80e9bd30933ee7f558742749694d4fa"
+        },
+        {
+          "rowId": "FAIL-08",
+          "completionOrder": 42,
+          "statement": "failed_transaction_commits_no_protocol_logs",
+          "status": "PASS_FAIL08_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "fail08_current_profile_corollary",
+          "evidenceKeys": [
+            "c6"
+          ],
+          "testKey": "reverted",
+          "requiredTestTokens": [
+            "reverted logs"
+          ],
+          "negative": {
+            "kind": "EXECUTABLE_PACKAGE_MUTATION",
+            "id": "C6-RECORD-RECEIPT-BINDING-OMISSION",
+            "evidenceKey": "c6",
+            "semanticViolation": "successful_transaction_commits_storage_return_receipt_and_final_event"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "205c9b4ddb8900b21eefde1bfee4018d1ec3a9e2f30080e141fd12f3926f48b1"
+        },
+        {
+          "rowId": "EXT-01",
+          "completionOrder": 43,
+          "statement": "native_staticcall_assume_guarantee",
+          "status": "PASS_EXT01_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "ext01_current_profile_corollary",
+          "evidenceKeys": [
+            "c2"
+          ],
+          "testKey": "exactCalldata",
+          "requiredTestTokens": [
+            "typed operational failure"
+          ],
+          "negative": {
+            "kind": "PACKAGE_BRANCH_NEGATIVE",
+            "id": "WRONG-BINDING-RUNTIME-NEGATIVE",
+            "evidenceKey": "c2"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "96c1f1ee30f542d8dab0e2bfc851394c86984c03e787cc77ceec0c533b0eccb0"
+        },
+        {
+          "rowId": "EXT-02",
+          "completionOrder": 44,
+          "statement": "erc7943_ticket_is_exact_use",
+          "status": "PASS_EXT02_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "ext02_current_profile_corollary",
+          "evidenceKeys": [
+            "c3"
+          ],
+          "testKey": "erc7943",
+          "requiredTestTokens": [
+            "ticket consumed"
+          ],
+          "negative": {
+            "kind": "EXECUTABLE_PACKAGE_MUTATION",
+            "id": "C3-ROUTE-TICKET-DELETION-OMISSION",
+            "evidenceKey": "c3",
+            "semanticViolation": "erc7943_ticket_is_exact_use"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "21fd49d7651c1208653b9cccd89e0dd5c86aa5b7dfe82d981c1321a9ca4a3b42"
+        },
+        {
+          "rowId": "EXT-03",
+          "completionOrder": 45,
+          "statement": "erc7943_inner_failure_rolls_back_ticket",
+          "status": "PASS_EXT03_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "ext03_current_profile_corollary",
+          "evidenceKeys": [
+            "c3",
+            "c6"
+          ],
+          "testKey": "reverted",
+          "requiredTestTokens": [
+            "reverted ticket"
+          ],
+          "negative": {
+            "kind": "EXECUTABLE_PACKAGE_MUTATION",
+            "id": "C3-ROUTE-TICKET-DELETION-OMISSION",
+            "evidenceKey": "c3",
+            "semanticViolation": "set_frozen_route_matches_exact_command"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "909856bc5a7cdbcf2f2cc60226b37f11fb978f53538ead0b021352eba8c798a9"
+        },
+        {
+          "rowId": "SEP-02",
+          "completionOrder": 46,
+          "statement": "single_transaction_execution_refinement",
+          "status": "PASS_SEP02_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "sep02_current_profile_corollary",
+          "evidenceKeys": [
+            "c6",
+            "endTheory"
+          ],
+          "testKey": "reverted",
+          "requiredTestTokens": [
+            "reverted nonce"
+          ],
+          "negative": {
+            "kind": "PACKAGE_BRANCH_NEGATIVE",
+            "id": "TRANSACTION-FRAME-OMISSION",
+            "evidenceKey": "c6"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "5ffac3ce4821bb61683bffa11f78de372540fa5c10722f1f628a96df271d7884"
+        },
+        {
+          "rowId": "SEP-04",
+          "completionOrder": 47,
+          "statement": "receipt_preimage_matches_storage_return_and_final_event",
+          "status": "PASS_SEP04_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "sep04_current_profile_corollary",
+          "evidenceKeys": [
+            "c6"
+          ],
+          "testKey": "reverted",
+          "requiredTestTokens": [
+            "reverted receipt"
+          ],
+          "negative": {
+            "kind": "EXECUTABLE_PACKAGE_MUTATION",
+            "id": "C6-RECORD-RECEIPT-BINDING-OMISSION",
+            "evidenceKey": "c6",
+            "semanticViolation": "successful_transaction_commits_storage_return_receipt_and_final_event"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "db9761cda1b8608b2ef4ef38d0d65c3c96c894da48793d25c07067bd2dfcee50"
+        },
+        {
+          "rowId": "ART-06",
+          "completionOrder": 48,
+          "statement": "runtime_execution_implements_concrete_transaction",
+          "status": "PASS_ART06_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "art06_current_profile_corollary",
+          "evidenceKeys": [
+            "c6",
+            "endTheory"
+          ],
+          "testKey": "erc7943",
+          "requiredTestTokens": [
+            "staged freeze"
+          ],
+          "negative": {
+            "kind": "PACKAGE_BRANCH_NEGATIVE",
+            "id": "RUNTIME-CONCRETE-TRANSACTION-LINK-OMISSION",
+            "evidenceKey": "c6"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "180c4b69cbc253c9d3cc1e9789385e01ae5b41e844a665940d105cd8d6ae8b5d"
+        },
+        {
+          "rowId": "ART-07",
+          "completionOrder": 49,
+          "statement": "end_to_end_refinement",
+          "status": "PASS_ART07_CURRENT_PROFILE_ROW_COROLLARY",
+          "terminal": true,
+          "certificateTheorem": "art07_current_profile_corollary",
+          "evidenceKeys": [
+            "c0",
+            "c1",
+            "c2",
+            "c3",
+            "c6",
+            "endTheory"
+          ],
+          "testKey": "erc7943",
+          "requiredTestTokens": [
+            "forced route"
+          ],
+          "negative": {
+            "kind": "PACKAGE_BRANCH_NEGATIVE",
+            "id": "END-TO-END-LINK-OMISSION",
+            "evidenceKey": "endTheory"
+          },
+          "qualification": {
+            "rowSpecificStatementPass": true,
+            "typedInhabitantPass": true,
+            "distinguishingNegativePass": true,
+            "mutationSemanticReachPass": true,
+            "currentConsumerPass": true,
+            "coreRefinementQualifiedDelta": 1,
+            "supportingQualifiedDelta": 0,
+            "backlogQualifiedDelta": 0,
+            "centralCredit": 0
+          },
+          "rowRootSha256": "0d5dce054fdb6e7cbd7c042af4ad903e2130ce094819be6342c3cdfb107773d0"
+        }
+      ]
+    }
+  ],
+  "deterministicRootSha256": "43cb48e93399145a0762d80f685b882c889a7d72e20801dbe73816442a618340",
+  "frozenRows": [],
+  "counterexamples": {
+    "actualProductCounterexampleCount": 0,
+    "distinguishingNegativeCount": 73
+  },
+  "nonclaims": [
+    "Package qualification remains the immutable input layer and is not recomputed here.",
+    "Core Refinement is complete at 49 of 49 and Supporting is complete at 24 of 24; Backlog remains unstarted and non-publication-blocking.",
+    "Backlog, main merge, public transition, tag, release, and ERC submission remain outside this artifact."
+  ]
+}

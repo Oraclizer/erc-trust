@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "mutationId": "C6-RECORD-RECEIPT-BINDING-OMISSION-v1",
+  "kind": "EXECUTABLE_SEMANTIC_MUTANT",
+  "canonicalProductionPath": "implementation/src/TrustToken.sol",
+  "canonicalProductionSha256": "dbe06bb25a2b62913bd6428e1de32ba007a214e24ac45f4fd2c0fb55ea22c96a",
+  "mutantProductionPath": "implementation/src/TrustTokenC6ReceiptBindingOmissionMutant.sol",
+  "mutantProductionSha256": "d84cdd8a7c4d3ddb204b47cea24bf505017d72a36d3722649fee9ae739d24a8f",
+  "canonicalHarnessPath": "implementation/test/mocks/TrustTokenC6TransactionHarness.sol",
+  "canonicalHarnessSha256": "186e8c76cdf80166c4d6976618db10333668d6099c8e9ea9c20d4057a3acfeca",
+  "mutantHarnessPath": "implementation/test/mocks/TrustTokenC6TransactionHarnessMutant.sol",
+  "mutantHarnessSha256": "31a5c842fccff8f9251515617458f016fabc32680f35042516906a84016258ad",
+  "permittedDelta": "Rename the verification target contract and remove only record.receiptHash assignment",
+  "unchangedSpec": "implementation/certora/TrustC6Transaction.spec",
+  "expectedViolations": [
+    "successful_transaction_commits_storage_return_receipt_and_final_event"
+  ],
+  "productionSourceChanged": false
+}

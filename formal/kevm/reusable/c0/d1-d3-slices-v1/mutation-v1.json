@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_C0_D1_D3_RUNTIME_SLICE_MUTATION_V1",
+  "mutationId": "C0-D1-D3-REPRESENTATIVE-SLICE-STARTS-TO-INVALID",
+  "canonicalRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+  "mutantRuntimeSha256": "7593ee5e130a9d27b5a68a13836b03a72202cdf09ea925e883926b5dfb0dbcbc",
+  "runtimeBytes": 24142,
+  "unchangedClaimRequired": true,
+  "patches": [
+    {
+      "id": "D3_CALLDATALOAD_WORD_ORIGIN",
+      "pc": 13604,
+      "originalOpcode": 53,
+      "mutantOpcode": 254
+    },
+    {
+      "id": "ENUM_LT_6",
+      "pc": 13605,
+      "originalOpcode": 145,
+      "mutantOpcode": 254
+    },
+    {
+      "id": "UINT_160",
+      "pc": 13727,
+      "originalOpcode": 96,
+      "mutantOpcode": 254
+    },
+    {
+      "id": "UINT_64",
+      "pc": 13537,
+      "originalOpcode": 147,
+      "mutantOpcode": 254
+    },
+    {
+      "id": "UINT_48",
+      "pc": 13474,
+      "originalOpcode": 101,
+      "mutantOpcode": 254
+    },
+    {
+      "id": "ENUM_LT_3",
+      "pc": 11322,
+      "originalOpcode": 147,
+      "mutantOpcode": 254
+    }
+  ],
+  "expected": "Every unchanged representative-slice claim loses its canonical target cover and reaches an INVALID-instruction terminal."
+}

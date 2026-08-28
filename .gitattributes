@@ -1,0 +1,14 @@
+# Certora .spec files use Certora Verification Language, not Python.
+*.spec linguist-detectable=false
+
+# Kontrol/KEVM assertions use the K Framework language. The explicit override
+# avoids GitHub Linguist's competing .k classification as KCL.
+*.k linguist-language=KFramework
+
+# Machine-generated bridges and generated directories remain replay inputs but
+# are excluded from language statistics.
+**/generated/** linguist-generated=true
+**/mutant-runtime-bridge.k linguist-generated=true
+formal/kevm/generated/** linguist-generated=true
+evidence/release-manifest.json linguist-generated=true
+vectors/conformance-v1.json linguist-generated=true

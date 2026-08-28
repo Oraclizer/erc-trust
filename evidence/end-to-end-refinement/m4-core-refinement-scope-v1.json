@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "kind": "M4_CORE_REFINEMENT_SCOPE_V1",
+  "decisionStatus": "DIRECTOR_APPROVED",
+  "decisionDate": "2026-08-23",
+  "scopeClaim": "Native Full pinned reference financial-accident core",
+  "supersedes": "M4 79/79 as a single pre-public exact-runtime execution gate",
+  "legacyRegistry": {
+    "obligationCount": 79,
+    "evidenceIndexRef": "evidence/end-to-end-refinement/obligation-evidence-index.json",
+    "registryRef": "evidence/end-to-end-refinement/theorem-obligations.md",
+    "registrySha256": "54dac0857e45cfd5e1b98778b4b8ea1fbf02f4e9f87c0eaf4c78c9ce53f48bee",
+    "legacyDischargedCount": 6,
+    "legacyDischargedRows": ["ABI-03", "FAIL-05", "ART-02", "ART-03", "ART-04", "ART-05"],
+    "disposition": "Preserved as the complete assurance inventory and historical audit record; not the publication-critical execution denominator."
+  },
+  "progressAxes": {
+    "coreRefinement": {
+      "requiredCount": 49,
+      "currentProfileQualifiedCount": 0,
+      "rows": [
+        "STATE-04", "STATE-05",
+        "BAL-03", "BAL-04", "BAL-06", "BAL-07", "BAL-08", "BAL-09",
+        "REV-01", "REV-02", "REV-03", "REV-04", "REV-05", "REV-06", "REV-07", "REV-08", "REV-09", "REV-10", "REV-11",
+        "ABI-05",
+        "AUTH-01", "AUTH-02", "AUTH-03", "AUTH-04", "AUTH-05",
+        "ACT-01", "ACT-02", "ACT-03", "ACT-04", "ACT-05", "ACT-06", "ACT-07", "ACT-08", "ACT-09",
+        "RVR-01", "RVR-02", "RVR-03",
+        "FAIL-01", "FAIL-02", "FAIL-03", "FAIL-04", "FAIL-08",
+        "EXT-01", "EXT-02", "EXT-03",
+        "SEP-02", "SEP-04",
+        "ART-06", "ART-07"
+      ],
+      "completionRule": "All 49 row corollaries must be current-profile qualified. Reusable family proofs reduce execution cost but never replace row-specific statements and distinguishing negatives."
+    },
+    "coreSupporting": {
+      "requiredCount": 24,
+      "legacyClosedCount": 6,
+      "currentProfileQualifiedCount": 0,
+      "legacyClosedRows": ["ABI-03", "FAIL-05", "ART-02", "ART-03", "ART-04", "ART-05"],
+      "rows": [
+        "STATE-01", "STATE-02", "STATE-03", "STATE-06", "STATE-07",
+        "BAL-01", "BAL-02", "BAL-05", "BAL-10",
+        "ABI-01", "ABI-02", "ABI-03", "ABI-04",
+        "FAIL-05",
+        "EXT-07",
+        "SEP-01", "SEP-03", "SEP-05",
+        "ART-01", "ART-02", "ART-03", "ART-04", "ART-05", "ART-08"
+      ],
+      "completionRule": "All 24 gates are mandatory for the Native Full core claim, but they are not repeated whole-transaction refinement theorems. Static, hash, Isabelle bridge, compiler, layout, Foundry, Certora, and manifest evidence may discharge them under the approved profile."
+    },
+    "fullAssuranceBacklog": {
+      "requiredCount": 6,
+      "currentQualifiedCount": 0,
+      "publicationBlocking": false,
+      "rows": ["STATE-08", "FAIL-06", "FAIL-07", "EXT-04", "EXT-05", "EXT-06"],
+      "completionRule": "These rows remain OPEN in the 79-row inventory. Until closed, ERC-3643 Verified Profile and single-mode foundation projection are not part of the Native Full model-to-bytecode refinement claim."
+    }
+  },
+  "toolOwnership": {
+    "isabelle": "Abstract action, reversal, custody, terminality, receipt semantics, one abstraction relation, and hybrid bridge meanings.",
+    "certora": "Primary compiled-bytecode financial-core rules using explicit summaries, ghosts, advanced sanity, zero optimistic flags, and zero unresolved calls.",
+    "foundryHalmos": "Counterexample, mutation, bounded symbolic preflight, concrete replay, and artifact identity; central refinement credit zero.",
+    "kevm": "Exact ABI, CALL/STATICCALL/self-call, revert, rollback, LOG, receipt, sparse-frame composition, and final row corollary seams.",
+    "equivm": "Nonblocking ACT-01 plus RVR-01 storage/return/revert equivalence pilot; no log, substate, revert-payload, gas, or central credit until its relation is extended and approved."
+  },
+  "reusableProofPlan": {
+    "parserBatchCount": 7,
+    "canonicalClaimCount": 22,
+    "mutationLaneCount": 8,
+    "estimatedHeavyLaneCount": 30,
+    "packages": [
+      {"id": "C0", "name": "StateAbiNormalForm", "canonicalClaims": 3, "primaryConsumers": ["STATE-01", "STATE-02", "STATE-03", "STATE-06", "ABI-01", "ABI-02", "ABI-05", "ART-02", "ART-03", "ART-04"]},
+      {"id": "C1", "name": "AuthorizationReplay", "canonicalClaims": 4, "primaryConsumers": ["AUTH-01", "AUTH-02", "AUTH-03", "AUTH-04", "AUTH-05", "FAIL-01", "STATE-06"]},
+      {"id": "C2", "name": "BoundDependencyAssumeGuarantee", "canonicalClaims": 3, "primaryConsumers": ["EXT-01", "FAIL-02", "FAIL-03", "FAIL-04", "AUTH-04"]},
+      {"id": "C3", "name": "ExactUseRoute", "canonicalClaims": 3, "primaryConsumers": ["EXT-02", "EXT-03", "FAIL-08"]},
+      {"id": "C4", "name": "ForwardFinancialEffects", "canonicalClaims": 5, "primaryConsumers": ["ACT-01", "ACT-02", "ACT-03", "ACT-04", "ACT-05", "ACT-06", "ACT-07", "ACT-08", "ACT-09", "STATE-04", "STATE-05", "BAL-03", "BAL-06", "BAL-07", "BAL-08", "BAL-09", "REV-01", "REV-02", "REV-03"]},
+      {"id": "C5", "name": "ReversalLifo", "canonicalClaims": 2, "primaryConsumers": ["RVR-01", "RVR-02", "RVR-03", "REV-04", "REV-05", "REV-06", "REV-07", "REV-08", "REV-09", "REV-10", "REV-11", "BAL-04", "BAL-09"]},
+      {"id": "C6", "name": "TransactionCommitRollbackReceipt", "canonicalClaims": 2, "primaryConsumers": ["SEP-02", "SEP-04", "FAIL-01", "FAIL-08", "ART-06", "ART-07"]}
+    ],
+    "requiredMutationLanes": [
+      "state-abi-alias-or-decode",
+      "authorization-or-replay",
+      "dependency-denial-revert-malformed",
+      "ticket-route-or-inner-rollback",
+      "forward-effect-or-custody",
+      "reversal-head-generation-lifo",
+      "receipt-log-or-transaction-rollback",
+      "artifact-runtime-layout-substitution"
+    ]
+  },
+  "act01Disposition": {
+    "rowRole": "Native FREEZE core corollary",
+    "manualBasicBlockExpansion": "STOP",
+    "requiredPackages": ["C0", "C1", "C2", "C3", "C4", "C6"],
+    "minimumExecutionPlan": {"canonicalLanes": 7, "mutationLanes": 3, "totalHeavyLanes": 10, "parserBatches": 4},
+    "preservedCanaries": ["M4-RD-ACT01-CONCRETE-BASICBLOCK-033", "M4-RD-ACT01-CONCRETE-CHAIN-BATCH-039"],
+    "creditRule": "The row discharges only after universal package proofs, explicit composition, one distinguishing unchanged-claim mutant, and a fresh strict Kore replay under an approved current profile."
+  },
+  "tcbPolicy": {
+    "legacyLockImmutable": true,
+    "legacyLockRef": "formal/kevm/dependencies.lock.json",
+    "requiredProfiles": [
+      "ISABELLE-ABSTRACT-BRIDGE-v1",
+      "CERTORA-FINANCIAL-CORE-v1",
+      "HALMOS-PREFLIGHT-v1",
+      "KEVM-LEGACY-HASKELL-STRICT-v1",
+      "KEVM-BOOSTER-DISCOVERY-v1",
+      "EQUIVM-PILOT-v1"
+    ],
+    "legacyCarryover": "Historical discharge remains recorded. No legacy row is current-profile qualified until its exact replay or artifact closure is revalidated under the publication profile."
+  },
+  "publicClaimBoundary": {
+    "allowedWhenCoreComplete": "The pinned Native Full reference runtime has machine-checked partial end-to-end refinement evidence for the declared financial-accident core, with exact EVM seam proofs and explicit nonclaims.",
+    "forbidden": [
+      "full implementation refinement",
+      "all ERC-TRUST implementations are verified",
+      "ERC-3643 Verified Profile refinement before backlog closure",
+      "compiler correctness",
+      "deployment or production assurance",
+      "legal, policy, identity, settlement, entitlement, or ownership truth",
+      "institution-grade security as a completed fact"
+    ]
+  },
+  "nextExecutionGate": {
+    "firstGoal": "ACT-01 current-profile discharge under the reusable C0/C1/C2/C3/C4/C6 chain",
+    "timebox": "3 working days; failure invalidates the throughput model and forces Director rescoping",
+    "firstActions": [
+      "Revalidate the exact input, legacy and current TCB profile identities, and zero live proof processes.",
+      "Freeze independent ActionSummary, ReversalSummary, and abstraction-alpha contracts before writing tool-specific specifications.",
+      "Build C0 StateAbiNormalForm and C2 BoundDependencyAssumeGuarantee first.",
+      "Build C1 AuthorizationReplay and C3 ExactUseRoute next.",
+      "Build the C4 FREEZE class and C6 commit/rollback/receipt shell, then discharge ACT-01 as a corollary.",
+      "Do not extend the concrete PC 13431 to 15224 to 13465 chain manually."
+    ]
+  }
+}

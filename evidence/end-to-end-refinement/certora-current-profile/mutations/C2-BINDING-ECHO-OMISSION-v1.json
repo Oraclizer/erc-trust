@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "mutationId": "C2-BINDING-ECHO-OMISSION-v1",
+  "kind": "EXECUTABLE_SEMANTIC_MUTANT",
+  "canonicalPath": "implementation/test/mocks/TrustPolicyBindingHarness.sol",
+  "canonicalSha256": "c0d0fef54f5c4e7f9197608a0072e3b3ff0cacdfd9c3555942dee91bf012fa06",
+  "mutantPath": "implementation/test/mocks/TrustPolicyBindingHarnessMutant.sol",
+  "mutantSha256": "4820ea7882d2f9ccc414f5c828a52414e51e02279af82157019d3ceb8f4ffb57",
+  "permittedDelta": "Remove only the bindingEcho != expectedBinding disjunct from classifyCode",
+  "unchangedSpec": "implementation/certora/TrustPolicyBindingHarness.spec",
+  "expectedResult": "classifier_code_matches_complete_partition violation for wrong binding echo"
+}

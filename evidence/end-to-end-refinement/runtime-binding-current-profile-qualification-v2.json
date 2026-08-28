@@ -1,0 +1,749 @@
+{
+  "schemaVersion": 2,
+  "kind": "ERC_TRUST_RUNTIME_BINDING_CURRENT_PROFILE_QUALIFICATION_V2",
+  "status": "PASS_RUNTIME_PAYLOAD_EXACT_WITH_PACKAGING_DRIFT",
+  "date": "2026-08-28",
+  "manifest": {
+    "path": "evidence/end-to-end-refinement/runtime-binding/manifest-public-v1.json",
+    "sha256": "596bbd73bf24ebf397a6afbd7453219db931618283814d7c46c062c9e9bbfefb",
+    "deterministicRootSha256": "44c62545b9545741bce98b313f412914bc976430c5596de6ad735f68d81cd4ab"
+  },
+  "compiler": {
+    "binaryLocator": {
+      "distribution": "Ubuntu",
+      "kind": "svm",
+      "version": "0.8.36"
+    },
+    "binarySha256": "c8d35afdddc3cd2743ee88b8f25e0fecd16e2bdd5f2120f37e52cd9cc45ae0e6",
+    "settingsSha256": "35c8223126038db5084bc48704b464ede69ba1648976d8c8d40582c7182d8e0b",
+    "version": "0.8.36+commit.8a079791",
+    "dependencyLockPath": "formal/kevm/dependencies.lock.json",
+    "dependencyLockSha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196"
+  },
+  "sourceIdentities": [
+    {
+      "bundle": "native",
+      "bytes": 598,
+      "path": "implementation/src/ERC7943RouteTicket.sol",
+      "sha256": "c22d53e2ef8dd192c8f45d22a4d1146a322c51bcc4aad540fd89f2514875ede1"
+    },
+    {
+      "bundle": "native",
+      "bytes": 169,
+      "path": "implementation/src/interfaces/IERC165.sol",
+      "sha256": "e818244b1471cfe9f5daac43535dbc7314dc69ad82818cdfb828b1bcc3affa2e"
+    },
+    {
+      "bundle": "native",
+      "bytes": 713,
+      "path": "implementation/src/interfaces/IERC20.sol",
+      "sha256": "414510c4de8ff90b066ea33f3d75ce7c4891f4ee43de55c52e333740d6fd8131"
+    },
+    {
+      "bundle": "native",
+      "bytes": 1170,
+      "path": "implementation/src/interfaces/IERC7943.sol",
+      "sha256": "fa6e6696b7f049153d9c4c3776171641a1fa29cdbfe6927d81b3dd17be4be1f8"
+    },
+    {
+      "bundle": "native",
+      "bytes": 2085,
+      "path": "implementation/src/interfaces/IERCTrust.sol",
+      "sha256": "708231812d6f0f4459e3fa41eaa296af6ff94064983a014f8432828006092584"
+    },
+    {
+      "bundle": "native",
+      "bytes": 567,
+      "path": "implementation/src/interfaces/ITrustBoundDependency.sol",
+      "sha256": "9f1f28ec1c9864ace2732a57af5326d7058174fbef2f54ac6a8ee03046510741"
+    },
+    {
+      "bundle": "native",
+      "bytes": 787,
+      "path": "implementation/src/LegacyRouteAuthorizer.sol",
+      "sha256": "17d9e5da3e82b2acec1be8da61c8d6e9cb5e7e726b8cb3c093577991a72b1b94"
+    },
+    {
+      "bundle": "native",
+      "bytes": 1271,
+      "path": "implementation/src/TrustDecision.sol",
+      "sha256": "c4f5d7810a5fb285b494d75cdae1a26fcfeda0cc1706e50ccac30ea03b783c58"
+    },
+    {
+      "bundle": "native",
+      "bytes": 727,
+      "path": "implementation/src/TrustErrors.sol",
+      "sha256": "a299a8a8efe1194a736eadd3873f1ab7d686f527a03848c314ed2e10b7ee9431"
+    },
+    {
+      "bundle": "native",
+      "bytes": 3338,
+      "path": "implementation/src/TrustPolicyBinding.sol",
+      "sha256": "f24c15105c27ab3ed5586693343e5c1d83e22b79dad0b4c187a3bb341dba4a41"
+    },
+    {
+      "bundle": "native",
+      "bytes": 1791,
+      "path": "implementation/src/TrustStorage.sol",
+      "sha256": "881783e28f8ec36e4571f48f407db4b63f8e736237f5e9f1044d916f3c066c6f"
+    },
+    {
+      "bundle": "native",
+      "bytes": 57544,
+      "path": "implementation/src/TrustToken.sol",
+      "sha256": "dbe06bb25a2b62913bd6428e1de32ba007a214e24ac45f4fd2c0fb55ea22c96a"
+    },
+    {
+      "bundle": "native",
+      "bytes": 4235,
+      "path": "implementation/src/TrustTypes.sol",
+      "sha256": "cb16ab2f3d8df94d8a933c45367c594096d3f97f9a969998d89fc55837f4ab3e"
+    },
+    {
+      "bundle": "native",
+      "bytes": 1789,
+      "path": "implementation/test/mocks/MockBoundDependency.sol",
+      "sha256": "28fcc007d20137c8c92d8ecf9c62e842bc75798acc55c5d3fed3932d46f7614d"
+    },
+    {
+      "bundle": "verified-profile",
+      "bytes": 169,
+      "path": "implementation/src/interfaces/IERC165.sol",
+      "sha256": "e818244b1471cfe9f5daac43535dbc7314dc69ad82818cdfb828b1bcc3affa2e"
+    },
+    {
+      "bundle": "verified-profile",
+      "bytes": 1726,
+      "path": "implementation/src/interfaces/IERC3643External.sol",
+      "sha256": "701bae4ffedc2f7a00287b882247bd8de5c68131e13ac3c3e957f1d678d12119"
+    },
+    {
+      "bundle": "verified-profile",
+      "bytes": 1434,
+      "path": "implementation/src/interfaces/IERCTrustProfile.sol",
+      "sha256": "91c51e79151b6f83845ec26274e482420381860e0f6805da185aba647a6c9dc2"
+    },
+    {
+      "bundle": "verified-profile",
+      "bytes": 31775,
+      "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+      "sha256": "d8b2de891e5ef9203df72aee6025b4accda7819cb27b35684a1ab81471ef144d"
+    },
+    {
+      "bundle": "verified-profile",
+      "bytes": 4157,
+      "path": "implementation/src/profiles/ProfileGovernor.sol",
+      "sha256": "2bfedeee13d1044b8d8f2d00e7840ade182a7d7adf3017d7be6de661cef064b7"
+    },
+    {
+      "bundle": "verified-profile",
+      "bytes": 1271,
+      "path": "implementation/src/TrustDecision.sol",
+      "sha256": "c4f5d7810a5fb285b494d75cdae1a26fcfeda0cc1706e50ccac30ea03b783c58"
+    },
+    {
+      "bundle": "verified-profile",
+      "bytes": 727,
+      "path": "implementation/src/TrustErrors.sol",
+      "sha256": "a299a8a8efe1194a736eadd3873f1ab7d686f527a03848c314ed2e10b7ee9431"
+    },
+    {
+      "bundle": "verified-profile",
+      "bytes": 4235,
+      "path": "implementation/src/TrustTypes.sol",
+      "sha256": "cb16ab2f3d8df94d8a933c45367c594096d3f97f9a969998d89fc55837f4ab3e"
+    },
+    {
+      "bundle": "verified-profile",
+      "bytes": 2002,
+      "path": "implementation/test/mocks/MockERC3643Dependencies.sol",
+      "sha256": "acbfc4c650f44c83ad95be5c1bb14c21eebc5b8ab03369ddf56bb3ff0b7701b1"
+    },
+    {
+      "bundle": "verified-profile",
+      "bytes": 3998,
+      "path": "implementation/test/mocks/MockERC3643Token.sol",
+      "sha256": "f68dbb8b06fb73ead1b041ed4968136edac99c1f26f4bd91f450e5ff08b4c990"
+    }
+  ],
+  "nativeResolvedRuntime": {
+    "runtimeFreezePath": "evidence/end-to-end-refinement/runtime-freeze-public-v1.json",
+    "runtimeFreezeSha256": "05e6c5d899b75cde03f06825b894a0d90b57843a40b82cd531264ab552b38c23",
+    "sourcePath": "implementation/src/TrustToken.sol",
+    "sourceSha256": "dbe06bb25a2b62913bd6428e1de32ba007a214e24ac45f4fd2c0fb55ea22c96a",
+    "hexPath": "evidence/end-to-end-refinement/runtime-binding/resolved/native/TrustToken.hex",
+    "hexArtifactSha256": "1c2e73fa137a50993301eacf9e70aa73623a5d4673c58cadedb60e12c273f44f",
+    "runtimeBytes": 24142,
+    "runtimeBytesSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d"
+  },
+  "subjects": [
+    {
+      "id": "implementation/src/TrustToken.sol:TrustToken",
+      "bundle": "native",
+      "artifactPath": "out/TrustToken.sol/TrustToken.json",
+      "historicalArtifactSha256": "d8dbf136b7a3811fe2d0ecbca507131a6c3f7d71ae226ee21cb70b3d1c0c5a14",
+      "currentArtifactSha256": "cadda19cc5e3727c4b87085a89ea9c7d98766b3968c5cdaad582fa9e5981eabb",
+      "historicalArtifactExact": false,
+      "semanticChecks": {
+        "abi": true,
+        "storageLayout": true,
+        "creationBytecode": true,
+        "runtimeTemplate": true,
+        "methodIdentifiers": true,
+        "immutableReferences": true
+      },
+      "disposition": "PASS_RUNTIME_PAYLOAD_EXACT_WITH_PACKAGING_DRIFT",
+      "hostileSemanticMutations": [
+        {
+          "class": "abi",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "abi"
+          ]
+        },
+        {
+          "class": "storageLayout",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "storageLayout"
+          ]
+        },
+        {
+          "class": "creationBytecode",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "creationBytecode"
+          ]
+        },
+        {
+          "class": "runtimeTemplate",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "runtimeTemplate"
+          ]
+        },
+        {
+          "class": "methodIdentifiers",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "methodIdentifiers"
+          ]
+        },
+        {
+          "class": "immutableReferences",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "immutableReferences"
+          ]
+        }
+      ],
+      "packagingOnlyMutation": {
+        "status": "PASS_RUNTIME_PAYLOAD_EXACT_WITH_PACKAGING_DRIFT",
+        "currentArtifactSha256": "cadda19cc5e3727c4b87085a89ea9c7d98766b3968c5cdaad582fa9e5981eabb",
+        "mutatedArtifactSha256": "41ba054224dc880b94d01be75a94d27fafa8871ceec5f4c5fefdad9d946dddf8"
+      },
+      "expectedHashOverwriteMutation": {
+        "status": "FAIL_EXPECTED_ARTIFACT_HASH_OVERWRITE",
+        "authoritativeExpectedArtifactSha256": "d8dbf136b7a3811fe2d0ecbca507131a6c3f7d71ae226ee21cb70b3d1c0c5a14",
+        "overwrittenCandidateSha256": "cadda19cc5e3727c4b87085a89ea9c7d98766b3968c5cdaad582fa9e5981eabb"
+      },
+      "historicalExactClassifierPath": "PASS_RUNTIME_BINDING_EXACT"
+    },
+    {
+      "id": "implementation/test/mocks/MockBoundDependency.sol:MockBoundDependency",
+      "bundle": "native",
+      "artifactPath": "out/MockBoundDependency.sol/MockBoundDependency.json",
+      "historicalArtifactSha256": "e2a67ebf380ae87c3e244210bc7610a49fc3737ec94707d677aa0fe3ecc3a814",
+      "currentArtifactSha256": "8136a385284ae2916b1bb8246910055b193ebcc1675ade06df54a1ef9ebdb36d",
+      "historicalArtifactExact": false,
+      "semanticChecks": {
+        "abi": true,
+        "storageLayout": true,
+        "creationBytecode": true,
+        "runtimeTemplate": true,
+        "methodIdentifiers": true,
+        "immutableReferences": true
+      },
+      "disposition": "PASS_RUNTIME_PAYLOAD_EXACT_WITH_PACKAGING_DRIFT",
+      "hostileSemanticMutations": [
+        {
+          "class": "abi",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "abi"
+          ]
+        },
+        {
+          "class": "storageLayout",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "storageLayout"
+          ]
+        },
+        {
+          "class": "creationBytecode",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "creationBytecode"
+          ]
+        },
+        {
+          "class": "runtimeTemplate",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "runtimeTemplate"
+          ]
+        },
+        {
+          "class": "methodIdentifiers",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "methodIdentifiers"
+          ]
+        },
+        {
+          "class": "immutableReferences",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "immutableReferences"
+          ]
+        }
+      ],
+      "packagingOnlyMutation": {
+        "status": "PASS_RUNTIME_PAYLOAD_EXACT_WITH_PACKAGING_DRIFT",
+        "currentArtifactSha256": "8136a385284ae2916b1bb8246910055b193ebcc1675ade06df54a1ef9ebdb36d",
+        "mutatedArtifactSha256": "2be1b97f3e2213f03345e5c8e873da2405f11d97fe3d20880b91fcb28b2d1f10"
+      },
+      "expectedHashOverwriteMutation": {
+        "status": "FAIL_EXPECTED_ARTIFACT_HASH_OVERWRITE",
+        "authoritativeExpectedArtifactSha256": "e2a67ebf380ae87c3e244210bc7610a49fc3737ec94707d677aa0fe3ecc3a814",
+        "overwrittenCandidateSha256": "8136a385284ae2916b1bb8246910055b193ebcc1675ade06df54a1ef9ebdb36d"
+      },
+      "historicalExactClassifierPath": "PASS_RUNTIME_BINDING_EXACT"
+    },
+    {
+      "id": "implementation/src/profiles/ERC3643TrustAdapter.sol:ERC3643TrustAdapter",
+      "bundle": "verified-profile",
+      "artifactPath": "out/ERC3643TrustAdapter.sol/ERC3643TrustAdapter.json",
+      "historicalArtifactSha256": "b0b744183e09ba80463c48aa453c02ca70a7719d133da83dcde86589871f42a5",
+      "currentArtifactSha256": "ec1b20753e43c71a6011471e7bb02cb4daae8c6b2b87ff6f0b821f784afb7d4c",
+      "historicalArtifactExact": false,
+      "semanticChecks": {
+        "abi": true,
+        "storageLayout": true,
+        "creationBytecode": true,
+        "runtimeTemplate": true,
+        "methodIdentifiers": true,
+        "immutableReferences": true
+      },
+      "disposition": "PASS_RUNTIME_PAYLOAD_EXACT_WITH_PACKAGING_DRIFT",
+      "hostileSemanticMutations": [
+        {
+          "class": "abi",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "abi"
+          ]
+        },
+        {
+          "class": "storageLayout",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "storageLayout"
+          ]
+        },
+        {
+          "class": "creationBytecode",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "creationBytecode"
+          ]
+        },
+        {
+          "class": "runtimeTemplate",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "runtimeTemplate"
+          ]
+        },
+        {
+          "class": "methodIdentifiers",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "methodIdentifiers"
+          ]
+        },
+        {
+          "class": "immutableReferences",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "immutableReferences"
+          ]
+        }
+      ],
+      "packagingOnlyMutation": {
+        "status": "PASS_RUNTIME_PAYLOAD_EXACT_WITH_PACKAGING_DRIFT",
+        "currentArtifactSha256": "ec1b20753e43c71a6011471e7bb02cb4daae8c6b2b87ff6f0b821f784afb7d4c",
+        "mutatedArtifactSha256": "d554d855501e810243de139547363c9b5a0a3741f97adf55182e18324f2a7aef"
+      },
+      "expectedHashOverwriteMutation": {
+        "status": "FAIL_EXPECTED_ARTIFACT_HASH_OVERWRITE",
+        "authoritativeExpectedArtifactSha256": "b0b744183e09ba80463c48aa453c02ca70a7719d133da83dcde86589871f42a5",
+        "overwrittenCandidateSha256": "ec1b20753e43c71a6011471e7bb02cb4daae8c6b2b87ff6f0b821f784afb7d4c"
+      },
+      "historicalExactClassifierPath": "PASS_RUNTIME_BINDING_EXACT"
+    },
+    {
+      "id": "implementation/src/profiles/ProfileGovernor.sol:ProfileGovernor",
+      "bundle": "verified-profile",
+      "artifactPath": "out/ProfileGovernor.sol/ProfileGovernor.json",
+      "historicalArtifactSha256": "6730ad2c0384c1e08422aa208a9fde9fdc86132fdf4a18a614f1828f04b5c8f5",
+      "currentArtifactSha256": "0e457a369749afb6fb5e81c75e57fbeb98b52f2fc4da8f9f4871a60c904277a4",
+      "historicalArtifactExact": false,
+      "semanticChecks": {
+        "abi": true,
+        "storageLayout": true,
+        "creationBytecode": true,
+        "runtimeTemplate": true,
+        "methodIdentifiers": true,
+        "immutableReferences": true
+      },
+      "disposition": "PASS_RUNTIME_PAYLOAD_EXACT_WITH_PACKAGING_DRIFT",
+      "hostileSemanticMutations": [
+        {
+          "class": "abi",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "abi"
+          ]
+        },
+        {
+          "class": "storageLayout",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "storageLayout"
+          ]
+        },
+        {
+          "class": "creationBytecode",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "creationBytecode"
+          ]
+        },
+        {
+          "class": "runtimeTemplate",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "runtimeTemplate"
+          ]
+        },
+        {
+          "class": "methodIdentifiers",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "methodIdentifiers"
+          ]
+        },
+        {
+          "class": "immutableReferences",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "immutableReferences"
+          ]
+        }
+      ],
+      "packagingOnlyMutation": {
+        "status": "PASS_RUNTIME_PAYLOAD_EXACT_WITH_PACKAGING_DRIFT",
+        "currentArtifactSha256": "0e457a369749afb6fb5e81c75e57fbeb98b52f2fc4da8f9f4871a60c904277a4",
+        "mutatedArtifactSha256": "56fc7c87b9baf5eca5dae40feb73bb210871968b97e09e92c336d9fb4ffa8f61"
+      },
+      "expectedHashOverwriteMutation": {
+        "status": "FAIL_EXPECTED_ARTIFACT_HASH_OVERWRITE",
+        "authoritativeExpectedArtifactSha256": "6730ad2c0384c1e08422aa208a9fde9fdc86132fdf4a18a614f1828f04b5c8f5",
+        "overwrittenCandidateSha256": "0e457a369749afb6fb5e81c75e57fbeb98b52f2fc4da8f9f4871a60c904277a4"
+      },
+      "historicalExactClassifierPath": "PASS_RUNTIME_BINDING_EXACT"
+    },
+    {
+      "id": "implementation/test/mocks/MockERC3643Token.sol:MockERC3643Token",
+      "bundle": "verified-profile",
+      "artifactPath": "out/MockERC3643Token.sol/MockERC3643Token.json",
+      "historicalArtifactSha256": "48ae6000b22739b5967aaacbf7e4c98f34d0f3069c947567f0217b041d03e3da",
+      "currentArtifactSha256": "893b9f00935d81071cdd63472ec711679b8181ba22efbb8f8c979c97de544759",
+      "historicalArtifactExact": false,
+      "semanticChecks": {
+        "abi": true,
+        "storageLayout": true,
+        "creationBytecode": true,
+        "runtimeTemplate": true,
+        "methodIdentifiers": true,
+        "immutableReferences": true
+      },
+      "disposition": "PASS_RUNTIME_PAYLOAD_EXACT_WITH_PACKAGING_DRIFT",
+      "hostileSemanticMutations": [
+        {
+          "class": "abi",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "abi"
+          ]
+        },
+        {
+          "class": "storageLayout",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "storageLayout"
+          ]
+        },
+        {
+          "class": "creationBytecode",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "creationBytecode"
+          ]
+        },
+        {
+          "class": "runtimeTemplate",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "runtimeTemplate"
+          ]
+        },
+        {
+          "class": "methodIdentifiers",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "methodIdentifiers"
+          ]
+        },
+        {
+          "class": "immutableReferences",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "immutableReferences"
+          ]
+        }
+      ],
+      "packagingOnlyMutation": {
+        "status": "PASS_RUNTIME_PAYLOAD_EXACT_WITH_PACKAGING_DRIFT",
+        "currentArtifactSha256": "893b9f00935d81071cdd63472ec711679b8181ba22efbb8f8c979c97de544759",
+        "mutatedArtifactSha256": "5be068ae5ebb7a63acc40425aef09c945ee82596cf2794c3ec1e93826cfaa1c5"
+      },
+      "expectedHashOverwriteMutation": {
+        "status": "FAIL_EXPECTED_ARTIFACT_HASH_OVERWRITE",
+        "authoritativeExpectedArtifactSha256": "48ae6000b22739b5967aaacbf7e4c98f34d0f3069c947567f0217b041d03e3da",
+        "overwrittenCandidateSha256": "893b9f00935d81071cdd63472ec711679b8181ba22efbb8f8c979c97de544759"
+      },
+      "historicalExactClassifierPath": "PASS_RUNTIME_BINDING_EXACT"
+    },
+    {
+      "id": "implementation/test/mocks/MockERC3643Dependencies.sol:MockERC3643IdentityRegistry",
+      "bundle": "verified-profile",
+      "artifactPath": "out/MockERC3643Dependencies.sol/MockERC3643IdentityRegistry.json",
+      "historicalArtifactSha256": "9fb6146b02ec13f2bf284811b52d2c51763175ac14050831792002080326cffa",
+      "currentArtifactSha256": "e1ed35c3233ed5ce2c539a37b8116bde6988f754f316a9318d6cee59a41d09c4",
+      "historicalArtifactExact": false,
+      "semanticChecks": {
+        "abi": true,
+        "storageLayout": true,
+        "creationBytecode": true,
+        "runtimeTemplate": true,
+        "methodIdentifiers": true,
+        "immutableReferences": true
+      },
+      "disposition": "PASS_RUNTIME_PAYLOAD_EXACT_WITH_PACKAGING_DRIFT",
+      "hostileSemanticMutations": [
+        {
+          "class": "abi",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "abi"
+          ]
+        },
+        {
+          "class": "storageLayout",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "storageLayout"
+          ]
+        },
+        {
+          "class": "creationBytecode",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "creationBytecode"
+          ]
+        },
+        {
+          "class": "runtimeTemplate",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "runtimeTemplate"
+          ]
+        },
+        {
+          "class": "methodIdentifiers",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "methodIdentifiers"
+          ]
+        },
+        {
+          "class": "immutableReferences",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "immutableReferences"
+          ]
+        }
+      ],
+      "packagingOnlyMutation": {
+        "status": "PASS_RUNTIME_PAYLOAD_EXACT_WITH_PACKAGING_DRIFT",
+        "currentArtifactSha256": "e1ed35c3233ed5ce2c539a37b8116bde6988f754f316a9318d6cee59a41d09c4",
+        "mutatedArtifactSha256": "23d3bc225da5a19b6e7afc9c7742721f4ccef0636c6c74c0622b7fd2b3c36607"
+      },
+      "expectedHashOverwriteMutation": {
+        "status": "FAIL_EXPECTED_ARTIFACT_HASH_OVERWRITE",
+        "authoritativeExpectedArtifactSha256": "9fb6146b02ec13f2bf284811b52d2c51763175ac14050831792002080326cffa",
+        "overwrittenCandidateSha256": "e1ed35c3233ed5ce2c539a37b8116bde6988f754f316a9318d6cee59a41d09c4"
+      },
+      "historicalExactClassifierPath": "PASS_RUNTIME_BINDING_EXACT"
+    },
+    {
+      "id": "implementation/test/mocks/MockERC3643Dependencies.sol:MockERC3643Compliance",
+      "bundle": "verified-profile",
+      "artifactPath": "out/MockERC3643Dependencies.sol/MockERC3643Compliance.json",
+      "historicalArtifactSha256": "5c89575feb56a2da017e251f8fe744fc24d45e025e87d2712f5909bc013ba72b",
+      "currentArtifactSha256": "035b0e46ebd043aaeb1304bc59aa6216aa7a4b1bd3f30a0cdf0726b878bdf088",
+      "historicalArtifactExact": false,
+      "semanticChecks": {
+        "abi": true,
+        "storageLayout": true,
+        "creationBytecode": true,
+        "runtimeTemplate": true,
+        "methodIdentifiers": true,
+        "immutableReferences": true
+      },
+      "disposition": "PASS_RUNTIME_PAYLOAD_EXACT_WITH_PACKAGING_DRIFT",
+      "hostileSemanticMutations": [
+        {
+          "class": "abi",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "abi"
+          ]
+        },
+        {
+          "class": "storageLayout",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "storageLayout"
+          ]
+        },
+        {
+          "class": "creationBytecode",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "creationBytecode"
+          ]
+        },
+        {
+          "class": "runtimeTemplate",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "runtimeTemplate"
+          ]
+        },
+        {
+          "class": "methodIdentifiers",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "methodIdentifiers"
+          ]
+        },
+        {
+          "class": "immutableReferences",
+          "status": "KILLED",
+          "failedSemanticChecks": [
+            "immutableReferences"
+          ]
+        }
+      ],
+      "packagingOnlyMutation": {
+        "status": "PASS_RUNTIME_PAYLOAD_EXACT_WITH_PACKAGING_DRIFT",
+        "currentArtifactSha256": "035b0e46ebd043aaeb1304bc59aa6216aa7a4b1bd3f30a0cdf0726b878bdf088",
+        "mutatedArtifactSha256": "bd98d1df97d595425827f2f6da0b5c7829e23956a98257d4c1a1432b7efda892"
+      },
+      "expectedHashOverwriteMutation": {
+        "status": "FAIL_EXPECTED_ARTIFACT_HASH_OVERWRITE",
+        "authoritativeExpectedArtifactSha256": "5c89575feb56a2da017e251f8fe744fc24d45e025e87d2712f5909bc013ba72b",
+        "overwrittenCandidateSha256": "035b0e46ebd043aaeb1304bc59aa6216aa7a4b1bd3f30a0cdf0726b878bdf088"
+      },
+      "historicalExactClassifierPath": "PASS_RUNTIME_BINDING_EXACT"
+    }
+  ],
+  "verifierMutationValidation": {
+    "historicalExactClassifierPaths": {
+      "passed": 7,
+      "required": 7,
+      "status": "PASS"
+    },
+    "semanticMutations": {
+      "classes": [
+        "abi",
+        "storageLayout",
+        "creationBytecode",
+        "runtimeTemplate",
+        "methodIdentifiers",
+        "immutableReferences"
+      ],
+      "killed": 42,
+      "required": 42,
+      "status": "PASS"
+    },
+    "packagingOnlyMutations": {
+      "driftPass": 7,
+      "required": 7,
+      "status": "PASS"
+    },
+    "expectedHashOverwriteMutations": {
+      "failedClosed": 7,
+      "required": 7,
+      "status": "PASS"
+    }
+  },
+  "qualification": {
+    "expectedArtifactHashesOverwritten": false,
+    "pinnedCompilerReplayPass": true,
+    "rawCompilerOutputExact": true,
+    "sourceIdentityPass": true,
+    "sixSemanticChecksPerSubjectPass": true,
+    "currentProfileConsumerRows": [
+      "STATE-02",
+      "STATE-03",
+      "ART-01"
+    ],
+    "supportingQualifiedDelta": 3,
+    "coreRefinementQualifiedDelta": 0,
+    "cSeriesReceiptDelta": 0,
+    "centralCredit": 0
+  },
+  "checkedBundles": [
+    {
+      "id": "native",
+      "sources": 14,
+      "subjects": 2
+    },
+    {
+      "id": "verified-profile",
+      "sources": 10,
+      "subjects": 5
+    }
+  ],
+  "nonclaims": [
+    "Historical whole-file Foundry artifact identity is reported, not replaced or relaxed.",
+    "Packaging-drift PASS establishes equality only for the six enumerated semantic projections against pinned-solc output.",
+    "This receipt does not prove compiler correctness, constructor or deployment execution, deployed-address identity, live topology, external policy truth, or legal truth.",
+    "This receipt does not rerun, modify, or add credit to C0-C6 or the 49 already qualified Core rows."
+  ]
+}

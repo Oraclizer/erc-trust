@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_C4_TERMINAL_RECEIPT_V1",
+  "packageId": "C4",
+  "status": "PASS_C4_TERMINAL_RUNTIME_QUALIFICATION",
+  "terminal": true,
+  "identity": {
+    "nativeRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "productionSource": {
+      "path": "implementation/src/TrustToken.sol",
+      "sha256": "dbe06bb25a2b62913bd6428e1de32ba007a214e24ac45f4fd2c0fb55ea22c96a"
+    },
+    "package": {
+      "path": "evidence/end-to-end-refinement/reusable-summaries-v1/packages/c4-forward-financial-effects-v1.json",
+      "sha256": "ce1dd77f0e48e10ddec05dc9c60d11511f3812ddac41ac2f153785b1f19752c7"
+    },
+    "freezeLane": {
+      "path": "evidence/end-to-end-refinement/c4-freeze-lane-receipt-v1.json",
+      "sha256": "a3c628fae7233998ff1a2425786bcabf04c53c38d86cec95aeb4930cc94c0d1b"
+    },
+    "remainingSpec": {
+      "path": "implementation/certora/TrustC4Remaining.spec",
+      "sha256": "c3915388422ace9693c09c5b98d50983b421df87511d684e41c5d19abd00710f"
+    },
+    "remainingHarness": {
+      "path": "implementation/test/mocks/TrustTokenC4RemainingHarness.sol",
+      "sha256": "92fe3539a3399d0ceeb4e696ca1de9c534d4ec1e761994e0782289f1add65103"
+    },
+    "formulationVerifier": {
+      "path": "scripts/verify-c4-remaining-formulation-v1.mjs",
+      "sha256": "38eb152a98c533f8ec5454df97c6f78295a9926cce1c62ab96228aa7debebed9"
+    }
+  },
+  "claims": {
+    "C4-01": "PASS_FREEZE_ABSOLUTE_EFFECT_PROVENANCE",
+    "C4-02": "PASS_RESTRICT_OVERLAY",
+    "C4-03": "PASS_SEIZE_EXACT_CUSTODY",
+    "C4-04": "PASS_DIRECT_DISPOSITION_TERMINAL",
+    "C4-05": "PASS_CUSTODY_DISPOSITION_EXACT_BACKING"
+  },
+  "canonicalRemaining": {
+    "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C4-REMAINING-CERTORA-CANONICAL-PROOF-064/sanitized-receipt.json",
+    "sha256": "f81c099c6d9662daf32f122078d1f3939bf7b9d22afc7b47def3d7cbe24432d4",
+    "jobId": "M4-C4-REMAINING-CERTORA-CANONICAL-PROOF-064",
+    "privateLogSha256": "285a5d7205f69ed3298e9fcb5b957340511a18e4e91cbc6d4fd220aa0206706c"
+  },
+  "sameEntryNegative": {
+    "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C4-REMAINING-CERTORA-MUTANT-PROOF-065/sanitized-receipt.json",
+    "sha256": "71dfffe441b0a30cf38e9414009229a119dfe66b0877ab40fb927d28dd094c30",
+    "jobId": "M4-C4-REMAINING-CERTORA-MUTANT-PROOF-065",
+    "mutation": {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/mutations/C4-CUSTODY-BACKING-ACCOUNTING-OMISSION-v1.json",
+      "sha256": "62e484d2e176c99f24e2afebaa2e6090ad0df1783ecfc0aacfce16499df9f4d0"
+    },
+    "semanticViolations": [
+      "seize_preserves_beneficial_balance_and_creates_exact_custody",
+      "custody_disposition_consumes_exact_backing_once"
+    ],
+    "privateLogSha256": "4701c3631cc6751b4a96f538b7af9b7516227f63fc80a5b0e5e9dafc0af3548d"
+  },
+  "mutationFamilies": [
+    "incremental rather than absolute freeze",
+    "custody backing accounting omission"
+  ],
+  "assumptions": [
+    "valid action summary preconditions",
+    "effect hash pure formula",
+    "finite owned frame"
+  ],
+  "nonclaims": [
+    "external ownership truth",
+    "settlement truth",
+    "compiler correctness",
+    "LIFO reversal provenance owned by C5"
+  ],
+  "qualification": {
+    "positiveTerminalPass": true,
+    "sameEntryMutationKilled": true,
+    "baselineRestored": true,
+    "frameQualified": true,
+    "c4RuntimeQualified": true,
+    "c4PackageQualified": true,
+    "act01Qualified": true,
+    "centralCredit": 0
+  }
+}

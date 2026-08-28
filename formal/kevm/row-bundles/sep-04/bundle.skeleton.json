@@ -1,0 +1,163 @@
+{
+  "bigIntBoundary": {
+    "allFixtureJsonNumbersSafe": true,
+    "canonicalTopicDecimal": "77284304326905398285819503064054149854320822776110682615707144351377747411089",
+    "integerPorts": {
+      "BLOCK_GAS_LIMIT_INT": "30000000",
+      "BLOCK_NUMBER_INT": "3",
+      "SENDER_INT": "1390849295786071768276380950238675083608645509734",
+      "SENDER_NONCE_BEFORE_INT": "2",
+      "TIMESTAMP_INT": "1700000005",
+      "TOKEN_ADDRESS_INT": "1324161310598743833836268493538283093091898295570",
+      "TX_GAS_LIMIT_INT": "12000000"
+    },
+    "largeIntegerPorts": [
+      "SENDER_INT",
+      "TOKEN_ADDRESS_INT"
+    ],
+    "mutantTopicDecimal": "77736617175488664674192827224244336994372658653710841068986275538908658073745",
+    "numberMaxSafeInteger": "9007199254740991",
+    "policy": "all authoritative EVM integers and K terms remain canonical decimal/hex strings until explicit BigInt conversion",
+    "topicDecimalsRoundTrip": true
+  },
+  "blockers": [
+    "fresh closed positive KEVM graph for the exact full-transaction LIQUIDATE claim",
+    "fresh terminal semantic negative graph for the unchanged claim against the one-byte final-event-topic mutant",
+    "fresh closed mutant executable-control graph requiring the 0xab-prefixed final event topic",
+    "checked exact-runtime observation to Isabelle alpha_transaction/canonical_receipt_trace certificate",
+    "serial Isabelle clean build and oracle-free export",
+    "repository-owned independent replay"
+  ],
+  "bridge": {
+    "path": "formal/kevm/row-bundles/sep-04/bridge/row-bridge.json",
+    "reverseCheck": "formal/kevm/row-bundles/sep-04/reverse-check.py",
+    "semanticCertificate": null,
+    "sha256": "74ccb38d44825a52250c14241fe48235ca87e28f18e92dd5f61b2bde760f1648"
+  },
+  "composition": {
+    "path": "formal/kevm/row-bundles/sep-04/composition-graph.json",
+    "rootSha256": "8729d58c7a547a884494830b211f3b54c2c9b4574a3d14a721955c69483136cd",
+    "sha256": "3899ed20ac61dbaa8a8ae9770bbbec1f68f741318655abbdd71ef8bf7a567aa5"
+  },
+  "dependencies": {
+    "dischargeInherited": false,
+    "evidenceInherited": false,
+    "graph": {
+      "path": "formal/kevm/row-bundles/sep-04/dependency-graph.json",
+      "sha256": "b2dedd7188a0682ef669eb31ab25624f35184b0097c191951d5689b15a78900f"
+    }
+  },
+  "eligibleForDischarge": false,
+  "fixture": {
+    "path": "formal/kevm/row-bundles/sep-04/fixture.json",
+    "sha256": "d6357125ae439813b7dc04f0ca2c4b58c49825c7ae7b82ef6c72d67325d17d34"
+  },
+  "isabelle": {
+    "buildStatus": "NOT_RUN_IN_WORKER",
+    "closureReport": null,
+    "session": "ERC_TRUST_SEP_04",
+    "theoremName": "receipt_preimage_matches_storage_return_and_final_event",
+    "theoryPath": "formal/kevm/row-bundles/sep-04/isabelle/SEP_04_Receipt_Event_Binding.thy"
+  },
+  "mutantExecutableControl": {
+    "claimId": null,
+    "graph": null,
+    "module": "TRUST-SEP-04-MUTANT-EVENT-TOPIC-CONTROL-SPEC",
+    "requiredExitCode": 0,
+    "requiredWitnesses": [
+      "EVMC_SUCCESS",
+      "canonical receipt hash remains in storage and successful return",
+      "final RegulatoryActionApplied topic0 is 0xabdd5db99c0c1f57ce6f82b109958a00899fc4cea03e70fdae7741b9e7050091"
+    ]
+  },
+  "negative": {
+    "compiledJsonSha256": null,
+    "definitionKoreSha256": null,
+    "graph": null,
+    "mutationId": "SEP-04-MUT-EVENT-TOPIC-001",
+    "mutationKind": "EXECUTABLE_SEMANTIC_MUTANT",
+    "requiredExitCode": 1,
+    "requiredWitness": "terminal counterexample distinguishes canonical and 0xab-prefixed event topic"
+  },
+  "obligationId": "SEP-04",
+  "positive": {
+    "compiledJsonSha256": null,
+    "definitionKoreSha256": null,
+    "graph": null,
+    "requiredExitCode": 0,
+    "requiredWitnesses": [
+      "EVMC_SUCCESS",
+      "canonical receipt return",
+      "canonical final RegulatoryActionApplied log"
+    ]
+  },
+  "prohibitedUntilHeavySlotsAvailable": [
+    "KEVM_FULL_PROVE",
+    "ISABELLE_BUILD",
+    "SOLC_COMPILE"
+  ],
+  "proofInputs": {
+    "claim": {
+      "path": "formal/kevm/row-bundles/sep-04/claim.k",
+      "sha256": "9d0e346a898f84e59c4be1d957c50d9cc9204c0a76372c91b06eba2da0e928c5"
+    },
+    "claimTemplate": {
+      "path": "formal/kevm/row-bundles/sep-04/claim-template.k.in",
+      "sha256": "087f45cf923f868421268016eecd39e4e12422f58385d4321055ca90285dba0c"
+    },
+    "mutantExecutableControlClaim": {
+      "module": "TRUST-SEP-04-MUTANT-EVENT-TOPIC-CONTROL-SPEC",
+      "path": "formal/kevm/row-bundles/sep-04/mutant-control-claim.k",
+      "sha256": "153834f856426c26ab31a077f25fec5c00362f0b7415f189e09bcba0eb7f37c8"
+    },
+    "negativeRuntimeBridge": {
+      "canonicalTopic0": "0xaadd5db99c0c1f57ce6f82b109958a00899fc4cea03e70fdae7741b9e7050091",
+      "mutantTopic0": "0xabdd5db99c0c1f57ce6f82b109958a00899fc4cea03e70fdae7741b9e7050091",
+      "mutationId": "SEP-04-MUT-EVENT-TOPIC-001",
+      "path": "formal/kevm/row-bundles/sep-04/generated/mutant-runtime-bridge.k",
+      "sha256": "9acba0ede1a335d4326d5f2f4cdf55713cde833b3438db65dfd15e9b84e18d77"
+    },
+    "negativeVerification": {
+      "path": "formal/kevm/row-bundles/sep-04/generated/mutant-runtime-verification.k",
+      "sha256": "e380844cea44b450c03fc3d0f345e22980801b96fe0270fa921c667a8e062bf9"
+    },
+    "parseOnlyHelper": {
+      "path": "formal/kevm/row-bundles/sep-04/parse-claims.py",
+      "sha256": "98bda1b4d2d779584c35b9249ae91ba8b58974f294ed148479ff601460b024f1"
+    },
+    "positiveVerification": {
+      "path": "formal/kevm/trust-runtime-verification.k",
+      "sha256": "df6b227bfd1ab5bfc7cfdb364a7da4dea4b5660789e4513f10e78d00dcbe4193"
+    }
+  },
+  "proofSpec": {
+    "claimId": null,
+    "materializedPath": "formal/kevm/row-bundles/sep-04/claim.k",
+    "module": "TRUST-SEP-04-RECEIPT-PREIMAGE-STORAGE-RETURN-FINAL-EVENT-SPEC",
+    "sha256": "9d0e346a898f84e59c4be1d957c50d9cc9204c0a76372c91b06eba2da0e928c5",
+    "templatePath": "formal/kevm/row-bundles/sep-04/claim-template.k.in"
+  },
+  "proofStatus": "PASS_OPEN_STATIC_V2",
+  "replay": {
+    "proofRoot": null,
+    "report": null,
+    "stateRoot": null,
+    "status": "NOT_RUN",
+    "traceRoot": null
+  },
+  "requiredProperty": "`receipt_preimage_matches_storage_return_and_final_event`",
+  "schemaVersion": 2,
+  "status": "OPEN",
+  "tcbBinding": {
+    "actualCurrentLock": {
+      "path": "formal/kevm/dependencies.lock.json",
+      "sha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196"
+    },
+    "blocker": false,
+    "canonicalPlaceholderSha256": "e4fcabd40c8b18e3900050a590b6b80c687d4d115f61bc12439af6099e83434e",
+    "classification": "OPEN_PLACEHOLDER_PENDING_COORDINATOR_BINDING",
+    "productDrift": false,
+    "runtimeBindingManifestDependencyLockSha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196"
+  },
+  "theoremName": "receipt_preimage_matches_storage_return_and_final_event"
+}

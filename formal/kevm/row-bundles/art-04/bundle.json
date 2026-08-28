@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "obligationId": "ART-04",
+  "requiredProperty": "storage_layout_abi_ast_and_immutable_references_are_hash_bound",
+  "proofSpec": {
+    "path": "formal/kevm/row-bundles/art-04/claim.k",
+    "module": "TRUST-ART-04-ARTIFACT-SURFACE-BINDING-SPEC",
+    "claimId": "a25f7c63d606435315d9aa99f67a45e93f0283150707f853e9d7bcc14be82d74",
+    "sha256": "6e210b7978f39ff49de779b9d7852033f7612a0100d722e787566684107d655f"
+  },
+  "positive": {
+    "definitionKoreSha256": "bac21e3e90990c4c060bf77ecfe161a70d18900c631dcea5a37343765e6b3e33",
+    "compiledJsonSha256": "5ba6257f64024f7eff4ec99c569db9f9477fd5d2a625f44ed04e091fdf795a50",
+    "expectedExitCode": 0,
+    "expectedGraph": {
+      "nodes": 4,
+      "edges": 2,
+      "covers": 1,
+      "terminal": 0,
+      "stuck": 0,
+      "vacuous": 0,
+      "pending": 0,
+      "admitted": false
+    },
+    "witnessTokens": [
+      "EVMC_SUCCESS_NETWORK_EndStatusCode",
+      "b\\\"\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00*\\\""
+    ],
+    "forbiddenLogTokens": [
+      "Runtime error",
+      "Proof crashed",
+      "timed out",
+      "timeout",
+      "canceled",
+      "cancelled",
+      "SMT solver error",
+      "BackendError"
+    ]
+  },
+  "negative": {
+    "definitionKoreSha256": "1a9894b18447c0b4d998500a3476157d587e4308058dff16021b51e2d5cbdf8a",
+    "compiledJsonSha256": "63efb5da70c2763faba3343701145ac74d4af91a2732f94bd4cb64e8b3198410",
+    "expectedExitCode": 1,
+    "expectedGraph": {
+      "nodes": 401,
+      "edges": 32,
+      "covers": 0,
+      "terminal": 1,
+      "stuck": 0,
+      "vacuous": 0,
+      "pending": 262,
+      "admitted": false
+    },
+    "witnessTokens": [
+      "EVMC_SUCCESS_NETWORK_EndStatusCode",
+      "b\\\"\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00c\\\""
+    ],
+    "claimRequirementTokens": [
+      "#parseByteStack(\"0x000000000000000000000000000000000000000000000000000000000000002a\")"
+    ],
+    "forbiddenLogTokens": [
+      "Runtime error",
+      "Proof crashed",
+      "timed out",
+      "timeout",
+      "canceled",
+      "cancelled",
+      "SMT solver error",
+      "BackendError"
+    ],
+    "mutationId": "ART-04-MUT-TOTAL-SUPPLY-SLOT-001",
+    "mutationKind": "EXECUTABLE_SEMANTIC_MUTANT"
+  },
+  "bridge": {
+    "path": "formal/kevm/row-bundles/art-04/bridge/row-bridge.json",
+    "sha256": "ae1fcc1f0132f2e69f34fa65c328bd7f9795d152332f65de0dd4adaa0e48c337",
+    "reverseCheck": "formal/kevm/row-bundles/art-04/reverse-check.py"
+  },
+  "isabelle": {
+    "theoryPath": "formal/kevm/row-bundles/art-04/isabelle/ART_04_Artifact_Surface_Binding.thy",
+    "theoremName": "storage_layout_abi_ast_and_immutable_references_are_hash_bound",
+    "sourceSha256": "333548171cb92948eb3fe6788308ffe104ba734b8ed4d31c766032fa12f94a68",
+    "session": "ERC_TRUST_ART_04",
+    "rowManifestPath": "formal/kevm/row-bundles/art-04/bridge/row-manifest.json",
+    "rowManifestSha256": "ed5cbf19ea0897dd34bc1b7c815e24c41c825d117801692aeeaed335fdc23379",
+    "bannedTokens": [
+      "sorry",
+      "oops",
+      "axiomatization",
+      "by eval",
+      "native_decide",
+      "skip_proof"
+    ]
+  },
+  "residualNonclaims": [
+    "The row proves an executable totalSupply() observation over the exact pinned local runtime and hash-binds the compiler artifact sections used by the generated bridge; it does not prove solc correctness or identify a live deployment.",
+    "The expected-negative run records a terminal ABI uint256(99) output counterexample against the unchanged uint256(42) requirement; its fail-fast pending branches are not discharged proof branches.",
+    "This row bundle discharges only ART-04 and makes no claim about ART-03, ART-06, ART-07, or the remaining end-to-end refinement obligations."
+  ]
+}

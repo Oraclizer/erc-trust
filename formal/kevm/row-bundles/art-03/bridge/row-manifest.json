@@ -1,0 +1,62 @@
+{
+  "bridge": {
+    "path": "formal/kevm/row-bundles/art-03/bridge/row-bridge.json",
+    "sha256": "42aef7a452c61ae6689a2d8c1da6fd514c869044f7af846ff8110bbf707a7b72"
+  },
+  "dependencyGraph": {
+    "path": "formal/kevm/row-bundles/art-03/dependency-graph.json",
+    "sha256": "a8ea51449eefd45cb2038d97447163d6ca3643dbd5c0adb3f828eedb6232c837"
+  },
+  "eligibleForDischarge": false,
+  "generated": [
+    {
+      "path": "formal/kevm/row-bundles/art-03/generated/mutant-runtime-bridge.k",
+      "sha256": "0862dac8bdbbcc4c0c2d54aef673be47f9428e929ffc0ce6937c8b2bf296cc49"
+    },
+    {
+      "path": "formal/kevm/row-bundles/art-03/generated/mutant-runtime-verification.k",
+      "sha256": "e380844cea44b450c03fc3d0f345e22980801b96fe0270fa921c667a8e062bf9"
+    }
+  ],
+  "obligationId": "ART-03",
+  "proofFacts": {
+    "claimId": null,
+    "isabelleClosure": null,
+    "negativeGraph": null,
+    "positiveGraph": null,
+    "replay": null
+  },
+  "proofSpec": {
+    "module": "TRUST-ART-03-CONSTRUCTOR-RESOLVED-RUNTIME-BINDING-SPEC",
+    "path": "formal/kevm/row-bundles/art-03/claim.k",
+    "sha256": "a48c5c43eefbe63e454e3807bc04c5e6d827c3dbcf91ac1ec0f9206b4359c9d3"
+  },
+  "requiredProperty": "constructor_resolved_local_runtime_is_hash_bound",
+  "runnerDescriptor": {
+    "path": "formal/kevm/row-bundles/art-03/runner-descriptor.skeleton.json",
+    "sha256": "cb2f856823e6f874afa65ae985d38159faa426938f09358b3c72125bf606534a"
+  },
+  "schemaVersion": 1,
+  "skeletonBundle": {
+    "path": "formal/kevm/row-bundles/art-03/bundle.skeleton.json",
+    "sha256": "9f03dd6eaf6ccefef15cd19b35bbe760ce89aba4946c4dc724d8b0d3a8197d61"
+  },
+  "status": "OPEN",
+  "tcbBinding": {
+    "actualCurrentLock": {
+      "path": "formal/kevm/dependencies.lock.json",
+      "sha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196"
+    },
+    "blocker": false,
+    "canonicalPlaceholderSha256": "e4fcabd40c8b18e3900050a590b6b80c687d4d115f61bc12439af6099e83434e",
+    "classification": "OPEN_PLACEHOLDER_PENDING_COORDINATOR_BINDING",
+    "productDrift": false
+  },
+  "theorem": {
+    "buildStatus": "NOT_RUN_IN_WORKER",
+    "name": "constructor_resolved_local_runtime_is_hash_bound",
+    "path": "formal/kevm/row-bundles/art-03/isabelle/ART_03_Constructor_Resolved_Runtime_Binding.thy",
+    "session": "ERC_TRUST_ART_03",
+    "sha256": "e9c9fcd3d2d47b9fa56c317ad13e64f496bcb18540b20420ba8c445b8b06fc28"
+  }
+}

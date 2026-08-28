@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 2,
+  "generatedFromLocalClosure": true,
+  "networkRequired": false,
+  "evmSchedule": "CANCUN",
+  "authoritativeProofBackend": {
+    "engine": "Kore RPC",
+    "boosterEnabled": false,
+    "reason": "The theorem-grade run excludes Booster with --no-use-booster; Booster remains identified for bounded cross-checks."
+  },
+  "components": {
+    "kevmSemantics": {
+      "repository": "runtimeverification/evm-semantics",
+      "tag": "v1.0.921",
+      "commit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+      "sourceStorePath": "/nix/store/qa8yv4b03s5xf50ybv9a3y5ybqcw8g0g-source",
+      "sourceNarHash": "sha256-c52f5kU3AftZguos7IBHCJMivjh5ACsK8bT14Rw/mj8=",
+      "compiledStorePath": "/nix/store/21vnbr4n9mf8sr7lkfd65n1hl0cydvid-kevm-d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+      "compiledNarHash": "sha256-rBBSaOCX5t6yJ78BPRa0pgsjrvI3S7T8hCjppOepum4=",
+      "derivation": "/nix/store/cfj9gnq35c7jr6ikl7dzjza8hm0mi149-kevm-d4bf484a5dfe1e38d729a30434cd6f41e3590fb2.drv",
+      "license": "BSD-3-Clause",
+      "licenseSha256": "e7b1abf15b64f096120a1922be99c28b8b58780390a4b08d74ee9b81a486304c"
+    },
+    "kevmDriver": {
+      "wheelVersion": "1.0.921",
+      "reportedCliVersion": "1.0.678",
+      "nixPackageLabel": "kevm-pyk-1.0.678",
+      "storePath": "/nix/store/mxd4xqf8s8hk1yy24nhk44dy48498avd-kevm-pyk-1.0.678",
+      "identityNote": "The CLI label is a stale source constant, not the semantics revision."
+    },
+    "kontrol": {
+      "repository": "runtimeverification/kontrol",
+      "sourceCommit": "0ac55eda300e64ec30300117fe71c02d6db59ab5",
+      "cliVersion": "1.0.255",
+      "pythonDistributionLabel": "kontrol-1.0.0",
+      "sourceStorePath": "/nix/store/14mwli2ybzcjx004ig0wzhd69xfmyww0-source",
+      "sourceNarHash": "sha256-jDnqcYAjY59r80+KnDFnV/oKPaKkOm/7hG/MIqa0v0I=",
+      "outputStorePath": "/nix/store/528rrl5rkwypdk28kqry5l9c2z1sdsik-kontrol-0ac55eda300e64ec30300117fe71c02d6db59ab5",
+      "outputNarHash": "sha256-s/jqJIT/WQzjjI0KSWF+wXNghrvGzgRgCDqsnBRWzjU=",
+      "license": "BSD-3-Clause",
+      "licenseSha256": "1851fae28798e707ff61de5805fa79182dd2396206fbc451da838d6be1c2b7d7",
+      "claimBoundary": "Independent bounded cross-check only."
+    },
+    "kFramework": {
+      "version": "7.1.337",
+      "commit": "4a46d1231473b599c699160132fd6e76a5c46406",
+      "outputStorePath": "/nix/store/y63xkr8pk2bqd5lh4889rlwldw26v9f4-k-7.1.337-4a46d1231473b599c699160132fd6e76a5c46406",
+      "sourceNarHash": "sha256-qJF6n4J9gf6bSR/G5iH4905xGHUVHyqKHW1dkgGBdhY=",
+      "outputNarHash": "sha256-B1bFFR6wzEUCMpcg9wJ+z/Aap8wpZOLIq03oIxxSyMk="
+    },
+    "kore": {
+      "version": "0.1.155",
+      "commit": "38afc81fc9414f1e11e609b01a43a436b613bd2d",
+      "aggregateStorePath": "/nix/store/5p6kb76qjrdwjvjmm6l7l2683k41ay1r-kore-38afc81",
+      "rpcStorePath": "/nix/store/wij5nr1s0q3ksvyng4lcybhy467bn9gh-kore-rpc",
+      "rpcNarHash": "sha256-iFlwTe9ZhmqpVX/bajdTuoFdx4SgBCQyS08icQEdrJE=",
+      "sourceNarHash": "sha256-bUd4OrjJ3cMXhMkSN21tAG3ShgwCGR9j1SW1GsK0YrA="
+    },
+    "booster": {
+      "version": "0.1.155",
+      "storePath": "/nix/store/35i1ik5ph9mvn8ppqpncrz8741gwiv5k-kore-rpc-booster",
+      "narHash": "sha256-vGqmUr3etgMdzmqq+v95VsUcpnrX82xi4cwJo9LnMEE=",
+      "authoritativeProofTcb": false
+    },
+    "llvmBackend": {
+      "version": "0.1.140",
+      "commit": "f02284f09858cd2b9f310ad0142b3e04054295ec",
+      "storePath": "/nix/store/p7hjh21dj4bc1s6kfcdwk45knp5n4cc0-llvm-backend-0.1.140",
+      "sourceNarHash": "sha256-Sa1MvKcQtOdCAZSeeEWk7RGmDRLzTvM74exhLPZ76IE="
+    },
+    "z3": {
+      "version": "4.13.4",
+      "commit": "6f24123f0c9d1d8bd84dec275c5c7aea939a19fe",
+      "storePath": "/nix/store/ih51sgk8g57fnkbd5r82ddi8k5vln8cl-z3-4.13.4",
+      "narHash": "sha256-Rf9MfOsPa8FVyLaLZVupWb2YH2Dd6coAXdIdvjN4wYI="
+    },
+    "solc": {
+      "version": "0.8.36+commit.8a079791",
+      "binaryLocator": {
+        "kind": "svm",
+        "distribution": "Ubuntu",
+        "version": "0.8.36"
+      },
+      "binarySha256": "c8d35afdddc3cd2743ee88b8f25e0fecd16e2bdd5f2120f37e52cd9cc45ae0e6",
+      "correctnessClaimed": false
+    },
+    "forge": {
+      "version": "1.7.1",
+      "commit": "4072e48705af9d93e3c0f6e29e93b5e9a40caed8"
+    },
+    "isabelle": {
+      "version": "Isabelle2025-2",
+      "windowsRoot": "C:\\Isabelle2025-2"
+    },
+    "host": {
+      "wslVersion": "2.7.10.0",
+      "distribution": "Ubuntu 26.04",
+      "kernel": "6.18.33.2-microsoft-standard-WSL2",
+      "architecture": "x86_64",
+      "determinateNix": "3.21.8",
+      "nix": "2.34.8"
+    }
+  },
+  "tcbBoundary": [
+    "Isabelle2025-2 kernel and code generator for the abstract-to-configuration link",
+    "KEVM source and compiled definition identified above for the configuration-to-runtime link",
+    "Kore RPC and Z3 identified above; Booster is excluded from the authoritative run",
+    "solc and artifact extraction are trusted only for source-to-bytecode correspondence",
+    "the generated Isabelle/K bridge and independent reverse checker",
+    "finite-footprint completeness and pairwise storage-key nonalias assumptions",
+    "the host OS and Nix closure for replay provenance"
+  ],
+  "residualNonclaims": [
+    "No solc compiler-correctness theorem",
+    "No deployed address, chain, live dependency, or operating-topology binding",
+    "No cryptographic injectivity theorem for symbolic Keccak",
+    "No legal, identity, settlement, entitlement, or ownership truth claim"
+  ]
+}

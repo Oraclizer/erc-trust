@@ -1,0 +1,20 @@
+[profile.default]
+src = "implementation/src"
+test = "implementation/test"
+out = "out"
+cache_path = "cache"
+solc_version = "0.8.36"
+evm_version = "cancun"
+optimizer = true
+optimizer_runs = 1
+via_ir = true
+bytecode_hash = "none"
+cbor_metadata = false
+ast = true
+build_info = true
+extra_output = ["storageLayout"]
+ffi = false
+fs_permissions = []
+
+[profile.kontrol]
+test = "implementation/kontrol"

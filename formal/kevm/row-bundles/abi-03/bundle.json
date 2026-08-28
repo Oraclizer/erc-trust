@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "obligationId": "ABI-03",
+  "requiredProperty": "trailing_calldata_reverts_and_stutters",
+  "proofSpec": {
+    "path": "formal/kevm/row-bundles/abi-03/claim.k",
+    "module": "TRUST-ABI-03-TRAILING-IDLE-COMBINED-SPEC",
+    "claimId": "6adb6bf3e7629f12e822a2b4772ec91837db3eab2656d3fcb1acfa297e8ac161",
+    "sha256": "971cfbb07202d5e9707115c7661d15f91527d1542d761d8c4f443d5cd98832a3"
+  },
+  "positive": {
+    "definitionKoreSha256": "bac21e3e90990c4c060bf77ecfe161a70d18900c631dcea5a37343765e6b3e33",
+    "compiledJsonSha256": "5ba6257f64024f7eff4ec99c569db9f9477fd5d2a625f44ed04e091fdf795a50",
+    "expectedExitCode": 0,
+    "expectedGraph": {
+      "nodes": 4,
+      "edges": 2,
+      "covers": 1,
+      "terminal": 0,
+      "stuck": 0,
+      "vacuous": 0,
+      "pending": 0,
+      "admitted": false
+    },
+    "witnessTokens": [
+      "EVMC_REVERT_NETWORK_EndStatusCode"
+    ],
+    "forbiddenLogTokens": [
+      "Runtime error",
+      "Proof crashed",
+      "timed out",
+      "timeout",
+      "canceled",
+      "cancelled",
+      "SMT solver error",
+      "BackendError"
+    ]
+  },
+  "negative": {
+    "definitionKoreSha256": "60dc91f3af56ff096dabcb4f514ab95939ebc6d7b9551b227be8cbc60bfc3cd6",
+    "compiledJsonSha256": "fcb79a34754684aa11b54ac0d591ef490a016db3edc8429681ff465fa435ab9b",
+    "expectedExitCode": 1,
+    "expectedGraph": {
+      "nodes": 401,
+      "edges": 32,
+      "covers": 0,
+      "terminal": 1,
+      "stuck": 0,
+      "vacuous": 0,
+      "pending": 262,
+      "admitted": false
+    },
+    "witnessTokens": [
+      "EVMC_SUCCESS_NETWORK_EndStatusCode"
+    ],
+    "claimRequirementTokens": [
+      "EVMC_REVERT </statusCode>"
+    ],
+    "forbiddenLogTokens": [
+      "Runtime error",
+      "Proof crashed",
+      "timed out",
+      "timeout",
+      "canceled",
+      "cancelled",
+      "SMT solver error",
+      "BackendError"
+    ],
+    "mutationId": "ABI-03-ALT-RUNTIME-TRAILING-SUCCESS-001",
+    "mutationKind": "EXECUTABLE_SEMANTIC_MUTANT"
+  },
+  "bridge": {
+    "path": "formal/kevm/row-bundles/abi-03/bridge/row-bridge.json",
+    "sha256": "1bc3424c91396bc7b529e40a52fdd969347722dbd0a9d904f7c4fe6195f10796",
+    "reverseCheck": "formal/kevm/row-bundles/abi-03/reverse-check.py"
+  },
+  "isabelle": {
+    "theoryPath": "formal/kevm/row-bundles/abi-03/isabelle/ABI_03_Trailing_Calldata_Reverts_And_Stutters.thy",
+    "theoremName": "abi_03_trailing_calldata_reverts_and_stutters",
+    "sourceSha256": "60e3f1af88ca0813dadc9f6c4544a000ca6eb4b3f5424b2f7b78ddbab81aeebd",
+    "session": "ERC_TRUST_ABI_03",
+    "rowManifestPath": "formal/kevm/row-bundles/abi-03/bridge/row-manifest.json",
+    "rowManifestSha256": "37938d6091df4b2d77e7847c8837aa1a2b2379fa94b8a0f0c45a5a01899820eb",
+    "bannedTokens": [
+      "sorry",
+      "oops",
+      "axiomatization",
+      "by eval",
+      "native_decide",
+      "skip_proof"
+    ]
+  },
+  "residualNonclaims": [
+    "The positive theorem covers the registered ABI-03 708-byte action calldata instance under the explicit idle-slot and non-static execution assumptions; it does not discharge the separate ABI-04 malformed-calldata matrix.",
+    "The compiler bridge binds the executable alternate runtime to the pinned solc output and immutable fixture; it does not prove solc correctness or live deployment identity.",
+    "The expected-negative run records one terminal EVMC_SUCCESS counterexample; its 262 fail-fast pending branches are not discharged proof branches.",
+    "This row bundle discharges only ABI-03 and makes no claim about the remaining end-to-end refinement obligations."
+  ]
+}

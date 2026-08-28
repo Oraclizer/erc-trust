@@ -1,0 +1,49 @@
+cff-version: 1.2.0
+message: "If you reference ERC-TRUST, cite this repository and the exact candidate commit."
+title: "ERC-TRUST: Typed Regulatory Uniformity for Security Tokens"
+type: software
+authors:
+  - family-names: "Kim"
+    given-names: "Jinwook"
+    orcid: "https://orcid.org/0009-0004-4993-8005"
+version: "0.1.0-candidate.1"
+date-released: 2026-07-28
+license: BSD-3-Clause
+repository-code: "https://github.com/Oraclizer/erc-trust"
+url: "https://github.com/Oraclizer/erc-trust"
+keywords:
+  - Ethereum
+  - ERC
+  - security tokens
+  - real-world assets
+  - tokenization
+  - regulatory actions
+  - formal verification
+  - Isabelle/HOL
+abstract: >-
+  ERC-TRUST is a pre-ERC interface and reference candidate for typed,
+  fail-closed regulatory actions and recomputable receipts for security
+  tokens. The candidate is unaudited and not for production.
+references:
+  - type: article
+    title: "A Regulatory Compliance Protocol for Asset Interoperability Between Traditional and Decentralized Finance in Tokenized Capital Markets"
+    authors:
+      - family-names: "Kim"
+        given-names: "Jinwook"
+      - family-names: "Hong"
+        given-names: "Jonghun"
+    year: 2026
+    doi: "10.48550/arXiv.2603.29278"
+  - type: article
+    title: "The Cross-Domain State Preservation Functor: A Mechanized Theory of Regulatory State Synchronization in Isabelle/HOL"
+    authors:
+      - family-names: "Kim"
+        given-names: "Jinwook"
+    year: 2026
+    doi: "10.48550/arXiv.2604.03844"
+  - type: software
+    title: "Oraclizer Formal Verification"
+    authors:
+      - family-names: "Kim"
+        given-names: "Jay"
+    repository-code: "https://github.com/Oraclizer/formal-verification"

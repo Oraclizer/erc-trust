@@ -1,0 +1,146 @@
+{
+  "acceptance": {
+    "bannedSourceForms": 0,
+    "buildExitCode": 0,
+    "namedTheoremsRequired": true,
+    "oracleDependencyCount": 0
+  },
+  "allowedClaims": [
+    "abstract action and reversal meaning",
+    "abstraction-alpha",
+    "summary meaning",
+    "hybrid composition"
+  ],
+  "approximations": [],
+  "authorityClass": "ABSTRACT_AND_HYBRID_BRIDGE",
+  "availability": "AVAILABLE",
+  "centralCredit": "CONDITIONAL_COMPONENT",
+  "compilerBinding": {
+    "compilerCorrectnessClaimed": false,
+    "deterministicRootSha256": "44c62545b9545741bce98b313f412914bc976430c5596de6ad735f68d81cd4ab",
+    "nativeRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "path": "evidence/end-to-end-refinement/runtime-binding/manifest.json",
+    "sha256": "97e4a349ff6667f01fb67515998c283383731d69a2fdaa00c06e260c11fcc5bb",
+    "solcBinarySha256": "c8d35afdddc3cd2743ee88b8f25e0fecd16e2bdd5f2120f37e52cd9cc45ae0e6",
+    "solcVersion": "0.8.36+commit.8a079791"
+  },
+  "forbiddenClaims": [
+    "compiler correctness",
+    "EVM semantics soundness",
+    "deployment identity",
+    "external truth"
+  ],
+  "legacyEvidencePreservation": {
+    "bridgeFiles": [
+      {
+        "path": "evidence/end-to-end-refinement/runtime-bridge/schema.json",
+        "sha256": "f087342d0eaa57a02468ff78e553ad42bb25fe027e833f311a5d0caac72383b7"
+      },
+      {
+        "path": "evidence/end-to-end-refinement/runtime-bridge/generated-manifest.json",
+        "sha256": "50085fbb6ed540c036754820177785813c96c72191a84f297f8c9952d9802827"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy",
+        "sha256": "48ef15ed0789be51c0d56f22740d93ba5c7a474116209be66855e8c95b870728"
+      },
+      {
+        "path": "formal/kevm/generated/trust-runtime-bridge.k",
+        "sha256": "bf8d587f7644d002d05bc7ab16806a39a3354d216cdcad53f504a9bb8b99d836"
+      }
+    ],
+    "dependencyLock": {
+      "immutable": true,
+      "path": "formal/kevm/dependencies.lock.json",
+      "sha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196"
+    },
+    "legacyCarryoverToCurrentProfile": false,
+    "legacyDischargedRows": [
+      "ABI-03",
+      "FAIL-05",
+      "ART-02",
+      "ART-03",
+      "ART-04",
+      "ART-05"
+    ]
+  },
+  "profileId": "ISABELLE-ABSTRACT-BRIDGE-v2",
+  "profileSet": "ERC_TRUST_M4_NATIVE_FINANCIAL_CORE_V2",
+  "replay": {
+    "command": "isabelle build -c -o record_proofs=1 -d <ADS_FUNCTOR_ENTRY> -d <PINNED_FOUNDATION_SESSION> -d formal/isabelle ERC_TRUST",
+    "requiredSession": "ERC_TRUST"
+  },
+  "runtimeFreezeRef": {
+    "path": "evidence/end-to-end-refinement/m4-runtime-freeze-v1.json",
+    "sha256": "ba18d99f630bad67faee824ec83f1071f478a393639faa087be739d880164d67"
+  },
+  "schemaVersion": 2,
+  "scopeRef": {
+    "path": "evidence/end-to-end-refinement/m4-core-refinement-scope-v1.json",
+    "sha256": "a94fdd38612e6d77fec2057c67bfa88d71d826234fb6116ab8b23650c88f6f56"
+  },
+  "sourceHead": "add3dfb9ca75923d6462d16ba8eb41cad0b1216f",
+  "tool": {
+    "name": "Isabelle/HOL",
+    "root": "C:\\Isabelle2025-2",
+    "version": "Isabelle2025-2"
+  },
+  "verificationInputs": {
+    "adsFunctor": {
+      "fileCount": 7,
+      "materializedManifestSha256": "11238b453f6b49a51bcbeacad6301d5b7ba22b9032025ae8c03e6f22c53eafb0"
+    },
+    "formalFoundation": {
+      "fileCount": 14,
+      "materializedManifestSha256": "476c88802a618508edcd116070a6ea48e8edfaf168562f92b9781cf1d9aec5cc",
+      "repositoryCommit": "3f3e15964969d2646e9240d273e8270987e1c59e",
+      "sessionTree": "ff9ece9ca3583b7af3a8cf3f2349f8b52c445f05"
+    },
+    "theoryRefs": [
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_State_Abi_Normal_Form.thy",
+        "sha256": "0c4fef7ccecaf16a56b2f4e217d8ba072948d685cba9083867967e91e05164cb"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_Bound_Dependency_Assume_Guarantee.thy",
+        "sha256": "79e911b513cf7a6a061d078fc391e684462bb0445fcb6d4a7e6134a4e57c6328"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_Reusable_Summaries.thy",
+        "sha256": "219d8285770679623e3aabc1122f464f4206e7fb645f28f5b618f448b768a0bf"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_ACT_01_Current_Profile.thy",
+        "sha256": "3d791f99ddbf54a144de88fd4784d88b658f7257a01bc0d24f61f4df0c2379b9"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/ROOT",
+        "sha256": "3ad52245ab25de332990391cb7d277b872d6b86b3b21c3c520dbc4802daa9ca1"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_C0_Decode_Slices.thy",
+        "sha256": "a374830e4a6afb48e9b4fa9678f2aebf67477ae74bef4f0250fbe3b481914384"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_C0_Runtime_Occurrences_Generated.thy",
+        "sha256": "90e1ca765dda9ee10134f437e9eedcedaf2daa07c20ce9074021b2f90e66faac"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_C0_Runtime_Composition.thy",
+        "sha256": "29b73da305afeb8ed7661feaabc88bf0c66a7e43bebecdc03f3486c49544e540"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_C0_UINT48_Redundant_Hypotheses.thy",
+        "sha256": "682c2a1dead8e08552221d64ab36fb4756dc579e13fd6b73c295d67e08e3ba56"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_C0_UINT160_Redundant_Hypotheses.thy",
+        "sha256": "c39870cf7af22afa288003ab7f7660b6e6e285256a0768474f93e4f6568e6c5c"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_C0_UINT64_Redundant_Hypotheses.thy",
+        "sha256": "0e93b3dc32ea656cdf7824733dbb2ac4acfe061fba700d35109a3b6b6b48da1e"
+      }
+    ]
+  }
+}

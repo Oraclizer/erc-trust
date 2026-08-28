@@ -1,0 +1,4 @@
+session ERC_TRUST_FAIL_03_SKELETON = ERC_TRUST +
+  options [document = false]
+  theories
+    FAIL_03_Dependency_Revert_Is_Typed_Operational_Failure

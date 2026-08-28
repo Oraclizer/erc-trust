@@ -1,0 +1,21 @@
+{
+  "deterministicRootSha256": "dc53e477057375ae71cff4cc32824dc3cf14cc2d7fe65a0721006574cd22f716",
+  "generated": [
+    {
+      "bytes": 9552,
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy",
+      "sha256": "48ef15ed0789be51c0d56f22740d93ba5c7a474116209be66855e8c95b870728"
+    },
+    {
+      "bytes": 97129,
+      "path": "formal/kevm/generated/trust-runtime-bridge.k",
+      "sha256": "bf8d587f7644d002d05bc7ab16806a39a3354d216cdcad53f504a9bb8b99d836"
+    }
+  ],
+  "schema": {
+    "bytes": 84688,
+    "path": "evidence/end-to-end-refinement/runtime-bridge/schema.json",
+    "sha256": "f087342d0eaa57a02468ff78e553ad42bb25fe027e833f311a5d0caac72383b7"
+  },
+  "schemaVersion": 1
+}

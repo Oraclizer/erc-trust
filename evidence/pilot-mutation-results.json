@@ -1,0 +1,39 @@
+{
+    "schema":  "erc-trust-pilot-mutation-result-v1",
+    "total":  5,
+    "killed":  5,
+    "survived":  0,
+    "results":  [
+                    {
+                        "id":  "PILOT-MUT-01-FROZEN-FLOOR",
+                        "detector":  "TrustFreezePilotTest.testOrdinaryTransferCannotSpendFrozenAmount",
+                        "result":  "KILLED",
+                        "exitCode":  1
+                    },
+                    {
+                        "id":  "PILOT-MUT-02-ROUTE-CONSUMPTION",
+                        "detector":  "TrustFreezePilotTest.testStagedSetFrozenConsumesExactTicketAndOrdersLogs",
+                        "result":  "KILLED",
+                        "exitCode":  1
+                    },
+                    {
+                        "id":  "PILOT-MUT-03-RECEIPT-ORDER",
+                        "detector":  "TrustFreezePilotTest.testStagedSetFrozenConsumesExactTicketAndOrdersLogs",
+                        "result":  "KILLED",
+                        "exitCode":  1
+                    },
+                    {
+                        "id":  "PILOT-MUT-04-ROUTE-BINDING",
+                        "detector":  "TrustFreezePilotTest.testWrongCallerAndCalldataMismatchStutter",
+                        "result":  "KILLED",
+                        "exitCode":  1
+                    },
+                    {
+                        "id":  "PILOT-MUT-05-FAIL-CLOSED",
+                        "detector":  "TrustFreezePilotTest.testPolicyRejectAndFailuresStutter",
+                        "result":  "KILLED",
+                        "exitCode":  1
+                    }
+                ],
+    "claim":  "Regression replay for the unchanged preserved pilot; not reference-candidate evidence."
+}

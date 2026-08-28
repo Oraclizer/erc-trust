@@ -1,0 +1,223 @@
+{
+  "canonicalObligation": {
+    "classification": "OPEN",
+    "discharged": false,
+    "index": {
+      "path": "evidence/end-to-end-refinement/obligation-evidence-index.json",
+      "sha256": "62150c3d59c6c31e53db435b6aa944a523c5d88b5b9326bec10a9deba253fdad"
+    },
+    "theoremInventory": {
+      "path": "evidence/end-to-end-refinement/theorem-obligations.md",
+      "sha256": "3b6b0910539c58e53db7c6dbf11c8bf0e4a4d9d7aaec6d8b5d233573dc514dba"
+    }
+  },
+  "compilerArtifactSurface": {
+    "abiEntryCount": 66,
+    "bridgeArtifacts": {
+      "path": "evidence/end-to-end-refinement/runtime-binding/native/bridge-artifacts.json",
+      "sha256": "5e341d1a1b4442e8f3e7e90b268fb8a0870fe9333eed82d2ad59b91ec0c67832"
+    },
+    "immutableDeclarationCount": 2,
+    "immutableReferenceCount": 5,
+    "immutableReferences": {
+      "622": [
+        {
+          "length": 32,
+          "start": 6970
+        }
+      ],
+      "626": [
+        {
+          "length": 32,
+          "start": 517
+        },
+        {
+          "length": 32,
+          "start": 1580
+        },
+        {
+          "length": 32,
+          "start": 8522
+        },
+        {
+          "length": 32,
+          "start": 19822
+        }
+      ]
+    },
+    "sectionHashes": {
+      "abiCanonicalJsonSha256": "de2477f6b31e0185bda5b4c9b1cf0528a4cfa855c084bdbe4b25bf3f3ee4340b",
+      "immutableReferencesCanonicalJsonSha256": "639cb762efa24653d51c4f375a2b87f2d79c6814b96b0f331c6f234ab97df6b5",
+      "methodIdentifiersCanonicalJsonSha256": "4078909280bd2a09db749e7cc068036181209ecf60b301f8cb4c5bd60a26881c",
+      "storageLayoutCanonicalJsonSha256": "18cfae1f174dfc60274512cf6e904adcdeb2cb4c20c54ef83727c537a4bfa281",
+      "trustStorageAstCanonicalJsonSha256": "acd241f5d0f224650c9a0bfd0e08ee428dc61d205d6c464f9bcc813180d3a37f"
+    },
+    "sourceAst": {
+      "path": "evidence/end-to-end-refinement/runtime-binding/native/standard-json-output.json#/sources/implementation~1src~1TrustStorage.sol/ast",
+      "rootId": 737,
+      "sourcePath": "implementation/src/TrustStorage.sol"
+    },
+    "standardJsonOutput": {
+      "path": "evidence/end-to-end-refinement/runtime-binding/native/standard-json-output.json",
+      "sha256": "9697548b65ac0b4fdeff17deca78d9e11e49676dd0d78bd9d94907b24d5ac34e"
+    },
+    "storageEntryCount": 28,
+    "storageTypeCount": 47,
+    "subject": "implementation/src/TrustToken.sol:TrustToken",
+    "totalSupply": {
+      "abi": {
+        "inputs": [],
+        "name": "totalSupply",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      "astDeclaration": {
+        "constant": false,
+        "id": 624,
+        "mutability": "mutable",
+        "name": "_totalSupply",
+        "nameLocation": "253:12:5",
+        "nodeType": "VariableDeclaration",
+        "scope": 736,
+        "src": "236:29:5",
+        "stateVariable": true,
+        "storageLocation": "default",
+        "typeDescriptions": {
+          "typeIdentifier": "t_uint256",
+          "typeString": "uint256"
+        },
+        "typeName": {
+          "id": 623,
+          "name": "uint256",
+          "nodeType": "ElementaryTypeName",
+          "src": "236:7:5",
+          "typeDescriptions": {
+            "typeIdentifier": "t_uint256",
+            "typeString": "uint256"
+          }
+        },
+        "visibility": "internal"
+      },
+      "selector": "0x18160ddd",
+      "storageLayout": {
+        "astId": 624,
+        "contract": "implementation/src/TrustToken.sol:TrustToken",
+        "label": "_totalSupply",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_uint256"
+      }
+    }
+  },
+  "dependencies": {
+    "directConsumers": [
+      "ART-03",
+      "ART-06"
+    ],
+    "directPrerequisites": [
+      "ART-01",
+      "ART-02"
+    ],
+    "graph": {
+      "path": "formal/kevm/row-bundles/art-04/dependency-graph.json",
+      "sha256": "abbe64e90ca27ed07842bb09904755885ff8e63b288988e12d9fe00a1bd7bc72"
+    },
+    "transitiveConsumers": [
+      "ART-07"
+    ]
+  },
+  "eligibleForDischarge": false,
+  "executableObservation": {
+    "adjacentControlSlot": 3,
+    "adjacentControlValue": 99,
+    "canonicalSlot": 2,
+    "canonicalValue": 42,
+    "expectedReturnWord": "0x000000000000000000000000000000000000000000000000000000000000002a",
+    "expectedStatus": "EVMC_SUCCESS",
+    "method": "totalSupply()",
+    "module": "TRUST-ART-04-ARTIFACT-SURFACE-BINDING-SPEC",
+    "proofSpec": {
+      "path": "formal/kevm/row-bundles/art-04/claim.k",
+      "sha256": "6e210b7978f39ff49de779b9d7852033f7612a0100d722e787566684107d655f"
+    },
+    "selector": "0x18160ddd"
+  },
+  "obligationId": "ART-04",
+  "provenanceEvidence": {
+    "ledger": {
+      "path": "evidence/end-to-end-refinement/proof-run-ledger.json",
+      "sha256": "11c3988953fdb7786ab8155f5bb059a4f876e0bc513a2a591a8edfbd6e1483ac"
+    },
+    "passRuns": [
+      "RUN-BINDING-DIRECT-STANDARD-JSON-001",
+      "RUN-FIXTURE-RESOLVED-001",
+      "RUN-FIXTURE-RESOLVED-REPLAY-001"
+    ]
+  },
+  "requiredProperty": "storage_layout_abi_ast_and_immutable_references_are_hash_bound",
+  "resolvedRuntime": {
+    "byteLength": 24142,
+    "byteSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "canonicalKBridge": {
+      "path": "formal/kevm/generated/trust-runtime-bridge.k",
+      "sha256": "bf8d587f7644d002d05bc7ab16806a39a3354d216cdcad53f504a9bb8b99d836"
+    },
+    "fixture": {
+      "path": "evidence/end-to-end-refinement/runtime-binding/resolved/fixture.json",
+      "sha256": "59b93ba41941f61ef357be99d240f6a274730be25ccdbb1a7d686be68ea938f6"
+    },
+    "fixtureRootSha256": "b5ce284d6b7017a1feff3244bb67f175303660d86348ce93dbd8065bd39d3a2d",
+    "path": "evidence/end-to-end-refinement/runtime-binding/resolved/native/TrustToken.hex",
+    "sha256": "1c2e73fa137a50993301eacf9e70aa73623a5d4673c58cadedb60e12c273f44f"
+  },
+  "schemaVersion": 1,
+  "semanticMutation": {
+    "byteOffset": 8340,
+    "canonicalByte": "0x02",
+    "canonicalSlot": 2,
+    "expectedCanonicalReturnWord": "0x000000000000000000000000000000000000000000000000000000000000002a",
+    "expectedMutantReturnWord": "0x0000000000000000000000000000000000000000000000000000000000000063",
+    "expectedSemanticDifference": "the unchanged totalSupply() claim requires slot-2 value 42, while the same selector on the mutant reads adjacent slot 3 and returns 99",
+    "getterByteOffset": 8339,
+    "getterNeedle": "600254604051908152f3",
+    "kind": "EXECUTABLE_SEMANTIC_MUTANT",
+    "mutantBridge": {
+      "path": "formal/kevm/row-bundles/art-04/generated/mutant-runtime-bridge.k",
+      "sha256": "90553dd8b5ec79c96fb168eefb681b2cc2134430141b7c99c11a9e59ca7177dd"
+    },
+    "mutantByte": "0x03",
+    "mutantRuntimeSha256": "7c8541a708e3a74150d22ed113127b5ff5812d7349d52b8e5595980949f07442",
+    "mutantSlot": 3,
+    "mutantVerification": {
+      "path": "formal/kevm/row-bundles/art-04/generated/mutant-runtime-verification.k",
+      "sha256": "e380844cea44b450c03fc3d0f345e22980801b96fe0270fa921c667a8e062bf9"
+    },
+    "mutationId": "ART-04-MUT-TOTAL-SUPPLY-SLOT-001"
+  },
+  "status": "OPEN",
+  "tcb": {
+    "actualCurrentLock": {
+      "path": "formal/kevm/dependencies.lock.json",
+      "sha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196"
+    },
+    "canonicalIndexPlaceholder": {
+      "path": "formal/kevm/dependencies.lock.json",
+      "sha256": "e4fcabd40c8b18e3900050a590b6b80c687d4d115f61bc12439af6099e83434e"
+    },
+    "classification": "OPEN_PLACEHOLDER_PENDING_COORDINATOR_BINDING",
+    "productDrift": false,
+    "runtimeBindingManifest": {
+      "dependencyLockSha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196",
+      "path": "evidence/end-to-end-refinement/runtime-binding/manifest.json",
+      "sha256": "97e4a349ff6667f01fb67515998c283383731d69a2fdaa00c06e260c11fcc5bb"
+    },
+    "staticBlocker": false
+  }
+}

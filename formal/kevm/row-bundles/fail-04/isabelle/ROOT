@@ -1,0 +1,4 @@
+session ERC_TRUST_FAIL_04_SKELETON = ERC_TRUST +
+  options [document = false]
+  theories
+    FAIL_04_Malformed_Dependency_Return_Is_Typed_Operational_Failure

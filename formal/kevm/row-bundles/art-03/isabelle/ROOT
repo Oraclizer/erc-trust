@@ -1,0 +1,5 @@
+session ERC_TRUST_ART_03 = ERC_TRUST +
+  options [timeout = 1200]
+  theories
+    ART_03_Constructor_Resolved_Runtime_Binding
+

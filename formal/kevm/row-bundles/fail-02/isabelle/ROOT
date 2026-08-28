@@ -1,0 +1,4 @@
+session ERC_TRUST_FAIL_02_SKELETON = ERC_TRUST +
+  options [document = false]
+  theories
+    FAIL_02_Dependency_Denial_Is_Typed_Rejection

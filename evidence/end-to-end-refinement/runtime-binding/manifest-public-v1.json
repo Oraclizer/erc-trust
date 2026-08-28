@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 3,
+  "kind": "ERC_TRUST_PUBLIC_RUNTIME_BINDING_MANIFEST_V1",
+  "bundles": [
+    {
+      "compilerRun": {
+        "elapsedWallMs": 2165,
+        "versionOutput": "solc, the solidity compiler commandline interface\nVersion: 0.8.36+commit.8a079791.Linux.g++"
+      },
+      "files": [
+        {
+          "bytes": 80613,
+          "path": "evidence/end-to-end-refinement/runtime-binding/native/standard-json-input.json",
+          "sha256": "16d606d6bacd8697b3eed5ed49ddaace3f525c70104fab2abdd501d2977d31fa"
+        },
+        {
+          "bytes": 2070684,
+          "path": "evidence/end-to-end-refinement/runtime-binding/native/standard-json-output.json",
+          "sha256": "9697548b65ac0b4fdeff17deca78d9e11e49676dd0d78bd9d94907b24d5ac34e"
+        },
+        {
+          "bytes": 108595,
+          "path": "evidence/end-to-end-refinement/runtime-binding/native/bridge-artifacts.json",
+          "sha256": "5e341d1a1b4442e8f3e7e90b268fb8a0870fe9333eed82d2ad59b91ec0c67832"
+        },
+        {
+          "bytes": 2315,
+          "path": "evidence/end-to-end-refinement/runtime-binding/native/source-identities.json",
+          "sha256": "d9dbe23e31a3789cece9d014b5a6589100e1a672c88f01893c50c51747e07112"
+        }
+      ],
+      "id": "native",
+      "roots": [
+        "implementation/src/TrustToken.sol",
+        "implementation/test/mocks/MockBoundDependency.sol"
+      ],
+      "sourceCount": 14,
+      "subjectCount": 2,
+      "subjects": [
+        "implementation/src/TrustToken.sol:TrustToken",
+        "implementation/test/mocks/MockBoundDependency.sol:MockBoundDependency"
+      ]
+    },
+    {
+      "compilerRun": {
+        "elapsedWallMs": 1653,
+        "versionOutput": "solc, the solidity compiler commandline interface\nVersion: 0.8.36+commit.8a079791.Linux.g++"
+      },
+      "files": [
+        {
+          "bytes": 54517,
+          "path": "evidence/end-to-end-refinement/runtime-binding/verified-profile/standard-json-input.json",
+          "sha256": "fb27030ae71d004feafbfa52aba4b1b1a0d3a1613b891ddafec24fe4f0307b29"
+        },
+        {
+          "bytes": 1430327,
+          "path": "evidence/end-to-end-refinement/runtime-binding/verified-profile/standard-json-output.json",
+          "sha256": "3cfe6d17e1f4c6711eddc13a73275a4dade2aa52e42eba311dac5b5a972b5484"
+        },
+        {
+          "bytes": 80609,
+          "path": "evidence/end-to-end-refinement/runtime-binding/verified-profile/bridge-artifacts.json",
+          "sha256": "9c4850d437fc420a9ae7a5e8ca67b1188f00f70c0d80815d155d79de1c2f46f7"
+        },
+        {
+          "bytes": 1693,
+          "path": "evidence/end-to-end-refinement/runtime-binding/verified-profile/source-identities.json",
+          "sha256": "75a49cfe3dc9e0655a03d60d5dbeb3d0cb50ff07c369d2cf56703f261d03a42f"
+        }
+      ],
+      "id": "verified-profile",
+      "roots": [
+        "implementation/src/profiles/ERC3643TrustAdapter.sol",
+        "implementation/src/profiles/ProfileGovernor.sol",
+        "implementation/test/mocks/MockERC3643Token.sol",
+        "implementation/test/mocks/MockERC3643Dependencies.sol"
+      ],
+      "sourceCount": 10,
+      "subjectCount": 5,
+      "subjects": [
+        "implementation/src/profiles/ERC3643TrustAdapter.sol:ERC3643TrustAdapter",
+        "implementation/src/profiles/ProfileGovernor.sol:ProfileGovernor",
+        "implementation/test/mocks/MockERC3643Token.sol:MockERC3643Token",
+        "implementation/test/mocks/MockERC3643Dependencies.sol:MockERC3643IdentityRegistry",
+        "implementation/test/mocks/MockERC3643Dependencies.sol:MockERC3643Compliance"
+      ]
+    }
+  ],
+  "claimBoundary": "Exact compiler-input/output and unresolved runtime-template binding. Constructor execution, resolved runtime, KEVM proofs, and end-to-end discharge remain separate evidence.",
+  "compiler": {
+    "binaryLocator": {
+      "distribution": "Ubuntu",
+      "kind": "svm",
+      "version": "0.8.36"
+    },
+    "binarySha256": "c8d35afdddc3cd2743ee88b8f25e0fecd16e2bdd5f2120f37e52cd9cc45ae0e6",
+    "settingsSha256": "35c8223126038db5084bc48704b464ede69ba1648976d8c8d40582c7182d8e0b",
+    "version": "0.8.36+commit.8a079791"
+  },
+  "deterministicRootSha256": "44c62545b9545741bce98b313f412914bc976430c5596de6ad735f68d81cd4ab",
+  "sourceProvenance": {
+    "archiveRepository": "Oraclizer/erc-trust-archive",
+    "archiveCommit": "366b625dac90d4584432d7d6939629434734ecb8",
+    "archiveTree": "25a1710c865143eb70f0da3d185ebdc3149214b0",
+    "publicDefaultBranch": "main",
+    "historicalManifestSha256": "97e4a349ff6667f01fb67515998c283383731d69a2fdaa00c06e260c11fcc5bb",
+    "privateDevelopmentCoordinatesRemoved": true
+  }
+}

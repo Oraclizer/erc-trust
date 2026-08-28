@@ -1,0 +1,64 @@
+{
+  "claimId": "d89531413582f766cbe2bcaf64469e49303f10acda4271e102755c11c293cfd0",
+  "createdAtUtc": "2026-08-02T20:42:54Z",
+  "curatedEvidence": {
+    "path": "evidence/end-to-end-refinement/kevm/fail-05-generic-dispatcher-revert-20260802T174934Z/evidence.json",
+    "sha256": "4fabe719b33ba4339df8d5e8f2f0ce201d9cb37c4e1d88e7fc570dd62b116184"
+  },
+  "generatedBridge": {
+    "path": "formal/kevm/generated/trust-runtime-bridge.k",
+    "sha256": "bf8d587f7644d002d05bc7ab16806a39a3354d216cdcad53f504a9bb8b99d836"
+  },
+  "negative": {
+    "backendRuntimeError": false,
+    "compiledJsonSha256": "c2f42c77f50c4f299f2bc15517b7cc4e2fe20b5c21c952cbc283519886935cf5",
+    "definitionKoreSha256": "7b022ab7003078bcc125bec2c1a3a98e79eac2be69b3b1cc0c88c3c318454a02",
+    "elapsedWallSeconds": 780,
+    "exitCode": 1,
+    "failureNodeSha256": "3f5fbaf7be5774838c8792711976d6c00614700e8bd6c8630028c053cdcc3a98",
+    "kcfgSha256": "679536ecaee04af991520d7495071cf804915a628ea8cb5e8a37b8028702e1e2",
+    "proofSha256": "5817d3e3c903c0de207bea6fb5fbd72d14bf705f816c730d8c3052b0ea60cb00",
+    "result": "FAILED_AS_EXPECTED",
+    "terminalFailureNode": 139,
+    "witnessOutputHex": "8cf60b6f"
+  },
+  "obligationId": "FAIL-05",
+  "pinnedCompatibilityBridge": {
+    "construction": "recorded source closure of the exact positive definition; replay imports the compiled module without re-declaring source modules",
+    "schemaSha256": "234b10ca6029c3ad6424ab5abf544bdde0cbca0331d1d50213a24d5ab4d085a3",
+    "sha256": "b11259227aee2efca94686ef58ddb3e21daaff651ba7d746901114344748e058"
+  },
+  "positive": {
+    "admitted": false,
+    "compiledJsonSha256": "5ba6257f64024f7eff4ec99c569db9f9477fd5d2a625f44ed04e091fdf795a50",
+    "covers": 1,
+    "definitionKoreSha256": "bac21e3e90990c4c060bf77ecfe161a70d18900c631dcea5a37343765e6b3e33",
+    "edges": 2,
+    "elapsedWallSeconds": 222,
+    "exitCode": 0,
+    "kcfgSha256": "f05252130fc0aec5534aed12e19432da3f13ebb2f9d8015b4c2d061da66f2117",
+    "nodes": 4,
+    "proofSha256": "0ac7776746616eaab9fb35b49fb439bc81a9468b44611197116f58c129057045",
+    "result": "PASS"
+  },
+  "proofSpec": {
+    "path": "formal/kevm/specs/full-transaction-generic-dispatcher-revert-spec.k",
+    "sha256": "a628ac74a976dac895b0562e962149c412f92ced3d035e311350765044c4c79a"
+  },
+  "residualNonclaims": [
+    "The replay does not prove compiler correctness or live deployment identity.",
+    "The expected-negative run records one named counterexample, not discharge of its fail-fast pending branches.",
+    "The replay discharges only FAIL-05, not the remaining refinement registry."
+  ],
+  "runner": {
+    "path": "formal/kevm/run-runtime-claims.sh",
+    "sha256": "dda53e3338fc73b8279034effa6c30188bcbc2abc26973fae70f11c83017e8f1"
+  },
+  "schemaVersion": 1,
+  "selectorBoundary": {
+    "expectedRevertData": "0x",
+    "genericDispatcherInputSelector": "0xffffffff",
+    "typedFailureMutationSelector": "0x8cf60b6f"
+  },
+  "status": "PASS"
+}

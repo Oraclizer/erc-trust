@@ -1,0 +1,55 @@
+{
+  "schema": "erc-trust-formal-dependencies-lock-v2",
+  "canonicalProof": {
+    "repository": "https://github.com/Oraclizer/erc-trust.git",
+    "sourceBinding": "candidate-commit-tree",
+    "entryPath": "formal/isabelle/ERC_TRUST",
+    "session": "ERC_TRUST",
+    "isabelleVersion": "Isabelle2025-2"
+  },
+  "formalFoundationDependency": {
+    "repository": "https://github.com/Oraclizer/formal-verification.git",
+    "repositoryCommit": "3f3e15964969d2646e9240d273e8270987e1c59e",
+    "sourceBinding": "commit-pinned",
+    "entryPath": "Cross_Domain_State_Preservation",
+    "session": "Cross_Domain_State_Preservation"
+  },
+  "relocationProvenance": {
+    "formerRepositoryCommit": "4dc9507d27822d50dee64e144a915f9a669be14d",
+    "formerModelSourceCommit": "29c02b167748f426648a07cf8640f589e5727b45",
+    "formerEntryPath": "ERC_TRUST",
+    "releaseArtifact": "formal/isabelle/ERC_TRUST/release/ERC_TRUST.pdf",
+    "releaseSha256": "A1C2E2C8684F2C517D03BBA1EC2B59713D303712BFD6E86A9F3D7033A3102959",
+    "releasePages": 107
+  },
+  "proofClosure": {
+    "status": "PASS",
+    "sourceHashListHash": "63C3B4700857EC7B2698CA7531D822F81DB8022FCF97AD5A7B6517EB79012B87",
+    "manifestSha256": "5A9C0C6075CBC2A38F1A485017C1A8CD9A68B537086275AF56A37683EF0351CD",
+    "trustRows": 18,
+    "foundationRows": 35,
+    "negativeMutationsKilled": 15,
+    "negativeMutationsTotal": 15
+  },
+  "rawEvidenceArchive": {
+    "status": "sealed-provenance-archive",
+    "trackedFiles": 243,
+    "zipEntries": 316,
+    "zipSha256": "AF5AE3F96892D7451D9F603F6E79B6FF684C822496CA1618006702209DA54D6F",
+    "generatedOutputPath": "formal/isabelle/ERC_TRUST/evidence/model-verification/out",
+    "generatedOutputTracked": false
+  },
+  "publicNameRevalidation": {
+    "status": "PASS",
+    "sourceBinding": "containing-commit-tree",
+    "proofClosureRun": "20260729T104657Z",
+    "reverseChecker": "independent-node-reenumeration-v1",
+    "reverseCheckerFailures": 0,
+    "negativeMutationRun": "20260729T104852Z",
+    "negativeMutationsKilled": 15,
+    "negativeMutationsTotal": 15,
+    "baselineRestoreExitCode": 0,
+    "releasePdfAllPagesRendered": 107,
+    "releasePdfVisualQa": "PASS"
+  }
+}

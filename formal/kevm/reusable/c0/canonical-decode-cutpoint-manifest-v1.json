@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_C0_CANONICAL_DECODE_CUTPOINT_V1",
+  "definitionSourcePath": "formal/kevm/reusable/c0/c0-canonical-decode-cutpoint-runtime-verification.k",
+  "definitionSourceSha256": "bb9390440f18fb93802c2a3370479cb29b3e626f33b8210a39e02017399db9e6",
+  "mainModule": "TRUST-C0-CANONICAL-DECODE-CUTPOINT-RUNTIME-VERIFICATION",
+  "claimSourcePath": "formal/kevm/reusable/c0/c0-canonical-decode-cutpoint-claim.k",
+  "claimSourceSha256": "e9d9a9ad517c2bd26bec093cac43271a3fd9403c21fb4254ce2abc2445f2f018",
+  "claimModule": "TRUST-C0-CANONICAL-DECODE-CUTPOINT-CLAIM",
+  "ruleSha256": "a7e611de71cceab0514db7a0424f3f2e81d33c29aa9c57a509ed448ad1dc842f",
+  "fromPc": 0,
+  "toPc": 3477,
+  "observerPriority": 1,
+  "modifiedCells": [
+    "k"
+  ],
+  "calldataSha256": "6644d0efd429388919cf0dd1cdff131940ee632856e2467c285906f6875eb3aa",
+  "boundaryTraceSha256": "318b6972658c48562fa2a66d9f41316d9b60c201fcf6c2cc5ba2118e44f4111b",
+  "legacyDefinitionModified": false,
+  "proofStatus": "UNPROVED",
+  "credit": 0
+}

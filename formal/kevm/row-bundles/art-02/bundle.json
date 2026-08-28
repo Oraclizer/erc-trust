@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "obligationId": "ART-02",
+  "requiredProperty": "compiler_output_runtime_bytes_are_hash_bound",
+  "proofSpec": {
+    "path": "formal/kevm/row-bundles/art-02/claim.k",
+    "module": "TRUST-ART-02-COMPILER-OUTPUT-RUNTIME-BINDING-SPEC",
+    "claimId": "360d8bea7fae55306a6145c9a7f43828b4eaa19f122bce99a036beb86a2e42a2",
+    "sha256": "f2ba550894af8e4c742326fc001946e437008d506858e54712db18d8b4e5d4f5"
+  },
+  "positive": {
+    "definitionKoreSha256": "bac21e3e90990c4c060bf77ecfe161a70d18900c631dcea5a37343765e6b3e33",
+    "compiledJsonSha256": "5ba6257f64024f7eff4ec99c569db9f9477fd5d2a625f44ed04e091fdf795a50",
+    "expectedExitCode": 0,
+    "expectedGraph": {
+      "nodes": 4,
+      "edges": 2,
+      "covers": 1,
+      "terminal": 0,
+      "stuck": 0,
+      "vacuous": 0,
+      "pending": 0,
+      "admitted": false
+    },
+    "witnessTokens": [
+      "EVMC_REVERT_NETWORK_EndStatusCode"
+    ],
+    "forbiddenLogTokens": [
+      "Runtime error",
+      "Proof crashed",
+      "timed out",
+      "timeout",
+      "canceled",
+      "cancelled",
+      "SMT solver error",
+      "BackendError"
+    ]
+  },
+  "negative": {
+    "definitionKoreSha256": "e1b1c07019380d9c37cbb97dccab9ded67130978be7b94c59fff79215e563f43",
+    "compiledJsonSha256": "a81b95487a6e56def12f958e5b60a8923197f9fed539a172bd1ba66de81e7ed4",
+    "expectedExitCode": 1,
+    "expectedGraph": {
+      "nodes": 401,
+      "edges": 32,
+      "covers": 0,
+      "terminal": 1,
+      "stuck": 0,
+      "vacuous": 0,
+      "pending": 262,
+      "admitted": false
+    },
+    "witnessTokens": [
+      "EVMC_SUCCESS_NETWORK_EndStatusCode"
+    ],
+    "claimRequirementTokens": [
+      "EVMC_REVERT </statusCode>"
+    ],
+    "forbiddenLogTokens": [
+      "Runtime error",
+      "Proof crashed",
+      "timed out",
+      "timeout",
+      "canceled",
+      "cancelled",
+      "SMT solver error",
+      "BackendError"
+    ],
+    "mutationId": "ART-02-MUT-RUNTIME-BYTE-001",
+    "mutationKind": "EXECUTABLE_SEMANTIC_MUTANT"
+  },
+  "bridge": {
+    "path": "formal/kevm/row-bundles/art-02/bridge/row-bridge.json",
+    "sha256": "56206623b5165419ed8ebb7b568752a469b12c0d82f6003214cab70d85b4cb00",
+    "reverseCheck": "formal/kevm/row-bundles/art-02/reverse-check.py"
+  },
+  "isabelle": {
+    "theoryPath": "formal/kevm/row-bundles/art-02/isabelle/ART_02_Compiler_Output_Runtime_Binding.thy",
+    "theoremName": "compiler_output_runtime_bytes_are_hash_bound",
+    "sourceSha256": "a4cd7f636f86228de714d63bd432120ca2a38b3650f725c2f26803dff9787ed2",
+    "session": "ERC_TRUST_ART_02",
+    "rowManifestPath": "formal/kevm/row-bundles/art-02/bridge/row-manifest.json",
+    "rowManifestSha256": "be7785603eb526779bc73a4585a33ac0035430efe2cfbeefaf1d4f19eb188734",
+    "bannedTokens": [
+      "sorry",
+      "oops",
+      "axiomatization",
+      "by eval",
+      "native_decide",
+      "skip_proof"
+    ]
+  },
+  "residualNonclaims": [
+    "The compiler binding proves byte-for-byte reconstruction under the pinned compiler output and constructor fixture; it does not prove solc correctness or live deployment identity.",
+    "The expected-negative run records one terminal EVMC_SUCCESS counterexample; its 262 fail-fast pending branches are not discharged proof branches.",
+    "This row bundle discharges only ART-02 and makes no claim about the remaining end-to-end refinement obligations."
+  ]
+}

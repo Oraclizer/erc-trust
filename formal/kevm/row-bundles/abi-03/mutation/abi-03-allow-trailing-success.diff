@@ -1,0 +1,15 @@
+diff --git a/implementation/src/TrustToken.sol b/implementation/src/TrustToken.sol
+--- a/implementation/src/TrustToken.sol
++++ b/implementation/src/TrustToken.sol
+@@ -1239,7 +1239,10 @@ contract TrustToken is TrustStorage, ITrustToken {
+ 
+     function _requireCalldataLength(uint256 expected) internal pure {
+         assembly ("memory-safe") {
+-            if xor(calldatasize(), expected) { revert(0, 0) }
++            if lt(calldatasize(), expected) { revert(0, 0) }
++            // Executable ABI-03 adequacy mutant: a trailing word is accepted
++            // as a successful, empty-return invocation instead of reverting.
++            if gt(calldatasize(), expected) { return(0, 0) }
+         }
+     }
+ 

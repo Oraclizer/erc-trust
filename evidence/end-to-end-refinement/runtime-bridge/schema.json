@@ -1,0 +1,2837 @@
+{
+  "actionCodes": [
+    {
+      "abstract": "Legal_Freeze",
+      "ordinal": 0,
+      "solidity": "FREEZE"
+    },
+    {
+      "abstract": "Legal_Seize",
+      "ordinal": 1,
+      "solidity": "SEIZE"
+    },
+    {
+      "abstract": "Legal_Confiscate",
+      "ordinal": 2,
+      "solidity": "CONFISCATE"
+    },
+    {
+      "abstract": "Legal_Liquidate",
+      "ordinal": 3,
+      "solidity": "LIQUIDATE"
+    },
+    {
+      "abstract": "Legal_Restrict",
+      "ordinal": 4,
+      "solidity": "RESTRICT"
+    },
+    {
+      "abstract": "Legal_Recover",
+      "ordinal": 5,
+      "solidity": "RECOVER"
+    }
+  ],
+  "claimBoundary": "Generated shared boundary only. It binds compiler artifacts, resolved runtimes, ABI, layout, events and projection IDs; it does not itself prove a transition.",
+  "endpoints": {
+    "native": {
+      "abi": [
+        {
+          "kind": "error",
+          "name": "ERC7943CannotReceive",
+          "selector": "0x705c1eed",
+          "signature": "ERC7943CannotReceive(address)"
+        },
+        {
+          "kind": "error",
+          "name": "ERC7943CannotSend",
+          "selector": "0x45bae9e2",
+          "signature": "ERC7943CannotSend(address)"
+        },
+        {
+          "kind": "error",
+          "name": "ERC7943CannotTransfer",
+          "selector": "0x22dda4be",
+          "signature": "ERC7943CannotTransfer(address,address,uint256)"
+        },
+        {
+          "kind": "error",
+          "name": "ERC7943InsufficientUnfrozenBalance",
+          "selector": "0x00384e71",
+          "signature": "ERC7943InsufficientUnfrozenBalance(address,uint256,uint256)"
+        },
+        {
+          "kind": "error",
+          "name": "TrustInsufficientAllowance",
+          "selector": "0xaa674352",
+          "signature": "TrustInsufficientAllowance(address,address,uint256,uint256)"
+        },
+        {
+          "kind": "error",
+          "name": "TrustInsufficientBalance",
+          "selector": "0x7284e1bf",
+          "signature": "TrustInsufficientBalance(address,uint256,uint256)"
+        },
+        {
+          "kind": "error",
+          "name": "TrustInvalidCommand",
+          "selector": "0xed623c13",
+          "signature": "TrustInvalidCommand(bytes32,uint16)"
+        },
+        {
+          "kind": "error",
+          "name": "TrustOperationalFailure",
+          "selector": "0x386ecc58",
+          "signature": "TrustOperationalFailure(bytes32,uint16,bytes32)"
+        },
+        {
+          "kind": "error",
+          "name": "TrustReentrancy",
+          "selector": "0x0af71c92",
+          "signature": "TrustReentrancy()"
+        },
+        {
+          "kind": "error",
+          "name": "TrustRejected",
+          "selector": "0x8cf60b6f",
+          "signature": "TrustRejected(bytes32,uint16)"
+        },
+        {
+          "kind": "error",
+          "name": "TrustReplay",
+          "selector": "0x72841b29",
+          "signature": "TrustReplay(bytes32)"
+        },
+        {
+          "kind": "error",
+          "name": "TrustRouteMismatch",
+          "selector": "0x431712e4",
+          "signature": "TrustRouteMismatch(bytes32)"
+        },
+        {
+          "kind": "error",
+          "name": "TrustTerminal",
+          "selector": "0xa6e257c3",
+          "signature": "TrustTerminal(bytes32)"
+        },
+        {
+          "kind": "error",
+          "name": "TrustUnauthorized",
+          "selector": "0x996b6134",
+          "signature": "TrustUnauthorized(address,bytes32)"
+        },
+        {
+          "kind": "error",
+          "name": "TrustUnsupported",
+          "selector": "0x3c44b5ce",
+          "signature": "TrustUnsupported(bytes4)"
+        },
+        {
+          "kind": "error",
+          "name": "TrustZeroAddress",
+          "selector": "0x60af495e",
+          "signature": "TrustZeroAddress()"
+        },
+        {
+          "anonymous": false,
+          "indexed": [
+            true,
+            true,
+            false
+          ],
+          "kind": "event",
+          "name": "Approval",
+          "signature": "Approval(address,address,uint256)",
+          "topic0": "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925"
+        },
+        {
+          "anonymous": false,
+          "indexed": [
+            true,
+            true,
+            false
+          ],
+          "kind": "event",
+          "name": "ForcedTransfer",
+          "signature": "ForcedTransfer(address,address,uint256)",
+          "topic0": "0x7b3ce50c216d2ccf9919c6b9f1bfb33f0350a33010f188750b4af38e00448138"
+        },
+        {
+          "anonymous": false,
+          "indexed": [
+            true,
+            false
+          ],
+          "kind": "event",
+          "name": "Frozen",
+          "signature": "Frozen(address,uint256)",
+          "topic0": "0x68e0d8c112165d0949ce87205b719ed7d98c7401866c34a159f7c67c6f5620e7"
+        },
+        {
+          "anonymous": false,
+          "indexed": [
+            true,
+            true,
+            true,
+            false
+          ],
+          "kind": "event",
+          "name": "RegulatoryActionApplied",
+          "signature": "RegulatoryActionApplied(bytes32,uint8,bytes32,bytes32)",
+          "topic0": "0xaadd5db99c0c1f57ce6f82b109958a00899fc4cea03e70fdae7741b9e7050091"
+        },
+        {
+          "anonymous": false,
+          "indexed": [
+            true,
+            true,
+            true,
+            false
+          ],
+          "kind": "event",
+          "name": "RegulatoryReversalApplied",
+          "signature": "RegulatoryReversalApplied(bytes32,uint8,bytes32,bytes32)",
+          "topic0": "0x0d7b61b62da3c45fb4edfb09c7a5d464b31a79841b7b9bd0dade8c3331137553"
+        },
+        {
+          "anonymous": false,
+          "indexed": [
+            true,
+            true,
+            false
+          ],
+          "kind": "event",
+          "name": "Transfer",
+          "signature": "Transfer(address,address,uint256)",
+          "topic0": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
+        },
+        {
+          "anonymous": false,
+          "indexed": [
+            true,
+            true,
+            false,
+            false
+          ],
+          "kind": "event",
+          "name": "TrustAuthorityChanged",
+          "signature": "TrustAuthorityChanged(bytes32,address,uint64,bool)",
+          "topic0": "0xdafe94173170a7568180ce61d33870fce97812b61a02b5137d0b975ca8f439e2"
+        },
+        {
+          "anonymous": false,
+          "indexed": [
+            true,
+            true,
+            true,
+            false
+          ],
+          "kind": "event",
+          "name": "TrustBindingChanged",
+          "signature": "TrustBindingChanged(uint8,bytes32,bytes32,uint64)",
+          "topic0": "0x2b9534add7cfb8676f60658d9449e864f852966197b05585e99cb6efef6d4040"
+        },
+        {
+          "anonymous": false,
+          "indexed": [
+            true,
+            true,
+            false,
+            false,
+            false
+          ],
+          "kind": "event",
+          "name": "TrustDelegationChanged",
+          "signature": "TrustDelegationChanged(bytes32,address,uint256,bytes32,uint48)",
+          "topic0": "0xc72ae5b5b271c01dcf665ef6761fc7b110ab29fcef59ea6640fda6c7eec0a4d1"
+        },
+        {
+          "kind": "function",
+          "name": "actionRecord",
+          "selector": "0x330fcfde",
+          "signature": "actionRecord(bytes32)"
+        },
+        {
+          "kind": "function",
+          "name": "allowance",
+          "selector": "0xdd62ed3e",
+          "signature": "allowance(address,address)"
+        },
+        {
+          "kind": "function",
+          "name": "approve",
+          "selector": "0x095ea7b3",
+          "signature": "approve(address,uint256)"
+        },
+        {
+          "kind": "function",
+          "name": "balanceOf",
+          "selector": "0x70a08231",
+          "signature": "balanceOf(address)"
+        },
+        {
+          "kind": "function",
+          "name": "canReceive",
+          "selector": "0x90d370ba",
+          "signature": "canReceive(address)"
+        },
+        {
+          "kind": "function",
+          "name": "canSend",
+          "selector": "0x2bc06a92",
+          "signature": "canSend(address)"
+        },
+        {
+          "kind": "function",
+          "name": "canTransfer",
+          "selector": "0xe46638e6",
+          "signature": "canTransfer(address,address,uint256)"
+        },
+        {
+          "kind": "function",
+          "name": "caseTerminal",
+          "selector": "0x3a421099",
+          "signature": "caseTerminal(bytes32)"
+        },
+        {
+          "kind": "function",
+          "name": "commandHash",
+          "selector": "0x1894f5e3",
+          "signature": "commandHash((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint64,uint256,uint48,uint48))"
+        },
+        {
+          "kind": "function",
+          "name": "configureAuthority",
+          "selector": "0xa4fc4aad",
+          "signature": "configureAuthority(bytes32,address,bool,bytes32,uint256)"
+        },
+        {
+          "kind": "function",
+          "name": "configureDelegation",
+          "selector": "0x1f78603d",
+          "signature": "configureDelegation(bytes32,address,uint256,bytes32,uint48,bytes32,uint256)"
+        },
+        {
+          "kind": "function",
+          "name": "custodyRecord",
+          "selector": "0x334a46d9",
+          "signature": "custodyRecord(bytes32)"
+        },
+        {
+          "kind": "function",
+          "name": "decimals",
+          "selector": "0x313ce567",
+          "signature": "decimals()"
+        },
+        {
+          "kind": "function",
+          "name": "deriveActionId",
+          "selector": "0x45f6c2dc",
+          "signature": "deriveActionId((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint64,uint256,uint48,uint48))"
+        },
+        {
+          "kind": "function",
+          "name": "deriveReversalId",
+          "selector": "0x5559c143",
+          "signature": "deriveReversalId((bytes32,bytes32,bytes32,uint8,bytes32,uint64,uint256,uint48,uint48))"
+        },
+        {
+          "kind": "function",
+          "name": "entitlementRecord",
+          "selector": "0x55e9ba84",
+          "signature": "entitlementRecord(bytes32)"
+        },
+        {
+          "kind": "function",
+          "name": "executeERC7943Action",
+          "selector": "0x9295b54c",
+          "signature": "executeERC7943Action((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint64,uint256,uint48,uint48))"
+        },
+        {
+          "kind": "function",
+          "name": "executeERC7943Reversal",
+          "selector": "0x75c28d96",
+          "signature": "executeERC7943Reversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,uint256,uint48,uint48))"
+        },
+        {
+          "kind": "function",
+          "name": "executeRegulatoryAction",
+          "selector": "0x9da23539",
+          "signature": "executeRegulatoryAction((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint64,uint256,uint48,uint48))"
+        },
+        {
+          "kind": "function",
+          "name": "executeRegulatoryReversal",
+          "selector": "0x7aab169b",
+          "signature": "executeRegulatoryReversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,uint256,uint48,uint48))"
+        },
+        {
+          "kind": "function",
+          "name": "forcedTransfer",
+          "selector": "0x9fc1d0e7",
+          "signature": "forcedTransfer(address,address,uint256)"
+        },
+        {
+          "kind": "function",
+          "name": "getAuthorityState",
+          "selector": "0x72929f83",
+          "signature": "getAuthorityState(bytes32)"
+        },
+        {
+          "kind": "function",
+          "name": "getBindingState",
+          "selector": "0xe76a2447",
+          "signature": "getBindingState(uint8)"
+        },
+        {
+          "kind": "function",
+          "name": "getFrozenTokens",
+          "selector": "0x158b1a57",
+          "signature": "getFrozenTokens(address)"
+        },
+        {
+          "kind": "function",
+          "name": "governor",
+          "selector": "0x0c340a24",
+          "signature": "governor()"
+        },
+        {
+          "kind": "function",
+          "name": "isRestricted",
+          "selector": "0xc01bc982",
+          "signature": "isRestricted(address)"
+        },
+        {
+          "kind": "function",
+          "name": "name",
+          "selector": "0x06fdde03",
+          "signature": "name()"
+        },
+        {
+          "kind": "function",
+          "name": "nonceUsed",
+          "selector": "0x15cba043",
+          "signature": "nonceUsed(bytes32,uint64,uint256)"
+        },
+        {
+          "kind": "function",
+          "name": "rebindDependency",
+          "selector": "0xf60d7b6f",
+          "signature": "rebindDependency(uint8,address,bytes32,bytes32,uint256)"
+        },
+        {
+          "kind": "function",
+          "name": "receipt",
+          "selector": "0x198a27aa",
+          "signature": "receipt(bytes32)"
+        },
+        {
+          "kind": "function",
+          "name": "reversalHash",
+          "selector": "0x464ea33a",
+          "signature": "reversalHash((bytes32,bytes32,bytes32,uint8,bytes32,uint64,uint256,uint48,uint48))"
+        },
+        {
+          "kind": "function",
+          "name": "routeLive",
+          "selector": "0x56a27035",
+          "signature": "routeLive()"
+        },
+        {
+          "kind": "function",
+          "name": "setFrozenTokens",
+          "selector": "0xebe45cba",
+          "signature": "setFrozenTokens(address,uint256)"
+        },
+        {
+          "kind": "function",
+          "name": "settlementRecord",
+          "selector": "0xe7b0e9c9",
+          "signature": "settlementRecord(bytes32)"
+        },
+        {
+          "kind": "function",
+          "name": "supportsInterface",
+          "selector": "0x01ffc9a7",
+          "signature": "supportsInterface(bytes4)"
+        },
+        {
+          "kind": "function",
+          "name": "symbol",
+          "selector": "0x95d89b41",
+          "signature": "symbol()"
+        },
+        {
+          "kind": "function",
+          "name": "totalSupply",
+          "selector": "0x18160ddd",
+          "signature": "totalSupply()"
+        },
+        {
+          "kind": "function",
+          "name": "transfer",
+          "selector": "0xa9059cbb",
+          "signature": "transfer(address,uint256)"
+        },
+        {
+          "kind": "function",
+          "name": "transferFrom",
+          "selector": "0x23b872dd",
+          "signature": "transferFrom(address,address,uint256)"
+        },
+        {
+          "kind": "function",
+          "name": "trustProfile",
+          "selector": "0x5ba37779",
+          "signature": "trustProfile()"
+        }
+      ],
+      "actionEntrypoint": {
+        "calldataLength": 676,
+        "name": "executeRegulatoryAction",
+        "selector": "0x9da23539",
+        "signature": "executeRegulatoryAction((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint64,uint256,uint48,uint48))",
+        "tupleComponents": [
+          {
+            "internalType": "bytes32",
+            "name": "domain",
+            "ordinal": 0,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "actionId",
+            "ordinal": 1,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "enum TrustTypes.ActionKind",
+            "name": "action",
+            "ordinal": 2,
+            "type": "uint8"
+          },
+          {
+            "internalType": "address",
+            "name": "subject",
+            "ordinal": 3,
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "source",
+            "ordinal": 4,
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "destination",
+            "ordinal": 5,
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "custodian",
+            "ordinal": 6,
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "ordinal": 7,
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "caseId",
+            "ordinal": 8,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "scopeHash",
+            "ordinal": 9,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "policyCommitment",
+            "ordinal": 10,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "provenanceCommitment",
+            "ordinal": 11,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "settlementCommitment",
+            "ordinal": 12,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "proceedsCommitment",
+            "ordinal": 13,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "entitlementCommitment",
+            "ordinal": 14,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "authorityRef",
+            "ordinal": 15,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint64",
+            "name": "authorityEpoch",
+            "ordinal": 16,
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint64",
+            "name": "policyEpoch",
+            "ordinal": 17,
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint256",
+            "name": "nonce",
+            "ordinal": 18,
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint48",
+            "name": "validAfter",
+            "ordinal": 19,
+            "type": "uint48"
+          },
+          {
+            "internalType": "uint48",
+            "name": "validBefore",
+            "ordinal": 20,
+            "type": "uint48"
+          }
+        ]
+      },
+      "resolvedRuntime": {
+        "address": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+        "byteLength": 24142,
+        "immutableDeclarations": [
+          {
+            "astId": 622,
+            "canonicalType": "uint8",
+            "encodedWord": "0x0000000000000000000000000000000000000000000000000000000000000012",
+            "locations": [
+              {
+                "length": 32,
+                "start": 6970
+              }
+            ],
+            "name": "decimals",
+            "sourcePath": "implementation/src/TrustStorage.sol"
+          },
+          {
+            "astId": 626,
+            "canonicalType": "address",
+            "encodedWord": "0x000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+            "locations": [
+              {
+                "length": 32,
+                "start": 517
+              },
+              {
+                "length": 32,
+                "start": 1580
+              },
+              {
+                "length": 32,
+                "start": 8522
+              },
+              {
+                "length": 32,
+                "start": 19822
+              }
+            ],
+            "name": "governor",
+            "sourcePath": "implementation/src/TrustStorage.sol"
+          }
+        ],
+        "keccak256": "0x8b16213b4bf922deb63f7caca9117a35cef545921ed5e0bfa840da107151deb2",
+        "label": "TrustToken",
+        "runtimePath": "evidence/end-to-end-refinement/runtime-binding/resolved/native/TrustToken.hex",
+        "sha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d"
+      },
+      "reversalEntrypoint": {
+        "calldataLength": 292,
+        "name": "executeRegulatoryReversal",
+        "selector": "0x7aab169b",
+        "signature": "executeRegulatoryReversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,uint256,uint48,uint48))",
+        "tupleComponents": [
+          {
+            "internalType": "bytes32",
+            "name": "domain",
+            "ordinal": 0,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "reversalId",
+            "ordinal": 1,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "actionId",
+            "ordinal": 2,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "enum TrustTypes.ReversalKind",
+            "name": "reversal",
+            "ordinal": 3,
+            "type": "uint8"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "authorityRef",
+            "ordinal": 4,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint64",
+            "name": "authorityEpoch",
+            "ordinal": 5,
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint256",
+            "name": "nonce",
+            "ordinal": 6,
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint48",
+            "name": "validAfter",
+            "ordinal": 7,
+            "type": "uint48"
+          },
+          {
+            "internalType": "uint48",
+            "name": "validBefore",
+            "ordinal": 8,
+            "type": "uint48"
+          }
+        ]
+      },
+      "runtimeTemplate": {
+        "byteLength": 24142,
+        "immutableReferences": {
+          "622": [
+            {
+              "length": 32,
+              "start": 6970
+            }
+          ],
+          "626": [
+            {
+              "length": 32,
+              "start": 517
+            },
+            {
+              "length": 32,
+              "start": 1580
+            },
+            {
+              "length": 32,
+              "start": 8522
+            },
+            {
+              "length": 32,
+              "start": 19822
+            }
+          ]
+        },
+        "keccak256": "0x8b88d6b834d0fcf7c09a2cb43d3f44702a5c8e5bf4cfe3f0c3583920f5db3a70",
+        "linkReferences": {},
+        "sha256": "e81429838a7274b63c0a53468d8747c887077408a2e504a181460adb400466ce"
+      },
+      "storage": [
+        {
+          "label": "name",
+          "offset": 0,
+          "projectionId": "native.name",
+          "slot": 0,
+          "type": {
+            "encoding": "bytes",
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "typeId": "t_string_storage"
+        },
+        {
+          "label": "symbol",
+          "offset": 0,
+          "projectionId": "native.symbol",
+          "slot": 1,
+          "type": {
+            "encoding": "bytes",
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "typeId": "t_string_storage"
+        },
+        {
+          "label": "_totalSupply",
+          "offset": 0,
+          "projectionId": "native.totalSupply",
+          "slot": 2,
+          "type": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "typeId": "t_uint256"
+        },
+        {
+          "label": "_balances",
+          "offset": 0,
+          "projectionId": "native.balances",
+          "slot": 3,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_address",
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32",
+            "value": "t_uint256"
+          },
+          "typeId": "t_mapping(t_address,t_uint256)"
+        },
+        {
+          "label": "_allowances",
+          "offset": 0,
+          "projectionId": "native.allowances",
+          "slot": 4,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_address",
+            "label": "mapping(address => mapping(address => uint256))",
+            "numberOfBytes": "32",
+            "value": "t_mapping(t_address,t_uint256)"
+          },
+          "typeId": "t_mapping(t_address,t_mapping(t_address,t_uint256))"
+        },
+        {
+          "label": "_frozen",
+          "offset": 0,
+          "projectionId": "native.frozen",
+          "slot": 5,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_address",
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32",
+            "value": "t_uint256"
+          },
+          "typeId": "t_mapping(t_address,t_uint256)"
+        },
+        {
+          "label": "_restricted",
+          "offset": 0,
+          "projectionId": "native.restricted",
+          "slot": 6,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_address",
+            "label": "mapping(address => bool)",
+            "numberOfBytes": "32",
+            "value": "t_bool"
+          },
+          "typeId": "t_mapping(t_address,t_bool)"
+        },
+        {
+          "label": "_custodyBacking",
+          "offset": 0,
+          "projectionId": "native.custodyBacking",
+          "slot": 7,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_address",
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32",
+            "value": "t_uint256"
+          },
+          "typeId": "t_mapping(t_address,t_uint256)"
+        },
+        {
+          "label": "_freezeHeads",
+          "offset": 0,
+          "projectionId": "native.freezeHeads",
+          "slot": 8,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_address",
+            "label": "mapping(address => struct TrustTypes.EffectHead)",
+            "numberOfBytes": "32",
+            "value": "t_struct(EffectHead)6332_storage"
+          },
+          "typeId": "t_mapping(t_address,t_struct(EffectHead)6332_storage)"
+        },
+        {
+          "label": "_restrictionHeads",
+          "offset": 0,
+          "projectionId": "native.restrictionHeads",
+          "slot": 9,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_address",
+            "label": "mapping(address => struct TrustTypes.EffectHead)",
+            "numberOfBytes": "32",
+            "value": "t_struct(EffectHead)6332_storage"
+          },
+          "typeId": "t_mapping(t_address,t_struct(EffectHead)6332_storage)"
+        },
+        {
+          "label": "_authorities",
+          "offset": 0,
+          "projectionId": "native.authorities",
+          "slot": 10,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_bytes32",
+            "label": "mapping(bytes32 => struct TrustTypes.Authority)",
+            "numberOfBytes": "32",
+            "value": "t_struct(Authority)6383_storage"
+          },
+          "typeId": "t_mapping(t_bytes32,t_struct(Authority)6383_storage)"
+        },
+        {
+          "label": "_delegations",
+          "offset": 0,
+          "projectionId": "native.delegations",
+          "slot": 11,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_bytes32",
+            "label": "mapping(bytes32 => mapping(address => struct TrustTypes.Delegation))",
+            "numberOfBytes": "32",
+            "value": "t_mapping(t_address,t_struct(Delegation)6392_storage)"
+          },
+          "typeId": "t_mapping(t_bytes32,t_mapping(t_address,t_struct(Delegation)6392_storage))"
+        },
+        {
+          "label": "_usedNonces",
+          "offset": 0,
+          "projectionId": "native.usedNonces",
+          "slot": 12,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_bytes32",
+            "label": "mapping(bytes32 => mapping(uint64 => mapping(uint256 => bool)))",
+            "numberOfBytes": "32",
+            "value": "t_mapping(t_uint64,t_mapping(t_uint256,t_bool))"
+          },
+          "typeId": "t_mapping(t_bytes32,t_mapping(t_uint64,t_mapping(t_uint256,t_bool)))"
+        },
+        {
+          "label": "_usedCommandIds",
+          "offset": 0,
+          "projectionId": "native.usedCommandIds",
+          "slot": 13,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_bytes32",
+            "label": "mapping(bytes32 => bool)",
+            "numberOfBytes": "32",
+            "value": "t_bool"
+          },
+          "typeId": "t_mapping(t_bytes32,t_bool)"
+        },
+        {
+          "label": "_usedGovernanceIds",
+          "offset": 0,
+          "projectionId": "native.usedGovernanceIds",
+          "slot": 14,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_bytes32",
+            "label": "mapping(bytes32 => bool)",
+            "numberOfBytes": "32",
+            "value": "t_bool"
+          },
+          "typeId": "t_mapping(t_bytes32,t_bool)"
+        },
+        {
+          "label": "_actions",
+          "offset": 0,
+          "projectionId": "native.actions",
+          "slot": 15,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_bytes32",
+            "label": "mapping(bytes32 => struct TrustTypes.ActionRecord)",
+            "numberOfBytes": "32",
+            "value": "t_struct(ActionRecord)6283_storage"
+          },
+          "typeId": "t_mapping(t_bytes32,t_struct(ActionRecord)6283_storage)"
+        },
+        {
+          "label": "_effects",
+          "offset": 0,
+          "projectionId": "native.effects",
+          "slot": 16,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_bytes32",
+            "label": "mapping(bytes32 => struct TrustTypes.EffectRecord)",
+            "numberOfBytes": "32",
+            "value": "t_struct(EffectRecord)6339_storage"
+          },
+          "typeId": "t_mapping(t_bytes32,t_struct(EffectRecord)6339_storage)"
+        },
+        {
+          "label": "_receipts",
+          "offset": 0,
+          "projectionId": "native.receipts",
+          "slot": 17,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_bytes32",
+            "label": "mapping(bytes32 => struct TrustTypes.Receipt)",
+            "numberOfBytes": "32",
+            "value": "t_struct(Receipt)6308_storage"
+          },
+          "typeId": "t_mapping(t_bytes32,t_struct(Receipt)6308_storage)"
+        },
+        {
+          "label": "_custody",
+          "offset": 0,
+          "projectionId": "native.custody",
+          "slot": 18,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_bytes32",
+            "label": "mapping(bytes32 => struct TrustTypes.CustodyRecord)",
+            "numberOfBytes": "32",
+            "value": "t_struct(CustodyRecord)6325_storage"
+          },
+          "typeId": "t_mapping(t_bytes32,t_struct(CustodyRecord)6325_storage)"
+        },
+        {
+          "label": "_settlements",
+          "offset": 0,
+          "projectionId": "native.settlements",
+          "slot": 19,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_bytes32",
+            "label": "mapping(bytes32 => struct TrustTypes.SettlementRecord)",
+            "numberOfBytes": "32",
+            "value": "t_struct(SettlementRecord)6352_storage"
+          },
+          "typeId": "t_mapping(t_bytes32,t_struct(SettlementRecord)6352_storage)"
+        },
+        {
+          "label": "_entitlements",
+          "offset": 0,
+          "projectionId": "native.entitlements",
+          "slot": 20,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_bytes32",
+            "label": "mapping(bytes32 => struct TrustTypes.EntitlementRecord)",
+            "numberOfBytes": "32",
+            "value": "t_struct(EntitlementRecord)6363_storage"
+          },
+          "typeId": "t_mapping(t_bytes32,t_struct(EntitlementRecord)6363_storage)"
+        },
+        {
+          "label": "_consumedEntitlements",
+          "offset": 0,
+          "projectionId": "native.consumedEntitlements",
+          "slot": 21,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_bytes32",
+            "label": "mapping(bytes32 => bool)",
+            "numberOfBytes": "32",
+            "value": "t_bool"
+          },
+          "typeId": "t_mapping(t_bytes32,t_bool)"
+        },
+        {
+          "label": "_terminalCases",
+          "offset": 0,
+          "projectionId": "native.terminalCases",
+          "slot": 22,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_bytes32",
+            "label": "mapping(bytes32 => bool)",
+            "numberOfBytes": "32",
+            "value": "t_bool"
+          },
+          "typeId": "t_mapping(t_bytes32,t_bool)"
+        },
+        {
+          "label": "_bindings",
+          "offset": 0,
+          "projectionId": "native.bindings",
+          "slot": 23,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_enum(BindingKind)6180",
+            "label": "mapping(enum TrustTypes.BindingKind => struct TrustTypes.Binding)",
+            "numberOfBytes": "32",
+            "value": "t_struct(Binding)6376_storage"
+          },
+          "typeId": "t_mapping(t_enum(BindingKind)6180,t_struct(Binding)6376_storage)"
+        },
+        {
+          "label": "_routeTicket",
+          "offset": 0,
+          "projectionId": "native.routeTicket",
+          "slot": 24,
+          "type": {
+            "encoding": "inplace",
+            "label": "struct TrustTypes.RouteTicket",
+            "members": [
+              {
+                "astId": 6394,
+                "contract": "implementation/src/TrustToken.sol:TrustToken",
+                "label": "commandId",
+                "offset": 0,
+                "slot": "0",
+                "type": "t_bytes32"
+              },
+              {
+                "astId": 6396,
+                "contract": "implementation/src/TrustToken.sol:TrustToken",
+                "label": "routeKey",
+                "offset": 0,
+                "slot": "1",
+                "type": "t_bytes32"
+              },
+              {
+                "astId": 6398,
+                "contract": "implementation/src/TrustToken.sol:TrustToken",
+                "label": "calldataHash",
+                "offset": 0,
+                "slot": "2",
+                "type": "t_bytes32"
+              },
+              {
+                "astId": 6400,
+                "contract": "implementation/src/TrustToken.sol:TrustToken",
+                "label": "bindingHash",
+                "offset": 0,
+                "slot": "3",
+                "type": "t_bytes32"
+              },
+              {
+                "astId": 6402,
+                "contract": "implementation/src/TrustToken.sol:TrustToken",
+                "label": "selector",
+                "offset": 0,
+                "slot": "4",
+                "type": "t_bytes4"
+              },
+              {
+                "astId": 6405,
+                "contract": "implementation/src/TrustToken.sol:TrustToken",
+                "label": "routeKind",
+                "offset": 4,
+                "slot": "4",
+                "type": "t_enum(RouteKind)6184"
+              },
+              {
+                "astId": 6407,
+                "contract": "implementation/src/TrustToken.sol:TrustToken",
+                "label": "actionOrReversal",
+                "offset": 5,
+                "slot": "4",
+                "type": "t_uint8"
+              },
+              {
+                "astId": 6409,
+                "contract": "implementation/src/TrustToken.sol:TrustToken",
+                "label": "authorityEpoch",
+                "offset": 6,
+                "slot": "4",
+                "type": "t_uint64"
+              },
+              {
+                "astId": 6411,
+                "contract": "implementation/src/TrustToken.sol:TrustToken",
+                "label": "policyEpoch",
+                "offset": 14,
+                "slot": "4",
+                "type": "t_uint64"
+              },
+              {
+                "astId": 6413,
+                "contract": "implementation/src/TrustToken.sol:TrustToken",
+                "label": "live",
+                "offset": 22,
+                "slot": "4",
+                "type": "t_bool"
+              }
+            ],
+            "numberOfBytes": "160"
+          },
+          "typeId": "t_struct(RouteTicket)6414_storage"
+        },
+        {
+          "label": "_entered",
+          "offset": 0,
+          "projectionId": "native.entered",
+          "slot": 29,
+          "type": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "typeId": "t_uint256"
+        },
+        {
+          "label": "_pendingReversals",
+          "offset": 0,
+          "projectionId": "native.pendingReversals",
+          "slot": 30,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_bytes32",
+            "label": "mapping(bytes32 => struct TrustTypes.ReversalRequest)",
+            "numberOfBytes": "32",
+            "value": "t_struct(ReversalRequest)6248_storage"
+          },
+          "typeId": "t_mapping(t_bytes32,t_struct(ReversalRequest)6248_storage)"
+        },
+        {
+          "label": "_pendingCommitments",
+          "offset": 0,
+          "projectionId": "native.pendingCommitments",
+          "slot": 31,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_bytes32",
+            "label": "mapping(bytes32 => struct TrustToken.PendingCommitments)",
+            "numberOfBytes": "32",
+            "value": "t_struct(PendingCommitments)5266_storage"
+          },
+          "typeId": "t_mapping(t_bytes32,t_struct(PendingCommitments)5266_storage)"
+        }
+      ],
+      "subjectId": "implementation/src/TrustToken.sol:TrustToken"
+    },
+    "verifiedProfile": {
+      "abi": [
+        {
+          "kind": "error",
+          "name": "TrustInvalidCommand",
+          "selector": "0xed623c13",
+          "signature": "TrustInvalidCommand(bytes32,uint16)"
+        },
+        {
+          "kind": "error",
+          "name": "TrustOperationalFailure",
+          "selector": "0x386ecc58",
+          "signature": "TrustOperationalFailure(bytes32,uint16,bytes32)"
+        },
+        {
+          "kind": "error",
+          "name": "TrustReentrancy",
+          "selector": "0x0af71c92",
+          "signature": "TrustReentrancy()"
+        },
+        {
+          "kind": "error",
+          "name": "TrustRejected",
+          "selector": "0x8cf60b6f",
+          "signature": "TrustRejected(bytes32,uint16)"
+        },
+        {
+          "kind": "error",
+          "name": "TrustReplay",
+          "selector": "0x72841b29",
+          "signature": "TrustReplay(bytes32)"
+        },
+        {
+          "kind": "error",
+          "name": "TrustTerminal",
+          "selector": "0xa6e257c3",
+          "signature": "TrustTerminal(bytes32)"
+        },
+        {
+          "kind": "error",
+          "name": "TrustUnauthorized",
+          "selector": "0x996b6134",
+          "signature": "TrustUnauthorized(address,bytes32)"
+        },
+        {
+          "kind": "error",
+          "name": "TrustZeroAddress",
+          "selector": "0x60af495e",
+          "signature": "TrustZeroAddress()"
+        },
+        {
+          "anonymous": false,
+          "indexed": [
+            true,
+            true,
+            true,
+            false
+          ],
+          "kind": "event",
+          "name": "RegulatoryActionApplied",
+          "signature": "RegulatoryActionApplied(bytes32,uint8,bytes32,bytes32)",
+          "topic0": "0xaadd5db99c0c1f57ce6f82b109958a00899fc4cea03e70fdae7741b9e7050091"
+        },
+        {
+          "anonymous": false,
+          "indexed": [
+            true,
+            true,
+            true,
+            false
+          ],
+          "kind": "event",
+          "name": "RegulatoryReversalApplied",
+          "signature": "RegulatoryReversalApplied(bytes32,uint8,bytes32,bytes32)",
+          "topic0": "0x0d7b61b62da3c45fb4edfb09c7a5d464b31a79841b7b9bd0dade8c3331137553"
+        },
+        {
+          "kind": "function",
+          "name": "actionRecord",
+          "selector": "0x330fcfde",
+          "signature": "actionRecord(bytes32)"
+        },
+        {
+          "kind": "function",
+          "name": "authority",
+          "selector": "0xbf7e214f",
+          "signature": "authority()"
+        },
+        {
+          "kind": "function",
+          "name": "authorityEpoch",
+          "selector": "0x8415e28d",
+          "signature": "authorityEpoch()"
+        },
+        {
+          "kind": "function",
+          "name": "authorityRef",
+          "selector": "0xf161af61",
+          "signature": "authorityRef()"
+        },
+        {
+          "kind": "function",
+          "name": "caseTerminal",
+          "selector": "0x3a421099",
+          "signature": "caseTerminal(bytes32)"
+        },
+        {
+          "kind": "function",
+          "name": "custody",
+          "selector": "0xe70200eb",
+          "signature": "custody(bytes32)"
+        },
+        {
+          "kind": "function",
+          "name": "deriveActionId",
+          "selector": "0x45f6c2dc",
+          "signature": "deriveActionId((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint64,uint256,uint48,uint48))"
+        },
+        {
+          "kind": "function",
+          "name": "deriveReversalId",
+          "selector": "0x5559c143",
+          "signature": "deriveReversalId((bytes32,bytes32,bytes32,uint8,bytes32,uint64,uint256,uint48,uint48))"
+        },
+        {
+          "kind": "function",
+          "name": "executeRegulatoryAction",
+          "selector": "0x9da23539",
+          "signature": "executeRegulatoryAction((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint64,uint256,uint48,uint48))"
+        },
+        {
+          "kind": "function",
+          "name": "executeRegulatoryReversal",
+          "selector": "0x7aab169b",
+          "signature": "executeRegulatoryReversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,uint256,uint48,uint48))"
+        },
+        {
+          "kind": "function",
+          "name": "profileGovernor",
+          "selector": "0x164068a4",
+          "signature": "profileGovernor()"
+        },
+        {
+          "kind": "function",
+          "name": "receipt",
+          "selector": "0x198a27aa",
+          "signature": "receipt(bytes32)"
+        },
+        {
+          "kind": "function",
+          "name": "supportsInterface",
+          "selector": "0x01ffc9a7",
+          "signature": "supportsInterface(bytes4)"
+        },
+        {
+          "kind": "function",
+          "name": "token",
+          "selector": "0xfc0c546a",
+          "signature": "token()"
+        },
+        {
+          "kind": "function",
+          "name": "trustProfile",
+          "selector": "0x5ba37779",
+          "signature": "trustProfile()"
+        }
+      ],
+      "actionEntrypoint": {
+        "calldataLength": 676,
+        "name": "executeRegulatoryAction",
+        "selector": "0x9da23539",
+        "signature": "executeRegulatoryAction((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint64,uint256,uint48,uint48))",
+        "tupleComponents": [
+          {
+            "internalType": "bytes32",
+            "name": "domain",
+            "ordinal": 0,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "actionId",
+            "ordinal": 1,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "enum TrustTypes.ActionKind",
+            "name": "action",
+            "ordinal": 2,
+            "type": "uint8"
+          },
+          {
+            "internalType": "address",
+            "name": "subject",
+            "ordinal": 3,
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "source",
+            "ordinal": 4,
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "destination",
+            "ordinal": 5,
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "custodian",
+            "ordinal": 6,
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "ordinal": 7,
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "caseId",
+            "ordinal": 8,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "scopeHash",
+            "ordinal": 9,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "policyCommitment",
+            "ordinal": 10,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "provenanceCommitment",
+            "ordinal": 11,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "settlementCommitment",
+            "ordinal": 12,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "proceedsCommitment",
+            "ordinal": 13,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "entitlementCommitment",
+            "ordinal": 14,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "authorityRef",
+            "ordinal": 15,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint64",
+            "name": "authorityEpoch",
+            "ordinal": 16,
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint64",
+            "name": "policyEpoch",
+            "ordinal": 17,
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint256",
+            "name": "nonce",
+            "ordinal": 18,
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint48",
+            "name": "validAfter",
+            "ordinal": 19,
+            "type": "uint48"
+          },
+          {
+            "internalType": "uint48",
+            "name": "validBefore",
+            "ordinal": 20,
+            "type": "uint48"
+          }
+        ]
+      },
+      "governorStorage": [
+        {
+          "label": "exclusiveAdapter",
+          "offset": 0,
+          "projectionId": "profile.governor.exclusiveAdapter",
+          "slot": 0,
+          "type": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "typeId": "t_address"
+        },
+        {
+          "label": "sealedBinding",
+          "offset": 0,
+          "projectionId": "profile.governor.sealedBinding",
+          "slot": 1,
+          "type": {
+            "encoding": "inplace",
+            "label": "bytes32",
+            "numberOfBytes": "32"
+          },
+          "typeId": "t_bytes32"
+        },
+        {
+          "label": "topologySealed",
+          "offset": 0,
+          "projectionId": "profile.governor.topologySealed",
+          "slot": 2,
+          "type": {
+            "encoding": "inplace",
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "typeId": "t_bool"
+        }
+      ],
+      "resolvedRuntime": {
+        "address": "0x0165878a594ca255338adfa4d48449f69242eb8f",
+        "byteLength": 16398,
+        "immutableDeclarations": [
+          {
+            "astId": 761,
+            "canonicalType": "address",
+            "encodedWord": "0x000000000000000000000000dc64a140aa3e981100a9beca4e685f962f0cf6c9",
+            "locations": [
+              {
+                "length": 32,
+                "start": 214
+              },
+              {
+                "length": 32,
+                "start": 9988
+              },
+              {
+                "length": 32,
+                "start": 11590
+              },
+              {
+                "length": 32,
+                "start": 12228
+              },
+              {
+                "length": 32,
+                "start": 12329
+              },
+              {
+                "length": 32,
+                "start": 16118
+              }
+            ],
+            "name": "token",
+            "sourcePath": "implementation/src/profiles/ERC3643TrustAdapter.sol"
+          },
+          {
+            "astId": 763,
+            "canonicalType": "address",
+            "encodedWord": "0x000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+            "locations": [
+              {
+                "length": 32,
+                "start": 637
+              },
+              {
+                "length": 32,
+                "start": 15705
+              }
+            ],
+            "name": "authority",
+            "sourcePath": "implementation/src/profiles/ERC3643TrustAdapter.sol"
+          },
+          {
+            "astId": 765,
+            "canonicalType": "bytes32",
+            "encodedWord": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+            "locations": [
+              {
+                "length": 32,
+                "start": 288
+              },
+              {
+                "length": 32,
+                "start": 15787
+              }
+            ],
+            "name": "authorityRef",
+            "sourcePath": "implementation/src/profiles/ERC3643TrustAdapter.sol"
+          },
+          {
+            "astId": 767,
+            "canonicalType": "uint64",
+            "encodedWord": "0x0000000000000000000000000000000000000000000000000000000000000001",
+            "locations": [
+              {
+                "length": 32,
+                "start": 3288
+              },
+              {
+                "length": 32,
+                "start": 15955
+              }
+            ],
+            "name": "authorityEpoch",
+            "sourcePath": "implementation/src/profiles/ERC3643TrustAdapter.sol"
+          },
+          {
+            "astId": 770,
+            "canonicalType": "contract ProfileGovernor",
+            "encodedWord": "0x0000000000000000000000005fc8d32690cc91d4c39d9d3abcbd16989f875707",
+            "locations": [
+              {
+                "length": 32,
+                "start": 1178
+              },
+              {
+                "length": 32,
+                "start": 4179
+              },
+              {
+                "length": 32,
+                "start": 6369
+              },
+              {
+                "length": 32,
+                "start": 8382
+              },
+              {
+                "length": 32,
+                "start": 9916
+              },
+              {
+                "length": 32,
+                "start": 10727
+              },
+              {
+                "length": 32,
+                "start": 13726
+              },
+              {
+                "length": 32,
+                "start": 15641
+              }
+            ],
+            "name": "profileGovernor",
+            "sourcePath": "implementation/src/profiles/ERC3643TrustAdapter.sol"
+          },
+          {
+            "astId": 773,
+            "canonicalType": "contract IERC3643TokenView",
+            "encodedWord": "0x000000000000000000000000dc64a140aa3e981100a9beca4e685f962f0cf6c9",
+            "locations": [
+              {
+                "length": 32,
+                "start": 2075
+              },
+              {
+                "length": 32,
+                "start": 4789
+              },
+              {
+                "length": 32,
+                "start": 5554
+              },
+              {
+                "length": 32,
+                "start": 9535
+              },
+              {
+                "length": 32,
+                "start": 11424
+              },
+              {
+                "length": 32,
+                "start": 12440
+              },
+              {
+                "length": 32,
+                "start": 15225
+              }
+            ],
+            "name": "_tokenView",
+            "sourcePath": "implementation/src/profiles/ERC3643TrustAdapter.sol"
+          }
+        ],
+        "keccak256": "0x51d7c1e6deee1f2e08ec7e0fd495dcf5a8276eb1fc147836d2c53a799316ca70",
+        "label": "ERC3643TrustAdapter",
+        "runtimePath": "evidence/end-to-end-refinement/runtime-binding/resolved/verified-profile/ERC3643TrustAdapter.hex",
+        "sha256": "0c873ae5756cf6a3e3ab1317af7c09a39391640b3c54bef4b84b091042d9cf4b"
+      },
+      "reversalEntrypoint": {
+        "calldataLength": 292,
+        "name": "executeRegulatoryReversal",
+        "selector": "0x7aab169b",
+        "signature": "executeRegulatoryReversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,uint256,uint48,uint48))",
+        "tupleComponents": [
+          {
+            "internalType": "bytes32",
+            "name": "domain",
+            "ordinal": 0,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "reversalId",
+            "ordinal": 1,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "actionId",
+            "ordinal": 2,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "enum TrustTypes.ReversalKind",
+            "name": "reversal",
+            "ordinal": 3,
+            "type": "uint8"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "authorityRef",
+            "ordinal": 4,
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint64",
+            "name": "authorityEpoch",
+            "ordinal": 5,
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint256",
+            "name": "nonce",
+            "ordinal": 6,
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint48",
+            "name": "validAfter",
+            "ordinal": 7,
+            "type": "uint48"
+          },
+          {
+            "internalType": "uint48",
+            "name": "validBefore",
+            "ordinal": 8,
+            "type": "uint48"
+          }
+        ]
+      },
+      "runtimeTemplate": {
+        "byteLength": 16398,
+        "immutableReferences": {
+          "761": [
+            {
+              "length": 32,
+              "start": 214
+            },
+            {
+              "length": 32,
+              "start": 9988
+            },
+            {
+              "length": 32,
+              "start": 11590
+            },
+            {
+              "length": 32,
+              "start": 12228
+            },
+            {
+              "length": 32,
+              "start": 12329
+            },
+            {
+              "length": 32,
+              "start": 16118
+            }
+          ],
+          "763": [
+            {
+              "length": 32,
+              "start": 637
+            },
+            {
+              "length": 32,
+              "start": 15705
+            }
+          ],
+          "765": [
+            {
+              "length": 32,
+              "start": 288
+            },
+            {
+              "length": 32,
+              "start": 15787
+            }
+          ],
+          "767": [
+            {
+              "length": 32,
+              "start": 3288
+            },
+            {
+              "length": 32,
+              "start": 15955
+            }
+          ],
+          "770": [
+            {
+              "length": 32,
+              "start": 1178
+            },
+            {
+              "length": 32,
+              "start": 4179
+            },
+            {
+              "length": 32,
+              "start": 6369
+            },
+            {
+              "length": 32,
+              "start": 8382
+            },
+            {
+              "length": 32,
+              "start": 9916
+            },
+            {
+              "length": 32,
+              "start": 10727
+            },
+            {
+              "length": 32,
+              "start": 13726
+            },
+            {
+              "length": 32,
+              "start": 15641
+            }
+          ],
+          "773": [
+            {
+              "length": 32,
+              "start": 2075
+            },
+            {
+              "length": 32,
+              "start": 4789
+            },
+            {
+              "length": 32,
+              "start": 5554
+            },
+            {
+              "length": 32,
+              "start": 9535
+            },
+            {
+              "length": 32,
+              "start": 11424
+            },
+            {
+              "length": 32,
+              "start": 12440
+            },
+            {
+              "length": 32,
+              "start": 15225
+            }
+          ]
+        },
+        "keccak256": "0x019cb0a2f3fec02fda329071f9235335361b62796841974d1e9cc08ea257a2cb",
+        "linkReferences": {},
+        "sha256": "a8b2697b6c2d3f26d16e3979d6169734f05e9f607795c8be49d96c0e32837f42"
+      },
+      "storage": [
+        {
+          "label": "_entered",
+          "offset": 0,
+          "projectionId": "profile.adapter.entered",
+          "slot": 0,
+          "type": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "typeId": "t_uint256"
+        },
+        {
+          "label": "_actions",
+          "offset": 0,
+          "projectionId": "profile.adapter.actions",
+          "slot": 1,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_bytes32",
+            "label": "mapping(bytes32 => struct TrustTypes.ActionRecord)",
+            "numberOfBytes": "32",
+            "value": "t_struct(ActionRecord)335_storage"
+          },
+          "typeId": "t_mapping(t_bytes32,t_struct(ActionRecord)335_storage)"
+        },
+        {
+          "label": "_effects",
+          "offset": 0,
+          "projectionId": "profile.adapter.effects",
+          "slot": 2,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_bytes32",
+            "label": "mapping(bytes32 => struct TrustTypes.EffectRecord)",
+            "numberOfBytes": "32",
+            "value": "t_struct(EffectRecord)391_storage"
+          },
+          "typeId": "t_mapping(t_bytes32,t_struct(EffectRecord)391_storage)"
+        },
+        {
+          "label": "_receipts",
+          "offset": 0,
+          "projectionId": "profile.adapter.receipts",
+          "slot": 3,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_bytes32",
+            "label": "mapping(bytes32 => struct TrustTypes.Receipt)",
+            "numberOfBytes": "32",
+            "value": "t_struct(Receipt)360_storage"
+          },
+          "typeId": "t_mapping(t_bytes32,t_struct(Receipt)360_storage)"
+        },
+        {
+          "label": "_usedIds",
+          "offset": 0,
+          "projectionId": "profile.adapter.usedIds",
+          "slot": 4,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_bytes32",
+            "label": "mapping(bytes32 => bool)",
+            "numberOfBytes": "32",
+            "value": "t_bool"
+          },
+          "typeId": "t_mapping(t_bytes32,t_bool)"
+        },
+        {
+          "label": "_usedNonces",
+          "offset": 0,
+          "projectionId": "profile.adapter.usedNonces",
+          "slot": 5,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_bytes32",
+            "label": "mapping(bytes32 => bool)",
+            "numberOfBytes": "32",
+            "value": "t_bool"
+          },
+          "typeId": "t_mapping(t_bytes32,t_bool)"
+        },
+        {
+          "label": "_consumedEntitlements",
+          "offset": 0,
+          "projectionId": "profile.adapter.consumedEntitlements",
+          "slot": 6,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_bytes32",
+            "label": "mapping(bytes32 => bool)",
+            "numberOfBytes": "32",
+            "value": "t_bool"
+          },
+          "typeId": "t_mapping(t_bytes32,t_bool)"
+        },
+        {
+          "label": "_custody",
+          "offset": 0,
+          "projectionId": "profile.adapter.custody",
+          "slot": 7,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_bytes32",
+            "label": "mapping(bytes32 => struct TrustTypes.CustodyRecord)",
+            "numberOfBytes": "32",
+            "value": "t_struct(CustodyRecord)377_storage"
+          },
+          "typeId": "t_mapping(t_bytes32,t_struct(CustodyRecord)377_storage)"
+        },
+        {
+          "label": "_frozenTargets",
+          "offset": 0,
+          "projectionId": "profile.adapter.frozenTargets",
+          "slot": 8,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_address",
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32",
+            "value": "t_uint256"
+          },
+          "typeId": "t_mapping(t_address,t_uint256)"
+        },
+        {
+          "label": "_freezeHeads",
+          "offset": 0,
+          "projectionId": "profile.adapter.freezeHeads",
+          "slot": 9,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_address",
+            "label": "mapping(address => struct TrustTypes.EffectHead)",
+            "numberOfBytes": "32",
+            "value": "t_struct(EffectHead)384_storage"
+          },
+          "typeId": "t_mapping(t_address,t_struct(EffectHead)384_storage)"
+        },
+        {
+          "label": "_restrictionHeads",
+          "offset": 0,
+          "projectionId": "profile.adapter.restrictionHeads",
+          "slot": 10,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_address",
+            "label": "mapping(address => struct TrustTypes.EffectHead)",
+            "numberOfBytes": "32",
+            "value": "t_struct(EffectHead)384_storage"
+          },
+          "typeId": "t_mapping(t_address,t_struct(EffectHead)384_storage)"
+        },
+        {
+          "label": "_custodyBacking",
+          "offset": 0,
+          "projectionId": "profile.adapter.custodyBacking",
+          "slot": 11,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_address",
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32",
+            "value": "t_uint256"
+          },
+          "typeId": "t_mapping(t_address,t_uint256)"
+        },
+        {
+          "label": "_terminalCases",
+          "offset": 0,
+          "projectionId": "profile.adapter.terminalCases",
+          "slot": 12,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_bytes32",
+            "label": "mapping(bytes32 => bool)",
+            "numberOfBytes": "32",
+            "value": "t_bool"
+          },
+          "typeId": "t_mapping(t_bytes32,t_bool)"
+        }
+      ],
+      "subjectId": "implementation/src/profiles/ERC3643TrustAdapter.sol:ERC3643TrustAdapter",
+      "underlyingStorage": [
+        {
+          "label": "owner",
+          "offset": 0,
+          "projectionId": "profile.token.owner",
+          "slot": 0,
+          "type": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "typeId": "t_address"
+        },
+        {
+          "label": "exclusiveAgent",
+          "offset": 0,
+          "projectionId": "profile.token.exclusiveAgent",
+          "slot": 1,
+          "type": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "typeId": "t_address"
+        },
+        {
+          "label": "balanceOf",
+          "offset": 0,
+          "projectionId": "profile.token.balanceOf",
+          "slot": 2,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_address",
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32",
+            "value": "t_uint256"
+          },
+          "typeId": "t_mapping(t_address,t_uint256)"
+        },
+        {
+          "label": "getFrozenTokens",
+          "offset": 0,
+          "projectionId": "profile.token.getFrozenTokens",
+          "slot": 3,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_address",
+            "label": "mapping(address => uint256)",
+            "numberOfBytes": "32",
+            "value": "t_uint256"
+          },
+          "typeId": "t_mapping(t_address,t_uint256)"
+        },
+        {
+          "label": "isFrozen",
+          "offset": 0,
+          "projectionId": "profile.token.isFrozen",
+          "slot": 4,
+          "type": {
+            "encoding": "mapping",
+            "key": "t_address",
+            "label": "mapping(address => bool)",
+            "numberOfBytes": "32",
+            "value": "t_bool"
+          },
+          "typeId": "t_mapping(t_address,t_bool)"
+        }
+      ]
+    }
+  },
+  "obligationIds": [
+    "STATE-01",
+    "STATE-02",
+    "STATE-03",
+    "STATE-04",
+    "STATE-05",
+    "STATE-06",
+    "STATE-07",
+    "STATE-08",
+    "BAL-01",
+    "BAL-02",
+    "BAL-03",
+    "BAL-04",
+    "BAL-05",
+    "BAL-06",
+    "BAL-07",
+    "BAL-08",
+    "BAL-09",
+    "BAL-10",
+    "REV-01",
+    "REV-02",
+    "REV-03",
+    "REV-04",
+    "REV-05",
+    "REV-06",
+    "REV-07",
+    "REV-08",
+    "REV-09",
+    "REV-10",
+    "REV-11",
+    "ABI-01",
+    "ABI-02",
+    "ABI-03",
+    "ABI-04",
+    "ABI-05",
+    "AUTH-01",
+    "AUTH-02",
+    "AUTH-03",
+    "AUTH-04",
+    "AUTH-05",
+    "ACT-01",
+    "ACT-02",
+    "ACT-03",
+    "ACT-04",
+    "ACT-05",
+    "ACT-06",
+    "ACT-07",
+    "ACT-08",
+    "ACT-09",
+    "RVR-01",
+    "RVR-02",
+    "RVR-03",
+    "FAIL-01",
+    "FAIL-02",
+    "FAIL-03",
+    "FAIL-04",
+    "FAIL-05",
+    "FAIL-06",
+    "FAIL-07",
+    "FAIL-08",
+    "EXT-01",
+    "EXT-02",
+    "EXT-03",
+    "EXT-04",
+    "EXT-05",
+    "EXT-06",
+    "EXT-07",
+    "SEP-01",
+    "SEP-02",
+    "SEP-03",
+    "SEP-04",
+    "SEP-05",
+    "ART-01",
+    "ART-02",
+    "ART-03",
+    "ART-04",
+    "ART-05",
+    "ART-06",
+    "ART-07",
+    "ART-08"
+  ],
+  "projectionIds": [
+    "native.actions",
+    "native.allowances",
+    "native.authorities",
+    "native.balances",
+    "native.bindings",
+    "native.consumedEntitlements",
+    "native.custody",
+    "native.custodyBacking",
+    "native.delegations",
+    "native.effects",
+    "native.entered",
+    "native.entitlements",
+    "native.freezeHeads",
+    "native.frozen",
+    "native.name",
+    "native.pendingCommitments",
+    "native.pendingReversals",
+    "native.receipts",
+    "native.restricted",
+    "native.restrictionHeads",
+    "native.routeTicket",
+    "native.settlements",
+    "native.symbol",
+    "native.terminalCases",
+    "native.totalSupply",
+    "native.usedCommandIds",
+    "native.usedGovernanceIds",
+    "native.usedNonces",
+    "profile.adapter.actions",
+    "profile.adapter.consumedEntitlements",
+    "profile.adapter.custody",
+    "profile.adapter.custodyBacking",
+    "profile.adapter.effects",
+    "profile.adapter.entered",
+    "profile.adapter.freezeHeads",
+    "profile.adapter.frozenTargets",
+    "profile.adapter.receipts",
+    "profile.adapter.restrictionHeads",
+    "profile.adapter.terminalCases",
+    "profile.adapter.usedIds",
+    "profile.adapter.usedNonces",
+    "profile.governor.exclusiveAdapter",
+    "profile.governor.sealedBinding",
+    "profile.governor.topologySealed",
+    "profile.token.balanceOf",
+    "profile.token.exclusiveAgent",
+    "profile.token.getFrozenTokens",
+    "profile.token.isFrozen",
+    "profile.token.owner"
+  ],
+  "resolvedTopology": [
+    {
+      "address": "0x5fbdb2315678afecb367f032d93f642f64180aa3",
+      "byteLength": 751,
+      "immutableDeclarations": [
+        {
+          "astId": 6788,
+          "canonicalType": "enum MockBoundDependency.Mode",
+          "encodedWord": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "locations": [
+            {
+              "length": 32,
+              "start": 207
+            },
+            {
+              "length": 32,
+              "start": 380
+            }
+          ],
+          "name": "mode",
+          "sourcePath": "implementation/test/mocks/MockBoundDependency.sol"
+        },
+        {
+          "astId": 6790,
+          "canonicalType": "bytes32",
+          "encodedWord": "0x7f5e080db61909c428e657f1989b9518bd846810492118bf7c92a17c312ee5e7",
+          "locations": [
+            {
+              "length": 32,
+              "start": 298
+            },
+            {
+              "length": 32,
+              "start": 473
+            }
+          ],
+          "name": "config",
+          "sourcePath": "implementation/test/mocks/MockBoundDependency.sol"
+        }
+      ],
+      "keccak256": "0x752b7d2aee84657f877d8d6fc110af0035b075448388570059521619de7215e1",
+      "label": "MockBoundDependency",
+      "runtimePath": "evidence/end-to-end-refinement/runtime-binding/resolved/native/MockBoundDependency.hex",
+      "sha256": "777beadc3b3f7d9077fca3de434106c774f1aa2bd73d09934ba85bbaeac71e11"
+    },
+    {
+      "address": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+      "byteLength": 24142,
+      "immutableDeclarations": [
+        {
+          "astId": 622,
+          "canonicalType": "uint8",
+          "encodedWord": "0x0000000000000000000000000000000000000000000000000000000000000012",
+          "locations": [
+            {
+              "length": 32,
+              "start": 6970
+            }
+          ],
+          "name": "decimals",
+          "sourcePath": "implementation/src/TrustStorage.sol"
+        },
+        {
+          "astId": 626,
+          "canonicalType": "address",
+          "encodedWord": "0x000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+          "locations": [
+            {
+              "length": 32,
+              "start": 517
+            },
+            {
+              "length": 32,
+              "start": 1580
+            },
+            {
+              "length": 32,
+              "start": 8522
+            },
+            {
+              "length": 32,
+              "start": 19822
+            }
+          ],
+          "name": "governor",
+          "sourcePath": "implementation/src/TrustStorage.sol"
+        }
+      ],
+      "keccak256": "0x8b16213b4bf922deb63f7caca9117a35cef545921ed5e0bfa840da107151deb2",
+      "label": "TrustToken",
+      "runtimePath": "evidence/end-to-end-refinement/runtime-binding/resolved/native/TrustToken.hex",
+      "sha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d"
+    },
+    {
+      "address": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+      "byteLength": 586,
+      "immutableDeclarations": [],
+      "keccak256": "0xee50757a7564e584ef56a3e632d60160694b15e038b8e98ae062326968661ea8",
+      "label": "MockERC3643IdentityRegistry",
+      "runtimePath": "evidence/end-to-end-refinement/runtime-binding/resolved/verified-profile/MockERC3643IdentityRegistry.hex",
+      "sha256": "ddedd34330c18b1fd2bbe9f1fad4f78681af5ac802ac19d2ac4659ac5e4c21af"
+    },
+    {
+      "address": "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+      "byteLength": 424,
+      "immutableDeclarations": [],
+      "keccak256": "0xf96179c6703ad85a481fad095b86e3352f0ac639a0916ecdd43731132667985b",
+      "label": "MockERC3643Compliance",
+      "runtimePath": "evidence/end-to-end-refinement/runtime-binding/resolved/verified-profile/MockERC3643Compliance.hex",
+      "sha256": "c9eae4a76d156fe6899e9c5a2949ffc524ed2ac7825b8aa3b9c824ca106a6564"
+    },
+    {
+      "address": "0xdc64a140aa3e981100a9beca4e685f962f0cf6c9",
+      "byteLength": 3021,
+      "immutableDeclarations": [
+        {
+          "astId": 4377,
+          "canonicalType": "address",
+          "encodedWord": "0x0000000000000000000000009fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+          "locations": [
+            {
+              "length": 32,
+              "start": 2294
+            }
+          ],
+          "name": "identityRegistry",
+          "sourcePath": "implementation/test/mocks/MockERC3643Token.sol"
+        },
+        {
+          "astId": 4379,
+          "canonicalType": "address",
+          "encodedWord": "0x000000000000000000000000cf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+          "locations": [
+            {
+              "length": 32,
+              "start": 1164
+            }
+          ],
+          "name": "compliance",
+          "sourcePath": "implementation/test/mocks/MockERC3643Token.sol"
+        }
+      ],
+      "keccak256": "0xccb1af115346a3eb14be18af7e57e1b94f06937720432e1e27ba7f1ca048dc3f",
+      "label": "MockERC3643Token",
+      "runtimePath": "evidence/end-to-end-refinement/runtime-binding/resolved/verified-profile/MockERC3643Token.hex",
+      "sha256": "e95058c0436eaf7b54abd15a3cfe256a86c5e363f6bb14074723ef219df380b8"
+    },
+    {
+      "address": "0x5fc8d32690cc91d4c39d9d3abcbd16989f875707",
+      "byteLength": 2214,
+      "immutableDeclarations": [
+        {
+          "astId": 3840,
+          "canonicalType": "address",
+          "encodedWord": "0x000000000000000000000000dc64a140aa3e981100a9beca4e685f962f0cf6c9",
+          "locations": [
+            {
+              "length": 32,
+              "start": 159
+            },
+            {
+              "length": 32,
+              "start": 492
+            },
+            {
+              "length": 32,
+              "start": 645
+            },
+            {
+              "length": 32,
+              "start": 949
+            },
+            {
+              "length": 32,
+              "start": 1550
+            }
+          ],
+          "name": "token",
+          "sourcePath": "implementation/src/profiles/ProfileGovernor.sol"
+        },
+        {
+          "astId": 3842,
+          "canonicalType": "address",
+          "encodedWord": "0x0000000000000000000000009fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+          "locations": [
+            {
+              "length": 32,
+              "start": 457
+            },
+            {
+              "length": 32,
+              "start": 882
+            },
+            {
+              "length": 32,
+              "start": 1310
+            },
+            {
+              "length": 32,
+              "start": 1745
+            }
+          ],
+          "name": "identityRegistry",
+          "sourcePath": "implementation/src/profiles/ProfileGovernor.sol"
+        },
+        {
+          "astId": 3844,
+          "canonicalType": "address",
+          "encodedWord": "0x000000000000000000000000cf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+          "locations": [
+            {
+              "length": 32,
+              "start": 423
+            },
+            {
+              "length": 32,
+              "start": 848
+            },
+            {
+              "length": 32,
+              "start": 1245
+            },
+            {
+              "length": 32,
+              "start": 1837
+            }
+          ],
+          "name": "compliance",
+          "sourcePath": "implementation/src/profiles/ProfileGovernor.sol"
+        },
+        {
+          "astId": 3846,
+          "canonicalType": "address",
+          "encodedWord": "0x000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+          "locations": [
+            {
+              "length": 32,
+              "start": 288
+            },
+            {
+              "length": 32,
+              "start": 1056
+            }
+          ],
+          "name": "bootstrapAuthority",
+          "sourcePath": "implementation/src/profiles/ProfileGovernor.sol"
+        },
+        {
+          "astId": 3848,
+          "canonicalType": "bytes32",
+          "encodedWord": "0xccb1af115346a3eb14be18af7e57e1b94f06937720432e1e27ba7f1ca048dc3f",
+          "locations": [
+            {
+              "length": 32,
+              "start": 375
+            },
+            {
+              "length": 32,
+              "start": 916
+            },
+            {
+              "length": 32,
+              "start": 1155
+            },
+            {
+              "length": 32,
+              "start": 1585
+            }
+          ],
+          "name": "expectedTokenCodeId",
+          "sourcePath": "implementation/src/profiles/ProfileGovernor.sol"
+        }
+      ],
+      "keccak256": "0x46ab2b39a477a96ec33de82ce3b61471d4ed160820e6e6182b08d0c5ecfb9f0c",
+      "label": "ProfileGovernor",
+      "runtimePath": "evidence/end-to-end-refinement/runtime-binding/resolved/verified-profile/ProfileGovernor.hex",
+      "sha256": "dcd494b7b7568d372213d0358df8740f9943806ac3b5a9356f4c8507ae72ef7f"
+    },
+    {
+      "address": "0x0165878a594ca255338adfa4d48449f69242eb8f",
+      "byteLength": 16398,
+      "immutableDeclarations": [
+        {
+          "astId": 761,
+          "canonicalType": "address",
+          "encodedWord": "0x000000000000000000000000dc64a140aa3e981100a9beca4e685f962f0cf6c9",
+          "locations": [
+            {
+              "length": 32,
+              "start": 214
+            },
+            {
+              "length": 32,
+              "start": 9988
+            },
+            {
+              "length": 32,
+              "start": 11590
+            },
+            {
+              "length": 32,
+              "start": 12228
+            },
+            {
+              "length": 32,
+              "start": 12329
+            },
+            {
+              "length": 32,
+              "start": 16118
+            }
+          ],
+          "name": "token",
+          "sourcePath": "implementation/src/profiles/ERC3643TrustAdapter.sol"
+        },
+        {
+          "astId": 763,
+          "canonicalType": "address",
+          "encodedWord": "0x000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+          "locations": [
+            {
+              "length": 32,
+              "start": 637
+            },
+            {
+              "length": 32,
+              "start": 15705
+            }
+          ],
+          "name": "authority",
+          "sourcePath": "implementation/src/profiles/ERC3643TrustAdapter.sol"
+        },
+        {
+          "astId": 765,
+          "canonicalType": "bytes32",
+          "encodedWord": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+          "locations": [
+            {
+              "length": 32,
+              "start": 288
+            },
+            {
+              "length": 32,
+              "start": 15787
+            }
+          ],
+          "name": "authorityRef",
+          "sourcePath": "implementation/src/profiles/ERC3643TrustAdapter.sol"
+        },
+        {
+          "astId": 767,
+          "canonicalType": "uint64",
+          "encodedWord": "0x0000000000000000000000000000000000000000000000000000000000000001",
+          "locations": [
+            {
+              "length": 32,
+              "start": 3288
+            },
+            {
+              "length": 32,
+              "start": 15955
+            }
+          ],
+          "name": "authorityEpoch",
+          "sourcePath": "implementation/src/profiles/ERC3643TrustAdapter.sol"
+        },
+        {
+          "astId": 770,
+          "canonicalType": "contract ProfileGovernor",
+          "encodedWord": "0x0000000000000000000000005fc8d32690cc91d4c39d9d3abcbd16989f875707",
+          "locations": [
+            {
+              "length": 32,
+              "start": 1178
+            },
+            {
+              "length": 32,
+              "start": 4179
+            },
+            {
+              "length": 32,
+              "start": 6369
+            },
+            {
+              "length": 32,
+              "start": 8382
+            },
+            {
+              "length": 32,
+              "start": 9916
+            },
+            {
+              "length": 32,
+              "start": 10727
+            },
+            {
+              "length": 32,
+              "start": 13726
+            },
+            {
+              "length": 32,
+              "start": 15641
+            }
+          ],
+          "name": "profileGovernor",
+          "sourcePath": "implementation/src/profiles/ERC3643TrustAdapter.sol"
+        },
+        {
+          "astId": 773,
+          "canonicalType": "contract IERC3643TokenView",
+          "encodedWord": "0x000000000000000000000000dc64a140aa3e981100a9beca4e685f962f0cf6c9",
+          "locations": [
+            {
+              "length": 32,
+              "start": 2075
+            },
+            {
+              "length": 32,
+              "start": 4789
+            },
+            {
+              "length": 32,
+              "start": 5554
+            },
+            {
+              "length": 32,
+              "start": 9535
+            },
+            {
+              "length": 32,
+              "start": 11424
+            },
+            {
+              "length": 32,
+              "start": 12440
+            },
+            {
+              "length": 32,
+              "start": 15225
+            }
+          ],
+          "name": "_tokenView",
+          "sourcePath": "implementation/src/profiles/ERC3643TrustAdapter.sol"
+        }
+      ],
+      "keccak256": "0x51d7c1e6deee1f2e08ec7e0fd495dcf5a8276eb1fc147836d2c53a799316ca70",
+      "label": "ERC3643TrustAdapter",
+      "runtimePath": "evidence/end-to-end-refinement/runtime-binding/resolved/verified-profile/ERC3643TrustAdapter.hex",
+      "sha256": "0c873ae5756cf6a3e3ab1317af7c09a39391640b3c54bef4b84b091042d9cf4b"
+    }
+  ],
+  "reversalCodes": [
+    {
+      "abstract": "TRUST_UNFREEZE",
+      "ordinal": 0,
+      "solidity": "UNFREEZE"
+    },
+    {
+      "abstract": "TRUST_RELEASE",
+      "ordinal": 1,
+      "solidity": "RELEASE"
+    },
+    {
+      "abstract": "TRUST_UNRESTRICT",
+      "ordinal": 2,
+      "solidity": "UNRESTRICT"
+    }
+  ],
+  "schemaVersion": 1,
+  "selectorBoundary": {
+    "evidencePath": "evidence/end-to-end-refinement/kevm/fail-05-generic-dispatcher-revert-20260802T174934Z/evidence.json",
+    "evidenceSha256": "4fabe719b33ba4339df8d5e8f2f0ce201d9cb37c4e1d88e7fc570dd62b116184",
+    "expectedRevertData": "0x",
+    "genericDispatcherInputSelector": {
+      "decimal": 4294967295,
+      "hex": "0xffffffff"
+    },
+    "obligationId": "FAIL-05",
+    "proofSpecPath": "formal/kevm/specs/full-transaction-generic-dispatcher-revert-spec.k",
+    "proofSpecSha256": "a628ac74a976dac895b0562e962149c412f92ced3d035e311350765044c4c79a",
+    "typedCommandEntrypoints": [
+      {
+        "decimal": 2644653369,
+        "name": "executeRegulatoryAction",
+        "selector": "0x9da23539",
+        "signature": "executeRegulatoryAction((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint64,uint256,uint48,uint48))"
+      },
+      {
+        "decimal": 2058032795,
+        "name": "executeRegulatoryReversal",
+        "selector": "0x7aab169b",
+        "signature": "executeRegulatoryReversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,uint256,uint48,uint48))"
+      }
+    ],
+    "typedFailureSelectors": [
+      {
+        "decimal": 946785368,
+        "name": "TrustOperationalFailure",
+        "selector": "0x386ecc58",
+        "signature": "TrustOperationalFailure(bytes32,uint16,bytes32)"
+      },
+      {
+        "decimal": 2364935023,
+        "name": "TrustRejected",
+        "selector": "0x8cf60b6f",
+        "signature": "TrustRejected(bytes32,uint16)"
+      }
+    ]
+  },
+  "sourceBinding": {
+    "compilerDeterministicRootSha256": "44c62545b9545741bce98b313f412914bc976430c5596de6ad735f68d81cd4ab",
+    "compilerManifestPath": "evidence/end-to-end-refinement/runtime-binding/manifest.json",
+    "compilerManifestSha256": "97e4a349ff6667f01fb67515998c283383731d69a2fdaa00c06e260c11fcc5bb",
+    "fixtureDeterministicRootSha256": "b5ce284d6b7017a1feff3244bb67f175303660d86348ce93dbd8065bd39d3a2d",
+    "fixturePath": "evidence/end-to-end-refinement/runtime-binding/resolved/fixture.json",
+    "fixtureSha256": "59b93ba41941f61ef357be99d240f6a274730be25ccdbb1a7d686be68ea938f6",
+    "obligationIndexPath": "evidence/end-to-end-refinement/obligation-evidence-index.json",
+    "obligationRegistrySha256": "3b6b0910539c58e53db7c6dbf11c8bf0e4a4d9d7aaec6d8b5d233573dc514dba"
+  }
+}

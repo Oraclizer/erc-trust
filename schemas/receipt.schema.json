@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://erc-trust.example/schemas/receipt.schema.json",
+  "title": "ERC-TRUST canonical receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "commandId",
+    "commandKind",
+    "source",
+    "destination",
+    "amount",
+    "caseId",
+    "policyBinding",
+    "provenanceCommitment",
+    "preState",
+    "postState",
+    "externalCommitment",
+    "receiptHash"
+  ],
+  "properties": {
+    "commandId": { "$ref": "#/$defs/bytes32" },
+    "commandKind": { "type": "integer", "minimum": 0, "maximum": 255 },
+    "source": { "$ref": "#/$defs/address" },
+    "destination": { "$ref": "#/$defs/address" },
+    "amount": { "$ref": "#/$defs/uintString" },
+    "caseId": { "$ref": "#/$defs/bytes32" },
+    "policyBinding": { "$ref": "#/$defs/bytes32" },
+    "provenanceCommitment": { "$ref": "#/$defs/bytes32" },
+    "preState": { "$ref": "#/$defs/bytes32" },
+    "postState": { "$ref": "#/$defs/bytes32" },
+    "externalCommitment": { "$ref": "#/$defs/bytes32" },
+    "receiptHash": { "$ref": "#/$defs/bytes32" }
+  },
+  "$defs": {
+    "bytes32": {
+      "type": "string",
+      "pattern": "^0x[0-9a-fA-F]{64}$"
+    },
+    "address": {
+      "type": "string",
+      "pattern": "^0x[0-9a-fA-F]{40}$"
+    },
+    "uintString": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)$"
+    }
+  }
+}

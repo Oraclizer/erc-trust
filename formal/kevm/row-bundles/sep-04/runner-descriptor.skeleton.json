@@ -1,0 +1,226 @@
+{
+  "authoritativeCommandTemplate": [
+    "bash",
+    "formal/kevm/row-bundles/run-row-bundle.sh",
+    "--bundle",
+    "<completed-sep-04-bundle.json>",
+    "--positive-definition",
+    "<exact-positive-definition-directory>",
+    "--negative-definition",
+    "<exact-negative-definition-directory>",
+    "--output-directory",
+    "<fresh-output-directory>",
+    "--report",
+    "<fresh-replay-report.json>",
+    "--curated-evidence-directory",
+    "<fresh-curated-evidence-directory>",
+    "--isabelle-report",
+    "<fresh-sep-04-isabelle-closure-report.json>",
+    "--side-timeout-seconds",
+    "<positive-integer>",
+    "--no-use-booster"
+  ],
+  "completedBundleValidationCommandTemplate": [
+    "python3",
+    "formal/kevm/row-bundles/validate-bundle.py",
+    "<completed-sep-04-bundle.json>"
+  ],
+  "coordinatorSuppliedAfterAuthoritativeRuns": {
+    "completedBundlePath": null,
+    "curatedEvidenceDirectory": null,
+    "isabelleClosureReport": null,
+    "mutantControlReport": null,
+    "negativeDefinitionDirectory": null,
+    "outputDirectory": null,
+    "positiveDefinitionDirectory": null,
+    "replayReport": null,
+    "semanticBridgeCertificate": null
+  },
+  "definitionCompileCommandTemplates": {
+    "negative": [
+      "kevm",
+      "kompile-spec",
+      "formal/kevm/row-bundles/sep-04/generated/mutant-runtime-verification.k",
+      "--main-module",
+      "TRUST-RUNTIME-VERIFICATION",
+      "--target",
+      "haskell",
+      "--emit-json",
+      "--output-definition",
+      "<fresh-negative-definition-directory>"
+    ],
+    "positive": [
+      "kevm",
+      "kompile-spec",
+      "formal/kevm/trust-runtime-verification.k",
+      "--main-module",
+      "TRUST-RUNTIME-VERIFICATION",
+      "--target",
+      "haskell",
+      "--emit-json",
+      "--output-definition",
+      "<fresh-positive-definition-directory>"
+    ]
+  },
+  "eligibleForDischarge": false,
+  "independentReplayPlan": [
+    "regenerate, validate the captured fixture, audit BigInt boundaries, and reverse-check all row-local identities",
+    "compile fresh canonical and one-byte-mutant KEVM definitions",
+    "run the mutant executable-control claim and require a closed 0xab-topic witness",
+    "run the unchanged exact-runtime claim against both definitions through the serial repository-owned row runner",
+    "produce a checked storage/return/final-event observation to alpha_transaction/canonical_receipt_trace certificate",
+    "perform a clean Isabelle build and oracle-free theorem export",
+    "validate the completed bundle and independently replay into fresh output and curated evidence"
+  ],
+  "inputs": {
+    "claim": {
+      "path": "formal/kevm/row-bundles/sep-04/claim.k",
+      "sha256": "9d0e346a898f84e59c4be1d957c50d9cc9204c0a76372c91b06eba2da0e928c5"
+    },
+    "compositionGraph": {
+      "path": "formal/kevm/row-bundles/sep-04/composition-graph.json",
+      "rootSha256": "8729d58c7a547a884494830b211f3b54c2c9b4574a3d14a721955c69483136cd",
+      "sha256": "3899ed20ac61dbaa8a8ae9770bbbec1f68f741318655abbdd71ef8bf7a567aa5"
+    },
+    "fixture": {
+      "path": "formal/kevm/row-bundles/sep-04/fixture.json",
+      "sha256": "d6357125ae439813b7dc04f0ca2c4b58c49825c7ae7b82ef6c72d67325d17d34"
+    },
+    "isabelleClosureScript": {
+      "path": "formal/kevm/row-bundles/sep-04/isabelle/run-closure.ps1",
+      "sha256": "2f59b23b0d11fd17705a11ec25ae73cb0696db83b495a66f087f20c15b218887"
+    },
+    "mutantExecutableControlClaim": {
+      "path": "formal/kevm/row-bundles/sep-04/mutant-control-claim.k",
+      "sha256": "153834f856426c26ab31a077f25fec5c00362f0b7415f189e09bcba0eb7f37c8"
+    },
+    "negativeRuntimeBridge": {
+      "path": "formal/kevm/row-bundles/sep-04/generated/mutant-runtime-bridge.k",
+      "sha256": "9acba0ede1a335d4326d5f2f4cdf55713cde833b3438db65dfd15e9b84e18d77"
+    },
+    "negativeVerification": {
+      "path": "formal/kevm/row-bundles/sep-04/generated/mutant-runtime-verification.k",
+      "sha256": "e380844cea44b450c03fc3d0f345e22980801b96fe0270fa921c667a8e062bf9"
+    },
+    "parseOnlyHelper": {
+      "path": "formal/kevm/row-bundles/sep-04/parse-claims.py",
+      "sha256": "98bda1b4d2d779584c35b9249ae91ba8b58974f294ed148479ff601460b024f1"
+    },
+    "positiveVerification": {
+      "path": "formal/kevm/trust-runtime-verification.k",
+      "sha256": "df6b227bfd1ab5bfc7cfdb364a7da4dea4b5660789e4513f10e78d00dcbe4193"
+    },
+    "skeletonBundle": {
+      "path": "formal/kevm/row-bundles/sep-04/bundle.skeleton.json",
+      "sha256": "56e7052587cca9f82044fae25d5c224684c5a5b814bb184b06ff6677767a5881"
+    }
+  },
+  "interfacePilot": [
+    "ABI-01",
+    "STATE-02",
+    "STATE-03",
+    "STATE-06",
+    "AUTH-01",
+    "AUTH-02",
+    "AUTH-03",
+    "ACT-05",
+    "EXT-01",
+    "SEP-01",
+    "SEP-02",
+    "ART-02",
+    "ART-03",
+    "ART-04",
+    "ART-05",
+    "ART-06",
+    "ART-07"
+  ],
+  "isabelleClosureCommandTemplate": [
+    "powershell",
+    "-File",
+    "formal/kevm/row-bundles/sep-04/isabelle/run-closure.ps1",
+    "-IsabelleRoot",
+    "<exact-isabelle-root>",
+    "-AdsFunctor",
+    "<exact-ads-functor-directory>",
+    "-FormalFoundation",
+    "<exact-formal-foundation-directory>",
+    "-OutputDirectory",
+    "<fresh-isabelle-output-directory>"
+  ],
+  "mutantExecutableControlCommandTemplate": [
+    "bash",
+    "formal/kevm/row-bundles/bootstrap-row-proof.sh",
+    "--spec",
+    "formal/kevm/row-bundles/sep-04/mutant-control-claim.k",
+    "--module",
+    "TRUST-SEP-04-MUTANT-EVENT-TOPIC-CONTROL-SPEC",
+    "--definition",
+    "<exact-negative-definition-directory>",
+    "--output-directory",
+    "<fresh-mutant-control-output-directory>",
+    "--expected-exit",
+    "0"
+  ],
+  "obligationId": "SEP-04",
+  "parseOnlyCommandTemplates": {
+    "control": [
+      "<kevm-pyk-python>",
+      "formal/kevm/row-bundles/sep-04/parse-claims.py",
+      "--definition",
+      "<existing-pinned-kevm-definition-directory>",
+      "--role",
+      "control"
+    ],
+    "positive": [
+      "<kevm-pyk-python>",
+      "formal/kevm/row-bundles/sep-04/parse-claims.py",
+      "--definition",
+      "<existing-pinned-kevm-definition-directory>",
+      "--role",
+      "positive"
+    ]
+  },
+  "proofFacts": {
+    "isabelleBuild": null,
+    "mutantControlClaimId": null,
+    "mutantControlGraph": null,
+    "negativeDefinitionHashes": null,
+    "negativeGraph": null,
+    "positiveClaimId": null,
+    "positiveDefinitionHashes": null,
+    "positiveGraph": null,
+    "replay": null,
+    "semanticBridgeCertificate": null
+  },
+  "proofStatus": "PASS_OPEN_STATIC_V2",
+  "repositoryOwnedTools": [
+    {
+      "path": "formal/kevm/row-bundles/run-row-bundle.sh",
+      "sha256": "1ab935de0dd7b40bb108955b60c232f6fa3afdeea62e6eb380a2fe26a0a3dcc1"
+    },
+    {
+      "path": "formal/kevm/row-bundles/validate-bundle.py",
+      "sha256": "a355958d31156a7efd4df21574f639f3218803265a417b517649ddedd41e1d65"
+    },
+    {
+      "path": "formal/kevm/row-bundles/analyze-row-proof.mjs",
+      "sha256": "b404b56b1b38362dc84a1532a43631b8cb456ef2aae4aa373ca6532d697e2dd7"
+    },
+    {
+      "path": "formal/kevm/row-bundles/curate-row-output.py",
+      "sha256": "44f507e8512cb23cfc966f1bb508aa4e31c0421bda6279f4eb4854b85887f4b8"
+    },
+    {
+      "path": "formal/kevm/row-bundles/verify-curated-evidence.py",
+      "sha256": "91c334b3b8501037bb46db4bdd94790397a0925e1732c2a89c13b50d50c9febe"
+    },
+    {
+      "path": "formal/kevm/row-bundles/bootstrap-row-proof.sh",
+      "sha256": "4d495843374acc3766c1e31f0867c03f7d6e548edda0f46a111a1ccfef362ac9"
+    }
+  ],
+  "requiredProperty": "`receipt_preimage_matches_storage_return_and_final_event`",
+  "schemaVersion": 2,
+  "status": "OPEN",
+  "theoremName": "receipt_preimage_matches_storage_return_and_final_event"
+}

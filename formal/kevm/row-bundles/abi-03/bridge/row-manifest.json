@@ -1,0 +1,38 @@
+{
+  "bridge": {
+    "path": "formal/kevm/row-bundles/abi-03/bridge/row-bridge.json",
+    "sha256": "1bc3424c91396bc7b529e40a52fdd969347722dbd0a9d904f7c4fe6195f10796"
+  },
+  "compilerClosure": {
+    "path": "formal/kevm/row-bundles/abi-03/bridge/mutant-compiler-output.json",
+    "sha256": "6d42f54701bc3a53e5018f23e5e880d2329b406112e93834344f3c0233e66960"
+  },
+  "generated": [
+    {
+      "path": "formal/kevm/row-bundles/abi-03/generated/mutant-runtime-bridge.k",
+      "sha256": "341b8287cc70e7478a92ba56eff1e8f0ddcb187cad8bd4e34b8159c2b6f2807b"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-03/generated/mutant-runtime-verification.k",
+      "sha256": "e380844cea44b450c03fc3d0f345e22980801b96fe0270fa921c667a8e062bf9"
+    }
+  ],
+  "mutationPatch": {
+    "path": "formal/kevm/row-bundles/abi-03/mutation/abi-03-allow-trailing-success.diff",
+    "sha256": "090185a331807345d91ce5451a72ed2b955124862c72f941cadec6da92b9d08d"
+  },
+  "obligationId": "ABI-03",
+  "proofSpec": {
+    "claimId": "6adb6bf3e7629f12e822a2b4772ec91837db3eab2656d3fcb1acfa297e8ac161",
+    "module": "TRUST-ABI-03-TRAILING-IDLE-COMBINED-SPEC",
+    "path": "formal/kevm/row-bundles/abi-03/claim.k",
+    "sha256": "971cfbb07202d5e9707115c7661d15f91527d1542d761d8c4f443d5cd98832a3"
+  },
+  "schemaVersion": 1,
+  "theorem": {
+    "name": "abi_03_trailing_calldata_reverts_and_stutters",
+    "path": "formal/kevm/row-bundles/abi-03/isabelle/ABI_03_Trailing_Calldata_Reverts_And_Stutters.thy",
+    "session": "ERC_TRUST_ABI_03",
+    "sha256": "60e3f1af88ca0813dadc9f6c4544a000ca6eb4b3f5424b2f7b78ddbab81aeebd"
+  }
+}

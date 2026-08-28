@@ -1,0 +1,31 @@
+{
+  "schema": "erc-trust-pilot-regression-v1",
+  "candidate": "0.1.0-candidate.1",
+  "sourceBinding": {
+    "status": "PASS",
+    "files": 14,
+    "artifacts": 2,
+    "creationAndRuntimeBytecode": "exact hashes match pilot/evidence/hashes.json"
+  },
+  "foundry": {
+    "status": "PASS",
+    "tests": 13,
+    "failed": 0,
+    "fuzzRuns": 256,
+    "runtimeBytes": 18914,
+    "eip170MarginBytes": 5662
+  },
+  "preservedRemoteEvidence": {
+    "certora": "13/13 historical SUCCESS; current executable logic and CVL rules are unchanged, but public labels changed file hashes and no fresh remote run is claimed",
+    "kontrol": "2/2 historical PASS; creation/runtime bytecode is unchanged, but a harness comment changed its file hash and no fresh proof run is claimed"
+  },
+  "negativeMutation": {
+    "status": "PASS",
+    "total": 5,
+    "killed": 5,
+    "survived": 0,
+    "result": "evidence/pilot-mutation-results.json"
+  },
+  "claim": "pilot conjunct VERIFIED",
+  "claimBoundary": "Preserved FREEZE vertical slice only; not evidence for the six-action reference implementation."
+}

@@ -1,0 +1,101 @@
+{
+  "assumptions": [
+    "caller is token self-call",
+    "selector/calldata/binding/epochs/actionId exact"
+  ],
+  "authority": {
+    "legacyCarryover": false,
+    "nativeRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "runtimeFreezeRef": {
+      "path": "evidence/end-to-end-refinement/m4-runtime-freeze-v1.json",
+      "sha256": "ba18d99f630bad67faee824ec83f1071f478a393639faa087be739d880164d67"
+    },
+    "scopeRef": {
+      "path": "evidence/end-to-end-refinement/m4-core-refinement-scope-v1.json",
+      "sha256": "a94fdd38612e6d77fec2057c67bfa88d71d826234fb6116ab8b23650c88f6f56"
+    },
+    "sourceHead": "add3dfb9ca75923d6462d16ba8eb41cad0b1216f",
+    "tcbIndexRef": {
+      "deterministicRootSha256": "baf66d7f1ba3e09b9d03ee55dee4bfd8ff5ba3ada3f3d38c139fdfa9f1ab1243",
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v1/index-v1.json",
+      "sha256": "11d13e917fd2930c93b77c3900d8c2addbd71e6ff3ce67354ed6175da3e28113"
+    }
+  },
+  "canonicalClaimCount": 3,
+  "claims": [
+    {
+      "expectedOrigin": "PURE_FORMULA",
+      "id": "C3-01",
+      "statement": "erc7943_ticket_is_exact_use"
+    },
+    {
+      "expectedOrigin": "CALL_INPUT",
+      "id": "C3-02",
+      "statement": "set_frozen_route_matches_exact_command"
+    },
+    {
+      "expectedOrigin": "PRESTATE_PINNED",
+      "id": "C3-03",
+      "statement": "inner_failure_rolls_back_ticket_and_authorization"
+    }
+  ],
+  "dependsOn": [
+    "C0",
+    "C1",
+    "C2"
+  ],
+  "failureGuarantees": [
+    "wrong caller/selector/calldata/binding/epoch or inner failure restores ticket and authorization"
+  ],
+  "id": "C3",
+  "isabelleAnchor": "TRUST_Reusable_Summaries",
+  "kSeam": "TRUST-C3-EXACT-USE-ROUTE-SPEC",
+  "mutationFamily": [
+    "ticket deletion removal",
+    "selector or calldata omission",
+    "inner failure retention"
+  ],
+  "name": "ExactUseRoute",
+  "nonclaims": [
+    "raw ERC-7943 call authorization without wrapper",
+    "profile route"
+  ],
+  "ownedInputs": [
+    "raw calldata",
+    "caller and environment",
+    "finite owned storage keys"
+  ],
+  "positiveInhabitant": {
+    "artifactRefRequired": true,
+    "required": true,
+    "sameEntryWithNegative": true
+  },
+  "primaryConsumers": [
+    "EXT-02",
+    "EXT-03",
+    "FAIL-08"
+  ],
+  "rawPrestateProjection": {
+    "origin": "PRESTATE_PINNED",
+    "runtimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d"
+  },
+  "sameEntryNegative": {
+    "permittedDeltaRequired": true,
+    "required": true,
+    "terminalSemanticDifferenceRequired": true
+  },
+  "schemaVersion": 1,
+  "sharedFrame": {
+    "disjointnessRequired": true,
+    "kind": "SPARSE_DISJOINT_MAP",
+    "preservationRequired": true
+  },
+  "status": "FROZEN_UNPROVED",
+  "successGuarantees": [
+    "ticket consumed exactly once and deleted"
+  ],
+  "tcbProfiles": [
+    "CERTORA-FINANCIAL-CORE-v1",
+    "KEVM-LEGACY-HASKELL-STRICT-v1"
+  ]
+}

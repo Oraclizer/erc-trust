@@ -1,0 +1,172 @@
+{
+  "acceptance": {
+    "positiveInhabitantRequired": true,
+    "sanityFailure": 0,
+    "survivingSummaryMutations": 0,
+    "timeout": 0,
+    "unknown": 0
+  },
+  "allowedClaims": [
+    "authorization",
+    "replay",
+    "failure classification",
+    "state effect",
+    "receipt consistency"
+  ],
+  "approximations": [
+    "explicit conservative external-call summaries recorded per rule"
+  ],
+  "authorityClass": "COMPILED_BYTECODE_FINANCIAL_RULES",
+  "availability": "AVAILABLE",
+  "centralCredit": "CONDITIONAL_COMPONENT",
+  "compilerBinding": {
+    "compilerCorrectnessClaimed": false,
+    "deterministicRootSha256": "44c62545b9545741bce98b313f412914bc976430c5596de6ad735f68d81cd4ab",
+    "nativeRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "path": "evidence/end-to-end-refinement/runtime-binding/manifest.json",
+    "sha256": "97e4a349ff6667f01fb67515998c283383731d69a2fdaa00c06e260c11fcc5bb",
+    "solcBinarySha256": "c8d35afdddc3cd2743ee88b8f25e0fecd16e2bdd5f2120f37e52cd9cc45ae0e6",
+    "solcVersion": "0.8.36+commit.8a079791"
+  },
+  "forbiddenClaims": [
+    "external approval truth",
+    "legal truth",
+    "compiler correctness",
+    "standalone end-to-end refinement"
+  ],
+  "legacyEvidencePreservation": {
+    "bridgeFiles": [
+      {
+        "path": "evidence/end-to-end-refinement/runtime-bridge/schema.json",
+        "sha256": "f087342d0eaa57a02468ff78e553ad42bb25fe027e833f311a5d0caac72383b7"
+      },
+      {
+        "path": "evidence/end-to-end-refinement/runtime-bridge/generated-manifest.json",
+        "sha256": "50085fbb6ed540c036754820177785813c96c72191a84f297f8c9952d9802827"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy",
+        "sha256": "48ef15ed0789be51c0d56f22740d93ba5c7a474116209be66855e8c95b870728"
+      },
+      {
+        "path": "formal/kevm/generated/trust-runtime-bridge.k",
+        "sha256": "bf8d587f7644d002d05bc7ab16806a39a3354d216cdcad53f504a9bb8b99d836"
+      }
+    ],
+    "dependencyLock": {
+      "immutable": true,
+      "path": "formal/kevm/dependencies.lock.json",
+      "sha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196"
+    },
+    "legacyCarryoverToCurrentProfile": false,
+    "legacyDischargedRows": [
+      "ABI-03",
+      "FAIL-05",
+      "ART-02",
+      "ART-03",
+      "ART-04",
+      "ART-05"
+    ]
+  },
+  "profileId": "CERTORA-FINANCIAL-CORE-v2",
+  "profileSet": "ERC_TRUST_M4_NATIVE_FINANCIAL_CORE_V2",
+  "replay": {
+    "command": "cd implementation && certoraRun certora/TrustFinancialCore.conf",
+    "remoteService": true
+  },
+  "runtimeFreezeRef": {
+    "path": "evidence/end-to-end-refinement/m4-runtime-freeze-v1.json",
+    "sha256": "ba18d99f630bad67faee824ec83f1071f478a393639faa087be739d880164d67"
+  },
+  "schemaVersion": 2,
+  "scopeRef": {
+    "path": "evidence/end-to-end-refinement/m4-core-refinement-scope-v1.json",
+    "sha256": "a94fdd38612e6d77fec2057c67bfa88d71d826234fb6116ab8b23650c88f6f56"
+  },
+  "settings": {
+    "autoSummaries": 0,
+    "explicitExternalSummariesRequired": true,
+    "optimisticFallback": false,
+    "optimisticHashing": false,
+    "optimisticLoop": false,
+    "optimisticSummary": false,
+    "ruleSanity": "advanced",
+    "unresolvedCalls": 0
+  },
+  "sourceHead": "add3dfb9ca75923d6462d16ba8eb41cad0b1216f",
+  "tool": {
+    "binary": "/usr/local/bin/certoraRun",
+    "binarySha256": "3fd0ba71e9b7689698c5d23c9057660425f18d51417190cf4a40dd620af12ecf",
+    "cliVersion": "8.17.1",
+    "name": "Certora Prover",
+    "serviceRevision": "MUST_BE_RECORDED_BY_FRESH_REMOTE_RECEIPT"
+  },
+  "verificationInputs": {
+    "classificationHarnessRefs": [
+      {
+        "path": "implementation/test/mocks/TrustPolicyBindingHarness.sol",
+        "sha256": "c0d0fef54f5c4e7f9197608a0072e3b3ff0cacdfd9c3555942dee91bf012fa06"
+      },
+      {
+        "path": "implementation/certora/TrustPolicyBindingHarness.spec",
+        "sha256": "7372bcd41d9491bfc196944ad9443ffac0f2898290b08d5cbe42bf2277718c28"
+      },
+      {
+        "path": "implementation/certora/TrustPolicyBindingHarness.conf",
+        "sha256": "7d1eaa37557125d586827f2b2bb6614516b847df1620ca540080ee7a8bea8e88"
+      }
+    ],
+    "classificationReceiptRefs": [
+      {
+        "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-ACT01-CERTORA-C2-HARNESS-PROOF-017/input-manifest.json",
+        "sha256": "934cc838b85ff214ab1ca3b9dc2a37daef598f74bb47e311aaf90548d8a66e35"
+      },
+      {
+        "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-ACT01-CERTORA-C2-HARNESS-PROOF-017/sanitized-receipt.json",
+        "sha256": "332e8b9cf53136175407c793112244746c36fff60190c3150355713dd5feebed"
+      },
+      {
+        "path": "evidence/end-to-end-refinement/certora-current-profile/mutations/C2-BINDING-ECHO-OMISSION-v1.json",
+        "sha256": "a4a45eaf9448bc643e4849cae4489c07007520bcdd7de7746ba8df3c9830c50d"
+      },
+      {
+        "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-ACT01-CERTORA-C2-MUTANT-PROOF-020/input-manifest.json",
+        "sha256": "b86cd5ebef4f96e56f7ec0f1853cc9af662d69376e204a19beb957cd38a19c9a"
+      },
+      {
+        "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-ACT01-CERTORA-C2-MUTANT-PROOF-020/sanitized-receipt.json",
+        "sha256": "8d56d261dc6e8730a81158748bb00d72f67b684322d3f690361484283741928b"
+      }
+    ],
+    "configRef": {
+      "path": "implementation/certora/TrustFinancialCore.conf",
+      "sha256": "5f7a6d80f90d79930447ef76d0dd309d47e5497fd095c4b89ce6d50c0afc3430"
+    },
+    "sourceRefs": [
+      {
+        "path": "implementation/src/TrustToken.sol",
+        "sha256": "dbe06bb25a2b62913bd6428e1de32ba007a214e24ac45f4fd2c0fb55ea22c96a"
+      },
+      {
+        "path": "implementation/src/TrustPolicyBinding.sol",
+        "sha256": "f24c15105c27ab3ed5586693343e5c1d83e22b79dad0b4c187a3bb341dba4a41"
+      },
+      {
+        "path": "implementation/src/TrustStorage.sol",
+        "sha256": "881783e28f8ec36e4571f48f407db4b63f8e736237f5e9f1044d916f3c066c6f"
+      },
+      {
+        "path": "implementation/src/TrustTypes.sol",
+        "sha256": "cb16ab2f3d8df94d8a933c45367c594096d3f97f9a969998d89fc55837f4ab3e"
+      },
+      {
+        "path": "implementation/test/mocks/CertoraUnresolvedHarness.sol",
+        "sha256": "1b7afd042ed7a1c77a643614637967637171a68a973d66b7ec571b00e73dc23c"
+      }
+    ],
+    "specRef": {
+      "path": "implementation/certora/TrustFinancialCore.spec",
+      "sha256": "7c898e144049e82ed7217e4ff3c6ab93a02b23ef910db749b6eac14b75d0f898"
+    }
+  }
+}

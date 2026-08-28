@@ -1,0 +1,110 @@
+{
+  "assumptions": [
+    "canonical typed command",
+    "pinned authority/delegation/policy prestate"
+  ],
+  "authority": {
+    "legacyCarryover": false,
+    "nativeRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "runtimeFreezeRef": {
+      "path": "evidence/end-to-end-refinement/m4-runtime-freeze-v1.json",
+      "sha256": "ba18d99f630bad67faee824ec83f1071f478a393639faa087be739d880164d67"
+    },
+    "scopeRef": {
+      "path": "evidence/end-to-end-refinement/m4-core-refinement-scope-v1.json",
+      "sha256": "a94fdd38612e6d77fec2057c67bfa88d71d826234fb6116ab8b23650c88f6f56"
+    },
+    "sourceHead": "add3dfb9ca75923d6462d16ba8eb41cad0b1216f",
+    "tcbIndexRef": {
+      "deterministicRootSha256": "baf66d7f1ba3e09b9d03ee55dee4bfd8ff5ba3ada3f3d38c139fdfa9f1ab1243",
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v1/index-v1.json",
+      "sha256": "11d13e917fd2930c93b77c3900d8c2addbd71e6ff3ce67354ed6175da3e28113"
+    }
+  },
+  "canonicalClaimCount": 4,
+  "claims": [
+    {
+      "expectedOrigin": "CALL_INPUT",
+      "id": "C1-01",
+      "statement": "authority_and_delegation_match_exact_command"
+    },
+    {
+      "expectedOrigin": "PRESTATE_PINNED",
+      "id": "C1-02",
+      "statement": "authority_policy_epochs_are_current"
+    },
+    {
+      "expectedOrigin": "PURE_FORMULA",
+      "id": "C1-03",
+      "statement": "command_id_and_nonce_consumed_once_on_success"
+    },
+    {
+      "expectedOrigin": "PRESTATE_PINNED",
+      "id": "C1-04",
+      "statement": "rejection_and_operational_failure_preserve_authorization"
+    }
+  ],
+  "dependsOn": [
+    "C0",
+    "C2"
+  ],
+  "failureGuarantees": [
+    "unauthorized, stale, replay, denial, and operational failure stutter"
+  ],
+  "id": "C1",
+  "isabelleAnchor": "TRUST_Reusable_Summaries",
+  "kSeam": "CERTORA-C1-COMPILED-BYTECODE",
+  "mutationFamily": [
+    "scope check removal",
+    "epoch check removal",
+    "pre-call nonce consumption"
+  ],
+  "name": "AuthorizationReplay",
+  "nonclaims": [
+    "identity truth",
+    "policy truth",
+    "liveness"
+  ],
+  "ownedInputs": [
+    "raw calldata",
+    "caller and environment",
+    "finite owned storage keys"
+  ],
+  "positiveInhabitant": {
+    "artifactRefRequired": true,
+    "required": true,
+    "sameEntryWithNegative": true
+  },
+  "primaryConsumers": [
+    "AUTH-01",
+    "AUTH-02",
+    "AUTH-03",
+    "AUTH-04",
+    "AUTH-05",
+    "FAIL-01",
+    "STATE-06"
+  ],
+  "rawPrestateProjection": {
+    "origin": "PRESTATE_PINNED",
+    "runtimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d"
+  },
+  "sameEntryNegative": {
+    "permittedDeltaRequired": true,
+    "required": true,
+    "terminalSemanticDifferenceRequired": true
+  },
+  "schemaVersion": 1,
+  "sharedFrame": {
+    "disjointnessRequired": true,
+    "kind": "SPARSE_DISJOINT_MAP",
+    "preservationRequired": true
+  },
+  "status": "FROZEN_UNPROVED",
+  "successGuarantees": [
+    "exact scope and actor authorization",
+    "success-only once consumption"
+  ],
+  "tcbProfiles": [
+    "CERTORA-FINANCIAL-CORE-v1"
+  ]
+}

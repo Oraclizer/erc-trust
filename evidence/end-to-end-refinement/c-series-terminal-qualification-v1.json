@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_C_SERIES_TERMINAL_QUALIFICATION_V1",
+  "status": "PASS_C_SERIES_C0_THROUGH_C6_SEVEN_OF_SEVEN",
+  "terminal": true,
+  "date": "2026-08-28",
+  "nativeRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+  "productionTrustTokenSha256": "dbe06bb25a2b62913bd6428e1de32ba007a214e24ac45f4fd2c0fb55ea22c96a",
+  "qualificationIndex": {
+    "path": "evidence/end-to-end-refinement/reusable-summaries-v1/qualifications/qualification-index-v1.json",
+    "sha256": "3426f6773d4501af495b9bd2d8b6760185242536108066e80f030bc55ec8dd01"
+  },
+  "packageRootSha256": "a36717a9e50ad0f206dc0a757cd9e97cc3eb7ab70911d0bb6c56b42fb2db6b33",
+  "packages": [
+    {
+      "id": "C0",
+      "path": "evidence/end-to-end-refinement/c0-universal-iff-qualification-v1.json",
+      "sha256": "f5ed07d481e35d9a1f3fd7458004e1a212537c20343cf5685021ef8cf1e7eded"
+    },
+    {
+      "id": "C2",
+      "path": "evidence/end-to-end-refinement/c2-runtime-binder-receipt-v1.json",
+      "sha256": "40ec60405389d02575f525af89eeac1154f2d8d4ba68daf684332334f5201619"
+    },
+    {
+      "id": "C1",
+      "path": "evidence/end-to-end-refinement/c1-terminal-receipt-v1.json",
+      "sha256": "1ecf5ed3da7dda4eee73a1589cfc331d7de5773436da8d4c0990af53d7c690c1"
+    },
+    {
+      "id": "C3",
+      "path": "evidence/end-to-end-refinement/c3-terminal-receipt-v1.json",
+      "sha256": "eb69128c671cdc8d2e93cba502f6d5b327f2e5d9014acd31044dff78c7b26f47"
+    },
+    {
+      "id": "C4",
+      "path": "evidence/end-to-end-refinement/c4-terminal-receipt-v1.json",
+      "sha256": "c0f7745147b34e9788c44705fc71c663559ae07f6d67ea3b2c65624d3c5bd85d"
+    },
+    {
+      "id": "C6",
+      "path": "evidence/end-to-end-refinement/c6-terminal-receipt-v1.json",
+      "sha256": "6afba204a95dfe43455ed9c1896f809461f0ee9652a2ecc6422467be93a29847"
+    },
+    {
+      "id": "C5",
+      "path": "evidence/end-to-end-refinement/c5-terminal-receipt-v1.json",
+      "sha256": "913a46292382df1bb970ed50b4460c7fe7f103a93fb164c38880f7fdd0cf4b4a"
+    }
+  ],
+  "qualifiedCount": 7,
+  "requiredCount": 7,
+  "heldCount": 0,
+  "openCount": 0,
+  "act01": {
+    "status": "RUNTIME_QUALIFIED",
+    "receipt": {
+      "path": "evidence/end-to-end-refinement/act01-current-profile-terminal-receipt-v1.json",
+      "sha256": "7631fc1978c94a394ca2d0c76803ac86f44bd185c2ad1d9f65b1706a2bc496be"
+    },
+    "currentProfileCredit": 1
+  },
+  "replay": {
+    "entry": {
+      "path": "scripts/replay-m4-current-profile-v1.ps1",
+      "sha256": "d6bdc7290a9e20dedc4f4100997d8558ccf0eb46b2696490026f430c1e19f243"
+    },
+    "requiredStatus": "PASS_OPEN_REFINEMENT_GATE",
+    "coreRefinement": "1/49"
+  },
+  "tcb": {
+    "index": {
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v2/index-v2.json",
+      "sha256": "2f2f7bb871f7aea0575789c985c75c4518971de61b6ea1600aaf7c195f91d284"
+    },
+    "centralCredit": 0
+  },
+  "nonclaims": [
+    "C-series completion is not 49/49 Core completion",
+    "Supporting current-profile rows remain separately qualified",
+    "No public release, main merge, or standard submission is implied"
+  ]
+}

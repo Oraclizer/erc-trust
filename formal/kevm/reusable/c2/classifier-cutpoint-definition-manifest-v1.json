@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_C2_CLASSIFIER_CUTPOINT_AUGMENTED_DEFINITION_V1",
+  "inputCanonicalPath": "formal/kevm/reusable/c2/c2-canonical-approval-spec.k",
+  "inputCanonicalSha256": "8bdd9e77d25c0ce678dc9685cc3ace3cd21f3074c1fdf5b6e0f3070bf4366a66",
+  "definitionSourcePath": "formal/kevm/reusable/c2/c2-classifier-cutpoint-runtime-verification.k",
+  "definitionSourceSha256": "55b63c9fc299cf0002656eb3fe33611f050ee2e9fde5e8578ce0e1672db4f86d",
+  "mainModule": "TRUST-C2-CLASSIFIER-CUTPOINT-RUNTIME-VERIFICATION",
+  "claimSourcePath": "formal/kevm/reusable/c2/c2-canonical-approval-cutpoint-claim.k",
+  "claimSourceSha256": "5b91a30ee75aafe2567a0bc5ddf22481c1442b092767b2f2e2af7882123107fc",
+  "claimModule": "TRUST-C2-CANONICAL-APPROVAL-CUTPOINT-CLAIM",
+  "ruleSha256": "70d39c50273222b015bc3af6081ce6383ffc501e50fbaf0cf892a37356e02783",
+  "observedPc": 22155,
+  "priority": 1,
+  "modifiedCells": [
+    "k"
+  ],
+  "symbolic": [
+    "EVIDENCE"
+  ],
+  "legacyDefinitionModified": false,
+  "compiledDefinition": null,
+  "proofStatus": "UNPROVED",
+  "credit": 0
+}

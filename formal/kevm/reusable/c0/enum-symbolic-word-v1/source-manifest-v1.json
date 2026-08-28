@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_C0_ENUM_SYMBOLIC_WORD_SOURCE_MANIFEST_V1",
+  "status": "ENUM6_ACCEPT_AND_ENUM3_BIDIRECTIONAL_SOURCE_FROZEN_BEFORE_PROOFS",
+  "contract": {
+    "path": "evidence/end-to-end-refinement/c0-enum-symbolic-word-contract-v1.json",
+    "sha256": "8413e8699c577adc128d3ed5cc006cece93fb39522eaa3e50b54f2425364ac1f"
+  },
+  "runtime": {
+    "path": "evidence/end-to-end-refinement/runtime-binding/resolved/native/TrustToken.hex",
+    "fileSha256": "1c2e73fa137a50993301eacf9e70aa73623a5d4673c58cadedb60e12c273f44f",
+    "semanticSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "bytes": 24142
+  },
+  "families": {
+    "ENUM_LT_6": {
+      "entryPc": 13605,
+      "terminalInstructionPc": 13614,
+      "acceptPc": 13615,
+      "rejectPc": 2767,
+      "sliceHex": "916006831015610acf57",
+      "sliceSha256": "f178f00a783f54aca04d53953b639380713769e50b3d07044a611d8b282d7b8f",
+      "wordStackPattern": "W : 0 : 0 : .WordStack",
+      "acceptDomain": "0 <=Int W andBool W <Int 6",
+      "rejectDomain": "6 <=Int W andBool W <Int (2 ^Int 256)",
+      "inheritedRejectReceiptPath": "evidence/end-to-end-refinement/c0-enum-lt-6-symbolic-reject-probe-receipt-v1.json",
+      "inheritedRejectReceiptSha256": "b6683daf4a57479548587fd1a22471e43383b675cbe68fbda8d23c6824b4010c",
+      "normalizedCoreShapeCount": 1,
+      "occurrenceCount": 2
+    },
+    "ENUM_LT_3": {
+      "entryPc": 11322,
+      "terminalInstructionPc": 11331,
+      "acceptPc": 11332,
+      "rejectPc": 2767,
+      "sliceHex": "936003851015610acf57",
+      "sliceSha256": "d568721fbf72e74c2e0c55f32cf62145834fafa56f26db21eedc28e44dd60802",
+      "wordStackPattern": "W : 0 : 0 : 0 : 0 : .WordStack",
+      "acceptDomain": "0 <=Int W andBool W <Int 3",
+      "rejectDomain": "3 <=Int W andBool W <Int (2 ^Int 256)",
+      "normalizedCoreShapeCount": 1,
+      "occurrenceCount": 2
+    }
+  },
+  "claims": [
+    {
+      "id": "c0-enum-lt-6-symbolic-accept",
+      "module": "C0-ENUM-LT-6-SYMBOLIC-ACCEPT-SPEC",
+      "family": "ENUM_LT_6",
+      "role": "universal-accept",
+      "targetPc": 13615,
+      "requires": "0 <=Int W andBool W <Int 6",
+      "path": "formal/kevm/reusable/c0/enum-symbolic-word-v1/claims/c0-enum-lt-6-symbolic-accept.k",
+      "sha256": "e9b84162329d5a471afda7fc24e8bfb100a7a59f7e57185a94d522c19aa8884b",
+      "symbolicVariables": [
+        "W"
+      ],
+      "symbolicListTail": false,
+      "wordStackPattern": "W : 0 : 0 : .WordStack"
+    },
+    {
+      "id": "c0-enum-lt-6-symbolic-reject-probe",
+      "module": "C0-ENUM-LT-6-SYMBOLIC-REJECT-PROBE-SPEC",
+      "role": "production-universal-reject-probe",
+      "targetPc": 2767,
+      "requires": "6 <=Int W andBool W <Int (2 ^Int 256)",
+      "symbolicVariables": [
+        "W"
+      ],
+      "symbolicListTail": false,
+      "path": "formal/kevm/reusable/c0/enum-lt-6-symbolic-reject-probe-v1/claims/c0-enum-lt-6-symbolic-reject-probe.k",
+      "sha256": "276e8c4b739450dd372eb750d3de3c7e0279bb471657059632f02bd1fdacc6da",
+      "family": "ENUM_LT_6",
+      "status": "INHERITED_STRICT_PASS",
+      "receiptPath": "evidence/end-to-end-refinement/c0-enum-lt-6-symbolic-reject-probe-receipt-v1.json",
+      "receiptSha256": "b6683daf4a57479548587fd1a22471e43383b675cbe68fbda8d23c6824b4010c"
+    },
+    {
+      "id": "c0-enum-lt-3-symbolic-accept",
+      "module": "C0-ENUM-LT-3-SYMBOLIC-ACCEPT-SPEC",
+      "family": "ENUM_LT_3",
+      "role": "universal-accept",
+      "targetPc": 11332,
+      "requires": "0 <=Int W andBool W <Int 3",
+      "path": "formal/kevm/reusable/c0/enum-symbolic-word-v1/claims/c0-enum-lt-3-symbolic-accept.k",
+      "sha256": "dc1a21d55f98b8273db46f5474ea4a5d90c7f7d2a34ea9986505e659010610da",
+      "symbolicVariables": [
+        "W"
+      ],
+      "symbolicListTail": false,
+      "wordStackPattern": "W : 0 : 0 : 0 : 0 : .WordStack"
+    },
+    {
+      "id": "c0-enum-lt-3-symbolic-reject",
+      "module": "C0-ENUM-LT-3-SYMBOLIC-REJECT-SPEC",
+      "family": "ENUM_LT_3",
+      "role": "universal-reject",
+      "targetPc": 2767,
+      "requires": "3 <=Int W andBool W <Int (2 ^Int 256)",
+      "path": "formal/kevm/reusable/c0/enum-symbolic-word-v1/claims/c0-enum-lt-3-symbolic-reject.k",
+      "sha256": "ab5a561777f53972e6544c193b610e8723ceaf0589175270ce3e842c82373a75",
+      "symbolicVariables": [
+        "W"
+      ],
+      "symbolicListTail": false,
+      "wordStackPattern": "W : 0 : 0 : 0 : 0 : .WordStack"
+    }
+  ],
+  "claimRootSha256": "ae0e1742320bb411797df729aefa0874bd15803e04b6152d7bb6320d8d8f437e",
+  "canonicalDefinition": {
+    "custodyId": "quarantine-m4-unmerged-20260825-141706/c0-uint48-symbolic-word-v3-20260827/canonical-definition-001",
+    "definitionKoreSha256": "d8ad03e19b362aeea0344ae0ffa1882c228cb72f3ebdfc146b09554862ad2507",
+    "compiledJsonSha256": "0b9f666bf720a3e72b5ce87b3c87fa167928c70af481db8b629bef3f4c864d9c",
+    "compiledBinSha256": "ed68d8f5c769c0523cb1ebba9e7ff9bf1995d147c9a4db4b7aa6fdf64e266c0b"
+  },
+  "mutation": {
+    "contractPath": "formal/kevm/reusable/c0/d1-d3-slices-v1/mutation-v1.json",
+    "contractSha256": "6c8b9fe807cf55e4894f3b8cc0ebf90b368dc1828b68312f1a3cc8b161fadee2",
+    "strictReceiptPath": "evidence/end-to-end-refinement/c0-d1-d3-strict-representative-receipt-v1.json",
+    "strictReceiptSha256": "b4f542a4251863bc0809d80921b28cf7736b3ec95882e696da23af1e39a4117d",
+    "ENUM_LT_6": {
+      "pc": 13605,
+      "before": "91",
+      "after": "fe",
+      "status": "INHERIT_EXACT_EXISTING_CANONICAL_AND_MUTANT_RECEIPT"
+    },
+    "ENUM_LT_3": {
+      "pc": 11322,
+      "before": "93",
+      "after": "fe",
+      "status": "INHERIT_EXACT_EXISTING_CANONICAL_AND_MUTANT_RECEIPT"
+    },
+    "newMutationDesign": false,
+    "strengthChanged": false
+  },
+  "d5Composition": {
+    "path": "evidence/end-to-end-refinement/c0-d5-composition-receipt-v1.json",
+    "sha256": "cf1276d89b3e3008501fc3ae841cc5dc56fa668486335ce11854aead2b2ef77a"
+  },
+  "proofPlan": {
+    "parseOnlyFirst": true,
+    "strictAttemptsPerClaim": 1,
+    "timeoutSeconds": 1800,
+    "workers": 1,
+    "forceSequential": true,
+    "breakEveryStep": true,
+    "booster": false,
+    "assumeDefined": false,
+    "resume": false
+  },
+  "qualification": {
+    "enumLt6FamilyCreditBeforePass": 0,
+    "enumLt3FamilyCreditBeforePass": 0,
+    "uint48FamilyCredit": 0,
+    "c0Status": "QUALIFICATION_HELD",
+    "act01Status": "OPEN",
+    "coreCreditDelta": 0,
+    "centralCredit": 0
+  }
+}

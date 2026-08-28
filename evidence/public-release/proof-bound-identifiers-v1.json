@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_PROOF_BOUND_HISTORICAL_IDENTIFIERS_V1",
+  "status": "FROZEN_EXACT_ALLOWLIST",
+  "date": "2026-08-28",
+  "policy": {
+    "newPathsAllowed": false,
+    "newOccurrencesAllowed": false,
+    "countIncreaseAllowed": false,
+    "credentialsAllowlisted": false,
+    "privatePathsAllowlisted": false,
+    "privateBranchesAllowlisted": false,
+    "toolAttributionAllowlisted": false
+  },
+  "glossaryPath": "docs/PROOF-BOUND-IDENTIFIERS.md",
+  "summary": {
+    "files": 14,
+    "contentOccurrences": 42,
+    "pathIdentifierFiles": 2
+  },
+  "files": [
+    {
+      "path": "evidence/end-to-end-refinement/c1-terminal-receipt-v1.json",
+      "sha256": "1ecf5ed3da7dda4eee73a1589cfc331d7de5773436da8d4c0990af53d7c690c1",
+      "contentOccurrenceCount": 6,
+      "identifiers": [
+        "M4"
+      ],
+      "lineAnchors": [
+        61,
+        63,
+        65,
+        72,
+        74,
+        76
+      ],
+      "pathIdentifiers": []
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c3-terminal-receipt-v1.json",
+      "sha256": "eb69128c671cdc8d2e93cba502f6d5b327f2e5d9014acd31044dff78c7b26f47",
+      "contentOccurrenceCount": 6,
+      "identifiers": [
+        "M4"
+      ],
+      "lineAnchors": [
+        48,
+        50,
+        52,
+        59,
+        61,
+        63
+      ],
+      "pathIdentifiers": []
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c4-freeze-lane-receipt-v1.json",
+      "sha256": "a3c628fae7233998ff1a2425786bcabf04c53c38d86cec95aeb4930cc94c0d1b",
+      "contentOccurrenceCount": 5,
+      "identifiers": [
+        "M4"
+      ],
+      "lineAnchors": [
+        33,
+        35,
+        37,
+        44,
+        46
+      ],
+      "pathIdentifiers": []
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c4-terminal-receipt-v1.json",
+      "sha256": "c0f7745147b34e9788c44705fc71c663559ae07f6d67ea3b2c65624d3c5bd85d",
+      "contentOccurrenceCount": 4,
+      "identifiers": [
+        "M4"
+      ],
+      "lineAnchors": [
+        42,
+        44,
+        48,
+        50
+      ],
+      "pathIdentifiers": []
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c5-terminal-receipt-v1.json",
+      "sha256": "913a46292382df1bb970ed50b4460c7fe7f103a93fb164c38880f7fdd0cf4b4a",
+      "contentOccurrenceCount": 4,
+      "identifiers": [
+        "M4"
+      ],
+      "lineAnchors": [
+        39,
+        41,
+        45,
+        47
+      ],
+      "pathIdentifiers": []
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c6-terminal-receipt-v1.json",
+      "sha256": "6afba204a95dfe43455ed9c1896f809461f0ee9652a2ecc6422467be93a29847",
+      "contentOccurrenceCount": 5,
+      "identifiers": [
+        "M4"
+      ],
+      "lineAnchors": [
+        39,
+        41,
+        43,
+        50,
+        52
+      ],
+      "pathIdentifiers": []
+    },
+    {
+      "path": "evidence/end-to-end-refinement/current-profile-bridge-v1/schema-v1.json",
+      "sha256": "2aa641af1f362bbe1aaa246edfd22045999903a030afd02973c9f0cab8e70c8f",
+      "contentOccurrenceCount": 1,
+      "identifiers": [
+        "M4"
+      ],
+      "lineAnchors": [
+        52
+      ],
+      "pathIdentifiers": []
+    },
+    {
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v2/profiles/CERTORA-FINANCIAL-CORE-v2.json",
+      "sha256": "60a53edd76ea94c965da35279abccc165cf5d5fed796e9c20b37e3552d922e8e",
+      "contentOccurrenceCount": 4,
+      "identifiers": [
+        "M4"
+      ],
+      "lineAnchors": [
+        121,
+        125,
+        133,
+        137
+      ],
+      "pathIdentifiers": []
+    },
+    {
+      "path": "evidence/end-to-end-refinement/m4-core-refinement-scope-v1.json",
+      "sha256": "a94fdd38612e6d77fec2057c67bfa88d71d826234fb6116ab8b23650c88f6f56",
+      "contentOccurrenceCount": 3,
+      "identifiers": [
+        "M4"
+      ],
+      "lineAnchors": [
+        7,
+        97
+      ],
+      "pathIdentifiers": [
+        "M4"
+      ]
+    },
+    {
+      "path": "evidence/end-to-end-refinement/m4-current-profile-row-qualifications-v1.json",
+      "sha256": "e903257492c5a6969aa92c244c310c5c702bd9102890a76650997e253ff749ce",
+      "contentOccurrenceCount": 0,
+      "identifiers": [],
+      "lineAnchors": [],
+      "pathIdentifiers": [
+        "M4"
+      ]
+    },
+    {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_M4_Action_Reversal_Row_Corollaries.thy",
+      "sha256": "ae3b862dcdf0ba6b2049b0d4c92e216ce99c8745757ddc7b606854f1be3db355",
+      "contentOccurrenceCount": 1,
+      "identifiers": [
+        "M4"
+      ],
+      "lineAnchors": [
+        65
+      ],
+      "pathIdentifiers": []
+    },
+    {
+      "path": "implementation/certora/TrustFinancialCore.conf",
+      "sha256": "5f7a6d80f90d79930447ef76d0dd309d47e5497fd095c4b89ce6d50c0afc3430",
+      "contentOccurrenceCount": 1,
+      "identifiers": [
+        "M4"
+      ],
+      "lineAnchors": [
+        21
+      ],
+      "pathIdentifiers": []
+    },
+    {
+      "path": "scripts/generate-current-profile-runtime-bridge-v1.mjs",
+      "sha256": "79806d2a3477b91358c1c613356b74193d18bf0bb91401bbafcef2aeaa3e1e12",
+      "contentOccurrenceCount": 1,
+      "identifiers": [
+        "M4"
+      ],
+      "lineAnchors": [
+        54
+      ],
+      "pathIdentifiers": []
+    },
+    {
+      "path": "scripts/verify-current-profile-runtime-bridge-v1.mjs",
+      "sha256": "307b388a6203b2b8f40c659973bde3b93b3f400131f79be6d23470b265773b6d",
+      "contentOccurrenceCount": 1,
+      "identifiers": [
+        "M4"
+      ],
+      "lineAnchors": [
+        23
+      ],
+      "pathIdentifiers": []
+    }
+  ]
+}

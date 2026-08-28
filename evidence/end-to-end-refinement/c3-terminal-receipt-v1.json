@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_C3_TERMINAL_RECEIPT_V1",
+  "packageId": "C3",
+  "status": "PASS_C3_TERMINAL_RUNTIME_QUALIFICATION",
+  "terminal": true,
+  "statement": [
+    "erc7943_ticket_is_exact_use",
+    "set_frozen_route_matches_exact_command",
+    "inner_failure_rolls_back_ticket_and_authorization"
+  ],
+  "identity": {
+    "nativeRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "productionSource": {
+      "path": "implementation/src/TrustToken.sol",
+      "sha256": "dbe06bb25a2b62913bd6428e1de32ba007a214e24ac45f4fd2c0fb55ea22c96a"
+    },
+    "package": {
+      "path": "evidence/end-to-end-refinement/reusable-summaries-v1/packages/c3-exact-use-route-v1.json",
+      "sha256": "48c11928f875c09caf8c73ad6c9814c402436ea0e786a062f0174e4fc9079048"
+    },
+    "spec": {
+      "path": "implementation/certora/TrustC3ExactUseRoute.spec",
+      "sha256": "045e26c9fe4a38f15801bda9385b5854a5c3909c29a19495bc8178b43647b14e"
+    },
+    "canonicalHarness": {
+      "path": "implementation/test/mocks/TrustTokenC3RouteHarness.sol",
+      "sha256": "a6e4af1cc5d6a6340a9dfe89c2011c3fd77664610ba8b2b67718062e3670120b"
+    },
+    "mutantProduction": {
+      "path": "implementation/src/TrustTokenC3RouteDeletionMutant.sol",
+      "sha256": "673e6813b0e0c9827a75b119c110884ca1770e2ca3cc100e63e90ee87de2c1e2"
+    },
+    "mutantHarness": {
+      "path": "implementation/test/mocks/TrustTokenC3RouteHarnessMutant.sol",
+      "sha256": "184666afdcd93a003873e84ff3116b243336d1d8a7eff1f95901c1d5aba58c1d"
+    },
+    "formulationVerifier": {
+      "path": "scripts/verify-c3-certora-route-formulation-v1.mjs",
+      "sha256": "65a0273d655070afb2ad36f30007c925570397e2d373767a86eda30dea1c6cfc"
+    },
+    "tcbProfile": {
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v2/profiles/CERTORA-FINANCIAL-CORE-v2.json",
+      "sha256": "60a53edd76ea94c965da35279abccc165cf5d5fed796e9c20b37e3552d922e8e"
+    }
+  },
+  "canonical": {
+    "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C3-CERTORA-CANONICAL-PROOF-052/sanitized-receipt.json",
+    "sha256": "4ed98e0a72ef524c5d576f4debac7ca7b12c0fa24c33111c09406705cb717f49",
+    "jobId": "M4-C3-CERTORA-CANONICAL-PROOF-052",
+    "inputManifestRef": {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C3-CERTORA-CANONICAL-PROOF-052/input-manifest.json",
+      "sha256": "0b0963fec7b3afca4f9b11ccac3a0cff7f25142a517d960829b629a934b8e392",
+      "payloadManifestRootSha256": "5332044068bfe859208b301eed29a203f446fd438da16f7c9fe70703e03cd7b9"
+    },
+    "privateLogSha256": "794ba2ab94dde5ea52588eea82c53dc26231049a5daa8654a5a8416d83c12762"
+  },
+  "sameEntryNegative": {
+    "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C3-CERTORA-MUTANT-PROOF-053/sanitized-receipt.json",
+    "sha256": "fe9e5fbf9f7c367294db81a544de47ba7edce9e549df7f6fac1a763962fec585",
+    "jobId": "M4-C3-CERTORA-MUTANT-PROOF-053",
+    "inputManifestRef": {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C3-CERTORA-MUTANT-PROOF-053/input-manifest.json",
+      "sha256": "396f243509467f368dd516fc74d835490e20807c49bea61239b2f10fc9291b8f",
+      "payloadManifestRootSha256": "af4fbd7919143be4d544b491b397dfb885f7380ba303aa0d689a39be82ddb22f"
+    },
+    "mutation": {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/mutations/C3-ROUTE-TICKET-DELETION-OMISSION-v1.json",
+      "sha256": "d251c4601060a11b6fa799b0aad02a7ae1cd437caa2d4bda0188ceba9538a073"
+    },
+    "semanticViolations": [
+      "erc7943_ticket_is_exact_use",
+      "set_frozen_route_matches_exact_command"
+    ],
+    "privateLogSha256": "abb068edfd595e94f59c7fe42add6310901f09c3dacf83f83b4795322ce968b3"
+  },
+  "baselineRestore": {
+    "productionSourceSha256": "dbe06bb25a2b62913bd6428e1de32ba007a214e24ac45f4fd2c0fb55ea22c96a",
+    "canonicalHarnessSha256": "a6e4af1cc5d6a6340a9dfe89c2011c3fd77664610ba8b2b67718062e3670120b",
+    "formulationVerifierPassRequired": true,
+    "canonicalTerminalReceiptSha256": "4ed98e0a72ef524c5d576f4debac7ca7b12c0fa24c33111c09406705cb717f49"
+  },
+  "frame": {
+    "routeReuseRejectionPreservesConsumedPoststate": true,
+    "routeMismatchRollsBackTicket": true,
+    "innerFailureRollsBackTicketAndAuthorization": true,
+    "wholeStorageEqualityStandaloneAssertions": 3
+  },
+  "assumptions": [
+    "The frozen Native runtime and production TrustToken source identities are exact.",
+    "The verification environment models the wrapper self-call by setting msg.sender to currentContract.",
+    "C1 owns authorization validity and C2 owns dependency classification consumed by C3."
+  ],
+  "nonclaims": [
+    "C3 does not authorize raw ERC-7943 sensitive calls without the wrapper route.",
+    "C3 does not prove forward financial effects owned by C4 or whole-transaction receipt atomicity owned by C6.",
+    "C3 does not by itself qualify ACT-01 or any row credit."
+  ],
+  "qualification": {
+    "positiveTerminalPass": true,
+    "sameEntryMutationKilled": true,
+    "baselineRestored": true,
+    "frameQualified": true,
+    "c3RuntimeQualified": true,
+    "c3PackageQualified": true,
+    "act01Qualified": false,
+    "coreRefinementQualifiedDelta": 0,
+    "supportingQualifiedDelta": 0,
+    "centralCredit": 0
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_C2_STATICCALL_CUTPOINT_PACKAGE_V1",
+  "sourcePath": "formal/kevm/reusable/c2/c2-staticcall-placement-cutpoint-spec.k",
+  "sourceSha256": "f2e47d7af5eba114dab154f92b96a1195fa79a613133cef069ed1ae2b20372f7",
+  "specModule": "TRUST-C2-STATICCALL-PLACEMENT-CUTPOINT-SPEC",
+  "cutpointModule": "TRUST-C2-STATICCALL-RETURN-CUTPOINT",
+  "inputPlacementPath": "formal/kevm/reusable/c2/c2-staticcall-placement-spec.k",
+  "inputPlacementSha256": "6e039df8705fd4327d612df7017b77ca962f9db697fe3fc987634c2eacd5719c",
+  "cutpointRuleSha256": "3a10ee20395508ebf4112fd24267a1af4d9f9e6804d49b572affe695bc1171c4",
+  "observedPc": 21900,
+  "priority": 1,
+  "modifiedCells": [
+    "k"
+  ],
+  "framedCells": "all non-k cells",
+  "tcb": "verification-only identity observer at the named post-STATICCALL PC",
+  "proofStatus": "UNPROVED",
+  "credit": 0,
+  "nonclaims": [
+    "The cutpoint rule does not prove reachability or construct returndata",
+    "No C2 runtime or ACT-01 credit before strict proof, rule-shape verifier, and binder"
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_C4_FREEZE_LANE_RECEIPT_V1",
+  "packageId": "C4",
+  "lane": "FREEZE",
+  "status": "PASS_C4_FREEZE_LANE_RUNTIME_QUALIFICATION",
+  "terminal": true,
+  "c4PackageTerminal": false,
+  "identity": {
+    "nativeRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "productionSource": {
+      "path": "implementation/src/TrustToken.sol",
+      "sha256": "dbe06bb25a2b62913bd6428e1de32ba007a214e24ac45f4fd2c0fb55ea22c96a"
+    },
+    "package": {
+      "path": "evidence/end-to-end-refinement/reusable-summaries-v1/packages/c4-forward-financial-effects-v1.json",
+      "sha256": "ce1dd77f0e48e10ddec05dc9c60d11511f3812ddac41ac2f153785b1f19752c7"
+    },
+    "spec": {
+      "path": "implementation/certora/TrustC4Freeze.spec",
+      "sha256": "cc920b0e896a8159d12105353b314e1f1e1fb934517ce405f29b28ee2a713750"
+    },
+    "canonicalHarness": {
+      "path": "implementation/test/mocks/TrustTokenC4FreezeHarness.sol",
+      "sha256": "149d7e66d7a1982a51828f6564a98cd2fd1ae472f720a454d778af534a68b38c"
+    },
+    "formulationVerifier": {
+      "path": "scripts/verify-c4-freeze-formulation-v1.mjs",
+      "sha256": "27a1d1c2977780817954a564b1237168a61dacef8d696319499487fc9772ea7d"
+    }
+  },
+  "canonical": {
+    "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C4-FREEZE-CERTORA-CANONICAL-PROOF-056/sanitized-receipt.json",
+    "sha256": "60833604972348b5154c66af058c6ff6a61f532dd83c82a7ca705a2100df537d",
+    "jobId": "M4-C4-FREEZE-CERTORA-CANONICAL-PROOF-056",
+    "inputManifestRef": {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C4-FREEZE-CERTORA-CANONICAL-PROOF-056/input-manifest.json",
+      "sha256": "52f408768fbc283287f9e6eb130278e2a5a9fe9fe86adb77d5b231b12322d458",
+      "payloadManifestRootSha256": "10ce871b4cb54932dbb11a41ee4173daea4372232e1daadead83a9e5b30b0b44"
+    },
+    "privateLogSha256": "eb32ef53285acbcca0fb48940114428a18620595cd460c9dcf49cbc11f227c40"
+  },
+  "sameEntryNegative": {
+    "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C4-FREEZE-CERTORA-MUTANT-PROOF-057/sanitized-receipt.json",
+    "sha256": "e142f7aab60544f25ccb2e3691805303237c33ffa69c13f8c8cf2e545be079b2",
+    "jobId": "M4-C4-FREEZE-CERTORA-MUTANT-PROOF-057",
+    "mutation": {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/mutations/C4-FREEZE-INCREMENTAL-v1.json",
+      "sha256": "b4fcf2b5175ab6c7cec9e49aeef94db2e187e501af642690f238d0a64bf32e5e"
+    },
+    "semanticViolations": [
+      "freeze_sets_absolute_target_and_effect_provenance"
+    ],
+    "privateLogSha256": "30960fccb8bbf3c105a7eea3e470b7eab9799af93ddbd6b30387943a407811b8"
+  },
+  "qualification": {
+    "positiveTerminalPass": true,
+    "sameEntryMutationKilled": true,
+    "baselineRestored": true,
+    "frameQualified": true,
+    "c4FreezeLaneQualified": true,
+    "c4PackageQualified": false,
+    "act01Consumable": true,
+    "centralCredit": 0
+  },
+  "remainingC4Claims": [
+    "C4-02",
+    "C4-03",
+    "C4-04",
+    "C4-05"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "allowedCentralCreditClasses": [
+    "CONDITIONAL_COMPONENT",
+    "AUTHORITATIVE_COMPONENT",
+    "ZERO_NONBLOCKING",
+    "ZERO_DISCOVERY"
+  ],
+  "kind": "ERC_TRUST_HYBRID_TCB_PROFILE_SCHEMA_V2",
+  "legacyLockMutable": false,
+  "requiredProfileIds": [
+    "ISABELLE-ABSTRACT-BRIDGE-v2",
+    "CERTORA-FINANCIAL-CORE-v2",
+    "HALMOS-PREFLIGHT-v2",
+    "KEVM-LEGACY-HASKELL-STRICT-v2",
+    "KEVM-BOOSTER-DISCOVERY-v2",
+    "EQUIVM-PILOT-v2"
+  ],
+  "requiredTopLevelFields": [
+    "schemaVersion",
+    "profileSet",
+    "profileId",
+    "authorityClass",
+    "availability",
+    "tool",
+    "replay",
+    "approximations",
+    "allowedClaims",
+    "forbiddenClaims",
+    "acceptance",
+    "centralCredit",
+    "sourceHead",
+    "scopeRef",
+    "runtimeFreezeRef",
+    "compilerBinding",
+    "legacyEvidencePreservation"
+  ],
+  "schemaVersion": 2
+}

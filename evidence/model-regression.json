@@ -1,0 +1,34 @@
+{
+  "schema": "erc-trust-model-regression-v1",
+  "candidate": "0.1.0-candidate.1",
+  "isabelle": {
+    "version": "Isabelle2025-2",
+    "session": "ERC_TRUST",
+    "closure": "PASS",
+    "proofAudit": "PASS",
+    "bannedSourceForms": 0,
+    "buildLogSha256": "CC63D40B8FD053813F386EE9E71FF848D75FD17AE2C582A9DED5279877E96B54"
+  },
+  "manifest": {
+    "status": "PASS",
+    "trustRows": 18,
+    "foundationRows": 35,
+    "sourceHashListSha256": "63C3B4700857EC7B2698CA7531D822F81DB8022FCF97AD5A7B6517EB79012B87",
+    "manifestSha256": "5A9C0C6075CBC2A38F1A485017C1A8CD9A68B537086275AF56A37683EF0351CD",
+    "independentReverseCheck": "PASS"
+  },
+  "negativeMutation": {
+    "status": "PASS",
+    "total": 15,
+    "killed": 15,
+    "survived": 0
+  },
+  "publicNameRebinding": {
+    "status": "PASS",
+    "changeClass": "identifier-path-and-release-metadata-only",
+    "sourceBinding": "containing-commit-tree",
+    "releasePdfSha256": "A1C2E2C8684F2C517D03BBA1EC2B59713D303712BFD6E86A9F3D7033A3102959",
+    "releaseManifestSha256": "FE3F5661EBAEBB5D8F08851744B398CC8B852BA6EBBED970AB950EAF354F5665"
+  },
+  "claimBoundary": "Abstract-model regression only; it does not establish Solidity, bytecode, deployment, legal, or external-factual correctness."
+}

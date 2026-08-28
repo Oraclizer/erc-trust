@@ -1,0 +1,64 @@
+{
+  "authority": {
+    "legacyCarryover": false,
+    "nativeRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "runtimeFreezeRef": {
+      "path": "evidence/end-to-end-refinement/m4-runtime-freeze-v1.json",
+      "sha256": "ba18d99f630bad67faee824ec83f1071f478a393639faa087be739d880164d67"
+    },
+    "scopeRef": {
+      "path": "evidence/end-to-end-refinement/m4-core-refinement-scope-v1.json",
+      "sha256": "a94fdd38612e6d77fec2057c67bfa88d71d826234fb6116ab8b23650c88f6f56"
+    },
+    "sourceHead": "add3dfb9ca75923d6462d16ba8eb41cad0b1216f",
+    "tcbIndexRef": {
+      "deterministicRootSha256": "baf66d7f1ba3e09b9d03ee55dee4bfd8ff5ba3ada3f3d38c139fdfa9f1ab1243",
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v1/index-v1.json",
+      "sha256": "11d13e917fd2930c93b77c3900d8c2addbd71e6ff3ce67354ed6175da3e28113"
+    }
+  },
+  "consumers": [
+    "BAL-04",
+    "BAL-09",
+    "REV-01",
+    "REV-02",
+    "REV-03",
+    "REV-04",
+    "REV-05",
+    "REV-06",
+    "REV-07",
+    "REV-08",
+    "REV-09",
+    "REV-10",
+    "REV-11",
+    "RVR-01",
+    "RVR-02",
+    "RVR-03"
+  ],
+  "contractId": "REVERSAL-SUMMARY-v1",
+  "failureMeaning": [
+    "stale, ABA, duplicate, and out-of-order reversal stutter with no committed logs"
+  ],
+  "fields": [
+    "rawPrestateProjection",
+    "typedReversal",
+    "currentHeadAndGeneration",
+    "authorityAndReplayPremises",
+    "dependencyResponseClass",
+    "reversalEffect",
+    "transactionOutcome",
+    "rawPoststateProjection",
+    "receiptAndLogs"
+  ],
+  "nonclaims": [
+    "history reconstruction from current storage",
+    "Verified Profile refinement",
+    "external policy truth"
+  ],
+  "schemaVersion": 1,
+  "successMeaning": [
+    "only the current exact effect head can reverse",
+    "the prior value or custody state is restored and the head is popped with a new generation",
+    "reversalId and nonce are consumed only on success"
+  ]
+}

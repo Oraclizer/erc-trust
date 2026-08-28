@@ -1,0 +1,79 @@
+{
+  "derivationBasis": [
+    {
+      "path": "evidence/end-to-end-refinement/theorem-obligations.md",
+      "role": "canonical obligation inventory",
+      "sha256": "3b6b0910539c58e53db7c6dbf11c8bf0e4a4d9d7aaec6d8b5d233573dc514dba"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/proof-run-ledger.json",
+      "role": "artifact/provenance run targeting",
+      "sha256": "11c3988953fdb7786ab8155f5bb059a4f876e0bc513a2a591a8edfbd6e1483ac"
+    }
+  ],
+  "edgeSemantics": {
+    "consumer": "may consume ART-03 only after fresh positive, negative, bridge, Isabelle, and replay closure",
+    "direct-prerequisite": "must be supplied or separately discharged; this static row does not discharge the dependency",
+    "transitive-prerequisite": "reaches ART-03 only through a named direct prerequisite"
+  },
+  "edges": [
+    [
+      "ART-01",
+      "ART-02"
+    ],
+    [
+      "ART-02",
+      "ART-03"
+    ],
+    [
+      "ART-04",
+      "ART-03"
+    ],
+    [
+      "ART-03",
+      "ART-06"
+    ],
+    [
+      "ART-06",
+      "ART-07"
+    ]
+  ],
+  "nodes": [
+    {
+      "id": "ART-01",
+      "reason": "source, compiler settings, and direct Standard JSON provenance consumed through ART-02",
+      "role": "transitive-prerequisite"
+    },
+    {
+      "id": "ART-02",
+      "reason": "exact compiler output runtime template consumed by constructor patching",
+      "role": "direct-prerequisite"
+    },
+    {
+      "id": "ART-04",
+      "reason": "AST declaration 622 and immutable reference range [6970,7002) identify the patch boundary",
+      "role": "direct-prerequisite"
+    },
+    {
+      "id": "ART-03",
+      "reason": "constructor arguments resolve the local TrustToken runtime and its observable decimals immutable",
+      "role": "selected"
+    },
+    {
+      "id": "ART-06",
+      "reason": "runtime execution consumes the exact constructor-resolved runtime",
+      "role": "direct-consumer"
+    },
+    {
+      "id": "ART-07",
+      "reason": "end-to-end theorem composition consumes ART-03 through runtime execution",
+      "role": "transitive-consumer"
+    }
+  ],
+  "schemaVersion": 1,
+  "selectedObligation": {
+    "id": "ART-03",
+    "property": "constructor_resolved_local_runtime_is_hash_bound",
+    "status": "OPEN"
+  }
+}

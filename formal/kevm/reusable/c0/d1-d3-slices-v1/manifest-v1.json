@@ -1,0 +1,338 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_C0_D1_D3_RUNTIME_SLICE_PACKAGE_V1",
+  "statement": "Five normalized exact-runtime guard families plus one CALLDATALOAD word-origin seam",
+  "occurrenceAuthority": {
+    "path": "evidence/end-to-end-refinement/c0-d1-d3-runtime-occurrences-v1.json",
+    "sha256": "24556c915f3104191bdc2ca9c7f088b62685238967cd5cc84766ce0d2b584139"
+  },
+  "runtime": {
+    "path": "evidence/end-to-end-refinement/runtime-binding/resolved/native/TrustToken.hex",
+    "sha256": "1c2e73fa137a50993301eacf9e70aa73623a5d4673c58cadedb60e12c273f44f",
+    "semanticSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "bytes": 24142
+  },
+  "canonicalDefinition": {
+    "custodyId": "quarantine-m4-unmerged-20260825-141706/c0-d1-d3-family-minimal-qualified-20260826/erc-trust-runtime-verification-1785677119001",
+    "definitionKoreSha256": "bac21e3e90990c4c060bf77ecfe161a70d18900c631dcea5a37343765e6b3e33",
+    "compiledJsonSha256": "5ba6257f64024f7eff4ec99c569db9f9477fd5d2a625f44ed04e091fdf795a50",
+    "compiledBinSha256": "6363c878ee8e9d4a1cd61b0c862e5feb8c6e485af518f64e654130f453f8350e"
+  },
+  "mutant": {
+    "runtimePath": "formal/kevm/reusable/c0/d1-d3-slices-v1/mutant-runtime.hex",
+    "runtimeSha256": "7593ee5e130a9d27b5a68a13836b03a72202cdf09ea925e883926b5dfb0dbcbc",
+    "bridgePath": "formal/kevm/reusable/c0/d1-d3-slices-v1/mutant-runtime-bridge.k",
+    "bridgeSha256": "d87fad4411f1da35d86f2c44bc62d25b827ca9bba55a3bce21c193a37c23d91b",
+    "verificationPath": "formal/kevm/reusable/c0/d1-d3-slices-v1/mutant-runtime-verification.k",
+    "verificationSha256": "e380844cea44b450c03fc3d0f345e22980801b96fe0270fa921c667a8e062bf9",
+    "mutationPath": "formal/kevm/reusable/c0/d1-d3-slices-v1/mutation-v1.json",
+    "definition": {
+      "custodyId": "quarantine-m4-unmerged-20260825-141706/c0-d1-d3-family-minimal-qualified-20260826/erc-trust-c0-d1-d3-slice-mutant-definition-v1-001",
+      "definitionKoreSha256": "8b5e2446d9a1a33457528fa3d09a4c53b77862c5c42fa647a08938095b9863f3",
+      "compiledJsonSha256": "afae21d485867b69915beecbc4c835968b6bb5f3183ef6f9fb8e76d84798b382",
+      "compiledBinSha256": "f5eaabb3d399b2f8db5cba8088cc3e4327d2c8ffa0182d4ea7bd2fd9f095fe38"
+    }
+  },
+  "runner": {
+    "path": "formal/kevm/reusable/run-strict-current-profile-package.sh",
+    "sha256": "d475ed2eff979162c65d612afb0239504a576775fa9f3572231d32f554bab41f",
+    "resume": false,
+    "breakEveryStep": true,
+    "timeoutSeconds": 1800,
+    "maxParallel": 2
+  },
+  "analyzer": {
+    "path": "scripts/analyze-c0-runtime-slice-run-v1.mjs",
+    "sha256": "0d41b04af228d516959258be1b9bbf6b91b81520d0d7a0ed0eafb93bdf9a3a73",
+    "primaryCriterion": "claim-level target cover"
+  },
+  "claimRootSha256": "beac794f7d8eee6a4c28c9c17defb2ed464728e7e6e983a8e5f765f8cd382ac4",
+  "semanticFamilies": [
+    {
+      "id": "ENUM_LT_6",
+      "occurrenceCount": 2,
+      "uniqueCoreShapes": [
+        "e8329d51c1d9405d5415048fe54454b7d8c4edcf14336edb8b9acdf96a34a344"
+      ],
+      "representative": {
+        "endpointId": "native-regulatory-action",
+        "wordIndex": 2,
+        "loadPc": 13604,
+        "normalizedCoreSha256": "e8329d51c1d9405d5415048fe54454b7d8c4edcf14336edb8b9acdf96a34a344"
+      }
+    },
+    {
+      "id": "UINT_160",
+      "occurrenceCount": 8,
+      "uniqueCoreShapes": [
+        "2147b260bf06cf297dc25fed182ec49c2800744653d1e7ce8c034c39bc52a47e",
+        "200dda9e7213a8a37a3e2464259d19922ce90ee9a1865faa2bd3fa6e041c2190"
+      ],
+      "representative": {
+        "endpointId": "native-regulatory-action",
+        "wordIndex": 3,
+        "loadPc": 13726,
+        "normalizedCoreSha256": "2147b260bf06cf297dc25fed182ec49c2800744653d1e7ce8c034c39bc52a47e"
+      }
+    },
+    {
+      "id": "UINT_64",
+      "occurrenceCount": 6,
+      "uniqueCoreShapes": [
+        "f801d34dff72a856c438a30c3e6f7bccd769f5cb38706fef0e674e8b3fd60b23",
+        "1d97e3799c345ec9c9609ff10e610a916d05fe33fe01e47096e9be86940e29aa"
+      ],
+      "representative": {
+        "endpointId": "native-regulatory-action",
+        "wordIndex": 16,
+        "loadPc": 13536,
+        "normalizedCoreSha256": "f801d34dff72a856c438a30c3e6f7bccd769f5cb38706fef0e674e8b3fd60b23"
+      }
+    },
+    {
+      "id": "UINT_48",
+      "occurrenceCount": 8,
+      "uniqueCoreShapes": [
+        "3e75316ec90cae3b2b17fd6ae2fdaa9045b55166f93b30e28a59622af8e5920e"
+      ],
+      "representative": {
+        "endpointId": "native-regulatory-action",
+        "wordIndex": 19,
+        "loadPc": 13473,
+        "normalizedCoreSha256": "3e75316ec90cae3b2b17fd6ae2fdaa9045b55166f93b30e28a59622af8e5920e"
+      }
+    },
+    {
+      "id": "ENUM_LT_3",
+      "occurrenceCount": 2,
+      "uniqueCoreShapes": [
+        "68ecaa7b9d065de246d5eddbb9fa6f2cc537a605f933b1542057a3d3f313f64d"
+      ],
+      "representative": {
+        "endpointId": "native-regulatory-reversal",
+        "wordIndex": 3,
+        "loadPc": 11321,
+        "normalizedCoreSha256": "68ecaa7b9d065de246d5eddbb9fa6f2cc537a605f933b1542057a3d3f313f64d"
+      }
+    }
+  ],
+  "claims": [
+    {
+      "id": "C0-D2-enum-lt-6-accept",
+      "module": "C0-D2-ENUM-LT-6-ACCEPT-SPEC",
+      "stage": "D2",
+      "family": "ENUM_LT_6",
+      "polarity": "accept",
+      "startPc": 13605,
+      "targetPc": 13615,
+      "representativeWord": "5",
+      "topWords": 3,
+      "requires": "true",
+      "path": "formal/kevm/reusable/c0/d1-d3-slices-v1/claims/C0-D2-enum-lt-6-accept.k",
+      "sha256": "29333f1f29ccd4d0069de0a3f263977cc57842116c059fcdf2b90b5c935b463a",
+      "wordOrigin": false,
+      "canonicalTargetCoverRequired": 1,
+      "mutantTargetCoverRequired": 0
+    },
+    {
+      "id": "C0-D2-enum-lt-6-reject",
+      "module": "C0-D2-ENUM-LT-6-REJECT-SPEC",
+      "stage": "D2",
+      "family": "ENUM_LT_6",
+      "polarity": "reject",
+      "startPc": 13605,
+      "targetPc": 2767,
+      "representativeWord": "6",
+      "topWords": 3,
+      "requires": "true",
+      "path": "formal/kevm/reusable/c0/d1-d3-slices-v1/claims/C0-D2-enum-lt-6-reject.k",
+      "sha256": "d5a67bc4e0f0eb9bd963d362330ce2ffc48202e6b882665d77c8194a0197fa96",
+      "wordOrigin": false,
+      "canonicalTargetCoverRequired": 1,
+      "mutantTargetCoverRequired": 0
+    },
+    {
+      "id": "C0-D1-uint-160-accept",
+      "module": "C0-D1-UINT-160-ACCEPT-SPEC",
+      "stage": "D1",
+      "family": "UINT_160",
+      "polarity": "accept",
+      "startPc": 13727,
+      "targetPc": 13749,
+      "representativeWord": "1461501637330902918203684832716283019655932542975",
+      "topWords": 3,
+      "requires": "true",
+      "path": "formal/kevm/reusable/c0/d1-d3-slices-v1/claims/C0-D1-uint-160-accept.k",
+      "sha256": "e0db8446e6786fb6de7082efdd8db3d5f4e699192027f51ad6c0ab826b3cbd5a",
+      "wordOrigin": false,
+      "canonicalTargetCoverRequired": 1,
+      "mutantTargetCoverRequired": 0
+    },
+    {
+      "id": "C0-D1-uint-160-reject",
+      "module": "C0-D1-UINT-160-REJECT-SPEC",
+      "stage": "D1",
+      "family": "UINT_160",
+      "polarity": "reject",
+      "startPc": 13727,
+      "targetPc": 2767,
+      "representativeWord": "1461501637330902918203684832716283019655932542976",
+      "topWords": 3,
+      "requires": "true",
+      "path": "formal/kevm/reusable/c0/d1-d3-slices-v1/claims/C0-D1-uint-160-reject.k",
+      "sha256": "31ba69b44f53913e8a4c62b53396e1adbc42d1236bf0c98670c3f0203d20294d",
+      "wordOrigin": false,
+      "canonicalTargetCoverRequired": 1,
+      "mutantTargetCoverRequired": 0
+    },
+    {
+      "id": "C0-D1-uint-64-accept",
+      "module": "C0-D1-UINT-64-ACCEPT-SPEC",
+      "stage": "D1",
+      "family": "UINT_64",
+      "polarity": "accept",
+      "startPc": 13537,
+      "targetPc": 13564,
+      "representativeWord": "18446744073709551615",
+      "topWords": 5,
+      "requires": "true",
+      "path": "formal/kevm/reusable/c0/d1-d3-slices-v1/claims/C0-D1-uint-64-accept.k",
+      "sha256": "f610aad92f6486236eb267cae82b1220e95fdca08c9ed2f32d0922033c8a6b91",
+      "wordOrigin": false,
+      "canonicalTargetCoverRequired": 1,
+      "mutantTargetCoverRequired": 0
+    },
+    {
+      "id": "C0-D1-uint-64-reject",
+      "module": "C0-D1-UINT-64-REJECT-SPEC",
+      "stage": "D1",
+      "family": "UINT_64",
+      "polarity": "reject",
+      "startPc": 13537,
+      "targetPc": 2767,
+      "representativeWord": "18446744073709551616",
+      "topWords": 5,
+      "requires": "true",
+      "path": "formal/kevm/reusable/c0/d1-d3-slices-v1/claims/C0-D1-uint-64-reject.k",
+      "sha256": "d6a40b6d7bb383f6a7d7366d6c0e5a7654338966942829c7d0b60fcc38cf3109",
+      "wordOrigin": false,
+      "canonicalTargetCoverRequired": 1,
+      "mutantTargetCoverRequired": 0
+    },
+    {
+      "id": "C0-D1-uint-48-accept",
+      "module": "C0-D1-UINT-48-ACCEPT-SPEC",
+      "stage": "D1",
+      "family": "UINT_48",
+      "polarity": "accept",
+      "startPc": 13474,
+      "targetPc": 13491,
+      "representativeWord": "281474976710655",
+      "topWords": 1,
+      "requires": "true",
+      "path": "formal/kevm/reusable/c0/d1-d3-slices-v1/claims/C0-D1-uint-48-accept.k",
+      "sha256": "a67f3c69e9a6cedbd7e752784e9dc534ab29d832e2d659e074ac483ab781e420",
+      "wordOrigin": false,
+      "canonicalTargetCoverRequired": 1,
+      "mutantTargetCoverRequired": 0
+    },
+    {
+      "id": "C0-D1-uint-48-reject",
+      "module": "C0-D1-UINT-48-REJECT-SPEC",
+      "stage": "D1",
+      "family": "UINT_48",
+      "polarity": "reject",
+      "startPc": 13474,
+      "targetPc": 2767,
+      "representativeWord": "281474976710656",
+      "topWords": 1,
+      "requires": "true",
+      "path": "formal/kevm/reusable/c0/d1-d3-slices-v1/claims/C0-D1-uint-48-reject.k",
+      "sha256": "a25fe5894e3039fd4a3fd6abb9e9c4a8ab9a2eb6a4ae147f521debbe35a87bee",
+      "wordOrigin": false,
+      "canonicalTargetCoverRequired": 1,
+      "mutantTargetCoverRequired": 0
+    },
+    {
+      "id": "C0-D2-enum-lt-3-accept",
+      "module": "C0-D2-ENUM-LT-3-ACCEPT-SPEC",
+      "stage": "D2",
+      "family": "ENUM_LT_3",
+      "polarity": "accept",
+      "startPc": 11322,
+      "targetPc": 11332,
+      "representativeWord": "2",
+      "topWords": 5,
+      "requires": "true",
+      "path": "formal/kevm/reusable/c0/d1-d3-slices-v1/claims/C0-D2-enum-lt-3-accept.k",
+      "sha256": "6509c8ca480dd2572d4f3e1440c3bedb947dd5551264286516637bc0cb6009ca",
+      "wordOrigin": false,
+      "canonicalTargetCoverRequired": 1,
+      "mutantTargetCoverRequired": 0
+    },
+    {
+      "id": "C0-D2-enum-lt-3-reject",
+      "module": "C0-D2-ENUM-LT-3-REJECT-SPEC",
+      "stage": "D2",
+      "family": "ENUM_LT_3",
+      "polarity": "reject",
+      "startPc": 11322,
+      "targetPc": 2767,
+      "representativeWord": "3",
+      "topWords": 5,
+      "requires": "true",
+      "path": "formal/kevm/reusable/c0/d1-d3-slices-v1/claims/C0-D2-enum-lt-3-reject.k",
+      "sha256": "40ce6db1901254648ca2da7cf6042878e0a1d2a732839f5bbae2b47f563d7fb7",
+      "wordOrigin": false,
+      "canonicalTargetCoverRequired": 1,
+      "mutantTargetCoverRequired": 0
+    },
+    {
+      "id": "C0-D3-calldataload-word-origin",
+      "module": "C0-D3-CALLDATALOAD-WORD-ORIGIN-SPEC",
+      "stage": "D3",
+      "family": "CALLDATALOAD_WORD_ORIGIN",
+      "polarity": "word-origin",
+      "startPc": 13604,
+      "targetPc": 13605,
+      "requires": "100 <=Int lengthBytes(CALLDATA)",
+      "topWords": 1,
+      "path": "formal/kevm/reusable/c0/d1-d3-slices-v1/claims/C0-D3-calldataload-word-origin.k",
+      "sha256": "3f5fdfba422557303ff1cd68f10d15e4d923b4647a204718b3b705551afd20a9",
+      "wordOrigin": true,
+      "canonicalTargetCoverRequired": 1,
+      "mutantTargetCoverRequired": 0
+    }
+  ],
+  "representativeStackBoundary": {
+    "guardTopWordsByFamily": {
+      "ENUM_LT_6": 3,
+      "UINT_160": 3,
+      "UINT_64": 5,
+      "UINT_48": 1,
+      "ENUM_LT_3": 5
+    },
+    "wordOriginTopWords": 1,
+    "symbolicTailInKevmClaim": false,
+    "d5RequiredTheorem": "Stack-prefix locality: extending the exact representative top stack by an arbitrary bounded tail preserves branch PC/status/top result and the untouched tail when maximum read depth and EVM-1024 overflow premises hold."
+  },
+  "strictRepresentativeBoundary": {
+    "guardValues": "accept uses bound - 1; reject uses bound",
+    "symbolicIffOwner": "TRUST_C0_Decode_Slices.thy",
+    "actualOccurrenceOwner": "c0-d1-d3-runtime-occurrences-v1.json plus D5 composition"
+  },
+  "qualification": {
+    "canonicalClaimsRequired": 11,
+    "expectedMutationViolationsRequired": 11,
+    "closedIsAdvisoryOnly": true
+  },
+  "nonclaims": [
+    "A finite-stack representative KEVM proof is not by itself a theorem over arbitrary symbolic WordStack tails.",
+    "The strict guard claims are concrete boundary representatives, not universal KEVM proofs over every 256-bit word.",
+    "The representative proof does not establish full-transaction reachability of the occurrence PC or its pre-stack decomposition.",
+    "D3 word-origin, 26-occurrence coverage, and decoder completeness remain separate composition inputs.",
+    "D1-D3 actual-runtime qualification and C0 credit remain zero until the D5 prefix-locality and occurrence binder closes."
+  ],
+  "c0PackageCredit": 0,
+  "centralCredit": 0
+}

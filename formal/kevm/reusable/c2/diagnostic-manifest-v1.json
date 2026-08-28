@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_C2_KEVM_REACHABILITY_DIAGNOSTIC_V1",
+  "noCredit": true,
+  "purpose": "recover-strict-kevm-post-staticcall-cover-substitution",
+  "input": {
+    "path": "formal/kevm/reusable/c2/c2-staticcall-placement-spec.k",
+    "sha256": "45282c218d9f0e898547806fc9bd4ffcc864776bbcf1e1a3021a2e39423e37e0"
+  },
+  "output": {
+    "path": "formal/kevm/reusable/c2/c2-staticcall-reachability-diagnostic-spec.k",
+    "module": "TRUST-C2-STATICCALL-REACHABILITY-DIAGNOSTIC-SPEC",
+    "sha256": "b785a04eb1fc12ee23ff3ff4ca28a957e92cb92e7a655084ce0fcde2fcd043ef"
+  },
+  "existentialTargetFields": [
+    "wordStack",
+    "localMem"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "obligationId": "STATE-04",
+  "mutationId": "STATE-04-CONFLATE-FROZEN-WITH-RESTRICTION",
+  "status": "COMPILED_PENDING_KEVM",
+  "compiler": {
+    "version": "0.8.36+commit.8a079791",
+    "binarySha256": "c8d35afdddc3cd2743ee88b8f25e0fecd16e2bdd5f2120f37e52cd9cc45ae0e6",
+    "distribution": "Ubuntu",
+    "settingsSha256": "75318dd1f9241ed1f1709b35b467ca94b2264f67e6f88bb00df1551f69f8aced",
+    "canonicalInputSha256": "16d606d6bacd8697b3eed5ed49ddaace3f525c70104fab2abdd501d2977d31fa",
+    "mutantInputPath": "evidence/end-to-end-refinement/row-bundles/state-04/negative/standard-json-input.json",
+    "mutantInputSha256": "38f950c9280d8662316e1eb6a0177ab63a2dc689aae3695564313539357c4299",
+    "mutantOutputPath": "evidence/end-to-end-refinement/row-bundles/state-04/negative/standard-json-output.json",
+    "mutantOutputSha256": "5cd60dd836ae362f9306200ba3cca9bce542efe2c495fe8dff2292139e68ec07"
+  },
+  "source": {
+    "canonicalSha256": "dbe06bb25a2b62913bd6428e1de32ba007a214e24ac45f4fd2c0fb55ea22c96a",
+    "mutantPath": "evidence/end-to-end-refinement/row-bundles/state-04/negative/TrustToken.STATE-04-mutant.sol",
+    "mutantSha256": "2c3259fc3850548ea34c8bd208cc96071dfdd4ec26e2831803e8198077e0c97c",
+    "anchorSha256": "ff79cef57bca7082394732fd75cba15474e6364feef739c4cfdade6e015be3e8",
+    "replacementSha256": "c56a8db19d268ddde33894005f267afa2798f62f8b27df122dd53f144c1e795c"
+  },
+  "runtime": {
+    "canonicalResolvedSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "mutantTemplateSha256": "86b8c445152a0f503d60dc6081b4209510484518fd2b210187f9c317e9009878",
+    "mutantResolvedPath": "evidence/end-to-end-refinement/row-bundles/state-04/negative/TrustToken.runtime.hex",
+    "mutantResolvedSha256": "51ea8763b55845d79f81ef650e9153eee4cd588cbef7ee87251a641ee43c4da9",
+    "mutantByteLength": 24174,
+    "eip170MarginBytes": 402,
+    "immutableReferences": {
+      "622": [
+        {
+          "length": 32,
+          "start": 6970
+        }
+      ],
+      "626": [
+        {
+          "length": 32,
+          "start": 517
+        },
+        {
+          "length": 32,
+          "start": 1580
+        },
+        {
+          "length": 32,
+          "start": 8554
+        },
+        {
+          "length": 32,
+          "start": 19854
+        }
+      ]
+    }
+  },
+  "bridge": {
+    "canonicalSha256": "bf8d587f7644d002d05bc7ab16806a39a3354d216cdcad53f504a9bb8b99d836",
+    "mutantPath": "formal/kevm/row-bundles/state-04/negative/mutant-runtime-bridge.k",
+    "mutantSha256": "c002d6dd84f6815394acc8fae5637f17e8da632cf0ed0d36b4f3be381d2542e3",
+    "verificationPath": "formal/kevm/row-bundles/state-04/negative/mutant-runtime-verification.k",
+    "verificationSha256": "f7134c623704784837af82bf625eeb8e35bc913315406009ede11ebca409c6e9"
+  }
+}

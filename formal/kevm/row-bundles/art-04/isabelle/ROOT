@@ -1,0 +1,5 @@
+session ERC_TRUST_ART_04 = ERC_TRUST +
+  options [timeout = 1200]
+  theories
+    ART_04_Artifact_Surface_Binding
+

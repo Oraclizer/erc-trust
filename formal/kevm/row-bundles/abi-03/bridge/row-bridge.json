@@ -1,0 +1,85 @@
+{
+  "alternateRuntimeAdequacyFixture": {
+    "bridgePath": "formal/kevm/row-bundles/abi-03/generated/mutant-runtime-bridge.k",
+    "bridgeSha256": "341b8287cc70e7478a92ba56eff1e8f0ddcb187cad8bd4e34b8159c2b6f2807b",
+    "expectedSemanticDifference": "the unchanged 708-byte combined claim requires empty EVMC_REVERT while the alternate runtime returns empty EVMC_SUCCESS",
+    "kind": "EXECUTABLE_SEMANTIC_MUTANT",
+    "mutantSourceSha256": "7bc7ebb2cc49726669dbd10ba339b00cc9b65cf7f556ecd989d16eb28323aa71",
+    "mutationId": "ABI-03-ALT-RUNTIME-TRAILING-SUCCESS-001",
+    "patchPath": "formal/kevm/row-bundles/abi-03/mutation/abi-03-allow-trailing-success.diff",
+    "patchSha256": "090185a331807345d91ce5451a72ed2b955124862c72f941cadec6da92b9d08d",
+    "runtimeByteLength": 24180,
+    "runtimeSha256": "6cca7354ceaa6bb8c6710706ebac1e1e81fd10970ade2438c2e1534742cc8d19",
+    "verificationPath": "formal/kevm/row-bundles/abi-03/generated/mutant-runtime-verification.k",
+    "verificationSha256": "e380844cea44b450c03fc3d0f345e22980801b96fe0270fa921c667a8e062bf9"
+  },
+  "canonicalRuntime": {
+    "bridgePath": "formal/kevm/generated/trust-runtime-bridge.k",
+    "bridgeSha256": "bf8d587f7644d002d05bc7ab16806a39a3354d216cdcad53f504a9bb8b99d836",
+    "runtimeByteLength": 24142,
+    "runtimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d"
+  },
+  "compilerClosure": {
+    "fixturePath": "evidence/end-to-end-refinement/runtime-binding/resolved/fixture.json",
+    "fixtureSha256": "59b93ba41941f61ef357be99d240f6a274730be25ccdbb1a7d686be68ea938f6",
+    "foundryConfigPath": "foundry.toml",
+    "foundryConfigSha256": "8608fb5e47a6b99f26141883a6268d5b63e5501137886ad131a5c2340ac492f0",
+    "immutablePatchLocations": [
+      {
+        "astId": 626,
+        "encodedWordSha256": "2802721c8eadcd4b51bef9f2b29b39041c520de59b341e577f51789c4556284b",
+        "length": 32,
+        "name": "governor",
+        "start": 517
+      },
+      {
+        "astId": 626,
+        "encodedWordSha256": "2802721c8eadcd4b51bef9f2b29b39041c520de59b341e577f51789c4556284b",
+        "length": 32,
+        "name": "governor",
+        "start": 1580
+      },
+      {
+        "astId": 622,
+        "encodedWordSha256": "c03eee8aa25e1b9fd36a28c6d3321bd0d0534a72034c40fcd9d75c70a610037e",
+        "length": 32,
+        "name": "decimals",
+        "start": 7008
+      },
+      {
+        "astId": 626,
+        "encodedWordSha256": "2802721c8eadcd4b51bef9f2b29b39041c520de59b341e577f51789c4556284b",
+        "length": 32,
+        "name": "governor",
+        "start": 8560
+      },
+      {
+        "astId": 626,
+        "encodedWordSha256": "2802721c8eadcd4b51bef9f2b29b39041c520de59b341e577f51789c4556284b",
+        "length": 32,
+        "name": "governor",
+        "start": 19860
+      }
+    ],
+    "path": "formal/kevm/row-bundles/abi-03/bridge/mutant-compiler-output.json",
+    "sha256": "6d42f54701bc3a53e5018f23e5e880d2329b406112e93834344f3c0233e66960"
+  },
+  "obligationId": "ABI-03",
+  "positiveClaim": {
+    "canonicalCalldataBytes": 676,
+    "claimId": "6adb6bf3e7629f12e822a2b4772ec91837db3eab2656d3fcb1acfa297e8ac161",
+    "expectedOutputHex": "0x",
+    "expectedStatus": "EVMC_REVERT",
+    "externalCallStatic": false,
+    "idleGuardSlot": 29,
+    "idleGuardValue": 0,
+    "module": "TRUST-ABI-03-TRAILING-IDLE-COMBINED-SPEC",
+    "path": "formal/kevm/row-bundles/abi-03/claim.k",
+    "selector": "0x9da23539",
+    "sha256": "971cfbb07202d5e9707115c7661d15f91527d1542d761d8c4f443d5cd98832a3",
+    "symbolicStorageRemainder": true,
+    "witnessCalldataBytes": 708
+  },
+  "requiredProperty": "trailing_calldata_reverts_and_stutters",
+  "schemaVersion": 1
+}

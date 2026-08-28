@@ -1,0 +1,4380 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_PUBLIC_TREE_DIET_MANIFEST_V1",
+  "status": "PASS_LOCAL_AND_PR_VALIDATION",
+  "date": "2026-08-28",
+  "baseline": {
+    "repository": "Oraclizer/erc-trust",
+    "commit": "366b625dac90d4584432d7d6939629434734ecb8",
+    "tree": "25a1710c865143eb70f0da3d185ebdc3149214b0",
+    "trackedFiles": 1411,
+    "trackedBytes": 42848099
+  },
+  "archive": {
+    "destinationRepository": "Oraclizer/erc-trust-archive",
+    "historyPreserved": true,
+    "historyRewritten": false
+  },
+  "summary": {
+    "removedFiles": 613,
+    "removedBytes": 27687711,
+    "retainedFiles": 808,
+    "categories": [
+      {
+        "category": "development-narrative",
+        "files": 19,
+        "bytes": 91319
+      },
+      {
+        "category": "internal-process-receipt",
+        "files": 152,
+        "bytes": 3515594
+      },
+      {
+        "category": "internal-process-tool",
+        "files": 113,
+        "bytes": 901347
+      },
+      {
+        "category": "obsolete-or-failed-formulation",
+        "files": 136,
+        "bytes": 1352505
+      },
+      {
+        "category": "raw-tool-output",
+        "files": 191,
+        "bytes": 21350419
+      },
+      {
+        "category": "regenerable-release-artifact",
+        "files": 2,
+        "bytes": 476527
+      }
+    ],
+    "retainedBytesExcludingManifest": 15276728
+  },
+  "removedFiles": [
+    {
+      "path": "evidence/end-to-end-refinement/c0-augmented-definition-compile-receipt-v1.json",
+      "bytes": 1902,
+      "sha256": "0b06d1a0814fb35f41826b51a2385a293df1a0b3a6792f0a36011b73b1d65b2d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-canonical-decode-strict-receipt-v1.json",
+      "bytes": 3627,
+      "sha256": "4e54a37e36511f82ec5a36bcf8937aaf48e21fb5855b476a70d25bf17d3aa746",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-compile-parse-tranche-receipt-v1.json",
+      "bytes": 2653,
+      "sha256": "703388510677b4d70bfbeca8a3db27c16d625f549089ee09a7eae3e0546452fb",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-d1-d3-runtime-occurrences-v1.json",
+      "bytes": 1065424,
+      "sha256": "24556c915f3104191bdc2ca9c7f088b62685238967cd5cc84766ce0d2b584139",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-d1-d3-strict-representative-receipt-v1.json",
+      "bytes": 30247,
+      "sha256": "b4f542a4251863bc0809d80921b28cf7736b3ec95882e696da23af1e39a4117d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-d4-isolated-strict-receipt-v1.json",
+      "bytes": 13744,
+      "sha256": "a32a1b5eef4cefbdfce2c8474c534bad68848af588143da68df6d2ef56743490",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-d5-composition-receipt-v1.json",
+      "bytes": 4436,
+      "sha256": "5044f4766f7db380ed0a6010ed89cc3f5281e891a67a06fe119e826616ba8938",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-d5-runtime-stack-binder-v1.json",
+      "bytes": 40379,
+      "sha256": "047e6fd072d8230adcac5898dc3f1d38e8f9cd71ce31dc7c20dbaf2da08b097d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-enum-family-checkpoint-receipt-v1.json",
+      "bytes": 2522,
+      "sha256": "dcb0a00ba565ab64dc9ff52e154a6c73e2eba5f6ef430d5614cd68e653ca07c8",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-enum-lt-3-symbolic-family-receipt-v1.json",
+      "bytes": 3801,
+      "sha256": "342b919be6c10647ea7638f8889ed2ba81206d221be85e595d04a9c69998af19",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-enum-lt-6-symbolic-family-receipt-v1.json",
+      "bytes": 3742,
+      "sha256": "6671c3f8d88b3f61c42cb820debf68b94a3925672c5ce20014ba15951d3f1c51",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-enum-lt-6-symbolic-reject-probe-contract-v1.json",
+      "bytes": 4493,
+      "sha256": "b61e9728090076325316033aa824690e576cb524a826cfa1c311c4eb583bb8d1",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-enum-lt-6-symbolic-reject-probe-receipt-v1.json",
+      "bytes": 3365,
+      "sha256": "b6683daf4a57479548587fd1a22471e43383b675cbe68fbda8d23c6824b4010c",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-enum-symbolic-word-contract-v1.json",
+      "bytes": 5591,
+      "sha256": "8413e8699c577adc128d3ed5cc006cece93fb39522eaa3e50b54f2425364ac1f",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-five-family-checkpoint-receipt-v1.json",
+      "bytes": 1788,
+      "sha256": "d3a31fe3ed3135bf29f19df49c50a259329e32ab59e737258f3b113db71f6607",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-hold-checkpoint-path-allowlist-v1.json",
+      "bytes": 4399,
+      "sha256": "84329f14ae5749076ef8e6f53f12e2dc9be1fbd75adb062e4943dbbc20af70d0",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-hold-checkpoint-receipt-v1.json",
+      "bytes": 2992,
+      "sha256": "942b5e0fce11f5e69261d13255a9679438206fc1868ece8fa5a12fc70c2c5055",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-pc3477-boundary-reclassification-v1.json",
+      "bytes": 2303,
+      "sha256": "08d0e710b5cc62dc1dfb6a48123d60b32c6f84bb8ec8cccb850f173a92428a5a",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-strict-runtime-binding-supplement-v1.json",
+      "bytes": 1402,
+      "sha256": "4f78ce7d17da993dd50b81917a5ef13124a03cfa04eb91a9b87fa61c3eacbec5",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-terminal-receipt-v1.json",
+      "bytes": 8430,
+      "sha256": "41ff212ebc1a85e89f0784d6e0d12d991eaedf50693fe63b579336e83da717d4",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint-bridge-direct-unat-two-failure-freeze-v1.json",
+      "bytes": 2443,
+      "sha256": "cb67c0b349f3f5cb09fc77ad08f5100ffab9a1bbe41b7884a33f24e4877f7e8f",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint-bridge-preparation-two-failure-freeze-v1.json",
+      "bytes": 2113,
+      "sha256": "81cffa808fe063b61d1762792d774a603fbe1a87da151405f3cebf129628ddb4",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint-direct-canary-receipt-v1.json",
+      "bytes": 2274,
+      "sha256": "d17f1987c39c18a0dbef07d23e1bc556d87f1781d10f5f066b4ad43d5dd9fe14",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint-word-uint-bridge-contract-v1.json",
+      "bytes": 2648,
+      "sha256": "f61959c73a1d1ac37035cb1e44461adfb699d8df501fe856d5e83bbe3a5ec332",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint-word-unat-bridge-contract-v1.json",
+      "bytes": 2703,
+      "sha256": "1300e6f19a93e4c059f825d908ce76a900d29163ee06df27c710601b2f2d6dcf",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint160-family-checkpoint-receipt-v1.json",
+      "bytes": 3947,
+      "sha256": "26abc7aa554b3fe6f5da751d661ee14529ca114e1f12082387220f31b75d873e",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint160-hybrid-family-receipt-v1.json",
+      "bytes": 7328,
+      "sha256": "c22eb0b82fdaf41074adb67b4903e5bda421a6569bbd8d1d354d9ff7fe80da37",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint160-isabelle-receipt-v1.json",
+      "bytes": 1838,
+      "sha256": "9c29ba9ca4af13259449f1fc3dfae27ef8dbb9e35dc1a6c306598e6df772d31f",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint160-k-isabelle-and-correspondence-v1.json",
+      "bytes": 4441,
+      "sha256": "534033e2a3089985ffbba89661734ff0d6909c8e6dcfa343f8eab9bae048dfd0",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint160-symbolic-word-contract-v1.json",
+      "bytes": 6882,
+      "sha256": "c8905753d4b6eb815a99c225a9a1592fbce699c32ba0a1231017912ee108b5c8",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint48-d1-single-failure-freeze-v1.json",
+      "bytes": 3802,
+      "sha256": "a892de801673af97dd09381250cdd216876b27504dea1ac82fe905733312a74a",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint48-family-checkpoint-receipt-v1.json",
+      "bytes": 3626,
+      "sha256": "3d02bd0ce7db2ded662765085c7c2dad6b63a241f64e6c201c197b3b9f9b1497",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint48-hybrid-family-receipt-v1.json",
+      "bytes": 7553,
+      "sha256": "2f8da93ae187ef152e19842bdc90f3f25d345848cc92e5960ff8287600a3d56d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint48-k-isabelle-and-correspondence-v1.json",
+      "bytes": 3555,
+      "sha256": "f83e192e3541da82bd213c07c78e7291a55bc5d7e423213363d6dc8848393d6b",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint48-reject-support-contract-v1.json",
+      "bytes": 3440,
+      "sha256": "0f3efd6b227fbb93ae7886766c5072313f813a29b505053cd9318c5ee51f81a5",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint48-reject-support-contract-v2.json",
+      "bytes": 2231,
+      "sha256": "57b60470b2d932f9f59bfdadaec4ff68ab63a6692a68bd1444f3a03a9b8fa663",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint48-reject-support-two-parse-failure-freeze-v1.json",
+      "bytes": 2953,
+      "sha256": "f8e35c4f3f97464c82bc4e5731366ad8c51674bb6f88f40c39e3ba0796a79d33",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint48-symbolic-word-blocker-v1.json",
+      "bytes": 5897,
+      "sha256": "7376e8316c7dd838417ef9308c64937ae192c77a1fc7cbc62a1d35fb599c4d4a",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint48-symbolic-word-contract-v1.json",
+      "bytes": 5611,
+      "sha256": "9ce8f41fb967a87e9dfd4972503095dcbf96a2aaff06bb5f0e810e0eda5e0f97",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint48-symbolic-word-contract-v2.json",
+      "bytes": 4183,
+      "sha256": "eed59522b8c8f6d0401068491faec738d0c665460c8732285ec18705acbec7e5",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint48-symbolic-word-contract-v3.json",
+      "bytes": 6370,
+      "sha256": "7ab02f24694548ddfa7e58b99b75e9c9d9ce7d19bf30d60a526220eb34dcdcb3",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint48-symbolic-word-contract-v4.json",
+      "bytes": 7311,
+      "sha256": "f62f126b8cf30d6a0c3d838d8d0eb7e619f3f24d12dff11816c16d99e70dc8a0",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint48-symbolic-word-two-failure-freeze-v1.json",
+      "bytes": 5430,
+      "sha256": "8e0ec10a5db4e672811b661ef78a21fb5ba8b1d5a74fee637b7edde5a2a4f543",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint48-symbolic-word-v3-definition-receipt.json",
+      "bytes": 3668,
+      "sha256": "af9e77a2f82a5587d62345de44e3f8bf6a6afa3a315bc3762afc6a82cb9dbe3a",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint64-diagnostic-contract-v1.json",
+      "bytes": 2940,
+      "sha256": "a77867e833f4d6c2931a79863ed39f159aa25abca4d7de641781b740469377ed",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint64-diagnostic-receipt-v1.json",
+      "bytes": 3497,
+      "sha256": "5083ca80b4467e061b8834dd576ee33dd61ab13ff1df7b6d47d194c941ee168d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint64-hybrid-family-receipt-v1.json",
+      "bytes": 2700,
+      "sha256": "db5a51428e7e0671c5bfc942d4302cc7a3f51c3d53d633fe8f0b3a901eb8a2c2",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint64-isabelle-receipt-v1.json",
+      "bytes": 1080,
+      "sha256": "4146caae69dfcf472715566a50ef9cd82caf3551ce1f35f0442cfc7c61306214",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint64-k-isabelle-and-correspondence-v1.json",
+      "bytes": 2599,
+      "sha256": "4069dd0667ff7f4af8b17be0180a06256c9b52f045cb9100b7cde3f0a848d643",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-uint64-symbolic-word-contract-v1.json",
+      "bytes": 5084,
+      "sha256": "b02e22181725cbf8599cd70b2939c3644e07a6269aa9a5a22506709ba9bf36f1",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c0-universal-iff-hold-v1.json",
+      "bytes": 2948,
+      "sha256": "b2afb9e08a8c72f9bcf096305b8f2003ae4fdd30e7431c1aa5172386394d6efe",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c2-classifier-definition-compile-receipt-v1.json",
+      "bytes": 953,
+      "sha256": "92877469d08fd8cd4481747b1e885e2ccecc6342612b3c382926afe5fb21cdc6",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c2-concrete-classifier-strict-receipt-v1.json",
+      "bytes": 1518,
+      "sha256": "4043c38b3f26439e609b714980bf654b140b9ddec9603963ad67876a5df446b6",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c2-cutpoint-definition-compile-receipt-v1.json",
+      "bytes": 1184,
+      "sha256": "0af65be7e9b8f0f854abdde123820b75de30a2e8c4abde5c42bc1cbdd4a75cfe",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c2-cutpoint-definition-compile-receipt-v2.json",
+      "bytes": 985,
+      "sha256": "8e703b776d55b8a75b067a19944961e5d5e9481dda07e53221882a9b1238392d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c2-cutpoint-observer-binder-v1.json",
+      "bytes": 5375,
+      "sha256": "d2f6b420278f61984c01de5b8132cd1a197d901ca763a8e16833c04da47d91ee",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c2-dependency-summary-strict-receipt-v1.json",
+      "bytes": 2645,
+      "sha256": "2b8d06a00ebddbc032e36daf1824541420ce21f24477b30226b772f44eb8893f",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c2-dependency-summary-strict-receipt-v1.md",
+      "bytes": 850,
+      "sha256": "2c3afa61b8df768d4dd759a6773fcea71bcf6ec5cb1fa806eb12d6c580c0b681",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "development-narrative"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c2-returndata-copy-definition-compile-receipt-v1.json",
+      "bytes": 959,
+      "sha256": "056de7b8021207d2a0501161b82aeac6fbefc6b9e9a85dbe78b4e6ff20d03b2a",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c2-returndata-copy-strict-receipt-v1.json",
+      "bytes": 1367,
+      "sha256": "f3e04edc5d03b0db07bd20ad6e016d3ccde3cfd457af8093396156b015f8c554",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c2-staticcall-cutpoint-strict-receipt-v1.json",
+      "bytes": 2741,
+      "sha256": "125e1b5f4cb784cb12b2cb09496327ac08190a345fcf64522e8654f10b742a67",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c2-staticcall-cutpoint-strict-receipt-v1.md",
+      "bytes": 679,
+      "sha256": "3530a8beadd5ae68a2399f3eb5b16246a9faebc13f358aaa15a7a2f0e5962b88",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "development-narrative"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/c2-wrong-binding-runtime-negative-receipt-v1.json",
+      "bytes": 1356,
+      "sha256": "be0cffc9a05e4161e80854926299139bb627fd06e2002a3342530b6d734a19d1",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-ACT01-CERTORA-ADVANCED-003/input-manifest.json",
+      "bytes": 4522,
+      "sha256": "980832684987b5991a6dac9fd4b484b29b0acc375ed04cf7ed133d92368d4029",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-ACT01-CERTORA-C2-HARNESS-COMPILE-006/input-manifest.json",
+      "bytes": 2613,
+      "sha256": "70a24ec7c63f972fe1f4b9e7d337eb7da4084b9e002b6fd5ff42ca8ef8c93833",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-ACT01-CERTORA-C2-HARNESS-COMPILE-007/input-manifest.json",
+      "bytes": 2613,
+      "sha256": "42a52a624fdc6b1eba1f583f4af68d7def67824228969da4e05112eb85b95c52",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-ACT01-CERTORA-C2-HARNESS-COMPILE-008/input-manifest.json",
+      "bytes": 2613,
+      "sha256": "b465603f2033f539311b8a0aa3ef301e2d24fdb7ec0f5a07cf10524f4362f7a7",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-ACT01-CERTORA-C2-HARNESS-COMPILE-010/input-manifest.json",
+      "bytes": 2613,
+      "sha256": "80f3c50c64540e01f110238efd10f5b25d4ba031a7774130fe72add27fd245f8",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-ACT01-CERTORA-C2-HARNESS-COMPILE-012/input-manifest.json",
+      "bytes": 2206,
+      "sha256": "2537f2b4b3ceaa725901f9166ada9629b54ab64f00aaac346c2fc033bf701f0b",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-ACT01-CERTORA-C2-HARNESS-COMPILE-014/input-manifest.json",
+      "bytes": 2206,
+      "sha256": "2263706f84acf6a966e78df1f200d3ad2fc6083d4dc7e5c349ec281edfc8fc59",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-ACT01-CERTORA-C2-HARNESS-COMPILE-016/input-manifest.json",
+      "bytes": 2206,
+      "sha256": "80906be9f09a39162273c126fb5142afb93aec9173e84167c638a6b80c725b0a",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-ACT01-CERTORA-C2-HARNESS-PROOF-009/input-manifest.json",
+      "bytes": 2621,
+      "sha256": "56b4538c703f764941c2b14b9df0e4bb0d77b7974bc6ba056d2dd6c2b1d557d6",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-ACT01-CERTORA-C2-HARNESS-PROOF-011/input-manifest.json",
+      "bytes": 2621,
+      "sha256": "5dd9c5b659c6eb7f8b51b337e1eaeece7714b7f6ceb590a2758ffbca8e09ff27",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-ACT01-CERTORA-C2-HARNESS-PROOF-013/input-manifest.json",
+      "bytes": 2214,
+      "sha256": "481ca2beea930f83c848593d1f3acc3b94256c3b6ba7186b9377961f144f554e",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-ACT01-CERTORA-C2-HARNESS-PROOF-015/input-manifest.json",
+      "bytes": 2214,
+      "sha256": "47ef7e5932e2d98a3a01aad74923081df8b3f6b773dce6665a0406cf265e4f4e",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-ACT01-CERTORA-C2-HARNESS-PROOF-017/input-manifest.json",
+      "bytes": 2214,
+      "sha256": "934cc838b85ff214ab1ca3b9dc2a37daef598f74bb47e311aaf90548d8a66e35",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-ACT01-CERTORA-C2-HARNESS-PROOF-017/sanitized-receipt.json",
+      "bytes": 1620,
+      "sha256": "332e8b9cf53136175407c793112244746c36fff60190c3150355713dd5feebed",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-ACT01-CERTORA-C2-MUTANT-COMPILE-018/input-manifest.json",
+      "bytes": 2228,
+      "sha256": "39730b88b8e220395092cf50e67e145d7efe7119e389cac302841e614c75ce2e",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-ACT01-CERTORA-C2-MUTANT-COMPILE-019/input-manifest.json",
+      "bytes": 2228,
+      "sha256": "d97c3e39fb822f54c598736d94109759b89548b30840528fd7e669e3f98a7b65",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-ACT01-CERTORA-C2-MUTANT-PROOF-020/input-manifest.json",
+      "bytes": 2233,
+      "sha256": "b86cd5ebef4f96e56f7ec0f1853cc9af662d69376e204a19beb957cd38a19c9a",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-ACT01-CERTORA-C2-MUTANT-PROOF-020/sanitized-receipt.json",
+      "bytes": 1731,
+      "sha256": "8d56d261dc6e8730a81158748bb00d72f67b684322d3f690361484283741928b",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-ACT01-CERTORA-UH-COMPILE-004/input-manifest.json",
+      "bytes": 4591,
+      "sha256": "649d796cb6b176181ea90d12ac0edc874ac5923249eb6988bf8930f2728fc5a8",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-ACT01-CERTORA-UH-FEAS-005/input-manifest.json",
+      "bytes": 4587,
+      "sha256": "8fe2a8c10fd63b76bd3f7c7233510168134a746a734b7a3383a74d8d3990bff0",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-CANONICAL-PROOF-022/input-manifest.json",
+      "bytes": 4643,
+      "sha256": "4fc8f9a2ba42e38302cfecfc8fa9dc53e7640071d89f504814af88ac88b567fa",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-CANONICAL-PROOF-024/input-manifest.json",
+      "bytes": 4650,
+      "sha256": "3ce4e05c6022b2548155db3a25456b61d64e608f4008777b7e6a68afc6440620",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-CANONICAL-PROOF-026/input-manifest.json",
+      "bytes": 4638,
+      "sha256": "c161871d97aaca8f32f5fba5dd883dce429882345f7195c823d40de80f3c4680",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-CANONICAL-PROOF-028/input-manifest.json",
+      "bytes": 4654,
+      "sha256": "8d2a633fc2ee5642505092cafd296bc8193131abe7ff2701de53a65b10170331",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-CANONICAL-PROOF-030/input-manifest.json",
+      "bytes": 4651,
+      "sha256": "c19ee3d378757f7e2668fc67b06ea464c925ffefa5323b704436bcbc30fe45ee",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-CANONICAL-PROOF-032/input-manifest.json",
+      "bytes": 4643,
+      "sha256": "af60e86737a351721645206144f92db371b2f0df076190ce61a6e4cb5ac5e9d0",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-CANONICAL-PROOF-034/input-manifest.json",
+      "bytes": 4651,
+      "sha256": "3a217fbeea24f10e9e3563e2a1d074d8eded20c745c3080f56c12e32ff413633",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-CANONICAL-PROOF-036/input-manifest.json",
+      "bytes": 4644,
+      "sha256": "6b1c70c69990eae5c101ebcd4eba0c9f57a36d7f80a936b9a615ad1dbc995a7d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-CANONICAL-PROOF-038/input-manifest.json",
+      "bytes": 4645,
+      "sha256": "d4f13ee4827f7335c39f61310d7982ace475744c42d028a4ee6146224c375d15",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-CANONICAL-PROOF-040/input-manifest.json",
+      "bytes": 4651,
+      "sha256": "aebf7982b1dce8d808e676a5aa43f2ed24197ec0ed3cc4f9a44ef90d12020674",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-CANONICAL-PROOF-042/input-manifest.json",
+      "bytes": 4648,
+      "sha256": "9a46acd8452f47aa00dda8a844aefc11cbb3ede9de8097f4f3c38fa5ad17ec68",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-CANONICAL-PROOF-044/input-manifest.json",
+      "bytes": 4727,
+      "sha256": "eb3834a14365271e153e5ab6a82c42f94ce52b041ff3f135792eeb34a5a2b976",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-CANONICAL-PROOF-046/input-manifest.json",
+      "bytes": 4739,
+      "sha256": "6e0c68189e718f89423c28f78155b0dd390f92d3b5ce72af191e9fdaaa38042a",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-CANONICAL-PROOF-046/sanitized-receipt.json",
+      "bytes": 1630,
+      "sha256": "4807a69774d8270a4d8dd290aeb45e66229cf981c6bcaf750d006408b93274a2",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-MUTANT-PROOF-023/input-manifest.json",
+      "bytes": 4664,
+      "sha256": "3056cfd153159b493f111427336190d18ce9732f15e36e95061bce33612ab3f5",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-MUTANT-PROOF-025/input-manifest.json",
+      "bytes": 4671,
+      "sha256": "3ea588fdbe5b27e5b0a3615fa02d6a0cdde1fb82025cc8a06dedb034703cef84",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-MUTANT-PROOF-027/input-manifest.json",
+      "bytes": 4668,
+      "sha256": "dfaf18cd563dfa0c5df29dcd9ce82710c1657e8acf4d0bb72367701787610c50",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-MUTANT-PROOF-029/input-manifest.json",
+      "bytes": 4684,
+      "sha256": "ce189d972e39615763e0077de238aaec1aabf44819b204d198178da309ddde2e",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-MUTANT-PROOF-031/input-manifest.json",
+      "bytes": 4681,
+      "sha256": "524499ca6e92bf27de2b43fa991b0fe318912477ce8f05680d90b3c6b4bac073",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-MUTANT-PROOF-033/input-manifest.json",
+      "bytes": 4673,
+      "sha256": "6fb04b4556b9110ff4edf2bb0de16170221d9dc4e1a9b5877097a2932df09b6c",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-MUTANT-PROOF-035/input-manifest.json",
+      "bytes": 4681,
+      "sha256": "8e0a8cc3ba13981fe9adb535b6c6ab7b45c0a03eeb56d6db9ad15df601893a4b",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-MUTANT-PROOF-037/input-manifest.json",
+      "bytes": 4674,
+      "sha256": "372465ed5abbc6274237f2c891d3a90773b9b897db8238f8fc98f098d2b8144c",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-MUTANT-PROOF-039/input-manifest.json",
+      "bytes": 4662,
+      "sha256": "9c1b76762bfcd322bfdaf4bac65f642ca4be70de8698b2ccc3aca71b3241d25e",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-MUTANT-PROOF-041/input-manifest.json",
+      "bytes": 4662,
+      "sha256": "4b66c5798b72a3799c717e6151253147f2b2cbf11a061c7bea4acdcb5618c63b",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-MUTANT-PROOF-043/input-manifest.json",
+      "bytes": 4662,
+      "sha256": "030d06dd86bb65c236cc2bcdab7f0b0f9b1ab76a6834b8c45cdfecf0f57a4589",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-MUTANT-PROOF-045/input-manifest.json",
+      "bytes": 4734,
+      "sha256": "e905e154aed1cd29d5bf4e556e3d875fc35b6ab638c9554e156688acee3c12f0",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-MUTANT-PROOF-047/input-manifest.json",
+      "bytes": 4747,
+      "sha256": "b551ebee5bbb837bf5a798efb88eece1b800904ea89300c912cfb1cffd89038f",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-MUTANT-PROOF-047/sanitized-receipt.json",
+      "bytes": 1911,
+      "sha256": "14147611611e80e060e38ec72bf5b6f54dae4493d90df8791611e2a60e6978a6",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C3-CERTORA-CANONICAL-PROOF-048/input-manifest.json",
+      "bytes": 4691,
+      "sha256": "7beadd7e2596791ad12cd54f11a8eb0eecc8d135318f3827b3b9fa87863f4d3b",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C3-CERTORA-CANONICAL-PROOF-050/input-manifest.json",
+      "bytes": 4700,
+      "sha256": "086bec110893ff4cafa034107719c3489d3b9150cb22b109f8e34c5df467924b",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C3-CERTORA-CANONICAL-PROOF-052/input-manifest.json",
+      "bytes": 4698,
+      "sha256": "0b0963fec7b3afca4f9b11ccac3a0cff7f25142a517d960829b629a934b8e392",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C3-CERTORA-CANONICAL-PROOF-052/sanitized-receipt.json",
+      "bytes": 1466,
+      "sha256": "4ed98e0a72ef524c5d576f4debac7ca7b12c0fa24c33111c09406705cb717f49",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C3-CERTORA-MUTANT-PROOF-049/input-manifest.json",
+      "bytes": 4739,
+      "sha256": "0f757810b4c98a72ff0a254d15f78ac051c697f53de6a8fe12e5869574208a75",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C3-CERTORA-MUTANT-PROOF-051/input-manifest.json",
+      "bytes": 4748,
+      "sha256": "f43ad748247037f0d41f375bf78438fba0b7f34839a44fe7593fbdd8c7151761",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C3-CERTORA-MUTANT-PROOF-053/input-manifest.json",
+      "bytes": 4746,
+      "sha256": "396f243509467f368dd516fc74d835490e20807c49bea61239b2f10fc9291b8f",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C3-CERTORA-MUTANT-PROOF-053/sanitized-receipt.json",
+      "bytes": 1656,
+      "sha256": "fe9e5fbf9f7c367294db81a544de47ba7edce9e549df7f6fac1a763962fec585",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C4-FREEZE-CERTORA-CANONICAL-PROOF-054/input-manifest.json",
+      "bytes": 4689,
+      "sha256": "97c39070244e9d95b175bd75dec5efa8fb40fc150ea44639265e2a53899e823a",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C4-FREEZE-CERTORA-CANONICAL-PROOF-056/input-manifest.json",
+      "bytes": 4686,
+      "sha256": "52f408768fbc283287f9e6eb130278e2a5a9fe9fe86adb77d5b231b12322d458",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C4-FREEZE-CERTORA-CANONICAL-PROOF-056/sanitized-receipt.json",
+      "bytes": 1424,
+      "sha256": "60833604972348b5154c66af058c6ff6a61f532dd83c82a7ca705a2100df537d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C4-FREEZE-CERTORA-MUTANT-PROOF-055/input-manifest.json",
+      "bytes": 4716,
+      "sha256": "c34d4b0bea4d670a24a6ace2441403af5870362a76695b2a310a61861566cf44",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C4-FREEZE-CERTORA-MUTANT-PROOF-057/input-manifest.json",
+      "bytes": 4731,
+      "sha256": "355b8f57f3944ba212fd1cf1f23740c9777ace626610b3b0a491d23fce996b2a",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C4-FREEZE-CERTORA-MUTANT-PROOF-057/sanitized-receipt.json",
+      "bytes": 1594,
+      "sha256": "e142f7aab60544f25ccb2e3691805303237c33ffa69c13f8c8cf2e545be079b2",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C4-REMAINING-CERTORA-CANONICAL-PROOF-062/input-manifest.json",
+      "bytes": 4700,
+      "sha256": "826c2dda2b248c97a208e9ebf00421b0c3f1c4436a697c3563e9a46d34d8e1b6",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C4-REMAINING-CERTORA-CANONICAL-PROOF-064/input-manifest.json",
+      "bytes": 4711,
+      "sha256": "9c7877689f3ee73c5f36ebb3b26d396deb429f64744444405cbca68bc519830d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C4-REMAINING-CERTORA-CANONICAL-PROOF-064/sanitized-receipt.json",
+      "bytes": 1563,
+      "sha256": "f81c099c6d9662daf32f122078d1f3939bf7b9d22afc7b47def3d7cbe24432d4",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C4-REMAINING-CERTORA-MUTANT-PROOF-063/input-manifest.json",
+      "bytes": 4755,
+      "sha256": "841c01bbaeedf06b54e380abfc60f69e0b3ed32aeee28c8c9edf5121a0b340a0",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C4-REMAINING-CERTORA-MUTANT-PROOF-065/input-manifest.json",
+      "bytes": 4763,
+      "sha256": "158e8f67205b0ab26e2afbd941a3868b636eb4a8b602294120d405baf99f7edd",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C4-REMAINING-CERTORA-MUTANT-PROOF-065/sanitized-receipt.json",
+      "bytes": 1799,
+      "sha256": "71dfffe441b0a30cf38e9414009229a119dfe66b0877ab40fb927d28dd094c30",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C5-CERTORA-CANONICAL-PROOF-066/input-manifest.json",
+      "bytes": 4663,
+      "sha256": "85c8b9582fa449d62e61ab269c1b69afae29c5d424c10d4f29c4c48b01df1e2d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C5-CERTORA-CANONICAL-PROOF-068/input-manifest.json",
+      "bytes": 4680,
+      "sha256": "5937b02bf5c094f90ab38a8ed3054a0d909c7147dc70c5234b4aca89c500806c",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C5-CERTORA-CANONICAL-PROOF-070/input-manifest.json",
+      "bytes": 4669,
+      "sha256": "2a95606ab3ff6efd6457d98347d2adfd1befb049809b8ad33b238c4fbe15223b",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C5-CERTORA-CANONICAL-PROOF-070/sanitized-receipt.json",
+      "bytes": 1417,
+      "sha256": "5547f6f61dc641b284dda96ca369c5e5f1c4348fb9782d9c9878f6b4b8e921ff",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C5-CERTORA-MUTANT-PROOF-067/input-manifest.json",
+      "bytes": 4706,
+      "sha256": "72711cde762488d5e694749937c241525089e7861308038bab6563d77a5b8e22",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C5-CERTORA-MUTANT-PROOF-069/input-manifest.json",
+      "bytes": 4723,
+      "sha256": "a94619305184538e6b231673d46e73c36842f7ed87e6d6e0c50e1a49907a1fe8",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C5-CERTORA-MUTANT-PROOF-071/input-manifest.json",
+      "bytes": 4711,
+      "sha256": "12d9af5189b7e0f2456854801dc48b7e997bf41494e51bc5ecce280cffcc56d6",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C5-CERTORA-MUTANT-PROOF-071/sanitized-receipt.json",
+      "bytes": 1584,
+      "sha256": "31e53ba6a5f6469becd1c24ff7986f6da841d410bc9f4a9bbde7137ac61f3ad8",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C6-CERTORA-CANONICAL-PROOF-058/input-manifest.json",
+      "bytes": 4697,
+      "sha256": "70bbf6cc1f1b6a8dc1f244ee67597376f1e5af68e060137e42c791511d1d9c85",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C6-CERTORA-CANONICAL-PROOF-060/input-manifest.json",
+      "bytes": 4696,
+      "sha256": "996339fe946ee76b2e093487d41d663bdff961295e2c96a6d00ab697e30eb2c9",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C6-CERTORA-CANONICAL-PROOF-060/sanitized-receipt.json",
+      "bytes": 1452,
+      "sha256": "47a3eed543b9bb6cbedb60ed310419b95587425e4c7e7d471b2c626d80a1ae11",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C6-CERTORA-MUTANT-PROOF-059/input-manifest.json",
+      "bytes": 4735,
+      "sha256": "3d65b8149e06729d9fa4488935307346588572d0a50e812aee0fbb22f3ef5fc9",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C6-CERTORA-MUTANT-PROOF-061/input-manifest.json",
+      "bytes": 4752,
+      "sha256": "125b4847cc4288f6d2684b6fb83c35d797cb6514228db016c9844057c847fc07",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C6-CERTORA-MUTANT-PROOF-061/sanitized-receipt.json",
+      "bytes": 1639,
+      "sha256": "915cb2178171aeafd634574c863e3b129a34ab810a8550fb22974ff61a007472",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/failed-probes/c0-universal-opcode-probe-20260826/failure-report-v1.json",
+      "bytes": 3413,
+      "sha256": "ccf4bbfb99ceee65c82e4f1380419af31fef1e2dcd77b7b9f2c35126c375b6ce",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/failed-probes/c0-universal-opcode-probe-20260826/foundation-rematerialization-v1.md",
+      "bytes": 2788,
+      "sha256": "17aacf09a755bdc070802a5ee90e3aa71f441908677c76763cc5cf726b956d80",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/failed-probes/c0-universal-opcode-probe-20260826/generate-c0-runtime-opcode-slices-v1.mjs",
+      "bytes": 6923,
+      "sha256": "6a37c7acea3a7263f8349d2d6c5cb32745722d73ccc11885cf2b3cad1fc085d2",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/failed-probes/c0-universal-opcode-probe-20260826/README.md",
+      "bytes": 1736,
+      "sha256": "95083f06adb9bd76999308a96a7223dc6638e546a38892e28026a30779285139",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/failed-probes/c0-universal-opcode-probe-20260826/TRUST_C0_EVM_Opcode_Semantics.thy",
+      "bytes": 3052,
+      "sha256": "d277e5e861b734965a7b6e4e5d0c74bb05ff47224afaee67f6be079bd0df133a",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/failed-probes/c0-universal-opcode-probe-20260826/TRUST_C0_Runtime_Opcode_Slices_Generated.thy",
+      "bytes": 1362,
+      "sha256": "232c9be9e6eb67db8e48fea544d227a497fa6ba8533e326018983c0431d4906e",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/failed-probes/c0-universal-opcode-probe-20260826/TRUST_C0_Runtime_Universal.thy",
+      "bytes": 947,
+      "sha256": "d7939aff56b6d408711de18f911f406a90940d714e006573b4773068d2f6291b",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v1/index-v1.json",
+      "bytes": 2476,
+      "sha256": "11d13e917fd2930c93b77c3900d8c2addbd71e6ff3ce67354ed6175da3e28113",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v1/profile-schema-v1.json",
+      "bytes": 848,
+      "sha256": "855e6ced50b19ead590a359bea0870549d4d5800e8e53c9f68bcd92f98ea866d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v1/profiles/CERTORA-FINANCIAL-CORE-v1.json",
+      "bytes": 6594,
+      "sha256": "7d147827b492eb3c4eedbd16fd307183b48cab8f218676913f3e59696c85f003",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v1/profiles/EQUIVM-PILOT-v1.json",
+      "bytes": 2968,
+      "sha256": "611a318d10c25dfa43e9d5e8d2110598969c8d559802e3ebf9b15baf78e63804",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v1/profiles/HALMOS-PREFLIGHT-v1.json",
+      "bytes": 3091,
+      "sha256": "2e391887691e2e4aca6aaf62304d6a1de0eff1379f4e60e2e1876ef99447bdc7",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v1/profiles/ISABELLE-ABSTRACT-BRIDGE-v1.json",
+      "bytes": 4512,
+      "sha256": "5b579681d485c7f7d1062a663187f6b891e87b805fe94e4e0e04b31c4dcb3502",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v1/profiles/KEVM-BOOSTER-DISCOVERY-v1.json",
+      "bytes": 3117,
+      "sha256": "ef90f5f7f52f41f49757119c84845473279b51ec004e2439b6eef2dd47db6405",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v1/profiles/KEVM-LEGACY-HASKELL-STRICT-v1.json",
+      "bytes": 3437,
+      "sha256": "e1f0249e8e97fec2ba4ff9d10b4770b440f269c4f241fe81f4d6ea15247dbfd0",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/isabelle-evm-feasibility.md",
+      "bytes": 7864,
+      "sha256": "69050390df27f1465e31b2948f1755f97cb30d2149c9544bf105e1b29d809b4b",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/isabelle/closure-20260802T102335Z/closure-report.json",
+      "bytes": 2806,
+      "sha256": "f1d1a964bce1412475f2765d007bc6892f1f116a3fbdf3b9fc449b77a8b2e425",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/isabelle/closure-20260802T102335Z/isabelle-clean-build.log",
+      "bytes": 103,
+      "sha256": "0496d5b3ac9f608532113b205a2ffc79e156b83ab3c6d78ad912f67c16ba6fd2",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/isabelle/closure-20260802T102335Z/isabelle-export.log",
+      "bytes": 207,
+      "sha256": "d9434d06d9884aae8d2bc7855924c9d36f15b1e379ad01bd30370e0766ce511e",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/isabelle/closure-20260802T102335Z/model-proof-trust.txt",
+      "bytes": 87,
+      "sha256": "69ed28175a1291d0edb00044ba252f70b381036bd14544c6c3b34618aab75636",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/abi-calldata-initial-campaign.json",
+      "bytes": 4795,
+      "sha256": "5088eda5b585163fca393d0c12728dceb03f8cb0fa9571c11ea36966dd81faea",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/fail-05-generic-dispatcher-revert-20260802T174934Z/negative/definition-compile-time.txt",
+      "bytes": 983,
+      "sha256": "7478cabf4505a795200d392e4c4b812554a0916bc0815c76d3bdeeb5ced4a8e6",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/fail-05-generic-dispatcher-revert-20260802T174934Z/negative/definition-compile.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/fail-05-generic-dispatcher-revert-20260802T174934Z/negative/prove.log",
+      "bytes": 3571,
+      "sha256": "c83bf6d91b7de68ef2c5f5e1a215e57b8ab1bbc72ba9619770de753b57d66e09",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/fail-05-generic-dispatcher-revert-20260802T174934Z/negative/save/d89531413582f766cbe2bcaf64469e49303f10acda4271e102755c11c293cfd0/kcfg/kcfg.json",
+      "bytes": 1361675,
+      "sha256": "679536ecaee04af991520d7495071cf804915a628ea8cb5e8a37b8028702e1e2",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/fail-05-generic-dispatcher-revert-20260802T174934Z/negative/save/d89531413582f766cbe2bcaf64469e49303f10acda4271e102755c11c293cfd0/kcfg/nodes/139.json",
+      "bytes": 102169,
+      "sha256": "3f5fbaf7be5774838c8792711976d6c00614700e8bd6c8630028c053cdcc3a98",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/fail-05-generic-dispatcher-revert-20260802T174934Z/negative/save/d89531413582f766cbe2bcaf64469e49303f10acda4271e102755c11c293cfd0/proof.json",
+      "bytes": 910041,
+      "sha256": "5817d3e3c903c0de207bea6fb5fbd72d14bf705f816c730d8c3052b0ea60cb00",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/fail-05-generic-dispatcher-revert-20260802T174934Z/negative/time.txt",
+      "bytes": 1282,
+      "sha256": "666d45472e7660dc80a0e3149aa7a4613d93281e3db67ea6a9e546f253fe199b",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/fail-05-generic-dispatcher-revert-20260802T174934Z/positive/prove.log",
+      "bytes": 257,
+      "sha256": "5d0e7f85977eadd86885c90e8e20eae1eca4f30b68367f314919a910ff5d1892",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/fail-05-generic-dispatcher-revert-20260802T174934Z/positive/save/d89531413582f766cbe2bcaf64469e49303f10acda4271e102755c11c293cfd0/kcfg/kcfg.json",
+      "bytes": 181765,
+      "sha256": "f05252130fc0aec5534aed12e19432da3f13ebb2f9d8015b4c2d061da66f2117",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/fail-05-generic-dispatcher-revert-20260802T174934Z/positive/save/d89531413582f766cbe2bcaf64469e49303f10acda4271e102755c11c293cfd0/kcfg/nodes/1.json",
+      "bytes": 99389,
+      "sha256": "78fe89af9d318f506166c486ca42f2e153f5658fb0cbe7a658840bf68409477f",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/fail-05-generic-dispatcher-revert-20260802T174934Z/positive/save/d89531413582f766cbe2bcaf64469e49303f10acda4271e102755c11c293cfd0/kcfg/nodes/2.json",
+      "bytes": 99187,
+      "sha256": "3519ed2f91465c080ac3e91ce66f5c1968cadb8392d203d3c60dda21b14e9303",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/fail-05-generic-dispatcher-revert-20260802T174934Z/positive/save/d89531413582f766cbe2bcaf64469e49303f10acda4271e102755c11c293cfd0/kcfg/nodes/3.json",
+      "bytes": 384323,
+      "sha256": "4939b9de0beb1c58b5535f695a72aace23162078bec9bc7d4565d96cfe1e05e5",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/fail-05-generic-dispatcher-revert-20260802T174934Z/positive/save/d89531413582f766cbe2bcaf64469e49303f10acda4271e102755c11c293cfd0/kcfg/nodes/4.json",
+      "bytes": 99176,
+      "sha256": "611d6fc1b502082bbcca3bd5e5f85b8fdbefa843d190b64dbff2dbcaf0db54a9",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/fail-05-generic-dispatcher-revert-20260802T174934Z/positive/save/d89531413582f766cbe2bcaf64469e49303f10acda4271e102755c11c293cfd0/proof.json",
+      "bytes": 147095,
+      "sha256": "0ac7776746616eaab9fb35b49fb439bc81a9468b44611197116f58c129057045",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/fail-05-generic-dispatcher-revert-20260802T174934Z/positive/time.txt",
+      "bytes": 1250,
+      "sha256": "b7c0b6489e964c40c921c94097c204474dd51b0e528338098fc042c8f2fc4fca",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/fail-05-generic-dispatcher-revert-20260802T174934Z/README.md",
+      "bytes": 4710,
+      "sha256": "3ed05156e2ce2123155d579838ac4e0b81a0e7045db2574170c12f3854f8bd5f",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "development-narrative"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/full-transaction-malformed-calldata-feasibility-20260802T122626Z/definition-compile.log",
+      "bytes": 933,
+      "sha256": "f43fe5f19e918be94b7b517df45792f3536611658ca868d4cb17ead509dda668",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/full-transaction-malformed-calldata-feasibility-20260802T122626Z/proof-summary.json",
+      "bytes": 3734,
+      "sha256": "f9c4f393db65da7361011b6b8b05a35d99b06d13fd3569492344b20a70017256",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/full-transaction-malformed-calldata-feasibility-20260802T122626Z/prove.log",
+      "bytes": 1507,
+      "sha256": "ceb7c8f37fa737d118cb15e83cc1230c50525f8da42bf62fece91c3037b0ac5f",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/full-transaction-malformed-calldata-feasibility-20260802T122626Z/save/84d257121a5d45304d8822a205038429c4d0c100e638a7357006c5645f71f60c/kcfg/kcfg.json",
+      "bytes": 19341,
+      "sha256": "2cfcb54510c7307c94fffaff537929826f5f38ca79ea7c5fd4499ea009f91002",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/full-transaction-malformed-calldata-feasibility-20260802T122626Z/save/84d257121a5d45304d8822a205038429c4d0c100e638a7357006c5645f71f60c/kcfg/nodes/1.json",
+      "bytes": 99396,
+      "sha256": "5c12e36588020a0713f6399dab113e54e9346c11bd095b2873b8c84b013b7dc1",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/full-transaction-malformed-calldata-feasibility-20260802T122626Z/save/84d257121a5d45304d8822a205038429c4d0c100e638a7357006c5645f71f60c/kcfg/nodes/10.json",
+      "bytes": 384844,
+      "sha256": "9b79b3e8ccb01845b878dcc8d05df5097e9368fdf68987400078f7f88834dee8",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/full-transaction-malformed-calldata-feasibility-20260802T122626Z/save/84d257121a5d45304d8822a205038429c4d0c100e638a7357006c5645f71f60c/kcfg/nodes/11.json",
+      "bytes": 384916,
+      "sha256": "e93a2f33e7239ad48cfc4f08089a5ed9ecacd08c392f686ce482d7a881405642",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/full-transaction-malformed-calldata-feasibility-20260802T122626Z/save/84d257121a5d45304d8822a205038429c4d0c100e638a7357006c5645f71f60c/kcfg/nodes/12.json",
+      "bytes": 385088,
+      "sha256": "bce6821550412ee9ac81c3acdc3d25911373efc4ce2cc660c53cb7987684ef91",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/full-transaction-malformed-calldata-feasibility-20260802T122626Z/save/84d257121a5d45304d8822a205038429c4d0c100e638a7357006c5645f71f60c/kcfg/nodes/13.json",
+      "bytes": 384600,
+      "sha256": "1a17a32ef7e9ab750131f1e3e8635a80b9035fc0b8a52e148e708f57b05cb8e5",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/full-transaction-malformed-calldata-feasibility-20260802T122626Z/save/84d257121a5d45304d8822a205038429c4d0c100e638a7357006c5645f71f60c/kcfg/nodes/14.json",
+      "bytes": 384915,
+      "sha256": "f06377abdc7e31f120f594a8edccccfe38d1c94467e4ec007286eaf0cfbc233d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/full-transaction-malformed-calldata-feasibility-20260802T122626Z/save/84d257121a5d45304d8822a205038429c4d0c100e638a7357006c5645f71f60c/kcfg/nodes/15.json",
+      "bytes": 385088,
+      "sha256": "67ca375a3f7d309420e9290777b6091abf7513bbb02a4ac4de792d5e54a1baa3",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/full-transaction-malformed-calldata-feasibility-20260802T122626Z/save/84d257121a5d45304d8822a205038429c4d0c100e638a7357006c5645f71f60c/kcfg/nodes/16.json",
+      "bytes": 384312,
+      "sha256": "012f9e236f7e5ba0301b8ed1c6f0da4bdff2e2804ca9c3e7781991fb2e2b39dd",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/full-transaction-malformed-calldata-feasibility-20260802T122626Z/save/84d257121a5d45304d8822a205038429c4d0c100e638a7357006c5645f71f60c/kcfg/nodes/17.json",
+      "bytes": 99184,
+      "sha256": "2656e3baca3f0d3622498025f2afe65c0fea7ae17776f23ff9dc513bb7645d04",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/full-transaction-malformed-calldata-feasibility-20260802T122626Z/save/84d257121a5d45304d8822a205038429c4d0c100e638a7357006c5645f71f60c/kcfg/nodes/2.json",
+      "bytes": 99194,
+      "sha256": "5da988e7c07dd1b04d63eb26bf510ab8c973bff2a95c9c90c2e74a3d74d3517e",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/full-transaction-malformed-calldata-feasibility-20260802T122626Z/save/84d257121a5d45304d8822a205038429c4d0c100e638a7357006c5645f71f60c/kcfg/nodes/3.json",
+      "bytes": 383946,
+      "sha256": "8e9e57d4c02e823b6f928217b29caa805399df8aec04b2f0b7e2b67dfadd4824",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/full-transaction-malformed-calldata-feasibility-20260802T122626Z/save/84d257121a5d45304d8822a205038429c4d0c100e638a7357006c5645f71f60c/kcfg/nodes/4.json",
+      "bytes": 384190,
+      "sha256": "39295f393d96700f864ce3851b8dcb954fa4479bb4c428d13a0dc39278267eeb",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/full-transaction-malformed-calldata-feasibility-20260802T122626Z/save/84d257121a5d45304d8822a205038429c4d0c100e638a7357006c5645f71f60c/kcfg/nodes/5.json",
+      "bytes": 384436,
+      "sha256": "ee687417f4c7c040f6775c23f3908635031a6d7dd34ddfcdcb0aff77ea3b8c61",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/full-transaction-malformed-calldata-feasibility-20260802T122626Z/save/84d257121a5d45304d8822a205038429c4d0c100e638a7357006c5645f71f60c/kcfg/nodes/6.json",
+      "bytes": 384609,
+      "sha256": "d8304639d9aa893d7465d15c3738863a7f6d91d5c14c9581320b29c40e80cb65",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/full-transaction-malformed-calldata-feasibility-20260802T122626Z/save/84d257121a5d45304d8822a205038429c4d0c100e638a7357006c5645f71f60c/kcfg/nodes/7.json",
+      "bytes": 384671,
+      "sha256": "1af2b390281f44ca385c656e56db2165d0e6fb236f3cad314a351047db33f91c",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/full-transaction-malformed-calldata-feasibility-20260802T122626Z/save/84d257121a5d45304d8822a205038429c4d0c100e638a7357006c5645f71f60c/kcfg/nodes/8.json",
+      "bytes": 384850,
+      "sha256": "16881cae7d42f323540ab38b4bbf56cf72e8718afea59771929325c138bb764c",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/full-transaction-malformed-calldata-feasibility-20260802T122626Z/save/84d257121a5d45304d8822a205038429c4d0c100e638a7357006c5645f71f60c/kcfg/nodes/9.json",
+      "bytes": 385082,
+      "sha256": "19a44287f48a9e591f415d063fb621b75777f5292e1ef83db136260a6989bdb5",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/full-transaction-malformed-calldata-feasibility-20260802T122626Z/save/84d257121a5d45304d8822a205038429c4d0c100e638a7357006c5645f71f60c/proof.json",
+      "bytes": 14439,
+      "sha256": "1d5c1ac7ad6cb04f4a37dcf1de17a0d696e9dc562bfb5b7f2d8acf0cc85ad758",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/kevm/full-transaction-malformed-calldata-feasibility-20260802T122626Z/save/digest",
+      "bytes": 168,
+      "sha256": "fa1869d0747039e612922137775a3875632b9d4ff43c4a9b17f1c7cacc342f36",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/m4-act01-c2-fallback-checkpoint-v1.json",
+      "bytes": 13353,
+      "sha256": "305b3d6dff77a5cd05136d57f3e4b9c0a228d42f0aa1b31c515d117deb607f4b",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/m4-act01-c2-fallback-checkpoint-v1.md",
+      "bytes": 3035,
+      "sha256": "920b817c22fe29ba40744d3d2af38330de34d1add28ee1435aca0ecfde885262",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/m4-act01-current-profile-checkpoint-v1.json",
+      "bytes": 5559,
+      "sha256": "e5192715d01342ad0cafd36cbf8c59eeaeb48f0b8c786c41f1fcf4366a6a9f47",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/m4-act01-current-profile-checkpoint-v1.md",
+      "bytes": 3061,
+      "sha256": "c15bbf16494521095c0bded520ac5ad8cf85f983d2b8927da99988275beffb7d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/m4-c0-safe-handoff-checkpoint-v1.json",
+      "bytes": 5503,
+      "sha256": "3a8197fbba69cf8e1b84344b45411ac67839e59dd631dfa1aa0b505357910193",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/m4-core-refinement-redesign.md",
+      "bytes": 15149,
+      "sha256": "683fb8925959f4e09dcc3644e1bf4cdd032d7ccd5c2c245a56f279f940fc113e",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "development-narrative"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/m4-execution-cost-ledger.json",
+      "bytes": 215996,
+      "sha256": "17326d289a6354d8c7f515aa0e10d7b14fb8c0cd348862296423ec503d4b715a",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/m4-runtime-freeze-v1.json",
+      "bytes": 4348,
+      "sha256": "ba18d99f630bad67faee824ec83f1071f478a393639faa087be739d880164d67",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/m4-wave1-feasibility-reconnaissance.md",
+      "bytes": 32496,
+      "sha256": "d323775e291aed8bc492819ea2deae7586e3af293d3613e4376056e60d4e312c",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/m4-wave2-current-rebinding.md",
+      "bytes": 5412,
+      "sha256": "d71a51952f34e6b33ed82ffacc74434fb9c00682e3e28254f0cde2d9eee0f836",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/obligation-evidence-index.json",
+      "bytes": 327520,
+      "sha256": "7c4d999373d2ff7582957ca368bb2f08684098ed861fc8ef822bd445e86f7817",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/proof-run-ledger.json",
+      "bytes": 77529,
+      "sha256": "9e2b96af6a49b934e1d30810c6882a2c67d55e114ca1ebb3046a490a31600e88",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/reusable-summaries-v1/qualifications/c0-03-direct-entry-bytecode-v1.json",
+      "bytes": 25084,
+      "sha256": "c8a38fa525ec91ce05b19ea3cf553e1e16af96c9f2ee32ec3542448e307455d1",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/reusable-summaries-v1/qualifications/c0-03-runtime-occurrence-audit-v1.json",
+      "bytes": 5408,
+      "sha256": "e3a3aa04cb01473d125fb7729d7f88e4b8d6aac5a7ac90789b3dd025d64358ac",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/reusable-summaries-v1/qualifications/c0-03-runtime-redesign-v1.json",
+      "bytes": 4588,
+      "sha256": "b24de4e95e0c5b5c9dd65d34e58bf2b73bede53b6e22f1ed49bd65fa1584937b",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/reusable-summaries-v1/qualifications/c0-abi-runtime-plan-v1.json",
+      "bytes": 1930,
+      "sha256": "9efb42da8b300a11824597e1f07a920cfb04c452d632646df113bc761addefd9",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/reusable-summaries-v1/qualifications/c0-current-status-v1.json",
+      "bytes": 1939,
+      "sha256": "14c92842834c1de34cc6d76e7ec205f86c0fde59cf1f0b718b08518bcbfc1407",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/reusable-summaries-v1/qualifications/c0-execution-contract-v1.json",
+      "bytes": 3331,
+      "sha256": "f8168a0ec377f1d8f8e303c28f2e812249ef87247911aa97c7d103af179849d0",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/reusable-summaries-v1/qualifications/c0-soundness-gap-audit-v1.json",
+      "bytes": 2884,
+      "sha256": "6708be0c2959b48e8a0a6c398945cb96fe17f982ae9685f98ff5e11a16fc9f88",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/reusable-summaries-v1/qualifications/c0-static-preflight-v1.json",
+      "bytes": 1815,
+      "sha256": "a9625ae9bfc4acbc7b1b43b7c6deade31f6d1086127d9f91fc2aa920f5c391ed",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/reusable-summaries-v1/qualifications/c0-strict-ready-checkpoint-v1.json",
+      "bytes": 2792,
+      "sha256": "719a4edc967f50854a599773bda97ad964820158a41652a3cb70067aac0c9e71",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/abi-03/artifacts/bridge-reverse-check.json",
+      "bytes": 630,
+      "sha256": "9543317310af2a189aee3692bf9aecab24f1a9158c0dd8503ddb4c83f25458e9",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/abi-03/artifacts/bundle-schema-validation.json",
+      "bytes": 73,
+      "sha256": "eb1156c12b2a06166d85a9c41e1d8915c0fb69c875b351b8e03f81e8dd4d5189",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/abi-03/artifacts/isabelle-closure-report.json",
+      "bytes": 518,
+      "sha256": "41c6abcb75e34e6bc147de4fe07b224be7a7f807cae200eb9c68648a622b6297",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/abi-03/artifacts/negative-analysis.json",
+      "bytes": 210,
+      "sha256": "b7d74a229f0a878e6be8a979d8a32ec2811dee0971bbdff9a37a90bf1461e429",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/abi-03/artifacts/negative-kcfg.json",
+      "bytes": 1348905,
+      "sha256": "ff0a87ac6b2998ef3837f8be1e095af674878380cd2c93d90768c3d5cd7474e7",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/abi-03/artifacts/negative-proof.json",
+      "bytes": 901283,
+      "sha256": "76e9c08b18c01986724d34fa03db94c0be9f880aa09a295ff3a47abb535e3b3e",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/abi-03/artifacts/negative-terminal-node-139.json",
+      "bytes": 107322,
+      "sha256": "874c3e8d581983dd52e50167aeed4f0fb68662db7f94da1881b2b9b6bac9795b",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/abi-03/artifacts/negative.log",
+      "bytes": 4822,
+      "sha256": "aecaf2ebfcd30a0019db6a64f4aa13438b2dc80a1f180d1f47a7088e68b3d9b4",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/abi-03/artifacts/positive-analysis.json",
+      "bytes": 205,
+      "sha256": "3d1eb5990a1af55ef6bbb6861ea81ab25a17351a67f1c2b0cf8a8c9e569791ce",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/abi-03/artifacts/positive-kcfg.json",
+      "bytes": 168521,
+      "sha256": "d5ad4aa821d60f93809711ae2e87c65968ecd7ee4a52789528818e2961164a67",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/abi-03/artifacts/positive-proof.json",
+      "bytes": 135468,
+      "sha256": "1d3adb0fd1b5d0a8ca8eff5bb7179e60322b7b89da0f58f935f295e851b0ea4c",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/abi-03/artifacts/positive.log",
+      "bytes": 257,
+      "sha256": "fe26504ef0294e251ceb50554d4bb25ad2fc54ba918f0b44d87c56c1de9d6300",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/abi-04/diagnostics/native-regulatory-action-short-lower-positive-canonical-001.json",
+      "bytes": 2252,
+      "sha256": "b03b88bd0bc73f56c5a8bbe7098841da7b80ad3c1f3db90f4606540c5dc2c85c",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/abi-04/exact-replay-ledger.json",
+      "bytes": 462253,
+      "sha256": "1307bdaa9426a3066f65bf8849e93adc35717e44a82a8944a140056a1468b4df",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/abi-04/high-bits-feasibility-current-runtime-v1.json",
+      "bytes": 122235,
+      "sha256": "929c4081f6d12698c3a18a2d9b6f9fbdd0af89485aadb9eed80bce0c41f99a49",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/abi-04/independent-replay-report.json",
+      "bytes": 3303,
+      "sha256": "f7187640fae4eafb33a972a71a8615e00a71b78380327ee961de62deae3736b5",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/abi-04/isabelle-closure-report.json",
+      "bytes": 2482,
+      "sha256": "4a356d2a6161e38096925c6f3b98fd30feab38187e503e6dafea2e0391919126",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/act-01/act-01-experiment-log.md",
+      "bytes": 2999,
+      "sha256": "edf3a8202308a4fe29f5d5bea16111e92fb9382d142ea1fb8d73e5c33b94a0bd",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "development-narrative"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/act-01/attempt-history-freeze-v1.json",
+      "bytes": 24951,
+      "sha256": "247c90c7a53e62ca2d38dd683e815730b1bb03a551cfd0a6116b642b057214ea",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/act-01/control-parse-only-current-runtime.json",
+      "bytes": 1763,
+      "sha256": "cd60308a657e6362f6279936f22a78ab99bdc023c96f492647bb93b08c49c788",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/act-01/dry-divergence-v1.json",
+      "bytes": 9809,
+      "sha256": "995cc6f556883045f51b42f19420fc9f7151db5552fb855d84dbde68f6e387d2",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/act-01/fresh-initial-frame-audit-v1.md",
+      "bytes": 7681,
+      "sha256": "605a0f4e3b00617dbe172bf96138102478a16d9bb70c8404b5916b52ebd4c625",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "development-narrative"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/act-01/full-transaction-feasibility-v1.json",
+      "bytes": 4689,
+      "sha256": "cad918c66bd59c6f77aa1716f3c0087d2ea9bd4bb72eda3e402a3287df8ee647",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/act-01/full-transaction-state-capture-v1.json",
+      "bytes": 8061,
+      "sha256": "f4e105111f32040660b75db0cf554510b077dc390a8f4220d1546b5b7d098969",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/act-01/initial-frame-canary-v1.json",
+      "bytes": 17060,
+      "sha256": "b193b5914887c3c8ae5c7cb3bd9d7c4e591068f773c34a5d422e1214667a423e",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/act-01/initial-frame-canary-v2.json",
+      "bytes": 16926,
+      "sha256": "abae8aa7136d3135f046ee0822e44e0f65ada4a1085091f0b154b15f416bfa58",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/act-01/parse-only-current-runtime.json",
+      "bytes": 1765,
+      "sha256": "d5f4800fd9d2f1603c08101efd125cacd12b2401f6aca1cd507a3d59b752b224",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/act-01/physical-task-relay-checkpoint-v1.json",
+      "bytes": 7723,
+      "sha256": "5dd43aeff5ceed302bb7faa0b244b34557e87347295a8302a1418ca462367252",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/act-01/read-footprint-trace-v1.json",
+      "bytes": 10637,
+      "sha256": "fc868076cc8e76dab090f0ef6525e5cd41b383068c889fdc1f7d5bb5bc197f4d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-02/artifacts/bridge-reverse-check.json",
+      "bytes": 466,
+      "sha256": "8f08ff332f28691e3d3a6218904b89bc33ce5eb9894702c0e23ca166926a4c2d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-02/artifacts/bundle-schema-validation.json",
+      "bytes": 73,
+      "sha256": "969dd1b0e6bfe253655eab975c3c67a4a66ee201899ca3d8d63912f4b19cd5d4",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-02/artifacts/isabelle-closure-report.json",
+      "bytes": 517,
+      "sha256": "df80676ae6f5ca7af2a819d7e14790d8a0ea4f83b64187c7bedf88936907e809",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-02/artifacts/negative-analysis.json",
+      "bytes": 210,
+      "sha256": "b7d74a229f0a878e6be8a979d8a32ec2811dee0971bbdff9a37a90bf1461e429",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-02/artifacts/negative-kcfg.json",
+      "bytes": 1200044,
+      "sha256": "c4896f102b0e30cf225ccec817458fe6b1b8a27e381100401135834294cd520a",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-02/artifacts/negative-proof.json",
+      "bytes": 778369,
+      "sha256": "f21a703fed5e8660f98569f48ccbdfe834b88900fff0dca8ec9221c85c44337e",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-02/artifacts/negative-terminal-node-139.json",
+      "bytes": 102132,
+      "sha256": "1142b94a6839be5af357188e629c8d3834aef2c51b59b6530c6344b1525cd8c2",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-02/artifacts/negative.log",
+      "bytes": 3579,
+      "sha256": "3647cd3c88a25033bb3ac5e9f6f6bdd32dfd97fd933511fd7deba2ff58dd8275",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-02/artifacts/positive-analysis.json",
+      "bytes": 205,
+      "sha256": "3d1eb5990a1af55ef6bbb6861ea81ab25a17351a67f1c2b0cf8a8c9e569791ce",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-02/artifacts/positive-kcfg.json",
+      "bytes": 18614,
+      "sha256": "2ec084aaab4650b0de0a55971ac2046d1eb4147f775b0e6bbb763ab417badc82",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-02/artifacts/positive-proof.json",
+      "bytes": 14215,
+      "sha256": "5113b2073726208c202dae0a6355b5e0c01b0adcee70e2d83abb381eb68c7461",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-02/artifacts/positive.log",
+      "bytes": 257,
+      "sha256": "cbf5fd1ce1eefec57d96643cb76b2a319f2ed3b0a48134dad0888fb9aad00979",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-03/artifacts/bridge-reverse-check.json",
+      "bytes": 1324,
+      "sha256": "22e63fb00cb3fed56af1b1fae808281a8a7fa2861de5a2b874c4a9c0c9e8de45",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-03/artifacts/bundle-schema-validation.json",
+      "bytes": 73,
+      "sha256": "fbaee5fb7860b966b911f66bc8a27c237a1760d54575f61686731975840f4e9c",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-03/artifacts/isabelle-closure-report.json",
+      "bytes": 521,
+      "sha256": "ffb45f42c3e6fbf1aefe42077846364715c1a941394747c4c35a55fd55371923",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-03/artifacts/negative-analysis.json",
+      "bytes": 210,
+      "sha256": "b7d74a229f0a878e6be8a979d8a32ec2811dee0971bbdff9a37a90bf1461e429",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-03/artifacts/negative-kcfg.json",
+      "bytes": 1275119,
+      "sha256": "4978822a5901301fe32e7d757d633e7628003cbfd9c611fa503c71c83ed8c438",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-03/artifacts/negative-proof.json",
+      "bytes": 839222,
+      "sha256": "e5e629941f292c9c962b9af5aba4259ed9cbd66a26c4430f10b60b0b549a1b17",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-03/artifacts/negative-terminal-node-139.json",
+      "bytes": 102300,
+      "sha256": "07569fc36c3ace9975276ac6a5c100799ff0ddc34abaa6c595aae6e16f419f96",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-03/artifacts/negative.log",
+      "bytes": 3814,
+      "sha256": "3a62124b493ac59eb9052349325ca0198e59f6d9d1611ca2a2a6b777c5aad728",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-03/artifacts/positive-analysis.json",
+      "bytes": 205,
+      "sha256": "3d1eb5990a1af55ef6bbb6861ea81ab25a17351a67f1c2b0cf8a8c9e569791ce",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-03/artifacts/positive-kcfg.json",
+      "bytes": 93689,
+      "sha256": "0908f3c700d626ae86b23f57eac8564adccf3a879d8e1068d50dc2140d6e1828",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-03/artifacts/positive-proof.json",
+      "bytes": 75068,
+      "sha256": "8293849fc966317a8409db668d91ca87f9f286b743e31bf7b58a8f222ec46c80",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-03/artifacts/positive.log",
+      "bytes": 257,
+      "sha256": "da8c4555279594c529844b0d8312f4e1be0d0e13fa54fb3340bae79bc45f2b38",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-04/artifacts/bridge-reverse-check.json",
+      "bytes": 1694,
+      "sha256": "8cf41bb936ee827185c5137a5dc6ccb828fa6a43ab47caaf0e3be83704bebba0",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-04/artifacts/bundle-schema-validation.json",
+      "bytes": 73,
+      "sha256": "fa12fcaf3d5f043d33f28d3832b378f2b170f7b3c8e7402310904da1f1fe60df",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-04/artifacts/isabelle-closure-report.json",
+      "bytes": 535,
+      "sha256": "f25d31ec8fd952f206bf3f76775b5c4dafacda2588cec9959cd93505cf085334",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-04/artifacts/negative-analysis.json",
+      "bytes": 210,
+      "sha256": "b7d74a229f0a878e6be8a979d8a32ec2811dee0971bbdff9a37a90bf1461e429",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-04/artifacts/negative-kcfg.json",
+      "bytes": 1250543,
+      "sha256": "ee4e9ee119c74d2b63c7bc43ba8c710256ec49a12fa9c24adfa936e3f4667059",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-04/artifacts/negative-proof.json",
+      "bytes": 821102,
+      "sha256": "100c4057eb987f19e4e6eae25515bda83bc528548b3b8a47d5bab682acf0fd35",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-04/artifacts/negative-terminal-node-139.json",
+      "bytes": 103548,
+      "sha256": "201cbf7efe8ff08e6b2b4d27ee1648d402f3c08e6ebc29bf1ef243a29677157e",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-04/artifacts/negative.log",
+      "bytes": 3808,
+      "sha256": "ef4d1e4c218e56ab5c15febc7055d970c7a2550876769a4497747ea48f677cc6",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-04/artifacts/positive-analysis.json",
+      "bytes": 205,
+      "sha256": "3d1eb5990a1af55ef6bbb6861ea81ab25a17351a67f1c2b0cf8a8c9e569791ce",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-04/artifacts/positive-kcfg.json",
+      "bytes": 71533,
+      "sha256": "006584fd2276080ac2983a7f18111c2028e77bf0cae0111302f453f385ff93ae",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-04/artifacts/positive-proof.json",
+      "bytes": 56948,
+      "sha256": "e49b7fe52984d261050f788b339c2a57c943b62501772813d73999411e61edd6",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-04/artifacts/positive.log",
+      "bytes": 257,
+      "sha256": "aa0cf07df6a4ebb311af7bc875ec94e12539fd6de7e14399a43e202015748812",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-05/artifacts/bridge-reverse-check.json",
+      "bytes": 2591,
+      "sha256": "cd7043c19b11ec88bc192646320eb7120a57f9a92ec1330c2f15f80befc62cd2",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-05/artifacts/bundle-schema-validation.json",
+      "bytes": 73,
+      "sha256": "7d8361ad4539e6d222d0b55dc24def664655b97ab11e9843ccb0bc11811574cf",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-05/artifacts/isabelle-closure-report.json",
+      "bytes": 520,
+      "sha256": "9fbe613792acbed4737ea10adb93e19b639a0333172a125f569a9b20fbb522bb",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-05/artifacts/negative-analysis.json",
+      "bytes": 210,
+      "sha256": "b7d74a229f0a878e6be8a979d8a32ec2811dee0971bbdff9a37a90bf1461e429",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-05/artifacts/negative-kcfg.json",
+      "bytes": 1243038,
+      "sha256": "8afc0b8440a3a8a8f05e3f5d5a470dd82504c53ac6ba13e8f910937c8c0e5af0",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-05/artifacts/negative-proof.json",
+      "bytes": 813099,
+      "sha256": "4a650f685e8ebc6a158a5334fd7bd978c187c981679bae6a88093981fcc5b3c4",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-05/artifacts/negative-terminal-node-139.json",
+      "bytes": 102283,
+      "sha256": "8f59c765d0e36f75d88dd196974b64a6fa4a02ccfe44bfedd3c2cf64831c57e5",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-05/artifacts/negative.log",
+      "bytes": 3786,
+      "sha256": "180622333de871c61ce5538446d75b8ef06a5d397e8874dfb72727ce8e5c18f7",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-05/artifacts/positive-analysis.json",
+      "bytes": 205,
+      "sha256": "3d1eb5990a1af55ef6bbb6861ea81ab25a17351a67f1c2b0cf8a8c9e569791ce",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-05/artifacts/positive-kcfg.json",
+      "bytes": 61608,
+      "sha256": "cd1edac4c8bb20aac24e3a9399f96695c15f41145ce886bcc6bfa22b9ee8251c",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-05/artifacts/positive-proof.json",
+      "bytes": 48945,
+      "sha256": "87b1211eb09456aedd0bc7e2e2cf36e0e553d770a333435a9a8498e224a8a153",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-05/artifacts/positive.log",
+      "bytes": 257,
+      "sha256": "3a11da35a19f3ab7e8999ae7e2578d3978aad137e7d4aa27fc4da8221835dc6b",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/bal-06/diagnostics/positive-canonical-002.json",
+      "bytes": 2445,
+      "sha256": "5a0280a5645181ef5a34a9b33ba611d250a3e1e5f9e76bc3f8550c3168edc062",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/bal-06/diagnostics/positive-canonical-003.json",
+      "bytes": 2452,
+      "sha256": "6da99fca8169cc176466c1bc0b05f04ce0845a59235e5b564169a610716f6536",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/bal-06/negative/mutation.json",
+      "bytes": 2806,
+      "sha256": "29781010fd2e54629d3deb76b832b571c35a12f6785e4fd5dc992567b62e86f3",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/bal-06/negative/standard-json-input.json",
+      "bytes": 80114,
+      "sha256": "2097fa15942a2c97b5fcd6ae8da107cfc697b35967c6dfaa0c9078b5d46a117b",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/bal-06/negative/TrustToken.runtime.hex",
+      "bytes": 48315,
+      "sha256": "e081c6330665be579aeb76e311ee7976dadbbc8701506920a2e0e00c55e47805",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/bal-06/state-action-dependency-graph.json",
+      "bytes": 5817,
+      "sha256": "32c42f4fcdb9ce84872660f4a340ba92e39aa66f2476bc8df33fe871e4094cdf",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/bal-06/state-action-dependency-graph.md",
+      "bytes": 3164,
+      "sha256": "452492fdb2ff39029a1bd851f8b71f0196ed4eabcd7afa7b668af2f30838af9c",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "development-narrative"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/bal-06/worker-result.json",
+      "bytes": 13471,
+      "sha256": "e844975435dfb3b5364c1c931855cd560b2dcdc5fbfafbf81f98ab3ed294f0ae",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/rev-02/parse-only-current-runtime.json",
+      "bytes": 1755,
+      "sha256": "ae252282406a8acd4e859906491a57d8f4add284c7551aea2a3d76ed6b97dfef",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/state-04/diagnostics/positive-canonical-001.json",
+      "bytes": 2418,
+      "sha256": "ac6d136cdd1be6aa8a94324084a64dc95e756c436c3994534e560116c2c81230",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/state-04/diagnostics/positive-canonical-002.json",
+      "bytes": 2462,
+      "sha256": "18e73149ab8a43bc0b46dc27d3ba41717d9334c80883012f79b8f1ec7598adc2",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/state-04/diagnostics/positive-v3-selector-head-canonical-001.json",
+      "bytes": 2267,
+      "sha256": "1b505f29748efeebce528cec0398fab83b6cb73cf0eb2d3569ba3e0d3c0fc02e",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/state-04/negative/standard-json-input.json",
+      "bytes": 80107,
+      "sha256": "38f950c9280d8662316e1eb6a0177ab63a2dc689aae3695564313539357c4299",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/state-04/negative/TrustToken.runtime.hex",
+      "bytes": 48351,
+      "sha256": "eaf034dc81ad5b4f5a69a3137740ce3fe04d466b2dddba2844df2288f18b5221",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/state-05/parse-only-current-runtime.json",
+      "bytes": 1760,
+      "sha256": "cf5345c93ec7761370d1f41b9db3973752dea81ac3d9064f63279854311cc875",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/state-06/negative/mutation-plan.json",
+      "bytes": 2944,
+      "sha256": "89cddcb8b59fc6a7ca52ea0ca6a86b2cbf89c243e260a301857c840e57c9afb6",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/row-bundles/state-06/worker-result.json",
+      "bytes": 7205,
+      "sha256": "1113da85e5fb902d33b431d2417dd28c17e4fe8f6a9aaf330d259a33aa6a9d39",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/run-ledger.jsonl",
+      "bytes": 144288,
+      "sha256": "19f88bc9bc7f04166c26ba6abea55eebe69d1f78954d7cb9e26ecf713501f95f",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/runtime-binding-two-layer-qualification-proposal-v1.md",
+      "bytes": 7963,
+      "sha256": "def08e657496b99ace4d19124a6e93d9b58a633f0133dafd0ce9e2bd8d4f2c1f",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "development-narrative"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/runtime-binding/manifest.json",
+      "bytes": 4528,
+      "sha256": "97e4a349ff6667f01fb67515998c283383731d69a2fdaa00c06e260c11fcc5bb",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/upstream-evm-semantics-bitwise-and-smt-lemma-v1/0001-bitwise-and-upper-bound-smt-lemma.patch",
+      "bytes": 1870,
+      "sha256": "c38057e848dd150b5da2b3849dc65b4b180b852772c142bb2ee361b1e5e6c185",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/upstream-evm-semantics-bitwise-and-smt-lemma-v1/candidate-manifest-v1.json",
+      "bytes": 2845,
+      "sha256": "de17cb1d1e4f9b2681150d24a60e1249ffd83e1d899c2b76c5038d2d91ecb3cc",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/upstream-evm-semantics-bitwise-and-smt-lemma-v1/PR-DRAFT.md",
+      "bytes": 2177,
+      "sha256": "4fc7ebe2bb55702c701807e7b30d31994ec9ad4b8c5eab3a036dbe7e04806db8",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/isabelle/ERC_TRUST/release/ERC_TRUST.pdf",
+      "bytes": 475933,
+      "sha256": "a1c2e2c8684f2c517d03bba1ec2b59713d303712bfd6e86a9f3d7033a3102959",
+      "disposition": "DELETE_REGENERABLE",
+      "category": "regenerable-release-artifact"
+    },
+    {
+      "path": "formal/isabelle/ERC_TRUST/release/release-manifest.json",
+      "bytes": 594,
+      "sha256": "fe3f5661ebaebb5d8f08851744b398cc8b852ba6ebbed970ab950eaf354f5665",
+      "disposition": "DELETE_REGENERABLE",
+      "category": "regenerable-release-artifact"
+    },
+    {
+      "path": "formal/kevm/reusable/c0/c0-decode-length-strict-manifest-v1.json",
+      "bytes": 7090,
+      "sha256": "d4590fa4e6c9408d9c86267a9174b4f674a126ed26a891afecad2b7cdc018500",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/reusable/c0/enum-lt-6-symbolic-reject-probe-v1/source-manifest-v1.json",
+      "bytes": 2831,
+      "sha256": "a09fc7cfe7ce1032fbd8a6f3655e400e8956265252d7b6f2b0ebfb658da4d991",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/reusable/c0/isolated-length-v1/manifest-v1.json",
+      "bytes": 7321,
+      "sha256": "7e0c6754c98f68dffbd0922c7f513a48bbc39752735a96108175263d20a18fd5",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/reusable/c0/uint48-symbolic-word-v1/mutant-runtime.hex",
+      "bytes": 48285,
+      "sha256": "9e8525f533ce93bea7040d665ab41b45be66a0bad0f035432eb704cd8328e611",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/reusable/c0/uint48-symbolic-word-v1/mutation-v1.json",
+      "bytes": 982,
+      "sha256": "2eed0b99e1ce6eaddf805e90cf9b14b142e876d01b5729f2ef6e5f2be8838399",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/reusable/c0/uint48-symbolic-word-v1/source-manifest-v1.json",
+      "bytes": 4328,
+      "sha256": "a624c81bbc55f2172222a6508536cee7dd138fa1969d6a097039e2e0a5a81cbd",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/reusable/c0/uint48-symbolic-word-v2/source-manifest-v2.json",
+      "bytes": 5549,
+      "sha256": "1627edad156c84d14193d99ce4f46bf78b55fe7771041dadd36fa67e285b203c",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/reusable/c0/uint48-symbolic-word-v3/reject-support-v1/manifest-v1.json",
+      "bytes": 1430,
+      "sha256": "c0eeb756b5030a4ed827bf1b212f83399773b9bbe6ab79bddf039e7fbc5c03f5",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/reusable/c0/uint48-symbolic-word-v3/reject-support-v1/manifest-v2.json",
+      "bytes": 1706,
+      "sha256": "228966e8f98b39ce5066a9a2877ab65a652b44e49db01dc5ddf3a82f38d6509e",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/reusable/c0/uint48-symbolic-word-v3/source-manifest-v3.json",
+      "bytes": 5837,
+      "sha256": "103853672dd9515523357a69e934cd6ea4398e66151f658706c7813df9cc8e3d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/reusable/c0/uint64-diagnostic-v1/source-manifest-v1.json",
+      "bytes": 2210,
+      "sha256": "8017ab932599f5d61e41466e64e242e45fc80e3efa479fe0fc8e907eac108f1d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/reusable/c2/dependency-summary-manifest-v1.json",
+      "bytes": 1369,
+      "sha256": "1d4eca0dd5bf74ea848a630fbf56abe3cf82dac982eac6a4f3cec772c9866cc2",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/reusable/c2/manifest-v1.json",
+      "bytes": 1380,
+      "sha256": "541d77687dd4eca230962c71863ef5249837a98653a4dd70fdf1a908587f415b",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/aggregation/abi-04-aggregation-contract.json",
+      "bytes": 19728,
+      "sha256": "a2d45bed806d5e5fcd3072b6acb5e484dc69eb55fb23ee88772c5ac6b8bada73",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/aggregation/abi-04-symbolic-short-head-final-claims-index.json",
+      "bytes": 25760,
+      "sha256": "5e814633c69b766e3628180ef22e6750c8d79ab1fa633007f442f968703332bd",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/aggregation/abi-04-symbolic-short-head-final-contract.json",
+      "bytes": 6801,
+      "sha256": "768a0d690eef8d49c69615de1bd06d6b15e1c634a3ff1ca09dcab9c20c89473d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/aggregation/proposed-common-row-bundle-schema-extension.patch",
+      "bytes": 2472,
+      "sha256": "ded2b4ad51ca56e35f8e81c1e4095982dbc267430abbde41810fc9c99d53cdba",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/aggregation/README.md",
+      "bytes": 2621,
+      "sha256": "4a6d89fcef2eb75bd4af134d7d52acf0f7a57ac4e7b28e4fa7fab10138f19100",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "development-narrative"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/anti-drift/closure-manifest.json",
+      "bytes": 89658,
+      "sha256": "24311e1e4ccad82d1412341697f11be801e58b6c9e43230837cbce84ba187942",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/anti-drift/closure-policy.json",
+      "bytes": 14641,
+      "sha256": "26c4f08ffa2235ab3a973af657fffd0cef97c2eb1f62a4a7680ffa089df97519",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/bridge/abi-04-matrix-binder.json",
+      "bytes": 99634,
+      "sha256": "78354b982d1c799048b8ad1d4a13ea445fed74b1b70f386d8a33e503bcdaa918",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/bridge/finite-symbolic-row-bridge.json",
+      "bytes": 7044,
+      "sha256": "d855a7c06b9c72c704e1cbc6b5f7aa1c44a319ed9ee66fc87a5736fb0299049b",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/bridge/row-bridge.json",
+      "bytes": 2845,
+      "sha256": "8a601668203d983f8ed64a6e10f4db9cca14f1811233a6bf10025a8831988244",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/bridge/row-manifest.json",
+      "bytes": 969,
+      "sha256": "a96058c9314c7646a879ebd1594b27a0d08d95fde950fd2c4d06a0776acc77ba",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/case-matrix.json",
+      "bytes": 145948,
+      "sha256": "9d2d1ea9dd2e70d0880928eb00b40c3914bb5db755037fa74f24b0e20f203ed1",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/central-row-gate.json",
+      "bytes": 11591,
+      "sha256": "b0db3776c3b05255a203f52428e268f2de5bb008041ac5f396f50646e012ae1e",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-length-v1/bigint-boundaries-v1.json",
+      "bytes": 4686,
+      "sha256": "fd3dcfc2f4e249951778e3a072b34ffc2210e2fc2cf15b7de460000ae1f97c84",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-length-v1/claims-index-v1.json",
+      "bytes": 33176,
+      "sha256": "357e761d5d1a143ee55d06bd3987cc25a83d8be760d08e374b9f3e8977104cb1",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-length-v1/dynamic-length-family-v1-contract.json",
+      "bytes": 5307,
+      "sha256": "693330c3d124a588835c9e72cd37c546d5b15fc9c52407f5944bda2949132b76",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-length-v1/executable-mutant-contract-v1.json",
+      "bytes": 8407,
+      "sha256": "cdd3307be25032dded30fb5443c3b3c34947891f3edff49608f5e60612e6f0f2",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-length-v1/README.md",
+      "bytes": 1489,
+      "sha256": "f0b62b2aa1fb1ff6c5346a046d48a15114e1f578dfb96ef60ca069751b2f29ce",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-length-v1/repository-runner-coupling-plan-v1.json",
+      "bytes": 3316,
+      "sha256": "89967d25bc6487b3971aeed3426788725dfcbd39aba87d4caae85c4dcf0dc1c5",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/authoritative-pairs/native-erc7943-action-v1.json",
+      "bytes": 4653,
+      "sha256": "39bf74d8acef0e2c8f4ac3cfa28f7eb9eb35381d075a6274a1bbfdaa9d693d09",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/authoritative-pairs/native-erc7943-reversal-v1.json",
+      "bytes": 4671,
+      "sha256": "3a56eaf599db5d39e2e74c7ff91701edb7cabff499f624dbe191756c97dbd2b7",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/authoritative-pairs/native-regulatory-action-v1.json",
+      "bytes": 4680,
+      "sha256": "f78866aef9cbca8efe2f4f16bf361ccca70fd3871f2622aac7389eb61ec9f65d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/authoritative-pairs/native-regulatory-reversal-v1.json",
+      "bytes": 4698,
+      "sha256": "b6f3109db6d225b1e40b2e1f899b64f8495f2c3bec4bfa2945c8e91d8ff290cc",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/authoritative-pairs/profile-regulatory-action-v1.json",
+      "bytes": 4697,
+      "sha256": "fb46554fe7f3b09cfc63c8871b369ef016434388d3f66760036d7f1500f1c4bb",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/authoritative-pairs/profile-regulatory-reversal-v1.json",
+      "bytes": 4716,
+      "sha256": "081f0a2f9778034eaef7bbc2fb4533bb16fb2b04809cafe548961b0ab0ffa932",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/bigint-boundaries-v1.json",
+      "bytes": 4265,
+      "sha256": "34c2d19eef95ca079834dbb68022e1e449a934db81b86e31dd02475e37f1cb6d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/claims-index-v1.json",
+      "bytes": 30051,
+      "sha256": "7a6fc49b7fcdb68480c8e59324a57872baf81f01ebfc3c45fd7451c3f96be086",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/dynamic-offset-family-v1-contract.json",
+      "bytes": 4888,
+      "sha256": "ce1cd10aa34133fbfd73d35a1c176d69b65bdc91f8107230a4ae8b2e44c1b213",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/dynamic-offset-leaf-v4-contract.json",
+      "bytes": 2284,
+      "sha256": "e274f8ff63f8506317c398df2c3912fe8bf8a8acf3034126bbad860df1924df6",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/executable-mutant-contract-v1.json",
+      "bytes": 8451,
+      "sha256": "3d20cc739a2e8add4e6460391be30994a340ddcb7d1da3c3ed8fa5fa827ca7e8",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/expected-graphs/native-erc7943-action-canonical-positive-v1.json",
+      "bytes": 2089,
+      "sha256": "50a8e4da14cd92e51003ab372ad8119143f3afe2fda39be0aa0799ffcd5bcfd2",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/expected-graphs/native-erc7943-action-mutant-negative-v1.json",
+      "bytes": 2632,
+      "sha256": "04d0e0befda1c927e8098eb27c5d7f2122042f5a9dc95e6e39ba4d91ee67df1d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/expected-graphs/native-erc7943-reversal-canonical-positive-v1.json",
+      "bytes": 2093,
+      "sha256": "d7f27c233c468a4650f81b2a501053f9452b091ea5e683802cb3075c51134cb4",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/expected-graphs/native-erc7943-reversal-mutant-negative-v1.json",
+      "bytes": 2636,
+      "sha256": "8a9a9d19c35554de0b7c17a1043213c28bec620db07c420e0ae046a32b572ef3",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/expected-graphs/native-regulatory-action-canonical-positive-v1.json",
+      "bytes": 2070,
+      "sha256": "4dac1b169010828087bc72d462ee7666befa418a532964b1eb3a141d55d3b464",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/expected-graphs/native-regulatory-action-mutant-negative-v1.json",
+      "bytes": 2622,
+      "sha256": "e16f42849329ebaca4a07b4643c0a7998060326967bdeda985933c73f63e66b0",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/expected-graphs/native-regulatory-reversal-canonical-positive-v1.json",
+      "bytes": 2099,
+      "sha256": "35fa0f31deacd567805ff2b4e68b011a69e29b5f6b271f09960b6fe4bcb01aca",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/expected-graphs/native-regulatory-reversal-mutant-negative-v1.json",
+      "bytes": 2642,
+      "sha256": "8558f8a0b98263c4e2948c6b7c065826596cb8478cf2a5b1196308bd153f80a5",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/expected-graphs/profile-regulatory-action-canonical-positive-v1.json",
+      "bytes": 2097,
+      "sha256": "6c1bd34fffaccb606eb1e95f0b2091928c68bdcf1e18175dc9dccdeffd5fad47",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/expected-graphs/profile-regulatory-action-mutant-negative-v1.json",
+      "bytes": 2637,
+      "sha256": "59040c73a0c1cc88bb4d94a788d5265e2024516b08e29347430e9c3c55fd91f4",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/expected-graphs/profile-regulatory-reversal-canonical-positive-v1.json",
+      "bytes": 2101,
+      "sha256": "ffa7befb6850c831d74b85f5a92d9b4dd63cd5a0b3262cc8a16b108eaa73e30f",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/expected-graphs/profile-regulatory-reversal-mutant-negative-v1.json",
+      "bytes": 2641,
+      "sha256": "7cd9dbf6cd7fa46695b5e5f152ff568774893ed4d6e9231dca48deb904220771",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/freeze-s1-toolchain-contract-v1.mjs",
+      "bytes": 5294,
+      "sha256": "610165eab354add0320d9c267539f0d26dfb2b4bc46ccd390a3e6fcf7a5e7caf",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/generate-dynamic-offset-orchestration-v2.mjs",
+      "bytes": 14079,
+      "sha256": "6662b44451f0762ba9bb0a3b570d1e56bce2a1acc25df679397115c41dde29b0",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/remaining-leaves-replay-index-v2.json",
+      "bytes": 26097,
+      "sha256": "aa290809699d9577c3265ac5757244b782604197b304d0e3f67b38186ef45c1d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/repository-runner-coupling-plan-v1.json",
+      "bytes": 3189,
+      "sha256": "1f85d0c901c6ebf12cc7194473f17b32de2de2c226a104c81f529d0450e2dd3f",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/run-dynamic-offset-leaf-v4.sh",
+      "bytes": 28319,
+      "sha256": "233a7a86314a0aa062ef34c76cd85f57c2e1630e107cf6981fa535d19857e74b",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/s1-dynamic-offset-wave-contract-v1.json",
+      "bytes": 16554,
+      "sha256": "b4720c3f60cea3571ff7abf097ab724fdda3b7467a3001cfaa60d9d21e8749c1",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/dynamic-offset-v1/s1-toolchain-contract-v1.json",
+      "bytes": 2556,
+      "sha256": "7c71ca863be68f845f2d1398dbd50196e36dc8abdd3bc940792ebf7085650a51",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/full-row-v1/full-row-replay-index-v1.json",
+      "bytes": 425412,
+      "sha256": "51f079503875cf909e910d0344f7a691055842e639f2343cf81c0ddf3f1403e4",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/full-row-v1/full-row-wave-contract-v1.json",
+      "bytes": 9101,
+      "sha256": "29e04db4fcc925fdd1aba704c8c99c5902062ac3584b9d76ceba407ad480fc29",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/full-row-v1/generate-abi-04-full-row-orchestration-v1.mjs",
+      "bytes": 18782,
+      "sha256": "6957018ec45f0d109c06d32b915e5f9741933cbf896e211a5c62f83766d60af4",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-04/mutation/mutation-manifest.json",
+      "bytes": 3654,
+      "sha256": "af9a1f4419a150ca6d643aa8cb58d3347629e9853e1830d670e08332666084bb",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-05/abi-field-map.json",
+      "bytes": 12225,
+      "sha256": "ba454b183ac00a0175ff7143800b7f9e0468a5aa5179793d14f2645179e644fe",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-05/bridge/row-bridge.json",
+      "bytes": 7635,
+      "sha256": "0c9ae06ce61b20c77bc9c8f9917219cca75f7a9b8b1974484c9b357c0053df02",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-05/bridge/row-manifest.json",
+      "bytes": 820,
+      "sha256": "d1662508ca350339185e3ee23b4f955701a53437bac846acccc21bc4415cd715",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-05/claim-family-plan.json",
+      "bytes": 3753,
+      "sha256": "6883b691cd44f04833cabcb5f2d5117582dc3530352d9af4721f1c84ef4a67c4",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/abi-05/README.md",
+      "bytes": 1184,
+      "sha256": "08f37bdb95455f8fe55b9e713c55828dca9975af30f980ad607fca208c4da2b5",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "development-narrative"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/bridge/row-bridge.json",
+      "bytes": 4638,
+      "sha256": "256affb5c401019c06865c649d73364e70e052556059dc8ad159625a2bb514c6",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/current-control-binding.json",
+      "bytes": 2593,
+      "sha256": "bb01466a1da589ee47c4a64feb9a9be35840aa304e1fde4a3f2be259d3cfcf85",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/full-transaction-v1/manifest.json",
+      "bytes": 8510,
+      "sha256": "4807fbcd8f7ebd9e96eddcdecfad850caebb8401eb85d8e3c285e94126c11566",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/full-transaction-v2/canary-v1-against-v2.json",
+      "bytes": 16930,
+      "sha256": "a2449c372c1c6ae1e339d7a73e3e52c7e157c4f35aceb3f43bc452fa493cba73",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/full-transaction-v2/canary-v2.json",
+      "bytes": 16719,
+      "sha256": "c782a9e31e4d121002dca9d2a8b8725dbf95a8a07154094b0b4702fc4e573fef",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/full-transaction-v2/manifest.json",
+      "bytes": 8551,
+      "sha256": "fb36bf07bb76062e5940a85f6541658e1e42b03e3fd55441a55b7e220ce531df",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/full-transaction-v3/canary-v3.json",
+      "bytes": 16791,
+      "sha256": "4b6488fef787b6726a0c1ba8d8a4baec048eebe8e363aa3416b5629558b66b97",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/full-transaction-v3/manifest.json",
+      "bytes": 8594,
+      "sha256": "3314d03f196e9cb02ea3d22938b9af836a0167d319e9572f4386ab9133142708",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/full-transaction-v4/manifest.json",
+      "bytes": 8812,
+      "sha256": "527ab99d246919a1b29395b365da6cdf2a3642d291c15b35677dda159d37f1a3",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/negative/mutant-source.patch",
+      "bytes": 489,
+      "sha256": "f7d02c612ac60f567401ba7a24c193119a92a95fb9fe7329ac19a678d4d4757c",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-canary-concrete-validation-completion-v1.json",
+      "bytes": 1795,
+      "sha256": "5e7f8d2fbf811146dc753446d11a71993b7e14a096304c98e61ecead41a43d74",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-canary-concrete-validation-reservation-v1.json",
+      "bytes": 1276,
+      "sha256": "38924ed1522ea1bd6d8339365af63b364407ac640c10df3cd4157928b7c9190d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-canary-concrete-validation-v1.json",
+      "bytes": 2927,
+      "sha256": "82cb279f26b1ce5fd7a6aa59084073f947b683429e19682abd22b0d25879c1ef",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-canary-full-depth1-completion-v1.json",
+      "bytes": 850,
+      "sha256": "fa5bb4559d5fe6920843ef1a452f1440a26894fedecf7cec20e464e7b3c28cd3",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-canary-full-depth1-completion-v2.json",
+      "bytes": 1077,
+      "sha256": "478f534db832f43a27dfea124aba61f93d64ee8e5c4257d08c10cfa3fbe46469",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-canary-full-depth1-reservation-v1.json",
+      "bytes": 1283,
+      "sha256": "fcaa3d32701a9cafd336694b9973b5b2bfa14fb49ed2c761325a829a89db0337",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-canary-full-depth1-reservation-v2.json",
+      "bytes": 1324,
+      "sha256": "43fef9be59cf97c60c117625b4917bbfbe1b5f81524f15790182bcf51275db25",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-canary-full-depth1-v1.json",
+      "bytes": 2269,
+      "sha256": "bbc6ea98ef9f76318d97548689713b3f546f8c50db2ac27e1a4414ca2f695be7",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-canary-full-depth1-v2.json",
+      "bytes": 2584,
+      "sha256": "9d6c00fd5f01d67b2fe81d5e9204c9ff22373a145dbb4bd4388b28c69f8b097a",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-canary-inner-freeze-completion-v1.json",
+      "bytes": 1552,
+      "sha256": "829f1486a661f413957c67a8ff943ba12fdf1a414c12dfb6fba24e8765b4580b",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-canary-inner-freeze-completion-v2.json",
+      "bytes": 1497,
+      "sha256": "0cb6ae1b2cd4b92587d7f4042346f22ce76a13ee1ba5a284a9b913e7f8b6f9b1",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-canary-inner-freeze-reservation-v1.json",
+      "bytes": 1330,
+      "sha256": "e18dcbd17790d6612478365609ac108a5fc11819e61bfdc3544f0c3a6d7fa31a",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-canary-inner-freeze-reservation-v2.json",
+      "bytes": 1438,
+      "sha256": "47cb5bab8b11119237988a27e1164f8c05870a4026a6582a2e5106b2f7f87ab2",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-canary-inner-freeze-v1.json",
+      "bytes": 2807,
+      "sha256": "3913076fdee08e152b5a5b982067fbd90f8ebd0c10d52bc6433e1d012b6e5b63",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-canary-inner-freeze-v2.json",
+      "bytes": 2584,
+      "sha256": "23c3884f15569a3ad41d9d1166496685b3ca98cc60031b321f6af6c8655601ec",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-positive-concrete-basicblock-completion-v1.json",
+      "bytes": 1849,
+      "sha256": "5862cff3a4aadf472b1d745938c9d9f5feebdb383c3a3abd91a3fecf05ea941c",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-positive-concrete-basicblock-completion-v2.json",
+      "bytes": 1912,
+      "sha256": "908dd1ff4695253ca869ede183926da5dd2b7a28f2d05b363094c4293425a4be",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-positive-concrete-basicblock-reservation-v1.json",
+      "bytes": 1175,
+      "sha256": "1ee3b488046cabafff7c0808969822f59ca903c54f8c9b983eb7171369702691",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-positive-concrete-basicblock-reservation-v2.json",
+      "bytes": 1172,
+      "sha256": "aa586640fa3452f628394edacf95f9927743fb723b511301886032f485cc5e9d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-positive-concrete-basicblock-v1.json",
+      "bytes": 2787,
+      "sha256": "49e8e0382431293591568bc6d9d7d42fff36200ca95b77516fbcc341c5c89a28",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-positive-concrete-basicblock-v2.json",
+      "bytes": 2943,
+      "sha256": "ac995dbc8ae7e07e432ecf4fcce45eb4b11192103b56f15a0c15148a8d63b045",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-positive-concrete-chain-batch-completion-v1.json",
+      "bytes": 2345,
+      "sha256": "36d25aac50cbfe60ac15e2a10df967aff5a9308c382ffb42e2e3bfece487ff11",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-positive-concrete-chain-batch-completion-v2.json",
+      "bytes": 2793,
+      "sha256": "dc457c38412c89c8ea580eb9bebbb67abae99138b0a406b3c866d69709c853a6",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-positive-concrete-chain-batch-reservation-v1.json",
+      "bytes": 1141,
+      "sha256": "84991b560536292e379fe6b761dcde227897ee600c0c5204cf7fb2e35b0d8e1f",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-positive-concrete-chain-batch-reservation-v2.json",
+      "bytes": 1152,
+      "sha256": "df18c583738d530d82b6f8eb278a2903618932efa325dfd4af7d485d9651ec90",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-positive-concrete-chain-batch-v1.json",
+      "bytes": 3357,
+      "sha256": "a77d2ec48e1cb620c816c1dd13fd1d36adf83c724746e76471e892cd26b3e9f1",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-positive-concrete-chain-batch-v2.json",
+      "bytes": 3384,
+      "sha256": "bc6eb7c41500e1f7098a0af39c2080dde72f9304cda64f6158c69679be055432",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-positive-concrete-microsegment-completion-v1.json",
+      "bytes": 1553,
+      "sha256": "3f8e86a1040d87e9c7d642826e930af90df9ce1f1497e74861836069a4a22bdf",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-positive-concrete-microsegment-reservation-v1.json",
+      "bytes": 1152,
+      "sha256": "a46b0a705a96b82f36f15c06e5abb1ba1a49105c96722e9271aa952ab802e390",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-positive-concrete-microsegment-v1.json",
+      "bytes": 2775,
+      "sha256": "f4367ead07e630cccf2c1d07269813f4212d53bc16f76e4a7a5b99769e52ad13",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-positive-concrete-validation-completion-v1.json",
+      "bytes": 1574,
+      "sha256": "62306857d14cc6a33b7169fab62e3a39dfc59e0c68e85cb500907deb05aec8c6",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-positive-concrete-validation-completion-v2.json",
+      "bytes": 1375,
+      "sha256": "5352e99246ae5feffc94f890d22da4ffa1e29f6a7326b7c06d76d07b8a2e66fc",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-positive-concrete-validation-reservation-v1.json",
+      "bytes": 1137,
+      "sha256": "9e0a81d755c2e82bea73ed2bef80f06b61e87ab9cffa3273e6a1f36e902facb7",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-positive-concrete-validation-reservation-v2.json",
+      "bytes": 1364,
+      "sha256": "98ddf32df5c045710268413bffe56ec4fe0b4f2e9f4c5f2d9713d221e14e6252",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-positive-concrete-validation-v1.json",
+      "bytes": 2641,
+      "sha256": "e5a63bfb58bb6581d00e42c39f2394a2351f28b3022b01ea9e522e419d0803a2",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/request-lifecycle-positive-concrete-validation-v2.json",
+      "bytes": 2928,
+      "sha256": "e15c62485f8bdd86cd6e79700f3cc4e64bb3b02d8104095879fb6513e06a2b63",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/run-initial-frame-canary-v1.mjs",
+      "bytes": 14034,
+      "sha256": "f43c11ac025a02ae0c70f0bbfd097792bc6a2d02b949af321f61ffa25fd6cd32",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/run-initial-frame-canary-v2.mjs",
+      "bytes": 13998,
+      "sha256": "cd3a51f36775dc18d43b33cfb0fb180cab008dabd431e0baaf225830acb868f8",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/run-initial-frame-canary-v3.mjs",
+      "bytes": 14119,
+      "sha256": "1b9a708d381cd282d49402fd7f4db287fa840772e2cdb6aead92f7f64c30ba5e",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "formal/kevm/row-bundles/act-01/run-initial-frame-canary-v4.mjs",
+      "bytes": 14119,
+      "sha256": "6f414fc63eefcb6e66cabe915b4e19a116dedada264cc791d0da27df84f71763",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "formal/kevm/row-bundles/bal-06/bridge/row-bridge.json",
+      "bytes": 2911,
+      "sha256": "b88b1e70582bbfece85e8c90b700590463fc6cead51c7ff1e0c3e7048e0bf1d4",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/bal-06/bridge/row-manifest.json",
+      "bytes": 1477,
+      "sha256": "3ba0bd517443e0d0792e16fcf744eee384ee7640b3456756999b39161858f38c",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/bal-06/bundle.json",
+      "bytes": 1400,
+      "sha256": "65bcb159aedaa1485d05e2849cde64551500a050bb8e21158eb1960e4ec22c14",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/bal-06/README.md",
+      "bytes": 6392,
+      "sha256": "45a4396d93bc6bf85ead91b813bd83f56c43056beb2ecae11d1c5fa5bb99a2bc",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "development-narrative"
+    },
+    {
+      "path": "formal/kevm/row-bundles/fail-01/bridge/row-bridge.json",
+      "bytes": 10338,
+      "sha256": "d791057a90c6760bc461b2d7c19b8afcfeabb5940dbceee2d126df7358773429",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/fail-01/bridge/row-manifest.json",
+      "bytes": 3531,
+      "sha256": "54838abb4d2329df9f12e75cf305b6be8de37034defa258a702d82dc6a6e4c6d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/fail-01/generate-fail-01-bundle.mjs",
+      "bytes": 21928,
+      "sha256": "01523ccefbd2621d1f6345292507a21ec4deb75bc77d2fa5b37068ec4f62bb88",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "formal/kevm/row-bundles/fail-01/mutation/fail-01-domain-rejection-to-success.diff",
+      "bytes": 712,
+      "sha256": "3db22e966b832b7426f35ad1d37d8c0530de0685819e241b11a7a4174b557211",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/fail-01/mutation/mutant-plan.json",
+      "bytes": 1966,
+      "sha256": "292fd17737fa499caf93314a965a1c6226d386cb16dc87ba7ab5cd8702f73f3a",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/fail-01/README.md",
+      "bytes": 2257,
+      "sha256": "9f3817f34c9d9cda7fbb0bd286d89762866aec7ec9da2b9a78a6b94ea1848adf",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "development-narrative"
+    },
+    {
+      "path": "formal/kevm/row-bundles/fail-02/bridge/row-bridge.json",
+      "bytes": 14132,
+      "sha256": "beb94786d7674df25b1ede37511f497e5c11134628b2035287b7c579d7ddea09",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/fail-02/bridge/row-manifest.json",
+      "bytes": 1201,
+      "sha256": "583665d7da2bf652db7e9a123aa425e0a938dcc68cdef1a732728f2c53f49fed",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/fail-02/generate-fail-02-bundle.mjs",
+      "bytes": 36115,
+      "sha256": "3c461c28af5d4643da448776022afa3ca26ab55ce1236a6909b0ea9eba0e6c67",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "formal/kevm/row-bundles/fail-02/mutation/fail-02-rejection-to-operational-failure.diff",
+      "bytes": 779,
+      "sha256": "b7d503f6fe4455c5098ff68f7fa584d64ed46345385e69e38c0af1f000818660",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/fail-02/mutation/mutant-plan.json",
+      "bytes": 2891,
+      "sha256": "b076e07c30bcf4b5701a8a67f25c1d4db86d7b672b1b8321a9c59571d84f3094",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/fail-02/README.md",
+      "bytes": 2087,
+      "sha256": "639fefffd863354b058ce35c2378ecd8e096b30dc756f48710c0f56bf4fdcdfc",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "development-narrative"
+    },
+    {
+      "path": "formal/kevm/row-bundles/fail-03/bridge/row-bridge.json",
+      "bytes": 8777,
+      "sha256": "2b51d078f5895c8019e6d6660befd44da7abe04bb79aa8586ae03513f1cff91a",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/fail-03/bridge/row-manifest.json",
+      "bytes": 983,
+      "sha256": "56ef53c36be5cc150a2260b3f4f02a36671d56c89791c37fc582fdf8032d1840",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/fail-03/mutation/fail-03-revert-to-applicable.diff",
+      "bytes": 389,
+      "sha256": "d9241e40e6412d242d270ba1aa8c14e9a3227ee1bf18ce364da1f61ddb6e45e2",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/fail-03/mutation/mutant-plan.json",
+      "bytes": 899,
+      "sha256": "5c1c07ee34c152e22d0baa9e23d79168df609312f837eea9035bf3c6bb43c5b8",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/fail-03/README.md",
+      "bytes": 1017,
+      "sha256": "38e3eaf40066ad4784c450386bf32a08deace06733444a93f0850c29dc9c9c86",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "development-narrative"
+    },
+    {
+      "path": "formal/kevm/row-bundles/fail-03/replay/runner-descriptor.json",
+      "bytes": 2492,
+      "sha256": "3cd73cc85eff0a51473256f945188c229c11797b31c856488c8dbb44631fde5a",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/fail-04/bridge/row-bridge.json",
+      "bytes": 9519,
+      "sha256": "b64e0044f0e9f116693b88f462bd163f44b3bd8d9ca09ac8b38bf6a66ba0bef9",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/fail-04/bridge/row-manifest.json",
+      "bytes": 1005,
+      "sha256": "200f48625243f41cbc3416098fda1f9c0122d1275a1dfefa6c4275fa94cb1014",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/fail-04/generate-fail-04-bundle.mjs",
+      "bytes": 23334,
+      "sha256": "3f08a92a994b74bb67186d3c4cf905fb067c3b0d4e73762950fcce24a221729e",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "formal/kevm/row-bundles/fail-04/mutation/fail-04-accept-127-byte-assessment.diff",
+      "bytes": 287,
+      "sha256": "cbdec7ed59e07e724714d1c773b02b0634742a6e58c12336ffdbd9b6bfea4788",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/fail-04/mutation/mutant-plan.json",
+      "bytes": 842,
+      "sha256": "d6d594619cc7e984562415e29960b855f40dfbdbd0eb641dbc4779424a2da0e3",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/fail-04/README.md",
+      "bytes": 1110,
+      "sha256": "56d7c463338f1d13d1fecd76a43b0b7a082e3d72ba2cbe756fe3f036dec9af7a",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "development-narrative"
+    },
+    {
+      "path": "formal/kevm/row-bundles/fail-04/replay/independent-replay-plan.json",
+      "bytes": 1859,
+      "sha256": "cf216c18823e73a80df8bd8ede83b364e0968b7aded07743111f0b40e988ff67",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/rev-01/meaning-contract.json",
+      "bytes": 2850,
+      "sha256": "2dc31bfbff6291e86e33210b4b7bacbc06d448c2bd6bfe6dabf88aba40ac7e51",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/rev-02/bridge/row-bridge.json",
+      "bytes": 3499,
+      "sha256": "24f4367d1482e6001f9d8efcf07577645f5bcb9ad592a7394117bcf94791faa5",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/rev-02/negative/mutant-source.patch",
+      "bytes": 416,
+      "sha256": "5d84cd8e25bd05f92f94a8555524c6a94567e97925a16a7bdd2f5dc30ac511f0",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/sep-04/README.md",
+      "bytes": 10860,
+      "sha256": "b3f87884292d44c5aa6ba7ffa60395dba432aa4da277f4b80cd492d2cdff5445",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "development-narrative"
+    },
+    {
+      "path": "formal/kevm/row-bundles/state-04/bridge/row-bridge.json",
+      "bytes": 2035,
+      "sha256": "d0430295e2959a258f3cdcafb50369a2d8d4484b4e06d0f589471d7449fb2703",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/state-04/bridge/row-manifest.json",
+      "bytes": 1482,
+      "sha256": "ff4d858c2989bb033f0ac92cf66ec654fa2a7f79adcdcb58d55d7733f1629ad4",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/state-04/README.md",
+      "bytes": 8829,
+      "sha256": "14fdc544b2a0a221458da755cfcdea17cee991d24231aaa7bcf5f55b5a68763c",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "development-narrative"
+    },
+    {
+      "path": "formal/kevm/row-bundles/state-05/bridge/row-bridge.json",
+      "bytes": 4790,
+      "sha256": "5703bc35888dd33db6ade01b3d01eb2cb6b7d6b18fec19479d80c0cc4213772e",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/state-06/bridge/row-bridge.json",
+      "bytes": 4295,
+      "sha256": "22aa00e34ac0fa9245d81029482511e3dd397dd5e3681f4261a6fb4cb1980891",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "formal/kevm/row-bundles/state-06/README.md",
+      "bytes": 3158,
+      "sha256": "1209b56e5599e454d3d22fc840d2680f5de906c79188e65f73155ede6a0ba4d6",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "development-narrative"
+    },
+    {
+      "path": "formal/kevm/specs/full-transaction-generic-dispatcher-revert-spec.json",
+      "bytes": 75136,
+      "sha256": "a7a0894c722b1e442a8fb17fe2ba3d6eed81239ae65371dbd18f654b2c82250f",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "formal/kevm/specs/full-transaction-malformed-calldata-feasibility-spec.json",
+      "bytes": 73763,
+      "sha256": "96867ea3814b1a4b218665d1c48140ed653f7c727a9352ffbdd8ff07c9b19081",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "raw-tool-output"
+    },
+    {
+      "path": "pilot/evidence/hashes.json",
+      "bytes": 3662,
+      "sha256": "5eef2bd7df4a7b242cf2771964de9e64f06d0a8b08e77be9ae33b4089e35145a",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-receipt"
+    },
+    {
+      "path": "pilot/evidence/proof-report.md",
+      "bytes": 8609,
+      "sha256": "2329611ea61a8788c7de3cc868d66d141b09f40928ec21e7f20319fe08b7b6a8",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "development-narrative"
+    },
+    {
+      "path": "scripts/analyze-c0-03-direct-entry-bytecode-v1.mjs",
+      "bytes": 8655,
+      "sha256": "00d64e32f8216f44e1fb30cb46dba4f9b194878b903b87eb7c58f5c78ab4e965",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/analyze-c0-03-runtime-occurrences-v1.mjs",
+      "bytes": 8695,
+      "sha256": "55fd12fd83f67d06526827fca9a6732c34be23977373e1d93e57f7b49ee1f1e5",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/analyze-c0-d1-d3-runtime-occurrences-v1.mjs",
+      "bytes": 12046,
+      "sha256": "d537045cb2365b86c4ec46d3615160d4827254b7e66bcb4feb448138f5e78297",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/analyze-c0-enum-lt-6-symbolic-reject-probe-v1.mjs",
+      "bytes": 7081,
+      "sha256": "6f83eab39d2387c09d703f894cdad329c2345da1cc0b5fdb9011e59b0658de34",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "scripts/analyze-c0-enum-symbolic-word-run-v1.mjs",
+      "bytes": 7161,
+      "sha256": "b1e977a524710d69177203010d59a92138302d6a00b47684fe2e7b97fb70f102",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/analyze-c0-runtime-slice-run-v1.mjs",
+      "bytes": 6760,
+      "sha256": "0d41b04af228d516959258be1b9bbf6b91b81520d0d7a0ed0eafb93bdf9a3a73",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/analyze-c0-strict-length-run-v1.mjs",
+      "bytes": 10467,
+      "sha256": "49541311acb89aca46e9895e16e44574cd254edbb1e716482143eec71182b9cd",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/analyze-c0-uint160-symbolic-word-run-v1.mjs",
+      "bytes": 7504,
+      "sha256": "0289bf8081468c82c7b9f187f56417537603e914218ec7f4d9188782dc21818e",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/analyze-c0-uint48-symbolic-word-run-v1.mjs",
+      "bytes": 7286,
+      "sha256": "ca0f51635f6dc4724cc1c73009208b4e22c98636390657f94c47befd612cd1a5",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/analyze-c0-uint48-symbolic-word-run-v3.mjs",
+      "bytes": 7242,
+      "sha256": "c8cf6c5b831d3f2cb479c4325469db6923e59386295aab6410c4352091ac47b6",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/analyze-c0-uint48-symbolic-word-run-v4.mjs",
+      "bytes": 7495,
+      "sha256": "c79f54b8bc7e512dbc0223c9af618cbdb4d0b8b90fc997fe468a9ab2b476e085",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/analyze-c0-uint64-diagnostic-v1.mjs",
+      "bytes": 8752,
+      "sha256": "86b656aa2760259d2ddf63f037c6873d74ecb852a28ae2fe211bef8f390c0762",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "scripts/analyze-c0-uint64-symbolic-word-run-v1.mjs",
+      "bytes": 7492,
+      "sha256": "27b77a897b2471167c0f5e794f5ef7161ad537b12e1b1bb831beb118d70f3b96",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/analyze-strict-kevm-receipt-v1.mjs",
+      "bytes": 7535,
+      "sha256": "2c99a365bc46f6c4fc9a219afebdd9900c0cc0b06a4ec48205e00ec1c13d7fe8",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/analyze-strict-runtime-bytes-v2.mjs",
+      "bytes": 5271,
+      "sha256": "e9b337c0486b0ab9520ceb4fd24729aa0f6fd4db535fed76581045411ac64927",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/append-m4-cost-ledger-event.mjs",
+      "bytes": 3093,
+      "sha256": "03e4670f5904e88bcb316753a47c99363db01d105452d7913e02c896666e7fe4",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/bind-row-discharge.mjs",
+      "bytes": 13424,
+      "sha256": "b5bed4b1f695a94237973befda1d3da50f6798a689b6f7a8c9abff7367a86c09",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/freeze-act01-attempt-history-v1.mjs",
+      "bytes": 8141,
+      "sha256": "6f9dc9708177d038423a427bacb5b01a2042d73c509a5fea212a2cdc2d461d44",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "scripts/generate-act01-composition-receipt-v1.mjs",
+      "bytes": 4283,
+      "sha256": "e0438a466c1558ac7a8816f39c5a24c1198848e8bc7995cc8acd98c5ce7819d9",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c-series-terminal-qualification-v1.mjs",
+      "bytes": 2898,
+      "sha256": "5381349db9ac49cbbc35ce791685b5da2514772e518472eb1c945b500e363844",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c0-canonical-decode-cutpoint-v1.mjs",
+      "bytes": 6244,
+      "sha256": "ce306fbbd4932764c3854d5da13c6e82ed9aa4600ebebcd3940882128100eb97",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c0-d5-composition-receipt-v1.mjs",
+      "bytes": 10109,
+      "sha256": "3d3224d7e241ebb327c61dd807fe5d00439cc4929d3777b98f4b4824263026bd",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c0-enum-lt-6-symbolic-reject-probe-v1.mjs",
+      "bytes": 7163,
+      "sha256": "b17a0d87bc1298737e915be1b4ba016ad0baba08842cfd6e0e389aa286320a9d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "scripts/generate-c0-enum-symbolic-word-package-v1.mjs",
+      "bytes": 7053,
+      "sha256": "1d88aaafddfd92702f93c0096257e43b1c817da266e74ef0782c079a7c19aa71",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c0-isolated-length-packages-v1.mjs",
+      "bytes": 5720,
+      "sha256": "7d81cf1561896a23e13e6921bb62ce0a445db355613e09f8f9fc4b696c486344",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c0-runtime-occurrences-isabelle-v1.mjs",
+      "bytes": 5767,
+      "sha256": "399e359e52951499a87d229013f418eab60728cbd9bf753dd6b3497d4d7c869c",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c0-runtime-slice-package-v1.mjs",
+      "bytes": 13173,
+      "sha256": "c9c72a19686b5dbc19462b76c4ff5db5048917204b1174563dea8683e6e6b7ef",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c0-runtime-slice-receipt-v1.mjs",
+      "bytes": 8973,
+      "sha256": "7c3122e5ac297073c5a407380fdb2de9ec29faee3df1270e0d9839428aa4c239",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c0-runtime-stack-binder-v1.mjs",
+      "bytes": 10827,
+      "sha256": "f7ae56c7dd86c4c3e3f058b75fec488606e2cb95a19f8e9fa93c78d4b56095a0",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c0-static-preflight-v1.mjs",
+      "bytes": 3270,
+      "sha256": "34958bfa454ad77a55c98c530ed44ceaa528095fbd44880a51ce506c74d784de",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c0-strict-length-package-v1.mjs",
+      "bytes": 7100,
+      "sha256": "80a3bf02f2a13610152fe70f7e5985e78d1788c9b5e12faa6a20d296a94308f6",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c0-terminal-receipt-final-v1.mjs",
+      "bytes": 5941,
+      "sha256": "c0ca0fbcb6d5f7311348a1449e9466468d6a5d70e562e7dff72c7d89cf27d036",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c0-uint160-symbolic-word-package-v1.mjs",
+      "bytes": 9029,
+      "sha256": "fe643e975dac59db9eb83e2eca89a4f034486c785b571ba2d55230c6e8d36747",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c0-uint48-symbolic-word-package-v1.mjs",
+      "bytes": 11767,
+      "sha256": "ef67b799aa601774b60132245dd65abbeb7ebd23edc06d13d7aeb41c7a6d0c1d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c0-uint48-symbolic-word-package-v2.mjs",
+      "bytes": 6399,
+      "sha256": "ffc2783ab5b3ae59a02d3620d6cfe9bcbfcb156a25347366735dd01c93565d32",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c0-uint48-symbolic-word-package-v3.mjs",
+      "bytes": 5041,
+      "sha256": "606d62d935da151ae2a4c546d509151a59298a6cbb2fc2dcfa7a6b4aff580535",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c0-uint48-symbolic-word-package-v4.mjs",
+      "bytes": 7531,
+      "sha256": "428f4eaa5d77bb27518af1271f6ed5bcbb6048744ef610934b7a6bd56429ea9d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c0-uint64-symbolic-word-package-v1.mjs",
+      "bytes": 9036,
+      "sha256": "4407a9ef07fcd00a386ced597c1e65ee1098dc2ac66ed3817c2ff5023bb797c3",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c1-terminal-receipt-v1.mjs",
+      "bytes": 7176,
+      "sha256": "ce28f89819795eb4260b9353e708dd13ad0459fb417c9eb4387995b168da0f66",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c2-classifier-cutpoint-definition-v1.mjs",
+      "bytes": 3064,
+      "sha256": "c8c717a65c2e886aaa45b156050f4574e70c1f6213959e0dfd23686518717189",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c2-concrete-classifier-cutpoint-v1.mjs",
+      "bytes": 2911,
+      "sha256": "47464d27ec08bb1a3a4b4195338d9a6143640b710a067daa14cf73692a52a1ba",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c2-cutpoint-definition-v1.mjs",
+      "bytes": 3020,
+      "sha256": "eb9e18caf18bc04198b044df0c60529269ae90dfe363d4f7c9abf1ac75f96fcc",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c2-dependency-runtime-summary-v1.mjs",
+      "bytes": 6712,
+      "sha256": "8056b23351c57e022034f37303f4461c5e816f39663a1c0fb9487747bc3d962f",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c2-kevm-diagnostic-v1.mjs",
+      "bytes": 2262,
+      "sha256": "9a64da04af275f8b28ec0b8ae5067177038b4cf54fa0bd4f51b2a4339195e773",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "scripts/generate-c2-kevm-package-v1.mjs",
+      "bytes": 9859,
+      "sha256": "fcd4366070b489edfae2e43efce50cb1e882747d82740d991c1a1f77cccf5ed0",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c2-kevm-split-packages-v1.mjs",
+      "bytes": 2427,
+      "sha256": "8096dd74d5acb269ba093b438508d398118977fc48bfc295f1d2ee5ab906f3fb",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c2-returndata-copy-cutpoint-v1.mjs",
+      "bytes": 6317,
+      "sha256": "9cddd8544d6bf346a32cf8d2368832c8276b28ba2b6037bb8a5ae93cce0e7b96",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c2-staticcall-cutpoint-package-v1.mjs",
+      "bytes": 2817,
+      "sha256": "74e0fa25df3c52d985b57e5311f19d091854699295b885fe2e5793fbb0dda4a2",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c3-terminal-receipt-v1.mjs",
+      "bytes": 5241,
+      "sha256": "95c1a9f2e41160c07c9fbc7db8c992aca46f928d28356095059e701fa4262bda",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c4-freeze-lane-receipt-v1.mjs",
+      "bytes": 3344,
+      "sha256": "b210355c7d376158215ce54b5e042dc4fa335eb868dea544e808b96e17b1da6a",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "scripts/generate-c4-terminal-receipt-v1.mjs",
+      "bytes": 3900,
+      "sha256": "584987770dfd2da070f904c5e84d791704517408775c3a7f2fe83adddd0cbf0e",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c5-terminal-receipt-v1.mjs",
+      "bytes": 3404,
+      "sha256": "c78184b166a8bebd529e4ae3c9801714785d09e58051554dc8cd96093ad51f55",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-c6-terminal-receipt-v1.mjs",
+      "bytes": 4100,
+      "sha256": "1f97d810b7cc7c4421f3745b1a10888a16c5db1502d80f7bc2f7306b2e9de21d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-certora-c1-mutant-v1.mjs",
+      "bytes": 2360,
+      "sha256": "ffafdaa8aff86f47ef70813025f5f61993d143347e697eefa1dcc6109a634f22",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-certora-c2-mutant-v1.mjs",
+      "bytes": 2536,
+      "sha256": "052d5038c0d2e8cb6c8c369d1d297fc15b03c42538b8e05480c0900faa98b6d1",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-certora-c3-mutant-v1.mjs",
+      "bytes": 3367,
+      "sha256": "9c747f87ca73d650999ff2611b65401f586b165e123eaaa4a379fc3dcf12b98f",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-certora-c4-freeze-mutant-v1.mjs",
+      "bytes": 3321,
+      "sha256": "fcad4a357d7c612f6c6a4c1949246ffabd4ec32dd69dc56e21b1b98fb7d639f9",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "scripts/generate-certora-c4-remaining-mutant-v1.mjs",
+      "bytes": 3619,
+      "sha256": "608a0ebd12204675885e9921243052849f963ee7ad9c50ee207a80907b8a2193",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-certora-c5-mutant-v1.mjs",
+      "bytes": 3152,
+      "sha256": "ebafc28e290d189ffeaef6c65c1dcec4f741d36d9aa4eb5082c6b6d89961d227",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-certora-c6-mutant-v1.mjs",
+      "bytes": 3385,
+      "sha256": "b405ced345c7e9a8d7095e83851fc56ef222473991d35647a8d74e94d5b45ea7",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-hybrid-tcb-profiles-v1.mjs",
+      "bytes": 16082,
+      "sha256": "421a880c23622b10eee34244e1574d6927964fd221534b8b6a4f294948574c35",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-hybrid-tcb-supersession-v1.mjs",
+      "bytes": 4515,
+      "sha256": "44f81cab938069026ee3a705bd498fff7f7382b4cf8e961ebab655b412104f00",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-reusable-summary-contracts-v1.mjs",
+      "bytes": 19000,
+      "sha256": "bebabb8d0ceb31153a46c47390c41b621bee2ed45dd05d345f88e8e0b1f64e55",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/generate-reusable-summary-qualifications-v1.mjs",
+      "bytes": 6328,
+      "sha256": "63216051ea7bbd28a2bb5ef019bdcf4c20e6acff4cd06e0055dfccd34fddd71c",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/hash-m4-execution-output.mjs",
+      "bytes": 1324,
+      "sha256": "cbd110e5c8ff9f721106730384c9e0c57384d99c6b995f5bb0d0e47d58cd7011",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/initialize-end-to-end-evidence.mjs",
+      "bytes": 3911,
+      "sha256": "44d2ab107137b469f21e411cc3ee84e2e170e2651b9f335911838f65fa8a1ef4",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/prepare-certora-job-manifest-v1.mjs",
+      "bytes": 5469,
+      "sha256": "dace9b0455bdd22b274414fa1beb9448086294624e5967e8a10eecf1548d3973",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/probe-c0-d0-runtime-slice-v1.mjs",
+      "bytes": 23547,
+      "sha256": "240816be14283e3c9892d744ecc7c1ec09f6166d614f2e8f37dd687aa175a817",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "scripts/record-certora-c1-job-receipt-v1.mjs",
+      "bytes": 4875,
+      "sha256": "801a5d5e8c6e8223288ef38f387f636b220308fda3a3c5e3950a17fa7be93d4f",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/record-certora-c3-job-receipt-v1.mjs",
+      "bytes": 5850,
+      "sha256": "3b7b090ba8c7cde20dd51e0116f4c2676b6512671e3297d24a519e5b9a06f50a",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/record-certora-job-receipt-v1.mjs",
+      "bytes": 4511,
+      "sha256": "a4728a5c2e342c35ade20277a32c2088aea2a661f7050934070d8dead7e3f871",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/record-certora-package-job-receipt-v1.mjs",
+      "bytes": 90,
+      "sha256": "582f8a73f1c7fd35d8cfedc70800287188c6e98fdc906c9c747bae7b6bf859c4",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/replay-c0-enum-family-checkpoint-v1.ps1",
+      "bytes": 5793,
+      "sha256": "8f2ab341773dfc5ce8a785b8106d5c5dcf482fd5d56674642e1049747a031254",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "scripts/replay-c0-uint160-family-checkpoint-v1.ps1",
+      "bytes": 8234,
+      "sha256": "0a2e27ad7e53953512765a632b5b86eac2ba1c429a882aded975d7425e03c199",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "scripts/replay-c0-uint48-family-checkpoint-v1.ps1",
+      "bytes": 7970,
+      "sha256": "14a28447ce9092b3f40df588834c6a93d17573ba1d24957c8142cd8e3d288fa1",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "scripts/replay-end-to-end-refinement.ps1",
+      "bytes": 4690,
+      "sha256": "73ed434beb7b32684d26f48c2d93bb0591b67d579006c5b0278218cfd3c7dfe1",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/replay-m4-current-profile-v1.ps1",
+      "bytes": 2787,
+      "sha256": "bb9dcc3ec447b30f7c9332df365f730d00b15ed5d09314dff00bf7363f30d5de",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/run-m4-row-parse-only-rebind.ps1",
+      "bytes": 9468,
+      "sha256": "7666066724ed6d68d6364d653c51b581f2e44ecba4498665b319e3f932f1f267",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/snapshot-m4-worktree.mjs",
+      "bytes": 1574,
+      "sha256": "6b176662f2f586d003da178efe3ca2b36f79186342605a19599e15fc8649742f",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/validate-row-bundle-to-report.mjs",
+      "bytes": 1387,
+      "sha256": "5b034a9aedc4c66b3ac9f20ab0b7b92c4faba4a38235ab36aaac4a5432381574",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-act01-relay-checkpoint-v1.mjs",
+      "bytes": 3740,
+      "sha256": "a7a0d70437a07e9e371d80238cee52fad37e582d421573f4e34c8525c087dbec",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "scripts/verify-c0-03-direct-entry-bytecode-v1.mjs",
+      "bytes": 2773,
+      "sha256": "1d30f2cd921ea6df94ed58a21879a2857914f9039670e7d126cfc7633bb6f116",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-c0-03-runtime-occurrence-audit-v1.mjs",
+      "bytes": 2463,
+      "sha256": "d63aab0690ff41e0cfc8855f3a7461420e64e7ec0db5245ea21496e4a1c6e8b5",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-c0-03-runtime-redesign-v1.mjs",
+      "bytes": 3526,
+      "sha256": "c13e7f4cb725710abbfab53a306944fb761de4f485483f95fac6a5619d15835f",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-c0-abi-runtime-plan-v1.mjs",
+      "bytes": 2906,
+      "sha256": "fd6531978c7093fa60cd4b7c07aa85b4fa58b6414f17b940eefaa3dce9cb260a",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-c0-canonical-decode-strict-v1.mjs",
+      "bytes": 4873,
+      "sha256": "573fa3ec57f17ec4f55294996e01e0b9a13ec1b203b94ded2924f048f9bade05",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-c0-compile-parse-tranche-v1.mjs",
+      "bytes": 5003,
+      "sha256": "bb5866776b28170f5237c1247e9eb8c2499837762a63908ef665691137acf0c2",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-c0-current-status-v1.mjs",
+      "bytes": 2581,
+      "sha256": "14e05477b6bf527dd56dccd7ea9652c625e1c3cd102836d17c146afb47fb90be",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-c0-enum-symbolic-families-v1.mjs",
+      "bytes": 5957,
+      "sha256": "884eea5cfb6c02ced9beb36250053f6f5151d91255444fcc55eedeb14b65c0f1",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-c0-execution-contract-v1.mjs",
+      "bytes": 2852,
+      "sha256": "cd99ab4f60b032c32edc90fcf764ca5349059e64e833ebe58fa10446db358c74",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-c0-pc3477-boundary-reclassification-v1.mjs",
+      "bytes": 3446,
+      "sha256": "bde9d9f4fb06624e617b8415d00c20c350800bd9007936ab9d2e0c5eea05d338",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-c0-soundness-gap-audit-v1.mjs",
+      "bytes": 4250,
+      "sha256": "e2f14c071d7c51c46e602c524665da161b5bec73f083397cec90dbd04020190a",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-c0-static-preflight-v1.mjs",
+      "bytes": 2278,
+      "sha256": "e2ff49111704b5b8a1b70011d2e5af8db6e758413505989d06ad3f2bd41f0c93",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-c0-strict-ready-checkpoint-v1.mjs",
+      "bytes": 4355,
+      "sha256": "c45206c9b8926ccd5b476a33f0bd25bd610fc3b90345c29f114581db43bad54e",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "scripts/verify-c0-strict-runtime-binding-supplement-v1.mjs",
+      "bytes": 2504,
+      "sha256": "65fdb61bf61dd8a770f320622cfae6494aec3ddb6c3b5d295c01dbe142987f82",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-c0-terminal-receipt-v1.mjs",
+      "bytes": 26954,
+      "sha256": "23b622307b6fde1913f5c5718207cf6fdc8c84087fc318b965abf79e2d90d891",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-c0-uint160-hybrid-family-v1.mjs",
+      "bytes": 8861,
+      "sha256": "eef8a73d39e9456c58a26c1a4998e10ce014c8fa2ed475b87030c27c6b689090",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-c0-uint160-hybrid-hypotheses-v1.mjs",
+      "bytes": 11924,
+      "sha256": "63d7bd5c0248713368a4373229890660eced79127d2863b6d094e26690903411",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-c0-uint48-hybrid-family-v1.mjs",
+      "bytes": 8578,
+      "sha256": "37d9b2948d8964bfdefbc2daa87b685251106505277c6f90a80bf8d3d1f5086f",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-c0-uint48-hybrid-hypotheses-v1.mjs",
+      "bytes": 10644,
+      "sha256": "3e2f93244882bc1e51cbfb97d6d7213c8c94a499690b35e1b19302131a3cc544",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-c0-uint64-diagnostic-v1.mjs",
+      "bytes": 4784,
+      "sha256": "228de4c7d0ef515aab070e4f75bedb94965a5c3c09001a7866c6636bda8ba655",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "scripts/verify-c0-uint64-hybrid-hypotheses-v1.mjs",
+      "bytes": 11906,
+      "sha256": "0455f64a683c2c8dd84efe72740076f047f247db4884d5b83500a7186a9e11df",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-c1-certora-witness-formulation-v1.mjs",
+      "bytes": 8385,
+      "sha256": "0bbbcd719178723444f812eb01c2ea3dad258c5cea58b5ef4dabdb5171ee5115",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-c2-kevm-package-v1.mjs",
+      "bytes": 11962,
+      "sha256": "22d334253904ea881ddd0abca6d1ccc8aeb981275c1f919cc6a40527ddfa0f33",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-c3-certora-route-formulation-v1.mjs",
+      "bytes": 4990,
+      "sha256": "65a0273d655070afb2ad36f30007c925570397e2d373767a86eda30dea1c6cfc",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-c4-freeze-formulation-v1.mjs",
+      "bytes": 3804,
+      "sha256": "27a1d1c2977780817954a564b1237168a61dacef8d696319499487fc9772ea7d",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "scripts/verify-c4-remaining-formulation-v1.mjs",
+      "bytes": 2225,
+      "sha256": "38eb152a98c533f8ec5454df97c6f78295a9926cce1c62ab96228aa7debebed9",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-c5-reversal-formulation-v1.mjs",
+      "bytes": 2589,
+      "sha256": "774b50f307d34bce62358be5bf438fd28c7224408019813d4712038b6cacf20e",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-c6-transaction-formulation-v1.mjs",
+      "bytes": 3754,
+      "sha256": "18a85368b0d434a6ed07bd302ed5f4c6832e142714b48f86b3c9da0e47f85352",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-certora-job-manifest-v1.mjs",
+      "bytes": 3101,
+      "sha256": "08a086c8fabfe17b7d9cc257aa0541ee08c01c3353faa0b33a31ccb1226be395",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-end-to-end-evidence.mjs",
+      "bytes": 23001,
+      "sha256": "047fb85a9f8f5670dd34fd293026a4fa1563f42d816d14357a771345d677b13a",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-hybrid-tcb-profiles-v1.mjs",
+      "bytes": 10159,
+      "sha256": "35a4864e7083531a086f6680cc976a76e1afafd41348d1765887858ce2553b9f",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-hybrid-tcb-supersession-v1.mjs",
+      "bytes": 4845,
+      "sha256": "930ff6d5d155cc739aae3b8fd2c871eb125ed213f1c4d22bb853ae303f0094ed",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-m4-c0-safe-handoff-checkpoint-v1.mjs",
+      "bytes": 5818,
+      "sha256": "ee314009e4bd61cd42f712c272dc31afb0e2bf186dedb97bb14f1b09033adcc1",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "scripts/verify-m4-core-refinement-scope-v1.mjs",
+      "bytes": 5037,
+      "sha256": "76580c1534b34c82b6e9ba7f05a1fd93b912c0bb45518d95bfef2a21dd737f6f",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-m4-execution-cost-ledger.mjs",
+      "bytes": 5899,
+      "sha256": "7afe6675c91e381e4cf1dbddfe30a0e04005304e9e67d131a18b521f6ba82be3",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-m4-runtime-freeze.mjs",
+      "bytes": 6018,
+      "sha256": "3bec83e43861b5819d324bfb571ae4dd59027eec976289173f594e96500efd86",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "scripts/verify-m4-wave1-reconnaissance.mjs",
+      "bytes": 2554,
+      "sha256": "d68aa63d37e02cf7b40602c9bb09be1ad21eb81738c3d383baa5da822ed6bb83",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "scripts/verify-m4-wave2-rebinding.mjs",
+      "bytes": 8403,
+      "sha256": "a81a24fcd9b8ad9e2bcfeec8c6870377287f44576e8a3f7d0caba3f3e641a346",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "obsolete-or-failed-formulation"
+    },
+    {
+      "path": "scripts/verify-reusable-summary-contracts-v1.mjs",
+      "bytes": 5943,
+      "sha256": "57cc4f0e330c409fd9c0592e16876259f8994a073fd16f83a50d0111705befde",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    },
+    {
+      "path": "scripts/verify-reusable-summary-qualifications-v1.mjs",
+      "bytes": 49542,
+      "sha256": "6bd9baf8c0bbc18ad7d3a7d60957c21b4b01c9f6bdc8194ed995bade265ea036",
+      "disposition": "ARCHIVE_ONLY",
+      "category": "internal-process-tool"
+    }
+  ],
+  "nonclaims": [
+    "Archive-only paths are removed from the public candidate tree, not from preserved private history.",
+    "The manifest does not authorize repository visibility, tags, releases, submissions, or external patches.",
+    "Ambiguous authoritative source is retained rather than removed."
+  ],
+  "safety": {
+    "authoritativeSourceFilesRemoved": 0,
+    "ambiguousFilesRetained": true,
+    "overlongTrackedPathsAfterDiet": 0,
+    "maximumAbsolutePathCharactersInValidationClone": 191
+  },
+  "validation": {
+    "publicReplay": "PASS_7_OF_7_CORE_49_OF_49_SUPPORTING_24_OF_24",
+    "runtimeBinding": "PASS_7_SUBJECTS_EXPECTED_HASH_OVERWRITE_0",
+    "releaseBinding": "PASS_765_FILES_RUNTIME_24142",
+    "foundry": "PASS_31_OF_31_FUZZ_256_INVARIANT_CALLS_384000",
+    "preservedPilot": "PASS_13_OF_13_BINDING_14_FILES",
+    "sdk": "PASS_3_OF_3",
+    "isabelle": {
+      "status": "PASS",
+      "runId": "20260828T082732Z",
+      "buildExitCode": 0,
+      "bannedSourceForms": 0,
+      "proofAuditPass": true,
+      "buildLogSha256": "C99ED35881226064A1CF6437DDBDABC5C4C2F6D19243E2C022F9B9A895B7A543"
+    },
+    "publicSurface": "PASS_808_FILES",
+    "repositoryHealth": "PASS_808_FILES",
+    "links": "PASS_36_MARKDOWN_FILES",
+    "ci": "PASS_REQUIRED_RUN_33155552345_AND_IDENTITY_RUN_33155552415"
+  }
+}

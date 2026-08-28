@@ -1,0 +1,72 @@
+{
+  "edges": [
+    [
+      "ART-01",
+      "ART-05"
+    ],
+    [
+      "ART-02",
+      "ART-05"
+    ],
+    [
+      "ART-03",
+      "ART-05"
+    ],
+    [
+      "ART-04",
+      "ART-05"
+    ],
+    [
+      "ART-05",
+      "ART-06"
+    ],
+    [
+      "ART-05",
+      "ART-07"
+    ]
+  ],
+  "nodes": [
+    {
+      "id": "ART-01",
+      "reason": "source/compiler identity leaf",
+      "role": "direct-prerequisite"
+    },
+    {
+      "id": "ART-02",
+      "reason": "compiler-output runtime leaf",
+      "role": "direct-prerequisite"
+    },
+    {
+      "id": "ART-03",
+      "reason": "constructor-resolved runtime leaf",
+      "role": "direct-prerequisite"
+    },
+    {
+      "id": "ART-04",
+      "reason": "ABI/layout/AST/immutable artifact leaf",
+      "role": "direct-prerequisite"
+    },
+    {
+      "id": "ART-05",
+      "reason": "theory source and import closure",
+      "role": "selected"
+    },
+    {
+      "id": "ART-06",
+      "reason": "runtime execution consumes the closed theory/runtime bridge",
+      "role": "direct-consumer"
+    },
+    {
+      "id": "ART-07",
+      "reason": "end-to-end theorem composition consumes the theory closure",
+      "role": "direct-consumer"
+    }
+  ],
+  "schemaVersion": 1,
+  "selectedObligation": {
+    "id": "ART-05",
+    "property": "theory_source_and_import_closure_are_hash_bound",
+    "status": "OPEN",
+    "theoremName": "theory_source_and_import_closure_are_hash_bound"
+  }
+}

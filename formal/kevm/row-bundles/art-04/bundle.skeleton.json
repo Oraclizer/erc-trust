@@ -1,0 +1,94 @@
+{
+  "blockers": [
+    "fresh closed positive KEVM graph",
+    "fresh terminal semantic negative graph showing slot-3 value 99 against unchanged slot-2 value 42 requirement",
+    "serial Isabelle clean build and oracle-free export",
+    "repository-owned independent replay"
+  ],
+  "bridge": {
+    "path": "formal/kevm/row-bundles/art-04/bridge/row-bridge.json",
+    "reverseCheck": "formal/kevm/row-bundles/art-04/reverse-check.py",
+    "sha256": "ae1fcc1f0132f2e69f34fa65c328bd7f9795d152332f65de0dd4adaa0e48c337"
+  },
+  "eligibleForDischarge": false,
+  "isabelle": {
+    "buildStatus": "NOT_RUN_IN_WORKER",
+    "closureReport": null,
+    "session": "ERC_TRUST_ART_04",
+    "theoremName": "storage_layout_abi_ast_and_immutable_references_are_hash_bound",
+    "theoryPath": "formal/kevm/row-bundles/art-04/isabelle/ART_04_Artifact_Surface_Binding.thy"
+  },
+  "negative": {
+    "compiledJsonSha256": null,
+    "definitionKoreSha256": null,
+    "graph": null,
+    "mutationId": "ART-04-MUT-TOTAL-SUPPLY-SLOT-001",
+    "mutationKind": "EXECUTABLE_SEMANTIC_MUTANT",
+    "requiredExitCode": 1,
+    "requiredWitness": "0x0000000000000000000000000000000000000000000000000000000000000063 contradicts unchanged 0x000000000000000000000000000000000000000000000000000000000000002a requirement"
+  },
+  "obligationId": "ART-04",
+  "positive": {
+    "compiledJsonSha256": null,
+    "definitionKoreSha256": null,
+    "graph": null,
+    "requiredExitCode": 0,
+    "requiredWitnesses": [
+      "EVMC_SUCCESS",
+      "0x000000000000000000000000000000000000000000000000000000000000002a",
+      "slot 2 contains 42 while adjacent slot 3 contains 99"
+    ]
+  },
+  "prohibitedUntilHeavyProofsComplete": [
+    "KEVM",
+    "K_DRY_RUN",
+    "ISABELLE_BUILD",
+    "SOLC_COMPILE"
+  ],
+  "proofInputs": {
+    "claim": {
+      "path": "formal/kevm/row-bundles/art-04/claim.k",
+      "sha256": "6e210b7978f39ff49de779b9d7852033f7612a0100d722e787566684107d655f"
+    },
+    "negativeRuntimeBridge": {
+      "mutationId": "ART-04-MUT-TOTAL-SUPPLY-SLOT-001",
+      "path": "formal/kevm/row-bundles/art-04/generated/mutant-runtime-bridge.k",
+      "sha256": "90553dd8b5ec79c96fb168eefb681b2cc2134430141b7c99c11a9e59ca7177dd"
+    },
+    "negativeVerification": {
+      "path": "formal/kevm/row-bundles/art-04/generated/mutant-runtime-verification.k",
+      "sha256": "e380844cea44b450c03fc3d0f345e22980801b96fe0270fa921c667a8e062bf9"
+    },
+    "positiveVerification": {
+      "path": "formal/kevm/trust-runtime-verification.k",
+      "sha256": "df6b227bfd1ab5bfc7cfdb364a7da4dea4b5660789e4513f10e78d00dcbe4193"
+    }
+  },
+  "proofSpec": {
+    "claimId": null,
+    "module": "TRUST-ART-04-ARTIFACT-SURFACE-BINDING-SPEC",
+    "path": "formal/kevm/row-bundles/art-04/claim.k",
+    "sha256": "6e210b7978f39ff49de779b9d7852033f7612a0100d722e787566684107d655f"
+  },
+  "proofStatus": "PASS_OPEN_STATIC",
+  "replay": {
+    "proofRoot": null,
+    "report": null,
+    "status": "NOT_RUN",
+    "traceRoot": null
+  },
+  "requiredProperty": "storage_layout_abi_ast_and_immutable_references_are_hash_bound",
+  "schemaVersion": 1,
+  "status": "OPEN",
+  "tcbBinding": {
+    "actualCurrentLock": {
+      "path": "formal/kevm/dependencies.lock.json",
+      "sha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196"
+    },
+    "blocker": false,
+    "canonicalPlaceholderSha256": "e4fcabd40c8b18e3900050a590b6b80c687d4d115f61bc12439af6099e83434e",
+    "classification": "OPEN_PLACEHOLDER_PENDING_COORDINATOR_BINDING",
+    "productDrift": false,
+    "runtimeBindingManifestDependencyLockSha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196"
+  }
+}

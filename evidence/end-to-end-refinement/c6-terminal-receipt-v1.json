@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_C6_TERMINAL_RECEIPT_V1",
+  "packageId": "C6",
+  "status": "PASS_C6_TERMINAL_RUNTIME_QUALIFICATION",
+  "terminal": true,
+  "identity": {
+    "nativeRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "productionSource": {
+      "path": "implementation/src/TrustToken.sol",
+      "sha256": "dbe06bb25a2b62913bd6428e1de32ba007a214e24ac45f4fd2c0fb55ea22c96a"
+    },
+    "package": {
+      "path": "evidence/end-to-end-refinement/reusable-summaries-v1/packages/c6-transaction-commit-rollback-receipt-v1.json",
+      "sha256": "704efb8922ea6c42f781122d6fa57219d4e4a745fd9f0be417bdb2fb5e8207b5"
+    },
+    "spec": {
+      "path": "implementation/certora/TrustC6Transaction.spec",
+      "sha256": "d2b67416d0f242015d68517b15086f1935a0439efc5a2f6969aca8b23eb5c17e"
+    },
+    "canonicalHarness": {
+      "path": "implementation/test/mocks/TrustTokenC6TransactionHarness.sol",
+      "sha256": "186e8c76cdf80166c4d6976618db10333668d6099c8e9ea9c20d4057a3acfeca"
+    },
+    "formulationVerifier": {
+      "path": "scripts/verify-c6-transaction-formulation-v1.mjs",
+      "sha256": "18a85368b0d434a6ed07bd302ed5f4c6832e142714b48f86b3c9da0e47f85352"
+    },
+    "foundryTransactionTests": {
+      "path": "implementation/test/TrustActions.unit.t.sol",
+      "sha256": "58d9cf6624c9e20e0328134090547dc8603b3369925d2c0c439b52b6827d44d8"
+    },
+    "c4FreezeDependency": {
+      "path": "evidence/end-to-end-refinement/c4-freeze-lane-receipt-v1.json",
+      "sha256": "a3c628fae7233998ff1a2425786bcabf04c53c38d86cec95aeb4930cc94c0d1b"
+    }
+  },
+  "canonical": {
+    "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C6-CERTORA-CANONICAL-PROOF-060/sanitized-receipt.json",
+    "sha256": "47a3eed543b9bb6cbedb60ed310419b95587425e4c7e7d471b2c626d80a1ae11",
+    "jobId": "M4-C6-CERTORA-CANONICAL-PROOF-060",
+    "inputManifestRef": {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C6-CERTORA-CANONICAL-PROOF-060/input-manifest.json",
+      "sha256": "996339fe946ee76b2e093487d41d663bdff961295e2c96a6d00ab697e30eb2c9",
+      "payloadManifestRootSha256": "ea9fb9256bb643c274ed352dc811bdd68e74c3e9d444a06bbc71ecc6475a3cda"
+    },
+    "privateLogSha256": "fba7e8752c3c42940f827de7d0b7dd7786b5e94d28f6a32e8f7a696a7592a00f"
+  },
+  "sameEntryNegative": {
+    "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C6-CERTORA-MUTANT-PROOF-061/sanitized-receipt.json",
+    "sha256": "915cb2178171aeafd634574c863e3b129a34ab810a8550fb22974ff61a007472",
+    "jobId": "M4-C6-CERTORA-MUTANT-PROOF-061",
+    "mutation": {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/mutations/C6-RECORD-RECEIPT-BINDING-OMISSION-v1.json",
+      "sha256": "50ee180f5e19d519d35f87de236f42c7cef21084b2fb994533ca3ef269941498"
+    },
+    "semanticViolations": [
+      "successful_transaction_commits_storage_return_receipt_and_final_event"
+    ],
+    "privateLogSha256": "1c8a85e6017339c75ebe5e69d4e755082495df07b93a7a7223c9c36e503ad9fd"
+  },
+  "transactionShell": {
+    "fullProductionSuccessReceiptPath": true,
+    "boundedRollbackWrites": [
+      "authorization",
+      "nonce",
+      "route ticket",
+      "effect",
+      "receipt",
+      "event"
+    ],
+    "foundryCanonicalEventOrderPass": true,
+    "foundryRevertedLogsAndArtifactsPass": true,
+    "wholeStorageRollbackQualified": true
+  },
+  "assumptions": [
+    "Package-local success or failure postcondition from C1, C3, and C4 FREEZE",
+    "Exact EVM transaction rollback shell"
+  ],
+  "nonclaims": [
+    "gas equality",
+    "deployment identity",
+    "compiler correctness"
+  ],
+  "qualification": {
+    "positiveTerminalPass": true,
+    "sameEntryMutationKilled": true,
+    "baselineRestored": true,
+    "frameQualified": true,
+    "c6RuntimeQualified": true,
+    "c6PackageQualified": true,
+    "act01Qualified": false,
+    "centralCredit": 0
+  }
+}

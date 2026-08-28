@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_REUSABLE_SUMMARY_QUALIFICATIONS_V1",
+  "date": "2026-08-28",
+  "registryRootSha256": "d44aef4400e4a91a9e73763341b13b49a53fe392543e73e23137a9b57190669a",
+  "deterministicRootSha256": "79ac69c053ebe9c6ac58eb6df3b841ebc11e347b58e0ed8107514667740a6ea0",
+  "packages": [
+    {
+      "id": "C0",
+      "status": "RUNTIME_QUALIFIED",
+      "receiptPath": "evidence/end-to-end-refinement/c0-universal-iff-qualification-v1.json",
+      "receiptSha256": "f5ed07d481e35d9a1f3fd7458004e1a212537c20343cf5685021ef8cf1e7eded",
+      "centralCredit": 0
+    },
+    {
+      "id": "C2",
+      "status": "RUNTIME_QUALIFIED",
+      "receiptPath": "evidence/end-to-end-refinement/c2-runtime-binder-receipt-v1.json",
+      "receiptSha256": "40ec60405389d02575f525af89eeac1154f2d8d4ba68daf684332334f5201619",
+      "centralCredit": 0
+    },
+    {
+      "id": "C1",
+      "status": "RUNTIME_QUALIFIED",
+      "receiptPath": "evidence/end-to-end-refinement/c1-terminal-receipt-v1.json",
+      "receiptSha256": "1ecf5ed3da7dda4eee73a1589cfc331d7de5773436da8d4c0990af53d7c690c1",
+      "centralCredit": 0
+    },
+    {
+      "id": "C3",
+      "status": "RUNTIME_QUALIFIED",
+      "receiptPath": "evidence/end-to-end-refinement/c3-terminal-receipt-v1.json",
+      "receiptSha256": "eb69128c671cdc8d2e93cba502f6d5b327f2e5d9014acd31044dff78c7b26f47",
+      "centralCredit": 0
+    },
+    {
+      "id": "C4",
+      "status": "RUNTIME_QUALIFIED",
+      "receiptPath": "evidence/end-to-end-refinement/c4-terminal-receipt-v1.json",
+      "receiptSha256": "c0f7745147b34e9788c44705fc71c663559ae07f6d67ea3b2c65624d3c5bd85d",
+      "centralCredit": 0
+    },
+    {
+      "id": "C6",
+      "status": "RUNTIME_QUALIFIED",
+      "receiptPath": "evidence/end-to-end-refinement/c6-terminal-receipt-v1.json",
+      "receiptSha256": "6afba204a95dfe43455ed9c1896f809461f0ee9652a2ecc6422467be93a29847",
+      "centralCredit": 0
+    },
+    {
+      "id": "C5",
+      "status": "RUNTIME_QUALIFIED",
+      "receiptPath": "evidence/end-to-end-refinement/c5-terminal-receipt-v1.json",
+      "receiptSha256": "913a46292382df1bb970ed50b4460c7fe7f103a93fb164c38880f7fdd0cf4b4a",
+      "centralCredit": 0
+    }
+  ],
+  "qualifiedCount": 7,
+  "heldCount": 0,
+  "requiredAct01Packages": [
+    "C0",
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C6"
+  ],
+  "act01Status": "RUNTIME_QUALIFIED",
+  "act01ReceiptPath": "evidence/end-to-end-refinement/act01-current-profile-terminal-receipt-v1.json",
+  "act01ReceiptSha256": "7631fc1978c94a394ca2d0c76803ac86f44bd185c2ad1d9f65b1706a2bc496be",
+  "act01CurrentProfileCredit": 1,
+  "coreRefinementQualifiedDelta": 1,
+  "legacyQualifiedDelta": 0
+}

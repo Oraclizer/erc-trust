@@ -1,0 +1,34 @@
+{
+  "schema": "erc-trust-formal-dependencies-public-lock-v1",
+  "canonicalProof": {
+    "repository": "https://github.com/Oraclizer/erc-trust.git",
+    "sourceBinding": "candidate-commit-tree",
+    "entryPath": "formal/isabelle/ERC_TRUST",
+    "session": "ERC_TRUST",
+    "isabelleVersion": "Isabelle2025-2"
+  },
+  "formalFoundationDependency": {
+    "repository": "https://github.com/Oraclizer/formal-verification.git",
+    "repositoryCommit": "db8e0802e55f0229cf7bc9e5e6cfbf40681adbba",
+    "sourceBinding": "commit-pinned-with-verified-session-overlay",
+    "entryPath": "Cross_Domain_State_Preservation",
+    "session": "Cross_Domain_State_Preservation",
+    "overlay": {
+      "sourcePath": "Regulatory_Action_Composition/Regulatory_Action_Composition.thy",
+      "targetPath": "Cross_Domain_State_Preservation/Regulatory_Action_Composition.thy",
+      "rootRegistration": "Regulatory_Action_Composition",
+      "temporary": true,
+      "retirementCondition": "Replace the overlay only after the public formal-verification repository exposes a stable commit whose session graph directly provides Cross_Domain_State_Preservation.Regulatory_Action_Composition and the same supersession verifier passes."
+    }
+  },
+  "supersession": {
+    "historicalLockPath": "formal-dependencies.lock.json",
+    "historicalLockSha256": "f0bf6cfa4b05bef9e40a1be64b6309ec7722059bdbdacee5c6924df3bb35cab6",
+    "historicalRepositoryCommit": "3f3e15964969d2646e9240d273e8270987e1c59e",
+    "historicalRepositoryTree": "dedde2ed94611dcfc53e6b1d4dd264c5acb522d0",
+    "evidence": "evidence/public-release/formal-foundation-supersession-v1.json",
+    "expectedHashesOverwritten": false,
+    "existingProofSourceModified": false,
+    "existingProofStatementsModified": false
+  }
+}

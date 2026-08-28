@@ -1,0 +1,132 @@
+{
+  "assumptions": [
+    "valid action summary preconditions",
+    "effect hash pure formula",
+    "finite owned frame"
+  ],
+  "authority": {
+    "legacyCarryover": false,
+    "nativeRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "runtimeFreezeRef": {
+      "path": "evidence/end-to-end-refinement/m4-runtime-freeze-v1.json",
+      "sha256": "ba18d99f630bad67faee824ec83f1071f478a393639faa087be739d880164d67"
+    },
+    "scopeRef": {
+      "path": "evidence/end-to-end-refinement/m4-core-refinement-scope-v1.json",
+      "sha256": "a94fdd38612e6d77fec2057c67bfa88d71d826234fb6116ab8b23650c88f6f56"
+    },
+    "sourceHead": "add3dfb9ca75923d6462d16ba8eb41cad0b1216f",
+    "tcbIndexRef": {
+      "deterministicRootSha256": "baf66d7f1ba3e09b9d03ee55dee4bfd8ff5ba3ada3f3d38c139fdfa9f1ab1243",
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v1/index-v1.json",
+      "sha256": "11d13e917fd2930c93b77c3900d8c2addbd71e6ff3ce67354ed6175da3e28113"
+    }
+  },
+  "canonicalClaimCount": 5,
+  "claims": [
+    {
+      "expectedOrigin": "PURE_FORMULA",
+      "id": "C4-01",
+      "statement": "freeze_sets_absolute_target_and_effect_provenance"
+    },
+    {
+      "expectedOrigin": "PURE_FORMULA",
+      "id": "C4-02",
+      "statement": "restrict_sets_independent_overlay"
+    },
+    {
+      "expectedOrigin": "PURE_FORMULA",
+      "id": "C4-03",
+      "statement": "seize_preserves_beneficial_balance_and_creates_exact_custody"
+    },
+    {
+      "expectedOrigin": "PURE_FORMULA",
+      "id": "C4-04",
+      "statement": "direct_disposition_is_terminal_and_confined"
+    },
+    {
+      "expectedOrigin": "PURE_FORMULA",
+      "id": "C4-05",
+      "statement": "custody_disposition_consumes_exact_backing_once"
+    }
+  ],
+  "dependsOn": [
+    "C0",
+    "C1",
+    "C2",
+    "C3"
+  ],
+  "failureGuarantees": [
+    "effect precondition failure stutters"
+  ],
+  "id": "C4",
+  "isabelleAnchor": "TRUST_Reusable_Summaries",
+  "kSeam": "TRUST-C4-FORWARD-EFFECTS-SPEC",
+  "mutationFamily": [
+    "incremental rather than absolute freeze",
+    "effect parent/generation omission",
+    "custody backing omission"
+  ],
+  "name": "ForwardFinancialEffects",
+  "nonclaims": [
+    "external ownership truth",
+    "settlement truth",
+    "compiler correctness"
+  ],
+  "ownedInputs": [
+    "raw calldata",
+    "caller and environment",
+    "finite owned storage keys"
+  ],
+  "positiveInhabitant": {
+    "artifactRefRequired": true,
+    "required": true,
+    "sameEntryWithNegative": true
+  },
+  "primaryConsumers": [
+    "ACT-01",
+    "ACT-02",
+    "ACT-03",
+    "ACT-04",
+    "ACT-05",
+    "ACT-06",
+    "ACT-07",
+    "ACT-08",
+    "ACT-09",
+    "STATE-04",
+    "STATE-05",
+    "BAL-03",
+    "BAL-06",
+    "BAL-07",
+    "BAL-08",
+    "BAL-09",
+    "REV-01",
+    "REV-02",
+    "REV-03"
+  ],
+  "rawPrestateProjection": {
+    "origin": "PRESTATE_PINNED",
+    "runtimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d"
+  },
+  "sameEntryNegative": {
+    "permittedDeltaRequired": true,
+    "required": true,
+    "terminalSemanticDifferenceRequired": true
+  },
+  "schemaVersion": 1,
+  "sharedFrame": {
+    "disjointnessRequired": true,
+    "kind": "SPARSE_DISJOINT_MAP",
+    "preservationRequired": true
+  },
+  "status": "FROZEN_UNPROVED",
+  "successGuarantees": [
+    "exact financial effect",
+    "complete unrelated frame",
+    "effect provenance"
+  ],
+  "tcbProfiles": [
+    "CERTORA-FINANCIAL-CORE-v1",
+    "KEVM-LEGACY-HASKELL-STRICT-v1"
+  ]
+}

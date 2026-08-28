@@ -1,0 +1,24 @@
+name: Specification or evidence question
+description: Challenge semantics, conformance, or a claim/evidence mapping
+title: "[Spec] "
+labels:
+  - specification
+body:
+  - type: textarea
+    id: claim
+    attributes:
+      label: Claim or requirement
+      description: Cite the exact draft section, TRUST-REF row, or evidence pointer.
+    validations:
+      required: true
+  - type: textarea
+    id: concern
+    attributes:
+      label: Concern
+      description: Explain the counterexample, ambiguity, or missing evidence.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed resolution

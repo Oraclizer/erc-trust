@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_PUBLIC_RELEASE_SUPERSESSION_MANIFEST_V1",
+  "status": "PASS_RUNTIME_SUPERSESSION_AND_ARCHIVE_CLASSIFICATION",
+  "date": "2026-08-28",
+  "archive": {
+    "repository": "Oraclizer/erc-trust-archive",
+    "commit": "366b625dac90d4584432d7d6939629434734ecb8",
+    "tree": "25a1710c865143eb70f0da3d185ebdc3149214b0",
+    "historyRewritten": false
+  },
+  "supersessions": [
+    {
+      "role": "runtime-binding-manifest",
+      "historicalPath": "evidence/end-to-end-refinement/runtime-binding/manifest.json",
+      "historicalSha256": "97e4a349ff6667f01fb67515998c283383731d69a2fdaa00c06e260c11fcc5bb",
+      "publicPath": "evidence/end-to-end-refinement/runtime-binding/manifest-public-v1.json",
+      "publicSha256": "596bbd73bf24ebf397a6afbd7453219db931618283814d7c46c062c9e9bbfefb",
+      "transformation": "Removed private branch, dirty-worktree, and development-head coordinates; compiler, bundle files, source identities, and deterministic root remain unchanged.",
+      "expectedHashesOverwritten": false
+    },
+    {
+      "role": "resolved-runtime-freeze",
+      "historicalPath": "evidence/end-to-end-refinement/m4-runtime-freeze-v1.json",
+      "historicalSha256": "ba18d99f630bad67faee824ec83f1071f478a393639faa087be739d880164d67",
+      "publicPath": "evidence/end-to-end-refinement/runtime-freeze-public-v1.json",
+      "publicSha256": "05e6c5d899b75cde03f06825b894a0d90b57843a40b82cd531264ab552b38c23",
+      "transformation": "Preserved both runtime and source identities while removing private process, branch, and temporary execution coordinates.",
+      "expectedHashesOverwritten": false
+    },
+    {
+      "role": "runtime-binding-qualification",
+      "historicalPath": "evidence/end-to-end-refinement/runtime-binding-current-profile-qualification-v1.json",
+      "historicalSha256": "fb36433285c6e1135bfcac7e0765aa7921d5e6d738911601f36c3c5140d0d191",
+      "publicPath": "evidence/end-to-end-refinement/runtime-binding-current-profile-qualification-v2.json",
+      "publicSha256": "e2ddf95776a538b8611664025e8d7b13c98349b3106e8c83228ce778537af8f0",
+      "transformation": "Reissued from the same verifier over the public manifest and runtime freeze; seven semantic payloads and all historical artifact expectations are unchanged.",
+      "expectedHashesOverwritten": false
+    },
+    {
+      "role": "preserved-pilot-proof-report",
+      "historicalPath": "pilot/evidence/proof-report.md",
+      "historicalSha256": "2329611ea61a8788c7de3cc868d66d141b09f40928ec21e7f20319fe08b7b6a8",
+      "publicPath": "pilot/evidence/proof-report-v2.md",
+      "publicSha256": "bc648debb8f108c9a52fed4b6087c9d0d64eb302e6174b89d3358825e73c3517",
+      "transformation": "Normalized title punctuation; proof claims, evidence values, and nonclaims remain unchanged.",
+      "expectedHashesOverwritten": false
+    },
+    {
+      "role": "preserved-pilot-hash-manifest",
+      "historicalPath": "pilot/evidence/hashes.json",
+      "historicalSha256": "5eef2bd7df4a7b242cf2771964de9e64f06d0a8b08e77be9ae33b4089e35145a",
+      "publicPath": "pilot/evidence/hashes-v2.json",
+      "publicSha256": "0582dac9dbd6773c8566a51a52410b5aad7105b387fd482a6c372264ae8a6651",
+      "transformation": "Rebound the versioned public proof report while preserving all source, configuration, proof-result, and bytecode expectations.",
+      "expectedHashesOverwritten": false
+    },
+    {
+      "role": "formal-foundation-dependency-lock",
+      "historicalPath": "formal-dependencies.lock.json",
+      "historicalSha256": "f0bf6cfa4b05bef9e40a1be64b6309ec7722059bdbdacee5c6924df3bb35cab6",
+      "publicPath": "formal-dependencies-public-v1.lock.json",
+      "publicSha256": "eb26e09a60e74a90ca5e86d9b040fd9b20bca31589b1c9e9ab8ee4d54d6455f5",
+      "transformation": "Superseded the publicly unreachable historical foundation commit with a reachable commit after fourteen-file identity mapping, theorem-source equivalence checks, and a fail-closed compatibility-session audit; the historical lock remains byte-exact.",
+      "expectedHashesOverwritten": false
+    }
+  ],
+  "archiveOnlyPrivateBranchRecords": [
+    "evidence/end-to-end-refinement/c0-enum-lt-6-symbolic-reject-probe-contract-v1.json",
+    "evidence/end-to-end-refinement/c0-enum-symbolic-word-contract-v1.json",
+    "evidence/end-to-end-refinement/c0-hold-checkpoint-path-allowlist-v1.json",
+    "evidence/end-to-end-refinement/c0-hold-checkpoint-receipt-v1.json",
+    "evidence/end-to-end-refinement/c0-uint160-symbolic-word-contract-v1.json",
+    "evidence/end-to-end-refinement/c0-uint48-symbolic-word-blocker-v1.json",
+    "evidence/end-to-end-refinement/c0-uint48-symbolic-word-contract-v1.json",
+    "evidence/end-to-end-refinement/c0-uint48-symbolic-word-contract-v3.json",
+    "evidence/end-to-end-refinement/c0-uint48-symbolic-word-contract-v4.json",
+    "evidence/end-to-end-refinement/c0-uint48-symbolic-word-two-failure-freeze-v1.json",
+    "evidence/end-to-end-refinement/isabelle/closure-20260802T102335Z/closure-report.json",
+    "evidence/end-to-end-refinement/m4-execution-cost-ledger.json",
+    "evidence/end-to-end-refinement/proof-run-ledger.json",
+    "evidence/end-to-end-refinement/row-bundles/abi-04/high-bits-feasibility-current-runtime-v1.json",
+    "evidence/end-to-end-refinement/row-bundles/act-01/control-parse-only-current-runtime.json",
+    "evidence/end-to-end-refinement/row-bundles/act-01/full-transaction-feasibility-v1.json",
+    "evidence/end-to-end-refinement/row-bundles/act-01/full-transaction-state-capture-v1.json",
+    "evidence/end-to-end-refinement/row-bundles/act-01/parse-only-current-runtime.json",
+    "evidence/end-to-end-refinement/row-bundles/act-01/physical-task-relay-checkpoint-v1.json",
+    "evidence/end-to-end-refinement/row-bundles/rev-02/parse-only-current-runtime.json",
+    "evidence/end-to-end-refinement/row-bundles/state-05/parse-only-current-runtime.json",
+    "formal/kevm/row-bundles/act-01/current-control-binding.json"
+  ],
+  "nonclaims": [
+    "Supersession removes private coordinates; it does not create new proof credit.",
+    "Archive-only records remain recoverable from the immutable private archive history.",
+    "No historical receipt, expected runtime hash, or expected artifact hash is overwritten."
+  ]
+}

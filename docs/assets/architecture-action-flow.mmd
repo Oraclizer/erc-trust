@@ -1,0 +1,33 @@
+%% Source definition for docs/assets/architecture-action-flow.svg
+%%
+%% The rendered diagram is committed as a static SVG rather than embedded as a
+%% GitHub Mermaid block. GitHub renders a Mermaid block inside an iframe whose
+%% src carries a URL fragment, and the browser scrolls that iframe into view on
+%% load, which moves the page away from the top. Keep this file and the SVG in
+%% step when the diagram changes.
+
+flowchart TB
+    subgraph C["1 · Command boundary"]
+        direction LR
+        O["Operator or delegated authority"] --> Q["Typed action or reversal"]
+    end
+
+    subgraph G["2 · Validation and bound inputs"]
+        direction LR
+        V["Request + authorization checks"] --> B["Versioned, code-hash-bound<br/>dependency reads"]
+        B -->|"REJECTED / OPERATIONAL_FAILURE"| X["Revert<br/>authorization and state unchanged"]
+    end
+
+    subgraph T["3 · State transition"]
+        direction LR
+        K["TRUST transition kernel"] --> P{"Execution profile"}
+        P --> N["Native Full<br/>exact-use ERC-7943 + token state"]
+        P --> A["ERC-3643 Verified Full<br/>sealed topology + adapter state"]
+    end
+
+    R["4 · Canonical receipt emitted last"]
+
+    Q --> V
+    B -->|"APPLICABLE"| K
+    N --> R
+    A --> R

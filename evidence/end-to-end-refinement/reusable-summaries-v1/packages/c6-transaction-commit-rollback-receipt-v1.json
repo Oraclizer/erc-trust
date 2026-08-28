@@ -1,0 +1,105 @@
+{
+  "assumptions": [
+    "package-local success or failure postcondition",
+    "exact EVM transaction shell"
+  ],
+  "authority": {
+    "legacyCarryover": false,
+    "nativeRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "runtimeFreezeRef": {
+      "path": "evidence/end-to-end-refinement/m4-runtime-freeze-v1.json",
+      "sha256": "ba18d99f630bad67faee824ec83f1071f478a393639faa087be739d880164d67"
+    },
+    "scopeRef": {
+      "path": "evidence/end-to-end-refinement/m4-core-refinement-scope-v1.json",
+      "sha256": "a94fdd38612e6d77fec2057c67bfa88d71d826234fb6116ab8b23650c88f6f56"
+    },
+    "sourceHead": "add3dfb9ca75923d6462d16ba8eb41cad0b1216f",
+    "tcbIndexRef": {
+      "deterministicRootSha256": "baf66d7f1ba3e09b9d03ee55dee4bfd8ff5ba3ada3f3d38c139fdfa9f1ab1243",
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v1/index-v1.json",
+      "sha256": "11d13e917fd2930c93b77c3900d8c2addbd71e6ff3ce67354ed6175da3e28113"
+    }
+  },
+  "canonicalClaimCount": 2,
+  "claims": [
+    {
+      "expectedOrigin": "PURE_FORMULA",
+      "id": "C6-01",
+      "statement": "successful_transaction_commits_storage_return_receipt_and_final_event"
+    },
+    {
+      "expectedOrigin": "PRESTATE_PINNED",
+      "id": "C6-02",
+      "statement": "failed_transaction_restores_storage_nonce_ticket_receipt_and_logs"
+    }
+  ],
+  "dependsOn": [
+    "C0",
+    "C1",
+    "C2",
+    "C3",
+    "C4"
+  ],
+  "failureGuarantees": [
+    "full storage/nonce/ticket/receipt/log restoration"
+  ],
+  "id": "C6",
+  "isabelleAnchor": "TRUST_Reusable_Summaries",
+  "kSeam": "TRUST-C6-TRANSACTION-SHELL-SPEC",
+  "mutationFamily": [
+    "receipt corruption",
+    "extra or reordered event",
+    "failed-log retention",
+    "partial rollback"
+  ],
+  "name": "TransactionCommitRollbackReceipt",
+  "nonclaims": [
+    "gas equality",
+    "deployment identity",
+    "compiler correctness"
+  ],
+  "ownedInputs": [
+    "raw calldata",
+    "caller and environment",
+    "finite owned storage keys"
+  ],
+  "positiveInhabitant": {
+    "artifactRefRequired": true,
+    "required": true,
+    "sameEntryWithNegative": true
+  },
+  "primaryConsumers": [
+    "SEP-02",
+    "SEP-04",
+    "FAIL-01",
+    "FAIL-08",
+    "ART-06",
+    "ART-07"
+  ],
+  "rawPrestateProjection": {
+    "origin": "PRESTATE_PINNED",
+    "runtimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d"
+  },
+  "sameEntryNegative": {
+    "permittedDeltaRequired": true,
+    "required": true,
+    "terminalSemanticDifferenceRequired": true
+  },
+  "schemaVersion": 1,
+  "sharedFrame": {
+    "disjointnessRequired": true,
+    "kind": "SPARSE_DISJOINT_MAP",
+    "preservationRequired": true
+  },
+  "status": "FROZEN_UNPROVED",
+  "successGuarantees": [
+    "receipt storage = return hash = final event hash",
+    "effect event precedes final receipt event"
+  ],
+  "tcbProfiles": [
+    "ISABELLE-ABSTRACT-BRIDGE-v1",
+    "CERTORA-FINANCIAL-CORE-v1",
+    "KEVM-LEGACY-HASKELL-STRICT-v1"
+  ]
+}

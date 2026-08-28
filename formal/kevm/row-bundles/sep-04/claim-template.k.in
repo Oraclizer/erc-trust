@@ -1,0 +1,89 @@
+requires "../../trust-runtime-verification.k"
+
+// MATERIALIZATION TEMPLATE. This file is intentionally not compilable until
+// every named placeholder below is replaced from an independently
+// reverse-checked SEP-04 fixture.json. The resulting claim remains an OPEN
+// proof input until both KEVM graphs and Isabelle closure exist.
+// The materialized claim must remain a full transaction and must constrain the
+// receipt preimage in committed storage, return bytes, and the final log.
+module TRUST-SEP-04-RECEIPT-PREIMAGE-STORAGE-RETURN-FINAL-EVENT-SPEC
+    imports TRUST-RUNTIME-VERIFICATION
+
+    claim
+      <kevm>
+        <k> loadTx(@@SENDER_INT@@) => #finalizeBlock </k>
+        <exit-code> 1 </exit-code>
+        <mode> NORMAL </mode>
+        <schedule> CANCUN </schedule>
+        <useGas> false </useGas>
+
+        <ethereum>
+          <evm>
+            <output> .Bytes => #parseByteStack("@@RETURN_PAYLOAD_HEX@@") </output>
+            <statusCode> .StatusCode => EVMC_SUCCESS </statusCode>
+            <callStack> .List </callStack>
+            <interimStates> .List </interimStates>
+            <touchedAccounts> .Set </touchedAccounts>
+            <callState> <program> .Bytes </program> ... </callState>
+            <substate>
+              <selfDestruct> .Set </selfDestruct>
+              <log> .List => @@COMPLETE_LOG_LIST_K@@ </log>
+              <refund> 0 </refund>
+              <accessedAccounts> .Set => @@ACCESSED_ACCOUNTS_K@@ </accessedAccounts>
+              <accessedStorage> .Map => @@ACCESSED_STORAGE_K@@ </accessedStorage>
+              <createdAccounts> .Set </createdAccounts>
+            </substate>
+            <gasPrice> 0 </gasPrice>
+            <origin> .Account => @@SENDER_INT@@ </origin>
+            <block>
+              <coinbase> 0 </coinbase>
+              <gasLimit> @@BLOCK_GAS_LIMIT_INT@@ </gasLimit>
+              <gasUsed> 0:Gas </gasUsed>
+              <baseFee> 0 </baseFee>
+              <timestamp> @@TIMESTAMP_INT@@ </timestamp>
+              <number> @@BLOCK_NUMBER_INT@@ </number>
+              ...
+            </block>
+            ...
+          </evm>
+          <network>
+            <chainID> 31337 </chainID>
+            <accounts> @@PRE_ACCOUNTS_K@@ => @@POST_ACCOUNTS_K@@ </accounts>
+            <txOrder> .List </txOrder>
+            <txPending> ListItem(0) => .List </txPending>
+            <messages>
+              <message>
+                <msgID> 0 </msgID>
+                <txNonce> @@SENDER_NONCE_BEFORE_INT@@ </txNonce>
+                <txGasPrice> 0 </txGasPrice>
+                <txGasLimit> @@TX_GAS_LIMIT_INT@@ </txGasLimit>
+                <to> @@TOKEN_ADDRESS_INT@@ </to>
+                <value> 0 </value>
+                <sigV> 0 </sigV>
+                <sigR> .Bytes </sigR>
+                <sigS> .Bytes </sigS>
+                <data> #parseByteStack("@@CALLDATA_HEX@@") </data>
+                <txAccess> [ .JSONs ] </txAccess>
+                <txChainID> 31337 </txChainID>
+                <txPriorityFee> 0 </txPriorityFee>
+                <txMaxFee> 0 </txMaxFee>
+                <txType> Legacy </txType>
+                <txMaxBlobFee> 0 </txMaxBlobFee>
+                <txVersionedHashes> .List </txVersionedHashes>
+                <txAuthList> .List </txAuthList>
+              </message>
+            </messages>
+            <withdrawalsPending> .List </withdrawalsPending>
+            <withdrawalsOrder> .List </withdrawalsOrder>
+            <withdrawals> .Bag </withdrawals>
+            <requests>
+              <depositRequests> .Bytes </depositRequests>
+              <withdrawalRequests> .Bytes </withdrawalRequests>
+              <consolidationRequests> .Bytes </consolidationRequests>
+            </requests>
+            ...
+          </network>
+        </ethereum>
+      </kevm>
+
+endmodule

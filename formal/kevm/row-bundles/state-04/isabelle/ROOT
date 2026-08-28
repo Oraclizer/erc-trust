@@ -1,0 +1,6 @@
+session STATE_04_Row = ERC_TRUST +
+  options [timeout = 1200]
+  theories
+    STATE_04_Bridge_Generated
+    STATE_04_Closure
+    STATE_04_Proof_Audit

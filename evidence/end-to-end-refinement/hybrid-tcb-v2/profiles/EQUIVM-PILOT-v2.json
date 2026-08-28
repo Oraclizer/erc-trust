@@ -1,0 +1,87 @@
+{
+  "acceptance": {
+    "centralCredit": 0,
+    "nonblocking": true
+  },
+  "allowedClaims": [
+    "storage, return, success, and revert feasibility after activation"
+  ],
+  "approximations": [
+    "logs excluded",
+    "substate excluded",
+    "revert payload excluded",
+    "gas excluded"
+  ],
+  "authorityClass": "NONBLOCKING_EQUIVALENCE_PILOT",
+  "availability": "NOT_INSTALLED_NOT_USED",
+  "centralCredit": "ZERO_NONBLOCKING",
+  "compilerBinding": {
+    "compilerCorrectnessClaimed": false,
+    "deterministicRootSha256": "44c62545b9545741bce98b313f412914bc976430c5596de6ad735f68d81cd4ab",
+    "nativeRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "path": "evidence/end-to-end-refinement/runtime-binding/manifest.json",
+    "sha256": "97e4a349ff6667f01fb67515998c283383731d69a2fdaa00c06e260c11fcc5bb",
+    "solcBinarySha256": "c8d35afdddc3cd2743ee88b8f25e0fecd16e2bdd5f2120f37e52cd9cc45ae0e6",
+    "solcVersion": "0.8.36+commit.8a079791"
+  },
+  "forbiddenClaims": [
+    "log or receipt equivalence",
+    "central row credit",
+    "replacement for KEVM"
+  ],
+  "legacyEvidencePreservation": {
+    "bridgeFiles": [
+      {
+        "path": "evidence/end-to-end-refinement/runtime-bridge/schema.json",
+        "sha256": "f087342d0eaa57a02468ff78e553ad42bb25fe027e833f311a5d0caac72383b7"
+      },
+      {
+        "path": "evidence/end-to-end-refinement/runtime-bridge/generated-manifest.json",
+        "sha256": "50085fbb6ed540c036754820177785813c96c72191a84f297f8c9952d9802827"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy",
+        "sha256": "48ef15ed0789be51c0d56f22740d93ba5c7a474116209be66855e8c95b870728"
+      },
+      {
+        "path": "formal/kevm/generated/trust-runtime-bridge.k",
+        "sha256": "bf8d587f7644d002d05bc7ab16806a39a3354d216cdcad53f504a9bb8b99d836"
+      }
+    ],
+    "dependencyLock": {
+      "immutable": true,
+      "path": "formal/kevm/dependencies.lock.json",
+      "sha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196"
+    },
+    "legacyCarryoverToCurrentProfile": false,
+    "legacyDischargedRows": [
+      "ABI-03",
+      "FAIL-05",
+      "ART-02",
+      "ART-03",
+      "ART-04",
+      "ART-05"
+    ]
+  },
+  "profileId": "EQUIVM-PILOT-v2",
+  "profileSet": "ERC_TRUST_M4_NATIVE_FINANCIAL_CORE_V2",
+  "replay": {
+    "activationGate": "Separate pilot approval required",
+    "command": null
+  },
+  "runtimeFreezeRef": {
+    "path": "evidence/end-to-end-refinement/m4-runtime-freeze-v1.json",
+    "sha256": "ba18d99f630bad67faee824ec83f1071f478a393639faa087be739d880164d67"
+  },
+  "schemaVersion": 2,
+  "scopeRef": {
+    "path": "evidence/end-to-end-refinement/m4-core-refinement-scope-v1.json",
+    "sha256": "a94fdd38612e6d77fec2057c67bfa88d71d826234fb6116ab8b23650c88f6f56"
+  },
+  "sourceHead": "add3dfb9ca75923d6462d16ba8eb41cad0b1216f",
+  "tool": {
+    "binary": null,
+    "name": "EquiVM",
+    "version": null
+  }
+}

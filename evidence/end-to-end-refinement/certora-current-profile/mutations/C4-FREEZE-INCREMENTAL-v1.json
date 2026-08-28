@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "mutationId": "C4-FREEZE-INCREMENTAL-v1",
+  "kind": "EXECUTABLE_SEMANTIC_MUTANT",
+  "canonicalProductionPath": "implementation/src/TrustToken.sol",
+  "canonicalProductionSha256": "dbe06bb25a2b62913bd6428e1de32ba007a214e24ac45f4fd2c0fb55ea22c96a",
+  "mutantProductionPath": "implementation/src/TrustTokenC4FreezeIncrementMutant.sol",
+  "mutantProductionSha256": "f467cd729860f50c46daec6ef797b5319967d5b1b5a773e438c1b09fda8a1d99",
+  "canonicalHarnessPath": "implementation/test/mocks/TrustTokenC4FreezeHarness.sol",
+  "canonicalHarnessSha256": "149d7e66d7a1982a51828f6564a98cd2fd1ae472f720a454d778af534a68b38c",
+  "mutantHarnessPath": "implementation/test/mocks/TrustTokenC4FreezeHarnessMutant.sol",
+  "mutantHarnessSha256": "cdb2a5b3974999c6e14465737e30a2b33fb7820a0d09c9b72d6afd8135b05c2a",
+  "permittedDelta": "Rename the verification target contract and replace only absolute FREEZE assignment with incremental addition",
+  "unchangedSpec": "implementation/certora/TrustC4Freeze.spec",
+  "expectedViolations": [
+    "freeze_sets_absolute_target_and_effect_provenance"
+  ],
+  "productionSourceChanged": false
+}

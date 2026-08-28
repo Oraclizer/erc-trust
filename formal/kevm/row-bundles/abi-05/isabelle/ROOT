@@ -1,0 +1,4 @@
+session ERC_TRUST_ABI_05_SKELETON = ERC_TRUST +
+  options [document = false]
+  theories
+    ABI_05_Decoded_Command_Fields_Match_Typed_Command

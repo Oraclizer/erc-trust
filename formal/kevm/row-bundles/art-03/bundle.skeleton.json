@@ -1,0 +1,92 @@
+{
+  "blockers": [
+    "fresh closed positive KEVM graph",
+    "fresh terminal semantic negative graph showing uint8(19) against the unchanged uint8(18) requirement",
+    "serial Isabelle clean build and oracle-free export",
+    "repository-owned independent replay"
+  ],
+  "bridge": {
+    "path": "formal/kevm/row-bundles/art-03/bridge/row-bridge.json",
+    "reverseCheck": "formal/kevm/row-bundles/art-03/reverse-check.py",
+    "sha256": "42aef7a452c61ae6689a2d8c1da6fd514c869044f7af846ff8110bbf707a7b72"
+  },
+  "eligibleForDischarge": false,
+  "isabelle": {
+    "buildStatus": "NOT_RUN_IN_WORKER",
+    "closureReport": null,
+    "session": "ERC_TRUST_ART_03",
+    "theoremName": "constructor_resolved_local_runtime_is_hash_bound",
+    "theoryPath": "formal/kevm/row-bundles/art-03/isabelle/ART_03_Constructor_Resolved_Runtime_Binding.thy"
+  },
+  "negative": {
+    "compiledJsonSha256": null,
+    "definitionKoreSha256": null,
+    "graph": null,
+    "mutationId": "ART-03-MUT-DECIMALS-IMMUTABLE-001",
+    "mutationKind": "EXECUTABLE_SEMANTIC_MUTANT",
+    "requiredExitCode": 1,
+    "requiredWitness": "0x0000000000000000000000000000000000000000000000000000000000000013 terminal output contradicts the unchanged 0x0000000000000000000000000000000000000000000000000000000000000012 claim requirement"
+  },
+  "obligationId": "ART-03",
+  "positive": {
+    "compiledJsonSha256": null,
+    "definitionKoreSha256": null,
+    "graph": null,
+    "requiredExitCode": 0,
+    "requiredWitnesses": [
+      "EVMC_SUCCESS",
+      "0x0000000000000000000000000000000000000000000000000000000000000012",
+      "unchanged token storage and empty log/substate"
+    ]
+  },
+  "proofInputs": {
+    "claim": {
+      "path": "formal/kevm/row-bundles/art-03/claim.k",
+      "sha256": "a48c5c43eefbe63e454e3807bc04c5e6d827c3dbcf91ac1ec0f9206b4359c9d3"
+    },
+    "negativeRuntimeBridge": {
+      "mutationId": "ART-03-MUT-DECIMALS-IMMUTABLE-001",
+      "path": "formal/kevm/row-bundles/art-03/generated/mutant-runtime-bridge.k",
+      "sha256": "0862dac8bdbbcc4c0c2d54aef673be47f9428e929ffc0ce6937c8b2bf296cc49"
+    },
+    "negativeVerification": {
+      "path": "formal/kevm/row-bundles/art-03/generated/mutant-runtime-verification.k",
+      "sha256": "e380844cea44b450c03fc3d0f345e22980801b96fe0270fa921c667a8e062bf9"
+    },
+    "positiveVerification": {
+      "path": "formal/kevm/trust-runtime-verification.k",
+      "sha256": "df6b227bfd1ab5bfc7cfdb364a7da4dea4b5660789e4513f10e78d00dcbe4193"
+    }
+  },
+  "proofSpec": {
+    "claimId": null,
+    "module": "TRUST-ART-03-CONSTRUCTOR-RESOLVED-RUNTIME-BINDING-SPEC",
+    "path": "formal/kevm/row-bundles/art-03/claim.k",
+    "sha256": "a48c5c43eefbe63e454e3807bc04c5e6d827c3dbcf91ac1ec0f9206b4359c9d3"
+  },
+  "replay": {
+    "proofRoot": null,
+    "report": null,
+    "status": "NOT_RUN",
+    "traceRoot": null
+  },
+  "requiredProperty": "constructor_resolved_local_runtime_is_hash_bound",
+  "residualNonclaims": [
+    "Static reconstruction and fixture capture do not prove KEVM execution or Isabelle closure.",
+    "The local fixture does not identify a live deployment, address, or topology.",
+    "This row does not prove solc correctness, ART-02, ART-04, ART-06, or ART-07."
+  ],
+  "schemaVersion": 1,
+  "status": "OPEN",
+  "tcbBinding": {
+    "actualCurrentLock": {
+      "path": "formal/kevm/dependencies.lock.json",
+      "sha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196"
+    },
+    "blocker": false,
+    "canonicalPlaceholderSha256": "e4fcabd40c8b18e3900050a590b6b80c687d4d115f61bc12439af6099e83434e",
+    "classification": "OPEN_PLACEHOLDER_PENDING_COORDINATOR_BINDING",
+    "productDrift": false,
+    "runtimeBindingManifestDependencyLockSha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "derivationBasis": [
+    {
+      "path": "evidence/end-to-end-refinement/theorem-obligations.md",
+      "role": "canonical obligation inventory",
+      "sha256": "3b6b0910539c58e53db7c6dbf11c8bf0e4a4d9d7aaec6d8b5d233573dc514dba"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/proof-run-ledger.json",
+      "role": "artifact/provenance run targeting",
+      "sha256": "11c3988953fdb7786ab8155f5bb059a4f876e0bc513a2a591a8edfbd6e1483ac"
+    }
+  ],
+  "edges": [
+    [
+      "ART-01",
+      "ART-04"
+    ],
+    [
+      "ART-02",
+      "ART-04"
+    ],
+    [
+      "ART-04",
+      "ART-03"
+    ],
+    [
+      "ART-04",
+      "ART-06"
+    ],
+    [
+      "ART-03",
+      "ART-07"
+    ],
+    [
+      "ART-06",
+      "ART-07"
+    ]
+  ],
+  "nodes": [
+    {
+      "id": "ART-01",
+      "reason": "source identities and compiler settings underpin ABI, AST, layout and reference artifacts",
+      "role": "direct-prerequisite"
+    },
+    {
+      "id": "ART-02",
+      "reason": "the same pinned compiler output supplies exact runtime and artifact surfaces",
+      "role": "direct-prerequisite"
+    },
+    {
+      "id": "ART-04",
+      "reason": "hash binding of storage layout, ABI, source AST and immutable references",
+      "role": "selected"
+    },
+    {
+      "id": "ART-03",
+      "reason": "constructor resolution consumes immutable declarations and reference ranges",
+      "role": "direct-consumer"
+    },
+    {
+      "id": "ART-06",
+      "reason": "runtime execution consumes ABI and storage-layout bindings",
+      "role": "direct-consumer"
+    },
+    {
+      "id": "ART-07",
+      "reason": "end-to-end composition consumes the artifact surface through ART-03 and ART-06",
+      "role": "transitive-consumer"
+    }
+  ],
+  "schemaVersion": 1,
+  "selectedObligation": {
+    "id": "ART-04",
+    "property": "storage_layout_abi_ast_and_immutable_references_are_hash_bound",
+    "status": "OPEN"
+  }
+}

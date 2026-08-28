@@ -1,0 +1,142 @@
+{
+  "authoritativeFreshReplayRequired": false,
+  "bridge": {
+    "reverseCheck": {
+      "path": "evidence/end-to-end-refinement/row-bundles/abi-03/artifacts/bridge-reverse-check.json",
+      "sha256": "9543317310af2a189aee3692bf9aecab24f1a9158c0dd8503ddb4c83f25458e9"
+    },
+    "source": {
+      "path": "formal/kevm/row-bundles/abi-03/bridge/row-bridge.json",
+      "sha256": "1bc3424c91396bc7b529e40a52fdd969347722dbd0a9d904f7c4fe6195f10796"
+    }
+  },
+  "bundle": {
+    "path": "formal/kevm/row-bundles/abi-03/bundle.json",
+    "sha256": "ccc26c466775b0f8784c0f6ac7502b164ba03c0f660ca9a56cb74400d63c9500"
+  },
+  "bundleSchemaValidation": {
+    "path": "evidence/end-to-end-refinement/row-bundles/abi-03/artifacts/bundle-schema-validation.json",
+    "sha256": "eb1156c12b2a06166d85a9c41e1d8915c0fb69c875b351b8e03f81e8dd4d5189"
+  },
+  "claimId": "6adb6bf3e7629f12e822a2b4772ec91837db3eab2656d3fcb1acfa297e8ac161",
+  "createdAtUtc": "2026-08-04T09:37:02Z",
+  "curatedEvidenceDirectory": "evidence/end-to-end-refinement/row-bundles/abi-03/artifacts",
+  "definitions": {
+    "negative": {
+      "compiledJsonSha256": "fcb79a34754684aa11b54ac0d591ef490a016db3edc8429681ff465fa435ab9b",
+      "definitionKoreSha256": "60dc91f3af56ff096dabcb4f514ab95939ebc6d7b9551b227be8cbc60bfc3cd6",
+      "mutationId": "ABI-03-ALT-RUNTIME-TRAILING-SUCCESS-001"
+    },
+    "positive": {
+      "compiledJsonSha256": "5ba6257f64024f7eff4ec99c569db9f9477fd5d2a625f44ed04e091fdf795a50",
+      "definitionKoreSha256": "bac21e3e90990c4c060bf77ecfe161a70d18900c631dcea5a37343765e6b3e33"
+    }
+  },
+  "isabelle": {
+    "closureReport": {
+      "path": "evidence/end-to-end-refinement/row-bundles/abi-03/artifacts/isabelle-closure-report.json",
+      "sha256": "41c6abcb75e34e6bc147de4fe07b224be7a7f807cae200eb9c68648a622b6297"
+    },
+    "oracleDependencyCount": 0,
+    "rowManifest": {
+      "path": "formal/kevm/row-bundles/abi-03/bridge/row-manifest.json",
+      "sha256": "37938d6091df4b2d77e7847c8837aa1a2b2379fa94b8a0f0c45a5a01899820eb"
+    },
+    "session": "ERC_TRUST_ABI_03",
+    "theoremName": "abi_03_trailing_calldata_reverts_and_stutters",
+    "theory": {
+      "path": "formal/kevm/row-bundles/abi-03/isabelle/ABI_03_Trailing_Calldata_Reverts_And_Stutters.thy",
+      "sha256": "60e3f1af88ca0813dadc9f6c4544a000ca6eb4b3f5424b2f7b78ddbab81aeebd"
+    }
+  },
+  "negative": {
+    "analysis": {
+      "graph": {
+        "admitted": false,
+        "covers": 0,
+        "edges": 32,
+        "nodes": 401,
+        "pending": 262,
+        "stuck": 0,
+        "terminal": 1,
+        "vacuous": 0
+      },
+      "side": "negative",
+      "status": "PASS"
+    },
+    "backendRuntimeError": false,
+    "elapsedWallSeconds": 874,
+    "kcfg": {
+      "path": "evidence/end-to-end-refinement/row-bundles/abi-03/artifacts/negative-kcfg.json",
+      "sha256": "ff0a87ac6b2998ef3837f8be1e095af674878380cd2c93d90768c3d5cd7474e7"
+    },
+    "log": {
+      "path": "evidence/end-to-end-refinement/row-bundles/abi-03/artifacts/negative.log",
+      "sha256": "aecaf2ebfcd30a0019db6a64f4aa13438b2dc80a1f180d1f47a7088e68b3d9b4"
+    },
+    "proof": {
+      "path": "evidence/end-to-end-refinement/row-bundles/abi-03/artifacts/negative-proof.json",
+      "sha256": "76e9c08b18c01986724d34fa03db94c0be9f880aa09a295ff3a47abb535e3b3e"
+    },
+    "terminalWitness": {
+      "claimRequirementTokens": [
+        "EVMC_REVERT </statusCode>"
+      ],
+      "nodeId": 139,
+      "path": "evidence/end-to-end-refinement/row-bundles/abi-03/artifacts/negative-terminal-node-139.json",
+      "sha256": "874c3e8d581983dd52e50167aeed4f0fb68662db7f94da1881b2b9b6bac9795b",
+      "tokens": [
+        "EVMC_SUCCESS_NETWORK_EndStatusCode"
+      ]
+    }
+  },
+  "obligationId": "ABI-03",
+  "positive": {
+    "analysis": {
+      "graph": {
+        "admitted": false,
+        "covers": 1,
+        "edges": 2,
+        "nodes": 4,
+        "pending": 0,
+        "stuck": 0,
+        "terminal": 0,
+        "vacuous": 0
+      },
+      "side": "positive",
+      "status": "PASS"
+    },
+    "elapsedWallSeconds": 278,
+    "kcfg": {
+      "path": "evidence/end-to-end-refinement/row-bundles/abi-03/artifacts/positive-kcfg.json",
+      "sha256": "d5ad4aa821d60f93809711ae2e87c65968ecd7ee4a52789528818e2961164a67"
+    },
+    "log": {
+      "path": "evidence/end-to-end-refinement/row-bundles/abi-03/artifacts/positive.log",
+      "sha256": "fe26504ef0294e251ceb50554d4bb25ad2fc54ba918f0b44d87c56c1de9d6300"
+    },
+    "proof": {
+      "path": "evidence/end-to-end-refinement/row-bundles/abi-03/artifacts/positive-proof.json",
+      "sha256": "1d3adb0fd1b5d0a8ca8eff5bb7179e60322b7b89da0f58f935f295e851b0ea4c"
+    }
+  },
+  "proofSpec": {
+    "claimId": "6adb6bf3e7629f12e822a2b4772ec91837db3eab2656d3fcb1acfa297e8ac161",
+    "module": "TRUST-ABI-03-TRAILING-IDLE-COMBINED-SPEC",
+    "path": "formal/kevm/row-bundles/abi-03/claim.k",
+    "sha256": "971cfbb07202d5e9707115c7661d15f91527d1542d761d8c4f443d5cd98832a3"
+  },
+  "residualNonclaims": [
+    "The positive theorem covers the registered ABI-03 708-byte action calldata instance under the explicit idle-slot and non-static execution assumptions; it does not discharge the separate ABI-04 malformed-calldata matrix.",
+    "The compiler bridge binds the executable alternate runtime to the pinned solc output and immutable fixture; it does not prove solc correctness or live deployment identity.",
+    "The expected-negative run records one terminal EVMC_SUCCESS counterexample; its 262 fail-fast pending branches are not discharged proof branches.",
+    "This row bundle discharges only ABI-03 and makes no claim about the remaining end-to-end refinement obligations."
+  ],
+  "runner": {
+    "executedSha256": "1ab935de0dd7b40bb108955b60c232f6fa3afdeea62e6eb380a2fe26a0a3dcc1",
+    "path": "formal/kevm/row-bundles/run-row-bundle.sh",
+    "sourceSha256": "1ab935de0dd7b40bb108955b60c232f6fa3afdeea62e6eb380a2fe26a0a3dcc1"
+  },
+  "schemaVersion": 2,
+  "status": "PASS"
+}

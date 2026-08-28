@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="920" viewBox="0 0 1280 920" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="va-title va-desc">
+  <title id="va-title">ERC-TRUST verification architecture</title>
+  <desc id="va-desc">Three-stage verification architecture. The abstract ERC-TRUST model reuses formal foundations and is checked in Isabelle. The Solidity reference is checked with Foundry and separate Certora CVL rules, then compiled to EVM runtime bytecode. Kontrol checks selected bytecode properties using a Foundry-style proof harness and KEVM, the formal EVM semantics written with the K Framework. The evidence is bounded and does not claim a complete Isabelle-to-Solidity-to-EVM theorem or a verified deployment.</desc>
+
+  <defs>
+    <linearGradient id="va-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#05131d"/>
+      <stop offset=".62" stop-color="#092330"/>
+      <stop offset="1" stop-color="#0b2c39"/>
+    </linearGradient>
+    <pattern id="va-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0v40" fill="none" stroke="#9ac6cb" stroke-width="1" opacity=".035"/>
+    </pattern>
+    <marker id="va-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 1.4 9 5 0 8.6Z" fill="#6fb6b6"/>
+    </marker>
+    <marker id="va-arrow-boundary" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 1.4 9 5 0 8.6Z" fill="#c9806e"/>
+    </marker>
+  </defs>
+
+  <rect width="1280" height="920" rx="20" fill="url(#va-bg)"/>
+  <rect width="1280" height="920" rx="20" fill="url(#va-grid)"/>
+
+  <g font-family="Inter,Segoe UI,Arial,sans-serif">
+    <text x="48" y="43" fill="#e3eeee" font-size="22" font-weight="700">Verification architecture and evidence boundaries</text>
+    <text x="48" y="66" fill="#8fb3b8" font-size="12">What each tool checks, how the artifacts connect, and what this repository does not claim</text>
+
+    <!-- stage containers -->
+    <g fill="#071923" fill-opacity=".55" stroke="#244958" stroke-width="1.4">
+      <rect x="40" y="88" width="1200" height="170" rx="16"/>
+      <rect x="40" y="286" width="1200" height="390" rx="16"/>
+      <rect x="40" y="704" width="1200" height="164" rx="16"/>
+    </g>
+
+    <!-- stage badges and titles -->
+    <g fill="#0d2b36" stroke="#67d8c6" stroke-width="1.4">
+      <circle cx="72" cy="120" r="14"/>
+      <circle cx="72" cy="318" r="14"/>
+      <circle cx="72" cy="736" r="14"/>
+    </g>
+    <g fill="#7ae6d4" font-size="13" font-weight="700" text-anchor="middle">
+      <text x="72" y="125">1</text>
+      <text x="72" y="323">2</text>
+      <text x="72" y="741">3</text>
+    </g>
+    <g fill="#b8d4d5" font-size="14" font-weight="700" letter-spacing=".4">
+      <text x="96" y="125">Abstract model</text>
+      <text x="96" y="323">Implementation and bytecode checks</text>
+      <text x="96" y="741">Claim boundaries</text>
+    </g>
+
+    <!-- abstract-model edges -->
+    <g fill="none" stroke="#4f8f92" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#va-arrow)">
+      <path d="M322 191 H382"/>
+      <path d="M642 191 H702"/>
+      <path d="M902 191 H962"/>
+    </g>
+
+    <!-- abstract-model nodes -->
+    <g stroke="#2b5262" stroke-width="1.4" fill="#09202b">
+      <rect x="82" y="158" width="240" height="66" rx="9"/>
+      <rect x="382" y="158" width="260" height="66" rx="9"/>
+      <rect x="702" y="158" width="200" height="66" rx="9"/>
+      <rect x="962" y="158" width="220" height="66" rx="9"/>
+    </g>
+    <g font-size="13" fill="#dfeded" text-anchor="middle">
+      <text x="202" y="185">Reusable foundations</text>
+      <text x="202" y="204" fill="#8fb3b8">CDSP · regulatory composition</text>
+      <text x="512" y="185">ERC-TRUST abstract model</text>
+      <text x="512" y="204" fill="#8fb3b8">states · actions · outcomes</text>
+      <text x="802" y="185">Isabelle/HOL</text>
+      <text x="802" y="204" fill="#8fb3b8">machine-checked logic</text>
+      <text x="1072" y="185">Checked model claims</text>
+      <text x="1072" y="204" fill="#8fb3b8">within the abstract domain</text>
+    </g>
+
+    <!-- mapped-obligation edge -->
+    <path d="M512 224 V276 H197 V386" fill="none" stroke="#c9806e" stroke-width="1.6" stroke-dasharray="6 6" stroke-linecap="round" marker-end="url(#va-arrow-boundary)"/>
+    <text x="348" y="270" fill="#e0b1a5" font-size="11" text-anchor="middle">mapped obligations · not a complete refinement theorem</text>
+
+    <!-- implementation edges -->
+    <g fill="none" stroke="#4f8f92" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#va-arrow)">
+      <path d="M314 415 H356 V370 H400"/>
+      <path d="M314 415 H400"/>
+      <path d="M314 415 H356 V544 H400"/>
+      <path d="M580 544 H662"/>
+      <path d="M862 544 H998"/>
+      <path d="M842 370 H920"/>
+      <path d="M1030 400 V458"/>
+      <path d="M862 457 H998"/>
+    </g>
+
+    <!-- implementation nodes -->
+    <g stroke="#2b5262" stroke-width="1.4" fill="#09202b">
+      <rect x="80" y="386" width="234" height="58" rx="9"/>
+      <rect x="400" y="341" width="230" height="58" rx="9"/>
+      <rect x="400" y="428" width="230" height="58" rx="9"/>
+      <rect x="400" y="515" width="180" height="58" rx="9"/>
+      <rect x="662" y="515" width="200" height="58" rx="9"/>
+      <rect x="662" y="341" width="180" height="58" rx="9"/>
+      <rect x="920" y="341" width="220" height="58" rx="9"/>
+      <rect x="662" y="428" width="200" height="58" rx="9"/>
+      <rect x="998" y="458" width="184" height="116" rx="10" fill="#0d2b36" stroke="#4f93a8"/>
+    </g>
+    <g font-size="13" fill="#dfeded" text-anchor="middle">
+      <text x="197" y="410">Solidity reference</text>
+      <text x="197" y="429" fill="#8fb3b8">actual contract implementation</text>
+
+      <text x="515" y="365">Foundry tests</text>
+      <text x="515" y="384" fill="#8fb3b8">examples · fuzz · invariants</text>
+
+      <text x="515" y="452">Certora</text>
+      <text x="515" y="471" fill="#8fb3b8">separate CVL rules</text>
+
+      <text x="490" y="539">Pinned solc</text>
+      <text x="490" y="558" fill="#8fb3b8">deterministic compiler</text>
+
+      <text x="762" y="539">EVM runtime bytecode</text>
+      <text x="762" y="558" fill="#8fb3b8">code executed on-chain</text>
+
+      <text x="752" y="365">K Framework</text>
+      <text x="752" y="384" fill="#8fb3b8">writes machine rules</text>
+
+      <text x="1030" y="365">KEVM</text>
+      <text x="1030" y="384" fill="#8fb3b8">formal EVM semantics</text>
+
+      <text x="762" y="452">Foundry-style proof harness</text>
+      <text x="762" y="471" fill="#8fb3b8">calls + expected properties</text>
+
+      <text x="1090" y="493" fill="#cfe9ee">Kontrol</text>
+      <text x="1090" y="516">selected bytecode proofs</text>
+      <text x="1090" y="538" fill="#8fb3b8">bytecode + harness + KEVM</text>
+    </g>
+
+    <!-- result connectors -->
+    <g fill="none" stroke="#4f8f92" stroke-width="1.5" stroke-linecap="round" marker-end="url(#va-arrow)" opacity=".9">
+      <path d="M1072 224 V688 H270 V776"/>
+      <path d="M515 399 V630 H270 V776"/>
+      <path d="M515 486 V646 H270 V776"/>
+      <path d="M1090 574 V664 H270 V776"/>
+    </g>
+
+    <!-- boundary cards -->
+    <rect x="78" y="776" width="360" height="60" rx="10" fill="#0b2b2d" stroke="#4f938a" stroke-width="1.4"/>
+    <rect x="460" y="776" width="350" height="60" rx="10" fill="#241a1c" stroke="#a76b5c" stroke-width="1.4"/>
+    <rect x="832" y="776" width="370" height="60" rx="10" fill="#241a1c" stroke="#a76b5c" stroke-width="1.4"/>
+    <g font-size="13" text-anchor="middle">
+      <text x="258" y="800" fill="#bce7dc">Current evidence</text>
+      <text x="258" y="819" fill="#dfeded">model proofs + bounded implementation checks</text>
+
+      <text x="635" y="800" fill="#f0cdc4">Not claimed</text>
+      <text x="635" y="819" fill="#e0b1a5">complete Isabelle → Solidity → EVM theorem</text>
+
+      <text x="1017" y="800" fill="#f0cdc4">Not included</text>
+      <text x="1017" y="819" fill="#e0b1a5">deployment address · chain · operations</text>
+    </g>
+
+    <g font-size="11" fill="#799da3">
+      <text x="48" y="892">Solid arrows show artifact or verification inputs. Dashed coral arrows show an obligation boundary, not a discharged theorem.</text>
+    </g>
+  </g>
+</svg>

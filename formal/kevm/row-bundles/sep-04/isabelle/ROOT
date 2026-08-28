@@ -1,0 +1,4 @@
+session ERC_TRUST_SEP_04 = ERC_TRUST +
+  options [timeout = 1200]
+  theories
+    SEP_04_Receipt_Event_Binding

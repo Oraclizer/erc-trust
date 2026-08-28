@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "obligationId": "SEP-04",
+  "status": "REQUIRED_BEFORE_KEVM",
+  "compilerRuntimeIdentity": {
+    "runtimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "schedule": "CANCUN",
+    "kevmDefinitionRevision": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2"
+  },
+  "transaction": {
+    "sender": null,
+    "senderNonceBefore": null,
+    "senderNonceAfter": null,
+    "tokenAddress": null,
+    "dependencyAddress": null,
+    "calldataHex": null,
+    "gasLimit": null,
+    "timestamp": null,
+    "blockNumber": null,
+    "chainId": 31337
+  },
+  "request": {
+    "action": "LIQUIDATE",
+    "nonce": 2,
+    "amount": "9000000000000000000",
+    "actionId": null,
+    "caseId": null,
+    "authorityRef": null,
+    "authorityEpoch": null,
+    "policyEpoch": null
+  },
+  "preState": {
+    "accountsK": null,
+    "tokenStorageK": null,
+    "dependencyStorageK": null
+  },
+  "postState": {
+    "accountsK": null,
+    "tokenStorageK": null,
+    "dependencyStorageK": null,
+    "actionRecordReceiptSlot": null,
+    "receiptRecordReceiptSlot": null
+  },
+  "observations": {
+    "returnPayloadHex": null,
+    "receiptHash": null,
+    "completeLogsK": null,
+    "finalLogEmitter": null,
+    "finalLogTopics": [
+      "0xaadd5db99c0c1f57ce6f82b109958a00899fc4cea03e70fdae7741b9e7050091",
+      null,
+      null,
+      null
+    ],
+    "finalLogDataHex": null
+  },
+  "independentChecks": {
+    "calldataDecodesExactly": false,
+    "prePostStorageDiffEnumerated": false,
+    "returnEqualsActionRecordReceipt": false,
+    "returnEqualsReceiptRecordReceipt": false,
+    "returnEqualsFinalLogData": false,
+    "finalLogIsLast": false,
+    "runtimeAndDependencyHashesPinned": false
+  }
+}

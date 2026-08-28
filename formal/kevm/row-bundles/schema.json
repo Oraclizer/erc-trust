@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oraclizer.io/schemas/erc-trust-row-bundle-v1.json",
+  "title": "ERC-TRUST theorem-grade row bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "obligationId",
+    "requiredProperty",
+    "proofSpec",
+    "positive",
+    "negative",
+    "bridge",
+    "isabelle",
+    "residualNonclaims"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "obligationId": { "type": "string", "pattern": "^[A-Z]+-[0-9]{2}$" },
+    "requiredProperty": { "type": "string", "minLength": 1 },
+    "proofSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "module", "claimId", "sha256"],
+      "properties": {
+        "path": { "$ref": "#/$defs/repoPath" },
+        "module": { "type": "string", "minLength": 1 },
+        "claimId": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "sha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "positive": { "$ref": "#/$defs/proofSide" },
+    "negative": {
+      "$ref": "#/$defs/negativeProofSide"
+    },
+    "bridge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "reverseCheck"],
+      "properties": {
+        "path": { "$ref": "#/$defs/repoPath" },
+        "sha256": { "$ref": "#/$defs/sha256" },
+        "reverseCheck": { "$ref": "#/$defs/repoPath" }
+      }
+    },
+    "isabelle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["theoryPath", "theoremName", "sourceSha256", "session", "rowManifestPath", "rowManifestSha256", "bannedTokens"],
+      "properties": {
+        "theoryPath": { "$ref": "#/$defs/repoPath" },
+        "theoremName": { "type": "string", "minLength": 1 },
+        "sourceSha256": { "$ref": "#/$defs/sha256" },
+        "session": { "type": "string", "minLength": 1 },
+        "rowManifestPath": { "$ref": "#/$defs/repoPath" },
+        "rowManifestSha256": { "$ref": "#/$defs/sha256" },
+        "bannedTokens": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "residualNonclaims": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    }
+  },
+  "$defs": {
+    "repoPath": { "type": "string", "pattern": "^(?![A-Za-z]:)(?!/)(?!.*\\.\\.).+" },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "graph": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["nodes", "edges", "covers", "terminal", "stuck", "vacuous", "pending", "admitted"],
+      "properties": {
+        "nodes": { "type": "integer", "minimum": 1 },
+        "edges": { "type": "integer", "minimum": 0 },
+        "covers": { "type": "integer", "minimum": 0 },
+        "terminal": { "type": "integer", "minimum": 0 },
+        "stuck": { "const": 0 },
+        "vacuous": { "const": 0 },
+        "pending": { "type": "integer", "minimum": 0 },
+        "admitted": { "const": false }
+      }
+    },
+    "proofSide": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "definitionKoreSha256",
+        "compiledJsonSha256",
+        "expectedExitCode",
+        "expectedGraph",
+        "witnessTokens",
+        "forbiddenLogTokens"
+      ],
+      "properties": {
+        "definitionKoreSha256": { "$ref": "#/$defs/sha256" },
+        "compiledJsonSha256": { "$ref": "#/$defs/sha256" },
+        "expectedExitCode": { "type": "integer", "enum": [0, 1] },
+        "expectedGraph": { "$ref": "#/$defs/graph" },
+        "witnessTokens": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "forbiddenLogTokens": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "negativeProofSide": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "definitionKoreSha256",
+        "compiledJsonSha256",
+        "expectedExitCode",
+        "expectedGraph",
+        "witnessTokens",
+        "claimRequirementTokens",
+        "forbiddenLogTokens",
+        "mutationId",
+        "mutationKind"
+      ],
+      "properties": {
+        "definitionKoreSha256": { "$ref": "#/$defs/sha256" },
+        "compiledJsonSha256": { "$ref": "#/$defs/sha256" },
+        "expectedExitCode": { "type": "integer", "enum": [0, 1] },
+        "expectedGraph": { "$ref": "#/$defs/graph" },
+        "witnessTokens": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "claimRequirementTokens": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "forbiddenLogTokens": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "mutationId": { "type": "string", "minLength": 1 },
+        "mutationKind": { "const": "EXECUTABLE_SEMANTIC_MUTANT" }
+      }
+    }
+  }
+}

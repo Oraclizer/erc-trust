@@ -1,0 +1,73 @@
+{
+  "abstractOutput": {
+    "command": "typed forward or reversal command decoded from raw calldata",
+    "outcome": "applied, rejected, operational failure, malformed, or dependency revert",
+    "postState": "trust_compositional_state",
+    "preState": "trust_compositional_state",
+    "receipt": "canonical receipt built from call inputs and projected pre/post state"
+  },
+  "authority": {
+    "legacyCarryover": false,
+    "nativeRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "runtimeFreezeRef": {
+      "path": "evidence/end-to-end-refinement/m4-runtime-freeze-v1.json",
+      "sha256": "ba18d99f630bad67faee824ec83f1071f478a393639faa087be739d880164d67"
+    },
+    "scopeRef": {
+      "path": "evidence/end-to-end-refinement/m4-core-refinement-scope-v1.json",
+      "sha256": "a94fdd38612e6d77fec2057c67bfa88d71d826234fb6116ab8b23650c88f6f56"
+    },
+    "sourceHead": "add3dfb9ca75923d6462d16ba8eb41cad0b1216f",
+    "tcbIndexRef": {
+      "deterministicRootSha256": "baf66d7f1ba3e09b9d03ee55dee4bfd8ff5ba3ada3f3d38c139fdfa9f1ab1243",
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v1/index-v1.json",
+      "sha256": "11d13e917fd2930c93b77c3900d8c2addbd71e6ff3ce67354ed6175da3e28113"
+    }
+  },
+  "concreteInput": {
+    "footprint": "finite owned storage keys plus a disjoint shared frame",
+    "transaction": "exact caller, calldata, value, block environment, external-call trace, return payload, and raw logs",
+    "worldState": "raw EVM account code, balance, nonce, storage, transient storage, and substate"
+  },
+  "contractId": "ABSTRACTION-ALPHA-v1",
+  "equations": [
+    "decode(rawCalldata) = typedCommand",
+    "decodeOwned(rawPreStorage, ownedFootprint) = abstractPreState",
+    "decodeOwned(rawPostStorage, ownedFootprint) = abstractPostState",
+    "success implies abstractPostState = applyAbstract(abstractPreState, typedCommand)",
+    "failure implies abstractPostState = abstractPreState and committedLogs = []",
+    "success receipt storage = return hash = final event hash = pure receipt formula"
+  ],
+  "expectedValueSources": [
+    {
+      "field": "command fields",
+      "origin": "CALL_INPUT"
+    },
+    {
+      "field": "prestate values",
+      "origin": "PRESTATE_PINNED"
+    },
+    {
+      "field": "action/reversal effect and receipt",
+      "origin": "PURE_FORMULA"
+    }
+  ],
+  "explicitPremises": [
+    "finite mapping preimages are distinct",
+    "Keccak is injective only on the declared finite preimage set",
+    "owned slots are pairwise distinct and disjoint from the shared frame",
+    "compiler layout and exact runtime hashes match the pinned authority"
+  ],
+  "forbiddenDefinitions": [
+    "expected value read from implementation getter",
+    "expected value read from CVL ghost or dependency result",
+    "poststate equality defined by comparing two implementation-derived fields"
+  ],
+  "nonclaims": [
+    "compiler correctness",
+    "global Keccak injectivity",
+    "deployment identity",
+    "external legal or policy truth"
+  ],
+  "schemaVersion": 1
+}

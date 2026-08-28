@@ -1,0 +1,3 @@
+session ERC_TRUST_ABI_04_DYNAMIC_OFFSET_V1 = ERC_TRUST +
+  theories
+    ABI_04_Dynamic_Offset_Family_V1

@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 2,
+  "recordedAt": "2026-07-28T18:34:10+09:00",
+  "algorithm": "SHA-256",
+  "git": {
+    "repository": "erc-trust",
+    "baseCommit": "23e5a3c777c3516d7864b9e36bd4a901d916534c",
+    "sourceCommit": null,
+    "gitBindingMode": "containingCommitTree",
+    "sameCommitBindingPending": false,
+    "workingTreeBinding": "All proof lanes and mutations are bound to the listed SHA-256 values. The Git commit containing this manifest binds the exact source and evidence in one tree."
+  },
+  "files": {
+    "pilot/.gitignore": "f34e71a21a97792b79019c4bb456d3fe83720492ca25f690ef7983536ab25aa3",
+    "pilot/foundry.toml": "e5e71418517ea2ee4b78e503708732b144389f9833a07b8d131939b3c57d68b1",
+    "pilot/src/TrustFreezePilot.sol": "0a5c903dc9d880e28deadf3b310418af81cebc9805925a2008abcc368f365bcf",
+    "pilot/src/MockBoundPolicy.sol": "e0f5aad10b41e2e371ca87b4a94edbf4807461e2f053869a3b210a3f0c8be340",
+    "pilot/test/TrustFreezePilot.t.sol": "eebba30af8c43c343737631a2b81cb423e35b2535f892a9233ebd51965bf6466",
+    "pilot/certora/TrustFreezePilot.spec": "e7a4a0254f0fb3e11f1520a2986395ddbbe49d2ab6724d24d5f22078ce49fc0f",
+    "pilot/certora/TrustFreezePilot.conf": "5f93606e3bd31c62b23a3429888beff7ba1e448a1f3425974682212681ac3371",
+    "pilot/kontrol/TrustFreezePilotTest.t.sol": "2cc8e167c2e0109dd843938ae39794896e3632f958dcfd11380be994702b9721",
+    "pilot/kontrol/erc-trust-log-assertions.k": "fab2da1c07f20074983bd19c1713be8134bcd0a88b850b064439af716ca5dabe",
+    "pilot/evidence/abi-manifest.json": "487501bf295b13c9a623162fd2e2189e499be96ec58bd24b86e8d91eca3d2f1d",
+    "pilot/evidence/callgraph.json": "80616ff1f3b6a62a02670bec2d668b4b51447af3bc838e79117abf67002c090f",
+    "pilot/evidence/certora-run-13ad45562f19449282cc0148a7401d68.json": "15348aa332880d22b9be2fa588395ba1cd56afdb5cecf06fd48b6b87735ba79c",
+    "pilot/evidence/certora-run-3fbecc448ae64246b3d7fabac50dc74b.json": "739ff409995004f14d5eed4d6f806e0cb564ab7be31ea3dfe36a1f439280e676",
+    "pilot/evidence/proof-report-v2.md": "bc648debb8f108c9a52fed4b6087c9d0d64eb302e6174b89d3358825e73c3517"
+  },
+  "artifacts": {
+    "TrustFreezePilot.json": "07e65c0a16e651f42ed3ce057daed4c2bc9b88ee82cd83d2547f31a31f7f131d",
+    "MockBoundPolicy.json": "f223b2d8b77e97dd595cf915234715da2c27c17d9fb3a2cab4113a7883db5bf9",
+    "TrustFreezePilot.creationBytecode": "ee570f5b42a2f11c8af53ab1e3be319c5b91383ead7f864bfeafa36d99c2b7f2",
+    "TrustFreezePilot.runtimeBytecode": "43daa22719f0c7d6bbc9612be2aff28889646a9a6072d5c0a2471ef367d02b29"
+  },
+  "proofBinding": {
+    "foundry": "13/13 PASS, fuzz runs 256",
+    "kontrol": [
+      "kontrol%TrustFreezePilotKontrolTest.testKontrol_StagedFreezeEventOrder():7",
+      "kontrol%TrustFreezePilotKontrolTest.testKontrol_PolicyFailureStutters():2"
+    ],
+    "certoraLocal": "compile and CVL typecheck PASS",
+    "certoraRemoteJob": {
+      "outputNamespace": "10491299",
+      "runHash": "3fbecc448ae64246b3d7fabac50dc74b",
+      "url": "https://prover.certora.com/output/10491299/3fbecc448ae64246b3d7fabac50dc74b",
+      "currentBinding": "historical run; public-label-only edits changed source/spec/config file hashes without changing executable bytecode or CVL rule logic; no fresh remote run claimed",
+      "topLevelRules": {
+        "total": 13,
+        "success": 13,
+        "fail": 0,
+        "sanityFail": 0,
+        "timeout": 0,
+        "unknown": 0
+      }
+    },
+    "kontrolCurrentBinding": "historical run; creation/runtime bytecode is unchanged, while a harness comment changed its file hash; no fresh proof run claimed",
+    "negativeMutations": "5/5 KILLED",
+    "overall": "PILOT_CONJUNCT_VERIFIED"
+  },
+  "selfHashExcluded": true,
+  "supersedes": {
+    "path": "pilot/evidence/hashes.json",
+    "sha256": "5eef2bd7df4a7b242cf2771964de9e64f06d0a8b08e77be9ae33b4089e35145a",
+    "transformation": "The proof report title punctuation was normalized for the public surface; proof claims and evidence values are unchanged."
+  }
+}

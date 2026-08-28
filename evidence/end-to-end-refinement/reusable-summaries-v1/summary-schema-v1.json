@@ -1,0 +1,44 @@
+{
+  "allowedExpectedOrigins": [
+    "PRESTATE_PINNED",
+    "PURE_FORMULA",
+    "CALL_INPUT"
+  ],
+  "centralCreditFromPackageAlone": false,
+  "forbiddenExpectedOrigins": [
+    "IMPLEMENTATION_GETTER",
+    "CVL_GHOST",
+    "DEPENDENCY_RETURN",
+    "POSTSTATE_READ"
+  ],
+  "kind": "ERC_TRUST_REUSABLE_SUMMARY_SCHEMA_V1",
+  "requiredPackageFields": [
+    "id",
+    "name",
+    "canonicalClaimCount",
+    "claims",
+    "dependsOn",
+    "primaryConsumers",
+    "rawPrestateProjection",
+    "ownedInputs",
+    "sharedFrame",
+    "assumptions",
+    "successGuarantees",
+    "failureGuarantees",
+    "positiveInhabitant",
+    "sameEntryNegative",
+    "mutationFamily",
+    "tcbProfiles",
+    "isabelleAnchor",
+    "kSeam",
+    "nonclaims",
+    "status"
+  ],
+  "schemaVersion": 1,
+  "selfImportForbidden": true,
+  "statusValues": [
+    "FROZEN_UNPROVED",
+    "PROVED_CURRENT_PROFILE",
+    "BLOCKED"
+  ]
+}

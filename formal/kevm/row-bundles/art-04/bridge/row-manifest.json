@@ -1,0 +1,64 @@
+{
+  "bridge": {
+    "path": "formal/kevm/row-bundles/art-04/bridge/row-bridge.json",
+    "sha256": "ae1fcc1f0132f2e69f34fa65c328bd7f9795d152332f65de0dd4adaa0e48c337"
+  },
+  "dependencyGraph": {
+    "path": "formal/kevm/row-bundles/art-04/dependency-graph.json",
+    "sha256": "abbe64e90ca27ed07842bb09904755885ff8e63b288988e12d9fe00a1bd7bc72"
+  },
+  "eligibleForDischarge": false,
+  "generated": [
+    {
+      "path": "formal/kevm/row-bundles/art-04/generated/mutant-runtime-bridge.k",
+      "sha256": "90553dd8b5ec79c96fb168eefb681b2cc2134430141b7c99c11a9e59ca7177dd"
+    },
+    {
+      "path": "formal/kevm/row-bundles/art-04/generated/mutant-runtime-verification.k",
+      "sha256": "e380844cea44b450c03fc3d0f345e22980801b96fe0270fa921c667a8e062bf9"
+    }
+  ],
+  "obligationId": "ART-04",
+  "proofFacts": {
+    "claimId": null,
+    "isabelleClosure": null,
+    "negativeGraph": null,
+    "positiveGraph": null,
+    "replay": null
+  },
+  "proofSpec": {
+    "module": "TRUST-ART-04-ARTIFACT-SURFACE-BINDING-SPEC",
+    "path": "formal/kevm/row-bundles/art-04/claim.k",
+    "sha256": "6e210b7978f39ff49de779b9d7852033f7612a0100d722e787566684107d655f"
+  },
+  "proofStatus": "PASS_OPEN_STATIC",
+  "requiredProperty": "storage_layout_abi_ast_and_immutable_references_are_hash_bound",
+  "runnerDescriptor": {
+    "path": "formal/kevm/row-bundles/art-04/runner-descriptor.skeleton.json",
+    "sha256": "0fce4400eef6896f73763cf1f7d9080c625a775c9b10f910535b52d33721445a"
+  },
+  "schemaVersion": 1,
+  "skeletonBundle": {
+    "path": "formal/kevm/row-bundles/art-04/bundle.skeleton.json",
+    "sha256": "defb110bd7d8a5b6f2750c262a1a18c55cc19a468c03c87e1787458b074f51ba"
+  },
+  "status": "OPEN",
+  "tcbBinding": {
+    "actualCurrentLock": {
+      "path": "formal/kevm/dependencies.lock.json",
+      "sha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196"
+    },
+    "blocker": false,
+    "canonicalPlaceholderSha256": "e4fcabd40c8b18e3900050a590b6b80c687d4d115f61bc12439af6099e83434e",
+    "classification": "OPEN_PLACEHOLDER_PENDING_COORDINATOR_BINDING",
+    "productDrift": false,
+    "runtimeBindingManifestDependencyLockSha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196"
+  },
+  "theorem": {
+    "buildStatus": "NOT_RUN_IN_WORKER",
+    "name": "storage_layout_abi_ast_and_immutable_references_are_hash_bound",
+    "path": "formal/kevm/row-bundles/art-04/isabelle/ART_04_Artifact_Surface_Binding.thy",
+    "session": "ERC_TRUST_ART_04",
+    "sha256": "333548171cb92948eb3fe6788308ffe104ba734b8ed4d31c766032fa12f94a68"
+  }
+}

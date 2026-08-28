@@ -1,0 +1,74 @@
+{
+  "act01": {
+    "canonicalLanes": 7,
+    "currentProfileCredit": 0,
+    "mutationLanes": 3,
+    "parserBatches": 4,
+    "requiredPackages": [
+      "C0",
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C6"
+    ],
+    "row": "ACT-01",
+    "status": "OPEN"
+  },
+  "currentRegistry": {
+    "obligationCount": 79,
+    "path": "evidence/end-to-end-refinement/theorem-obligations.md",
+    "sha256": "54dac0857e45cfd5e1b98778b4b8ea1fbf02f4e9f87c0eaf4c78c9ce53f48bee"
+  },
+  "kind": "ERC_TRUST_CURRENT_PROFILE_RUNTIME_BRIDGE_V1",
+  "legacyBridge": [
+    {
+      "immutable": true,
+      "path": "evidence/end-to-end-refinement/runtime-bridge/schema.json",
+      "sha256": "f087342d0eaa57a02468ff78e553ad42bb25fe027e833f311a5d0caac72383b7"
+    },
+    {
+      "immutable": true,
+      "path": "evidence/end-to-end-refinement/runtime-bridge/generated-manifest.json",
+      "sha256": "50085fbb6ed540c036754820177785813c96c72191a84f297f8c9952d9802827"
+    },
+    {
+      "immutable": true,
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy",
+      "sha256": "48ef15ed0789be51c0d56f22740d93ba5c7a474116209be66855e8c95b870728"
+    },
+    {
+      "immutable": true,
+      "path": "formal/kevm/generated/trust-runtime-bridge.k",
+      "sha256": "bf8d587f7644d002d05bc7ab16806a39a3354d216cdcad53f504a9bb8b99d836"
+    }
+  ],
+  "nonclaims": [
+    "legacy rows automatically current-qualified",
+    "compiler correctness",
+    "deployment identity",
+    "external truth"
+  ],
+  "profileId": "M4-NATIVE-FINANCIAL-CORE-v1",
+  "schemaVersion": 1,
+  "scope": {
+    "backlog": 6,
+    "coreRefinement": 49,
+    "coreSupporting": 24,
+    "legacyCarryover": false,
+    "legacyDischargedCount": 6,
+    "path": "evidence/end-to-end-refinement/m4-core-refinement-scope-v1.json",
+    "sha256": "a94fdd38612e6d77fec2057c67bfa88d71d826234fb6116ab8b23650c88f6f56"
+  },
+  "sourceHead": "add3dfb9ca75923d6462d16ba8eb41cad0b1216f",
+  "summaryRegistry": {
+    "deterministicRootSha256": "d44aef4400e4a91a9e73763341b13b49a53fe392543e73e23137a9b57190669a",
+    "path": "evidence/end-to-end-refinement/reusable-summaries-v1/registry-v1.json",
+    "sha256": "8781da4dc9b9112903dec2c3624bf801b8b024ac8d7fa7c179a9d5ff44c9138b"
+  },
+  "tcbIndex": {
+    "deterministicRootSha256": "baf66d7f1ba3e09b9d03ee55dee4bfd8ff5ba3ada3f3d38c139fdfa9f1ab1243",
+    "path": "evidence/end-to-end-refinement/hybrid-tcb-v1/index-v1.json",
+    "sha256": "11d13e917fd2930c93b77c3900d8c2addbd71e6ff3ce67354ed6175da3e28113"
+  }
+}

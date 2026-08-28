@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_HYBRID_TCB_SUPERSESSION_V1",
+  "status": "PASS_HYBRID_TCB_V1_TO_V2_SUPERSESSION",
+  "cause": "C0 D1-D5 strict target-cover receipts, stack binder, and Isabelle composition were added to the hybrid TCB payload.",
+  "oldProfile": {
+    "path": "evidence/end-to-end-refinement/hybrid-tcb-v1/index-v1.json",
+    "sha256": "11d13e917fd2930c93b77c3900d8c2addbd71e6ff3ce67354ed6175da3e28113",
+    "deterministicRootSha256": "baf66d7f1ba3e09b9d03ee55dee4bfd8ff5ba3ada3f3d38c139fdfa9f1ab1243"
+  },
+  "newProfile": {
+    "path": "evidence/end-to-end-refinement/hybrid-tcb-v2/index-v2.json",
+    "sha256": "2f2f7bb871f7aea0575789c985c75c4518971de61b6ea1600aaf7c195f91d284",
+    "deterministicRootSha256": "ad1b8bd9401ca977ca0a896ec5f89c5c62778c16012e4c08b142712474150829"
+  },
+  "payloadContrast": {
+    "runtimeIdentityChanged": false,
+    "compilerPayloadChanged": false,
+    "dependencyLockChanged": false,
+    "toolIdentityChanged": false,
+    "c0EvidenceAdded": true,
+    "profileFamiliesPreserved": 6
+  },
+  "actualOutputReproduction": {
+    "d5Receipt": {
+      "path": "evidence/end-to-end-refinement/c0-d5-composition-receipt-v1.json",
+      "sha256": "5044f4766f7db380ed0a6010ed89cc3f5281e891a67a06fe119e826616ba8938"
+    },
+    "c0RuntimeQualified": true,
+    "isabelleBuildExitCode": 0,
+    "proofAuditPass": true
+  },
+  "process": {
+    "writer": {
+      "path": "scripts/generate-hybrid-tcb-profiles-v1.mjs",
+      "sha256": "421a880c23622b10eee34244e1574d6927964fd221534b8b6a4f294948574c35"
+    },
+    "runner": {
+      "path": "formal/isabelle/ERC_TRUST/evidence/model-verification/run-trust-closure.ps1",
+      "sha256": "d2e94a9cccfaeab6185bea7ac51609f16effb17bf5ce0072b99c4ccf57ab4374"
+    },
+    "auditor": {
+      "path": "scripts/verify-hybrid-tcb-supersession-v1.mjs",
+      "sha256": "930ff6d5d155cc739aae3b8fd2c871eb125ed213f1c4d22bb853ae303f0094ed"
+    }
+  },
+  "provenance": {
+    "oldProfilePreserved": true,
+    "expectedHashOverwritten": false,
+    "outputIdentityReopened": false,
+    "supersedesForC0AndDownstreamProfiles": "evidence/end-to-end-refinement/hybrid-tcb-v1/index-v1.json",
+    "adoptionBoundary": "C0 terminal and later packages only; historical receipts retain hybrid-tcb-v1 ancestry."
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "assumptions": [
+    "compiler layout pinned",
+    "finite preimage injectivity premise",
+    "owned/shared disjointness",
+    "canonical narrow words"
+  ],
+  "authority": {
+    "legacyCarryover": false,
+    "nativeRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "runtimeFreezeRef": {
+      "path": "evidence/end-to-end-refinement/m4-runtime-freeze-v1.json",
+      "sha256": "ba18d99f630bad67faee824ec83f1071f478a393639faa087be739d880164d67"
+    },
+    "scopeRef": {
+      "path": "evidence/end-to-end-refinement/m4-core-refinement-scope-v1.json",
+      "sha256": "a94fdd38612e6d77fec2057c67bfa88d71d826234fb6116ab8b23650c88f6f56"
+    },
+    "sourceHead": "add3dfb9ca75923d6462d16ba8eb41cad0b1216f",
+    "tcbIndexRef": {
+      "deterministicRootSha256": "baf66d7f1ba3e09b9d03ee55dee4bfd8ff5ba3ada3f3d38c139fdfa9f1ab1243",
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v1/index-v1.json",
+      "sha256": "11d13e917fd2930c93b77c3900d8c2addbd71e6ff3ce67354ed6175da3e28113"
+    }
+  },
+  "canonicalClaimCount": 3,
+  "claims": [
+    {
+      "expectedOrigin": "PRESTATE_PINNED",
+      "id": "C0-01",
+      "statement": "compiler_layout_projection_manifest_exact"
+    },
+    {
+      "expectedOrigin": "PURE_FORMULA",
+      "id": "C0-02",
+      "statement": "owned_sparse_projection_reassembles_and_nonaliases"
+    },
+    {
+      "expectedOrigin": "CALL_INPUT",
+      "id": "C0-03",
+      "statement": "native_typed_calldata_decodes_iff_canonical"
+    }
+  ],
+  "dependsOn": [],
+  "failureGuarantees": [
+    "malformed width/length/selector has no typed command and stutters"
+  ],
+  "id": "C0",
+  "isabelleAnchor": "TRUST_State_Abi_Normal_Form",
+  "kSeam": "TRUST-C0-STATE-ABI-NORMAL-FORM-SPEC",
+  "mutationFamily": [
+    "layout slot substitution",
+    "mapping preimage order",
+    "dirty high-bit truncation"
+  ],
+  "name": "StateAbiNormalForm",
+  "nonclaims": [
+    "compiler correctness",
+    "global Keccak injectivity",
+    "history or receipt semantics"
+  ],
+  "ownedInputs": [
+    "raw calldata",
+    "caller and environment",
+    "finite owned storage keys"
+  ],
+  "positiveInhabitant": {
+    "artifactRefRequired": true,
+    "required": true,
+    "sameEntryWithNegative": true
+  },
+  "primaryConsumers": [
+    "STATE-01",
+    "STATE-02",
+    "STATE-03",
+    "STATE-06",
+    "ABI-01",
+    "ABI-02",
+    "ABI-05",
+    "ART-02",
+    "ART-03",
+    "ART-04"
+  ],
+  "rawPrestateProjection": {
+    "origin": "PRESTATE_PINNED",
+    "runtimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d"
+  },
+  "sameEntryNegative": {
+    "permittedDeltaRequired": true,
+    "required": true,
+    "terminalSemanticDifferenceRequired": true
+  },
+  "schemaVersion": 1,
+  "sharedFrame": {
+    "disjointnessRequired": true,
+    "kind": "SPARSE_DISJOINT_MAP",
+    "preservationRequired": true
+  },
+  "status": "FROZEN_UNPROVED",
+  "successGuarantees": [
+    "exact layout projection",
+    "sparse frame reassembly",
+    "canonical typed decode"
+  ],
+  "tcbProfiles": [
+    "ISABELLE-ABSTRACT-BRIDGE-v1",
+    "KEVM-LEGACY-HASKELL-STRICT-v1"
+  ]
+}

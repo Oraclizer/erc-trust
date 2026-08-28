@@ -1,0 +1,27 @@
+%% Source definition for docs/assets/architecture-native-sequence.svg
+%%
+%% The rendered diagram is committed as a static SVG rather than embedded as a
+%% GitHub Mermaid block. GitHub renders a Mermaid block inside an iframe whose
+%% src carries a URL fragment, and the browser scrolls that iframe into view on
+%% load, which moves the page away from the top. Keep this file and the SVG in
+%% step when the diagram changes.
+
+sequenceDiagram
+    participant O as Operator
+    participant T as TrustToken
+    participant D as Bound dependency
+    participant K as Transition kernel
+
+    O->>T: executeRegulatoryAction(request)
+    T->>T: validate domain, ID, time, epoch, shape, replay, authority
+    T->>D: staticcall with bound schema and configuration
+    alt applicable
+        D-->>T: APPLICABLE + evidence
+        T->>T: consume action ID and authority nonce
+        T->>K: apply action-specific transition
+        K-->>T: post-state
+        T-->>O: receiptHash; receipt event emitted last
+    else rejected or unavailable
+        D-->>T: REJECTED or OPERATIONAL_FAILURE
+        T--xO: revert; full-state stutter
+    end

@@ -1,0 +1,4 @@
+session ERC_TRUST_FAIL_01_SKELETON = ERC_TRUST +
+  options [timeout = 1200]
+  theories
+    FAIL_01_Semantic_Rejection_Reverts_And_Stutters

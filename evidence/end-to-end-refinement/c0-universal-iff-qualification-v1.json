@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_C0_UNIVERSAL_RUNTIME_IFF_QUALIFICATION_V1",
+  "date": "2026-08-27",
+  "status": "PASS_C0_UNIVERSAL_RUNTIME_IFF_FIVE_OF_FIVE",
+  "statement": "Every allowlisted actual guard opcode-slice family has the same arbitrary-word accept/reject partition as its abstract uint or enum guard, with mutation and D5 occurrence composition evidence.",
+  "runtimeSemanticSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+  "families": [
+    {"id":"ENUM_LT_6","path":"evidence/end-to-end-refinement/c0-enum-lt-6-symbolic-family-receipt-v1.json","sha256":"6671c3f8d88b3f61c42cb820debf68b94a3925672c5ce20014ba15951d3f1c51","status":"PASS"},
+    {"id":"ENUM_LT_3","path":"evidence/end-to-end-refinement/c0-enum-lt-3-symbolic-family-receipt-v1.json","sha256":"342b919be6c10647ea7638f8889ed2ba81206d221be85e595d04a9c69998af19","status":"PASS"},
+    {"id":"UINT_48","path":"evidence/end-to-end-refinement/c0-uint48-hybrid-family-receipt-v1.json","sha256":"2f8da93ae187ef152e19842bdc90f3f25d345848cc92e5960ff8287600a3d56d","status":"PASS_HYBRID_CONDITIONAL_COMPOSITION"},
+    {"id":"UINT_160","path":"evidence/end-to-end-refinement/c0-uint160-hybrid-family-receipt-v1.json","sha256":"c22eb0b82fdaf41074adb67b4903e5bda421a6569bbd8d1d354d9ff7fe80da37","status":"PASS_HYBRID_CONDITIONAL_COMPOSITION"},
+    {"id":"UINT_64","path":"evidence/end-to-end-refinement/c0-uint64-hybrid-family-receipt-v1.json","sha256":"db5a51428e7e0671c5bfc942d4302cc7a3f51c3d53d633fe8f0b3a901eb8a2c2","status":"PASS_HYBRID_CONDITIONAL_COMPOSITION"}
+  ],
+  "composition": {
+    "occurrencePath": "evidence/end-to-end-refinement/c0-d1-d3-runtime-occurrences-v1.json",
+    "occurrenceSha256": "24556c915f3104191bdc2ca9c7f088b62685238967cd5cc84766ce0d2b584139",
+    "guardOccurrences": 26,
+    "familyCount": 5,
+    "d5ReceiptPath": "evidence/end-to-end-refinement/c0-d5-composition-receipt-v1.json",
+    "d5ReceiptSha256": "5044f4766f7db380ed0a6010ed89cc3f5281e891a67a06fe119e826616ba8938",
+    "arbitraryTail": true
+  },
+  "trust": {
+    "hybridTcbIndexPath": "evidence/end-to-end-refinement/hybrid-tcb-v2/index-v2.json",
+    "hybridTcbIndexSha256": "2f2f7bb871f7aea0575789c985c75c4518971de61b6ea1600aaf7c195f91d284",
+    "hybridTcbRootSha256": "ad1b8bd9401ca977ca0a896ec5f89c5c62778c16012e4c08b142712474150829",
+    "terminalReceiptPath": "evidence/end-to-end-refinement/c0-terminal-receipt-v1.json",
+    "terminalReceiptSha256": "41ff212ebc1a85e89f0784d6e0d12d991eaedf50693fe63b579336e83da717d4"
+  },
+  "qualification": {
+    "guardFamiliesPassed": 5,
+    "guardFamiliesRequired": 5,
+    "c0RuntimeQualified": true,
+    "c0PackageQualified": true,
+    "act01Qualified": false,
+    "coreQualifiedDelta": 0,
+    "supportingQualifiedDelta": 0,
+    "centralCredit": 0
+  },
+  "nonclaims": [
+    "Hybrid UINT family results are not independent unconditional KEVM reject theorems.",
+    "C0 qualification does not prove compiler correctness, deployment identity, or external legal truth.",
+    "C0 qualification does not by itself qualify ACT-01 or any consuming financial row."
+  ]
+}

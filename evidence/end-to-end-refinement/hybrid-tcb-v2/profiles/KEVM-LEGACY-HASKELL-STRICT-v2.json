@@ -1,0 +1,147 @@
+{
+  "acceptance": {
+    "admitted": 0,
+    "bounded": 0,
+    "freshReplayRequired": true,
+    "pending": 0,
+    "stuck": 0,
+    "vacuous": 0
+  },
+  "allowedClaims": [
+    "exact ABI and call seam",
+    "revert and rollback",
+    "logs and receipt",
+    "row corollary"
+  ],
+  "approximations": [],
+  "authorityClass": "EXACT_EVM_SEAM_AUTHORITATIVE",
+  "availability": "AVAILABLE",
+  "centralCredit": "AUTHORITATIVE_COMPONENT",
+  "compilerBinding": {
+    "compilerCorrectnessClaimed": false,
+    "deterministicRootSha256": "44c62545b9545741bce98b313f412914bc976430c5596de6ad735f68d81cd4ab",
+    "nativeRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "path": "evidence/end-to-end-refinement/runtime-binding/manifest.json",
+    "sha256": "97e4a349ff6667f01fb67515998c283383731d69a2fdaa00c06e260c11fcc5bb",
+    "solcBinarySha256": "c8d35afdddc3cd2743ee88b8f25e0fecd16e2bdd5f2120f37e52cd9cc45ae0e6",
+    "solcVersion": "0.8.36+commit.8a079791"
+  },
+  "forbiddenClaims": [
+    "compiler correctness",
+    "symbolic Keccak injectivity",
+    "pending or bounded branch as PASS"
+  ],
+  "legacyEvidencePreservation": {
+    "bridgeFiles": [
+      {
+        "path": "evidence/end-to-end-refinement/runtime-bridge/schema.json",
+        "sha256": "f087342d0eaa57a02468ff78e553ad42bb25fe027e833f311a5d0caac72383b7"
+      },
+      {
+        "path": "evidence/end-to-end-refinement/runtime-bridge/generated-manifest.json",
+        "sha256": "50085fbb6ed540c036754820177785813c96c72191a84f297f8c9952d9802827"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy",
+        "sha256": "48ef15ed0789be51c0d56f22740d93ba5c7a474116209be66855e8c95b870728"
+      },
+      {
+        "path": "formal/kevm/generated/trust-runtime-bridge.k",
+        "sha256": "bf8d587f7644d002d05bc7ab16806a39a3354d216cdcad53f504a9bb8b99d836"
+      }
+    ],
+    "dependencyLock": {
+      "immutable": true,
+      "path": "formal/kevm/dependencies.lock.json",
+      "sha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196"
+    },
+    "legacyCarryoverToCurrentProfile": false,
+    "legacyDischargedRows": [
+      "ABI-03",
+      "FAIL-05",
+      "ART-02",
+      "ART-03",
+      "ART-04",
+      "ART-05"
+    ]
+  },
+  "profileId": "KEVM-LEGACY-HASKELL-STRICT-v2",
+  "profileSet": "ERC_TRUST_M4_NATIVE_FINANCIAL_CORE_V2",
+  "replay": {
+    "command": "kevm prove <claim> --no-use-booster --workers 1 --force-sequential",
+    "schedule": "CANCUN"
+  },
+  "runtimeFreezeRef": {
+    "path": "evidence/end-to-end-refinement/m4-runtime-freeze-v1.json",
+    "sha256": "ba18d99f630bad67faee824ec83f1071f478a393639faa087be739d880164d67"
+  },
+  "schemaVersion": 2,
+  "scopeRef": {
+    "path": "evidence/end-to-end-refinement/m4-core-refinement-scope-v1.json",
+    "sha256": "a94fdd38612e6d77fec2057c67bfa88d71d826234fb6116ab8b23650c88f6f56"
+  },
+  "settings": {
+    "assumeDefined": false,
+    "booster": false,
+    "forceSequential": true,
+    "workers": 1
+  },
+  "sourceHead": "add3dfb9ca75923d6462d16ba8eb41cad0b1216f",
+  "tool": {
+    "kCommit": "4a46d1231473b599c699160132fd6e76a5c46406",
+    "koreCommit": "38afc81fc9414f1e11e609b01a43a436b613bd2d",
+    "koreRpc": "/nix/store/wij5nr1s0q3ksvyng4lcybhy467bn9gh-kore-rpc/bin/kore-rpc",
+    "name": "KEVM/Kore",
+    "semanticsCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+    "semanticsTag": "v1.0.921",
+    "z3Version": "4.13.4"
+  },
+  "verificationInputs": {
+    "c0Refs": [
+      {
+        "path": "evidence/end-to-end-refinement/c0-d0-actual-runtime-slice-v1.json",
+        "sha256": "68421c712be0ee1f8b71855995bc1ff94fa953c0260d422a8244cf3a23affd79"
+      },
+      {
+        "path": "evidence/end-to-end-refinement/c0-d1-d3-runtime-occurrences-v1.json",
+        "sha256": "24556c915f3104191bdc2ca9c7f088b62685238967cd5cc84766ce0d2b584139"
+      },
+      {
+        "path": "evidence/end-to-end-refinement/c0-d1-d3-strict-representative-receipt-v1.json",
+        "sha256": "b4f542a4251863bc0809d80921b28cf7736b3ec95882e696da23af1e39a4117d"
+      },
+      {
+        "path": "evidence/end-to-end-refinement/c0-d4-isolated-strict-receipt-v1.json",
+        "sha256": "a32a1b5eef4cefbdfce2c8474c534bad68848af588143da68df6d2ef56743490"
+      },
+      {
+        "path": "evidence/end-to-end-refinement/c0-d5-runtime-stack-binder-v1.json",
+        "sha256": "047e6fd072d8230adcac5898dc3f1d38e8f9cd71ce31dc7c20dbaf2da08b097d"
+      },
+      {
+        "path": "evidence/end-to-end-refinement/c0-d5-composition-receipt-v1.json",
+        "sha256": "5044f4766f7db380ed0a6010ed89cc3f5281e891a67a06fe119e826616ba8938"
+      },
+      {
+        "path": "evidence/end-to-end-refinement/c0-uint-direct-canary-receipt-v1.json",
+        "sha256": "d17f1987c39c18a0dbef07d23e1bc556d87f1781d10f5f066b4ad43d5dd9fe14"
+      },
+      {
+        "path": "evidence/end-to-end-refinement/c0-uint160-isabelle-receipt-v1.json",
+        "sha256": "9c29ba9ca4af13259449f1fc3dfae27ef8dbb9e35dc1a6c306598e6df772d31f"
+      },
+      {
+        "path": "evidence/end-to-end-refinement/c0-uint64-isabelle-receipt-v1.json",
+        "sha256": "4146caae69dfcf472715566a50ef9cd82caf3551ce1f35f0442cfc7c61306214"
+      }
+    ],
+    "dependencyLock": {
+      "path": "formal/kevm/dependencies.lock.json",
+      "sha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196"
+    },
+    "strictRunner": {
+      "path": "formal/kevm/reusable/run-strict-current-profile-package.sh",
+      "sha256": "d475ed2eff979162c65d612afb0239504a576775fa9f3572231d32f554bab41f"
+    }
+  }
+}

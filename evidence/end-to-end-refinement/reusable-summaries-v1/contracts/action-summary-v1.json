@@ -1,0 +1,77 @@
+{
+  "authority": {
+    "legacyCarryover": false,
+    "nativeRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "runtimeFreezeRef": {
+      "path": "evidence/end-to-end-refinement/m4-runtime-freeze-v1.json",
+      "sha256": "ba18d99f630bad67faee824ec83f1071f478a393639faa087be739d880164d67"
+    },
+    "scopeRef": {
+      "path": "evidence/end-to-end-refinement/m4-core-refinement-scope-v1.json",
+      "sha256": "a94fdd38612e6d77fec2057c67bfa88d71d826234fb6116ab8b23650c88f6f56"
+    },
+    "sourceHead": "add3dfb9ca75923d6462d16ba8eb41cad0b1216f",
+    "tcbIndexRef": {
+      "deterministicRootSha256": "baf66d7f1ba3e09b9d03ee55dee4bfd8ff5ba3ada3f3d38c139fdfa9f1ab1243",
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v1/index-v1.json",
+      "sha256": "11d13e917fd2930c93b77c3900d8c2addbd71e6ff3ce67354ed6175da3e28113"
+    }
+  },
+  "consumers": [
+    "AUTH-01",
+    "AUTH-02",
+    "AUTH-03",
+    "AUTH-04",
+    "AUTH-05",
+    "ACT-01",
+    "ACT-02",
+    "ACT-03",
+    "ACT-04",
+    "ACT-05",
+    "ACT-06",
+    "ACT-07",
+    "ACT-08",
+    "ACT-09",
+    "FAIL-01",
+    "FAIL-02",
+    "FAIL-03",
+    "FAIL-04",
+    "FAIL-08",
+    "EXT-01",
+    "EXT-02",
+    "EXT-03",
+    "SEP-02",
+    "SEP-04",
+    "ART-06",
+    "ART-07"
+  ],
+  "contractId": "ACTION-SUMMARY-v1",
+  "failureMeaning": [
+    "semantic denial and operational failure are distinguishable typed reverts",
+    "storage, actionId, nonce, route ticket, receipt, and committed protocol logs restore completely"
+  ],
+  "fields": [
+    "rawPrestateProjection",
+    "typedCommand",
+    "authorityAndReplayPremises",
+    "dependencyResponseClass",
+    "routeContract",
+    "financialEffect",
+    "transactionOutcome",
+    "rawPoststateProjection",
+    "receiptAndLogs"
+  ],
+  "nonclaims": [
+    "external approval truth",
+    "external evidence truth",
+    "legal outcome truth",
+    "compiler correctness"
+  ],
+  "schemaVersion": 1,
+  "successMeaning": [
+    "authorization and dependency approval are inputs to the local proof, never external truth guarantees",
+    "actionId and nonce are consumed exactly once only on success",
+    "the exact action effect is computed from abstract prestate and call input",
+    "receipt, return, storage, and final event agree with one pure formula"
+  ]
+}

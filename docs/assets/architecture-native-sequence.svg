@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="752" viewBox="0 0 1120 752" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="ns-title ns-desc">
+  <title id="ns-title">Native action path</title>
+  <desc id="ns-desc">Sequence between the operator, TrustToken, a bound dependency, and the transition kernel. The operator calls executeRegulatoryAction. TrustToken validates domain, identifier, time, epoch, shape, replay, and authority, then makes a staticcall with the bound schema and configuration. If the dependency answers APPLICABLE with evidence, TrustToken consumes the action identifier and authority nonce, the kernel applies the action-specific transition and returns the post-state, and TrustToken returns the receipt hash with the receipt event emitted last. If the dependency answers REJECTED or OPERATIONAL_FAILURE, the transaction reverts and the full state stutters.</desc>
+
+  <defs>
+    <linearGradient id="ns-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#05131d"/>
+      <stop offset=".62" stop-color="#092330"/>
+      <stop offset="1" stop-color="#0b2c39"/>
+    </linearGradient>
+    <pattern id="ns-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0v40" fill="none" stroke="#9ac6cb" stroke-width="1" opacity=".035"/>
+    </pattern>
+    <marker id="ns-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M0 1.4 9 5 0 8.6Z" fill="#6fb6b6"/>
+    </marker>
+    <marker id="ns-arrow-stop" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M0 1.4 9 5 0 8.6Z" fill="#c9806e"/>
+    </marker>
+  </defs>
+
+  <rect width="1120" height="752" rx="20" fill="url(#ns-bg)"/>
+  <rect width="1120" height="752" rx="20" fill="url(#ns-grid)"/>
+
+  <g font-family="Inter,Segoe UI,Arial,sans-serif">
+    <!-- lifelines -->
+    <g stroke="#2f5967" stroke-width="1.3" stroke-dasharray="5 6">
+      <path d="M140 94 V712"/>
+      <path d="M420 94 V712"/>
+      <path d="M720 94 V712"/>
+      <path d="M990 94 V712"/>
+    </g>
+
+    <!-- alternative block -->
+    <rect x="60" y="280" width="1040" height="420" rx="12" fill="none" stroke="#3b6b78" stroke-width="1.3"/>
+    <path d="M60 566 H1100" stroke="#3b6b78" stroke-width="1.3" stroke-dasharray="6 5" fill="none"/>
+    <rect x="60" y="280" width="64" height="24" rx="6" fill="#12333f" stroke="#3b6b78" stroke-width="1.3"/>
+    <text x="92" y="297" font-size="11" font-weight="700" fill="#7ae6d4" text-anchor="middle">alt</text>
+
+    <!-- participants -->
+    <g fill="#0d2b36" stroke="#4f93a8" stroke-width="1.4">
+      <rect x="40" y="50" width="200" height="44" rx="9"/>
+      <rect x="320" y="50" width="200" height="44" rx="9"/>
+      <rect x="610" y="50" width="220" height="44" rx="9"/>
+      <rect x="880" y="50" width="220" height="44" rx="9"/>
+    </g>
+    <g font-size="13" font-weight="600" fill="#e3eeee" text-anchor="middle">
+      <text x="140" y="77">Operator</text>
+      <text x="420" y="77">TrustToken</text>
+      <text x="720" y="77">Bound dependency</text>
+      <text x="990" y="77">Transition kernel</text>
+    </g>
+
+    <!-- messages -->
+    <g fill="none" stroke="#4f8f92" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#ns-arrow)">
+      <path d="M140 152 H420"/>
+      <path d="M420 170 H470 V200 H420"/>
+      <path d="M420 250 H720"/>
+      <path d="M420 366 H470 V396 H420"/>
+      <path d="M420 452 H990"/>
+    </g>
+    <g fill="none" stroke="#4f8f92" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="7 5" marker-end="url(#ns-arrow)">
+      <path d="M720 348 H420"/>
+      <path d="M990 492 H420"/>
+      <path d="M420 536 H140"/>
+    </g>
+    <g fill="none" stroke="#a06555" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="7 5" marker-end="url(#ns-arrow-stop)">
+      <path d="M720 624 H420"/>
+    </g>
+    <path d="M420 666 H152" fill="none" stroke="#a06555" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="7 5"/>
+    <path d="M134 660 L148 674 M148 660 L134 674" fill="none" stroke="#c9806e" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- message label plates -->
+    <g fill="#0a2029" fill-opacity=".93">
+      <rect x="178" y="128" width="204" height="18" rx="4"/>
+      <rect x="476" y="175" width="360" height="18" rx="4"/>
+      <rect x="429" y="226" width="282" height="18" rx="4"/>
+      <rect x="501" y="324" width="138" height="18" rx="4"/>
+      <rect x="476" y="371" width="234" height="18" rx="4"/>
+      <rect x="603" y="428" width="204" height="18" rx="4"/>
+      <rect x="669" y="468" width="72" height="18" rx="4"/>
+      <rect x="157" y="512" width="246" height="18" rx="4"/>
+      <rect x="130" y="288" width="84" height="18" rx="4"/>
+      <rect x="70" y="572" width="168" height="18" rx="4"/>
+      <rect x="471" y="600" width="198" height="18" rx="4"/>
+      <rect x="196" y="642" width="168" height="18" rx="4"/>
+    </g>
+
+    <!-- message labels -->
+    <g font-size="11.5" fill="#cfe1e4">
+      <text x="280" y="142" text-anchor="middle">executeRegulatoryAction(request)</text>
+      <text x="482" y="189">validate domain, ID, time, epoch, shape, replay, authority</text>
+      <text x="570" y="240" text-anchor="middle">staticcall with bound schema and configuration</text>
+      <text x="570" y="338" text-anchor="middle">APPLICABLE + evidence</text>
+      <text x="482" y="385">consume action ID and authority nonce</text>
+      <text x="705" y="442" text-anchor="middle">apply action-specific transition</text>
+      <text x="705" y="482" text-anchor="middle">post-state</text>
+      <text x="280" y="526" text-anchor="middle">receiptHash; receipt event emitted last</text>
+    </g>
+    <g font-size="11.5">
+      <text x="570" y="614" text-anchor="middle" fill="#e6bcb1">REJECTED or OPERATIONAL_FAILURE</text>
+      <text x="280" y="656" text-anchor="middle" fill="#e6bcb1">revert; full-state stutter</text>
+    </g>
+    <g font-size="11" fill="#8fb3b8">
+      <text x="136" y="302">[applicable]</text>
+      <text x="76" y="586">[rejected or unavailable]</text>
+    </g>
+  </g>
+</svg>

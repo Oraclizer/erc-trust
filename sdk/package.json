@@ -1,0 +1,57 @@
+{
+  "name": "@oraclizer/erc-trust-sdk",
+  "version": "0.1.0-candidate.1",
+  "description": "Unaudited, not-for-production typed request, receipt, and calldata helpers for the ERC-TRUST reference candidate",
+  "license": "BSD-3-Clause",
+  "packageManager": "pnpm@11.9.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist/index.js",
+    "dist/index.d.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Oraclizer/erc-trust.git",
+    "directory": "sdk"
+  },
+  "homepage": "https://github.com/Oraclizer/erc-trust#readme",
+  "bugs": {
+    "url": "https://github.com/Oraclizer/erc-trust/issues"
+  },
+  "keywords": [
+    "ethereum",
+    "erc-7943",
+    "erc-3643",
+    "security-token",
+    "regulatory-actions"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "pnpm run build && node --test dist/index.test.js"
+  },
+  "dependencies": {
+    "ethers": "6.17.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.1",
+    "typescript": "7.0.2"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}

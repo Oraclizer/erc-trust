@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "obligationId": "ART-05",
+  "requiredProperty": "theory_source_and_import_closure_are_hash_bound",
+  "proofSpec": {
+    "path": "formal/kevm/row-bundles/art-05/claim.k",
+    "module": "TRUST-ART-05-THEORY-IMPORT-CLOSURE-BINDING-SPEC",
+    "claimId": "2c601f4bddb5569250236d5782e3bd759d40fe11b1a1e0434c09b8d656247910",
+    "sha256": "0bb20986f4b391c31c14b5894653e16f4d71735c52d451b85b9c398349f0115c"
+  },
+  "positive": {
+    "definitionKoreSha256": "f7a41bbd97d56106fdf781b606e566906ca0d1b84e4b8b733df660ff5c30ee26",
+    "compiledJsonSha256": "6a152a156d65a53822da5f1c12bcea84eaa720a3650ec37fc717fa398c86f513",
+    "expectedExitCode": 0,
+    "expectedGraph": { "nodes": 4, "edges": 2, "covers": 1, "terminal": 0, "stuck": 0, "vacuous": 0, "pending": 0, "admitted": false },
+    "witnessTokens": ["EVMC_SUCCESS_NETWORK_EndStatusCode"],
+    "forbiddenLogTokens": ["Runtime error", "Proof crashed", "timed out", "timeout", "canceled", "cancelled", "SMT solver error", "BackendError"]
+  },
+  "negative": {
+    "definitionKoreSha256": "dad8950af06c0d19056375ee66cb3d3f8868428717342a03e298f099f56dcd1d",
+    "compiledJsonSha256": "ca3fc07bdb66ba8d4b16da0befc03a84113f24a86af0c341969c55868e21e231",
+    "expectedExitCode": 1,
+    "expectedGraph": { "nodes": 401, "edges": 32, "covers": 0, "terminal": 1, "stuck": 0, "vacuous": 0, "pending": 262, "admitted": false },
+    "witnessTokens": ["EVMC_SUCCESS_NETWORK_EndStatusCode", "BLOBGASUSED_CELL"],
+    "claimRequirementTokens": ["EVMC_SUCCESS </statusCode>", "0x000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92266"],
+    "forbiddenLogTokens": ["Runtime error", "Proof crashed", "timed out", "timeout", "canceled", "cancelled", "SMT solver error", "BackendError"],
+    "mutationId": "ART-05-MUT-RUNTIME-BRIDGE-LEAF-001",
+    "mutationKind": "EXECUTABLE_SEMANTIC_MUTANT"
+  },
+  "bridge": {
+    "path": "formal/kevm/row-bundles/art-05/bridge/row-bridge.json",
+    "sha256": "acc76c219547fb9b89b16f335b61eb617f7509b9d60139dcda1c80c5674cc264",
+    "reverseCheck": "formal/kevm/row-bundles/art-05/reverse-check.py"
+  },
+  "isabelle": {
+    "theoryPath": "formal/kevm/row-bundles/art-05/isabelle/ART_05_Theory_Import_Closure_Binding.thy",
+    "theoremName": "theory_source_and_import_closure_are_hash_bound",
+    "sourceSha256": "fbe318e345e1854bfdc43f575a850cafe411e96ea9045e1849cfd839688b0dcd",
+    "session": "ERC_TRUST_ART_05",
+    "rowManifestPath": "formal/kevm/row-bundles/art-05/bridge/row-manifest.json",
+    "rowManifestSha256": "e15cac79c0040d535f524523f7f31f78ef69c1d6cae723946318e861822828ce",
+    "bannedTokens": ["sorry", "oops", "axiomatization", "by eval", "native_decide", "skip_proof"]
+  },
+  "residualNonclaims": [
+    "The row binds exact runtime observation and source/theory/import identities; it does not prove solc or KEVM correctness.",
+    "The terminal semantic negative contains 262 fail-fast pending branches and must not be described as a closed negative proof.",
+    "Canonical discharge still requires a fresh repository-owned authoritative replay and shared registry integration by the coordinator."
+  ]
+}

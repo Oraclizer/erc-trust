@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_CURRENT_PROFILE_RELEASE_INDEX_V1",
+  "status": "PASS_CURRENT_PROFILE_RELEASE_CANDIDATE",
+  "date": "2026-08-28",
+  "sourceProvenance": {
+    "archiveRepository": "Oraclizer/erc-trust-archive",
+    "archiveCommit": "366b625dac90d4584432d7d6939629434734ecb8",
+    "archiveTree": "25a1710c865143eb70f0da3d185ebdc3149214b0",
+    "publicDefaultBranch": "main"
+  },
+  "qualificationInputs": {
+    "packageAggregate": {
+      "path": "evidence/end-to-end-refinement/c-series-terminal-qualification-v1.json",
+      "sha256": "d7532f897d85bc4efc98ef542d7095ab2d87e2292cc5c409b9ce0378ec451077"
+    },
+    "rowIndex": {
+      "path": "evidence/end-to-end-refinement/m4-current-profile-row-qualifications-v1.json",
+      "sha256": "e903257492c5a6969aa92c244c310c5c702bd9102890a76650997e253ff749ce"
+    },
+    "historicalRuntimeQualification": {
+      "path": "evidence/end-to-end-refinement/runtime-binding-current-profile-qualification-v1.json",
+      "sha256": "fb36433285c6e1135bfcac7e0765aa7921d5e6d738911601f36c3c5140d0d191"
+    },
+    "publicRuntimeQualification": {
+      "path": "evidence/end-to-end-refinement/runtime-binding-current-profile-qualification-v2.json",
+      "sha256": "e2ddf95776a538b8611664025e8d7b13c98349b3106e8c83228ce778537af8f0"
+    }
+  },
+  "progress": {
+    "reusablePackages": "7/7",
+    "coreRefinement": "49/49",
+    "supportingCurrentProfile": "24/24",
+    "frozenRows": 0,
+    "optionalBacklog": "0/6"
+  },
+  "runtime": {
+    "nativeBytes": 24142,
+    "eip170MarginBytes": 434,
+    "expectedHashesOverwritten": false
+  },
+  "replay": {
+    "script": "scripts/replay-current-profile-release.ps1",
+    "verifier": "scripts/verify-current-profile-release.mjs"
+  },
+  "archiveBoundary": {
+    "historicalReceiptsRemainByteExact": true,
+    "internalRawProofGraphsAndProcessReceiptsAreArchiveOnly": true,
+    "archiveHistoryRewritten": false
+  },
+  "nonclaims": [
+    "This index does not prove compiler correctness, deployment identity, live topology, external policy truth, or legal truth.",
+    "The optional six-row assurance backlog is not started or claimed.",
+    "Private process receipts and raw proof graphs are preserved in the archive repository and are not public replay inputs."
+  ]
+}

@@ -1,0 +1,5 @@
+session ACT_01_Row = ERC_TRUST +
+  options [timeout = 1200]
+  theories
+    ACT_01_Bridge_Generated
+    ACT_01_Full_Transaction

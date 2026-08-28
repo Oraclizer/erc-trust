@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_C0_UINT64_SYMBOLIC_WORD_SOURCE_MANIFEST_V1",
+  "status": "SOURCE_AND_HYPOTHESES_FROZEN_BEFORE_FAMILY_STRICT_ATTEMPTS",
+  "contract": {
+    "path": "evidence/end-to-end-refinement/c0-uint64-symbolic-word-contract-v1.json",
+    "sha256": "b02e22181725cbf8599cd70b2939c3644e07a6269aa9a5a22506709ba9bf36f1"
+  },
+  "runtime": {
+    "path": "evidence/end-to-end-refinement/runtime-binding/resolved/native/TrustToken.hex",
+    "fileSha256": "1c2e73fa137a50993301eacf9e70aa73623a5d4673c58cadedb60e12c273f44f",
+    "semanticSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "bytes": 24142
+  },
+  "sourceSlice": {
+    "entryPc": 13537,
+    "acceptPc": 13564,
+    "rejectPc": 2767,
+    "hex": "936001600160401b038581169491939160a01c16848603610acf57",
+    "sha256": "586e5d0dc737579f6fd5e2d2e60979adb85b0e3e68fc4ec1695141539f98c3c1"
+  },
+  "claims": [
+    {
+      "id": "c0-uint64-symbolic-accept",
+      "module": "C0-UINT64-SYMBOLIC-ACCEPT-SPEC",
+      "role": "universal-accept",
+      "targetPc": 13564,
+      "requires": "0 <=Int W andBool W <Int (2 ^Int 64)",
+      "symbolicVariables": [
+        "W"
+      ],
+      "wordStackPattern": "W : 0 : 0 : 0 : 0 : .WordStack",
+      "symbolicListTail": false,
+      "path": "formal/kevm/reusable/c0/uint64-symbolic-word-v1/claims/c0-uint64-symbolic-accept.k",
+      "sha256": "d82bfc0e26067ed8de9bee45c05fa7b59273fed1c8be2787983251837bf68943",
+      "strictAttemptsAllowed": 1
+    },
+    {
+      "id": "c0-uint64-symbolic-reject-d1",
+      "module": "C0-UINT64-SYMBOLIC-REJECT-D1-SPEC",
+      "role": "hybrid-conditional-universal-reject",
+      "targetPc": 2767,
+      "baseDomain": "(2 ^Int 64) <=Int W andBool W <Int (2 ^Int 256)",
+      "requires": "(2 ^Int 64) <=Int W andBool W <Int (2 ^Int 256) andBool 0 <=Int (maxUInt64 &Int W) andBool (maxUInt64 &Int W) <=Int maxUInt64",
+      "approvedRedundantHypotheses": [
+        "0 <=Int (maxUInt64 &Int W)",
+        "(maxUInt64 &Int W) <=Int maxUInt64"
+      ],
+      "bannedForms": [
+        "(maxUInt64 &Int W) <Int (2 ^Int 64)",
+        "(maxUInt64 &Int W) =/=Int 0 as an added premise",
+        "any local semantic or simplification rule",
+        "any carrier conversion"
+      ],
+      "symbolicVariables": [
+        "W"
+      ],
+      "wordStackPattern": "W : 0 : 0 : 0 : 0 : .WordStack",
+      "symbolicListTail": false,
+      "path": "formal/kevm/reusable/c0/uint64-symbolic-word-v1/claims/c0-uint64-symbolic-reject-d1.k",
+      "sha256": "204c504a7ef1bc39b7be64245ebb34f2da58cb3fc17216bc6f728dd16137eac6",
+      "strictAttemptsAllowed": 1
+    }
+  ],
+  "canonicalDefinition": {
+    "custodyId": "quarantine-m4-unmerged-20260825-141706/c0-uint48-symbolic-word-v3-20260827/canonical-definition-001",
+    "definitionKoreSha256": "d8ad03e19b362aeea0344ae0ffa1882c228cb72f3ebdfc146b09554862ad2507",
+    "compiledJsonSha256": "0b9f666bf720a3e72b5ce87b3c87fa167928c70af481db8b629bef3f4c864d9c",
+    "compiledBinSha256": "ed68d8f5c769c0523cb1ebba9e7ff9bf1995d147c9a4db4b7aa6fdf64e266c0b",
+    "profile": "LEMMAS-WITHOUT-SLOT-UPDATES"
+  },
+  "inheritedMutation": {
+    "contractPath": "formal/kevm/reusable/c0/d1-d3-slices-v1/mutation-v1.json",
+    "contractSha256": "6c8b9fe807cf55e4894f3b8cc0ebf90b368dc1828b68312f1a3cc8b161fadee2",
+    "strictReceiptPath": "evidence/end-to-end-refinement/c0-d1-d3-strict-representative-receipt-v1.json",
+    "strictReceiptSha256": "b4f542a4251863bc0809d80921b28cf7736b3ec95882e696da23af1e39a4117d",
+    "pc": 13537,
+    "before": "93",
+    "after": "fe"
+  },
+  "hybridComposition": {
+    "isabelleTheoryPath": "formal/isabelle/ERC_TRUST/TRUST_C0_UINT64_Redundant_Hypotheses.thy",
+    "generalBridgeTheoryPath": "formal/isabelle/ERC_TRUST/TRUST_C0_UINT48_Redundant_Hypotheses.thy",
+    "correspondencePath": "evidence/end-to-end-refinement/c0-uint64-k-isabelle-and-correspondence-v1.json",
+    "freezeVerifierPath": "scripts/verify-c0-uint64-hybrid-hypotheses-v1.mjs",
+    "acceptedClassification": "PASS_C0_UINT64_HYBRID_CONDITIONAL_COMPOSITION",
+    "forbiddenClassification": "independent KEVM universal reject PASS"
+  },
+  "proofPlan": {
+    "strictProofAttemptsPerClaim": 1,
+    "timeoutSeconds": 1800,
+    "workers": 1,
+    "forceSequential": true,
+    "breakEveryStep": true,
+    "booster": false,
+    "assumeDefined": false,
+    "resume": false
+  },
+  "familyCredit": 0,
+  "c0Status": "QUALIFICATION_HELD"
+}

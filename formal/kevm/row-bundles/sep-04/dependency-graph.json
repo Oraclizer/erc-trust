@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "lane": "AUTH/EXT/SEP/ART and provenance/frame/event",
+  "selectedObligation": {
+    "id": "SEP-04",
+    "property": "`receipt_preimage_matches_storage_return_and_final_event`",
+    "theoremName": "receipt_preimage_matches_storage_return_and_final_event",
+    "status": "OPEN"
+  },
+  "nodes": [
+    { "id": "ABI-01", "role": "prerequisite", "reason": "canonical executeRegulatoryAction calldata decoding" },
+    { "id": "STATE-02", "role": "prerequisite", "reason": "receipt/action-record storage layout" },
+    { "id": "STATE-03", "role": "prerequisite", "reason": "mapping-key derivation and non-aliasing" },
+    { "id": "STATE-06", "role": "prerequisite", "reason": "nonce projection for the successful transaction" },
+    { "id": "AUTH-01", "role": "prerequisite", "reason": "exact authority/delegation authorization" },
+    { "id": "AUTH-02", "role": "prerequisite", "reason": "nonce identity" },
+    { "id": "AUTH-03", "role": "prerequisite", "reason": "successful authorization consumption" },
+    { "id": "ACT-05", "role": "prerequisite", "reason": "LIQUIDATE success transition" },
+    { "id": "EXT-01", "role": "prerequisite", "reason": "applicable bound-dependency assume/guarantee" },
+    { "id": "SEP-01", "role": "prerequisite", "reason": "current-state abstraction" },
+    { "id": "SEP-02", "role": "prerequisite", "reason": "active full-transaction frame" },
+    { "id": "ART-02", "role": "prerequisite", "reason": "compiler output to exact resolved runtime binding" },
+    { "id": "ART-03", "role": "prerequisite", "reason": "constructor and immutable resolution" },
+    { "id": "ART-04", "role": "prerequisite", "reason": "ABI, layout, AST and immutable artifact binding" },
+    { "id": "ART-05", "role": "prerequisite", "reason": "Isabelle import closure" },
+    { "id": "ART-06", "role": "prerequisite", "reason": "runtime execution to concrete transaction bridge" },
+    { "id": "SEP-04", "role": "selected", "reason": "single receipt preimage across storage, return and final event" },
+    { "id": "ART-07", "role": "consumer", "reason": "end-to-end theorem composition consumes the closed row" },
+    { "id": "KONTROL-LIQUIDATE", "role": "supporting-cross-check", "reason": "exact candidate bytecode path checks delta, receipt and final log but is not row discharge" },
+    { "id": "FOUNDRY-EVENT-ORDER", "role": "supporting-cross-check", "reason": "confirms effect log precedes receipt log at source/test level" }
+  ],
+  "edges": [
+    ["ABI-01", "SEP-04"], ["STATE-02", "SEP-04"], ["STATE-03", "SEP-04"],
+    ["STATE-06", "SEP-04"], ["AUTH-01", "SEP-04"], ["AUTH-02", "SEP-04"],
+    ["AUTH-03", "SEP-04"], ["ACT-05", "SEP-04"], ["EXT-01", "SEP-04"],
+    ["SEP-01", "SEP-04"], ["SEP-02", "SEP-04"], ["ART-02", "SEP-04"],
+    ["ART-03", "SEP-04"], ["ART-04", "SEP-04"], ["ART-05", "SEP-04"],
+    ["ART-06", "SEP-04"], ["SEP-04", "ART-07"],
+    ["KONTROL-LIQUIDATE", "SEP-04"], ["FOUNDRY-EVENT-ORDER", "SEP-04"]
+  ],
+  "edgeSemantics": {
+    "prerequisite": "must be supplied or proved at the concrete transaction boundary; dependency does not discharge SEP-04 by itself",
+    "supporting-cross-check": "non-authoritative evidence used to shape the claim and catch drift",
+    "consumer": "may consume SEP-04 only after fresh positive, negative, bridge, Isabelle, and replay closure"
+  }
+}

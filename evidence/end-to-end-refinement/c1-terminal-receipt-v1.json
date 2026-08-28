@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_C1_TERMINAL_RECEIPT_V1",
+  "packageId": "C1",
+  "status": "PASS_C1_TERMINAL_RUNTIME_QUALIFICATION",
+  "terminal": true,
+  "statement": [
+    "authority_and_delegation_match_exact_command",
+    "authority_policy_epochs_are_current",
+    "command_id_and_nonce_consumed_once_on_success",
+    "rejection_and_operational_failure_preserve_authorization"
+  ],
+  "identity": {
+    "nativeRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "productionSource": {
+      "path": "implementation/src/TrustToken.sol",
+      "sha256": "dbe06bb25a2b62913bd6428e1de32ba007a214e24ac45f4fd2c0fb55ea22c96a"
+    },
+    "package": {
+      "path": "evidence/end-to-end-refinement/reusable-summaries-v1/packages/c1-authorization-replay-v1.json",
+      "sha256": "e968544fce61ddb7d6933e2a35f8369841c1e06bddb69e08c00d89ddaa4fa4ce"
+    },
+    "spec": {
+      "path": "implementation/certora/TrustC1AuthorizationReplay.spec",
+      "sha256": "6b96c51aca855640fa0a9587b3a48d8c49b9f061fcd49400694483ff65d3c330"
+    },
+    "canonicalHarness": {
+      "path": "implementation/test/mocks/TrustTokenC1AuthorizationHarness.sol",
+      "sha256": "dc552211193679af0cb3a968a25e72d1230cfd492920f046c6968c8c87bf1dc1"
+    },
+    "mutantHarness": {
+      "path": "implementation/test/mocks/TrustTokenC1AuthorizationHarnessMutant.sol",
+      "sha256": "6b441911a4941cea9ab626f86caef56cde8402dabaf40d001994cd95d5f5a038"
+    },
+    "canonicalConfig": {
+      "path": "implementation/certora/TrustC1AuthorizationReplay.conf",
+      "sha256": "16f5fe169781bdfb539c3650f51dc2f9bd817354727b58b4928151265230b0d7"
+    },
+    "mutantConfig": {
+      "path": "implementation/certora/TrustC1AuthorizationReplayMutant.conf",
+      "sha256": "b9261940fc3c7714ac00735806825beb8b5371f34c15d05e2f4be9c881da6e7e"
+    },
+    "formulationVerifier": {
+      "path": "scripts/verify-c1-certora-witness-formulation-v1.mjs",
+      "sha256": "0bbbcd719178723444f812eb01c2ea3dad258c5cea58b5ef4dabdb5171ee5115"
+    },
+    "receiptRecorder": {
+      "path": "scripts/record-certora-c1-job-receipt-v1.mjs",
+      "sha256": "801a5d5e8c6e8223288ef38f387f636b220308fda3a3c5e3950a17fa7be93d4f"
+    },
+    "tcbProfile": {
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v2/profiles/CERTORA-FINANCIAL-CORE-v2.json",
+      "sha256": "60a53edd76ea94c965da35279abccc165cf5d5fed796e9c20b37e3552d922e8e"
+    },
+    "tcbIndex": {
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v2/index-v2.json",
+      "sha256": "2f2f7bb871f7aea0575789c985c75c4518971de61b6ea1600aaf7c195f91d284"
+    }
+  },
+  "canonical": {
+    "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-CANONICAL-PROOF-046/sanitized-receipt.json",
+    "sha256": "4807a69774d8270a4d8dd290aeb45e66229cf981c6bcaf750d006408b93274a2",
+    "jobId": "M4-C1-CERTORA-CANONICAL-PROOF-046",
+    "inputManifestRef": {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-CANONICAL-PROOF-046/input-manifest.json",
+      "sha256": "6e0c68189e718f89423c28f78155b0dd390f92d3b5ce72af191e9fdaaa38042a",
+      "payloadManifestRootSha256": "e697eb961a9159863eb3a1425bd2768430e37fc1adc8cb04d5b77623c7ce09e9"
+    },
+    "privateLogSha256": "54e9300680efc9dd59593f9bff8069c0ec2c854df46e30bd8019264ab85bd0fa"
+  },
+  "sameEntryNegative": {
+    "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-MUTANT-PROOF-047/sanitized-receipt.json",
+    "sha256": "14147611611e80e060e38ec72bf5b6f54dae4493d90df8791611e2a60e6978a6",
+    "jobId": "M4-C1-CERTORA-MUTANT-PROOF-047",
+    "inputManifestRef": {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C1-CERTORA-MUTANT-PROOF-047/input-manifest.json",
+      "sha256": "b551ebee5bbb837bf5a798efb88eece1b800904ea89300c912cfb1cffd89038f",
+      "payloadManifestRootSha256": "d3ce39f8b3b1cf0cbee14eb08851aa8dce85ed9f3d021331e3346150cf0387f6"
+    },
+    "mutation": {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/mutations/C1-AUTHORIZATION-CONSUMPTION-OMISSION-v1.json",
+      "sha256": "b293697217292ed0e02567b792d6c74f09f1369abec98b9bacd858267a5688ce"
+    },
+    "semanticViolations": [
+      "authority_and_delegation_match_exact_command",
+      "command_id_and_nonce_consumed_once_on_success"
+    ],
+    "advancedSanityCollateral": [
+      "structural_rejection_preserves_authorization"
+    ],
+    "privateLogSha256": "9020de798973b60f581637c5c4605f5c1e78e5214fa1a79bd56d359cb0d5336c"
+  },
+  "baselineRestore": {
+    "canonicalHarnessSha256": "dc552211193679af0cb3a968a25e72d1230cfd492920f046c6968c8c87bf1dc1",
+    "canonicalManifestSha256": "6e0c68189e718f89423c28f78155b0dd390f92d3b5ce72af191e9fdaaa38042a",
+    "canonicalTerminalReceiptSha256": "4807a69774d8270a4d8dd290aeb45e66229cf981c6bcaf750d006408b93274a2",
+    "sourceGeneratorLeavesCanonicalUntouched": true,
+    "formulationVerifierPassRequired": true
+  },
+  "frame": {
+    "wholeStorageEqualityStandaloneAssertions": 3,
+    "structuralRejectionPreservesWholeStorage": true,
+    "operationalFailurePreservesWholeStorage": true,
+    "replayRejectionPreservesSuccessfulPoststate": true
+  },
+  "assumptions": [
+    "The frozen Native runtime and production TrustToken source identities are exact.",
+    "The verification-only harness invokes the production validation and consumption functions without changing production runtime code.",
+    "Certora CLI 8.17.1 and the pinned solc 0.8.36 payload are included in the hybrid TCB boundary."
+  ],
+  "nonclaims": [
+    "C1 does not prove identity, policy, settlement, or entitlement truth.",
+    "C1 does not prove dependency classification owned by C2 or whole-transaction rollback owned by C6.",
+    "C1 terminal qualification does not by itself qualify ACT-01, Core rows, Supporting rows, or central refinement credit."
+  ],
+  "qualification": {
+    "positiveTerminalPass": true,
+    "sameEntryMutationKilled": true,
+    "baselineRestored": true,
+    "frameQualified": true,
+    "c1RuntimeQualified": true,
+    "c1PackageQualified": true,
+    "act01Qualified": false,
+    "coreRefinementQualifiedDelta": 0,
+    "supportingQualifiedDelta": 0,
+    "centralCredit": 0
+  }
+}

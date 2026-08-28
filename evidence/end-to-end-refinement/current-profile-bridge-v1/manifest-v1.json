@@ -1,0 +1,44 @@
+{
+  "deterministicRootSha256": "ecfeb98a44a75c6a4582afcb98ea7644ea3268e1e64f7bf01ea208e50ac4808f",
+  "generated": [
+    {
+      "bytes": 1762,
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Current_Profile_Generated.thy",
+      "sha256": "1610201bf32cef1bc2b88d81cab6a0c3062e08435691bb815be850d03f1911a3"
+    },
+    {
+      "bytes": 1035,
+      "path": "formal/kevm/generated/trust-runtime-bridge-current-profile-v1.k",
+      "sha256": "78a13756a5924a84e8d52e6e95a525ffcdcb7ee36be33c6c5f661efc5f0e7302"
+    }
+  ],
+  "kind": "ERC_TRUST_CURRENT_PROFILE_RUNTIME_BRIDGE_MANIFEST_V1",
+  "legacyBridge": [
+    {
+      "immutable": true,
+      "path": "evidence/end-to-end-refinement/runtime-bridge/schema.json",
+      "sha256": "f087342d0eaa57a02468ff78e553ad42bb25fe027e833f311a5d0caac72383b7"
+    },
+    {
+      "immutable": true,
+      "path": "evidence/end-to-end-refinement/runtime-bridge/generated-manifest.json",
+      "sha256": "50085fbb6ed540c036754820177785813c96c72191a84f297f8c9952d9802827"
+    },
+    {
+      "immutable": true,
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy",
+      "sha256": "48ef15ed0789be51c0d56f22740d93ba5c7a474116209be66855e8c95b870728"
+    },
+    {
+      "immutable": true,
+      "path": "formal/kevm/generated/trust-runtime-bridge.k",
+      "sha256": "bf8d587f7644d002d05bc7ab16806a39a3354d216cdcad53f504a9bb8b99d836"
+    }
+  ],
+  "schema": {
+    "bytes": 2498,
+    "path": "evidence/end-to-end-refinement/current-profile-bridge-v1/schema-v1.json",
+    "sha256": "2aa641af1f362bbe1aaa246edfd22045999903a030afd02973c9f0cab8e70c8f"
+  },
+  "schemaVersion": 1
+}

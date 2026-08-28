@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_C2_KEVM_SPLIT_PACKAGES_V1",
+  "sourceAggregate": {
+    "path": "formal/kevm/reusable/c2/c2-bound-dependency-spec.k",
+    "sha256": "eea2f0dbe45af69d795d7b09646c6bf2d86dc0a7d079b23913e4fd650313da84",
+    "claimCount": 3
+  },
+  "acceptance": "all-3-split-packages-pass-strict-kore",
+  "packages": [
+    {
+      "id": "C2-KEVM-STATICCALL-PLACEMENT",
+      "file": "formal/kevm/reusable/c2/c2-staticcall-placement-spec.k",
+      "module": "TRUST-C2-STATICCALL-PLACEMENT-SPEC",
+      "claimCount": 1,
+      "sha256": "6e039df8705fd4327d612df7017b77ca962f9db697fe3fc987634c2eacd5719c"
+    },
+    {
+      "id": "C2-KEVM-CANONICAL-APPROVAL",
+      "file": "formal/kevm/reusable/c2/c2-canonical-approval-spec.k",
+      "module": "TRUST-C2-CANONICAL-APPROVAL-SPEC",
+      "claimCount": 1,
+      "sha256": "8bdd9e77d25c0ce678dc9685cc3ace3cd21f3074c1fdf5b6e0f3070bf4366a66"
+    },
+    {
+      "id": "C2-KEVM-WRONG-BINDING-ECHO",
+      "file": "formal/kevm/reusable/c2/c2-wrong-binding-echo-spec.k",
+      "module": "TRUST-C2-WRONG-BINDING-ECHO-SPEC",
+      "claimCount": 1,
+      "sha256": "464e46f00fa770df56e87a54ecfdafb565931383742a733a3486d32a1e4ab278"
+    }
+  ]
+}

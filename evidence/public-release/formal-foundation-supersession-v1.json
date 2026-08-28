@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_FORMAL_FOUNDATION_SUPERSESSION_V1",
+  "status": "PASS_FORMAL_FOUNDATION_SEMANTIC_SUCCESSION",
+  "date": "2026-08-28",
+  "historical": {
+    "repository": "https://github.com/Oraclizer/formal-verification.git",
+    "commit": "3f3e15964969d2646e9240d273e8270987e1c59e",
+    "tree": "dedde2ed94611dcfc53e6b1d4dd264c5acb522d0",
+    "publiclyReachable": false,
+    "localBundleStatus": "PASS_COMPLETE_HISTORY_RESTORE",
+    "localBundleSha256": "d87b32ce77a6e003275fc86305b957bfd72ef2196dd23a487c03dcefb3991d33"
+  },
+  "current": {
+    "repository": "https://github.com/Oraclizer/formal-verification.git",
+    "commit": "db8e0802e55f0229cf7bc9e5e6cfbf40681adbba",
+    "tree": "98535a359438140178b98551bd02d51c5230e623",
+    "publiclyReachable": true
+  },
+  "fileMappings": [
+    {"historicalPath":"Cross_Domain_State_Preservation/Canton_Bridge.thy","historicalBlob":"cf479648b750ce9ca677a179a1f923bfb9af58a7","historicalSha256":"d7f385e9480d7df16c81dc707fd7ba22d23fc41b7b040b21c9e30d1d94fc3dc2","current":[{"path":"Cross_Domain_State_Preservation/Canton_Bridge.thy","blob":"cf479648b750ce9ca677a179a1f923bfb9af58a7","sha256":"d7f385e9480d7df16c81dc707fd7ba22d23fc41b7b040b21c9e30d1d94fc3dc2"}],"disposition":"BYTE_EXACT_THEORY"},
+    {"historicalPath":"Cross_Domain_State_Preservation/Composition.thy","historicalBlob":"8abce6825acd4c0be4e739cacaaeeb5d649cb368","historicalSha256":"9dd217120df981957c32de0a71bf283cb5248dcde254952e00ee82c4627669a1","current":[{"path":"Cross_Domain_State_Preservation/Composition.thy","blob":"8abce6825acd4c0be4e739cacaaeeb5d649cb368","sha256":"9dd217120df981957c32de0a71bf283cb5248dcde254952e00ee82c4627669a1"}],"disposition":"BYTE_EXACT_THEORY"},
+    {"historicalPath":"Cross_Domain_State_Preservation/DQuencer_Instance.thy","historicalBlob":"5b6e514f54e483670a03227cdfeba52b0473e1e8","historicalSha256":"6d0647966aaf2ff41d0090d4883e829277879a094ebab6702ca6985195622dbd","current":[{"path":"Cross_Domain_State_Preservation/DQuencer_Instance.thy","blob":"5b6e514f54e483670a03227cdfeba52b0473e1e8","sha256":"6d0647966aaf2ff41d0090d4883e829277879a094ebab6702ca6985195622dbd"}],"disposition":"BYTE_EXACT_THEORY"},
+    {"historicalPath":"Cross_Domain_State_Preservation/External_Instance.thy","historicalBlob":"b92e300ecfcfb10cbdfbb02d3a085cdc1bdc9520","historicalSha256":"b9a2086736db22ff93367c911c387d28609c76ed137d5526ec0ebef7db47ad68","current":[{"path":"Cross_Domain_State_Preservation/External_Instance.thy","blob":"b92e300ecfcfb10cbdfbb02d3a085cdc1bdc9520","sha256":"b9a2086736db22ff93367c911c387d28609c76ed137d5526ec0ebef7db47ad68"}],"disposition":"BYTE_EXACT_THEORY"},
+    {"historicalPath":"Cross_Domain_State_Preservation/Functor_Laws.thy","historicalBlob":"b3faf59afa4f88f29451d25cc6c30de92311785b","historicalSha256":"f79fa0111ba88fe48c54b6113dd21233f4d58c5e98fc858151523f2b993beb11","current":[{"path":"Cross_Domain_State_Preservation/Functor_Laws.thy","blob":"b3faf59afa4f88f29451d25cc6c30de92311785b","sha256":"f79fa0111ba88fe48c54b6113dd21233f4d58c5e98fc858151523f2b993beb11"}],"disposition":"BYTE_EXACT_THEORY"},
+    {"historicalPath":"Cross_Domain_State_Preservation/Hierarchy.thy","historicalBlob":"3663865823ae70c8aff95c4a566374c3d4b837d6","historicalSha256":"b28c6260bd010c203d48328c908f000205d9eda99088a01f2a33667b81d87ba8","current":[{"path":"Cross_Domain_State_Preservation/Hierarchy.thy","blob":"3663865823ae70c8aff95c4a566374c3d4b837d6","sha256":"b28c6260bd010c203d48328c908f000205d9eda99088a01f2a33667b81d87ba8"}],"disposition":"BYTE_EXACT_THEORY"},
+    {"historicalPath":"Cross_Domain_State_Preservation/Priority_Resolution.thy","historicalBlob":"e20c60b3a6fb4506225aab3786e689660edc9093","historicalSha256":"0e83ca9855254e583a8aead5233ce27d1b216a92bbe36d42276f77ea2e5fb98f","current":[{"path":"Cross_Domain_State_Preservation/Priority_Resolution.thy","blob":"e20c60b3a6fb4506225aab3786e689660edc9093","sha256":"0e83ca9855254e583a8aead5233ce27d1b216a92bbe36d42276f77ea2e5fb98f"}],"disposition":"BYTE_EXACT_THEORY"},
+    {"historicalPath":"Cross_Domain_State_Preservation/Proof_Automation.thy","historicalBlob":"313207826e6a0bed98587ff5629028864d7907ca","historicalSha256":"4e2bb6e82d9399ef1e8de59f5c67414d484b3484b92026f37b88354f60c6322d","current":[{"path":"Cross_Domain_State_Preservation/Proof_Automation.thy","blob":"313207826e6a0bed98587ff5629028864d7907ca","sha256":"4e2bb6e82d9399ef1e8de59f5c67414d484b3484b92026f37b88354f60c6322d"}],"disposition":"BYTE_EXACT_THEORY"},
+    {"historicalPath":"Cross_Domain_State_Preservation/Regulatory_Instance.thy","historicalBlob":"d4cc06563db428306391e8f6dd3de691d8ae2315","historicalSha256":"94a057046f7e2cfae605eb2f32bd9cfb65cbf050300769171c5ff33c8669c3b6","current":[{"path":"Cross_Domain_State_Preservation/Regulatory_Instance.thy","blob":"d4cc06563db428306391e8f6dd3de691d8ae2315","sha256":"94a057046f7e2cfae605eb2f32bd9cfb65cbf050300769171c5ff33c8669c3b6"}],"disposition":"BYTE_EXACT_THEORY"},
+    {"historicalPath":"Cross_Domain_State_Preservation/State_Preservation.thy","historicalBlob":"5f36ea0fecb3b4e1a23d37688f1646404cbc8778","historicalSha256":"bf52fd23b8c7a9225a6e14e3b32a0de6ec9d211be0c8a7ecaacc6bd317ad0865","current":[{"path":"Cross_Domain_State_Preservation/State_Preservation.thy","blob":"5f36ea0fecb3b4e1a23d37688f1646404cbc8778","sha256":"bf52fd23b8c7a9225a6e14e3b32a0de6ec9d211be0c8a7ecaacc6bd317ad0865"}],"disposition":"BYTE_EXACT_THEORY"},
+    {"historicalPath":"Cross_Domain_State_Preservation/ROOT","historicalBlob":"6c3183f76788faa5fda4171b024c9eb659c3e845","historicalSha256":"ce6d2b0131e449a6d4df23b5cde34b089958a3d59f8512b42b51da23cdadab36","current":[{"path":"Cross_Domain_State_Preservation/ROOT","blob":"518f30ad7c201cb8590172b33d4c4d15b9e46482","sha256":"c9acb92791fc5624b21008ae1ea3412cbb514d6b0568d5455fb49bb009cbbe50"},{"path":"Regulatory_Action_Composition/ROOT","blob":"9ac5878ce0ece963a5fffa0d396e13ec59a6529a","sha256":"ecfdba9c69492160bff760718c5a8c1f0259df40c5754ff18d04d2af2fb01f94"}],"disposition":"SESSION_PACKAGING_SPLIT"},
+    {"historicalPath":"Cross_Domain_State_Preservation/document/root.bib","historicalBlob":"aa2a5a252b056baa2ef6806ce0978435c4fcda74","historicalSha256":"2823e8fff9dfa970d12b7efdd8ff3e88296dc5d62b2aaff3ece6d5a35430d10d","current":[{"path":"Cross_Domain_State_Preservation/document/root.bib","blob":"aa2a5a252b056baa2ef6806ce0978435c4fcda74","sha256":"2823e8fff9dfa970d12b7efdd8ff3e88296dc5d62b2aaff3ece6d5a35430d10d"}],"disposition":"BYTE_EXACT_DOCUMENT_INPUT"},
+    {"historicalPath":"Cross_Domain_State_Preservation/document/root.tex","historicalBlob":"05d284a3e77d083cff2e3b80380a09187f78317a","historicalSha256":"575f96078aad26b55cfacca1daf7717c0cd337f32223385782809a1ee02e7083","current":[{"path":"Cross_Domain_State_Preservation/document/root.tex","blob":"bf39b2aad15cc2c0e63c52802aba583561f9ebfa","sha256":"7dd178be2bdee8364d2a02a0757f0564c6eee0ba4ff469d570babc950744f68e"},{"path":"Regulatory_Action_Composition/document/root.tex","blob":"b316ad24a5882217df7d35a355eeb0bf6d42892e","sha256":"b22c3a24bbf44764ad23105934cf6e3c3e0d6d8a9a23e970f26f2e532181d1f3"}],"disposition":"NON_PROOF_DOCUMENTATION_SPLIT"},
+    {"historicalPath":"Cross_Domain_State_Preservation/Regulatory_Action_Composition.thy","historicalBlob":"a64c73cb8c0bbc6d261ededa90e23080c97b99f4","historicalSha256":"cdbc4c8af4d34b1aa37064cb5a9520e6e67a61f7ccbe0ba0159f0f2f29dd7e69","current":[{"path":"Regulatory_Action_Composition/Regulatory_Action_Composition.thy","blob":"f6fbb773963d8ae7ea6fb90a9711b7e70e58a956","sha256":"f4d0237f722fee27e99f8226c31b5df74b0146e28e0ec7e0af22d2883cfd586e"}],"disposition":"THEORY_PATH_AND_IMPORT_RELOCATION"}
+  ],
+  "semanticComparison": {
+    "byteExactTheoryFiles": 10,
+    "byteExactDocumentInputs": 1,
+    "theoryRelocations": 1,
+    "allowedTheoryRelocationChanges": [
+      "Title comment path",
+      "Qualified import path"
+    ],
+    "sessionPackagingSplits": 1,
+    "nonProofDocumentationSplits": 1,
+    "existingTheoremStatementsChanged": 0,
+    "existingTheoremBodiesChanged": 0
+  },
+  "hostileValidation": {
+    "mappedFileMutationsKilled": 14,
+    "mappedFileMutationsRequired": 14,
+    "theorySemanticMutationsKilled": 1,
+    "theorySemanticMutationsRequired": 1,
+    "overlayMutationsKilled": 3,
+    "overlayMutationsRequired": 3,
+    "overlayMutationClasses": [
+      "missing theory registration",
+      "wrong import",
+      "wrong foundation commit"
+    ]
+  },
+  "nonclaims": [
+    "The session overlay is a temporary build-graph compatibility layer, not a new theorem or proof credit.",
+    "The historical dependency lock and all existing ERC proof sources, statements, receipts, and expected hashes remain unchanged.",
+    "The non-proof document split is identity-pinned but is not asserted to be byte-exact prose equivalence."
+  ]
+}

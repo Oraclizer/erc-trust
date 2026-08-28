@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "obligationId": "STATE-04",
+  "mutationId": "STATE-04-CONFLATE-FROZEN-WITH-RESTRICTION",
+  "status": "SOURCE_PLAN_PENDING_PINNED_SOLC_AND_KEVM",
+  "canonicalSource": {
+    "path": "implementation/src/TrustToken.sol",
+    "sha256": "dbe06bb25a2b62913bd6428e1de32ba007a214e24ac45f4fd2c0fb55ea22c96a"
+  },
+  "uniqueAnchor": "    function getFrozenTokens(address account) external view returns (uint256) {\n        return _frozen[account];\n    }",
+  "replacement": "    function getFrozenTokens(address account) external view returns (uint256) {\n        return _restricted[account] ? 0 : _frozen[account]; // STATE-04 semantic mutant\n    }",
+  "discriminatingPrecondition": {
+    "frozen": "0 < FROZEN < 2^256",
+    "restrictedStorageWord": 1
+  },
+  "expectedSemanticDifference": "The canonical runtime returns FROZEN even when restriction is active; the mutant returns zero on the same exact pre-state.",
+  "requiredNegativeResult": {
+    "expectedExitCode": 1,
+    "terminalMismatchRequired": true,
+    "witnessTokens": ["FROZEN", "#hashedLocation(\"Solidity\", 6, SUBJECT_ID)", "#buf(32, 0)"],
+    "forbiddenClassifications": ["PASS", "TIMEOUT", "CANCELLED", "BACKEND_ERROR", "SOLVER_UNKNOWN"]
+  },
+  "plannedArtifacts": [
+    "evidence/end-to-end-refinement/row-bundles/state-04/negative/standard-json-input.json",
+    "evidence/end-to-end-refinement/row-bundles/state-04/negative/standard-json-output.json",
+    "evidence/end-to-end-refinement/row-bundles/state-04/negative/TrustToken.STATE-04-mutant.sol",
+    "evidence/end-to-end-refinement/row-bundles/state-04/negative/TrustToken.runtime.hex",
+    "formal/kevm/row-bundles/state-04/negative/mutant-runtime-bridge.k",
+    "formal/kevm/row-bundles/state-04/negative/mutant-runtime-verification.k"
+  ],
+  "claimBoundary": "This source mutation plan is not compiled negative evidence and does not discharge STATE-04."
+}

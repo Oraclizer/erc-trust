@@ -1,0 +1,113 @@
+{
+  "compilerArtifacts": {
+    "fileSha256": "5e341d1a1b4442e8f3e7e90b268fb8a0870fe9333eed82d2ad59b91ec0c67832",
+    "path": "evidence/end-to-end-refinement/runtime-binding/native/bridge-artifacts.json",
+    "runtimeTemplateSha256": "e81429838a7274b63c0a53468d8747c887077408a2e504a181460adb400466ce"
+  },
+  "compilerBinding": {
+    "deterministicRootSha256": "44c62545b9545741bce98b313f412914bc976430c5596de6ad735f68d81cd4ab",
+    "manifestPath": "evidence/end-to-end-refinement/runtime-binding/manifest.json",
+    "manifestSha256": "97e4a349ff6667f01fb67515998c283383731d69a2fdaa00c06e260c11fcc5bb"
+  },
+  "compilerOutput": {
+    "fileSha256": "9697548b65ac0b4fdeff17deca78d9e11e49676dd0d78bd9d94907b24d5ac34e",
+    "immutableReferences": {
+      "622": [
+        {
+          "length": 32,
+          "start": 6970
+        }
+      ],
+      "626": [
+        {
+          "length": 32,
+          "start": 517
+        },
+        {
+          "length": 32,
+          "start": 1580
+        },
+        {
+          "length": 32,
+          "start": 8522
+        },
+        {
+          "length": 32,
+          "start": 19822
+        }
+      ]
+    },
+    "path": "evidence/end-to-end-refinement/runtime-binding/native/standard-json-output.json",
+    "subject": "implementation/src/TrustToken.sol:TrustToken",
+    "templateByteLength": 24142,
+    "templateSha256": "e81429838a7274b63c0a53468d8747c887077408a2e504a181460adb400466ce"
+  },
+  "constructorResolution": {
+    "deterministicRootSha256": "b5ce284d6b7017a1feff3244bb67f175303660d86348ce93dbd8065bd39d3a2d",
+    "fixturePath": "evidence/end-to-end-refinement/runtime-binding/resolved/fixture.json",
+    "fixtureSha256": "59b93ba41941f61ef357be99d240f6a274730be25ccdbb1a7d686be68ea938f6",
+    "immutablePatchExact": true,
+    "patchLocations": [
+      {
+        "astId": 626,
+        "encodedWordSha256": "2802721c8eadcd4b51bef9f2b29b39041c520de59b341e577f51789c4556284b",
+        "length": 32,
+        "name": "governor",
+        "start": 517
+      },
+      {
+        "astId": 626,
+        "encodedWordSha256": "2802721c8eadcd4b51bef9f2b29b39041c520de59b341e577f51789c4556284b",
+        "length": 32,
+        "name": "governor",
+        "start": 1580
+      },
+      {
+        "astId": 622,
+        "encodedWordSha256": "c03eee8aa25e1b9fd36a28c6d3321bd0d0534a72034c40fcd9d75c70a610037e",
+        "length": 32,
+        "name": "decimals",
+        "start": 6970
+      },
+      {
+        "astId": 626,
+        "encodedWordSha256": "2802721c8eadcd4b51bef9f2b29b39041c520de59b341e577f51789c4556284b",
+        "length": 32,
+        "name": "governor",
+        "start": 8522
+      },
+      {
+        "astId": 626,
+        "encodedWordSha256": "2802721c8eadcd4b51bef9f2b29b39041c520de59b341e577f51789c4556284b",
+        "length": 32,
+        "name": "governor",
+        "start": 19822
+      }
+    ],
+    "resolvedRuntimeByteLength": 24142,
+    "resolvedRuntimePath": "evidence/end-to-end-refinement/runtime-binding/resolved/native/TrustToken.hex",
+    "resolvedRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d"
+  },
+  "kRuntimeBinding": {
+    "canonicalBridgePath": "formal/kevm/generated/trust-runtime-bridge.k",
+    "canonicalBridgeSha256": "bf8d587f7644d002d05bc7ab16806a39a3354d216cdcad53f504a9bb8b99d836",
+    "macroRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "runtimeMacro": "#trustTrustTokenRuntime"
+  },
+  "obligationId": "ART-02",
+  "schemaVersion": 1,
+  "semanticMutation": {
+    "branch": "empty-calldata dispatcher guard",
+    "byteOffset": 17,
+    "canonicalOpcode": "0xfd",
+    "expectedSemanticDifference": "EVMC_REVERT becomes EVMC_SUCCESS while the unchanged claim still requires EVMC_REVERT",
+    "kind": "EXECUTABLE_SEMANTIC_MUTANT",
+    "mutantBridgePath": "formal/kevm/row-bundles/art-02/generated/mutant-runtime-bridge.k",
+    "mutantBridgeSha256": "982014fe628aa18e90f9fee49fbe9ea7a3b2f302b452c8eaf47c3a6a75988ee7",
+    "mutantOpcode": "0xf3",
+    "mutantRuntimeSha256": "9a48c6ea9d5b6341e8e62e731622305a11e8080e1d90644771dc53bbfb90f6cb",
+    "mutantVerificationPath": "formal/kevm/row-bundles/art-02/generated/mutant-runtime-verification.k",
+    "mutantVerificationSha256": "e380844cea44b450c03fc3d0f345e22980801b96fe0270fa921c667a8e062bf9",
+    "mutationId": "ART-02-MUT-RUNTIME-BYTE-001"
+  }
+}

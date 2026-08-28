@@ -1,0 +1,64 @@
+{
+  "currentAct01RequiredProfiles": [
+    "ISABELLE-ABSTRACT-BRIDGE-v2",
+    "CERTORA-FINANCIAL-CORE-v2",
+    "KEVM-LEGACY-HASKELL-STRICT-v2"
+  ],
+  "deterministicRootSha256": "ad1b8bd9401ca977ca0a896ec5f89c5c62778c16012e4c08b142712474150829",
+  "kind": "ERC_TRUST_HYBRID_TCB_INDEX_V2",
+  "legacyLockRef": {
+    "immutable": true,
+    "path": "formal/kevm/dependencies.lock.json",
+    "sha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196"
+  },
+  "noncreditProfiles": [
+    "HALMOS-PREFLIGHT-v2",
+    "KEVM-BOOSTER-DISCOVERY-v2",
+    "EQUIVM-PILOT-v2"
+  ],
+  "profileSet": "ERC_TRUST_M4_NATIVE_FINANCIAL_CORE_V2",
+  "profiles": [
+    {
+      "bytes": 5621,
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v2/profiles/ISABELLE-ABSTRACT-BRIDGE-v2.json",
+      "profileId": "ISABELLE-ABSTRACT-BRIDGE-v2",
+      "sha256": "017b26ab481c506bc068e056e81565207f0071910a2add34ed12d67200c2e1f4"
+    },
+    {
+      "bytes": 6594,
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v2/profiles/CERTORA-FINANCIAL-CORE-v2.json",
+      "profileId": "CERTORA-FINANCIAL-CORE-v2",
+      "sha256": "60a53edd76ea94c965da35279abccc165cf5d5fed796e9c20b37e3552d922e8e"
+    },
+    {
+      "bytes": 3091,
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v2/profiles/HALMOS-PREFLIGHT-v2.json",
+      "profileId": "HALMOS-PREFLIGHT-v2",
+      "sha256": "7df2cd6ba5fc585c47b6f06c3696f562c2793cce60a0820e4fd9706593110668"
+    },
+    {
+      "bytes": 5546,
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v2/profiles/KEVM-LEGACY-HASKELL-STRICT-v2.json",
+      "profileId": "KEVM-LEGACY-HASKELL-STRICT-v2",
+      "sha256": "03b0235db16800d41301cf8b0957e3df4a2a974c1b29aa33b1ed013ed80d2657"
+    },
+    {
+      "bytes": 3117,
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v2/profiles/KEVM-BOOSTER-DISCOVERY-v2.json",
+      "profileId": "KEVM-BOOSTER-DISCOVERY-v2",
+      "sha256": "ffe07ab68a23d4edc558b1453d904edef924efea240c5b8c493e26b80e8baf59"
+    },
+    {
+      "bytes": 2968,
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v2/profiles/EQUIVM-PILOT-v2.json",
+      "profileId": "EQUIVM-PILOT-v2",
+      "sha256": "27811b4bebadc2850b3db191ecc966b0b0e79a6267090b8b8d65910aba5f8e37"
+    }
+  ],
+  "requiredProfileCount": 6,
+  "schemaRef": {
+    "path": "evidence/end-to-end-refinement/hybrid-tcb-v2/profile-schema-v2.json",
+    "sha256": "96fb0b19f59aa7deb1cd41718792d460d3fc57bf0db253bd1a7ded4f08bfe7db"
+  },
+  "schemaVersion": 2
+}

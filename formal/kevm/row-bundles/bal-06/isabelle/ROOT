@@ -1,0 +1,6 @@
+session BAL_06_Row = ERC_TRUST +
+  options [timeout = 1200]
+  theories
+    BAL_06_Bridge_Generated
+    BAL_06_Closure
+    BAL_06_Proof_Audit

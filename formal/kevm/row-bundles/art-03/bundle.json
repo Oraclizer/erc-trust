@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "obligationId": "ART-03",
+  "requiredProperty": "constructor_resolved_local_runtime_is_hash_bound",
+  "proofSpec": {
+    "path": "formal/kevm/row-bundles/art-03/claim.k",
+    "module": "TRUST-ART-03-CONSTRUCTOR-RESOLVED-RUNTIME-BINDING-SPEC",
+    "claimId": "d129ca69ab655f58e27dcdddad68ab23d6e4b2a3281c03305e3ff7fe1508cf97",
+    "sha256": "a48c5c43eefbe63e454e3807bc04c5e6d827c3dbcf91ac1ec0f9206b4359c9d3"
+  },
+  "positive": {
+    "definitionKoreSha256": "bac21e3e90990c4c060bf77ecfe161a70d18900c631dcea5a37343765e6b3e33",
+    "compiledJsonSha256": "5ba6257f64024f7eff4ec99c569db9f9477fd5d2a625f44ed04e091fdf795a50",
+    "expectedExitCode": 0,
+    "expectedGraph": {
+      "nodes": 4,
+      "edges": 2,
+      "covers": 1,
+      "terminal": 0,
+      "stuck": 0,
+      "vacuous": 0,
+      "pending": 0,
+      "admitted": false
+    },
+    "witnessTokens": [
+      "EVMC_SUCCESS_NETWORK_EndStatusCode",
+      "b\\\"\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x12\\\""
+    ],
+    "forbiddenLogTokens": [
+      "Runtime error",
+      "Proof crashed",
+      "timed out",
+      "timeout",
+      "canceled",
+      "cancelled",
+      "SMT solver error",
+      "BackendError"
+    ]
+  },
+  "negative": {
+    "definitionKoreSha256": "fbfa8009194d88b8d7cb0f4eb05f2ab2ca8ba365b47d9e06f7435788741881b8",
+    "compiledJsonSha256": "46f718498699763d3671c7b0ec36af6ae2fe3d25f831e4e601f56e1bf7dc2757",
+    "expectedExitCode": 1,
+    "expectedGraph": {
+      "nodes": 401,
+      "edges": 32,
+      "covers": 0,
+      "terminal": 1,
+      "stuck": 0,
+      "vacuous": 0,
+      "pending": 262,
+      "admitted": false
+    },
+    "witnessTokens": [
+      "EVMC_SUCCESS_NETWORK_EndStatusCode",
+      "b\\\"\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x13\\\""
+    ],
+    "claimRequirementTokens": [
+      "#parseByteStack(\"0x0000000000000000000000000000000000000000000000000000000000000012\")"
+    ],
+    "forbiddenLogTokens": [
+      "Runtime error",
+      "Proof crashed",
+      "timed out",
+      "timeout",
+      "canceled",
+      "cancelled",
+      "SMT solver error",
+      "BackendError"
+    ],
+    "mutationId": "ART-03-MUT-DECIMALS-IMMUTABLE-001",
+    "mutationKind": "EXECUTABLE_SEMANTIC_MUTANT"
+  },
+  "bridge": {
+    "path": "formal/kevm/row-bundles/art-03/bridge/row-bridge.json",
+    "sha256": "42aef7a452c61ae6689a2d8c1da6fd514c869044f7af846ff8110bbf707a7b72",
+    "reverseCheck": "formal/kevm/row-bundles/art-03/reverse-check.py"
+  },
+  "isabelle": {
+    "theoryPath": "formal/kevm/row-bundles/art-03/isabelle/ART_03_Constructor_Resolved_Runtime_Binding.thy",
+    "theoremName": "constructor_resolved_local_runtime_is_hash_bound",
+    "sourceSha256": "e9c9fcd3d2d47b9fa56c317ad13e64f496bcb18540b20420ba8c445b8b06fc28",
+    "session": "ERC_TRUST_ART_03",
+    "rowManifestPath": "formal/kevm/row-bundles/art-03/bridge/row-manifest.json",
+    "rowManifestSha256": "0fccdf0f993830c417a41ffa4989f1121af4a730d981d365774cdaabf2cbe60a",
+    "bannedTokens": [
+      "sorry",
+      "oops",
+      "axiomatization",
+      "by eval",
+      "native_decide",
+      "skip_proof"
+    ]
+  },
+  "residualNonclaims": [
+    "The row binds the local constructor fixture, immutable patch, and exact resolved runtime; it does not prove solc correctness or identify a live deployment.",
+    "The expected-negative run records a terminal ABI uint8(19) output counterexample; its fail-fast pending branches are not discharged proof branches.",
+    "This row bundle discharges only ART-03 and makes no claim about ART-04, ART-06, ART-07, or the remaining end-to-end refinement obligations."
+  ]
+}

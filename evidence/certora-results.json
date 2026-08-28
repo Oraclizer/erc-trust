@@ -1,0 +1,40 @@
+{
+  "schema": "erc-trust-certora-results-v1",
+  "candidate": "0.1.0-candidate.1",
+  "toolchain": {
+    "certoraCli": "8.17.1",
+    "solidity": "0.8.36+commit.8a079791"
+  },
+  "core": {
+    "configuration": "implementation/certora/TrustToken.conf",
+    "outputNamespace": "10491299",
+    "runHash": "3c1a8855237a4fdea3d068b0128dcc53",
+    "url": "https://prover.certora.com/output/10491299/3c1a8855237a4fdea3d068b0128dcc53",
+    "processExit": 0,
+    "terminalResult": "No errors found by Prover!",
+    "rules": {
+      "total": 7,
+      "success": 7,
+      "fail": 0,
+      "sanityFail": 0,
+      "timeout": 0,
+      "unknown": 0
+    },
+    "ruleSanity": "basic"
+  },
+  "inventory": {
+    "configuration": "implementation/certora/TrustToken.inventory.conf",
+    "outputNamespace": "10491299",
+    "runHash": "8c8fa40539fb42d1bdf86c95f64a8c26",
+    "url": "https://prover.certora.com/output/10491299/8c8fa40539fb42d1bdf86c95f64a8c26",
+    "processExit": 0,
+    "terminalResult": "No errors found by Prover!",
+    "externalMutatorInstances": {
+      "total": 12,
+      "classified": 12,
+      "unclassified": 0
+    },
+    "ruleSanity": "none"
+  },
+  "claimBoundary": "Bounded CVL results for the exact candidate source and configuration; not a full implementation, deployment, or production-correctness proof."
+}

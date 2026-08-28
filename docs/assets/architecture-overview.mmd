@@ -1,0 +1,33 @@
+%% Source definition for docs/assets/architecture-overview.svg
+%%
+%% The rendered diagram is committed as a static SVG rather than embedded as a
+%% GitHub Mermaid block. GitHub renders a Mermaid block inside an iframe whose
+%% src carries a URL fragment, and the browser scrolls that iframe into view on
+%% load, which moves the page away from the top. Keep this file and the SVG in
+%% step when the diagram changes.
+
+flowchart TB
+    subgraph B["1 · Command boundary"]
+        direction LR
+        O["Operator or delegated authority"] --> E["Canonical typed request"]
+    end
+
+    subgraph G["2 · Fail-closed gate"]
+        direction LR
+        V["Shape · replay · epochs<br/>policy · authority"] --> D["Code-hash-bound<br/>dependency reads"]
+        D -->|"rejected / unavailable"| X["Revert<br/>no authorization or state change"]
+    end
+
+    subgraph T["3 · Typed execution"]
+        direction LR
+        K["TRUST transition kernel"] --> P{"Execution profile"}
+        P -->|"Native Full"| N["Native token<br/>balances + TRUST state"]
+        P -->|"ERC-3643 Verified Full"| A["Adapter: TRUST state + receipts<br/>upstream token: balances"]
+    end
+
+    R["4 · Canonical receipt emitted last"]
+
+    E --> V
+    D -->|"applicable"| K
+    N --> R
+    A --> R

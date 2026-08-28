@@ -1,0 +1,4 @@
+session ERC_TRUST_ABI_03 = ERC_TRUST +
+  options [timeout = 1200]
+  theories
+    ABI_03_Trailing_Calldata_Reverts_And_Stutters

@@ -1,0 +1,224 @@
+{
+  "schemaVersion": 1,
+  "scope": "TrustFreezePilot external state-changing entrypoints",
+  "entrypoints": {
+    "approve(address,uint256)": {
+      "internalCalls": [],
+      "writes": [
+        "_allowances[msg.sender][spender]"
+      ],
+      "events": [
+        "Approval"
+      ],
+      "failureClasses": [
+        "TrustRejected(REASON_ORDINARY_GATE)"
+      ]
+    },
+    "transfer(address,uint256)": {
+      "internalCalls": [
+        "_ordinaryTransfer",
+        "_checkOrdinaryTransfer",
+        "canTransfer",
+        "_move"
+      ],
+      "writes": [
+        "_balances[msg.sender]",
+        "_balances[to]"
+      ],
+      "events": [
+        "Transfer"
+      ],
+      "invariants": [
+        "amount <= balance - frozen when frozen < balance",
+        "zero endpoints are rejected",
+        "totalSupply and frozen state are unchanged"
+      ]
+    },
+    "transferFrom(address,address,uint256)": {
+      "internalCalls": [
+        "_checkOrdinaryTransfer",
+        "canTransfer",
+        "_move"
+      ],
+      "writes": [
+        "_allowances[from][msg.sender]",
+        "_balances[from]",
+        "_balances[to]"
+      ],
+      "events": [
+        "Transfer"
+      ],
+      "invariants": [
+        "allowance is checked before decrement",
+        "the same frozen-floor gate as transfer is used",
+        "failed calls stutter complete pilot storage"
+      ]
+    },
+    "executeRegulatoryAction(ActionRequest,AuthorizationEnvelope)": {
+      "internalCalls": [
+        "_assessAction",
+        "_assessCommon",
+        "_validAuthorization",
+        "_assessBoundPolicy",
+        "_requireApplicable",
+        "_applyFreeze",
+        "_observationHash",
+        "_receiptHash"
+      ],
+      "writes": [
+        "_authorizationStatuses",
+        "_nonceStatuses",
+        "_actions",
+        "_frozenAbsolute",
+        "_cases",
+        "_receipts"
+      ],
+      "eventsInOrder": [
+        "Frozen",
+        "RegulatoryActionApplied"
+      ],
+      "failureClasses": [
+        "TrustRejected",
+        "TrustOperationalFailure"
+      ]
+    },
+    "prepareRegulatoryAction(ActionRequest,AuthorizationEnvelope)": {
+      "internalCalls": [
+        "_assessAction",
+        "_assessCommon",
+        "_validAuthorization",
+        "_assessBoundPolicy",
+        "_requireApplicable",
+        "computeRouteKey"
+      ],
+      "writes": [
+        "_authorizationStatuses=PREPARED",
+        "_nonceStatuses=PREPARED",
+        "_actions=PREPARED",
+        "_routeAuthorizations",
+        "_preparedRoutes"
+      ],
+      "events": [],
+      "routeBinding": [
+        "actor",
+        "setFrozenTokens selector",
+        "exact calldata hash",
+        "policy binding hash",
+        "authority epoch",
+        "policy epoch"
+      ]
+    },
+    "setFrozenTokens(address,uint256)": {
+      "internalCalls": [
+        "computeRouteKey",
+        "_assessBoundPolicy",
+        "_requireApplicable",
+        "_applyFreeze",
+        "_observationHash",
+        "_receiptHash"
+      ],
+      "deletesBeforeApply": [
+        "_routeAuthorizations[routeKey]",
+        "_preparedRoutes[authorizationId]"
+      ],
+      "writes": [
+        "_authorizationStatuses=CONSUMED",
+        "_nonceStatuses=CONSUMED",
+        "_actions=CONSUMED",
+        "_frozenAbsolute",
+        "_cases",
+        "_receipts"
+      ],
+      "eventsInOrder": [
+        "Frozen",
+        "RegulatoryActionApplied"
+      ],
+      "invariants": [
+        "exact caller and calldata only",
+        "one consumable route ticket",
+        "current binding and epochs only",
+        "canonical receipt is the final emitted pilot event"
+      ]
+    },
+    "executeRegulatoryReversal(ReversalRequest,AuthorizationEnvelope)": {
+      "internalCalls": [
+        "_assessReversal",
+        "_validAuthorization",
+        "_assessBoundPolicy",
+        "_requireApplicable",
+        "_applyUnfreeze",
+        "_observationHash",
+        "_receiptHash"
+      ],
+      "writes": [
+        "_authorizationStatuses",
+        "_nonceStatuses",
+        "_actions",
+        "_frozenAbsolute",
+        "_cases",
+        "_receipts"
+      ],
+      "eventsInOrder": [
+        "Frozen",
+        "RegulatoryReversalApplied"
+      ],
+      "scope": "UNFREEZE only"
+    },
+    "cancelAuthorization(bytes32)": {
+      "internalCalls": [
+        "_nonceKey"
+      ],
+      "writes": [
+        "_authorizationStatuses=CANCELLED",
+        "_nonceStatuses=CANCELLED",
+        "_actions.status=CANCELLED"
+      ],
+      "deletes": [
+        "_routeAuthorizations[prepared.routeKey]",
+        "_preparedRoutes[authorizationId]"
+      ],
+      "events": [
+        "AuthorizationCancelled"
+      ]
+    },
+    "rebindPolicy(address,bytes32,uint256)": {
+      "internalCalls": [
+        "_readPolicyConfiguration",
+        "_computeBindingHash"
+      ],
+      "writes": [
+        "_authorizationStatuses=CONSUMED",
+        "_nonceStatuses=CONSUMED",
+        "policy",
+        "policyCodeId",
+        "configurationDigest",
+        "policyEpoch",
+        "bindingHash"
+      ],
+      "events": [
+        "TrustBindingChanged"
+      ],
+      "invariants": [
+        "authority-only",
+        "governance authorization and nonce are one-use",
+        "old staged tickets become unreachable under the new binding"
+      ]
+    }
+  },
+  "policyBoundary": {
+    "callType": "STATICCALL",
+    "gasLimit": 100000,
+    "preconditions": [
+      "runtime codehash equals bound policyCodeId",
+      "configurationDigest can be read and equals the bound value"
+    ],
+    "responseChecks": [
+      "exactly 160 return bytes",
+      "outcome is in range",
+      "command digest echo matches",
+      "binding hash echo matches"
+    ],
+    "rejectedOutcome": "TrustRejected and complete pilot-storage stutter",
+    "operationalFailureOutcome": "TrustOperationalFailure and complete pilot-storage stutter"
+  }
+}

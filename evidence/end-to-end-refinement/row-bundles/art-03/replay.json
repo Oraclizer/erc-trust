@@ -1,0 +1,142 @@
+{
+  "authoritativeFreshReplayRequired": false,
+  "bridge": {
+    "reverseCheck": {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-03/artifacts/bridge-reverse-check.json",
+      "sha256": "22e63fb00cb3fed56af1b1fae808281a8a7fa2861de5a2b874c4a9c0c9e8de45"
+    },
+    "source": {
+      "path": "formal/kevm/row-bundles/art-03/bridge/row-bridge.json",
+      "sha256": "42aef7a452c61ae6689a2d8c1da6fd514c869044f7af846ff8110bbf707a7b72"
+    }
+  },
+  "bundle": {
+    "path": "formal/kevm/row-bundles/art-03/bundle.json",
+    "sha256": "63bab394faca46a81ee718323fa1a03bd5a42474d1e4d8dff2c1b79cf3cc15ec"
+  },
+  "bundleSchemaValidation": {
+    "path": "evidence/end-to-end-refinement/row-bundles/art-03/artifacts/bundle-schema-validation.json",
+    "sha256": "fbaee5fb7860b966b911f66bc8a27c237a1760d54575f61686731975840f4e9c"
+  },
+  "claimId": "d129ca69ab655f58e27dcdddad68ab23d6e4b2a3281c03305e3ff7fe1508cf97",
+  "createdAtUtc": "2026-08-04T12:33:37Z",
+  "curatedEvidenceDirectory": "evidence/end-to-end-refinement/row-bundles/art-03/artifacts",
+  "definitions": {
+    "negative": {
+      "compiledJsonSha256": "46f718498699763d3671c7b0ec36af6ae2fe3d25f831e4e601f56e1bf7dc2757",
+      "definitionKoreSha256": "fbfa8009194d88b8d7cb0f4eb05f2ab2ca8ba365b47d9e06f7435788741881b8",
+      "mutationId": "ART-03-MUT-DECIMALS-IMMUTABLE-001"
+    },
+    "positive": {
+      "compiledJsonSha256": "5ba6257f64024f7eff4ec99c569db9f9477fd5d2a625f44ed04e091fdf795a50",
+      "definitionKoreSha256": "bac21e3e90990c4c060bf77ecfe161a70d18900c631dcea5a37343765e6b3e33"
+    }
+  },
+  "isabelle": {
+    "closureReport": {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-03/artifacts/isabelle-closure-report.json",
+      "sha256": "ffb45f42c3e6fbf1aefe42077846364715c1a941394747c4c35a55fd55371923"
+    },
+    "oracleDependencyCount": 0,
+    "rowManifest": {
+      "path": "formal/kevm/row-bundles/art-03/bridge/row-manifest.json",
+      "sha256": "0fccdf0f993830c417a41ffa4989f1121af4a730d981d365774cdaabf2cbe60a"
+    },
+    "session": "ERC_TRUST_ART_03",
+    "theoremName": "constructor_resolved_local_runtime_is_hash_bound",
+    "theory": {
+      "path": "formal/kevm/row-bundles/art-03/isabelle/ART_03_Constructor_Resolved_Runtime_Binding.thy",
+      "sha256": "e9c9fcd3d2d47b9fa56c317ad13e64f496bcb18540b20420ba8c445b8b06fc28"
+    }
+  },
+  "negative": {
+    "analysis": {
+      "graph": {
+        "admitted": false,
+        "covers": 0,
+        "edges": 32,
+        "nodes": 401,
+        "pending": 262,
+        "stuck": 0,
+        "terminal": 1,
+        "vacuous": 0
+      },
+      "side": "negative",
+      "status": "PASS"
+    },
+    "backendRuntimeError": false,
+    "elapsedWallSeconds": 957,
+    "kcfg": {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-03/artifacts/negative-kcfg.json",
+      "sha256": "4978822a5901301fe32e7d757d633e7628003cbfd9c611fa503c71c83ed8c438"
+    },
+    "log": {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-03/artifacts/negative.log",
+      "sha256": "3a62124b493ac59eb9052349325ca0198e59f6d9d1611ca2a2a6b777c5aad728"
+    },
+    "proof": {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-03/artifacts/negative-proof.json",
+      "sha256": "e5e629941f292c9c962b9af5aba4259ed9cbd66a26c4430f10b60b0b549a1b17"
+    },
+    "terminalWitness": {
+      "claimRequirementTokens": [
+        "#parseByteStack(\"0x0000000000000000000000000000000000000000000000000000000000000012\")"
+      ],
+      "nodeId": 139,
+      "path": "evidence/end-to-end-refinement/row-bundles/art-03/artifacts/negative-terminal-node-139.json",
+      "sha256": "07569fc36c3ace9975276ac6a5c100799ff0ddc34abaa6c595aae6e16f419f96",
+      "tokens": [
+        "EVMC_SUCCESS_NETWORK_EndStatusCode",
+        "b\\\"\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x00\\\\x13\\\""
+      ]
+    }
+  },
+  "obligationId": "ART-03",
+  "positive": {
+    "analysis": {
+      "graph": {
+        "admitted": false,
+        "covers": 1,
+        "edges": 2,
+        "nodes": 4,
+        "pending": 0,
+        "stuck": 0,
+        "terminal": 0,
+        "vacuous": 0
+      },
+      "side": "positive",
+      "status": "PASS"
+    },
+    "elapsedWallSeconds": 470,
+    "kcfg": {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-03/artifacts/positive-kcfg.json",
+      "sha256": "0908f3c700d626ae86b23f57eac8564adccf3a879d8e1068d50dc2140d6e1828"
+    },
+    "log": {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-03/artifacts/positive.log",
+      "sha256": "da8c4555279594c529844b0d8312f4e1be0d0e13fa54fb3340bae79bc45f2b38"
+    },
+    "proof": {
+      "path": "evidence/end-to-end-refinement/row-bundles/art-03/artifacts/positive-proof.json",
+      "sha256": "8293849fc966317a8409db668d91ca87f9f286b743e31bf7b58a8f222ec46c80"
+    }
+  },
+  "proofSpec": {
+    "claimId": "d129ca69ab655f58e27dcdddad68ab23d6e4b2a3281c03305e3ff7fe1508cf97",
+    "module": "TRUST-ART-03-CONSTRUCTOR-RESOLVED-RUNTIME-BINDING-SPEC",
+    "path": "formal/kevm/row-bundles/art-03/claim.k",
+    "sha256": "a48c5c43eefbe63e454e3807bc04c5e6d827c3dbcf91ac1ec0f9206b4359c9d3"
+  },
+  "residualNonclaims": [
+    "The row binds the local constructor fixture, immutable patch, and exact resolved runtime; it does not prove solc correctness or identify a live deployment.",
+    "The expected-negative run records a terminal ABI uint8(19) output counterexample; its fail-fast pending branches are not discharged proof branches.",
+    "This row bundle discharges only ART-03 and makes no claim about ART-04, ART-06, ART-07, or the remaining end-to-end refinement obligations."
+  ],
+  "runner": {
+    "executedSha256": "1ab935de0dd7b40bb108955b60c232f6fa3afdeea62e6eb380a2fe26a0a3dcc1",
+    "path": "formal/kevm/row-bundles/run-row-bundle.sh",
+    "sourceSha256": "1ab935de0dd7b40bb108955b60c232f6fa3afdeea62e6eb380a2fe26a0a3dcc1"
+  },
+  "schemaVersion": 2,
+  "status": "PASS"
+}

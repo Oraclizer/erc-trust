@@ -1,0 +1,4 @@
+session ERC_TRUST_ART_05 = ERC_TRUST +
+  options [timeout = 1200]
+  theories
+    ART_05_Theory_Import_Closure_Binding

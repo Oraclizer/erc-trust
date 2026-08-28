@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 2,
+  "kind": "ERC_TRUST_PUBLIC_EXACT_RUNTIME_FREEZE_V1",
+  "status": "FROZEN_FOR_CURRENT_PROFILE_REPLAY",
+  "date": "2026-08-28",
+  "sourceProvenance": {
+    "archiveRepository": "Oraclizer/erc-trust-archive",
+    "archiveCommit": "366b625dac90d4584432d7d6939629434734ecb8",
+    "archiveTree": "25a1710c865143eb70f0da3d185ebdc3149214b0",
+    "historicalFreezeSha256": "ba18d99f630bad67faee824ec83f1071f478a393639faa087be739d880164d67",
+    "privateDevelopmentCoordinatesRemoved": true
+  },
+  "runtimes": {
+    "native": {
+      "owner": "TrustToken",
+      "sourcePath": "implementation/src/TrustToken.sol",
+      "sourceSha256": "dbe06bb25a2b62913bd6428e1de32ba007a214e24ac45f4fd2c0fb55ea22c96a",
+      "hexPath": "evidence/end-to-end-refinement/runtime-binding/resolved/native/TrustToken.hex",
+      "hexArtifactSha256": "1c2e73fa137a50993301eacf9e70aa73623a5d4673c58cadedb60e12c273f44f",
+      "runtimeBytesSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+      "runtimeBytes": 24142
+    },
+    "verifiedProfile": {
+      "owner": "ERC3643TrustAdapter",
+      "sourcePath": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+      "sourceSha256": "d8b2de891e5ef9203df72aee6025b4accda7819cb27b35684a1ab81471ef144d",
+      "hexPath": "evidence/end-to-end-refinement/runtime-binding/resolved/verified-profile/ERC3643TrustAdapter.hex",
+      "hexArtifactSha256": "297626267794b773a54c486a3b8529def9107353daa63e0da344d4c6dd7cb6a4",
+      "runtimeBytesSha256": "0c873ae5756cf6a3e3ab1317af7c09a39391640b3c54bef4b84b091042d9cf4b",
+      "runtimeBytes": 16398
+    }
+  },
+  "constructorAndCompilerBinding": {
+    "manifestPath": "evidence/end-to-end-refinement/runtime-binding/manifest-public-v1.json",
+    "manifestSha256": "596bbd73bf24ebf397a6afbd7453219db931618283814d7c46c062c9e9bbfefb",
+    "resolvedFixturePath": "evidence/end-to-end-refinement/runtime-binding/resolved/fixture.json",
+    "resolvedFixtureSha256": "59b93ba41941f61ef357be99d240f6a274730be25ccdbb1a7d686be68ea938f6"
+  },
+  "driftRule": {
+    "sourceOrRuntimeChange": "Invalidate this freeze and reopen every downstream row that names the changed source/runtime. A native runtime byte change also reopens the six existing exact-runtime-bound discharges.",
+    "expectedHashOverwrite": false,
+    "automaticRuntimeStrengthening": false
+  },
+  "nonclaims": [
+    "The runtime freeze does not prove compiler correctness, constructor execution, deployment identity, or live topology.",
+    "Historical feasibility and process receipts remain in the private archive and are not public replay inputs.",
+    "Expected runtime, source, compiler, and artifact hashes are preserved without replacement."
+  ]
+}

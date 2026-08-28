@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_C5_TERMINAL_RECEIPT_V1",
+  "packageId": "C5",
+  "status": "PASS_C5_TERMINAL_RUNTIME_QUALIFICATION",
+  "terminal": true,
+  "identity": {
+    "nativeRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "productionSource": {
+      "path": "implementation/src/TrustToken.sol",
+      "sha256": "dbe06bb25a2b62913bd6428e1de32ba007a214e24ac45f4fd2c0fb55ea22c96a"
+    },
+    "package": {
+      "path": "evidence/end-to-end-refinement/reusable-summaries-v1/packages/c5-reversal-lifo-v1.json",
+      "sha256": "43022664bd1520567e236cc0a7bf1032ea2d297c54a2abc8a973831105719e2e"
+    },
+    "spec": {
+      "path": "implementation/certora/TrustC5Reversal.spec",
+      "sha256": "0e3d22d4869045d9816ce76b88a20db10cadc8b9bac6dce60f27e8773d56f2fc"
+    },
+    "canonicalHarness": {
+      "path": "implementation/test/mocks/TrustTokenC5ReversalHarness.sol",
+      "sha256": "15418789ee5cc65af0dca279b257933c2e6edd0b94bdf6599e46698b0d33af46"
+    },
+    "formulationVerifier": {
+      "path": "scripts/verify-c5-reversal-formulation-v1.mjs",
+      "sha256": "774b50f307d34bce62358be5bf438fd28c7224408019813d4712038b6cacf20e"
+    },
+    "c4Dependency": {
+      "path": "evidence/end-to-end-refinement/c4-terminal-receipt-v1.json",
+      "sha256": "c0f7745147b34e9788c44705fc71c663559ae07f6d67ea3b2c65624d3c5bd85d"
+    },
+    "c6Shell": {
+      "path": "evidence/end-to-end-refinement/c6-terminal-receipt-v1.json",
+      "sha256": "6afba204a95dfe43455ed9c1896f809461f0ee9652a2ecc6422467be93a29847"
+    }
+  },
+  "canonical": {
+    "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C5-CERTORA-CANONICAL-PROOF-070/sanitized-receipt.json",
+    "sha256": "5547f6f61dc641b284dda96ca369c5e5f1c4348fb9782d9c9878f6b4b8e921ff",
+    "jobId": "M4-C5-CERTORA-CANONICAL-PROOF-070",
+    "privateLogSha256": "9e36698e5f1c6119e1ca33f021c7b9cbaa6d3013260eb60cd187b8c72e21037b"
+  },
+  "sameEntryNegative": {
+    "path": "evidence/end-to-end-refinement/certora-current-profile/jobs/M4-C5-CERTORA-MUTANT-PROOF-071/sanitized-receipt.json",
+    "sha256": "31e53ba6a5f6469becd1c24ff7986f6da841d410bc9f4a9bbde7137ac61f3ad8",
+    "jobId": "M4-C5-CERTORA-MUTANT-PROOF-071",
+    "mutation": {
+      "path": "evidence/end-to-end-refinement/certora-current-profile/mutations/C5-EFFECT-PARENT-OMISSION-v1.json",
+      "sha256": "238913a24c26ff7270c3e6941fc0711c27fc9ff5a47a0ddc02ce0358598a7c72"
+    },
+    "semanticViolations": [
+      "current_effect_head_reversal_restores_prior_state"
+    ],
+    "privateLogSha256": "8b447195731f1048eb9c913199693e1aae8f1b96543fa12375e958126ebb7c12"
+  },
+  "composition": {
+    "popEffectProductionSeam": true,
+    "priorValueLifecycleTerminalSourceAnchors": true,
+    "receiptAndEventShellOwnedByC6": true
+  },
+  "assumptions": [
+    "exact current effect head and acyclic generation chain"
+  ],
+  "nonclaims": [
+    "history reconstruction",
+    "profile refinement"
+  ],
+  "qualification": {
+    "positiveTerminalPass": true,
+    "sameEntryMutationKilled": true,
+    "baselineRestored": true,
+    "frameQualified": true,
+    "c5RuntimeQualified": true,
+    "c5PackageQualified": true,
+    "centralCredit": 0
+  }
+}

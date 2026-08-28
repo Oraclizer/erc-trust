@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "mutationId": "C5-EFFECT-PARENT-OMISSION-v1",
+  "kind": "EXECUTABLE_SEMANTIC_MUTANT",
+  "canonicalProductionPath": "implementation/src/TrustToken.sol",
+  "canonicalProductionSha256": "dbe06bb25a2b62913bd6428e1de32ba007a214e24ac45f4fd2c0fb55ea22c96a",
+  "mutantProductionPath": "implementation/src/TrustTokenC5ParentOmissionMutant.sol",
+  "mutantProductionSha256": "67a37023ed97cdc1b9a7b019c45fc54924d19df5ba437c45a455b18caa1a4145",
+  "canonicalHarnessPath": "implementation/test/mocks/TrustTokenC5ReversalHarness.sol",
+  "canonicalHarnessSha256": "15418789ee5cc65af0dca279b257933c2e6edd0b94bdf6599e46698b0d33af46",
+  "mutantHarnessPath": "implementation/test/mocks/TrustTokenC5ReversalHarnessMutant.sol",
+  "mutantHarnessSha256": "a70cd9bb8ff8f5fd3d19c432f80b5fd12f3197a39d57c9df642c92e05fe84613",
+  "permittedDelta": "Rename verification target and replace only parent head restoration with zero",
+  "unchangedSpec": "implementation/certora/TrustC5Reversal.spec",
+  "expectedViolations": [
+    "current_effect_head_reversal_restores_prior_state"
+  ],
+  "productionSourceChanged": false
+}

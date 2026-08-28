@@ -1,0 +1,12 @@
+session ERC_TRUST_ABI_04_CANDIDATE = ERC_TRUST +
+  options [timeout = 1200]
+  theories
+    ABI_04_Generated
+    ABI_04_Short_Head_Offset_Length_And_High_Bits
+
+session ERC_TRUST_ABI_04_FINITE_SYMBOLIC_CLOSURE_SKELETON = ERC_TRUST +
+  options [timeout = 1200]
+  theories
+    ABI_04_Generated
+    ABI_04_Finite_Symbolic_Generated
+    ABI_04_Short_Head_Partition_Closure_Skeleton

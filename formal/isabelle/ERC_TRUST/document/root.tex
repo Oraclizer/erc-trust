@@ -1,0 +1,62 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{isabelle,isabellesym}
+\usepackage{amsmath,amssymb}
+\usepackage{pdfsetup}
+
+\urlstyle{rm}
+\isabellestyle{it}
+
+\begin{document}
+\emergencystretch=3em
+
+\title{ERC-TRUST: Mechanized Regulatory Execution Semantics}
+\author{Jinwook Kim (Jay)}
+\maketitle
+
+\begin{abstract}
+This Isabelle/HOL session mechanizes the abstract regulatory-action semantics
+used by ERC-TRUST. It distinguishes six RCP legal-effect actions from the
+seven transition labels of the inherited regulatory state machine, specifies
+typed authorization and observable outcomes, and checks an executable
+manifest kernel against the abstract model. The session depends on
+\texttt{Cross\_Domain\_State\_Preservation} as a parent Isabelle session.
+The result is model-level evidence only. It does not establish legal title,
+judicial validity, off-chain evidence truth, Solidity-bytecode conformance,
+or deployment correctness.
+\end{abstract}
+
+\tableofcontents
+
+\section{Session Boundary}
+
+The parent session supplies the cross-domain regulatory state machine and the
+regulatory-action composition theory. ERC-TRUST imports those theories as
+formal dependencies without copying their source into this entry. The
+ERC-TRUST session owns only its regulatory execution semantics, compatibility
+boundary, privileged-governance model, executable kernel, simulation
+witnesses, claim boundary, and proof-trust audit.
+
+\section{Normative Context}
+
+ERC-TRUST is designed as a thin conformance extension over ERC-20 and
+ERC-7943, with regulatory action meaning supplied by ERC-8319
+\cite{ERC7943,ERC8319}. These specifications provide the normative context;
+the Isabelle theories define and verify the declared abstract execution
+domain.
+
+\section{Verification Boundary}
+
+The theories prove internal consistency and stated safety properties over the
+declared model. They deliberately do not claim that an \texttt{Applied}
+outcome proves lawful forfeiture, actual sale completion, debt discharge,
+rightful ownership, or truth of an external policy or identity assertion.
+Implementation-level claims require separately bound Solidity, Certora, and
+Kontrol evidence.
+
+\input{session}
+
+\bibliographystyle{plain}
+\bibliography{root}
+
+\end{document}

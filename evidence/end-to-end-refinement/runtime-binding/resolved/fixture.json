@@ -1,0 +1,809 @@
+{
+  "chain": {
+    "chainId": 31337,
+    "genesisTimestamp": 1700000000,
+    "hardfork": "cancun",
+    "latestBlockHash": "0xa53bfdefa1b198db919a0a6bd5badd12b8e898269d1fad5d44dafe083772f58b",
+    "latestBlockNumber": 12,
+    "latestBlockTimestamp": 1700000009,
+    "latestStateRoot": "0xaa76b0c87dd8a7e3a4c6ed4930962250eb59bce1fe9c694e761405a5e86f4003",
+    "rpcScope": "ephemeral localhost only"
+  },
+  "claimBoundary": "Deterministic local constructor execution and runtime resolution only; no live deployment or KEVM theorem is claimed.",
+  "compilerBinding": {
+    "deterministicRootSha256": "44c62545b9545741bce98b313f412914bc976430c5596de6ad735f68d81cd4ab",
+    "manifestPath": "evidence/end-to-end-refinement/runtime-binding/manifest.json",
+    "manifestSha256": "97e4a349ff6667f01fb67515998c283383731d69a2fdaa00c06e260c11fcc5bb"
+  },
+  "deployer": {
+    "address": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+    "privateKeySource": "Foundry public deterministic local test key"
+  },
+  "deployments": [
+    {
+      "address": "0x5fbdb2315678afecb367f032d93f642f64180aa3",
+      "blockNumber": 1,
+      "bundleId": "native",
+      "constructor": {
+        "creationInputKeccak256": "0xb2a664abd43cf4ce71b90979852aad1f27b78e29c807188d5e6a99cc572557a7",
+        "creationInputSha256": "4987b1e7f6cc210c518bb4ff3884569f0060a91dcfeabc14e2b5f1d18e1643bd",
+        "encodedArguments": "0x00000000000000000000000000000000000000000000000000000000000000007f5e080db61909c428e657f1989b9518bd846810492118bf7c92a17c312ee5e7",
+        "encodedArgumentsSha256": "6e9e1d5222c406601fd9744f5ecc4c8da244e5e4ab000edcf0172717b966f0d3",
+        "signature": "constructor(uint8,bytes32)",
+        "typedArguments": [
+          "0",
+          "0x7f5e080db61909c428e657f1989b9518bd846810492118bf7c92a17c312ee5e7"
+        ]
+      },
+      "deployer": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+      "deployerNonce": 0,
+      "elapsedWallMs": 444,
+      "expectedAddress": "0x5fbdb2315678afecb367f032d93f642f64180aa3",
+      "gasUsed": 217010,
+      "immutablePatch": {
+        "declarationCount": 2,
+        "declarations": [
+          {
+            "astId": 6788,
+            "canonicalType": "enum MockBoundDependency.Mode",
+            "encodedWord": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "locations": [
+              {
+                "length": 32,
+                "start": 207
+              },
+              {
+                "length": 32,
+                "start": 380
+              }
+            ],
+            "name": "mode",
+            "sourcePath": "implementation/test/mocks/MockBoundDependency.sol",
+            "sourceSpan": "403:26:13",
+            "value": "0"
+          },
+          {
+            "astId": 6790,
+            "canonicalType": "bytes32",
+            "encodedWord": "0x7f5e080db61909c428e657f1989b9518bd846810492118bf7c92a17c312ee5e7",
+            "locations": [
+              {
+                "length": 32,
+                "start": 298
+              },
+              {
+                "length": 32,
+                "start": 473
+              }
+            ],
+            "name": "config",
+            "sourcePath": "implementation/test/mocks/MockBoundDependency.sol",
+            "sourceSpan": "435:31:13",
+            "value": "0x7f5e080db61909c428e657f1989b9518bd846810492118bf7c92a17c312ee5e7"
+          }
+        ],
+        "ethGetCodeSha256": "777beadc3b3f7d9077fca3de434106c774f1aa2bd73d09934ba85bbaeac71e11",
+        "exactMatch": true,
+        "patchedSha256": "777beadc3b3f7d9077fca3de434106c774f1aa2bd73d09934ba85bbaeac71e11"
+      },
+      "label": "MockBoundDependency",
+      "runtime": {
+        "byteLength": 751,
+        "eip170MarginBytes": 23825,
+        "keccak256": "0x752b7d2aee84657f877d8d6fc110af0035b075448388570059521619de7215e1",
+        "path": "evidence/end-to-end-refinement/runtime-binding/resolved/native/MockBoundDependency.hex",
+        "sha256": "777beadc3b3f7d9077fca3de434106c774f1aa2bd73d09934ba85bbaeac71e11",
+        "textFileSha256": "22318d7ac69ca777b27262b9e381433bdc7b0bc3f750592cda960a98ca13f9c1"
+      },
+      "sequence": 0,
+      "status": "0x1",
+      "subjectId": "implementation/test/mocks/MockBoundDependency.sol:MockBoundDependency",
+      "transactionHash": "0x05f0059e963dfb30e57eac35803f7ac37cca91c365505f2564f66bff764c2a09"
+    },
+    {
+      "address": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+      "blockNumber": 2,
+      "bundleId": "native",
+      "constructor": {
+        "creationInputKeccak256": "0x90f5daa3d6afef8c42d2b2667c143565228cb2422604a5da0de33e045abe1221",
+        "creationInputSha256": "f269741218a9ba8dcb27901a3cdafea5c65a69dc697a670e180e7c4c2c3b0096",
+        "encodedArguments": "0x00000000000000000000000000000000000000000000000000000000000001a000000000000000000000000000000000000000000000000000000000000001e00000000000000000000000000000000000000000000000000000000000000012000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92266000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb9226600000000000000000000000000000000000000000000d3c21bcecceda1000000843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb922660000000000000000000000005fbdb2315678afecb367f032d93f642f64180aa30000000000000000000000005fbdb2315678afecb367f032d93f642f64180aa30000000000000000000000005fbdb2315678afecb367f032d93f642f64180aa30000000000000000000000005fbdb2315678afecb367f032d93f642f64180aa3139a26dc078f7adfa32893b8a7f2c3374f69e801dee35603cdce331abf59234f00000000000000000000000000000000000000000000000000000000000000134552432d5452555354205265666572656e63650000000000000000000000000000000000000000000000000000000000000000000000000000000000000000055452555354000000000000000000000000000000000000000000000000000000",
+        "encodedArgumentsSha256": "4f0e78971555ed15c60c9cccd8c491d23cc5586e872c85e173930b738cf477af",
+        "signature": "constructor(string,string,uint8,address,address,uint256,bytes32,address,address,address,address,address,bytes32)",
+        "typedArguments": [
+          "ERC-TRUST Reference",
+          "TRUST",
+          "18",
+          "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+          "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+          "1000000000000000000000000",
+          "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+          "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+          "0x5fbdb2315678afecb367f032d93f642f64180aa3",
+          "0x5fbdb2315678afecb367f032d93f642f64180aa3",
+          "0x5fbdb2315678afecb367f032d93f642f64180aa3",
+          "0x5fbdb2315678afecb367f032d93f642f64180aa3",
+          "0x139a26dc078f7adfa32893b8a7f2c3374f69e801dee35603cdce331abf59234f"
+        ]
+      },
+      "deployer": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+      "deployerNonce": 1,
+      "elapsedWallMs": 465,
+      "expectedAddress": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+      "gasUsed": 6000472,
+      "immutablePatch": {
+        "declarationCount": 2,
+        "declarations": [
+          {
+            "astId": 622,
+            "canonicalType": "uint8",
+            "encodedWord": "0x0000000000000000000000000000000000000000000000000000000000000012",
+            "locations": [
+              {
+                "length": 32,
+                "start": 6970
+              }
+            ],
+            "name": "decimals",
+            "sourcePath": "implementation/src/TrustStorage.sol",
+            "sourceSpan": "199:31:5",
+            "value": "18"
+          },
+          {
+            "astId": 626,
+            "canonicalType": "address",
+            "encodedWord": "0x000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+            "locations": [
+              {
+                "length": 32,
+                "start": 517
+              },
+              {
+                "length": 32,
+                "start": 1580
+              },
+              {
+                "length": 32,
+                "start": 8522
+              },
+              {
+                "length": 32,
+                "start": 19822
+              }
+            ],
+            "name": "governor",
+            "sourcePath": "implementation/src/TrustStorage.sol",
+            "sourceSpan": "271:33:5",
+            "value": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"
+          }
+        ],
+        "ethGetCodeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+        "exactMatch": true,
+        "patchedSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d"
+      },
+      "label": "TrustToken",
+      "runtime": {
+        "byteLength": 24142,
+        "eip170MarginBytes": 434,
+        "keccak256": "0x8b16213b4bf922deb63f7caca9117a35cef545921ed5e0bfa840da107151deb2",
+        "path": "evidence/end-to-end-refinement/runtime-binding/resolved/native/TrustToken.hex",
+        "sha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+        "textFileSha256": "1c2e73fa137a50993301eacf9e70aa73623a5d4673c58cadedb60e12c273f44f"
+      },
+      "sequence": 1,
+      "status": "0x1",
+      "subjectId": "implementation/src/TrustToken.sol:TrustToken",
+      "transactionHash": "0xa60f3eedcf1b14b58b10eb6552c77c80a3ee8d482009c7daabf8cd52dbc0863b"
+    },
+    {
+      "address": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+      "blockNumber": 3,
+      "bundleId": "verified-profile",
+      "constructor": {
+        "creationInputKeccak256": "0x0266de0444e07b875febfa4997738309c2dfc1d2d0bf5366738644432979a3f1",
+        "creationInputSha256": "87b6b718555216b89904a5de8921f287d8af819be7358fbb0da4c902ff006c0e",
+        "encodedArguments": "0x",
+        "encodedArgumentsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "signature": "constructor()",
+        "typedArguments": []
+      },
+      "deployer": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+      "deployerNonce": 2,
+      "elapsedWallMs": 449,
+      "expectedAddress": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+      "gasUsed": 180036,
+      "immutablePatch": {
+        "declarationCount": 0,
+        "declarations": [],
+        "ethGetCodeSha256": "ddedd34330c18b1fd2bbe9f1fad4f78681af5ac802ac19d2ac4659ac5e4c21af",
+        "exactMatch": true,
+        "patchedSha256": "ddedd34330c18b1fd2bbe9f1fad4f78681af5ac802ac19d2ac4659ac5e4c21af"
+      },
+      "label": "MockERC3643IdentityRegistry",
+      "runtime": {
+        "byteLength": 586,
+        "eip170MarginBytes": 23990,
+        "keccak256": "0xee50757a7564e584ef56a3e632d60160694b15e038b8e98ae062326968661ea8",
+        "path": "evidence/end-to-end-refinement/runtime-binding/resolved/verified-profile/MockERC3643IdentityRegistry.hex",
+        "sha256": "ddedd34330c18b1fd2bbe9f1fad4f78681af5ac802ac19d2ac4659ac5e4c21af",
+        "textFileSha256": "9795e4961af49f4359b5d96096a06f1eca7c02356f911ab4b1b3e4290f442f89"
+      },
+      "sequence": 2,
+      "status": "0x1",
+      "subjectId": "implementation/test/mocks/MockERC3643Dependencies.sol:MockERC3643IdentityRegistry",
+      "transactionHash": "0x7a155b31fd4a5097d4564cf42e428f6f6e3e8af516f5fadf6819fc2d0d261851"
+    },
+    {
+      "address": "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+      "blockNumber": 4,
+      "bundleId": "verified-profile",
+      "constructor": {
+        "creationInputKeccak256": "0x50fffd253dacd35e989f9b490007196bca4fa4501aa5165a44a13e7a3966b10d",
+        "creationInputSha256": "25e1cee3fbddd0760a2be2fbafd9606c5ca9332cab3fbdc8bc8200042b72f638",
+        "encodedArguments": "0x",
+        "encodedArgumentsSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "signature": "constructor()",
+        "typedArguments": []
+      },
+      "deployer": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+      "deployerNonce": 3,
+      "elapsedWallMs": 403,
+      "expectedAddress": "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+      "gasUsed": 144967,
+      "immutablePatch": {
+        "declarationCount": 0,
+        "declarations": [],
+        "ethGetCodeSha256": "c9eae4a76d156fe6899e9c5a2949ffc524ed2ac7825b8aa3b9c824ca106a6564",
+        "exactMatch": true,
+        "patchedSha256": "c9eae4a76d156fe6899e9c5a2949ffc524ed2ac7825b8aa3b9c824ca106a6564"
+      },
+      "label": "MockERC3643Compliance",
+      "runtime": {
+        "byteLength": 424,
+        "eip170MarginBytes": 24152,
+        "keccak256": "0xf96179c6703ad85a481fad095b86e3352f0ac639a0916ecdd43731132667985b",
+        "path": "evidence/end-to-end-refinement/runtime-binding/resolved/verified-profile/MockERC3643Compliance.hex",
+        "sha256": "c9eae4a76d156fe6899e9c5a2949ffc524ed2ac7825b8aa3b9c824ca106a6564",
+        "textFileSha256": "62ecb5e14f6ed2cc6f8ba4daa659c11942d844684f6e30500b0f9ac38e1db529"
+      },
+      "sequence": 3,
+      "status": "0x1",
+      "subjectId": "implementation/test/mocks/MockERC3643Dependencies.sol:MockERC3643Compliance",
+      "transactionHash": "0x576c387f841ef163948b51b9d6f40c7fc1f5305ce8fb8d88fc958e88c7bb6e31"
+    },
+    {
+      "address": "0xdc64a140aa3e981100a9beca4e685f962f0cf6c9",
+      "blockNumber": 5,
+      "bundleId": "verified-profile",
+      "constructor": {
+        "creationInputKeccak256": "0x0e4e3222f6ad0998948e5e5853fffe47ff8dbff30c711d4ec979aee4ea894512",
+        "creationInputSha256": "ae9a0e162b6aabcaebd6e4d5571d85bef4f1a28a25da59d3222697c130081a93",
+        "encodedArguments": "0x0000000000000000000000009fe46736679d2d9a65f0992f2272de9f3c7fa6e0000000000000000000000000cf7ed3acca5a467e9e704c703e8d87f634fb0fc900000000000000000000000000000000000000000000d3c21bcecceda1000000",
+        "encodedArgumentsSha256": "69ee962a48409282db70a32bcc667f40b03c9bbbafa8be2a1bda75969c993ea7",
+        "signature": "constructor(address,address,uint256)",
+        "typedArguments": [
+          "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+          "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+          "1000000000000000000000000"
+        ]
+      },
+      "deployer": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+      "deployerNonce": 4,
+      "elapsedWallMs": 457,
+      "expectedAddress": "0xdc64a140aa3e981100a9beca4e685f962f0cf6c9",
+      "gasUsed": 756765,
+      "immutablePatch": {
+        "declarationCount": 2,
+        "declarations": [
+          {
+            "astId": 4377,
+            "canonicalType": "address",
+            "encodedWord": "0x0000000000000000000000009fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+            "locations": [
+              {
+                "length": 32,
+                "start": 2294
+              }
+            ],
+            "name": "identityRegistry",
+            "sourcePath": "implementation/test/mocks/MockERC3643Token.sol",
+            "sourceSpan": "298:41:9",
+            "value": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0"
+          },
+          {
+            "astId": 4379,
+            "canonicalType": "address",
+            "encodedWord": "0x000000000000000000000000cf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+            "locations": [
+              {
+                "length": 32,
+                "start": 1164
+              }
+            ],
+            "name": "compliance",
+            "sourcePath": "implementation/test/mocks/MockERC3643Token.sol",
+            "sourceSpan": "345:35:9",
+            "value": "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9"
+          }
+        ],
+        "ethGetCodeSha256": "e95058c0436eaf7b54abd15a3cfe256a86c5e363f6bb14074723ef219df380b8",
+        "exactMatch": true,
+        "patchedSha256": "e95058c0436eaf7b54abd15a3cfe256a86c5e363f6bb14074723ef219df380b8"
+      },
+      "label": "MockERC3643Token",
+      "runtime": {
+        "byteLength": 3021,
+        "eip170MarginBytes": 21555,
+        "keccak256": "0xccb1af115346a3eb14be18af7e57e1b94f06937720432e1e27ba7f1ca048dc3f",
+        "path": "evidence/end-to-end-refinement/runtime-binding/resolved/verified-profile/MockERC3643Token.hex",
+        "sha256": "e95058c0436eaf7b54abd15a3cfe256a86c5e363f6bb14074723ef219df380b8",
+        "textFileSha256": "93f1df26ac5a9ca5505a496d745946409d784e46e40b965e29d99c6bad9069bd"
+      },
+      "sequence": 4,
+      "status": "0x1",
+      "subjectId": "implementation/test/mocks/MockERC3643Token.sol:MockERC3643Token",
+      "transactionHash": "0xc23e10bb323565e9404cb1860cb3e8f4e49e52f07de731992032336f5fa4cff7"
+    },
+    {
+      "address": "0x5fc8d32690cc91d4c39d9d3abcbd16989f875707",
+      "blockNumber": 6,
+      "bundleId": "verified-profile",
+      "constructor": {
+        "creationInputKeccak256": "0x364ab7664ece76e640d07e425f75e4d0796d5254ebc8f6fc846d5578efff96cd",
+        "creationInputSha256": "0289be12caff0fe00c48c0df9fcfa131707e59ef24ac2c9a9df540ff9b72698f",
+        "encodedArguments": "0x000000000000000000000000dc64a140aa3e981100a9beca4e685f962f0cf6c90000000000000000000000009fe46736679d2d9a65f0992f2272de9f3c7fa6e0000000000000000000000000cf7ed3acca5a467e9e704c703e8d87f634fb0fc9000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92266ccb1af115346a3eb14be18af7e57e1b94f06937720432e1e27ba7f1ca048dc3f",
+        "encodedArgumentsSha256": "6a3953513b754a16513fafc3c71ee6f74791f2acd621ce9fe49806815dde1c4d",
+        "signature": "constructor(address,address,address,address,bytes32)",
+        "typedArguments": [
+          "0xdc64a140aa3e981100a9beca4e685f962f0cf6c9",
+          "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+          "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+          "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+          "0xccb1af115346a3eb14be18af7e57e1b94f06937720432e1e27ba7f1ca048dc3f"
+        ]
+      },
+      "deployer": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+      "deployerNonce": 5,
+      "elapsedWallMs": 435,
+      "expectedAddress": "0x5fc8d32690cc91d4c39d9d3abcbd16989f875707",
+      "gasUsed": 534332,
+      "immutablePatch": {
+        "declarationCount": 5,
+        "declarations": [
+          {
+            "astId": 3840,
+            "canonicalType": "address",
+            "encodedWord": "0x000000000000000000000000dc64a140aa3e981100a9beca4e685f962f0cf6c9",
+            "locations": [
+              {
+                "length": 32,
+                "start": 159
+              },
+              {
+                "length": 32,
+                "start": 492
+              },
+              {
+                "length": 32,
+                "start": 645
+              },
+              {
+                "length": 32,
+                "start": 949
+              },
+              {
+                "length": 32,
+                "start": 1550
+              }
+            ],
+            "name": "token",
+            "sourcePath": "implementation/src/profiles/ProfileGovernor.sol",
+            "sourceSpan": "589:30:7",
+            "value": "0xdc64a140aa3e981100a9beca4e685f962f0cf6c9"
+          },
+          {
+            "astId": 3842,
+            "canonicalType": "address",
+            "encodedWord": "0x0000000000000000000000009fe46736679d2d9a65f0992f2272de9f3c7fa6e0",
+            "locations": [
+              {
+                "length": 32,
+                "start": 457
+              },
+              {
+                "length": 32,
+                "start": 882
+              },
+              {
+                "length": 32,
+                "start": 1310
+              },
+              {
+                "length": 32,
+                "start": 1745
+              }
+            ],
+            "name": "identityRegistry",
+            "sourcePath": "implementation/src/profiles/ProfileGovernor.sol",
+            "sourceSpan": "625:41:7",
+            "value": "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0"
+          },
+          {
+            "astId": 3844,
+            "canonicalType": "address",
+            "encodedWord": "0x000000000000000000000000cf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+            "locations": [
+              {
+                "length": 32,
+                "start": 423
+              },
+              {
+                "length": 32,
+                "start": 848
+              },
+              {
+                "length": 32,
+                "start": 1245
+              },
+              {
+                "length": 32,
+                "start": 1837
+              }
+            ],
+            "name": "compliance",
+            "sourcePath": "implementation/src/profiles/ProfileGovernor.sol",
+            "sourceSpan": "672:35:7",
+            "value": "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9"
+          },
+          {
+            "astId": 3846,
+            "canonicalType": "address",
+            "encodedWord": "0x000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+            "locations": [
+              {
+                "length": 32,
+                "start": 288
+              },
+              {
+                "length": 32,
+                "start": 1056
+              }
+            ],
+            "name": "bootstrapAuthority",
+            "sourcePath": "implementation/src/profiles/ProfileGovernor.sol",
+            "sourceSpan": "713:43:7",
+            "value": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"
+          },
+          {
+            "astId": 3848,
+            "canonicalType": "bytes32",
+            "encodedWord": "0xccb1af115346a3eb14be18af7e57e1b94f06937720432e1e27ba7f1ca048dc3f",
+            "locations": [
+              {
+                "length": 32,
+                "start": 375
+              },
+              {
+                "length": 32,
+                "start": 916
+              },
+              {
+                "length": 32,
+                "start": 1155
+              },
+              {
+                "length": 32,
+                "start": 1585
+              }
+            ],
+            "name": "expectedTokenCodeId",
+            "sourcePath": "implementation/src/profiles/ProfileGovernor.sol",
+            "sourceSpan": "762:44:7",
+            "value": "0xccb1af115346a3eb14be18af7e57e1b94f06937720432e1e27ba7f1ca048dc3f"
+          }
+        ],
+        "ethGetCodeSha256": "dcd494b7b7568d372213d0358df8740f9943806ac3b5a9356f4c8507ae72ef7f",
+        "exactMatch": true,
+        "patchedSha256": "dcd494b7b7568d372213d0358df8740f9943806ac3b5a9356f4c8507ae72ef7f"
+      },
+      "label": "ProfileGovernor",
+      "runtime": {
+        "byteLength": 2214,
+        "eip170MarginBytes": 22362,
+        "keccak256": "0x46ab2b39a477a96ec33de82ce3b61471d4ed160820e6e6182b08d0c5ecfb9f0c",
+        "path": "evidence/end-to-end-refinement/runtime-binding/resolved/verified-profile/ProfileGovernor.hex",
+        "sha256": "dcd494b7b7568d372213d0358df8740f9943806ac3b5a9356f4c8507ae72ef7f",
+        "textFileSha256": "0e58d416fa32d1fe3d755178aec470b702ecfaa511dc9376c7fb875a83f4589a"
+      },
+      "sequence": 5,
+      "status": "0x1",
+      "subjectId": "implementation/src/profiles/ProfileGovernor.sol:ProfileGovernor",
+      "transactionHash": "0x12064d33c98d0c7e42591e802f2d4d4977c834996d56cbed21307e346f738e6d"
+    },
+    {
+      "address": "0x0165878a594ca255338adfa4d48449f69242eb8f",
+      "blockNumber": 7,
+      "bundleId": "verified-profile",
+      "constructor": {
+        "creationInputKeccak256": "0x1529373b778ba796790479c21c9014338c25ce083b4c7499e0dff376ac480360",
+        "creationInputSha256": "115da7dffecb849f0f724128b765b3f2847b47c5cd873a453308b9069d24ad77",
+        "encodedArguments": "0x0000000000000000000000005fc8d32690cc91d4c39d9d3abcbd16989f875707000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb922668d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b0000000000000000000000000000000000000000000000000000000000000001",
+        "encodedArgumentsSha256": "e7e4f979ad057a61b57d5805e837183d02fdab705e6064a60807f781ee6b95dc",
+        "signature": "constructor(address,address,bytes32,uint64)",
+        "typedArguments": [
+          "0x5fc8d32690cc91d4c39d9d3abcbd16989f875707",
+          "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+          "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+          "1"
+        ]
+      },
+      "deployer": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+      "deployerNonce": 6,
+      "elapsedWallMs": 452,
+      "expectedAddress": "0x0165878a594ca255338adfa4d48449f69242eb8f",
+      "gasUsed": 3604375,
+      "immutablePatch": {
+        "declarationCount": 6,
+        "declarations": [
+          {
+            "astId": 761,
+            "canonicalType": "address",
+            "encodedWord": "0x000000000000000000000000dc64a140aa3e981100a9beca4e685f962f0cf6c9",
+            "locations": [
+              {
+                "length": 32,
+                "start": 214
+              },
+              {
+                "length": 32,
+                "start": 9988
+              },
+              {
+                "length": 32,
+                "start": 11590
+              },
+              {
+                "length": 32,
+                "start": 12228
+              },
+              {
+                "length": 32,
+                "start": 12329
+              },
+              {
+                "length": 32,
+                "start": 16118
+              }
+            ],
+            "name": "token",
+            "sourcePath": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+            "sourceSpan": "1781:30:6",
+            "value": "0xdc64a140aa3e981100a9beca4e685f962f0cf6c9"
+          },
+          {
+            "astId": 763,
+            "canonicalType": "address",
+            "encodedWord": "0x000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+            "locations": [
+              {
+                "length": 32,
+                "start": 637
+              },
+              {
+                "length": 32,
+                "start": 15705
+              }
+            ],
+            "name": "authority",
+            "sourcePath": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+            "sourceSpan": "1817:34:6",
+            "value": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"
+          },
+          {
+            "astId": 765,
+            "canonicalType": "bytes32",
+            "encodedWord": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+            "locations": [
+              {
+                "length": 32,
+                "start": 288
+              },
+              {
+                "length": 32,
+                "start": 15787
+              }
+            ],
+            "name": "authorityRef",
+            "sourcePath": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+            "sourceSpan": "1857:37:6",
+            "value": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b"
+          },
+          {
+            "astId": 767,
+            "canonicalType": "uint64",
+            "encodedWord": "0x0000000000000000000000000000000000000000000000000000000000000001",
+            "locations": [
+              {
+                "length": 32,
+                "start": 3288
+              },
+              {
+                "length": 32,
+                "start": 15955
+              }
+            ],
+            "name": "authorityEpoch",
+            "sourcePath": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+            "sourceSpan": "1900:38:6",
+            "value": "1"
+          },
+          {
+            "astId": 770,
+            "canonicalType": "contract ProfileGovernor",
+            "encodedWord": "0x0000000000000000000000005fc8d32690cc91d4c39d9d3abcbd16989f875707",
+            "locations": [
+              {
+                "length": 32,
+                "start": 1178
+              },
+              {
+                "length": 32,
+                "start": 4179
+              },
+              {
+                "length": 32,
+                "start": 6369
+              },
+              {
+                "length": 32,
+                "start": 8382
+              },
+              {
+                "length": 32,
+                "start": 9916
+              },
+              {
+                "length": 32,
+                "start": 10727
+              },
+              {
+                "length": 32,
+                "start": 13726
+              },
+              {
+                "length": 32,
+                "start": 15641
+              }
+            ],
+            "name": "profileGovernor",
+            "sourcePath": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+            "sourceSpan": "1944:48:6",
+            "value": "0x5fc8d32690cc91d4c39d9d3abcbd16989f875707"
+          },
+          {
+            "astId": 773,
+            "canonicalType": "contract IERC3643TokenView",
+            "encodedWord": "0x000000000000000000000000dc64a140aa3e981100a9beca4e685f962f0cf6c9",
+            "locations": [
+              {
+                "length": 32,
+                "start": 2075
+              },
+              {
+                "length": 32,
+                "start": 4789
+              },
+              {
+                "length": 32,
+                "start": 5554
+              },
+              {
+                "length": 32,
+                "start": 9535
+              },
+              {
+                "length": 32,
+                "start": 11424
+              },
+              {
+                "length": 32,
+                "start": 12440
+              },
+              {
+                "length": 32,
+                "start": 15225
+              }
+            ],
+            "name": "_tokenView",
+            "sourcePath": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+            "sourceSpan": "1998:47:6",
+            "value": "0xdc64a140aa3e981100a9beca4e685f962f0cf6c9"
+          }
+        ],
+        "ethGetCodeSha256": "0c873ae5756cf6a3e3ab1317af7c09a39391640b3c54bef4b84b091042d9cf4b",
+        "exactMatch": true,
+        "patchedSha256": "0c873ae5756cf6a3e3ab1317af7c09a39391640b3c54bef4b84b091042d9cf4b"
+      },
+      "label": "ERC3643TrustAdapter",
+      "runtime": {
+        "byteLength": 16398,
+        "eip170MarginBytes": 8178,
+        "keccak256": "0x51d7c1e6deee1f2e08ec7e0fd495dcf5a8276eb1fc147836d2c53a799316ca70",
+        "path": "evidence/end-to-end-refinement/runtime-binding/resolved/verified-profile/ERC3643TrustAdapter.hex",
+        "sha256": "0c873ae5756cf6a3e3ab1317af7c09a39391640b3c54bef4b84b091042d9cf4b",
+        "textFileSha256": "297626267794b773a54c486a3b8529def9107353daa63e0da344d4c6dd7cb6a4"
+      },
+      "sequence": 6,
+      "status": "0x1",
+      "subjectId": "implementation/src/profiles/ERC3643TrustAdapter.sol:ERC3643TrustAdapter",
+      "transactionHash": "0x7c907f0e779c2326125336f0912cb988e352892d9db631841bf7b816f441e206"
+    }
+  ],
+  "deterministicRootSha256": "b5ce284d6b7017a1feff3244bb67f175303660d86348ce93dbd8065bd39d3a2d",
+  "schemaVersion": 1,
+  "serverStderr": "",
+  "tools": {
+    "anvilVersion": "anvil Version: 1.7.1\nCommit SHA: 4072e48705af9d93e3c0f6e29e93b5e9a40caed8\nBuild Timestamp: 2026-05-08T07:50:55.527285345Z (1778226655)\nBuild Profile: dist",
+    "forgeVersion": {
+      "commit": "4072e48705af9d93e3c0f6e29e93b5e9a40caed8",
+      "version": "1.7.1"
+    },
+    "solc": {
+      "binaryLocator": {
+        "distribution": "Ubuntu",
+        "kind": "svm",
+        "version": "0.8.36"
+      },
+      "binarySha256": "c8d35afdddc3cd2743ee88b8f25e0fecd16e2bdd5f2120f37e52cd9cc45ae0e6",
+      "correctnessClaimed": false,
+      "version": "0.8.36+commit.8a079791"
+    }
+  },
+  "topologyChecks": {
+    "exclusiveAgent": "0x0165878a594ca255338adfa4d48449f69242eb8f",
+    "exclusiveAgentMatchesAdapter": true,
+    "nativeDependency": "0x5fbdb2315678afecb367f032d93f642f64180aa3",
+    "nativeEndpoint": "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+    "profileEndpoint": "0x0165878a594ca255338adfa4d48449f69242eb8f",
+    "sealedBinding": "0xd7105270235a67a969b329dc26f36a9e0a8e0580ae8ef5fbf0868a5f5320c576",
+    "tokenCodeId": "0xccb1af115346a3eb14be18af7e57e1b94f06937720432e1e27ba7f1ca048dc3f",
+    "topologySealed": "true"
+  },
+  "topologyTransactions": [
+    {
+      "blockNumber": 8,
+      "gasUsed": 46314,
+      "operation": "setExclusiveAgent",
+      "status": "0x1",
+      "transactionHash": "0x722ee8f145328847429e9bbc196a53371af4f811a0c0cefef7085954cfc49496"
+    },
+    {
+      "blockNumber": 9,
+      "gasUsed": 28608,
+      "operation": "transferOwnership",
+      "status": "0x1",
+      "transactionHash": "0x977215c56d63e08c39bf084d7a75168e67ea421f8d27808dadb6914d50b81769"
+    },
+    {
+      "blockNumber": 10,
+      "gasUsed": 101764,
+      "operation": "seal",
+      "status": "0x1",
+      "transactionHash": "0xd2c24f4bd36061f092fdfd43ba8c09591559bc59bd0d808200cbe1e6e054ef1a"
+    },
+    {
+      "blockNumber": 11,
+      "gasUsed": 44095,
+      "operation": "verifyDeployer",
+      "status": "0x1",
+      "transactionHash": "0xb5d4a6c4d5ab5e26bf9ae1456f5f13218f7fc51fe1a8641763fd71d73e714cf8"
+    },
+    {
+      "blockNumber": 12,
+      "gasUsed": 44095,
+      "operation": "verifyAdapter",
+      "status": "0x1",
+      "transactionHash": "0xe9d860f0737a433d842349991e47fe79a536235f9dcb771971b5367ae0d30132"
+    }
+  ]
+}

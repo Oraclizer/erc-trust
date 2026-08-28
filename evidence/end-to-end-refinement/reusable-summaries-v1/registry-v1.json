@@ -1,0 +1,127 @@
+{
+  "act01": {
+    "canonicalLanes": [
+      "ACT-C0",
+      "ACT-C2",
+      "ACT-C1",
+      "ACT-C3",
+      "ACT-C4-FREEZE",
+      "ACT-C6-SUCCESS",
+      "ACT-C6-FAILURE"
+    ],
+    "currentProfileCredit": 0,
+    "mutationLanes": [
+      "ACT-MUT-AUTH-REPLAY",
+      "ACT-MUT-DEPENDENCY-CLASSIFICATION",
+      "ACT-MUT-FREEZE-RECEIPT-ROLLBACK"
+    ],
+    "parserBatches": 4,
+    "requiredPackages": [
+      "C0",
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C6"
+    ],
+    "rowStatus": "OPEN"
+  },
+  "authority": {
+    "legacyCarryover": false,
+    "nativeRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "runtimeFreezeRef": {
+      "path": "evidence/end-to-end-refinement/m4-runtime-freeze-v1.json",
+      "sha256": "ba18d99f630bad67faee824ec83f1071f478a393639faa087be739d880164d67"
+    },
+    "scopeRef": {
+      "path": "evidence/end-to-end-refinement/m4-core-refinement-scope-v1.json",
+      "sha256": "a94fdd38612e6d77fec2057c67bfa88d71d826234fb6116ab8b23650c88f6f56"
+    },
+    "sourceHead": "add3dfb9ca75923d6462d16ba8eb41cad0b1216f",
+    "tcbIndexRef": {
+      "deterministicRootSha256": "baf66d7f1ba3e09b9d03ee55dee4bfd8ff5ba3ada3f3d38c139fdfa9f1ab1243",
+      "path": "evidence/end-to-end-refinement/hybrid-tcb-v1/index-v1.json",
+      "sha256": "11d13e917fd2930c93b77c3900d8c2addbd71e6ff3ce67354ed6175da3e28113"
+    }
+  },
+  "contracts": [
+    {
+      "bytes": 3051,
+      "id": "ABSTRACTION-ALPHA-v1",
+      "path": "evidence/end-to-end-refinement/reusable-summaries-v1/contracts/abstraction-alpha-v1.json",
+      "sha256": "01344dfea1355656a16ba922a14a87d9a2d233f5de492376a0901a420d237484"
+    },
+    {
+      "bytes": 2294,
+      "id": "ACTION-SUMMARY-v1",
+      "path": "evidence/end-to-end-refinement/reusable-summaries-v1/contracts/action-summary-v1.json",
+      "sha256": "82bd23f26e7152d7e528b7ada2d78c9c598f2b579cd5df2ca49951fad87a1670"
+    },
+    {
+      "bytes": 1932,
+      "id": "REVERSAL-SUMMARY-v1",
+      "path": "evidence/end-to-end-refinement/reusable-summaries-v1/contracts/reversal-summary-v1.json",
+      "sha256": "c0fccd83a70a187d69584e5e1789ccd921abb59fb64108da882c608a6f136ab6"
+    }
+  ],
+  "deterministicRootSha256": "d44aef4400e4a91a9e73763341b13b49a53fe392543e73e23137a9b57190669a",
+  "kind": "ERC_TRUST_REUSABLE_SUMMARY_REGISTRY_V1",
+  "packageOrder": [
+    "C0",
+    "C2",
+    "C1",
+    "C3",
+    "C4",
+    "C6",
+    "C5"
+  ],
+  "packages": [
+    {
+      "bytes": 3100,
+      "id": "C0",
+      "path": "evidence/end-to-end-refinement/reusable-summaries-v1/packages/c0-state-abi-normal-form-v1.json",
+      "sha256": "68fe3956167e0c22258453572ae67ed61e474c6eee221c97a2434445f4477b49"
+    },
+    {
+      "bytes": 3235,
+      "id": "C2",
+      "path": "evidence/end-to-end-refinement/reusable-summaries-v1/packages/c2-bound-dependency-assume-guarantee-v1.json",
+      "sha256": "c7c48113b1bb6aba18b656bb24cd860d20b57a74b224a1b04f2efa8ebf1b0b6d"
+    },
+    {
+      "bytes": 3068,
+      "id": "C1",
+      "path": "evidence/end-to-end-refinement/reusable-summaries-v1/packages/c1-authorization-replay-v1.json",
+      "sha256": "e968544fce61ddb7d6933e2a35f8369841c1e06bddb69e08c00d89ddaa4fa4ce"
+    },
+    {
+      "bytes": 2912,
+      "id": "C3",
+      "path": "evidence/end-to-end-refinement/reusable-summaries-v1/packages/c3-exact-use-route-v1.json",
+      "sha256": "48c11928f875c09caf8c73ad6c9814c402436ea0e786a062f0174e4fc9079048"
+    },
+    {
+      "bytes": 3489,
+      "id": "C4",
+      "path": "evidence/end-to-end-refinement/reusable-summaries-v1/packages/c4-forward-financial-effects-v1.json",
+      "sha256": "ce1dd77f0e48e10ddec05dc9c60d11511f3812ddac41ac2f153785b1f19752c7"
+    },
+    {
+      "bytes": 2789,
+      "id": "C5",
+      "path": "evidence/end-to-end-refinement/reusable-summaries-v1/packages/c5-reversal-lifo-v1.json",
+      "sha256": "43022664bd1520567e236cc0a7bf1032ea2d297c54a2abc8a973831105719e2e"
+    },
+    {
+      "bytes": 2979,
+      "id": "C6",
+      "path": "evidence/end-to-end-refinement/reusable-summaries-v1/packages/c6-transaction-commit-rollback-receipt-v1.json",
+      "sha256": "704efb8922ea6c42f781122d6fa57219d4e4a745fd9f0be417bdb2fb5e8207b5"
+    }
+  ],
+  "schemaRef": {
+    "path": "evidence/end-to-end-refinement/reusable-summaries-v1/summary-schema-v1.json",
+    "sha256": "5bb98c2fc32ba5ba4f649bcac111fb810cf7d3b01e70e03ce8d0db1fd10df1f2"
+  },
+  "schemaVersion": 1
+}

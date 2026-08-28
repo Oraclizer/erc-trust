@@ -1,0 +1,37 @@
+{
+  "schema": "erc-trust-kontrol-results-v1",
+  "candidate": "0.1.0-candidate.1",
+  "toolchain": {
+    "kontrol": "1.0.255",
+    "kevm": "1.0.678",
+    "schedule": "CANCUN"
+  },
+  "build": {
+    "status": "PASS",
+    "command": "FOUNDRY_PROFILE=kontrol kontrol build --foundry-project-root . --regen --rekompile"
+  },
+  "proofs": [
+    {
+      "id": "implementation%kontrol%TrustTokenKontrolTest.testKontrol_RawSensitiveSelectorsStayClosed():1",
+      "status": "PASS",
+      "elapsed": "2m49s"
+    },
+    {
+      "id": "implementation%kontrol%TrustTokenKontrolTest.testKontrol_OperationalFailureStuttersProjection():1",
+      "status": "PASS",
+      "elapsed": "4m34s"
+    },
+    {
+      "id": "implementation%kontrol%TrustTokenKontrolTest.testKontrol_LiquidateExactDeltaReceiptAndFinalLog():0",
+      "status": "PASS",
+      "elapsed": "5m49s",
+      "freshPublicNameRevalidation": true
+    }
+  ],
+  "summary": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0
+  },
+  "claimBoundary": "Independent symbolic cross-checks of three high-risk paths over the exact candidate bytecode; not an exhaustive implementation proof."
+}

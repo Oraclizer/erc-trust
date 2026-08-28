@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_C2_RETURNDATA_COPY_CUTPOINT_V1",
+  "definitionSourcePath": "formal/kevm/reusable/c2/c2-returndata-copy-cutpoint-runtime-verification.k",
+  "definitionSourceSha256": "6b0e3fd48a72f5ff5dd3bbfb4b8b2f39853d4dc25f3c789e2e640c8ad040c1bf",
+  "mainModule": "TRUST-C2-RETURNDATA-COPY-CUTPOINT-RUNTIME-VERIFICATION",
+  "claimSourcePath": "formal/kevm/reusable/c2/c2-returndata-copy-cutpoint-claim.k",
+  "claimSourceSha256": "c96457a6d100f5f293767dc0cecf0ab3006e1b12f1faa627dd25662def89d0b2",
+  "claimModule": "TRUST-C2-RETURNDATA-COPY-CUTPOINT-CLAIM",
+  "ruleSha256": "24675e4b69a49a3cb366f11160b1d2a22e1ebb2406eb8353170ec7a0e4a0b658",
+  "fromPc": 21900,
+  "toPc": 21907,
+  "observerPriority": 1,
+  "modifiedCells": [
+    "k"
+  ],
+  "returnDataSha256": "53df8ade7266993ddb032a86958d0eba4ff20dcf76cc73695da6b07ea466e912",
+  "boundaryTraceSha256": "f7e48b6ae2fc180c845de9ca59cb94595a3e3f10d794fb0780cd98530d55b8c9",
+  "legacyDefinitionModified": false,
+  "proofStatus": "UNPROVED",
+  "credit": 0
+}

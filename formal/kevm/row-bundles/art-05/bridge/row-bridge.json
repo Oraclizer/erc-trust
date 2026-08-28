@@ -1,0 +1,227 @@
+{
+  "addressWordBoundary": {
+    "addressAndWordRoundTrip": true,
+    "allFixtureJsonNumbersSafe": true,
+    "canonicalGovernorAddress": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+    "canonicalGovernorWord": "0x000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+    "integerTerms": {
+      "CHAIN_ID_INT": "31337",
+      "GOVERNOR_ADDRESS_INT": "1390849295786071768276380950238675083608645509734",
+      "SENDER_INT": "1390849295786071768276380950238675083608645509734",
+      "TOKEN_ADDRESS_INT": "1324161310598743833836268493538283093091898295570",
+      "TX_GAS_LIMIT_INT": "1000000"
+    },
+    "largeIntegerTerms": [
+      "GOVERNOR_ADDRESS_INT",
+      "SENDER_INT",
+      "TOKEN_ADDRESS_INT"
+    ],
+    "mutantGovernorAddress": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92267",
+    "mutantGovernorWord": "0x000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92267",
+    "numberMaxSafeInteger": "9007199254740991",
+    "policy": "authoritative EVM addresses and K integers remain canonical strings until explicit BigInt conversion",
+    "uint160Max": "1461501637330902918203684832716283019655932542975"
+  },
+  "canonicalObligation": {
+    "classification": "OPEN",
+    "discharged": false,
+    "index": {
+      "path": "evidence/end-to-end-refinement/obligation-evidence-index.json",
+      "sha256": "eb68fff9f44a854d423cc9022f7f17f646c58538bf2172c603cf4fd614f7ed2d"
+    },
+    "theoremInventory": {
+      "path": "evidence/end-to-end-refinement/theorem-obligations.md",
+      "sha256": "3b6b0910539c58e53db7c6dbf11c8bf0e4a4d9d7aaec6d8b5d233573dc514dba"
+    }
+  },
+  "claimComposition": {
+    "compositionRootSha256": "a2cc126c6434cfec200aafb73a5b46ec20c921c4735de86a149ddbeb38839b9d",
+    "graph": {
+      "path": "formal/kevm/row-bundles/art-05/composition-graph.json",
+      "sha256": "c51d788a905991dfec3428cd7923b9963a77d79af3d57a1b1a9508da61b37bad"
+    }
+  },
+  "dependencies": {
+    "directConsumers": [
+      "ART-06",
+      "ART-07"
+    ],
+    "directPrerequisites": [
+      "ART-01",
+      "ART-02",
+      "ART-03",
+      "ART-04"
+    ],
+    "graph": {
+      "path": "formal/kevm/row-bundles/art-05/dependency-graph.json",
+      "sha256": "32bac16a6fc4178273575eb9bfea6087b00802dfbc22a213b6254eba8a092bcf"
+    }
+  },
+  "eligibleForDischarge": false,
+  "executableObservation": {
+    "expectedReturnWord": "0x000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+    "expectedStatus": "EVMC_SUCCESS",
+    "method": "governor()",
+    "module": "TRUST-ART-05-THEORY-IMPORT-CLOSURE-BINDING-SPEC",
+    "mutantControlModule": "TRUST-ART-05-GOVERNOR-MUTANT-CONTROL-SPEC",
+    "mutantControlSpec": {
+      "path": "formal/kevm/row-bundles/art-05/mutant-control-claim.k",
+      "sha256": "c20cad50be72e4ba418907b5c4b6401e944296856a52064e5f8356314caaecfe"
+    },
+    "proofSpec": {
+      "path": "formal/kevm/row-bundles/art-05/claim.k",
+      "sha256": "0bb20986f4b391c31c14b5894653e16f4d71735c52d451b85b9c398349f0115c"
+    },
+    "selector": "0x0c340a24"
+  },
+  "obligationId": "ART-05",
+  "preparedDefinitions": {
+    "launcher": {
+      "path": "formal/kevm/row-bundles/art-05/launch-proof-wave.sh",
+      "sha256": "6df45232c5fb0ee74a76b2dc0d46b5378ff6843100fdf891aad6c1e38ba9467e"
+    },
+    "proofStarted": false,
+    "report": {
+      "path": "formal/kevm/row-bundles/art-05/definition-build-report.json",
+      "sha256": "09d5939c7cb5c3ad29355f789d7f8f930132dd821d32d761d9b7763469fde07b"
+    }
+  },
+  "proofStatus": "PASS_OPEN_STATIC_V2",
+  "provenanceEvidence": {
+    "ledger": {
+      "path": "evidence/end-to-end-refinement/proof-run-ledger.json",
+      "sha256": "60fd517ea04a8b8c87cb1106db54033231c3e2d236cd3129182d12db6f7f47d0"
+    },
+    "nonclaim": "historical closure evidence shapes this row but does not discharge it",
+    "passRuns": [
+      "RUN-BRIDGE-GENERATE-VERIFY-001",
+      "RUN-ISABELLE-CLOSURE-001"
+    ]
+  },
+  "requiredProperty": "theory_source_and_import_closure_are_hash_bound",
+  "runtimeLeaf": {
+    "byteLength": 24142,
+    "byteSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+    "canonicalKBridge": {
+      "path": "formal/kevm/generated/trust-runtime-bridge.k",
+      "sha256": "bf8d587f7644d002d05bc7ab16806a39a3354d216cdcad53f504a9bb8b99d836"
+    },
+    "fixture": {
+      "path": "evidence/end-to-end-refinement/runtime-binding/resolved/fixture.json",
+      "sha256": "59b93ba41941f61ef357be99d240f6a274730be25ccdbb1a7d686be68ea938f6"
+    },
+    "governorDeclaration": {
+      "astId": 626,
+      "canonicalType": "address",
+      "encodedWord": "0x000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+      "locations": [
+        {
+          "length": 32,
+          "start": 517
+        },
+        {
+          "length": 32,
+          "start": 1580
+        },
+        {
+          "length": 32,
+          "start": 8522
+        },
+        {
+          "length": 32,
+          "start": 19822
+        }
+      ],
+      "name": "governor",
+      "sourcePath": "implementation/src/TrustStorage.sol",
+      "sourceSpan": "271:33:5",
+      "value": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"
+    },
+    "path": "evidence/end-to-end-refinement/runtime-binding/resolved/native/TrustToken.hex",
+    "textFileSha256": "1c2e73fa137a50993301eacf9e70aa73623a5d4673c58cadedb60e12c273f44f"
+  },
+  "schemaVersion": 2,
+  "semanticMutation": {
+    "byteOffset": 8553,
+    "canonicalByte": "0x66",
+    "canonicalWord": "0x000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+    "expectedSemanticDifference": "unchanged governor() claim requires the runtime leaf ending 0x66; mutant imported leaf returns address ending 0x67",
+    "immutableAstId": 626,
+    "immutableRange": {
+      "length": 32,
+      "start": 8522
+    },
+    "kind": "EXECUTABLE_SEMANTIC_MUTANT",
+    "mutantBridge": {
+      "path": "formal/kevm/row-bundles/art-05/generated/mutant-runtime-bridge.k",
+      "sha256": "e382620261e599867e01da6f4916b3bb78af12bbae43ef287b7ee5b2b77cac00"
+    },
+    "mutantByte": "0x67",
+    "mutantRuntimeSha256": "8be632ea839589c14e91eacf523379c2cfa8377441b8f6e4cadfbad39eb6c3c4",
+    "mutantVerification": {
+      "path": "formal/kevm/row-bundles/art-05/generated/mutant-runtime-verification.k",
+      "sha256": "e380844cea44b450c03fc3d0f345e22980801b96fe0270fa921c667a8e062bf9"
+    },
+    "mutantWord": "0x000000000000000000000000f39fd6e51aad88f6f4ce6ab8827279cfffb92267",
+    "mutationId": "ART-05-MUT-RUNTIME-BRIDGE-LEAF-001"
+  },
+  "sourceBinding": {
+    "sourceBlocks": {
+      "governorAssignmentSha256": "76790636d6785040280cb67444c6a00fb96c9910817835db649a9feec9566c42",
+      "governorDeclarationSha256": "863799c3a3754bcf8daa2f1e7591263f3bca4c3853dcc1c26a3756f624912415"
+    },
+    "trustStorage": {
+      "path": "implementation/src/TrustStorage.sol",
+      "sha256": "881783e28f8ec36e4571f48f407db4b63f8e736237f5e9f1044d916f3c066c6f"
+    },
+    "trustToken": {
+      "path": "implementation/src/TrustToken.sol",
+      "sha256": "dbe06bb25a2b62913bd6428e1de32ba007a214e24ac45f4fd2c0fb55ea22c96a"
+    }
+  },
+  "staticValidation": {
+    "backendStarted": false,
+    "parseOnly": {
+      "path": "formal/kevm/row-bundles/art-05/parse-only-report.json",
+      "sha256": "e7d5c1b39dfedf0db06a532fcac1245e8e498b9b06bc1dc340254c8c4c3d23aa"
+    },
+    "proofAttempted": false
+  },
+  "status": "OPEN",
+  "tcb": {
+    "actualCurrentLock": {
+      "path": "formal/kevm/dependencies.lock.json",
+      "sha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196"
+    },
+    "canonicalIndexPlaceholder": {
+      "path": "formal/kevm/dependencies.lock.json",
+      "sha256": "e4fcabd40c8b18e3900050a590b6b80c687d4d115f61bc12439af6099e83434e"
+    },
+    "classification": "OPEN_PLACEHOLDER_PENDING_COORDINATOR_BINDING",
+    "productDrift": false,
+    "runtimeBindingManifest": {
+      "dependencyLockSha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196",
+      "path": "evidence/end-to-end-refinement/runtime-binding/manifest.json",
+      "sha256": "97e4a349ff6667f01fb67515998c283383731d69a2fdaa00c06e260c11fcc5bb"
+    },
+    "staticBlocker": false
+  },
+  "theoremName": "theory_source_and_import_closure_are_hash_bound",
+  "theoryClosure": {
+    "closureRootSha256": "ce51d00c06ae0a8c348d5da538c0110fdb129877efe9861f0353b7fc21b6d448",
+    "externalImportCount": 1,
+    "graph": {
+      "path": "formal/kevm/row-bundles/art-05/closure-graph.json",
+      "sha256": "f855e3107ba52abc9b1b2d8ffe0d7edfffdc4077f8ff27bc2399f3775455d5f0"
+    },
+    "localImportEdgeCount": 13,
+    "parentSession": "Cross_Domain_State_Preservation",
+    "runtimeBridgeTheory": {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy",
+      "sha256": "48ef15ed0789be51c0d56f22740d93ba5c7a474116209be66855e8c95b870728",
+      "theory": "TRUST_Runtime_Bridge_Generated"
+    },
+    "session": "ERC_TRUST",
+    "theoryCount": 14
+  }
+}

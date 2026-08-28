@@ -1,0 +1,28 @@
+{
+    "schema":  "erc-trust-deterministic-build-v1",
+    "status":  "PASS",
+    "toolchain":  {
+                      "forge":  "1.7.1",
+                      "forgeCommit":  "4072e48705af9d93e3c0f6e29e93b5e9a40caed8",
+                      "solidity":  "0.8.36+commit.8a079791",
+                      "evmVersion":  "cancun",
+                      "optimizerRuns":  1,
+                      "viaIR":  true,
+                      "bytecodeHash":  "none",
+                      "cborMetadata":  false
+                  },
+    "buildA":  {
+                   "artifactSha256":  "4c0760656fb6fa712186abab3b06480bd1aff597570a64cb77733deb9ca5b46c",
+                   "creationSha256":  "bfa82a9144c7ad1dfe60603d335bbba0cb22716c3d667d28026e9a9b26d1bac7",
+                   "runtimeSha256":  "857a179f5088bbb5d4ac0c016e6ec3eda8bc1759e96b0e861f75fe1c70dbb127",
+                   "creationBytes":  27883,
+                   "runtimeBytes":  24377
+               },
+    "buildB":  {
+                   "artifactSha256":  "4c0760656fb6fa712186abab3b06480bd1aff597570a64cb77733deb9ca5b46c",
+                   "creationSha256":  "bfa82a9144c7ad1dfe60603d335bbba0cb22716c3d667d28026e9a9b26d1bac7",
+                   "runtimeSha256":  "857a179f5088bbb5d4ac0c016e6ec3eda8bc1759e96b0e861f75fe1c70dbb127",
+                   "creationBytes":  27883,
+                   "runtimeBytes":  24377
+               }
+}

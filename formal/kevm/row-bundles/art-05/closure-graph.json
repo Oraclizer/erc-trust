@@ -1,0 +1,147 @@
+{
+  "claimBoundary": "repository-owned ERC_TRUST sources/imports are exact; external parent-session source closure remains bounded by the current dependency lock",
+  "closureRootSha256": "ce51d00c06ae0a8c348d5da538c0110fdb129877efe9861f0353b7fc21b6d448",
+  "externalBoundaryLock": {
+    "path": "formal/kevm/dependencies.lock.json",
+    "sha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196"
+  },
+  "externalImports": [
+    {
+      "importedBy": "Regulatory_Execution_Semantics",
+      "theory": "Cross_Domain_State_Preservation.Regulatory_Action_Composition"
+    }
+  ],
+  "localImportEdges": [
+    [
+      "Claim_Boundary",
+      "TRUST_Compositional_State"
+    ],
+    [
+      "Executable_Regulatory_Kernel",
+      "Claim_Boundary"
+    ],
+    [
+      "Privileged_Governance",
+      "Executable_Regulatory_Kernel"
+    ],
+    [
+      "RCP_Action_Mapping",
+      "Token_Compatibility"
+    ],
+    [
+      "Regulatory_Execution_Semantics",
+      "RCP_Action_Mapping"
+    ],
+    [
+      "Regulatory_Execution_Simulation",
+      "Privileged_Governance"
+    ],
+    [
+      "TRUST_Compositional_State",
+      "TRUST_Concrete_Configuration"
+    ],
+    [
+      "TRUST_Concrete_Configuration",
+      "TRUST_Runtime_Bridge_Generated"
+    ],
+    [
+      "TRUST_End_To_End_Composition",
+      "Proof_Audit"
+    ],
+    [
+      "TRUST_Retrieve_Relation",
+      "TRUST_Transaction_Refinement"
+    ],
+    [
+      "TRUST_Runtime_Bridge_Generated",
+      "TRUST_Retrieve_Relation"
+    ],
+    [
+      "TRUST_Transaction_Refinement",
+      "TRUST_End_To_End_Composition"
+    ],
+    [
+      "Token_Compatibility",
+      "Regulatory_Execution_Simulation"
+    ]
+  ],
+  "parentSession": "Cross_Domain_State_Preservation",
+  "schemaVersion": 1,
+  "session": "ERC_TRUST",
+  "sessionRoot": {
+    "path": "formal/isabelle/ERC_TRUST/ROOT",
+    "sha256": "30ef7de586a1652a4af19296b1ba0c51e991290d939cf9224532d37183912229"
+  },
+  "theorySources": [
+    {
+      "path": "formal/isabelle/ERC_TRUST/Claim_Boundary.thy",
+      "sha256": "313549026c3645fbd9bb7eb7da4b32a47c4eb6257d625342de5f0927fd1da7eb",
+      "theory": "Claim_Boundary"
+    },
+    {
+      "path": "formal/isabelle/ERC_TRUST/Executable_Regulatory_Kernel.thy",
+      "sha256": "72f531eadbe62f39849248bbf1d1de61182abc85d8d865bc8138ebd4aaf27bb8",
+      "theory": "Executable_Regulatory_Kernel"
+    },
+    {
+      "path": "formal/isabelle/ERC_TRUST/Privileged_Governance.thy",
+      "sha256": "bca0c163d55f69a35350c8d79a990d6174c5ce3478682f80a285dfa53d0d614c",
+      "theory": "Privileged_Governance"
+    },
+    {
+      "path": "formal/isabelle/ERC_TRUST/Proof_Audit.thy",
+      "sha256": "232490398908be731087083e56e0c3be9140b8ffbac580c2d8299106a9031752",
+      "theory": "Proof_Audit"
+    },
+    {
+      "path": "formal/isabelle/ERC_TRUST/RCP_Action_Mapping.thy",
+      "sha256": "e628178a9b09f3dab7759503db1a9a47141e932f591d4f3f19cceac359e900a4",
+      "theory": "RCP_Action_Mapping"
+    },
+    {
+      "path": "formal/isabelle/ERC_TRUST/Regulatory_Execution_Semantics.thy",
+      "sha256": "a88b6ef3ffa472ca4faec231b98bb58b05a82bb3d95f7b4351f3440e9e5618a6",
+      "theory": "Regulatory_Execution_Semantics"
+    },
+    {
+      "path": "formal/isabelle/ERC_TRUST/Regulatory_Execution_Simulation.thy",
+      "sha256": "5c1db79338ed21a1f4d03901663ccf25b149e4ba922b250f79673bdf5f7208ab",
+      "theory": "Regulatory_Execution_Simulation"
+    },
+    {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Compositional_State.thy",
+      "sha256": "db19dac8cd183fc9701423613bfcf2c21a201d3abe623f8dc0b60fa32e87010f",
+      "theory": "TRUST_Compositional_State"
+    },
+    {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Concrete_Configuration.thy",
+      "sha256": "642daa38742595bb7a00700b08b0a24d74e18d1239eb848f45e197c78ba5ce56",
+      "theory": "TRUST_Concrete_Configuration"
+    },
+    {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_End_To_End_Composition.thy",
+      "sha256": "14572e7d1343c5303c4733bdb5eb4ddbf2ad5344e90c0f544223666ad372495d",
+      "theory": "TRUST_End_To_End_Composition"
+    },
+    {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Retrieve_Relation.thy",
+      "sha256": "dc44636241520700b86f720d125eedc559a9cc207cb092a0ab692058a3f49060",
+      "theory": "TRUST_Retrieve_Relation"
+    },
+    {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy",
+      "sha256": "48ef15ed0789be51c0d56f22740d93ba5c7a474116209be66855e8c95b870728",
+      "theory": "TRUST_Runtime_Bridge_Generated"
+    },
+    {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Transaction_Refinement.thy",
+      "sha256": "785726cd1b06f429101068ba7144c028563bb31fc427aca73aa7d2f39ffd52f5",
+      "theory": "TRUST_Transaction_Refinement"
+    },
+    {
+      "path": "formal/isabelle/ERC_TRUST/Token_Compatibility.thy",
+      "sha256": "b1437f68086883f75aaac090f009717a8d9b1bf25ec1bd4f5dbefc470e4bbb10",
+      "theory": "Token_Compatibility"
+    }
+  ]
+}

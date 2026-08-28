@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-28T18:34:10+09:00",
+  "baseRevision": "23e5a3c777c3516d7864b9e36bd4a901d916534c",
+  "sourceCommit": null,
+  "gitBindingMode": "containingCommitTree",
+  "sameCommitBindingPending": false,
+  "scope": {
+    "name": "ERC-TRUST preserved FREEZE vertical pilot",
+    "productionReady": false,
+    "claimedProfile": "UNSUPPORTED",
+    "supportedActionMask": "0x01",
+    "fullErc7943Supported": false,
+    "excluded": [
+      "forcedTransfer",
+      "full IERC7943Fungible compatibility",
+      "production signature verification",
+      "full ERC-TRUST refinement",
+      "full reference-implementation completion"
+    ]
+  },
+  "build": {
+    "compiler": "solc 0.8.36+commit.8a079791",
+    "evmVersion": "cancun",
+    "optimizer": {
+      "enabled": true,
+      "runs": 200,
+      "viaIR": true
+    },
+    "metadata": {
+      "bytecodeHash": "none",
+      "appendCBOR": false
+    },
+    "artifactSha256": {
+      "TrustFreezePilot": "59b6275ff97e99baf45da3bf9ba7e563b57303cc7a76cfde56306a1a50f6ad71",
+      "MockBoundPolicy": "f223b2d8b77e97dd595cf915234715da2c27c17d9fb3a2cab4113a7883db5bf9"
+    },
+    "bytecodeSha256": {
+      "TrustFreezePilot.creation": "ee570f5b42a2f11c8af53ab1e3be319c5b91383ead7f864bfeafa36d99c2b7f2",
+      "TrustFreezePilot.runtime": "43daa22719f0c7d6bbc9612be2aff28889646a9a6072d5c0a2471ef367d02b29"
+    },
+    "sizesBytes": {
+      "TrustFreezePilot.runtime": 18914,
+      "TrustFreezePilot.initcode": 19735,
+      "TrustFreezePilot.eip170RuntimeMargin": 5662,
+      "MockBoundPolicy.runtime": 589,
+      "MockBoundPolicy.initcode": 826
+    },
+    "determinism": {
+      "isolatedCleanBuilds": 2,
+      "artifactsIdentical": true
+    }
+  },
+  "abi": {
+    "constructorCount": 1,
+    "functionCount": 61,
+    "eventCount": 7,
+    "errorCount": 2,
+    "events": [
+      "Approval",
+      "AuthorizationCancelled",
+      "Frozen",
+      "RegulatoryActionApplied",
+      "RegulatoryReversalApplied",
+      "Transfer",
+      "TrustBindingChanged"
+    ],
+    "errors": [
+      "TrustOperationalFailure",
+      "TrustRejected"
+    ]
+  },
+  "interfaceBoundary": {
+    "IERC165": "0x01ffc9a7",
+    "IERC7943FreezePilot": "0xa11a6423",
+    "fullIERC7943Fungible": "0x3edbb4c4",
+    "fullIERC7943FungibleReportedBySupportsInterface": false
+  },
+  "externalMutators": [
+    {
+      "signature": "approve(address,uint256)",
+      "selector": "0x095ea7b3",
+      "class": "ordinary-erc20-allowance"
+    },
+    {
+      "signature": "transfer(address,uint256)",
+      "selector": "0xa9059cbb",
+      "class": "ordinary-transfer-gate"
+    },
+    {
+      "signature": "transferFrom(address,address,uint256)",
+      "selector": "0x23b872dd",
+      "class": "ordinary-transfer-gate-and-allowance"
+    },
+    {
+      "signature": "executeRegulatoryAction((bytes32,bytes32,uint8,address,address,address,uint256,bytes32,bytes32,bytes32,uint64,uint64,uint256,uint48,uint48),(bytes32,bytes32,address,address,bytes32,bytes))",
+      "selector": "0x1841f9e8",
+      "class": "native-direct-freeze"
+    },
+    {
+      "signature": "executeRegulatoryReversal((bytes32,bytes32,uint8,address,uint256,bytes32,bytes32,uint64,uint64,uint256,uint48,uint48),(bytes32,bytes32,address,address,bytes32,bytes))",
+      "selector": "0x757310d7",
+      "class": "typed-unfreeze-reversal"
+    },
+    {
+      "signature": "prepareRegulatoryAction((bytes32,bytes32,uint8,address,address,address,uint256,bytes32,bytes32,bytes32,uint64,uint64,uint256,uint48,uint48),(bytes32,bytes32,address,address,bytes32,bytes))",
+      "selector": "0xa4af941e",
+      "class": "exact-use-route-preparation"
+    },
+    {
+      "signature": "setFrozenTokens(address,uint256)",
+      "selector": "0xebe45cba",
+      "class": "staged-erc7943-freeze-route"
+    },
+    {
+      "signature": "cancelAuthorization(bytes32)",
+      "selector": "0x845ab94f",
+      "class": "prepared-route-cancellation"
+    },
+    {
+      "signature": "rebindPolicy(address,bytes32,uint256)",
+      "selector": "0x216bf032",
+      "class": "governance-policy-rebinding"
+    }
+  ],
+  "classificationComplete": true
+}

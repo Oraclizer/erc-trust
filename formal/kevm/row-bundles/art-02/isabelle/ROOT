@@ -1,0 +1,5 @@
+session ERC_TRUST_ART_02 = ERC_TRUST +
+  options [timeout = 1200]
+  theories
+    ART_02_Compiler_Output_Runtime_Binding
+

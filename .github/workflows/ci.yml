@@ -1,0 +1,214 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  implementation:
+    name: Foundry implementation
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@908c540300062bd5a7e473851cdb4282204cee09 # v1
+        with:
+          version: v1.7.1
+      - name: Show toolchain
+        run: forge --version
+      - name: Check formatting
+        run: forge fmt --check
+      - name: Build and enforce size gate
+        run: forge build --sizes --skip TrustTokenC
+      - name: Run unit, fuzz, and invariant tests
+        run: forge test -vv
+        env:
+          FOUNDRY_FUZZ_RUNS: "256"
+          FOUNDRY_INVARIANT_RUNS: "256"
+          FOUNDRY_INVARIANT_DEPTH: "500"
+      - name: Lint Solidity
+        run: forge lint
+
+  sdk-and-package:
+    name: SDK and repository package
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install pnpm
+        uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
+        with:
+          version: 11.9.0
+          run_install: false
+      - name: Install Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.14.0
+          cache: pnpm
+          cache-dependency-path: sdk/pnpm-lock.yaml
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@908c540300062bd5a7e473851cdb4282204cee09 # v1
+        with:
+          version: v1.7.1
+      - name: Install SDK dependencies
+        run: pnpm --dir sdk install --frozen-lockfile --ignore-scripts
+      - name: Test SDK
+        run: pnpm --dir sdk test
+      - name: Regenerate conformance vectors
+        run: node scripts/generate-vectors.mjs
+      - name: Check vector determinism
+        run: git diff --exit-code -- vectors/conformance-v1.json
+      - name: Build release artifacts
+        run: forge build
+      - name: Regenerate release manifest
+        run: node scripts/generate-release-manifest.mjs
+      - name: Verify release binding
+        run: node scripts/verify-release.mjs
+      - name: Check manifest determinism
+        run: git diff --exit-code -- evidence/release-manifest.json
+      - name: Verify local links
+        run: node scripts/verify-links.mjs
+      - name: Verify public surface
+        run: node scripts/verify-public-surface.mjs
+      - name: Verify repository health
+        run: node scripts/verify-repository-health.mjs
+
+  release-identity:
+    name: Release identity
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.14.0
+      - name: Verify current-profile release index
+        run: node scripts/verify-current-profile-release.mjs
+      - name: Verify public release tree
+        run: node scripts/verify-public-release-tree.mjs
+
+  formal:
+    name: Isabelle2025-2 / ERC_TRUST
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    env:
+      ISABELLE_SHA256: a20a507bc7c1270d8be96a9f3fbec06345387789d2dc2c4d3df6260d47bfb33c
+      ISABELLE_URL: https://www.cl.cam.ac.uk/research/hvg/Isabelle/dist/Isabelle2025-2_linux.tar.gz
+      AFP_ADS_FUNCTOR_SHA256: 10d6fa8671c461022ae5e71859a07610d616681fed79e2f1c81029a124203c85
+      AFP_ADS_FUNCTOR_URL: https://isa-afp.org/release/afp-ADS_Functor-current.tar.gz
+      FORMAL_FOUNDATION_COMMIT: db8e0802e55f0229cf7bc9e5e6cfbf40681adbba
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Restore cached Isabelle archive
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/Isabelle2025-2_linux.tar.gz
+          key: isabelle-${{ env.ISABELLE_SHA256 }}
+      - name: Restore cached AFP entry
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/afp-ADS_Functor.tar.gz
+          key: afp-ads-functor-${{ env.AFP_ADS_FUNCTOR_SHA256 }}
+      - name: Install pinned Isabelle and AFP entry
+        shell: bash
+        run: |
+          set -euo pipefail
+          isabelle_archive="$RUNNER_TEMP/Isabelle2025-2_linux.tar.gz"
+          afp_archive="$RUNNER_TEMP/afp-ADS_Functor.tar.gz"
+          if [ ! -f "$isabelle_archive" ]; then
+            curl --fail --location --connect-timeout 30 --max-time 1800 --retry 5 --retry-all-errors --output "$isabelle_archive" "$ISABELLE_URL"
+          fi
+          echo "$ISABELLE_SHA256  $isabelle_archive" | sha256sum --check --strict
+          tar -xzf "$isabelle_archive" -C "$RUNNER_TEMP"
+          test "$("$RUNNER_TEMP/Isabelle2025-2/bin/isabelle" version)" = "Isabelle2025-2"
+          if [ ! -f "$afp_archive" ]; then
+            curl --fail --location --connect-timeout 30 --max-time 600 --retry 5 --retry-all-errors --output "$afp_archive" "$AFP_ADS_FUNCTOR_URL"
+          fi
+          echo "$AFP_ADS_FUNCTOR_SHA256  $afp_archive" | sha256sum --check --strict
+          mkdir -p "$RUNNER_TEMP/afp"
+          tar -xzf "$afp_archive" -C "$RUNNER_TEMP/afp"
+          test -f "$RUNNER_TEMP/afp/ADS_Functor/ROOT"
+      - name: Check out pinned formal foundation
+        shell: bash
+        run: |
+          set -euo pipefail
+          foundation="$RUNNER_TEMP/formal-foundation"
+          git init "$foundation"
+          git -C "$foundation" remote add origin https://github.com/Oraclizer/formal-verification.git
+          git -C "$foundation" fetch --depth=1 origin "$FORMAL_FOUNDATION_COMMIT"
+          git -C "$foundation" checkout --detach FETCH_HEAD
+          test "$(git -C "$foundation" rev-parse HEAD)" = "$FORMAL_FOUNDATION_COMMIT"
+          test -f "$foundation/Cross_Domain_State_Preservation/ROOT"
+      - name: Verify foundation succession and prepare compatibility session
+        shell: bash
+        run: |
+          set -euo pipefail
+          foundation="$RUNNER_TEMP/formal-foundation"
+          overlay="$RUNNER_TEMP/formal-foundation-overlay"
+          node scripts/verify-formal-foundation-supersession.mjs \
+            --foundation-root "$foundation" \
+            --prepare-overlay "$overlay"
+          test -f "$overlay/Regulatory_Action_Composition.thy"
+          test "$(cat "$overlay/.erc-trust-foundation-commit")" = "$FORMAL_FOUNDATION_COMMIT"
+      - name: Reject untrusted proof source forms
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -R -n -E '^\s*(sorry|oops|axiomatization|oracle)\b|\bby\s+eval\b|\bnative_decide\b|\bskip_proof\b|\bsledgehammer\b|\bsmt_oracle\b' \
+            formal/isabelle/ERC_TRUST "$RUNNER_TEMP/formal-foundation-overlay" --include='*.thy'; then
+            exit 1
+          fi
+      - name: Clean-build and audit ERC_TRUST
+        shell: bash
+        run: |
+          set -euo pipefail
+          isabelle="$RUNNER_TEMP/Isabelle2025-2/bin/isabelle"
+          afp="$RUNNER_TEMP/afp/ADS_Functor"
+          foundation="$RUNNER_TEMP/formal-foundation-overlay"
+          "$isabelle" build -c -o record_proofs=1 -d "$afp" -d "$foundation" -d formal/isabelle ERC_TRUST
+          export_root="$RUNNER_TEMP/isabelle-export"
+          "$isabelle" export -d "$afp" -d "$foundation" -d formal/isabelle -x '*:erc-trust/model-proof-trust.txt' -O "$export_root" ERC_TRUST
+          grep -R -q '^status=PASS$' "$export_root"
+          grep -R -q '^oracle_dependency_count=0$' "$export_root"
+
+  required:
+    name: required
+    if: ${{ always() }}
+    needs: [implementation, sdk-and-package, release-identity, formal]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Require every verification job
+        env:
+          IMPLEMENTATION_RESULT: ${{ needs.implementation.result }}
+          SDK_RESULT: ${{ needs.sdk-and-package.result }}
+          IDENTITY_RESULT: ${{ needs.release-identity.result }}
+          FORMAL_RESULT: ${{ needs.formal.result }}
+        run: |
+          test "$IMPLEMENTATION_RESULT" = success
+          test "$SDK_RESULT" = success
+          test "$IDENTITY_RESULT" = success
+          test "$FORMAL_RESULT" = success

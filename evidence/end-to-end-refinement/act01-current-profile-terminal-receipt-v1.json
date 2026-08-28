@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "kind": "ERC_TRUST_ACT01_CURRENT_PROFILE_TERMINAL_RECEIPT_V1",
+  "rowId": "ACT-01",
+  "statement": "freeze_success_refines",
+  "status": "PASS_ACT01_CURRENT_PROFILE_RUNTIME_QUALIFICATION",
+  "terminal": true,
+  "nativeRuntimeSha256": "3697706d4948c34fada47e049d32ad3e1866cf24ded6328f0c209d858614a86d",
+  "compositionRootSha256": "cb1ecc5476e967ac527808b48d386f41c4359b792121a95d791ac45f08309a0f",
+  "reusableInputs": [
+    {
+      "id": "C0",
+      "path": "evidence/end-to-end-refinement/c0-universal-iff-qualification-v1.json",
+      "sha256": "f5ed07d481e35d9a1f3fd7458004e1a212537c20343cf5685021ef8cf1e7eded"
+    },
+    {
+      "id": "C1",
+      "path": "evidence/end-to-end-refinement/c1-terminal-receipt-v1.json",
+      "sha256": "1ecf5ed3da7dda4eee73a1589cfc331d7de5773436da8d4c0990af53d7c690c1"
+    },
+    {
+      "id": "C2",
+      "path": "evidence/end-to-end-refinement/c2-runtime-binder-receipt-v1.json",
+      "sha256": "40ec60405389d02575f525af89eeac1154f2d8d4ba68daf684332334f5201619"
+    },
+    {
+      "id": "C3",
+      "path": "evidence/end-to-end-refinement/c3-terminal-receipt-v1.json",
+      "sha256": "eb69128c671cdc8d2e93cba502f6d5b327f2e5d9014acd31044dff78c7b26f47"
+    },
+    {
+      "id": "C4_FREEZE",
+      "path": "evidence/end-to-end-refinement/c4-freeze-lane-receipt-v1.json",
+      "sha256": "a3c628fae7233998ff1a2425786bcabf04c53c38d86cec95aeb4930cc94c0d1b"
+    },
+    {
+      "id": "C6",
+      "path": "evidence/end-to-end-refinement/c6-terminal-receipt-v1.json",
+      "sha256": "6afba204a95dfe43455ed9c1896f809461f0ee9652a2ecc6422467be93a29847"
+    }
+  ],
+  "actualNativeFreezeTests": {
+    "path": "implementation/test/TrustActions.unit.t.sol",
+    "sha256": "58d9cf6624c9e20e0328134090547dc8603b3369925d2c0c439b52b6827d44d8",
+    "tests": [
+      "testERC7943ExactUseRoutesAndInterfaceTruth",
+      "testCanonicalEventOrder",
+      "test_RevertedTransactionLeavesNoLogsOrCommittedArtifacts"
+    ],
+    "terminalPassCount": 3
+  },
+  "composedGuarantees": [
+    "canonical calldata and runtime entry identity",
+    "authorization, epoch, replay, and dependency classification",
+    "exact-use setFrozen route and no ticket reuse",
+    "absolute FREEZE target with effect provenance",
+    "receipt equality, final event order, and full rollback on failure"
+  ],
+  "distinguishingNegatives": [
+    "C1 authorization consumption omission",
+    "C2 binding echo omission",
+    "C3 route ticket deletion omission",
+    "C4 incremental rather than absolute FREEZE",
+    "C6 record receipt binding omission"
+  ],
+  "assumptions": [
+    "The six reusable inputs are exact current-profile receipts",
+    "The frozen Native runtime identity is unchanged"
+  ],
+  "nonclaims": [
+    "other action rows",
+    "C4 non-FREEZE lanes",
+    "reversal rows",
+    "central refinement completion"
+  ],
+  "qualification": {
+    "act01CurrentProfileQualified": true,
+    "coreRefinementQualifiedDelta": 1,
+    "supportingQualifiedDelta": 0,
+    "backlogQualifiedDelta": 0,
+    "centralCredit": 0
+  }
+}
