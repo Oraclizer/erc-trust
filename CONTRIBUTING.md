@@ -110,8 +110,31 @@ merge; the bot branch is not granted a manifest bypass.
 The repository scanners also refuse project-internal lifecycle identifiers
 (milestone identifiers of the shape `M<n>`, `G<n>`, or `FV<n>`) in tracked
 text and file names, and report the exact file, line, and token when they
-match. If a legitimate technical term collides with the pattern, raise it in
-the pull request so the scanner can learn the exception explicitly.
+match. Note that this pattern currently collides with common legitimate
+terms, most notably the standard one-letter-one-digit short names of the
+two BLS12-381 pairing source groups and of Apple silicon chips: if your
+change needs such a term, say so in the pull request so the scanner can
+learn the exception explicitly rather than rewording the mathematics.
+
+Three further mechanical rules are enforced by the release-tree check and
+are easy to trip without knowing them:
+
+- Markdown files must not contain em or en dashes; the check fails with
+  `dash punctuation: <path>`. Use a comma, a colon, or parentheses.
+- Adding or removing any tracked file changes the retained-path count, and
+  the count is pinned: update `retainedFiles` in
+  `evidence/public-release/diet-manifest-v1.json` in the same pull request,
+  or the check fails with `retained path count drift`.
+- The README badge row is pinned to its exact badge count for the same
+  reason; changing the badges means updating the pin in
+  `scripts/verify-public-release-tree.mjs` alongside.
+
+The proof lane (`Proofs`) is a required check, but it does not tax ordinary
+changes: a gate job compares the pull request against its base and the long
+Isabelle build runs only when a proof input changed (`formal/`, the
+foundation-supersession checker or its pinned record, or the proof workflow
+itself). Every other pull request gets a fast positive "no proof input
+changed" result in about a minute.
 
 Changes to Certora Verification Language rules or K assertions must identify:
 
