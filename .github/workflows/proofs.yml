@@ -4,6 +4,8 @@ on:
   pull_request:
   push:
     branches: [main]
+  schedule:
+    - cron: "17 4 * * 1"
   workflow_dispatch:
 
 concurrency:
@@ -14,8 +16,47 @@ permissions:
   contents: read
 
 jobs:
+  gate:
+    # Decides whether this event can change the proof result. Anything that
+    # is not a pull request always gets the full clean build; a pull request
+    # gets it only when a proof input differs from the base snapshot. The
+    # aggregate job below fails closed if this decision cannot be made, and
+    # the weekly unconditional run backstops the decision.
+    name: Decide whether proof inputs changed
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      run_formal: ${{ steps.decide.outputs.run_formal }}
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Compare proof inputs against the base snapshot
+        id: decide
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" != "pull_request" ]; then
+            echo "run_formal=true" >> "$GITHUB_OUTPUT"
+            echo "not a pull request: the full proof build always runs"
+            exit 0
+          fi
+          base="${{ github.event.pull_request.base.sha }}"
+          git fetch --depth=1 origin "$base"
+          changed="$(git diff --name-only "$base" HEAD)"
+          printf 'changed files:\n%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -E -q \
+            '^(formal/|scripts/verify-formal-foundation-supersession\.mjs$|evidence/public-release/formal-foundation-supersession-v1\.json$|\.github/workflows/proofs\.yml$)'; then
+            echo "run_formal=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run_formal=false" >> "$GITHUB_OUTPUT"
+          fi
+
   formal:
     name: Isabelle2025-2 / ERC_TRUST
+    needs: [gate]
+    if: ${{ needs.gate.outputs.run_formal == 'true' }}
     runs-on: ubuntu-24.04
     timeout-minutes: 120
     env:
@@ -39,6 +80,13 @@ jobs:
         with:
           path: ${{ runner.temp }}/afp-ADS_Functor.tar.gz
           key: afp-ads-functor-${{ env.AFP_ADS_FUNCTOR_SHA256 }}
+      - name: Restore cached parent heaps
+        # The target session is still cleaned with -c on every run; this
+        # cache only spares rebuilding the unchanged parent sessions.
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.isabelle/Isabelle2025-2/heaps
+          key: heaps-${{ env.ISABELLE_SHA256 }}-${{ env.AFP_ADS_FUNCTOR_SHA256 }}-${{ env.FORMAL_FOUNDATION_COMMIT }}-v1
       - name: Install pinned Isabelle and AFP entry
         shell: bash
         run: |
@@ -103,16 +151,25 @@ jobs:
 
   Proofs:
     # Single aggregate check for the proof lane; branch protection
-    # requires this job together with the CI aggregate, so the
-    # required-check list survives job renames.
+    # requires this job together with the CI aggregate. It always reports:
+    # a skipped build is accepted only when the gate positively decided
+    # that no proof input changed, and any gate failure fails the lane.
     name: Proofs
     if: ${{ always() }}
-    needs: [formal]
+    needs: [gate, formal]
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
-      - name: Require the proof job
+      - name: Require the proof lane
         env:
+          GATE_RESULT: ${{ needs.gate.result }}
+          RUN_FORMAL: ${{ needs.gate.outputs.run_formal }}
           FORMAL_RESULT: ${{ needs.formal.result }}
         run: |
-          test "$FORMAL_RESULT" = success
+          set -euo pipefail
+          test "$GATE_RESULT" = success
+          if [ "$RUN_FORMAL" = "true" ]; then
+            test "$FORMAL_RESULT" = success
+          else
+            test "$FORMAL_RESULT" = skipped
+          fi
