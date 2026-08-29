@@ -161,6 +161,23 @@ shortcuts. The native reference rejects raw calls.
 
 ## Assurance snapshot
 
+Most of this repository is proof, not implementation. By line count, the
+machine-checked formal artifacts outweigh the Solidity reference
+implementation roughly five to one, which is why the repository language bar
+is dominated by K and Isabelle rather than Solidity:
+
+| Layer | Files | Lines | What it is |
+| --- | --- | --- | --- |
+| KEVM proof specifications | 248 | 35,114 | Bytecode-level proof claims and lemmas for the compiled runtime, including generated claim bundles |
+| Isabelle/HOL theories | 30 | 8,661 | The abstract model and its mechanically checked theorems |
+| Certora rules | 28 | 1,105 | Bounded rules and mutator classifications against the Solidity source |
+| Solidity reference implementation | 22 | 9,062 | The contract code those artifacts are about |
+
+To our knowledge, no ERC before this one has shipped machine-checked formal
+artifacts of this depth as part of the proposal itself. The boundaries of
+what that evidence does and does not establish are stated below and are part
+of the claim.
+
 <div align="center">
   <img src="docs/assets/verification-architecture.svg" alt="ERC-TRUST verification architecture separating the Isabelle abstract model, Solidity and Certora checks, compiled EVM bytecode, Kontrol and KEVM proofs, the unclaimed full refinement theorem, and the separate deployment boundary" width="900">
 </div>
