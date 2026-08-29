@@ -38,6 +38,7 @@ const required = [
   ".github/PULL_REQUEST_TEMPLATE.md",
   ".github/dependabot.yml",
   ".github/workflows/identity.yml",
+  ".github/workflows/proofs.yml",
   "schemas/receipt.schema.json",
   "vectors/conformance-v1.json",
   "sdk/package.json",

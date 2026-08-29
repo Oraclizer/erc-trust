@@ -1,0 +1,118 @@
+name: Proofs
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: proofs-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  formal:
+    name: Isabelle2025-2 / ERC_TRUST
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    env:
+      ISABELLE_SHA256: a20a507bc7c1270d8be96a9f3fbec06345387789d2dc2c4d3df6260d47bfb33c
+      ISABELLE_URL: https://www.cl.cam.ac.uk/research/hvg/Isabelle/dist/Isabelle2025-2_linux.tar.gz
+      AFP_ADS_FUNCTOR_SHA256: 10d6fa8671c461022ae5e71859a07610d616681fed79e2f1c81029a124203c85
+      AFP_ADS_FUNCTOR_URL: https://isa-afp.org/release/afp-ADS_Functor-2026-02-06.tar.gz
+      FORMAL_FOUNDATION_COMMIT: db8e0802e55f0229cf7bc9e5e6cfbf40681adbba
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Restore cached Isabelle archive
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/Isabelle2025-2_linux.tar.gz
+          key: isabelle-${{ env.ISABELLE_SHA256 }}
+      - name: Restore cached AFP entry
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/afp-ADS_Functor.tar.gz
+          key: afp-ads-functor-${{ env.AFP_ADS_FUNCTOR_SHA256 }}
+      - name: Install pinned Isabelle and AFP entry
+        shell: bash
+        run: |
+          set -euo pipefail
+          isabelle_archive="$RUNNER_TEMP/Isabelle2025-2_linux.tar.gz"
+          afp_archive="$RUNNER_TEMP/afp-ADS_Functor.tar.gz"
+          if [ ! -f "$isabelle_archive" ]; then
+            curl --fail --location --connect-timeout 30 --max-time 1800 --retry 5 --retry-all-errors --output "$isabelle_archive" "$ISABELLE_URL"
+          fi
+          echo "$ISABELLE_SHA256  $isabelle_archive" | sha256sum --check --strict
+          tar -xzf "$isabelle_archive" -C "$RUNNER_TEMP"
+          test "$("$RUNNER_TEMP/Isabelle2025-2/bin/isabelle" version)" = "Isabelle2025-2"
+          if [ ! -f "$afp_archive" ]; then
+            curl --fail --location --connect-timeout 30 --max-time 600 --retry 5 --retry-all-errors --output "$afp_archive" "$AFP_ADS_FUNCTOR_URL"
+          fi
+          echo "$AFP_ADS_FUNCTOR_SHA256  $afp_archive" | sha256sum --check --strict
+          mkdir -p "$RUNNER_TEMP/afp"
+          tar -xzf "$afp_archive" -C "$RUNNER_TEMP/afp"
+          test -f "$RUNNER_TEMP/afp/ADS_Functor/ROOT"
+      - name: Check out pinned formal foundation
+        shell: bash
+        run: |
+          set -euo pipefail
+          foundation="$RUNNER_TEMP/formal-foundation"
+          git init "$foundation"
+          git -C "$foundation" remote add origin https://github.com/Oraclizer/formal-verification.git
+          git -C "$foundation" fetch --depth=1 origin "$FORMAL_FOUNDATION_COMMIT"
+          git -C "$foundation" checkout --detach FETCH_HEAD
+          test "$(git -C "$foundation" rev-parse HEAD)" = "$FORMAL_FOUNDATION_COMMIT"
+          test -f "$foundation/Cross_Domain_State_Preservation/ROOT"
+      - name: Verify foundation succession and prepare compatibility session
+        shell: bash
+        run: |
+          set -euo pipefail
+          foundation="$RUNNER_TEMP/formal-foundation"
+          overlay="$RUNNER_TEMP/formal-foundation-overlay"
+          node scripts/verify-formal-foundation-supersession.mjs \
+            --foundation-root "$foundation" \
+            --prepare-overlay "$overlay"
+          test -f "$overlay/Regulatory_Action_Composition.thy"
+          test "$(cat "$overlay/.erc-trust-foundation-commit")" = "$FORMAL_FOUNDATION_COMMIT"
+      - name: Reject untrusted proof source forms
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -R -n -E '^\s*(sorry|oops|axiomatization|oracle)\b|\bby\s+eval\b|\bnative_decide\b|\bskip_proof\b|\bsledgehammer\b|\bsmt_oracle\b' \
+            formal/isabelle/ERC_TRUST "$RUNNER_TEMP/formal-foundation-overlay" --include='*.thy'; then
+            exit 1
+          fi
+      - name: Clean-build and audit ERC_TRUST
+        shell: bash
+        run: |
+          set -euo pipefail
+          isabelle="$RUNNER_TEMP/Isabelle2025-2/bin/isabelle"
+          afp="$RUNNER_TEMP/afp/ADS_Functor"
+          foundation="$RUNNER_TEMP/formal-foundation-overlay"
+          "$isabelle" build -c -o record_proofs=1 -d "$afp" -d "$foundation" -d formal/isabelle ERC_TRUST
+          export_root="$RUNNER_TEMP/isabelle-export"
+          "$isabelle" export -d "$afp" -d "$foundation" -d formal/isabelle -x '*:erc-trust/model-proof-trust.txt' -O "$export_root" ERC_TRUST
+          grep -R -q '^status=PASS$' "$export_root"
+          grep -R -q '^oracle_dependency_count=0$' "$export_root"
+
+  Proofs:
+    # Single aggregate check for the proof lane; branch protection
+    # requires this job together with the CI aggregate, so the
+    # required-check list survives job renames.
+    name: Proofs
+    if: ${{ always() }}
+    needs: [formal]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Require the proof job
+        env:
+          FORMAL_RESULT: ${{ needs.formal.result }}
+        run: |
+          test "$FORMAL_RESULT" = success
