@@ -53,6 +53,7 @@ const required = [
   ".github/ISSUE_TEMPLATE/specification.yml",
   ".github/ISSUE_TEMPLATE/documentation.yml",
   ".github/workflows/identity.yml",
+  ".github/workflows/proofs.yml",
   "evidence/current-profile-release-index-v1.json",
   "evidence/public-release/diet-manifest-v1.json",
   "evidence/public-release/proof-bound-identifiers-v1.json",

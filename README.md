@@ -5,6 +5,7 @@
 
   [![CI](https://github.com/Oraclizer/erc-trust/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Oraclizer/erc-trust/actions/workflows/ci.yml)
   [![Release identity](https://github.com/Oraclizer/erc-trust/actions/workflows/identity.yml/badge.svg?branch=main)](https://github.com/Oraclizer/erc-trust/actions/workflows/identity.yml)
+  [![Proofs](https://github.com/Oraclizer/erc-trust/actions/workflows/proofs.yml/badge.svg?branch=main)](https://github.com/Oraclizer/erc-trust/actions/workflows/proofs.yml)
   [![Solidity](https://img.shields.io/badge/solidity-0.8.36-2b247c.svg)](https://github.com/Oraclizer/erc-trust/actions/workflows/ci.yml)
   [![Software license](https://img.shields.io/badge/license-BSD--3--Clause-0b5cad.svg)](LICENSE)
 
