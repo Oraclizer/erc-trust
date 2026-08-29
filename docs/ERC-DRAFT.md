@@ -5,6 +5,12 @@ Status: pre-discussion draft; no ERC number assigned
 Candidate: `0.1.0-candidate.1`
 Assurance: unaudited, not for production
 
+Standards relationship: ERC-TRUST is a conformance extension of the proposed
+ERC-8319 (Regulatory Compliance Protocol). ERC-8319 is an open, not-yet-merged
+Draft at ethereum/ERCs pull request 1848. The official ERC-TRUST proposal will
+be submitted after ERC-8319 merges, with the intended preamble
+`requires: 20, 165, 7943, 8319`.
+
 ## Abstract
 
 This proposal defines a token-independent vocabulary and execution contract

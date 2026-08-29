@@ -19,6 +19,16 @@
 > external legal or factual truth is verified. ERC-TRUST is a pre-ERC
 > candidate. No ERC number has been assigned or assumed.
 
+## Standards track status
+
+ERC-TRUST is a conformance extension of the proposed **ERC-8319**
+(Regulatory Compliance Protocol). ERC-8319 is an open, not-yet-merged Draft
+at [ethereum/ERCs PR #1848](https://github.com/ethereum/ERCs/pull/1848). The
+official ERC-TRUST proposal will be submitted after ERC-8319 merges, with the
+intended preamble `requires: 20, 165, 7943, 8319`; until then ERC-TRUST has
+no official ERC number and [`docs/ERC-DRAFT.md`](docs/ERC-DRAFT.md) is the
+working draft.
+
 ## The problem
 
 Security-token systems expose privileged mechanics such as freezing balances
@@ -278,13 +288,18 @@ retroactively make older implementation commits audited or production-ready.
 
 ## License, citation, and provenance
 
-The software implementation, SDK, tooling, project assets, and repository
-documentation are licensed under the [BSD 3-Clause License](LICENSE), except
-for the proposed ERC text in [`docs/ERC-DRAFT.md`](docs/ERC-DRAFT.md).
-Copyright and related rights in that specification draft are waived under
-[CC0 1.0 Universal](docs/LICENSE-CC0.md), matching the public-domain
-requirement for EIP/ERC documents. The CC0 waiver does not change the license
-of the reference implementation.
+First-party content in this repository is copyright Oraclizer Labs, Inc.
+Licensing follows the path:
+
+- Code, tests, scripts, the SDK, and the formal artifacts:
+  [BSD 3-Clause License](LICENSE), copyright Oraclizer Labs, Inc.
+- The proposed ERC text in [`docs/ERC-DRAFT.md`](docs/ERC-DRAFT.md):
+  copyright and related rights waived under
+  [CC0 1.0 Universal](docs/LICENSE-CC0.md), matching the public-domain
+  requirement for EIP/ERC documents. The waiver does not change the license
+  of the reference implementation.
+- The accompanying TRUST paper: CC BY 4.0, published separately from this
+  repository.
 
 The BSD 3-Clause License includes warranty and liability limitations.
 [DISCLAIMER.md](DISCLAIMER.md) provides a plain-language summary but does not
