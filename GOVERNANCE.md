@@ -1,6 +1,6 @@
 # Governance
 
-ERC-TRUST is currently maintained by Jay Kim on behalf of Oraclizer. The project is in a
+ERC-TRUST is currently maintained by Jinwook Kim ([@jay-oraclizer](https://github.com/jay-oraclizer)) on behalf of Oraclizer. The project is in a
 pre-standard candidate phase and has no elected governance body, token vote,
 or delegated release committee.
 

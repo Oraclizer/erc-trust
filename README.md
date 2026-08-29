@@ -212,9 +212,7 @@ deterministic builds, and provenance.
 ## Related research and formal artifacts
 
 ERC-TRUST is an independent pre-ERC candidate. The resources below provide
-its broader regulatory and formal-methods context; they do not turn this
-repository into an audited implementation or establish an
-Isabelle-to-Solidity-to-EVM refinement theorem.
+its broader regulatory and formal-methods context.
 
 - [Regulatory Compliance Protocol (RCP)](https://arxiv.org/abs/2603.29278)
   provides the regulatory-coverage benchmark from which the typed-action
@@ -222,8 +220,8 @@ Isabelle-to-Solidity-to-EVM refinement theorem.
 - [The Cross-Domain State Preservation Functor](https://arxiv.org/abs/2604.03844)
   develops the model-level state-preservation framework in Isabelle/HOL.
 - [Oraclizer formal-verification](https://github.com/Oraclizer/formal-verification)
-  publishes the associated reusable Isabelle/HOL artifacts. It is related
-  formal work, not a proof of this Solidity candidate.
+  publishes the reusable Isabelle/HOL artifacts that the formal work here
+  builds on; the scope of each layer is recorded in FORMAL_VERIFICATION.md.
 
 ## Repository layout
 
@@ -245,7 +243,7 @@ Isabelle-to-Solidity-to-EVM refinement theorem.
 | Language or format | Purpose in this repository |
 | --- | --- |
 | Solidity | Immutable reference implementation, compatibility profiles, and Foundry unit, fuzz, and invariant tests |
-| Isabelle/HOL | Abstract action semantics and model-level theorems; it is not an Isabelle-to-Solidity-to-EVM refinement proof |
+| Isabelle/HOL | Abstract action semantics and model-level theorems, with their exact scope recorded in FORMAL_VERIFICATION.md |
 | PowerShell | Windows orchestration for deterministic builds, mutation campaigns, and abstract-model evidence closure |
 | JavaScript (Node.js `.mjs`) | Conformance vectors, manifests, hash binding, link checks, and public-surface/repository-health validation |
 | TypeScript | Operator SDK for typed requests, identifiers, hashes, calldata, receipts, and associated tests |
@@ -301,10 +299,6 @@ Contributions use the license applicable to the changed path as described in
 [CONTRIBUTING.md](CONTRIBUTING.md).
 
 The standalone [ERC-TRUST project mark](docs/assets/erc-trust-mark.svg)
-identifies this independent project. It does not imply endorsement by the
-Ethereum Foundation, Ethereum core contributors, or EIP/ERC editors, and it
-does not imply that an ERC number has been assigned. Its opposing, mirrored
-state channels, calibrated ring, and central witness aperture are an abstract
-metaphor for typed inputs crossing a governed boundary whose agreement can be
-independently recomputed; they do not depict a regulator, financial
-institution, or certification seal.
+identifies this independent project; it implies no endorsement by the
+Ethereum Foundation, Ethereum core contributors, or EIP/ERC editors, and no
+assigned ERC number.

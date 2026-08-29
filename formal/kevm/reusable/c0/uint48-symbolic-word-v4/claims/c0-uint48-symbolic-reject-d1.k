@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: BSD-3-Clause
-// Jay-approved D1: original W carrier and runtime, exactly two machine-proved redundant hypotheses.
+// D1: original W carrier and runtime, exactly two machine-proved redundant hypotheses.
 module C0-UINT48-SYMBOLIC-REJECT-D1-SPEC
   imports TRUST-RUNTIME-VERIFICATION
 

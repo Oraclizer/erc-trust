@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: BSD-3-Clause
-// Jay-approved UINT160 D1 reject with exactly two Isabelle-proved redundant hypotheses.
+// UINT160 D1 reject with exactly two Isabelle-proved redundant hypotheses.
 module C0-UINT160-SYMBOLIC-REJECT-D1-SPEC
   imports TRUST-RUNTIME-VERIFICATION
 

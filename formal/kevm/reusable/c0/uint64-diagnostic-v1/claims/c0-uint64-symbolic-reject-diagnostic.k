@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: BSD-3-Clause
-// Jay-approved single UINT64 diagnostic: no extra hypotheses and no family credit.
+// single UINT64 diagnostic: no extra hypotheses and no family credit.
 module C0-UINT64-SYMBOLIC-REJECT-DIAGNOSTIC-SPEC
   imports TRUST-RUNTIME-VERIFICATION
 

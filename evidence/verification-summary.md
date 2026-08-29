@@ -35,7 +35,7 @@ security audit.
 
 | Layer | Exact result |
 | --- | --- |
-| Foundry | 18/18 tests PASS; two fuzz properties × 256 runs; three invariants × 256 runs × 500 calls = 384,000 calls |
+| Foundry | 31/31 tests PASS; two fuzz properties × 256 runs; three invariants × 256 runs × 500 calls = 384,000 calls |
 | Size | `TrustToken` runtime 24,377 bytes; EIP-170 margin 199 bytes; initcode 27,883 bytes |
 | Lint | 0 errors; six intentional validity-window `block.timestamp` warnings |
 | Determinism | two isolated clean builds produced identical artifact, creation bytecode, and runtime bytecode |

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: BSD-3-Clause
-// Jay-approved UINT160 universal accept on the frozen W carrier and stack prefix.
+// UINT160 universal accept on the frozen W carrier and stack prefix.
 module C0-UINT160-SYMBOLIC-ACCEPT-SPEC
   imports TRUST-RUNTIME-VERIFICATION
 

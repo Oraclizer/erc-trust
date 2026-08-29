@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: BSD-3-Clause
-// Jay-approved UINT64 D1 reject with exactly two Isabelle-proved redundant hypotheses.
+// UINT64 D1 reject with exactly two Isabelle-proved redundant hypotheses.
 module C0-UINT64-SYMBOLIC-REJECT-D1-SPEC
   imports TRUST-RUNTIME-VERIFICATION
 
