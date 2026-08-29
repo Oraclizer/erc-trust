@@ -33,7 +33,7 @@
   "sourceTree": {
     "scope": "protected-release-inputs-v1",
     "algorithm": "sha256-canonical-utf8-lf-lines-v1",
-    "root": "222fda2a20dc076e71765a20022d8f04b58c0fcefc3561ddaf8c6109a206aa83",
+    "root": "d93e2f4eb2b2c648460769848fe327a4f710ac586757bd241783ada174bf7dbe",
     "files": {
       "evidence/certora-results.json": "b7b0f45f046b245b9483d2a9874cc8629a5001c7f0e7b42bf38c5dbc2eaa7e93",
       "evidence/claim-matrix.md": "040cbdd856a6c43312437a8582d6753f6c7ec3223039a277e9e8ade0c3824f10",
@@ -756,7 +756,7 @@
       "scripts/verify-formal-foundation-supersession.mjs": "171111dea1f9b68f62af282746bd30d1a03091cdba9dff15e132cbff3f4c75a3",
       "scripts/verify-links.mjs": "cd80d3dfb64cb8f4e3fc4136d5bfcf09d7fbaa51112e5fa765a5692c17316365",
       "scripts/verify-pilot-binding.mjs": "4f237dd536f1ddc463bff1de10a2482e106eda502da7b512c1158d1ea88eba84",
-      "scripts/verify-public-release-tree.mjs": "bcde2d728321262180827edaa328dfb63e2f0bbf20f7fe3677052ae05fe7d0dd",
+      "scripts/verify-public-release-tree.mjs": "d8a642d4ecea567d44becb215fb142fe316710701c3e2ea80f726b842515e903",
       "scripts/verify-public-surface.mjs": "6e882aeb20ac7da6ae2fa19c9e9bb3b76a557ea7fef979c7619f099a7bd58bf4",
       "scripts/verify-release.mjs": "211b39c3418c20111b20784df9c1d98a741b80d483e124eb9f6f35fbf30c367f",
       "scripts/verify-repository-health.mjs": "00809df78c6c579acbf84e10ce19cb2cc219c1b8e7e73cc1a87f8f07245d1b12",
