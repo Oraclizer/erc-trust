@@ -135,7 +135,7 @@ const readme = readFileSync(resolve(root, "README.md"), "utf8");
 const firstThirty = readme.split("\n").slice(0, 30).join("\n");
 if (!firstThirty.includes("Unaudited. Not for production.")) fail("README warning is not in the first 30 lines");
 const badgeCount = (firstThirty.match(/\[!\[/g) ?? []).length;
-if (badgeCount !== 3) fail(`README badge count drift: ${badgeCount}`);
+if (badgeCount !== 4) fail(`README badge count drift: ${badgeCount}`);
 if (!readme.includes("scripts/replay-current-profile-release.ps1")) fail("public replay command missing from README");
 const attributes = readFileSync(resolve(root, ".gitattributes"), "utf8");
 if (!attributes.includes("**/generated/** linguist-generated=true")
