@@ -90,7 +90,7 @@ jobs:
         run: node scripts/verify-repository-health.mjs
 
   release-identity:
-    name: Release identity
+    name: Release tree identity
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -115,7 +115,7 @@ jobs:
       ISABELLE_SHA256: a20a507bc7c1270d8be96a9f3fbec06345387789d2dc2c4d3df6260d47bfb33c
       ISABELLE_URL: https://www.cl.cam.ac.uk/research/hvg/Isabelle/dist/Isabelle2025-2_linux.tar.gz
       AFP_ADS_FUNCTOR_SHA256: 10d6fa8671c461022ae5e71859a07610d616681fed79e2f1c81029a124203c85
-      AFP_ADS_FUNCTOR_URL: https://isa-afp.org/release/afp-ADS_Functor-current.tar.gz
+      AFP_ADS_FUNCTOR_URL: https://isa-afp.org/release/afp-ADS_Functor-2026-02-06.tar.gz
       FORMAL_FOUNDATION_COMMIT: db8e0802e55f0229cf7bc9e5e6cfbf40681adbba
     steps:
       - name: Check out source

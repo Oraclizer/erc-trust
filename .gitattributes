@@ -12,3 +12,4 @@
 formal/kevm/generated/** linguist-generated=true
 evidence/release-manifest.json linguist-generated=true
 vectors/conformance-v1.json linguist-generated=true
+scripts/*.mjs linguist-vendored

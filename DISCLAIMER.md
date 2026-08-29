@@ -1,47 +1,37 @@
 # Disclaimer
 
-ERC-TRUST is an unaudited research, standards, and reference implementation
-candidate. It is not a production system, legal service, compliance service,
-investment product, or deployment recommendation.
+ERC-TRUST is a pre-ERC interface and reference candidate for typed,
+fail-closed regulatory actions and recomputable receipts for security tokens.
+This document states in plain language what the candidate establishes and
+where its boundaries are; the [BSD 3-Clause License](LICENSE) controls the
+legal warranty and liability terms and is not modified or expanded here.
 
-## Software status
+## What the evidence establishes
 
-- No ERC number has been assigned or assumed.
-- No contract in this repository is claimed as deployed.
-- No proxy, migration, upgrade, key-management, operational-governance, or
-  incident-response process is verified.
-- The reference has not received an independent security audit.
-- Bounded verification results apply only to the exact candidate, rules,
-  harnesses, assumptions, and artifacts identified in the evidence package.
-- Forks, modifications, compiler changes, dependency changes, and deployments
-  require their own review and evidence.
+- The bounded verification results (Foundry tests, fuzzing, invariants,
+  Certora rules, KEVM claims, and Isabelle sessions) apply to the exact
+  candidate, rules, harnesses, assumptions, and artifacts identified in the
+  evidence package, and can be replayed from the repository.
+- The verified properties and their exact scope are listed in the README
+  assurance snapshot and the claim matrix under `evidence/`.
 
-## External facts
+## Boundaries
 
-ERC-TRUST records and binds inputs about authority, policy, identity,
-settlement, proceeds, entitlement, and ownership. The software does not prove
-that those external claims are true, legally valid, current, enforceable, or
-appropriate in a particular jurisdiction.
-
-Nothing in this repository is legal, regulatory, tax, investment, security,
-or operational advice. Users are responsible for obtaining appropriate
-professional advice and determining whether any design or deployment is
-lawful and suitable.
-
-## Risk
-
-Smart contracts and token systems can fail through defects, misunderstood
-assumptions, compromised keys, governance failures, dependency failures,
-network behavior, compiler defects, integration errors, or malicious use.
-Verification and testing reduce specified risks but cannot establish the
-absence of every defect.
+- This is research and reference software: unaudited, unreleased, and not
+  for production. No ERC number is assigned, and no contract here is claimed
+  as deployed.
+- Verification covers the exact bytes it names. Forks, modifications,
+  compiler or dependency changes, and deployments require their own review
+  and evidence.
+- ERC-TRUST records and binds inputs about authority, policy, identity,
+  settlement, proceeds, entitlement, and ownership; the software does not
+  prove that those external claims are true, legally valid, current, or
+  enforceable in a particular jurisdiction.
+- Nothing in this repository is legal, regulatory, tax, investment, or
+  operational advice.
+- As with any smart-contract system, defects, misunderstood assumptions,
+  compromised keys, dependency failures, or integration errors remain
+  possible. Verification and testing reduce the named risks and no others.
 
 Do not use this candidate with assets, rights, production systems, or real
 users.
-
-## License controls
-
-The [BSD 3-Clause License](LICENSE) is the controlling license and includes
-the applicable warranty disclaimer and limitation of liability. This
-plain-language document summarizes project boundaries and does not replace,
-modify, or expand the license.

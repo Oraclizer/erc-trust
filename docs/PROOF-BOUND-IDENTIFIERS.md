@@ -15,5 +15,8 @@ workflow stages, approval gates, security roles, or external endorsements.
 The machine-readable allowlist is
 `evidence/public-release/proof-bound-identifiers-v1.json`. The public-tree
 verifier rejects a new path, a new occurrence, an occurrence-count increase,
-or a byte change in an allowlisted file. Credentials, personal paths, private
+or a byte change in an allowlisted file. Its automated scan matches the
+`M<n>`, `G<n>`, and `FV<n>` identifier shapes; the package and row identifier
+families above are stable public vocabulary that reviews and this document
+govern rather than the automated scan. Credentials, personal paths, private
 branch names, external secrets, and tool attribution are never allowlisted.

@@ -104,7 +104,7 @@ negative and one current product inhabitant for every row.
 All 24 mandatory Supporting rows are current-profile qualified through their
 existing retrieve/ABI/artifact/nonclaim theorems or checked properties and
 fail-closed row negatives. For `STATE-02`, `STATE-03`, and `ART-01`, the
-Jay-approved two-layer runtime-binding package preserves the historical
+two-layer runtime-binding package preserves the historical
 whole-file Foundry hashes while separately checking ABI, semantic storage
 layout, creation bytecode, runtime bytecode, method identifiers, and immutable
 reference positions against pinned-solc replay. All seven current artifacts
@@ -197,7 +197,7 @@ The exact source binding and non-claims are in
 
 The pinned Foundry 1.7.1 / Solidity 0.8.36 build passed:
 
-- 18 tests, 0 failures, 0 skipped;
+- 31 tests, 0 failures, 0 skipped;
 - two fuzz properties at 256 runs each;
 - three invariants at 256 runs × 500 calls each, or 384,000 calls total;
 - runtime size 24,142 bytes, leaving 434 bytes below the EIP-170 limit;
