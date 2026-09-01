@@ -50,8 +50,9 @@ Candidate tags use `vX.Y.Z-candidate.N`; later stable tags use `vX.Y.Z`.
 No other tag naming family is used.
 
 The historical tag `v0.1.0-candidate.1` remains immutable. Candidate 2 is the
-current repaired reference candidate; its tag has not been created. No GitHub
-release has been published.
+current repaired reference candidate. Its tag and any GitHub Release are
+separate maintainer actions whose current state is shown by the repository's
+tag and Release records.
 
 ## Standards process
 

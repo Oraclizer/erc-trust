@@ -43,6 +43,11 @@ artifact and exact candidate SSOT; the paper does not turn bounded evidence
 into an audit, deployment verification, compiler-correctness result, or a
 complete Isabelle-to-EVM refinement theorem.
 
+The permanent arXiv record preserves its version history: v1 binds candidate
+1, while candidate 2 is the corrected successor described by this repository
+and its replacement line. Readers should use the latest arXiv version together
+with the exact candidate and manifest identities stated here.
+
 ## The problem
 
 Security-token systems expose privileged mechanics such as freezing balances
@@ -158,7 +163,7 @@ node scripts/verify-release.mjs
 node scripts/verify-links.mjs
 node scripts/verify-public-surface.mjs
 node scripts/verify-repository-health.mjs
-node scripts/verify-current-profile-release.mjs
+node scripts/verify-current-profile-release-v2.mjs
 ```
 
 On Windows, the complete current-profile release replay is:
@@ -302,11 +307,13 @@ local environment state do not belong in the tracked public tree.
 ## Version and release policy
 
 `0.1.0-candidate.2` identifies the current unaudited reference candidate. The
-historical `v0.1.0-candidate.1` tag remains immutable; no candidate 2 tag or
-GitHub Release exists yet. Tags, releases, deployment claims, and a production
-designation require separate maintainer approval and must bind an exact commit
-and manifest. A later ERC number, if assigned, will not retroactively make
-older implementation commits audited or production-ready.
+historical `v0.1.0-candidate.1` tag remains immutable. A candidate 2 tag and a
+GitHub Release are separate maintainer actions whose current state is shown by
+the repository's tags and Releases pages; this README does not infer either.
+Tags, releases, deployment claims, and a production designation require
+separate maintainer approval and must bind an exact commit and manifest. A
+later ERC number, if assigned, will not retroactively make older
+implementation commits audited or production-ready.
 
 ## Security, support, and contributions
 

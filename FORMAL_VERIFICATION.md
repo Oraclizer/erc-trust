@@ -175,17 +175,15 @@ This evidence does not establish a machine-checked end-to-end refinement
 theorem from Isabelle to EVM bytecode. The detailed row disposition is in
 `evidence/trust-ref-matrix.md`.
 
-The approved semantic alignment and the theorem registry for that work are
-recorded under `evidence/end-to-end-refinement/`. Their presence is not a
-completion claim. FAIL-05, ABI-03, ART-02, ART-03, ART-04, and ART-05 are
-discharged after exact source, theory, compiled-runtime, negative-adequacy,
-and independent-replay evidence; the remaining 73 rows stay open. ABI-03's
-former trailing-word target-subsumption blocker is closed by its
-backend-complete row proof. ABI-04 retains only partial bounded and diagnostic
-evidence and remains open for its malformed-calldata matrix and row closure.
-All six historical discharges are Core-Supporting rows. They retain their
-legacy status but are not current-profile qualified until the hybrid
-publication profile replays or revalidates their exact closure.
+The approved semantic alignment and theorem registry are recorded under
+`evidence/end-to-end-refinement/`. In the historical candidate 1 registry,
+six rows were discharged and the other 73 were open; those dispositions remain
+historical facts only. Candidate 2's successor profile rebinds all 49 Core and
+24 mandatory Supporting rows through
+`current-profile-row-qualifications-v2.json`, using named current evidence or
+the verifier-enforced exact two-guard delta. This repository qualification is
+not a claim that the former open rows became 73 independent unconditional
+compiler-to-EVM theorems.
 
 The pinned Isabelle/EVM candidate passed an isolated Isabelle2025-2
 compatibility build, but its root theory-source license is not stated. It is

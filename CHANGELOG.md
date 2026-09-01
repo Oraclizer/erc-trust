@@ -20,8 +20,9 @@ entry.
   is a successor qualification, not a claim that 73 independent whole-runtime
   proofs were rerun.
 - Add the accompanying
-  [arXiv paper](https://arxiv.org/abs/2608.29134) and bind the repository
-  description to the corrected paper version's semantics and evidence totals.
+  [arXiv paper](https://arxiv.org/abs/2608.29134) and document its versioned
+  artifact binding: v1 remains candidate 1 history, while candidate 2 is the
+  corrected successor for the replacement line.
 
 - Established the public release candidate: the immutable Solidity reference
   implementation with compatibility profiles, the TypeScript SDK, the
@@ -54,5 +55,6 @@ entry.
   `vX.Y.Z-candidate.N` and `vX.Y.Z`, and set the public citation identity to
   `Jinwook Kim` with ORCID `0009-0004-4993-8005`.
 
-The historical `v0.1.0-candidate.1` tag remains immutable. No GitHub Release
-or candidate 2 tag exists yet.
+The historical `v0.1.0-candidate.1` tag remains immutable. Candidate 2 tagging
+and GitHub Release publication are separate maintainer actions; this changelog
+does not assert their current presence or absence.
