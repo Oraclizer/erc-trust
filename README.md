@@ -331,11 +331,11 @@ implementation commits audited or production-ready.
 
 ## License, citation, and provenance
 
-Copyright in first-party BSD-covered content is held by Jinwook Kim.
+Copyright in first-party BSD-covered content is held by Oraclizer Labs, Inc.
 Licensing follows the path:
 
 - Code, tests, scripts, the SDK, and the formal artifacts:
-  [BSD 3-Clause License](LICENSE), copyright Jinwook Kim, except for the
+  [BSD 3-Clause License](LICENSE), copyright Oraclizer Labs, Inc., except for the
   exact historical pilot sources listed below.
 - The byte-bound pilot sources
   `pilot/src/TrustFreezePilot.sol`, `pilot/src/MockBoundPolicy.sol`,
@@ -375,7 +375,7 @@ MIT License in this subsection instead of the BSD 3-Clause License:
 - `pilot/test/TrustFreezePilot.t.sol`
 - `pilot/kontrol/TrustFreezePilotTest.t.sol`
 
-Copyright (c) 2026 Jinwook Kim
+Copyright (c) 2026 Oraclizer Labs, Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
