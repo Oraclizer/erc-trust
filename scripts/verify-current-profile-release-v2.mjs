@@ -148,6 +148,11 @@ check(kontrol.status === "PASS" && kontrol.candidate === candidate
   && kontrol.runtimeBinding.runtimeBytes === deterministic.buildA.runtimeBytes
   && kontrol.runtimeBinding.runtimeSha256 === deterministic.buildA.runtimeSha256,
 "Kontrol qualification drift");
+for (const input of kontrol.sourceInputs) {
+  check(sha256(bytes(input.path)) === input.sha256, `Kontrol input drift: ${input.path}`);
+}
+check(kontrol.runtimeBinding.pureResolvedRuntime.runtimeSha256
+  === runtime.nativeResolvedRuntime.runtimeBytesSha256, "Kontrol resolved-runtime bridge drift");
 check(certora.status === "PASS" && certora.candidate === candidate
   && certora.rules.total === 7 && certora.rules.success === 7
   && certora.rules.fail === 0 && certora.rules.sanityFail === 0

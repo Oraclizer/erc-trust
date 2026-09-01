@@ -2,14 +2,39 @@
   "schema": "erc-trust-kontrol-results-v2",
   "candidate": "0.1.0-candidate.2",
   "status": "PASS",
+  "sourceInputs": [
+    {
+      "path": "implementation/src/TrustToken.sol",
+      "sha256": "282d0deacd7a5e15e05531e8a8967cddaddcdec635e2df8d4c346fae16d38ffa"
+    },
+    {
+      "path": "implementation/kontrol/TrustTokenKontrolTest.t.sol",
+      "sha256": "0740b587d25a56158aca8ebc6df237246b74782a0c03db3a88c34d6b3c9e286a"
+    },
+    {
+      "path": "implementation/kontrol/erc-trust-log-assertions.k",
+      "sha256": "0619502b5d9d0615fdcf587e6ac4619a912fc1b3d4d3b5c5fd1863d9af3510e3"
+    }
+  ],
   "toolchain": {
     "kontrol": "1.0.255",
     "kevm": "1.0.678",
     "schedule": "CANCUN"
   },
   "runtimeBinding": {
+    "kind": "FOUNDRY_ARTIFACT_RUNTIME_TEMPLATE",
     "runtimeBytes": 24177,
-    "runtimeSha256": "aabc0bd11e517ba9b9b8dbd288bcee80ba29c58be7598708269d2ff79e7fcf9f"
+    "runtimeSha256": "aabc0bd11e517ba9b9b8dbd288bcee80ba29c58be7598708269d2ff79e7fcf9f",
+    "deterministicBuild": {
+      "path": "evidence/deterministic-build.json",
+      "sha256": "b6e8aceb7c54a43ea30682d83b4d53269e1d1e2be7d6ff9c1721019c557e5bd0"
+    },
+    "pureResolvedRuntime": {
+      "fixturePath": "evidence/end-to-end-refinement/runtime-binding-current-v2/resolved/fixture-pure-v1.json",
+      "fixtureSha256": "2ede0d1343f1aecbe602a79bee7d1882b660c5a77481fc9030285bf01ab2e6e0",
+      "runtimeSha256": "ea0a3088cde6869a0e476a451e0baebc5a68f0462127f8ea24973189ab26fbe1"
+    },
+    "bridge": "Kontrol rebuilt the exact source and creation path under the pinned compiler. The template hash identifies the Foundry artifact; the pure fixture separately identifies constructor-immutable resolution. No claim that the proof graph itself was keyed by the resolved-runtime hash is made."
   },
   "build": {
     "status": "PASS",
@@ -36,7 +61,12 @@
       "status": "PASS",
       "elapsed": "4m53s",
       "reinitialized": true,
-      "lemmas": "implementation/kontrol/erc-trust-log-assertions.k:ERC-TRUST-LOG-ASSERTIONS"
+      "lemmas": "implementation/kontrol/erc-trust-log-assertions.k:ERC-TRUST-LOG-ASSERTIONS",
+      "stuck": 0,
+      "pending": 0,
+      "failing": 0,
+      "admitted": false,
+      "customRuleApplied": true
     }
   ],
   "summary": {

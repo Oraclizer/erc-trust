@@ -21,8 +21,19 @@ export function resolvePinnedSolc(solc) {
 
   if (process.platform !== "win32") {
     const dataRoot = process.env.XDG_DATA_HOME || join(homedir(), ".local", "share");
-    const binaryPath = join(dataRoot, "svm", locator.version, `solc-${locator.version}`);
-    accessSync(binaryPath, constants.R_OK | constants.X_OK);
+    const candidates = [
+      join(dataRoot, "svm", locator.version, `solc-${locator.version}`),
+      join(homedir(), ".svm", locator.version, `solc-${locator.version}`),
+    ];
+    const binaryPath = candidates.find((candidate) => {
+      try {
+        accessSync(candidate, constants.R_OK | constants.X_OK);
+        return createHash("sha256").update(readFileSync(candidate)).digest("hex") === solc.binarySha256;
+      } catch {
+        return false;
+      }
+    });
+    if (!binaryPath) throw new Error(`pinned solc binary not found in declared svm layouts: ${candidates.join(", ")}`);
     const binarySha256 = createHash("sha256").update(readFileSync(binaryPath)).digest("hex");
     if (binarySha256 !== solc.binarySha256) {
       throw new Error(`solc binary identity mismatch: ${binarySha256}`);

@@ -5,6 +5,11 @@ Status: pre-discussion draft; no ERC number assigned
 Candidate: `0.1.0-candidate.2`
 Assurance: unaudited, not for production
 
+Research companion: [Mechanizing Typed Regulatory Actions for Security
+Tokens: Semantics, Falsification, and Bounded EVM Evidence](https://arxiv.org/abs/2608.29134).
+This draft is the normative proposal surface; the paper explains the formal
+semantics and evidence boundary but does not replace the requirements below.
+
 Standards relationship: ERC-TRUST is a conformance extension of the proposed
 ERC-8319 (Regulatory Compliance Protocol). ERC-8319 is an open, not-yet-merged
 Draft at ethereum/ERCs pull request 1848. The official ERC-TRUST proposal will

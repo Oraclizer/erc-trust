@@ -42,7 +42,7 @@ node scripts/verify-repository-health.mjs
 ```
 
 `forge build --sizes` is a release gate. The native runtime is currently only
-199 bytes below the EIP-170 limit with the pinned optimizer settings.
+399 bytes below the EIP-170 limit with the pinned optimizer settings.
 
 ## 2. Select and bind a profile
 

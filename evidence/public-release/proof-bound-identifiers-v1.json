@@ -14,8 +14,8 @@
   },
   "glossaryPath": "docs/PROOF-BOUND-IDENTIFIERS.md",
   "summary": {
-    "files": 14,
-    "contentOccurrences": 42,
+    "files": 13,
+    "contentOccurrences": 41,
     "pathIdentifierFiles": 2
   },
   "files": [
@@ -176,18 +176,6 @@
       ],
       "lineAnchors": [
         65
-      ],
-      "pathIdentifiers": []
-    },
-    {
-      "path": "implementation/certora/TrustFinancialCore.conf",
-      "sha256": "5f7a6d80f90d79930447ef76d0dd309d47e5497fd095c4b89ce6d50c0afc3430",
-      "contentOccurrenceCount": 1,
-      "identifiers": [
-        "M4"
-      ],
-      "lineAnchors": [
-        21
       ],
       "pathIdentifiers": []
     },
