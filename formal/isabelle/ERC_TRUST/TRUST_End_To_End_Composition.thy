@@ -129,7 +129,11 @@ proof -
     "expected_success_state (runtime_abstraction execution) =
        Some (abstraction_post_state (runtime_abstraction execution))"
     using alpha assms(2) successful_transaction_uses_abstract_success_state by blast
-  then show ?thesis using assms(3-5)
+  have wf:
+    "forward_shape_wf (abstraction_pre_state (runtime_abstraction execution)) command \<and>
+     forward_fresh (abstraction_pre_state (runtime_abstraction execution)) command"
+    using successful_forward_transaction_is_well_formed[OF alpha assms(2-5)] .
+  show ?thesis using expected assms(3-5) wf
     by (simp add: expected_success_state_def)
 qed
 

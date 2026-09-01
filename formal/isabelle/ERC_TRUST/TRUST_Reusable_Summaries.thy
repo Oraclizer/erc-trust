@@ -108,15 +108,24 @@ theorem freeze_action_summary_sets_strict_absolute_target:
            (forward_subject (summary_command summary)) =
          forward_amount (summary_command summary)"
 proof -
-  have "summary_post_state summary =
+  have target: "summary_post_state summary =
       forward_success_state (summary_pre_state summary)
         (summary_command summary) (summary_witness summary)"
     using action_summary_success_commits_exact_abstract_state assms(1,2) .
-  moreover have
+  have wf:
     "forward_shape_wf (summary_pre_state summary) (summary_command summary)"
     using assms(1,2) by (simp add: action_summary_valid_def)
-  ultimately show ?thesis
-    using assms(3) freeze_success_forward freeze_success_forward_is_strict by blast
+  have strict:
+    "frozen_targets (summary_pre_state summary)
+       (forward_subject (summary_command summary)) <
+     forward_amount (summary_command summary)"
+    using freeze_success_forward_is_strict[OF wf assms(3)] .
+  have post:
+    "frozen_targets (summary_post_state summary)
+       (forward_subject (summary_command summary)) =
+     forward_amount (summary_command summary)"
+    using target freeze_success_forward[OF assms(3)] by simp
+  show ?thesis using strict post by blast
 qed
 
 end
