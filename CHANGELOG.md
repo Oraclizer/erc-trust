@@ -30,6 +30,9 @@ entry.
 - Establish the public `main` signature baseline at launch. Earlier candidate
   history may be unsigned; later `main` commits must be GitHub-verified squash
   merges.
+- Keep the root license machine-detectable as BSD-3-Clause and place the
+  complete scoped MIT notice for the four historical pilot sources in the
+  README without changing those byte-bound files.
 
 - Established the public release candidate: the immutable Solidity reference
   implementation with compatibility profiles, the TypeScript SDK, the
