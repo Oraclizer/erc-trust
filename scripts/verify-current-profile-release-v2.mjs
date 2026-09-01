@@ -16,9 +16,10 @@ const releasePath = "evidence/current-profile-release-index-v2.json";
 
 const sha256 = (value) => createHash("sha256").update(value).digest("hex");
 const bytes = (path) => readFileSync(resolve(root, path));
+const canonicalBytes = (path) => Buffer.from(bytes(path).toString("utf8").replace(/\r\n?/g, "\n"), "utf8");
 const json = (path) => JSON.parse(bytes(path).toString("utf8"));
 const check = (condition, message) => { if (!condition) throw new Error(message); };
-const fileRef = (path) => ({ path, sha256: sha256(bytes(path)) });
+const fileRef = (path) => ({ path, sha256: sha256(canonicalBytes(path)) });
 const stable = (value) => {
   if (Array.isArray(value)) return value.map(stable);
   if (value !== null && typeof value === "object") {
