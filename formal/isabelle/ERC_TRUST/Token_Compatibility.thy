@@ -22,14 +22,12 @@ theorem erc7943_frozen_amount_increase_converges_to_freeze:
             request_context = ctx\<lparr>context_amount := new_frozen\<rparr>\<rparr>"
   using assms by (simp add: normalize_entrypoint_def Let_def)
 
-theorem erc7943_frozen_amount_decrease_converges_to_unfreeze:
+theorem erc7943_frozen_amount_decrease_requires_explicit_unfreeze:
   assumes
     "new_frozen < trust_frozen_tokens st (context_subject ctx)"
   shows
     "normalize_entrypoint st
-       (ERC7943_Set_Frozen_Entrypoint new_frozen ctx) =
-      Some \<lparr>request_operation = Transition_Operation UNFREEZE,
-            request_context = ctx\<lparr>context_amount := new_frozen\<rparr>\<rparr>"
+       (ERC7943_Set_Frozen_Entrypoint new_frozen ctx) = None"
   using assms by (simp add: normalize_entrypoint_def Let_def)
 
 theorem erc7943_unchanged_frozen_amount_has_no_typed_state_change:

@@ -82,7 +82,9 @@ where
      forward_valid_after command \<le> forward_valid_before command \<and>
      \<not> terminal_cases state (forward_case command) \<and>
      (case forward_action command of
-        Legal_Freeze \<Rightarrow> forward_source command = forward_subject command
+        Legal_Freeze \<Rightarrow>
+          forward_source command = forward_subject command \<and>
+          frozen_targets state (forward_subject command) < forward_amount command
       | Legal_Restrict \<Rightarrow> forward_source command = forward_subject command
       | Legal_Seize \<Rightarrow>
           forward_source command = forward_subject command \<and>
@@ -381,6 +383,12 @@ theorem freeze_success_forward:
            (forward_subject command) = forward_amount command"
   using assms by (simp add: forward_success_state_def base_forward_success_def Let_def)
 
+theorem freeze_success_forward_is_strict:
+  assumes "forward_shape_wf state command"
+      and "forward_action command = Legal_Freeze"
+  shows "frozen_targets state (forward_subject command) < forward_amount command"
+  using assms by (simp add: forward_shape_wf_def)
+
 theorem restrict_success_forward:
   assumes "forward_action command = Legal_Restrict"
   shows "restriction_flags (forward_success_state state command witness)
@@ -519,7 +527,10 @@ where
             abstraction_forward_witness abstraction,
             abstraction_reversal_witness abstraction) of
         (Some (TRUST_Forward command), Some witness, None) \<Rightarrow>
-          Some (forward_success_state (abstraction_pre_state abstraction) command witness)
+          (if forward_shape_wf (abstraction_pre_state abstraction) command \<and>
+              forward_fresh (abstraction_pre_state abstraction) command
+           then Some (forward_success_state (abstraction_pre_state abstraction) command witness)
+           else None)
       | (Some (TRUST_Reverse command), None, Some witness) \<Rightarrow>
           Some (reversal_success_state (abstraction_pre_state abstraction) command witness)
       | _ \<Rightarrow> None)"
@@ -625,6 +636,17 @@ theorem successful_transaction_uses_abstract_success_state:
       and "abstraction_outcome abstraction = TRUST_Abstract_Applied"
   shows "expected_success_state abstraction = Some (abstraction_post_state abstraction)"
   using assms by (simp add: alpha_transaction_def)
+
+theorem successful_forward_transaction_is_well_formed:
+  assumes "alpha_transaction manifest bridge execution abstraction"
+      and "abstraction_outcome abstraction = TRUST_Abstract_Applied"
+      and "abstraction_command abstraction = Some (TRUST_Forward command)"
+      and "abstraction_forward_witness abstraction = Some witness"
+      and "abstraction_reversal_witness abstraction = None"
+  shows "forward_shape_wf (abstraction_pre_state abstraction) command \<and>
+         forward_fresh (abstraction_pre_state abstraction) command"
+  using assms
+  by (auto simp: alpha_transaction_def expected_success_state_def split: if_splits)
 
 theorem rejected_transaction_is_abstract_stutter:
   assumes "alpha_transaction manifest bridge execution abstraction"

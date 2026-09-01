@@ -166,6 +166,25 @@ theorem freeze_success_refines:
   using forward_runtime_state[OF assms(1-5)] freeze_success_forward[OF assms(6)]
   by simp
 
+theorem freeze_success_requires_strict_increase:
+  assumes "runtime_execution execution"
+      and "abstraction_outcome (runtime_abstraction execution) = TRUST_Abstract_Applied"
+      and "abstraction_command (runtime_abstraction execution) = Some (TRUST_Forward command)"
+      and "abstraction_forward_witness (runtime_abstraction execution) = Some witness"
+      and "abstraction_reversal_witness (runtime_abstraction execution) = None"
+      and "forward_action command = Legal_Freeze"
+  shows "frozen_targets (abstraction_pre_state (runtime_abstraction execution))
+           (forward_subject command) < forward_amount command"
+proof -
+  have alpha:
+    "alpha_transaction manifest bridge execution (runtime_abstraction execution)"
+    using assms(1) runtime_link by blast
+  have wf:
+    "forward_shape_wf (abstraction_pre_state (runtime_abstraction execution)) command"
+    using successful_forward_transaction_is_well_formed[OF alpha assms(2-5)] by blast
+  show ?thesis using freeze_success_forward_is_strict[OF wf assms(6)] .
+qed
+
 theorem seize_success_refines:
   assumes "runtime_execution execution"
       and "abstraction_outcome (runtime_abstraction execution) = TRUST_Abstract_Applied"

@@ -2,7 +2,9 @@ param(
   [Parameter(Mandatory = $true)]
   [string]$ForgeExecutable,
   [string]$TemporaryBaseDirectory = 'C:\tmp',
-  [string]$OutputPath
+  [string]$OutputPath,
+  [switch]$UseWslForge,
+  [switch]$CheckReceipt
 )
 
 $ErrorActionPreference = 'Stop'
@@ -62,6 +64,29 @@ function Convert-HexToBytes([string]$Hex) {
   return $bytes
 }
 
+function Invoke-Forge([string[]]$Arguments) {
+  if ($UseWslForge) {
+    $output = @(& wsl.exe -d Ubuntu -e /usr/local/bin/forge @Arguments 2>&1)
+  }
+  else {
+    $output = @(& $ForgeExecutable @Arguments 2>&1)
+  }
+  $script:LastForgeExitCode = $LASTEXITCODE
+  return $output
+}
+
+$versionOutput = @(Invoke-Forge @('--version'))
+if ($script:LastForgeExitCode -ne 0) {
+  throw 'Unable to execute the pinned Foundry toolchain'
+}
+$versionText = $versionOutput -join "`n"
+if (
+  $versionText -notmatch 'forge Version:\s*1\.7\.1' -or
+  $versionText -notmatch 'Commit SHA:\s*4072e48705af9d93e3c0f6e29e93b5e9a40caed8'
+) {
+  throw "Unexpected Foundry toolchain identity`n$versionText"
+}
+
 function Invoke-IsolatedBuild([string]$Name) {
   $directory = Join-Path $runRoot $Name
   Remove-GuardedDirectory $directory
@@ -73,8 +98,15 @@ function Invoke-IsolatedBuild([string]$Name) {
 
   $previousErrorAction = $ErrorActionPreference
   $ErrorActionPreference = 'Continue'
-  $buildOutput = @(& $ForgeExecutable build --root $directory --force 2>&1)
-  $buildExitCode = $LASTEXITCODE
+  $forgeRoot = $directory
+  if ($UseWslForge) {
+    $forgeRoot = (@(& wsl.exe -d Ubuntu -e wslpath -a $directory) -join '').Trim()
+    if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrWhiteSpace($forgeRoot)) {
+      throw "Unable to translate isolated build root for WSL: $directory"
+    }
+  }
+  $buildOutput = @(Invoke-Forge @('build', '--root', $forgeRoot, '--force'))
+  $buildExitCode = $script:LastForgeExitCode
   $ErrorActionPreference = $previousErrorAction
   if ($buildExitCode -ne 0) {
     throw (
@@ -129,13 +161,28 @@ $result = [ordered]@{
 [System.IO.Directory]::CreateDirectory(
   [System.IO.Path]::GetDirectoryName(
     [System.IO.Path]::GetFullPath($OutputPath))) | Out-Null
-[System.IO.File]::WriteAllText(
-  [System.IO.Path]::GetFullPath($OutputPath),
-  (($result | ConvertTo-Json -Depth 10) + "`n"),
-  [System.Text.UTF8Encoding]::new($false))
+$resultText = ($result | ConvertTo-Json -Depth 10) + "`n"
+$resolvedOutput = [System.IO.Path]::GetFullPath($OutputPath)
+if ($CheckReceipt) {
+  if (-not (Test-Path -LiteralPath $resolvedOutput)) {
+    throw "Deterministic build receipt missing: $resolvedOutput"
+  }
+  if ([System.IO.File]::ReadAllText($resolvedOutput) -ne $resultText) {
+    throw 'Deterministic build receipt drift'
+  }
+}
+else {
+  [System.IO.File]::WriteAllText(
+    $resolvedOutput,
+    $resultText,
+    [System.Text.UTF8Encoding]::new($false))
+}
 
 Remove-GuardedDirectory (Join-Path $runRoot 'build-a')
 Remove-GuardedDirectory (Join-Path $runRoot 'build-b')
+if ((Get-ChildItem -LiteralPath $runRoot -Force | Measure-Object).Count -eq 0) {
+  Remove-Item -LiteralPath $runRoot -Force
+}
 
 if (-not $pass) {
   throw 'Isolated build outputs are not byte-for-byte deterministic'

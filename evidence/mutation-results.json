@@ -1,78 +1,136 @@
 {
     "schema":  "erc-trust-mutation-result-v1",
+    "candidateInput":  {
+                           "gitHead":  "e7598dbf268d81743a06dae595513bed59ea8d2d",
+                           "sourceRootSha256":  "0765818735151c25d9879b32a359d9a2879cba3440d2225f745ccc2ebce66ed5"
+                       },
     "toolchain":  {
                       "forge":  "1.7.1",
                       "solc":  "0.8.36",
                       "fuzzRunsPerMutation":  64
                   },
-    "total":  11,
-    "killed":  11,
+    "total":  12,
+    "killed":  12,
     "survived":  0,
     "results":  [
                     {
                         "id":  "MUT-01-FROZEN-FLOOR",
-                        "fault":  "Remove both ordinary-transfer frozen-floor checks",
+                        "fault":  "Ignore the shared ordinary-transfer frozen floor",
                         "detector":  "TrustActionsFuzzTest.testFuzzFreezeAbsoluteAndOrdinaryFloor",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
                         "result":  "KILLED"
                     },
                     {
                         "id":  "MUT-02-ROUTE-CONSUMPTION",
                         "fault":  "Keep an ERC-7943 route ticket live after use",
                         "detector":  "TrustActionsUnitTest.testERC7943ExactUseRoutesAndInterfaceTruth",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
                         "result":  "KILLED"
                     },
                     {
                         "id":  "MUT-03-RECEIPT-LAST",
                         "fault":  "Emit a base event after the canonical TRUST receipt",
                         "detector":  "TrustActionsUnitTest.testCanonicalEventOrder",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
                         "result":  "KILLED"
                     },
                     {
                         "id":  "MUT-04-FAIL-CLOSED",
                         "fault":  "Allow OperationalFailure assessment to continue",
                         "detector":  "TrustActionsUnitTest.testRejectedAndOperationalFailureStutter",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
                         "result":  "KILLED"
                     },
                     {
                         "id":  "MUT-05-FIXED-ACTION",
                         "fault":  "Remove destination from action-id binding",
                         "detector":  "TrustActionsUnitTest.testReplayFixedActionAndConfiscateTerminality",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
                         "result":  "KILLED"
                     },
                     {
                         "id":  "MUT-06-NONCE-CONSUMPTION",
                         "fault":  "Do not consume the action nonce",
                         "detector":  "TrustActionsFuzzTest.testFuzzForcedActionsPreserveSupply",
+                        "anchorOccurrences":  2,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
                         "result":  "KILLED"
                     },
                     {
                         "id":  "MUT-07-ERC3643-RAW-BYPASS",
                         "fault":  "Permit any caller to use ERC-3643 Agent mutators",
                         "detector":  "ERC3643ProfileUnitTest.testProfileSealAndDirectBypassClosure",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
                         "result":  "KILLED"
                     },
                     {
                         "id":  "MUT-08-FREEZE-DIRECTION",
                         "fault":  "Permit equal or decreasing targets through FREEZE",
                         "detector":  "TrustActionsUnitTest.testFreezeDirectionShapeAndReversalPolicyFailClosed",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
                         "result":  "KILLED"
                     },
                     {
                         "id":  "MUT-09-CASE-TERMINALITY",
                         "fault":  "Do not mark a CONFISCATE case terminal",
                         "detector":  "TrustActionsUnitTest.testReplayFixedActionAndConfiscateTerminality",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
                         "result":  "KILLED"
                     },
                     {
                         "id":  "MUT-10-CUSTODY-CLOSURE",
                         "fault":  "Skip matched custody closure before disposition",
                         "detector":  "TrustActionsUnitTest.testConfiscateFromCustodyClosesAndTerminatesCase",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
                         "result":  "KILLED"
                     },
                     {
                         "id":  "MUT-11-REVERSAL-POLICY",
                         "fault":  "Skip current-policy assessment before direct reversal",
                         "detector":  "TrustActionsUnitTest.testFreezeDirectionShapeAndReversalPolicyFailClosed",
+                        "anchorOccurrences":  2,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-12-ERC3643-FREEZE-DIRECTION",
+                        "fault":  "Permit equal or decreasing targets through the ERC-3643 profile",
+                        "detector":  "ERC3643ProfileUnitTest.testAllSixActionsAndReversals",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
                         "result":  "KILLED"
                     }
                 ],

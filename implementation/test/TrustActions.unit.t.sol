@@ -240,16 +240,33 @@ contract TrustActionsUnitTest is TrustTestBase {
         _assert(!fixedActionOk, "action fields must remain hash-bound");
     }
 
-    function testFreezeReplacementLifoAndReversalPolicyFailClosed() external {
+    function testFreezeDirectionShapeAndReversalPolicyFailClosed() external {
         TrustTypes.ActionRequest memory freeze = _request(TrustTypes.ActionKind.FREEZE, 60, 100 ether);
         token.executeRegulatoryAction(freeze);
 
         TrustTypes.ActionRequest memory equal = _request(TrustTypes.ActionKind.FREEZE, 61, 100 ether);
-        token.executeRegulatoryAction(equal);
+        vm.recordLogs();
+        (bool equalOk,) = address(token).call(abi.encodeCall(token.executeRegulatoryAction, (equal)));
+        Vm.Log[] memory equalLogs = vm.getRecordedLogs();
+        _assert(!equalOk, "equal freeze must reject");
+        _assertEq(token.getFrozenTokens(address(this)), 100 ether, "equal freeze stutter");
+        _assert(!token.nonceUsed(AUTHORITY_REF, 1, 61), "equal freeze nonce stutter");
+        _assertEq(token.receipt(equal.actionId).receiptHash, bytes32(0), "equal freeze receipt stutter");
+        _assertEq(equalLogs.length, 0, "equal freeze log stutter");
 
         TrustTypes.ActionRequest memory decrease = _request(TrustTypes.ActionKind.FREEZE, 62, 50 ether);
-        token.executeRegulatoryAction(decrease);
-        _assertEq(token.getFrozenTokens(address(this)), 50 ether, "absolute replacement");
+        vm.recordLogs();
+        (bool decreaseOk,) = address(token).call(abi.encodeCall(token.executeRegulatoryAction, (decrease)));
+        Vm.Log[] memory decreaseLogs = vm.getRecordedLogs();
+        _assert(!decreaseOk, "decrease must use reversal");
+        _assertEq(token.getFrozenTokens(address(this)), 100 ether, "decrease freeze stutter");
+        _assert(!token.nonceUsed(AUTHORITY_REF, 1, 62), "decrease freeze nonce stutter");
+        _assertEq(token.receipt(decrease.actionId).receiptHash, bytes32(0), "decrease freeze receipt stutter");
+        _assertEq(decreaseLogs.length, 0, "decrease freeze log stutter");
+
+        TrustTypes.ActionRequest memory increase = _request(TrustTypes.ActionKind.FREEZE, 61, 150 ether);
+        token.executeRegulatoryAction(increase);
+        _assertEq(token.getFrozenTokens(address(this)), 150 ether, "strict increase");
 
         (bool staleOk,) = address(token)
             .call(
@@ -258,16 +275,16 @@ contract TrustActionsUnitTest is TrustTestBase {
                 )
             );
         _assert(!staleOk, "superseded reversal must fail");
-        _assertEq(token.getFrozenTokens(address(this)), 50 ether, "stale reversal stutter");
+        _assertEq(token.getFrozenTokens(address(this)), 150 ether, "stale reversal stutter");
 
-        TrustTypes.ActionRequest memory malformed = _request(TrustTypes.ActionKind.FREEZE, 63, 120 ether);
+        TrustTypes.ActionRequest memory malformed = _request(TrustTypes.ActionKind.FREEZE, 63, 180 ether);
         malformed.destination = address(buyer);
         malformed.actionId = token.deriveActionId(malformed);
         (bool malformedOk,) = address(token).call(abi.encodeCall(token.executeRegulatoryAction, (malformed)));
         _assert(!malformedOk, "freeze ownership-retention shape");
 
-        token.executeRegulatoryReversal(_reversal(decrease.actionId, TrustTypes.ReversalKind.UNFREEZE, 67));
-        token.executeRegulatoryReversal(_reversal(equal.actionId, TrustTypes.ReversalKind.UNFREEZE, 68));
+        token.executeRegulatoryReversal(_reversal(increase.actionId, TrustTypes.ReversalKind.UNFREEZE, 67));
+        _assertEq(token.getFrozenTokens(address(this)), 100 ether, "latest unfreeze restores prior amount");
         token.executeRegulatoryReversal(_reversal(freeze.actionId, TrustTypes.ReversalKind.UNFREEZE, 69));
         _assertEq(token.getFrozenTokens(address(this)), 0, "unfreeze restores prior amount");
 

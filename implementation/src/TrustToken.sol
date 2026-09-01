@@ -528,7 +528,7 @@ contract TrustToken is TrustStorage, IERC20, IERC7943Fungible, IERCTrust {
         if (request.action == TrustTypes.ActionKind.FREEZE) {
             if (
                 request.source != request.subject || request.destination != address(0)
-                    || request.custodian != address(0)
+                    || request.custodian != address(0) || request.amount <= _frozen[request.subject]
             ) {
                 revert TrustInvalidCommand(request.actionId, REASON_SHAPE);
             }

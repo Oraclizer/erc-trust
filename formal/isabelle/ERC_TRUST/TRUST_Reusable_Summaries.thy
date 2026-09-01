@@ -20,6 +20,8 @@ definition action_summary_valid :: "trust_action_summary \<Rightarrow> bool" whe
   "action_summary_valid summary \<longleftrightarrow>
     (case summary_outcome summary of
        TRUST_Abstract_Applied \<Rightarrow>
+         forward_shape_wf (summary_pre_state summary) (summary_command summary) \<and>
+         forward_fresh (summary_pre_state summary) (summary_command summary) \<and>
          summary_post_state summary =
            forward_success_state (summary_pre_state summary)
              (summary_command summary) (summary_witness summary) \<and>
@@ -95,11 +97,14 @@ theorem successful_summary_receipt_storage_return_and_final_event_agree:
          summary_returned_receipt_hash summary = summary_final_event_receipt_hash summary"
   using assms by (simp add: action_summary_valid_def)
 
-theorem freeze_action_summary_sets_absolute_target:
+theorem freeze_action_summary_sets_strict_absolute_target:
   assumes "action_summary_valid summary"
       and "summary_outcome summary = TRUST_Abstract_Applied"
       and "forward_action (summary_command summary) = Legal_Freeze"
-  shows "frozen_targets (summary_post_state summary)
+  shows "frozen_targets (summary_pre_state summary)
+           (forward_subject (summary_command summary)) <
+         forward_amount (summary_command summary) \<and>
+         frozen_targets (summary_post_state summary)
            (forward_subject (summary_command summary)) =
          forward_amount (summary_command summary)"
 proof -
@@ -107,7 +112,11 @@ proof -
       forward_success_state (summary_pre_state summary)
         (summary_command summary) (summary_witness summary)"
     using action_summary_success_commits_exact_abstract_state assms(1,2) .
-  then show ?thesis using assms(3) freeze_success_forward by simp
+  moreover have
+    "forward_shape_wf (summary_pre_state summary) (summary_command summary)"
+    using assms(1,2) by (simp add: action_summary_valid_def)
+  ultimately show ?thesis
+    using assms(3) freeze_success_forward freeze_success_forward_is_strict by blast
 qed
 
 end

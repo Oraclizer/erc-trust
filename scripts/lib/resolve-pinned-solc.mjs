@@ -1,4 +1,8 @@
+import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
+import { accessSync, constants, readFileSync } from "node:fs";
+import { homedir } from "node:os";
+import { join } from "node:path";
 
 const versionPattern = /^\d+\.\d+\.\d+$/;
 const distributionPattern = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
@@ -14,6 +18,22 @@ export function resolvePinnedSolc(solc) {
     throw new Error(`invalid solc version locator: ${locator.version}`);
   }
   if (!sha256Pattern.test(solc.binarySha256)) throw new Error("invalid pinned solc SHA-256");
+
+  if (process.platform !== "win32") {
+    const dataRoot = process.env.XDG_DATA_HOME || join(homedir(), ".local", "share");
+    const binaryPath = join(dataRoot, "svm", locator.version, `solc-${locator.version}`);
+    accessSync(binaryPath, constants.R_OK | constants.X_OK);
+    const binarySha256 = createHash("sha256").update(readFileSync(binaryPath)).digest("hex");
+    if (binarySha256 !== solc.binarySha256) {
+      throw new Error(`solc binary identity mismatch: ${binarySha256}`);
+    }
+    const versionOutput = execFileSync(binaryPath, ["--version"], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "pipe"],
+    }).trim();
+    if (!versionOutput.includes(solc.version)) throw new Error(`solc version mismatch: ${versionOutput}`);
+    return { binaryPath, distribution: "native", execution: "native", versionOutput };
+  }
 
   const resolver = [
     "set -eu",
@@ -47,5 +67,5 @@ export function resolvePinnedSolc(solc) {
   ).trim();
   if (!versionOutput.includes(solc.version)) throw new Error(`solc version mismatch: ${versionOutput}`);
 
-  return { binaryPath, distribution: locator.distribution, versionOutput };
+  return { binaryPath, distribution: locator.distribution, execution: "wsl", versionOutput };
 }

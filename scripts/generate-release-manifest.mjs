@@ -57,6 +57,11 @@ function canonicalTextBytes(path) {
 const tracked = execFileSync("git", ["ls-files", "-z"], { cwd: root, encoding: "utf8" })
   .split("\0")
   .filter(Boolean);
+for (const path of singleFiles) {
+  if (!tracked.includes(path) || !existsSync(resolve(root, path))) {
+    throw new Error(`Missing mandatory release input: ${path}`);
+  }
+}
 const files = tracked
   .filter((path) => roots.some((entry) => path === entry || path.startsWith(`${entry}/`)) || singleFiles.includes(path))
   .filter((path) => existsSync(resolve(root, path)))

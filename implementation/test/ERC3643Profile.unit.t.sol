@@ -81,11 +81,27 @@ contract ERC3643ProfileUnitTest {
         require(token.getFrozenTokens(address(this)) == 25 ether, "freeze");
 
         TrustTypes.ActionRequest memory equalFreeze = _request(TrustTypes.ActionKind.FREEZE, 90, 25 ether);
-        adapter.executeRegulatoryAction(equalFreeze);
+        (bool equalOk,) = address(adapter).call(abi.encodeCall(adapter.executeRegulatoryAction, (equalFreeze)));
+        require(!equalOk, "equal freeze must reject");
+        require(token.getFrozenTokens(address(this)) == 25 ether, "equal freeze stutter");
+        require(
+            adapter.actionRecord(equalFreeze.actionId).lifecycle == TrustTypes.Lifecycle.NONE, "equal record stutter"
+        );
+        require(adapter.receipt(equalFreeze.actionId).receiptHash == bytes32(0), "equal receipt stutter");
 
         TrustTypes.ActionRequest memory decreaseFreeze = _request(TrustTypes.ActionKind.FREEZE, 91, 10 ether);
-        adapter.executeRegulatoryAction(decreaseFreeze);
-        require(token.getFrozenTokens(address(this)) == 10 ether, "absolute replacement");
+        (bool decreaseOk,) = address(adapter).call(abi.encodeCall(adapter.executeRegulatoryAction, (decreaseFreeze)));
+        require(!decreaseOk, "decrease must use reversal");
+        require(token.getFrozenTokens(address(this)) == 25 ether, "decrease freeze stutter");
+        require(
+            adapter.actionRecord(decreaseFreeze.actionId).lifecycle == TrustTypes.Lifecycle.NONE,
+            "decrease record stutter"
+        );
+        require(adapter.receipt(decreaseFreeze.actionId).receiptHash == bytes32(0), "decrease receipt stutter");
+
+        TrustTypes.ActionRequest memory increaseFreeze = _request(TrustTypes.ActionKind.FREEZE, 90, 40 ether);
+        adapter.executeRegulatoryAction(increaseFreeze);
+        require(token.getFrozenTokens(address(this)) == 40 ether, "strict increase");
 
         (bool staleOk,) = address(adapter)
             .call(
@@ -93,9 +109,9 @@ contract ERC3643ProfileUnitTest {
                     adapter.executeRegulatoryReversal, (_reversal(freeze.actionId, TrustTypes.ReversalKind.UNFREEZE, 2))
                 )
             );
-        require(!staleOk && token.getFrozenTokens(address(this)) == 10 ether, "stale reversal");
-        adapter.executeRegulatoryReversal(_reversal(decreaseFreeze.actionId, TrustTypes.ReversalKind.UNFREEZE, 92));
-        adapter.executeRegulatoryReversal(_reversal(equalFreeze.actionId, TrustTypes.ReversalKind.UNFREEZE, 93));
+        require(!staleOk && token.getFrozenTokens(address(this)) == 40 ether, "stale reversal");
+        adapter.executeRegulatoryReversal(_reversal(increaseFreeze.actionId, TrustTypes.ReversalKind.UNFREEZE, 92));
+        require(token.getFrozenTokens(address(this)) == 25 ether, "latest unfreeze restores prior amount");
         adapter.executeRegulatoryReversal(_reversal(freeze.actionId, TrustTypes.ReversalKind.UNFREEZE, 94));
         require(token.getFrozenTokens(address(this)) == 0, "unfreeze");
 

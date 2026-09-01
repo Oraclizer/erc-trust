@@ -1295,49 +1295,25 @@ lemma erc7943_absolute_increase_is_applied:
       expected_post_observation_commitment_def observation_commitment_def
       Let_def)
 
-lemma erc7943_absolute_partial_decrease_is_applied:
-  "snd (execute_entrypoint erc7943_partial_decrease_state
-      (ERC7943_Set_Frozen_Entrypoint 5
-        erc7943_partial_decrease_context)) = Trust_Applied \<and>
-   trust_modes
-      (fst (execute_entrypoint erc7943_partial_decrease_state
-        (ERC7943_Set_Frozen_Entrypoint 5
-          erc7943_partial_decrease_context))) 1 = FROZEN \<and>
-   trust_frozen_tokens
-      (fst (execute_entrypoint erc7943_partial_decrease_state
-        (ERC7943_Set_Frozen_Entrypoint 5
-          erc7943_partial_decrease_context))) 1 = 5"
+lemma erc7943_absolute_partial_decrease_is_rejected:
+  "execute_entrypoint erc7943_partial_decrease_state
+      (ERC7943_Set_Frozen_Entrypoint 5 erc7943_partial_decrease_context) =
+    (erc7943_partial_decrease_state, Trust_Rejected Untyped_Request_Denied)"
   by (simp add: execute_entrypoint_def normalize_entrypoint_def
-      execute_canonical_def canonical_precheck_def successful_state_def
       erc7943_partial_decrease_state_def
       erc7943_partial_decrease_context_def reversal_prepared_state_def
       reversal_seed_state_def reversal_context_def reversal_authorization_def
       witness_seed_state_def witness_context_def witness_authorization_def
-      authority_matches_def authorization_binding_matches_def
-      authorization_payload_matches_def current_case_matches_def
-      transfer_shape_valid_def operation_well_formed_def
-      state_observation_commitment_def
-      expected_post_observation_commitment_def observation_commitment_def
       Let_def)
 
-lemma erc7943_absolute_zero_unfreezes:
-  "snd (execute_entrypoint (reversal_prepared_state UNFREEZE)
-      (ERC7943_Set_Frozen_Entrypoint 0
-        (reversal_context UNFREEZE))) = Trust_Applied \<and>
-   trust_modes
-      (fst (execute_entrypoint (reversal_prepared_state UNFREEZE)
-        (ERC7943_Set_Frozen_Entrypoint 0
-          (reversal_context UNFREEZE)))) 1 = ACTIVE"
+lemma erc7943_absolute_zero_requires_explicit_unfreeze:
+  "execute_entrypoint (reversal_prepared_state UNFREEZE)
+      (ERC7943_Set_Frozen_Entrypoint 0 (reversal_context UNFREEZE)) =
+    (reversal_prepared_state UNFREEZE, Trust_Rejected Untyped_Request_Denied)"
   by (simp add: execute_entrypoint_def normalize_entrypoint_def
-      execute_canonical_def canonical_precheck_def successful_state_def
       reversal_prepared_state_def reversal_seed_state_def
       reversal_context_def reversal_authorization_def
       witness_seed_state_def witness_context_def witness_authorization_def
-      authority_matches_def authorization_binding_matches_def
-      authorization_payload_matches_def current_case_matches_def
-      transfer_shape_valid_def operation_well_formed_def
-      state_observation_commitment_def
-      expected_post_observation_commitment_def observation_commitment_def
       Let_def)
 
 lemma erc7943_absolute_amount_context_mismatch_is_denied:
@@ -1349,7 +1325,7 @@ lemma erc7943_absolute_amount_context_mismatch_is_denied:
       witness_seed_state_def witness_context_def witness_authorization_def
       Let_def)
 
-theorem erc7943_absolute_delta_paths_are_reachable:
+theorem erc7943_absolute_direction_paths_are_reachable:
   "snd (execute_entrypoint erc7943_increase_state
       (ERC7943_Set_Frozen_Entrypoint 15 erc7943_increase_context)) =
       Trust_Applied \<and>
@@ -1361,30 +1337,18 @@ theorem erc7943_absolute_delta_paths_are_reachable:
       (fst (execute_entrypoint erc7943_increase_state
         (ERC7943_Set_Frozen_Entrypoint 15 erc7943_increase_context))) 1 =
       15 \<and>
-   snd (execute_entrypoint erc7943_partial_decrease_state
-      (ERC7943_Set_Frozen_Entrypoint 5
-        erc7943_partial_decrease_context)) = Trust_Applied \<and>
-   trust_modes
-      (fst (execute_entrypoint erc7943_partial_decrease_state
-        (ERC7943_Set_Frozen_Entrypoint 5
-          erc7943_partial_decrease_context))) 1 = FROZEN \<and>
-   trust_frozen_tokens
-      (fst (execute_entrypoint erc7943_partial_decrease_state
-        (ERC7943_Set_Frozen_Entrypoint 5
-          erc7943_partial_decrease_context))) 1 = 5 \<and>
-   snd (execute_entrypoint (reversal_prepared_state UNFREEZE)
-      (ERC7943_Set_Frozen_Entrypoint 0
-        (reversal_context UNFREEZE))) = Trust_Applied \<and>
-   trust_modes
-      (fst (execute_entrypoint (reversal_prepared_state UNFREEZE)
-        (ERC7943_Set_Frozen_Entrypoint 0
-          (reversal_context UNFREEZE)))) 1 = ACTIVE \<and>
+   execute_entrypoint erc7943_partial_decrease_state
+      (ERC7943_Set_Frozen_Entrypoint 5 erc7943_partial_decrease_context) =
+      (erc7943_partial_decrease_state, Trust_Rejected Untyped_Request_Denied) \<and>
+   execute_entrypoint (reversal_prepared_state UNFREEZE)
+      (ERC7943_Set_Frozen_Entrypoint 0 (reversal_context UNFREEZE)) =
+      (reversal_prepared_state UNFREEZE, Trust_Rejected Untyped_Request_Denied) \<and>
    normalize_entrypoint erc7943_increase_state
       (ERC7943_Set_Frozen_Entrypoint 10
         erc7943_increase_context) = None"
   using erc7943_absolute_increase_is_applied
-    erc7943_absolute_partial_decrease_is_applied
-    erc7943_absolute_zero_unfreezes
+    erc7943_absolute_partial_decrease_is_rejected
+    erc7943_absolute_zero_requires_explicit_unfreeze
     erc7943_absolute_amount_context_mismatch_is_denied
   by blast
 

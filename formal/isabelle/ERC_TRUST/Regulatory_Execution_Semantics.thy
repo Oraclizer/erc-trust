@@ -592,10 +592,6 @@ where
                Some \<lparr>request_operation = RCP_Operation Legal_Freeze,
                      request_context =
                        ctx\<lparr>context_amount := new_frozen\<rparr>\<rparr>
-             else if new_frozen < old_frozen then
-               Some \<lparr>request_operation = Transition_Operation UNFREEZE,
-                     request_context =
-                       ctx\<lparr>context_amount := new_frozen\<rparr>\<rparr>
              else None)
      | ERC7943_Forced_Transfer_Entrypoint ctx \<Rightarrow>
          (case trust_authorizations st (context_authorization_id ctx) of

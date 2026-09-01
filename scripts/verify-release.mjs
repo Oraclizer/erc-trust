@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -60,6 +61,49 @@ if (sha256(runtime) !== manifest.trustToken.runtimeSha256) {
   failures.push("runtime bytecode mismatch");
 }
 if (runtime.length > 24576) failures.push(`EIP-170 overflow: ${runtime.length}`);
+
+const deterministic = JSON.parse(
+  readFileSync(resolve(root, "evidence", "deterministic-build.json"), "utf8"),
+);
+for (const [name, build] of [["buildA", deterministic.buildA], ["buildB", deterministic.buildB]]) {
+  if (build.creationSha256 !== sha256(creation) || build.creationBytes !== creation.length) {
+    failures.push(`deterministic ${name} creation identity mismatch`);
+  }
+  if (build.runtimeSha256 !== sha256(runtime) || build.runtimeBytes !== runtime.length) {
+    failures.push(`deterministic ${name} runtime identity mismatch`);
+  }
+}
+if (
+  deterministic.buildA.creationSha256 !== deterministic.buildB.creationSha256
+  || deterministic.buildA.runtimeSha256 !== deterministic.buildB.runtimeSha256
+) failures.push("deterministic build pair mismatch");
+
+const mutation = JSON.parse(
+  readFileSync(resolve(root, "evidence", "mutation-results.json"), "utf8"),
+);
+const mutationInputs = execFileSync(
+  "git",
+  ["ls-files", "-z", "implementation/src", "implementation/test", "foundry.toml"],
+  { cwd: root, encoding: "utf8" },
+).split("\0").filter(Boolean).sort();
+const mutationSourceRoot = sha256(Buffer.from(
+  mutationInputs.map((path) => `${sha256(readFileSync(resolve(root, path)))}  ${path}\n`).join(""),
+  "utf8",
+));
+if (mutation.candidateInput?.sourceRootSha256 !== mutationSourceRoot) {
+  failures.push("mutation source root mismatch");
+}
+if (
+  mutation.total !== 12 || mutation.killed !== 12 || mutation.survived !== 0
+  || mutation.results?.length !== 12
+) failures.push("mutation result count mismatch");
+for (const result of mutation.results ?? []) {
+  if (
+    result.result !== "KILLED" || result.anchorOccurrences < 1
+    || result.detectorDiscovered !== 1 || result.detectorExecuted !== 1
+    || result.mutantCompiled !== true
+  ) failures.push(`invalid mutation receipt: ${result.id}`);
+}
 
 if (failures.length) {
   for (const failure of failures) console.error(failure);

@@ -12,17 +12,17 @@
                       "cborMetadata":  false
                   },
     "buildA":  {
-                   "artifactSha256":  "4c0760656fb6fa712186abab3b06480bd1aff597570a64cb77733deb9ca5b46c",
-                   "creationSha256":  "bfa82a9144c7ad1dfe60603d335bbba0cb22716c3d667d28026e9a9b26d1bac7",
-                   "runtimeSha256":  "857a179f5088bbb5d4ac0c016e6ec3eda8bc1759e96b0e861f75fe1c70dbb127",
-                   "creationBytes":  27883,
-                   "runtimeBytes":  24377
+                   "artifactSha256":  "a75570fa036ec10fa0896cdce03ff6cbdf7ad9c8d773a75f83e5468ae87bf78b",
+                   "creationSha256":  "fecca8fca7a3698d6cdab41a501789ecbf8bae21f6b28c562db565c78dbcfb28",
+                   "runtimeSha256":  "aabc0bd11e517ba9b9b8dbd288bcee80ba29c58be7598708269d2ff79e7fcf9f",
+                   "creationBytes":  27683,
+                   "runtimeBytes":  24177
                },
     "buildB":  {
-                   "artifactSha256":  "4c0760656fb6fa712186abab3b06480bd1aff597570a64cb77733deb9ca5b46c",
-                   "creationSha256":  "bfa82a9144c7ad1dfe60603d335bbba0cb22716c3d667d28026e9a9b26d1bac7",
-                   "runtimeSha256":  "857a179f5088bbb5d4ac0c016e6ec3eda8bc1759e96b0e861f75fe1c70dbb127",
-                   "creationBytes":  27883,
-                   "runtimeBytes":  24377
+                   "artifactSha256":  "a75570fa036ec10fa0896cdce03ff6cbdf7ad9c8d773a75f83e5468ae87bf78b",
+                   "creationSha256":  "fecca8fca7a3698d6cdab41a501789ecbf8bae21f6b28c562db565c78dbcfb28",
+                   "runtimeSha256":  "aabc0bd11e517ba9b9b8dbd288bcee80ba29c58be7598708269d2ff79e7fcf9f",
+                   "creationBytes":  27683,
+                   "runtimeBytes":  24177
                }
 }

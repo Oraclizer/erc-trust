@@ -3,6 +3,7 @@ import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join, posix, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
+import { keccak256 as ethersKeccak256 } from "../sdk/node_modules/ethers/lib.esm/index.js";
 import { resolvePinnedSolc } from "./lib/resolve-pinned-solc.mjs";
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -179,11 +180,7 @@ function immutablePositions(value) {
 }
 
 function keccak256(hex) {
-  const result = execFileSync("wsl.exe", ["-d", "Ubuntu", "--", "cast", "keccak"], {
-    input: `0x${normalizeHex(hex)}`,
-    encoding: "utf8",
-    maxBuffer: 4 * 1024 * 1024,
-  }).trim();
+  const result = ethersKeccak256(`0x${normalizeHex(hex)}`);
   if (!/^0x[0-9a-f]{64}$/.test(result)) throw new Error(`unexpected cast keccak output: ${result}`);
   return result;
 }
@@ -223,11 +220,15 @@ function exactInput(roots) {
 
 function runSolc(inputText) {
   const started = process.hrtime.bigint();
-  const outputText = execFileSync("wsl.exe", ["-d", pinnedSolc.distribution, "-e", pinnedSolc.binaryPath, "--standard-json"], {
-    input: inputText,
-    encoding: "utf8",
-    maxBuffer: 512 * 1024 * 1024,
-  });
+  const command = pinnedSolc.execution === "wsl" ? "wsl.exe" : pinnedSolc.binaryPath;
+  const args = pinnedSolc.execution === "wsl"
+    ? ["-d", pinnedSolc.distribution, "-e", pinnedSolc.binaryPath, "--standard-json"]
+    : ["--standard-json"];
+  const outputText = execFileSync(command, args, {
+      input: inputText,
+      encoding: "utf8",
+      maxBuffer: 512 * 1024 * 1024,
+    });
   const elapsedMs = Number(process.hrtime.bigint() - started) / 1_000_000;
   const output = JSON.parse(outputText);
   const errors = (output.errors ?? []).filter((entry) => entry.severity === "error");

@@ -46,6 +46,9 @@ theorem freeze_success_refines_if_current_profile_receipts_hold:
       and "summary_outcome summary = TRUST_Abstract_Applied"
       and "forward_action (summary_command summary) = Legal_Freeze"
   shows "act01_package_certificate_complete certificate \<and>
+         frozen_targets (summary_pre_state summary)
+           (forward_subject (summary_command summary)) <
+         forward_amount (summary_command summary) \<and>
          frozen_targets (summary_post_state summary)
            (forward_subject (summary_command summary)) =
          forward_amount (summary_command summary) \<and>
@@ -56,10 +59,13 @@ theorem freeze_success_refines_if_current_profile_receipts_hold:
          \<not> summary_route_live summary"
 proof -
   have target:
-    "frozen_targets (summary_post_state summary)
+    "frozen_targets (summary_pre_state summary)
+       (forward_subject (summary_command summary)) <
+     forward_amount (summary_command summary) \<and>
+     frozen_targets (summary_post_state summary)
        (forward_subject (summary_command summary)) =
      forward_amount (summary_command summary)"
-    using freeze_action_summary_sets_absolute_target assms(2-4) by blast
+    using freeze_action_summary_sets_strict_absolute_target assms(2-4) by blast
   have shell:
     "summary_stored_receipt_hash summary = summary_returned_receipt_hash summary \<and>
      summary_returned_receipt_hash summary = summary_final_event_receipt_hash summary \<and>
