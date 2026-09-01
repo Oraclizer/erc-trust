@@ -1,0 +1,173 @@
+{
+  "candidate": "0.1.0-candidate.2",
+  "evidence": {
+    "certora": {
+      "path": "evidence/certora-financial-core-v2.json",
+      "sha256": "51b10c1e0bef155ba73d462ac5f5c0f32dedffaffa8f57172064ccbe65496e09"
+    },
+    "deterministicBuild": {
+      "path": "evidence/deterministic-build.json",
+      "sha256": "b6e8aceb7c54a43ea30682d83b4d53269e1d1e2be7d6ff9c1721019c557e5bd0"
+    },
+    "foundry": {
+      "path": "evidence/foundry-results-v2.json",
+      "sha256": "93d446e62e131c57e5048980bf29bd8c253a557a8ba65ba36a77cdcc6ecb9ea2"
+    },
+    "isabelle": {
+      "path": "evidence/isabelle-results-v2.json",
+      "sha256": "73cbbe7563e62d1a8f872759d921d4d5de8c3794c001cff47794576f34d26092"
+    },
+    "kontrol": {
+      "path": "evidence/kontrol-results-v2.json",
+      "sha256": "bb5a8645b345cf3fc68de3ffa5202671357486e86f2ea541401d31d9e48175fd"
+    },
+    "mutation": {
+      "path": "evidence/mutation-results.json",
+      "sha256": "5d14562deef80c018bd7cd29f29410292040d406e7268e5718cfb2c972462d0f"
+    }
+  },
+  "heldCount": 0,
+  "historicalBaseline": {
+    "path": "evidence/current-profile-release-index-v1.json",
+    "sha256": "cd68fe1cc30fea5a982ac7ffcdfbddf77b2e698d55d21862e373bf452f3c38f7"
+  },
+  "kind": "ERC_TRUST_C_SERIES_TERMINAL_QUALIFICATION_V2",
+  "noPartialCredit": true,
+  "nonclaims": [
+    "Historical receipts remain evidence for their exact historical runtime only.",
+    "Checked-delta carry-forward is limited to the exact two-guard production patch and the named current evidence.",
+    "The current Certora result proves only the production internal FREEZE shape guard and wrapper rollback; it is not a fresh proof of the complete financial-core packages or external action entrypoint.",
+    "No compiler correctness, audit, deployment identity, production readiness, or external legal truth is claimed."
+  ],
+  "openCount": 0,
+  "packageRootSha256": "04dc8a2576e916e1e7fd6a8be27ad0ac79a2897b153779a6a6f1a180f030752a",
+  "packages": [
+    {
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "runtime-v3",
+        "foundry-v2",
+        "isabelle-v2"
+      ],
+      "id": "C0",
+      "packageRootSha256": "849a44c9dd22e9383ccfc8d4724e6ec36518566a7ff5ae4da099cffdb01fd6d9",
+      "terminal": true
+    },
+    {
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "isabelle-v2",
+        "certora-targeted-v2",
+        "kontrol-v2",
+        "mutation-v1",
+        "production-delta"
+      ],
+      "id": "C1",
+      "packageRootSha256": "94bcca126f488a18fccd1d49a88365a840102c37c7a42cfb43220817b265bcbe",
+      "terminal": true
+    },
+    {
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "runtime-v3",
+        "production-delta",
+        "foundry-v2"
+      ],
+      "id": "C2",
+      "packageRootSha256": "8870936ba3f94f5f269b279dde3e81f7a25834c19baadfdfb7de60720997ad48",
+      "terminal": true
+    },
+    {
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "isabelle-v2",
+        "kontrol-v2",
+        "foundry-v2",
+        "mutation-v1",
+        "production-delta"
+      ],
+      "id": "C3",
+      "packageRootSha256": "30f78fbf4f9e888e9d70ce554fc20e22e3cc773a5cc379e4210fe369dde9e9e4",
+      "terminal": true
+    },
+    {
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "isabelle-v2",
+        "certora-targeted-v2",
+        "foundry-v2",
+        "mutation-v1",
+        "production-delta"
+      ],
+      "id": "C4",
+      "packageRootSha256": "3c5691aca2bf6a1b3aa4ffc718fb9f3d7d020be082de0e99006ba6cc5bc14752",
+      "terminal": true
+    },
+    {
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "isabelle-v2",
+        "production-delta",
+        "foundry-v2"
+      ],
+      "id": "C5",
+      "packageRootSha256": "4bf6773ad20e712d82e7c9cd09c03df7c2f4bad810aea96b1f429debfee2ba7b",
+      "terminal": true
+    },
+    {
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "isabelle-v2",
+        "certora-targeted-v2",
+        "kontrol-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "id": "C6",
+      "packageRootSha256": "64c7f6803c07ea804efe49785961e6c7c0048c3735824848be5cf022e7ccafff",
+      "terminal": true
+    }
+  ],
+  "qualifiedCount": 7,
+  "repairedIdentity": {
+    "eip170MarginBytes": 399,
+    "productionDelta": {
+      "addedSemanticGuards": 2,
+      "baselineCommit": "e7598dbf268d81743a06dae595513bed59ea8d2d",
+      "changedPaths": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "sha256": "282d0deacd7a5e15e05531e8a8967cddaddcdec635e2df8d4c346fae16d38ffa"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "sha256": "6f019b44a03a0ed81efdaf990b3fb24bd0d2099dfb65aae3221d5a0a9da0d517"
+        }
+      ],
+      "deltaSha256": "1e2300472e80b6853019c0d3dfbae52130336894a25802e2636087a894c644c8",
+      "disposition": "PASS_EXACT_TWO_GUARD_DELTA",
+      "removedSemanticLines": 0
+    },
+    "pureFixture": {
+      "path": "evidence/end-to-end-refinement/runtime-binding-current-v2/resolved/fixture-pure-v1.json",
+      "sha256": "2ede0d1343f1aecbe602a79bee7d1882b660c5a77481fc9030285bf01ab2e6e0"
+    },
+    "resolvedRuntimeSha256": "ea0a3088cde6869a0e476a451e0baebc5a68f0462127f8ea24973189ab26fbe1",
+    "runtimeBytes": 24177,
+    "runtimeQualification": {
+      "path": "evidence/end-to-end-refinement/runtime-binding-current-profile-qualification-v3.json",
+      "sha256": "6a25e7ee7d3113e4f11946e646a3b55df00a81bbf603eb5127ae259aca02fd3b"
+    },
+    "runtimeTemplateSha256": "aabc0bd11e517ba9b9b8dbd288bcee80ba29c58be7598708269d2ff79e7fcf9f"
+  },
+  "requiredCount": 7,
+  "schemaVersion": 2,
+  "status": "PASS_C_SERIES_C0_THROUGH_C6_SEVEN_OF_SEVEN"
+}

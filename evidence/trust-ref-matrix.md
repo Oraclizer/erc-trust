@@ -1,6 +1,6 @@
 # TRUST-REF evidence matrix
 
-Candidate: `0.1.0-candidate.1`
+Candidate: `0.1.0-candidate.2`
 
 Scope: bounded native reference plus the sealed ERC-3643 conformance fixture
 Status vocabulary: PASS means the cited, exact candidate obligation passed;

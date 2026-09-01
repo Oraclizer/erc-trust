@@ -81,8 +81,8 @@ Full only when a one-way `ProfileGovernor` seals the expected token runtime
 code hash, token owner, Identity Registry, Compliance contract, and exclusive
 adapter Agent. Ordinary ERC-3643 deployments do not automatically qualify.
 
-Proxy and migration support are intentionally `false` in candidate v1. The
-native runtime is 24,142 bytes under the pinned compiler settings, leaving 434
+Proxy and migration support are intentionally `false` in candidate 2. The
+native runtime is 24,177 bytes under the pinned compiler settings, leaving 399
 bytes below the EIP-170 limit. Any native source change requires the full
 size, test, proof, mutation, and manifest replay.
 
@@ -199,18 +199,22 @@ show actual artifact or verification inputs. The coral obligation boundary
 does not claim a complete Isabelle-to-Solidity-to-EVM refinement theorem, and
 the deployment boundary remains separate from repository evidence.
 
-Candidate `0.1.0-candidate.1` has the following exact disposition:
+Candidate `0.1.0-candidate.2` has the following exact disposition:
 
 | Layer | Result |
 | --- | --- |
 | Foundry | 31/31 tests; two fuzz properties with 256 runs each; three invariants with 384,000 total calls |
-| Certora | 7/7 bounded core rules and 12/12 external mutator classifications |
-| Kontrol and KEVM | 3/3 selected high-risk bytecode proofs |
-| Mutation | 11/11 declared reference-candidate faults detected |
+| Certora | 2/2 targeted production FREEZE-direction rules; broader candidate 1 results remain historical only |
+| Kontrol and KEVM | 4/4 selected high-risk bytecode proofs |
+| Mutation | 12/12 declared reference-candidate faults detected |
 | Deterministic build | Two isolated clean builds produced identical artifact and bytecode hashes |
 | Isabelle/HOL abstract model | Mechanically verified within the declared abstract semantic domain |
 | Mandatory current profile | Seven reusable packages, 49/49 Core rows, and 24/24 Supporting rows qualified; optional assurance backlog 0/6 |
 | SDK | 3/3 tests and a minimal dry-run package |
+
+The successor profile rebinds every package and row to the repaired source by
+current evidence or a verifier-enforced two-guard delta. It does not claim
+that 73 independent whole-runtime proofs were rerun.
 
 The exact runs, hashes, harnesses, qualifiers, and replay commands are in the
 [verification summary](evidence/verification-summary.md) and
@@ -297,11 +301,12 @@ local environment state do not belong in the tracked public tree.
 
 ## Version and release policy
 
-`0.1.0-candidate.1` identifies the current unaudited reference candidate. A
-GitHub tag or release does not exist yet. Tags, releases, deployment claims,
-and a production designation require separate maintainer approval and must
-bind an exact commit and manifest. A later ERC number, if assigned, will not
-retroactively make older implementation commits audited or production-ready.
+`0.1.0-candidate.2` identifies the current unaudited reference candidate. The
+historical `v0.1.0-candidate.1` tag remains immutable; no candidate 2 tag or
+GitHub Release exists yet. Tags, releases, deployment claims, and a production
+designation require separate maintainer approval and must bind an exact commit
+and manifest. A later ERC number, if assigned, will not retroactively make
+older implementation commits audited or production-ready.
 
 ## Security, support, and contributions
 

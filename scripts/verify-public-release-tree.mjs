@@ -32,6 +32,7 @@ const required = [
   "evidence/current-profile-release-index-v1.json",
   "evidence/current-profile-release-index-v2.json",
   "evidence/public-release/diet-manifest-v1.json",
+  "evidence/public-release/diet-manifest-v2.json",
   "evidence/public-release/proof-bound-identifiers-v1.json",
   "evidence/public-release/supersession-manifest-v1.json",
   "evidence/public-release/formal-foundation-supersession-v1.json",
@@ -46,13 +47,21 @@ for (const path of required) if (!existsSync(resolve(root, path))) fail(`missing
 const tracked = execFileSync("git", ["ls-files", "-z"], { cwd: root, encoding: "utf8" })
   .split("\0").filter(Boolean);
 const present = tracked.filter((path) => existsSync(resolve(root, path)));
-const diet = readJson("evidence/public-release/diet-manifest-v1.json");
+const historicalDietBytes = readFileSync(resolve(root, "evidence/public-release/diet-manifest-v1.json"));
+const historicalDiet = JSON.parse(historicalDietBytes.toString("utf8"));
+const diet = readJson("evidence/public-release/diet-manifest-v2.json");
 const allowlist = readJson("evidence/public-release/proof-bound-identifiers-v1.json");
 const supersession = readJson("evidence/public-release/supersession-manifest-v1.json");
-if (diet.kind !== "ERC_TRUST_PUBLIC_TREE_DIET_MANIFEST_V1") fail("diet manifest identity drift");
+if (historicalDiet.kind !== "ERC_TRUST_PUBLIC_TREE_DIET_MANIFEST_V1") fail("historical diet manifest identity drift");
+if (diet.kind !== "ERC_TRUST_PUBLIC_TREE_DIET_MANIFEST_V2"
+    || diet.historicalRemovalSet.sha256 !== sha256(historicalDietBytes)
+    || diet.historicalRemovalSet.removedFiles !== historicalDiet.summary.removedFiles
+    || diet.historicalRemovalSet.removedBytes !== historicalDiet.summary.removedBytes) {
+  fail("successor diet manifest identity drift");
+}
 if (allowlist.kind !== "ERC_TRUST_PROOF_BOUND_HISTORICAL_IDENTIFIERS_V1") fail("proof-bound allowlist identity drift");
 if (supersession.kind !== "ERC_TRUST_PUBLIC_RELEASE_SUPERSESSION_MANIFEST_V1") fail("supersession manifest identity drift");
-for (const entry of diet.removedFiles) {
+for (const entry of historicalDiet.removedFiles) {
   if (existsSync(resolve(root, entry.path))) fail(`archive-only path remains: ${entry.path}`);
 }
 
@@ -155,8 +164,8 @@ console.log(JSON.stringify({
   status: "PASS_PUBLIC_RELEASE_TREE",
   trackedFiles: present.length,
   trackedBytes: bytes,
-  archivedFiles: diet.summary.removedFiles,
-  archivedBytes: diet.summary.removedBytes,
+  archivedFiles: historicalDiet.summary.removedFiles,
+  archivedBytes: historicalDiet.summary.removedBytes,
   proofBoundFiles: allowlist.summary.files,
   proofBoundOccurrences: allowlist.summary.contentOccurrences,
   privateCoordinates: 0,

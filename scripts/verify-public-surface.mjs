@@ -50,6 +50,7 @@ const required = [
   "evidence/release-manifest.json",
   "evidence/current-profile-release-index-v1.json",
   "evidence/current-profile-release-index-v2.json",
+  "evidence/public-release/diet-manifest-v2.json",
   "evidence/public-release/diet-manifest-v1.json",
   "evidence/public-release/proof-bound-identifiers-v1.json",
   "evidence/public-release/supersession-manifest-v1.json",

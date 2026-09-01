@@ -1,10 +1,11 @@
 {
   "schema": "erc-trust-certora-financial-core-v2",
   "candidate": "0.1.0-candidate.2",
-  "status": "PENDING_EXPLICIT_REMOTE_UPLOAD_APPROVAL",
-  "sourceCommit": "f743f763b70533f15c3f99ebc208386912dd33f4",
+  "status": "PASS_TARGETED_FREEZE_DIRECTION",
+  "sourceCommit": "6181df39fb23e2cf0d9561d4e82702d2beb63787",
+  "sourceCommitRole": "generation-context-only; explicit input hashes are authoritative",
   "toolchain": {
-    "certoraCli": "8.17.1",
+    "certoraCli": "8.19.1",
     "solidity": "0.8.36+commit.8a079791",
     "ruleSanity": "advanced"
   },
@@ -14,16 +15,16 @@
       "sha256": "282d0deacd7a5e15e05531e8a8967cddaddcdec635e2df8d4c346fae16d38ffa"
     },
     {
-      "path": "implementation/test/mocks/CertoraUnresolvedHarness.sol",
-      "sha256": "1b7afd042ed7a1c77a643614637967637171a68a973d66b7ec571b00e73dc23c"
+      "path": "implementation/certora/TrustFreezeDirectionHarness.sol",
+      "sha256": "bbe7ef8a32aba456a020a10f4e5051bc441a41a73cb60a1ef60d2877d7a9383b"
     },
     {
-      "path": "implementation/certora/TrustFinancialCore.spec",
-      "sha256": "eddef9676c28ceb3f1ebe225b6a92bb9414263b9432aa1642067e85e578b07ba"
+      "path": "implementation/certora/TrustFreezeDirection.spec",
+      "sha256": "e3b4bd1ac1a535d86d84bb23bc224fef0227d1706d246101f6e1fc969cc9d787"
     },
     {
-      "path": "implementation/certora/TrustFinancialCore.conf",
-      "sha256": "11b23f9467ace37d083511827bbbf7d5f7f39e8d141ed2c4deb9c1ec1eb7989a"
+      "path": "implementation/certora/TrustFreezeDirection.conf",
+      "sha256": "88912c3d6aa30425fbef0ec35c43a08d3f9f88e4835a32d79a989fcf5d313600"
     }
   ],
   "localCompilation": {
@@ -31,14 +32,36 @@
     "mode": "compilation_steps_only",
     "remoteVerificationRequestSent": false
   },
+  "remoteRun": {
+    "outputNamespace": "10491299",
+    "runHash": "2f7c362ce29d465e9fb8e3facb1320ad",
+    "url": "https://prover.certora.com/output/10491299/2f7c362ce29d465e9fb8e3facb1320ad",
+    "processExit": 0,
+    "terminalResult": "No errors found by Prover!"
+  },
   "rules": {
-    "total": 7,
-    "success": 0,
+    "total": 2,
+    "success": 2,
     "fail": 0,
     "sanityFail": 0,
     "timeout": 0,
-    "unknown": 7
+    "unknown": 0,
+    "names": [
+      "strict_increase_is_the_only_accepted_freeze_shape",
+      "nonincreasing_freeze_shape_reverts_and_restores_storage"
+    ]
   },
-  "blockingReason": "The remote proof requires explicit approval to transmit the current private Solidity and CVL inputs to Certora.",
-  "claimBoundary": "Local source and specification compilation passed. No current-candidate Certora proof result is claimed until the remote run completes successfully."
+  "exploratoryProviderDefects": [
+    {
+      "certoraCli": "8.17.1",
+      "runHash": "9daeb1e957bd4e758368f203be06fad6",
+      "disposition": "UNKNOWN_PROVIDER_INTERNAL_ERROR_4201170908"
+    },
+    {
+      "certoraCli": "8.19.1",
+      "runHash": "9395615e09534b38861a8c63d86fd543",
+      "disposition": "UNKNOWN_PROVIDER_INTERNAL_ERROR_4201170908"
+    }
+  ],
+  "claimBoundary": "The current production internal FREEZE shape validator accepts a strictly increasing target, while equal or decreasing targets revert and restore the inherited harness storage in the wrapper transaction. This targeted result does not prove the complete external action entrypoint, authorization, dependency, receipt, event, or whole-runtime behavior. The two exploratory full financial-core jobs remain UNKNOWN and grant no proof credit."
 }

@@ -64,7 +64,7 @@ the named theorem states that boundary.
 
 | ID | Required theorem or checked property |
 | --- | --- |
-| REV-01 | `freeze_sets_absolute_target`: FREEZE replaces rather than increments the target and has no balance upper bound |
+| REV-01 | `freeze_sets_absolute_target`: a successful FREEZE sets a strictly greater absolute target; equal or decreasing targets reject, and a decrease requires explicit UNFREEZE |
 | REV-02 | `freeze_effect_head_is_hash_bound`: prior target, new target, parent action ID, head action ID, and generation determine the stored effect hash |
 | REV-03 | `effect_generation_is_monotonic` |
 | REV-04 | `unfreeze_requires_current_head` |

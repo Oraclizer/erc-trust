@@ -1,10 +1,14 @@
 # ERC-TRUST verification and refinement map
 
 This is the repository-level entry point for the exact
-`0.1.0-candidate.1` verification package. It separates the abstract Isabelle
+`0.1.0-candidate.2` verification package. It separates the abstract Isabelle
 model, the native Solidity reference, the ERC-3643 conformance fixture, and the
 preserved FREEZE pilot. A PASS below applies only to the named source, build, rule,
 and harness boundary.
+
+The accompanying [research paper](https://arxiv.org/abs/2608.29134) explains
+the domain semantics and evidence taxonomy. This repository remains the exact
+executable artifact and release-identity SSOT.
 
 > **Unaudited. Not for production. No deployment, proxy, migration, or
 > external legal/factual truth is verified.**
@@ -37,10 +41,12 @@ and operations require separate evidence.
 | End-to-end evidence map | `evidence/end-to-end-refinement/README.md` |
 | End-to-end semantic decision | `evidence/end-to-end-refinement/semantic-alignment-decision.md` |
 | End-to-end theorem obligations | `evidence/end-to-end-refinement/theorem-obligations.md` |
-| Public current-profile release index | `evidence/current-profile-release-index-v1.json` |
+| Public current-profile release index | `evidence/current-profile-release-index-v2.json` |
+| Successor package qualification | `evidence/end-to-end-refinement/c-series-terminal-qualification-v2.json` |
+| Successor row qualification | `evidence/end-to-end-refinement/current-profile-row-qualifications-v2.json` |
 | Historical row qualification index | `evidence/end-to-end-refinement/m4-current-profile-row-qualifications-v1.json` |
-| Public two-layer runtime binding | `evidence/end-to-end-refinement/runtime-binding-current-profile-qualification-v2.json` |
-| Public archive separation | `evidence/public-release/diet-manifest-v1.json`; `evidence/public-release/supersession-manifest-v1.json` |
+| Public two-layer runtime binding | `evidence/end-to-end-refinement/runtime-binding-current-profile-qualification-v3.json` |
+| Public archive separation | `evidence/public-release/diet-manifest-v2.json`; historical removal set in `diet-manifest-v1.json`; `evidence/public-release/supersession-manifest-v1.json` |
 
 The product repository owns the ERC-TRUST model and implementation. The
 external `Cross_Domain_State_Preservation` session supplies reusable
@@ -78,9 +84,9 @@ Native Full current profile is tracked separately:
 
 All 49 Core rows remain row-specific statements and distinguishing negatives,
 but their expensive runtime reasoning is provided by 22 reusable universal
-claims in seven C0-C6 parser batches. Certora is the primary compiled-bytecode
-financial-rule prover, Foundry and Halmos are counterexample/mutation
-preflight, and KEVM is restricted to exact ABI, call, revert, rollback, log,
+claims in seven C0-C6 parser batches. Certora supplies bounded source-level
+rules, Foundry and mutation tests provide concrete falsification evidence,
+and KEVM is restricted to exact ABI, call, revert, rollback, log,
 receipt, sparse-frame composition, and final row-corollary seams. Tool results
 placed side by side are layered assurance; an explicit Isabelle/K bridge and
 row corollary are required for formal refinement credit.
@@ -91,12 +97,16 @@ Commit/Rollback/Receipt packages. Its concrete two-segment PASS is preserved as
 a topology canary and is not extended manually. The reusable C0-C6 campaign is
 now terminal `7/7`; each package is bound to a positive proof, distinguishing
 negative or executable mutant, baseline restore, frame, assumptions, and
-nonclaims in `c-series-terminal-qualification-v1.json`. This closes the
-reusable package layer and supplies the 49 qualified Core rows.
+nonclaims in the historical v1 receipts. Candidate 2 reissues all seven
+packages in `c-series-terminal-qualification-v2.json`: C0 is rebound to the
+current runtime evidence, while C1-C6 carry forward only through the verifier's
+exact two-guard production delta and named current evidence. This does not
+claim seven fresh whole-runtime proofs.
 The row qualification index now also binds the `STATE-04` theorem that FREEZE
 and RESTRICT retain separate observations, a typed coexistence inhabitant, and
-a same-state conflation negative. It consumes the unchanged C-series and C4
-terminal receipts without rerunning those parent proofs.
+a same-state conflation negative. The successor row index binds it to the
+repaired source and package root rather than treating the historical runtime
+as unchanged.
 `STATE-05` similarly binds case-scoped terminality. The first batch fans the
 same immutable package layer out to the remaining eight action-success and
 three reversal-success statements, while preserving one distinguishing
@@ -111,9 +121,11 @@ reference positions against pinned-solc replay. All seven current artifacts
 are semantic-payload exact with packaging drift. The verifier kills all 42
 subject-by-semantic mutations, classifies all seven packaging-only mutations
 as drift-PASS, and fails closed on all seven expected-hash overwrite
-mutations. Production source and the resolved 24,142-byte Native runtime are
-unchanged. The public qualification and its historical identity are recorded
-in `evidence/public-release/supersession-manifest-v1.json`.
+mutations. The repaired runtime is 24,177 bytes: the deterministic artifact
+template and pure immutable-resolved runtime have distinct hashes but the same
+length. `runtime-binding-current-profile-qualification-v3.json` binds the new
+identity, and the pure-fixture checker recomputes all seven subjects. Historical
+runtime receipts remain scoped to their original bytes.
 
 ### Composite proof for fixed-width decoder guards
 
@@ -200,7 +212,7 @@ The pinned Foundry 1.7.1 / Solidity 0.8.36 build passed:
 - 31 tests, 0 failures, 0 skipped;
 - two fuzz properties at 256 runs each;
 - three invariants at 256 runs × 500 calls each, or 384,000 calls total;
-- runtime size 24,142 bytes, leaving 434 bytes below the EIP-170 limit;
+- runtime size 24,177 bytes, leaving 399 bytes below the EIP-170 limit;
 - six intentional `block.timestamp` validity-window warnings and no lint
   errors.
 
@@ -210,21 +222,27 @@ unsealed/non-exclusive topology case.
 
 ### Certora
 
-Certora CLI/server 8.17.1 completed both exact configurations:
+Certora CLI/server 8.19.1 completed the two targeted current-candidate rules:
 
 | Configuration | Run | Result |
 | --- | --- | --- |
-| `TrustToken.conf` | [`3c1a8855237a4fdea3d068b0128dcc53`](https://prover.certora.com/output/10491299/3c1a8855237a4fdea3d068b0128dcc53) | 7/7 top-level rules SUCCESS; 0 fail, sanity-fail, timeout, or unknown |
-| `TrustToken.inventory.conf` | [`8c8fa40539fb42d1bdf86c95f64a8c26`](https://prover.certora.com/output/10491299/8c8fa40539fb42d1bdf86c95f64a8c26) | all 12 instantiated external mutators classified |
+| `TrustFreezeDirection.conf` | [`2f7c362ce29d465e9fb8e3facb1320ad`](https://prover.certora.com/output/10491299/2f7c362ce29d465e9fb8e3facb1320ad) | 2/2 rules SUCCESS; advanced sanity nonvacuity witnesses present; 0 fail, timeout, or unknown |
 
-The historical bounded rules cover invalid ERC-165 truth, the ERC-7943 view relation,
-ordinary-transfer exact delta/frame, ordinary failure stutter, successful
-action and reversal terminality/supply preservation, and structurally invalid
-action stutter. These are bounded CVL checks, not a full implementation proof.
-The sanitized exact result record is `evidence/certora-results.json`.
-They are preserved as historical pilot evidence and do not substitute for the new
-reusable financial-core rules, advanced sanity, explicit call-summary audit,
-and hybrid row corollaries.
+The verification-only harness inherits the production `TrustToken` and calls
+its internal `_validateActionShape` without copying the guard. It proves that a
+strictly increasing FREEZE target is accepted and that an equal or decreasing
+target reverts with complete inherited-storage rollback in the wrapper
+transaction. It does not prove the complete external action entrypoint,
+authorization, dependency, receipt, event, or whole-runtime behavior.
+
+Two exploratory full financial-core jobs, on CLI/server 8.17.1 and 8.19.1,
+both ended UNKNOWN because of provider internal error `4201170908`. They grant
+no proof credit. The targeted PASS and both provider-defect dispositions are
+recorded in `evidence/certora-financial-core-v2.json`.
+
+The former `TrustToken.conf` 7/7 and inventory 12/12 runs remain historical
+candidate 1 evidence in `evidence/certora-results.json`; they are not presented
+as fresh candidate 2 proofs.
 
 #### Policy-binding classifier inputs
 
@@ -244,17 +262,18 @@ relationships remain separate refinement work.
 ### Kontrol/KEVM
 
 Kontrol 1.0.255 with KEVM 1.0.678 rebuilt the exact CANCUN bytecode and passed
-all three selected proofs:
+all four selected proofs:
 
 | Proof | Result |
 | --- | --- |
-| `testKontrol_RawSensitiveSelectorsStayClosed():1` | PASS |
-| `testKontrol_OperationalFailureStuttersProjection():1` | PASS |
+| `testKontrol_RawSensitiveSelectorsStayClosed():0` | PASS |
+| `testKontrol_OperationalFailureStuttersProjection():0` | PASS |
+| `testKontrol_NonincreasingFreezeStuttersProjection():0` | PASS |
 | `testKontrol_LiquidateExactDeltaReceiptAndFinalLog():1` | PASS |
 
 The final proof imports `erc-trust-log-assertions.k` to check the final
 canonical receipt log. Exact proof IDs and timings are in
-`evidence/kontrol-results.json`.
+`evidence/kontrol-results-v2.json`.
 
 ### Deterministic build and mutation
 
@@ -262,10 +281,11 @@ Two isolated clean builds produced byte-for-byte identical `TrustToken`
 artifact, creation bytecode, and runtime bytecode. The machine-readable result
 is `evidence/deterministic-build.json`.
 
-Eleven temporary negative mutations were killed. In addition to
+Twelve temporary negative mutations were killed. In addition to
 frozen-floor, route-ticket, receipt-order, fail-closed, fixed-action, nonce,
 and ERC-3643 bypass faults, the campaign covers FREEZE direction, case
-terminality, custody closure, and current-policy reversal checks. The
+terminality, custody closure, current-policy reversal, and ERC-3643
+FREEZE-direction checks. The
 machine-readable result is `evidence/mutation-results.json`.
 
 ### Abstract model and preserved pilot
@@ -292,12 +312,17 @@ FOUNDRY_FUZZ_RUNS=256 FOUNDRY_INVARIANT_RUNS=256 \
   FOUNDRY_INVARIANT_DEPTH=500 forge test
 forge lint
 
-certoraRun implementation/certora/TrustToken.conf
-certoraRun implementation/certora/TrustToken.inventory.conf
+(cd implementation && certoraRun certora/TrustFreezeDirection.conf \
+  --rule strict_increase_is_the_only_accepted_freeze_shape \
+         nonincreasing_freeze_shape_reverts_and_restores_storage)
 
 FOUNDRY_PROFILE=kontrol kontrol build --foundry-project-root . --regen --rekompile
 FOUNDRY_PROFILE=kontrol kontrol prove --foundry-project-root . --schedule CANCUN \
   --match-test <exact-proof-name>
+
+node scripts/generate-pure-runtime-fixture.mjs --check
+node scripts/verify-runtime-binding.mjs --check-receipt
+node scripts/verify-current-profile-release-v2.mjs
 ```
 
 Windows replay commands for deterministic builds, mutation checks, manifest

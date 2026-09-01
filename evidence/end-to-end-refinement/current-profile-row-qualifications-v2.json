@@ -1,0 +1,1171 @@
+{
+  "candidate": "0.1.0-candidate.2",
+  "currentEvidence": {
+    "certora": {
+      "path": "evidence/certora-financial-core-v2.json",
+      "sha256": "51b10c1e0bef155ba73d462ac5f5c0f32dedffaffa8f57172064ccbe65496e09"
+    },
+    "deterministicBuild": {
+      "path": "evidence/deterministic-build.json",
+      "sha256": "b6e8aceb7c54a43ea30682d83b4d53269e1d1e2be7d6ff9c1721019c557e5bd0"
+    },
+    "foundry": {
+      "path": "evidence/foundry-results-v2.json",
+      "sha256": "93d446e62e131c57e5048980bf29bd8c253a557a8ba65ba36a77cdcc6ecb9ea2"
+    },
+    "isabelle": {
+      "path": "evidence/isabelle-results-v2.json",
+      "sha256": "73cbbe7563e62d1a8f872759d921d4d5de8c3794c001cff47794576f34d26092"
+    },
+    "kontrol": {
+      "path": "evidence/kontrol-results-v2.json",
+      "sha256": "bb5a8645b345cf3fc68de3ffa5202671357486e86f2ea541401d31d9e48175fd"
+    },
+    "mutation": {
+      "path": "evidence/mutation-results.json",
+      "sha256": "5d14562deef80c018bd7cd29f29410292040d406e7268e5718cfb2c972462d0f"
+    }
+  },
+  "dispositionCounts": {
+    "checkedDelta": 31,
+    "rebound": 42,
+    "reproved": 0
+  },
+  "historicalBaselineSha256": "e903257492c5a6969aa92c244c310c5c702bd9102890a76650997e253ff749ce",
+  "kind": "ERC_TRUST_CURRENT_PROFILE_ROW_QUALIFICATIONS_V2",
+  "noPartialCredit": true,
+  "nonclaims": [
+    "Historical receipts remain evidence for their exact historical runtime only.",
+    "Checked-delta carry-forward is limited to the exact two-guard production patch and the named current evidence.",
+    "The current Certora result proves only the production internal FREEZE shape guard and wrapper rollback; it is not a fresh proof of the complete financial-core packages or external action entrypoint.",
+    "No compiler correctness, audit, deployment identity, production readiness, or external legal truth is claimed."
+  ],
+  "packageRootSha256": "04dc8a2576e916e1e7fd6a8be27ad0ac79a2897b153779a6a6f1a180f030752a",
+  "progress": {
+    "coreRefinement": {
+      "qualified": 49,
+      "required": 49
+    },
+    "coreSupporting": {
+      "qualified": 24,
+      "required": 24
+    },
+    "frozenRows": 0,
+    "optionalBacklog": {
+      "publicationBlocking": false,
+      "qualified": 0,
+      "required": 6
+    }
+  },
+  "rowRootSha256": "7511f8014a027d1c66966b6efb3080a9f5779899bffcbdd3895792c7e609638d",
+  "rows": [
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "certora-targeted-v2",
+        "kontrol-v2",
+        "mutation-v1",
+        "production-delta"
+      ],
+      "rowId": "ACT-01",
+      "rowRootSha256": "7a2a626cbb1d015f6f9f0c43f7303487668296eb97a71ee425fc8ac7f04d9832"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "pure-fixture-v1",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "STATE-04",
+      "rowRootSha256": "8ba7974b9337e513882e17ff739db36dc739b9e007508239a6c4492b243a5b2d"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "pure-fixture-v1",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "STATE-05",
+      "rowRootSha256": "5b9bdaa676e48edc4f35101d9a62b19363e306aa0b47a6ab04a04925205807d7"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "ACT-02",
+      "rowRootSha256": "c953222fd2ec686bed420efde54ef7d4bcec7fe9b99a000a0cbd30e12fa860c7"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "ACT-03",
+      "rowRootSha256": "65c18497e786ae954d0495f229d2f85c179934c833ddc2761a04a20c160e7211"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "ACT-04",
+      "rowRootSha256": "eed96d0c827308a7d13ced938f267711c7d9c3116b39516842d16a01535d5877"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "ACT-05",
+      "rowRootSha256": "f65b0e4d30805c8d961f50bd6adff4ca63206fd35f64acc79f23544f845f402a"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "ACT-06",
+      "rowRootSha256": "a8697005c7bef3c21569d12e01971dd702c5c8c42c60e28d59b870d66acee930"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "ACT-07",
+      "rowRootSha256": "2a368230163ebcbfc15d6f09e232582fff0af7a71068e59d79f54a299a872894"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "ACT-08",
+      "rowRootSha256": "20007f13af80fdb07b57af30d09b2d06280471ee06720fdcb630840a2cb7b5b1"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "ACT-09",
+      "rowRootSha256": "a3be7545f32396a61e37f14b3310b9be90c0fa3bc42fc2167e4889dc9e27c686"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "RVR-01",
+      "rowRootSha256": "93ecf3cd4cebed7aeb8b68aaae84c0ebf2b6a8240246780626ecc27736ae76d3"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "RVR-02",
+      "rowRootSha256": "e729c242f3bcae0ee84939c22321da0038c8f6ec4b60c4945ed260c573bf0e9b"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "RVR-03",
+      "rowRootSha256": "c93905265da9ac7e6836eed1c1f8087070887391d4a8fa6ada33a16de0e5050e"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "BAL-03",
+      "rowRootSha256": "1941803e8bd6540e91db1de87e34656990bdf74947e6c201fb7fee2d7a4740a2"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "BAL-04",
+      "rowRootSha256": "f4d96fd16975c9d0a7a21af78c986f009466ea7d04ea2970bf78755b4dccf0c6"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "BAL-06",
+      "rowRootSha256": "b556cb4ba579a5afb1c96386e50ee1a00923f291c06cb7bdf6a8ff1c6ccd4eee"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "BAL-07",
+      "rowRootSha256": "8b99c0cffc8f5d84d7bcb44269eb5a1fb661840ef90ce42d3b66fc07aba945fc"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "BAL-08",
+      "rowRootSha256": "d8330f01c545faf62b740f4c289a511f27626b1adbf6f0144a65a4c63efd8a0c"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "BAL-09",
+      "rowRootSha256": "4d2c4c694a3fd0bcdeaef5c9c317f96d310b7e96d2d29d7f25edbf22b18cf7e8"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "certora-targeted-v2",
+        "kontrol-v2",
+        "mutation-v1",
+        "production-delta"
+      ],
+      "rowId": "REV-01",
+      "rowRootSha256": "637ca3e83a059bba5cef26b6c09af39e96430d764b58574e31d79639bdabc2be"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "certora-targeted-v2",
+        "kontrol-v2",
+        "mutation-v1",
+        "production-delta"
+      ],
+      "rowId": "REV-02",
+      "rowRootSha256": "ae15f99d6d45b83ccf8847867f8cc11c9e0d83b6288c01ca98015ab13f5fa9d7"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "certora-targeted-v2",
+        "kontrol-v2",
+        "mutation-v1",
+        "production-delta"
+      ],
+      "rowId": "REV-03",
+      "rowRootSha256": "7c9a2add3f4579cc86125c64f7801de2fbb0ea5c98ba3d3c339d396672a3af3f"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "certora-targeted-v2",
+        "kontrol-v2",
+        "mutation-v1",
+        "production-delta"
+      ],
+      "rowId": "REV-04",
+      "rowRootSha256": "4fdcb26b7530793b199cbec5de115ed676f5daf7d1afae8fd2a306adbdb55e97"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "REV-05",
+      "rowRootSha256": "16beffeb80697ebd8ca8ece6c5fe930d7818a79dafdb91d969d257541d53b01d"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "REV-06",
+      "rowRootSha256": "c5c531af706b5c881cb9027350fa9ee8a5e0721e79b3b0043b959cc73f4e9cfe"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "certora-targeted-v2",
+        "kontrol-v2",
+        "mutation-v1",
+        "production-delta"
+      ],
+      "rowId": "REV-07",
+      "rowRootSha256": "7c6eac8f05478c21a18340f36e527b8b0eead815b5a17933b2c1bbfacc60b9de"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "certora-targeted-v2",
+        "kontrol-v2",
+        "mutation-v1",
+        "production-delta"
+      ],
+      "rowId": "REV-08",
+      "rowRootSha256": "49af386dc2cf1b6d5e4096e024db0e79c95874b649175a749d779456bac00b2a"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "certora-targeted-v2",
+        "kontrol-v2",
+        "mutation-v1",
+        "production-delta"
+      ],
+      "rowId": "REV-09",
+      "rowRootSha256": "d5997b2eed9360ea51160a55d1670790d139571abb13fb09166aed7b15c22f89"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "REV-10",
+      "rowRootSha256": "7b9d8bcd7f6c1f3d212d1e786fde24ccc3e26d8790e1e80ca3a5deacff120374"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "certora-targeted-v2",
+        "kontrol-v2",
+        "mutation-v1",
+        "production-delta"
+      ],
+      "rowId": "REV-11",
+      "rowRootSha256": "301c5ba6eaa2fb8beea60df12cec13f8726cd80290c6f63c38df5a2d6d23fbac"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "pure-fixture-v1",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "ABI-05",
+      "rowRootSha256": "58b2a656cae897ed6422c65d252efff88c4c7743f23cfd3e257dbb5a46bde317"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "AUTH-01",
+      "rowRootSha256": "a66c8c0ebafc40aadcba66e7a991523610842643af364ba6e9b6f71dc10ae474"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "AUTH-02",
+      "rowRootSha256": "19a347b3c58326f4bfdce8e295bdf5d3705a7720fd16b303748c9ba2c08c5f76"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "AUTH-03",
+      "rowRootSha256": "7a268dfd131c81068c5a5ee18d614f9444d6235b92f3c25be7b40e91310ffae0"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "certora-targeted-v2",
+        "kontrol-v2",
+        "mutation-v1",
+        "production-delta"
+      ],
+      "rowId": "AUTH-04",
+      "rowRootSha256": "8c78abe200b57d4c03bb925fb0e4d8b96ded8d143eb1588a51a3f6359ecb4b11"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "AUTH-05",
+      "rowRootSha256": "ba4dc68d62dd5cf400bcbaa65eaa18ca293606dd4c418b6b795da4bbe627d8be"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "certora-targeted-v2",
+        "kontrol-v2",
+        "mutation-v1",
+        "production-delta"
+      ],
+      "rowId": "FAIL-01",
+      "rowRootSha256": "36a51d4d603dee70b99f9c2615b6545c7b721937975aee6192b999c3d94b7bbd"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "FAIL-02",
+      "rowRootSha256": "c473276368648f833b6e2035c9a0427ebbdb0a371c7aad4a2af3f5983546bcb9"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "FAIL-03",
+      "rowRootSha256": "c33c879f1c707c0bfc96157242f0bf5d309de512069191abae41d251f660dc34"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "FAIL-04",
+      "rowRootSha256": "95c35d72679760e2fbd37506c9e2ef835cfce5d16d3ecc1866926f3ba6e4c0ed"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "certora-targeted-v2",
+        "kontrol-v2",
+        "mutation-v1",
+        "production-delta"
+      ],
+      "rowId": "FAIL-08",
+      "rowRootSha256": "57233d9d6aa5743bd9879d8aced7450b22df5a0dcbf22fe894dec1f3f84f0f40"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "pure-fixture-v1",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "EXT-01",
+      "rowRootSha256": "a3cc32aff8573dc591354ce52291db093b8e0879e78a4e0985b05643e7b9edde"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "certora-targeted-v2",
+        "kontrol-v2",
+        "mutation-v1",
+        "production-delta"
+      ],
+      "rowId": "EXT-02",
+      "rowRootSha256": "ad218e0c805effe4ba681515a12f949a2639780cacb87fbeec93ca619321ede7"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "certora-targeted-v2",
+        "kontrol-v2",
+        "mutation-v1",
+        "production-delta"
+      ],
+      "rowId": "EXT-03",
+      "rowRootSha256": "a9de9cce420cf3dd4939620aead36f40625cf570cfa49e115f89fdbd1502aa13"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "certora-targeted-v2",
+        "kontrol-v2",
+        "mutation-v1",
+        "production-delta"
+      ],
+      "rowId": "SEP-02",
+      "rowRootSha256": "60fd69344e131f4cbbdda7ecc8ab6864fc0e6b9efa58a903c7fd8a0b241b6cf6"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "pure-fixture-v1",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "SEP-04",
+      "rowRootSha256": "b2d46cf557c963faede7d16eabce3bb280ba18c0aa31d200ff5e3b34f0ec2162"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "certora-targeted-v2",
+        "kontrol-v2",
+        "mutation-v1",
+        "production-delta"
+      ],
+      "rowId": "ART-06",
+      "rowRootSha256": "02690e59a772da802075e01431eef457fd9b29d71dbca6354aa08ffe8af0eb1b"
+    },
+    {
+      "class": "CoreRefinement",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "certora-targeted-v2",
+        "kontrol-v2",
+        "mutation-v1",
+        "production-delta"
+      ],
+      "rowId": "ART-07",
+      "rowRootSha256": "5f6a3909bb555d5ac5b450352d83bc01a78fbbe787cffa297ba4632ea39be753"
+    },
+    {
+      "class": "CoreSupporting",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "pure-fixture-v1",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "STATE-01",
+      "rowRootSha256": "d949145aecb70dc4ba34648ae5c48d2446da634e07c77e0084699e5b491cae0c"
+    },
+    {
+      "class": "CoreSupporting",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "pure-fixture-v1",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "STATE-02",
+      "rowRootSha256": "e26a2002e416a2d9f2d3922c8e4fd5ef1022e1c4ad6d204cbaec69b672574a1e"
+    },
+    {
+      "class": "CoreSupporting",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "pure-fixture-v1",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "STATE-03",
+      "rowRootSha256": "4167934947b19ca8868728737eb53c3c46dcad49d34d3539fc43c2a4eb012fe1"
+    },
+    {
+      "class": "CoreSupporting",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "pure-fixture-v1",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "STATE-06",
+      "rowRootSha256": "3c08bcdb0d37dc7632bebbea0f564b1d7fd3d071d41e11849c1807cc211b6936"
+    },
+    {
+      "class": "CoreSupporting",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "pure-fixture-v1",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "STATE-07",
+      "rowRootSha256": "195362d66ffc358a3d80cfac79e031634a60fc0cdfed3d0ba6a85ae1ca7a6b09"
+    },
+    {
+      "class": "CoreSupporting",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "BAL-01",
+      "rowRootSha256": "a0569179f9224b1413d3317369ab61030fab040b608f28fabed4431780a1f95d"
+    },
+    {
+      "class": "CoreSupporting",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "BAL-02",
+      "rowRootSha256": "3bd192462007c57f85f4fe1be2eb20fed1b96576aaa30ffa6cc60d8060547330"
+    },
+    {
+      "class": "CoreSupporting",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "BAL-05",
+      "rowRootSha256": "b3c1b192ea22cb89ffde6a0183b113863314531206b11e81257be754c16739a6"
+    },
+    {
+      "class": "CoreSupporting",
+      "currentCandidateQualified": true,
+      "disposition": "CARRY_FORWARD_BY_CHECKED_DELTA",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "BAL-10",
+      "rowRootSha256": "29597ea561cb627b8a6939d9799ea5be76a95dcef015a5ee9f2e01ae0cb91dde"
+    },
+    {
+      "class": "CoreSupporting",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "pure-fixture-v1",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "ABI-01",
+      "rowRootSha256": "295040cf0f09f6be64edbd31403ee4581a7339c5e691473bf27efaa67a669499"
+    },
+    {
+      "class": "CoreSupporting",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "pure-fixture-v1",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "ABI-02",
+      "rowRootSha256": "9aa5f07574095a98c578fa3349a8d3122290607e31391b77d0112226e40072f9"
+    },
+    {
+      "class": "CoreSupporting",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "pure-fixture-v1",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "ABI-03",
+      "rowRootSha256": "6314c4b6441638f153fcf6e7999b49522fbd61def1782b167d8e85265cae2253"
+    },
+    {
+      "class": "CoreSupporting",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "pure-fixture-v1",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "ABI-04",
+      "rowRootSha256": "fe472c83e437aaaac719e101f01d63945de8e3d8e2b19992b8832c584d830603"
+    },
+    {
+      "class": "CoreSupporting",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "certora-targeted-v2",
+        "kontrol-v2",
+        "mutation-v1",
+        "production-delta"
+      ],
+      "rowId": "FAIL-05",
+      "rowRootSha256": "10e4358a6fdfd9f98921c12584d8ca44745a24e2437b20dd8f4ede13137cdecf"
+    },
+    {
+      "class": "CoreSupporting",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "pure-fixture-v1",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "EXT-07",
+      "rowRootSha256": "97980385d08178526cdb21908a61ee86b009a5d558f560c955ef4368ee22e688"
+    },
+    {
+      "class": "CoreSupporting",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "pure-fixture-v1",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "SEP-01",
+      "rowRootSha256": "35bca21beab3919bce7e9e1a36e008d7c567d2001e0c81a9b10210d46fbfd20e"
+    },
+    {
+      "class": "CoreSupporting",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "certora-targeted-v2",
+        "kontrol-v2",
+        "mutation-v1",
+        "production-delta"
+      ],
+      "rowId": "SEP-03",
+      "rowRootSha256": "68c56841e93ffe5beefbab8028bdc7f271228d8df044d60cddf5f2cb35e2a6f7"
+    },
+    {
+      "class": "CoreSupporting",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "certora-targeted-v2",
+        "kontrol-v2",
+        "mutation-v1",
+        "production-delta"
+      ],
+      "rowId": "SEP-05",
+      "rowRootSha256": "4e2049f9177ccba8188b3c623e08897363065ef03596bb353e8433c1ce71b72b"
+    },
+    {
+      "class": "CoreSupporting",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "pure-fixture-v1",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "ART-01",
+      "rowRootSha256": "4733bad8c483a2d18cf89874206d8478ee2237f17e9c758db7476a7d38e557ef"
+    },
+    {
+      "class": "CoreSupporting",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "pure-fixture-v1",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "ART-02",
+      "rowRootSha256": "b827a90707284aa17049397419be33fe72f39088ad5097a852b699a87dda26ac"
+    },
+    {
+      "class": "CoreSupporting",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "pure-fixture-v1",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "ART-03",
+      "rowRootSha256": "27e1955381083e7d98741814d558deb58b69c3ca384d9428b95dcc4e2aac3933"
+    },
+    {
+      "class": "CoreSupporting",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "pure-fixture-v1",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "ART-04",
+      "rowRootSha256": "f17da6ae71f8ee389ea71a6fe5ff8e406e0bb6d6a595440ee203d6d98e675a5a"
+    },
+    {
+      "class": "CoreSupporting",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "isabelle-v2",
+        "foundry-v2",
+        "certora-targeted-v2",
+        "kontrol-v2",
+        "mutation-v1",
+        "production-delta"
+      ],
+      "rowId": "ART-05",
+      "rowRootSha256": "3b350ea368285c8ad20462a80631557b785565cc492d7fe23fdb3caa42277dd7"
+    },
+    {
+      "class": "CoreSupporting",
+      "currentCandidateQualified": true,
+      "disposition": "REBOUND_TO_CURRENT_EVIDENCE",
+      "evidence": [
+        "packages-v2",
+        "runtime-v3",
+        "pure-fixture-v1",
+        "isabelle-v2",
+        "foundry-v2",
+        "production-delta"
+      ],
+      "rowId": "ART-08",
+      "rowRootSha256": "f7146c43087bdb4b35bd7a683647c3f9bf824d5f17b4395cf64b5af8340a6a34"
+    }
+  ],
+  "schemaVersion": 2,
+  "status": "PASS_CURRENT_PROFILE_ROWS"
+}

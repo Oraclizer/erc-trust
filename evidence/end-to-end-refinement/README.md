@@ -20,14 +20,16 @@ runtime mutations, and the release manifest.
 
 | File | Role | Current result |
 | --- | --- | --- |
-| `../current-profile-release-index-v1.json` | Public release entry point | Packages 7/7, Core 49/49, Supporting 24/24, optional backlog 0/6 |
-| `c-series-terminal-qualification-v1.json` | Byte-exact historical package aggregate | Seven of seven packages qualified |
-| `m4-current-profile-row-qualifications-v1.json` | Proof-bound historical row index | Core 49/49, Supporting 24/24, frozen rows 0 |
-| `runtime-binding/manifest-public-v1.json` | Public compiler and runtime input manifest | Pinned compiler replay and seven subject bindings |
-| `runtime-binding-current-profile-qualification-v2.json` | Current runtime qualification | Six semantic projections per subject pass; hostile mutations fail closed |
+| `../current-profile-release-index-v2.json` | Public release entry point | Packages 7/7, Core 49/49, Supporting 24/24, optional backlog 0/6 |
+| `c-series-terminal-qualification-v2.json` | Repaired-candidate package successor | C0 rebound; C1-C6 checked-delta carry-forward with named current evidence |
+| `current-profile-row-qualifications-v2.json` | Repaired-candidate row successor | All 73 mandatory rows rebound or checked-delta carried forward; frozen rows 0 |
+| `c-series-terminal-qualification-v1.json` | Byte-exact historical package aggregate | Candidate 1 only |
+| `m4-current-profile-row-qualifications-v1.json` | Proof-bound historical row index | Candidate 1 only |
+| `runtime-binding-current-v2/manifest.json` | Current compiler and runtime input manifest | Pinned compiler replay and seven subject bindings |
+| `runtime-binding-current-profile-qualification-v3.json` | Current runtime qualification | Six semantic projections per subject pass; hostile mutations fail closed |
 | `../public-release/supersession-manifest-v1.json` | Historical-to-public identity map | Private coordinates removed without overwriting expectations |
 | `../public-release/formal-foundation-supersession-v1.json` | Public formal-foundation succession | Fourteen mapped files and the temporary session fail closed on semantic or identity drift |
-| `../public-release/diet-manifest-v1.json` | Lossless archive separation inventory | Removed paths remain hash-addressed in the private archive history |
+| `../public-release/diet-manifest-v2.json` | Successor public-tree accounting | Current retained tree plus the byte-exact v1 archive removal set |
 
 ## Source ownership
 
@@ -37,7 +39,7 @@ runtime mutations, and the release manifest.
   replay contracts.
 - `implementation/` owns the Solidity reference, tests, Certora rules, and
   Kontrol inputs.
-- `evidence/end-to-end-refinement/runtime-binding/` owns compiler inputs,
+- `evidence/end-to-end-refinement/runtime-binding-current-v2/` owns current compiler inputs,
   compiler outputs, source identities, and runtime bridge projections.
 - `formal-dependencies-public-v1.lock.json` owns the reachable public
   foundation pin and the temporary compatibility-session retirement rule.

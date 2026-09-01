@@ -1,9 +1,13 @@
 # ERC-TRUST reference-candidate verification summary
 
-Candidate: `0.1.0-candidate.1`
+Candidate: `0.1.0-candidate.2`
 
 Binding: the Git commit containing `evidence/release-manifest.json` and that
 manifest's `sourceTree.root`
+
+Research companion: [arXiv:2608.29134](https://arxiv.org/abs/2608.29134).
+The paper explains the semantics and evidence boundary; this summary and the
+release manifest own the exact candidate measurements.
 
 The source-tree hash canonicalizes every listed UTF-8 text file to LF before
 hashing, so Windows and Unix checkouts bind to the same committed content.
@@ -27,7 +31,7 @@ The reference-candidate refinement closed the following implementation-level fai
   shapes are bound and malformed commands stutter by reverting;
 - the unnecessary no-op governance route was removed.
 
-These controls are supported by positive tests and by an 11-fault negative
+These controls are supported by positive tests and by a 12-fault negative
 mutation campaign; this is detector evidence, not a completeness proof or
 security audit.
 
@@ -36,13 +40,14 @@ security audit.
 | Layer | Exact result |
 | --- | --- |
 | Foundry | 31/31 tests PASS; two fuzz properties × 256 runs; three invariants × 256 runs × 500 calls = 384,000 calls |
-| Size | `TrustToken` runtime 24,377 bytes; EIP-170 margin 199 bytes; initcode 27,883 bytes |
+| Size | `TrustToken` runtime 24,177 bytes; EIP-170 margin 399 bytes; initcode 27,683 bytes |
 | Lint | 0 errors; six intentional validity-window `block.timestamp` warnings |
 | Determinism | two isolated clean builds produced identical artifact, creation bytecode, and runtime bytecode |
-| Mutation | 11/11 declared reference-candidate faults killed; 0 survived |
-| Certora core | [run `3c1a8855237a4fdea3d068b0128dcc53`](https://prover.certora.com/output/10491299/3c1a8855237a4fdea3d068b0128dcc53): 7/7 top-level rules SUCCESS |
-| Certora inventory | [run `8c8fa40539fb42d1bdf86c95f64a8c26`](https://prover.certora.com/output/10491299/8c8fa40539fb42d1bdf86c95f64a8c26): 12/12 external mutator instances classified |
-| Kontrol/KEVM | 3/3 selected high-risk bytecode proofs PASS |
+| Mutation | 12/12 declared reference-candidate faults killed; 0 survived |
+| Certora targeted | [run `2f7c362ce29d465e9fb8e3facb1320ad`](https://prover.certora.com/output/10491299/2f7c362ce29d465e9fb8e3facb1320ad): 2/2 production FREEZE-direction rules SUCCESS with advanced sanity |
+| Certora exploratory | Full financial-core runs on 8.17.1 and 8.19.1 both UNKNOWN from provider internal error `4201170908`; no credit claimed |
+| Kontrol/KEVM | 4/4 selected high-risk bytecode proofs PASS |
+| Current profile | successor packages 7/7; Core 49/49; Supporting 24/24; optional backlog 0/6; no partial credit |
 | Model regression | Isabelle closure/audit PASS; 18 TRUST rows and 35 foundation-model rows; independent reverse check PASS; 15/15 model mutations killed |
 | Isabelle/Solidity applicability | Official AFP source inspected and clean session build PASS; **NOT APPLICABLE** to the security-critical reference-implementation kernel |
 | Preserved pilot regression | current source/bytecode binding PASS and Foundry 13/13; Certora 13/13 and Kontrol 2/2 are historical provenance after public-label-only hash changes; 5/5 pilot mutations killed |
@@ -51,20 +56,20 @@ security audit.
 The deterministic `TrustToken` hashes are:
 
 - artifact SHA-256:
-  `4c0760656fb6fa712186abab3b06480bd1aff597570a64cb77733deb9ca5b46c`;
+  `a75570fa036ec10fa0896cdce03ff6cbdf7ad9c8d773a75f83e5468ae87bf78b`;
 - creation-bytecode SHA-256:
-  `bfa82a9144c7ad1dfe60603d335bbba0cb22716c3d667d28026e9a9b26d1bac7`;
+  `fecca8fca7a3698d6cdab41a501789ecbf8bae21f6b28c562db565c78dbcfb28`;
 - runtime-bytecode SHA-256:
-  `857a179f5088bbb5d4ac0c016e6ec3eda8bc1759e96b0e861f75fe1c70dbb127`.
+  `aabc0bd11e517ba9b9b8dbd288bcee80ba29c58be7598708269d2ff79e7fcf9f`.
 
-Machine-readable details are in `evidence/certora-results.json`,
-`evidence/kontrol-results.json`, `evidence/deterministic-build.json`,
+Machine-readable details are in `evidence/certora-financial-core-v2.json`,
+`evidence/kontrol-results-v2.json`, `evidence/deterministic-build.json`,
 `evidence/mutation-results.json`, `evidence/model-regression.json`, and
 `evidence/pilot-regression.json`.
 
 ## Residual risks and non-claims
 
-- The 199-byte EIP-170 margin is critically narrow. Compiler settings are part
+- The 399-byte EIP-170 margin remains narrow. Compiler settings are part
   of the candidate binding, and no additional native feature should be merged
   without repeating the size and all proof gates.
 - This package has not received an independent security audit and is not a

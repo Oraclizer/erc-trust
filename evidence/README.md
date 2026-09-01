@@ -18,8 +18,10 @@ Contents:
 | Path | What it is |
 | --- | --- |
 | `release-manifest.json` | Hash binding over the protected release inputs; regenerated and diff-checked in CI |
-| `current-profile-release-index-v1.json` | Index of the current verification profile consumed by `scripts/verify-current-profile-release.mjs` |
-| `certora-results.json`, `kontrol-results.json` | Recorded results from the Certora and Kontrol lanes |
+| `current-profile-release-index-v2.json` | Successor index for the repaired current profile, consumed by `scripts/verify-current-profile-release-v2.mjs` |
+| `current-profile-release-index-v1.json` | Historical candidate 1 profile index |
+| `certora-financial-core-v2.json`, `kontrol-results-v2.json` | Current targeted Certora and selected Kontrol results |
+| `certora-results.json`, `kontrol-results.json` | Historical candidate 1 results |
 | `mutation-results.json`, `mutator-inventory.md`, `pilot-*` | Mutation campaigns and their classified outcomes |
 | `deterministic-build.json`, `clean-room-provenance.md` | Deterministic build inputs and the clean-room provenance record |
 | `model-regression.json`, `isabelle-solidity-applicability.md` | Model-level regression and applicability notes |
@@ -28,4 +30,4 @@ Contents:
 
 To replay the binding checks locally, follow the quickstart in the top-level
 README; `scripts/verify-release.mjs` and
-`scripts/verify-current-profile-release.mjs` read these files directly.
+`scripts/verify-current-profile-release-v2.mjs` read these files directly.

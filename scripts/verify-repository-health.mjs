@@ -56,6 +56,7 @@ const required = [
   ".github/workflows/proofs.yml",
   "evidence/current-profile-release-index-v1.json",
   "evidence/current-profile-release-index-v2.json",
+  "evidence/public-release/diet-manifest-v2.json",
   "evidence/public-release/diet-manifest-v1.json",
   "evidence/public-release/proof-bound-identifiers-v1.json",
   "evidence/public-release/supersession-manifest-v1.json",
@@ -194,7 +195,7 @@ for (const absolute of workflows) {
   if (!/^permissions:\s*$/m.test(text)) failures.push(`workflow missing top-level permissions: ${path}`);
   if (!/timeout-minutes:\s*\d+/m.test(text)) failures.push(`workflow missing job timeout: ${path}`);
   for (const match of text.matchAll(/^\s*uses:\s*([^#\s]+)(?:\s+#.*)?$/gm)) {
-    if (!/@[0-9a-f]{40}$/i.test(match[1])) {
+    if (!match[1].startsWith("./") && !/@[0-9a-f]{40}$/i.test(match[1])) {
       failures.push(`GitHub Action is not pinned to a full commit: ${path}: ${match[1]}`);
     }
   }

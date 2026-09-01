@@ -1,0 +1,49 @@
+{
+  "candidate": "0.1.0-candidate.2",
+  "kind": "ERC_TRUST_CURRENT_PROFILE_RELEASE_INDEX_V2",
+  "nonclaims": [
+    "Historical receipts remain evidence for their exact historical runtime only.",
+    "Checked-delta carry-forward is limited to the exact two-guard production patch and the named current evidence.",
+    "The current Certora result proves only the production internal FREEZE shape guard and wrapper rollback; it is not a fresh proof of the complete financial-core packages or external action entrypoint.",
+    "No compiler correctness, audit, deployment identity, production readiness, or external legal truth is claimed."
+  ],
+  "progress": {
+    "coreRefinement": "49/49",
+    "frozenRows": 0,
+    "optionalBacklog": "0/6",
+    "reusablePackages": "7/7",
+    "supportingCurrentProfile": "24/24"
+  },
+  "qualificationInputs": {
+    "packages": {
+      "path": "evidence/end-to-end-refinement/c-series-terminal-qualification-v2.json",
+      "sha256": "9fb1de8affb7b4cc37a2e98cd1eec04daab9476783e93169c1eb388d081105d5"
+    },
+    "pureFixture": {
+      "path": "evidence/end-to-end-refinement/runtime-binding-current-v2/resolved/fixture-pure-v1.json",
+      "sha256": "2ede0d1343f1aecbe602a79bee7d1882b660c5a77481fc9030285bf01ab2e6e0"
+    },
+    "rows": {
+      "path": "evidence/end-to-end-refinement/current-profile-row-qualifications-v2.json",
+      "sha256": "388284976ef7cab85789a76196236b46a704e12c2297db35d2b0f225e3bdb30d"
+    },
+    "runtime": {
+      "path": "evidence/end-to-end-refinement/runtime-binding-current-profile-qualification-v3.json",
+      "sha256": "6a25e7ee7d3113e4f11946e646a3b55df00a81bbf603eb5127ae259aca02fd3b"
+    }
+  },
+  "replay": {
+    "pureFixture": "node scripts/generate-pure-runtime-fixture.mjs --check",
+    "release": "node scripts/verify-current-profile-release-v2.mjs",
+    "runtime": "node scripts/verify-runtime-binding.mjs --check-receipt"
+  },
+  "runtime": {
+    "eip170MarginBytes": 399,
+    "expectedHashesOverwritten": false,
+    "nativeBytes": 24177,
+    "resolvedSha256": "ea0a3088cde6869a0e476a451e0baebc5a68f0462127f8ea24973189ab26fbe1",
+    "templateSha256": "aabc0bd11e517ba9b9b8dbd288bcee80ba29c58be7598708269d2ff79e7fcf9f"
+  },
+  "schemaVersion": 2,
+  "status": "PASS_CURRENT_PROFILE_RELEASE_CANDIDATE"
+}

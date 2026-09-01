@@ -153,8 +153,8 @@ for (const input of kontrol.sourceInputs) {
 }
 check(kontrol.runtimeBinding.pureResolvedRuntime.runtimeSha256
   === runtime.nativeResolvedRuntime.runtimeBytesSha256, "Kontrol resolved-runtime bridge drift");
-check(certora.status === "PASS" && certora.candidate === candidate
-  && certora.rules.total === 7 && certora.rules.success === 7
+check(certora.status === "PASS_TARGETED_FREEZE_DIRECTION" && certora.candidate === candidate
+  && certora.rules.total === 2 && certora.rules.success === 2
   && certora.rules.fail === 0 && certora.rules.sanityFail === 0
   && certora.rules.timeout === 0 && certora.rules.unknown === 0,
 "Certora qualification drift");
@@ -167,12 +167,12 @@ const delta = productionDelta();
 
 const packages = [
   ["C0", "REBOUND_TO_CURRENT_EVIDENCE", ["runtime-v3", "foundry-v2", "isabelle-v2"]],
-  ["C1", "REPROVED_CURRENT_CANDIDATE", ["isabelle-v2", "certora-v2", "kontrol-v2", "mutation-v1"]],
+  ["C1", "CARRY_FORWARD_BY_CHECKED_DELTA", ["isabelle-v2", "certora-targeted-v2", "kontrol-v2", "mutation-v1", "production-delta"]],
   ["C2", "CARRY_FORWARD_BY_CHECKED_DELTA", ["runtime-v3", "production-delta", "foundry-v2"]],
-  ["C3", "REPROVED_CURRENT_CANDIDATE", ["isabelle-v2", "kontrol-v2", "foundry-v2", "mutation-v1"]],
-  ["C4", "REPROVED_CURRENT_CANDIDATE", ["isabelle-v2", "certora-v2", "foundry-v2", "mutation-v1"]],
+  ["C3", "CARRY_FORWARD_BY_CHECKED_DELTA", ["isabelle-v2", "kontrol-v2", "foundry-v2", "mutation-v1", "production-delta"]],
+  ["C4", "CARRY_FORWARD_BY_CHECKED_DELTA", ["isabelle-v2", "certora-targeted-v2", "foundry-v2", "mutation-v1", "production-delta"]],
   ["C5", "CARRY_FORWARD_BY_CHECKED_DELTA", ["isabelle-v2", "production-delta", "foundry-v2"]],
-  ["C6", "REPROVED_CURRENT_CANDIDATE", ["isabelle-v2", "certora-v2", "kontrol-v2", "foundry-v2"]],
+  ["C6", "CARRY_FORWARD_BY_CHECKED_DELTA", ["isabelle-v2", "certora-targeted-v2", "kontrol-v2", "foundry-v2", "production-delta"]],
 ].map(([id, disposition, evidence]) => ({
   id,
   disposition,
@@ -215,6 +215,7 @@ const packageReceipt = {
   nonclaims: [
     "Historical receipts remain evidence for their exact historical runtime only.",
     "Checked-delta carry-forward is limited to the exact two-guard production patch and the named current evidence.",
+    "The current Certora result proves only the production internal FREEZE shape guard and wrapper rollback; it is not a fresh proof of the complete financial-core packages or external action entrypoint.",
     "No compiler correctness, audit, deployment identity, production readiness, or external legal truth is claimed.",
   ],
 };
@@ -225,7 +226,7 @@ const allRows = [...coreRows, ...supportingRows];
 const discoveredRows = collectRows(historicalRows);
 check(new Set(allRows).size === 73 && new Set(discoveredRows).size === 73
   && allRows.every((row) => discoveredRows.includes(row)), "historical row inventory drift");
-const reprovedRows = new Set([
+const acuteRows = new Set([
   "ACT-01", "REV-01", "AUTH-04", "FAIL-01", "FAIL-08",
   "REV-02", "REV-03", "REV-04", "REV-07", "REV-08", "REV-09", "REV-11",
   "EXT-02", "EXT-03", "SEP-02", "ART-06", "ART-07",
@@ -238,15 +239,13 @@ const reboundRows = new Set([
   "EXT-01", "EXT-07", "SEP-01", "SEP-04",
 ]);
 const rowEntries = allRows.map((rowId) => {
-  const disposition = reprovedRows.has(rowId)
-    ? "REPROVED_CURRENT_CANDIDATE"
+  const disposition = acuteRows.has(rowId) || reboundRows.has(rowId)
+    ? "REBOUND_TO_CURRENT_EVIDENCE"
+    : "CARRY_FORWARD_BY_CHECKED_DELTA";
+  const evidence = acuteRows.has(rowId)
+    ? ["packages-v2", "runtime-v3", "isabelle-v2", "foundry-v2", "certora-targeted-v2", "kontrol-v2", "mutation-v1", "production-delta"]
     : reboundRows.has(rowId)
-      ? "REBOUND_TO_CURRENT_EVIDENCE"
-      : "CARRY_FORWARD_BY_CHECKED_DELTA";
-  const evidence = disposition === "REPROVED_CURRENT_CANDIDATE"
-    ? ["packages-v2", "runtime-v3", "isabelle-v2", "foundry-v2", "certora-v2", "kontrol-v2", "mutation-v1"]
-    : disposition === "REBOUND_TO_CURRENT_EVIDENCE"
-      ? ["packages-v2", "runtime-v3", "pure-fixture-v1", "isabelle-v2", "foundry-v2"]
+      ? ["packages-v2", "runtime-v3", "pure-fixture-v1", "isabelle-v2", "foundry-v2", "production-delta"]
       : ["packages-v2", "runtime-v3", "isabelle-v2", "foundry-v2", "production-delta"];
   return {
     rowId,
@@ -273,7 +272,7 @@ const rowReceipt = {
     frozenRows: 0,
   },
   dispositionCounts: {
-    reproved: rowEntries.filter((entry) => entry.disposition === "REPROVED_CURRENT_CANDIDATE").length,
+    reproved: 0,
     rebound: rowEntries.filter((entry) => entry.disposition === "REBOUND_TO_CURRENT_EVIDENCE").length,
     checkedDelta: rowEntries.filter((entry) => entry.disposition === "CARRY_FORWARD_BY_CHECKED_DELTA").length,
   },

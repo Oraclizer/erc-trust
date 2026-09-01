@@ -2,18 +2,33 @@
 
 ## Unreleased
 
-The public candidate consolidates the reference implementation, its formal
-evidence, and the release tooling into a reviewed tree with a two-commit
-public history. Development history before the public tree was assembled is
-retained by the maintainer and summarized here rather than replayed
-entry by entry.
+Candidate 2 repairs the FREEZE-direction mismatch found during independent
+pre-publication review and rebinds the implementation, formal model, evidence,
+and release tooling to one successor identity. Development history before the
+public tree was assembled remains preserved rather than replayed entry by
+entry.
+
+- Require every successful `FREEZE` to set a strictly greater absolute target.
+  Equal or decreasing forward requests revert without consuming authorization;
+  a decrease requires a separately authorized `UNFREEZE` reversal.
+- Add two current targeted Certora rules over the production internal shape
+  guard, four selected Kontrol proofs, a 12-fault mutation campaign, and a
+  seven-subject runtime successor. Two exploratory full Certora jobs remain
+  recorded as provider-error UNKNOWN and receive no proof credit.
+- Reissue all seven packages and all 49 Core and 24 mandatory Supporting rows
+  through current evidence or a verifier-enforced exact two-guard delta. This
+  is a successor qualification, not a claim that 73 independent whole-runtime
+  proofs were rerun.
+- Add the accompanying
+  [arXiv paper](https://arxiv.org/abs/2608.29134) and bind the repository
+  description to the corrected paper version's semantics and evidence totals.
 
 - Established the public release candidate: the immutable Solidity reference
   implementation with compatibility profiles, the TypeScript SDK, the
   specification drafts, and the machine-checkable evidence package.
 - Completed the current verification profile: 49 of 49 core refinement rows
-  and 24 of 24 supporting rows qualified against the seven reusable
-  verification packages, whose bytes are unchanged since qualification.
+  and 24 of 24 supporting rows qualified against seven successor verification
+  packages for the repaired source and runtime.
 - Implemented the two-layer runtime-binding qualification without changing
   any historical expected hash. Pinned-solc replay and all six semantic
   projections pass for seven subjects; hostile validation kills 42 of 42
@@ -39,5 +54,5 @@ entry by entry.
   `vX.Y.Z-candidate.N` and `vX.Y.Z`, and set the public citation identity to
   `Jinwook Kim` with ORCID `0009-0004-4993-8005`.
 
-No tag or release exists yet; version sections begin with the first tagged
-candidate.
+The historical `v0.1.0-candidate.1` tag remains immutable. No GitHub Release
+or candidate 2 tag exists yet.

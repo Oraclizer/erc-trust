@@ -117,7 +117,7 @@ const manifest = {
     pnpm: "11.9.0",
     ethers: "6.17.0",
     typescript: "7.0.2",
-    certora: "8.17.1",
+    certora: "8.19.1",
     kontrol: "1.0.255",
     kevm: "1.0.678",
     isabelle: "Isabelle2025-2",
