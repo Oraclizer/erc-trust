@@ -23,6 +23,13 @@ entry.
   [arXiv paper](https://arxiv.org/abs/2608.29134) and document its versioned
   artifact binding: v1 remains candidate 1 history, while candidate 2 is the
   corrected successor for the replacement line.
+- Align the BSD-covered copyright notice with current pre-incorporation
+  ownership by naming Jinwook Kim, while preserving the four byte-bound pilot
+  sources under their historical MIT headers. The proposed ERC text remains
+  separately dedicated under CC0.
+- Establish the public `main` signature baseline at launch. Earlier candidate
+  history may be unsigned; later `main` commits must be GitHub-verified squash
+  merges.
 
 - Established the public release candidate: the immutable Solidity reference
   implementation with compatibility profiles, the TypeScript SDK, the

@@ -81,7 +81,10 @@ See:
 
 ## Legal
 
-The repository is provided under the BSD 3-Clause License, including its
-warranty disclaimer and limitation of liability. This policy does not expand
-the license, create a support contract, or make a representation about
-security, fitness, legal compliance, or production readiness.
+The current implementation, SDK, tooling, and formal artifacts are provided
+under the BSD 3-Clause License, including its warranty disclaimer and
+limitation of liability. The proposed ERC text is under CC0, and four
+byte-bound historical pilot source files retain file-level MIT headers, as
+listed in the README. This policy does not expand any license, create a
+support contract, or make a representation about security, fitness, legal
+compliance, or production readiness.

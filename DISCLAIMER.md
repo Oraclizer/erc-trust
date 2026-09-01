@@ -3,8 +3,11 @@
 ERC-TRUST is a pre-ERC interface and reference candidate for typed,
 fail-closed regulatory actions and recomputable receipts for security tokens.
 This document states in plain language what the candidate establishes and
-where its boundaries are; the [BSD 3-Clause License](LICENSE) controls the
-legal warranty and liability terms and is not modified or expanded here.
+where its boundaries are. For BSD-covered software and artifacts, the
+[BSD 3-Clause License](LICENSE) controls the legal warranty and liability
+terms and is not modified or expanded here. The proposed ERC text is under
+CC0, and four byte-bound historical pilot source files retain file-level MIT
+headers, as listed in the README.
 
 ## What the evidence establishes
 
