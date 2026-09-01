@@ -33,6 +33,11 @@ Required checks must pass before merge. Code changes require tests and, where
 relevant, updated formal or bounded verification evidence. Documentation-only
 changes must pass link, public-surface, encoding, and repository-health checks.
 
+The public signing baseline starts with the 2026-09-01 launch commit. Earlier
+history predates that policy and may be unsigned. New commits on `main` are
+squash-merged through GitHub and must display a verified platform signature;
+unsigned contributor branch commits are not release identities.
+
 The maintainer may request independent review before accepting security
 critical work. A green check does not oblige a merge.
 

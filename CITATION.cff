@@ -7,6 +7,7 @@ authors:
     given-names: "Jinwook"
     orcid: "https://orcid.org/0009-0004-4993-8005"
 version: "0.1.0-candidate.2"
+date-released: 2026-09-01
 license: BSD-3-Clause
 repository-code: "https://github.com/Oraclizer/erc-trust"
 url: "https://github.com/Oraclizer/erc-trust"

@@ -168,7 +168,9 @@ A Pull Request should:
 
 Maintainers may request a smaller change, additional evidence, or a separate
 proposal for normative work. Pull Requests are normally squash-merged after
-required checks and review.
+required checks and review. The public `main` signing baseline starts with the
+2026-09-01 launch commit. Earlier history may be unsigned; later `main` commits
+must display a verified platform signature.
 
 ## Formal verification
 
@@ -202,8 +204,15 @@ Licensing follows the changed path:
 
 - contributions to `docs/ERC-DRAFT.md` are dedicated under
   [CC0 1.0 Universal](docs/LICENSE-CC0.md);
+- the four byte-bound historical pilot sources identified in the README retain
+  their file-level MIT license stated in the root [LICENSE](LICENSE) and are
+  not an open contribution surface;
+- contributions to `CODE_OF_CONDUCT.md` remain under the Creative Commons
+  Attribution 4.0 terms stated in that file, and license legal-code files are
+  not an open contribution surface;
 - contributions to the implementation, SDK, tooling, project assets, and all
-  other repository content are licensed under the repository's
+  other first-party repository content without a file-level exception are
+  licensed under the repository's
   [BSD 3-Clause License](LICENSE).
 
 By submitting a contribution, you represent that:

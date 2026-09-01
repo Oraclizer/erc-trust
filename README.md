@@ -331,11 +331,20 @@ implementation commits audited or production-ready.
 
 ## License, citation, and provenance
 
-First-party content in this repository is copyright Oraclizer Labs, Inc.
+Copyright in first-party BSD-covered content is held by Jinwook Kim.
 Licensing follows the path:
 
 - Code, tests, scripts, the SDK, and the formal artifacts:
-  [BSD 3-Clause License](LICENSE), copyright Oraclizer Labs, Inc.
+  [BSD 3-Clause License](LICENSE), copyright Jinwook Kim, except for the
+  exact historical pilot sources listed below.
+- The byte-bound pilot sources
+  `pilot/src/TrustFreezePilot.sol`, `pilot/src/MockBoundPolicy.sol`,
+  `pilot/test/TrustFreezePilot.t.sol`, and
+  `pilot/kontrol/TrustFreezePilotTest.t.sol` retain their historical
+  `MIT` SPDX headers. The scoped MIT notice is included in the root
+  [LICENSE](LICENSE#mit-license-for-four-historical-pilot-source-files).
+  It controls those four files and does not change the BSD license of the
+  current reference implementation.
 - The proposed ERC text in [`docs/ERC-DRAFT.md`](docs/ERC-DRAFT.md):
   copyright and related rights waived under
   [CC0 1.0 Universal](docs/LICENSE-CC0.md), matching the public-domain
