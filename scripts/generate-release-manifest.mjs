@@ -31,18 +31,23 @@ const singleFiles = [
   "sdk/pnpm-lock.yaml",
   "sdk/tsconfig.json",
   "evidence/certora-results.json",
+  "evidence/certora-financial-core-v2.json",
   "evidence/claim-matrix.md",
   "evidence/clean-room-provenance.md",
   "evidence/deterministic-build.json",
+  "evidence/foundry-results-v2.json",
+  "evidence/isabelle-results-v2.json",
   "evidence/model-regression.json",
   "evidence/isabelle-solidity-applicability.md",
   "evidence/kontrol-results.json",
+  "evidence/kontrol-results-v2.json",
   "evidence/mutator-inventory.md",
   "evidence/mutation-results.json",
   "evidence/pilot-mutation-results.json",
   "evidence/pilot-regression.json",
   "evidence/trust-ref-matrix.md",
   "evidence/verification-summary.md",
+  "evidence/current-profile-release-index-v2.json",
 ];
 
 function sha256(data) {
@@ -87,7 +92,7 @@ const runtime = Buffer.from(runtimeHex.slice(2), "hex");
 
 const manifest = {
   schema: "erc-trust-release-manifest-v1",
-  candidate: "0.1.0-candidate.1",
+  candidate: "0.1.0-candidate.2",
   status: "unaudited-not-for-production",
   git: {
     bindingMode: "tracked-source-tree",

@@ -6,6 +6,7 @@
   [![CI](https://github.com/Oraclizer/erc-trust/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Oraclizer/erc-trust/actions/workflows/ci.yml)
   [![Release identity](https://github.com/Oraclizer/erc-trust/actions/workflows/identity.yml/badge.svg?branch=main)](https://github.com/Oraclizer/erc-trust/actions/workflows/identity.yml)
   [![Proofs](https://github.com/Oraclizer/erc-trust/actions/workflows/proofs.yml/badge.svg?branch=main)](https://github.com/Oraclizer/erc-trust/actions/workflows/proofs.yml)
+  [![Paper](https://img.shields.io/badge/arXiv-2608.29134-b31b1b.svg)](https://arxiv.org/abs/2608.29134)
   [![Solidity](https://img.shields.io/badge/solidity-0.8.36-2b247c.svg)](https://github.com/Oraclizer/erc-trust/actions/workflows/ci.yml)
   [![Software license](https://img.shields.io/badge/license-BSD--3--Clause-0b5cad.svg)](LICENSE)
 
@@ -14,6 +15,7 @@
   [Integration](docs/INTEGRATION.md) |
   [Profiles](docs/PROFILES.md) |
   [Verification](FORMAL_VERIFICATION.md) |
+  [Paper](https://arxiv.org/abs/2608.29134) |
   [Community review](docs/COMMUNITY-REVIEW.md)
 </div>
 
@@ -30,6 +32,16 @@ official ERC-TRUST proposal will be submitted after ERC-8319 merges, with the
 intended preamble `requires: 20, 165, 7943, 8319`; until then ERC-TRUST has
 no official ERC number and [`docs/ERC-DRAFT.md`](docs/ERC-DRAFT.md) is the
 working draft.
+
+## Research paper
+
+The accompanying paper,
+[Mechanizing Typed Regulatory Actions for Security Tokens: Semantics, Falsification, and Bounded EVM Evidence](https://arxiv.org/abs/2608.29134),
+sets out the Isabelle/HOL semantics, falsification strategy, and bounded
+implementation-evidence boundary. The repository remains the executable
+artifact and exact candidate SSOT; the paper does not turn bounded evidence
+into an audit, deployment verification, compiler-correctness result, or a
+complete Isabelle-to-EVM refinement theorem.
 
 ## The problem
 

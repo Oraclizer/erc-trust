@@ -1,0 +1,30 @@
+{
+  "schema": "erc-trust-isabelle-results-v2",
+  "candidate": "0.1.0-candidate.2",
+  "status": "PASS",
+  "sourceCommit": "790c92b42e4b716d23b5cac8d351bdfb629e1599",
+  "workflow": {
+    "runId": 33470756878,
+    "jobId": 99739887678,
+    "url": "https://github.com/Oraclizer/erc-trust/actions/runs/33470756878/job/99739887678",
+    "jobConclusion": "success"
+  },
+  "toolchain": {
+    "isabelle": "Isabelle2025-2",
+    "session": "ERC_TRUST",
+    "foundationCommit": "db8e0802e55f0229cf7bc9e5e6cfbf40681adbba"
+  },
+  "formalSource": {
+    "path": "formal/isabelle/ERC_TRUST",
+    "theoryFiles": 30,
+    "rootSha256": "d83e2b779f428e0dc40307c85e6d7781bf2282558e9c10496d7435381048de93",
+    "algorithm": "sha256-raw-files-lexicographic-path-order-v1"
+  },
+  "checks": {
+    "cleanBuild": "PASS",
+    "proofExport": "PASS",
+    "bannedSourceForms": 0,
+    "oracleDependencyCount": 0
+  },
+  "claimBoundary": "Kernel-checked abstract and refinement-source closure for the current formal source tree. This does not by itself establish compiler correctness or a complete Isabelle-to-EVM refinement theorem."
+}

@@ -2,14 +2,15 @@
 
 ## Current status
 
-ERC-TRUST `0.1.0-candidate.1` is an unaudited research and reference
+ERC-TRUST `0.1.0-candidate.2` is an unaudited research and reference
 candidate. It is not for production use. No deployed instance, fork, proxy,
 migration, operator, key-management process, or downstream integration is
 covered by this policy.
 
 | Version | Security support |
 | --- | --- |
-| `0.1.0-candidate.1` | Reports accepted for evaluation; no patch service-level agreement |
+| `0.1.0-candidate.2` | Reports accepted for evaluation; no patch service-level agreement |
+| `0.1.0-candidate.1` | Superseded research candidate; unsupported |
 | Earlier commits and forks | Unsupported |
 | Deployments | Unsupported |
 

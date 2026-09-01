@@ -225,19 +225,20 @@ if ($PreflightOnly) {
     return
 }
 
-$sourceFiles = @(
+$sourceFileNames = [string[]]@(
     Get-ChildItem -LiteralPath (Join-Path $repoRoot "implementation\src") -File -Recurse
     Get-ChildItem -LiteralPath (Join-Path $repoRoot "implementation\test") -File -Recurse
     Get-Item -LiteralPath (Join-Path $repoRoot "foundry.toml")
-) | Sort-Object -CaseSensitive FullName
+) | ForEach-Object { $_.FullName }
+[System.Array]::Sort($sourceFileNames, [System.StringComparer]::Ordinal)
 $repoPrefix = [System.IO.Path]::GetFullPath($repoRoot).TrimEnd('\') + '\'
-$sourceRootMaterial = foreach ($file in $sourceFiles) {
-    $fullName = [System.IO.Path]::GetFullPath($file.FullName)
+$sourceRootMaterial = foreach ($sourceFileName in $sourceFileNames) {
+    $fullName = [System.IO.Path]::GetFullPath($sourceFileName)
     if (-not $fullName.StartsWith($repoPrefix, [System.StringComparison]::OrdinalIgnoreCase)) {
         throw "source file escaped repository root: $fullName"
     }
     $relative = $fullName.Substring($repoPrefix.Length).Replace('\', '/')
-    "$(Get-Sha256 $file.FullName)  $relative`n"
+    "$(Get-Sha256 $fullName)  $relative`n"
 }
 $sourceRootBytes = [System.Text.Encoding]::UTF8.GetBytes(($sourceRootMaterial -join ""))
 $sourceRootSha = Get-Sha256Bytes $sourceRootBytes

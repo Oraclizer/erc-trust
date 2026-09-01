@@ -2,7 +2,7 @@
 
 Status: pre-discussion draft; no ERC number assigned
 
-Candidate: `0.1.0-candidate.1`
+Candidate: `0.1.0-candidate.2`
 Assurance: unaudited, not for production
 
 Standards relationship: ERC-TRUST is a conformance extension of the proposed

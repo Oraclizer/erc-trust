@@ -22,6 +22,9 @@ const canonicalTextBytes = (absolute) =>
 if (!new Set(["pr", "full"]).has(mode)) {
   failures.push(`unsupported verification mode: ${mode}`);
 }
+if (manifest.candidate !== "0.1.0-candidate.2") {
+  failures.push(`unexpected candidate: ${manifest.candidate}`);
+}
 if (manifest.sourceTree.scope !== "protected-release-inputs-v1") {
   failures.push(`unsupported source-tree scope: ${manifest.sourceTree.scope}`);
 }
@@ -99,6 +102,14 @@ if (
   mutation.total !== 12 || mutation.killed !== 12 || mutation.survived !== 0
   || mutation.results?.length !== 12
 ) failures.push("mutation result count mismatch");
+try {
+  execFileSync("git", ["merge-base", "--is-ancestor", mutation.candidateInput.gitHead, "HEAD"], {
+    cwd: root,
+    stdio: "ignore",
+  });
+} catch {
+  failures.push("mutation gitHead is not an ancestor of the candidate");
+}
 for (const result of mutation.results ?? []) {
   if (
     result.result !== "KILLED" || result.anchorOccurrences < 1

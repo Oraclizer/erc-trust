@@ -30,6 +30,7 @@ const required = [
   ".github/workflows/identity.yml",
   "docs/PROOF-BOUND-IDENTIFIERS.md",
   "evidence/current-profile-release-index-v1.json",
+  "evidence/current-profile-release-index-v2.json",
   "evidence/public-release/diet-manifest-v1.json",
   "evidence/public-release/proof-bound-identifiers-v1.json",
   "evidence/public-release/supersession-manifest-v1.json",
@@ -37,6 +38,7 @@ const required = [
   "formal-dependencies-public-v1.lock.json",
   "scripts/replay-current-profile-release.ps1",
   "scripts/verify-current-profile-release.mjs",
+  "scripts/verify-current-profile-release-v2.mjs",
   "scripts/verify-formal-foundation-supersession.mjs",
 ];
 for (const path of required) if (!existsSync(resolve(root, path))) fail(`missing required public file: ${path}`);
@@ -135,7 +137,7 @@ const readme = readFileSync(resolve(root, "README.md"), "utf8");
 const firstThirty = readme.split("\n").slice(0, 30).join("\n");
 if (!firstThirty.includes("Unaudited. Not for production.")) fail("README warning is not in the first 30 lines");
 const badgeCount = (firstThirty.match(/\[!\[/g) ?? []).length;
-if (badgeCount !== 5) fail(`README badge count drift: ${badgeCount}`);
+if (badgeCount !== 6) fail(`README badge count drift: ${badgeCount}`);
 if (!readme.includes("scripts/replay-current-profile-release.ps1")) fail("public replay command missing from README");
 const attributes = readFileSync(resolve(root, ".gitattributes"), "utf8");
 if (!attributes.includes("**/generated/** linguist-generated=true")

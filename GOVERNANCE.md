@@ -49,7 +49,9 @@ A version tag and GitHub release must:
 Candidate tags use `vX.Y.Z-candidate.N`; later stable tags use `vX.Y.Z`.
 No other tag naming family is used.
 
-The candidate tag `v0.1.0-candidate.1` exists and its validation workflow has run; no GitHub release has been published yet.
+The historical tag `v0.1.0-candidate.1` remains immutable. Candidate 2 is the
+current repaired reference candidate; its tag has not been created. No GitHub
+release has been published.
 
 ## Standards process
 

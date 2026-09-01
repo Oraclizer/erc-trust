@@ -1,0 +1,41 @@
+{
+  "schema": "erc-trust-foundry-results-v2",
+  "candidate": "0.1.0-candidate.2",
+  "status": "PASS",
+  "sourceCommit": "790c92b42e4b716d23b5cac8d351bdfb629e1599",
+  "workflow": {
+    "runId": 33470756912,
+    "jobId": 99739864698,
+    "url": "https://github.com/Oraclizer/erc-trust/actions/runs/33470756912/job/99739864698",
+    "jobConclusion": "success"
+  },
+  "toolchain": {
+    "foundry": "1.7.1",
+    "solidity": "0.8.36+commit.8a079791",
+    "evmVersion": "cancun"
+  },
+  "checks": {
+    "format": "PASS",
+    "buildAndSize": "PASS",
+    "tests": {
+      "passed": 31,
+      "failed": 0,
+      "skipped": 0,
+      "fuzzProperties": 2,
+      "fuzzRunsEach": 256,
+      "invariants": 3,
+      "invariantRunsEach": 256,
+      "invariantDepth": 500,
+      "invariantCalls": 384000,
+      "invariantReverts": 0
+    },
+    "lintErrors": 0,
+    "intentionalTimestampWarnings": 6
+  },
+  "runtimeTemplate": {
+    "bytes": 24177,
+    "eip170MarginBytes": 399,
+    "sha256": "aabc0bd11e517ba9b9b8dbd288bcee80ba29c58be7598708269d2ff79e7fcf9f"
+  },
+  "claimBoundary": "Pinned Foundry build, format, unit, fuzz, invariant, size, and lint results for the named commit. This is not an audit, deployment result, or production-safety claim."
+}

@@ -1,12 +1,13 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 import { createHash } from "node:crypto";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { getCreateAddress, keccak256 } from "../sdk/node_modules/ethers/lib.esm/index.js";
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const checkMode = process.argv.includes("--check");
 const currentRoot = join(repositoryRoot, "evidence", "end-to-end-refinement", "runtime-binding-current-v2");
 const historicalFixturePath = join(
   repositoryRoot,
@@ -165,8 +166,15 @@ Object.assign(valuesByLabel.ERC3643TrustAdapter, {
 const deployments = historical.deployments.map((entry) => {
   const patched = patchRuntime(entry.bundleId, entry.subjectId, valuesByLabel[entry.label]);
   const runtimePath = join(currentRoot, "resolved", entry.bundleId, `${entry.label}.hex`);
-  mkdirSync(dirname(runtimePath), { recursive: true });
-  writeFileSync(runtimePath, `0x${patched.bytes.toString("hex")}\n`, "utf8");
+  const runtimeText = `0x${patched.bytes.toString("hex")}\n`;
+  if (checkMode) {
+    if (!existsSync(runtimePath) || readFileSync(runtimePath, "utf8") !== runtimeText) {
+      throw new Error(`resolved runtime drift: ${repoPath(runtimePath)}`);
+    }
+  } else {
+    mkdirSync(dirname(runtimePath), { recursive: true });
+    writeFileSync(runtimePath, runtimeText, "utf8");
+  }
   return {
     sequence: entry.sequence,
     label: entry.label,
@@ -177,7 +185,7 @@ const deployments = historical.deployments.map((entry) => {
     predictedAddress: addressByLabel[entry.label],
     runtime: {
       path: repoPath(runtimePath),
-      textFileSha256: sha256(readFileSync(runtimePath)),
+      textFileSha256: sha256(Buffer.from(runtimeText, "utf8")),
       byteLength: patched.bytes.length,
       sha256: sha256(patched.bytes),
       keccak256: keccak256(`0x${patched.bytes.toString("hex")}`),
@@ -224,11 +232,19 @@ fixture.deterministicRootSha256 = sha256(Buffer.from(JSON.stringify(stable({
   deployments: fixture.deployments,
   topology: fixture.topology,
 })), "utf8"));
-writeJson(outputPath, fixture);
+const fixtureText = `${JSON.stringify(stable(fixture), null, 2)}\n`;
+if (checkMode) {
+  if (!existsSync(outputPath) || readFileSync(outputPath, "utf8") !== fixtureText) {
+    throw new Error(`pure runtime fixture drift: ${repoPath(outputPath)}`);
+  }
+} else {
+  writeJson(outputPath, fixture);
+}
 console.log(JSON.stringify({
   status: fixture.status,
+  mode: checkMode ? "check" : "write",
   fixture: repoPath(outputPath),
-  fixtureSha256: sha256(readFileSync(outputPath)),
+  fixtureSha256: sha256(Buffer.from(fixtureText, "utf8")),
   deterministicRootSha256: fixture.deterministicRootSha256,
   subjectCount: deployments.length,
   nativeRuntimeBytes: deployments.find((entry) => entry.label === "TrustToken").runtime.byteLength,

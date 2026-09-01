@@ -6,7 +6,7 @@ authors:
   - family-names: "Kim"
     given-names: "Jinwook"
     orcid: "https://orcid.org/0009-0004-4993-8005"
-version: "0.1.0-candidate.1"
+version: "0.1.0-candidate.2"
 license: BSD-3-Clause
 repository-code: "https://github.com/Oraclizer/erc-trust"
 url: "https://github.com/Oraclizer/erc-trust"
@@ -24,6 +24,14 @@ abstract: >-
   fail-closed regulatory actions and recomputable receipts for security
   tokens. The candidate is unaudited and not for production.
 references:
+  - type: article
+    title: "Mechanizing Typed Regulatory Actions for Security Tokens: Semantics, Falsification, and Bounded EVM Evidence"
+    authors:
+      - family-names: "Kim"
+        given-names: "Jinwook"
+        orcid: "https://orcid.org/0009-0004-4993-8005"
+    year: 2026
+    doi: "10.48550/arXiv.2608.29134"
   - type: article
     title: "A Regulatory Compliance Protocol for Asset Interoperability Between Traditional and Decentralized Finance in Tokenized Capital Markets"
     authors:

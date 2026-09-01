@@ -1,6 +1,6 @@
 {
   "name": "@oraclizer/erc-trust-sdk",
-  "version": "0.1.0-candidate.1",
+  "version": "0.1.0-candidate.2",
   "description": "Unaudited, not-for-production typed request, receipt, and calldata helpers for the ERC-TRUST reference candidate",
   "license": "BSD-3-Clause",
   "packageManager": "pnpm@11.9.0",

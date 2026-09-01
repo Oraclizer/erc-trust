@@ -14,8 +14,18 @@ permissions:
   contents: read
 
 jobs:
+  ci:
+    uses: ./.github/workflows/ci.yml
+
+  proofs:
+    uses: ./.github/workflows/proofs.yml
+
+  identity:
+    uses: ./.github/workflows/identity.yml
+
   frozen-candidate:
     name: Validate frozen candidate
+    needs: [ci, proofs, identity]
     runs-on: ubuntu-24.04
     timeout-minutes: 25
     steps:
@@ -40,6 +50,14 @@ jobs:
           cache-dependency-path: sdk/pnpm-lock.yaml
       - name: Install SDK dependencies
         run: pnpm --dir sdk install --frozen-lockfile --ignore-scripts
+      - name: Verify tag and package identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          candidate="${GITHUB_REF_NAME#v}"
+          test "$candidate" = "$(node -p "require('./evidence/release-manifest.json').candidate")"
+          test "$candidate" = "$(node -p "require('./sdk/package.json').version")"
+          test "$candidate" = "$(node -e "const fs=require('fs'); const text=fs.readFileSync('CITATION.cff','utf8'); const match=text.match(/^version:\s*[\"']?([^\"'\r\n]+)[\"']?$/m); if(!match) process.exit(1); process.stdout.write(match[1])")"
       - name: Build artifacts
         run: forge build
       - name: Regenerate candidate manifest
