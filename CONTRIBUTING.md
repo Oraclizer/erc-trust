@@ -205,8 +205,8 @@ Licensing follows the changed path:
 - contributions to `docs/ERC-DRAFT.md` are dedicated under
   [CC0 1.0 Universal](docs/LICENSE-CC0.md);
 - the four byte-bound historical pilot sources identified in the README retain
-  their file-level MIT license stated in the root [LICENSE](LICENSE) and are
-  not an open contribution surface;
+  their file-level [MIT license](README.md#mit-license-for-four-historical-pilot-source-files)
+  and are not an open contribution surface;
 - contributions to `CODE_OF_CONDUCT.md` remain under the Creative Commons
   Attribution 4.0 terms stated in that file, and license legal-code files are
   not an open contribution surface;

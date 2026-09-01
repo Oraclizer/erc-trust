@@ -341,10 +341,10 @@ Licensing follows the path:
   `pilot/src/TrustFreezePilot.sol`, `pilot/src/MockBoundPolicy.sol`,
   `pilot/test/TrustFreezePilot.t.sol`, and
   `pilot/kontrol/TrustFreezePilotTest.t.sol` retain their historical
-  `MIT` SPDX headers. The scoped MIT notice is included in the root
-  [LICENSE](LICENSE#mit-license-for-four-historical-pilot-source-files).
-  It controls those four files and does not change the BSD license of the
-  current reference implementation.
+  `MIT` SPDX headers. The scoped
+  [MIT notice](#mit-license-for-four-historical-pilot-source-files) below
+  controls those four files and does not change the BSD license of the current
+  reference implementation.
 - The proposed ERC text in [`docs/ERC-DRAFT.md`](docs/ERC-DRAFT.md):
   copyright and related rights waived under
   [CC0 1.0 Universal](docs/LICENSE-CC0.md), matching the public-domain
@@ -364,6 +364,36 @@ GPL implementation source is copied or adapted. See the
 Academic and standards references can use [CITATION.cff](CITATION.cff).
 Contributions use the license applicable to the changed path as described in
 [CONTRIBUTING.md](CONTRIBUTING.md).
+
+### MIT License for four historical pilot source files
+
+The following byte-bound historical pilot source files are licensed under the
+MIT License in this subsection instead of the BSD 3-Clause License:
+
+- `pilot/src/TrustFreezePilot.sol`
+- `pilot/src/MockBoundPolicy.sol`
+- `pilot/test/TrustFreezePilot.t.sol`
+- `pilot/kontrol/TrustFreezePilotTest.t.sol`
+
+Copyright (c) 2026 Jinwook Kim
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 The standalone [ERC-TRUST project mark](docs/assets/erc-trust-mark.svg)
 identifies this independent project; it implies no endorsement by the
