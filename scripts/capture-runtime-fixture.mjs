@@ -7,7 +7,11 @@ import { resolvePinnedSolc } from "./lib/resolve-pinned-solc.mjs";
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const wslRoot = `/mnt/${repositoryRoot[0].toLowerCase()}${repositoryRoot.slice(2).replaceAll("\\", "/")}`;
-const evidenceRoot = join(repositoryRoot, "evidence", "end-to-end-refinement", "runtime-binding");
+const outputArgument = process.argv.find((argument) => argument.startsWith("--output-root="));
+const evidenceRoot = outputArgument
+  ? resolve(repositoryRoot, outputArgument.slice("--output-root=".length))
+  : join(repositoryRoot, "evidence", "end-to-end-refinement", "runtime-binding");
+if (!evidenceRoot.startsWith(`${repositoryRoot}${sep}`)) throw new Error("runtime fixture output root escaped repository");
 const resolvedRoot = join(evidenceRoot, "resolved");
 const dependencyLock = JSON.parse(readFileSync(join(repositoryRoot, "formal", "kevm", "dependencies.lock.json"), "utf8"));
 const pinnedSolc = resolvePinnedSolc(dependencyLock.components.solc);

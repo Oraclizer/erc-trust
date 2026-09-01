@@ -7,7 +7,12 @@ import { keccak256 as ethersKeccak256 } from "../sdk/node_modules/ethers/lib.esm
 import { resolvePinnedSolc } from "./lib/resolve-pinned-solc.mjs";
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const evidenceRoot = join(repositoryRoot, "evidence", "end-to-end-refinement", "runtime-binding");
+const outputArgument = process.argv.find((argument) => argument.startsWith("--output-root="));
+const publicMode = process.argv.includes("--public-current");
+const evidenceRoot = outputArgument
+  ? resolve(repositoryRoot, outputArgument.slice("--output-root=".length))
+  : join(repositoryRoot, "evidence", "end-to-end-refinement", "runtime-binding");
+if (!evidenceRoot.startsWith(`${repositoryRoot}${sep}`)) throw new Error("runtime-binding output root escaped repository");
 const dependencyLockPath = join(repositoryRoot, "formal", "kevm", "dependencies.lock.json");
 const dependencyLock = JSON.parse(readFileSync(dependencyLockPath, "utf8"));
 const solc = dependencyLock.components.solc;
@@ -300,13 +305,22 @@ function git(args) {
 
 mkdirSync(evidenceRoot, { recursive: true });
 const manifest = {
-  schemaVersion: 2,
+  schemaVersion: publicMode ? 3 : 2,
+  ...(publicMode ? { kind: "ERC_TRUST_PUBLIC_RUNTIME_BINDING_MANIFEST_V2" } : {}),
   claimBoundary:
     "Exact compiler-input/output and unresolved runtime-template binding. Constructor execution, resolved runtime, KEVM proofs, and end-to-end discharge remain separate evidence.",
   sourceIdentity: {
-    branch: git(["branch", "--show-current"]),
-    head: git(["rev-parse", "HEAD"]),
-    dirty: git(["status", "--porcelain"]).length !== 0,
+    ...(publicMode ? {
+      bindingMode: "explicit-source-file-hashes",
+      sourceCommit: git(["rev-parse", "HEAD"]),
+      sourceCommitRole: "generation-context-only",
+      sourceTree: git(["rev-parse", "HEAD^{tree}"]),
+      sourceTreeRole: "generation-context-only",
+    } : {
+      branch: git(["branch", "--show-current"]),
+      head: git(["rev-parse", "HEAD"]),
+      dirty: git(["status", "--porcelain"]).length !== 0,
+    }),
     foundryTomlSha256: sha256(readBytes(join(repositoryRoot, "foundry.toml"))),
     dependencyLockSha256: sha256(readBytes(dependencyLockPath)),
   },

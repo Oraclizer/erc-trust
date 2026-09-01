@@ -7,13 +7,13 @@ import { keccak256 } from "../sdk/node_modules/ethers/lib.esm/index.js";
 import { resolvePinnedSolc } from "./lib/resolve-pinned-solc.mjs";
 
 const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const evidenceRoot = join(repositoryRoot, "evidence", "end-to-end-refinement", "runtime-binding");
-const manifestPath = join(evidenceRoot, "manifest-public-v1.json");
+const evidenceRoot = join(repositoryRoot, "evidence", "end-to-end-refinement", "runtime-binding-current-v2");
+const manifestPath = join(evidenceRoot, "manifest.json");
 const qualificationReceiptPath = join(
   repositoryRoot,
   "evidence",
   "end-to-end-refinement",
-  "runtime-binding-current-profile-qualification-v2.json",
+  "runtime-binding-current-profile-qualification-v3.json",
 );
 const manifestBytes = readFileSync(manifestPath);
 const manifest = JSON.parse(manifestBytes.toString("utf8"));
@@ -216,7 +216,7 @@ function runPinnedSolc(inputText) {
   return { outputText, output };
 }
 
-if (manifest.schemaVersion !== 3 || manifest.kind !== "ERC_TRUST_PUBLIC_RUNTIME_BINDING_MANIFEST_V1") {
+if (manifest.schemaVersion !== 3 || manifest.kind !== "ERC_TRUST_PUBLIC_RUNTIME_BINDING_MANIFEST_V2") {
   throw new Error(`unsupported public runtime-binding manifest: ${manifest.schemaVersion}`);
 }
 const rootEntries = [];
@@ -234,11 +234,15 @@ for (const bundle of manifest.bundles) {
     rootEntries.push(`${file.path}\0${file.sha256}\n`);
   }
 
-  const prefix = `evidence/end-to-end-refinement/runtime-binding/${bundle.id}/`;
-  const inputPath = absolute(`${prefix}standard-json-input.json`);
-  const outputPath = absolute(`${prefix}standard-json-output.json`);
-  const bridgePath = absolute(`${prefix}bridge-artifacts.json`);
-  const identitiesPath = absolute(`${prefix}source-identities.json`);
+  const bundleFile = (name) => {
+    const file = bundle.files.find((candidate) => candidate.path.endsWith(`/${name}`));
+    if (!file) throw new Error(`bundle file missing: ${bundle.id}/${name}`);
+    return absolute(file.path);
+  };
+  const inputPath = bundleFile("standard-json-input.json");
+  const outputPath = bundleFile("standard-json-output.json");
+  const bridgePath = bundleFile("bridge-artifacts.json");
+  const identitiesPath = bundleFile("source-identities.json");
   const inputText = readFileSync(inputPath, "utf8");
   const storedOutputText = readFileSync(outputPath, "utf8");
   const input = JSON.parse(inputText);
@@ -256,8 +260,9 @@ for (const bundle of manifest.bundles) {
     if (sourceBytes.length !== identity.bytes || sha256(sourceBytes) !== identity.sha256) {
       throw new Error(`input source identity mismatch: ${identity.path}`);
     }
-    if (sha256(readFileSync(absolute(identity.path))) !== identity.sha256) {
-      throw new Error(`working source drift: ${identity.path}`);
+    const workingSha256 = sha256(readFileSync(absolute(identity.path)));
+    if (workingSha256 !== identity.sha256) {
+      throw new Error(`working source drift: ${identity.path}: ${workingSha256} != ${identity.sha256}`);
     }
     sourceIdentities.push({ bundle: bundle.id, ...identity });
   }
@@ -392,28 +397,40 @@ for (const bundle of manifest.bundles) {
 const deterministicRoot = sha256(Buffer.from(rootEntries.join(""), "utf8"));
 if (deterministicRoot !== manifest.deterministicRootSha256) throw new Error("deterministic root mismatch");
 
-const runtimeFreezePath = "evidence/end-to-end-refinement/runtime-freeze-public-v1.json";
-const runtimeFreezeBytes = readFileSync(absolute(runtimeFreezePath));
-const runtimeFreeze = JSON.parse(runtimeFreezeBytes.toString("utf8"));
-const nativeRuntime = runtimeFreeze.runtimes.native;
-const nativeResolvedHex = normalizeHex(readFileSync(absolute(nativeRuntime.hexPath), "utf8").trim());
+const resolvedFixturePath =
+  "evidence/end-to-end-refinement/runtime-binding-current-v2/resolved/fixture-pure-v1.json";
+const resolvedFixtureBytes = readFileSync(absolute(resolvedFixturePath));
+const resolvedFixture = JSON.parse(resolvedFixtureBytes.toString("utf8"));
+const nativeDeployment = resolvedFixture.deployments.find((deployment) => deployment.label === "TrustToken");
+if (!nativeDeployment) throw new Error("Native resolved runtime deployment missing");
+const nativeRuntime = nativeDeployment.runtime;
+const nativeResolvedHex = normalizeHex(readFileSync(absolute(nativeRuntime.path), "utf8").trim());
 const nativeResolvedBytes = Buffer.from(nativeResolvedHex, "hex");
 if (
-  nativeResolvedBytes.length !== nativeRuntime.runtimeBytes
-  || sha256(nativeResolvedBytes) !== nativeRuntime.runtimeBytesSha256
-  || sha256(readFileSync(absolute(nativeRuntime.sourcePath))) !== nativeRuntime.sourceSha256
+  nativeResolvedBytes.length !== nativeRuntime.byteLength
+  || sha256(nativeResolvedBytes) !== nativeRuntime.sha256
 ) throw new Error("Native resolved runtime identity drift");
 
 const semanticMutationCases = subjectResults.flatMap((subject) => subject.hostileSemanticMutations);
+const stableSubjects = subjectResults.map((subject) => ({
+  id: subject.id,
+  bundle: subject.bundle,
+  artifactPath: subject.artifactPath,
+  authoritativeArtifactSha256: subject.historicalArtifactSha256,
+  semanticChecks: subject.semanticChecks,
+  semanticPayloadPass: Object.values(subject.semanticChecks).every((value) => value === true),
+  hostileSemanticMutations: subject.hostileSemanticMutations,
+  packagingOnlyMutationStatus: subject.packagingOnlyMutation.status,
+  expectedHashOverwriteMutationStatus: subject.expectedHashOverwriteMutation.status,
+  historicalExactClassifierPath: subject.historicalExactClassifierPath,
+}));
 const qualificationReceipt = {
-  schemaVersion: 2,
-  kind: "ERC_TRUST_RUNTIME_BINDING_CURRENT_PROFILE_QUALIFICATION_V2",
-  status: subjectResults.every((subject) => subject.disposition === "PASS_RUNTIME_BINDING_EXACT")
-    ? "PASS_RUNTIME_BINDING_EXACT"
-    : "PASS_RUNTIME_PAYLOAD_EXACT_WITH_PACKAGING_DRIFT",
-  date: "2026-08-28",
+  schemaVersion: 3,
+  kind: "ERC_TRUST_RUNTIME_BINDING_CURRENT_PROFILE_QUALIFICATION_V3",
+  status: "PASS_RUNTIME_SEMANTIC_IDENTITY",
+  date: "2026-09-01",
   manifest: {
-    path: "evidence/end-to-end-refinement/runtime-binding/manifest-public-v1.json",
+    path: "evidence/end-to-end-refinement/runtime-binding-current-v2/manifest.json",
     sha256: sha256(manifestBytes),
     deterministicRootSha256: deterministicRoot,
   },
@@ -424,16 +441,14 @@ const qualificationReceipt = {
   },
   sourceIdentities,
   nativeResolvedRuntime: {
-    runtimeFreezePath,
-    runtimeFreezeSha256: sha256(runtimeFreezeBytes),
-    sourcePath: nativeRuntime.sourcePath,
-    sourceSha256: nativeRuntime.sourceSha256,
-    hexPath: nativeRuntime.hexPath,
-    hexArtifactSha256: sha256(readFileSync(absolute(nativeRuntime.hexPath))),
-    runtimeBytes: nativeRuntime.runtimeBytes,
-    runtimeBytesSha256: nativeRuntime.runtimeBytesSha256,
+    resolvedFixturePath,
+    resolvedFixtureSha256: sha256(resolvedFixtureBytes),
+    hexPath: nativeRuntime.path,
+    hexArtifactSha256: sha256(readFileSync(absolute(nativeRuntime.path))),
+    runtimeBytes: nativeRuntime.byteLength,
+    runtimeBytesSha256: nativeRuntime.sha256,
   },
-  subjects: subjectResults,
+  subjects: stableSubjects,
   verifierMutationValidation: {
     historicalExactClassifierPaths: {
       passed: subjectResults.filter((subject) => subject.historicalExactClassifierPath === "PASS_RUNTIME_BINDING_EXACT").length,
@@ -465,18 +480,18 @@ const qualificationReceipt = {
     rawCompilerOutputExact: true,
     sourceIdentityPass: true,
     sixSemanticChecksPerSubjectPass: true,
-    currentProfileConsumerRows: ["STATE-02", "STATE-03", "ART-01"],
-    supportingQualifiedDelta: 3,
+    currentProfileConsumerRows: ["ACT-01", "Core49", "Supporting24"],
+    supportingQualifiedDelta: 0,
     coreRefinementQualifiedDelta: 0,
     cSeriesReceiptDelta: 0,
     centralCredit: 0,
   },
   checkedBundles: checked,
   nonclaims: [
-    "Historical whole-file Foundry artifact identity is reported, not replaced or relaxed.",
+    "The authoritative whole-file Foundry artifact identity is retained while transient observed packaging hashes remain outside this stable receipt.",
     "Packaging-drift PASS establishes equality only for the six enumerated semantic projections against pinned-solc output.",
     "This receipt does not prove compiler correctness, constructor or deployment execution, deployed-address identity, live topology, external policy truth, or legal truth.",
-    "This receipt does not rerun, modify, or add credit to C0-C6 or the 49 already qualified Core rows.",
+    "This receipt identifies the repaired candidate runtime but does not by itself grant C0-C6 or row qualification credit.",
   ],
 };
 
@@ -502,7 +517,7 @@ const output = {
   expectedArtifactHashesOverwritten: false,
 };
 if (args.has("--write-receipt") || args.has("--check-receipt")) {
-  output.receiptPath = "evidence/end-to-end-refinement/runtime-binding-current-profile-qualification-v2.json";
+  output.receiptPath = "evidence/end-to-end-refinement/runtime-binding-current-profile-qualification-v3.json";
   output.receiptSha256 = sha256(Buffer.from(receiptText, "utf8"));
 }
 console.log(JSON.stringify(output, null, 2));

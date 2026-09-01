@@ -1,0 +1,3815 @@
+[
+  {
+    "abi": [
+      {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "name_",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "symbol_",
+            "type": "string"
+          },
+          {
+            "internalType": "uint8",
+            "name": "decimals_",
+            "type": "uint8"
+          },
+          {
+            "internalType": "address",
+            "name": "governor_",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "initialHolder",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "initialSupply",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "authorityRef",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "initialAuthority",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "policy",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "identity",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "settlement",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "entitlement",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "schema",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "ERC7943CannotReceive",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "ERC7943CannotSend",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "ERC7943CannotTransfer",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "unfrozen",
+            "type": "uint256"
+          }
+        ],
+        "name": "ERC7943InsufficientUnfrozenBalance",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "allowance",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "required",
+            "type": "uint256"
+          }
+        ],
+        "name": "TrustInsufficientAllowance",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "balance",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "required",
+            "type": "uint256"
+          }
+        ],
+        "name": "TrustInsufficientBalance",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "commandId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint16",
+            "name": "reason",
+            "type": "uint16"
+          }
+        ],
+        "name": "TrustInvalidCommand",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "commandId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint16",
+            "name": "reason",
+            "type": "uint16"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "dependencyRef",
+            "type": "bytes32"
+          }
+        ],
+        "name": "TrustOperationalFailure",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "TrustReentrancy",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "commandId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint16",
+            "name": "reason",
+            "type": "uint16"
+          }
+        ],
+        "name": "TrustRejected",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "key",
+            "type": "bytes32"
+          }
+        ],
+        "name": "TrustReplay",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "routeKey",
+            "type": "bytes32"
+          }
+        ],
+        "name": "TrustRouteMismatch",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "actionId",
+            "type": "bytes32"
+          }
+        ],
+        "name": "TrustTerminal",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "caller",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "authorityRef",
+            "type": "bytes32"
+          }
+        ],
+        "name": "TrustUnauthorized",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+          }
+        ],
+        "name": "TrustUnsupported",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "TrustZeroAddress",
+        "type": "error"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "Approval",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "ForcedTransfer",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "Frozen",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "actionId",
+            "type": "bytes32"
+          },
+          {
+            "indexed": true,
+            "internalType": "enum TrustTypes.ActionKind",
+            "name": "action",
+            "type": "uint8"
+          },
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "caseId",
+            "type": "bytes32"
+          },
+          {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "receiptHash",
+            "type": "bytes32"
+          }
+        ],
+        "name": "RegulatoryActionApplied",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "reversalId",
+            "type": "bytes32"
+          },
+          {
+            "indexed": true,
+            "internalType": "enum TrustTypes.ReversalKind",
+            "name": "reversal",
+            "type": "uint8"
+          },
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "actionId",
+            "type": "bytes32"
+          },
+          {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "receiptHash",
+            "type": "bytes32"
+          }
+        ],
+        "name": "RegulatoryReversalApplied",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "Transfer",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "authorityRef",
+            "type": "bytes32"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint64",
+            "name": "epoch",
+            "type": "uint64"
+          },
+          {
+            "indexed": false,
+            "internalType": "bool",
+            "name": "active",
+            "type": "bool"
+          }
+        ],
+        "name": "TrustAuthorityChanged",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "enum TrustTypes.BindingKind",
+            "name": "kind",
+            "type": "uint8"
+          },
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "previousBinding",
+            "type": "bytes32"
+          },
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "currentBinding",
+            "type": "bytes32"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint64",
+            "name": "epoch",
+            "type": "uint64"
+          }
+        ],
+        "name": "TrustBindingChanged",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "authorityRef",
+            "type": "bytes32"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "delegate",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "actionMask",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "scopeHash",
+            "type": "bytes32"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint48",
+            "name": "validUntil",
+            "type": "uint48"
+          }
+        ],
+        "name": "TrustDelegationChanged",
+        "type": "event"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "actionId",
+            "type": "bytes32"
+          }
+        ],
+        "name": "actionRecord",
+        "outputs": [
+          {
+            "components": [
+              {
+                "internalType": "enum TrustTypes.ActionKind",
+                "name": "action",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum TrustTypes.Lifecycle",
+                "name": "lifecycle",
+                "type": "uint8"
+              },
+              {
+                "internalType": "address",
+                "name": "subject",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "source",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "destination",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "custodian",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "priorAmount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bool",
+                "name": "priorFlag",
+                "type": "bool"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "caseId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "authorityRef",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint64",
+                "name": "authorityEpoch",
+                "type": "uint64"
+              },
+              {
+                "internalType": "uint64",
+                "name": "policyEpoch",
+                "type": "uint64"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "commandHash",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "evidenceHash",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "receiptHash",
+                "type": "bytes32"
+              }
+            ],
+            "internalType": "struct TrustTypes.ActionRecord",
+            "name": "",
+            "type": "tuple"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          }
+        ],
+        "name": "allowance",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "spender",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "approve",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "balanceOf",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "canReceive",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "canSend",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "canTransfer",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "caseId",
+            "type": "bytes32"
+          }
+        ],
+        "name": "caseTerminal",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "domain",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "actionId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "enum TrustTypes.ActionKind",
+                "name": "action",
+                "type": "uint8"
+              },
+              {
+                "internalType": "address",
+                "name": "subject",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "source",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "destination",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "custodian",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "caseId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "scopeHash",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "policyCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "provenanceCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "settlementCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "proceedsCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "entitlementCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "authorityRef",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint64",
+                "name": "authorityEpoch",
+                "type": "uint64"
+              },
+              {
+                "internalType": "uint64",
+                "name": "policyEpoch",
+                "type": "uint64"
+              },
+              {
+                "internalType": "uint256",
+                "name": "nonce",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint48",
+                "name": "validAfter",
+                "type": "uint48"
+              },
+              {
+                "internalType": "uint48",
+                "name": "validBefore",
+                "type": "uint48"
+              }
+            ],
+            "internalType": "struct TrustTypes.ActionRequest",
+            "name": "request",
+            "type": "tuple"
+          }
+        ],
+        "name": "commandHash",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "authorityRef",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "active",
+            "type": "bool"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "governanceAuthorizationId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "governanceNonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "configureAuthority",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "authorityRef",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "delegate",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "actionMask",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "scopeHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint48",
+            "name": "validUntil",
+            "type": "uint48"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "authorizationId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "configureDelegation",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "caseId",
+            "type": "bytes32"
+          }
+        ],
+        "name": "custodyRecord",
+        "outputs": [
+          {
+            "components": [
+              {
+                "internalType": "address",
+                "name": "custodian",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "declaredPriorHolder",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "encumberedAmount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "actionId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "parentActionId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "effectHash",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint64",
+                "name": "generation",
+                "type": "uint64"
+              },
+              {
+                "internalType": "bool",
+                "name": "active",
+                "type": "bool"
+              }
+            ],
+            "internalType": "struct TrustTypes.CustodyRecord",
+            "name": "",
+            "type": "tuple"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "decimals",
+        "outputs": [
+          {
+            "internalType": "uint8",
+            "name": "",
+            "type": "uint8"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "domain",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "actionId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "enum TrustTypes.ActionKind",
+                "name": "action",
+                "type": "uint8"
+              },
+              {
+                "internalType": "address",
+                "name": "subject",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "source",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "destination",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "custodian",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "caseId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "scopeHash",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "policyCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "provenanceCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "settlementCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "proceedsCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "entitlementCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "authorityRef",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint64",
+                "name": "authorityEpoch",
+                "type": "uint64"
+              },
+              {
+                "internalType": "uint64",
+                "name": "policyEpoch",
+                "type": "uint64"
+              },
+              {
+                "internalType": "uint256",
+                "name": "nonce",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint48",
+                "name": "validAfter",
+                "type": "uint48"
+              },
+              {
+                "internalType": "uint48",
+                "name": "validBefore",
+                "type": "uint48"
+              }
+            ],
+            "internalType": "struct TrustTypes.ActionRequest",
+            "name": "request",
+            "type": "tuple"
+          }
+        ],
+        "name": "deriveActionId",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "domain",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "reversalId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "actionId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "enum TrustTypes.ReversalKind",
+                "name": "reversal",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "authorityRef",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint64",
+                "name": "authorityEpoch",
+                "type": "uint64"
+              },
+              {
+                "internalType": "uint256",
+                "name": "nonce",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint48",
+                "name": "validAfter",
+                "type": "uint48"
+              },
+              {
+                "internalType": "uint48",
+                "name": "validBefore",
+                "type": "uint48"
+              }
+            ],
+            "internalType": "struct TrustTypes.ReversalRequest",
+            "name": "request",
+            "type": "tuple"
+          }
+        ],
+        "name": "deriveReversalId",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "actionId",
+            "type": "bytes32"
+          }
+        ],
+        "name": "entitlementRecord",
+        "outputs": [
+          {
+            "components": [
+              {
+                "internalType": "address",
+                "name": "destination",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "entitlementCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "evidenceHash",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bool",
+                "name": "consumed",
+                "type": "bool"
+              }
+            ],
+            "internalType": "struct TrustTypes.EntitlementRecord",
+            "name": "",
+            "type": "tuple"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "domain",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "actionId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "enum TrustTypes.ActionKind",
+                "name": "action",
+                "type": "uint8"
+              },
+              {
+                "internalType": "address",
+                "name": "subject",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "source",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "destination",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "custodian",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "caseId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "scopeHash",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "policyCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "provenanceCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "settlementCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "proceedsCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "entitlementCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "authorityRef",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint64",
+                "name": "authorityEpoch",
+                "type": "uint64"
+              },
+              {
+                "internalType": "uint64",
+                "name": "policyEpoch",
+                "type": "uint64"
+              },
+              {
+                "internalType": "uint256",
+                "name": "nonce",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint48",
+                "name": "validAfter",
+                "type": "uint48"
+              },
+              {
+                "internalType": "uint48",
+                "name": "validBefore",
+                "type": "uint48"
+              }
+            ],
+            "internalType": "struct TrustTypes.ActionRequest",
+            "name": "request",
+            "type": "tuple"
+          }
+        ],
+        "name": "executeERC7943Action",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "receiptHash",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "domain",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "reversalId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "actionId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "enum TrustTypes.ReversalKind",
+                "name": "reversal",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "authorityRef",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint64",
+                "name": "authorityEpoch",
+                "type": "uint64"
+              },
+              {
+                "internalType": "uint256",
+                "name": "nonce",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint48",
+                "name": "validAfter",
+                "type": "uint48"
+              },
+              {
+                "internalType": "uint48",
+                "name": "validBefore",
+                "type": "uint48"
+              }
+            ],
+            "internalType": "struct TrustTypes.ReversalRequest",
+            "name": "request",
+            "type": "tuple"
+          }
+        ],
+        "name": "executeERC7943Reversal",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "receiptHash",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "domain",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "actionId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "enum TrustTypes.ActionKind",
+                "name": "action",
+                "type": "uint8"
+              },
+              {
+                "internalType": "address",
+                "name": "subject",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "source",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "destination",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "custodian",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "caseId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "scopeHash",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "policyCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "provenanceCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "settlementCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "proceedsCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "entitlementCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "authorityRef",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint64",
+                "name": "authorityEpoch",
+                "type": "uint64"
+              },
+              {
+                "internalType": "uint64",
+                "name": "policyEpoch",
+                "type": "uint64"
+              },
+              {
+                "internalType": "uint256",
+                "name": "nonce",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint48",
+                "name": "validAfter",
+                "type": "uint48"
+              },
+              {
+                "internalType": "uint48",
+                "name": "validBefore",
+                "type": "uint48"
+              }
+            ],
+            "internalType": "struct TrustTypes.ActionRequest",
+            "name": "request",
+            "type": "tuple"
+          }
+        ],
+        "name": "executeRegulatoryAction",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "receiptHash",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "domain",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "reversalId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "actionId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "enum TrustTypes.ReversalKind",
+                "name": "reversal",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "authorityRef",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint64",
+                "name": "authorityEpoch",
+                "type": "uint64"
+              },
+              {
+                "internalType": "uint256",
+                "name": "nonce",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint48",
+                "name": "validAfter",
+                "type": "uint48"
+              },
+              {
+                "internalType": "uint48",
+                "name": "validBefore",
+                "type": "uint48"
+              }
+            ],
+            "internalType": "struct TrustTypes.ReversalRequest",
+            "name": "request",
+            "type": "tuple"
+          }
+        ],
+        "name": "executeRegulatoryReversal",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "receiptHash",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "forcedTransfer",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "result",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "authorityRef",
+            "type": "bytes32"
+          }
+        ],
+        "name": "getAuthorityState",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          },
+          {
+            "internalType": "uint64",
+            "name": "epoch",
+            "type": "uint64"
+          },
+          {
+            "internalType": "bool",
+            "name": "active",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "enum TrustTypes.BindingKind",
+            "name": "kind",
+            "type": "uint8"
+          }
+        ],
+        "name": "getBindingState",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "dependency",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "bindingHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint64",
+            "name": "epoch",
+            "type": "uint64"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "getFrozenTokens",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "governor",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "isRestricted",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "name",
+        "outputs": [
+          {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "authorityRef",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint64",
+            "name": "authorityEpoch",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint256",
+            "name": "nonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "nonceUsed",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "enum TrustTypes.BindingKind",
+            "name": "kind",
+            "type": "uint8"
+          },
+          {
+            "internalType": "address",
+            "name": "dependency",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "schema",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "governanceAuthorizationId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "governanceNonce",
+            "type": "uint256"
+          }
+        ],
+        "name": "rebindDependency",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "commandId",
+            "type": "bytes32"
+          }
+        ],
+        "name": "receipt",
+        "outputs": [
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "commandId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint8",
+                "name": "commandKind",
+                "type": "uint8"
+              },
+              {
+                "internalType": "address",
+                "name": "source",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "destination",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "caseId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "policyBinding",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "provenanceCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "preState",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "postState",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "externalCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "receiptHash",
+                "type": "bytes32"
+              }
+            ],
+            "internalType": "struct TrustTypes.Receipt",
+            "name": "",
+            "type": "tuple"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "domain",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "reversalId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "actionId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "enum TrustTypes.ReversalKind",
+                "name": "reversal",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "authorityRef",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint64",
+                "name": "authorityEpoch",
+                "type": "uint64"
+              },
+              {
+                "internalType": "uint256",
+                "name": "nonce",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint48",
+                "name": "validAfter",
+                "type": "uint48"
+              },
+              {
+                "internalType": "uint48",
+                "name": "validBefore",
+                "type": "uint48"
+              }
+            ],
+            "internalType": "struct TrustTypes.ReversalRequest",
+            "name": "request",
+            "type": "tuple"
+          }
+        ],
+        "name": "reversalHash",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "routeLive",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "setFrozenTokens",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "result",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "actionId",
+            "type": "bytes32"
+          }
+        ],
+        "name": "settlementRecord",
+        "outputs": [
+          {
+            "components": [
+              {
+                "internalType": "address",
+                "name": "destination",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "settlementCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "proceedsCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "evidenceHash",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bool",
+                "name": "consumedCustody",
+                "type": "bool"
+              }
+            ],
+            "internalType": "struct TrustTypes.SettlementRecord",
+            "name": "",
+            "type": "tuple"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes4",
+            "name": "interfaceId",
+            "type": "bytes4"
+          }
+        ],
+        "name": "supportsInterface",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "pure",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "symbol",
+        "outputs": [
+          {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "totalSupply",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transfer",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "value",
+            "type": "uint256"
+          }
+        ],
+        "name": "transferFrom",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "trustProfile",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "profile",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "supportedActionMask",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "proxySupported",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "pure",
+        "type": "function"
+      }
+    ],
+    "contract": "TrustToken",
+    "creationBytecode": {
+      "byteLength": 27683,
+      "keccak256": "0xb1baa838d596869d941c5e43d752ee9f6938ec714302131a94e69c2561f02996",
+      "linkReferences": {},
+      "sha256": "fecca8fca7a3698d6cdab41a501789ecbf8bae21f6b28c562db565c78dbcfb28"
+    },
+    "foundryCrossCheck": {
+      "artifactPath": "out/TrustToken.sol/TrustToken.json",
+      "artifactSha256": "8f910ea98f0c1a5691033d4842c69b8ccfbe679539faee3c59a1922b6bdc6fcd",
+      "checks": {
+        "abi": true,
+        "creationBytecode": true,
+        "immutableReferences": true,
+        "methodIdentifiers": true,
+        "runtimeTemplate": true,
+        "storageLayout": true
+      }
+    },
+    "id": "implementation/src/TrustToken.sol:TrustToken",
+    "methodIdentifiers": {
+      "actionRecord(bytes32)": "330fcfde",
+      "allowance(address,address)": "dd62ed3e",
+      "approve(address,uint256)": "095ea7b3",
+      "balanceOf(address)": "70a08231",
+      "canReceive(address)": "90d370ba",
+      "canSend(address)": "2bc06a92",
+      "canTransfer(address,address,uint256)": "e46638e6",
+      "caseTerminal(bytes32)": "3a421099",
+      "commandHash((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint64,uint256,uint48,uint48))": "1894f5e3",
+      "configureAuthority(bytes32,address,bool,bytes32,uint256)": "a4fc4aad",
+      "configureDelegation(bytes32,address,uint256,bytes32,uint48,bytes32,uint256)": "1f78603d",
+      "custodyRecord(bytes32)": "334a46d9",
+      "decimals()": "313ce567",
+      "deriveActionId((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint64,uint256,uint48,uint48))": "45f6c2dc",
+      "deriveReversalId((bytes32,bytes32,bytes32,uint8,bytes32,uint64,uint256,uint48,uint48))": "5559c143",
+      "entitlementRecord(bytes32)": "55e9ba84",
+      "executeERC7943Action((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint64,uint256,uint48,uint48))": "9295b54c",
+      "executeERC7943Reversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,uint256,uint48,uint48))": "75c28d96",
+      "executeRegulatoryAction((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint64,uint256,uint48,uint48))": "9da23539",
+      "executeRegulatoryReversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,uint256,uint48,uint48))": "7aab169b",
+      "forcedTransfer(address,address,uint256)": "9fc1d0e7",
+      "getAuthorityState(bytes32)": "72929f83",
+      "getBindingState(uint8)": "e76a2447",
+      "getFrozenTokens(address)": "158b1a57",
+      "governor()": "0c340a24",
+      "isRestricted(address)": "c01bc982",
+      "name()": "06fdde03",
+      "nonceUsed(bytes32,uint64,uint256)": "15cba043",
+      "rebindDependency(uint8,address,bytes32,bytes32,uint256)": "f60d7b6f",
+      "receipt(bytes32)": "198a27aa",
+      "reversalHash((bytes32,bytes32,bytes32,uint8,bytes32,uint64,uint256,uint48,uint48))": "464ea33a",
+      "routeLive()": "56a27035",
+      "setFrozenTokens(address,uint256)": "ebe45cba",
+      "settlementRecord(bytes32)": "e7b0e9c9",
+      "supportsInterface(bytes4)": "01ffc9a7",
+      "symbol()": "95d89b41",
+      "totalSupply()": "18160ddd",
+      "transfer(address,uint256)": "a9059cbb",
+      "transferFrom(address,address,uint256)": "23b872dd",
+      "trustProfile()": "5ba37779"
+    },
+    "runtimeTemplate": {
+      "byteLength": 24177,
+      "immutableReferences": {
+        "622": [
+          {
+            "length": 32,
+            "start": 6970
+          }
+        ],
+        "626": [
+          {
+            "length": 32,
+            "start": 517
+          },
+          {
+            "length": 32,
+            "start": 1580
+          },
+          {
+            "length": 32,
+            "start": 8522
+          },
+          {
+            "length": 32,
+            "start": 19857
+          }
+        ]
+      },
+      "keccak256": "0xda19184b1a12d3a8d1ab633c97e142ff4c4c50265c0078afcdb4b6e88cab7949",
+      "linkReferences": {},
+      "sha256": "aabc0bd11e517ba9b9b8dbd288bcee80ba29c58be7598708269d2ff79e7fcf9f"
+    },
+    "source": "implementation/src/TrustToken.sol",
+    "storageLayout": {
+      "storage": [
+        {
+          "astId": 618,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "name",
+          "offset": 0,
+          "slot": "0",
+          "type": "t_string_storage"
+        },
+        {
+          "astId": 620,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "symbol",
+          "offset": 0,
+          "slot": "1",
+          "type": "t_string_storage"
+        },
+        {
+          "astId": 624,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "_totalSupply",
+          "offset": 0,
+          "slot": "2",
+          "type": "t_uint256"
+        },
+        {
+          "astId": 630,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "_balances",
+          "offset": 0,
+          "slot": "3",
+          "type": "t_mapping(t_address,t_uint256)"
+        },
+        {
+          "astId": 636,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "_allowances",
+          "offset": 0,
+          "slot": "4",
+          "type": "t_mapping(t_address,t_mapping(t_address,t_uint256))"
+        },
+        {
+          "astId": 640,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "_frozen",
+          "offset": 0,
+          "slot": "5",
+          "type": "t_mapping(t_address,t_uint256)"
+        },
+        {
+          "astId": 644,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "_restricted",
+          "offset": 0,
+          "slot": "6",
+          "type": "t_mapping(t_address,t_bool)"
+        },
+        {
+          "astId": 648,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "_custodyBacking",
+          "offset": 0,
+          "slot": "7",
+          "type": "t_mapping(t_address,t_uint256)"
+        },
+        {
+          "astId": 653,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "_freezeHeads",
+          "offset": 0,
+          "slot": "8",
+          "type": "t_mapping(t_address,t_struct(EffectHead)6340_storage)"
+        },
+        {
+          "astId": 658,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "_restrictionHeads",
+          "offset": 0,
+          "slot": "9",
+          "type": "t_mapping(t_address,t_struct(EffectHead)6340_storage)"
+        },
+        {
+          "astId": 663,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "_authorities",
+          "offset": 0,
+          "slot": "10",
+          "type": "t_mapping(t_bytes32,t_struct(Authority)6391_storage)"
+        },
+        {
+          "astId": 670,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "_delegations",
+          "offset": 0,
+          "slot": "11",
+          "type": "t_mapping(t_bytes32,t_mapping(t_address,t_struct(Delegation)6400_storage))"
+        },
+        {
+          "astId": 678,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "_usedNonces",
+          "offset": 0,
+          "slot": "12",
+          "type": "t_mapping(t_bytes32,t_mapping(t_uint64,t_mapping(t_uint256,t_bool)))"
+        },
+        {
+          "astId": 682,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "_usedCommandIds",
+          "offset": 0,
+          "slot": "13",
+          "type": "t_mapping(t_bytes32,t_bool)"
+        },
+        {
+          "astId": 686,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "_usedGovernanceIds",
+          "offset": 0,
+          "slot": "14",
+          "type": "t_mapping(t_bytes32,t_bool)"
+        },
+        {
+          "astId": 691,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "_actions",
+          "offset": 0,
+          "slot": "15",
+          "type": "t_mapping(t_bytes32,t_struct(ActionRecord)6291_storage)"
+        },
+        {
+          "astId": 696,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "_effects",
+          "offset": 0,
+          "slot": "16",
+          "type": "t_mapping(t_bytes32,t_struct(EffectRecord)6347_storage)"
+        },
+        {
+          "astId": 701,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "_receipts",
+          "offset": 0,
+          "slot": "17",
+          "type": "t_mapping(t_bytes32,t_struct(Receipt)6316_storage)"
+        },
+        {
+          "astId": 706,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "_custody",
+          "offset": 0,
+          "slot": "18",
+          "type": "t_mapping(t_bytes32,t_struct(CustodyRecord)6333_storage)"
+        },
+        {
+          "astId": 711,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "_settlements",
+          "offset": 0,
+          "slot": "19",
+          "type": "t_mapping(t_bytes32,t_struct(SettlementRecord)6360_storage)"
+        },
+        {
+          "astId": 716,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "_entitlements",
+          "offset": 0,
+          "slot": "20",
+          "type": "t_mapping(t_bytes32,t_struct(EntitlementRecord)6371_storage)"
+        },
+        {
+          "astId": 720,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "_consumedEntitlements",
+          "offset": 0,
+          "slot": "21",
+          "type": "t_mapping(t_bytes32,t_bool)"
+        },
+        {
+          "astId": 724,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "_terminalCases",
+          "offset": 0,
+          "slot": "22",
+          "type": "t_mapping(t_bytes32,t_bool)"
+        },
+        {
+          "astId": 730,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "_bindings",
+          "offset": 0,
+          "slot": "23",
+          "type": "t_mapping(t_enum(BindingKind)6188,t_struct(Binding)6384_storage)"
+        },
+        {
+          "astId": 733,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "_routeTicket",
+          "offset": 0,
+          "slot": "24",
+          "type": "t_struct(RouteTicket)6422_storage"
+        },
+        {
+          "astId": 735,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "_entered",
+          "offset": 0,
+          "slot": "29",
+          "type": "t_uint256"
+        },
+        {
+          "astId": 3843,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "_pendingReversals",
+          "offset": 0,
+          "slot": "30",
+          "type": "t_mapping(t_bytes32,t_struct(ReversalRequest)6256_storage)"
+        },
+        {
+          "astId": 5279,
+          "contract": "implementation/src/TrustToken.sol:TrustToken",
+          "label": "_pendingCommitments",
+          "offset": 0,
+          "slot": "31",
+          "type": "t_mapping(t_bytes32,t_struct(PendingCommitments)5274_storage)"
+        }
+      ],
+      "types": {
+        "t_address": {
+          "encoding": "inplace",
+          "label": "address",
+          "numberOfBytes": "20"
+        },
+        "t_bool": {
+          "encoding": "inplace",
+          "label": "bool",
+          "numberOfBytes": "1"
+        },
+        "t_bytes32": {
+          "encoding": "inplace",
+          "label": "bytes32",
+          "numberOfBytes": "32"
+        },
+        "t_bytes4": {
+          "encoding": "inplace",
+          "label": "bytes4",
+          "numberOfBytes": "4"
+        },
+        "t_enum(ActionKind)6169": {
+          "encoding": "inplace",
+          "label": "enum TrustTypes.ActionKind",
+          "numberOfBytes": "1"
+        },
+        "t_enum(BindingKind)6188": {
+          "encoding": "inplace",
+          "label": "enum TrustTypes.BindingKind",
+          "numberOfBytes": "1"
+        },
+        "t_enum(Lifecycle)6183": {
+          "encoding": "inplace",
+          "label": "enum TrustTypes.Lifecycle",
+          "numberOfBytes": "1"
+        },
+        "t_enum(ReversalKind)6173": {
+          "encoding": "inplace",
+          "label": "enum TrustTypes.ReversalKind",
+          "numberOfBytes": "1"
+        },
+        "t_enum(RouteKind)6192": {
+          "encoding": "inplace",
+          "label": "enum TrustTypes.RouteKind",
+          "numberOfBytes": "1"
+        },
+        "t_mapping(t_address,t_bool)": {
+          "encoding": "mapping",
+          "key": "t_address",
+          "label": "mapping(address => bool)",
+          "numberOfBytes": "32",
+          "value": "t_bool"
+        },
+        "t_mapping(t_address,t_mapping(t_address,t_uint256))": {
+          "encoding": "mapping",
+          "key": "t_address",
+          "label": "mapping(address => mapping(address => uint256))",
+          "numberOfBytes": "32",
+          "value": "t_mapping(t_address,t_uint256)"
+        },
+        "t_mapping(t_address,t_struct(Delegation)6400_storage)": {
+          "encoding": "mapping",
+          "key": "t_address",
+          "label": "mapping(address => struct TrustTypes.Delegation)",
+          "numberOfBytes": "32",
+          "value": "t_struct(Delegation)6400_storage"
+        },
+        "t_mapping(t_address,t_struct(EffectHead)6340_storage)": {
+          "encoding": "mapping",
+          "key": "t_address",
+          "label": "mapping(address => struct TrustTypes.EffectHead)",
+          "numberOfBytes": "32",
+          "value": "t_struct(EffectHead)6340_storage"
+        },
+        "t_mapping(t_address,t_uint256)": {
+          "encoding": "mapping",
+          "key": "t_address",
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "value": "t_uint256"
+        },
+        "t_mapping(t_bytes32,t_bool)": {
+          "encoding": "mapping",
+          "key": "t_bytes32",
+          "label": "mapping(bytes32 => bool)",
+          "numberOfBytes": "32",
+          "value": "t_bool"
+        },
+        "t_mapping(t_bytes32,t_mapping(t_address,t_struct(Delegation)6400_storage))": {
+          "encoding": "mapping",
+          "key": "t_bytes32",
+          "label": "mapping(bytes32 => mapping(address => struct TrustTypes.Delegation))",
+          "numberOfBytes": "32",
+          "value": "t_mapping(t_address,t_struct(Delegation)6400_storage)"
+        },
+        "t_mapping(t_bytes32,t_mapping(t_uint64,t_mapping(t_uint256,t_bool)))": {
+          "encoding": "mapping",
+          "key": "t_bytes32",
+          "label": "mapping(bytes32 => mapping(uint64 => mapping(uint256 => bool)))",
+          "numberOfBytes": "32",
+          "value": "t_mapping(t_uint64,t_mapping(t_uint256,t_bool))"
+        },
+        "t_mapping(t_bytes32,t_struct(ActionRecord)6291_storage)": {
+          "encoding": "mapping",
+          "key": "t_bytes32",
+          "label": "mapping(bytes32 => struct TrustTypes.ActionRecord)",
+          "numberOfBytes": "32",
+          "value": "t_struct(ActionRecord)6291_storage"
+        },
+        "t_mapping(t_bytes32,t_struct(Authority)6391_storage)": {
+          "encoding": "mapping",
+          "key": "t_bytes32",
+          "label": "mapping(bytes32 => struct TrustTypes.Authority)",
+          "numberOfBytes": "32",
+          "value": "t_struct(Authority)6391_storage"
+        },
+        "t_mapping(t_bytes32,t_struct(CustodyRecord)6333_storage)": {
+          "encoding": "mapping",
+          "key": "t_bytes32",
+          "label": "mapping(bytes32 => struct TrustTypes.CustodyRecord)",
+          "numberOfBytes": "32",
+          "value": "t_struct(CustodyRecord)6333_storage"
+        },
+        "t_mapping(t_bytes32,t_struct(EffectRecord)6347_storage)": {
+          "encoding": "mapping",
+          "key": "t_bytes32",
+          "label": "mapping(bytes32 => struct TrustTypes.EffectRecord)",
+          "numberOfBytes": "32",
+          "value": "t_struct(EffectRecord)6347_storage"
+        },
+        "t_mapping(t_bytes32,t_struct(EntitlementRecord)6371_storage)": {
+          "encoding": "mapping",
+          "key": "t_bytes32",
+          "label": "mapping(bytes32 => struct TrustTypes.EntitlementRecord)",
+          "numberOfBytes": "32",
+          "value": "t_struct(EntitlementRecord)6371_storage"
+        },
+        "t_mapping(t_bytes32,t_struct(PendingCommitments)5274_storage)": {
+          "encoding": "mapping",
+          "key": "t_bytes32",
+          "label": "mapping(bytes32 => struct TrustToken.PendingCommitments)",
+          "numberOfBytes": "32",
+          "value": "t_struct(PendingCommitments)5274_storage"
+        },
+        "t_mapping(t_bytes32,t_struct(Receipt)6316_storage)": {
+          "encoding": "mapping",
+          "key": "t_bytes32",
+          "label": "mapping(bytes32 => struct TrustTypes.Receipt)",
+          "numberOfBytes": "32",
+          "value": "t_struct(Receipt)6316_storage"
+        },
+        "t_mapping(t_bytes32,t_struct(ReversalRequest)6256_storage)": {
+          "encoding": "mapping",
+          "key": "t_bytes32",
+          "label": "mapping(bytes32 => struct TrustTypes.ReversalRequest)",
+          "numberOfBytes": "32",
+          "value": "t_struct(ReversalRequest)6256_storage"
+        },
+        "t_mapping(t_bytes32,t_struct(SettlementRecord)6360_storage)": {
+          "encoding": "mapping",
+          "key": "t_bytes32",
+          "label": "mapping(bytes32 => struct TrustTypes.SettlementRecord)",
+          "numberOfBytes": "32",
+          "value": "t_struct(SettlementRecord)6360_storage"
+        },
+        "t_mapping(t_enum(BindingKind)6188,t_struct(Binding)6384_storage)": {
+          "encoding": "mapping",
+          "key": "t_enum(BindingKind)6188",
+          "label": "mapping(enum TrustTypes.BindingKind => struct TrustTypes.Binding)",
+          "numberOfBytes": "32",
+          "value": "t_struct(Binding)6384_storage"
+        },
+        "t_mapping(t_uint256,t_bool)": {
+          "encoding": "mapping",
+          "key": "t_uint256",
+          "label": "mapping(uint256 => bool)",
+          "numberOfBytes": "32",
+          "value": "t_bool"
+        },
+        "t_mapping(t_uint64,t_mapping(t_uint256,t_bool))": {
+          "encoding": "mapping",
+          "key": "t_uint64",
+          "label": "mapping(uint64 => mapping(uint256 => bool))",
+          "numberOfBytes": "32",
+          "value": "t_mapping(t_uint256,t_bool)"
+        },
+        "t_string_storage": {
+          "encoding": "bytes",
+          "label": "string",
+          "numberOfBytes": "32"
+        },
+        "t_struct(ActionRecord)6291_storage": {
+          "encoding": "inplace",
+          "label": "struct TrustTypes.ActionRecord",
+          "members": [
+            {
+              "astId": 6259,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "action",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_enum(ActionKind)6169"
+            },
+            {
+              "astId": 6262,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "lifecycle",
+              "offset": 1,
+              "slot": "0",
+              "type": "t_enum(Lifecycle)6183"
+            },
+            {
+              "astId": 6264,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "subject",
+              "offset": 2,
+              "slot": "0",
+              "type": "t_address"
+            },
+            {
+              "astId": 6266,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "source",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_address"
+            },
+            {
+              "astId": 6268,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "destination",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_address"
+            },
+            {
+              "astId": 6270,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "custodian",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_address"
+            },
+            {
+              "astId": 6272,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "amount",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_uint256"
+            },
+            {
+              "astId": 6274,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "priorAmount",
+              "offset": 0,
+              "slot": "5",
+              "type": "t_uint256"
+            },
+            {
+              "astId": 6276,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "priorFlag",
+              "offset": 0,
+              "slot": "6",
+              "type": "t_bool"
+            },
+            {
+              "astId": 6278,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "caseId",
+              "offset": 0,
+              "slot": "7",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6280,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "authorityRef",
+              "offset": 0,
+              "slot": "8",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6282,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "authorityEpoch",
+              "offset": 0,
+              "slot": "9",
+              "type": "t_uint64"
+            },
+            {
+              "astId": 6284,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "policyEpoch",
+              "offset": 8,
+              "slot": "9",
+              "type": "t_uint64"
+            },
+            {
+              "astId": 6286,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "commandHash",
+              "offset": 0,
+              "slot": "10",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6288,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "evidenceHash",
+              "offset": 0,
+              "slot": "11",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6290,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "receiptHash",
+              "offset": 0,
+              "slot": "12",
+              "type": "t_bytes32"
+            }
+          ],
+          "numberOfBytes": "416"
+        },
+        "t_struct(Authority)6391_storage": {
+          "encoding": "inplace",
+          "label": "struct TrustTypes.Authority",
+          "members": [
+            {
+              "astId": 6386,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "account",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address"
+            },
+            {
+              "astId": 6388,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "epoch",
+              "offset": 20,
+              "slot": "0",
+              "type": "t_uint64"
+            },
+            {
+              "astId": 6390,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "active",
+              "offset": 28,
+              "slot": "0",
+              "type": "t_bool"
+            }
+          ],
+          "numberOfBytes": "32"
+        },
+        "t_struct(Binding)6384_storage": {
+          "encoding": "inplace",
+          "label": "struct TrustTypes.Binding",
+          "members": [
+            {
+              "astId": 6373,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "dependency",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address"
+            },
+            {
+              "astId": 6375,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "codeId",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6377,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "configurationDigest",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6379,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "schema",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6381,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "epoch",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_uint64"
+            },
+            {
+              "astId": 6383,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "bindingHash",
+              "offset": 0,
+              "slot": "5",
+              "type": "t_bytes32"
+            }
+          ],
+          "numberOfBytes": "192"
+        },
+        "t_struct(CustodyRecord)6333_storage": {
+          "encoding": "inplace",
+          "label": "struct TrustTypes.CustodyRecord",
+          "members": [
+            {
+              "astId": 6318,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "custodian",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address"
+            },
+            {
+              "astId": 6320,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "declaredPriorHolder",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_address"
+            },
+            {
+              "astId": 6322,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "encumberedAmount",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_uint256"
+            },
+            {
+              "astId": 6324,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "actionId",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6326,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "parentActionId",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6328,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "effectHash",
+              "offset": 0,
+              "slot": "5",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6330,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "generation",
+              "offset": 0,
+              "slot": "6",
+              "type": "t_uint64"
+            },
+            {
+              "astId": 6332,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "active",
+              "offset": 8,
+              "slot": "6",
+              "type": "t_bool"
+            }
+          ],
+          "numberOfBytes": "224"
+        },
+        "t_struct(Delegation)6400_storage": {
+          "encoding": "inplace",
+          "label": "struct TrustTypes.Delegation",
+          "members": [
+            {
+              "astId": 6393,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "actionMask",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_uint256"
+            },
+            {
+              "astId": 6395,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "scopeHash",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6397,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "validUntil",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_uint48"
+            },
+            {
+              "astId": 6399,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "authorityEpoch",
+              "offset": 6,
+              "slot": "2",
+              "type": "t_uint64"
+            }
+          ],
+          "numberOfBytes": "96"
+        },
+        "t_struct(EffectHead)6340_storage": {
+          "encoding": "inplace",
+          "label": "struct TrustTypes.EffectHead",
+          "members": [
+            {
+              "astId": 6335,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "actionId",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6337,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "effectHash",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6339,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "generation",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_uint64"
+            }
+          ],
+          "numberOfBytes": "96"
+        },
+        "t_struct(EffectRecord)6347_storage": {
+          "encoding": "inplace",
+          "label": "struct TrustTypes.EffectRecord",
+          "members": [
+            {
+              "astId": 6342,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "parentActionId",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6344,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "effectHash",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6346,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "generation",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_uint64"
+            }
+          ],
+          "numberOfBytes": "96"
+        },
+        "t_struct(EntitlementRecord)6371_storage": {
+          "encoding": "inplace",
+          "label": "struct TrustTypes.EntitlementRecord",
+          "members": [
+            {
+              "astId": 6362,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "destination",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address"
+            },
+            {
+              "astId": 6364,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "amount",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_uint256"
+            },
+            {
+              "astId": 6366,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "entitlementCommitment",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6368,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "evidenceHash",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6370,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "consumed",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_bool"
+            }
+          ],
+          "numberOfBytes": "160"
+        },
+        "t_struct(PendingCommitments)5274_storage": {
+          "encoding": "inplace",
+          "label": "struct TrustToken.PendingCommitments",
+          "members": [
+            {
+              "astId": 5265,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "scopeHash",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 5267,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "provenanceCommitment",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 5269,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "settlementCommitment",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 5271,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "proceedsCommitment",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 5273,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "entitlementCommitment",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_bytes32"
+            }
+          ],
+          "numberOfBytes": "160"
+        },
+        "t_struct(Receipt)6316_storage": {
+          "encoding": "inplace",
+          "label": "struct TrustTypes.Receipt",
+          "members": [
+            {
+              "astId": 6293,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "commandId",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6295,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "commandKind",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_uint8"
+            },
+            {
+              "astId": 6297,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "source",
+              "offset": 1,
+              "slot": "1",
+              "type": "t_address"
+            },
+            {
+              "astId": 6299,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "destination",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_address"
+            },
+            {
+              "astId": 6301,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "amount",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_uint256"
+            },
+            {
+              "astId": 6303,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "caseId",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6305,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "policyBinding",
+              "offset": 0,
+              "slot": "5",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6307,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "provenanceCommitment",
+              "offset": 0,
+              "slot": "6",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6309,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "preState",
+              "offset": 0,
+              "slot": "7",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6311,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "postState",
+              "offset": 0,
+              "slot": "8",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6313,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "externalCommitment",
+              "offset": 0,
+              "slot": "9",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6315,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "receiptHash",
+              "offset": 0,
+              "slot": "10",
+              "type": "t_bytes32"
+            }
+          ],
+          "numberOfBytes": "352"
+        },
+        "t_struct(ReversalRequest)6256_storage": {
+          "encoding": "inplace",
+          "label": "struct TrustTypes.ReversalRequest",
+          "members": [
+            {
+              "astId": 6238,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "domain",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6240,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "reversalId",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6242,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "actionId",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6245,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "reversal",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_enum(ReversalKind)6173"
+            },
+            {
+              "astId": 6247,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "authorityRef",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6249,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "authorityEpoch",
+              "offset": 0,
+              "slot": "5",
+              "type": "t_uint64"
+            },
+            {
+              "astId": 6251,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "nonce",
+              "offset": 0,
+              "slot": "6",
+              "type": "t_uint256"
+            },
+            {
+              "astId": 6253,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "validAfter",
+              "offset": 0,
+              "slot": "7",
+              "type": "t_uint48"
+            },
+            {
+              "astId": 6255,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "validBefore",
+              "offset": 6,
+              "slot": "7",
+              "type": "t_uint48"
+            }
+          ],
+          "numberOfBytes": "256"
+        },
+        "t_struct(RouteTicket)6422_storage": {
+          "encoding": "inplace",
+          "label": "struct TrustTypes.RouteTicket",
+          "members": [
+            {
+              "astId": 6402,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "commandId",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6404,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "routeKey",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6406,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "calldataHash",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6408,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "bindingHash",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6410,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "selector",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_bytes4"
+            },
+            {
+              "astId": 6413,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "routeKind",
+              "offset": 4,
+              "slot": "4",
+              "type": "t_enum(RouteKind)6192"
+            },
+            {
+              "astId": 6415,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "actionOrReversal",
+              "offset": 5,
+              "slot": "4",
+              "type": "t_uint8"
+            },
+            {
+              "astId": 6417,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "authorityEpoch",
+              "offset": 6,
+              "slot": "4",
+              "type": "t_uint64"
+            },
+            {
+              "astId": 6419,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "policyEpoch",
+              "offset": 14,
+              "slot": "4",
+              "type": "t_uint64"
+            },
+            {
+              "astId": 6421,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "live",
+              "offset": 22,
+              "slot": "4",
+              "type": "t_bool"
+            }
+          ],
+          "numberOfBytes": "160"
+        },
+        "t_struct(SettlementRecord)6360_storage": {
+          "encoding": "inplace",
+          "label": "struct TrustTypes.SettlementRecord",
+          "members": [
+            {
+              "astId": 6349,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "destination",
+              "offset": 0,
+              "slot": "0",
+              "type": "t_address"
+            },
+            {
+              "astId": 6351,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "amount",
+              "offset": 0,
+              "slot": "1",
+              "type": "t_uint256"
+            },
+            {
+              "astId": 6353,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "settlementCommitment",
+              "offset": 0,
+              "slot": "2",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6355,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "proceedsCommitment",
+              "offset": 0,
+              "slot": "3",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6357,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "evidenceHash",
+              "offset": 0,
+              "slot": "4",
+              "type": "t_bytes32"
+            },
+            {
+              "astId": 6359,
+              "contract": "implementation/src/TrustToken.sol:TrustToken",
+              "label": "consumedCustody",
+              "offset": 0,
+              "slot": "5",
+              "type": "t_bool"
+            }
+          ],
+          "numberOfBytes": "192"
+        },
+        "t_uint256": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        },
+        "t_uint48": {
+          "encoding": "inplace",
+          "label": "uint48",
+          "numberOfBytes": "6"
+        },
+        "t_uint64": {
+          "encoding": "inplace",
+          "label": "uint64",
+          "numberOfBytes": "8"
+        },
+        "t_uint8": {
+          "encoding": "inplace",
+          "label": "uint8",
+          "numberOfBytes": "1"
+        }
+      }
+    }
+  },
+  {
+    "abi": [
+      {
+        "inputs": [
+          {
+            "internalType": "enum MockBoundDependency.Mode",
+            "name": "mode_",
+            "type": "uint8"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "config_",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "commandHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint8",
+            "name": "",
+            "type": "uint8"
+          },
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "bindingHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint64",
+            "name": "",
+            "type": "uint64"
+          }
+        ],
+        "name": "assess",
+        "outputs": [
+          {
+            "internalType": "uint8",
+            "name": "outcome",
+            "type": "uint8"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "commandEcho",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "bindingEcho",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "evidenceHash",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "config",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "configurationDigest",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "mode",
+        "outputs": [
+          {
+            "internalType": "enum MockBoundDependency.Mode",
+            "name": "",
+            "type": "uint8"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      }
+    ],
+    "contract": "MockBoundDependency",
+    "creationBytecode": {
+      "byteLength": 906,
+      "keccak256": "0x954f7d576546c40af9020e2f70968ca01c9090c2fc80e6aeb5ed22343af8d058",
+      "linkReferences": {},
+      "sha256": "4873120e1f2efd26a40feb0261bd5d0ccf30f98c50021575f05ef419283404bc"
+    },
+    "foundryCrossCheck": {
+      "artifactPath": "out/MockBoundDependency.sol/MockBoundDependency.json",
+      "artifactSha256": "54a0a09cab667af3af7b7feb6ec028179d0a8472b18d358146b1631a9128e6b2",
+      "checks": {
+        "abi": true,
+        "creationBytecode": true,
+        "immutableReferences": true,
+        "methodIdentifiers": true,
+        "runtimeTemplate": true,
+        "storageLayout": true
+      }
+    },
+    "id": "implementation/test/mocks/MockBoundDependency.sol:MockBoundDependency",
+    "methodIdentifiers": {
+      "assess(bytes32,uint8,address,address,uint256,bytes32,uint64)": "8d2f868f",
+      "config()": "79502c55",
+      "configurationDigest()": "3f1fe95d",
+      "mode()": "295a5212"
+    },
+    "runtimeTemplate": {
+      "byteLength": 751,
+      "immutableReferences": {
+        "6796": [
+          {
+            "length": 32,
+            "start": 207
+          },
+          {
+            "length": 32,
+            "start": 380
+          }
+        ],
+        "6798": [
+          {
+            "length": 32,
+            "start": 298
+          },
+          {
+            "length": 32,
+            "start": 473
+          }
+        ]
+      },
+      "keccak256": "0xff4c60002754aef287b9f926df346d7e744d3c296b6149a2b1328ebf07f29b6f",
+      "linkReferences": {},
+      "sha256": "995eca29c458a9159784e379af38db231fc6cce94b91cf9ac08f83cb7f1dc52f"
+    },
+    "source": "implementation/test/mocks/MockBoundDependency.sol",
+    "storageLayout": {
+      "storage": [],
+      "types": null
+    }
+  }
+]

@@ -52,6 +52,36 @@ contract TrustTokenKontrolTest {
         require(!token.routeLive(), "route persisted");
     }
 
+    function testKontrol_NonincreasingFreezeStuttersProjection() external {
+        (TrustToken token,) = _deploy(MockBoundDependency.Mode.APPLICABLE);
+        TrustTypes.ActionRequest memory initial = _request(token, TrustTypes.ActionKind.FREEZE, 20, 10 ether);
+        token.executeRegulatoryAction(initial);
+        uint256 balanceBefore = token.balanceOf(address(this));
+        bytes32 bindingBefore = _binding(token);
+
+        TrustTypes.ActionRequest memory equal = _request(token, TrustTypes.ActionKind.FREEZE, 21, 10 ether);
+        vm.expectRevert();
+        token.executeRegulatoryAction(equal);
+        require(token.getFrozenTokens(address(this)) == 10 ether, "equal changed frozen target");
+        require(token.balanceOf(address(this)) == balanceBefore, "equal changed balance");
+        require(_binding(token) == bindingBefore, "equal changed binding");
+        require(token.actionRecord(equal.actionId).lifecycle == TrustTypes.Lifecycle.NONE, "equal record changed");
+        require(token.receipt(equal.actionId).receiptHash == bytes32(0), "equal receipt changed");
+        require(!token.nonceUsed(AUTHORITY_REF, 1, equal.nonce), "equal nonce consumed");
+        require(!token.routeLive(), "equal route persisted");
+
+        TrustTypes.ActionRequest memory decrease = _request(token, TrustTypes.ActionKind.FREEZE, 22, 5 ether);
+        vm.expectRevert();
+        token.executeRegulatoryAction(decrease);
+        require(token.getFrozenTokens(address(this)) == 10 ether, "decrease changed frozen target");
+        require(token.balanceOf(address(this)) == balanceBefore, "decrease changed balance");
+        require(_binding(token) == bindingBefore, "decrease changed binding");
+        require(token.actionRecord(decrease.actionId).lifecycle == TrustTypes.Lifecycle.NONE, "decrease record changed");
+        require(token.receipt(decrease.actionId).receiptHash == bytes32(0), "decrease receipt changed");
+        require(!token.nonceUsed(AUTHORITY_REF, 1, decrease.nonce), "decrease nonce consumed");
+        require(!token.routeLive(), "decrease route persisted");
+    }
+
     function testKontrol_LiquidateExactDeltaReceiptAndFinalLog() external {
         (TrustToken token,) = _deploy(MockBoundDependency.Mode.APPLICABLE);
         TrustTypes.ActionRequest memory request = _request(token, TrustTypes.ActionKind.LIQUIDATE, 2, 9 ether);
@@ -135,11 +165,9 @@ contract TrustTokenKontrolTest {
     }
 
     /// @dev Implemented by erc-trust-log-assertions.k over KEVM's final log cell.
-    function _assertFinalReceiptLogK(
-        address emitter,
-        TrustTypes.ActionRequest memory request,
-        bytes32 receiptHash
-    ) internal {
+    function _assertFinalReceiptLogK(address emitter, TrustTypes.ActionRequest memory request, bytes32 receiptHash)
+        internal
+    {
         bytes memory assertionCall = abi.encodeWithSelector(
             bytes4(keccak256("assertFinalReceiptLog(address,bytes32,bytes32,bytes32,bytes32,bytes32)")),
             emitter,

@@ -1,0 +1,48 @@
+{
+  "schema": "erc-trust-kontrol-results-v2",
+  "candidate": "0.1.0-candidate.2",
+  "status": "PASS",
+  "toolchain": {
+    "kontrol": "1.0.255",
+    "kevm": "1.0.678",
+    "schedule": "CANCUN"
+  },
+  "runtimeBinding": {
+    "runtimeBytes": 24177,
+    "runtimeSha256": "aabc0bd11e517ba9b9b8dbd288bcee80ba29c58be7598708269d2ff79e7fcf9f"
+  },
+  "build": {
+    "status": "PASS",
+    "command": "FOUNDRY_PROFILE=kontrol kontrol build --foundry-project-root . --regen --rekompile"
+  },
+  "proofs": [
+    {
+      "id": "implementation%kontrol%TrustTokenKontrolTest.testKontrol_RawSensitiveSelectorsStayClosed():0",
+      "status": "PASS",
+      "elapsed": "1m32s"
+    },
+    {
+      "id": "implementation%kontrol%TrustTokenKontrolTest.testKontrol_OperationalFailureStuttersProjection():0",
+      "status": "PASS",
+      "elapsed": "2m35s"
+    },
+    {
+      "id": "implementation%kontrol%TrustTokenKontrolTest.testKontrol_NonincreasingFreezeStuttersProjection():0",
+      "status": "PASS",
+      "elapsed": "5m21s"
+    },
+    {
+      "id": "implementation%kontrol%TrustTokenKontrolTest.testKontrol_LiquidateExactDeltaReceiptAndFinalLog():1",
+      "status": "PASS",
+      "elapsed": "4m53s",
+      "reinitialized": true,
+      "lemmas": "implementation/kontrol/erc-trust-log-assertions.k:ERC-TRUST-LOG-ASSERTIONS"
+    }
+  ],
+  "summary": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0
+  },
+  "claimBoundary": "Independent symbolic cross-checks of four high-risk paths over the repaired candidate bytecode, including equal and decreasing FREEZE stutter. These proofs are not an exhaustive implementation proof."
+}

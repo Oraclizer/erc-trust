@@ -40,6 +40,25 @@ rule freeze_success_sets_absolute_target_and_consistent_receipt(
     satisfy stored.receiptHash == returned;
 }
 
+rule nonincreasing_freeze_reverts_and_stutters(
+    env e,
+    TrustTypes.ActionRequest request
+) {
+    harness.setMode(e, 0);
+    require request.action == TrustTypes.ActionKind.FREEZE;
+    require request.amount <= token.getFrozenTokens(e, request.subject);
+    storage initial = lastStorage;
+
+    token.executeRegulatoryAction@withrevert(e, request);
+
+    assert lastReverted,
+        "equal or decreasing FREEZE must revert";
+    assert lastStorage[token] == initial[token],
+        "nonincreasing FREEZE must preserve complete token storage";
+    assert !token.nonceUsed(e, request.authorityRef, request.authorityEpoch, request.nonce),
+        "nonincreasing FREEZE must not consume authorization";
+}
+
 rule successful_action_consumes_once_and_replay_stutters(
     env e,
     TrustTypes.ActionRequest request

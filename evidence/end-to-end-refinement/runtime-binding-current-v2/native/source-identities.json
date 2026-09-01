@@ -1,0 +1,72 @@
+[
+  {
+    "bytes": 598,
+    "path": "implementation/src/ERC7943RouteTicket.sol",
+    "sha256": "c22d53e2ef8dd192c8f45d22a4d1146a322c51bcc4aad540fd89f2514875ede1"
+  },
+  {
+    "bytes": 169,
+    "path": "implementation/src/interfaces/IERC165.sol",
+    "sha256": "e818244b1471cfe9f5daac43535dbc7314dc69ad82818cdfb828b1bcc3affa2e"
+  },
+  {
+    "bytes": 713,
+    "path": "implementation/src/interfaces/IERC20.sol",
+    "sha256": "414510c4de8ff90b066ea33f3d75ce7c4891f4ee43de55c52e333740d6fd8131"
+  },
+  {
+    "bytes": 1170,
+    "path": "implementation/src/interfaces/IERC7943.sol",
+    "sha256": "fa6e6696b7f049153d9c4c3776171641a1fa29cdbfe6927d81b3dd17be4be1f8"
+  },
+  {
+    "bytes": 2085,
+    "path": "implementation/src/interfaces/IERCTrust.sol",
+    "sha256": "708231812d6f0f4459e3fa41eaa296af6ff94064983a014f8432828006092584"
+  },
+  {
+    "bytes": 567,
+    "path": "implementation/src/interfaces/ITrustBoundDependency.sol",
+    "sha256": "9f1f28ec1c9864ace2732a57af5326d7058174fbef2f54ac6a8ee03046510741"
+  },
+  {
+    "bytes": 787,
+    "path": "implementation/src/LegacyRouteAuthorizer.sol",
+    "sha256": "17d9e5da3e82b2acec1be8da61c8d6e9cb5e7e726b8cb3c093577991a72b1b94"
+  },
+  {
+    "bytes": 1271,
+    "path": "implementation/src/TrustDecision.sol",
+    "sha256": "c4f5d7810a5fb285b494d75cdae1a26fcfeda0cc1706e50ccac30ea03b783c58"
+  },
+  {
+    "bytes": 727,
+    "path": "implementation/src/TrustErrors.sol",
+    "sha256": "a299a8a8efe1194a736eadd3873f1ab7d686f527a03848c314ed2e10b7ee9431"
+  },
+  {
+    "bytes": 3338,
+    "path": "implementation/src/TrustPolicyBinding.sol",
+    "sha256": "f24c15105c27ab3ed5586693343e5c1d83e22b79dad0b4c187a3bb341dba4a41"
+  },
+  {
+    "bytes": 1791,
+    "path": "implementation/src/TrustStorage.sol",
+    "sha256": "881783e28f8ec36e4571f48f407db4b63f8e736237f5e9f1044d916f3c066c6f"
+  },
+  {
+    "bytes": 57590,
+    "path": "implementation/src/TrustToken.sol",
+    "sha256": "282d0deacd7a5e15e05531e8a8967cddaddcdec635e2df8d4c346fae16d38ffa"
+  },
+  {
+    "bytes": 4235,
+    "path": "implementation/src/TrustTypes.sol",
+    "sha256": "cb16ab2f3d8df94d8a933c45367c594096d3f97f9a969998d89fc55837f4ab3e"
+  },
+  {
+    "bytes": 1789,
+    "path": "implementation/test/mocks/MockBoundDependency.sol",
+    "sha256": "28fcc007d20137c8c92d8ecf9c62e842bc75798acc55c5d3fed3932d46f7614d"
+  }
+]

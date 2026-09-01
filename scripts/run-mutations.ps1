@@ -229,7 +229,7 @@ $sourceFiles = @(
     Get-ChildItem -LiteralPath (Join-Path $repoRoot "implementation\src") -File -Recurse
     Get-ChildItem -LiteralPath (Join-Path $repoRoot "implementation\test") -File -Recurse
     Get-Item -LiteralPath (Join-Path $repoRoot "foundry.toml")
-) | Sort-Object FullName
+) | Sort-Object -CaseSensitive FullName
 $repoPrefix = [System.IO.Path]::GetFullPath($repoRoot).TrimEnd('\') + '\'
 $sourceRootMaterial = foreach ($file in $sourceFiles) {
     $fullName = [System.IO.Path]::GetFullPath($file.FullName)
@@ -340,6 +340,7 @@ $summary = [ordered]@{
     schema = "erc-trust-mutation-result-v1"
     candidateInput = [ordered]@{
         gitHead = (git -C $repoRoot rev-parse HEAD).Trim()
+        sourceRootAlgorithm = "sha256-raw-files-case-sensitive-path-order-v1"
         sourceRootSha256 = $sourceRootSha
     }
     toolchain = [ordered]@{

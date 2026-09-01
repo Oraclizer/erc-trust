@@ -91,7 +91,9 @@ const mutationSourceRoot = sha256(Buffer.from(
   "utf8",
 ));
 if (mutation.candidateInput?.sourceRootSha256 !== mutationSourceRoot) {
-  failures.push("mutation source root mismatch");
+  failures.push(
+    `mutation source root mismatch: ${mutation.candidateInput?.sourceRootSha256} != ${mutationSourceRoot}`,
+  );
 }
 if (
   mutation.total !== 12 || mutation.killed !== 12 || mutation.survived !== 0
