@@ -80,6 +80,8 @@ jobs:
         run: node scripts/generate-normative-kernel.mjs --check
       - name: Build release artifacts
         run: forge build
+      - name: Compile the generated kernel interface with the pinned compiler
+        run: node scripts/verify-normative-kernel-solidity.mjs
       - name: Recompute pure runtime fixture
         run: node scripts/generate-pure-runtime-fixture.mjs --check
       - name: Replay runtime semantic qualification

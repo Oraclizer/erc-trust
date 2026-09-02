@@ -39,8 +39,9 @@ from the endpoint's state. The native token and the ERC-3643 adapter filled
 that slot with different values, so the same logical reversal produced two
 different hashes in the two profiles.
 
-The design record requires the receipt to bind the authority reference; the
-version 1 preimime did not. Version 2 binds `authorityRef` directly.
+A reader of a receipt needs to know which authority issued the command, and
+the version 1 preimage did not bind that reference. Version 2 binds
+`authorityRef` directly.
 
 One preimage with a nonzero kind tag gives indexers one parser, gives the two
 profiles one formula, and makes the domain separation between the two receipt
@@ -63,9 +64,10 @@ effect was removed.
 
 ## Consequences
 
-- `Receipt` has 17 fields (version 1 had 12). The compile canary for the
-  version 1 tag change alone measured 189 bytes; the native size budget is
-  tracked in the implementation change.
+- `Receipt` has 17 fields (version 1 had 12). The native runtime size budget
+  for the larger receipt is tracked and measured in the implementation change;
+  an internal compile canary against the version 1 source, which is not a
+  published artifact, put the receipt tag alone at roughly 189 bytes.
 - The SDK receipt helper covers reversals; version 1 had no reversal helper
   and no reversal vector.
 
