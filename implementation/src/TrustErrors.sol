@@ -1,13 +1,9 @@
 // SPDX-License-Identifier: BSD-3-Clause
 pragma solidity 0.8.36;
 
-error TrustRejected(bytes32 commandId, uint16 reason);
-error TrustOperationalFailure(bytes32 commandId, uint16 reason, bytes32 dependencyRef);
-error TrustUnauthorized(address caller, bytes32 authorityRef);
-error TrustReplay(bytes32 key);
-error TrustInvalidCommand(bytes32 commandId, uint16 reason);
-error TrustRouteMismatch(bytes32 routeKey);
-error TrustTerminal(bytes32 actionId);
+// Errors the kernel does not define. The kernel errors (TrustRejected, TrustOperationalFailure,
+// TrustUnauthorized, TrustReplay, TrustInvalidCommand, TrustTerminal) and the native route error
+// (TrustRouteMismatch) are declared by the generated kernel interfaces and inherited from them.
 error TrustReentrancy();
 error TrustUnsupported(bytes4 selector);
 error TrustZeroAddress();

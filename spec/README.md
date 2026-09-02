@@ -6,11 +6,11 @@ preimages, the kernel interface and its ERC-165 identifier, shape rules, the
 case transition table, reason classes, and profile descriptors.
 
 > **Unaudited. Not for production.** The kernel described here is version 2 of
-> the wire format. The native token under `implementation/` consumes the
-> generated copy of this kernel (`decisions/08-native-wiring.md`); the ERC-3643
-> profile adapter still implements version 1 until its own change, and the
-> formal mapping and the runtime evidence for the successor code follow in later
-> changes. Conformance of an endpoint is established only by the evidence lanes
+> the wire format. The native token and the ERC-3643 profile adapter under
+> `implementation/` both consume the generated copy of this kernel
+> (`decisions/08-native-wiring.md`, `decisions/09-erc3643-profile-wiring.md`);
+> the formal mapping and the runtime evidence for the successor code follow in
+> later changes. Conformance of an endpoint is established only by the evidence lanes
 > in `../evidence/current-profile-release-index-v3.json`, never by this
 > directory.
 
@@ -21,7 +21,7 @@ case transition table, reason classes, and profile descriptors.
 | `erc-trust-kernel-v2.json` | The normative machine source. Edit this file and regenerate; never edit generated files. |
 | `decisions/` | Decision records that explain why the kernel has the shape it has, what was rejected, and what would reopen each decision. |
 | `generated/IERCTrustKernel.sol` | Generated Solidity types and interfaces. |
-| `../implementation/src/generated/IERCTrustKernel.sol` | Byte-identical copy consumed by the native token; the check mode rejects any drift between the two. |
+| `../implementation/src/generated/IERCTrustKernel.sol` | Byte-identical copy consumed by the native token and the ERC-3643 adapter; the check mode rejects any drift between the two. |
 | `generated/kernel-v2-abi.json` | Generated JSON ABI, selectors, calldata lengths, and interface identifier. |
 | `generated/kernel-v2.md` | Generated human-readable rendering of the schema. |
 | `../sdk/src/kernel-v2.ts` | Generated TypeScript types and hash helpers. |

@@ -2,7 +2,7 @@
 
 Status: frozen in kernel version 2 machine source (`caseTransitions`).
 Native endpoint wired (`implementation/src/TrustToken.sol`, see
-`08-native-wiring.md`); ERC-3643 profile wiring pending. Model wiring pending.
+`08-native-wiring.md`); ERC-3643 profile adapter wired (`09-erc3643-profile-wiring.md`). Model wiring pending.
 
 ## Decision
 

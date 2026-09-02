@@ -143,7 +143,7 @@ $mutations = @(
         Id = "MUT-12-ERC3643-FREEZE-DIRECTION"
         Fault = "Permit equal or decreasing targets through the ERC-3643 profile"
         File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
-        Old = "request.amount <= _frozenTargets[request.subject]"
+        Old = "request.amount <= _owned[request.subject].frozenTarget"
         New = "false"
         ExpectedOccurrences = 1
         Contract = "ERC3643ProfileUnitTest"
@@ -288,6 +288,219 @@ $mutations = @(
         ExpectedOccurrences = 2
         Contract = "TrustActionsUnitTest"
         Test = "testNonCanonicalCalldataIsRejected"
+    },
+    # ERC-3643 Verified Full profile: each fault removes or weakens one load-bearing consumer of the adapter
+    # (or of the governor) on kernel version 2. The detectors run against the clean-room fixture; the same
+    # suite also runs against the independent second fixture in continuous integration.
+    @{
+        Id = "MUT-27-ERC3643-OWNED-UPSTREAM-STATE"
+        Fault = "Act on upstream frozen or restricted state the adapter never declared or applied"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "            _upstreamFrozen(commandId, account) != owned.appliedFrozen`n                || _upstreamRestricted(commandId, account) != owned.restricted"
+        New = "false"
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testUndeclaredUpstreamStateFailsClosed"
+    },
+    @{
+        Id = "MUT-28-ERC3643-IMPORT-VERIFICATION"
+        Fault = "Import a manifest entry without verifying it against the live upstream state"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "            _upstreamFrozen(bytes32(0), entry.account) != entry.frozenAmount`n                || _upstreamRestricted(bytes32(0), entry.account) != entry.restricted"
+        New = "false"
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testImportManifestMustMatchUpstreamExactly"
+    },
+    @{
+        Id = "MUT-29-ERC3643-TOPOLOGY-GATE"
+        Fault = "Execute without checking that the sealed topology still holds"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "if (!_sealed || !profileGovernor.isFull(address(this))) {"
+        New = "if (!_sealed) {"
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testTopologyDriftFailsClosedAndClearsFull"
+    },
+    @{
+        Id = "MUT-30-ERC3643-DEPENDENCY-CODE"
+        Fault = "Execute against a Compliance whose runtime code changed since the seal"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "if (!_bindingLive(TrustKernelTypes.BindingKind.POLICY)) {"
+        New = "if (false) {"
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testDependencyCodeDriftFailsClosed"
+    },
+    @{
+        Id = "MUT-31-ERC3643-TRANSFER-POSTSTATE"
+        Fault = "Trust the forced transfer return value instead of verifying both balances"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "        if (`n            beforeFrom < amount || _upstreamBalance(commandId, from) != beforeFrom - amount`n                || _upstreamBalance(commandId, to) != beforeTo + amount`n        ) {"
+        New = "        if (beforeFrom < amount) {"
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testUpstreamFailureModesAreTyped"
+    },
+    @{
+        Id = "MUT-32-ERC3643-FROZEN-POSTSTATE"
+        Fault = "Skip the frozen-amount post-state check after a freeze or unfreeze call"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "if (_upstreamFrozen(commandId, account) != expected) {"
+        New = "if (false) {"
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testUpstreamFailureModesAreTyped"
+    },
+    @{
+        Id = "MUT-33-ERC3643-TERMINAL-REVERSAL-GUARD"
+        Fault = "Remove the terminal-case guard from reversal validation"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "        if (_cases[original.caseId].phase == TrustKernelTypes.CasePhase.TERMINAL) {`n            revert TrustTerminal(original.caseId);`n        }"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals"
+    },
+    @{
+        Id = "MUT-34-ERC3643-DEPENDENCY-ROOT-COMPARISON"
+        Fault = "Compare only the dependency epoch and ignore the root"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "if (request.dependencyRoot != _dependencyRoot || request.dependencyEpoch != _dependencyEpoch) {`n            revert TrustInvalidCommand(request.actionId, REASON_DEPENDENCY_BINDING);"
+        New = "if (request.dependencyEpoch != _dependencyEpoch) {`n            revert TrustInvalidCommand(request.actionId, REASON_DEPENDENCY_BINDING);"
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testRootAndEpochAreCheckedIndependently"
+    },
+    @{
+        Id = "MUT-35-ERC3643-ROOT-TAG"
+        Fault = "Compute the profile dependency root without its domain-separation tag"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "                TrustKernelTypes.DEPENDENCY_ROOT_TAG,"
+        New = "                bytes32(0),"
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testDescriptorDependencyStateAndInterfaceIdentifiers"
+    },
+    @{
+        Id = "MUT-36-ERC3643-CUSTODIAN-CONFINEMENT"
+        Fault = "Accept any nonzero custodian instead of confining custody to the adapter"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "request.subject != request.source || request.custodian != address(this)"
+        New = "request.subject != request.source || request.custodian == address(0)"
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testCustodyLifecycleAndConfinement"
+    },
+    @{
+        Id = "MUT-37-ERC3643-IDENTITY-ASSESSMENT"
+        Fault = "Skip the Identity Registry for the destination of a transfer action"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "            _assessIdentity(request.actionId, request.destination);"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testRejectedAndOperationalFailureFailClosedWithStutter"
+    },
+    @{
+        Id = "MUT-38-ERC3643-COMPLIANCE-ASSESSMENT"
+        Fault = "Skip the Compliance policy for a transfer action"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "            _assessCompliance(request.actionId, request.source, request.destination, request.amount);"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testRejectedAndOperationalFailureFailClosedWithStutter"
+    },
+    @{
+        Id = "MUT-39-ERC3643-RECEIPT-KIND-TAG"
+        Fault = "Tag adapter reversal receipts as action receipts"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "receiptKind: TrustKernelTypes.ReceiptKind.REVERSAL,"
+        New = "receiptKind: TrustKernelTypes.ReceiptKind.ACTION,"
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testReceiptBindsEvidenceAuthorityRootAndFinalEvent"
+    },
+    @{
+        Id = "MUT-40-ERC3643-CASE-CONFLICT"
+        Fault = "Allow an overlay head owned by another case to be stacked"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "} else if (caseState.headActionId != head.actionId) {"
+        New = "} else if (false) {"
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testOverlayCaseConflictsAndFamilies"
+    },
+    @{
+        Id = "MUT-41-ERC3643-CALLDATA-LENGTH"
+        Fault = "Accept action calldata of any length"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "_requireCalldataLength(ACTION_CALLDATA_LENGTH);"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testNonCanonicalCalldataIsRejected"
+    },
+    @{
+        Id = "MUT-42-ERC3643-REVERSAL-CALLDATA-LENGTH"
+        Fault = "Accept reversal calldata of any length"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "_requireCalldataLength(REVERSAL_CALLDATA_LENGTH);"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testNonCanonicalCalldataIsRejected"
+    },
+    @{
+        Id = "MUT-43-ERC3643-NONCE-CONSUMPTION"
+        Fault = "Do not consume the nonce of an action or a reversal"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "_usedNonces[_nonceKey(request.authorityRef, request.authorityEpoch, request.nonce)] = true;"
+        New = "_usedNonces[_nonceKey(request.authorityRef, request.authorityEpoch, request.nonce)] = false;"
+        ExpectedOccurrences = 2
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testReplayNonceAndAuthority"
+    },
+    @{
+        Id = "MUT-44-ERC3643-MANIFEST-BINDING"
+        Fault = "Seal a binding that does not commit to the import manifest"
+        File = "implementation\src\profiles\ProfileGovernor.sol"
+        Old = "                compliance,`n                manifestHash"
+        New = "                compliance,`n                bytes32(0)"
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testExactImportManifestOpensReversibleCases"
+    },
+    @{
+        Id = "MUT-45-ERC3643-IMPORTED-CASE"
+        Fault = "Import a declared frozen amount without opening its case and live head"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "if (entry.frozenAmount != 0) {"
+        New = "if (false) {"
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testExactImportManifestOpensReversibleCases"
+    },
+    @{
+        Id = "MUT-46-ERC3643-CUSTODY-CLOSURE"
+        Fault = "Skip matched custody closure before a custody disposition"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "if (!custody.active) return false;"
+        New = "return false;"
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals"
+    },
+    @{
+        Id = "MUT-47-ERC3643-REVERSAL-CLOSES-CHAIN"
+        Fault = "Close the case after every unfreeze even when an amendment parent remains"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "if (parent != bytes32(0)) {"
+        New = "if (false) {"
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testAllSixActionsAndReversals"
     }
 )
 

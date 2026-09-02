@@ -1,8 +1,8 @@
 # Decision 08: how the native endpoint consumes the kernel machine source
 
 Status: implemented for the native token (`implementation/src/TrustToken.sol`).
-The ERC-3643 profile adapter still implements kernel version 1 and is wired in
-the profile change.
+The ERC-3643 profile adapter consumes the same generated copy; see
+`09-erc3643-profile-wiring.md`.
 
 ## Decision
 
@@ -16,14 +16,15 @@ the profile change.
 2. The kernel errors are inherited from `IERCTrustKernel` and
    `IERCTrustNativeRoute`; `implementation/src/TrustErrors.sol` keeps only the
    errors the kernel does not define (reentrancy, unsupported selector, zero
-   address, insufficient balance and allowance) plus the version 1 set the
-   adapter still uses.
+   address, insufficient balance and allowance); the version 1 error set was
+   removed with the profile change.
 3. Native-only records live in `implementation/src/TrustNativeTypes.sol`
    (bindings, authorities, overlay heads and effect records, custody, pending
    route data, the route ticket) and the pure helpers in
    `implementation/src/TrustNativeDecision.sol`. The version 1 type library
    `implementation/src/TrustTypes.sol` and `implementation/src/TrustDecision.sol`
-   remain solely for the adapter until the profile change.
+   were removed with the profile change; the adapter keeps its own
+   implementation-only records in `implementation/src/profiles/ERC3643ProfileTypes.sol`.
 4. Every public view of the native token is either an ERC-20 view, an ERC-7943
    view, a kernel view, or a governance write. The version 1 convenience getters
    (`commandHash`, `reversalHash`, `routeLive`, `nonceUsed`, `isRestricted`,
