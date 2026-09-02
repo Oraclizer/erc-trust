@@ -23,10 +23,14 @@ Status: frozen in kernel version 2 machine source (`structs.ProfileDescriptor`,
    records; the exact-use ERC-7943 route) live in profile interfaces with
    their own identifiers and are not part of the kernel identifier.
 6. A non-mutating assessment view is OPTIONAL. An implementation that offers
-   one MUST use the signature of the execute function with `view` mutability
-   and MUST return the same outcome the execute path would produce; the
-   execute path itself already reveals the outcome class through its typed
-   errors under a simulated call.
+   one MUST name it `assessRegulatoryAction` or `assessRegulatoryReversal`,
+   MUST take the same single request parameter as the corresponding execute
+   function, MUST be `view`, and MUST produce the same outcome the execute
+   path would produce for the same request and state (returning on
+   applicable, reverting with the same typed error otherwise). These views
+   are not part of the kernel interface identifier. The execute path itself
+   already reveals the outcome class through its typed errors under a
+   simulated call, which is why the view is optional.
 
 ## Why
 

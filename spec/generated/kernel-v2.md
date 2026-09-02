@@ -119,7 +119,7 @@ The command family that opened the case. A case is bound to one family for its w
 
 ### ActionRequest
 
-Typed action command. 20 static words; calldata length for a single-parameter call is 4 + 640 = 644 bytes.
+Typed action command. 20 static words; calldata length for a single-parameter call is 4 + 640 = 644 bytes. Fields encode, hash, and appear in calldata in the order listed in fields.
 
 | # | Field | Type | Meaning |
 | --- | --- | --- | --- |
@@ -146,7 +146,7 @@ Typed action command. 20 static words; calldata length for a single-parameter ca
 
 ### ReversalRequest
 
-Typed reversal command. 12 static words; calldata length is 4 + 384 = 388 bytes.
+Typed reversal command. 12 static words; calldata length is 4 + 384 = 388 bytes. Fields encode, hash, and appear in calldata in the order listed in fields.
 
 | # | Field | Type | Meaning |
 | --- | --- | --- | --- |
@@ -171,7 +171,7 @@ Stored and returned by receipt(commandId). Every field except receiptHash is a r
 | --- | --- | --- | --- |
 | 0 | `receiptKind` | `uint8 (ReceiptKind)` |  |
 | 1 | `commandId` | `bytes32` | actionId or reversalId |
-| 2 | `commandKind` | `uint8` | ActionKind value for ACTION receipts, ReversalKind value for REVERSAL receipts |
+| 2 | `commandKind` | `uint8` | ActionKind value (0 to 5) when receiptKind is ACTION; ReversalKind value (0 to 2) when receiptKind is REVERSAL; any other combination is invalid |
 | 3 | `parentCommandId` | `bytes32` | zero for ACTION receipts; the reversed actionId for REVERSAL receipts |
 | 4 | `subject` | `address` |  |
 | 5 | `source` | `address` | ACTION: request.source; REVERSAL of SEIZE: the custodian; other reversals: the subject |
@@ -239,7 +239,7 @@ Returned by trustProfile(). A declaration about the endpoint, not proof of confo
 
 ## Hash preimages
 
-Encoding: abi.encode of the listed items in order; structs encode as their static tuple. The preimage is the canonical ABI encoding. An endpoint MUST reject calldata that is not the canonical encoding of the declared static tuple (wrong length, dirty high bits in narrow integer or address words, enum values outside the declared range). Therefore the canonical encoding and the received calldata bytes coincide for every accepted command.
+Encoding: abi.encode of the listed items in order; a struct encodes as the static tuple of its fields in the order listed in its fields array; every item occupies one 32-byte word (addresses and narrow integers are left-padded with zero bytes; enums are their uint8 value). The preimage is the canonical ABI encoding. An endpoint MUST reject calldata that is not the canonical encoding of the declared static tuple (wrong length, dirty high bits in narrow integer or address words, enum values outside the declared range). Therefore the canonical encoding and the received calldata bytes coincide for every accepted command.
 
 ### actionId
 
@@ -411,17 +411,18 @@ operation is the ActionKind value for actions and 0x80 | ReversalKind value for 
 
 ## Shape rules
 
-Common: `subject != 0`; `caseId != 0`; `provenanceCommitment != 0`; `dependencyRoot == current root`; `dependencyEpoch == current epoch`; `authorityEpoch == current authority epoch`; `validAfter <= block.timestamp <= validBefore`; `validBefore != 0`.
+Common: `domain == domain.keccak256 (reason 1)`; `actionId or reversalId == the derived identifier (reason 2)`; `validAfter <= block.timestamp <= validBefore and validBefore != 0 (reason 3)`; `authorityEpoch == current authority epoch (reason 4)`; `dependencyRoot == current root and dependencyEpoch == current epoch (reason 5)`; `subject != 0, caseId != 0, provenanceCommitment != 0 (reason 6)`.
 
 | Action | Rule |
 | --- | --- |
-| `FREEZE` | source: == subject; destination: == 0; custodian: == 0; amount: > current absolute frozen target of subject; settlementCommitment: == 0; proceedsCommitment: == 0; entitlementCommitment: == 0 |
+| `FREEZE` | source: == subject; destination: == 0; custodian: == 0; amount: > current absolute frozen target of subject (reason 12 otherwise); settlementCommitment: == 0; proceedsCommitment: == 0; entitlementCommitment: == 0 |
 | `RESTRICT` | source: == subject; destination: == 0; custodian: == 0; amount: == 0; settlementCommitment: == 0; proceedsCommitment: == 0; entitlementCommitment: == 0; state: subject not already restricted; otherwise reject with reason 13 |
-| `SEIZE` | source: == subject; custodian: != 0; destination: == custodian; amount: > 0 and available without consuming custody backing of another case; settlementCommitment: == 0; proceedsCommitment: == 0; entitlementCommitment: == 0 |
+| `SEIZE` | source: == subject; custodian: != 0; destination: == custodian; amount: > 0 and available without consuming custody backing of another case (reason 8 when custody backing would be consumed); settlementCommitment: == 0; proceedsCommitment: == 0; entitlementCommitment: == 0 |
 | `CONFISCATE` | source: != 0; destination: != 0 and != source; custodian: == 0; amount: > 0; path: direct when the case has no active custody (then source == subject); custody disposition when the case has active custody (then source == custodian, subject == declared prior holder, amount == encumbered amount); settlementCommitment: == 0; proceedsCommitment: == 0; entitlementCommitment: == 0 |
 | `LIQUIDATE` | same: CONFISCATE; settlementCommitment: != 0; proceedsCommitment: != 0; entitlementCommitment: == 0 |
-| `RECOVER` | same: CONFISCATE; settlementCommitment: == 0; proceedsCommitment: == 0; entitlementCommitment: != 0 and not previously consumed |
-| `reversal` | pairing: UNFREEZE only for an applied FREEZE, RELEASE only for an applied SEIZE, UNRESTRICT only for an applied RESTRICT; currentEffect: the referenced action MUST be the subject's live head for its overlay family, or the case's active custody for RELEASE; provenanceCommitment: != 0 |
+| `RECOVER` | same: CONFISCATE; settlementCommitment: == 0; proceedsCommitment: == 0; entitlementCommitment: != 0 and not previously consumed (reason 9) |
+| `reversal` | pairing: UNFREEZE only for an applied FREEZE, RELEASE only for an applied SEIZE, UNRESTRICT only for an applied RESTRICT (reason 7); currentEffect: the referenced action MUST be the subject's live head for its overlay family, or the case's active custody for RELEASE (reason 11; reason 8 when the custody record does not match); provenanceCommitment: != 0 |
+| `reasonBinding` | 1: domain mismatch; 2: identifier mismatch; 3: validity window; 4: authority epoch mismatch; 5: dependency root or epoch mismatch; 6: any per-action field rule below that is not given its own code; 7: reversal kind does not pair with the original action; 8: custody record missing, active when it must not be, or not matching; 9: entitlement commitment missing or already consumed; 10: case conflict (CT-3, CT-7, CT-14); 11: referenced action is not the subject's live head or the case's active custody; 12: FREEZE target not strictly greater than the current target; 13: no state change (second RESTRICT in its own case) |
 
 ## Case transitions
 
@@ -437,18 +438,18 @@ Machine-readable case state table. Each case is opened by its first applied comm
 | Rule | From | Command | Guard | To | Effect or reason |
 | --- | --- | --- | --- | --- | --- |
 | CT-1 | NONE | FREEZE | subject has no live FREEZE head | OPEN(FREEZE) | push effect head (parent = none) |
-| CT-2 | OPEN(FREEZE) | FREEZE | subject's live FREEZE head belongs to this case and amount > current target | OPEN(FREEZE) | push amendment head (parent = previous head) |
+| CT-2 | OPEN(FREEZE) | FREEZE | subject's live FREEZE head belongs to this case and amount > current target (reason 12 when not greater) | OPEN(FREEZE) | push amendment head (parent = previous head) |
 | CT-3 | NONE or OPEN of another case | FREEZE | subject's live FREEZE head belongs to a different open case | REJECT | reason 10 |
-| CT-4 | OPEN(FREEZE) | UNFREEZE(head) | referenced action is the live head | OPEN(FREEZE) if the popped head's parent belongs to this case, else TERMINAL | restore prior target, pop head |
+| CT-4 | OPEN(FREEZE) | UNFREEZE(head) | referenced action is the live head (reason 11 otherwise) | OPEN(FREEZE) if the popped head's parent belongs to this case, else TERMINAL | restore prior target, pop head |
 | CT-5 | NONE | RESTRICT | subject has no live RESTRICT head | OPEN(RESTRICT) |  |
 | CT-6 | OPEN(RESTRICT) | RESTRICT |  | REJECT | reason 13 |
 | CT-7 | NONE or OPEN of another case | RESTRICT | subject's live RESTRICT head belongs to a different open case | REJECT | reason 10 |
-| CT-8 | OPEN(RESTRICT) | UNRESTRICT(head) |  | TERMINAL | restore prior flag, pop head |
+| CT-8 | OPEN(RESTRICT) | UNRESTRICT(head) | referenced action is the live head (reason 11 otherwise) | TERMINAL | restore prior flag, pop head |
 | CT-9 | NONE | SEIZE |  | OPEN(CUSTODY) | open custody record |
 | CT-10 | OPEN(CUSTODY) | SEIZE |  | REJECT | reason 8 |
-| CT-11 | OPEN(CUSTODY) | RELEASE |  | TERMINAL | return encumbered amount to declared prior holder, close custody |
-| CT-12 | OPEN(CUSTODY) | CONFISCATE, LIQUIDATE, or RECOVER (custody disposition) |  | TERMINAL | consume the whole custody record |
-| CT-13 | NONE | CONFISCATE, LIQUIDATE, or RECOVER (direct) |  | TERMINAL |  |
+| CT-11 | OPEN(CUSTODY) | RELEASE | referenced SEIZE is the case's active custody (reason 11 or 8 otherwise) | TERMINAL | return encumbered amount to declared prior holder, close custody |
+| CT-12 | OPEN(CUSTODY) | CONFISCATE, LIQUIDATE, or RECOVER (custody disposition) | source == custodian, subject == declared prior holder, amount == encumbered amount (reason 8 otherwise) | TERMINAL | consume the whole custody record |
+| CT-13 | NONE | CONFISCATE, LIQUIDATE, or RECOVER (direct) | source == subject and the case has no prior command | TERMINAL |  |
 | CT-14 | OPEN(FREEZE) or OPEN(RESTRICT) | any non-family command |  | REJECT | reason 10 |
 | CT-15 | TERMINAL | any action or reversal |  | REJECT | TrustTerminal |
 

@@ -498,50 +498,74 @@
     {
       "id": "NEG-FIELD-BINDING",
       "mutation": "change one request field after deriving actionId",
+      "base": "ACTION-FREEZE",
       "expected": "TrustInvalidCommand reason 2; every mutation below yields a different derived actionId",
+      "rule": "each entry mutates exactly one field of the ACTION-FREEZE request from originalValue to mutatedValue, re-derives actionId with actionId zeroed, and records the result",
       "mutatedDerivedActionIds": [
         {
           "field": "subject",
+          "originalValue": "0x2222222222222222222222222222222222222222",
+          "mutatedValue": "0x4444444444444444444444444444444444444444",
           "derivedActionId": "0x264778026d17d41819fe7906c320a4d5bc4933d467488b1f78fb422abf53837d"
         },
         {
           "field": "amount",
+          "originalValue": "123",
+          "mutatedValue": "124",
           "derivedActionId": "0x44af4a0bbc0538c253d30550152a44e9a1cc775b209ed5bbac790debb1404c6e"
         },
         {
           "field": "caseId",
+          "originalValue": "0x9cd9cde4ab43f17d852960110b79f2d9e60cde1412097c4f70c710f0a363cea8",
+          "mutatedValue": "0x0101010101010101010101010101010101010101010101010101010101010101",
           "derivedActionId": "0xabd2ac4386d7fb46d8724b8dc640e482d3efe1bef472b3b023bec111f38958b1"
         },
         {
           "field": "dependencyRoot",
+          "originalValue": "0xb70eec0e65252f695f779201d9c277572da5c3621fe42b6c81590d881813a06d",
+          "mutatedValue": "0x0202020202020202020202020202020202020202020202020202020202020202",
           "derivedActionId": "0xe7bb6c39399b0144b0d11bad0e87ccf727e493136c717b3d5011b292e08acc58"
         },
         {
           "field": "dependencyEpoch",
+          "originalValue": "1",
+          "mutatedValue": "2",
           "derivedActionId": "0x549d880c6dacecc02a4e9d7a0dac3ff2960cc1f177f26ee3417b4687efa53165"
         },
         {
           "field": "provenanceCommitment",
+          "originalValue": "0x6666666666666666666666666666666666666666666666666666666666666666",
+          "mutatedValue": "0x0303030303030303030303030303030303030303030303030303030303030303",
           "derivedActionId": "0x8d24ff67acd0208ede9c2f931ec757bd48d9d347292561e47fe0cfb033078899"
         },
         {
           "field": "authorityRef",
+          "originalValue": "0x7777777777777777777777777777777777777777777777777777777777777777",
+          "mutatedValue": "0x0404040404040404040404040404040404040404040404040404040404040404",
           "derivedActionId": "0x7a71b141dbf015dd9232cc61b65931ac67df00e9dcdc843931db6d96a36b82ed"
         },
         {
           "field": "authorityEpoch",
+          "originalValue": "1",
+          "mutatedValue": "2",
           "derivedActionId": "0xd6b190fbb32e34f32837c62f4251d2625082ac654efffdbd6f273c69eb3512b7"
         },
         {
           "field": "nonce",
+          "originalValue": "1",
+          "mutatedValue": "2",
           "derivedActionId": "0xa05ced4bd55071d068e12198d3133e57073a76c8ab32cfb7d35e84309ac1426a"
         },
         {
           "field": "validAfter",
+          "originalValue": "0",
+          "mutatedValue": "1",
           "derivedActionId": "0x3a97a9a8d5fa53ff1682eda1882e0f34f9083b264c50491661470e8fb696fafd"
         },
         {
           "field": "validBefore",
+          "originalValue": "281474976710655",
+          "mutatedValue": "281474976710654",
           "derivedActionId": "0xde4abf92615d178908887d45ffa507e55a372f657fd0e88408f84a86667533e6"
         }
       ]

@@ -739,6 +739,8 @@ const mutatedIds = [
   ["validBefore", { ...freezeRequest, validBefore: validBefore - 1n }],
 ].map(([field, request]) => ({
   field,
+  originalValue: String(freezeRequest[field]),
+  mutatedValue: String(request[field]),
   derivedActionId: encodeCommandJs(actionTuple, { ...request, actionId: ZeroHash }),
 }));
 
@@ -782,7 +784,9 @@ const vectors = {
     {
       id: "NEG-FIELD-BINDING",
       mutation: "change one request field after deriving actionId",
+      base: "ACTION-FREEZE",
       expected: "TrustInvalidCommand reason 2; every mutation below yields a different derived actionId",
+      rule: "each entry mutates exactly one field of the ACTION-FREEZE request from originalValue to mutatedValue, re-derives actionId with actionId zeroed, and records the result",
       mutatedDerivedActionIds: mutatedIds,
     },
     {

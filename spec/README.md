@@ -43,8 +43,9 @@ generated file, fails the build.
 An implementer or indexer should be able to reproduce every value in
 `vectors/conformance-v2.json` from `erc-trust-kernel-v2.json` and the decision
 records alone, without reading the generator, the SDK, or the Solidity under
-`implementation/`. The reproduction needs keccak-256 and the ABI encoding of
-static tuples; nothing else. If a value cannot be reproduced from the schema
+`implementation/`. The reproduction needs keccak-256, the ABI encoding of
+static tuples, and the ABI rule for function selectors, all of which the
+schema restates under `hashes.encoding`; nothing else. If a value cannot be reproduced from the schema
 text, that is a defect in the schema, not in the reproduction.
 
 ## Relationship to the draft
