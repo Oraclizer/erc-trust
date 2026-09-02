@@ -318,7 +318,7 @@ contract TrustToken is TrustStorage, IERC20, IERC7943Fungible, IERCTrustKernel, 
                 record.action != TrustKernelTypes.ActionKind.FREEZE || record.subject != account
                     || record.amount != amount
             ) {
-                revert TrustRouteMismatch(ticket.routeKey);
+                revert TrustRouteMismatch(_routeId());
             }
             _applyActionPrepared(_requestFromRecord(ticket.commandId, record));
             return true;
@@ -327,25 +327,25 @@ contract TrustToken is TrustStorage, IERC20, IERC7943Fungible, IERCTrustKernel, 
             TrustNativeTypes.PendingReversal memory pending = _pendingReversals[ticket.commandId];
             TrustKernelTypes.ActionRecord storage original = _actions[pending.actionId];
             if (original.subject != account || original.priorAmount != amount) {
-                revert TrustRouteMismatch(ticket.routeKey);
+                revert TrustRouteMismatch(_routeId());
             }
             delete _pendingReversals[ticket.commandId];
             _applyReversalPrepared(ticket.commandId, pending);
             return true;
         }
-        revert TrustRouteMismatch(ticket.routeKey);
+        revert TrustRouteMismatch(_routeId());
     }
 
     function forcedTransfer(address from, address to, uint256 amount) external returns (bool result) {
         TrustNativeTypes.RouteTicket memory ticket =
             _consumeRoute(IERC7943Fungible.forcedTransfer.selector, keccak256(msg.data));
-        if (ticket.routeKind != TrustNativeTypes.RouteKind.ACTION) revert TrustRouteMismatch(ticket.routeKey);
+        if (ticket.routeKind != TrustNativeTypes.RouteKind.ACTION) revert TrustRouteMismatch(_routeId());
         TrustKernelTypes.ActionRecord storage record = _actions[ticket.commandId];
         if (
             !TrustNativeDecision.isForcedTransferAction(record.action) || record.source != from
                 || record.destination != to || record.amount != amount
         ) {
-            revert TrustRouteMismatch(ticket.routeKey);
+            revert TrustRouteMismatch(_routeId());
         }
         _applyActionPrepared(_requestFromRecord(ticket.commandId, record));
         return true;
@@ -434,6 +434,12 @@ contract TrustToken is TrustStorage, IERC20, IERC7943Fungible, IERCTrustKernel, 
         if (block.timestamp < request.validAfter || request.validBefore == 0 || block.timestamp > request.validBefore) {
             revert TrustInvalidCommand(request.reversalId, REASON_TIME);
         }
+        _requireAuthority(request.reversalId, request.authorityRef, request.authorityEpoch, caller);
+        if (request.dependencyRoot != _dependencyRoot || request.dependencyEpoch != _dependencyEpoch) {
+            revert TrustInvalidCommand(request.reversalId, REASON_DEPENDENCY_BINDING);
+        }
+        _requireFreshNonce(request.authorityRef, request.authorityEpoch, request.nonce);
+        if (request.provenanceCommitment == bytes32(0)) revert TrustInvalidCommand(request.reversalId, REASON_SHAPE);
         TrustKernelTypes.ActionRecord storage original = _actions[request.actionId];
         if (_cases[original.caseId].phase == TrustKernelTypes.CasePhase.TERMINAL) {
             revert TrustTerminal(original.caseId);
@@ -445,12 +451,6 @@ contract TrustToken is TrustStorage, IERC20, IERC7943Fungible, IERCTrustKernel, 
             revert TrustInvalidCommand(request.reversalId, REASON_REVERSAL_PAIRING);
         }
         _validateCurrentEffect(request.reversalId, request.actionId, request.reversal, original);
-        if (request.provenanceCommitment == bytes32(0)) revert TrustInvalidCommand(request.reversalId, REASON_SHAPE);
-        _requireAuthority(request.reversalId, request.authorityRef, request.authorityEpoch, caller);
-        if (request.dependencyRoot != _dependencyRoot || request.dependencyEpoch != _dependencyEpoch) {
-            revert TrustInvalidCommand(request.reversalId, REASON_DEPENDENCY_BINDING);
-        }
-        _requireFreshNonce(request.authorityRef, request.authorityEpoch, request.nonce);
         digest = _reversalHash(request, false);
     }
 
@@ -938,12 +938,8 @@ contract TrustToken is TrustStorage, IERC20, IERC7943Fungible, IERCTrustKernel, 
         bytes32 calldataHash,
         TrustNativeTypes.RouteKind routeKind
     ) internal {
-        bytes32 key = ERC7943RouteTicket.key(
-            address(this), selector, calldataHash, _dependencyRoot, _dependencyEpoch, commandId
-        );
         _routeTicket = TrustNativeTypes.RouteTicket({
             commandId: commandId,
-            routeKey: key,
             calldataHash: calldataHash,
             dependencyRoot: _dependencyRoot,
             selector: selector,
@@ -963,9 +959,14 @@ contract TrustToken is TrustStorage, IERC20, IERC7943Fungible, IERCTrustKernel, 
                 || ticket.calldataHash != calldataHash || ticket.dependencyRoot != _dependencyRoot
                 || ticket.dependencyEpoch != _dependencyEpoch
         ) {
-            revert TrustRouteMismatch(ticket.routeKey);
+            revert TrustRouteMismatch(_routeId());
         }
         delete _routeTicket;
+    }
+
+    /// @dev Identifier of the sensitive call being rejected; computed only on failure and never stored.
+    function _routeId() internal view returns (bytes32) {
+        return ERC7943RouteTicket.key(address(this), msg.sig, keccak256(msg.data));
     }
 
     /// @dev hashes.actionId (clearId) and hashes.commandHash over the raw calldata words, which equal

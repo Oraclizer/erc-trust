@@ -38,14 +38,14 @@ and operations require separate evidence.
 | Preserved FREEZE pilot | `pilot/` |
 | Exact result and release bindings | `evidence/` |
 | Isabelle/Solidity applicability | `evidence/isabelle-solidity-applicability.md` |
-| End-to-end evidence map | `evidence/end-to-end-refinement/README.md` |
-| End-to-end semantic decision | `evidence/end-to-end-refinement/semantic-alignment-decision.md` |
-| End-to-end theorem obligations | `evidence/end-to-end-refinement/theorem-obligations.md` |
-| Public current-profile release index | `evidence/current-profile-release-index-v2.json` |
-| Successor package qualification | `evidence/end-to-end-refinement/c-series-terminal-qualification-v2.json` |
-| Successor row qualification | `evidence/end-to-end-refinement/current-profile-row-qualifications-v2.json` |
-| Historical row qualification index | `evidence/end-to-end-refinement/m4-current-profile-row-qualifications-v1.json` |
-| Public two-layer runtime binding | `evidence/end-to-end-refinement/runtime-binding-current-profile-qualification-v3.json` |
+| End-to-end evidence map | `evidence/candidate-2/end-to-end-refinement/README.md` |
+| End-to-end semantic decision | `evidence/candidate-2/end-to-end-refinement/semantic-alignment-decision.md` |
+| End-to-end theorem obligations | `evidence/candidate-2/end-to-end-refinement/theorem-obligations.md` |
+| Public current-profile release index | `evidence/candidate-2/current-profile-release-index-v2.json` |
+| Successor package qualification | `evidence/candidate-2/end-to-end-refinement/c-series-terminal-qualification-v2.json` |
+| Successor row qualification | `evidence/candidate-2/end-to-end-refinement/current-profile-row-qualifications-v2.json` |
+| Historical row qualification index | `evidence/candidate-2/end-to-end-refinement/m4-current-profile-row-qualifications-v1.json` |
+| Public two-layer runtime binding | `evidence/candidate-2/end-to-end-refinement/runtime-binding-current-profile-qualification-v3.json` |
 | Public archive separation | `evidence/public-release/diet-manifest-v2.json`; historical removal set in `diet-manifest-v1.json`; `evidence/public-release/supersession-manifest-v1.json` |
 
 The product repository owns the ERC-TRUST model and implementation. The
@@ -176,7 +176,7 @@ theorem from Isabelle to EVM bytecode. The detailed row disposition is in
 `evidence/trust-ref-matrix.md`.
 
 The approved semantic alignment and theorem registry are recorded under
-`evidence/end-to-end-refinement/`. In the historical candidate 1 registry,
+`evidence/candidate-2/end-to-end-refinement/`. In the historical candidate 1 registry,
 six rows were discharged and the other 73 were open; those dispositions remain
 historical facts only. Candidate 2's successor profile rebinds all 49 Core and
 24 mandatory Supporting rows through
@@ -190,7 +190,7 @@ compatibility build, but its root theory-source license is not stated. It is
 therefore not adopted or vendored, and implementation is stopped at the
 dependency gate. Exact identity, hashes, replay command, semantic limits, and
 resume alternatives are recorded in
-`evidence/end-to-end-refinement/isabelle-evm-feasibility.md`.
+`evidence/candidate-2/end-to-end-refinement/isabelle-evm-feasibility.md`.
 
 The official Isabelle/Solidity AFP framework was source-inspected and its
 selected session was clean-built successfully. Its candidate disposition is
@@ -236,10 +236,10 @@ authorization, dependency, receipt, event, or whole-runtime behavior.
 Two exploratory full financial-core jobs, on CLI/server 8.17.1 and 8.19.1,
 both ended UNKNOWN because of provider internal error `4201170908`. They grant
 no proof credit. The targeted PASS and both provider-defect dispositions are
-recorded in `evidence/certora-financial-core-v2.json`.
+recorded in `evidence/candidate-2/certora-financial-core-v2.json`.
 
 The former `TrustToken.conf` 7/7 and inventory 12/12 runs remain historical
-candidate 1 evidence in `evidence/certora-results.json`; they are not presented
+candidate 1 evidence in `evidence/candidate-2/certora-results.json`; they are not presented
 as fresh candidate 2 proofs.
 
 #### Policy-binding classifier inputs
@@ -271,7 +271,7 @@ all four selected proofs:
 
 The final proof imports `erc-trust-log-assertions.k` to check the final
 canonical receipt log. Exact proof IDs and timings are in
-`evidence/kontrol-results-v2.json`.
+`evidence/candidate-2/kontrol-results-v2.json`.
 
 ### Deterministic build and mutation
 

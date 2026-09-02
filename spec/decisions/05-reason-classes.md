@@ -18,7 +18,10 @@ The `uint16` reason carried by `TrustInvalidCommand`, `TrustRejected`, and
 The listed codes inside each class are normative. An implementation MAY add
 codes inside a class and MUST NOT reuse a listed code with a different
 meaning. The reason is diagnostic; conformance tests key on the error
-selector and the class, not on a specific unlisted code.
+selector and the class, not on a specific unlisted code. The native profile's
+mapping from dependency-boundary failures to the class 200 codes is fixed in
+`profileInterfaces.ITrustBoundDependency.failureCodes`: an outcome word above
+2 is a malformed response (202), not an echo mismatch (203).
 
 ## Why
 

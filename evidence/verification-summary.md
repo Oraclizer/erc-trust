@@ -1,5 +1,13 @@
 # ERC-TRUST reference-candidate verification summary
 
+> Status note: this document describes the shipped candidate `0.1.0-candidate.2`.
+> On the successor branch the receipts it cites live under `evidence/candidate-2/`,
+> and the lane-by-lane status of the successor code is
+> `evidence/current-profile-release-index-v3.json` under
+> `evidence/evidence-mode.json`. This document is rewritten in the documentation
+> change that closes the successor; until then its numbers are candidate 2 history,
+> not measurements of the successor code.
+
 Candidate: `0.1.0-candidate.2`
 
 Binding: the Git commit containing `evidence/release-manifest.json` and that
@@ -62,9 +70,11 @@ The deterministic `TrustToken` hashes are:
 - runtime-bytecode SHA-256:
   `aabc0bd11e517ba9b9b8dbd288bcee80ba29c58be7598708269d2ff79e7fcf9f`.
 
-Machine-readable details are in `evidence/certora-financial-core-v2.json`,
-`evidence/kontrol-results-v2.json`, `evidence/deterministic-build.json`,
-`evidence/mutation-results.json`, `evidence/model-regression.json`, and
+Machine-readable details are in
+`evidence/candidate-2/certora-financial-core-v2.json`,
+`evidence/candidate-2/kontrol-results-v2.json`,
+`evidence/candidate-2/deterministic-build.json`,
+`evidence/candidate-2/mutation-results.json`, `evidence/model-regression.json`, and
 `evidence/pilot-regression.json`.
 
 ## Residual risks and non-claims

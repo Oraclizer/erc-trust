@@ -18,3 +18,8 @@ fs_permissions = [{ access = "read", path = "./vectors/conformance-v2.json" }]
 
 [profile.kontrol]
 test = "implementation/kontrol"
+
+[fmt]
+# The kernel copy is generated from the normative machine source and checked byte for byte;
+# the formatter must not rewrite it.
+ignore = ["implementation/src/generated/**/*"]

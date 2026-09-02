@@ -177,7 +177,7 @@ if (failures.length) {
 }
 const bytes = present.reduce((sum, path) => sum + statSync(resolve(root, path)).size, 0);
 console.log(JSON.stringify({
-  status: releaseTree ? "PASS_PUBLIC_RELEASE_TREE" : "PASS_PUBLIC_TREE_SUCCESSOR_DEVELOPMENT",
+  status: releaseTree ? "PASS_PUBLIC_RELEASE_TREE" : "PUBLIC_TREE_SUCCESSOR_DEVELOPMENT",
   evidenceMode: evidenceMode.mode,
   candidate: evidenceMode.candidate,
   pendingLanes: successorIndex.pendingLanes,

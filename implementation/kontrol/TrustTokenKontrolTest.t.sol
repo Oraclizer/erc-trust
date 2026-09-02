@@ -19,7 +19,7 @@ contract TrustTokenKontrolTest {
     bytes32 internal constant AUTHORITY_REF = keccak256("KONTROL-AUTHORITY");
     bytes32 internal constant SCHEMA = keccak256("KONTROL-SCHEMA");
     uint256 internal constant SUPPLY = 1_000_000 ether;
-    uint256 internal constant ROUTE_TICKET_PACKED_SLOT = 28;
+    uint256 internal constant ROUTE_TICKET_PACKED_SLOT = 27;
     address internal constant DESTINATION = address(0xbeef);
 
     function testKontrol_RawSensitiveSelectorsStayClosed() external {

@@ -65,25 +65,29 @@ if (sha256(runtime) !== manifest.trustToken.runtimeSha256) {
 }
 if (runtime.length > 24576) failures.push(`EIP-170 overflow: ${runtime.length}`);
 
-const deterministic = JSON.parse(
-  readFileSync(resolve(root, "evidence", "deterministic-build.json"), "utf8"),
-);
-for (const [name, build] of [["buildA", deterministic.buildA], ["buildB", deterministic.buildB]]) {
-  if (build.creationSha256 !== sha256(creation) || build.creationBytes !== creation.length) {
-    failures.push(`deterministic ${name} creation identity mismatch`);
+const deterministicPath = resolve(root, "evidence", "deterministic-build.json");
+if (!existsSync(deterministicPath)) {
+  console.log("deterministic build receipt absent: lane pending, governed by evidence/current-profile-release-index-v3.json");
+} else {
+  const deterministic = JSON.parse(readFileSync(deterministicPath, "utf8"));
+  for (const [name, build] of [["buildA", deterministic.buildA], ["buildB", deterministic.buildB]]) {
+    if (build.creationSha256 !== sha256(creation) || build.creationBytes !== creation.length) {
+      failures.push(`deterministic ${name} creation identity mismatch`);
+    }
+    if (build.runtimeSha256 !== sha256(runtime) || build.runtimeBytes !== runtime.length) {
+      failures.push(`deterministic ${name} runtime identity mismatch`);
+    }
   }
-  if (build.runtimeSha256 !== sha256(runtime) || build.runtimeBytes !== runtime.length) {
-    failures.push(`deterministic ${name} runtime identity mismatch`);
-  }
+  if (
+    deterministic.buildA.creationSha256 !== deterministic.buildB.creationSha256
+    || deterministic.buildA.runtimeSha256 !== deterministic.buildB.runtimeSha256
+  ) failures.push("deterministic build pair mismatch");
 }
-if (
-  deterministic.buildA.creationSha256 !== deterministic.buildB.creationSha256
-  || deterministic.buildA.runtimeSha256 !== deterministic.buildB.runtimeSha256
-) failures.push("deterministic build pair mismatch");
 
-const mutation = JSON.parse(
-  readFileSync(resolve(root, "evidence", "mutation-results.json"), "utf8"),
-);
+const mutationPath = resolve(root, "evidence", "mutation-results.json");
+const declaredMutationIds = [...readFileSync(resolve(root, "scripts", "run-mutations.ps1"), "utf8")
+  .matchAll(/^\s*Id = "([^"]+)"/gm)].map((match) => match[1]);
+const mutation = existsSync(mutationPath) ? JSON.parse(readFileSync(mutationPath, "utf8")) : null;
 const mutationInputs = execFileSync(
   "git",
   ["ls-files", "-z", "implementation/src", "implementation/test", "foundry.toml"],
@@ -93,30 +97,38 @@ const mutationSourceRoot = sha256(Buffer.from(
   mutationInputs.map((path) => `${sha256(readFileSync(resolve(root, path)))}  ${path}\n`).join(""),
   "utf8",
 ));
-if (mutation.candidateInput?.sourceRootSha256 !== mutationSourceRoot) {
-  failures.push(
-    `mutation source root mismatch: ${mutation.candidateInput?.sourceRootSha256} != ${mutationSourceRoot}`,
-  );
-}
-if (
-  mutation.schema !== "erc-trust-mutation-result-v2" || !Array.isArray(mutation.results)
-  || mutation.results.length !== mutation.total || mutation.killed !== mutation.total
-  || mutation.survived !== 0 || mutation.total < 1
-) failures.push("mutation result count mismatch");
-try {
-  execFileSync("git", ["merge-base", "--is-ancestor", mutation.candidateInput.gitHead, "HEAD"], {
-    cwd: root,
-    stdio: "ignore",
-  });
-} catch {
-  failures.push("mutation gitHead is not an ancestor of the candidate");
-}
-for (const result of mutation.results ?? []) {
+if (mutation === null) {
+  // A missing receipt is a pending lane in successor-development mode; the lane index decides
+  // whether that is acceptable. Release mode is enforced by the lane verifier.
+  console.log("mutation receipt absent: lane pending, governed by evidence/current-profile-release-index-v3.json");
+} else {
+  if (mutation.candidateInput?.sourceRootSha256 !== mutationSourceRoot) {
+    failures.push(
+      `mutation source root mismatch: ${mutation.candidateInput?.sourceRootSha256} != ${mutationSourceRoot}`,
+    );
+  }
+  const receiptIds = (mutation.results ?? []).map((result) => result.id);
   if (
-    result.result !== "KILLED" || result.anchorOccurrences < 1
-    || result.detectorDiscovered !== 1 || result.detectorExecuted !== 1
-    || result.mutantCompiled !== true
-  ) failures.push(`invalid mutation receipt: ${result.id}`);
+    mutation.schema !== "erc-trust-mutation-result-v2" || !Array.isArray(mutation.results)
+    || mutation.results.length !== mutation.total || mutation.killed !== mutation.total
+    || mutation.survived !== 0 || declaredMutationIds.length === 0
+    || JSON.stringify(receiptIds) !== JSON.stringify(declaredMutationIds)
+  ) failures.push(`mutation receipt does not match the declared campaign of ${declaredMutationIds.length} faults`);
+  try {
+    execFileSync("git", ["merge-base", "--is-ancestor", mutation.candidateInput.gitHead, "HEAD"], {
+      cwd: root,
+      stdio: "ignore",
+    });
+  } catch {
+    failures.push("mutation gitHead is not an ancestor of the candidate");
+  }
+  for (const result of mutation.results ?? []) {
+    if (
+      result.result !== "KILLED" || result.anchorOccurrences < 1
+      || result.detectorDiscovered !== 1 || result.detectorExecuted !== 1
+      || result.mutantCompiled !== true
+    ) failures.push(`invalid mutation receipt: ${result.id}`);
+  }
 }
 
 if (failures.length) {

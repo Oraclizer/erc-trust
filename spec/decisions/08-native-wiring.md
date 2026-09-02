@@ -40,10 +40,16 @@ the profile change.
    chain is dropped because a case holds at most one custody (`CT-10`).
 6. The exact-use ERC-7943 route keeps the version 1 shape: the wrapper
    validates, assesses, and consumes, then self-calls the sensitive selector,
-   which consumes the ticket and applies the prepared command. The ticket binds
-   the endpoint, selector, calldata hash, current dependency root and epoch, and
-   command identifier. The commitments the action record does not retain are
-   held in `PendingCommitments` only for the route path and deleted on apply.
+   which consumes the ticket and applies the prepared command. The ticket stores
+   the command identifier, the selector, the calldata hash, and the dependency
+   root and epoch current at preparation; consumption compares every stored
+   field against the sensitive call and the current dependency state, and the
+   sensitive selector additionally compares the prepared record against its
+   arguments. `TrustRouteMismatch` carries an identifier of the rejected call
+   (domain, endpoint, selector, calldata hash) that is computed only on failure
+   and never stored; no stored key is part of the enforcement. The commitments
+   the action record does not retain are held in `PendingCommitments` only for
+   the route path and deleted on apply.
 7. The receipt hash is computed over the domain followed by the sixteen
    non-hash fields of the memory struct, which are laid out as sixteen
    consecutive words and therefore equal the canonical ABI encoding of
@@ -58,11 +64,17 @@ the profile change.
    custody record, the subject's overlay heads, and the case record.
 9. `getFrozenTokens` saturates the stored target at the current balance
    (decision 02, cross-case rule); `FREEZE` amendments and `UNFREEZE`
-   restoration operate on the stored target.
-10. Validation order: domain, identifier, replay of the command identifier,
-    validity window, authority epoch and account, dependency root and epoch,
-    nonce freshness, then the per-action shape and case rules. A replayed or
-    stale command is therefore reported before any state-dependent rule.
+   restoration operate on the stored target. Ordinary transfer capacity first
+   subtracts custody backing from the balance and then applies the stored frozen
+   target to the remainder, floored at zero; `getFrozenTokens` reports only the
+   saturated target, so an integrator that needs the ordinary capacity of a
+   custodian account must use `canTransfer`, not `balance - getFrozenTokens`.
+10. Validation order for actions and reversals alike: domain, identifier,
+    replay of the command identifier, validity window, authority epoch and
+    account, dependency root and epoch, nonce freshness, then the shape rules
+    and the state-dependent rules (case phase, lifecycle, pairing, live head).
+    A replayed or stale command is therefore reported before any
+    state-dependent rule.
 
 ## Why
 

@@ -732,7 +732,8 @@ contract TrustActionsUnitTest is TrustTestBase {
         _expectOperationalFailure(MockBoundDependency.Mode.MALFORMED, 202, "short return");
         _expectOperationalFailure(MockBoundDependency.Mode.LONG_RETURN, 202, "long return");
         _expectOperationalFailure(MockBoundDependency.Mode.WRONG_ECHO, 203, "command echo mismatch");
-        _expectOperationalFailure(MockBoundDependency.Mode.NONCANONICAL, 203, "outcome word above two");
+        _expectOperationalFailure(MockBoundDependency.Mode.WRONG_BINDING_ECHO, 203, "binding echo mismatch");
+        _expectOperationalFailure(MockBoundDependency.Mode.NONCANONICAL, 202, "outcome word above two");
         _expectOperationalFailure(MockBoundDependency.Mode.OPERATIONAL_FAILURE, 204, "dependency reported failure");
 
         token = _deploy(dependency);
@@ -802,33 +803,67 @@ contract TrustActionsUnitTest is TrustTestBase {
 
     function testNonCanonicalCalldataIsRejected() external {
         TrustKernelTypes.ActionRequest memory request = _request(TrustKernelTypes.ActionKind.FREEZE, 150, 1 ether);
-        bytes memory trailing =
-            bytes.concat(abi.encodeCall(token.executeRegulatoryAction, (request)), bytes32(uint256(1)));
-        (bool trailingOk, bytes memory trailingResult) = _call(trailing);
-        _assert(!trailingOk && trailingResult.length == 0, "trailing calldata must generic-revert");
+        _expectGenericRevert(
+            bytes.concat(abi.encodeCall(token.executeRegulatoryAction, (request)), bytes32(uint256(1))),
+            "trailing action calldata must generic-revert"
+        );
+        _expectGenericRevert(
+            bytes.concat(abi.encodeCall(token.executeERC7943Action, (request)), bytes32(uint256(1))),
+            "trailing route calldata must generic-revert"
+        );
 
-        // Dirty high bits in the dependencyEpoch word, with the identifier derived over the dirty bytes so
-        // that only the canonical-encoding check can reject the command.
-        bytes memory dirty = abi.encodeCall(token.executeRegulatoryAction, (request));
-        dirty[4 + 32 * 10] = 0x01;
-        bytes32 dirtyId = _rawActionId(dirty);
-        for (uint256 i = 0; i < 32; ++i) {
-            dirty[4 + 32 + i] = dirtyId[i];
-        }
-        (bool dirtyOk,) = _call(dirty);
-        _assert(!dirtyOk, "dirty narrow-integer word rejected");
+        // Dirty high bits in a narrow integer word (dependencyEpoch, uint64), an address word (subject), and a
+        // uint48 word (validBefore), each with the identifier derived over the dirty bytes so that only the
+        // canonical-encoding check can reject the command.
+        _expectDirtyWordRejected(request, 10, "dirty uint64 word rejected");
+        _expectDirtyWordRejected(request, 3, "dirty address word rejected");
+        _expectDirtyWordRejected(request, 19, "dirty uint48 word rejected");
         _assertEq(token.getFrozenTokens(address(this)), 0, "dirty stutter");
 
-        bytes memory outOfRange = abi.encodeCall(token.executeRegulatoryAction, (request));
+        // An enum value outside the declared range on a request that every kernel rule would otherwise accept.
+        TrustKernelTypes.ActionRequest memory confiscate =
+            _request(TrustKernelTypes.ActionKind.CONFISCATE, 151, 1 ether);
+        bytes memory outOfRange = abi.encodeCall(token.executeRegulatoryAction, (confiscate));
         outOfRange[4 + 32 * 2 + 31] = 0x06;
         bytes32 outOfRangeId = _rawActionId(outOfRange);
         for (uint256 i = 0; i < 32; ++i) {
             outOfRange[4 + 32 + i] = outOfRangeId[i];
         }
-        (bool rangeOk,) = _call(outOfRange);
-        _assert(!rangeOk, "enum out of range rejected");
+        _expectGenericRevert(outOfRange, "enum out of range is rejected by decoding, not by a kernel rule");
+        token.executeRegulatoryAction(confiscate);
 
         token.executeRegulatoryAction(request);
+        TrustKernelTypes.ReversalRequest memory unfreeze =
+            _reversal(request.actionId, TrustKernelTypes.ReversalKind.UNFREEZE, 152);
+        _expectGenericRevert(
+            bytes.concat(abi.encodeCall(token.executeRegulatoryReversal, (unfreeze)), bytes32(uint256(1))),
+            "trailing reversal calldata must generic-revert"
+        );
+        _expectGenericRevert(
+            bytes.concat(abi.encodeCall(token.executeERC7943Reversal, (unfreeze)), bytes32(uint256(1))),
+            "trailing reversal route calldata must generic-revert"
+        );
+        _assertEq(token.getFrozenTokens(address(this)), 1 ether, "reversal stutter");
+        token.executeRegulatoryReversal(unfreeze);
+    }
+
+    function _expectGenericRevert(bytes memory data, string memory message) internal {
+        (bool ok, bytes memory result) = _call(data);
+        _assert(!ok && result.length == 0, message);
+    }
+
+    function _expectDirtyWordRejected(
+        TrustKernelTypes.ActionRequest memory request,
+        uint256 word,
+        string memory message
+    ) internal {
+        bytes memory dirty = abi.encodeCall(token.executeRegulatoryAction, (request));
+        dirty[4 + 32 * word] = 0x01;
+        bytes32 dirtyId = _rawActionId(dirty);
+        for (uint256 i = 0; i < 32; ++i) {
+            dirty[4 + 32 + i] = dirtyId[i];
+        }
+        _expectGenericRevert(dirty, message);
     }
 
     // ------------------------------------------------------------------

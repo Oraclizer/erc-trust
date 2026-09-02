@@ -251,12 +251,11 @@ $mutations = @(
     },
     @{
         Id = "MUT-23-CALLDATA-LENGTH"
-        Fault = "Accept action calldata of any length"
+        Fault = "Accept action calldata of any length on both action entrypoints"
         File = "implementation\src\TrustToken.sol"
         Old = "_requireCalldataLength(ACTION_CALLDATA_LENGTH);"
         New = ""
         ExpectedOccurrences = 2
-        FirstOnly = $true
         Contract = "TrustActionsUnitTest"
         Test = "testNonCanonicalCalldataIsRejected"
     },
@@ -269,6 +268,26 @@ $mutations = @(
         ExpectedOccurrences = 1
         Contract = "TrustActionsUnitTest"
         Test = "testAssessmentOutcomesAndReasonClasses"
+    },
+    @{
+        Id = "MUT-25-BINDING-ECHO"
+        Fault = "Accept a dependency response whose binding echo does not match the bound binding"
+        File = "implementation\src\TrustDependencyBinding.sol"
+        Old = "if (commandEcho != commandHash || bindingEcho != binding.bindingHash) {"
+        New = "if (commandEcho != commandHash) {"
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testAssessmentOutcomesAndReasonClasses"
+    },
+    @{
+        Id = "MUT-26-REVERSAL-CALLDATA-LENGTH"
+        Fault = "Accept reversal calldata of any length on both reversal entrypoints"
+        File = "implementation\src\TrustToken.sol"
+        Old = "_requireCalldataLength(REVERSAL_CALLDATA_LENGTH);"
+        New = ""
+        ExpectedOccurrences = 2
+        Contract = "TrustActionsUnitTest"
+        Test = "testNonCanonicalCalldataIsRejected"
     }
 )
 

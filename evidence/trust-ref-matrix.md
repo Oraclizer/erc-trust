@@ -1,5 +1,13 @@
 # TRUST-REF evidence matrix
 
+> Status note: this document describes the shipped candidate `0.1.0-candidate.2`.
+> On the successor branch the receipts it cites live under `evidence/candidate-2/`,
+> and the lane-by-lane status of the successor code is
+> `evidence/current-profile-release-index-v3.json` under
+> `evidence/evidence-mode.json`. This document is rewritten in the documentation
+> change that closes the successor; until then its numbers are candidate 2 history,
+> not measurements of the successor code.
+
 Candidate: `0.1.0-candidate.2`
 
 Scope: bounded native reference plus the sealed ERC-3643 conformance fixture
