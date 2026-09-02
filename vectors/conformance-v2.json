@@ -3,6 +3,7 @@
   "kernelVersion": 2,
   "candidateStatus": "unaudited-not-for-production",
   "source": "spec/erc-trust-kernel-v2.json",
+  "scenarios": "Every action and reversal vector is an independent scenario evaluated against the same initial fixture state; the file is not a single execution trace. In particular the SEIZE case is closed by RELEASE in one scenario and by the custody-disposition CONFISCATE in another, and those two are mutually exclusive on chain. The fixture does not model the authority registry, so the vectors fix authority epochs (1, and 3 for the custody disposition) without asserting that they are current; reason 4 is not exercised by these vectors.",
   "constants": {
     "domain": "0xb5303e4083d2781d6c7d6a68d30b6354ebda11f0a2a037b946d87b3eec40b74e",
     "dependencyRootTag": "0x8dd0ff19b096a49997e6e0fa1eea2dee5d61291bb86d3d10640e517c9e6cbe18",

@@ -1418,6 +1418,7 @@
   ],
   "vectors": {
     "fixture": "vectors/conformance-v2.json is generated from this schema. Every value in it is reproducible from this file: identifiers by the hash rules above, calldata as selector followed by the canonical encoding.",
-    "negativeFieldBinding": "NEG-FIELD-BINDING lists, for the ACTION-FREEZE request, one mutation per bound field: the mutated field name, its original value, and its mutated value are recorded next to the derived identifier so a reader can recompute each identifier without guessing the mutation."
+    "negativeFieldBinding": "NEG-FIELD-BINDING lists, for the ACTION-FREEZE request, one mutation per bound field: the mutated field name, its original value, and its mutated value are recorded next to the derived identifier so a reader can recompute each identifier without guessing the mutation.",
+    "scenarios": "Every action and reversal vector is an independent scenario evaluated against the same initial fixture state; the file is not a single execution trace. In particular the SEIZE case is closed by RELEASE in one scenario and by the custody-disposition CONFISCATE in another, and those two are mutually exclusive on chain. The fixture does not model the authority registry, so the vectors fix authority epochs (1, and 3 for the custody disposition) without asserting that they are current; reason 4 is not exercised by these vectors."
   }
 }
