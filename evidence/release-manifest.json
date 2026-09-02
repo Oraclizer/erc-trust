@@ -33,7 +33,7 @@
   "sourceTree": {
     "scope": "protected-release-inputs-v1",
     "algorithm": "sha256-canonical-utf8-lf-lines-v1",
-    "root": "22658e9ba07376f63627da1b1079da87d38c847018380048f52e16557dec9154",
+    "root": "f5573b5454ce524d8865253b5012037b6bf4f4eb67df42d86203c97f98514ad6",
     "files": {
       "evidence/certora-financial-core-v2.json": "51b10c1e0bef155ba73d462ac5f5c0f32dedffaffa8f57172064ccbe65496e09",
       "evidence/certora-results.json": "b7b0f45f046b245b9483d2a9874cc8629a5001c7f0e7b42bf38c5dbc2eaa7e93",
@@ -769,7 +769,7 @@
       "scripts/capture-runtime-fixture.mjs": "fc19dc899aff8b03e49002eb1e3eca7a24da957a15ba93f082990a7475dc1512",
       "scripts/check-deterministic-build.ps1": "0ee90f62697c3470973e6bfb367f45bd331c75977c66dd202320b935e83b6027",
       "scripts/generate-current-profile-runtime-bridge-v1.mjs": "79806d2a3477b91358c1c613356b74193d18bf0bb91401bbafcef2aeaa3e1e12",
-      "scripts/generate-normative-kernel.mjs": "e4496ea43ada7bfc7d7e01766814e207b6392f4dfcf9ee7bb0779c02abab72cb",
+      "scripts/generate-normative-kernel.mjs": "4c6038256a952a4da183a2f53de581ad4077e5f4936c34803d3c5a6f66918b3b",
       "scripts/generate-public-evidence-map.mjs": "53d740230a0fa72201d26c29aa48b3b82dec7d20ca0b75eb9564ae06f60f3462",
       "scripts/generate-public-pilot-binding.mjs": "79cdcf457a8d7e39a468e8c596424906cb23b17d7c49cb6deed26b6e661f4030",
       "scripts/generate-public-runtime-inputs.mjs": "423f574a3687fc7f4824c5f219459af40a032b4c5efd13bae7657311f0db0d7a",
@@ -804,7 +804,7 @@
       "sdk/src/kernel-v2.ts": "6992c474af67ff23551129668fbe82241c02e2906b403ef546769a1278b20808",
       "sdk/tsconfig.json": "ab1fbd2f2716bff50d8cc0fc6dadddd815c66dce51ec938fc24eb5e505e717c0",
       "vectors/conformance-v1.json": "b0b3417a1680d6f5b6726369dae2198fe8b12ee4ad2cbbacc707fd7e6067e962",
-      "vectors/conformance-v2.json": "bf9cd660b293f9b96588ebbc2fb623c89a5e3c756450bfb1198ae3fbb14f6e4c"
+      "vectors/conformance-v2.json": "2cfe459d35e5ab0ec8ed35f66ca47d0061131d7bfee9a43013faeb7edf95b485"
     }
   },
   "trustToken": {

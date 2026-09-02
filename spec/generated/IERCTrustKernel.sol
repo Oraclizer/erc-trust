@@ -95,7 +95,7 @@ library TrustKernelTypes {
         DISPOSITION
     }
 
-    /// @dev Typed action command. 20 static words; calldata length for a single-parameter call is 4 + 640 = 644 bytes.
+    /// @dev Typed action command. 20 static words; calldata length for a single-parameter call is 4 + 640 = 644 bytes. Fields encode, hash, and appear in calldata in the order listed in fields.
     struct ActionRequest {
         bytes32 domain;
         bytes32 actionId;
@@ -119,7 +119,7 @@ library TrustKernelTypes {
         uint48 validBefore;
     }
 
-    /// @dev Typed reversal command. 12 static words; calldata length is 4 + 384 = 388 bytes.
+    /// @dev Typed reversal command. 12 static words; calldata length is 4 + 384 = 388 bytes. Fields encode, hash, and appear in calldata in the order listed in fields.
     struct ReversalRequest {
         bytes32 domain;
         bytes32 reversalId;
