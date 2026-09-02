@@ -24,6 +24,18 @@ const roots = [
   "vectors",
   "scripts",
 ];
+// Lane receipts of the successor: protected by the manifest whenever present, but their
+// presence is governed by the lane index, so a missing receipt is a pending lane, not a
+// missing release input.
+const optionalFiles = [
+  "evidence/deterministic-build.json",
+  "evidence/mutation-results.json",
+  "evidence/foundry-results-v3.json",
+  "evidence/isabelle-results-v3.json",
+  "evidence/kontrol-results-v3.json",
+  "evidence/certora-results-v3.json",
+  "evidence/runtime-binding-v3.json",
+];
 const singleFiles = [
   "formal-dependencies.lock.json",
   "formal-dependencies-public-v1.lock.json",
@@ -33,13 +45,11 @@ const singleFiles = [
   "sdk/tsconfig.json",
   "evidence/claim-matrix.md",
   "evidence/clean-room-provenance.md",
-  "evidence/deterministic-build.json",
   "evidence/evidence-mode.json",
   "evidence/current-profile-release-index-v3.json",
   "evidence/model-regression.json",
   "evidence/isabelle-solidity-applicability.md",
   "evidence/mutator-inventory.md",
-  "evidence/mutation-results.json",
   "evidence/pilot-mutation-results.json",
   "evidence/pilot-regression.json",
   "evidence/trust-ref-matrix.md",
@@ -64,7 +74,7 @@ for (const path of singleFiles) {
   }
 }
 const files = tracked
-  .filter((path) => roots.some((entry) => path === entry || path.startsWith(`${entry}/`)) || singleFiles.includes(path))
+  .filter((path) => roots.some((entry) => path === entry || path.startsWith(`${entry}/`)) || singleFiles.includes(path) || optionalFiles.includes(path))
   .filter((path) => existsSync(resolve(root, path)))
   .filter((path) => !path.includes("/node_modules/") && !path.includes("/dist/"))
   .sort();

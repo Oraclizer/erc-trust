@@ -71,7 +71,6 @@ library TrustNativeTypes {
     /// @dev Same-transaction exact-use ticket for the sensitive ERC-7943 selectors.
     struct RouteTicket {
         bytes32 commandId;
-        bytes32 routeKey;
         bytes32 calldataHash;
         bytes32 dependencyRoot;
         bytes4 selector;

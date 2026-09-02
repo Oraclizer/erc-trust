@@ -39,7 +39,7 @@ abstract contract TrustTestBase {
     /// @dev Storage slot of the packed tail of `_routeTicket` (selector, kind, epoch, live). The
     ///      whole ticket is deleted after use, so a nonzero word means a live ticket. Verified against
     ///      `forge inspect TrustToken storage-layout`.
-    uint256 internal constant ROUTE_TICKET_PACKED_SLOT = 28;
+    uint256 internal constant ROUTE_TICKET_PACKED_SLOT = 27;
 
     TrustToken internal token;
     MockBoundDependency internal dependency;

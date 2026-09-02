@@ -12,7 +12,8 @@ contract MockBoundDependency is ITrustBoundDependency {
         MALFORMED,
         WRONG_ECHO,
         NONCANONICAL,
-        LONG_RETURN
+        LONG_RETURN,
+        WRONG_BINDING_ECHO
     }
 
     Mode public immutable mode;
@@ -43,6 +44,9 @@ contract MockBoundDependency is ITrustBoundDependency {
                 mstore(0, 1)
                 return(0, 32)
             }
+        }
+        if (mode == Mode.WRONG_BINDING_ECHO) {
+            return (0, commandHash, bytes32(uint256(bindingHash) ^ 1), keccak256("wrong-binding"));
         }
         if (mode == Mode.WRONG_ECHO) {
             return (0, bytes32(uint256(commandHash) ^ 1), bindingHash, keccak256("wrong"));

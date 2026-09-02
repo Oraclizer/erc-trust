@@ -33,9 +33,12 @@ or `DISPOSITION` (opened and immediately closed by a direct `CONFISCATE`,
    case; the overlay stays live and its frozen target saturates at the
    current balance when observed.
 6. A `TERMINAL` case accepts no action and no reversal (`TrustTerminal`).
+7. A case is bound to one family, so an open `CUSTODY` case accepts no overlay
+   command: a `FREEZE` or `RESTRICT` filed against it is rejected (reason 10,
+   `CT-16`).
 
 The machine-readable table is `caseTransitions` in the schema; rules `CT-1`
-to `CT-15` are the normative statement, and this record is the explanation.
+to `CT-16` are the normative statement, and this record is the explanation.
 
 ## Why
 

@@ -1,7 +1,7 @@
 param(
   [Parameter(Mandatory = $true)]
   [string]$ForgeExecutable,
-  [string]$TemporaryBaseDirectory = 'C:\tmp',
+  [string]$TemporaryBaseDirectory = [System.IO.Path]::GetTempPath(),
   [string]$OutputPath,
   [switch]$UseWslForge,
   [switch]$CheckReceipt
@@ -129,6 +129,26 @@ function Invoke-IsolatedBuild([string]$Name) {
   }
 }
 
+# Source root of the tree that produced the builds, with the same algorithm as the mutation campaign.
+$sourceFileNames = [string[]]@(
+  @(
+    Get-ChildItem -LiteralPath (Join-Path $repoRoot 'implementation\src') -File -Recurse
+    Get-ChildItem -LiteralPath (Join-Path $repoRoot 'implementation\test') -File -Recurse
+    Get-Item -LiteralPath (Join-Path $repoRoot 'foundry.toml')
+  ) | ForEach-Object { $_.FullName }
+)
+[System.Array]::Sort($sourceFileNames, [System.StringComparer]::Ordinal)
+$repoPrefix = [System.IO.Path]::GetFullPath($repoRoot).TrimEnd('\') + '\'
+$sourceRootMaterial = foreach ($sourceFileName in $sourceFileNames) {
+  $fullName = [System.IO.Path]::GetFullPath($sourceFileName)
+  if (-not $fullName.StartsWith($repoPrefix, [System.StringComparison]::OrdinalIgnoreCase)) {
+    throw "source file escaped repository root: $fullName"
+  }
+  $relative = $fullName.Substring($repoPrefix.Length).Replace('\', '/')
+  "$((Get-FileHash -LiteralPath $fullName -Algorithm SHA256).Hash.ToLowerInvariant())  $relative`n"
+}
+$sourceRootSha = Get-Sha256Bytes ([System.Text.Encoding]::UTF8.GetBytes(($sourceRootMaterial -join '')))
+
 [System.IO.Directory]::CreateDirectory($runRoot) | Out-Null
 $buildA = Invoke-IsolatedBuild 'build-a'
 $buildB = Invoke-IsolatedBuild 'build-b'
@@ -141,8 +161,13 @@ $pass = (
 )
 
 $result = [ordered]@{
-  schema = 'erc-trust-deterministic-build-v1'
+  schema = 'erc-trust-deterministic-build-v2'
   status = if ($pass) { 'PASS' } else { 'FAIL' }
+  candidateInput = [ordered]@{
+    gitHead = (git -C $repoRoot rev-parse HEAD).Trim()
+    sourceRootAlgorithm = 'sha256-raw-files-case-sensitive-path-order-v1'
+    sourceRootSha256 = $sourceRootSha
+  }
   toolchain = [ordered]@{
     forge = '1.7.1'
     forgeCommit = '4072e48705af9d93e3c0f6e29e93b5e9a40caed8'

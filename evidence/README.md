@@ -8,8 +8,9 @@ Start with:
 
 - [`claim-matrix.md`](claim-matrix.md): which claim is backed by which
   artifact, tool, and command.
-- [`verification-summary.md`](verification-summary.md): the current results
-  across the Foundry, Certora, Kontrol, KEVM, and Isabelle lanes.
+- [`verification-summary.md`](verification-summary.md): the candidate 2 results
+  across the Foundry, Certora, Kontrol, KEVM, and Isabelle lanes; the successor is
+  tracked lane by lane in `current-profile-release-index-v3.json`.
 - [`trust-ref-matrix.md`](trust-ref-matrix.md): how the reference maps onto
   the specification surface.
 

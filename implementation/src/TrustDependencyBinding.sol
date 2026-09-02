@@ -86,10 +86,10 @@ library TrustDependencyBinding {
             bindingEcho := mload(add(output, 0x60))
             evidence := mload(add(output, 0x80))
         }
-        if (
-            rawWord > uint8(TrustKernelTypes.AssessmentOutcome.OPERATIONAL_FAILURE) || commandEcho != commandHash
-                || bindingEcho != binding.bindingHash
-        ) {
+        if (rawWord > uint8(TrustKernelTypes.AssessmentOutcome.OPERATIONAL_FAILURE)) {
+            return (TrustKernelTypes.AssessmentOutcome.OPERATIONAL_FAILURE, bytes32(0), REASON_CALL_FAILED_OR_MALFORMED);
+        }
+        if (commandEcho != commandHash || bindingEcho != binding.bindingHash) {
             return (TrustKernelTypes.AssessmentOutcome.OPERATIONAL_FAILURE, bytes32(0), REASON_ECHO_MISMATCH);
         }
         // rawWord was bounded above by the largest AssessmentOutcome value.

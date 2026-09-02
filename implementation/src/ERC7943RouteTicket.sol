@@ -3,20 +3,10 @@ pragma solidity 0.8.36;
 
 import {TrustKernelTypes} from "./generated/IERCTrustKernel.sol";
 
-/// @notice Key of the same-transaction exact-use ticket that gates the sensitive ERC-7943 selectors.
+/// @notice Identifier of a sensitive ERC-7943 call, carried by TrustRouteMismatch when the exact-use
+///         ticket does not admit the call. The ticket itself is enforced field by field, not by this key.
 library ERC7943RouteTicket {
-    function key(
-        address endpoint,
-        bytes4 selector,
-        bytes32 calldataHash,
-        bytes32 dependencyRoot,
-        uint64 dependencyEpoch,
-        bytes32 commandId
-    ) internal pure returns (bytes32) {
-        return keccak256(
-            abi.encode(
-                TrustKernelTypes.DOMAIN, endpoint, selector, calldataHash, dependencyRoot, dependencyEpoch, commandId
-            )
-        );
+    function key(address endpoint, bytes4 selector, bytes32 calldataHash) internal pure returns (bytes32) {
+        return keccak256(abi.encode(TrustKernelTypes.DOMAIN, endpoint, selector, calldataHash));
     }
 }

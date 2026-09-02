@@ -84,6 +84,30 @@ function inputsRoot(path) {
   return paths.length === 0 ? null : rootOf(paths);
 }
 
+// Source root recomputed from the tree of a commit, so a receipt's declared commit must actually
+// produce the declared root; ancestry alone would accept any earlier commit.
+function sourceRootOfCommit(commit) {
+  const listing = execFileSync(
+    "git",
+    ["ls-tree", "-r", "-z", commit, "--", "implementation/src", "implementation/test", "foundry.toml"],
+    { cwd: root, encoding: "utf8" },
+  );
+  const entries = listing.split("\0").filter(Boolean).map((line) => {
+    const [meta, path] = line.split("\t");
+    return { blob: meta.split(" ")[2], path };
+  });
+  entries.sort((left, right) => (left.path < right.path ? -1 : left.path > right.path ? 1 : 0));
+  const material = entries.map((entry) => {
+    const blob = execFileSync("git", ["cat-file", "blob", entry.blob], { cwd: root, maxBuffer: 64 * 1024 * 1024 });
+    return `${sha256(blob)}  ${entry.path}\n`;
+  }).join("");
+  return sha256(Buffer.from(material, "utf8"));
+}
+
+function declaredMutationIds() {
+  return [...bytes("scripts/run-mutations.ps1").toString("utf8").matchAll(/^\s*Id = "([^"]+)"/gm)].map((match) => match[1]);
+}
+
 function isAncestor(commit) {
   try {
     execFileSync("git", ["merge-base", "--is-ancestor", commit, "HEAD"], { cwd: root, stdio: "ignore" });
@@ -131,10 +155,21 @@ if (!exists(receiptPaths.runtime)) {
   lanes.runtime = pending("runtime", "this change: deterministic build receipt for the successor source");
 } else {
   const deterministic = json(receiptPaths.runtime);
+  check(deterministic.schema === "erc-trust-deterministic-build-v2", "deterministic build receipt schema");
   check(deterministic.status === "PASS", "deterministic build status");
   check(JSON.stringify(deterministic.buildA) === JSON.stringify(deterministic.buildB), "deterministic build pair mismatch");
   check(deterministic.buildA.runtimeBytes <= EIP170_LIMIT, "runtime exceeds the EIP-170 limit");
   check(String(deterministic.toolchain.solidity).startsWith("0.8.36"), "deterministic build compiler pin");
+  check(deterministic.candidateInput.sourceRootAlgorithm === identity.sourceRootAlgorithm, "deterministic build source root algorithm");
+  check(deterministic.candidateInput.sourceRootSha256 === identity.sourceRootSha256, "deterministic build receipt binds a different source root");
+  check(isAncestor(deterministic.candidateInput.gitHead), "deterministic build commit is not an ancestor");
+  check(sourceRootOfCommit(deterministic.candidateInput.gitHead) === deterministic.candidateInput.sourceRootSha256,
+    "deterministic build commit does not produce the declared source root");
+  const manifest = json("evidence/release-manifest.json");
+  check(manifest.trustToken.runtimeSha256 === deterministic.buildA.runtimeSha256
+    && manifest.trustToken.runtimeBytes === deterministic.buildA.runtimeBytes
+    && manifest.trustToken.creationSha256 === deterministic.buildA.creationSha256,
+    "deterministic build receipt binds a different runtime than the release manifest");
   runtimeTemplateSha256 = deterministic.buildA.runtimeSha256;
   lanes.runtime = {
     status: "PASS",
@@ -169,6 +204,11 @@ if (!exists(receiptPaths.mutation)) {
   check(mutation.candidateInput.sourceRootSha256 === identity.sourceRootSha256, "mutation receipt binds a different source root");
   check(mutation.total === mutation.results.length && mutation.killed === mutation.total && mutation.survived === 0,
     "mutation counts");
+  const declared = declaredMutationIds();
+  check(declared.length > 0 && JSON.stringify(mutation.results.map((result) => result.id)) === JSON.stringify(declared),
+    "mutation receipt does not list exactly the declared campaign in scripts/run-mutations.ps1");
+  check(sourceRootOfCommit(mutation.candidateInput.gitHead) === mutation.candidateInput.sourceRootSha256,
+    "mutation commit does not produce the declared source root");
   for (const result of mutation.results) {
     check(result.result === "KILLED" && result.anchorOccurrences >= 1 && result.detectorDiscovered === 1
       && result.detectorExecuted === 1 && result.mutantCompiled === true, `invalid mutation receipt: ${result.id}`);
@@ -266,7 +306,7 @@ check(exists(historicalIndexPath), "historical candidate 2 index missing");
 const index = {
   schemaVersion: 3,
   kind: "ERC_TRUST_CURRENT_PROFILE_RELEASE_INDEX_V3",
-  status: mode.mode === "release" ? "PASS_CURRENT_PROFILE_RELEASE_CANDIDATE" : "PASS_SUCCESSOR_DEVELOPMENT",
+  status: mode.mode === "release" ? "PASS_CURRENT_PROFILE_RELEASE_CANDIDATE" : "CONSISTENT_SUCCESSOR_DEVELOPMENT",
   candidate,
   mode: mode.mode,
   identity,

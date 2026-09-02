@@ -505,7 +505,7 @@
   "hashes": {
     "encoding": {
       "rule": "abi.encode of the listed items in order; a struct encodes as the static tuple of its fields in the order listed in its fields array; every item occupies one 32-byte word (addresses and narrow integers are left-padded with zero bytes; enums are their uint8 value)",
-      "canonicality": "The preimage is the canonical ABI encoding. An endpoint MUST reject calldata that is not the canonical encoding of the declared static tuple (wrong length, dirty high bits in narrow integer or address words, enum values outside the declared range). Therefore the canonical encoding and the received calldata bytes coincide for every accepted command.",
+      "canonicality": "The preimage is the canonical ABI encoding. An endpoint MUST reject calldata that is not the canonical encoding of the declared static tuple (wrong length, dirty high bits in narrow integer or address words, enum values outside the declared range). Therefore the canonical encoding and the received calldata bytes coincide for every accepted command. That rejection is a plain revert with no typed error and no reason code: it is a decoding failure of the wire format, not a kernel outcome, and it consumes nothing.",
       "endpoint": "endpoint(address) is the address of the conformance endpoint that executes the command: the token for the native profile, the adapter for a profile endpoint. It is the address a caller invokes, so for a proxy-fronted endpoint it is the proxy address, never the implementation address. In Solidity it is address(this) of the executing contract.",
       "chainId": "chainId(uint256) is the EIP-155 chain identifier of the chain the endpoint is deployed on (block.chainid in Solidity).",
       "signatures": "A canonical function signature is the function name followed by the parenthesized comma-separated canonical parameter types with no spaces. A struct parameter is written as the parenthesized comma-separated list of its field types in fields order; enum fields are uint8. Return types, parameter names, and mutability do not participate. The selector is the first four bytes of keccak256 of the signature."
@@ -1054,7 +1054,8 @@
           "mutability": "view"
         }
       ],
-      "operationEncoding": "operation is the ActionKind value for actions and 0x80 | ReversalKind value for reversals"
+      "operationEncoding": "operation is the ActionKind value for actions and 0x80 | ReversalKind value for reversals",
+      "failureCodes": "200 when the bound runtime code has changed, 201 when the configuration digest has changed, 202 when the call reverts, returns a length other than 128 bytes, or returns an outcome word above 2, 203 when the command echo or the binding echo mismatches, 204 when the dependency itself reports OPERATIONAL_FAILURE"
     }
   },
   "shapeRules": {
@@ -1083,7 +1084,7 @@
       "settlementCommitment": "== 0",
       "proceedsCommitment": "== 0",
       "entitlementCommitment": "== 0",
-      "state": "subject not already restricted; otherwise reject with reason 13"
+      "state": "the subject has no live RESTRICT head owned by this case; a second RESTRICT in its own case is rejected with reason 13, and a live RESTRICT head owned by another case is rejected with reason 10 (CT-7)"
     },
     "SEIZE": {
       "source": "== subject",
@@ -1098,7 +1099,7 @@
       "source": "!= 0",
       "destination": "!= 0 and != source",
       "custodian": "== 0",
-      "amount": "> 0",
+      "amount": "> 0; on the direct path the amount MUST be available without consuming custody backing of another case (reason 8 when custody backing would be consumed)",
       "path": "direct when the case has no active custody (then source == subject); custody disposition when the case has active custody (then source == custodian, subject == declared prior holder, amount == encumbered amount)",
       "settlementCommitment": "== 0",
       "proceedsCommitment": "== 0",
@@ -1131,7 +1132,7 @@
       "7": "reversal kind does not pair with the original action",
       "8": "custody record missing, active when it must not be, or not matching",
       "9": "entitlement commitment missing or already consumed",
-      "10": "case conflict (CT-3, CT-7, CT-14)",
+      "10": "case conflict (CT-3, CT-7, CT-14, CT-16)",
       "11": "referenced action is not the subject's live head or the case's active custody",
       "12": "FREEZE target not strictly greater than the current target",
       "13": "no state change (second RESTRICT in its own case)"
@@ -1290,6 +1291,13 @@
         "command": "any action or reversal",
         "to": "REJECT",
         "error": "TrustTerminal"
+      },
+      {
+        "id": "CT-16",
+        "from": "OPEN(CUSTODY)",
+        "command": "FREEZE or RESTRICT",
+        "to": "REJECT",
+        "reason": 10
       }
     ],
     "crossCase": [

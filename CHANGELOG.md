@@ -9,7 +9,16 @@
   table with its terminal-case guard, the unified action and reversal receipt
   with its kind tag, the reason classes, and the single profile descriptor.
   Delegation, cancellation, the caller-supplied scope hash, and the version 1
-  convenience getters are removed. The candidate 2 receipts and proof inputs
+  convenience getters are removed. Actions and reversals share one validation
+  order (stale and replayed commands are reported before any state-dependent
+  rule), a malformed dependency response is reason 202 and only an echo
+  mismatch is reason 203, the exact-use route ticket is enforced field by
+  field with no stored key, and the stateful campaign drives freeze, unfreeze,
+  seizure, release, and custody confiscation through the kernel. The schema
+  text gains the custody-case overlay rule (CT-16), the direct-path custody
+  backing rule, the dependency failure code mapping, and the statement that
+  non-canonical calldata is a decoding failure; no value, selector, or
+  identifier changes. The candidate 2 receipts and proof inputs
   move byte for byte to `evidence/candidate-2/`; the successor evidence is
   tracked lane by lane in `evidence/current-profile-release-index-v3.json`
   under `evidence/evidence-mode.json`, where lanes without a receipt for the
