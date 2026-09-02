@@ -1368,7 +1368,8 @@
           "300": "TOPOLOGY_NOT_FULL",
           "301": "SEAL_INVALID",
           "302": "TOPOLOGY_MISMATCH_AT_SEAL",
-          "303": "IMPORT_MANIFEST_MISMATCH"
+          "303": "IMPORT_MANIFEST_MISMATCH",
+          "304": "UPSTREAM_STATE_NOT_OWNED"
         }
       },
       "400": {

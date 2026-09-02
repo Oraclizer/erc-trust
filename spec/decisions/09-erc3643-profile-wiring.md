@@ -42,12 +42,23 @@ runtime evidence for its bytecode follow in later changes.
    ordinary receipts.
 5. Every account a command acts on must carry exactly the upstream frozen amount and
    address freeze flag the adapter declared at the seal or applied itself; the
-   adapter checks this before consuming the command and reverts with reason 303
-   otherwise. Upstream state it does not own is never overwritten and never
-   silently adopted. After every forced transfer the adapter brings the frozen
-   amount of both accounts back to their owned targets saturated at the current
-   balance (an ERC-3643 forced transfer unfreezes automatically), verifies the
-   post-state, and records the applied value.
+   adapter checks this before consuming the command and reverts with reason 304
+   (`UPSTREAM_STATE_NOT_OWNED`, registered in class 300 next to the seal-time
+   reason 303) otherwise. Upstream state it does not own is never overwritten and
+   never silently adopted. After every forced transfer the adapter brings the
+   frozen amount of both accounts back to their owned targets saturated at the
+   current balance (an ERC-3643 forced transfer unfreezes automatically), verifies
+   the post-state, and records the applied value.
+   The owned target is materialised upstream only at the adapter's own touch
+   points. An ordinary inbound transfer that raises an account's balance between
+   two touches leaves the upstream frozen amount at the last applied value, so the
+   growth is transferable until the next command that touches the account or a
+   call to `resynchroniseFrozen(account)`, which any caller may make and which
+   only ever raises the upstream frozen amount toward the owned target (it never
+   unfreezes and it changes no owned state). The native token applies its stored
+   target on every transfer; closing that window atomically on an ERC-3643 token
+   would need a transfer hook inside the token or its Compliance, which this
+   profile does not use.
 6. Custody is confined to the adapter: `SEIZE` requires `custodian == destination ==
    adapter` (reason 6 otherwise), so seized tokens sit in the adapter's own
    upstream balance and the custody backing rule keeps other cases from spending
@@ -81,6 +92,28 @@ runtime evidence for its bytecode follow in later changes.
     longer holds, reason 200 when a bound dependency's runtime code changed) placed
     where the native token assesses its dependencies: after the command is
     validated and before anything is consumed.
+12. The profile surface `IERC3643VerifiedProfile` (its own ERC-165 identifier, not
+    part of the kernel identifier, as decision 06 item 5 provides) exposes
+    `ownedState(account)`, the owned frozen target, the applied upstream frozen
+    amount, and the owned restriction flag, so that an indexer or keeper can see
+    when a resynchronisation is due, and `resynchroniseFrozen(account)`, which
+    requires the live topology and the ownership precondition of item 5 and then
+    performs the same synchronisation a command would perform.
+
+## Assumptions and deployment preconditions
+
+- `expectedTokenCodeId` is declared by the deployer of the governor; the seal binds
+  the declared value to the live token code and never audits the code itself. Any
+  claim about the token's behaviour comes from the deployment evidence, not from
+  the seal.
+- The adapter is the custody destination of every `SEIZE`, so the Identity
+  Registry must report the adapter as verified for the unit to execute seizures.
+- The canonical form of the import manifest is enforced by the governor; the
+  adapter recomputes the manifest hash only. The conformance unit is the governor
+  together with its adapter, never the adapter alone.
+- The underlying token moves or unfreezes tokens only through its Agent surface
+  and the adapter is its only Agent; a token that changes frozen state through
+  another role cannot satisfy the ownership precondition.
 
 ## Why
 
@@ -123,6 +156,10 @@ token has. Any other custodian would need its own Agent power to release them.
   integration; its runtime identity is not yet bound by the deterministic-build
   receipt or the release manifest, which record the native token only. The
   runtime assurance change binds both endpoints.
+- An absolute frozen target above the current balance is enforced by the
+  underlying token only up to the balance at the adapter's last touch (item 5).
+  This is a property of adapting a frozen amount to a frozen target, not a
+  defect of one implementation, and it is stated in the profile's limitations.
 - The refinement ledger must map the abstract initial state onto the import
   manifest and the imported cases, and the abstract authorization onto the single
   immutable authority.

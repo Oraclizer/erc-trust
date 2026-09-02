@@ -50,6 +50,47 @@ contract ERC3643ProfileTrexFixtureTest is ERC3643ProfileTestBase {
         _assertEq(_frozen(holder), 0, "unfrozen");
     }
 
+    /// @dev Balance growth between two adapter touches stays transferable until a touch or a
+    ///      resynchronisation; the resynchronisation is permissionless and only ever freezes more.
+    function testInboundGrowthIsRefrozenByPermissionlessResynchronisation() external {
+        MockERC3643TokenTrex fixture = MockERC3643TokenTrex(token);
+        _assert(fixture.transfer(holder, 100 ether), "seed holder");
+        TrustKernelTypes.ActionRequest memory freeze = _request(TrustKernelTypes.ActionKind.FREEZE, 220, 100 ether);
+        freeze.subject = holder;
+        freeze.source = holder;
+        freeze.actionId = adapter.deriveActionId(freeze);
+        adapter.executeRegulatoryAction(freeze);
+        TrustKernelTypes.ActionRequest memory seize = _request(TrustKernelTypes.ActionKind.SEIZE, 221, 30 ether);
+        seize.subject = holder;
+        seize.source = holder;
+        seize.actionId = adapter.deriveActionId(seize);
+        adapter.executeRegulatoryAction(seize);
+        _assertEq(_frozen(holder), 70 ether, "target saturated at the balance after the seizure");
+
+        _assert(fixture.transfer(holder, 30 ether), "inbound growth from another holder");
+        _assertEq(_balance(holder), 100 ether, "balance grew");
+        _assertEq(_frozen(holder), 70 ether, "the growth is not frozen until the next touch");
+        (uint256 target, uint256 applied, bool restricted) = adapter.ownedState(holder);
+        _assert(target == 100 ether && applied == 70 ether && !restricted, "owned state shows the gap");
+
+        (bool ok, bytes memory result) =
+            stranger.relay(address(adapter), abi.encodeCall(adapter.resynchroniseFrozen, (holder)));
+        _assert(ok, "anyone may resynchronise");
+        _assertEq(abi.decode(result, (uint256)), 100 ether, "returns the applied amount");
+        _assertEq(_frozen(holder), 100 ether, "growth refrozen up to the owned target");
+        (, applied,) = adapter.ownedState(holder);
+        _assertEq(applied, 100 ether, "applied amount recorded");
+        _assertEq(adapter.resynchroniseFrozen(holder), 100 ether, "idempotent once synchronised");
+        _assertEq(adapter.resynchroniseFrozen(buyer), 0, "an account without owned state is a no-op");
+        _assertEq(_frozen(holder), 100 ether, "resynchronisation never unfreezes");
+
+        adapter.executeRegulatoryReversal(_reversal(seize.actionId, TrustKernelTypes.ReversalKind.RELEASE, 222));
+        _assertEq(_balance(holder), 130 ether, "released on top of the growth");
+        _assertEq(_frozen(holder), 100 ether, "the release touch keeps the target");
+        adapter.executeRegulatoryReversal(_reversal(freeze.actionId, TrustKernelTypes.ReversalKind.UNFREEZE, 223));
+        _assertEq(_frozen(holder), 0, "unfrozen");
+    }
+
     function testOrdinaryTransfersRespectAdapterOwnedState() external {
         MockERC3643TokenTrex fixture = MockERC3643TokenTrex(token);
         TrustKernelTypes.ActionRequest memory freeze =

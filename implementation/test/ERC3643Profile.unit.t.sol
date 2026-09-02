@@ -3,7 +3,7 @@ pragma solidity 0.8.36;
 
 import {Vm} from "./TrustTestBase.t.sol";
 import {IERCTrustKernel, TrustKernelTypes} from "../src/generated/IERCTrustKernel.sol";
-import {ERC3643TrustAdapter} from "../src/profiles/ERC3643TrustAdapter.sol";
+import {ERC3643TrustAdapter, IERC3643VerifiedProfile} from "../src/profiles/ERC3643TrustAdapter.sol";
 import {ProfileGovernor} from "../src/profiles/ProfileGovernor.sol";
 import {ERC3643ProfileTypes} from "../src/profiles/ERC3643ProfileTypes.sol";
 import {MockERC3643Token} from "./mocks/MockERC3643Token.sol";
@@ -104,6 +104,11 @@ abstract contract ERC3643ProfileTestBase {
         _assert(!adapter.supportsInterface(0xffffffff), "invalid id");
         _assert(!adapter.supportsInterface(0xbcc2afa9), "kernel version 1 profile identifier is gone");
         _assert(!adapter.supportsInterface(0x5cd8d207), "native route identifier is not claimed");
+        _assert(adapter.supportsInterface(type(IERC3643VerifiedProfile).interfaceId), "profile surface identifier");
+        _assert(
+            type(IERC3643VerifiedProfile).interfaceId != type(IERCTrustKernel).interfaceId,
+            "profile surface is separate from the kernel identifier"
+        );
     }
 
     function testActivationEmitsBindingsAuthorityAndImportCount() external {
@@ -473,7 +478,7 @@ abstract contract ERC3643ProfileTestBase {
         freeze.actionId = adapter.deriveActionId(freeze);
         (bool ok, bytes memory result) = _call(abi.encodeCall(adapter.executeRegulatoryAction, (freeze)));
         _assert(!ok && _selector(result) == IERCTrustKernel.TrustOperationalFailure.selector, "undeclared state");
-        _assertEq(_reasonOf(result), 303, "import manifest mismatch");
+        _assertEq(_reasonOf(result), 304, "upstream state not owned");
         _assertEq(address(uint160(uint256(_wordAt(result, 2)))), holder, "account reference");
         _assertEq(_frozen(holder), 10 ether, "legacy freeze is never overwritten");
         _assert(_restricted(holder), "legacy restriction is never overwritten");
@@ -483,7 +488,7 @@ abstract contract ERC3643ProfileTestBase {
         toHolder.destination = holder;
         toHolder.actionId = adapter.deriveActionId(toHolder);
         _expectOperationalFailure(
-            abi.encodeCall(adapter.executeRegulatoryAction, (toHolder)), 303, "undeclared destination"
+            abi.encodeCall(adapter.executeRegulatoryAction, (toHolder)), 304, "undeclared destination"
         );
         _assertEq(_balance(holder), 100 ether, "destination untouched");
 
@@ -1455,6 +1460,57 @@ contract ERC3643ProfileUnitTest is ERC3643ProfileTestBase {
         _assert(!_restricted(address(this)), "nothing restricted");
         adapter.executeRegulatoryAction(_request(TrustKernelTypes.ActionKind.CONFISCATE, 166, 1 ether));
         _assertEq(_balance(buyer), 1 ether, "restored upstream admits the command");
+    }
+
+    /// @dev Every account a command or a resynchronisation acts on is checked against the owned state;
+    ///      the drift models upstream frozen state the adapter never applied.
+    function testDriftedUpstreamStateFailsClosedOnEveryTouchedAccount() external {
+        MockERC3643Token fixture = MockERC3643Token(token);
+        TrustKernelTypes.ActionRequest memory freeze = _request(TrustKernelTypes.ActionKind.FREEZE, 170, 5 ether);
+        adapter.executeRegulatoryAction(freeze);
+        fixture.setFrozenDrift(address(this), 1);
+        TrustKernelTypes.ReversalRequest memory unfreeze =
+            _reversal(freeze.actionId, TrustKernelTypes.ReversalKind.UNFREEZE, 171);
+        _expectOperationalFailure(
+            abi.encodeCall(adapter.executeRegulatoryReversal, (unfreeze)), 304, "reversal checks the subject"
+        );
+        _expectOperationalFailure(
+            abi.encodeCall(adapter.resynchroniseFrozen, (address(this))), 304, "resynchronisation checks the account"
+        );
+        _assert(adapter.actionRecord(freeze.actionId).lifecycle == TrustKernelTypes.Lifecycle.APPLIED, "stutter");
+        fixture.setFrozenDrift(address(this), 0);
+        adapter.executeRegulatoryReversal(unfreeze);
+        _assertEq(_frozen(address(this)), 0, "reversal admitted once the state is owned again");
+
+        fixture.setFrozenDrift(address(adapter), 1);
+        TrustKernelTypes.ActionRequest memory seize = _request(TrustKernelTypes.ActionKind.SEIZE, 172, 3 ether);
+        _expectOperationalFailure(
+            abi.encodeCall(adapter.executeRegulatoryAction, (seize)), 304, "seize checks the custodian"
+        );
+        fixture.setFrozenDrift(address(adapter), 0);
+        adapter.executeRegulatoryAction(seize);
+
+        fixture.setFrozenDrift(address(adapter), 1);
+        TrustKernelTypes.ReversalRequest memory release =
+            _reversal(seize.actionId, TrustKernelTypes.ReversalKind.RELEASE, 173);
+        _expectOperationalFailure(
+            abi.encodeCall(adapter.executeRegulatoryReversal, (release)), 304, "release checks the custodian"
+        );
+        TrustKernelTypes.ActionRequest memory disposition =
+            _custodyDisposition(TrustKernelTypes.ActionKind.CONFISCATE, seize, 174);
+        _expectOperationalFailure(
+            abi.encodeCall(adapter.executeRegulatoryAction, (disposition)), 304, "custody disposition checks the source"
+        );
+        fixture.setFrozenDrift(address(adapter), 0);
+        fixture.setFrozenDrift(address(this), 1);
+        _expectOperationalFailure(
+            abi.encodeCall(adapter.executeRegulatoryReversal, (release)), 304, "release checks the prior holder"
+        );
+        fixture.setFrozenDrift(address(this), 0);
+        adapter.executeRegulatoryReversal(release);
+        _assertEq(_balance(address(adapter)), 0, "release admitted once every account is owned");
+        (uint256 target, uint256 applied, bool restricted) = adapter.ownedState(address(this));
+        _assert(target == 0 && applied == 0 && !restricted, "owned state after the chain");
     }
 
     function _expectUpstream(TrustKernelTypes.ActionRequest memory request, uint16 reason, string memory message)
