@@ -52,8 +52,8 @@ text, that is a defect in the schema, not in the reproduction.
 
 The release manifest of the shipped version 1 candidate protects the
 generator, the SDK helpers, and the vectors, but not `spec/` itself. The
-successor manifest introduced by the implementation change adds `spec/` to
-its protected roots so that the schema and the decision records are bound to
+successor manifest introduced by the implementation change is to add `spec/`
+to its protected roots so that the schema and the decision records are bound to
 the same identity as the code they govern.
 
 ## Relationship to the draft
