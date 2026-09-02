@@ -66,3 +66,10 @@ when intentionally selecting the native exact-use ERC-7943 wrapper.
 
 See the repository [integration guide](../docs/INTEGRATION.md) for the complete
 request and failure lifecycle.
+
+## Kernel version 2 helpers
+
+`src/kernel-v2.ts` is generated from `spec/erc-trust-kernel-v2.json` and
+provides the version 2 identifiers, command hashes, dependency root, and the
+unified action and reversal receipt hash. It is not yet wired to the shipped
+Solidity candidate, which still implements kernel version 1; see `spec/README.md`.

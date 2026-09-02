@@ -13,3 +13,8 @@ formal/kevm/generated/** linguist-generated=true
 evidence/release-manifest.json linguist-generated=true
 vectors/conformance-v1.json linguist-generated=true
 scripts/*.mjs linguist-vendored
+
+# Normative kernel artifacts are generated from spec/erc-trust-kernel-v2.json.
+spec/generated/** linguist-generated=true
+sdk/src/kernel-v2.ts linguist-generated=true
+vectors/conformance-v2.json linguist-generated=true

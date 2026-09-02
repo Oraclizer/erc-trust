@@ -1,0 +1,1398 @@
+{
+  "$comment": "Normative machine source for the ERC-TRUST kernel, version 2. Every generated artifact under spec/generated, sdk/src/kernel-v2.ts, and vectors/conformance-v2.json is derived from this file by scripts/generate-normative-kernel.mjs. Hand edits to generated files are rejected by the generator check mode.",
+  "schema": "erc-trust-normative-kernel",
+  "kernelVersion": 2,
+  "status": {
+    "stage": "normative kernel frozen for the successor candidate; implementation wiring pending",
+    "assurance": "unaudited-not-for-production",
+    "note": "This file defines the common wire format that the native token and the ERC-3643 adapter profile will both implement. It does not claim that the current implementation/ tree already conforms; the current tree implements kernel version 1."
+  },
+  "domain": {
+    "string": "ERC-TRUST/v2",
+    "keccak256": "0xb5303e4083d2781d6c7d6a68d30b6354ebda11f0a2a037b946d87b3eec40b74e",
+    "standardVersion": 2,
+    "description": "Every command, binding, root, and receipt preimage starts with this domain constant. A request whose domain field differs MUST revert with TrustInvalidCommand reason 1."
+  },
+  "tags": {
+    "DEPENDENCY_ROOT": {
+      "string": "ERC-TRUST/v2/dependency-root",
+      "keccak256": "0x8dd0ff19b096a49997e6e0fa1eea2dee5d61291bb86d3d10640e517c9e6cbe18"
+    }
+  },
+  "enums": {
+    "ActionKind": {
+      "description": "The six typed regulatory actions. Values are part of the ABI and MUST NOT be reordered. The order is the canonical order of the shipped kernel version 1 SDK and vectors.",
+      "values": {
+        "FREEZE": 0,
+        "SEIZE": 1,
+        "CONFISCATE": 2,
+        "LIQUIDATE": 3,
+        "RESTRICT": 4,
+        "RECOVER": 5
+      }
+    },
+    "ReversalKind": {
+      "description": "The three reversals. They are a separate type from ActionKind; a reversal is never a new regulatory action.",
+      "values": {
+        "UNFREEZE": 0,
+        "RELEASE": 1,
+        "UNRESTRICT": 2
+      }
+    },
+    "ReceiptKind": {
+      "description": "Receipt discriminator. NONE (zero) is reserved for an absent receipt and MUST NOT appear in a stored receipt.",
+      "values": {
+        "NONE": 0,
+        "ACTION": 1,
+        "REVERSAL": 2
+      }
+    },
+    "BindingKind": {
+      "description": "The four bound external dependencies, in dependency-root order.",
+      "values": {
+        "POLICY": 0,
+        "IDENTITY": 1,
+        "SETTLEMENT": 2,
+        "ENTITLEMENT": 3
+      }
+    },
+    "AssessmentOutcome": {
+      "description": "Outcome classes. The wire value is the first return word of the bound dependency interface.",
+      "values": {
+        "APPLICABLE": 0,
+        "REJECTED": 1,
+        "OPERATIONAL_FAILURE": 2
+      }
+    },
+    "Lifecycle": {
+      "description": "Action record lifecycle. CANCELLED from kernel version 1 is removed: no on-chain prepared authorization exists in this kernel, so nothing can be cancelled (see decisions/01-delegation-and-cancellation.md).",
+      "values": {
+        "NONE": 0,
+        "PREPARED": 1,
+        "APPLIED": 2,
+        "REVERSED": 3
+      }
+    },
+    "ProfileKind": {
+      "description": "Profile classification reported by trustProfile().",
+      "values": {
+        "UNSUPPORTED": 0,
+        "NATIVE_FULL": 1,
+        "VERIFIED_FULL": 2,
+        "PARTIAL": 3
+      }
+    },
+    "CasePhase": {
+      "description": "Case lifecycle phase reported by caseRecord().",
+      "values": {
+        "NONE": 0,
+        "OPEN": 1,
+        "TERMINAL": 2
+      }
+    },
+    "CaseFamily": {
+      "description": "The command family that opened the case. A case is bound to one family for its whole life.",
+      "values": {
+        "NONE": 0,
+        "FREEZE": 1,
+        "RESTRICT": 2,
+        "CUSTODY": 3,
+        "DISPOSITION": 4
+      }
+    }
+  },
+  "structs": {
+    "ActionRequest": {
+      "description": "Typed action command. 20 static words; calldata length for a single-parameter call is 4 + 640 = 644 bytes.",
+      "fields": [
+        {
+          "name": "domain",
+          "type": "bytes32",
+          "meaning": "MUST equal domain.keccak256"
+        },
+        {
+          "name": "actionId",
+          "type": "bytes32",
+          "meaning": "MUST equal hashes.actionId over this request with actionId zeroed"
+        },
+        {
+          "name": "action",
+          "type": "uint8",
+          "enum": "ActionKind"
+        },
+        {
+          "name": "subject",
+          "type": "address",
+          "meaning": "regulatory subject; MUST NOT be zero"
+        },
+        {
+          "name": "source",
+          "type": "address",
+          "meaning": "account debited by a transfer action; equals subject for FREEZE, RESTRICT, SEIZE and for direct dispositions"
+        },
+        {
+          "name": "destination",
+          "type": "address",
+          "meaning": "account credited by a disposition; zero for FREEZE and RESTRICT; equals custodian for SEIZE"
+        },
+        {
+          "name": "custodian",
+          "type": "address",
+          "meaning": "SEIZE only; zero otherwise"
+        },
+        {
+          "name": "amount",
+          "type": "uint256",
+          "meaning": "FREEZE: absolute frozen target; RESTRICT: MUST be zero; transfers: exact command amount"
+        },
+        {
+          "name": "caseId",
+          "type": "bytes32",
+          "meaning": "regulatory case; MUST NOT be zero"
+        },
+        {
+          "name": "dependencyRoot",
+          "type": "bytes32",
+          "meaning": "MUST equal the endpoint's current dependencyState().dependencyRoot"
+        },
+        {
+          "name": "dependencyEpoch",
+          "type": "uint64",
+          "meaning": "MUST equal the endpoint's current dependencyState().dependencyEpoch"
+        },
+        {
+          "name": "provenanceCommitment",
+          "type": "bytes32",
+          "meaning": "commitment to the legal basis; MUST NOT be zero; not a claim that the basis is valid"
+        },
+        {
+          "name": "settlementCommitment",
+          "type": "bytes32",
+          "meaning": "LIQUIDATE only; zero otherwise"
+        },
+        {
+          "name": "proceedsCommitment",
+          "type": "bytes32",
+          "meaning": "LIQUIDATE only; zero otherwise"
+        },
+        {
+          "name": "entitlementCommitment",
+          "type": "bytes32",
+          "meaning": "RECOVER only; zero otherwise"
+        },
+        {
+          "name": "authorityRef",
+          "type": "bytes32",
+          "meaning": "authority identifier whose current account MUST be the caller"
+        },
+        {
+          "name": "authorityEpoch",
+          "type": "uint64",
+          "meaning": "MUST equal the authority's current epoch"
+        },
+        {
+          "name": "nonce",
+          "type": "uint256",
+          "meaning": "consumed once under (authorityRef, authorityEpoch, nonce)"
+        },
+        {
+          "name": "validAfter",
+          "type": "uint48",
+          "meaning": "inclusive lower bound on block.timestamp"
+        },
+        {
+          "name": "validBefore",
+          "type": "uint48",
+          "meaning": "inclusive upper bound on block.timestamp; MUST be nonzero and not below validAfter"
+        }
+      ]
+    },
+    "ReversalRequest": {
+      "description": "Typed reversal command. 12 static words; calldata length is 4 + 384 = 388 bytes.",
+      "fields": [
+        {
+          "name": "domain",
+          "type": "bytes32",
+          "meaning": "MUST equal domain.keccak256"
+        },
+        {
+          "name": "reversalId",
+          "type": "bytes32",
+          "meaning": "MUST equal hashes.reversalId over this request with reversalId zeroed"
+        },
+        {
+          "name": "actionId",
+          "type": "bytes32",
+          "meaning": "the applied action being reversed"
+        },
+        {
+          "name": "reversal",
+          "type": "uint8",
+          "enum": "ReversalKind"
+        },
+        {
+          "name": "dependencyRoot",
+          "type": "bytes32",
+          "meaning": "MUST equal the current dependencyState().dependencyRoot"
+        },
+        {
+          "name": "dependencyEpoch",
+          "type": "uint64",
+          "meaning": "MUST equal the current dependencyState().dependencyEpoch"
+        },
+        {
+          "name": "provenanceCommitment",
+          "type": "bytes32",
+          "meaning": "commitment to the legal basis of the reversal; MUST NOT be zero"
+        },
+        {
+          "name": "authorityRef",
+          "type": "bytes32"
+        },
+        {
+          "name": "authorityEpoch",
+          "type": "uint64"
+        },
+        {
+          "name": "nonce",
+          "type": "uint256"
+        },
+        {
+          "name": "validAfter",
+          "type": "uint48"
+        },
+        {
+          "name": "validBefore",
+          "type": "uint48"
+        }
+      ]
+    },
+    "Receipt": {
+      "description": "Stored and returned by receipt(commandId). Every field except receiptHash is a receipt hash preimage input in this order, prefixed by the domain constant.",
+      "fields": [
+        {
+          "name": "receiptKind",
+          "type": "uint8",
+          "enum": "ReceiptKind"
+        },
+        {
+          "name": "commandId",
+          "type": "bytes32",
+          "meaning": "actionId or reversalId"
+        },
+        {
+          "name": "commandKind",
+          "type": "uint8",
+          "meaning": "ActionKind value for ACTION receipts, ReversalKind value for REVERSAL receipts"
+        },
+        {
+          "name": "parentCommandId",
+          "type": "bytes32",
+          "meaning": "zero for ACTION receipts; the reversed actionId for REVERSAL receipts"
+        },
+        {
+          "name": "subject",
+          "type": "address"
+        },
+        {
+          "name": "source",
+          "type": "address",
+          "meaning": "ACTION: request.source; REVERSAL of SEIZE: the custodian; other reversals: the subject"
+        },
+        {
+          "name": "destination",
+          "type": "address",
+          "meaning": "ACTION: effective destination (custodian for SEIZE); RELEASE: the declared prior holder; UNFREEZE and UNRESTRICT: the subject"
+        },
+        {
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "name": "caseId",
+          "type": "bytes32"
+        },
+        {
+          "name": "authorityRef",
+          "type": "bytes32"
+        },
+        {
+          "name": "dependencyRoot",
+          "type": "bytes32",
+          "meaning": "the root the command was validated against"
+        },
+        {
+          "name": "provenanceCommitment",
+          "type": "bytes32"
+        },
+        {
+          "name": "assessmentEvidence",
+          "type": "bytes32",
+          "meaning": "profile-defined commitment to the bound dependency responses consumed by the assessment; the profile MUST document its preimage"
+        },
+        {
+          "name": "preState",
+          "type": "bytes32",
+          "meaning": "profile-defined observation commitment taken immediately before the state effect; the profile MUST document its preimage"
+        },
+        {
+          "name": "postState",
+          "type": "bytes32",
+          "meaning": "profile-defined observation commitment taken immediately after the state effect"
+        },
+        {
+          "name": "externalCommitment",
+          "type": "bytes32",
+          "meaning": "LIQUIDATE: keccak256(abi.encode(settlementCommitment, proceedsCommitment)); RECOVER: entitlementCommitment; every other action and every reversal: zero"
+        },
+        {
+          "name": "receiptHash",
+          "type": "bytes32",
+          "meaning": "hashes.receiptHash over the preceding fields"
+        }
+      ]
+    },
+    "ActionRecord": {
+      "description": "Returned by actionRecord(actionId). Implementation record; not a hash preimage.",
+      "fields": [
+        {
+          "name": "action",
+          "type": "uint8",
+          "enum": "ActionKind"
+        },
+        {
+          "name": "lifecycle",
+          "type": "uint8",
+          "enum": "Lifecycle"
+        },
+        {
+          "name": "subject",
+          "type": "address"
+        },
+        {
+          "name": "source",
+          "type": "address"
+        },
+        {
+          "name": "destination",
+          "type": "address"
+        },
+        {
+          "name": "custodian",
+          "type": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "name": "priorAmount",
+          "type": "uint256",
+          "meaning": "FREEZE: absolute frozen target before this action"
+        },
+        {
+          "name": "priorFlag",
+          "type": "bool",
+          "meaning": "RESTRICT: restriction flag before this action"
+        },
+        {
+          "name": "caseId",
+          "type": "bytes32"
+        },
+        {
+          "name": "authorityRef",
+          "type": "bytes32"
+        },
+        {
+          "name": "authorityEpoch",
+          "type": "uint64"
+        },
+        {
+          "name": "dependencyEpoch",
+          "type": "uint64"
+        },
+        {
+          "name": "commandHash",
+          "type": "bytes32",
+          "meaning": "hashes.commandHash of the completed request"
+        },
+        {
+          "name": "evidenceHash",
+          "type": "bytes32",
+          "meaning": "equals Receipt.assessmentEvidence"
+        },
+        {
+          "name": "receiptHash",
+          "type": "bytes32"
+        }
+      ]
+    },
+    "CaseRecord": {
+      "description": "Returned by caseRecord(caseId).",
+      "fields": [
+        {
+          "name": "phase",
+          "type": "uint8",
+          "enum": "CasePhase"
+        },
+        {
+          "name": "family",
+          "type": "uint8",
+          "enum": "CaseFamily"
+        },
+        {
+          "name": "headActionId",
+          "type": "bytes32",
+          "meaning": "the case's currently live effect head (overlay families) or active custody action (CUSTODY); zero when TERMINAL or NONE"
+        },
+        {
+          "name": "generation",
+          "type": "uint64",
+          "meaning": "monotonic per-case effect generation"
+        }
+      ]
+    },
+    "ProfileDescriptor": {
+      "description": "Returned by trustProfile(). A declaration about the endpoint, not proof of conformance.",
+      "fields": [
+        {
+          "name": "profileId",
+          "type": "bytes32",
+          "meaning": "one of profiles.*.profileId"
+        },
+        {
+          "name": "profileKind",
+          "type": "uint8",
+          "enum": "ProfileKind"
+        },
+        {
+          "name": "standardVersion",
+          "type": "uint8",
+          "meaning": "MUST equal domain.standardVersion"
+        },
+        {
+          "name": "actionMask",
+          "type": "uint256",
+          "meaning": "bit i set only when ActionKind i is implemented with the complete semantics; a Full profile reports 0x3f"
+        },
+        {
+          "name": "reversalMask",
+          "type": "uint256",
+          "meaning": "bit i set only when ReversalKind i is implemented; a Full profile reports 0x07"
+        },
+        {
+          "name": "underlyingToken",
+          "type": "address",
+          "meaning": "zero for a native endpoint; the wrapped or adapted token for a profile endpoint"
+        },
+        {
+          "name": "manifestHash",
+          "type": "bytes32",
+          "meaning": "profile-defined commitment to the endpoint's topology and evidence version"
+        },
+        {
+          "name": "full",
+          "type": "bool",
+          "meaning": "MUST be computed from the live topology and dependency state, never stored as a constant true"
+        },
+        {
+          "name": "proxySupported",
+          "type": "bool"
+        }
+      ]
+    }
+  },
+  "hashes": {
+    "encoding": {
+      "rule": "abi.encode of the listed items in order; structs encode as their static tuple",
+      "canonicality": "The preimage is the canonical ABI encoding. An endpoint MUST reject calldata that is not the canonical encoding of the declared static tuple (wrong length, dirty high bits in narrow integer or address words, enum values outside the declared range). Therefore the canonical encoding and the received calldata bytes coincide for every accepted command."
+    },
+    "actionId": {
+      "preimage": [
+        "domain",
+        "endpoint(address)",
+        "chainId(uint256)",
+        "ActionRequest with actionId = bytes32(0)"
+      ],
+      "rule": "keccak256 of the preimage. The request's actionId field MUST equal this value."
+    },
+    "commandHash": {
+      "preimage": [
+        "domain",
+        "endpoint(address)",
+        "chainId(uint256)",
+        "ActionRequest (completed, actionId filled)"
+      ],
+      "rule": "keccak256. Used as the command digest passed to bound dependencies and stored in ActionRecord.commandHash."
+    },
+    "reversalId": {
+      "preimage": [
+        "domain",
+        "endpoint(address)",
+        "chainId(uint256)",
+        "ReversalRequest with reversalId = bytes32(0)"
+      ],
+      "rule": "keccak256. The request's reversalId field MUST equal this value."
+    },
+    "reversalHash": {
+      "preimage": [
+        "domain",
+        "endpoint(address)",
+        "chainId(uint256)",
+        "ReversalRequest (completed, reversalId filled)"
+      ],
+      "rule": "keccak256. Command digest of the reversal."
+    },
+    "bindingHash": {
+      "profile": "native-full",
+      "preimage": [
+        "domain",
+        "kind(uint8 BindingKind)",
+        "dependency(address)",
+        "runtimeCodeId(bytes32)",
+        "configurationDigest(bytes32)",
+        "schema(bytes32)",
+        "epoch(uint64)"
+      ],
+      "rule": "keccak256. Per-dependency binding of the native profile. Other profiles define their own per-dependency binding but MUST feed the dependency root the same way."
+    },
+    "dependencyRoot": {
+      "preimage": [
+        "domain",
+        "tags.DEPENDENCY_ROOT",
+        "policyBinding(bytes32)",
+        "identityBinding(bytes32)",
+        "settlementBinding(bytes32)",
+        "entitlementBinding(bytes32)"
+      ],
+      "rule": "keccak256. Ordered by BindingKind. A profile without a given dependency kind uses bytes32(0) in that slot and MUST say so in its manifest. Every rebind of any kind changes the root and increments dependencyEpoch by exactly one."
+    },
+    "receiptHash": {
+      "preimage": [
+        "domain",
+        "receiptKind(uint8)",
+        "commandId",
+        "commandKind(uint8)",
+        "parentCommandId",
+        "subject",
+        "source",
+        "destination",
+        "amount",
+        "caseId",
+        "authorityRef",
+        "dependencyRoot",
+        "provenanceCommitment",
+        "assessmentEvidence",
+        "preState",
+        "postState",
+        "externalCommitment"
+      ],
+      "rule": "keccak256 of 17 words. The value MUST equal the execute return value, the stored Receipt.receiptHash, and the receiptHash argument of the final applied event."
+    },
+    "nonceKey": {
+      "preimage": [
+        "domain",
+        "authorityRef",
+        "authorityEpoch(uint64)",
+        "nonce(uint256)"
+      ],
+      "rule": "keccak256. Reported in TrustReplay when a nonce is reused."
+    }
+  },
+  "interface": {
+    "name": "IERCTrustKernel",
+    "erc165": {
+      "interfaceId": "0x2b020308",
+      "rule": "XOR of the selectors of every function listed below. The inherited supportsInterface(bytes4) selector is excluded. A conforming endpoint MUST return true for this identifier and false for 0xffffffff."
+    },
+    "functions": [
+      {
+        "name": "executeRegulatoryAction",
+        "inputs": [
+          {
+            "name": "request",
+            "struct": "ActionRequest"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "receiptHash",
+            "type": "bytes32"
+          }
+        ],
+        "mutability": "nonpayable"
+      },
+      {
+        "name": "executeRegulatoryReversal",
+        "inputs": [
+          {
+            "name": "request",
+            "struct": "ReversalRequest"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "receiptHash",
+            "type": "bytes32"
+          }
+        ],
+        "mutability": "nonpayable"
+      },
+      {
+        "name": "deriveActionId",
+        "inputs": [
+          {
+            "name": "request",
+            "struct": "ActionRequest"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "actionId",
+            "type": "bytes32"
+          }
+        ],
+        "mutability": "view"
+      },
+      {
+        "name": "deriveReversalId",
+        "inputs": [
+          {
+            "name": "request",
+            "struct": "ReversalRequest"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "reversalId",
+            "type": "bytes32"
+          }
+        ],
+        "mutability": "view"
+      },
+      {
+        "name": "actionRecord",
+        "inputs": [
+          {
+            "name": "actionId",
+            "type": "bytes32"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "record",
+            "struct": "ActionRecord"
+          }
+        ],
+        "mutability": "view"
+      },
+      {
+        "name": "receipt",
+        "inputs": [
+          {
+            "name": "commandId",
+            "type": "bytes32"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "record",
+            "struct": "Receipt"
+          }
+        ],
+        "mutability": "view"
+      },
+      {
+        "name": "caseRecord",
+        "inputs": [
+          {
+            "name": "caseId",
+            "type": "bytes32"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "record",
+            "struct": "CaseRecord"
+          }
+        ],
+        "mutability": "view"
+      },
+      {
+        "name": "dependencyState",
+        "inputs": [],
+        "outputs": [
+          {
+            "name": "dependencyRoot",
+            "type": "bytes32"
+          },
+          {
+            "name": "dependencyEpoch",
+            "type": "uint64"
+          }
+        ],
+        "mutability": "view"
+      },
+      {
+        "name": "trustProfile",
+        "inputs": [],
+        "outputs": [
+          {
+            "name": "descriptor",
+            "struct": "ProfileDescriptor"
+          }
+        ],
+        "mutability": "view"
+      }
+    ],
+    "events": [
+      {
+        "name": "RegulatoryActionApplied",
+        "inputs": [
+          {
+            "name": "actionId",
+            "type": "bytes32",
+            "indexed": true
+          },
+          {
+            "name": "action",
+            "type": "uint8",
+            "indexed": true
+          },
+          {
+            "name": "caseId",
+            "type": "bytes32",
+            "indexed": true
+          },
+          {
+            "name": "receiptHash",
+            "type": "bytes32",
+            "indexed": false
+          }
+        ]
+      },
+      {
+        "name": "RegulatoryReversalApplied",
+        "inputs": [
+          {
+            "name": "reversalId",
+            "type": "bytes32",
+            "indexed": true
+          },
+          {
+            "name": "reversal",
+            "type": "uint8",
+            "indexed": true
+          },
+          {
+            "name": "actionId",
+            "type": "bytes32",
+            "indexed": true
+          },
+          {
+            "name": "receiptHash",
+            "type": "bytes32",
+            "indexed": false
+          }
+        ]
+      },
+      {
+        "name": "TrustDependencyChanged",
+        "inputs": [
+          {
+            "name": "kind",
+            "type": "uint8",
+            "indexed": true
+          },
+          {
+            "name": "previousBinding",
+            "type": "bytes32",
+            "indexed": true
+          },
+          {
+            "name": "currentBinding",
+            "type": "bytes32",
+            "indexed": true
+          },
+          {
+            "name": "dependencyRoot",
+            "type": "bytes32",
+            "indexed": false
+          },
+          {
+            "name": "dependencyEpoch",
+            "type": "uint64",
+            "indexed": false
+          }
+        ]
+      },
+      {
+        "name": "TrustAuthorityChanged",
+        "inputs": [
+          {
+            "name": "authorityRef",
+            "type": "bytes32",
+            "indexed": true
+          },
+          {
+            "name": "account",
+            "type": "address",
+            "indexed": true
+          },
+          {
+            "name": "epoch",
+            "type": "uint64",
+            "indexed": false
+          },
+          {
+            "name": "active",
+            "type": "bool",
+            "indexed": false
+          }
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "name": "TrustRejected",
+        "inputs": [
+          {
+            "name": "commandId",
+            "type": "bytes32"
+          },
+          {
+            "name": "reason",
+            "type": "uint16"
+          }
+        ],
+        "meaning": "a completed assessment denied the command; reason in class 100"
+      },
+      {
+        "name": "TrustOperationalFailure",
+        "inputs": [
+          {
+            "name": "commandId",
+            "type": "bytes32"
+          },
+          {
+            "name": "reason",
+            "type": "uint16"
+          },
+          {
+            "name": "dependencyRef",
+            "type": "bytes32"
+          }
+        ],
+        "meaning": "a required dependency or upstream call was unavailable, malformed, stale, or inconsistent; reason in class 200, 300, or 400"
+      },
+      {
+        "name": "TrustUnauthorized",
+        "inputs": [
+          {
+            "name": "caller",
+            "type": "address"
+          },
+          {
+            "name": "authorityRef",
+            "type": "bytes32"
+          }
+        ]
+      },
+      {
+        "name": "TrustReplay",
+        "inputs": [
+          {
+            "name": "key",
+            "type": "bytes32"
+          }
+        ],
+        "meaning": "key is the commandId or the nonceKey that was already consumed"
+      },
+      {
+        "name": "TrustInvalidCommand",
+        "inputs": [
+          {
+            "name": "commandId",
+            "type": "bytes32"
+          },
+          {
+            "name": "reason",
+            "type": "uint16"
+          }
+        ],
+        "meaning": "domain, identifier, time, epoch, binding, shape, case, or reversal precondition failed; reason in class 1"
+      },
+      {
+        "name": "TrustTerminal",
+        "inputs": [
+          {
+            "name": "caseId",
+            "type": "bytes32"
+          }
+        ],
+        "meaning": "the case is TERMINAL; no action or reversal is accepted"
+      }
+    ],
+    "eventOrder": "Required ERC-20 and ERC-7943 effect events precede the applied event. The applied event is the final log the endpoint emits for the command. A reverted command leaves no persistent log."
+  },
+  "profileInterfaces": {
+    "IERCTrustNativeRoute": {
+      "description": "Native profile only. Same-transaction exact-use route for the sensitive ERC-7943 selectors. Not part of the kernel interface identifier.",
+      "functions": [
+        {
+          "name": "executeERC7943Action",
+          "inputs": [
+            {
+              "name": "request",
+              "struct": "ActionRequest"
+            }
+          ],
+          "outputs": [
+            {
+              "name": "receiptHash",
+              "type": "bytes32"
+            }
+          ],
+          "mutability": "nonpayable"
+        },
+        {
+          "name": "executeERC7943Reversal",
+          "inputs": [
+            {
+              "name": "request",
+              "struct": "ReversalRequest"
+            }
+          ],
+          "outputs": [
+            {
+              "name": "receiptHash",
+              "type": "bytes32"
+            }
+          ],
+          "mutability": "nonpayable"
+        }
+      ],
+      "errors": [
+        {
+          "name": "TrustRouteMismatch",
+          "inputs": [
+            {
+              "name": "routeKey",
+              "type": "bytes32"
+            }
+          ]
+        }
+      ]
+    },
+    "ITrustBoundDependency": {
+      "description": "Native profile dependency boundary. Read-only. The endpoint MUST classify a revert, a return of any length other than 128 bytes, an outcome word above 2, a command echo mismatch, or a binding echo mismatch as OPERATIONAL_FAILURE.",
+      "functions": [
+        {
+          "name": "configurationDigest",
+          "inputs": [],
+          "outputs": [
+            {
+              "name": "digest",
+              "type": "bytes32"
+            }
+          ],
+          "mutability": "view"
+        },
+        {
+          "name": "assess",
+          "inputs": [
+            {
+              "name": "commandHash",
+              "type": "bytes32"
+            },
+            {
+              "name": "operation",
+              "type": "uint8"
+            },
+            {
+              "name": "subject",
+              "type": "address"
+            },
+            {
+              "name": "destination",
+              "type": "address"
+            },
+            {
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "name": "bindingHash",
+              "type": "bytes32"
+            },
+            {
+              "name": "bindingEpoch",
+              "type": "uint64"
+            }
+          ],
+          "outputs": [
+            {
+              "name": "outcome",
+              "type": "uint8"
+            },
+            {
+              "name": "commandEcho",
+              "type": "bytes32"
+            },
+            {
+              "name": "bindingEcho",
+              "type": "bytes32"
+            },
+            {
+              "name": "evidenceHash",
+              "type": "bytes32"
+            }
+          ],
+          "mutability": "view"
+        }
+      ],
+      "operationEncoding": "operation is the ActionKind value for actions and 0x80 | ReversalKind value for reversals"
+    }
+  },
+  "shapeRules": {
+    "common": [
+      "subject != 0",
+      "caseId != 0",
+      "provenanceCommitment != 0",
+      "dependencyRoot == current root",
+      "dependencyEpoch == current epoch",
+      "authorityEpoch == current authority epoch",
+      "validAfter <= block.timestamp <= validBefore",
+      "validBefore != 0"
+    ],
+    "FREEZE": {
+      "source": "== subject",
+      "destination": "== 0",
+      "custodian": "== 0",
+      "amount": "> current absolute frozen target of subject",
+      "settlementCommitment": "== 0",
+      "proceedsCommitment": "== 0",
+      "entitlementCommitment": "== 0"
+    },
+    "RESTRICT": {
+      "source": "== subject",
+      "destination": "== 0",
+      "custodian": "== 0",
+      "amount": "== 0",
+      "settlementCommitment": "== 0",
+      "proceedsCommitment": "== 0",
+      "entitlementCommitment": "== 0",
+      "state": "subject not already restricted; otherwise reject with reason 13"
+    },
+    "SEIZE": {
+      "source": "== subject",
+      "custodian": "!= 0",
+      "destination": "== custodian",
+      "amount": "> 0 and available without consuming custody backing of another case",
+      "settlementCommitment": "== 0",
+      "proceedsCommitment": "== 0",
+      "entitlementCommitment": "== 0"
+    },
+    "CONFISCATE": {
+      "source": "!= 0",
+      "destination": "!= 0 and != source",
+      "custodian": "== 0",
+      "amount": "> 0",
+      "path": "direct when the case has no active custody (then source == subject); custody disposition when the case has active custody (then source == custodian, subject == declared prior holder, amount == encumbered amount)",
+      "settlementCommitment": "== 0",
+      "proceedsCommitment": "== 0",
+      "entitlementCommitment": "== 0"
+    },
+    "LIQUIDATE": {
+      "same": "CONFISCATE",
+      "settlementCommitment": "!= 0",
+      "proceedsCommitment": "!= 0",
+      "entitlementCommitment": "== 0"
+    },
+    "RECOVER": {
+      "same": "CONFISCATE",
+      "settlementCommitment": "== 0",
+      "proceedsCommitment": "== 0",
+      "entitlementCommitment": "!= 0 and not previously consumed"
+    },
+    "reversal": {
+      "pairing": "UNFREEZE only for an applied FREEZE, RELEASE only for an applied SEIZE, UNRESTRICT only for an applied RESTRICT",
+      "currentEffect": "the referenced action MUST be the subject's live head for its overlay family, or the case's active custody for RELEASE",
+      "provenanceCommitment": "!= 0"
+    }
+  },
+  "caseTransitions": {
+    "description": "Machine-readable case state table. Each case is opened by its first applied command and is bound to that command's family. A subject has at most one live head per overlay family across all cases.",
+    "families": {
+      "FREEZE": {
+        "opening": [
+          "FREEZE"
+        ],
+        "overlay": true,
+        "reversal": "UNFREEZE"
+      },
+      "RESTRICT": {
+        "opening": [
+          "RESTRICT"
+        ],
+        "overlay": true,
+        "reversal": "UNRESTRICT"
+      },
+      "CUSTODY": {
+        "opening": [
+          "SEIZE"
+        ],
+        "overlay": false,
+        "reversal": "RELEASE",
+        "dispositions": [
+          "CONFISCATE",
+          "LIQUIDATE",
+          "RECOVER"
+        ]
+      },
+      "DISPOSITION": {
+        "opening": [
+          "CONFISCATE",
+          "LIQUIDATE",
+          "RECOVER"
+        ],
+        "overlay": false,
+        "reversal": null
+      }
+    },
+    "rules": [
+      {
+        "id": "CT-1",
+        "from": "NONE",
+        "command": "FREEZE",
+        "guard": "subject has no live FREEZE head",
+        "to": "OPEN(FREEZE)",
+        "effect": "push effect head (parent = none)"
+      },
+      {
+        "id": "CT-2",
+        "from": "OPEN(FREEZE)",
+        "command": "FREEZE",
+        "guard": "subject's live FREEZE head belongs to this case and amount > current target",
+        "to": "OPEN(FREEZE)",
+        "effect": "push amendment head (parent = previous head)"
+      },
+      {
+        "id": "CT-3",
+        "from": "NONE or OPEN of another case",
+        "command": "FREEZE",
+        "guard": "subject's live FREEZE head belongs to a different open case",
+        "to": "REJECT",
+        "reason": 10
+      },
+      {
+        "id": "CT-4",
+        "from": "OPEN(FREEZE)",
+        "command": "UNFREEZE(head)",
+        "guard": "referenced action is the live head",
+        "to": "OPEN(FREEZE) if the popped head's parent belongs to this case, else TERMINAL",
+        "effect": "restore prior target, pop head"
+      },
+      {
+        "id": "CT-5",
+        "from": "NONE",
+        "command": "RESTRICT",
+        "guard": "subject has no live RESTRICT head",
+        "to": "OPEN(RESTRICT)"
+      },
+      {
+        "id": "CT-6",
+        "from": "OPEN(RESTRICT)",
+        "command": "RESTRICT",
+        "to": "REJECT",
+        "reason": 13
+      },
+      {
+        "id": "CT-7",
+        "from": "NONE or OPEN of another case",
+        "command": "RESTRICT",
+        "guard": "subject's live RESTRICT head belongs to a different open case",
+        "to": "REJECT",
+        "reason": 10
+      },
+      {
+        "id": "CT-8",
+        "from": "OPEN(RESTRICT)",
+        "command": "UNRESTRICT(head)",
+        "to": "TERMINAL",
+        "effect": "restore prior flag, pop head"
+      },
+      {
+        "id": "CT-9",
+        "from": "NONE",
+        "command": "SEIZE",
+        "to": "OPEN(CUSTODY)",
+        "effect": "open custody record"
+      },
+      {
+        "id": "CT-10",
+        "from": "OPEN(CUSTODY)",
+        "command": "SEIZE",
+        "to": "REJECT",
+        "reason": 8
+      },
+      {
+        "id": "CT-11",
+        "from": "OPEN(CUSTODY)",
+        "command": "RELEASE",
+        "to": "TERMINAL",
+        "effect": "return encumbered amount to declared prior holder, close custody"
+      },
+      {
+        "id": "CT-12",
+        "from": "OPEN(CUSTODY)",
+        "command": "CONFISCATE, LIQUIDATE, or RECOVER (custody disposition)",
+        "to": "TERMINAL",
+        "effect": "consume the whole custody record"
+      },
+      {
+        "id": "CT-13",
+        "from": "NONE",
+        "command": "CONFISCATE, LIQUIDATE, or RECOVER (direct)",
+        "to": "TERMINAL"
+      },
+      {
+        "id": "CT-14",
+        "from": "OPEN(FREEZE) or OPEN(RESTRICT)",
+        "command": "any non-family command",
+        "to": "REJECT",
+        "reason": 10
+      },
+      {
+        "id": "CT-15",
+        "from": "TERMINAL",
+        "command": "any action or reversal",
+        "to": "REJECT",
+        "error": "TrustTerminal"
+      }
+    ],
+    "crossCase": [
+      "A disposition in one case does not clear an overlay owned by another case; the overlay remains live and its frozen target saturates at the current balance when observed.",
+      "Custody records are per case; several custody cases may encumber the same source, each with its own backing."
+    ]
+  },
+  "reasonClasses": {
+    "description": "uint16 reason registry. Classes are normative; an implementation MAY add codes inside a class but MUST NOT reuse a listed code with a different meaning.",
+    "classes": {
+      "1": {
+        "range": [
+          1,
+          99
+        ],
+        "error": "TrustInvalidCommand",
+        "codes": {
+          "1": "DOMAIN",
+          "2": "IDENTIFIER",
+          "3": "TIME",
+          "4": "AUTHORITY_EPOCH",
+          "5": "DEPENDENCY_BINDING",
+          "6": "SHAPE",
+          "7": "REVERSAL_PAIRING",
+          "8": "CUSTODY",
+          "9": "ENTITLEMENT",
+          "10": "CASE_CONFLICT",
+          "11": "CURRENT_EFFECT",
+          "12": "FREEZE_DIRECTION",
+          "13": "NO_STATE_CHANGE"
+        }
+      },
+      "100": {
+        "range": [
+          100,
+          199
+        ],
+        "error": "TrustRejected",
+        "codes": {
+          "100": "POLICY_DENIED",
+          "101": "IDENTITY_DENIED",
+          "102": "SETTLEMENT_DENIED",
+          "103": "ENTITLEMENT_DENIED"
+        }
+      },
+      "200": {
+        "range": [
+          200,
+          299
+        ],
+        "error": "TrustOperationalFailure",
+        "codes": {
+          "200": "DEPENDENCY_CODE_MISMATCH",
+          "201": "DEPENDENCY_CONFIGURATION_MISMATCH",
+          "202": "DEPENDENCY_CALL_FAILED_OR_MALFORMED",
+          "203": "DEPENDENCY_ECHO_MISMATCH",
+          "204": "DEPENDENCY_REPORTED_FAILURE",
+          "205": "DEPENDENCY_UNAVAILABLE_AT_BIND"
+        }
+      },
+      "300": {
+        "range": [
+          300,
+          399
+        ],
+        "error": "TrustOperationalFailure",
+        "codes": {
+          "300": "TOPOLOGY_NOT_FULL",
+          "301": "SEAL_INVALID",
+          "302": "TOPOLOGY_MISMATCH_AT_SEAL",
+          "303": "IMPORT_MANIFEST_MISMATCH"
+        }
+      },
+      "400": {
+        "range": [
+          400,
+          499
+        ],
+        "error": "TrustOperationalFailure",
+        "codes": {
+          "400": "UPSTREAM_CALL_FAILED",
+          "401": "UPSTREAM_POSTSTATE_MISMATCH",
+          "402": "IDENTITY_REGISTRY_UNAVAILABLE",
+          "403": "COMPLIANCE_UNAVAILABLE"
+        }
+      }
+    }
+  },
+  "profiles": {
+    "native-full": {
+      "profileId": {
+        "string": "ERC-TRUST/v2/native-full",
+        "keccak256": "0x86ba25e1a29a74ad905fd84744be032fec9dc05645f58f7f1b7788dc60ae866b"
+      },
+      "profileKind": "NATIVE_FULL",
+      "endpoint": "the token itself",
+      "underlyingToken": "0x0000000000000000000000000000000000000000",
+      "actionMask": "0x3f",
+      "reversalMask": "0x07",
+      "dependencies": "four read-only ITrustBoundDependency bindings, one per BindingKind; assessment and execution use the same current binding",
+      "route": "IERCTrustNativeRoute; raw setFrozenTokens and forcedTransfer calls fail",
+      "authority": "direct: the current account registered for authorityRef, which MAY be a contract; no delegation surface",
+      "observationPreimage": "documented by the implementation together with its runtime identity",
+      "manifestHash": "dependencyRoot"
+    },
+    "erc3643-verified-full": {
+      "profileId": {
+        "string": "ERC-TRUST/v2/erc3643-verified-full",
+        "keccak256": "0xad56e54f83cc255e391dd3838f7dc4befa1b0306b42d8ed7974588f27fec41ad"
+      },
+      "profileKind": "VERIFIED_FULL",
+      "endpoint": "the adapter",
+      "underlyingToken": "the sealed ERC-3643 token",
+      "actionMask": "0x3f",
+      "reversalMask": "0x07",
+      "dependencies": "sealed token runtime identity, Identity Registry, Compliance; the dependency root binds the sealed topology and the epoch increments on every reseal",
+      "onboarding": "fresh zero-state seal or exact import manifest; any other initial state is Partial or Unsupported",
+      "full": "computed live from the sealed topology; never a stored constant",
+      "manifestHash": "sealed binding"
+    }
+  },
+  "nonclaims": [
+    "A receipt proves the on-chain transition and the committed inputs. It does not prove that the authority had legal power or that any policy, identity, settlement, proceeds, entitlement, ownership, or legal assertion is true.",
+    "This kernel does not standardize a delegation registry, signature scheme, identity system, policy language, settlement engine, proxy, or migration.",
+    "Conformance of this machine source does not establish conformance of any implementation until that implementation's exact source, compiler, and runtime are bound to it."
+  ]
+}
