@@ -1,0 +1,56 @@
+{
+  "schema": "erc-trust-foundry-results-v3",
+  "candidate": "0.2.0-candidate.1",
+  "status": "PASS",
+  "sourceCommit": "088ca85705d43998d3f36dc63f281c2d879c5a0f",
+  "sourceRootAlgorithm": "sha256-raw-files-case-sensitive-path-order-v1",
+  "sourceRootSha256": "a13b09d85956c84548d4f75c09a937451624a3594986aa07765c27b0551dcba5",
+  "workflow": {
+    "runId": 33660080668,
+    "jobId": 100348193521,
+    "url": "https://github.com/Oraclizer/erc-trust/actions/runs/33660080668/job/100348193521",
+    "jobConclusion": "success"
+  },
+  "toolchain": {
+    "foundry": "1.7.1",
+    "solidity": "0.8.36+commit.8a079791",
+    "evmVersion": "cancun"
+  },
+  "checks": {
+    "format": "PASS",
+    "buildAndSize": "PASS",
+    "tests": {
+      "passed": 87,
+      "failed": 0,
+      "skipped": 0,
+      "suites": 7,
+      "fuzzProperties": 2,
+      "fuzzRunsEach": 256,
+      "invariants": 9,
+      "invariantRunsEach": 256,
+      "invariantDepth": 500,
+      "invariantCalls": 1152000,
+      "invariantReverts": 0
+    },
+    "lintErrors": 0,
+    "intentionalTimestampWarnings": 8
+  },
+  "runtimeTemplate": {
+    "bytes": 20244,
+    "eip170MarginBytes": 4332,
+    "sha256": "5f8e5565f9de8cc4663c8d3837e768fe83197e61b0db686899c83051d0329d86"
+  },
+  "profileRuntimes": {
+    "erc3643Adapter": {
+      "bytes": 19446,
+      "eip170MarginBytes": 5130,
+      "sha256": "4a82fe8d77d5048d5d50531e476ed848a99dc4060866facb73adaad4629520d2"
+    },
+    "profileGovernor": {
+      "bytes": 2790,
+      "eip170MarginBytes": 21786,
+      "sha256": "ba2d63c8e93db7997ce57fe128a36dcfa761fb993e5babc9920d2911764f358e"
+    }
+  },
+  "claimBoundary": "Pinned Foundry build, format, unit, fuzz, invariant, size, and lint results for the named commit and source root. The profile runtime hashes are measured here and are not yet bound by the deterministic-build receipt or the release manifest. This is not an audit, deployment result, or production-safety claim."
+}
