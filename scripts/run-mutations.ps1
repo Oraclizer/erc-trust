@@ -24,6 +24,8 @@ if ([System.IO.Path]::GetPathRoot($resolvedWorkspace) -eq $resolvedWorkspace) {
     throw "Refusing broad mutation workspace: $resolvedWorkspace"
 }
 
+# Each fault removes or weakens one load-bearing consumer of the kernel version 2 native endpoint.
+# The detector is the exact Foundry test that must fail once the consumer is gone.
 $mutations = @(
     @{
         Id = "MUT-01-FROZEN-FLOOR"
@@ -43,37 +45,37 @@ $mutations = @(
         New = "_routeTicket.live = true;"
         ExpectedOccurrences = 1
         Contract = "TrustActionsUnitTest"
-        Test = "testERC7943ExactUseRoutesAndInterfaceTruth"
+        Test = "testERC7943ExactUseRoutesAndRawClosure"
     },
     @{
         Id = "MUT-03-RECEIPT-LAST"
         Fault = "Emit a base event after the canonical TRUST receipt"
         File = "implementation\src\TrustToken.sol"
-        Old = "emit RegulatoryActionApplied(request.actionId, request.action, request.caseId, receiptHash);"
-        New = "emit RegulatoryActionApplied(request.actionId, request.action, request.caseId, receiptHash);`r`n        emit Frozen(request.subject, _frozen[request.subject]);"
+        Old = "emit RegulatoryActionApplied(request.actionId, uint8(request.action), request.caseId, receiptHash);"
+        New = "emit RegulatoryActionApplied(request.actionId, uint8(request.action), request.caseId, receiptHash);`n        emit Frozen(request.subject, _frozen[request.subject]);"
         ExpectedOccurrences = 1
         Contract = "TrustActionsUnitTest"
-        Test = "testCanonicalEventOrder"
+        Test = "testCanonicalEventOrderAndRevertedTransactionsLeaveNothing"
     },
     @{
         Id = "MUT-04-FAIL-CLOSED"
         Fault = "Allow OperationalFailure assessment to continue"
         File = "implementation\src\TrustToken.sol"
-        Old = "if (outcome == TrustTypes.AssessmentOutcome.OPERATIONAL_FAILURE) {"
+        Old = "if (outcome == TrustKernelTypes.AssessmentOutcome.OPERATIONAL_FAILURE) {"
         New = "if (false) {"
         ExpectedOccurrences = 1
         Contract = "TrustActionsUnitTest"
-        Test = "testRejectedAndOperationalFailureStutter"
+        Test = "testAssessmentOutcomesAndReasonClasses"
     },
     @{
         Id = "MUT-05-FIXED-ACTION"
         Fault = "Remove destination from action-id binding"
         File = "implementation\src\TrustToken.sol"
-        Old = "calldatacopy(add(ptr, 0x60), request, 0x2a0)`n            if clearId { mstore(add(ptr, 0x80), 0) }"
-        New = "calldatacopy(add(ptr, 0x60), request, 0x2a0)`n            if clearId {`n                mstore(add(ptr, 0x80), 0)`n                mstore(add(ptr, 0x100), 0)`n            }"
+        Old = "calldatacopy(add(ptr, 0x60), request, 0x280)`n            if clearId { mstore(add(ptr, 0x80), 0) }"
+        New = "calldatacopy(add(ptr, 0x60), request, 0x280)`n            if clearId {`n                mstore(add(ptr, 0x80), 0)`n                mstore(add(ptr, 0x100), 0)`n            }"
         ExpectedOccurrences = 1
-        Contract = "TrustActionsUnitTest"
-        Test = "testReplayFixedActionAndConfiscateTerminality"
+        Contract = "TrustKernelVectorsTest"
+        Test = "testFieldBindingNegativeVectors"
     },
     @{
         Id = "MUT-06-NONCE-CONSUMPTION"
@@ -104,17 +106,17 @@ $mutations = @(
         New = "false"
         ExpectedOccurrences = 1
         Contract = "TrustActionsUnitTest"
-        Test = "testFreezeDirectionShapeAndReversalPolicyFailClosed"
+        Test = "testFreezeAmendmentChainReopensAfterPop"
     },
     @{
         Id = "MUT-09-CASE-TERMINALITY"
-        Fault = "Do not mark a CONFISCATE case terminal"
+        Fault = "Leave a disposition case open instead of terminal"
         File = "implementation\src\TrustToken.sol"
-        Old = "_terminalCases[request.caseId] = true;"
-        New = "_terminalCases[request.caseId] = false;"
+        Old = "if (!consumedCustody) caseState.family = TrustKernelTypes.CaseFamily.DISPOSITION;`n            caseState.phase = TrustKernelTypes.CasePhase.TERMINAL;"
+        New = "if (!consumedCustody) caseState.family = TrustKernelTypes.CaseFamily.DISPOSITION;`n            caseState.phase = TrustKernelTypes.CasePhase.OPEN;"
         ExpectedOccurrences = 1
         Contract = "TrustActionsUnitTest"
-        Test = "testReplayFixedActionAndConfiscateTerminality"
+        Test = "testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals"
     },
     @{
         Id = "MUT-10-CUSTODY-CLOSURE"
@@ -124,18 +126,18 @@ $mutations = @(
         New = "return false;"
         ExpectedOccurrences = 1
         Contract = "TrustActionsUnitTest"
-        Test = "testConfiscateFromCustodyClosesAndTerminatesCase"
+        Test = "testCustodyLifecycleAndDispositions"
     },
     @{
         Id = "MUT-11-REVERSAL-POLICY"
         Fault = "Skip current-policy assessment before direct reversal"
         File = "implementation\src\TrustToken.sol"
-        Old = "_assessReversalOrRevert(request, digest);"
-        New = ""
+        Old = "bytes32 evidence = _assessReversalOrRevert(request, digest);"
+        New = "bytes32 evidence = digest;"
         ExpectedOccurrences = 2
         FirstOnly = $true
         Contract = "TrustActionsUnitTest"
-        Test = "testFreezeDirectionShapeAndReversalPolicyFailClosed"
+        Test = "testReversalAssessmentFailsClosedAfterPolicyRebind"
     },
     @{
         Id = "MUT-12-ERC3643-FREEZE-DIRECTION"
@@ -146,6 +148,127 @@ $mutations = @(
         ExpectedOccurrences = 1
         Contract = "ERC3643ProfileUnitTest"
         Test = "testAllSixActionsAndReversals"
+    },
+    @{
+        Id = "MUT-13-TERMINAL-REVERSAL-GUARD"
+        Fault = "Remove the terminal-case guard from reversal validation"
+        File = "implementation\src\TrustToken.sol"
+        Old = "if (_cases[original.caseId].phase == TrustKernelTypes.CasePhase.TERMINAL) {`n            revert TrustTerminal(original.caseId);`n        }"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals"
+    },
+    @{
+        Id = "MUT-14-DEPENDENCY-ROOT-COMPARISON"
+        Fault = "Compare only the dependency epoch and ignore the root"
+        File = "implementation\src\TrustToken.sol"
+        Old = "if (request.dependencyRoot != _dependencyRoot || request.dependencyEpoch != _dependencyEpoch) {`n            revert TrustInvalidCommand(request.actionId, REASON_DEPENDENCY_BINDING);"
+        New = "if (request.dependencyEpoch != _dependencyEpoch) {`n            revert TrustInvalidCommand(request.actionId, REASON_DEPENDENCY_BINDING);"
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testRootAndEpochAreCheckedIndependently"
+    },
+    @{
+        Id = "MUT-15-DEPENDENCY-EPOCH-INCREMENT"
+        Fault = "Do not advance the global dependency epoch on rebind"
+        File = "implementation\src\TrustToken.sol"
+        Old = "_dependencyEpoch += 1;"
+        New = "_dependencyEpoch += 0;"
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testEveryDependencyRebindMakesEarlierCommandsStale"
+    },
+    @{
+        Id = "MUT-16-ROOT-TAG"
+        Fault = "Compute the dependency root without its domain-separation tag"
+        File = "implementation\src\TrustNativeDecision.sol"
+        Old = "TrustKernelTypes.DOMAIN, TrustKernelTypes.DEPENDENCY_ROOT_TAG, policy, identity, settlement, entitlement"
+        New = "TrustKernelTypes.DOMAIN, bytes32(0), policy, identity, settlement, entitlement"
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testDependencyRootFormulaAndInitialEvents"
+    },
+    @{
+        Id = "MUT-17-ROOT-ORDER"
+        Fault = "Swap the identity and settlement bindings in the dependency root"
+        File = "implementation\src\TrustNativeDecision.sol"
+        Old = "TrustKernelTypes.DOMAIN, TrustKernelTypes.DEPENDENCY_ROOT_TAG, policy, identity, settlement, entitlement"
+        New = "TrustKernelTypes.DOMAIN, TrustKernelTypes.DEPENDENCY_ROOT_TAG, policy, settlement, identity, entitlement"
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testDependencyRootFormulaAndInitialEvents"
+    },
+    @{
+        Id = "MUT-18-CASE-CONFLICT"
+        Fault = "Allow an overlay head owned by another case to be stacked"
+        File = "implementation\src\TrustToken.sol"
+        Old = "} else if (caseState.headActionId != head.actionId) {"
+        New = "} else if (false) {"
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testOverlayCaseConflictsAndFamilies"
+    },
+    @{
+        Id = "MUT-19-OVERLAY-DISPOSITION"
+        Fault = "Allow a disposition against an open overlay case"
+        File = "implementation\src\TrustToken.sol"
+        Old = "if (caseState.family != TrustKernelTypes.CaseFamily.CUSTODY) {`n                        revert TrustInvalidCommand(request.actionId, REASON_CASE_CONFLICT);"
+        New = "if (false) {`n                        revert TrustInvalidCommand(request.actionId, REASON_CASE_CONFLICT);"
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals"
+    },
+    @{
+        Id = "MUT-20-RECEIPT-KIND-TAG"
+        Fault = "Tag reversal receipts as action receipts"
+        File = "implementation\src\TrustToken.sol"
+        Old = "receiptKind: TrustKernelTypes.ReceiptKind.REVERSAL,"
+        New = "receiptKind: TrustKernelTypes.ReceiptKind.ACTION,"
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testReceiptBindsCanonicalCommandHashEvidenceAndFinalEvent"
+    },
+    @{
+        Id = "MUT-21-REVERSAL-CLOSES-CHAIN"
+        Fault = "Close the case after every unfreeze even when an amendment parent remains"
+        File = "implementation\src\TrustToken.sol"
+        Old = "if (parent != bytes32(0)) {`n                caseState.headActionId = parent;`n            } else {`n                _closeCase(caseState);`n            }"
+        New = "_closeCase(caseState);"
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testFreezeAmendmentChainReopensAfterPop"
+    },
+    @{
+        Id = "MUT-22-RECEIPT-PREIMAGE"
+        Fault = "Drop the last receipt field from the hash preimage"
+        File = "implementation\src\TrustToken.sol"
+        Old = "mcopy(add(ptr, 0x20), record, 0x200)"
+        New = "mcopy(add(ptr, 0x20), record, 0x1e0)"
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testSixActionsAndThreeReversalsWithReceipts"
+    },
+    @{
+        Id = "MUT-23-CALLDATA-LENGTH"
+        Fault = "Accept action calldata of any length"
+        File = "implementation\src\TrustToken.sol"
+        Old = "_requireCalldataLength(ACTION_CALLDATA_LENGTH);"
+        New = ""
+        ExpectedOccurrences = 2
+        FirstOnly = $true
+        Contract = "TrustActionsUnitTest"
+        Test = "testNonCanonicalCalldataIsRejected"
+    },
+    @{
+        Id = "MUT-24-IDENTITY-ASSESSMENT"
+        Fault = "Skip the identity dependency for transfer actions"
+        File = "implementation\src\TrustToken.sol"
+        Old = "if (request.destination != address(0)) {"
+        New = "if (false) {"
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testAssessmentOutcomesAndReasonClasses"
     }
 )
 
@@ -198,12 +321,6 @@ foreach ($mutation in $mutations) {
     $occurrences = Get-TextOccurrences $content $mutation.Old
     if ($occurrences -ne $mutation.ExpectedOccurrences) {
         throw "$($mutation.Id): expected $($mutation.ExpectedOccurrences) primary anchors, found $occurrences"
-    }
-    if ($mutation.ContainsKey("Old2")) {
-        $secondaryOccurrences = Get-TextOccurrences $content $mutation.Old2
-        if ($secondaryOccurrences -ne $mutation.ExpectedSecondaryOccurrences) {
-            throw "$($mutation.Id): expected $($mutation.ExpectedSecondaryOccurrences) secondary anchors, found $secondaryOccurrences"
-        }
     }
     $contractPattern = "contract\s+$([regex]::Escape($mutation.Contract))\b"
     $contractFiles = @($testSourceFiles | Where-Object {
@@ -286,6 +403,8 @@ foreach ($mutation in $mutations) {
     New-Item -ItemType Directory -Path $caseImplementation | Out-Null
     Copy-Item -LiteralPath (Join-Path $repoRoot "implementation\src") -Destination $caseImplementation -Recurse
     Copy-Item -LiteralPath (Join-Path $repoRoot "implementation\test") -Destination $caseImplementation -Recurse
+    # The vector conformance test reads the generated vectors through the read-only filesystem permission.
+    Copy-Item -LiteralPath (Join-Path $repoRoot "vectors") -Destination (Join-Path $caseRoot "vectors") -Recurse
 
     $target = Join-Path $caseRoot $mutation.File
     $content = [System.IO.File]::ReadAllText($target)
@@ -295,19 +414,11 @@ foreach ($mutation in $mutations) {
     } else {
         $content = $content.Replace($mutation.Old, $mutation.New)
     }
-    if ($mutation.ContainsKey("Old2")) {
-        $secondaryOccurrences = ([regex]::Matches($content, [regex]::Escape($mutation.Old2))).Count
-        if ($secondaryOccurrences -ne 1) {
-            throw "$($mutation.Id): expected one secondary anchor, found $secondaryOccurrences"
-        }
-        $content = $content.Replace($mutation.Old2, $mutation.New2)
-    }
     [System.IO.File]::WriteAllText($target, $content)
 
     Push-Location $caseRoot
     try {
         $buildResult = Invoke-Forge @("build", "--force")
-        $buildOutput = @($buildResult.Output)
         $buildExitCode = $buildResult.ExitCode
         if ($buildExitCode -ne 0) {
             throw "$($mutation.Id): mutant did not compile"
@@ -340,7 +451,7 @@ foreach ($mutation in $mutations) {
 }
 
 $summary = [ordered]@{
-    schema = "erc-trust-mutation-result-v1"
+    schema = "erc-trust-mutation-result-v2"
     candidateInput = [ordered]@{
         gitHead = (git -C $repoRoot rev-parse HEAD).Trim()
         sourceRootAlgorithm = "sha256-raw-files-case-sensitive-path-order-v1"

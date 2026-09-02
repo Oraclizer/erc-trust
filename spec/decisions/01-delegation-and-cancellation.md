@@ -1,7 +1,7 @@
 # Decision 01: delegation and cancellation are removed from the kernel
 
-Status: frozen in kernel version 2 machine source. Implementation wiring
-pending.
+Status: frozen in kernel version 2 machine source. Native endpoint wired (`implementation/src/TrustToken.sol`, see
+`08-native-wiring.md`); ERC-3643 profile wiring pending.
 
 ## Decision
 

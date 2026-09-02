@@ -3,7 +3,8 @@
 Status: frozen in kernel version 2 machine source (`hashes.dependencyRoot`,
 `ActionRequest.dependencyRoot`, `ActionRequest.dependencyEpoch`,
 `ReversalRequest.dependencyRoot`, `ReversalRequest.dependencyEpoch`).
-Implementation wiring pending.
+Native endpoint wired (`implementation/src/TrustToken.sol`, see
+`08-native-wiring.md`); ERC-3643 profile wiring pending.
 
 ## Decision
 

@@ -2,14 +2,17 @@
 pragma solidity 0.8.36;
 
 import {TrustToken} from "../../src/TrustToken.sol";
-import {TrustTypes} from "../../src/TrustTypes.sol";
+import {TrustKernelTypes} from "../../src/generated/IERCTrustKernel.sol";
 
 contract Actor {
     function transferToken(TrustToken token, address to, uint256 amount) external returns (bool) {
         return token.transfer(to, amount);
     }
 
-    function executeAction(TrustToken token, TrustTypes.ActionRequest calldata request) external returns (bytes32) {
+    function executeAction(TrustToken token, TrustKernelTypes.ActionRequest calldata request)
+        external
+        returns (bytes32)
+    {
         return token.executeRegulatoryAction(request);
     }
 

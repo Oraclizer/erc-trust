@@ -52,8 +52,8 @@ jobs:
               pilot/src/MockBoundPolicy.sol \
               pilot/src/TrustFreezePilot.sol \
               pilot/test/TrustFreezePilot.t.sol | sort)"
-      - name: Verify current-profile release index
-        run: node scripts/verify-current-profile-release-v2.mjs
+      - name: Verify successor evidence lanes
+        run: node scripts/verify-current-profile-release-v3.mjs
       - name: Verify public release tree
         run: node scripts/verify-public-release-tree.mjs
       - name: Verify public surface

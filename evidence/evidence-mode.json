@@ -1,0 +1,7 @@
+{
+  "schema": "erc-trust-evidence-mode-v1",
+  "candidate": "0.2.0-candidate.1",
+  "mode": "successor-development",
+  "pendingAllowed": true,
+  "note": "Successor development mode: evidence lanes without a receipt for the current identity are reported as PENDING by scripts/verify-current-profile-release-v3.mjs and owned by later changes. Switching this file to release mode requires every lane to be PASS and is the gate for a release candidate. Unaudited. Not for production."
+}

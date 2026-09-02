@@ -56,11 +56,12 @@ contract TrustStatefulInvariantTest is TrustTestBase {
     }
 
     function invariantNoPersistentRouteTicket() external view {
-        _assert(!token.routeLive(), "ephemeral route");
+        _assert(!_routeLive(), "ephemeral route");
     }
 
     function invariantInterfaceTruth() external view {
         _assert(token.supportsInterface(0x3edbb4c4), "erc7943 truth");
+        _assert(token.supportsInterface(0x2b020308), "kernel truth");
         _assert(!token.supportsInterface(0xffffffff), "invalid interface");
     }
 }

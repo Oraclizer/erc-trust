@@ -15,14 +15,12 @@ import { resolvePinnedSolc } from "./lib/resolve-pinned-solc.mjs";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const sourcePath = "spec/generated/IERCTrustKernel.sol";
 const abiPath = "spec/generated/kernel-v2-abi.json";
-const manifest = JSON.parse(
-  readFileSync(resolve(root, "evidence/end-to-end-refinement/runtime-binding-current-v2/manifest.json"), "utf8"),
-);
+const lock = JSON.parse(readFileSync(resolve(root, "formal/kevm/dependencies.lock.json"), "utf8"));
 const abi = JSON.parse(readFileSync(resolve(root, abiPath), "utf8"));
 const failures = [];
 const fail = (message) => failures.push(message);
 
-const pinnedSolc = resolvePinnedSolc(manifest.compiler);
+const pinnedSolc = resolvePinnedSolc(lock.components.solc);
 const input = {
   language: "Solidity",
   sources: { [sourcePath]: { content: readFileSync(resolve(root, sourcePath), "utf8") } },

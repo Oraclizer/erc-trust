@@ -64,6 +64,10 @@ jobs:
         run: node scripts/generate-release-manifest.mjs
       - name: Verify release binding
         run: node scripts/verify-release.mjs --mode=full
+      - name: Require release evidence mode with no pending lane
+        run: |
+          node scripts/verify-current-profile-release-v3.mjs --require-release
+          node scripts/verify-public-release-tree.mjs --require-release
       - name: Verify public repository surface
         run: |
           node scripts/verify-links.mjs

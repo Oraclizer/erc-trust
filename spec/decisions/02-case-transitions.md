@@ -1,7 +1,8 @@
 # Decision 02: case transition table
 
 Status: frozen in kernel version 2 machine source (`caseTransitions`).
-Implementation, model, and test wiring pending.
+Native endpoint wired (`implementation/src/TrustToken.sol`, see
+`08-native-wiring.md`); ERC-3643 profile wiring pending. Model wiring pending.
 
 ## Decision
 

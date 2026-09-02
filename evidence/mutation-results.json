@@ -1,17 +1,17 @@
 {
-    "schema":  "erc-trust-mutation-result-v1",
+    "schema":  "erc-trust-mutation-result-v2",
     "candidateInput":  {
-                           "gitHead":  "f743f763b70533f15c3f99ebc208386912dd33f4",
+                           "gitHead":  "417c993e359ed02c18ec636353e4919bf38461eb",
                            "sourceRootAlgorithm":  "sha256-raw-files-case-sensitive-path-order-v1",
-                           "sourceRootSha256":  "8ca9c57a9a63acbf6318bd945d03c80bef7a796e52f6efc3837902dc90452c16"
+                           "sourceRootSha256":  "c27105988f3ca37695e7c9cc4df3f5f6b098fe77c4a83d0e1c0b1d46c09ebd06"
                        },
     "toolchain":  {
                       "forge":  "1.7.1",
                       "solc":  "0.8.36",
                       "fuzzRunsPerMutation":  64
                   },
-    "total":  12,
-    "killed":  12,
+    "total":  24,
+    "killed":  24,
     "survived":  0,
     "results":  [
                     {
@@ -27,7 +27,7 @@
                     {
                         "id":  "MUT-02-ROUTE-CONSUMPTION",
                         "fault":  "Keep an ERC-7943 route ticket live after use",
-                        "detector":  "TrustActionsUnitTest.testERC7943ExactUseRoutesAndInterfaceTruth",
+                        "detector":  "TrustActionsUnitTest.testERC7943ExactUseRoutesAndRawClosure",
                         "anchorOccurrences":  1,
                         "detectorDiscovered":  1,
                         "detectorExecuted":  1,
@@ -37,7 +37,7 @@
                     {
                         "id":  "MUT-03-RECEIPT-LAST",
                         "fault":  "Emit a base event after the canonical TRUST receipt",
-                        "detector":  "TrustActionsUnitTest.testCanonicalEventOrder",
+                        "detector":  "TrustActionsUnitTest.testCanonicalEventOrderAndRevertedTransactionsLeaveNothing",
                         "anchorOccurrences":  1,
                         "detectorDiscovered":  1,
                         "detectorExecuted":  1,
@@ -47,7 +47,7 @@
                     {
                         "id":  "MUT-04-FAIL-CLOSED",
                         "fault":  "Allow OperationalFailure assessment to continue",
-                        "detector":  "TrustActionsUnitTest.testRejectedAndOperationalFailureStutter",
+                        "detector":  "TrustActionsUnitTest.testAssessmentOutcomesAndReasonClasses",
                         "anchorOccurrences":  1,
                         "detectorDiscovered":  1,
                         "detectorExecuted":  1,
@@ -57,7 +57,7 @@
                     {
                         "id":  "MUT-05-FIXED-ACTION",
                         "fault":  "Remove destination from action-id binding",
-                        "detector":  "TrustActionsUnitTest.testReplayFixedActionAndConfiscateTerminality",
+                        "detector":  "TrustKernelVectorsTest.testFieldBindingNegativeVectors",
                         "anchorOccurrences":  1,
                         "detectorDiscovered":  1,
                         "detectorExecuted":  1,
@@ -87,7 +87,7 @@
                     {
                         "id":  "MUT-08-FREEZE-DIRECTION",
                         "fault":  "Permit equal or decreasing targets through FREEZE",
-                        "detector":  "TrustActionsUnitTest.testFreezeDirectionShapeAndReversalPolicyFailClosed",
+                        "detector":  "TrustActionsUnitTest.testFreezeAmendmentChainReopensAfterPop",
                         "anchorOccurrences":  1,
                         "detectorDiscovered":  1,
                         "detectorExecuted":  1,
@@ -96,8 +96,8 @@
                     },
                     {
                         "id":  "MUT-09-CASE-TERMINALITY",
-                        "fault":  "Do not mark a CONFISCATE case terminal",
-                        "detector":  "TrustActionsUnitTest.testReplayFixedActionAndConfiscateTerminality",
+                        "fault":  "Leave a disposition case open instead of terminal",
+                        "detector":  "TrustActionsUnitTest.testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals",
                         "anchorOccurrences":  1,
                         "detectorDiscovered":  1,
                         "detectorExecuted":  1,
@@ -107,7 +107,7 @@
                     {
                         "id":  "MUT-10-CUSTODY-CLOSURE",
                         "fault":  "Skip matched custody closure before disposition",
-                        "detector":  "TrustActionsUnitTest.testConfiscateFromCustodyClosesAndTerminatesCase",
+                        "detector":  "TrustActionsUnitTest.testCustodyLifecycleAndDispositions",
                         "anchorOccurrences":  1,
                         "detectorDiscovered":  1,
                         "detectorExecuted":  1,
@@ -117,7 +117,7 @@
                     {
                         "id":  "MUT-11-REVERSAL-POLICY",
                         "fault":  "Skip current-policy assessment before direct reversal",
-                        "detector":  "TrustActionsUnitTest.testFreezeDirectionShapeAndReversalPolicyFailClosed",
+                        "detector":  "TrustActionsUnitTest.testReversalAssessmentFailsClosedAfterPolicyRebind",
                         "anchorOccurrences":  2,
                         "detectorDiscovered":  1,
                         "detectorExecuted":  1,
@@ -128,6 +128,126 @@
                         "id":  "MUT-12-ERC3643-FREEZE-DIRECTION",
                         "fault":  "Permit equal or decreasing targets through the ERC-3643 profile",
                         "detector":  "ERC3643ProfileUnitTest.testAllSixActionsAndReversals",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-13-TERMINAL-REVERSAL-GUARD",
+                        "fault":  "Remove the terminal-case guard from reversal validation",
+                        "detector":  "TrustActionsUnitTest.testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-14-DEPENDENCY-ROOT-COMPARISON",
+                        "fault":  "Compare only the dependency epoch and ignore the root",
+                        "detector":  "TrustActionsUnitTest.testRootAndEpochAreCheckedIndependently",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-15-DEPENDENCY-EPOCH-INCREMENT",
+                        "fault":  "Do not advance the global dependency epoch on rebind",
+                        "detector":  "TrustActionsUnitTest.testEveryDependencyRebindMakesEarlierCommandsStale",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-16-ROOT-TAG",
+                        "fault":  "Compute the dependency root without its domain-separation tag",
+                        "detector":  "TrustActionsUnitTest.testDependencyRootFormulaAndInitialEvents",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-17-ROOT-ORDER",
+                        "fault":  "Swap the identity and settlement bindings in the dependency root",
+                        "detector":  "TrustActionsUnitTest.testDependencyRootFormulaAndInitialEvents",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-18-CASE-CONFLICT",
+                        "fault":  "Allow an overlay head owned by another case to be stacked",
+                        "detector":  "TrustActionsUnitTest.testOverlayCaseConflictsAndFamilies",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-19-OVERLAY-DISPOSITION",
+                        "fault":  "Allow a disposition against an open overlay case",
+                        "detector":  "TrustActionsUnitTest.testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-20-RECEIPT-KIND-TAG",
+                        "fault":  "Tag reversal receipts as action receipts",
+                        "detector":  "TrustActionsUnitTest.testReceiptBindsCanonicalCommandHashEvidenceAndFinalEvent",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-21-REVERSAL-CLOSES-CHAIN",
+                        "fault":  "Close the case after every unfreeze even when an amendment parent remains",
+                        "detector":  "TrustActionsUnitTest.testFreezeAmendmentChainReopensAfterPop",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-22-RECEIPT-PREIMAGE",
+                        "fault":  "Drop the last receipt field from the hash preimage",
+                        "detector":  "TrustActionsUnitTest.testSixActionsAndThreeReversalsWithReceipts",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-23-CALLDATA-LENGTH",
+                        "fault":  "Accept action calldata of any length",
+                        "detector":  "TrustActionsUnitTest.testNonCanonicalCalldataIsRejected",
+                        "anchorOccurrences":  2,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-24-IDENTITY-ASSESSMENT",
+                        "fault":  "Skip the identity dependency for transfer actions",
+                        "detector":  "TrustActionsUnitTest.testAssessmentOutcomesAndReasonClasses",
                         "anchorOccurrences":  1,
                         "detectorDiscovered":  1,
                         "detectorExecuted":  1,

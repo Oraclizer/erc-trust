@@ -22,7 +22,7 @@ const canonicalTextBytes = (absolute) =>
 if (!new Set(["pr", "full"]).has(mode)) {
   failures.push(`unsupported verification mode: ${mode}`);
 }
-if (manifest.candidate !== "0.1.0-candidate.2") {
+if (manifest.candidate !== "0.2.0-candidate.1") {
   failures.push(`unexpected candidate: ${manifest.candidate}`);
 }
 if (manifest.sourceTree.scope !== "protected-release-inputs-v1") {
@@ -99,8 +99,9 @@ if (mutation.candidateInput?.sourceRootSha256 !== mutationSourceRoot) {
   );
 }
 if (
-  mutation.total !== 12 || mutation.killed !== 12 || mutation.survived !== 0
-  || mutation.results?.length !== 12
+  mutation.schema !== "erc-trust-mutation-result-v2" || !Array.isArray(mutation.results)
+  || mutation.results.length !== mutation.total || mutation.killed !== mutation.total
+  || mutation.survived !== 0 || mutation.total < 1
 ) failures.push("mutation result count mismatch");
 try {
   execFileSync("git", ["merge-base", "--is-ancestor", mutation.candidateInput.gitHead, "HEAD"], {

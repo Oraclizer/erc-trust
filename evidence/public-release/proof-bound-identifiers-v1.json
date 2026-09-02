@@ -20,7 +20,7 @@
   },
   "files": [
     {
-      "path": "evidence/end-to-end-refinement/c1-terminal-receipt-v1.json",
+      "path": "evidence/candidate-2/end-to-end-refinement/c1-terminal-receipt-v1.json",
       "sha256": "1ecf5ed3da7dda4eee73a1589cfc331d7de5773436da8d4c0990af53d7c690c1",
       "contentOccurrenceCount": 6,
       "identifiers": [
@@ -37,7 +37,7 @@
       "pathIdentifiers": []
     },
     {
-      "path": "evidence/end-to-end-refinement/c3-terminal-receipt-v1.json",
+      "path": "evidence/candidate-2/end-to-end-refinement/c3-terminal-receipt-v1.json",
       "sha256": "eb69128c671cdc8d2e93cba502f6d5b327f2e5d9014acd31044dff78c7b26f47",
       "contentOccurrenceCount": 6,
       "identifiers": [
@@ -54,7 +54,7 @@
       "pathIdentifiers": []
     },
     {
-      "path": "evidence/end-to-end-refinement/c4-freeze-lane-receipt-v1.json",
+      "path": "evidence/candidate-2/end-to-end-refinement/c4-freeze-lane-receipt-v1.json",
       "sha256": "a3c628fae7233998ff1a2425786bcabf04c53c38d86cec95aeb4930cc94c0d1b",
       "contentOccurrenceCount": 5,
       "identifiers": [
@@ -70,7 +70,7 @@
       "pathIdentifiers": []
     },
     {
-      "path": "evidence/end-to-end-refinement/c4-terminal-receipt-v1.json",
+      "path": "evidence/candidate-2/end-to-end-refinement/c4-terminal-receipt-v1.json",
       "sha256": "c0f7745147b34e9788c44705fc71c663559ae07f6d67ea3b2c65624d3c5bd85d",
       "contentOccurrenceCount": 4,
       "identifiers": [
@@ -85,7 +85,7 @@
       "pathIdentifiers": []
     },
     {
-      "path": "evidence/end-to-end-refinement/c5-terminal-receipt-v1.json",
+      "path": "evidence/candidate-2/end-to-end-refinement/c5-terminal-receipt-v1.json",
       "sha256": "913a46292382df1bb970ed50b4460c7fe7f103a93fb164c38880f7fdd0cf4b4a",
       "contentOccurrenceCount": 4,
       "identifiers": [
@@ -100,7 +100,7 @@
       "pathIdentifiers": []
     },
     {
-      "path": "evidence/end-to-end-refinement/c6-terminal-receipt-v1.json",
+      "path": "evidence/candidate-2/end-to-end-refinement/c6-terminal-receipt-v1.json",
       "sha256": "6afba204a95dfe43455ed9c1896f809461f0ee9652a2ecc6422467be93a29847",
       "contentOccurrenceCount": 5,
       "identifiers": [
@@ -116,7 +116,7 @@
       "pathIdentifiers": []
     },
     {
-      "path": "evidence/end-to-end-refinement/current-profile-bridge-v1/schema-v1.json",
+      "path": "evidence/candidate-2/end-to-end-refinement/current-profile-bridge-v1/schema-v1.json",
       "sha256": "2aa641af1f362bbe1aaa246edfd22045999903a030afd02973c9f0cab8e70c8f",
       "contentOccurrenceCount": 1,
       "identifiers": [
@@ -128,7 +128,7 @@
       "pathIdentifiers": []
     },
     {
-      "path": "evidence/end-to-end-refinement/hybrid-tcb-v2/profiles/CERTORA-FINANCIAL-CORE-v2.json",
+      "path": "evidence/candidate-2/end-to-end-refinement/hybrid-tcb-v2/profiles/CERTORA-FINANCIAL-CORE-v2.json",
       "sha256": "60a53edd76ea94c965da35279abccc165cf5d5fed796e9c20b37e3552d922e8e",
       "contentOccurrenceCount": 4,
       "identifiers": [
@@ -143,7 +143,7 @@
       "pathIdentifiers": []
     },
     {
-      "path": "evidence/end-to-end-refinement/m4-core-refinement-scope-v1.json",
+      "path": "evidence/candidate-2/end-to-end-refinement/m4-core-refinement-scope-v1.json",
       "sha256": "a94fdd38612e6d77fec2057c67bfa88d71d826234fb6116ab8b23650c88f6f56",
       "contentOccurrenceCount": 3,
       "identifiers": [
@@ -158,7 +158,7 @@
       ]
     },
     {
-      "path": "evidence/end-to-end-refinement/m4-current-profile-row-qualifications-v1.json",
+      "path": "evidence/candidate-2/end-to-end-refinement/m4-current-profile-row-qualifications-v1.json",
       "sha256": "e903257492c5a6969aa92c244c310c5c702bd9102890a76650997e253ff749ce",
       "contentOccurrenceCount": 0,
       "identifiers": [],
