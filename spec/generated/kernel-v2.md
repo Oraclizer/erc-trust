@@ -411,7 +411,7 @@ operation is the ActionKind value for actions and 0x80 | ReversalKind value for 
 
 ## Shape rules
 
-Common: `domain == domain.keccak256 (reason 1)`; `actionId or reversalId == the derived identifier (reason 2)`; `validAfter <= block.timestamp <= validBefore and validBefore != 0 (reason 3)`; `authorityEpoch == current authority epoch (reason 4)`; `dependencyRoot == current root and dependencyEpoch == current epoch (reason 5)`; `subject != 0, caseId != 0, provenanceCommitment != 0 (reason 6)`.
+Common: `domain == domain.keccak256 (reason 1)`; `actionId or reversalId == the derived identifier (reason 2)`; `validAfter <= block.timestamp <= validBefore and validBefore != 0 (reason 3)`; `authorityEpoch == current authority epoch (reason 4)`; `dependencyRoot == current root and dependencyEpoch == current epoch (reason 5)`; `provenanceCommitment != 0, and for action requests subject != 0 and caseId != 0 (reason 6)`.
 
 | Action | Rule |
 | --- | --- |
@@ -423,6 +423,7 @@ Common: `domain == domain.keccak256 (reason 1)`; `actionId or reversalId == the 
 | `RECOVER` | same: CONFISCATE; settlementCommitment: == 0; proceedsCommitment: == 0; entitlementCommitment: != 0 and not previously consumed (reason 9) |
 | `reversal` | pairing: UNFREEZE only for an applied FREEZE, RELEASE only for an applied SEIZE, UNRESTRICT only for an applied RESTRICT (reason 7); currentEffect: the referenced action MUST be the subject's live head for its overlay family, or the case's active custody for RELEASE (reason 11; reason 8 when the custody record does not match); provenanceCommitment: != 0 |
 | `reasonBinding` | 1: domain mismatch; 2: identifier mismatch; 3: validity window; 4: authority epoch mismatch; 5: dependency root or epoch mismatch; 6: any per-action field rule below that is not given its own code; 7: reversal kind does not pair with the original action; 8: custody record missing, active when it must not be, or not matching; 9: entitlement commitment missing or already consumed; 10: case conflict (CT-3, CT-7, CT-14); 11: referenced action is not the subject's live head or the case's active custody; 12: FREEZE target not strictly greater than the current target; 13: no state change (second RESTRICT in its own case) |
+| `appliesTo` | 0: c; 1: o; 2: m; 3: m; 4: o; 5: n; 6:  ; 7: r; 8: u; 9: l; 10: e; 11: s; 12:  ; 13: a; 14: p; 15: p; 16: l; 17: y; 18:  ; 19: t; 20: o; 21:  ; 22: e; 23: v; 24: e; 25: r; 26: y; 27:  ; 28: r; 29: e; 30: q; 31: u; 32: e; 33: s; 34: t; 35: ;; 36:  ; 37: a; 38:  ; 39: r; 40: u; 41: l; 42: e; 43:  ; 44: t; 45: h; 46: a; 47: t; 48:  ; 49: n; 50: a; 51: m; 52: e; 53: s; 54:  ; 55: a; 56:  ; 57: f; 58: i; 59: e; 60: l; 61: d; 62:  ; 63: a; 64: p; 65: p; 66: l; 67: i; 68: e; 69: s; 70:  ; 71: o; 72: n; 73: l; 74: y; 75:  ; 76: t; 77: o; 78:  ; 79: r; 80: e; 81: q; 82: u; 83: e; 84: s; 85: t; 86: s; 87:  ; 88: t; 89: h; 90: a; 91: t; 92:  ; 93: h; 94: a; 95: v; 96: e; 97:  ; 98: t; 99: h; 100: a; 101: t; 102:  ; 103: f; 104: i; 105: e; 106: l; 107: d |
 
 ## Case transitions
 
