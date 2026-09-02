@@ -1064,7 +1064,7 @@
       "validAfter <= block.timestamp <= validBefore and validBefore != 0 (reason 3)",
       "authorityEpoch == current authority epoch (reason 4)",
       "dependencyRoot == current root and dependencyEpoch == current epoch (reason 5)",
-      "subject != 0, caseId != 0, provenanceCommitment != 0 (reason 6)"
+      "provenanceCommitment != 0, and for action requests subject != 0 and caseId != 0 (reason 6)"
     ],
     "FREEZE": {
       "source": "== subject",
@@ -1135,7 +1135,8 @@
       "11": "referenced action is not the subject's live head or the case's active custody",
       "12": "FREEZE target not strictly greater than the current target",
       "13": "no state change (second RESTRICT in its own case)"
-    }
+    },
+    "appliesTo": "common rules apply to every request; a rule that names a field applies only to requests that have that field"
   },
   "caseTransitions": {
     "description": "Machine-readable case state table. Each case is opened by its first applied command and is bound to that command's family. A subject has at most one live head per overlay family across all cases.",
