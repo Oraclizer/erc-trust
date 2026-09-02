@@ -2,6 +2,29 @@
 
 ## Unreleased
 
+- Wire the ERC-3643 Verified Full profile adapter to kernel version 2. The
+  adapter and its governor consume the same generated kernel copy as the native
+  token, report the kernel interface identifier, and feed the dependency root
+  from the sealed topology (Compliance as the policy binding, the Identity
+  Registry as the identity binding, zero settlement and entitlement bindings).
+  Onboarding is a fresh zero-state seal or an exact import manifest that the
+  seal verifies entry by entry against the live upstream state; declared frozen
+  amounts and address freezes become imported cases with a live head, so they are
+  reversible under the case transition table. Every command first checks that the
+  upstream frozen amount and address freeze flag of each account it acts on are
+  exactly the state the adapter declared or applied, and fails closed otherwise;
+  upstream state is never overwritten or silently adopted. Custody is confined to
+  the adapter, upstream execution and views are typed (reasons 400 to 403),
+  topology drift is reason 300 and dependency code drift reason 200, and the
+  frozen amount of both accounts is resynchronised to the owned target after every
+  forced transfer. The kernel version 1 profile interface, types, decision helpers,
+  and error set are removed. The suite runs against two fixtures (a clean-room
+  fixture and an independent one that unfreezes on forced transfers and keeps the
+  full owner and Agent surface), a stateful campaign drives the adapter through
+  freezes, seizures, releases, and custody confiscations, and the mutation
+  campaign gains twenty-one adapter and governor faults. No completion, release,
+  or Verified Full claim is made; the profile's runtime identity is bound in the
+  runtime assurance change.
 - Wire the native token to kernel version 2. The token consumes a generated
   copy of the normative kernel types and interfaces, reports the kernel
   interface identifier and the native route identifier, and implements the

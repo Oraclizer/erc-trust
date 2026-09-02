@@ -12,7 +12,7 @@
     },
     "kontrolInputsSha256": "5d8f38006416e02aa7664a68f3ad108e2e05aba1d9abe0c7d339f8e64c4e67fb",
     "sourceRootAlgorithm": "sha256-raw-files-case-sensitive-path-order-v1",
-    "sourceRootSha256": "cbdecff4580ad9d11ccb4ad73f0a0b098845e09d5c0fc1300e34100ea692c669"
+    "sourceRootSha256": "8e0991ac20388932b05bb9281822137c35cf07b47760393c0c5b515e65979217"
   },
   "kind": "ERC_TRUST_CURRENT_PROFILE_RELEASE_INDEX_V3",
   "lanes": {
@@ -28,12 +28,9 @@
       "status": "PENDING"
     },
     "foundry": {
-      "receipt": {
-        "path": "evidence/foundry-results-v3.json",
-        "sha256": "a1012807af599b8bb2aca80a782db8ffe6408e48b3c5d5f3b2c4da23501df558"
-      },
-      "status": "PASS",
-      "tests": 40
+      "owner": "this change: continuous-integration Foundry receipt for the successor source",
+      "receipt": "evidence/foundry-results-v3.json",
+      "status": "PENDING"
     },
     "isabelleBuild": {
       "receipt": {
@@ -59,51 +56,14 @@
       "status": "PENDING"
     },
     "mutation": {
-      "ids": [
-        "MUT-01-FROZEN-FLOOR",
-        "MUT-02-ROUTE-CONSUMPTION",
-        "MUT-03-RECEIPT-LAST",
-        "MUT-04-FAIL-CLOSED",
-        "MUT-05-FIXED-ACTION",
-        "MUT-06-NONCE-CONSUMPTION",
-        "MUT-07-ERC3643-RAW-BYPASS",
-        "MUT-08-FREEZE-DIRECTION",
-        "MUT-09-CASE-TERMINALITY",
-        "MUT-10-CUSTODY-CLOSURE",
-        "MUT-11-REVERSAL-POLICY",
-        "MUT-12-ERC3643-FREEZE-DIRECTION",
-        "MUT-13-TERMINAL-REVERSAL-GUARD",
-        "MUT-14-DEPENDENCY-ROOT-COMPARISON",
-        "MUT-15-DEPENDENCY-EPOCH-INCREMENT",
-        "MUT-16-ROOT-TAG",
-        "MUT-17-ROOT-ORDER",
-        "MUT-18-CASE-CONFLICT",
-        "MUT-19-OVERLAY-DISPOSITION",
-        "MUT-20-RECEIPT-KIND-TAG",
-        "MUT-21-REVERSAL-CLOSES-CHAIN",
-        "MUT-22-RECEIPT-PREIMAGE",
-        "MUT-23-CALLDATA-LENGTH",
-        "MUT-24-IDENTITY-ASSESSMENT",
-        "MUT-25-BINDING-ECHO",
-        "MUT-26-REVERSAL-CALLDATA-LENGTH"
-      ],
-      "killed": 26,
-      "receipt": {
-        "path": "evidence/mutation-results.json",
-        "sha256": "61a1fbb3c30b941eac46f335ab43691cb79e022b6a3e2c5a272921eb2daccf64"
-      },
-      "status": "PASS",
-      "total": 26
+      "owner": "this change: mutation campaign on the successor source",
+      "receipt": "evidence/mutation-results.json",
+      "status": "PENDING"
     },
     "runtime": {
-      "eip170MarginBytes": 4332,
-      "receipt": {
-        "path": "evidence/deterministic-build.json",
-        "sha256": "af2b032a5a8912276bb97a10705c06f9ead45ab03c2d87ea2e18c73f9c68f250"
-      },
-      "runtimeBytes": 20244,
-      "runtimeTemplateSha256": "5f8e5565f9de8cc4663c8d3837e768fe83197e61b0db686899c83051d0329d86",
-      "status": "PASS"
+      "owner": "this change: deterministic build receipt for the successor source",
+      "receipt": "evidence/deterministic-build.json",
+      "status": "PENDING"
     },
     "runtimeBinding": {
       "owner": "runtime assurance change: two-layer runtime binding for the successor subjects",
@@ -119,6 +79,9 @@
     "No compiler correctness, audit, deployment identity, production readiness, or external legal truth is claimed."
   ],
   "pendingLanes": [
+    "runtime",
+    "foundry",
+    "mutation",
     "isabelleRuntimeBinding",
     "kontrol",
     "kontrolInputs",
