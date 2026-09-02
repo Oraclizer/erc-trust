@@ -618,17 +618,33 @@ const actionFixtures = [
   { name: "LIQUIDATE", build: (r) => ({ ...r, destination: fixture.buyer, amount: 800n, settlementCommitment: `0x${"e1".repeat(32)}`, proceedsCommitment: `0x${"e2".repeat(32)}` }) },
   { name: "RESTRICT", build: (r) => ({ ...r, amount: 0n }) },
   { name: "RECOVER", build: (r) => ({ ...r, destination: fixture.recovered, amount: 900n, entitlementCommitment: `0x${"e3".repeat(32)}` }) },
+  {
+    // Custody disposition of the SEIZE case: source is the custodian, subject is the declared
+    // prior holder, the amount is the encumbered amount, and the authority epoch differs from
+    // the dependency epoch so that no two request words carry the same value by accident.
+    name: "CONFISCATE-CUSTODY",
+    kind: "CONFISCATE",
+    build: (r) => ({
+      ...r,
+      source: fixture.custodian,
+      destination: fixture.buyer,
+      amount: 500n,
+      caseId: keccak256(coder.encode(["string", "uint256"], ["case", 2n])),
+      authorityEpoch: 3n,
+    }),
+  },
 ];
 
 const actionVectors = actionFixtures.map((entry, index) => {
   const nonce = BigInt(index + 1);
-  const unsigned = entry.build(baseRequest(actionKinds[entry.name], nonce));
+  const kind = entry.kind ?? entry.name;
+  const unsigned = entry.build(baseRequest(actionKinds[kind], nonce));
   const actionId = encodeCommandJs(actionTuple, { ...unsigned, actionId: ZeroHash });
   const request = { ...unsigned, actionId };
-  const effectiveDestination = entry.name === "SEIZE" ? request.custodian : request.destination;
-  const externalCommitment = entry.name === "LIQUIDATE"
+  const effectiveDestination = kind === "SEIZE" ? request.custodian : request.destination;
+  const externalCommitment = kind === "LIQUIDATE"
     ? keccak256(coder.encode(["bytes32", "bytes32"], [request.settlementCommitment, request.proceedsCommitment]))
-    : entry.name === "RECOVER" ? request.entitlementCommitment : ZeroHash;
+    : kind === "RECOVER" ? request.entitlementCommitment : ZeroHash;
   const receiptInput = {
     receiptKind: schema.enums.ReceiptKind.values.ACTION,
     commandId: actionId,
@@ -653,7 +669,8 @@ const actionVectors = actionFixtures.map((entry, index) => {
   ));
   return {
     id: `ACTION-${entry.name}`,
-    action: entry.name,
+    action: kind,
+    path: entry.kind ? "custody disposition" : "direct",
     request: stringify(request),
     actionId,
     commandHash: encodeCommandJs(actionTuple, request),

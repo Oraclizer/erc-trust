@@ -9,9 +9,13 @@
   records under `spec/decisions/` fix delegation and cancellation removal, the
   case transition table, the ordered dependency root and global epoch, the
   unified receipt preimage, reason classes, the single profile descriptor and
-  kernel interface, and the exact interface identity. The Solidity candidate
-  under `implementation/` still implements version 1; nothing here changes
-  its evidence or its claims.
+  kernel interface, and the exact interface identity. The SDK tests reproduce
+  every vector, recompute every identifier and receipt hash word by word
+  without the ABI coder, and consume the negative vectors; a new check
+  compiles the generated interface with the pinned compiler and compares its
+  method identifiers and interface identifier with the generator's. The
+  Solidity candidate under `implementation/` still implements version 1;
+  nothing here changes its evidence or its claims.
 
 Candidate 2 repairs the FREEZE-direction mismatch found during independent
 pre-publication review and rebinds the implementation, formal model, evidence,

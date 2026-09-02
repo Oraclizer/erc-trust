@@ -236,7 +236,7 @@ test("constants match the generated vectors", () => {
 });
 
 test("every action vector is reproduced by the helpers", () => {
-  assert.equal(vectors.actions.length, 6);
+  assert.equal(vectors.actions.length, 7);
   for (const vector of vectors.actions) {
     const request = actionRequestOf(vector.request);
     assert.equal(deriveActionId(endpoint, chainId, request), vector.actionId, vector.id);
@@ -291,12 +291,89 @@ test("command identifiers equal a raw word-by-word keccak of the canonical encod
   assert.equal(keccak256(concat(rawActionWords(request, request.actionId))), liquidate.commandHash);
   const freeze = actionVectorById("ACTION-FREEZE");
   assert.equal(keccak256(concat(rawActionWords(actionRequestOf(freeze.request), ZeroHash))), freeze.actionId);
+  // The custody disposition vector separates subject from source and the authority epoch from
+  // the dependency epoch, so a swap of either pair of words is visible.
+  const custody = actionVectorById("ACTION-CONFISCATE-CUSTODY");
+  const custodyRequest = actionRequestOf(custody.request);
+  assert.notEqual(custodyRequest.subject, custodyRequest.source);
+  assert.notEqual(custodyRequest.authorityEpoch, custodyRequest.dependencyEpoch);
+  assert.equal(keccak256(concat(rawActionWords(custodyRequest, ZeroHash))), custody.actionId);
+  assert.equal(keccak256(concat(rawActionWords(custodyRequest, custodyRequest.actionId))), custody.commandHash);
 
   const release = reversalVectorById("REVERSAL-RELEASE");
   const reversal = reversalRequestOf(release.request);
   assert.equal(keccak256(concat(rawReversalWords(reversal, ZeroHash))), release.reversalId);
   assert.equal(keccak256(concat(rawReversalWords(reversal, reversal.reversalId))), release.reversalHash);
   assert.equal(REVERSAL_TUPLE.startsWith("tuple(bytes32 domain,bytes32 reversalId"), true);
+});
+
+test("helpers agree with raw words on synthetic requests whose words are all distinct", () => {
+  // Every word carries a different value, so no reordering of any two fields can survive.
+  const action: ActionRequest = {
+    domain: KERNEL_DOMAIN,
+    actionId: ZeroHash,
+    action: ActionKind.RECOVER,
+    subject: "0x0000000000000000000000000000000000000a11",
+    source: "0x0000000000000000000000000000000000000a12",
+    destination: "0x0000000000000000000000000000000000000a13",
+    custodian: "0x0000000000000000000000000000000000000a14",
+    amount: 21n,
+    caseId: `0x${"31".repeat(32)}`,
+    dependencyRoot: `0x${"32".repeat(32)}`,
+    dependencyEpoch: 41n,
+    provenanceCommitment: `0x${"33".repeat(32)}`,
+    settlementCommitment: `0x${"34".repeat(32)}`,
+    proceedsCommitment: `0x${"35".repeat(32)}`,
+    entitlementCommitment: `0x${"36".repeat(32)}`,
+    authorityRef: `0x${"37".repeat(32)}`,
+    authorityEpoch: 42n,
+    nonce: 43n,
+    validAfter: 44n,
+    validBefore: 45n,
+  };
+  const actionId = keccak256(concat(rawActionWords(action, ZeroHash)));
+  assert.equal(deriveActionId(endpoint, chainId, action), actionId);
+  const completed = { ...action, actionId };
+  assert.equal(commandHash(endpoint, chainId, completed), keccak256(concat(rawActionWords(completed, actionId))));
+
+  const reversal: ReversalRequest = {
+    domain: KERNEL_DOMAIN,
+    reversalId: ZeroHash,
+    actionId,
+    reversal: ReversalKind.UNRESTRICT,
+    dependencyRoot: `0x${"51".repeat(32)}`,
+    dependencyEpoch: 61n,
+    provenanceCommitment: `0x${"52".repeat(32)}`,
+    authorityRef: `0x${"53".repeat(32)}`,
+    authorityEpoch: 62n,
+    nonce: 63n,
+    validAfter: 64n,
+    validBefore: 65n,
+  };
+  const reversalId = keccak256(concat(rawReversalWords(reversal, ZeroHash)));
+  assert.equal(deriveReversalId(endpoint, chainId, reversal), reversalId);
+  const completedReversal = { ...reversal, reversalId };
+  assert.equal(reversalHash(endpoint, chainId, completedReversal), keccak256(concat(rawReversalWords(completedReversal, reversalId))));
+
+  const receipt: ReceiptInput = {
+    receiptKind: ReceiptKind.REVERSAL,
+    commandId: reversalId,
+    commandKind: 2n,
+    parentCommandId: actionId,
+    subject: "0x0000000000000000000000000000000000000b11",
+    source: "0x0000000000000000000000000000000000000b12",
+    destination: "0x0000000000000000000000000000000000000b13",
+    amount: 71n,
+    caseId: `0x${"71".repeat(32)}`,
+    authorityRef: `0x${"72".repeat(32)}`,
+    dependencyRoot: `0x${"73".repeat(32)}`,
+    provenanceCommitment: `0x${"74".repeat(32)}`,
+    assessmentEvidence: `0x${"75".repeat(32)}`,
+    preState: `0x${"76".repeat(32)}`,
+    postState: `0x${"77".repeat(32)}`,
+    externalCommitment: `0x${"78".repeat(32)}`,
+  };
+  assert.equal(receiptHash(receipt), keccak256(concat(rawReceiptWords(receipt))));
 });
 
 test("receipt hashes equal a raw word-by-word keccak of the receipt preimage", () => {
