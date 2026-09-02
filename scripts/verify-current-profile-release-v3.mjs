@@ -1,0 +1,304 @@
+// SPDX-License-Identifier: BSD-3-Clause
+//
+// Successor evidence index: one lane per evidence class, each either PASS
+// (a receipt exists and binds the exact current source, formal, or runtime
+// identity) or PENDING (no receipt for the current identity yet; a later change
+// owns it). A receipt that exists but binds a different identity is neither: it
+// fails, because expected identities are never overwritten to match new output.
+//
+// Whether PENDING lanes are acceptable is decided by evidence/evidence-mode.json.
+// In release mode every lane must be PASS. `--require-release` additionally
+// refuses any mode other than release, for the tag validation workflow.
+//
+// Usage:
+//   node scripts/verify-current-profile-release-v3.mjs            check the committed index
+//   node scripts/verify-current-profile-release-v3.mjs --write    rewrite the index from the receipts
+//   node scripts/verify-current-profile-release-v3.mjs --require-release
+
+import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
+import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const modePath = "evidence/evidence-mode.json";
+const indexPath = "evidence/current-profile-release-index-v3.json";
+const historicalIndexPath = "evidence/candidate-2/current-profile-release-index-v2.json";
+const receiptPaths = {
+  runtime: "evidence/deterministic-build.json",
+  foundry: "evidence/foundry-results-v3.json",
+  mutation: "evidence/mutation-results.json",
+  isabelleBuild: "evidence/isabelle-results-v3.json",
+  kontrol: "evidence/kontrol-results-v3.json",
+  certora: "evidence/certora-results-v3.json",
+  runtimeBinding: "evidence/runtime-binding-v3.json",
+};
+const args = new Set(process.argv.slice(2));
+const writeMode = args.has("--write");
+const requireRelease = args.has("--require-release");
+const EIP170_LIMIT = 24_576;
+
+const sha256 = (value) => createHash("sha256").update(value).digest("hex");
+const bytes = (path) => readFileSync(resolve(root, path));
+const canonicalBytes = (path) => Buffer.from(bytes(path).toString("utf8").replace(/\r\n?/g, "\n"), "utf8");
+const json = (path) => JSON.parse(bytes(path).toString("utf8"));
+const exists = (path) => existsSync(resolve(root, path));
+const check = (condition, message) => {
+  if (!condition) throw new Error(message);
+};
+const fileRef = (path) => ({ path, sha256: sha256(canonicalBytes(path)) });
+const stable = (value) => {
+  if (Array.isArray(value)) return value.map(stable);
+  if (value !== null && typeof value === "object") {
+    return Object.fromEntries(Object.keys(value).sort().map((key) => [key, stable(value[key])]));
+  }
+  return value;
+};
+const text = (value) => `${JSON.stringify(stable(value), null, 2)}\n`;
+
+function walk(path) {
+  if (!exists(path)) return [];
+  return readdirSync(resolve(root, path), { withFileTypes: true }).flatMap((entry) => {
+    const child = `${path}/${entry.name}`;
+    return entry.isDirectory() ? walk(child) : [child];
+  });
+}
+
+function rootOf(paths) {
+  const sorted = [...paths].sort((left, right) => (left < right ? -1 : left > right ? 1 : 0));
+  return sha256(Buffer.from(sorted.map((path) => `${sha256(bytes(path))}  ${path}\n`).join(""), "utf8"));
+}
+
+function sourceRoot() {
+  return rootOf([...walk("implementation/src"), ...walk("implementation/test"), "foundry.toml"]);
+}
+
+function formalRoot() {
+  const paths = walk("formal/isabelle/ERC_TRUST").filter((path) => path.endsWith(".thy"));
+  return { theoryFiles: paths.length, rootSha256: rootOf(paths) };
+}
+
+function inputsRoot(path) {
+  const paths = walk(path);
+  return paths.length === 0 ? null : rootOf(paths);
+}
+
+function isAncestor(commit) {
+  try {
+    execFileSync("git", ["merge-base", "--is-ancestor", commit, "HEAD"], { cwd: root, stdio: "ignore" });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Mode
+// ---------------------------------------------------------------------------
+
+check(exists(modePath), `evidence mode file missing: ${modePath}`);
+const mode = json(modePath);
+check(mode.schema === "erc-trust-evidence-mode-v1", "evidence mode schema drift");
+check(["successor-development", "release"].includes(mode.mode), `unsupported evidence mode: ${mode.mode}`);
+check(mode.pendingAllowed === (mode.mode !== "release"), "pendingAllowed must follow the mode");
+check(typeof mode.candidate === "string" && /^\d+\.\d+\.\d+-candidate\.\d+$/.test(mode.candidate), "candidate label");
+if (requireRelease) check(mode.mode === "release", "release mode required");
+const candidate = mode.candidate;
+
+// ---------------------------------------------------------------------------
+// Identity of the tree under verification
+// ---------------------------------------------------------------------------
+
+const identity = {
+  sourceRootAlgorithm: "sha256-raw-files-case-sensitive-path-order-v1",
+  sourceRootSha256: sourceRoot(),
+  formalRoot: formalRoot(),
+  kontrolInputsSha256: inputsRoot("implementation/kontrol"),
+  certoraInputsSha256: inputsRoot("implementation/certora"),
+};
+
+// ---------------------------------------------------------------------------
+// Lanes
+// ---------------------------------------------------------------------------
+
+const lanes = {};
+const pending = (lane, owner) => ({ status: "PENDING", receipt: receiptPaths[lane] ?? null, owner });
+
+// runtime: deterministic double build of the native runtime
+let runtimeTemplateSha256 = null;
+if (!exists(receiptPaths.runtime)) {
+  lanes.runtime = pending("runtime", "this change: deterministic build receipt for the successor source");
+} else {
+  const deterministic = json(receiptPaths.runtime);
+  check(deterministic.status === "PASS", "deterministic build status");
+  check(JSON.stringify(deterministic.buildA) === JSON.stringify(deterministic.buildB), "deterministic build pair mismatch");
+  check(deterministic.buildA.runtimeBytes <= EIP170_LIMIT, "runtime exceeds the EIP-170 limit");
+  check(String(deterministic.toolchain.solidity).startsWith("0.8.36"), "deterministic build compiler pin");
+  runtimeTemplateSha256 = deterministic.buildA.runtimeSha256;
+  lanes.runtime = {
+    status: "PASS",
+    receipt: fileRef(receiptPaths.runtime),
+    runtimeTemplateSha256,
+    runtimeBytes: deterministic.buildA.runtimeBytes,
+    eip170MarginBytes: EIP170_LIMIT - deterministic.buildA.runtimeBytes,
+  };
+}
+
+// foundry: pinned build, size, format, tests, and lint on the exact source root
+if (!exists(receiptPaths.foundry)) {
+  lanes.foundry = pending("foundry", "this change: continuous-integration Foundry receipt for the successor source");
+} else {
+  const foundry = json(receiptPaths.foundry);
+  check(foundry.schema === "erc-trust-foundry-results-v3" && foundry.candidate === candidate, "Foundry receipt identity");
+  check(foundry.status === "PASS" && foundry.checks.tests.failed === 0 && foundry.checks.lintErrors === 0, "Foundry receipt status");
+  check(foundry.sourceRootSha256 === identity.sourceRootSha256, "Foundry receipt binds a different source root");
+  check(runtimeTemplateSha256 !== null, "Foundry receipt without a deterministic build receipt");
+  check(foundry.runtimeTemplate.sha256 === runtimeTemplateSha256, "Foundry receipt binds a different runtime");
+  check(isAncestor(foundry.sourceCommit), "Foundry evidence commit is not an ancestor");
+  lanes.foundry = { status: "PASS", receipt: fileRef(receiptPaths.foundry), tests: foundry.checks.tests.passed };
+}
+
+// mutation: consumer-removal campaign on the exact source root
+if (!exists(receiptPaths.mutation)) {
+  lanes.mutation = pending("mutation", "this change: mutation campaign on the successor source");
+} else {
+  const mutation = json(receiptPaths.mutation);
+  check(mutation.schema === "erc-trust-mutation-result-v2", "mutation receipt schema");
+  check(mutation.candidateInput.sourceRootAlgorithm === identity.sourceRootAlgorithm, "mutation source root algorithm");
+  check(mutation.candidateInput.sourceRootSha256 === identity.sourceRootSha256, "mutation receipt binds a different source root");
+  check(mutation.total === mutation.results.length && mutation.killed === mutation.total && mutation.survived === 0,
+    "mutation counts");
+  for (const result of mutation.results) {
+    check(result.result === "KILLED" && result.anchorOccurrences >= 1 && result.detectorDiscovered === 1
+      && result.detectorExecuted === 1 && result.mutantCompiled === true, `invalid mutation receipt: ${result.id}`);
+  }
+  check(isAncestor(mutation.candidateInput.gitHead), "mutation evidence commit is not an ancestor");
+  lanes.mutation = {
+    status: "PASS",
+    receipt: fileRef(receiptPaths.mutation),
+    total: mutation.total,
+    killed: mutation.killed,
+    ids: mutation.results.map((result) => result.id),
+  };
+}
+
+// isabelleBuild: clean build and audit of the exact formal source tree
+if (!exists(receiptPaths.isabelleBuild)) {
+  lanes.isabelleBuild = pending("isabelleBuild", "this change: continuous-integration Isabelle receipt for the current formal root");
+} else {
+  const isabelle = json(receiptPaths.isabelleBuild);
+  check(isabelle.schema === "erc-trust-isabelle-results-v3" && isabelle.candidate === candidate, "Isabelle receipt identity");
+  check(isabelle.status === "PASS" && isabelle.checks.bannedSourceForms === 0 && isabelle.checks.oracleDependencyCount === 0,
+    "Isabelle receipt status");
+  check(isabelle.formalSource.theoryFiles === identity.formalRoot.theoryFiles
+    && isabelle.formalSource.rootSha256 === identity.formalRoot.rootSha256, "Isabelle receipt binds a different formal root");
+  check(isAncestor(isabelle.sourceCommit), "Isabelle evidence commit is not an ancestor");
+  lanes.isabelleBuild = { status: "PASS", receipt: fileRef(receiptPaths.isabelleBuild) };
+}
+
+// isabelleRuntimeBinding: the generated bridge theories name the current runtime template
+{
+  const theories = walk("formal/isabelle/ERC_TRUST").filter((path) => path.endsWith(".thy"));
+  const bound = runtimeTemplateSha256 === null
+    ? []
+    : theories.filter((path) => bytes(path).toString("utf8").includes(runtimeTemplateSha256));
+  lanes.isabelleRuntimeBinding = bound.length > 0
+    ? { status: "PASS", boundTheories: bound, runtimeTemplateSha256 }
+    : pending("isabelleRuntimeBinding", "formal refinement change: regenerate the runtime bridge theories for the successor runtime");
+}
+
+// kontrol and its inputs
+if (!exists(receiptPaths.kontrol)) {
+  lanes.kontrol = pending("kontrol", "formal refinement change: symbolic cross-checks on the successor runtime");
+  lanes.kontrolInputs = { ...pending("kontrolInputs", "bound together with the Kontrol receipt"), inputsRootSha256: identity.kontrolInputsSha256 };
+} else {
+  const kontrol = json(receiptPaths.kontrol);
+  check(kontrol.schema === "erc-trust-kontrol-results-v3" && kontrol.candidate === candidate, "Kontrol receipt identity");
+  check(kontrol.status === "PASS" && kontrol.summary.failed === 0 && kontrol.summary.passed === kontrol.summary.total,
+    "Kontrol receipt status");
+  check(runtimeTemplateSha256 !== null && kontrol.runtimeBinding.runtimeSha256 === runtimeTemplateSha256,
+    "Kontrol receipt binds a different runtime");
+  for (const input of kontrol.sourceInputs) check(sha256(bytes(input.path)) === input.sha256, `Kontrol input drift: ${input.path}`);
+  check(kontrol.inputsRootSha256 === identity.kontrolInputsSha256, "Kontrol receipt binds different inputs");
+  lanes.kontrol = { status: "PASS", receipt: fileRef(receiptPaths.kontrol), proofs: kontrol.summary.passed };
+  lanes.kontrolInputs = { status: "PASS", inputsRootSha256: identity.kontrolInputsSha256 };
+}
+
+// certora and its inputs
+if (!exists(receiptPaths.certora)) {
+  lanes.certora = pending("certora", "formal refinement change: parametric rules on the successor bytecode");
+  lanes.certoraInputs = { ...pending("certoraInputs", "bound together with the Certora receipt"), inputsRootSha256: identity.certoraInputsSha256 };
+} else {
+  const certora = json(receiptPaths.certora);
+  check(certora.schema === "erc-trust-certora-results-v3" && certora.candidate === candidate, "Certora receipt identity");
+  check(certora.status === "PASS" && certora.rules.fail === 0 && certora.rules.sanityFail === 0
+    && certora.rules.timeout === 0 && certora.rules.unknown === 0 && certora.rules.success === certora.rules.total,
+    "Certora receipt status");
+  for (const input of certora.inputs) check(sha256(bytes(input.path)) === input.sha256, `Certora input drift: ${input.path}`);
+  check(certora.inputsRootSha256 === identity.certoraInputsSha256, "Certora receipt binds different inputs");
+  check(runtimeTemplateSha256 !== null && certora.runtimeTemplateSha256 === runtimeTemplateSha256,
+    "Certora receipt binds a different runtime");
+  lanes.certora = { status: "PASS", receipt: fileRef(receiptPaths.certora), rules: certora.rules.success };
+  lanes.certoraInputs = { status: "PASS", inputsRootSha256: identity.certoraInputsSha256 };
+}
+
+// runtimeBinding: pinned-compiler replay and semantic projections of the deployed subjects
+if (!exists(receiptPaths.runtimeBinding)) {
+  lanes.runtimeBinding = pending("runtimeBinding", "runtime assurance change: two-layer runtime binding for the successor subjects");
+} else {
+  const binding = json(receiptPaths.runtimeBinding);
+  check(binding.schema === "erc-trust-runtime-binding-v3" && binding.candidate === candidate, "runtime binding identity");
+  check(binding.status === "PASS_RUNTIME_SEMANTIC_IDENTITY", "runtime binding status");
+  check(runtimeTemplateSha256 !== null && binding.runtimeTemplateSha256 === runtimeTemplateSha256,
+    "runtime binding receipt binds a different runtime");
+  lanes.runtimeBinding = { status: "PASS", receipt: fileRef(receiptPaths.runtimeBinding) };
+}
+
+// ---------------------------------------------------------------------------
+// Aggregate
+// ---------------------------------------------------------------------------
+
+const pendingLanes = Object.entries(lanes).filter(([, lane]) => lane.status === "PENDING").map(([name]) => name);
+if (mode.mode === "release") check(pendingLanes.length === 0, `release mode with pending lanes: ${pendingLanes.join(", ")}`);
+check(exists(historicalIndexPath), "historical candidate 2 index missing");
+
+const index = {
+  schemaVersion: 3,
+  kind: "ERC_TRUST_CURRENT_PROFILE_RELEASE_INDEX_V3",
+  status: mode.mode === "release" ? "PASS_CURRENT_PROFILE_RELEASE_CANDIDATE" : "PASS_SUCCESSOR_DEVELOPMENT",
+  candidate,
+  mode: mode.mode,
+  identity,
+  lanes,
+  pendingLanes,
+  historicalBaseline: fileRef(historicalIndexPath),
+  replay: { release: "node scripts/verify-current-profile-release-v3.mjs" },
+  nonclaims: [
+    "A PASS lane is a receipt bound to the exact current identity of its inputs; it is not an audit, a compiler-correctness result, or a deployment claim.",
+    "A PENDING lane has no receipt for the current identity; the owning change must produce one. Historical candidate 2 receipts under evidence/candidate-2 never satisfy a lane.",
+    "Only release mode with zero pending lanes describes a release candidate; successor-development mode describes an integration branch under construction.",
+    "No compiler correctness, audit, deployment identity, production readiness, or external legal truth is claimed.",
+  ],
+};
+
+const rendered = text(index);
+if (writeMode) {
+  writeFileSync(resolve(root, indexPath), rendered, "utf8");
+} else {
+  check(exists(indexPath), `successor index missing: ${indexPath}`);
+  check(readFileSync(resolve(root, indexPath), "utf8").replace(/\r\n?/g, "\n") === rendered,
+    `successor index drift: ${indexPath} (rerun with --write after adding or changing a receipt)`);
+}
+
+console.log(JSON.stringify({
+  status: index.status,
+  candidate,
+  mode: mode.mode,
+  lanes: Object.fromEntries(Object.entries(lanes).map(([name, lane]) => [name, lane.status])),
+  pendingLanes,
+  runtimeBytes: lanes.runtime.runtimeBytes ?? null,
+  eip170MarginBytes: lanes.runtime.eip170MarginBytes ?? null,
+  sourceRootSha256: identity.sourceRootSha256,
+  formalRootSha256: identity.formalRoot.rootSha256,
+}, null, 2));

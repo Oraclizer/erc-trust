@@ -1,7 +1,8 @@
 # Decision 04: one receipt preimage for actions and reversals
 
 Status: frozen in kernel version 2 machine source (`structs.Receipt`,
-`hashes.receiptHash`). Implementation wiring pending.
+`hashes.receiptHash`). Native endpoint wired (`implementation/src/TrustToken.sol`, see
+`08-native-wiring.md`); ERC-3643 profile wiring pending.
 
 ## Decision
 

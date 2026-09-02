@@ -25,9 +25,9 @@ const lifecycleScannerFiles = new Set([
   "scripts/verify-repository-health.mjs",
 ]);
 const machineProofSaveJsonPattern =
-  /^evidence\/end-to-end-refinement\/kevm\/[^/]+\/(?:positive\/|negative\/)?save\/[0-9a-f]{64}\/(?:proof\.json|kcfg\/(?:kcfg\.json|nodes\/\d+\.json))$/;
+  /^evidence\/candidate-2\/end-to-end-refinement\/kevm\/[^/]+\/(?:positive\/|negative\/)?save\/[0-9a-f]{64}\/(?:proof\.json|kcfg\/(?:kcfg\.json|nodes\/\d+\.json))$/;
 const curatedRowProofJsonPattern =
-  /^evidence\/end-to-end-refinement\/row-bundles\/[^/]+\/artifacts\/(?:positive|negative)-(?:proof|kcfg|terminal-node-\d+)\.json$/;
+  /^evidence\/candidate-2\/end-to-end-refinement\/row-bundles\/[^/]+\/artifacts\/(?:positive|negative)-(?:proof|kcfg|terminal-node-\d+)\.json$/;
 const required = [
   "README.md",
   "LICENSE",
@@ -54,8 +54,10 @@ const required = [
   ".github/ISSUE_TEMPLATE/documentation.yml",
   ".github/workflows/identity.yml",
   ".github/workflows/proofs.yml",
-  "evidence/current-profile-release-index-v1.json",
-  "evidence/current-profile-release-index-v2.json",
+  "evidence/candidate-2/current-profile-release-index-v1.json",
+  "evidence/candidate-2/current-profile-release-index-v2.json",
+  "evidence/current-profile-release-index-v3.json",
+  "evidence/evidence-mode.json",
   "evidence/public-release/diet-manifest-v2.json",
   "evidence/public-release/diet-manifest-v1.json",
   "evidence/public-release/proof-bound-identifiers-v1.json",

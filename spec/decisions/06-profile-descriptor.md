@@ -1,7 +1,8 @@
 # Decision 06: one profile descriptor and one kernel interface for every endpoint
 
 Status: frozen in kernel version 2 machine source (`structs.ProfileDescriptor`,
-`profiles`, `interface`). Implementation wiring pending.
+`profiles`, `interface`). Native endpoint wired (`implementation/src/TrustToken.sol`, see
+`08-native-wiring.md`); ERC-3643 profile wiring pending.
 
 ## Decision
 

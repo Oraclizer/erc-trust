@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 pragma solidity 0.8.36;
 
-import {IERC165} from "./IERC165.sol";
+import {IERC165} from "../generated/IERCTrustKernel.sol";
 
 /// @dev Exact ERC-7943 fungible surface. Interface id: 0x3edbb4c4.
 interface IERC7943Fungible is IERC165 {

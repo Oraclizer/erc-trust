@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 pragma solidity 0.8.36;
 
-import {ITrustBoundDependency} from "../../src/interfaces/ITrustBoundDependency.sol";
+import {ITrustBoundDependency} from "../../src/generated/IERCTrustKernel.sol";
 
 contract MockBoundDependency is ITrustBoundDependency {
     enum Mode {
@@ -16,10 +16,15 @@ contract MockBoundDependency is ITrustBoundDependency {
     }
 
     Mode public immutable mode;
-    bytes32 public immutable config;
+    bytes32 public config;
 
     constructor(Mode mode_, bytes32 config_) {
         mode = mode_;
+        config = config_;
+    }
+
+    /// @dev Test-only configuration drift; the bound endpoint must observe it as a dependency mismatch.
+    function setConfig(bytes32 config_) external {
         config = config_;
     }
 

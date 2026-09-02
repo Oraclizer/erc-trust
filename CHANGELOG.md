@@ -2,6 +2,20 @@
 
 ## Unreleased
 
+- Wire the native token to kernel version 2. The token consumes a generated
+  copy of the normative kernel types and interfaces, reports the kernel
+  interface identifier and the native route identifier, and implements the
+  ordered dependency root with a global dependency epoch, the case transition
+  table with its terminal-case guard, the unified action and reversal receipt
+  with its kind tag, the reason classes, and the single profile descriptor.
+  Delegation, cancellation, the caller-supplied scope hash, and the version 1
+  convenience getters are removed. The candidate 2 receipts and proof inputs
+  move byte for byte to `evidence/candidate-2/`; the successor evidence is
+  tracked lane by lane in `evidence/current-profile-release-index-v3.json`
+  under `evidence/evidence-mode.json`, where lanes without a receipt for the
+  current identity are pending and owned by later changes. The ERC-3643 profile
+  adapter still implements kernel version 1. The working label of the successor
+  is `0.2.0-candidate.1`; no release, tag, or completion claim is made.
 - Add the normative kernel machine source for wire-format version 2 under
   `spec/`, with a generator that emits the Solidity interface, the JSON ABI
   and interface identifier, a human-readable rendering, the TypeScript kernel

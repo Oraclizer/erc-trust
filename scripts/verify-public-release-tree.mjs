@@ -29,8 +29,10 @@ const required = [
   ".github/workflows/ci.yml",
   ".github/workflows/identity.yml",
   "docs/PROOF-BOUND-IDENTIFIERS.md",
-  "evidence/current-profile-release-index-v1.json",
-  "evidence/current-profile-release-index-v2.json",
+  "evidence/candidate-2/current-profile-release-index-v1.json",
+  "evidence/candidate-2/current-profile-release-index-v2.json",
+  "evidence/current-profile-release-index-v3.json",
+  "evidence/evidence-mode.json",
   "evidence/public-release/diet-manifest-v1.json",
   "evidence/public-release/diet-manifest-v2.json",
   "evidence/public-release/proof-bound-identifiers-v1.json",
@@ -40,8 +42,10 @@ const required = [
   "scripts/replay-current-profile-release.ps1",
   "scripts/verify-current-profile-release.mjs",
   "scripts/verify-current-profile-release-v2.mjs",
+  "scripts/verify-current-profile-release-v3.mjs",
   "scripts/verify-formal-foundation-supersession.mjs",
 ];
+const requireRelease = process.argv.includes("--require-release");
 for (const path of required) if (!existsSync(resolve(root, path))) fail(`missing required public file: ${path}`);
 
 const tracked = execFileSync("git", ["ls-files", "-z"], { cwd: root, encoding: "utf8" })
@@ -155,13 +159,28 @@ if (!attributes.includes("**/generated/** linguist-generated=true")
 }
 if (present.length !== diet.summary.retainedFiles) fail(`retained path count drift: ${present.length}`);
 
+// The evidence mode decides whether this tree may be called a release tree. Successor development
+// mode is reported as such and never as a release tree; release mode requires zero pending lanes.
+const evidenceMode = readJson("evidence/evidence-mode.json");
+const successorIndex = readJson("evidence/current-profile-release-index-v3.json");
+if (evidenceMode.schema !== "erc-trust-evidence-mode-v1") fail("evidence mode identity drift");
+if (successorIndex.kind !== "ERC_TRUST_CURRENT_PROFILE_RELEASE_INDEX_V3") fail("successor index identity drift");
+if (successorIndex.mode !== evidenceMode.mode || successorIndex.candidate !== evidenceMode.candidate) {
+  fail("successor index does not match the evidence mode");
+}
+const releaseTree = evidenceMode.mode === "release" && successorIndex.pendingLanes.length === 0;
+if (requireRelease && !releaseTree) fail(`release tree required: mode ${evidenceMode.mode}, pending lanes ${successorIndex.pendingLanes.length}`);
+
 if (failures.length) {
   for (const failure of failures) console.error(failure);
   process.exit(1);
 }
 const bytes = present.reduce((sum, path) => sum + statSync(resolve(root, path)).size, 0);
 console.log(JSON.stringify({
-  status: "PASS_PUBLIC_RELEASE_TREE",
+  status: releaseTree ? "PASS_PUBLIC_RELEASE_TREE" : "PASS_PUBLIC_TREE_SUCCESSOR_DEVELOPMENT",
+  evidenceMode: evidenceMode.mode,
+  candidate: evidenceMode.candidate,
+  pendingLanes: successorIndex.pendingLanes,
   trackedFiles: present.length,
   trackedBytes: bytes,
   archivedFiles: historicalDiet.summary.removedFiles,

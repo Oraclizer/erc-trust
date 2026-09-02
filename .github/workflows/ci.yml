@@ -33,7 +33,7 @@ jobs:
       - name: Check formatting
         run: forge fmt --check
       - name: Build and enforce size gate
-        run: forge build --sizes --skip TrustTokenC
+        run: forge build --sizes
       - name: Run unit, fuzz, and invariant tests
         run: forge test -vv
         env:
@@ -82,16 +82,14 @@ jobs:
         run: forge build
       - name: Compile the generated kernel interface with the pinned compiler
         run: node scripts/verify-normative-kernel-solidity.mjs
-      - name: Recompute pure runtime fixture
-        run: node scripts/generate-pure-runtime-fixture.mjs --check
-      - name: Replay runtime semantic qualification
-        run: node scripts/verify-runtime-binding.mjs --check-receipt
       - name: Regenerate release manifest
         run: node scripts/generate-release-manifest.mjs
       - name: Verify release binding
         run: node scripts/verify-release.mjs --mode=${{ github.event_name == 'pull_request' && 'pr' || 'full' }}
       - name: Check manifest determinism
         run: git diff --exit-code -- evidence/release-manifest.json
+      - name: Verify successor evidence lanes
+        run: node scripts/verify-current-profile-release-v3.mjs
       - name: Verify local links
         run: node scripts/verify-links.mjs
       - name: Verify public surface

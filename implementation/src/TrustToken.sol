@@ -2,23 +2,14 @@
 pragma solidity 0.8.36;
 
 import {IERC20} from "./interfaces/IERC20.sol";
-import {IERC165} from "./interfaces/IERC165.sol";
 import {IERC7943Fungible} from "./interfaces/IERC7943.sol";
-import {IERCTrust} from "./interfaces/IERCTrust.sol";
-import {TrustTypes} from "./TrustTypes.sol";
+import {IERCTrustKernel, IERCTrustNativeRoute, TrustKernelTypes} from "./generated/IERCTrustKernel.sol";
+import {TrustNativeTypes} from "./TrustNativeTypes.sol";
+import {TrustNativeDecision} from "./TrustNativeDecision.sol";
 import {TrustStorage} from "./TrustStorage.sol";
-import {TrustDecision} from "./TrustDecision.sol";
-import {TrustPolicyBinding} from "./TrustPolicyBinding.sol";
+import {TrustDependencyBinding} from "./TrustDependencyBinding.sol";
 import {ERC7943RouteTicket} from "./ERC7943RouteTicket.sol";
-import {LegacyRouteAuthorizer} from "./LegacyRouteAuthorizer.sol";
 import {
-    TrustRejected,
-    TrustOperationalFailure,
-    TrustUnauthorized,
-    TrustReplay,
-    TrustInvalidCommand,
-    TrustRouteMismatch,
-    TrustTerminal,
     TrustReentrancy,
     TrustUnsupported,
     TrustZeroAddress,
@@ -26,25 +17,33 @@ import {
     TrustInsufficientAllowance
 } from "./TrustErrors.sol";
 
-/// @notice Immutable, unaudited ERC-TRUST Native Full reference candidate.
-/// @dev No proxy, delegatecall, selfdestruct, public mint, or public burn surface exists.
-contract TrustToken is TrustStorage, IERC20, IERC7943Fungible, IERCTrust {
-    using TrustPolicyBinding for TrustTypes.Binding;
+/// @notice Immutable, unaudited ERC-TRUST native reference candidate implementing kernel version 2.
+/// @dev No proxy, delegatecall, selfdestruct, public mint, or public burn surface exists. The kernel
+///      types and interfaces are consumed from the generated copy of the normative machine source.
+contract TrustToken is TrustStorage, IERC20, IERC7943Fungible, IERCTrustKernel, IERCTrustNativeRoute {
+    using TrustDependencyBinding for TrustNativeTypes.Binding;
 
     bytes4 internal constant ERC165_INTERFACE_ID = 0x01ffc9a7;
     bytes4 internal constant ERC7943_FUNGIBLE_INTERFACE_ID = 0x3edbb4c4;
     uint16 internal constant REASON_DOMAIN = 1;
-    uint16 internal constant REASON_ID = 2;
+    uint16 internal constant REASON_IDENTIFIER = 2;
     uint16 internal constant REASON_TIME = 3;
-    uint16 internal constant REASON_EPOCH = 4;
-    uint16 internal constant REASON_BINDING = 5;
+    uint16 internal constant REASON_AUTHORITY_EPOCH = 4;
+    uint16 internal constant REASON_DEPENDENCY_BINDING = 5;
     uint16 internal constant REASON_SHAPE = 6;
-    uint16 internal constant REASON_REVERSAL = 7;
+    uint16 internal constant REASON_REVERSAL_PAIRING = 7;
     uint16 internal constant REASON_CUSTODY = 8;
     uint16 internal constant REASON_ENTITLEMENT = 9;
+    uint16 internal constant REASON_CASE_CONFLICT = 10;
+    uint16 internal constant REASON_CURRENT_EFFECT = 11;
+    uint16 internal constant REASON_FREEZE_DIRECTION = 12;
+    uint16 internal constant REASON_NO_STATE_CHANGE = 13;
+    uint16 internal constant REASON_DEPENDENCY_UNAVAILABLE_AT_BIND = 205;
     uint8 internal constant REVERSAL_OPERATION_TAG = 0x80;
-    uint256 internal constant ACTION_CALLDATA_LENGTH = 676;
-    uint256 internal constant REVERSAL_CALLDATA_LENGTH = 292;
+    uint256 internal constant ACTION_CALLDATA_LENGTH = 644;
+    uint256 internal constant REVERSAL_CALLDATA_LENGTH = 388;
+    uint256 internal constant NATIVE_ACTION_MASK = 0x3f;
+    uint256 internal constant NATIVE_REVERSAL_MASK = 0x07;
 
     modifier nonReentrant() {
         if (_entered != 0) revert TrustReentrancy();
@@ -80,13 +79,20 @@ contract TrustToken is TrustStorage, IERC20, IERC7943Fungible, IERCTrust {
         symbol = symbol_;
         decimals = decimals_;
         governor = governor_;
-        _authorities[authorityRef] = TrustTypes.Authority({account: initialAuthority, epoch: 1, active: true});
+        _authorities[authorityRef] = TrustNativeTypes.Authority({account: initialAuthority, epoch: 1, active: true});
         emit TrustAuthorityChanged(authorityRef, initialAuthority, 1, true);
 
-        _bindInitial(TrustTypes.BindingKind.POLICY, policy, schema);
-        _bindInitial(TrustTypes.BindingKind.IDENTITY, identity, schema);
-        _bindInitial(TrustTypes.BindingKind.SETTLEMENT, settlement, schema);
-        _bindInitial(TrustTypes.BindingKind.ENTITLEMENT, entitlement, schema);
+        _bind(TrustKernelTypes.BindingKind.POLICY, policy, schema, 1, bytes32(0));
+        _bind(TrustKernelTypes.BindingKind.IDENTITY, identity, schema, 1, bytes32(0));
+        _bind(TrustKernelTypes.BindingKind.SETTLEMENT, settlement, schema, 1, bytes32(0));
+        _bind(TrustKernelTypes.BindingKind.ENTITLEMENT, entitlement, schema, 1, bytes32(0));
+        _dependencyEpoch = 1;
+        _dependencyRoot = _computeDependencyRoot();
+        for (uint8 kind = 0; kind < 4; ++kind) {
+            emit TrustDependencyChanged(
+                kind, bytes32(0), _bindings[TrustKernelTypes.BindingKind(kind)].bindingHash, _dependencyRoot, 1
+            );
+        }
 
         _totalSupply = initialSupply;
         _balances[initialHolder] = initialSupply;
@@ -101,11 +107,8 @@ contract TrustToken is TrustStorage, IERC20, IERC7943Fungible, IERCTrust {
         return interfaceId != 0xffffffff
             && (interfaceId == ERC165_INTERFACE_ID
                 || interfaceId == ERC7943_FUNGIBLE_INTERFACE_ID
-                || interfaceId == type(IERCTrust).interfaceId);
-    }
-
-    function trustProfile() external pure returns (bytes32 profile, uint256 supportedActionMask, bool proxySupported) {
-        return (keccak256("ERC-TRUST-NATIVE-FULL-V1"), 0x3f, false);
+                || interfaceId == type(IERCTrustKernel).interfaceId
+                || interfaceId == type(IERCTrustNativeRoute).interfaceId);
     }
 
     function balanceOf(address account) external view returns (uint256) {
@@ -151,8 +154,12 @@ contract TrustToken is TrustStorage, IERC20, IERC7943Fungible, IERCTrust {
         return account != address(0) && !_restricted[account];
     }
 
+    /// @dev The stored absolute target may exceed the balance after a disposition in another case;
+    ///      the observed frozen amount saturates at the current balance.
     function getFrozenTokens(address account) external view returns (uint256) {
-        return _frozen[account];
+        uint256 frozen = _frozen[account];
+        uint256 balance = _balances[account];
+        return frozen > balance ? balance : frozen;
     }
 
     function canTransfer(address from, address to, uint256 amount) public view returns (bool) {
@@ -161,10 +168,60 @@ contract TrustToken is TrustStorage, IERC20, IERC7943Fungible, IERCTrust {
     }
 
     // ---------------------------------------------------------------------
+    // Kernel views
+    // ---------------------------------------------------------------------
+
+    function deriveActionId(TrustKernelTypes.ActionRequest calldata request) external view returns (bytes32) {
+        return _actionHash(request, true);
+    }
+
+    function deriveReversalId(TrustKernelTypes.ReversalRequest calldata request) external view returns (bytes32) {
+        return _reversalHash(request, true);
+    }
+
+    function actionRecord(bytes32 actionId) external view returns (TrustKernelTypes.ActionRecord memory) {
+        return _actions[actionId];
+    }
+
+    function receipt(bytes32 commandId) external view returns (TrustKernelTypes.Receipt memory) {
+        return _receipts[commandId];
+    }
+
+    function caseRecord(bytes32 caseId) external view returns (TrustKernelTypes.CaseRecord memory) {
+        return _cases[caseId];
+    }
+
+    function dependencyState() external view returns (bytes32 dependencyRoot, uint64 dependencyEpoch) {
+        return (_dependencyRoot, _dependencyEpoch);
+    }
+
+    /// @dev `full` is computed from the live dependency topology on every call, never stored.
+    function trustProfile() external view returns (TrustKernelTypes.ProfileDescriptor memory descriptor) {
+        bool full = true;
+        for (uint8 kind = 0; kind < 4; ++kind) {
+            if (!_bindings[TrustKernelTypes.BindingKind(kind)].live()) {
+                full = false;
+                break;
+            }
+        }
+        descriptor = TrustKernelTypes.ProfileDescriptor({
+            profileId: TrustKernelTypes.PROFILE_NATIVE_FULL,
+            profileKind: TrustKernelTypes.ProfileKind.NATIVE_FULL,
+            standardVersion: TrustKernelTypes.STANDARD_VERSION,
+            actionMask: NATIVE_ACTION_MASK,
+            reversalMask: NATIVE_REVERSAL_MASK,
+            underlyingToken: address(0),
+            manifestHash: _dependencyRoot,
+            full: full,
+            proxySupported: false
+        });
+    }
+
+    // ---------------------------------------------------------------------
     // Canonical typed entrypoints
     // ---------------------------------------------------------------------
 
-    function executeRegulatoryAction(TrustTypes.ActionRequest calldata request)
+    function executeRegulatoryAction(TrustKernelTypes.ActionRequest calldata request)
         external
         nonReentrant
         returns (bytes32 receiptHash)
@@ -172,93 +229,79 @@ contract TrustToken is TrustStorage, IERC20, IERC7943Fungible, IERCTrust {
         _requireCalldataLength(ACTION_CALLDATA_LENGTH);
         bytes32 digest = _validateAndAuthorizeAction(request, msg.sender);
         bytes32 evidence = _assessOrRevert(request, digest);
-        _consumeActionAuthorization(request, digest);
-        return _applyAction(request, digest, evidence);
+        _consumeActionAuthorization(request, digest, evidence);
+        TrustKernelTypes.ActionRequest memory copy = request;
+        return _applyActionPrepared(copy);
     }
 
-    function executeRegulatoryReversal(TrustTypes.ReversalRequest calldata request)
+    function executeRegulatoryReversal(TrustKernelTypes.ReversalRequest calldata request)
         external
         nonReentrant
         returns (bytes32 receiptHash)
     {
         _requireCalldataLength(REVERSAL_CALLDATA_LENGTH);
         bytes32 digest = _validateAndAuthorizeReversal(request, msg.sender);
-        _assessReversalOrRevert(request, digest);
-        _consumeReversalAuthorization(request, digest);
-        return _applyReversal(request, digest);
+        bytes32 evidence = _assessReversalOrRevert(request, digest);
+        _consumeReversalAuthorization(request);
+        return _applyReversalPrepared(request.reversalId, _pendingReversalOf(request, evidence));
     }
 
-    /// @notice Same-transaction exact-use adapter for ERC-7943 sensitive selectors.
-    function executeERC7943Action(TrustTypes.ActionRequest calldata request)
+    /// @notice Same-transaction exact-use route for the sensitive ERC-7943 selectors.
+    function executeERC7943Action(TrustKernelTypes.ActionRequest calldata request)
         external
         nonReentrant
         returns (bytes32 receiptHash)
     {
         _requireCalldataLength(ACTION_CALLDATA_LENGTH);
         bytes32 digest = _validateAndAuthorizeAction(request, msg.sender);
-        bool forced = TrustDecision.isForcedTransferAction(request.action);
-        if (!forced && request.action != TrustTypes.ActionKind.FREEZE) {
+        if (request.action == TrustKernelTypes.ActionKind.RESTRICT) {
             revert TrustInvalidCommand(request.actionId, REASON_SHAPE);
         }
         bytes32 evidence = _assessOrRevert(request, digest);
-        _consumeActionAuthorization(request, digest);
-        _actions[request.actionId].lifecycle = TrustTypes.Lifecycle.PREPARED;
-        _actions[request.actionId].evidenceHash = evidence;
+        _consumeActionAuthorization(request, digest, evidence);
+        _pendingCommitments[request.actionId] = TrustNativeTypes.PendingCommitments({
+            provenanceCommitment: request.provenanceCommitment,
+            settlementCommitment: request.settlementCommitment,
+            proceedsCommitment: request.proceedsCommitment,
+            entitlementCommitment: request.entitlementCommitment
+        });
 
-        if (request.action == TrustTypes.ActionKind.FREEZE) {
-            bytes memory data = abi.encodeCall(IERC7943Fungible.setFrozenTokens, (request.subject, request.amount));
-            _prepareRoute(
-                request.actionId,
-                IERC7943Fungible.setFrozenTokens.selector,
-                keccak256(data),
-                TrustTypes.RouteKind.ACTION,
-                uint8(request.action),
-                request.authorityEpoch,
-                request.policyEpoch
-            );
-            (bool ok, bytes memory result) = address(this).call(data);
-            if (!ok) _bubble(result);
+        bytes memory data;
+        bytes4 selector;
+        if (request.action == TrustKernelTypes.ActionKind.FREEZE) {
+            data = abi.encodeCall(IERC7943Fungible.setFrozenTokens, (request.subject, request.amount));
+            selector = IERC7943Fungible.setFrozenTokens.selector;
         } else {
-            address target = request.action == TrustTypes.ActionKind.SEIZE ? request.custodian : request.destination;
-            bytes memory data =
-                abi.encodeCall(IERC7943Fungible.forcedTransfer, (request.source, target, request.amount));
-            _prepareRoute(
-                request.actionId,
-                IERC7943Fungible.forcedTransfer.selector,
-                keccak256(data),
-                TrustTypes.RouteKind.ACTION,
-                uint8(request.action),
-                request.authorityEpoch,
-                request.policyEpoch
-            );
-            (bool ok, bytes memory result) = address(this).call(data);
-            if (!ok) _bubble(result);
+            data =
+                abi.encodeCall(IERC7943Fungible.forcedTransfer, (request.source, request.destination, request.amount));
+            selector = IERC7943Fungible.forcedTransfer.selector;
         }
+        _prepareRoute(request.actionId, selector, keccak256(data), TrustNativeTypes.RouteKind.ACTION);
+        (bool ok, bytes memory result) = address(this).call(data);
+        if (!ok) _bubble(result);
         return _receipts[request.actionId].receiptHash;
     }
 
-    function executeERC7943Reversal(TrustTypes.ReversalRequest calldata request)
+    function executeERC7943Reversal(TrustKernelTypes.ReversalRequest calldata request)
         external
         nonReentrant
         returns (bytes32 receiptHash)
     {
         _requireCalldataLength(REVERSAL_CALLDATA_LENGTH);
         bytes32 digest = _validateAndAuthorizeReversal(request, msg.sender);
-        TrustTypes.ActionRecord storage original = _actions[request.actionId];
-        if (request.reversal != TrustTypes.ReversalKind.UNFREEZE) {
-            revert TrustInvalidCommand(request.reversalId, REASON_REVERSAL);
+        if (request.reversal != TrustKernelTypes.ReversalKind.UNFREEZE) {
+            revert TrustInvalidCommand(request.reversalId, REASON_REVERSAL_PAIRING);
         }
-        _assessReversalOrRevert(request, digest);
-        _consumeReversalAuthorization(request, digest);
+        bytes32 evidence = _assessReversalOrRevert(request, digest);
+        _consumeReversalAuthorization(request);
+        _pendingReversals[request.reversalId] = _pendingReversalOf(request, evidence);
+        TrustKernelTypes.ActionRecord storage original = _actions[request.actionId];
         bytes memory data = abi.encodeCall(IERC7943Fungible.setFrozenTokens, (original.subject, original.priorAmount));
         _prepareRoute(
             request.reversalId,
             IERC7943Fungible.setFrozenTokens.selector,
             keccak256(data),
-            TrustTypes.RouteKind.REVERSAL,
-            uint8(request.reversal),
-            request.authorityEpoch,
-            original.policyEpoch
+            TrustNativeTypes.RouteKind.REVERSAL
         );
         (bool ok, bytes memory result) = address(this).call(data);
         if (!ok) _bubble(result);
@@ -267,48 +310,49 @@ contract TrustToken is TrustStorage, IERC20, IERC7943Fungible, IERCTrust {
 
     /// @dev Raw calls always fail: a ticket can only exist during an executing wrapper call.
     function setFrozenTokens(address account, uint256 amount) external returns (bool result) {
-        bytes32 dataHash = keccak256(msg.data);
-        TrustTypes.RouteTicket memory ticket = _consumeRoute(IERC7943Fungible.setFrozenTokens.selector, dataHash);
-        if (ticket.routeKind == TrustTypes.RouteKind.ACTION) {
-            TrustTypes.ActionRecord storage record = _actions[ticket.commandId];
-            if (record.action != TrustTypes.ActionKind.FREEZE || record.subject != account || record.amount != amount) {
+        TrustNativeTypes.RouteTicket memory ticket =
+            _consumeRoute(IERC7943Fungible.setFrozenTokens.selector, keccak256(msg.data));
+        if (ticket.routeKind == TrustNativeTypes.RouteKind.ACTION) {
+            TrustKernelTypes.ActionRecord storage record = _actions[ticket.commandId];
+            if (
+                record.action != TrustKernelTypes.ActionKind.FREEZE || record.subject != account
+                    || record.amount != amount
+            ) {
                 revert TrustRouteMismatch(ticket.routeKey);
             }
-            TrustTypes.ActionRequest memory request = _requestFromRecord(ticket.commandId, record);
-            _applyActionPrepared(request, record.commandHash, record.evidenceHash);
+            _applyActionPrepared(_requestFromRecord(ticket.commandId, record));
             return true;
         }
-        if (ticket.routeKind == TrustTypes.RouteKind.REVERSAL) {
-            TrustTypes.ReversalRequest memory request = _pendingReversal(ticket.commandId);
-            TrustTypes.ActionRecord storage original = _actions[request.actionId];
+        if (ticket.routeKind == TrustNativeTypes.RouteKind.REVERSAL) {
+            TrustNativeTypes.PendingReversal memory pending = _pendingReversals[ticket.commandId];
+            TrustKernelTypes.ActionRecord storage original = _actions[pending.actionId];
             if (original.subject != account || original.priorAmount != amount) {
                 revert TrustRouteMismatch(ticket.routeKey);
             }
-            _applyReversalPrepared(request, request.domain);
+            delete _pendingReversals[ticket.commandId];
+            _applyReversalPrepared(ticket.commandId, pending);
             return true;
         }
         revert TrustRouteMismatch(ticket.routeKey);
     }
 
     function forcedTransfer(address from, address to, uint256 amount) external returns (bool result) {
-        TrustTypes.RouteTicket memory ticket =
+        TrustNativeTypes.RouteTicket memory ticket =
             _consumeRoute(IERC7943Fungible.forcedTransfer.selector, keccak256(msg.data));
-        if (ticket.routeKind != TrustTypes.RouteKind.ACTION) revert TrustRouteMismatch(ticket.routeKey);
-        TrustTypes.ActionRecord storage record = _actions[ticket.commandId];
-        address expected = record.action == TrustTypes.ActionKind.SEIZE ? record.custodian : record.destination;
+        if (ticket.routeKind != TrustNativeTypes.RouteKind.ACTION) revert TrustRouteMismatch(ticket.routeKey);
+        TrustKernelTypes.ActionRecord storage record = _actions[ticket.commandId];
         if (
-            !TrustDecision.isForcedTransferAction(record.action) || record.source != from || expected != to
-                || record.amount != amount
+            !TrustNativeDecision.isForcedTransferAction(record.action) || record.source != from
+                || record.destination != to || record.amount != amount
         ) {
             revert TrustRouteMismatch(ticket.routeKey);
         }
-        TrustTypes.ActionRequest memory request = _requestFromRecord(ticket.commandId, record);
-        _applyActionPrepared(request, record.commandHash, record.evidenceHash);
+        _applyActionPrepared(_requestFromRecord(ticket.commandId, record));
         return true;
     }
 
     // ---------------------------------------------------------------------
-    // Governance and versioned bindings
+    // Governance and versioned dependency bindings
     // ---------------------------------------------------------------------
 
     function configureAuthority(
@@ -320,349 +364,325 @@ contract TrustToken is TrustStorage, IERC20, IERC7943Fungible, IERCTrust {
     ) external onlyGovernor {
         _consumeGovernance(governanceAuthorizationId, governanceNonce);
         if (account == address(0)) revert TrustZeroAddress();
-        TrustTypes.Authority storage authorityConfig = _authorities[authorityRef];
+        TrustNativeTypes.Authority storage authorityConfig = _authorities[authorityRef];
         authorityConfig.epoch += 1;
         authorityConfig.account = account;
         authorityConfig.active = active;
         emit TrustAuthorityChanged(authorityRef, account, authorityConfig.epoch, active);
     }
 
-    function configureDelegation(
-        bytes32 authorityRef,
-        address delegate,
-        uint256 actionMask,
-        bytes32 scopeHash,
-        uint48 validUntil,
-        bytes32 authorizationId,
-        uint256 nonce
-    ) external {
-        TrustTypes.Authority storage authorityConfig = _authorities[authorityRef];
-        if (!authorityConfig.active || msg.sender != authorityConfig.account) {
-            revert TrustUnauthorized(msg.sender, authorityRef);
-        }
-        if (authorizationId == bytes32(0)) revert TrustInvalidCommand(authorizationId, REASON_ID);
-        bytes32 nonceKey = TrustDecision.nonceKey(authorityRef, authorityConfig.epoch, nonce);
-        if (_usedNonces[authorityRef][authorityConfig.epoch][nonce]) revert TrustReplay(nonceKey);
-        if (_usedCommandIds[authorizationId]) revert TrustReplay(authorizationId);
-        _usedNonces[authorityRef][authorityConfig.epoch][nonce] = true;
-        _usedCommandIds[authorizationId] = true;
-        _delegations[authorityRef][delegate] = TrustTypes.Delegation({
-            actionMask: actionMask, scopeHash: scopeHash, validUntil: validUntil, authorityEpoch: authorityConfig.epoch
-        });
-        emit TrustDelegationChanged(authorityRef, delegate, actionMask, scopeHash, validUntil);
-    }
-
+    /// @dev Every rebind of any kind advances the global dependency epoch by exactly one and
+    ///      recomputes the ordered dependency root, so commands built under the previous root are stale.
     function rebindDependency(
-        TrustTypes.BindingKind kind,
+        TrustKernelTypes.BindingKind kind,
         address dependency,
         bytes32 schema,
         bytes32 governanceAuthorizationId,
         uint256 governanceNonce
     ) external onlyGovernor {
         _consumeGovernance(governanceAuthorizationId, governanceNonce);
-        if (dependency == address(0)) revert TrustZeroAddress();
-        (bool ok, bytes32 config) = TrustPolicyBinding.readConfiguration(dependency);
-        bytes32 code = TrustPolicyBinding.codeId(dependency);
-        if (!ok || code == bytes32(0)) {
-            revert TrustOperationalFailure(governanceAuthorizationId, 205, bytes32(uint256(uint160(dependency))));
-        }
-        TrustTypes.Binding storage bindingConfig = _bindings[kind];
+        TrustNativeTypes.Binding storage bindingConfig = _bindings[kind];
         bytes32 previous = bindingConfig.bindingHash;
-        uint64 nextEpoch = bindingConfig.epoch + 1;
-        bytes32 next = TrustPolicyBinding.compute(kind, dependency, code, config, schema, nextEpoch);
-        bindingConfig.dependency = dependency;
-        bindingConfig.codeId = code;
-        bindingConfig.configurationDigest = config;
-        bindingConfig.schema = schema;
-        bindingConfig.epoch = nextEpoch;
-        bindingConfig.bindingHash = next;
-        emit TrustBindingChanged(kind, previous, next, nextEpoch);
-    }
-
-    // ---------------------------------------------------------------------
-    // Public evidence views
-    // ---------------------------------------------------------------------
-
-    function deriveActionId(TrustTypes.ActionRequest calldata request) public view returns (bytes32) {
-        return _actionHash(request, true);
-    }
-
-    function deriveReversalId(TrustTypes.ReversalRequest calldata request) public view returns (bytes32) {
-        return _reversalHash(request, true);
-    }
-
-    function commandHash(TrustTypes.ActionRequest calldata request) public view returns (bytes32) {
-        return _actionHash(request, false);
-    }
-
-    function reversalHash(TrustTypes.ReversalRequest calldata request) public view returns (bytes32) {
-        return _reversalHash(request, false);
-    }
-
-    function actionRecord(bytes32 actionId) external view returns (TrustTypes.ActionRecord memory) {
-        return _actions[actionId];
-    }
-
-    function receipt(bytes32 commandId) external view returns (TrustTypes.Receipt memory) {
-        return _receipts[commandId];
-    }
-
-    function caseTerminal(bytes32 caseId) external view returns (bool) {
-        return _terminalCases[caseId];
-    }
-
-    function custodyRecord(bytes32 caseId) external view returns (TrustTypes.CustodyRecord memory) {
-        return _custody[caseId];
-    }
-
-    function settlementRecord(bytes32 actionId) external view returns (TrustTypes.SettlementRecord memory) {
-        return _settlements[actionId];
-    }
-
-    function entitlementRecord(bytes32 actionId) external view returns (TrustTypes.EntitlementRecord memory) {
-        return _entitlements[actionId];
-    }
-
-    function getAuthorityState(bytes32 authorityRef)
-        external
-        view
-        returns (address account, uint64 epoch, bool active)
-    {
-        TrustTypes.Authority storage authority_ = _authorities[authorityRef];
-        return (authority_.account, authority_.epoch, authority_.active);
-    }
-
-    function getBindingState(TrustTypes.BindingKind kind)
-        external
-        view
-        returns (address dependency, bytes32 bindingHash, uint64 epoch)
-    {
-        TrustTypes.Binding storage binding_ = _bindings[kind];
-        return (binding_.dependency, binding_.bindingHash, binding_.epoch);
-    }
-
-    function isRestricted(address account) external view returns (bool) {
-        return _restricted[account];
-    }
-
-    function nonceUsed(bytes32 authorityRef, uint64 authorityEpoch, uint256 nonce) external view returns (bool) {
-        return _usedNonces[authorityRef][authorityEpoch][nonce];
-    }
-
-    function routeLive() external view returns (bool) {
-        return _routeTicket.live;
+        _bind(kind, dependency, schema, bindingConfig.epoch + 1, governanceAuthorizationId);
+        _dependencyEpoch += 1;
+        _dependencyRoot = _computeDependencyRoot();
+        emit TrustDependencyChanged(uint8(kind), previous, bindingConfig.bindingHash, _dependencyRoot, _dependencyEpoch);
     }
 
     // ---------------------------------------------------------------------
     // Validation and assessment
     // ---------------------------------------------------------------------
 
-    function _validateAndAuthorizeAction(TrustTypes.ActionRequest calldata request, address caller)
+    function _validateAndAuthorizeAction(TrustKernelTypes.ActionRequest calldata request, address caller)
         internal
         view
         returns (bytes32 digest)
     {
-        if (request.domain != TrustTypes.DOMAIN) revert TrustInvalidCommand(request.actionId, REASON_DOMAIN);
+        if (request.domain != TrustKernelTypes.DOMAIN) revert TrustInvalidCommand(request.actionId, REASON_DOMAIN);
         if (request.actionId == bytes32(0) || request.actionId != _actionHash(request, true)) {
-            revert TrustInvalidCommand(request.actionId, REASON_ID);
+            revert TrustInvalidCommand(request.actionId, REASON_IDENTIFIER);
+        }
+        if (_actions[request.actionId].lifecycle != TrustKernelTypes.Lifecycle.NONE) {
+            revert TrustReplay(request.actionId);
         }
         if (block.timestamp < request.validAfter || request.validBefore == 0 || block.timestamp > request.validBefore) {
             revert TrustInvalidCommand(request.actionId, REASON_TIME);
         }
-        TrustTypes.Authority storage authority_ = _authorities[request.authorityRef];
-        if (authority_.epoch != request.authorityEpoch) revert TrustInvalidCommand(request.actionId, REASON_EPOCH);
-        TrustTypes.Delegation storage delegation = _delegations[request.authorityRef][caller];
-        if (!LegacyRouteAuthorizer.authorized(
-                authority_, delegation, caller, request.action, request.scopeHash, uint48(block.timestamp)
-            )) {
-            revert TrustUnauthorized(caller, request.authorityRef);
+        _requireAuthority(request.actionId, request.authorityRef, request.authorityEpoch, caller);
+        if (request.dependencyRoot != _dependencyRoot || request.dependencyEpoch != _dependencyEpoch) {
+            revert TrustInvalidCommand(request.actionId, REASON_DEPENDENCY_BINDING);
         }
-        TrustTypes.Binding storage policy = _bindings[TrustTypes.BindingKind.POLICY];
-        if (request.policyEpoch != policy.epoch || request.policyCommitment != policy.bindingHash) {
-            revert TrustInvalidCommand(request.actionId, REASON_BINDING);
-        }
+        _requireFreshNonce(request.authorityRef, request.authorityEpoch, request.nonce);
         _validateActionShape(request);
-        if (_usedCommandIds[request.actionId]) revert TrustReplay(request.actionId);
-        if (_usedNonces[request.authorityRef][request.authorityEpoch][request.nonce]) {
-            revert TrustReplay(TrustDecision.nonceKey(request.authorityRef, request.authorityEpoch, request.nonce));
-        }
-        digest = commandHash(request);
+        digest = _actionHash(request, false);
     }
 
-    function _validateAndAuthorizeReversal(TrustTypes.ReversalRequest calldata request, address caller)
+    function _validateAndAuthorizeReversal(TrustKernelTypes.ReversalRequest calldata request, address caller)
         internal
         view
         returns (bytes32 digest)
     {
-        if (request.domain != TrustTypes.DOMAIN) revert TrustInvalidCommand(request.reversalId, REASON_DOMAIN);
-        if (request.reversalId == bytes32(0) || request.reversalId != deriveReversalId(request)) {
-            revert TrustInvalidCommand(request.reversalId, REASON_ID);
+        if (request.domain != TrustKernelTypes.DOMAIN) {
+            revert TrustInvalidCommand(request.reversalId, REASON_DOMAIN);
+        }
+        if (request.reversalId == bytes32(0) || request.reversalId != _reversalHash(request, true)) {
+            revert TrustInvalidCommand(request.reversalId, REASON_IDENTIFIER);
+        }
+        if (_receipts[request.reversalId].receiptKind != TrustKernelTypes.ReceiptKind.NONE) {
+            revert TrustReplay(request.reversalId);
         }
         if (block.timestamp < request.validAfter || request.validBefore == 0 || block.timestamp > request.validBefore) {
             revert TrustInvalidCommand(request.reversalId, REASON_TIME);
         }
-        TrustTypes.ActionRecord storage original = _actions[request.actionId];
-        if (original.lifecycle != TrustTypes.Lifecycle.APPLIED) revert TrustTerminal(request.actionId);
-        if (!TrustDecision.reversalMatches(original.action, request.reversal)) {
-            revert TrustInvalidCommand(request.reversalId, REASON_REVERSAL);
+        TrustKernelTypes.ActionRecord storage original = _actions[request.actionId];
+        if (_cases[original.caseId].phase == TrustKernelTypes.CasePhase.TERMINAL) {
+            revert TrustTerminal(original.caseId);
+        }
+        if (original.lifecycle != TrustKernelTypes.Lifecycle.APPLIED) {
+            revert TrustInvalidCommand(request.reversalId, REASON_CURRENT_EFFECT);
+        }
+        if (!TrustNativeDecision.reversalMatches(original.action, request.reversal)) {
+            revert TrustInvalidCommand(request.reversalId, REASON_REVERSAL_PAIRING);
         }
         _validateCurrentEffect(request.reversalId, request.actionId, request.reversal, original);
-        TrustTypes.Authority storage authority_ = _authorities[request.authorityRef];
-        if (!authority_.active || authority_.epoch != request.authorityEpoch || caller != authority_.account) {
-            revert TrustUnauthorized(caller, request.authorityRef);
+        if (request.provenanceCommitment == bytes32(0)) revert TrustInvalidCommand(request.reversalId, REASON_SHAPE);
+        _requireAuthority(request.reversalId, request.authorityRef, request.authorityEpoch, caller);
+        if (request.dependencyRoot != _dependencyRoot || request.dependencyEpoch != _dependencyEpoch) {
+            revert TrustInvalidCommand(request.reversalId, REASON_DEPENDENCY_BINDING);
         }
-        if (_usedCommandIds[request.reversalId]) revert TrustReplay(request.reversalId);
-        if (_usedNonces[request.authorityRef][request.authorityEpoch][request.nonce]) {
-            revert TrustReplay(TrustDecision.nonceKey(request.authorityRef, request.authorityEpoch, request.nonce));
-        }
+        _requireFreshNonce(request.authorityRef, request.authorityEpoch, request.nonce);
         digest = _reversalHash(request, false);
     }
 
-    function _validateActionShape(TrustTypes.ActionRequest calldata request) internal view {
-        if (
-            request.subject == address(0) || request.caseId == bytes32(0) || request.scopeHash == bytes32(0)
-                || request.provenanceCommitment == bytes32(0) || _terminalCases[request.caseId]
-        ) {
+    function _requireAuthority(bytes32 commandId, bytes32 authorityRef, uint64 authorityEpoch, address caller)
+        internal
+        view
+    {
+        TrustNativeTypes.Authority storage authority_ = _authorities[authorityRef];
+        if (authority_.epoch != authorityEpoch) revert TrustInvalidCommand(commandId, REASON_AUTHORITY_EPOCH);
+        if (!authority_.active || caller != authority_.account) revert TrustUnauthorized(caller, authorityRef);
+    }
+
+    function _requireFreshNonce(bytes32 authorityRef, uint64 authorityEpoch, uint256 nonce) internal view {
+        if (_usedNonces[authorityRef][authorityEpoch][nonce]) {
+            revert TrustReplay(TrustNativeDecision.nonceKey(authorityRef, authorityEpoch, nonce));
+        }
+    }
+
+    /// @dev Per-action field rules and the case transition table. Reason codes follow shapeRules.
+    function _validateActionShape(TrustKernelTypes.ActionRequest calldata request) internal view {
+        if (request.subject == address(0) || request.caseId == bytes32(0) || request.provenanceCommitment == bytes32(0))
+        {
             revert TrustInvalidCommand(request.actionId, REASON_SHAPE);
         }
-        if (request.action == TrustTypes.ActionKind.FREEZE) {
-            if (
-                request.source != request.subject || request.destination != address(0)
-                    || request.custodian != address(0) || request.amount <= _frozen[request.subject]
-            ) {
-                revert TrustInvalidCommand(request.actionId, REASON_SHAPE);
-            }
-        } else if (request.action == TrustTypes.ActionKind.RESTRICT) {
+        TrustKernelTypes.CaseRecord storage caseState = _cases[request.caseId];
+        if (caseState.phase == TrustKernelTypes.CasePhase.TERMINAL) revert TrustTerminal(request.caseId);
+        TrustKernelTypes.ActionKind action = request.action;
+
+        if (action == TrustKernelTypes.ActionKind.FREEZE) {
             if (
                 request.source != request.subject || request.destination != address(0)
                     || request.custodian != address(0)
             ) {
                 revert TrustInvalidCommand(request.actionId, REASON_SHAPE);
             }
-        }
-        if (
-            request.action == TrustTypes.ActionKind.SEIZE || request.action == TrustTypes.ActionKind.CONFISCATE
-                || request.action == TrustTypes.ActionKind.LIQUIDATE || request.action == TrustTypes.ActionKind.RECOVER
-        ) {
+            _requireOverlayAdmissible(request.actionId, caseState, _freezeHeads[request.subject]);
+            if (request.amount <= _frozen[request.subject]) {
+                revert TrustInvalidCommand(request.actionId, REASON_FREEZE_DIRECTION);
+            }
+        } else if (action == TrustKernelTypes.ActionKind.RESTRICT) {
+            if (
+                request.source != request.subject || request.destination != address(0)
+                    || request.custodian != address(0) || request.amount != 0
+            ) {
+                revert TrustInvalidCommand(request.actionId, REASON_SHAPE);
+            }
+            TrustNativeTypes.EffectHead storage head = _restrictionHeads[request.subject];
+            if (head.actionId != bytes32(0) && caseState.headActionId == head.actionId) {
+                revert TrustInvalidCommand(request.actionId, REASON_NO_STATE_CHANGE);
+            }
+            _requireOverlayAdmissible(request.actionId, caseState, head);
+        } else {
             if (
                 request.source == address(0) || request.destination == address(0)
                     || request.source == request.destination || request.amount == 0
             ) {
                 revert TrustInvalidCommand(request.actionId, REASON_SHAPE);
             }
+            if (action == TrustKernelTypes.ActionKind.SEIZE) {
+                if (
+                    request.subject != request.source || request.custodian == address(0)
+                        || request.destination != request.custodian
+                ) {
+                    revert TrustInvalidCommand(request.actionId, REASON_SHAPE);
+                }
+                if (caseState.phase == TrustKernelTypes.CasePhase.OPEN) {
+                    revert TrustInvalidCommand(
+                        request.actionId,
+                        caseState.family == TrustKernelTypes.CaseFamily.CUSTODY ? REASON_CUSTODY : REASON_CASE_CONFLICT
+                    );
+                }
+            } else {
+                if (request.custodian != address(0)) revert TrustInvalidCommand(request.actionId, REASON_SHAPE);
+                if (caseState.phase == TrustKernelTypes.CasePhase.OPEN) {
+                    if (caseState.family != TrustKernelTypes.CaseFamily.CUSTODY) {
+                        revert TrustInvalidCommand(request.actionId, REASON_CASE_CONFLICT);
+                    }
+                } else if (request.subject != request.source) {
+                    revert TrustInvalidCommand(request.actionId, REASON_SHAPE);
+                }
+            }
         }
-        if (request.action == TrustTypes.ActionKind.SEIZE && request.subject != request.source) {
+
+        if (action == TrustKernelTypes.ActionKind.LIQUIDATE) {
+            if (request.settlementCommitment == bytes32(0) || request.proceedsCommitment == bytes32(0)) {
+                revert TrustInvalidCommand(request.actionId, REASON_SHAPE);
+            }
+        } else if (request.settlementCommitment != bytes32(0) || request.proceedsCommitment != bytes32(0)) {
             revert TrustInvalidCommand(request.actionId, REASON_SHAPE);
         }
-        if (
-            (request.action == TrustTypes.ActionKind.CONFISCATE
-                    || request.action == TrustTypes.ActionKind.LIQUIDATE
-                    || request.action == TrustTypes.ActionKind.RECOVER) && !_custody[request.caseId].active
-                && request.subject != request.source
-        ) {
-            revert TrustInvalidCommand(request.actionId, REASON_SHAPE);
-        }
-        if (
-            request.action == TrustTypes.ActionKind.SEIZE
-                && (request.custodian == address(0) || request.destination != request.custodian)
-        ) {
-            revert TrustInvalidCommand(request.actionId, REASON_SHAPE);
-        }
-        if (
-            request.action == TrustTypes.ActionKind.LIQUIDATE
-                && (request.settlementCommitment == bytes32(0) || request.proceedsCommitment == bytes32(0))
-        ) {
-            revert TrustInvalidCommand(request.actionId, REASON_SHAPE);
-        }
-        if (request.action == TrustTypes.ActionKind.RECOVER && request.entitlementCommitment == bytes32(0)) {
-            revert TrustInvalidCommand(request.actionId, REASON_SHAPE);
-        }
-        if (request.action != TrustTypes.ActionKind.SEIZE && request.custodian != address(0)) {
-            revert TrustInvalidCommand(request.actionId, REASON_SHAPE);
-        }
-        if (
-            request.action != TrustTypes.ActionKind.LIQUIDATE
-                && (request.settlementCommitment != bytes32(0) || request.proceedsCommitment != bytes32(0))
-        ) {
-            revert TrustInvalidCommand(request.actionId, REASON_SHAPE);
-        }
-        if (request.action != TrustTypes.ActionKind.RECOVER && request.entitlementCommitment != bytes32(0)) {
+        if (action == TrustKernelTypes.ActionKind.RECOVER) {
+            if (request.entitlementCommitment == bytes32(0)) {
+                revert TrustInvalidCommand(request.actionId, REASON_SHAPE);
+            }
+            if (_consumedEntitlements[request.entitlementCommitment]) {
+                revert TrustInvalidCommand(request.actionId, REASON_ENTITLEMENT);
+            }
+        } else if (request.entitlementCommitment != bytes32(0)) {
             revert TrustInvalidCommand(request.actionId, REASON_SHAPE);
         }
     }
 
-    function _assessOrRevert(TrustTypes.ActionRequest calldata request, bytes32 digest)
+    /// @dev Overlay families: a subject has one live head per family across all cases. Opening
+    ///      requires a fresh case; an amendment requires the subject's live head to be this case's head.
+    function _requireOverlayAdmissible(
+        bytes32 actionId,
+        TrustKernelTypes.CaseRecord storage caseState,
+        TrustNativeTypes.EffectHead storage head
+    ) internal view {
+        if (head.actionId == bytes32(0)) {
+            if (caseState.phase != TrustKernelTypes.CasePhase.NONE) {
+                revert TrustInvalidCommand(actionId, REASON_CASE_CONFLICT);
+            }
+        } else if (caseState.headActionId != head.actionId) {
+            revert TrustInvalidCommand(actionId, REASON_CASE_CONFLICT);
+        }
+    }
+
+    function _assessOrRevert(TrustKernelTypes.ActionRequest calldata request, bytes32 digest)
         internal
         view
         returns (bytes32 evidence)
     {
-        address effectiveDestination =
-            request.action == TrustTypes.ActionKind.SEIZE ? request.custodian : request.destination;
-        (TrustTypes.AssessmentOutcome outcome, bytes32 policyEvidence, uint16 reason) = _bindings[TrustTypes.BindingKind
-            .POLICY].assess(digest, uint8(request.action), request.subject, effectiveDestination, request.amount);
-        _requireApplicable(request.actionId, outcome, reason, _bindings[TrustTypes.BindingKind.POLICY].bindingHash);
-        evidence = policyEvidence;
-
-        if (effectiveDestination != address(0)) {
-            (outcome, policyEvidence, reason) = _bindings[TrustTypes.BindingKind
-                .IDENTITY].assess(digest, uint8(request.action), request.subject, effectiveDestination, request.amount);
-            _requireApplicable(
-                request.actionId, outcome, reason, _bindings[TrustTypes.BindingKind.IDENTITY].bindingHash
-            );
-            evidence = keccak256(abi.encode(evidence, policyEvidence));
-        }
-        if (request.action == TrustTypes.ActionKind.LIQUIDATE) {
-            (outcome, policyEvidence, reason) = _bindings[TrustTypes.BindingKind
-                .SETTLEMENT].assess(digest, uint8(request.action), request.subject, request.destination, request.amount);
-            _requireApplicable(
-                request.actionId, outcome, reason, _bindings[TrustTypes.BindingKind.SETTLEMENT].bindingHash
-            );
-            evidence = keccak256(abi.encode(evidence, policyEvidence));
-        }
-        if (request.action == TrustTypes.ActionKind.RECOVER) {
-            (outcome, policyEvidence, reason) = _bindings[TrustTypes.BindingKind
-                .ENTITLEMENT].assess(
-                digest, uint8(request.action), request.subject, request.destination, request.amount
-            );
-            _requireApplicable(
-                request.actionId, outcome, reason, _bindings[TrustTypes.BindingKind.ENTITLEMENT].bindingHash
-            );
-            evidence = keccak256(abi.encode(evidence, policyEvidence));
-        }
-    }
-
-    function _assessReversalOrRevert(TrustTypes.ReversalRequest calldata request, bytes32 digest) internal view {
-        TrustTypes.ActionRecord storage original = _actions[request.actionId];
-        address destination = request.reversal == TrustTypes.ReversalKind.RELEASE ? original.source : original.subject;
-        (TrustTypes.AssessmentOutcome outcome,, uint16 reason) = _bindings[TrustTypes.BindingKind
-            .POLICY].assess(
-            digest, REVERSAL_OPERATION_TAG | uint8(request.reversal), original.subject, destination, original.amount
+        uint8 operation = uint8(request.action);
+        evidence = _assessBinding(
+            request.actionId,
+            TrustKernelTypes.BindingKind.POLICY,
+            digest,
+            operation,
+            request.subject,
+            request.destination,
+            request.amount
         );
-        _requireApplicable(request.reversalId, outcome, reason, _bindings[TrustTypes.BindingKind.POLICY].bindingHash);
+        if (request.destination != address(0)) {
+            evidence = _chainEvidence(
+                evidence,
+                _assessBinding(
+                    request.actionId,
+                    TrustKernelTypes.BindingKind.IDENTITY,
+                    digest,
+                    operation,
+                    request.subject,
+                    request.destination,
+                    request.amount
+                )
+            );
+        }
+        if (request.action == TrustKernelTypes.ActionKind.LIQUIDATE) {
+            evidence = _chainEvidence(
+                evidence,
+                _assessBinding(
+                    request.actionId,
+                    TrustKernelTypes.BindingKind.SETTLEMENT,
+                    digest,
+                    operation,
+                    request.subject,
+                    request.destination,
+                    request.amount
+                )
+            );
+        }
+        if (request.action == TrustKernelTypes.ActionKind.RECOVER) {
+            evidence = _chainEvidence(
+                evidence,
+                _assessBinding(
+                    request.actionId,
+                    TrustKernelTypes.BindingKind.ENTITLEMENT,
+                    digest,
+                    operation,
+                    request.subject,
+                    request.destination,
+                    request.amount
+                )
+            );
+        }
     }
 
-    function _requireApplicable(
+    function _assessReversalOrRevert(TrustKernelTypes.ReversalRequest calldata request, bytes32 digest)
+        internal
+        view
+        returns (bytes32 evidence)
+    {
+        TrustKernelTypes.ActionRecord storage original = _actions[request.actionId];
+        address destination =
+            request.reversal == TrustKernelTypes.ReversalKind.RELEASE ? original.source : original.subject;
+        evidence = _assessBinding(
+            request.reversalId,
+            TrustKernelTypes.BindingKind.POLICY,
+            digest,
+            REVERSAL_OPERATION_TAG | uint8(request.reversal),
+            original.subject,
+            destination,
+            original.amount
+        );
+    }
+
+    function _assessBinding(
         bytes32 commandId,
-        TrustTypes.AssessmentOutcome outcome,
-        uint16 reason,
-        bytes32 dependency
-    ) internal pure {
-        if (outcome == TrustTypes.AssessmentOutcome.REJECTED) revert TrustRejected(commandId, reason);
-        if (outcome == TrustTypes.AssessmentOutcome.OPERATIONAL_FAILURE) {
-            revert TrustOperationalFailure(commandId, reason, dependency);
+        TrustKernelTypes.BindingKind kind,
+        bytes32 digest,
+        uint8 operation,
+        address subject,
+        address destination,
+        uint256 amount
+    ) internal view returns (bytes32 evidence) {
+        TrustNativeTypes.Binding storage binding = _bindings[kind];
+        (TrustKernelTypes.AssessmentOutcome outcome, bytes32 reported, uint16 reason) =
+            binding.assess(kind, digest, operation, subject, destination, amount);
+        if (outcome == TrustKernelTypes.AssessmentOutcome.REJECTED) revert TrustRejected(commandId, reason);
+        if (outcome == TrustKernelTypes.AssessmentOutcome.OPERATIONAL_FAILURE) {
+            revert TrustOperationalFailure(commandId, reason, binding.bindingHash);
         }
+        evidence = reported;
+    }
+
+    function _chainEvidence(bytes32 accumulated, bytes32 next) internal pure returns (bytes32) {
+        return keccak256(abi.encode(accumulated, next));
     }
 
     // ---------------------------------------------------------------------
     // State transitions and receipts
     // ---------------------------------------------------------------------
 
-    function _consumeActionAuthorization(TrustTypes.ActionRequest calldata request, bytes32 digest) internal {
-        _usedCommandIds[request.actionId] = true;
+    function _consumeActionAuthorization(
+        TrustKernelTypes.ActionRequest calldata request,
+        bytes32 digest,
+        bytes32 evidence
+    ) internal {
         _usedNonces[request.authorityRef][request.authorityEpoch][request.nonce] = true;
-        _actions[request.actionId] = TrustTypes.ActionRecord({
+        _actions[request.actionId] = TrustKernelTypes.ActionRecord({
             action: request.action,
-            lifecycle: TrustTypes.Lifecycle.PREPARED,
+            lifecycle: TrustKernelTypes.Lifecycle.PREPARED,
             subject: request.subject,
             source: request.source,
             destination: request.destination,
@@ -673,225 +693,208 @@ contract TrustToken is TrustStorage, IERC20, IERC7943Fungible, IERCTrust {
             caseId: request.caseId,
             authorityRef: request.authorityRef,
             authorityEpoch: request.authorityEpoch,
-            policyEpoch: request.policyEpoch,
+            dependencyEpoch: request.dependencyEpoch,
             commandHash: digest,
-            evidenceHash: bytes32(0),
+            evidenceHash: evidence,
             receiptHash: bytes32(0)
         });
-        _pendingCommitments[request.actionId] = PendingCommitments({
-            scopeHash: request.scopeHash,
+    }
+
+    function _consumeReversalAuthorization(TrustKernelTypes.ReversalRequest calldata request) internal {
+        _usedNonces[request.authorityRef][request.authorityEpoch][request.nonce] = true;
+    }
+
+    function _pendingReversalOf(TrustKernelTypes.ReversalRequest calldata request, bytes32 evidence)
+        internal
+        pure
+        returns (TrustNativeTypes.PendingReversal memory)
+    {
+        return TrustNativeTypes.PendingReversal({
+            actionId: request.actionId,
             provenanceCommitment: request.provenanceCommitment,
-            settlementCommitment: request.settlementCommitment,
-            proceedsCommitment: request.proceedsCommitment,
-            entitlementCommitment: request.entitlementCommitment
+            authorityRef: request.authorityRef,
+            assessmentEvidence: evidence,
+            reversal: uint8(request.reversal)
         });
     }
 
-    function _consumeReversalAuthorization(TrustTypes.ReversalRequest calldata request, bytes32 digest) internal {
-        _usedCommandIds[request.reversalId] = true;
-        _usedNonces[request.authorityRef][request.authorityEpoch][request.nonce] = true;
-        _pendingReversals[request.reversalId] = request;
-        _pendingReversals[request.reversalId].domain = digest;
-    }
-
-    mapping(bytes32 => TrustTypes.ReversalRequest) private _pendingReversals;
-
-    function _applyAction(TrustTypes.ActionRequest calldata request, bytes32 digest, bytes32 evidence)
-        internal
-        returns (bytes32)
-    {
-        TrustTypes.ActionRequest memory copy = request;
-        return _applyActionPrepared(copy, digest, evidence);
-    }
-
-    function _applyActionPrepared(TrustTypes.ActionRequest memory request, bytes32 digest, bytes32 evidence)
+    function _applyActionPrepared(TrustKernelTypes.ActionRequest memory request)
         internal
         returns (bytes32 receiptHash)
     {
-        TrustTypes.ActionRecord storage record = _actions[request.actionId];
-        if (record.lifecycle != TrustTypes.Lifecycle.PREPARED) revert TrustTerminal(request.actionId);
+        TrustKernelTypes.ActionRecord storage record = _actions[request.actionId];
+        if (record.lifecycle != TrustKernelTypes.Lifecycle.PREPARED) revert TrustReplay(request.actionId);
+        TrustKernelTypes.CaseRecord storage caseState = _cases[request.caseId];
         bytes32 preState = _observation(request.subject, request.source, request.destination, request.caseId);
 
-        if (request.action == TrustTypes.ActionKind.FREEZE) {
+        if (request.action == TrustKernelTypes.ActionKind.FREEZE) {
             record.priorAmount = _frozen[request.subject];
             _pushEffect(request.actionId, record, _freezeHeads[request.subject]);
             _frozen[request.subject] = request.amount;
             emit Frozen(request.subject, request.amount);
-        } else if (request.action == TrustTypes.ActionKind.RESTRICT) {
+            _openOverlay(caseState, TrustKernelTypes.CaseFamily.FREEZE, request.actionId);
+        } else if (request.action == TrustKernelTypes.ActionKind.RESTRICT) {
             record.priorFlag = _restricted[request.subject];
             _pushEffect(request.actionId, record, _restrictionHeads[request.subject]);
             _restricted[request.subject] = true;
-        } else if (request.action == TrustTypes.ActionKind.SEIZE) {
-            _requireNoCustody(request.caseId);
+            _openOverlay(caseState, TrustKernelTypes.CaseFamily.RESTRICT, request.actionId);
+        } else if (request.action == TrustKernelTypes.ActionKind.SEIZE) {
             _requireUnbacked(request.source, request.amount, request.actionId);
             _move(request.source, request.custodian, request.amount);
-            TrustTypes.CustodyRecord storage priorCustody = _custody[request.caseId];
-            TrustTypes.EffectRecord storage effect = _effects[request.actionId];
-            effect.parentActionId = priorCustody.actionId;
-            effect.generation = priorCustody.generation + 1;
-            effect.effectHash = _effectHash(record, effect);
-            _custody[request.caseId] = TrustTypes.CustodyRecord({
+            _custody[request.caseId] = TrustNativeTypes.CustodyRecord({
                 custodian: request.custodian,
                 declaredPriorHolder: request.source,
                 encumberedAmount: request.amount,
                 actionId: request.actionId,
-                parentActionId: effect.parentActionId,
-                effectHash: effect.effectHash,
-                generation: effect.generation,
                 active: true
             });
             _custodyBacking[request.custodian] += request.amount;
             emit ForcedTransfer(request.source, request.custodian, request.amount);
+            caseState.phase = TrustKernelTypes.CasePhase.OPEN;
+            caseState.family = TrustKernelTypes.CaseFamily.CUSTODY;
+            caseState.headActionId = request.actionId;
         } else {
             bool consumedCustody = _consumeMatchingCustody(request);
             if (!consumedCustody) _requireUnbacked(request.source, request.amount, request.actionId);
-            if (request.action == TrustTypes.ActionKind.RECOVER && _consumedEntitlements[request.entitlementCommitment])
-            {
-                revert TrustInvalidCommand(request.actionId, REASON_ENTITLEMENT);
-            }
             _move(request.source, request.destination, request.amount);
-            _terminalCases[request.caseId] = true;
-            if (request.action == TrustTypes.ActionKind.LIQUIDATE) {
-                _settlements[request.actionId] = TrustTypes.SettlementRecord({
-                    destination: request.destination,
-                    amount: request.amount,
-                    settlementCommitment: request.settlementCommitment,
-                    proceedsCommitment: request.proceedsCommitment,
-                    evidenceHash: evidence,
-                    consumedCustody: consumedCustody
-                });
-            } else if (request.action == TrustTypes.ActionKind.RECOVER) {
+            if (request.action == TrustKernelTypes.ActionKind.RECOVER) {
                 _consumedEntitlements[request.entitlementCommitment] = true;
-                _entitlements[request.actionId] = TrustTypes.EntitlementRecord({
-                    destination: request.destination,
-                    amount: request.amount,
-                    entitlementCommitment: request.entitlementCommitment,
-                    evidenceHash: evidence,
-                    consumed: true
-                });
             }
             emit ForcedTransfer(request.source, request.destination, request.amount);
+            if (!consumedCustody) caseState.family = TrustKernelTypes.CaseFamily.DISPOSITION;
+            caseState.phase = TrustKernelTypes.CasePhase.TERMINAL;
+            caseState.headActionId = bytes32(0);
         }
+        caseState.generation += 1;
 
-        record.lifecycle = TrustTypes.Lifecycle.APPLIED;
-        record.commandHash = digest;
-        record.evidenceHash = evidence;
+        record.lifecycle = TrustKernelTypes.Lifecycle.APPLIED;
         bytes32 postState = _observation(request.subject, request.source, request.destination, request.caseId);
-        bytes32 externalCommitment = request.action == TrustTypes.ActionKind.LIQUIDATE
+        bytes32 externalCommitment = request.action == TrustKernelTypes.ActionKind.LIQUIDATE
             ? keccak256(abi.encode(request.settlementCommitment, request.proceedsCommitment))
-            : request.action == TrustTypes.ActionKind.RECOVER ? request.entitlementCommitment : bytes32(0);
-        receiptHash = keccak256(
-            abi.encode(
-                TrustTypes.DOMAIN,
-                request.actionId,
-                uint8(request.action),
-                request.source,
-                request.destination,
-                request.amount,
-                request.caseId,
-                request.policyCommitment,
-                request.provenanceCommitment,
-                preState,
-                postState,
-                externalCommitment
-            )
+            : request.action == TrustKernelTypes.ActionKind.RECOVER ? request.entitlementCommitment : bytes32(0);
+        receiptHash = _storeReceipt(
+            TrustKernelTypes.Receipt({
+                receiptKind: TrustKernelTypes.ReceiptKind.ACTION,
+                commandId: request.actionId,
+                commandKind: uint8(request.action),
+                parentCommandId: bytes32(0),
+                subject: request.subject,
+                source: request.source,
+                destination: request.destination,
+                amount: request.amount,
+                caseId: request.caseId,
+                authorityRef: request.authorityRef,
+                dependencyRoot: request.dependencyRoot,
+                provenanceCommitment: request.provenanceCommitment,
+                assessmentEvidence: record.evidenceHash,
+                preState: preState,
+                postState: postState,
+                externalCommitment: externalCommitment,
+                receiptHash: bytes32(0)
+            })
         );
-        _receipts[request.actionId] = TrustTypes.Receipt({
-            commandId: request.actionId,
-            commandKind: uint8(request.action),
-            source: request.source,
-            destination: request.destination,
-            amount: request.amount,
-            caseId: request.caseId,
-            policyBinding: request.policyCommitment,
-            provenanceCommitment: request.provenanceCommitment,
-            preState: preState,
-            postState: postState,
-            externalCommitment: externalCommitment,
-            receiptHash: receiptHash
-        });
         record.receiptHash = receiptHash;
         delete _pendingCommitments[request.actionId];
-        emit RegulatoryActionApplied(request.actionId, request.action, request.caseId, receiptHash);
+        emit RegulatoryActionApplied(request.actionId, uint8(request.action), request.caseId, receiptHash);
     }
 
-    function _applyReversal(TrustTypes.ReversalRequest calldata request, bytes32 digest) internal returns (bytes32) {
-        TrustTypes.ReversalRequest memory copy = request;
-        return _applyReversalPrepared(copy, digest);
-    }
-
-    function _applyReversalPrepared(TrustTypes.ReversalRequest memory request, bytes32 digest)
+    function _applyReversalPrepared(bytes32 reversalId, TrustNativeTypes.PendingReversal memory pending)
         internal
         returns (bytes32 receiptHash)
     {
-        TrustTypes.ActionRecord storage original = _actions[request.actionId];
-        TrustTypes.EffectRecord storage originalEffect = _effects[request.actionId];
-        if (original.lifecycle != TrustTypes.Lifecycle.APPLIED) revert TrustTerminal(request.actionId);
+        TrustKernelTypes.ActionRecord storage original = _actions[pending.actionId];
+        if (original.lifecycle != TrustKernelTypes.Lifecycle.APPLIED) revert TrustReplay(reversalId);
+        TrustKernelTypes.CaseRecord storage caseState = _cases[original.caseId];
         bytes32 preState = _observation(original.subject, original.source, original.destination, original.caseId);
+        address source;
         address destination;
-        bytes32 popEffectHash;
 
-        if (request.reversal == TrustTypes.ReversalKind.UNFREEZE) {
-            popEffectHash = _popEffect(digest, originalEffect, _freezeHeads[original.subject]);
+        if (pending.reversal == uint8(TrustKernelTypes.ReversalKind.UNFREEZE)) {
+            bytes32 parent = _popEffect(_effects[pending.actionId], _freezeHeads[original.subject]);
             _frozen[original.subject] = original.priorAmount;
+            source = original.subject;
             destination = original.subject;
             emit Frozen(original.subject, original.priorAmount);
-        } else if (request.reversal == TrustTypes.ReversalKind.UNRESTRICT) {
-            popEffectHash = _popEffect(digest, originalEffect, _restrictionHeads[original.subject]);
+            if (parent != bytes32(0)) {
+                caseState.headActionId = parent;
+            } else {
+                _closeCase(caseState);
+            }
+        } else if (pending.reversal == uint8(TrustKernelTypes.ReversalKind.UNRESTRICT)) {
+            _popEffect(_effects[pending.actionId], _restrictionHeads[original.subject]);
             _restricted[original.subject] = original.priorFlag;
+            source = original.subject;
             destination = original.subject;
+            _closeCase(caseState);
         } else {
-            TrustTypes.CustodyRecord storage custody = _custody[original.caseId];
-            uint64 nextGeneration = custody.generation + 1;
-            popEffectHash = _popHash(digest, nextGeneration, originalEffect.effectHash);
+            TrustNativeTypes.CustodyRecord storage custody = _custody[original.caseId];
             _custodyBacking[custody.custodian] -= original.amount;
             custody.active = false;
             custody.encumberedAmount = 0;
-            custody.actionId = originalEffect.parentActionId;
-            custody.effectHash = originalEffect.parentActionId == bytes32(0)
-                ? bytes32(0)
-                : _effects[originalEffect.parentActionId].effectHash;
-            custody.generation = nextGeneration;
+            source = custody.custodian;
             destination = custody.declaredPriorHolder;
-            _move(custody.custodian, destination, original.amount);
-            emit ForcedTransfer(custody.custodian, destination, original.amount);
+            _move(source, destination, original.amount);
+            emit ForcedTransfer(source, destination, original.amount);
+            _closeCase(caseState);
         }
+        caseState.generation += 1;
 
-        original.lifecycle = TrustTypes.Lifecycle.REVERSED;
-        _terminalCases[original.caseId] = true;
-        bytes32 postState = _observation(original.subject, original.source, destination, original.caseId);
-        receiptHash = keccak256(
-            abi.encode(
-                TrustTypes.DOMAIN,
-                request.reversalId,
-                uint8(request.reversal),
-                request.actionId,
-                original.source,
-                destination,
-                original.amount,
-                original.caseId,
-                preState,
-                postState,
-                digest,
-                popEffectHash
-            )
+        original.lifecycle = TrustKernelTypes.Lifecycle.REVERSED;
+        bytes32 postState = _observation(original.subject, original.source, original.destination, original.caseId);
+        receiptHash = _storeReceipt(
+            TrustKernelTypes.Receipt({
+                receiptKind: TrustKernelTypes.ReceiptKind.REVERSAL,
+                commandId: reversalId,
+                commandKind: pending.reversal,
+                parentCommandId: pending.actionId,
+                subject: original.subject,
+                source: source,
+                destination: destination,
+                amount: original.amount,
+                caseId: original.caseId,
+                authorityRef: pending.authorityRef,
+                dependencyRoot: _dependencyRoot,
+                provenanceCommitment: pending.provenanceCommitment,
+                assessmentEvidence: pending.assessmentEvidence,
+                preState: preState,
+                postState: postState,
+                externalCommitment: bytes32(0),
+                receiptHash: bytes32(0)
+            })
         );
-        _receipts[request.reversalId] = TrustTypes.Receipt({
-            commandId: request.reversalId,
-            commandKind: uint8(request.reversal),
-            source: original.source,
-            destination: destination,
-            amount: original.amount,
-            caseId: original.caseId,
-            policyBinding: _bindings[TrustTypes.BindingKind.POLICY].bindingHash,
-            provenanceCommitment: bytes32(0),
-            preState: preState,
-            postState: postState,
-            externalCommitment: popEffectHash,
-            receiptHash: receiptHash
-        });
-        delete _pendingReversals[request.reversalId];
-        emit RegulatoryReversalApplied(request.reversalId, request.reversal, request.actionId, receiptHash);
+        emit RegulatoryReversalApplied(reversalId, pending.reversal, pending.actionId, receiptHash);
+    }
+
+    /// @dev hashes.receiptHash: keccak256 of the domain followed by every receipt field except
+    ///      receiptHash, in schema order. The memory struct holds those sixteen fields as sixteen
+    ///      consecutive words, which is exactly their canonical ABI encoding.
+    function _storeReceipt(TrustKernelTypes.Receipt memory record) internal returns (bytes32 receiptHash) {
+        bytes32 domain = TrustKernelTypes.DOMAIN;
+        assembly ("memory-safe") {
+            let ptr := mload(0x40)
+            mstore(ptr, domain)
+            mcopy(add(ptr, 0x20), record, 0x200)
+            receiptHash := keccak256(ptr, 0x220)
+        }
+        record.receiptHash = receiptHash;
+        _receipts[record.commandId] = record;
+    }
+
+    function _openOverlay(
+        TrustKernelTypes.CaseRecord storage caseState,
+        TrustKernelTypes.CaseFamily family,
+        bytes32 actionId
+    ) internal {
+        if (caseState.phase == TrustKernelTypes.CasePhase.NONE) {
+            caseState.phase = TrustKernelTypes.CasePhase.OPEN;
+            caseState.family = family;
+        }
+        caseState.headActionId = actionId;
+    }
+
+    function _closeCase(TrustKernelTypes.CaseRecord storage caseState) internal {
+        caseState.phase = TrustKernelTypes.CasePhase.TERMINAL;
+        caseState.headActionId = bytes32(0);
     }
 
     // ---------------------------------------------------------------------
@@ -933,97 +936,82 @@ contract TrustToken is TrustStorage, IERC20, IERC7943Fungible, IERCTrust {
         bytes32 commandId,
         bytes4 selector,
         bytes32 calldataHash,
-        TrustTypes.RouteKind routeKind,
-        uint8 actionOrReversal,
-        uint64 authorityEpoch,
-        uint64 policyEpoch
+        TrustNativeTypes.RouteKind routeKind
     ) internal {
-        TrustTypes.Binding storage policy = _bindings[TrustTypes.BindingKind.POLICY];
         bytes32 key = ERC7943RouteTicket.key(
-            address(this), selector, calldataHash, policy.bindingHash, authorityEpoch, policyEpoch, commandId
+            address(this), selector, calldataHash, _dependencyRoot, _dependencyEpoch, commandId
         );
-        _routeTicket = TrustTypes.RouteTicket({
+        _routeTicket = TrustNativeTypes.RouteTicket({
             commandId: commandId,
             routeKey: key,
             calldataHash: calldataHash,
-            bindingHash: policy.bindingHash,
+            dependencyRoot: _dependencyRoot,
             selector: selector,
             routeKind: routeKind,
-            actionOrReversal: actionOrReversal,
-            authorityEpoch: authorityEpoch,
-            policyEpoch: policyEpoch,
+            dependencyEpoch: _dependencyEpoch,
             live: true
         });
     }
 
     function _consumeRoute(bytes4 selector, bytes32 calldataHash)
         internal
-        returns (TrustTypes.RouteTicket memory ticket)
+        returns (TrustNativeTypes.RouteTicket memory ticket)
     {
         ticket = _routeTicket;
         if (
             msg.sender != address(this) || !ticket.live || ticket.selector != selector
-                || ticket.calldataHash != calldataHash
-                || ticket.bindingHash != _bindings[TrustTypes.BindingKind.POLICY].bindingHash
-                || ticket.policyEpoch != _bindings[TrustTypes.BindingKind.POLICY].epoch
+                || ticket.calldataHash != calldataHash || ticket.dependencyRoot != _dependencyRoot
+                || ticket.dependencyEpoch != _dependencyEpoch
         ) {
             revert TrustRouteMismatch(ticket.routeKey);
         }
-        bytes32 expected = ERC7943RouteTicket.key(
-            address(this),
-            selector,
-            calldataHash,
-            ticket.bindingHash,
-            ticket.authorityEpoch,
-            ticket.policyEpoch,
-            ticket.commandId
-        );
-        if (expected != ticket.routeKey) revert TrustRouteMismatch(ticket.routeKey);
         delete _routeTicket;
     }
 
-    function _actionHash(TrustTypes.ActionRequest calldata request, bool clearId)
+    /// @dev hashes.actionId (clearId) and hashes.commandHash over the raw calldata words, which equal
+    ///      the canonical encoding because every accepted request is canonical.
+    function _actionHash(TrustKernelTypes.ActionRequest calldata request, bool clearId)
         internal
         view
         returns (bytes32 result)
     {
-        bytes32 domain = TrustTypes.DOMAIN;
+        bytes32 domain = TrustKernelTypes.DOMAIN;
         assembly ("memory-safe") {
             let ptr := mload(0x40)
             mstore(ptr, domain)
             mstore(add(ptr, 0x20), address())
             mstore(add(ptr, 0x40), chainid())
-            calldatacopy(add(ptr, 0x60), request, 0x2a0)
+            calldatacopy(add(ptr, 0x60), request, 0x280)
             if clearId { mstore(add(ptr, 0x80), 0) }
-            result := keccak256(ptr, 0x300)
+            result := keccak256(ptr, 0x2e0)
         }
     }
 
-    function _reversalHash(TrustTypes.ReversalRequest calldata request, bool clearId)
+    function _reversalHash(TrustKernelTypes.ReversalRequest calldata request, bool clearId)
         internal
         view
         returns (bytes32 result)
     {
-        bytes32 domain = TrustTypes.DOMAIN;
+        bytes32 domain = TrustKernelTypes.DOMAIN;
         assembly ("memory-safe") {
             let ptr := mload(0x40)
             mstore(ptr, domain)
             mstore(add(ptr, 0x20), address())
             mstore(add(ptr, 0x40), chainid())
-            calldatacopy(add(ptr, 0x60), request, 0x120)
+            calldatacopy(add(ptr, 0x60), request, 0x180)
             if clearId { mstore(add(ptr, 0x80), 0) }
-            result := keccak256(ptr, 0x180)
+            result := keccak256(ptr, 0x1e0)
         }
     }
 
-    function _requestFromRecord(bytes32 actionId, TrustTypes.ActionRecord storage record)
+    function _requestFromRecord(bytes32 actionId, TrustKernelTypes.ActionRecord storage record)
         internal
         view
-        returns (TrustTypes.ActionRequest memory request)
+        returns (TrustKernelTypes.ActionRequest memory request)
     {
-        TrustTypes.Receipt storage existing = _receipts[actionId];
-        request = TrustTypes.ActionRequest({
-            domain: TrustTypes.DOMAIN,
+        TrustNativeTypes.PendingCommitments storage pending = _pendingCommitments[actionId];
+        request = TrustKernelTypes.ActionRequest({
+            domain: TrustKernelTypes.DOMAIN,
             actionId: actionId,
             action: record.action,
             subject: record.subject,
@@ -1032,41 +1020,24 @@ contract TrustToken is TrustStorage, IERC20, IERC7943Fungible, IERCTrust {
             custodian: record.custodian,
             amount: record.amount,
             caseId: record.caseId,
-            scopeHash: bytes32(0),
-            policyCommitment: _bindings[TrustTypes.BindingKind.POLICY].bindingHash,
-            provenanceCommitment: existing.provenanceCommitment,
-            settlementCommitment: bytes32(0),
-            proceedsCommitment: bytes32(0),
-            entitlementCommitment: bytes32(0),
+            dependencyRoot: _dependencyRoot,
+            dependencyEpoch: record.dependencyEpoch,
+            provenanceCommitment: pending.provenanceCommitment,
+            settlementCommitment: pending.settlementCommitment,
+            proceedsCommitment: pending.proceedsCommitment,
+            entitlementCommitment: pending.entitlementCommitment,
             authorityRef: record.authorityRef,
             authorityEpoch: record.authorityEpoch,
-            policyEpoch: record.policyEpoch,
             nonce: 0,
             validAfter: 0,
             validBefore: type(uint48).max
         });
-        PendingCommitments storage pending = _pendingCommitments[actionId];
-        request.scopeHash = pending.scopeHash;
-        request.provenanceCommitment = pending.provenanceCommitment;
-        request.settlementCommitment = pending.settlementCommitment;
-        request.proceedsCommitment = pending.proceedsCommitment;
-        request.entitlementCommitment = pending.entitlementCommitment;
     }
 
-    struct PendingCommitments {
-        bytes32 scopeHash;
-        bytes32 provenanceCommitment;
-        bytes32 settlementCommitment;
-        bytes32 proceedsCommitment;
-        bytes32 entitlementCommitment;
-    }
-
-    mapping(bytes32 => PendingCommitments) private _pendingCommitments;
-
-    function _pendingReversal(bytes32 reversalId) internal view returns (TrustTypes.ReversalRequest memory) {
-        return _pendingReversals[reversalId];
-    }
-
+    /// @dev Profile-defined observation preimage documented with the runtime identity: supply, the
+    ///      subject's balance, frozen target, and restriction flag, the source's and destination's
+    ///      balance and custody backing, the case's custody record, the subject's overlay heads, and
+    ///      the case record.
     function _observation(address subject, address source, address destination, bytes32 caseId)
         internal
         view
@@ -1088,90 +1059,65 @@ contract TrustToken is TrustStorage, IERC20, IERC7943Fungible, IERCTrust {
                 _custody[caseId],
                 _freezeHeads[subject],
                 _restrictionHeads[subject],
-                _terminalCases[caseId]
+                _cases[caseId]
             )
         );
     }
 
-    function _requireNoCustody(bytes32 caseId) internal view {
-        if (caseId == bytes32(0) || _custody[caseId].active) {
-            revert TrustInvalidCommand(caseId, REASON_CUSTODY);
-        }
-    }
-
-    function _consumeMatchingCustody(TrustTypes.ActionRequest memory request) internal returns (bool consumed) {
-        TrustTypes.CustodyRecord storage custody = _custody[request.caseId];
+    function _consumeMatchingCustody(TrustKernelTypes.ActionRequest memory request) internal returns (bool consumed) {
+        TrustNativeTypes.CustodyRecord storage custody = _custody[request.caseId];
         if (!custody.active) return false;
         if (
             custody.custodian != request.source || custody.encumberedAmount != request.amount
-                || custody.declaredPriorHolder != request.subject || custody.actionId == bytes32(0)
-                || custody.effectHash != _effects[custody.actionId].effectHash
+                || custody.declaredPriorHolder != request.subject
                 || _custodyBacking[custody.custodian] < custody.encumberedAmount
         ) {
             revert TrustInvalidCommand(request.actionId, REASON_CUSTODY);
         }
-        uint64 nextGeneration = custody.generation + 1;
-        custody.effectHash = _popHash(_actions[request.actionId].commandHash, nextGeneration, custody.effectHash);
         _custodyBacking[custody.custodian] -= custody.encumberedAmount;
         custody.active = false;
         custody.encumberedAmount = 0;
-        custody.actionId = custody.parentActionId;
-        custody.generation = nextGeneration;
         return true;
     }
 
     function _validateCurrentEffect(
         bytes32 reversalId,
         bytes32 actionId,
-        TrustTypes.ReversalKind reversal,
-        TrustTypes.ActionRecord storage original
+        TrustKernelTypes.ReversalKind reversal,
+        TrustKernelTypes.ActionRecord storage original
     ) internal view {
-        TrustTypes.EffectRecord storage effect = _effects[actionId];
-        if (effect.generation == 0 || effect.effectHash != _effectHash(original, effect)) {
-            revert TrustInvalidCommand(reversalId, REASON_REVERSAL);
-        }
-        if (effect.parentActionId != bytes32(0)) {
-            TrustTypes.ActionRecord storage parent = _actions[effect.parentActionId];
+        if (reversal == TrustKernelTypes.ReversalKind.RELEASE) {
+            TrustNativeTypes.CustodyRecord storage custody = _custody[original.caseId];
             if (
-                parent.lifecycle != TrustTypes.Lifecycle.APPLIED || parent.action != original.action
-                    || parent.subject != original.subject
-            ) {
-                revert TrustInvalidCommand(reversalId, REASON_REVERSAL);
-            }
-        }
-        if (reversal == TrustTypes.ReversalKind.UNFREEZE) {
-            TrustTypes.EffectHead storage head = _freezeHeads[original.subject];
-            if (
-                head.actionId != actionId || head.effectHash != effect.effectHash || head.generation < effect.generation
-                    || _frozen[original.subject] != original.amount
-            ) {
-                revert TrustInvalidCommand(reversalId, REASON_REVERSAL);
-            }
-        } else if (reversal == TrustTypes.ReversalKind.UNRESTRICT) {
-            TrustTypes.EffectHead storage head = _restrictionHeads[original.subject];
-            if (
-                head.actionId != actionId || head.effectHash != effect.effectHash || head.generation < effect.generation
-                    || !_restricted[original.subject]
-            ) {
-                revert TrustInvalidCommand(reversalId, REASON_REVERSAL);
-            }
-        } else {
-            TrustTypes.CustodyRecord storage custody = _custody[original.caseId];
-            if (
-                !custody.active || custody.actionId != actionId || custody.effectHash != effect.effectHash
-                    || custody.generation < effect.generation || custody.custodian != original.custodian
+                !custody.active || custody.actionId != actionId || custody.custodian != original.custodian
                     || custody.declaredPriorHolder != original.source || custody.encumberedAmount != original.amount
                     || _custodyBacking[custody.custodian] < custody.encumberedAmount
             ) {
                 revert TrustInvalidCommand(reversalId, REASON_CUSTODY);
             }
+            return;
+        }
+        TrustNativeTypes.EffectRecord storage effect = _effects[actionId];
+        if (effect.generation == 0 || effect.effectHash != _effectHash(original, effect)) {
+            revert TrustInvalidCommand(reversalId, REASON_CURRENT_EFFECT);
+        }
+        TrustNativeTypes.EffectHead storage head = reversal == TrustKernelTypes.ReversalKind.UNFREEZE
+            ? _freezeHeads[original.subject]
+            : _restrictionHeads[original.subject];
+        bool stateMatches = reversal == TrustKernelTypes.ReversalKind.UNFREEZE
+            ? _frozen[original.subject] == original.amount
+            : _restricted[original.subject];
+        if (head.actionId != actionId || head.effectHash != effect.effectHash || !stateMatches) {
+            revert TrustInvalidCommand(reversalId, REASON_CURRENT_EFFECT);
         }
     }
 
-    function _pushEffect(bytes32 actionId, TrustTypes.ActionRecord storage record, TrustTypes.EffectHead storage head)
-        internal
-    {
-        TrustTypes.EffectRecord storage effect = _effects[actionId];
+    function _pushEffect(
+        bytes32 actionId,
+        TrustKernelTypes.ActionRecord storage record,
+        TrustNativeTypes.EffectHead storage head
+    ) internal {
+        TrustNativeTypes.EffectRecord storage effect = _effects[actionId];
         effect.parentActionId = head.actionId;
         effect.generation = head.generation + 1;
         effect.effectHash = _effectHash(record, effect);
@@ -1180,53 +1126,27 @@ contract TrustToken is TrustStorage, IERC20, IERC7943Fungible, IERCTrust {
         head.generation = effect.generation;
     }
 
-    function _popEffect(
-        bytes32 transitionHash,
-        TrustTypes.EffectRecord storage originalEffect,
-        TrustTypes.EffectHead storage head
-    ) internal returns (bytes32 popEffectHash) {
-        uint64 nextGeneration = head.generation + 1;
-        popEffectHash = _popHash(transitionHash, nextGeneration, originalEffect.effectHash);
-        head.actionId = originalEffect.parentActionId;
-        head.effectHash = originalEffect.parentActionId == bytes32(0)
-            ? bytes32(0)
-            : _effects[originalEffect.parentActionId].effectHash;
-        head.generation = nextGeneration;
+    /// @dev Pops the subject's live head back to the reversed action's parent and returns that parent.
+    function _popEffect(TrustNativeTypes.EffectRecord storage originalEffect, TrustNativeTypes.EffectHead storage head)
+        internal
+        returns (bytes32 parent)
+    {
+        parent = originalEffect.parentActionId;
+        head.actionId = parent;
+        head.effectHash = parent == bytes32(0) ? bytes32(0) : _effects[parent].effectHash;
+        head.generation += 1;
     }
 
-    function _effectHash(TrustTypes.ActionRecord storage record, TrustTypes.EffectRecord storage effect)
+    function _effectHash(TrustKernelTypes.ActionRecord storage record, TrustNativeTypes.EffectRecord storage effect)
         internal
         view
-        returns (bytes32 result)
+        returns (bytes32)
     {
-        bytes32 commandDigest = record.commandHash;
-        bytes32 parent = effect.parentActionId;
-        uint256 generation = effect.generation;
-        uint256 priorAmount = record.priorAmount;
-        uint256 priorFlag = record.priorFlag ? 1 : 0;
-        assembly ("memory-safe") {
-            let ptr := mload(0x40)
-            mstore(ptr, commandDigest)
-            mstore(add(ptr, 0x20), parent)
-            mstore(add(ptr, 0x40), generation)
-            mstore(add(ptr, 0x60), priorAmount)
-            mstore(add(ptr, 0x80), priorFlag)
-            result := keccak256(ptr, 0xa0)
-        }
-    }
-
-    function _popHash(bytes32 transitionHash, uint64 generation, bytes32 priorEffectHash)
-        internal
-        pure
-        returns (bytes32 result)
-    {
-        assembly ("memory-safe") {
-            let ptr := mload(0x40)
-            mstore(ptr, transitionHash)
-            mstore(add(ptr, 0x20), generation)
-            mstore(add(ptr, 0x40), priorEffectHash)
-            result := keccak256(ptr, 0x60)
-        }
+        return keccak256(
+            abi.encode(
+                record.commandHash, effect.parentActionId, effect.generation, record.priorAmount, record.priorFlag
+            )
+        );
     }
 
     function _requireUnbacked(address account, uint256 amount, bytes32 commandId) internal view {
@@ -1244,7 +1164,7 @@ contract TrustToken is TrustStorage, IERC20, IERC7943Fungible, IERCTrust {
     }
 
     function _consumeGovernance(bytes32 authorizationId, uint256 nonce) internal {
-        bytes32 key = keccak256(abi.encode(TrustTypes.DOMAIN, "GOVERNANCE", governor, nonce));
+        bytes32 key = keccak256(abi.encode(TrustKernelTypes.DOMAIN, "GOVERNANCE", governor, nonce));
         if (authorizationId == bytes32(0) || _usedGovernanceIds[authorizationId] || _usedGovernanceIds[key]) {
             revert TrustReplay(authorizationId);
         }
@@ -1252,23 +1172,38 @@ contract TrustToken is TrustStorage, IERC20, IERC7943Fungible, IERCTrust {
         _usedGovernanceIds[key] = true;
     }
 
-    function _bindInitial(TrustTypes.BindingKind kind, address dependency, bytes32 schema) internal {
+    function _bind(
+        TrustKernelTypes.BindingKind kind,
+        address dependency,
+        bytes32 schema,
+        uint64 epoch,
+        bytes32 commandId
+    ) internal {
         if (dependency == address(0)) revert TrustZeroAddress();
-        (bool ok, bytes32 config) = TrustPolicyBinding.readConfiguration(dependency);
-        bytes32 code = TrustPolicyBinding.codeId(dependency);
+        (bool ok, bytes32 config) = TrustDependencyBinding.readConfiguration(dependency);
+        bytes32 code = TrustDependencyBinding.codeId(dependency);
         if (!ok || code == bytes32(0)) {
-            revert TrustOperationalFailure(bytes32(0), 205, bytes32(uint256(uint160(dependency))));
+            revert TrustOperationalFailure(
+                commandId, REASON_DEPENDENCY_UNAVAILABLE_AT_BIND, bytes32(uint256(uint160(dependency)))
+            );
         }
-        bytes32 bindingHash = TrustPolicyBinding.compute(kind, dependency, code, config, schema, 1);
-        _bindings[kind] = TrustTypes.Binding({
+        _bindings[kind] = TrustNativeTypes.Binding({
             dependency: dependency,
             codeId: code,
             configurationDigest: config,
             schema: schema,
-            epoch: 1,
-            bindingHash: bindingHash
+            epoch: epoch,
+            bindingHash: TrustDependencyBinding.compute(kind, dependency, code, config, schema, epoch)
         });
-        emit TrustBindingChanged(kind, bytes32(0), bindingHash, 1);
+    }
+
+    function _computeDependencyRoot() internal view returns (bytes32) {
+        return TrustNativeDecision.dependencyRoot(
+            _bindings[TrustKernelTypes.BindingKind.POLICY].bindingHash,
+            _bindings[TrustKernelTypes.BindingKind.IDENTITY].bindingHash,
+            _bindings[TrustKernelTypes.BindingKind.SETTLEMENT].bindingHash,
+            _bindings[TrustKernelTypes.BindingKind.ENTITLEMENT].bindingHash
+        );
     }
 
     function _bubble(bytes memory result) internal pure {

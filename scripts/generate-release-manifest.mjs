@@ -16,10 +16,11 @@ const roots = [
   "implementation/test",
   "formal/isabelle/ERC_TRUST",
   "formal/kevm",
-  "evidence/end-to-end-refinement",
+  "evidence/candidate-2",
   "evidence/public-release",
   "sdk/src",
   "schemas",
+  "spec",
   "vectors",
   "scripts",
 ];
@@ -30,24 +31,19 @@ const singleFiles = [
   "sdk/package.json",
   "sdk/pnpm-lock.yaml",
   "sdk/tsconfig.json",
-  "evidence/certora-results.json",
-  "evidence/certora-financial-core-v2.json",
   "evidence/claim-matrix.md",
   "evidence/clean-room-provenance.md",
   "evidence/deterministic-build.json",
-  "evidence/foundry-results-v2.json",
-  "evidence/isabelle-results-v2.json",
+  "evidence/evidence-mode.json",
+  "evidence/current-profile-release-index-v3.json",
   "evidence/model-regression.json",
   "evidence/isabelle-solidity-applicability.md",
-  "evidence/kontrol-results.json",
-  "evidence/kontrol-results-v2.json",
   "evidence/mutator-inventory.md",
   "evidence/mutation-results.json",
   "evidence/pilot-mutation-results.json",
   "evidence/pilot-regression.json",
   "evidence/trust-ref-matrix.md",
   "evidence/verification-summary.md",
-  "evidence/current-profile-release-index-v2.json",
 ];
 
 function sha256(data) {
@@ -71,7 +67,6 @@ const files = tracked
   .filter((path) => roots.some((entry) => path === entry || path.startsWith(`${entry}/`)) || singleFiles.includes(path))
   .filter((path) => existsSync(resolve(root, path)))
   .filter((path) => !path.includes("/node_modules/") && !path.includes("/dist/"))
-  .filter((path) => !/^implementation\/(src|test\/mocks)\/TrustTokenC\d.*Mutant\.sol$/.test(path))
   .sort();
 const fileHashes = Object.fromEntries(
   files.map((path) => [path, sha256(canonicalTextBytes(path))]),
@@ -92,13 +87,13 @@ const runtime = Buffer.from(runtimeHex.slice(2), "hex");
 
 const manifest = {
   schema: "erc-trust-release-manifest-v1",
-  candidate: "0.1.0-candidate.2",
+  candidate: "0.2.0-candidate.1",
   status: "unaudited-not-for-production",
   git: {
     bindingMode: "tracked-source-tree",
   },
   profile: {
-    native: "ERC-TRUST-NATIVE-FULL-V1",
+    native: "ERC-TRUST/v2/native-full",
     erc3643: "ERC-TRUST-ERC3643-VERIFIED-FULL-V1",
     proxySupported: false,
     migrationSupported: false,
@@ -145,9 +140,9 @@ const manifest = {
     changedByReferenceCandidate: false,
   },
   evidence: {
-    foundry: "see evidence/verification-summary.md",
-    certora: "see evidence/verification-summary.md",
-    kontrol: "see evidence/verification-summary.md",
+    mode: "evidence/evidence-mode.json",
+    lanes: "evidence/current-profile-release-index-v3.json",
+    historical: "evidence/candidate-2/README.md",
     deterministicBuild: "evidence/deterministic-build.json",
     mutation: "evidence/mutation-results.json",
     modelRegression: "evidence/model-regression.json",
