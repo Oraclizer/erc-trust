@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+- Add the normative kernel machine source for wire-format version 2 under
+  `spec/`, with a generator that emits the Solidity interface, the JSON ABI
+  and interface identifier, a human-readable rendering, the TypeScript kernel
+  helpers, and six-action, three-reversal conformance vectors. The decision
+  records under `spec/decisions/` fix delegation and cancellation removal, the
+  case transition table, the ordered dependency root and global epoch, the
+  unified receipt preimage, reason classes, the single profile descriptor and
+  kernel interface, and the exact interface identity. The Solidity candidate
+  under `implementation/` still implements version 1; nothing here changes
+  its evidence or its claims.
+
 Candidate 2 repairs the FREEZE-direction mismatch found during independent
 pre-publication review and rebinds the implementation, formal model, evidence,
 and release tooling to one successor identity. Development history before the

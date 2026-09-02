@@ -1,0 +1,983 @@
+{
+  "schema": "erc-trust-kernel-abi",
+  "kernelVersion": 2,
+  "source": "spec/erc-trust-kernel-v2.json",
+  "domain": {
+    "string": "ERC-TRUST/v2",
+    "keccak256": "0xb5303e4083d2781d6c7d6a68d30b6354ebda11f0a2a037b946d87b3eec40b74e"
+  },
+  "interfaceId": "0x2b020308",
+  "interfaceIdRule": "XOR of the selectors of every function listed below. The inherited supportsInterface(bytes4) selector is excluded. A conforming endpoint MUST return true for this identifier and false for 0xffffffff.",
+  "selectors": {
+    "executeRegulatoryAction((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))": "0x2f4e0773",
+    "executeRegulatoryReversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))": "0x2b892e8f",
+    "deriveActionId((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))": "0xfc6a9112",
+    "deriveReversalId((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))": "0xf3315a6c",
+    "actionRecord(bytes32)": "0x330fcfde",
+    "receipt(bytes32)": "0x198a27aa",
+    "caseRecord(bytes32)": "0x2a408631",
+    "dependencyState()": "0x7bf8f8b6",
+    "trustProfile()": "0x5ba37779"
+  },
+  "profileInterfaceIds": {
+    "IERCTrustNativeRoute": "0x5cd8d207",
+    "ITrustBoundDependency": "0xb2306fd2"
+  },
+  "calldataLengths": {
+    "ActionRequest": 644,
+    "ReversalRequest": 388
+  },
+  "abi": [
+    {
+      "type": "function",
+      "name": "executeRegulatoryAction",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "request",
+          "type": "tuple",
+          "internalType": "struct TrustKernelTypes.ActionRequest",
+          "components": [
+            {
+              "name": "domain",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "actionId",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "action",
+              "type": "uint8",
+              "internalType": "enum TrustKernelTypes.ActionKind"
+            },
+            {
+              "name": "subject",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "source",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "destination",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "custodian",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "amount",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "caseId",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "dependencyRoot",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "dependencyEpoch",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "provenanceCommitment",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "settlementCommitment",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "proceedsCommitment",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "entitlementCommitment",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "authorityRef",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "authorityEpoch",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "nonce",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "validAfter",
+              "type": "uint48",
+              "internalType": "uint48"
+            },
+            {
+              "name": "validBefore",
+              "type": "uint48",
+              "internalType": "uint48"
+            }
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "receiptHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "executeRegulatoryReversal",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "request",
+          "type": "tuple",
+          "internalType": "struct TrustKernelTypes.ReversalRequest",
+          "components": [
+            {
+              "name": "domain",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "reversalId",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "actionId",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "reversal",
+              "type": "uint8",
+              "internalType": "enum TrustKernelTypes.ReversalKind"
+            },
+            {
+              "name": "dependencyRoot",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "dependencyEpoch",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "provenanceCommitment",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "authorityRef",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "authorityEpoch",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "nonce",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "validAfter",
+              "type": "uint48",
+              "internalType": "uint48"
+            },
+            {
+              "name": "validBefore",
+              "type": "uint48",
+              "internalType": "uint48"
+            }
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "receiptHash",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "deriveActionId",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "request",
+          "type": "tuple",
+          "internalType": "struct TrustKernelTypes.ActionRequest",
+          "components": [
+            {
+              "name": "domain",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "actionId",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "action",
+              "type": "uint8",
+              "internalType": "enum TrustKernelTypes.ActionKind"
+            },
+            {
+              "name": "subject",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "source",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "destination",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "custodian",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "amount",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "caseId",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "dependencyRoot",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "dependencyEpoch",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "provenanceCommitment",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "settlementCommitment",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "proceedsCommitment",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "entitlementCommitment",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "authorityRef",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "authorityEpoch",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "nonce",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "validAfter",
+              "type": "uint48",
+              "internalType": "uint48"
+            },
+            {
+              "name": "validBefore",
+              "type": "uint48",
+              "internalType": "uint48"
+            }
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "actionId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "deriveReversalId",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "request",
+          "type": "tuple",
+          "internalType": "struct TrustKernelTypes.ReversalRequest",
+          "components": [
+            {
+              "name": "domain",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "reversalId",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "actionId",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "reversal",
+              "type": "uint8",
+              "internalType": "enum TrustKernelTypes.ReversalKind"
+            },
+            {
+              "name": "dependencyRoot",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "dependencyEpoch",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "provenanceCommitment",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "authorityRef",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "authorityEpoch",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "nonce",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "validAfter",
+              "type": "uint48",
+              "internalType": "uint48"
+            },
+            {
+              "name": "validBefore",
+              "type": "uint48",
+              "internalType": "uint48"
+            }
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "name": "reversalId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "actionRecord",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "actionId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "record",
+          "type": "tuple",
+          "internalType": "struct TrustKernelTypes.ActionRecord",
+          "components": [
+            {
+              "name": "action",
+              "type": "uint8",
+              "internalType": "enum TrustKernelTypes.ActionKind"
+            },
+            {
+              "name": "lifecycle",
+              "type": "uint8",
+              "internalType": "enum TrustKernelTypes.Lifecycle"
+            },
+            {
+              "name": "subject",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "source",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "destination",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "custodian",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "amount",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "priorAmount",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "priorFlag",
+              "type": "bool",
+              "internalType": "bool"
+            },
+            {
+              "name": "caseId",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "authorityRef",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "authorityEpoch",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "dependencyEpoch",
+              "type": "uint64",
+              "internalType": "uint64"
+            },
+            {
+              "name": "commandHash",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "evidenceHash",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "receiptHash",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "receipt",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "commandId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "record",
+          "type": "tuple",
+          "internalType": "struct TrustKernelTypes.Receipt",
+          "components": [
+            {
+              "name": "receiptKind",
+              "type": "uint8",
+              "internalType": "enum TrustKernelTypes.ReceiptKind"
+            },
+            {
+              "name": "commandId",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "commandKind",
+              "type": "uint8",
+              "internalType": "uint8"
+            },
+            {
+              "name": "parentCommandId",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "subject",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "source",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "destination",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "amount",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "caseId",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "authorityRef",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "dependencyRoot",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "provenanceCommitment",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "assessmentEvidence",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "preState",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "postState",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "externalCommitment",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "receiptHash",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "caseRecord",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "caseId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "record",
+          "type": "tuple",
+          "internalType": "struct TrustKernelTypes.CaseRecord",
+          "components": [
+            {
+              "name": "phase",
+              "type": "uint8",
+              "internalType": "enum TrustKernelTypes.CasePhase"
+            },
+            {
+              "name": "family",
+              "type": "uint8",
+              "internalType": "enum TrustKernelTypes.CaseFamily"
+            },
+            {
+              "name": "headActionId",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "generation",
+              "type": "uint64",
+              "internalType": "uint64"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "dependencyState",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "dependencyRoot",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "dependencyEpoch",
+          "type": "uint64",
+          "internalType": "uint64"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "trustProfile",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "descriptor",
+          "type": "tuple",
+          "internalType": "struct TrustKernelTypes.ProfileDescriptor",
+          "components": [
+            {
+              "name": "profileId",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "profileKind",
+              "type": "uint8",
+              "internalType": "enum TrustKernelTypes.ProfileKind"
+            },
+            {
+              "name": "standardVersion",
+              "type": "uint8",
+              "internalType": "uint8"
+            },
+            {
+              "name": "actionMask",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "reversalMask",
+              "type": "uint256",
+              "internalType": "uint256"
+            },
+            {
+              "name": "underlyingToken",
+              "type": "address",
+              "internalType": "address"
+            },
+            {
+              "name": "manifestHash",
+              "type": "bytes32",
+              "internalType": "bytes32"
+            },
+            {
+              "name": "full",
+              "type": "bool",
+              "internalType": "bool"
+            },
+            {
+              "name": "proxySupported",
+              "type": "bool",
+              "internalType": "bool"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "name": "RegulatoryActionApplied",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "actionId",
+          "type": "bytes32",
+          "internalType": "bytes32",
+          "indexed": true
+        },
+        {
+          "name": "action",
+          "type": "uint8",
+          "internalType": "uint8",
+          "indexed": true
+        },
+        {
+          "name": "caseId",
+          "type": "bytes32",
+          "internalType": "bytes32",
+          "indexed": true
+        },
+        {
+          "name": "receiptHash",
+          "type": "bytes32",
+          "internalType": "bytes32",
+          "indexed": false
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "name": "RegulatoryReversalApplied",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "reversalId",
+          "type": "bytes32",
+          "internalType": "bytes32",
+          "indexed": true
+        },
+        {
+          "name": "reversal",
+          "type": "uint8",
+          "internalType": "uint8",
+          "indexed": true
+        },
+        {
+          "name": "actionId",
+          "type": "bytes32",
+          "internalType": "bytes32",
+          "indexed": true
+        },
+        {
+          "name": "receiptHash",
+          "type": "bytes32",
+          "internalType": "bytes32",
+          "indexed": false
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "name": "TrustDependencyChanged",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "kind",
+          "type": "uint8",
+          "internalType": "uint8",
+          "indexed": true
+        },
+        {
+          "name": "previousBinding",
+          "type": "bytes32",
+          "internalType": "bytes32",
+          "indexed": true
+        },
+        {
+          "name": "currentBinding",
+          "type": "bytes32",
+          "internalType": "bytes32",
+          "indexed": true
+        },
+        {
+          "name": "dependencyRoot",
+          "type": "bytes32",
+          "internalType": "bytes32",
+          "indexed": false
+        },
+        {
+          "name": "dependencyEpoch",
+          "type": "uint64",
+          "internalType": "uint64",
+          "indexed": false
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "name": "TrustAuthorityChanged",
+      "anonymous": false,
+      "inputs": [
+        {
+          "name": "authorityRef",
+          "type": "bytes32",
+          "internalType": "bytes32",
+          "indexed": true
+        },
+        {
+          "name": "account",
+          "type": "address",
+          "internalType": "address",
+          "indexed": true
+        },
+        {
+          "name": "epoch",
+          "type": "uint64",
+          "internalType": "uint64",
+          "indexed": false
+        },
+        {
+          "name": "active",
+          "type": "bool",
+          "internalType": "bool",
+          "indexed": false
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "TrustRejected",
+      "inputs": [
+        {
+          "name": "commandId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "reason",
+          "type": "uint16",
+          "internalType": "uint16"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "TrustOperationalFailure",
+      "inputs": [
+        {
+          "name": "commandId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "reason",
+          "type": "uint16",
+          "internalType": "uint16"
+        },
+        {
+          "name": "dependencyRef",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "TrustUnauthorized",
+      "inputs": [
+        {
+          "name": "caller",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "authorityRef",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "TrustReplay",
+      "inputs": [
+        {
+          "name": "key",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "TrustInvalidCommand",
+      "inputs": [
+        {
+          "name": "commandId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        },
+        {
+          "name": "reason",
+          "type": "uint16",
+          "internalType": "uint16"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "TrustTerminal",
+      "inputs": [
+        {
+          "name": "caseId",
+          "type": "bytes32",
+          "internalType": "bytes32"
+        }
+      ]
+    }
+  ]
+}
