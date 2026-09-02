@@ -774,6 +774,7 @@ const vectors = {
   kernelVersion: schema.kernelVersion,
   candidateStatus: schema.status.assurance,
   source: schemaPath,
+  scenarios: schema.vectors.scenarios,
   constants: {
     domain: computed.domain,
     dependencyRootTag: computed.tags.DEPENDENCY_ROOT,

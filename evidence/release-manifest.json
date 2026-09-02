@@ -33,7 +33,7 @@
   "sourceTree": {
     "scope": "protected-release-inputs-v1",
     "algorithm": "sha256-canonical-utf8-lf-lines-v1",
-    "root": "2c899061879c855e77b471e238a1c149d3c5c074f2356160b96c3ecc651001ec",
+    "root": "a320a907ee10b6c3844e1cb1490d3f6cab1c9f12ef80a78af78766e42a62e088",
     "files": {
       "evidence/certora-financial-core-v2.json": "51b10c1e0bef155ba73d462ac5f5c0f32dedffaffa8f57172064ccbe65496e09",
       "evidence/certora-results.json": "b7b0f45f046b245b9483d2a9874cc8629a5001c7f0e7b42bf38c5dbc2eaa7e93",
@@ -156,7 +156,7 @@
       "evidence/pilot-mutation-results.json": "206b147e10735729d9b4e2986c90cc89ee20e560aa401927a6d0d02b0d50eda5",
       "evidence/pilot-regression.json": "5517f6591c4b812017b345d203603a420dd4880f528187b22e208529146bae78",
       "evidence/public-release/diet-manifest-v1.json": "0e7aae7185170a71f67f763f146bd2f6b2416c9e2a9783b099282142620b49ea",
-      "evidence/public-release/diet-manifest-v2.json": "e7d3e1b7d1978c87183bdb81aacbd014d34a61f231496cfb2213258ede086c6c",
+      "evidence/public-release/diet-manifest-v2.json": "e5c9055d433a10a0e8bc78fb95f0c30e37d80fbe74fb4311bee1690c44c5bbbc",
       "evidence/public-release/formal-foundation-supersession-v1.json": "fd42345ad6eee7a898301530e1207162242538e436f0e574a04f1595b381ec45",
       "evidence/public-release/proof-bound-identifiers-v1.json": "acd8952b48a055c2c1c39c0831cb4c0c91b6800b4b3f5be4e04729b02109c04d",
       "evidence/public-release/supersession-manifest-v1.json": "720a4e5a4ddc175d7f99953360d1256c763a61b10785b4c7fd9ff6f977770be8",
@@ -769,7 +769,7 @@
       "scripts/capture-runtime-fixture.mjs": "fc19dc899aff8b03e49002eb1e3eca7a24da957a15ba93f082990a7475dc1512",
       "scripts/check-deterministic-build.ps1": "0ee90f62697c3470973e6bfb367f45bd331c75977c66dd202320b935e83b6027",
       "scripts/generate-current-profile-runtime-bridge-v1.mjs": "79806d2a3477b91358c1c613356b74193d18bf0bb91401bbafcef2aeaa3e1e12",
-      "scripts/generate-normative-kernel.mjs": "e94a237a3c9ebb3d2fdf642dd528668b03acc41cd0b720693443bfd38d2255bb",
+      "scripts/generate-normative-kernel.mjs": "baac5c544d513d8f931289634fc5847727ab9886378b79c5985ff86d2f4854a0",
       "scripts/generate-public-evidence-map.mjs": "53d740230a0fa72201d26c29aa48b3b82dec7d20ca0b75eb9564ae06f60f3462",
       "scripts/generate-public-pilot-binding.mjs": "79cdcf457a8d7e39a468e8c596424906cb23b17d7c49cb6deed26b6e661f4030",
       "scripts/generate-public-runtime-inputs.mjs": "423f574a3687fc7f4824c5f219459af40a032b4c5efd13bae7657311f0db0d7a",
@@ -805,7 +805,7 @@
       "sdk/src/kernel-v2.ts": "6992c474af67ff23551129668fbe82241c02e2906b403ef546769a1278b20808",
       "sdk/tsconfig.json": "ab1fbd2f2716bff50d8cc0fc6dadddd815c66dce51ec938fc24eb5e505e717c0",
       "vectors/conformance-v1.json": "b0b3417a1680d6f5b6726369dae2198fe8b12ee4ad2cbbacc707fd7e6067e962",
-      "vectors/conformance-v2.json": "12f25474ad5dbf7b0719886c60212a4de65cf04bcb4abd175afad1e34fa4a486"
+      "vectors/conformance-v2.json": "08e5b7e8e67104cbc8142c2a330a391f3ebb693d7cce149a778ce4b7c80c18b8"
     }
   },
   "trustToken": {
