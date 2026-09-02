@@ -27,6 +27,7 @@ contract MockERC3643Token {
     mapping(address => uint256) public balanceOf;
     mapping(address => uint256) internal _frozenTokens;
     mapping(address => bool) public isFrozen;
+    mapping(address => uint256) internal _frozenDrift;
 
     event Transfer(address indexed from, address indexed to, uint256 amount);
     event TokensFrozen(address indexed account, uint256 amount);
@@ -58,6 +59,12 @@ contract MockERC3643Token {
         mode = mode_;
     }
 
+    /// @dev Test-only drift of the reported frozen amount of one account, modelling upstream state the
+    ///      adapter did not apply. Zero removes the drift.
+    function setFrozenDrift(address account, uint256 delta) external {
+        _frozenDrift[account] = delta;
+    }
+
     /// @dev Test-only seeding of legacy state before the seal; only usable while no Agent exists. The
     ///      balance is moved from the owner so that the supply stays accounted.
     function seedLegacyState(address account, uint256 balance, uint256 frozenAmount, bool restricted)
@@ -83,7 +90,7 @@ contract MockERC3643Token {
                 return(0, 64)
             }
         }
-        return _frozenTokens[account];
+        return _frozenTokens[account] + _frozenDrift[account];
     }
 
     function isAgent(address account) external view returns (bool) {

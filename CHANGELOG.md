@@ -10,14 +10,19 @@
   Onboarding is a fresh zero-state seal or an exact import manifest that the
   seal verifies entry by entry against the live upstream state; declared frozen
   amounts and address freezes become imported cases with a live head, so they are
-  reversible under the case transition table. Every command first checks that the
-  upstream frozen amount and address freeze flag of each account it acts on are
-  exactly the state the adapter declared or applied, and fails closed otherwise;
-  upstream state is never overwritten or silently adopted. Custody is confined to
-  the adapter, upstream execution and views are typed (reasons 400 to 403),
-  topology drift is reason 300 and dependency code drift reason 200, and the
-  frozen amount of both accounts is resynchronised to the owned target after every
-  forced transfer. The kernel version 1 profile interface, types, decision helpers,
+  reversible under the case transition table. Before consuming any command the
+  adapter checks that the upstream frozen amount and address freeze flag of each
+  account it acts on are exactly the state it declared or applied, and fails
+  closed with the new class 300 reason 304 otherwise; upstream state is never
+  overwritten or silently adopted. Custody is confined to the adapter, upstream
+  execution and views are typed (reasons 400 to 403), topology drift is reason
+  300 and dependency code drift reason 200, and the frozen amount of both
+  accounts is resynchronised to the owned target after every forced transfer.
+  Because an ERC-3643 token freezes an amount rather than a target, balance
+  growth between two adapter touches stays transferable until the next touch;
+  the profile surface adds `resynchroniseFrozen`, which anyone may call and
+  which only raises the upstream frozen amount toward the owned target, and
+  `ownedState` for indexers and keepers. The kernel version 1 profile interface, types, decision helpers,
   and error set are removed. The suite runs against two fixtures (a clean-room
   fixture and an independent one that unfreezes on forced transfers and keeps the
   full owner and Agent surface), a stateful campaign drives the adapter through

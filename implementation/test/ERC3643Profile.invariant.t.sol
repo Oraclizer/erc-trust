@@ -8,21 +8,38 @@ import {ERC3643ProfileTypes} from "../src/profiles/ERC3643ProfileTypes.sol";
 import {MockERC3643TokenTrex} from "./mocks/MockERC3643TokenTrex.sol";
 import {MockERC3643IdentityRegistry, MockERC3643Compliance} from "./mocks/MockERC3643Dependencies.sol";
 
+/// @dev A second holder that can send tokens back to the handler, so that the campaign reaches balance
+///      growth between two adapter touches.
+contract ERC3643ProfileSink {
+    MockERC3643TokenTrex internal immutable token;
+
+    constructor(MockERC3643TokenTrex token_) {
+        token = token_;
+    }
+
+    function sendBack(address to, uint256 amount) external {
+        require(token.transfer(to, amount), "send back");
+    }
+}
+
 /// @dev Owns the conformance unit as bootstrap authority, initial holder, and regulatory authority so that
 ///      the stateful campaign drives the adapter's state machine (freeze amendments, unfreeze, seizure,
-///      release, custody confiscation) and the ordinary ERC-3643 transfer surface together.
+///      release, custody confiscation), the ordinary ERC-3643 transfer surface in both directions, and
+///      the permissionless resynchronisation together.
 contract ERC3643ProfileHandler {
     bytes32 internal constant AUTHORITY_REF = keccak256("HANDLER-AUTHORITY");
 
     MockERC3643TokenTrex public immutable token;
     ProfileGovernor public immutable governor;
     ERC3643TrustAdapter public immutable adapter;
-    address public immutable sink;
+    ERC3643ProfileSink public immutable sink;
 
     bytes32 public freezeCase;
     bytes32[] internal freezeHeads;
     uint256[] internal priorTargets;
     uint256 public frozenTarget;
+    /// @dev True while the handler's balance grew since the adapter last synchronised its frozen amount.
+    bool public pendingInbound;
 
     bytes32 public custodyCase;
     bytes32 public custodyAction;
@@ -31,20 +48,20 @@ contract ERC3643ProfileHandler {
     uint256 internal nonce = 1;
     uint256 internal caseSerial;
 
-    constructor(MockERC3643IdentityRegistry identity, MockERC3643Compliance compliance, address sink_) {
+    constructor(MockERC3643IdentityRegistry identity, MockERC3643Compliance compliance) {
         token = new MockERC3643TokenTrex(address(identity), address(compliance), 1_000_000 ether);
         governor = new ProfileGovernor(
             address(token), address(identity), address(compliance), address(this), address(token).codehash
         );
         adapter = new ERC3643TrustAdapter(address(governor), address(this), AUTHORITY_REF);
+        sink = new ERC3643ProfileSink(token);
         identity.setVerified(address(this), true);
         identity.setVerified(address(adapter), true);
-        identity.setVerified(sink_, true);
+        identity.setVerified(address(sink), true);
         token.setExclusiveAgent(address(adapter));
         token.transferOwnership(address(governor));
         ERC3643ProfileTypes.ImportEntry[] memory none;
         governor.seal(address(adapter), none);
-        sink = sink_;
     }
 
     function liveFreezeHeads() external view returns (uint256) {
@@ -52,7 +69,7 @@ contract ERC3643ProfileHandler {
     }
 
     // ------------------------------------------------------------------
-    // Ordinary surface
+    // Ordinary surface in both directions
     // ------------------------------------------------------------------
 
     function transferBounded(uint96 rawAmount) external {
@@ -61,14 +78,27 @@ contract ERC3643ProfileHandler {
         uint256 unfrozen = frozen >= balance ? 0 : balance - frozen;
         uint256 amount = unfrozen == 0 ? 0 : uint256(rawAmount) % (unfrozen + 1);
         if (amount == 0) return;
-        require(token.transfer(sink, amount), "transfer");
+        require(token.transfer(address(sink), amount), "transfer");
+    }
+
+    function inboundBounded(uint96 rawAmount) external {
+        uint256 held = token.balanceOf(address(sink));
+        if (held == 0 || token.isFrozen(address(this))) return;
+        uint256 amount = (uint256(rawAmount) % held) + 1;
+        sink.sendBack(address(this), amount);
+        pendingInbound = true;
+    }
+
+    function resynchronise() external {
+        adapter.resynchroniseFrozen(address(this));
+        pendingInbound = false;
     }
 
     function rawAgentSelectors(uint96 rawAmount) external {
         (bool freezeOk,) =
             address(token).call(abi.encodeCall(token.freezePartialTokens, (address(this), uint256(rawAmount))));
-        (bool transferOk,) =
-            address(token).call(abi.encodeCall(token.forcedTransfer, (address(this), sink, uint256(rawAmount))));
+        (bool transferOk,) = address(token)
+            .call(abi.encodeCall(token.forcedTransfer, (address(this), address(sink), uint256(rawAmount))));
         (bool agentOk,) = address(token).call(abi.encodeCall(token.addAgent, (address(this))));
         require(!freezeOk && !transferOk && !agentOk, "raw upstream surface unexpectedly open");
     }
@@ -86,6 +116,7 @@ contract ERC3643ProfileHandler {
         freezeHeads.push(actionId);
         priorTargets.push(frozenTarget);
         frozenTarget = target;
+        pendingInbound = false;
     }
 
     function unfreezeHead() external {
@@ -95,6 +126,7 @@ contract ERC3643ProfileHandler {
         frozenTarget = priorTargets[priorTargets.length - 1];
         priorTargets.pop();
         _reverse(head, TrustKernelTypes.ReversalKind.UNFREEZE);
+        pendingInbound = false;
     }
 
     function seizeBounded(uint96 rawAmount) external {
@@ -113,6 +145,7 @@ contract ERC3643ProfileHandler {
             amount
         );
         custodyAmount = amount;
+        pendingInbound = false;
     }
 
     function releaseCustody() external {
@@ -121,6 +154,7 @@ contract ERC3643ProfileHandler {
         custodyAction = bytes32(0);
         custodyAmount = 0;
         _reverse(seizure, TrustKernelTypes.ReversalKind.RELEASE);
+        pendingInbound = false;
     }
 
     function confiscateCustody() external {
@@ -133,7 +167,7 @@ contract ERC3643ProfileHandler {
             custodyCase,
             address(this),
             address(adapter),
-            sink,
+            address(sink),
             address(0),
             amount
         );
@@ -196,15 +230,16 @@ contract ERC3643ProfileInvariantTest {
     ERC3643ProfileHandler internal handler;
     MockERC3643TokenTrex internal token;
     ERC3643TrustAdapter internal adapter;
-    address internal sink = address(0xA11CE);
+    address internal sink;
     address[] internal targets;
 
     function setUp() public {
         identity = new MockERC3643IdentityRegistry();
         compliance = new MockERC3643Compliance();
-        handler = new ERC3643ProfileHandler(identity, compliance, sink);
+        handler = new ERC3643ProfileHandler(identity, compliance);
         token = handler.token();
         adapter = handler.adapter();
+        sink = address(handler.sink());
         targets.push(address(handler));
     }
 
@@ -218,11 +253,19 @@ contract ERC3643ProfileInvariantTest {
         require(accounted == token.totalSupply(), "supply conservation");
     }
 
-    /// @dev The upstream frozen amount of an owned account is always the owned target saturated at the balance.
+    /// @dev The upstream frozen amount of an owned account never exceeds the owned target saturated at the
+    ///      balance, always equals the amount the adapter recorded as applied, and equals the saturated
+    ///      target itself whenever the balance did not grow since the adapter last touched the account.
     function invariantUpstreamFrozenTracksTheOwnedTarget() external view {
         uint256 balance = token.balanceOf(address(handler));
         uint256 target = handler.frozenTarget();
-        require(token.getFrozenTokens(address(handler)) == (target > balance ? balance : target), "saturated target");
+        uint256 saturated = target > balance ? balance : target;
+        uint256 frozen = token.getFrozenTokens(address(handler));
+        (uint256 ownedTarget, uint256 applied,) = adapter.ownedState(address(handler));
+        require(ownedTarget == target, "owned target mirrors the handler");
+        require(frozen == applied, "upstream frozen amount is exactly the applied amount");
+        require(frozen <= saturated, "never frozen beyond the saturated target");
+        if (!handler.pendingInbound()) require(frozen == saturated, "saturated target after every touch");
         require(token.getFrozenTokens(address(adapter)) == 0, "custodian never frozen");
         if (handler.liveFreezeHeads() == 0) {
             require(target == 0, "no live head means no target");

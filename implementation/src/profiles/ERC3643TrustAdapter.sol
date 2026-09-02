@@ -12,13 +12,33 @@ import {ERC3643ProfileTypes} from "./ERC3643ProfileTypes.sol";
 import {ProfileGovernor} from "./ProfileGovernor.sol";
 import {TrustReentrancy, TrustZeroAddress} from "../TrustErrors.sol";
 
+/// @notice Profile-specific surface of the ERC-3643 Verified Full endpoint. Its ERC-165 identifier is
+///         separate from the kernel identifier; the kernel interface is unchanged.
+interface IERC3643VerifiedProfile {
+    /// @dev Emitted when the upstream frozen amount of an owned account is brought back to its owned
+    ///      target saturated at the current balance outside a command.
+    event FrozenTargetResynchronised(address indexed account, uint256 frozenTarget, uint256 appliedFrozen);
+
+    /// @notice The adapter-owned upstream state of an account: the absolute frozen target, the upstream
+    ///         frozen amount the adapter last verified, and the address freeze flag.
+    function ownedState(address account)
+        external
+        view
+        returns (uint256 frozenTarget, uint256 appliedFrozen, bool restricted);
+
+    /// @notice Brings the upstream frozen amount of an owned account to its owned target saturated at the
+    ///         current balance. Callable by anyone: it changes no owned state, requires the live sealed
+    ///         topology and the ownership precondition, and only ever raises the upstream frozen amount.
+    function resynchroniseFrozen(address account) external returns (uint256 appliedFrozen);
+}
+
 /// @notice Kernel version 2 endpoint of the ERC-3643 Verified Full profile: the only TRUST endpoint and
 ///         the exclusive enforcement Agent of one sealed ERC-3643 conformance unit.
 /// @dev The adapter owns the regulatory state (cases, effect heads, custody, frozen targets, address
 ///      freeze flags) and the receipts; the underlying token only executes. Every upstream state the
 ///      adapter acts on must be state it declared at the seal or applied itself; anything else, and
 ///      every unauthenticated, unsealed, malformed, or drifted path, fails closed.
-contract ERC3643TrustAdapter is IERCTrustKernel {
+contract ERC3643TrustAdapter is IERCTrustKernel, IERC3643VerifiedProfile {
     bytes4 internal constant ERC165_INTERFACE_ID = 0x01ffc9a7;
     uint16 internal constant REASON_DOMAIN = 1;
     uint16 internal constant REASON_IDENTIFIER = 2;
@@ -40,6 +60,7 @@ contract ERC3643TrustAdapter is IERCTrustKernel {
     uint16 internal constant REASON_TOPOLOGY_NOT_FULL = 300;
     uint16 internal constant REASON_SEAL_INVALID = 301;
     uint16 internal constant REASON_IMPORT_MANIFEST_MISMATCH = 303;
+    uint16 internal constant REASON_UPSTREAM_STATE_NOT_OWNED = 304;
     uint16 internal constant REASON_UPSTREAM_CALL_FAILED = 400;
     uint16 internal constant REASON_UPSTREAM_POSTSTATE_MISMATCH = 401;
     uint16 internal constant REASON_IDENTITY_REGISTRY_UNAVAILABLE = 402;
@@ -117,6 +138,8 @@ contract ERC3643TrustAdapter is IERCTrustKernel {
 
     /// @notice Called once by the governor inside its seal: binds the dependencies, fixes the dependency
     ///         root and epoch, and imports the declared upstream state after verifying every entry.
+    /// @dev The canonical form of the manifest (ordering, nonzero entries) is enforced by the governor;
+    ///      the adapter only recomputes the manifest hash it was sealed with.
     function activateSeal(ERC3643ProfileTypes.ImportEntry[] calldata entries) external {
         if (msg.sender != address(profileGovernor)) revert TrustUnauthorized(msg.sender, bytes32(0));
         if (_sealed || !profileGovernor.topologySealed() || profileGovernor.exclusiveAdapter() != address(this)) {
@@ -151,7 +174,9 @@ contract ERC3643TrustAdapter is IERCTrustKernel {
 
     function supportsInterface(bytes4 interfaceId) external pure returns (bool) {
         return interfaceId != 0xffffffff
-            && (interfaceId == ERC165_INTERFACE_ID || interfaceId == type(IERCTrustKernel).interfaceId);
+            && (interfaceId == ERC165_INTERFACE_ID
+                || interfaceId == type(IERCTrustKernel).interfaceId
+                || interfaceId == type(IERC3643VerifiedProfile).interfaceId);
     }
 
     function deriveActionId(TrustKernelTypes.ActionRequest calldata request) external view returns (bytes32) {
@@ -191,6 +216,31 @@ contract ERC3643TrustAdapter is IERCTrustKernel {
             full: _topologyFull(),
             proxySupported: false
         });
+    }
+
+    // ---------------------------------------------------------------------
+    // Profile surface
+    // ---------------------------------------------------------------------
+
+    function ownedState(address account)
+        external
+        view
+        returns (uint256 frozenTarget, uint256 appliedFrozen, bool restricted)
+    {
+        ERC3643ProfileTypes.OwnedState storage owned = _owned[account];
+        return (owned.frozenTarget, owned.appliedFrozen, owned.restricted);
+    }
+
+    /// @dev The owned target is materialised upstream at the adapter's touch points only; balance growth
+    ///      between two touches leaves the upstream frozen amount at the last applied value until this
+    ///      call or the next command. The synchronisation is the one every command performs.
+    function resynchroniseFrozen(address account) external nonReentrant returns (uint256 appliedFrozen) {
+        _requireLiveTopology(bytes32(0));
+        _requireOwnedUpstreamState(bytes32(0), account);
+        _syncFrozen(bytes32(0), account);
+        ERC3643ProfileTypes.OwnedState storage owned = _owned[account];
+        emit FrozenTargetResynchronised(account, owned.frozenTarget, owned.appliedFrozen);
+        return owned.appliedFrozen;
     }
 
     // ---------------------------------------------------------------------
@@ -537,7 +587,7 @@ contract ERC3643TrustAdapter is IERCTrustKernel {
             _upstreamFrozen(commandId, account) != owned.appliedFrozen
                 || _upstreamRestricted(commandId, account) != owned.restricted
         ) {
-            revert TrustOperationalFailure(commandId, REASON_IMPORT_MANIFEST_MISMATCH, _addressRef(account));
+            revert TrustOperationalFailure(commandId, REASON_UPSTREAM_STATE_NOT_OWNED, _addressRef(account));
         }
     }
 

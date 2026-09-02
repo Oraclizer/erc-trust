@@ -501,6 +501,46 @@ $mutations = @(
         ExpectedOccurrences = 1
         Contract = "ERC3643ProfileUnitTest"
         Test = "testAllSixActionsAndReversals"
+    },
+    @{
+        Id = "MUT-48-ERC3643-REVERSAL-OWNED-STATE"
+        Fault = "Reverse an overlay without checking that the subject's upstream state is owned"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "            _requireOwnedUpstreamState(request.reversalId, original.subject);"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testDriftedUpstreamStateFailsClosedOnEveryTouchedAccount"
+    },
+    @{
+        Id = "MUT-49-ERC3643-CUSTODIAN-OWNED-STATE"
+        Fault = "Seize without checking that the custodian's upstream state is owned"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "            _requireOwnedUpstreamState(request.actionId, request.custodian);"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testDriftedUpstreamStateFailsClosedOnEveryTouchedAccount"
+    },
+    @{
+        Id = "MUT-50-ERC3643-RESYNC-OWNED-STATE"
+        Fault = "Resynchronise an account without checking that its upstream state is owned"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "        _requireOwnedUpstreamState(bytes32(0), account);"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testDriftedUpstreamStateFailsClosedOnEveryTouchedAccount"
+    },
+    @{
+        Id = "MUT-51-ERC3643-RESYNC-RAISES-FROZEN"
+        Fault = "Never raise the upstream frozen amount toward the owned target"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "if (expected > current) {"
+        New = "if (false) {"
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileTrexFixtureTest"
+        Test = "testInboundGrowthIsRefrozenByPermissionlessResynchronisation"
     }
 )
 
