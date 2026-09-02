@@ -48,6 +48,14 @@ static tuples, and the ABI rule for function selectors, all of which the
 schema restates under `hashes.encoding`; nothing else. If a value cannot be reproduced from the schema
 text, that is a defect in the schema, not in the reproduction.
 
+## Relationship to the release manifest
+
+The release manifest of the shipped version 1 candidate protects the
+generator, the SDK helpers, and the vectors, but not `spec/` itself. The
+successor manifest introduced by the implementation change adds `spec/` to
+its protected roots so that the schema and the decision records are bound to
+the same identity as the code they govern.
+
 ## Relationship to the draft
 
 `docs/ERC-DRAFT.md` is the prose proposal. The prose is updated to kernel

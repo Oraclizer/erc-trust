@@ -726,12 +726,20 @@ const reversalVectors = reversalFixtures.map((entry, index) => {
 const freezeVector = actionVectors[0];
 const freezeRequest = { ...freezeVector.request, amount: BigInt(freezeVector.request.amount), dependencyEpoch, authorityEpoch: 1n, nonce: 1n, validAfter: 0n, validBefore, action: actionKinds.FREEZE };
 const mutatedIds = [
+  ["domain", { ...freezeRequest, domain: `0x${"0d".repeat(32)}` }],
+  ["action", { ...freezeRequest, action: actionKinds.RESTRICT }],
   ["subject", { ...freezeRequest, subject: fixture.buyer }],
+  ["source", { ...freezeRequest, source: fixture.buyer }],
+  ["destination", { ...freezeRequest, destination: fixture.buyer }],
+  ["custodian", { ...freezeRequest, custodian: fixture.custodian }],
   ["amount", { ...freezeRequest, amount: 124n }],
   ["caseId", { ...freezeRequest, caseId: `0x${"01".repeat(32)}` }],
   ["dependencyRoot", { ...freezeRequest, dependencyRoot: `0x${"02".repeat(32)}` }],
   ["dependencyEpoch", { ...freezeRequest, dependencyEpoch: 2n }],
   ["provenanceCommitment", { ...freezeRequest, provenanceCommitment: `0x${"03".repeat(32)}` }],
+  ["settlementCommitment", { ...freezeRequest, settlementCommitment: `0x${"05".repeat(32)}` }],
+  ["proceedsCommitment", { ...freezeRequest, proceedsCommitment: `0x${"06".repeat(32)}` }],
+  ["entitlementCommitment", { ...freezeRequest, entitlementCommitment: `0x${"07".repeat(32)}` }],
   ["authorityRef", { ...freezeRequest, authorityRef: `0x${"04".repeat(32)}` }],
   ["authorityEpoch", { ...freezeRequest, authorityEpoch: 2n }],
   ["nonce", { ...freezeRequest, nonce: 2n }],
@@ -783,7 +791,7 @@ const vectors = {
     },
     {
       id: "NEG-FIELD-BINDING",
-      mutation: "change one request field after deriving actionId",
+      mutation: "change one request field after deriving actionId (every field except actionId is covered)",
       base: "ACTION-FREEZE",
       expected: "TrustInvalidCommand reason 2; every mutation below yields a different derived actionId",
       rule: "each entry mutates exactly one field of the ACTION-FREEZE request from originalValue to mutatedValue, re-derives actionId with actionId zeroed, and records the result",

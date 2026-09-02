@@ -32,11 +32,12 @@ every payload field.
 
 No consumer of the delegation surface exists. The tests, the SDK, the Kontrol
 inputs, and the conformance vectors never call `configureDelegation`; the only
-reference is a selector listed in a call-graph inventory rule. The planned
-first-party integrator is an on-chain registry contract that can be registered
-directly as the authority account. The already shipped ERC-3643 adapter
-profile uses exactly that model: a single immutable authority account, no
-delegation.
+reference is a selector listed in a call-graph inventory rule. A contract
+that needs to submit commands, such as a registry or a governance contract,
+can be registered directly as the authority account; the authority model does
+not require the submitter to be an externally owned account. The already
+shipped ERC-3643 adapter profile uses exactly that model: a single immutable
+authority account, no delegation.
 
 Cancellation in the abstract model applies to authorizations that exist on
 chain before execution. This kernel has no such object: a command is
@@ -47,8 +48,10 @@ unused `CANCELLED` lifecycle value in the ABI would advertise a path that no
 code implements.
 
 Removing both surfaces also recovers runtime size that the mandatory repairs
-need: the delegation removal alone saved 685 bytes of runtime in a compile
-canary against the version 1 source.
+need. An internal compile canary against the version 1 source, which is not a
+published artifact, measured the delegation removal alone at roughly 685
+bytes of runtime; the implementation change publishes the exact measured
+sizes.
 
 ## Alternatives considered
 
@@ -56,9 +59,9 @@ canary against the version 1 source.
   is the sound version of the version 1 feature, but it adds a second
   authorization path with no consumer and no test, and it would keep the
   abstract per-authorization delegate as a mandatory mapping obligation.
-- Keep a nonce-level cancellation function. A compile canary measured about
-  289 bytes for the naive form. With no signature scheme and no delegate, the
-  function would protect against no one.
+- Keep a nonce-level cancellation function. The same internal canary put the
+  naive form at roughly 289 bytes. With no signature scheme and no delegate,
+  the function would protect against no one.
 
 ## Consequences
 

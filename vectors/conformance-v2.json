@@ -497,16 +497,46 @@
     },
     {
       "id": "NEG-FIELD-BINDING",
-      "mutation": "change one request field after deriving actionId",
+      "mutation": "change one request field after deriving actionId (every field except actionId is covered)",
       "base": "ACTION-FREEZE",
       "expected": "TrustInvalidCommand reason 2; every mutation below yields a different derived actionId",
       "rule": "each entry mutates exactly one field of the ACTION-FREEZE request from originalValue to mutatedValue, re-derives actionId with actionId zeroed, and records the result",
       "mutatedDerivedActionIds": [
         {
+          "field": "domain",
+          "originalValue": "0xb5303e4083d2781d6c7d6a68d30b6354ebda11f0a2a037b946d87b3eec40b74e",
+          "mutatedValue": "0x0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d",
+          "derivedActionId": "0x3dcf4ceb40527f78d715822c70f0d334d66dee4c456b8aaed44f507cbcaa4dee"
+        },
+        {
+          "field": "action",
+          "originalValue": "0",
+          "mutatedValue": "4",
+          "derivedActionId": "0x7a3d421e74d009c4031408ded7a8114ba24379bfb398f143034bc9bf1c274511"
+        },
+        {
           "field": "subject",
           "originalValue": "0x2222222222222222222222222222222222222222",
           "mutatedValue": "0x4444444444444444444444444444444444444444",
           "derivedActionId": "0x264778026d17d41819fe7906c320a4d5bc4933d467488b1f78fb422abf53837d"
+        },
+        {
+          "field": "source",
+          "originalValue": "0x2222222222222222222222222222222222222222",
+          "mutatedValue": "0x4444444444444444444444444444444444444444",
+          "derivedActionId": "0xa402a32eef121419b4e7aebe3ca2c93c9a41f9caae494c7321cf3b9e362499c5"
+        },
+        {
+          "field": "destination",
+          "originalValue": "0x0000000000000000000000000000000000000000",
+          "mutatedValue": "0x4444444444444444444444444444444444444444",
+          "derivedActionId": "0xf027828933eb49b39aff6550c54106dcc6c6c535b07e394f7cc462ffa1e1cc92"
+        },
+        {
+          "field": "custodian",
+          "originalValue": "0x0000000000000000000000000000000000000000",
+          "mutatedValue": "0x3333333333333333333333333333333333333333",
+          "derivedActionId": "0x6160b80a6913764784f692fa2148e8bc443ded75f90a8c83bd5d03f556ad4b0e"
         },
         {
           "field": "amount",
@@ -537,6 +567,24 @@
           "originalValue": "0x6666666666666666666666666666666666666666666666666666666666666666",
           "mutatedValue": "0x0303030303030303030303030303030303030303030303030303030303030303",
           "derivedActionId": "0x8d24ff67acd0208ede9c2f931ec757bd48d9d347292561e47fe0cfb033078899"
+        },
+        {
+          "field": "settlementCommitment",
+          "originalValue": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "mutatedValue": "0x0505050505050505050505050505050505050505050505050505050505050505",
+          "derivedActionId": "0x67c25898cc6e5ff9ddf78ff52c0688272134642dd3f4d9d85a69bb9c19a40f5c"
+        },
+        {
+          "field": "proceedsCommitment",
+          "originalValue": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "mutatedValue": "0x0606060606060606060606060606060606060606060606060606060606060606",
+          "derivedActionId": "0x8579734e5d49bd8021a0abf786897541edb9c674320562373751d8fc509d1b3c"
+        },
+        {
+          "field": "entitlementCommitment",
+          "originalValue": "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "mutatedValue": "0x0707070707070707070707070707070707070707070707070707070707070707",
+          "derivedActionId": "0x962a863f8ac58edea54f12758fd89c060a4527c43c9340ffef821f681b98c735"
         },
         {
           "field": "authorityRef",

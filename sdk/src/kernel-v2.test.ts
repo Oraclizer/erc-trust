@@ -7,6 +7,7 @@ import { ZeroHash, concat, keccak256, zeroPadValue, toBeHex, getAddress } from "
 import {
   ACTION_TUPLE,
   ActionKind,
+  DEPENDENCY_ROOT_TAG,
   KERNEL_DOMAIN,
   KERNEL_INTERFACE_ID,
   KERNEL_SELECTORS,
@@ -33,6 +34,7 @@ import {
 interface VectorFile {
   constants: {
     domain: string;
+    dependencyRootTag: string;
     kernelInterfaceId: string;
     selectors: Record<string, string>;
     actionCalldataLength: number;
@@ -48,6 +50,12 @@ interface VectorFile {
   };
   actions: Array<{ id: string; request: Record<string, string>; actionId: string; commandHash: string; calldata: string; receiptInput: Record<string, string>; receiptHash: string }>;
   reversals: Array<{ id: string; request: Record<string, string>; reversalId: string; reversalHash: string; calldata: string; receiptInput: Record<string, string>; receiptHash: string }>;
+  negative: Array<{
+    id: string;
+    base?: string;
+    mutatedDerivedActionIds?: Array<{ field: string; originalValue: string; mutatedValue: string; derivedActionId: string }>;
+    example?: { reversalReceiptHash: string; sameFieldsWithActionKind: string };
+  }>;
 }
 
 const vectors = JSON.parse(
@@ -119,8 +127,102 @@ function receiptInputOf(raw: Record<string, string>): ReceiptInput {
   };
 }
 
+/**
+ * Raw 32-byte word of a value, written without the ABI coder so that a change in
+ * the ABI coder or in the generated tuple order cannot hide a preimage change.
+ */
+function word(value: string | bigint | number): string {
+  if (typeof value === "string") {
+    return zeroPadValue(value.length === 42 ? getAddress(value) : value, 32);
+  }
+  return zeroPadValue(toBeHex(value), 32);
+}
+
+function rawActionWords(request: ActionRequest, actionIdWord: string): string[] {
+  return [
+    KERNEL_DOMAIN,
+    word(endpoint),
+    word(chainId),
+    request.domain,
+    actionIdWord,
+    word(request.action),
+    word(request.subject),
+    word(request.source),
+    word(request.destination),
+    word(request.custodian),
+    word(request.amount),
+    request.caseId,
+    request.dependencyRoot,
+    word(request.dependencyEpoch),
+    request.provenanceCommitment,
+    request.settlementCommitment,
+    request.proceedsCommitment,
+    request.entitlementCommitment,
+    request.authorityRef,
+    word(request.authorityEpoch),
+    word(request.nonce),
+    word(request.validAfter),
+    word(request.validBefore),
+  ];
+}
+
+function rawReversalWords(request: ReversalRequest, reversalIdWord: string): string[] {
+  return [
+    KERNEL_DOMAIN,
+    word(endpoint),
+    word(chainId),
+    request.domain,
+    reversalIdWord,
+    request.actionId,
+    word(request.reversal),
+    request.dependencyRoot,
+    word(request.dependencyEpoch),
+    request.provenanceCommitment,
+    request.authorityRef,
+    word(request.authorityEpoch),
+    word(request.nonce),
+    word(request.validAfter),
+    word(request.validBefore),
+  ];
+}
+
+function rawReceiptWords(input: ReceiptInput): string[] {
+  return [
+    KERNEL_DOMAIN,
+    word(input.receiptKind),
+    input.commandId,
+    word(input.commandKind),
+    input.parentCommandId,
+    word(input.subject),
+    word(input.source),
+    word(input.destination),
+    word(input.amount),
+    input.caseId,
+    input.authorityRef,
+    input.dependencyRoot,
+    input.provenanceCommitment,
+    input.assessmentEvidence,
+    input.preState,
+    input.postState,
+    input.externalCommitment,
+  ];
+}
+
+function actionVectorById(id: string): VectorFile["actions"][number] {
+  const found = vectors.actions.find((vector) => vector.id === id);
+  assert.ok(found, id);
+  return found;
+}
+
+function reversalVectorById(id: string): VectorFile["reversals"][number] {
+  const found = vectors.reversals.find((vector) => vector.id === id);
+  assert.ok(found, id);
+  return found;
+}
+
 test("constants match the generated vectors", () => {
   assert.equal(KERNEL_DOMAIN, vectors.constants.domain);
+  assert.equal(DEPENDENCY_ROOT_TAG, vectors.constants.dependencyRootTag);
   assert.equal(KERNEL_INTERFACE_ID, vectors.constants.kernelInterfaceId);
   for (const [signature, selector] of Object.entries(vectors.constants.selectors)) {
     assert.equal(kernelSelector(signature), selector);
@@ -130,9 +232,11 @@ test("constants match the generated vectors", () => {
   assert.equal(`0x${xor.toString(16).padStart(8, "0")}`, KERNEL_INTERFACE_ID);
   assert.equal(KERNEL_SELECTORS.executeRegulatoryAction, vectors.constants.selectors[`executeRegulatoryAction(${ACTION_TUPLE.replace("tuple", "").replace(/ \w+/g, "")})`]);
   assert.equal(RECEIPT_PREIMAGE_TYPES.length, 17);
+  assert.equal(Object.keys(vectors.constants.selectors).length, 9);
 });
 
 test("every action vector is reproduced by the helpers", () => {
+  assert.equal(vectors.actions.length, 6);
   for (const vector of vectors.actions) {
     const request = actionRequestOf(vector.request);
     assert.equal(deriveActionId(endpoint, chainId, request), vector.actionId, vector.id);
@@ -147,6 +251,7 @@ test("every action vector is reproduced by the helpers", () => {
 });
 
 test("every reversal vector is reproduced by the helpers", () => {
+  assert.equal(vectors.reversals.length, 3);
   for (const vector of vectors.reversals) {
     const request = reversalRequestOf(vector.request);
     assert.equal(deriveReversalId(endpoint, chainId, request), vector.reversalId, vector.id);
@@ -175,44 +280,98 @@ test("dependency bindings and root are reproduced", () => {
   assert.equal(nonceKey(example.authorityRef, BigInt(example.authorityEpoch), BigInt(example.nonce)), example.nonceKey);
 });
 
-test("action identifier equals a raw word-by-word keccak of the canonical encoding", () => {
-  const vector = vectors.actions[0]!;
-  const request = actionRequestOf(vector.request);
-  const word = (value: string | bigint | number): string =>
-    typeof value === "string" ? zeroPadValue(value.length === 42 ? getAddress(value) : value, 32) : zeroPadValue(toBeHex(value), 32);
-  const words = [
-    KERNEL_DOMAIN,
-    word(endpoint),
-    word(chainId),
-    request.domain,
-    ZeroHash,
-    word(request.action),
-    word(request.subject),
-    word(request.source),
-    word(request.destination),
-    word(request.custodian),
-    word(request.amount),
-    request.caseId,
-    request.dependencyRoot,
-    word(request.dependencyEpoch),
-    request.provenanceCommitment,
-    request.settlementCommitment,
-    request.proceedsCommitment,
-    request.entitlementCommitment,
-    request.authorityRef,
-    word(request.authorityEpoch),
-    word(request.nonce),
-    word(request.validAfter),
-    word(request.validBefore),
-  ];
-  assert.equal(keccak256(concat(words)), vector.actionId);
+test("command identifiers equal a raw word-by-word keccak of the canonical encoding", () => {
+  // LIQUIDATE carries a nonzero value in every address and commitment slot, so a
+  // swapped or missing word cannot hide behind a zero value.
+  const liquidate = actionVectorById("ACTION-LIQUIDATE");
+  const request = actionRequestOf(liquidate.request);
+  assert.notEqual(request.settlementCommitment, request.proceedsCommitment);
+  assert.notEqual(request.destination, request.subject);
+  assert.equal(keccak256(concat(rawActionWords(request, ZeroHash))), liquidate.actionId);
+  assert.equal(keccak256(concat(rawActionWords(request, request.actionId))), liquidate.commandHash);
+  const freeze = actionVectorById("ACTION-FREEZE");
+  assert.equal(keccak256(concat(rawActionWords(actionRequestOf(freeze.request), ZeroHash))), freeze.actionId);
+
+  const release = reversalVectorById("REVERSAL-RELEASE");
+  const reversal = reversalRequestOf(release.request);
+  assert.equal(keccak256(concat(rawReversalWords(reversal, ZeroHash))), release.reversalId);
+  assert.equal(keccak256(concat(rawReversalWords(reversal, reversal.reversalId))), release.reversalHash);
   assert.equal(REVERSAL_TUPLE.startsWith("tuple(bytes32 domain,bytes32 reversalId"), true);
 });
 
-test("receipt kinds are domain separated", () => {
+test("receipt hashes equal a raw word-by-word keccak of the receipt preimage", () => {
+  const liquidate = actionVectorById("ACTION-LIQUIDATE");
+  const liquidateInput = receiptInputOf(liquidate.receiptInput);
+  assert.notEqual(liquidateInput.externalCommitment, ZeroHash);
+  assert.notEqual(liquidateInput.preState, liquidateInput.postState);
+  assert.equal(keccak256(concat(rawReceiptWords(liquidateInput))), liquidate.receiptHash);
+
+  const release = reversalVectorById("REVERSAL-RELEASE");
+  const releaseInput = receiptInputOf(release.receiptInput);
+  assert.equal(releaseInput.receiptKind, ReceiptKind.REVERSAL);
+  assert.notEqual(releaseInput.parentCommandId, ZeroHash);
+  assert.notEqual(releaseInput.source, releaseInput.destination);
+  assert.equal(keccak256(concat(rawReceiptWords(releaseInput))), release.receiptHash);
+});
+
+test("binding hash, dependency root, and nonce key equal raw word-by-word keccaks", () => {
+  const settlement = vectors.fixture.dependencies.settlement!;
+  const rawBinding = keccak256(concat([
+    KERNEL_DOMAIN,
+    word(2),
+    word(settlement.dependency),
+    settlement.runtimeCodeId,
+    settlement.configurationDigest,
+    settlement.schema,
+    word(BigInt(settlement.epoch)),
+  ]));
+  assert.equal(rawBinding, vectors.fixture.bindingHashes.settlement);
+
+  const hashes = vectors.fixture.bindingHashes;
+  const rawRoot = keccak256(concat([
+    KERNEL_DOMAIN,
+    DEPENDENCY_ROOT_TAG,
+    hashes.policy!,
+    hashes.identity!,
+    hashes.settlement!,
+    hashes.entitlement!,
+  ]));
+  assert.equal(rawRoot, vectors.fixture.dependencyRoot);
+
+  const example = vectors.fixture.nonceKeyExample;
+  const rawNonceKey = keccak256(concat([
+    KERNEL_DOMAIN,
+    example.authorityRef,
+    word(BigInt(example.authorityEpoch)),
+    word(BigInt(example.nonce)),
+  ]));
+  assert.equal(rawNonceKey, example.nonceKey);
+});
+
+test("negative vectors are consumed: field mutations and receipt kind separation", () => {
+  const binding = vectors.negative.find((entry) => entry.id === "NEG-FIELD-BINDING");
+  assert.ok(binding && binding.mutatedDerivedActionIds && binding.base);
+  const base = actionRequestOf(actionVectorById(binding.base).request);
+  const seen = new Set<string>([deriveActionId(endpoint, chainId, base)]);
+  assert.equal(binding.mutatedDerivedActionIds.length, 19);
+  for (const entry of binding.mutatedDerivedActionIds) {
+    const field = entry.field as keyof ActionRequest;
+    assert.notEqual(field, "actionId");
+    assert.equal(String(base[field]), entry.originalValue, entry.field);
+    const value = typeof base[field] === "bigint" ? BigInt(entry.mutatedValue) : entry.mutatedValue;
+    const mutated = { ...base, [field]: value } as ActionRequest;
+    assert.equal(deriveActionId(endpoint, chainId, mutated), entry.derivedActionId, entry.field);
+    assert.equal(seen.has(entry.derivedActionId), false, entry.field);
+    seen.add(entry.derivedActionId);
+  }
+
+  const kind = vectors.negative.find((entry) => entry.id === "NEG-RECEIPT-KIND");
+  assert.ok(kind && kind.example);
   const reversal = receiptInputOf(vectors.reversals[0]!.receiptInput);
+  assert.equal(receiptHash(reversal), kind.example.reversalReceiptHash);
   const asAction: ReceiptInput = { ...reversal, receiptKind: ReceiptKind.ACTION };
-  assert.notEqual(receiptHash(asAction), receiptHash(reversal));
+  assert.equal(receiptHash(asAction), kind.example.sameFieldsWithActionKind);
+  assert.notEqual(kind.example.sameFieldsWithActionKind, kind.example.reversalReceiptHash);
   assert.equal(reversal.commandKind, BigInt(ReversalKind.UNFREEZE));
   assert.equal(BigInt(ActionKind.FREEZE), reversal.commandKind);
 });

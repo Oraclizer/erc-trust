@@ -39,9 +39,9 @@ ten functions) and the adapter exposed `IERCTrustProfile` (identifier
 `0xbcc2afa9`, eight functions). `trustProfile()` returned three values on one
 and four on the other. A registry, wallet, or indexer therefore needed two
 code paths and two probes to answer the single question "does this endpoint
-speak ERC-TRUST". The design record and the terminal objective of this
-project both require one versioned interface, one command format, one receipt
-format, and one discovery shape for both profiles.
+speak ERC-TRUST". One versioned interface, one command format, one receipt
+format, and one discovery shape for both profiles is the condition under
+which a single integrator code path can serve both.
 
 The version 1 native token also stored `full` implicitly as a constant
 (`trustProfile` was `pure`), which cannot express a dependency drift.
