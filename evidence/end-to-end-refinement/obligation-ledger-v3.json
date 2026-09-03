@@ -1,0 +1,4589 @@
+{
+  "schema": "erc-trust-obligation-ledger-v3",
+  "kind": "ERC_TRUST_CENTRAL_OBLIGATION_LEDGER_V3",
+  "candidate": "0.2.0-candidate.1",
+  "purpose": "Bidirectional obligation ledger between the Isabelle abstract model of kernel version 2 and the final source of the native token, the ERC-3643 profile adapter, and the profile governor. Every row names one load-bearing abstract condition and the four pieces of evidence that connect it to the code: the exact source consumer, the positive activation test, the consumer-removal negative, and the compiled or downstream consumer. scripts/verify-obligation-ledger-v3.mjs checks every anchor against the current tree and renders the Isabelle ledger theory, the summary, and the central closure record.",
+  "claimLadder": {
+    "current": "mapped implementation evidence; end-to-end refinement incomplete",
+    "currentMeaning": "Every load-bearing abstract condition of the kernel version 2 model has a named source consumer in the final code, a test that exercises its positive branch, a mutation or behavioral negative that fails when the consumer is removed, and a compiled or downstream consumer. The abstract model is machine-checked. The link between the compiled runtime and the abstract transition system (the locale assumption pinned_runtime_refinement.runtime_link) is not discharged, so no theorem states that the compiled runtime implements the model.",
+    "nextRung": "end-to-end refinement complete: requires a machine-checked discharge of pinned_runtime_refinement.runtime_link for the exact runtime templates named in the generated bridge, replayed independently, before any Full or refinement-complete wording is used.",
+    "forbiddenWording": [
+      "TRUST 1.1 complete",
+      "Native Full complete",
+      "Verified Full complete",
+      "end-to-end refinement complete",
+      "refinement complete",
+      "implementation conforms to the model"
+    ]
+  },
+  "closure": {
+    "status": "CONDITIONAL",
+    "statusMeaning": "The ledger has no CURRENT-MANDATORY row. The rows NAT-E2E-01 and ADP-E2E-01 are SUCCESSOR-MANDATORY: they name the undischarged runtime link that separates the current claim from the next rung. The closure stays CONDITIONAL until those rows are CLOSED.",
+    "preservation": {
+      "direction": "abstract model to final code",
+      "statement": "Each abstract admissibility condition, success state, failure stutter, and receipt projection in TRUST_Transaction_Refinement, TRUST_Bound_Dependency_Assume_Guarantee, TRUST_Retrieve_Relation, and TRUST_Verified_Profile_Onboarding is carried by at least one CLOSED row whose source consumer is in the final code of the endpoint that implements it.",
+      "coverage": "native: authorization, authority epoch, nonce and identifier freshness, dependency currency and rebind, shape rules, canonical calldata, case transition table, custody backing, dispositions, reversal relation, ordinary transfers, dependency assessment, receipts, failure stutter, route closure, retrieve projections. adapter: single immutable authority, seal epoch, freshness, dependency currency, shape and calldata, case table, custody confinement, import initial state, owned upstream state and resynchronisation, upstream dependency failures, receipts, route closure, seal. governor: canonical manifest and one-way seal."
+    },
+    "reflection": {
+      "direction": "final code to abstract model",
+      "statement": "Every guard and state write on the typed command paths of the three endpoints is either the consumer of a row above or listed here as runtime-only with the reason it has no abstract counterpart. Selectors outside the generated route classification fall through the compiler dispatcher and revert with empty data (generic_dispatcher_selector_is_unclassified).",
+      "runtimeOnly": [
+        {
+          "item": "governance authorization identifiers (_usedGovernanceIds)",
+          "endpoint": "native",
+          "reason": "endpoint operational guard for the out-of-band configureAuthority and rebindDependency calls; the abstract model treats rotation and rebind as atomic administrative transitions (rotate_authority, rebind_dependency)",
+          "row": "NAT-AUTH-03"
+        },
+        {
+          "item": "reentrancy guard (_entered)",
+          "endpoint": "native and adapter",
+          "reason": "the abstract transition system is sequential; the guard makes the runtime sequential"
+        },
+        {
+          "item": "exact-use route ticket (_routeTicket)",
+          "endpoint": "native",
+          "reason": "carried by NAT-ROUTE-01; the abstract model has one typed entrypoint per command and no raw ERC-7943 route"
+        },
+        {
+          "item": "name, symbol, decimals, allowance bookkeeping",
+          "endpoint": "native",
+          "reason": "ERC-20 surface; allowances are in the abstract state but are not regulatory conditions"
+        },
+        {
+          "item": "seal state (_sealed, _sealedBinding, _importManifestHash) and governor topology fields",
+          "endpoint": "adapter and governor",
+          "reason": "carried by ADP-SEAL-01 and GOV-SEAL-01; the abstract onboarding theory starts from the sealed state"
+        },
+        {
+          "item": "upstream post-state checks after forced transfers (reasons 401 to 403)",
+          "endpoint": "adapter",
+          "reason": "carried by ADP-DEP-01 as operational stutters; the abstract model has no upstream token"
+        }
+      ]
+    }
+  },
+  "stateIdentity": [
+    {
+      "abstract": "physical_balances",
+      "native": "native.balances",
+      "profileAdapter": null,
+      "profileGovernor": null,
+      "note": "adapter balances live in the sealed upstream ERC-3643 token and are observed through the typed upstream views"
+    },
+    {
+      "abstract": "compositional_allowances",
+      "native": "native.allowances",
+      "profileAdapter": null,
+      "profileGovernor": null
+    },
+    {
+      "abstract": "compositional_total_supply",
+      "native": "native.totalSupply",
+      "profileAdapter": null,
+      "profileGovernor": null
+    },
+    {
+      "abstract": "frozen_targets",
+      "native": "native.frozen",
+      "profileAdapter": "profile.adapter.owned",
+      "profileGovernor": null,
+      "note": "adapter: OwnedState.frozenTarget; the upstream frozen amount is a saturated projection of it"
+    },
+    {
+      "abstract": "restriction_flags",
+      "native": "native.restricted",
+      "profileAdapter": "profile.adapter.owned",
+      "profileGovernor": null,
+      "note": "adapter: OwnedState.restricted mirrored to the upstream address freeze"
+    },
+    {
+      "abstract": "custody_backing",
+      "native": "native.custodyBacking",
+      "profileAdapter": "profile.adapter.custodyBacking",
+      "profileGovernor": null
+    },
+    {
+      "abstract": "freeze_heads",
+      "native": "native.freezeHeads",
+      "profileAdapter": "profile.adapter.freezeHeads",
+      "profileGovernor": null
+    },
+    {
+      "abstract": "restriction_heads",
+      "native": "native.restrictionHeads",
+      "profileAdapter": "profile.adapter.restrictionHeads",
+      "profileGovernor": null
+    },
+    {
+      "abstract": "effect_links",
+      "native": "native.effects",
+      "profileAdapter": "profile.adapter.effects",
+      "profileGovernor": null
+    },
+    {
+      "abstract": "action_records",
+      "native": "native.actions",
+      "profileAdapter": "profile.adapter.actions",
+      "profileGovernor": null
+    },
+    {
+      "abstract": "custody_records",
+      "native": "native.custody",
+      "profileAdapter": "profile.adapter.custody",
+      "profileGovernor": null
+    },
+    {
+      "abstract": "case_records",
+      "native": "native.cases",
+      "profileAdapter": "profile.adapter.cases",
+      "profileGovernor": null
+    },
+    {
+      "abstract": "consumed_entitlements",
+      "native": "native.consumedEntitlements",
+      "profileAdapter": "profile.adapter.consumedEntitlements",
+      "profileGovernor": null
+    },
+    {
+      "abstract": "authorities",
+      "native": "native.authorities",
+      "profileAdapter": null,
+      "profileGovernor": null,
+      "note": "adapter: the single authority is an immutable of the adapter, not storage (profile_authorities)"
+    },
+    {
+      "abstract": "compositional_consumed_nonces",
+      "native": "native.usedNonces",
+      "profileAdapter": "profile.adapter.usedNonces",
+      "profileGovernor": null
+    },
+    {
+      "abstract": "compositional_bindings",
+      "native": "native.bindings",
+      "profileAdapter": "profile.adapter.bindings",
+      "profileGovernor": null
+    },
+    {
+      "abstract": "dependency_root",
+      "native": "native.dependencyRoot",
+      "profileAdapter": "profile.adapter.dependencyRoot",
+      "profileGovernor": null
+    },
+    {
+      "abstract": "dependency_epoch",
+      "native": "native.dependencyEpoch",
+      "profileAdapter": "profile.adapter.dependencyEpoch",
+      "profileGovernor": null
+    },
+    {
+      "abstract": "compositional_receipts",
+      "native": "native.receipts",
+      "profileAdapter": "profile.adapter.receipts",
+      "profileGovernor": null
+    }
+  ],
+  "receiptIdentity": [
+    {
+      "abiField": "receiptKind",
+      "abstract": "compositional_receipt_kind"
+    },
+    {
+      "abiField": "commandId",
+      "abstract": "compositional_command_id"
+    },
+    {
+      "abiField": "commandKind",
+      "abstract": "compositional_command_kind"
+    },
+    {
+      "abiField": "parentCommandId",
+      "abstract": "compositional_parent_command_id"
+    },
+    {
+      "abiField": "subject",
+      "abstract": "compositional_subject"
+    },
+    {
+      "abiField": "source",
+      "abstract": "compositional_source"
+    },
+    {
+      "abiField": "destination",
+      "abstract": "compositional_destination"
+    },
+    {
+      "abiField": "amount",
+      "abstract": "compositional_amount"
+    },
+    {
+      "abiField": "caseId",
+      "abstract": "compositional_case"
+    },
+    {
+      "abiField": "authorityRef",
+      "abstract": "compositional_authority_ref"
+    },
+    {
+      "abiField": "dependencyRoot",
+      "abstract": "compositional_dependency_root"
+    },
+    {
+      "abiField": "provenanceCommitment",
+      "abstract": "compositional_provenance_commitment"
+    },
+    {
+      "abiField": "assessmentEvidence",
+      "abstract": "compositional_assessment_evidence"
+    },
+    {
+      "abiField": "preState",
+      "abstract": "compositional_pre_observation"
+    },
+    {
+      "abiField": "postState",
+      "abstract": "compositional_post_observation"
+    },
+    {
+      "abiField": "externalCommitment",
+      "abstract": "compositional_external_commitment"
+    },
+    {
+      "abiField": "receiptHash",
+      "abstract": "compositional_receipt_hash"
+    }
+  ],
+  "assumptions": [
+    {
+      "id": "A-RUNTIME-LINK",
+      "status": "UNDISCHARGED",
+      "statement": "pinned_runtime_refinement.runtime_link: every accepted execution of the pinned runtime template corresponds to a concrete transaction whose abstraction is admitted by the model and reaches the expected success state or stutters. This is a locale assumption. Nothing in this ledger discharges it; the Kontrol proofs and the Foundry executions are bounded instances of it, not a proof of it."
+    },
+    {
+      "id": "A-COMPILER",
+      "status": "NONCLAIM",
+      "statement": "solc 0.8.36 compiles the final source to the runtime templates named in the generated bridge correctly (compiler_correctness_remains_a_nonclaim). The deterministic build receipt establishes reproducibility, not correctness."
+    },
+    {
+      "id": "A-KECCAK",
+      "status": "ASSUMED",
+      "statement": "keccak-256 is collision resistant for the identifier, receipt hash, dependency root, nonce key, and case identifier preimages."
+    },
+    {
+      "id": "A-DEPLOYMENT",
+      "status": "NONCLAIM",
+      "statement": "No deployed instance is bound. Deployment identity, immutable resolution, and chain context are outside this ledger."
+    },
+    {
+      "id": "A-EXTERNAL",
+      "status": "ASSUMED",
+      "statement": "Policy, identity, settlement, and entitlement dependencies (native) and the sealed token, Identity Registry, and Compliance (adapter) behave only through the typed boundary the model classifies (trust_external_assumptions, classify_dependency). Their internal correctness is not claimed."
+    },
+    {
+      "id": "A-EVM",
+      "status": "ASSUMED",
+      "statement": "CANCUN schedule semantics, in particular that a reverting call restores the whole state and emits no log, which the abstract failure stutters rely on (approved_evm_schedule)."
+    },
+    {
+      "id": "A-LAYOUT",
+      "status": "BOUND",
+      "statement": "The storage layout in the generated bridge is the compiler layout of the exact sources (sourceBinding); TRUST_State_Abi_Normal_Form proves label distinctness and nonaliasing over the declared finite preimages, not the compiler's implementation of the layout."
+    },
+    {
+      "id": "A-MUTATION",
+      "status": "BOUNDED",
+      "statement": "A KILLED mutation shows that the named detector depends on the named consumer; it does not show behavioral equivalence of the code and the model beyond the detector."
+    }
+  ],
+  "supersededCandidate2": {
+    "reason": "These artifacts were bound to the candidate 2 runtime template and the version 1 kernel; they cannot be rebound to kernel version 2 by regeneration because the commands, receipt, cases, and dependency root changed shape (decisions 01 to 07). They are preserved byte for byte as history and are not evidence for the successor code.",
+    "moved": [
+      {
+        "from": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Current_Profile_Generated.thy",
+        "to": "evidence/candidate-2/formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Current_Profile_Generated.thy"
+      },
+      {
+        "from": "formal/isabelle/ERC_TRUST/TRUST_C0_Runtime_Occurrences_Generated.thy",
+        "to": "evidence/candidate-2/formal/isabelle/ERC_TRUST/TRUST_C0_Runtime_Occurrences_Generated.thy"
+      },
+      {
+        "from": "formal/isabelle/ERC_TRUST/TRUST_C0_Runtime_Composition.thy",
+        "to": "evidence/candidate-2/formal/isabelle/ERC_TRUST/TRUST_C0_Runtime_Composition.thy"
+      },
+      {
+        "from": "formal/isabelle/ERC_TRUST/TRUST_C0_UINT48_Redundant_Hypotheses.thy",
+        "to": "evidence/candidate-2/formal/isabelle/ERC_TRUST/TRUST_C0_UINT48_Redundant_Hypotheses.thy"
+      },
+      {
+        "from": "formal/isabelle/ERC_TRUST/TRUST_C0_UINT64_Redundant_Hypotheses.thy",
+        "to": "evidence/candidate-2/formal/isabelle/ERC_TRUST/TRUST_C0_UINT64_Redundant_Hypotheses.thy"
+      },
+      {
+        "from": "formal/isabelle/ERC_TRUST/TRUST_C0_UINT160_Redundant_Hypotheses.thy",
+        "to": "evidence/candidate-2/formal/isabelle/ERC_TRUST/TRUST_C0_UINT160_Redundant_Hypotheses.thy"
+      },
+      {
+        "from": "formal/isabelle/ERC_TRUST/TRUST_ACT_01_Current_Profile.thy",
+        "to": "evidence/candidate-2/formal/isabelle/ERC_TRUST/TRUST_ACT_01_Current_Profile.thy"
+      },
+      {
+        "from": "formal/isabelle/ERC_TRUST/TRUST_M4_STATE_04_Current_Profile.thy",
+        "to": "evidence/candidate-2/formal/isabelle/ERC_TRUST/TRUST_M4_STATE_04_Current_Profile.thy"
+      },
+      {
+        "from": "formal/isabelle/ERC_TRUST/TRUST_M4_STATE_05_Current_Profile.thy",
+        "to": "evidence/candidate-2/formal/isabelle/ERC_TRUST/TRUST_M4_STATE_05_Current_Profile.thy"
+      },
+      {
+        "from": "formal/isabelle/ERC_TRUST/TRUST_M4_Core_Balance_Reversal_Current_Profile.thy",
+        "to": "evidence/candidate-2/formal/isabelle/ERC_TRUST/TRUST_M4_Core_Balance_Reversal_Current_Profile.thy"
+      },
+      {
+        "from": "formal/isabelle/ERC_TRUST/TRUST_M4_Core_Contract_Boundary_Current_Profile.thy",
+        "to": "evidence/candidate-2/formal/isabelle/ERC_TRUST/TRUST_M4_Core_Contract_Boundary_Current_Profile.thy"
+      },
+      {
+        "from": "formal/kevm/generated/trust-runtime-bridge.k (candidate 2 generation)",
+        "to": "evidence/candidate-2/formal/kevm/generated/trust-runtime-bridge.k"
+      },
+      {
+        "from": "formal/kevm/generated/trust-runtime-bridge-current-profile-v1.k",
+        "to": "evidence/candidate-2/formal/kevm/generated/trust-runtime-bridge-current-profile-v1.k"
+      },
+      {
+        "from": "formal/kevm/reusable/",
+        "to": "evidence/candidate-2/formal/kevm/reusable/"
+      },
+      {
+        "from": "formal/kevm/row-bundles/",
+        "to": "evidence/candidate-2/formal/kevm/row-bundles/"
+      },
+      {
+        "from": "formal/kevm/specs/",
+        "to": "evidence/candidate-2/formal/kevm/specs/"
+      },
+      {
+        "from": "formal/kevm/run-abi-calldata-claims.sh",
+        "to": "evidence/candidate-2/formal/kevm/run-abi-calldata-claims.sh"
+      },
+      {
+        "from": "formal/kevm/run-runtime-claims.sh",
+        "to": "evidence/candidate-2/formal/kevm/run-runtime-claims.sh"
+      },
+      {
+        "from": "formal/kevm/trust-runtime-verification.k",
+        "to": "evidence/candidate-2/formal/kevm/trust-runtime-verification.k"
+      }
+    ],
+    "retainedUnchanged": [
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_M4_Action_Reversal_Row_Corollaries.thy",
+        "reason": "proof-bound allowlisted source (evidence/public-release/proof-bound-identifiers-v1.json); its facts are pure distinguishability lemmas that remain valid over kernel version 2 and are cited by SHR-ROW-01"
+      }
+    ],
+    "rewritten": [
+      "TRUST_Compositional_State",
+      "TRUST_State_Abi_Normal_Form",
+      "TRUST_C0_Decode_Slices",
+      "TRUST_Bound_Dependency_Assume_Guarantee",
+      "TRUST_Retrieve_Relation",
+      "TRUST_Transaction_Refinement",
+      "TRUST_Reusable_Summaries",
+      "TRUST_End_To_End_Composition",
+      "Proof_Audit"
+    ],
+    "added": [
+      "TRUST_Decoder_Guard_Words",
+      "TRUST_Verified_Profile_Onboarding",
+      "TRUST_Runtime_Bridge_Generated (regenerated for kernel version 2 by scripts/generate-runtime-bridge-v2.mjs)",
+      "TRUST_Obligation_Ledger_Generated (rendered from this ledger)"
+    ]
+  },
+  "rows": [
+    {
+      "id": "NAT-AUTH-01",
+      "endpoint": "native",
+      "title": "A command is admitted only from the active account of the named authority",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "authority_admits_def",
+          "forward_authorized_def",
+          "reversal_authorized_def",
+          "unauthorized_sender_is_rejected",
+          "unknown_authority_is_rejected",
+          "successful_transaction_was_authorized_by_its_sender"
+        ]
+      },
+      "normativeReceiver": [
+        "interface.errors[TrustUnauthorized]",
+        "profiles.native-full.authority"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (!authority_.active || caller != authority_.account) revert TrustUnauthorized(caller, authorityRef);"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testReplayNonceAndAuthorityRotation"
+        },
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testGovernanceAuthorizationIsConsumedOnce"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-52-AUTHORITY-ACCOUNT"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "typedFailureSelectors[TrustUnauthorized]"
+        },
+        {
+          "kind": "bounded-runtime-execution",
+          "contract": "TrustActionsUnitTest",
+          "test": "testReplayNonceAndAuthorityRotation"
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-AUTH-02",
+      "endpoint": "native",
+      "title": "The authority epoch of a command must be current; a rotation advances the epoch and makes earlier commands stale",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "stale_authority_epoch_is_rejected",
+          "rotate_authority_def",
+          "authority_rotation_makes_prior_commands_stale"
+        ]
+      },
+      "normativeReceiver": [
+        "reasonClasses.classes.1.codes.4",
+        "shapeRules.common"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (authority_.epoch != authorityEpoch) revert TrustInvalidCommand(commandId, REASON_AUTHORITY_EPOCH);"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "authorityConfig.epoch += 1;"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testReplayNonceAndAuthorityRotation"
+        },
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testGovernanceAuthorizationIsConsumedOnce"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-53-AUTHORITY-EPOCH"
+        },
+        {
+          "mutation": "MUT-54-AUTHORITY-ROTATION-EPOCH"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "reasonCodes[AUTHORITY_EPOCH]"
+        },
+        {
+          "kind": "bounded-runtime-execution",
+          "contract": "TrustActionsUnitTest",
+          "test": "testReplayNonceAndAuthorityRotation"
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-AUTH-03",
+      "endpoint": "native",
+      "title": "A governance authorization identifier is consumed once",
+      "abstractCondition": "none",
+      "normativeReceiver": [
+        "interface.errors[TrustReplay]"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (authorizationId == bytes32(0) || _usedGovernanceIds[authorizationId] || _usedGovernanceIds[key]) {"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testGovernanceAuthorizationIsConsumedOnce"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-78-GOVERNANCE-REPLAY"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bounded-runtime-execution",
+          "contract": "TrustActionsUnitTest",
+          "test": "testGovernanceAuthorizationIsConsumedOnce"
+        }
+      ],
+      "assumptions": [],
+      "status": "NOT-APPLICABLE",
+      "statusReason": "Endpoint operational guard on the out-of-band configureAuthority and rebindDependency calls. The abstract model treats rotation and rebind as atomic administrative transitions and has no governance identifier; the guard is listed in closure.reflection.runtimeOnly and is still tested and mutated."
+    },
+    {
+      "id": "NAT-NONCE-01",
+      "endpoint": "native",
+      "title": "A nonce is fresh for its authority and epoch and is consumed by a successful command",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "forward_nonce_key_def",
+          "reversal_nonce_key_def",
+          "forward_fresh_def",
+          "reversal_fresh_def",
+          "reused_nonce_is_not_fresh",
+          "forward_success_consumes_nonce_and_command_id"
+        ]
+      },
+      "normativeReceiver": [
+        "hashes.nonceKey",
+        "interface.errors[TrustReplay]"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (_usedNonces[authorityRef][authorityEpoch][nonce]) {"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "_usedNonces[request.authorityRef][request.authorityEpoch][request.nonce] = true;",
+          "occurrences": 2
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testReplayNonceAndAuthorityRotation"
+        },
+        {
+          "contract": "TrustActionsFuzzTest",
+          "test": "testFuzzForcedActionsPreserveSupply"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-57-NONCE-FRESHNESS"
+        },
+        {
+          "mutation": "MUT-06-NONCE-CONSUMPTION"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "typedFailureSelectors[TrustReplay]"
+        },
+        {
+          "kind": "vectors",
+          "ids": [
+            "NEG-REPLAY"
+          ]
+        }
+      ],
+      "assumptions": [
+        "A-KECCAK"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-NONCE-02",
+      "endpoint": "native",
+      "title": "An action identifier is used once",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "replayed_action_is_not_fresh",
+          "successful_action_is_not_fresh_afterwards"
+        ]
+      },
+      "normativeReceiver": [
+        "interface.errors[TrustReplay]",
+        "hashes.actionId"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (_actions[request.actionId].lifecycle != TrustKernelTypes.Lifecycle.NONE) {"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testReplayNonceAndAuthorityRotation"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-55-ACTION-ID-REPLAY"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "kernelSelectors.executeRegulatoryAction"
+        },
+        {
+          "kind": "vectors",
+          "ids": [
+            "NEG-REPLAY"
+          ]
+        }
+      ],
+      "assumptions": [
+        "A-KECCAK"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-NONCE-03",
+      "endpoint": "native",
+      "title": "A reversal identifier is used once",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "replayed_reversal_is_not_fresh",
+          "reversal_fresh_def"
+        ]
+      },
+      "normativeReceiver": [
+        "interface.errors[TrustReplay]",
+        "hashes.reversalId"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (_receipts[request.reversalId].receiptKind != TrustKernelTypes.ReceiptKind.NONE) {"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testReversalReplayAndRestrictionTransferBlock"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-56-REVERSAL-ID-REPLAY"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "kernelSelectors.executeRegulatoryReversal"
+        }
+      ],
+      "assumptions": [
+        "A-KECCAK"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-STALE-01",
+      "endpoint": "native",
+      "title": "A command binds the current dependency root and global epoch; a rebind advances the epoch by one and makes earlier commands stale",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "forward_current_dependency_def",
+          "stale_dependency_root_is_not_current",
+          "stale_dependency_epoch_is_not_current",
+          "rebind_dependency_def",
+          "rebind_makes_prior_commands_stale",
+          "rebind_advances_the_global_epoch_by_one",
+          "forward_success_preserves_dependency_state"
+        ]
+      },
+      "normativeReceiver": [
+        "reasonClasses.classes.1.codes.5",
+        "hashes.dependencyRoot",
+        "interface.events[TrustDependencyChanged]"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (request.dependencyRoot != _dependencyRoot || request.dependencyEpoch != _dependencyEpoch) {",
+          "occurrences": 2
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "_dependencyEpoch += 1;"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "_dependencyRoot = _computeDependencyRoot();",
+          "occurrences": 2
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testRootAndEpochAreCheckedIndependently"
+        },
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testEveryDependencyRebindMakesEarlierCommandsStale"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-14-DEPENDENCY-ROOT-COMPARISON"
+        },
+        {
+          "mutation": "MUT-15-DEPENDENCY-EPOCH-INCREMENT"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "reasonCodes[DEPENDENCY_BINDING]"
+        },
+        {
+          "kind": "vectors",
+          "ids": [
+            "NEG-STALE-DEPENDENCY"
+          ]
+        }
+      ],
+      "assumptions": [
+        "A-KECCAK"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-STALE-02",
+      "endpoint": "native",
+      "title": "A reversal binds the current dependency root and epoch",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "reversal_current_dependency_def",
+          "rebind_makes_prior_reversals_stale"
+        ]
+      },
+      "normativeReceiver": [
+        "reasonClasses.classes.1.codes.5"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "revert TrustInvalidCommand(request.reversalId, REASON_DEPENDENCY_BINDING);"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testRootAndEpochAreCheckedIndependently"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-58-REVERSAL-DEPENDENCY-ROOT"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "reasonCodes[DEPENDENCY_BINDING]"
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-STALE-03",
+      "endpoint": "native",
+      "title": "The dependency root is the tagged, ordered keccak of the four binding hashes",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "rebind_dependency_def"
+        ]
+      },
+      "normativeReceiver": [
+        "hashes.dependencyRoot",
+        "tags.DEPENDENCY_ROOT"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustNativeDecision.sol",
+          "snippet": "TrustKernelTypes.DOMAIN, TrustKernelTypes.DEPENDENCY_ROOT_TAG, policy, identity, settlement, entitlement"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testDependencyRootFormulaAndInitialEvents"
+        },
+        {
+          "contract": "TrustKernelVectorsTest",
+          "test": "testFixtureBindingsAndDependencyRoot"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-16-ROOT-TAG"
+        },
+        {
+          "mutation": "MUT-17-ROOT-ORDER"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "vectors",
+          "ids": [
+            "ACTION-FREEZE",
+            "REVERSAL-UNFREEZE"
+          ]
+        }
+      ],
+      "assumptions": [
+        "A-KECCAK"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-SHAPE-01",
+      "endpoint": "native",
+      "title": "The command domain is the kernel domain",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "forward_shape_wf_def",
+          "malformed_input_is_persistent_stutter"
+        ]
+      },
+      "normativeReceiver": [
+        "domain.keccak256",
+        "reasonClasses.classes.1.codes.1"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (request.domain != TrustKernelTypes.DOMAIN) revert TrustInvalidCommand(request.actionId, REASON_DOMAIN);"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testDirectDispositionsAndShapeRules"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-82-DOMAIN"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "vectors",
+          "ids": [
+            "NEG-WRONG-DOMAIN"
+          ]
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-SHAPE-02",
+      "endpoint": "native",
+      "title": "The action identifier is the derived hash of the canonical request with the identifier field cleared",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "typed_decoder_sound_def",
+          "successful_forward_transaction_is_admitted"
+        ]
+      },
+      "normativeReceiver": [
+        "hashes.actionId",
+        "reasonClasses.classes.1.codes.2"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (request.actionId == bytes32(0) || request.actionId != _actionHash(request, true)) {"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "calldatacopy(add(ptr, 0x60), request, 0x280)"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testDirectDispositionsAndShapeRules"
+        },
+        {
+          "contract": "TrustKernelVectorsTest",
+          "test": "testActionVectorsReproduce"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-83-IDENTIFIER"
+        },
+        {
+          "mutation": "MUT-05-FIXED-ACTION"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "vectors",
+          "ids": [
+            "NEG-FIELD-BINDING",
+            "ACTION-FREEZE",
+            "ACTION-SEIZE",
+            "ACTION-CONFISCATE",
+            "ACTION-LIQUIDATE",
+            "ACTION-RESTRICT",
+            "ACTION-RECOVER",
+            "ACTION-CONFISCATE-CUSTODY"
+          ]
+        }
+      ],
+      "assumptions": [
+        "A-KECCAK"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-SHAPE-03",
+      "endpoint": "native",
+      "title": "A command is admitted only inside its validity window",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "within_window_def",
+          "forward_in_window_def",
+          "reversal_in_window_def",
+          "expired_window_is_rejected"
+        ]
+      },
+      "normativeReceiver": [
+        "reasonClasses.classes.1.codes.3"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (block.timestamp < request.validAfter || request.validBefore == 0 || block.timestamp > request.validBefore) {",
+          "occurrences": 2
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testDirectDispositionsAndShapeRules"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-81-TIME-WINDOW"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "reasonCodes[TIME]"
+        }
+      ],
+      "assumptions": [
+        "A-EVM"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-SHAPE-04",
+      "endpoint": "native",
+      "title": "Per-action field rules: overlays name no source or destination, transfers name the subject as source, dispositions are well formed",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "overlay_shape_def",
+          "transfer_shape_def",
+          "disposition_wf_def",
+          "forward_shape_wf_def",
+          "direct_disposition_requires_source_to_be_the_subject"
+        ]
+      },
+      "normativeReceiver": [
+        "shapeRules.FREEZE",
+        "shapeRules.SEIZE",
+        "shapeRules.CONFISCATE",
+        "shapeRules.LIQUIDATE",
+        "shapeRules.RESTRICT",
+        "shapeRules.RECOVER",
+        "reasonClasses.classes.1.codes.6"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "_validateActionShape(request);"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testDirectDispositionsAndShapeRules"
+        },
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testSixActionsAndThreeReversalsWithReceipts"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-59-ACTION-SHAPE"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "reasonCodes[SHAPE]"
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-SHAPE-05",
+      "endpoint": "native",
+      "title": "Only canonical calldata (exact length, clean fixed-width fields) reaches the typed command",
+      "abstractCondition": {
+        "theory": "TRUST_State_Abi_Normal_Form",
+        "facts": [
+          "native_action_decodes_iff_canonical",
+          "native_reversal_decodes_iff_canonical",
+          "native_calldata_lengths_are_exact",
+          "noncanonical_action_length_is_rejected",
+          "noncanonical_reversal_length_is_rejected",
+          "dirty_action_enum_high_bits_are_rejected",
+          "dirty_action_address_high_bits_are_rejected",
+          "dirty_action_uint48_high_bits_are_rejected",
+          "dirty_action_uint64_high_bits_are_rejected",
+          "unknown_selector_is_rejected"
+        ]
+      },
+      "normativeReceiver": [
+        "structs.ActionRequest",
+        "structs.ReversalRequest"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "_requireCalldataLength(ACTION_CALLDATA_LENGTH);",
+          "occurrences": 2
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "_requireCalldataLength(REVERSAL_CALLDATA_LENGTH);",
+          "occurrences": 2
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if xor(calldatasize(), expected) { revert(0, 0) }"
+        },
+        {
+          "kind": "compiler-generated",
+          "note": "the fixed-width guards on enum, address, uint48, and uint64 words are emitted by solc 0.8.36 for the calldata struct decoder; their positions are bound in commands.action.guards and commands.reversal.guards of the generated bridge"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testNonCanonicalCalldataIsRejected"
+        },
+        {
+          "contract": "TrustKernelVectorsTest",
+          "test": "testFieldBindingNegativeVectors"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-23-CALLDATA-LENGTH"
+        },
+        {
+          "mutation": "MUT-26-REVERSAL-CALLDATA-LENGTH"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "commands.action.guards"
+        },
+        {
+          "kind": "bridge",
+          "path": "commands.reversal.guards"
+        },
+        {
+          "kind": "bridge",
+          "path": "commands.action.calldataLength"
+        }
+      ],
+      "assumptions": [
+        "A-COMPILER"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-CASE-01",
+      "endpoint": "native",
+      "title": "A terminal case admits no further action",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "terminal_case_rejects_action",
+          "overlay_admissible_def"
+        ]
+      },
+      "normativeReceiver": [
+        "enums.CasePhase.values.TERMINAL",
+        "interface.errors[TrustTerminal]",
+        "caseTransitions.rules[CT-15]"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (caseState.phase == TrustKernelTypes.CasePhase.TERMINAL) revert TrustTerminal(request.caseId);"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-61-TERMINAL-CASE-ACTION"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "typedFailureSelectors[TrustTerminal]"
+        },
+        {
+          "kind": "vectors",
+          "ids": [
+            "NEG-TERMINAL"
+          ]
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-CASE-02",
+      "endpoint": "native",
+      "title": "An overlay opens a fresh case or amends its own live head; it cannot enter another case",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "overlay_on_open_case_without_head_is_rejected",
+          "cross_case_overlay_head_is_rejected",
+          "cross_case_restriction_head_is_rejected",
+          "opened_overlay_def"
+        ]
+      },
+      "normativeReceiver": [
+        "caseTransitions.rules[CT-16]",
+        "caseTransitions.rules[CT-1]",
+        "caseTransitions.rules[CT-2]",
+        "reasonClasses.classes.1.codes.10"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (caseState.phase != TrustKernelTypes.CasePhase.NONE) {"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "} else if (caseState.headActionId != head.actionId) {"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testCustodyLifecycleAndDispositions"
+        },
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testOverlayCaseConflictsAndFamilies"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-62-OVERLAY-REQUIRES-FRESH-CASE"
+        },
+        {
+          "mutation": "MUT-18-CASE-CONFLICT"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "vectors",
+          "ids": [
+            "NEG-CASE-CONFLICT"
+          ]
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-CASE-03",
+      "endpoint": "native",
+      "title": "A second RESTRICT in its own case changes no state and is rejected",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "restrict_would_not_change_state_def",
+          "second_restrict_in_own_case_is_rejected"
+        ]
+      },
+      "normativeReceiver": [
+        "reasonClasses.classes.1.codes.13",
+        "caseTransitions.rules[CT-4]"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (head.actionId != bytes32(0) && caseState.headActionId == head.actionId) {"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testOverlayCaseConflictsAndFamilies"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-63-RESTRICT-NO-STATE-CHANGE"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "reasonCodes[NO_STATE_CHANGE]"
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-CASE-04",
+      "endpoint": "native",
+      "title": "SEIZE requires a case that is not open; a disposition in an open overlay case is rejected",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "second_seize_in_open_case_is_rejected",
+          "disposition_on_open_overlay_case_is_rejected",
+          "no_disposition_commitments_def"
+        ]
+      },
+      "normativeReceiver": [
+        "caseTransitions.families.CUSTODY",
+        "caseTransitions.rules[CT-5]",
+        "reasonClasses.classes.1.codes.8"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (caseState.phase == TrustKernelTypes.CasePhase.OPEN) {",
+          "occurrences": 2
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (caseState.family != TrustKernelTypes.CaseFamily.CUSTODY) {"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testCustodyLifecycleAndDispositions"
+        },
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-64-SEIZE-OPEN-CASE"
+        },
+        {
+          "mutation": "MUT-19-OVERLAY-DISPOSITION"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "reasonCodes[CUSTODY]"
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-CASE-05",
+      "endpoint": "native",
+      "title": "Every case opening advances the case generation",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "opened_overlay_def",
+          "opened_custody_def"
+        ]
+      },
+      "normativeReceiver": [
+        "structs.CaseRecord.fields[generation]"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "caseState.generation += 1;",
+          "occurrences": 2
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testSixActionsAndThreeReversalsWithReceipts"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-65-CASE-GENERATION"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "kernelSelectors.caseRecord"
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-CASE-06",
+      "endpoint": "native",
+      "title": "A disposition closes its case terminally",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "confiscate_success_is_terminal",
+          "liquidate_success_is_terminal",
+          "recover_success_is_terminal",
+          "disposed_case_def",
+          "closed_case_def"
+        ]
+      },
+      "normativeReceiver": [
+        "caseTransitions.rules[CT-9]",
+        "caseTransitions.rules[CT-10]",
+        "caseTransitions.rules[CT-11]"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (!consumedCustody) caseState.family = TrustKernelTypes.CaseFamily.DISPOSITION;"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals"
+        },
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testSixActionsAndThreeReversalsWithReceipts"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-09-CASE-TERMINALITY"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "kontrol-proof",
+          "proof": "testKontrol_LiquidateExactDeltaReceiptAndFinalLog"
+        },
+        {
+          "kind": "vectors",
+          "ids": [
+            "ACTION-CONFISCATE",
+            "ACTION-LIQUIDATE",
+            "ACTION-RECOVER",
+            "ACTION-CONFISCATE-CUSTODY"
+          ]
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-CASE-07",
+      "endpoint": "native",
+      "title": "Terminality is scoped to one case; an overlay owned by another case stays live and its frozen target saturates at observation",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "case_terminality_is_scoped",
+          "disposition_in_one_case_does_not_clear_another_overlay",
+          "freeze_preserves_restriction_overlay",
+          "restrict_preserves_freeze_overlay"
+        ]
+      },
+      "normativeReceiver": [
+        "caseTransitions.crossCase"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "return frozen > balance ? balance : frozen;"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testOverlayTargetSaturatesAfterCrossCaseDisposition"
+        },
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testOverlayCaseConflictsAndFamilies"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "kind": "behavioral-negative",
+          "contract": "TrustActionsUnitTest",
+          "test": "testOverlayTargetSaturatesAfterCrossCaseDisposition",
+          "note": "after a custody disposition in one case the test asserts that the freeze case of the same subject is still open with its head, that the frozen target reads as the saturated balance, and that UNFREEZE of that head is still admitted; removing the saturation or clearing the overlay on disposition fails the assertions"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bounded-runtime-execution",
+          "contract": "TrustActionsUnitTest",
+          "test": "testOverlayTargetSaturatesAfterCrossCaseDisposition"
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-FRZ-01",
+      "endpoint": "native",
+      "title": "FREEZE sets an absolute target that must strictly increase, pushes the live head, and records the prior target",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "freeze_success_sets_absolute_target",
+          "freeze_success_requires_strict_increase",
+          "freeze_success_pushes_the_live_head",
+          "freeze_success_records_prior_target",
+          "freeze_success_opens_or_amends_the_freeze_case",
+          "pushed_head_def",
+          "pushed_link_def"
+        ]
+      },
+      "normativeReceiver": [
+        "shapeRules.FREEZE",
+        "reasonClasses.classes.1.codes.12",
+        "caseTransitions.rules[CT-1]",
+        "caseTransitions.rules[CT-3]"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "request.amount <= _frozen[request.subject]"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "_frozen[request.subject] = request.amount;"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "record.priorAmount = _frozen[request.subject];"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testFreezeAmendmentChainReopensAfterPop"
+        },
+        {
+          "contract": "TrustActionsFuzzTest",
+          "test": "testFuzzFreezeAbsoluteAndOrdinaryFloor"
+        },
+        {
+          "contract": "TrustStatefulInvariantTest",
+          "test": "invariantFrozenTargetTracksTheLiveHead"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-08-FREEZE-DIRECTION"
+        },
+        {
+          "mutation": "MUT-108-FREEZE-TARGET"
+        },
+        {
+          "mutation": "MUT-60-FREEZE-PRIOR-TARGET"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "kontrol-proof",
+          "proof": "testKontrol_NonincreasingFreezeStuttersProjection"
+        },
+        {
+          "kind": "vectors",
+          "ids": [
+            "ACTION-FREEZE"
+          ]
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-RSTR-01",
+      "endpoint": "native",
+      "title": "RESTRICT sets the restriction flag and records the prior flag; freeze and restriction overlays are independent",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "restrict_success_sets_flag",
+          "restrict_success_records_prior_flag",
+          "freeze_and_restriction_are_independent"
+        ]
+      },
+      "normativeReceiver": [
+        "shapeRules.RESTRICT",
+        "caseTransitions.rules[CT-2]"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "_restricted[request.subject] = true;"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testReversalReplayAndRestrictionTransferBlock"
+        },
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testOverlayCaseConflictsAndFamilies"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-109-RESTRICT-FLAG"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "vectors",
+          "ids": [
+            "ACTION-RESTRICT"
+          ]
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-CUST-01",
+      "endpoint": "native",
+      "title": "SEIZE opens a custody case, moves the exact amount to the custodian, and records it as custody backing",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "seize_success_opens_custody",
+          "seize_success_moves_exact_amount_to_custodian",
+          "opened_custody_def",
+          "seize_cannot_spend_custody_backing"
+        ]
+      },
+      "normativeReceiver": [
+        "shapeRules.SEIZE",
+        "caseTransitions.rules[CT-5]"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "_custodyBacking[request.custodian] += request.amount;"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "_custody[request.caseId] = TrustNativeTypes.CustodyRecord({"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testCustodyBackingAndOwnFrozenFloorDoNotDoubleCount"
+        },
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testCustodyLifecycleAndDispositions"
+        },
+        {
+          "contract": "TrustStatefulInvariantTest",
+          "test": "invariantCustodyCaseMatchesTheHandler"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-71-SEIZE-BACKING"
+        },
+        {
+          "mutation": "MUT-10-CUSTODY-CLOSURE"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "vectors",
+          "ids": [
+            "ACTION-SEIZE"
+          ]
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-CUST-02",
+      "endpoint": "native",
+      "title": "Neither a transfer, a seizure, nor a direct disposition can spend custody backing or the own frozen floor",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "unbacked_available_def",
+          "direct_disposition_cannot_spend_custody_backing",
+          "ordinary_transfer_cannot_spend_the_frozen_floor_or_custody_backing"
+        ]
+      },
+      "normativeReceiver": [
+        "reasonClasses.classes.1.codes.8",
+        "shapeRules.reasonBinding"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (balance < backing || amount > balance - backing) {"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "uint256 ownPhysical = balance - backing;"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "return frozen >= ownPhysical ? 0 : ownPhysical - frozen;"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testCustodyBackingAndOwnFrozenFloorDoNotDoubleCount"
+        },
+        {
+          "contract": "TrustActionsFuzzTest",
+          "test": "testFuzzFreezeAbsoluteAndOrdinaryFloor"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-72-UNBACKED-GUARD"
+        },
+        {
+          "mutation": "MUT-74-ORDINARY-BACKING"
+        },
+        {
+          "mutation": "MUT-01-FROZEN-FLOOR"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bounded-runtime-execution",
+          "contract": "TrustActionsFuzzTest",
+          "test": "testFuzzFreezeAbsoluteAndOrdinaryFloor"
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-CUST-03",
+      "endpoint": "native",
+      "title": "A custody disposition names the exact active custody record and consumes it",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "custody_matches_def",
+          "uses_active_custody_def",
+          "custody_disposition_requires_the_exact_custody_record",
+          "custody_disposition_consumes_the_custody_record",
+          "close_custody_def"
+        ]
+      },
+      "normativeReceiver": [
+        "shapeRules.CONFISCATE",
+        "caseTransitions.rules[CT-12]",
+        "caseTransitions.rules[CT-13]",
+        "caseTransitions.rules[CT-14]"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "custody.custodian != request.source || custody.encumberedAmount != request.amount"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (!custody.active) return false;"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testCustodyLifecycleAndDispositions"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-73-CUSTODY-DISPOSITION-MATCH"
+        },
+        {
+          "mutation": "MUT-10-CUSTODY-CLOSURE"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "vectors",
+          "ids": [
+            "ACTION-CONFISCATE-CUSTODY"
+          ]
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-DISP-01",
+      "endpoint": "native",
+      "title": "A disposition moves the exact amount between two accounts; CONFISCATE does not burn; total supply is preserved",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "disposition_success_moves_exact_amount",
+          "confiscate_does_not_burn",
+          "forward_success_preserves_total_supply",
+          "reversal_success_preserves_total_supply",
+          "move_balance_def"
+        ]
+      },
+      "normativeReceiver": [
+        "shapeRules.CONFISCATE",
+        "shapeRules.LIQUIDATE",
+        "shapeRules.RECOVER"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "_balances[to] += amount;"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "_balances[from] = balance - amount;"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testSixActionsAndThreeReversalsWithReceipts"
+        },
+        {
+          "contract": "TrustActionsFuzzTest",
+          "test": "testFuzzForcedActionsPreserveSupply"
+        },
+        {
+          "contract": "TrustStatefulInvariantTest",
+          "test": "invariantSupplyConserved"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-110-BALANCE-MOVE"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "kontrol-proof",
+          "proof": "testKontrol_LiquidateExactDeltaReceiptAndFinalLog"
+        },
+        {
+          "kind": "vectors",
+          "ids": [
+            "ACTION-CONFISCATE",
+            "ACTION-LIQUIDATE",
+            "ACTION-RECOVER"
+          ]
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-DISP-02",
+      "endpoint": "native",
+      "title": "LIQUIDATE binds the settlement pair as the receipt's external commitment",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "liquidate_success_binds_settlement_in_receipt",
+          "forward_external_commitment_def"
+        ]
+      },
+      "normativeReceiver": [
+        "shapeRules.LIQUIDATE",
+        "structs.Receipt.fields[externalCommitment]"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "externalCommitment: externalCommitment,"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testSixActionsAndThreeReversalsWithReceipts"
+        },
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testReceiptBindsCanonicalCommandHashEvidenceAndFinalEvent"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-22-RECEIPT-PREIMAGE"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "kontrol-proof",
+          "proof": "testKontrol_LiquidateExactDeltaReceiptAndFinalLog"
+        },
+        {
+          "kind": "vectors",
+          "ids": [
+            "ACTION-LIQUIDATE"
+          ]
+        }
+      ],
+      "assumptions": [
+        "A-KECCAK"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-DISP-03",
+      "endpoint": "native",
+      "title": "RECOVER consumes its entitlement commitment once",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "recover_success_consumes_entitlement",
+          "consumed_entitlement_is_rejected"
+        ]
+      },
+      "normativeReceiver": [
+        "shapeRules.RECOVER",
+        "reasonClasses.classes.1.codes.9"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (_consumedEntitlements[request.entitlementCommitment]) {"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testSixActionsAndThreeReversalsWithReceipts"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-84-ENTITLEMENT-ONCE"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "reasonCodes[ENTITLEMENT]"
+        },
+        {
+          "kind": "vectors",
+          "ids": [
+            "ACTION-RECOVER"
+          ]
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-REV-01",
+      "endpoint": "native",
+      "title": "A reversal pairs only with the action kind it reverses",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "reversal_pairs_def",
+          "mispaired_reversal_is_not_admissible",
+          "unknown_original_is_not_admissible",
+          "missing_reversal_provenance_is_not_admissible"
+        ]
+      },
+      "normativeReceiver": [
+        "shapeRules.reversal.pairing",
+        "reasonClasses.classes.1.codes.7"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (!TrustNativeDecision.reversalMatches(original.action, request.reversal)) {"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (request.provenanceCommitment == bytes32(0)) revert TrustInvalidCommand(request.reversalId, REASON_SHAPE);"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testDirectDispositionsAndShapeRules"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-67-REVERSAL-PAIRING"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "reasonCodes[REVERSAL_PAIRING]"
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-REV-02",
+      "endpoint": "native",
+      "title": "A reversal targets the subject's live head whose state still matches the original; a reversed action cannot be reversed again",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "reversal_current_effect_def",
+          "reversal_admissible_def",
+          "stale_freeze_reversal_is_not_admissible",
+          "stale_restriction_reversal_is_not_admissible",
+          "reversed_action_cannot_be_reversed_again",
+          "unfreeze_requires_the_target_of_the_original"
+        ]
+      },
+      "normativeReceiver": [
+        "shapeRules.reversal.currentEffect",
+        "reasonClasses.classes.1.codes.11"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (head.actionId != actionId || !stateMatches) {"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testFreezeAmendmentChainReopensAfterPop"
+        },
+        {
+          "contract": "TrustStatefulInvariantTest",
+          "test": "invariantFrozenTargetTracksTheLiveHead"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-66-REVERSAL-CURRENT-HEAD"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "reasonCodes[CURRENT_EFFECT]"
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-REV-03",
+      "endpoint": "native",
+      "title": "A terminal case admits no reversal",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "terminal_case_rejects_reversal"
+        ]
+      },
+      "normativeReceiver": [
+        "interface.errors[TrustTerminal]",
+        "caseTransitions.rules[CT-15]"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (_cases[original.caseId].phase == TrustKernelTypes.CasePhase.TERMINAL) {"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-13-TERMINAL-REVERSAL-GUARD"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "typedFailureSelectors[TrustTerminal]"
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-REV-04",
+      "endpoint": "native",
+      "title": "UNFREEZE restores the prior target, pops the head, and reopens the case on the parent or closes it",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "unfreeze_success_restores_prior_target",
+          "unfreeze_reopens_the_case_when_a_parent_remains",
+          "unfreeze_closes_the_case_when_the_chain_is_empty",
+          "popped_head_def",
+          "reopened_or_closed_def",
+          "link_parent_def"
+        ]
+      },
+      "normativeReceiver": [
+        "caseTransitions.rules[CT-6]",
+        "caseTransitions.rules[CT-7]"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "_frozen[original.subject] = original.priorAmount;"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (parent != bytes32(0)) {"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testFreezeAmendmentChainReopensAfterPop"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-68-UNFREEZE-PRIOR-TARGET"
+        },
+        {
+          "mutation": "MUT-21-REVERSAL-CLOSES-CHAIN"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "vectors",
+          "ids": [
+            "REVERSAL-UNFREEZE"
+          ]
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-REV-05",
+      "endpoint": "native",
+      "title": "UNRESTRICT restores the prior flag and closes the case",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "unrestrict_success_restores_prior_flag_and_closes_case"
+        ]
+      },
+      "normativeReceiver": [
+        "caseTransitions.rules[CT-8]"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "_restricted[original.subject] = original.priorFlag;"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testSixActionsAndThreeReversalsWithReceipts"
+        },
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testReversalReplayAndRestrictionTransferBlock"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-69-UNRESTRICT-PRIOR-FLAG"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "vectors",
+          "ids": [
+            "REVERSAL-UNRESTRICT"
+          ]
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-REV-06",
+      "endpoint": "native",
+      "title": "RELEASE returns the exact active custody to the prior holder and closes the custody case",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "release_success_returns_custody_and_closes_case",
+          "release_requires_the_exact_active_custody"
+        ]
+      },
+      "normativeReceiver": [
+        "caseTransitions.rules[CT-12]",
+        "caseTransitions.families.CUSTODY"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "_custodyBacking[custody.custodian] -= original.amount;"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testCustodyBackingAndOwnFrozenFloorDoNotDoubleCount"
+        },
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testSixActionsAndThreeReversalsWithReceipts"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-70-RELEASE-BACKING"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "vectors",
+          "ids": [
+            "REVERSAL-RELEASE"
+          ]
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-REV-07",
+      "endpoint": "native",
+      "title": "A successful reversal marks the original reversed and its receipt names the original as parent with the REVERSAL kind",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "reversal_success_marks_the_original_reversed",
+          "receipt_matches_reversal_def",
+          "forward_and_reversal_receipts_are_distinguished_by_kind"
+        ]
+      },
+      "normativeReceiver": [
+        "structs.Receipt.fields[parentCommandId]",
+        "structs.Receipt.fields[receiptKind]"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "parentCommandId: pending.actionId,"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "receiptKind: TrustKernelTypes.ReceiptKind.REVERSAL,"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testReceiptBindsCanonicalCommandHashEvidenceAndFinalEvent"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-77-REVERSAL-RECEIPT-PARENT"
+        },
+        {
+          "mutation": "MUT-20-RECEIPT-KIND-TAG"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "vectors",
+          "ids": [
+            "NEG-RECEIPT-KIND",
+            "REVERSAL-UNFREEZE"
+          ]
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-XFER-01",
+      "endpoint": "native",
+      "title": "An ordinary transfer respects the restriction flags of both parties",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "ordinary_transfer_allowed_def",
+          "ordinary_transfer_respects_restriction_flags"
+        ]
+      },
+      "normativeReceiver": [
+        "profiles.native-full.route"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (!canSend(from)) revert ERC7943CannotSend(from);"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testReversalReplayAndRestrictionTransferBlock"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-75-RESTRICTION-SEND-GATE"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bounded-runtime-execution",
+          "contract": "TrustActionsUnitTest",
+          "test": "testReversalReplayAndRestrictionTransferBlock"
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-XFER-02",
+      "endpoint": "native",
+      "title": "An ordinary transfer changes balances only and preserves every regulatory record",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "ordinary_transfer_state_def",
+          "ordinary_transfer_preserves_regulatory_state"
+        ]
+      },
+      "normativeReceiver": [
+        "nonclaims"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "_balances[from] = balance - amount;"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustStatefulInvariantTest",
+          "test": "invariantFrozenTargetTracksTheLiveHead"
+        },
+        {
+          "contract": "TrustStatefulInvariantTest",
+          "test": "invariantCustodyCaseMatchesTheHandler"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "kind": "behavioral-negative",
+          "contract": "TrustStatefulInvariantTest",
+          "test": "invariantFrozenTargetTracksTheLiveHead",
+          "note": "the handler interleaves ordinary transfers with kernel commands and the invariants compare the frozen target, live head, and custody case against the handler's own model after every step; a transfer that touched any regulatory record would break the comparison"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bounded-runtime-execution",
+          "contract": "TrustStatefulInvariantTest",
+          "test": "invariantSupplyConserved"
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-DEP-01",
+      "endpoint": "native",
+      "title": "A dependency response is applied only when canonical and echoed; a denial is a typed rejection; a malformed response is reason 202, an echo mismatch reason 203, a canonical operational failure reason 204",
+      "abstractCondition": {
+        "theory": "TRUST_Bound_Dependency_Assume_Guarantee",
+        "facts": [
+          "classify_dependency_def",
+          "bound_dependency_canonical_approval_classifies_applicable",
+          "bound_dependency_canonical_denial_is_typed_rejection",
+          "dependency_malformed_response_is_reason_202",
+          "dependency_echo_failure_is_reason_203",
+          "dependency_canonical_operational_is_reason_204",
+          "dependency_never_applies_without_matching_echoes",
+          "dependency_denial_or_operational_failure_stutters"
+        ]
+      },
+      "normativeReceiver": [
+        "profileInterfaces.ITrustBoundDependency",
+        "reasonClasses.classes.200",
+        "reasonClasses.classes.100"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustDependencyBinding.sol",
+          "snippet": "if (commandEcho != commandHash || bindingEcho != binding.bindingHash) {"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (outcome == TrustKernelTypes.AssessmentOutcome.OPERATIONAL_FAILURE) {"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "bytes32 evidence = _assessReversalOrRevert(request, digest);",
+          "occurrences": 2
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testAssessmentOutcomesAndReasonClasses"
+        },
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testReversalAssessmentFailsClosedAfterPolicyRebind"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-25-BINDING-ECHO"
+        },
+        {
+          "mutation": "MUT-04-FAIL-CLOSED"
+        },
+        {
+          "mutation": "MUT-11-REVERSAL-POLICY"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "kontrol-proof",
+          "proof": "testKontrol_OperationalFailureStuttersProjection"
+        },
+        {
+          "kind": "bridge",
+          "path": "interfaceIds.boundDependency"
+        }
+      ],
+      "assumptions": [
+        "A-EXTERNAL"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-DEP-02",
+      "endpoint": "native",
+      "title": "The identity dependency is assessed for every counterparty; dependency code or configuration drift is reason 200 or 201",
+      "abstractCondition": {
+        "theory": "TRUST_Bound_Dependency_Assume_Guarantee",
+        "facts": [
+          "dependency_identity_failure_is_reason_200",
+          "dependency_configuration_failure_is_reason_201",
+          "dependency_failure_post_def"
+        ]
+      },
+      "normativeReceiver": [
+        "reasonClasses.classes.200",
+        "profiles.native-full.dependencies"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (request.destination != address(0)) {"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (!_bindings[TrustKernelTypes.BindingKind(kind)].live()) {"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testAssessmentOutcomesAndReasonClasses"
+        },
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testTrustProfileDescriptorAndInterfaceIdentifiers"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-24-IDENTITY-ASSESSMENT"
+        },
+        {
+          "mutation": "MUT-79-PROFILE-FULL-LIVE"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "reasonCodes[DEPENDENCY_CODE_MISMATCH]"
+        }
+      ],
+      "assumptions": [
+        "A-EXTERNAL"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-RCPT-01",
+      "endpoint": "native",
+      "title": "The receipt is the keccak of its 17-word preimage, is stored under the command identifier, is returned, and is the final event of the transaction",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "receipt_matches_forward_def",
+          "abstraction_receipt_def",
+          "canonical_receipt_trace_def",
+          "success_has_final_canonical_receipt_event",
+          "success_returns_the_stored_receipt_hash",
+          "committed_history_excludes_failure_receipts"
+        ]
+      },
+      "normativeReceiver": [
+        "hashes.receiptHash",
+        "interface.eventOrder",
+        "interface.functions[receipt]"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "mcopy(add(ptr, 0x20), record, 0x200)"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "receiptHash := keccak256(ptr, 0x220)"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "_receipts[record.commandId] = record;"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "emit RegulatoryActionApplied(request.actionId, uint8(request.action), request.caseId, receiptHash);"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testReceiptBindsCanonicalCommandHashEvidenceAndFinalEvent"
+        },
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testCanonicalEventOrderAndRevertedTransactionsLeaveNothing"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-22-RECEIPT-PREIMAGE"
+        },
+        {
+          "mutation": "MUT-03-RECEIPT-LAST"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "kontrol-proof",
+          "proof": "testKontrol_LiquidateExactDeltaReceiptAndFinalLog"
+        },
+        {
+          "kind": "bridge",
+          "path": "kernelEvents[RegulatoryActionApplied]"
+        },
+        {
+          "kind": "vectors",
+          "ids": [
+            "ACTION-FREEZE",
+            "ACTION-SEIZE",
+            "ACTION-CONFISCATE",
+            "ACTION-LIQUIDATE",
+            "ACTION-RESTRICT",
+            "ACTION-RECOVER",
+            "ACTION-CONFISCATE-CUSTODY",
+            "REVERSAL-UNFREEZE",
+            "REVERSAL-RELEASE",
+            "REVERSAL-UNRESTRICT"
+          ]
+        }
+      ],
+      "assumptions": [
+        "A-KECCAK"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-RCPT-02",
+      "endpoint": "native",
+      "title": "The receipt binds the dependency root, the assessment evidence, and the ACTION kind of a forward command",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "receipt_matches_forward_def",
+          "forward_and_reversal_receipts_are_distinguished_by_kind"
+        ]
+      },
+      "normativeReceiver": [
+        "structs.Receipt.fields[dependencyRoot]",
+        "structs.Receipt.fields[assessmentEvidence]",
+        "structs.Receipt.fields[receiptKind]"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "dependencyRoot: request.dependencyRoot,"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "receiptKind: TrustKernelTypes.ReceiptKind.ACTION,"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testReceiptBindsCanonicalCommandHashEvidenceAndFinalEvent"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-76-RECEIPT-DEPENDENCY-ROOT"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "vectors",
+          "ids": [
+            "NEG-RECEIPT-KIND"
+          ]
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-FAIL-01",
+      "endpoint": "native",
+      "title": "Every rejection, operational failure, malformed input, and dependency revert is a persistent stutter: the state is unchanged and no receipt or event is committed",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "abstract_failure_transition_def",
+          "rejection_is_persistent_stutter",
+          "operational_failure_is_persistent_stutter",
+          "malformed_input_is_persistent_stutter",
+          "dependency_failure_is_persistent_stutter",
+          "rejected_transaction_is_abstract_stutter",
+          "operational_transaction_is_abstract_stutter",
+          "malformed_transaction_is_abstract_stutter",
+          "dependency_revert_is_abstract_stutter"
+        ]
+      },
+      "normativeReceiver": [
+        "reasonClasses.description",
+        "interface.errors[TrustRejected]",
+        "interface.errors[TrustOperationalFailure]"
+      ],
+      "finalSourceConsumers": [
+        {
+          "kind": "compiler-generated",
+          "note": "every failure path is a Solidity revert with a typed error; the EVM discards all state writes and logs of a reverting frame, which is the runtime realisation of the abstract stutter"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if xor(calldatasize(), expected) { revert(0, 0) }"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testCanonicalEventOrderAndRevertedTransactionsLeaveNothing"
+        },
+        {
+          "contract": "TrustStatefulInvariantTest",
+          "test": "invariantNoPersistentRouteTicket"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "kind": "behavioral-negative",
+          "contract": "TrustActionsUnitTest",
+          "test": "testCanonicalEventOrderAndRevertedTransactionsLeaveNothing",
+          "note": "the test records the storage and log state before a rejected, an operationally failed, and a malformed call and asserts both are unchanged afterwards; every guard's own mutation additionally shows that removing the guard turns the stutter into a state change"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "kontrol-proof",
+          "proof": "testKontrol_OperationalFailureStuttersProjection"
+        },
+        {
+          "kind": "bridge",
+          "path": "typedFailureSelectors"
+        }
+      ],
+      "assumptions": [
+        "A-EVM"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-ROUTE-01",
+      "endpoint": "native",
+      "title": "Every runtime selector is classified; the sensitive ERC-7943 routes are exact-use routes consumed through the route ticket and are closed to raw calls",
+      "abstractCondition": {
+        "theory": "TRUST_Runtime_Bridge_Generated",
+        "facts": [
+          "native_routes_are_exhaustive",
+          "typed_command_selectors_are_classified_as_kernel_commands",
+          "typed_command_selectors_are_not_failure_selectors",
+          "generic_dispatcher_selector_is_unclassified",
+          "native_routes_def"
+        ]
+      },
+      "normativeReceiver": [
+        "profileInterfaces.IERCTrustNativeRoute",
+        "profiles.native-full.route"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "delete _routeTicket;"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "_routeTicket = TrustNativeTypes.RouteTicket({"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testERC7943ExactUseRoutesAndRawClosure"
+        },
+        {
+          "contract": "TrustStatefulInvariantTest",
+          "test": "invariantNoPersistentRouteTicket"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-02-ROUTE-CONSUMPTION"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "kontrol-proof",
+          "proof": "testKontrol_RawSensitiveSelectorsStayClosed"
+        },
+        {
+          "kind": "bridge",
+          "path": "subjects.native.routes"
+        },
+        {
+          "kind": "bridge",
+          "path": "routeMismatchSelector"
+        }
+      ],
+      "assumptions": [
+        "A-COMPILER"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-ROUTE-02",
+      "endpoint": "native",
+      "title": "The endpoint reports the kernel and native route interface identifiers and a Full profile only while every binding is live",
+      "abstractCondition": {
+        "theory": "TRUST_Runtime_Bridge_Generated",
+        "facts": [
+          "kernel_interface_id_def",
+          "native_route_interface_id_def"
+        ]
+      },
+      "normativeReceiver": [
+        "interface.erc165",
+        "profiles.native-full.profileKind",
+        "interface.functions[trustProfile]"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "interfaceId == type(IERCTrustKernel).interfaceId"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (!_bindings[TrustKernelTypes.BindingKind(kind)].live()) {"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testTrustProfileDescriptorAndInterfaceIdentifiers"
+        },
+        {
+          "contract": "TrustStatefulInvariantTest",
+          "test": "invariantInterfaceTruth"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-80-KERNEL-INTERFACE-ID"
+        },
+        {
+          "mutation": "MUT-79-PROFILE-FULL-LIVE"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "interfaceIds.kernel"
+        },
+        {
+          "kind": "bridge",
+          "path": "interfaceIds.nativeRoute"
+        },
+        {
+          "kind": "bounded-runtime-execution",
+          "contract": "TrustKernelVectorsTest",
+          "test": "testConstantsMatchTheCompiledKernel"
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-RETR-01",
+      "endpoint": "native",
+      "title": "The abstract state is a function of the concrete storage under the exact pinned runtime; every projection is exact and independent",
+      "abstractCondition": {
+        "theory": "TRUST_Retrieve_Relation",
+        "facts": [
+          "pinned_runtime_def",
+          "projected_compositional_state_def",
+          "alpha_current_def",
+          "alpha_current_is_functional",
+          "alpha_current_requires_exact_runtime",
+          "alpha_current_rejects_runtime_substitution",
+          "alpha_current_binds_the_generated_bridge_schema",
+          "nonce_projection_is_exact",
+          "freeze_and_restriction_projections_are_independent",
+          "custody_backing_projection_is_exact",
+          "case_record_projection_is_exact",
+          "dependency_state_projection_is_exact",
+          "authority_projection_is_exact",
+          "receipt_projection_is_exact",
+          "current_state_does_not_assume_history"
+        ]
+      },
+      "normativeReceiver": [
+        "interface.functions[caseRecord]",
+        "interface.functions[dependencyState]",
+        "interface.functions[receipt]",
+        "interface.functions[actionRecord]"
+      ],
+      "finalSourceConsumers": [
+        {
+          "kind": "compiler-generated",
+          "note": "the storage slots of the projections are assigned by the compiler layout of implementation/src/TrustToken.sol and bound slot by slot in subjects.native.storage of the generated bridge; the retrieve relation reads them through the declared mappings"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "uint256 balance = _balances[account];",
+          "occurrences": 3
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustKernelVectorsTest",
+          "test": "testFixtureBindingsAndDependencyRoot"
+        },
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testDependencyRootFormulaAndInitialEvents"
+        },
+        {
+          "contract": "TrustStatefulInvariantTest",
+          "test": "invariantCustodyCaseMatchesTheHandler"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "kind": "behavioral-negative",
+          "contract": "TrustStatefulInvariantTest",
+          "test": "invariantNoPersistentRouteTicket",
+          "note": "the invariant reads the packed route ticket word directly at the slot derived from the compiler layout (ROUTE_TICKET_PACKED_SLOT in the test base, cross-checked against the bridge by the ledger verifier); a layout drift moves the word and fails the read"
+        },
+        {
+          "mutation": "MUT-65-CASE-GENERATION"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "subjects.native.storage"
+        },
+        {
+          "kind": "bridge",
+          "path": "sourceBinding.artifacts"
+        }
+      ],
+      "assumptions": [
+        "A-LAYOUT",
+        "A-COMPILER"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "NAT-E2E-01",
+      "endpoint": "native",
+      "title": "Every accepted execution of the pinned native runtime template implements the abstract transaction system (runtime link)",
+      "abstractCondition": {
+        "theory": "TRUST_End_To_End_Composition",
+        "facts": [
+          "locale:pinned_runtime_refinement",
+          "pinned_runtime_refinement.runtime_execution_implements_concrete_transaction",
+          "pinned_runtime_refinement.end_to_end_refinement",
+          "pinned_runtime_refinement.successful_reversal_never_targets_a_terminal_case",
+          "heterogeneous_composition_is_conditional_until_certificate",
+          "compiler_correctness_remains_a_nonclaim"
+        ]
+      },
+      "normativeReceiver": [
+        "spec/decisions/10-refinement-closure.md",
+        "nonclaims"
+      ],
+      "finalSourceConsumers": [
+        {
+          "kind": "compiler-generated",
+          "note": "the consumer is the whole runtime template (sha256 in subjects.native.runtime of the generated bridge) executing under the CANCUN semantics; there is no single source line to name because the obligation is the link between the compiled bytes and the model"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustKernelVectorsTest",
+          "test": "testActionVectorsReproduce"
+        },
+        {
+          "contract": "TrustKernelVectorsTest",
+          "test": "testReversalVectorsReproduce"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "kind": "not-applicable",
+          "note": "the missing artifact is a proof, not a consumer: a machine-checked discharge of runtime_link that connects KEVM executions of the exact runtime template to the events of TRUST_Transaction_Refinement. The four Kontrol proofs and the Foundry executions are bounded instances and cannot stand in for it."
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "kontrol-proof",
+          "proof": "testKontrol_RawSensitiveSelectorsStayClosed"
+        },
+        {
+          "kind": "kontrol-proof",
+          "proof": "testKontrol_OperationalFailureStuttersProjection"
+        },
+        {
+          "kind": "kontrol-proof",
+          "proof": "testKontrol_NonincreasingFreezeStuttersProjection"
+        },
+        {
+          "kind": "kontrol-proof",
+          "proof": "testKontrol_LiquidateExactDeltaReceiptAndFinalLog"
+        },
+        {
+          "kind": "bridge",
+          "path": "subjects.native.runtime"
+        }
+      ],
+      "assumptions": [
+        "A-RUNTIME-LINK",
+        "A-COMPILER",
+        "A-EVM",
+        "A-DEPLOYMENT"
+      ],
+      "status": "SUCCESSOR-MANDATORY",
+      "statusReason": "Required for the next rung of the claim ladder (end-to-end refinement complete), not for the current claim. Until it is CLOSED the closure status is CONDITIONAL and no Full or refinement-complete wording is permitted."
+    },
+    {
+      "id": "ADP-AUTH-01",
+      "endpoint": "profileAdapter",
+      "title": "The profile authorization is exactly the single immutable authority",
+      "abstractCondition": {
+        "theory": "TRUST_Verified_Profile_Onboarding",
+        "facts": [
+          "profile_authorities_def",
+          "profile_authorization_is_exactly_the_immutable_authority"
+        ]
+      },
+      "normativeReceiver": [
+        "spec/decisions/09-erc3643-profile-wiring.md",
+        "interface.errors[TrustUnauthorized]"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (requestedRef != authorityRef || caller != authority) revert TrustUnauthorized(caller, requestedRef);"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testReplayNonceAndAuthority"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-85-ERC3643-AUTHORITY-ACCOUNT"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "subjects.profileAdapter.routes"
+        },
+        {
+          "kind": "bounded-runtime-execution",
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testReplayNonceAndAuthority"
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "ADP-AUTH-02",
+      "endpoint": "profileAdapter",
+      "title": "The authority epoch is the seal epoch and cannot be rotated by a command",
+      "abstractCondition": {
+        "theory": "TRUST_Verified_Profile_Onboarding",
+        "facts": [
+          "profile_authority_cannot_rotate_by_a_command"
+        ]
+      },
+      "normativeReceiver": [
+        "reasonClasses.classes.1.codes.4",
+        "profiles.erc3643-verified-full.dependencies"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (requestedEpoch != currentEpoch) revert TrustInvalidCommand(commandId, REASON_AUTHORITY_EPOCH);"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testReplayNonceAndAuthority"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-86-ERC3643-AUTHORITY-EPOCH"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "reasonCodes[AUTHORITY_EPOCH]"
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "ADP-NONCE-01",
+      "endpoint": "profileAdapter",
+      "title": "Nonces, action identifiers, and reversal identifiers are fresh and consumed once",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "reused_nonce_is_not_fresh",
+          "replayed_action_is_not_fresh",
+          "replayed_reversal_is_not_fresh",
+          "forward_success_consumes_nonce_and_command_id"
+        ]
+      },
+      "normativeReceiver": [
+        "hashes.nonceKey",
+        "interface.errors[TrustReplay]"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (_usedNonces[key]) revert TrustReplay(key);"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (_actions[request.actionId].lifecycle != TrustKernelTypes.Lifecycle.NONE) {"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (_receipts[request.reversalId].receiptKind != TrustKernelTypes.ReceiptKind.NONE) {"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "_usedNonces[_nonceKey(request.authorityRef, request.authorityEpoch, request.nonce)] = true;",
+          "occurrences": 2
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testReplayNonceAndAuthority"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-89-ERC3643-NONCE-FRESHNESS"
+        },
+        {
+          "mutation": "MUT-87-ERC3643-ACTION-ID-REPLAY"
+        },
+        {
+          "mutation": "MUT-88-ERC3643-REVERSAL-ID-REPLAY"
+        },
+        {
+          "mutation": "MUT-43-ERC3643-NONCE-CONSUMPTION"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "typedFailureSelectors[TrustReplay]"
+        }
+      ],
+      "assumptions": [
+        "A-KECCAK"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "ADP-STALE-01",
+      "endpoint": "profileAdapter",
+      "title": "Commands and reversals bind the sealed dependency root and epoch",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "stale_dependency_root_is_not_current",
+          "stale_dependency_epoch_is_not_current",
+          "forward_current_dependency_def",
+          "reversal_current_dependency_def"
+        ]
+      },
+      "normativeReceiver": [
+        "reasonClasses.classes.1.codes.5",
+        "profiles.erc3643-verified-full.dependencies"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (request.dependencyRoot != _dependencyRoot || request.dependencyEpoch != _dependencyEpoch) {",
+          "occurrences": 2
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "TrustKernelTypes.DEPENDENCY_ROOT_TAG,"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testRootAndEpochAreCheckedIndependently"
+        },
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testDescriptorDependencyStateAndInterfaceIdentifiers"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-34-ERC3643-DEPENDENCY-ROOT-COMPARISON"
+        },
+        {
+          "mutation": "MUT-90-ERC3643-REVERSAL-DEPENDENCY-ROOT"
+        },
+        {
+          "mutation": "MUT-35-ERC3643-ROOT-TAG"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "reasonCodes[DEPENDENCY_BINDING]"
+        }
+      ],
+      "assumptions": [
+        "A-KECCAK"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "ADP-SHAPE-01",
+      "endpoint": "profileAdapter",
+      "title": "Domain, identifier, validity window, and per-action field rules are checked before any state-dependent rule",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "forward_shape_wf_def",
+          "expired_window_is_rejected",
+          "overlay_shape_def",
+          "transfer_shape_def",
+          "disposition_wf_def"
+        ]
+      },
+      "normativeReceiver": [
+        "shapeRules.common",
+        "shapeRules.reasonBinding"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (request.domain != TrustKernelTypes.DOMAIN) revert TrustInvalidCommand(request.actionId, REASON_DOMAIN);"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (request.actionId == bytes32(0) || request.actionId != _actionHash(request, true)) {"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (block.timestamp < request.validAfter || request.validBefore == 0 || block.timestamp > request.validBefore) {",
+          "occurrences": 2
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "_validateActionShape(request);"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testDirectDispositionsAndShapeRules"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-104-ERC3643-DOMAIN"
+        },
+        {
+          "mutation": "MUT-105-ERC3643-IDENTIFIER"
+        },
+        {
+          "mutation": "MUT-103-ERC3643-TIME-WINDOW"
+        },
+        {
+          "mutation": "MUT-91-ERC3643-ACTION-SHAPE"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bounded-runtime-execution",
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testKernelVectorsReproduceOnTheAdapterRuntime"
+        }
+      ],
+      "assumptions": [
+        "A-KECCAK",
+        "A-EVM"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "ADP-SHAPE-02",
+      "endpoint": "profileAdapter",
+      "title": "Only canonical calldata reaches the typed command",
+      "abstractCondition": {
+        "theory": "TRUST_State_Abi_Normal_Form",
+        "facts": [
+          "native_action_decodes_iff_canonical",
+          "noncanonical_action_length_is_rejected",
+          "noncanonical_reversal_length_is_rejected"
+        ]
+      },
+      "normativeReceiver": [
+        "structs.ActionRequest",
+        "structs.ReversalRequest"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "_requireCalldataLength(ACTION_CALLDATA_LENGTH);"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "_requireCalldataLength(REVERSAL_CALLDATA_LENGTH);"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if xor(calldatasize(), expected) { revert(0, 0) }"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testNonCanonicalCalldataIsRejected"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-41-ERC3643-CALLDATA-LENGTH"
+        },
+        {
+          "mutation": "MUT-42-ERC3643-REVERSAL-CALLDATA-LENGTH"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "commands.action.calldataLength"
+        }
+      ],
+      "assumptions": [
+        "A-COMPILER"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "ADP-CASE-01",
+      "endpoint": "profileAdapter",
+      "title": "The case transition table: terminal cases reject, overlays need a fresh case or their own head, a repeated RESTRICT changes nothing, SEIZE needs a case that is not open, dispositions close terminally",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "terminal_case_rejects_action",
+          "overlay_on_open_case_without_head_is_rejected",
+          "cross_case_overlay_head_is_rejected",
+          "second_restrict_in_own_case_is_rejected",
+          "second_seize_in_open_case_is_rejected",
+          "confiscate_success_is_terminal",
+          "disposed_case_def"
+        ]
+      },
+      "normativeReceiver": [
+        "caseTransitions.rules[CT-15]",
+        "caseTransitions.rules[CT-16]",
+        "caseTransitions.rules[CT-4]",
+        "caseTransitions.rules[CT-5]",
+        "caseTransitions.rules[CT-9]"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (caseState.phase == TrustKernelTypes.CasePhase.TERMINAL) revert TrustTerminal(request.caseId);"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (caseState.phase != TrustKernelTypes.CasePhase.NONE) {"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "} else if (caseState.headActionId != head.actionId) {"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (head.actionId != bytes32(0) && caseState.headActionId == head.actionId) {"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (caseState.phase == TrustKernelTypes.CasePhase.OPEN) {",
+          "occurrences": 2
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (!consumedCustody) caseState.family = TrustKernelTypes.CaseFamily.DISPOSITION;"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals"
+        },
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testOverlayCaseConflictsAndFamilies"
+        },
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testCustodyLifecycleAndConfinement"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-92-ERC3643-TERMINAL-CASE-ACTION"
+        },
+        {
+          "mutation": "MUT-93-ERC3643-OVERLAY-REQUIRES-FRESH-CASE"
+        },
+        {
+          "mutation": "MUT-40-ERC3643-CASE-CONFLICT"
+        },
+        {
+          "mutation": "MUT-94-ERC3643-RESTRICT-NO-STATE-CHANGE"
+        },
+        {
+          "mutation": "MUT-95-ERC3643-SEIZE-OPEN-CASE"
+        },
+        {
+          "mutation": "MUT-96-ERC3643-DISPOSITION-TERMINAL"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "caseTransitionRuleIds"
+        },
+        {
+          "kind": "bounded-runtime-execution",
+          "contract": "ERC3643ProfileInvariantTest",
+          "test": "invariantCustodyCaseMatchesTheHandler"
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "ADP-FRZ-01",
+      "endpoint": "profileAdapter",
+      "title": "A profile FREEZE sets an unbounded absolute owned target that must strictly increase; the upstream frozen amount is its saturated projection",
+      "abstractCondition": {
+        "theory": "TRUST_Verified_Profile_Onboarding",
+        "facts": [
+          "saturated_target_def",
+          "resynchronisation_reaches_the_saturated_target",
+          "resynchronisation_never_lowers_an_owned_frozen_amount"
+        ]
+      },
+      "normativeReceiver": [
+        "shapeRules.FREEZE",
+        "profiles.erc3643-verified-full.full"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "request.amount <= _owned[request.subject].frozenTarget"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "owned.frozenTarget = request.amount;"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (expected > current) {"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testProfileFreezeTargetIsUnboundedAndUpstreamFloorSaturates"
+        },
+        {
+          "contract": "ERC3643ProfileTrexFixtureTest",
+          "test": "testInboundGrowthIsRefrozenByPermissionlessResynchronisation"
+        },
+        {
+          "contract": "ERC3643ProfileInvariantTest",
+          "test": "invariantUpstreamFrozenTracksTheOwnedTarget"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-12-ERC3643-FREEZE-DIRECTION"
+        },
+        {
+          "mutation": "MUT-111-ERC3643-FREEZE-TARGET"
+        },
+        {
+          "mutation": "MUT-51-ERC3643-RESYNC-RAISES-FROZEN"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bounded-runtime-execution",
+          "contract": "ERC3643ProfileTrexFixtureTest",
+          "test": "testForcedTransferAutoUnfreezeIsResynchronised"
+        }
+      ],
+      "assumptions": [
+        "A-EXTERNAL"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "ADP-REV-01",
+      "endpoint": "profileAdapter",
+      "title": "A reversal pairs with its original, targets the live head with matching state, restores the prior target or flag, and pops the chain",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "reversal_pairs_def",
+          "reversal_current_effect_def",
+          "unfreeze_success_restores_prior_target",
+          "unfreeze_reopens_the_case_when_a_parent_remains",
+          "terminal_case_rejects_reversal"
+        ]
+      },
+      "normativeReceiver": [
+        "shapeRules.reversal.pairing",
+        "shapeRules.reversal.currentEffect",
+        "caseTransitions.rules[CT-6]"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (!_reversalMatches(original.action, request.reversal)) {"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (head.actionId != actionId || !stateMatches) {"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "_owned[original.subject].frozenTarget = original.priorAmount;"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (parent != bytes32(0)) {"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (_cases[original.caseId].phase == TrustKernelTypes.CasePhase.TERMINAL) {"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testAllSixActionsAndReversals"
+        },
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testDirectDispositionsAndShapeRules"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-98-ERC3643-REVERSAL-PAIRING"
+        },
+        {
+          "mutation": "MUT-97-ERC3643-REVERSAL-CURRENT-HEAD"
+        },
+        {
+          "mutation": "MUT-99-ERC3643-UNFREEZE-PRIOR-TARGET"
+        },
+        {
+          "mutation": "MUT-47-ERC3643-REVERSAL-CLOSES-CHAIN"
+        },
+        {
+          "mutation": "MUT-33-ERC3643-TERMINAL-REVERSAL-GUARD"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bounded-runtime-execution",
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testKernelVectorsReproduceOnTheAdapterRuntime"
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "ADP-CUST-01",
+      "endpoint": "profileAdapter",
+      "title": "Custody is confined to the adapter: a confined SEIZE is a kernel SEIZE whose custodian is the adapter, and the custody record is consumed exactly once",
+      "abstractCondition": {
+        "theory": "TRUST_Verified_Profile_Onboarding",
+        "facts": [
+          "profile_custody_confined_def",
+          "confined_seize_is_a_kernel_seize"
+        ]
+      },
+      "normativeReceiver": [
+        "profiles.erc3643-verified-full.onboarding",
+        "caseTransitions.families.CUSTODY"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "request.subject != request.source || request.custodian != address(this)"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (!custody.active) return false;"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (balance < backing || amount > balance - backing) revert TrustInvalidCommand(commandId, REASON_CUSTODY);"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testCustodyLifecycleAndConfinement"
+        },
+        {
+          "contract": "ERC3643ProfileInvariantTest",
+          "test": "invariantCustodyCaseMatchesTheHandler"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-36-ERC3643-CUSTODIAN-CONFINEMENT"
+        },
+        {
+          "mutation": "MUT-46-ERC3643-CUSTODY-CLOSURE"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bounded-runtime-execution",
+          "contract": "ERC3643ProfileInvariantTest",
+          "test": "invariantSupplyConserved"
+        }
+      ],
+      "assumptions": [
+        "A-EXTERNAL"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "ADP-IMPORT-01",
+      "endpoint": "profileAdapter",
+      "title": "The initial state is the fresh zero state or the exact import manifest: every entry is verified against the live upstream state, declares the owned target and flag, and opens a reversible imported case with a live head",
+      "abstractCondition": {
+        "theory": "TRUST_Verified_Profile_Onboarding",
+        "facts": [
+          "import_entry_state_def",
+          "imported_state_def",
+          "imported_head_record_def",
+          "open_imported_case_def",
+          "empty_manifest_is_the_fresh_zero_state",
+          "imported_entry_declares_the_frozen_target_and_flag",
+          "imported_frozen_entry_opens_a_reversible_freeze_case",
+          "imported_freeze_head_admits_its_unfreeze",
+          "import_case_ids_are_injective"
+        ]
+      },
+      "normativeReceiver": [
+        "profiles.erc3643-verified-full.onboarding",
+        "spec/decisions/09-erc3643-profile-wiring.md"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "_upstreamFrozen(bytes32(0), entry.account) != entry.frozenAmount"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "owned.frozenTarget = entry.frozenAmount;"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (entry.frozenAmount != 0) {"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "_importManifestHash = manifestHash;"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testExactImportManifestOpensReversibleCases"
+        },
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testImportManifestMustMatchUpstreamExactly"
+        },
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testActivationEmitsBindingsAuthorityAndImportCount"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-28-ERC3643-IMPORT-VERIFICATION"
+        },
+        {
+          "mutation": "MUT-45-ERC3643-IMPORTED-CASE"
+        },
+        {
+          "mutation": "MUT-44-ERC3643-MANIFEST-BINDING"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "subjects.profileAdapter.storage"
+        }
+      ],
+      "assumptions": [
+        "A-EXTERNAL",
+        "A-KECCAK"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "ADP-UPSTREAM-01",
+      "endpoint": "profileAdapter",
+      "title": "Upstream state the adapter does not own is an operational stutter (reason 304); resynchronisation only raises the upstream frozen amount toward the owned target",
+      "abstractCondition": {
+        "theory": "TRUST_Verified_Profile_Onboarding",
+        "facts": [
+          "owned_upstream_state_def",
+          "unowned_upstream_state_is_an_operational_stutter",
+          "resynchronisation_never_lowers_an_owned_frozen_amount",
+          "resynchronisation_reaches_the_saturated_target"
+        ]
+      },
+      "normativeReceiver": [
+        "reasonClasses.classes.300",
+        "profiles.erc3643-verified-full.onboarding"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "revert TrustOperationalFailure(commandId, REASON_UPSTREAM_STATE_NOT_OWNED, _addressRef(account));"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "_requireOwnedUpstreamState(request.actionId, request.custodian);"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "_requireOwnedUpstreamState(request.reversalId, original.subject);"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "_requireOwnedUpstreamState(bytes32(0), account);"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testUndeclaredUpstreamStateFailsClosed"
+        },
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testDriftedUpstreamStateFailsClosedOnEveryTouchedAccount"
+        },
+        {
+          "contract": "ERC3643ProfileTrexFixtureTest",
+          "test": "testOrdinaryTransfersRespectAdapterOwnedState"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-27-ERC3643-OWNED-UPSTREAM-STATE"
+        },
+        {
+          "mutation": "MUT-48-ERC3643-REVERSAL-OWNED-STATE"
+        },
+        {
+          "mutation": "MUT-49-ERC3643-CUSTODIAN-OWNED-STATE"
+        },
+        {
+          "mutation": "MUT-50-ERC3643-RESYNC-OWNED-STATE"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bounded-runtime-execution",
+          "contract": "ERC3643ProfileTrexFixtureTest",
+          "test": "testEveryUpstreamMutatorIsClosedToNonAdapters"
+        }
+      ],
+      "assumptions": [
+        "A-EXTERNAL"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "ADP-DEP-01",
+      "endpoint": "profileAdapter",
+      "title": "Identity Registry and Compliance are assessed for every counterparty; topology or dependency code drift, upstream call failure, and upstream post-state mismatch are typed operational stutters",
+      "abstractCondition": {
+        "theory": "TRUST_Bound_Dependency_Assume_Guarantee",
+        "facts": [
+          "dependency_identity_failure_is_reason_200",
+          "dependency_configuration_failure_is_reason_201",
+          "dependency_denial_or_operational_failure_stutters",
+          "dependency_failure_post_def"
+        ]
+      },
+      "normativeReceiver": [
+        "reasonClasses.classes.200",
+        "reasonClasses.classes.300",
+        "reasonClasses.classes.400",
+        "profiles.erc3643-verified-full.full"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "_assessIdentity(request.actionId, request.destination);"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "_assessCompliance(request.actionId, request.source, request.destination, request.amount);"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (!_sealed || !profileGovernor.isFull(address(this))) {"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (!_bindingLive(TrustKernelTypes.BindingKind.POLICY)) {"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (_upstreamFrozen(commandId, account) != expected) {"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testRejectedAndOperationalFailureFailClosedWithStutter"
+        },
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testTopologyDriftFailsClosedAndClearsFull"
+        },
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testDependencyCodeDriftFailsClosed"
+        },
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testUpstreamFailureModesAreTyped"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-37-ERC3643-IDENTITY-ASSESSMENT"
+        },
+        {
+          "mutation": "MUT-38-ERC3643-COMPLIANCE-ASSESSMENT"
+        },
+        {
+          "mutation": "MUT-29-ERC3643-TOPOLOGY-GATE"
+        },
+        {
+          "mutation": "MUT-30-ERC3643-DEPENDENCY-CODE"
+        },
+        {
+          "mutation": "MUT-31-ERC3643-TRANSFER-POSTSTATE"
+        },
+        {
+          "mutation": "MUT-32-ERC3643-FROZEN-POSTSTATE"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "reasonCodes[DEPENDENCY_CODE_MISMATCH]"
+        },
+        {
+          "kind": "bounded-runtime-execution",
+          "contract": "ERC3643ProfileInvariantTest",
+          "test": "invariantTopologyStaysFull"
+        }
+      ],
+      "assumptions": [
+        "A-EXTERNAL"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "ADP-RCPT-01",
+      "endpoint": "profileAdapter",
+      "title": "The receipt is the keccak of the 17-word preimage, binds the dependency root and kind, is stored under the command identifier, and is the final event",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "receipt_matches_forward_def",
+          "receipt_matches_reversal_def",
+          "success_has_final_canonical_receipt_event",
+          "success_returns_the_stored_receipt_hash",
+          "forward_and_reversal_receipts_are_distinguished_by_kind"
+        ]
+      },
+      "normativeReceiver": [
+        "hashes.receiptHash",
+        "interface.eventOrder"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "mcopy(add(ptr, 0x20), record, 0x200)"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "receiptHash := keccak256(ptr, 0x220)"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "_receipts[record.commandId] = record;"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "dependencyRoot: request.dependencyRoot,",
+          "occurrences": 2
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "receiptKind: TrustKernelTypes.ReceiptKind.REVERSAL,"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testReceiptBindsEvidenceAuthorityRootAndFinalEvent"
+        },
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testCanonicalEventOrderAndRevertedTransactionsLeaveNothing"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-100-ERC3643-RECEIPT-PREIMAGE"
+        },
+        {
+          "mutation": "MUT-101-ERC3643-RECEIPT-DEPENDENCY-ROOT"
+        },
+        {
+          "mutation": "MUT-39-ERC3643-RECEIPT-KIND-TAG"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "kernelEvents[RegulatoryReversalApplied]"
+        },
+        {
+          "kind": "bounded-runtime-execution",
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testKernelVectorsReproduceOnTheAdapterRuntime"
+        }
+      ],
+      "assumptions": [
+        "A-KECCAK"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "ADP-ROUTE-01",
+      "endpoint": "profileAdapter",
+      "title": "Every adapter selector is classified; the adapter reports the kernel and verified-profile interface identifiers",
+      "abstractCondition": {
+        "theory": "TRUST_Runtime_Bridge_Generated",
+        "facts": [
+          "profile_adapter_routes_are_exhaustive",
+          "profile_adapter_routes_def",
+          "verified_profile_interface_id_def"
+        ]
+      },
+      "normativeReceiver": [
+        "interface.erc165",
+        "profiles.erc3643-verified-full.profileKind"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "interfaceId == type(IERCTrustKernel).interfaceId"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testDescriptorDependencyStateAndInterfaceIdentifiers"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-102-ERC3643-KERNEL-INTERFACE-ID"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "subjects.profileAdapter.routes"
+        },
+        {
+          "kind": "bridge",
+          "path": "interfaceIds.verifiedProfile"
+        }
+      ],
+      "assumptions": [
+        "A-COMPILER"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "ADP-SEAL-01",
+      "endpoint": "profileAdapter",
+      "title": "The seal is one way, the unsealed adapter is not Full and cannot execute, and the upstream mutators are closed to everything but the adapter",
+      "abstractCondition": {
+        "theory": "TRUST_Verified_Profile_Onboarding",
+        "facts": [
+          "import_entry_state_def",
+          "empty_manifest_is_the_fresh_zero_state",
+          "profile_authorities_def"
+        ]
+      },
+      "normativeReceiver": [
+        "profiles.erc3643-verified-full.onboarding",
+        "profiles.erc3643-verified-full.full"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (_sealed || !profileGovernor.topologySealed() || profileGovernor.exclusiveAdapter() != address(this)) {"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (!_sealed || !profileGovernor.isFull(address(this))) {"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testSealIsOneWayAndManifestMustBeCanonical"
+        },
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testUnsealedAdapterIsNotFullAndCannotExecute"
+        },
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testProfileSealAndDirectBypassClosure"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-29-ERC3643-TOPOLOGY-GATE"
+        },
+        {
+          "mutation": "MUT-07-ERC3643-RAW-BYPASS"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "subjects.profileGovernor.storage"
+        }
+      ],
+      "assumptions": [
+        "A-EXTERNAL"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "ADP-E2E-01",
+      "endpoint": "profileAdapter",
+      "title": "Every accepted execution of the pinned adapter runtime template implements the abstract transaction system over the sealed upstream token (runtime link)",
+      "abstractCondition": {
+        "theory": "TRUST_End_To_End_Composition",
+        "facts": [
+          "locale:pinned_runtime_refinement",
+          "pinned_runtime_refinement.end_to_end_refinement",
+          "heterogeneous_composition_is_conditional_until_certificate"
+        ]
+      },
+      "normativeReceiver": [
+        "spec/decisions/10-refinement-closure.md",
+        "nonclaims"
+      ],
+      "finalSourceConsumers": [
+        {
+          "kind": "compiler-generated",
+          "note": "the consumer is the adapter runtime template (sha256 in subjects.profileAdapter.runtime of the generated bridge) together with the sealed upstream token it drives; no symbolic lane covers the adapter yet"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testKernelVectorsReproduceOnTheAdapterRuntime"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "kind": "not-applicable",
+          "note": "the missing artifact is a proof: a discharge of runtime_link for the adapter runtime, which additionally needs a model of the sealed upstream token's forced transfer and freeze surface. No Kontrol or KEVM lane exists for the adapter."
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "subjects.profileAdapter.runtime"
+        }
+      ],
+      "assumptions": [
+        "A-RUNTIME-LINK",
+        "A-COMPILER",
+        "A-EVM",
+        "A-DEPLOYMENT",
+        "A-EXTERNAL"
+      ],
+      "status": "SUCCESSOR-MANDATORY",
+      "statusReason": "Required for the next rung of the claim ladder, not for the current claim. The adapter has no symbolic lane; its runtime link is entirely open."
+    },
+    {
+      "id": "GOV-SEAL-01",
+      "endpoint": "profileGovernor",
+      "title": "The seal accepts only a canonical import manifest (strictly increasing accounts, no empty entry), binds it once, and names one exclusive adapter",
+      "abstractCondition": {
+        "theory": "TRUST_Verified_Profile_Onboarding",
+        "facts": [
+          "manifest_canonical_def",
+          "import_case_ids_are_injective",
+          "import_case_id_def"
+        ]
+      },
+      "normativeReceiver": [
+        "profiles.erc3643-verified-full.onboarding",
+        "profiles.erc3643-verified-full.manifestHash"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/profiles/ProfileGovernor.sol",
+          "snippet": "entry.account == address(0) || entry.account <= previous"
+        },
+        {
+          "path": "implementation/src/profiles/ProfileGovernor.sol",
+          "snippet": "if (topologySealed || adapter == address(0)) {"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testSealIsOneWayAndManifestMustBeCanonical"
+        },
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testExactImportManifestOpensReversibleCases"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-107-ERC3643-MANIFEST-CANONICAL"
+        },
+        {
+          "mutation": "MUT-44-ERC3643-MANIFEST-BINDING"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "subjects.profileGovernor.routes"
+        },
+        {
+          "kind": "bridge",
+          "path": "subjects.profileGovernor.storage"
+        }
+      ],
+      "assumptions": [
+        "A-KECCAK"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "SHR-ABI-01",
+      "endpoint": "shared",
+      "title": "The typed command ABI (word counts, calldata lengths, selectors, action and reversal codes, reason codes, case rule identifiers) is exactly the kernel's and every runtime is within the EIP-170 limit",
+      "abstractCondition": {
+        "theory": "TRUST_Runtime_Bridge_Generated",
+        "facts": [
+          "action_code_is_exact",
+          "reversal_code_is_exact",
+          "generated_calldata_lengths_are_exact",
+          "runtimes_are_within_the_eip170_limit",
+          "reason_codes_are_distinct",
+          "case_transition_rule_ids_are_distinct"
+        ]
+      },
+      "normativeReceiver": [
+        "enums.ActionKind",
+        "enums.ReversalKind",
+        "reasonClasses.classes",
+        "caseTransitions.rules[CT-1]"
+      ],
+      "finalSourceConsumers": [
+        {
+          "kind": "compiler-generated",
+          "note": "the selectors and calldata layout are emitted by solc 0.8.36 from the generated kernel interface; scripts/generate-runtime-bridge-v2.mjs --check fails in CI if the compiled artifacts and the kernel schema disagree"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustKernelVectorsTest",
+          "test": "testConstantsMatchTheCompiledKernel"
+        },
+        {
+          "contract": "TrustKernelVectorsTest",
+          "test": "testActionVectorsReproduce"
+        },
+        {
+          "contract": "TrustKernelVectorsTest",
+          "test": "testReversalVectorsReproduce"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "kind": "behavioral-negative",
+          "contract": "TrustKernelVectorsTest",
+          "test": "testConstantsMatchTheCompiledKernel",
+          "note": "the test compares every kernel constant, selector, and enum ordinal of the compiled endpoints with the conformance vector fixture; any drift in the generated kernel copy or the compiled selectors fails it, and the bridge generator check fails independently"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "commands"
+        },
+        {
+          "kind": "bridge",
+          "path": "actionCodes"
+        },
+        {
+          "kind": "bridge",
+          "path": "reversalCodes"
+        },
+        {
+          "kind": "bridge",
+          "path": "eip170RuntimeLimit"
+        },
+        {
+          "kind": "vectors",
+          "ids": [
+            "ACTION-FREEZE",
+            "ACTION-SEIZE",
+            "ACTION-CONFISCATE",
+            "ACTION-LIQUIDATE",
+            "ACTION-RESTRICT",
+            "ACTION-RECOVER",
+            "ACTION-CONFISCATE-CUSTODY",
+            "REVERSAL-UNFREEZE",
+            "REVERSAL-RELEASE",
+            "REVERSAL-UNRESTRICT"
+          ]
+        }
+      ],
+      "assumptions": [
+        "A-COMPILER"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "SHR-DEC-01",
+      "endpoint": "shared",
+      "title": "Canonicality of typed calldata is exactly the conjunction of the exact-length guard and the fixed-width field guards at the generated positions; a rejected shell reverts and preserves the frame",
+      "abstractCondition": {
+        "theory": "TRUST_C0_Decode_Slices",
+        "facts": [
+          "c0_exact_length_gate_accepts_iff_shape_length",
+          "c0_unsigned_guard_accepts_iff_word_fits",
+          "c0_enum_guard_accepts_iff_below_bound",
+          "c0_action_canonicality_is_exact_guard_conjunction",
+          "c0_reversal_canonicality_is_exact_guard_conjunction",
+          "c0_reject_shell_reverts_and_preserves_frame"
+        ]
+      },
+      "normativeReceiver": [
+        "structs.ActionRequest",
+        "structs.ReversalRequest"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if xor(calldatasize(), expected) { revert(0, 0) }"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if xor(calldatasize(), expected) { revert(0, 0) }"
+        },
+        {
+          "kind": "compiler-generated",
+          "note": "the per-field guards are compiler-emitted decoder checks at the word positions bound in commands.action.guards and commands.reversal.guards"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testNonCanonicalCalldataIsRejected"
+        },
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testNonCanonicalCalldataIsRejected"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-23-CALLDATA-LENGTH"
+        },
+        {
+          "mutation": "MUT-41-ERC3643-CALLDATA-LENGTH"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "commands.action.guards"
+        },
+        {
+          "kind": "bridge",
+          "path": "commands.reversal.guards"
+        }
+      ],
+      "assumptions": [
+        "A-COMPILER"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "SHR-DEC-02",
+      "endpoint": "shared",
+      "title": "A masked fixed-width word always satisfies the unsigned guard of its width (the compiler's mask-and-compare guard cannot reject a clean field)",
+      "abstractCondition": {
+        "theory": "TRUST_Decoder_Guard_Words",
+        "facts": [
+          "guard_mask_and_uint_bounds",
+          "decoder_uint48_guard_hypotheses_redundant",
+          "decoder_uint64_guard_hypotheses_redundant",
+          "decoder_uint160_guard_hypotheses_redundant",
+          "masked_word_satisfies_unsigned_guard"
+        ]
+      },
+      "normativeReceiver": [
+        "structs.ActionRequest"
+      ],
+      "finalSourceConsumers": [
+        {
+          "kind": "compiler-generated",
+          "note": "the mask-and-compare guards for uint48, uint64, and address fields are emitted by solc 0.8.36 at the positions bound in commands.action.guards; the theorems are facts about 256-bit words and bind no program counter"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustKernelVectorsTest",
+          "test": "testFieldBindingNegativeVectors"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "kind": "behavioral-negative",
+          "contract": "TrustKernelVectorsTest",
+          "test": "testFieldBindingNegativeVectors",
+          "note": "the negative field-binding vectors carry dirty high bits in fixed-width fields and must be rejected by the compiled decoder; the theorems state that clean fields are never rejected, so together they pin the guard to exactly the dirty-bit condition"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "commands.action.guards"
+        }
+      ],
+      "assumptions": [
+        "A-COMPILER"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "SHR-STATE-01",
+      "endpoint": "shared",
+      "title": "State well-formedness: custody backing equals the sum of active custody, the required floor is additive without double counting, and the ordinary available amount never spends backing or the own frozen floor; an unbounded target saturates only at observation",
+      "abstractCondition": {
+        "theory": "TRUST_Compositional_State",
+        "facts": [
+          "custody_consistent_def",
+          "required_floor_def",
+          "ordinary_available_def",
+          "custody_backing_equals_active_custody_sum",
+          "physical_balance_covers_custody_backing",
+          "required_floor_is_additive_without_double_counting",
+          "ordinary_available_plus_required_floor",
+          "ordinary_available_never_spends_custody_backing",
+          "ordinary_available_never_spends_own_frozen_floor",
+          "unbounded_freeze_target_saturates_only_at_observation",
+          "settlement_pair_commitment_is_injective"
+        ]
+      },
+      "normativeReceiver": [
+        "caseTransitions.crossCase",
+        "shapeRules.FREEZE"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "uint256 ownPhysical = balance - backing;"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "return frozen > balance ? balance : frozen;"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "return frozen >= ownPhysical ? 0 : ownPhysical - frozen;"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testCustodyBackingAndOwnFrozenFloorDoNotDoubleCount"
+        },
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testOverlayTargetSaturatesAfterCrossCaseDisposition"
+        },
+        {
+          "contract": "TrustStatefulInvariantTest",
+          "test": "invariantSupplyConserved"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-74-ORDINARY-BACKING"
+        },
+        {
+          "mutation": "MUT-01-FROZEN-FLOOR"
+        },
+        {
+          "mutation": "MUT-72-UNBACKED-GUARD"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "subjects.native.storage"
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "SHR-NF-01",
+      "endpoint": "shared",
+      "title": "The concrete storage of an endpoint is a sparse owned-domain projection over distinct, nonaliasing compiler slots; the shared frame is preserved",
+      "abstractCondition": {
+        "theory": "TRUST_State_Abi_Normal_Form",
+        "facts": [
+          "sparse_join_def",
+          "owned_domain_def",
+          "derived_slots_def",
+          "owned_sparse_projection_reassembles",
+          "shared_frame_is_preserved",
+          "finite_declared_preimages_yield_nonalias_slots",
+          "compiler_layout_labels_are_distinct"
+        ]
+      },
+      "normativeReceiver": [
+        "nonclaims"
+      ],
+      "finalSourceConsumers": [
+        {
+          "kind": "compiler-generated",
+          "note": "slot assignment is the compiler storage layout of the three endpoints, bound in subjects.*.storage of the generated bridge from the forge artifacts"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustStatefulInvariantTest",
+          "test": "invariantNoPersistentRouteTicket"
+        },
+        {
+          "contract": "TrustKernelVectorsTest",
+          "test": "testFixtureBindingsAndDependencyRoot"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "kind": "behavioral-negative",
+          "contract": "TrustStatefulInvariantTest",
+          "test": "invariantNoPersistentRouteTicket",
+          "note": "reads the route ticket word at the layout-derived slot; the ledger verifier cross-checks that slot against the bridge storage table, so a layout change that is not regenerated fails both"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "subjects.native.storage"
+        },
+        {
+          "kind": "bridge",
+          "path": "subjects.profileAdapter.storage"
+        },
+        {
+          "kind": "bridge",
+          "path": "subjects.profileGovernor.storage"
+        }
+      ],
+      "assumptions": [
+        "A-LAYOUT",
+        "A-COMPILER"
+      ],
+      "status": "CLOSED"
+    },
+    {
+      "id": "SHR-ROW-01",
+      "endpoint": "shared",
+      "title": "Omitting a terminal flag, a settlement commitment, a restriction flag, an entitlement, a prior amount, or a prior flag from a receipt or state is distinguishable (the row corollaries)",
+      "abstractCondition": {
+        "theory": "TRUST_M4_Action_Reversal_Row_Corollaries",
+        "facts": [
+          "act03_terminal_flag_omission_is_distinguished",
+          "act04_custody_terminal_flag_omission_is_distinguished",
+          "act05_settlement_omission_is_distinguished",
+          "act06_custody_settlement_omission_is_distinguished",
+          "act07_restriction_flag_omission_is_distinguished",
+          "act08_entitlement_omission_is_distinguished",
+          "act09_custody_entitlement_omission_is_distinguished",
+          "rvr01_prior_amount_restoration_omission_is_distinguished",
+          "rvr02_terminal_flag_omission_is_distinguished",
+          "rvr03_prior_flag_restoration_omission_is_distinguished"
+        ]
+      },
+      "normativeReceiver": [
+        "structs.Receipt",
+        "structs.ActionRecord"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "mcopy(add(ptr, 0x20), record, 0x200)"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "mcopy(add(ptr, 0x20), record, 0x200)"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "TrustActionsUnitTest",
+          "test": "testReceiptBindsCanonicalCommandHashEvidenceAndFinalEvent"
+        },
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testReceiptBindsEvidenceAuthorityRootAndFinalEvent"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-22-RECEIPT-PREIMAGE"
+        },
+        {
+          "mutation": "MUT-100-ERC3643-RECEIPT-PREIMAGE"
+        },
+        {
+          "mutation": "MUT-09-CASE-TERMINALITY"
+        },
+        {
+          "mutation": "MUT-68-UNFREEZE-PRIOR-TARGET"
+        },
+        {
+          "mutation": "MUT-69-UNRESTRICT-PRIOR-FLAG"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "kontrol-proof",
+          "proof": "testKontrol_LiquidateExactDeltaReceiptAndFinalLog"
+        }
+      ],
+      "assumptions": [
+        "A-KECCAK"
+      ],
+      "status": "CLOSED"
+    }
+  ]
+}

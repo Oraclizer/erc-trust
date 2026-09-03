@@ -13,25 +13,17 @@ session ERC_TRUST = Cross_Domain_State_Preservation +
     TRUST_Compositional_State
     TRUST_Concrete_Configuration
     TRUST_Runtime_Bridge_Generated
-    TRUST_Runtime_Bridge_Current_Profile_Generated
     TRUST_State_Abi_Normal_Form
     TRUST_C0_Decode_Slices
-    TRUST_C0_Runtime_Occurrences_Generated
-    TRUST_C0_Runtime_Composition
-    TRUST_C0_UINT48_Redundant_Hypotheses
-    TRUST_C0_UINT160_Redundant_Hypotheses
-    TRUST_C0_UINT64_Redundant_Hypotheses
+    TRUST_Decoder_Guard_Words
     TRUST_Bound_Dependency_Assume_Guarantee
     TRUST_Retrieve_Relation
     TRUST_Transaction_Refinement
     TRUST_Reusable_Summaries
     TRUST_End_To_End_Composition
-    TRUST_ACT_01_Current_Profile
-    TRUST_M4_STATE_04_Current_Profile
-    TRUST_M4_STATE_05_Current_Profile
+    TRUST_Verified_Profile_Onboarding
     TRUST_M4_Action_Reversal_Row_Corollaries
-    TRUST_M4_Core_Balance_Reversal_Current_Profile
-    TRUST_M4_Core_Contract_Boundary_Current_Profile
+    TRUST_Obligation_Ledger_Generated
     Proof_Audit
   document_files
     "root.tex"

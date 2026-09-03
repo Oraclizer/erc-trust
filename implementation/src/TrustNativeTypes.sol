@@ -27,17 +27,17 @@ library TrustNativeTypes {
         bool active;
     }
 
-    /// @dev Per-subject live head of an overlay family (FREEZE or RESTRICT).
+    /// @dev Per-subject live head of an overlay family (FREEZE or RESTRICT). The head is identified by
+    ///      the action itself; the action record and the effect record are immutable once written, so
+    ///      no separate hash of their fields is stored.
     struct EffectHead {
         bytes32 actionId;
-        bytes32 effectHash;
         uint64 generation;
     }
 
     /// @dev Per-action position in the owning case's amendment chain.
     struct EffectRecord {
         bytes32 parentActionId;
-        bytes32 effectHash;
         uint64 generation;
     }
 

@@ -1,10 +1,18 @@
-# Exact-runtime refinement with KEVM
+# KEVM inputs for the kernel version 2 runtimes
 
-This directory is the concrete-runtime half of the ERC-TRUST refinement
-chain. It is not a replacement for the Isabelle abstract semantics and it is
-not a continuation of the three preserved bounded Kontrol checks.
+This directory holds the concrete-runtime inputs of the ERC-TRUST refinement chain for the
+successor code under `implementation/`. It contains no claim specifications and reports no
+completed KEVM program.
 
-The intended composition is:
+Contents:
+
+| Path | What it is |
+| --- | --- |
+| `generated/trust-runtime-bridge.k` | The runtime templates of the native token, the ERC-3643 profile adapter, and the profile governor as K byte-stack macros, regenerated from the compiled artifacts by `scripts/generate-runtime-bridge-v2.mjs`; the same generation writes `formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy` and the JSON schema under `evidence/end-to-end-refinement/runtime-bridge-v2/` |
+| `compile-spec-definition.sh` | Compiles a claim specification against the pinned KEVM semantics named in the lock |
+| `dependencies.lock.json` | The KEVM semantics source, compiled definition, K, Kore, Booster, Z3, compiler, and host identities; no dependency source is vendored |
+
+The intended composition is unchanged:
 
 ```text
 abstract TRUST transition
@@ -12,64 +20,22 @@ abstract TRUST transition
   -> exact pinned CANCUN EVM runtime execution through KEVM reachability
 ```
 
-The authoritative KEVM run starts at the runtime dispatcher with exact raw
-calldata, account code, storage, caller, time, chain context, gas mode,
-external accounts, returndata, and log state. It ends only at a success or
-revert halt. Booster is disabled for the authoritative run. The installed
-Booster closure remains identified because preserved bounded cross-checks may
-use it.
+What exists today for the successor runtimes is the first arrow (the Isabelle session
+`ERC_TRUST`) and the obligation ledger that connects its conditions to the source
+(`evidence/end-to-end-refinement/obligation-ledger-v3.json`, decision 10). The second arrow is
+the locale assumption `pinned_runtime_refinement.runtime_link` in
+`TRUST_End_To_End_Composition.thy`; it is not discharged. The four bounded Kontrol proofs
+under `implementation/kontrol/` are instances of it on the native runtime, recorded in
+`evidence/kontrol-results-v3.json`; they are not the KEVM program.
 
-`dependencies.lock.json` separates the KEVM semantics source from the stale
-`kevm version` label and records the source, compiled definition, K, Kore,
-Booster, Z3, compiler, and host identities. No dependency source is vendored
-into this repository.
+The candidate 2 KEVM claim specifications, row bundles, reusable claims, runner scripts, and
+generated bridges were bound to the candidate 2 runtime template and the version 1 kernel.
+They are preserved byte for byte under `evidence/candidate-2/formal/kevm/` and are not inputs
+for the successor.
 
-Completion requires all of the following:
+Regenerate and check the bridge from the repository root after `forge build`:
 
-- direct-runtime claims for all six actions and all three reversals;
-- direct and custody paths where both exist;
-- malformed calldata, rejection, dependency failure, malformed returndata,
-  and downstream revert-to-stutter claims;
-- exact storage frames, finite mapping-key nonalias premises, and idle
-  auxiliary state;
-- external-call and exact-use ticket assume/guarantee claims;
-- complete committed event order and final receipt relation;
-- a generated-and-reverse-verified bridge to the Isabelle configuration;
-- obligation-index coverage, negative adequacy, and independent replay.
-
-Until those artifacts exist and replay cleanly, this directory reports an
-open proof program rather than end-to-end completion.
-
-The first discharged row is `FAIL-05`. Its exact unknown-selector runtime
-claim, typed-payload semantic mutant, named Isabelle theorem, checked selector
-bridge, and independent replay report are indexed under
-`evidence/end-to-end-refinement/`. This is one row of 79 and is not a program
-completion claim.
-
-The repository-owned replay entry point is:
-
-```text
-bash formal/kevm/run-runtime-claims.sh \
-  --positive-definition <exact-positive-definition> \
-  --negative-definition <exact-negative-definition> \
-  --no-use-booster
+```bash
+node scripts/generate-runtime-bridge-v2.mjs
+node scripts/generate-runtime-bridge-v2.mjs --check
 ```
-
-The runner verifies the definition and source hashes before executing, imports
-the already compiled runtime modules to avoid K absolute-source redeclaration,
-checks the positive KCFG and expected-negative witness, and emits a sanitized
-durable report without retaining temporary proof paths.
-
-The initial ABI calldata campaign replay entry point is:
-
-```text
-bash formal/kevm/run-abi-calldata-claims.sh \
-  --definition <exact-positive-definition> \
-  --no-use-booster
-```
-
-Its current sanitized record is
-`evidence/end-to-end-refinement/kevm/abi-calldata-initial-campaign.json`.
-The selector-only ABI-04 action case passes, but the ABI-03 trailing-word case
-is backend-blocked during SMT target subsumption. The report is bounded
-campaign evidence only; it discharges neither ABI obligation.

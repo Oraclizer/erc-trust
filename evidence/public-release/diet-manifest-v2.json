@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "kind": "ERC_TRUST_PUBLIC_TREE_DIET_MANIFEST_V2",
   "status": "PASS_SUCCESSOR_TREE_ACCOUNTING",
-  "date": "2026-09-01",
+  "date": "2026-09-03",
   "historicalRemovalSet": {
     "path": "evidence/public-release/diet-manifest-v1.json",
     "sha256": "0e7aae7185170a71f67f763f146bd2f6b2416c9e2a9783b099282142620b49ea",
@@ -12,8 +12,8 @@
   "summary": {
     "removedFiles": 613,
     "removedBytes": 27687711,
-    "retainedFiles": 871,
-    "retainedBytesExcludingManifest": 20156275,
+    "retainedFiles": 881,
+    "retainedBytesExcludingManifest": 20673698,
     "successorFilesAdded": 31,
     "successorBytesAdded": 4275167
   },

@@ -38,6 +38,10 @@ and operations require separate evidence.
 | Preserved FREEZE pilot | `pilot/` |
 | Exact result and release bindings | `evidence/` |
 | Isabelle/Solidity applicability | `evidence/isabelle-solidity-applicability.md` |
+| Successor obligation ledger (kernel version 2) | `evidence/end-to-end-refinement/obligation-ledger-v3.json`; rendered `obligation-ledger-summary-v3.json`, `central-closure-v3.json`, and `formal/isabelle/ERC_TRUST/TRUST_Obligation_Ledger_Generated.thy` |
+| Successor runtime bridge | `evidence/end-to-end-refinement/runtime-bridge-v2/`; `formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy`; `formal/kevm/generated/trust-runtime-bridge.k` |
+| Successor Kontrol receipt | `evidence/kontrol-results-v3.json` |
+| Superseded candidate 2 formal artifacts | `evidence/candidate-2/formal/` |
 | End-to-end evidence map | `evidence/candidate-2/end-to-end-refinement/README.md` |
 | End-to-end semantic decision | `evidence/candidate-2/end-to-end-refinement/semantic-alignment-decision.md` |
 | End-to-end theorem obligations | `evidence/candidate-2/end-to-end-refinement/theorem-obligations.md` |
@@ -71,6 +75,38 @@ foundation-commit drift, any mapped-file drift, a missing registration, a
 wrong import, and a wrong overlay commit. The temporary session is removed
 when a stable public foundation commit directly provides the same qualified
 theory and the same succession verification passes.
+
+## Successor refinement closure (kernel version 2)
+
+The successor code under `implementation/` is connected to the abstract model by
+the central obligation ledger described in `spec/decisions/10-refinement-closure.md`.
+The Isabelle session models kernel version 2 directly; the runtime bridge is
+regenerated from the compiled artifacts of the native token, the ERC-3643
+profile adapter, and the profile governor; and every closed ledger row names
+the exact source consumer, the positive activation test, the consumer-removal
+mutation or behavioral negative, and the compiled or downstream consumer of one
+abstract condition. The verifier checks every anchor against the current tree
+and renders the ledger into the Isabelle session, so a cited fact cannot
+disappear without failing the build.
+
+The claim this establishes is "mapped implementation evidence; end-to-end
+refinement incomplete". The locale assumption `runtime_link` in
+`TRUST_End_To_End_Composition.thy` is not discharged: no theorem states that
+the compiled runtime implements the model. The four Kontrol proofs rerun on the
+successor native runtime and the Foundry executions are bounded instances of
+that link, and the adapter has no symbolic lane. The two ledger rows that name
+the link are open, the closure record is conditional, and no Full or
+refinement-complete wording applies to the successor. Replay from the
+repository root:
+
+```bash
+forge build
+node scripts/generate-runtime-bridge-v2.mjs --check
+node scripts/verify-obligation-ledger-v3.mjs
+```
+
+The sections that follow describe the shipped `0.1.0-candidate.2` package and
+its historical evidence.
 
 ## Native Full financial-core refinement scope
 
@@ -158,6 +194,9 @@ definition, and correspondence hashes; they reject extra premises, carrier
 changes, local semantic rules, and forbidden computation-reflection shortcuts.
 
 ## Model-to-implementation refinement map
+
+This table is the candidate 2 map. The successor map is the obligation ledger
+(`evidence/end-to-end-refinement/obligation-ledger-v3.json`).
 
 | Obligation | Abstract anchor | Reference-implementation anchor | Current evidence boundary |
 | --- | --- | --- | --- |

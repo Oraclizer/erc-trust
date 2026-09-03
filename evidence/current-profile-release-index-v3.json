@@ -7,12 +7,12 @@
   "identity": {
     "certoraInputsSha256": null,
     "formalRoot": {
-      "rootSha256": "d83e2b779f428e0dc40307c85e6d7781bf2282558e9c10496d7435381048de93",
-      "theoryFiles": 30
+      "rootSha256": "6f614023d8b2a7d1a2e964b9c8a971e14f7711eaece04cf7e57daf9bdfd03385",
+      "theoryFiles": 22
     },
     "kontrolInputsSha256": "5d8f38006416e02aa7664a68f3ad108e2e05aba1d9abe0c7d339f8e64c4e67fb",
     "sourceRootAlgorithm": "sha256-raw-files-case-sensitive-path-order-v1",
-    "sourceRootSha256": "a13b09d85956c84548d4f75c09a937451624a3594986aa07765c27b0551dcba5"
+    "sourceRootSha256": "7d4b77b88ce1cfc9255abc810d306217df9cd34f27060dc9325fda8a9a35920e"
   },
   "kind": "ERC_TRUST_CURRENT_PROFILE_RELEASE_INDEX_V3",
   "lanes": {
@@ -28,19 +28,14 @@
       "status": "PENDING"
     },
     "foundry": {
-      "receipt": {
-        "path": "evidence/foundry-results-v3.json",
-        "sha256": "38b662c182050b909095838c2ddfcc521c560a68ad1a9571cf31acfebcdb6996"
-      },
-      "status": "PASS",
-      "tests": 87
+      "owner": "this change: continuous-integration Foundry receipt for the successor source",
+      "receipt": "evidence/foundry-results-v3.json",
+      "status": "PENDING"
     },
     "isabelleBuild": {
-      "receipt": {
-        "path": "evidence/isabelle-results-v3.json",
-        "sha256": "69898791f6496996591a94dac889bd39223a713e23b8ed7c38dab0ec4373f67f"
-      },
-      "status": "PASS"
+      "owner": "this change: continuous-integration Isabelle receipt for the current formal root",
+      "receipt": "evidence/isabelle-results-v3.json",
+      "status": "PENDING"
     },
     "isabelleRuntimeBinding": {
       "owner": "formal refinement change: regenerate the runtime bridge theories for the successor runtime",
@@ -59,76 +54,30 @@
       "status": "PENDING"
     },
     "mutation": {
-      "ids": [
-        "MUT-01-FROZEN-FLOOR",
-        "MUT-02-ROUTE-CONSUMPTION",
-        "MUT-03-RECEIPT-LAST",
-        "MUT-04-FAIL-CLOSED",
-        "MUT-05-FIXED-ACTION",
-        "MUT-06-NONCE-CONSUMPTION",
-        "MUT-07-ERC3643-RAW-BYPASS",
-        "MUT-08-FREEZE-DIRECTION",
-        "MUT-09-CASE-TERMINALITY",
-        "MUT-10-CUSTODY-CLOSURE",
-        "MUT-11-REVERSAL-POLICY",
-        "MUT-12-ERC3643-FREEZE-DIRECTION",
-        "MUT-13-TERMINAL-REVERSAL-GUARD",
-        "MUT-14-DEPENDENCY-ROOT-COMPARISON",
-        "MUT-15-DEPENDENCY-EPOCH-INCREMENT",
-        "MUT-16-ROOT-TAG",
-        "MUT-17-ROOT-ORDER",
-        "MUT-18-CASE-CONFLICT",
-        "MUT-19-OVERLAY-DISPOSITION",
-        "MUT-20-RECEIPT-KIND-TAG",
-        "MUT-21-REVERSAL-CLOSES-CHAIN",
-        "MUT-22-RECEIPT-PREIMAGE",
-        "MUT-23-CALLDATA-LENGTH",
-        "MUT-24-IDENTITY-ASSESSMENT",
-        "MUT-25-BINDING-ECHO",
-        "MUT-26-REVERSAL-CALLDATA-LENGTH",
-        "MUT-27-ERC3643-OWNED-UPSTREAM-STATE",
-        "MUT-28-ERC3643-IMPORT-VERIFICATION",
-        "MUT-29-ERC3643-TOPOLOGY-GATE",
-        "MUT-30-ERC3643-DEPENDENCY-CODE",
-        "MUT-31-ERC3643-TRANSFER-POSTSTATE",
-        "MUT-32-ERC3643-FROZEN-POSTSTATE",
-        "MUT-33-ERC3643-TERMINAL-REVERSAL-GUARD",
-        "MUT-34-ERC3643-DEPENDENCY-ROOT-COMPARISON",
-        "MUT-35-ERC3643-ROOT-TAG",
-        "MUT-36-ERC3643-CUSTODIAN-CONFINEMENT",
-        "MUT-37-ERC3643-IDENTITY-ASSESSMENT",
-        "MUT-38-ERC3643-COMPLIANCE-ASSESSMENT",
-        "MUT-39-ERC3643-RECEIPT-KIND-TAG",
-        "MUT-40-ERC3643-CASE-CONFLICT",
-        "MUT-41-ERC3643-CALLDATA-LENGTH",
-        "MUT-42-ERC3643-REVERSAL-CALLDATA-LENGTH",
-        "MUT-43-ERC3643-NONCE-CONSUMPTION",
-        "MUT-44-ERC3643-MANIFEST-BINDING",
-        "MUT-45-ERC3643-IMPORTED-CASE",
-        "MUT-46-ERC3643-CUSTODY-CLOSURE",
-        "MUT-47-ERC3643-REVERSAL-CLOSES-CHAIN",
-        "MUT-48-ERC3643-REVERSAL-OWNED-STATE",
-        "MUT-49-ERC3643-CUSTODIAN-OWNED-STATE",
-        "MUT-50-ERC3643-RESYNC-OWNED-STATE",
-        "MUT-51-ERC3643-RESYNC-RAISES-FROZEN"
-      ],
-      "killed": 51,
-      "receipt": {
-        "path": "evidence/mutation-results.json",
-        "sha256": "5f09b3c2fbec31896c54c33dd9af5e8ca0ddf0fff2a0ca7fc02166c08669a2e5"
+      "owner": "this change: mutation campaign on the successor source",
+      "receipt": "evidence/mutation-results.json",
+      "status": "PENDING"
+    },
+    "obligationLedger": {
+      "claim": "mapped implementation evidence; end-to-end refinement incomplete",
+      "closure": "CONDITIONAL",
+      "owner": "runtime assurance change: deterministic build receipt binding the bridge runtime",
+      "receipt": null,
+      "rows": {
+        "closed": 3,
+        "closedPendingReceipt": 65,
+        "currentMandatory": 0,
+        "notApplicable": 1,
+        "rows": 71,
+        "separateProfile": 0,
+        "successorMandatory": 2
       },
-      "status": "PASS",
-      "total": 51
+      "status": "PENDING"
     },
     "runtime": {
-      "eip170MarginBytes": 4332,
-      "receipt": {
-        "path": "evidence/deterministic-build.json",
-        "sha256": "7f1d7ee825697931204196d81381f1231eb7dc71b581b391836d4984454b671a"
-      },
-      "runtimeBytes": 20244,
-      "runtimeTemplateSha256": "5f8e5565f9de8cc4663c8d3837e768fe83197e61b0db686899c83051d0329d86",
-      "status": "PASS"
+      "owner": "this change: deterministic build receipt for the successor source",
+      "receipt": "evidence/deterministic-build.json",
+      "status": "PENDING"
     },
     "runtimeBinding": {
       "owner": "runtime assurance change: two-layer runtime binding for the successor subjects",
@@ -144,7 +93,12 @@
     "No compiler correctness, audit, deployment identity, production readiness, or external legal truth is claimed."
   ],
   "pendingLanes": [
+    "runtime",
+    "foundry",
+    "mutation",
+    "isabelleBuild",
     "isabelleRuntimeBinding",
+    "obligationLedger",
     "kontrol",
     "kontrolInputs",
     "certora",

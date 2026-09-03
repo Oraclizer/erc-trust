@@ -483,6 +483,13 @@ contract TrustActionsUnitTest is TrustTestBase {
         _expectInvalid(
             abi.encodeCall(token.executeRegulatoryAction, (secondSeize)), 8, "CT-10 second seize in custody case"
         );
+        TrustKernelTypes.ActionRequest memory freezeInCustody =
+            _request(TrustKernelTypes.ActionKind.FREEZE, 99, 1 ether);
+        freezeInCustody.caseId = seize.caseId;
+        freezeInCustody.actionId = token.deriveActionId(freezeInCustody);
+        _expectInvalid(
+            abi.encodeCall(token.executeRegulatoryAction, (freezeInCustody)), 10, "CT-16 overlay in custody case"
+        );
 
         TrustKernelTypes.ActionRequest memory wrongAmount =
             _custodyDisposition(TrustKernelTypes.ActionKind.CONFISCATE, seize, 92);
@@ -908,6 +915,64 @@ contract TrustActionsUnitTest is TrustTestBase {
 
         token.executeRegulatoryReversal(_reversal(seize.actionId, TrustKernelTypes.ReversalKind.RELEASE, 164));
         _assertEq(token.balanceOf(address(custodian)), 15 ether, "release preserves own units");
+
+        TrustKernelTypes.ActionRequest memory afterRelease =
+            _request(TrustKernelTypes.ActionKind.CONFISCATE, 165, 1 ether);
+        afterRelease.subject = address(custodian);
+        afterRelease.source = address(custodian);
+        afterRelease.actionId = token.deriveActionId(afterRelease);
+        token.executeRegulatoryAction(afterRelease);
+        _assertEq(token.balanceOf(address(custodian)), 14 ether, "release restored the custodian's unbacked units");
+    }
+
+    function testReversalReplayAndRestrictionTransferBlock() external {
+        TrustKernelTypes.ActionRequest memory freeze = _request(TrustKernelTypes.ActionKind.FREEZE, 180, 3 ether);
+        token.executeRegulatoryAction(freeze);
+        TrustKernelTypes.ReversalRequest memory unfreeze =
+            _reversal(freeze.actionId, TrustKernelTypes.ReversalKind.UNFREEZE, 181);
+        token.executeRegulatoryReversal(unfreeze);
+        (bool ok, bytes memory result) = _call(abi.encodeCall(token.executeRegulatoryReversal, (unfreeze)));
+        _assert(!ok && _selector(result) == IERCTrustKernel.TrustReplay.selector, "reversal replay");
+        _assertEq(_wordAt(result, 0), unfreeze.reversalId, "replay key is the reversalId");
+
+        TrustKernelTypes.ActionRequest memory restrict = _request(TrustKernelTypes.ActionKind.RESTRICT, 182, 0);
+        token.executeRegulatoryAction(restrict);
+        (ok, result) = _call(abi.encodeCall(token.transfer, (address(buyer), 1 ether)));
+        _assert(
+            !ok && _selector(result) == IERC7943Fungible.ERC7943CannotSend.selector, "restricted sender cannot send"
+        );
+        (ok, result) = address(buyer).call(abi.encodeCall(buyer.transferToken, (token, address(this), 0)));
+        _assert(
+            !ok && _selector(result) == IERC7943Fungible.ERC7943CannotReceive.selector,
+            "restricted receiver cannot receive"
+        );
+        token.executeRegulatoryReversal(_reversal(restrict.actionId, TrustKernelTypes.ReversalKind.UNRESTRICT, 183));
+        _assert(token.transfer(address(buyer), 1 ether), "transfers resume after unrestrict");
+    }
+
+    function testGovernanceAuthorizationIsConsumedOnce() external {
+        token.configureAuthority(AUTHORITY_REF, address(this), true, keccak256("GOV-ONCE"), 300);
+        (bool ok, bytes memory result) = _call(
+            abi.encodeCall(token.configureAuthority, (AUTHORITY_REF, address(this), true, keccak256("GOV-ONCE"), 301))
+        );
+        _assert(!ok && _selector(result) == IERCTrustKernel.TrustReplay.selector, "authorization id reused");
+        (ok, result) = _call(
+            abi.encodeCall(token.configureAuthority, (AUTHORITY_REF, address(this), true, keccak256("GOV-TWICE"), 300))
+        );
+        _assert(!ok && _selector(result) == IERCTrustKernel.TrustReplay.selector, "governance nonce reused");
+        (ok, result) =
+            _call(abi.encodeCall(token.configureAuthority, (AUTHORITY_REF, address(this), true, bytes32(0), 302)));
+        _assert(!ok && _selector(result) == IERCTrustKernel.TrustReplay.selector, "zero authorization id");
+        token.configureAuthority(AUTHORITY_REF, address(this), true, keccak256("GOV-THIRD"), 302);
+        TrustKernelTypes.ActionRequest memory rotated = _request(TrustKernelTypes.ActionKind.FREEZE, 303, 1 ether);
+        rotated.authorityEpoch = 3;
+        rotated.actionId = token.deriveActionId(rotated);
+        (ok, result) = address(custodian).call(abi.encodeCall(custodian.executeAction, (token, rotated)));
+        _assert(
+            !ok && _selector(result) == IERCTrustKernel.TrustUnauthorized.selector, "governance did not widen authority"
+        );
+        token.executeRegulatoryAction(rotated);
+        _assertEq(token.getFrozenTokens(address(this)), 1 ether, "the rotated authority executes at epoch three");
     }
 
     function testOverlayTargetSaturatesAfterCrossCaseDisposition() external {

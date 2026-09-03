@@ -21,6 +21,8 @@ candidate only. None of it is evidence for the successor code under
 | `implementation/src/*Mutant.sol` | the five version 1 mutant contracts consumed by the Certora mutation lanes |
 | `implementation/test/mocks/*Harness*.sol`, `implementation/test/PolicyBindingClassifier.unit.t.sol` | the version 1 verification harnesses and the classifier unit test |
 | `defect-reproductions/` | Foundry reproductions of the candidate 2 defects that motivated kernel version 2 |
+| `formal/isabelle/ERC_TRUST/` | the candidate 2 generated bridge theories, the C0 runtime occurrence and composition theories, the redundant-hypothesis theories, and the current-profile per-row theories (`TRUST_ACT_01`, `TRUST_M4_STATE_04`, `TRUST_M4_STATE_05`, the balance/reversal and contract boundary certificates); they were bound to the candidate 2 runtime template and are no longer in the `ERC_TRUST` session |
+| `formal/kevm/` | the candidate 2 KEVM claim specifications, row bundles, reusable claims, runner scripts, runtime verification module, and generated bridges; the successor inputs are under `formal/kevm/` at the repository root |
 
 Paths recorded inside these files are relative to the candidate 2 tree; add the
 `evidence/candidate-2/` prefix to locate a file here. The historical verifiers

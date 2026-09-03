@@ -22,7 +22,9 @@ Contents:
 | `evidence-mode.json` | Whether pending evidence lanes are acceptable (successor development) or not (release) |
 | `current-profile-release-index-v3.json` | Lane-by-lane evidence index of the successor code, written and checked by `scripts/verify-current-profile-release-v3.mjs` |
 | `deterministic-build.json`, `mutation-results.json` | Successor deterministic build and consumer-removal mutation receipts |
-| `candidate-2/` | The candidate 2 receipts and proof inputs, preserved byte for byte (see its own README) |
+| `end-to-end-refinement/` | The successor obligation ledger, its rendered summary and central closure record, and the regenerated runtime bridge schema and manifest (decision 10) |
+| `kontrol-results-v3.json` | The four Kontrol proofs rerun on the successor native runtime |
+| `candidate-2/` | The candidate 2 receipts, proof inputs, and superseded formal artifacts, preserved byte for byte (see its own README) |
 | `mutator-inventory.md`, `pilot-*`, `clean-room-provenance.md` | Mutation inventory, the byte-bound pilot, and the clean-room provenance record |
 | `model-regression.json`, `isabelle-solidity-applicability.md` | Model-level regression and applicability notes |
 | `public-release/` | Release identity records: supersession manifests, the proof-bound identifier allowlist, and terminal receipts |

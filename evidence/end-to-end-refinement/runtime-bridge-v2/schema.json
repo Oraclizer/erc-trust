@@ -1,0 +1,1329 @@
+{
+  "actionCodes": [
+    {
+      "abstract": "Legal_Freeze",
+      "ordinal": 0,
+      "solidity": "FREEZE"
+    },
+    {
+      "abstract": "Legal_Seize",
+      "ordinal": 1,
+      "solidity": "SEIZE"
+    },
+    {
+      "abstract": "Legal_Confiscate",
+      "ordinal": 2,
+      "solidity": "CONFISCATE"
+    },
+    {
+      "abstract": "Legal_Liquidate",
+      "ordinal": 3,
+      "solidity": "LIQUIDATE"
+    },
+    {
+      "abstract": "Legal_Restrict",
+      "ordinal": 4,
+      "solidity": "RESTRICT"
+    },
+    {
+      "abstract": "Legal_Recover",
+      "ordinal": 5,
+      "solidity": "RECOVER"
+    }
+  ],
+  "caseTransitionRuleIds": [
+    "CT-1",
+    "CT-2",
+    "CT-3",
+    "CT-4",
+    "CT-5",
+    "CT-6",
+    "CT-7",
+    "CT-8",
+    "CT-9",
+    "CT-10",
+    "CT-11",
+    "CT-12",
+    "CT-13",
+    "CT-14",
+    "CT-15",
+    "CT-16"
+  ],
+  "claimBoundary": "Generated shared boundary only. It binds compiled runtime templates, selectors and their route classes, storage layouts, typed error selectors, event topics, and the fixed-width guard positions of the typed commands; it does not itself prove a transition, compiler correctness, or deployment identity.",
+  "commands": {
+    "action": {
+      "calldataLength": 644,
+      "guards": {
+        "address": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "enum": [
+          [
+            2,
+            6
+          ]
+        ],
+        "uint48": [
+          18,
+          19
+        ],
+        "uint64": [
+          10,
+          16
+        ]
+      },
+      "nativeRouteSelector": "0x40a9c893",
+      "selector": "0x2f4e0773",
+      "wordCount": 20
+    },
+    "reversal": {
+      "calldataLength": 388,
+      "guards": {
+        "address": [],
+        "enum": [
+          [
+            3,
+            3
+          ]
+        ],
+        "uint48": [
+          10,
+          11
+        ],
+        "uint64": [
+          5,
+          8
+        ]
+      },
+      "nativeRouteSelector": "0x1c711a94",
+      "selector": "0x2b892e8f",
+      "wordCount": 12
+    }
+  },
+  "eip170RuntimeLimit": 24576,
+  "genericDispatcherInputSelector": {
+    "decimal": 4294967295,
+    "hex": "0xffffffff"
+  },
+  "interfaceIds": {
+    "boundDependency": "0xb2306fd2",
+    "kernel": "0x2b020308",
+    "nativeRoute": "0x5cd8d207",
+    "verifiedProfile": "0xb2ac6787"
+  },
+  "kernelEvents": [
+    {
+      "indexed": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "name": "RegulatoryActionApplied",
+      "signature": "RegulatoryActionApplied(bytes32,uint8,bytes32,bytes32)",
+      "topic0": "0xaadd5db99c0c1f57ce6f82b109958a00899fc4cea03e70fdae7741b9e7050091"
+    },
+    {
+      "indexed": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "name": "RegulatoryReversalApplied",
+      "signature": "RegulatoryReversalApplied(bytes32,uint8,bytes32,bytes32)",
+      "topic0": "0x0d7b61b62da3c45fb4edfb09c7a5d464b31a79841b7b9bd0dade8c3331137553"
+    },
+    {
+      "indexed": [
+        true,
+        true,
+        true,
+        false,
+        false
+      ],
+      "name": "TrustDependencyChanged",
+      "signature": "TrustDependencyChanged(uint8,bytes32,bytes32,bytes32,uint64)",
+      "topic0": "0x33db706cd0a2d05c4850c97c85c99d87bd8c878062ed5f1a9e3330a3eec55c24"
+    },
+    {
+      "indexed": [
+        true,
+        true,
+        false,
+        false
+      ],
+      "name": "TrustAuthorityChanged",
+      "signature": "TrustAuthorityChanged(bytes32,address,uint64,bool)",
+      "topic0": "0xdafe94173170a7568180ce61d33870fce97812b61a02b5137d0b975ca8f439e2"
+    }
+  ],
+  "kernelSelectors": {
+    "actionRecord": "0x330fcfde",
+    "caseRecord": "0x2a408631",
+    "dependencyState": "0x7bf8f8b6",
+    "deriveActionId": "0xfc6a9112",
+    "deriveReversalId": "0xf3315a6c",
+    "executeRegulatoryAction": "0x2f4e0773",
+    "executeRegulatoryReversal": "0x2b892e8f",
+    "receipt": "0x198a27aa",
+    "trustProfile": "0x5ba37779"
+  },
+  "kernelVersion": 2,
+  "kind": "ERC_TRUST_RUNTIME_BRIDGE_V2",
+  "reasonCodes": [
+    {
+      "code": 1,
+      "error": "TrustInvalidCommand",
+      "name": "DOMAIN"
+    },
+    {
+      "code": 2,
+      "error": "TrustInvalidCommand",
+      "name": "IDENTIFIER"
+    },
+    {
+      "code": 3,
+      "error": "TrustInvalidCommand",
+      "name": "TIME"
+    },
+    {
+      "code": 4,
+      "error": "TrustInvalidCommand",
+      "name": "AUTHORITY_EPOCH"
+    },
+    {
+      "code": 5,
+      "error": "TrustInvalidCommand",
+      "name": "DEPENDENCY_BINDING"
+    },
+    {
+      "code": 6,
+      "error": "TrustInvalidCommand",
+      "name": "SHAPE"
+    },
+    {
+      "code": 7,
+      "error": "TrustInvalidCommand",
+      "name": "REVERSAL_PAIRING"
+    },
+    {
+      "code": 8,
+      "error": "TrustInvalidCommand",
+      "name": "CUSTODY"
+    },
+    {
+      "code": 9,
+      "error": "TrustInvalidCommand",
+      "name": "ENTITLEMENT"
+    },
+    {
+      "code": 10,
+      "error": "TrustInvalidCommand",
+      "name": "CASE_CONFLICT"
+    },
+    {
+      "code": 11,
+      "error": "TrustInvalidCommand",
+      "name": "CURRENT_EFFECT"
+    },
+    {
+      "code": 12,
+      "error": "TrustInvalidCommand",
+      "name": "FREEZE_DIRECTION"
+    },
+    {
+      "code": 13,
+      "error": "TrustInvalidCommand",
+      "name": "NO_STATE_CHANGE"
+    },
+    {
+      "code": 100,
+      "error": "TrustRejected",
+      "name": "POLICY_DENIED"
+    },
+    {
+      "code": 101,
+      "error": "TrustRejected",
+      "name": "IDENTITY_DENIED"
+    },
+    {
+      "code": 102,
+      "error": "TrustRejected",
+      "name": "SETTLEMENT_DENIED"
+    },
+    {
+      "code": 103,
+      "error": "TrustRejected",
+      "name": "ENTITLEMENT_DENIED"
+    },
+    {
+      "code": 200,
+      "error": "TrustOperationalFailure",
+      "name": "DEPENDENCY_CODE_MISMATCH"
+    },
+    {
+      "code": 201,
+      "error": "TrustOperationalFailure",
+      "name": "DEPENDENCY_CONFIGURATION_MISMATCH"
+    },
+    {
+      "code": 202,
+      "error": "TrustOperationalFailure",
+      "name": "DEPENDENCY_CALL_FAILED_OR_MALFORMED"
+    },
+    {
+      "code": 203,
+      "error": "TrustOperationalFailure",
+      "name": "DEPENDENCY_ECHO_MISMATCH"
+    },
+    {
+      "code": 204,
+      "error": "TrustOperationalFailure",
+      "name": "DEPENDENCY_REPORTED_FAILURE"
+    },
+    {
+      "code": 205,
+      "error": "TrustOperationalFailure",
+      "name": "DEPENDENCY_UNAVAILABLE_AT_BIND"
+    },
+    {
+      "code": 300,
+      "error": "TrustOperationalFailure",
+      "name": "TOPOLOGY_NOT_FULL"
+    },
+    {
+      "code": 301,
+      "error": "TrustOperationalFailure",
+      "name": "SEAL_INVALID"
+    },
+    {
+      "code": 302,
+      "error": "TrustOperationalFailure",
+      "name": "TOPOLOGY_MISMATCH_AT_SEAL"
+    },
+    {
+      "code": 303,
+      "error": "TrustOperationalFailure",
+      "name": "IMPORT_MANIFEST_MISMATCH"
+    },
+    {
+      "code": 304,
+      "error": "TrustOperationalFailure",
+      "name": "UPSTREAM_STATE_NOT_OWNED"
+    },
+    {
+      "code": 400,
+      "error": "TrustOperationalFailure",
+      "name": "UPSTREAM_CALL_FAILED"
+    },
+    {
+      "code": 401,
+      "error": "TrustOperationalFailure",
+      "name": "UPSTREAM_POSTSTATE_MISMATCH"
+    },
+    {
+      "code": 402,
+      "error": "TrustOperationalFailure",
+      "name": "IDENTITY_REGISTRY_UNAVAILABLE"
+    },
+    {
+      "code": 403,
+      "error": "TrustOperationalFailure",
+      "name": "COMPLIANCE_UNAVAILABLE"
+    }
+  ],
+  "reversalCodes": [
+    {
+      "abstract": "TRUST_UNFREEZE",
+      "ordinal": 0,
+      "solidity": "UNFREEZE"
+    },
+    {
+      "abstract": "TRUST_RELEASE",
+      "ordinal": 1,
+      "solidity": "RELEASE"
+    },
+    {
+      "abstract": "TRUST_UNRESTRICT",
+      "ordinal": 2,
+      "solidity": "UNRESTRICT"
+    }
+  ],
+  "routeMismatchSelector": {
+    "decimal": 1125585636,
+    "name": "TrustRouteMismatch",
+    "selector": "0x431712e4",
+    "signature": "TrustRouteMismatch(bytes32)"
+  },
+  "schemaVersion": 2,
+  "sourceBinding": {
+    "artifactHashing": "sha256 of the JSON of {abi, bytecode.object, deployedBytecode.object, rawMetadata, storageLayout.storage, methodIdentifiers} of the forge artifact",
+    "artifacts": [
+      {
+        "contract": "TrustToken",
+        "path": "out/TrustToken.sol/TrustToken.json",
+        "sha256": "190c6c42de80cc3223782bb638c8a6f8e328bb09744a83a61c67be7befc9fffe",
+        "source": "implementation/src/TrustToken.sol",
+        "subject": "native"
+      },
+      {
+        "contract": "ERC3643TrustAdapter",
+        "path": "out/ERC3643TrustAdapter.sol/ERC3643TrustAdapter.json",
+        "sha256": "3045f3b1508485a1483ecba270bf8a9314dacf3e5e2b35c7da4a51b58f24b4bb",
+        "source": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+        "subject": "profileAdapter"
+      },
+      {
+        "contract": "ProfileGovernor",
+        "path": "out/ProfileGovernor.sol/ProfileGovernor.json",
+        "sha256": "216a136b2c45e43f2d45a0ae0eb16313ef587f45231ef7b3d894a67af0673074",
+        "source": "implementation/src/profiles/ProfileGovernor.sol",
+        "subject": "profileGovernor"
+      }
+    ],
+    "kernelAbi": {
+      "path": "spec/generated/kernel-v2-abi.json",
+      "sha256": "51b2a9147dcceb9d3bba6351121eda778473a6a02ee3250fef861d180378ff37"
+    },
+    "kernelSchema": {
+      "path": "spec/erc-trust-kernel-v2.json",
+      "sha256": "7b80aa08ae7892a5bc2004cb65155fbafd5b54cb71ca58b9d6c664e7f9f060cb"
+    }
+  },
+  "subjects": {
+    "native": {
+      "contract": "TrustToken",
+      "routes": [
+        {
+          "decimal": 33540519,
+          "name": "supportsInterface",
+          "routeClass": "Route_Kernel_View",
+          "selector": "0x01ffc9a7",
+          "signature": "supportsInterface(bytes4)",
+          "stateMutability": "pure"
+        },
+        {
+          "decimal": 117300739,
+          "name": "name",
+          "routeClass": "Route_ERC20_View",
+          "selector": "0x06fdde03",
+          "signature": "name()",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 157198259,
+          "name": "approve",
+          "routeClass": "Route_ERC20_Mutator",
+          "selector": "0x095ea7b3",
+          "signature": "approve(address,uint256)",
+          "stateMutability": "nonpayable"
+        },
+        {
+          "decimal": 204737060,
+          "name": "governor",
+          "routeClass": "Route_Immutable_View",
+          "selector": "0x0c340a24",
+          "signature": "governor()",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 361437783,
+          "name": "getFrozenTokens",
+          "routeClass": "Route_ERC7943_View",
+          "selector": "0x158b1a57",
+          "signature": "getFrozenTokens(address)",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 404098525,
+          "name": "totalSupply",
+          "routeClass": "Route_ERC20_View",
+          "selector": "0x18160ddd",
+          "signature": "totalSupply()",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 428484522,
+          "name": "receipt",
+          "routeClass": "Route_Kernel_View",
+          "selector": "0x198a27aa",
+          "signature": "receipt(bytes32)",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 477174420,
+          "name": "executeERC7943Reversal",
+          "routeClass": "Route_Native_Exact_Use",
+          "selector": "0x1c711a94",
+          "signature": "executeERC7943Reversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "stateMutability": "nonpayable"
+        },
+        {
+          "decimal": 599290589,
+          "name": "transferFrom",
+          "routeClass": "Route_ERC20_Mutator",
+          "selector": "0x23b872dd",
+          "signature": "transferFrom(address,address,uint256)",
+          "stateMutability": "nonpayable"
+        },
+        {
+          "decimal": 708871729,
+          "name": "caseRecord",
+          "routeClass": "Route_Kernel_View",
+          "selector": "0x2a408631",
+          "signature": "caseRecord(bytes32)",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 730410639,
+          "name": "executeRegulatoryReversal",
+          "routeClass": "Route_Kernel_Command",
+          "selector": "0x2b892e8f",
+          "signature": "executeRegulatoryReversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "stateMutability": "nonpayable"
+        },
+        {
+          "decimal": 734030482,
+          "name": "canSend",
+          "routeClass": "Route_ERC7943_View",
+          "selector": "0x2bc06a92",
+          "signature": "canSend(address)",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 793642867,
+          "name": "executeRegulatoryAction",
+          "routeClass": "Route_Kernel_Command",
+          "selector": "0x2f4e0773",
+          "signature": "executeRegulatoryAction((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "stateMutability": "nonpayable"
+        },
+        {
+          "decimal": 826074471,
+          "name": "decimals",
+          "routeClass": "Route_ERC20_View",
+          "selector": "0x313ce567",
+          "signature": "decimals()",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 856674270,
+          "name": "actionRecord",
+          "routeClass": "Route_Kernel_View",
+          "selector": "0x330fcfde",
+          "signature": "actionRecord(bytes32)",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 1084868755,
+          "name": "executeERC7943Action",
+          "routeClass": "Route_Native_Exact_Use",
+          "selector": "0x40a9c893",
+          "signature": "executeERC7943Action((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "stateMutability": "nonpayable"
+        },
+        {
+          "decimal": 1537439609,
+          "name": "trustProfile",
+          "routeClass": "Route_Kernel_View",
+          "selector": "0x5ba37779",
+          "signature": "trustProfile()",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 1889567281,
+          "name": "balanceOf",
+          "routeClass": "Route_ERC20_View",
+          "selector": "0x70a08231",
+          "signature": "balanceOf(address)",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 2079914166,
+          "name": "dependencyState",
+          "routeClass": "Route_Kernel_View",
+          "selector": "0x7bf8f8b6",
+          "signature": "dependencyState()",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 2429776058,
+          "name": "canReceive",
+          "routeClass": "Route_ERC7943_View",
+          "selector": "0x90d370ba",
+          "signature": "canReceive(address)",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 2514000705,
+          "name": "symbol",
+          "routeClass": "Route_ERC20_View",
+          "selector": "0x95d89b41",
+          "signature": "symbol()",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 2680279271,
+          "name": "forcedTransfer",
+          "routeClass": "Route_ERC7943_Sensitive",
+          "selector": "0x9fc1d0e7",
+          "signature": "forcedTransfer(address,address,uint256)",
+          "stateMutability": "nonpayable"
+        },
+        {
+          "decimal": 2767997613,
+          "name": "configureAuthority",
+          "routeClass": "Route_Governance",
+          "selector": "0xa4fc4aad",
+          "signature": "configureAuthority(bytes32,address,bool,bytes32,uint256)",
+          "stateMutability": "nonpayable"
+        },
+        {
+          "decimal": 2835717307,
+          "name": "transfer",
+          "routeClass": "Route_ERC20_Mutator",
+          "selector": "0xa9059cbb",
+          "signature": "transfer(address,uint256)",
+          "stateMutability": "nonpayable"
+        },
+        {
+          "decimal": 3714247998,
+          "name": "allowance",
+          "routeClass": "Route_ERC20_View",
+          "selector": "0xdd62ed3e",
+          "signature": "allowance(address,address)",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 3831904486,
+          "name": "canTransfer",
+          "routeClass": "Route_ERC7943_View",
+          "selector": "0xe46638e6",
+          "signature": "canTransfer(address,address,uint256)",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 3957611706,
+          "name": "setFrozenTokens",
+          "routeClass": "Route_ERC7943_Sensitive",
+          "selector": "0xebe45cba",
+          "signature": "setFrozenTokens(address,uint256)",
+          "stateMutability": "nonpayable"
+        },
+        {
+          "decimal": 4080097900,
+          "name": "deriveReversalId",
+          "routeClass": "Route_Kernel_View",
+          "selector": "0xf3315a6c",
+          "signature": "deriveReversalId((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 4128078703,
+          "name": "rebindDependency",
+          "routeClass": "Route_Governance",
+          "selector": "0xf60d7b6f",
+          "signature": "rebindDependency(uint8,address,bytes32,bytes32,uint256)",
+          "stateMutability": "nonpayable"
+        },
+        {
+          "decimal": 4234842386,
+          "name": "deriveActionId",
+          "routeClass": "Route_Kernel_View",
+          "selector": "0xfc6a9112",
+          "signature": "deriveActionId((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "stateMutability": "view"
+        }
+      ],
+      "runtime": {
+        "bytes": 20043,
+        "sha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1"
+      },
+      "source": "implementation/src/TrustToken.sol",
+      "storage": [
+        {
+          "label": "name",
+          "offset": 0,
+          "projectionId": "native.name",
+          "slot": 0,
+          "typeId": "t_string_storage",
+          "typeLabel": "string"
+        },
+        {
+          "label": "symbol",
+          "offset": 0,
+          "projectionId": "native.symbol",
+          "slot": 1,
+          "typeId": "t_string_storage",
+          "typeLabel": "string"
+        },
+        {
+          "label": "_totalSupply",
+          "offset": 0,
+          "projectionId": "native.totalSupply",
+          "slot": 2,
+          "typeId": "t_uint256",
+          "typeLabel": "uint256"
+        },
+        {
+          "label": "_balances",
+          "offset": 0,
+          "projectionId": "native.balances",
+          "slot": 3,
+          "typeId": "t_mapping(t_address,t_uint256)",
+          "typeLabel": "mapping(address => uint256)"
+        },
+        {
+          "label": "_allowances",
+          "offset": 0,
+          "projectionId": "native.allowances",
+          "slot": 4,
+          "typeId": "t_mapping(t_address,t_mapping(t_address,t_uint256))",
+          "typeLabel": "mapping(address => mapping(address => uint256))"
+        },
+        {
+          "label": "_frozen",
+          "offset": 0,
+          "projectionId": "native.frozen",
+          "slot": 5,
+          "typeId": "t_mapping(t_address,t_uint256)",
+          "typeLabel": "mapping(address => uint256)"
+        },
+        {
+          "label": "_restricted",
+          "offset": 0,
+          "projectionId": "native.restricted",
+          "slot": 6,
+          "typeId": "t_mapping(t_address,t_bool)",
+          "typeLabel": "mapping(address => bool)"
+        },
+        {
+          "label": "_custodyBacking",
+          "offset": 0,
+          "projectionId": "native.custodyBacking",
+          "slot": 7,
+          "typeId": "t_mapping(t_address,t_uint256)",
+          "typeLabel": "mapping(address => uint256)"
+        },
+        {
+          "label": "_freezeHeads",
+          "offset": 0,
+          "projectionId": "native.freezeHeads",
+          "slot": 8,
+          "typeId": "t_mapping(t_address,t_struct(EffectHead)640_storage)",
+          "typeLabel": "mapping(address => struct TrustNativeTypes.EffectHead)"
+        },
+        {
+          "label": "_restrictionHeads",
+          "offset": 0,
+          "projectionId": "native.restrictionHeads",
+          "slot": 9,
+          "typeId": "t_mapping(t_address,t_struct(EffectHead)640_storage)",
+          "typeLabel": "mapping(address => struct TrustNativeTypes.EffectHead)"
+        },
+        {
+          "label": "_authorities",
+          "offset": 0,
+          "projectionId": "native.authorities",
+          "slot": 10,
+          "typeId": "t_mapping(t_bytes32,t_struct(Authority)634_storage)",
+          "typeLabel": "mapping(bytes32 => struct TrustNativeTypes.Authority)"
+        },
+        {
+          "label": "_usedNonces",
+          "offset": 0,
+          "projectionId": "native.usedNonces",
+          "slot": 11,
+          "typeId": "t_mapping(t_bytes32,t_mapping(t_uint64,t_mapping(t_uint256,t_bool)))",
+          "typeLabel": "mapping(bytes32 => mapping(uint64 => mapping(uint256 => bool)))"
+        },
+        {
+          "label": "_usedGovernanceIds",
+          "offset": 0,
+          "projectionId": "native.usedGovernanceIds",
+          "slot": 12,
+          "typeId": "t_mapping(t_bytes32,t_bool)",
+          "typeLabel": "mapping(bytes32 => bool)"
+        },
+        {
+          "label": "_actions",
+          "offset": 0,
+          "projectionId": "native.actions",
+          "slot": 13,
+          "typeId": "t_mapping(t_bytes32,t_struct(ActionRecord)5697_storage)",
+          "typeLabel": "mapping(bytes32 => struct TrustKernelTypes.ActionRecord)"
+        },
+        {
+          "label": "_effects",
+          "offset": 0,
+          "projectionId": "native.effects",
+          "slot": 14,
+          "typeId": "t_mapping(t_bytes32,t_struct(EffectRecord)646_storage)",
+          "typeLabel": "mapping(bytes32 => struct TrustNativeTypes.EffectRecord)"
+        },
+        {
+          "label": "_receipts",
+          "offset": 0,
+          "projectionId": "native.receipts",
+          "slot": 15,
+          "typeId": "t_mapping(t_bytes32,t_struct(Receipt)5661_storage)",
+          "typeLabel": "mapping(bytes32 => struct TrustKernelTypes.Receipt)"
+        },
+        {
+          "label": "_cases",
+          "offset": 0,
+          "projectionId": "native.cases",
+          "slot": 16,
+          "typeId": "t_mapping(t_bytes32,t_struct(CaseRecord)5709_storage)",
+          "typeLabel": "mapping(bytes32 => struct TrustKernelTypes.CaseRecord)"
+        },
+        {
+          "label": "_custody",
+          "offset": 0,
+          "projectionId": "native.custody",
+          "slot": 17,
+          "typeId": "t_mapping(t_bytes32,t_struct(CustodyRecord)658_storage)",
+          "typeLabel": "mapping(bytes32 => struct TrustNativeTypes.CustodyRecord)"
+        },
+        {
+          "label": "_consumedEntitlements",
+          "offset": 0,
+          "projectionId": "native.consumedEntitlements",
+          "slot": 18,
+          "typeId": "t_mapping(t_bytes32,t_bool)",
+          "typeLabel": "mapping(bytes32 => bool)"
+        },
+        {
+          "label": "_pendingCommitments",
+          "offset": 0,
+          "projectionId": "native.pendingCommitments",
+          "slot": 19,
+          "typeId": "t_mapping(t_bytes32,t_struct(PendingCommitments)668_storage)",
+          "typeLabel": "mapping(bytes32 => struct TrustNativeTypes.PendingCommitments)"
+        },
+        {
+          "label": "_pendingReversals",
+          "offset": 0,
+          "projectionId": "native.pendingReversals",
+          "slot": 20,
+          "typeId": "t_mapping(t_bytes32,t_struct(PendingReversal)680_storage)",
+          "typeLabel": "mapping(bytes32 => struct TrustNativeTypes.PendingReversal)"
+        },
+        {
+          "label": "_bindings",
+          "offset": 0,
+          "projectionId": "native.bindings",
+          "slot": 21,
+          "typeId": "t_mapping(t_enum(BindingKind)5525,t_struct(Binding)627_storage)",
+          "typeLabel": "mapping(enum TrustKernelTypes.BindingKind => struct TrustNativeTypes.Binding)"
+        },
+        {
+          "label": "_dependencyRoot",
+          "offset": 0,
+          "projectionId": "native.dependencyRoot",
+          "slot": 22,
+          "typeId": "t_bytes32",
+          "typeLabel": "bytes32"
+        },
+        {
+          "label": "_dependencyEpoch",
+          "offset": 0,
+          "projectionId": "native.dependencyEpoch",
+          "slot": 23,
+          "typeId": "t_uint64",
+          "typeLabel": "uint64"
+        },
+        {
+          "label": "_routeTicket",
+          "offset": 0,
+          "projectionId": "native.routeTicket",
+          "slot": 24,
+          "typeId": "t_struct(RouteTicket)697_storage",
+          "typeLabel": "struct TrustNativeTypes.RouteTicket"
+        },
+        {
+          "label": "_entered",
+          "offset": 0,
+          "projectionId": "native.entered",
+          "slot": 28,
+          "typeId": "t_uint256",
+          "typeLabel": "uint256"
+        }
+      ]
+    },
+    "profileAdapter": {
+      "contract": "ERC3643TrustAdapter",
+      "routes": [
+        {
+          "decimal": 33540519,
+          "name": "supportsInterface",
+          "routeClass": "Route_Kernel_View",
+          "selector": "0x01ffc9a7",
+          "signature": "supportsInterface(bytes4)",
+          "stateMutability": "pure"
+        },
+        {
+          "decimal": 373319844,
+          "name": "profileGovernor",
+          "routeClass": "Route_Immutable_View",
+          "selector": "0x164068a4",
+          "signature": "profileGovernor()",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 428484522,
+          "name": "receipt",
+          "routeClass": "Route_Kernel_View",
+          "selector": "0x198a27aa",
+          "signature": "receipt(bytes32)",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 613625942,
+          "name": "resynchroniseFrozen",
+          "routeClass": "Route_Profile_Command",
+          "selector": "0x24933056",
+          "signature": "resynchroniseFrozen(address)",
+          "stateMutability": "nonpayable"
+        },
+        {
+          "decimal": 708871729,
+          "name": "caseRecord",
+          "routeClass": "Route_Kernel_View",
+          "selector": "0x2a408631",
+          "signature": "caseRecord(bytes32)",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 730410639,
+          "name": "executeRegulatoryReversal",
+          "routeClass": "Route_Kernel_Command",
+          "selector": "0x2b892e8f",
+          "signature": "executeRegulatoryReversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "stateMutability": "nonpayable"
+        },
+        {
+          "decimal": 793642867,
+          "name": "executeRegulatoryAction",
+          "routeClass": "Route_Kernel_Command",
+          "selector": "0x2f4e0773",
+          "signature": "executeRegulatoryAction((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "stateMutability": "nonpayable"
+        },
+        {
+          "decimal": 856674270,
+          "name": "actionRecord",
+          "routeClass": "Route_Kernel_View",
+          "selector": "0x330fcfde",
+          "signature": "actionRecord(bytes32)",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 1537439609,
+          "name": "trustProfile",
+          "routeClass": "Route_Kernel_View",
+          "selector": "0x5ba37779",
+          "signature": "trustProfile()",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 2079914166,
+          "name": "dependencyState",
+          "routeClass": "Route_Kernel_View",
+          "selector": "0x7bf8f8b6",
+          "signature": "dependencyState()",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 2398826873,
+          "name": "activateSeal",
+          "routeClass": "Route_Seal_Command",
+          "selector": "0x8efb3179",
+          "signature": "activateSeal((address,uint256,bool)[])",
+          "stateMutability": "nonpayable"
+        },
+        {
+          "decimal": 2520733649,
+          "name": "ownedState",
+          "routeClass": "Route_Profile_View",
+          "selector": "0x963f57d1",
+          "signature": "ownedState(address)",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 3212714319,
+          "name": "authority",
+          "routeClass": "Route_Immutable_View",
+          "selector": "0xbf7e214f",
+          "signature": "authority()",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 4049710945,
+          "name": "authorityRef",
+          "routeClass": "Route_Immutable_View",
+          "selector": "0xf161af61",
+          "signature": "authorityRef()",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 4080097900,
+          "name": "deriveReversalId",
+          "routeClass": "Route_Kernel_View",
+          "selector": "0xf3315a6c",
+          "signature": "deriveReversalId((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 4228666474,
+          "name": "token",
+          "routeClass": "Route_Immutable_View",
+          "selector": "0xfc0c546a",
+          "signature": "token()",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 4234842386,
+          "name": "deriveActionId",
+          "routeClass": "Route_Kernel_View",
+          "selector": "0xfc6a9112",
+          "signature": "deriveActionId((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "stateMutability": "view"
+        }
+      ],
+      "runtime": {
+        "bytes": 19218,
+        "sha256": "2a7214a83e298e02e85bcfddeb022f0f339bd6cd616e0c7333247728c32f2541"
+      },
+      "source": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+      "storage": [
+        {
+          "label": "_entered",
+          "offset": 0,
+          "projectionId": "profile.adapter.entered",
+          "slot": 0,
+          "typeId": "t_uint256",
+          "typeLabel": "uint256"
+        },
+        {
+          "label": "_sealed",
+          "offset": 0,
+          "projectionId": "profile.adapter.sealed",
+          "slot": 1,
+          "typeId": "t_bool",
+          "typeLabel": "bool"
+        },
+        {
+          "label": "_sealedBinding",
+          "offset": 0,
+          "projectionId": "profile.adapter.sealedBinding",
+          "slot": 2,
+          "typeId": "t_bytes32",
+          "typeLabel": "bytes32"
+        },
+        {
+          "label": "_importManifestHash",
+          "offset": 0,
+          "projectionId": "profile.adapter.importManifestHash",
+          "slot": 3,
+          "typeId": "t_bytes32",
+          "typeLabel": "bytes32"
+        },
+        {
+          "label": "_dependencyRoot",
+          "offset": 0,
+          "projectionId": "profile.adapter.dependencyRoot",
+          "slot": 4,
+          "typeId": "t_bytes32",
+          "typeLabel": "bytes32"
+        },
+        {
+          "label": "_dependencyEpoch",
+          "offset": 0,
+          "projectionId": "profile.adapter.dependencyEpoch",
+          "slot": 5,
+          "typeId": "t_uint64",
+          "typeLabel": "uint64"
+        },
+        {
+          "label": "_bindings",
+          "offset": 0,
+          "projectionId": "profile.adapter.bindings",
+          "slot": 6,
+          "typeId": "t_mapping(t_enum(BindingKind)5525,t_struct(DependencyBinding)6227_storage)",
+          "typeLabel": "mapping(enum TrustKernelTypes.BindingKind => struct ERC3643ProfileTypes.DependencyBinding)"
+        },
+        {
+          "label": "_actions",
+          "offset": 0,
+          "projectionId": "profile.adapter.actions",
+          "slot": 7,
+          "typeId": "t_mapping(t_bytes32,t_struct(ActionRecord)5697_storage)",
+          "typeLabel": "mapping(bytes32 => struct TrustKernelTypes.ActionRecord)"
+        },
+        {
+          "label": "_effects",
+          "offset": 0,
+          "projectionId": "profile.adapter.effects",
+          "slot": 8,
+          "typeId": "t_mapping(t_bytes32,t_struct(EffectRecord)6247_storage)",
+          "typeLabel": "mapping(bytes32 => struct ERC3643ProfileTypes.EffectRecord)"
+        },
+        {
+          "label": "_receipts",
+          "offset": 0,
+          "projectionId": "profile.adapter.receipts",
+          "slot": 9,
+          "typeId": "t_mapping(t_bytes32,t_struct(Receipt)5661_storage)",
+          "typeLabel": "mapping(bytes32 => struct TrustKernelTypes.Receipt)"
+        },
+        {
+          "label": "_cases",
+          "offset": 0,
+          "projectionId": "profile.adapter.cases",
+          "slot": 10,
+          "typeId": "t_mapping(t_bytes32,t_struct(CaseRecord)5709_storage)",
+          "typeLabel": "mapping(bytes32 => struct TrustKernelTypes.CaseRecord)"
+        },
+        {
+          "label": "_custody",
+          "offset": 0,
+          "projectionId": "profile.adapter.custody",
+          "slot": 11,
+          "typeId": "t_mapping(t_bytes32,t_struct(CustodyRecord)6259_storage)",
+          "typeLabel": "mapping(bytes32 => struct ERC3643ProfileTypes.CustodyRecord)"
+        },
+        {
+          "label": "_usedNonces",
+          "offset": 0,
+          "projectionId": "profile.adapter.usedNonces",
+          "slot": 12,
+          "typeId": "t_mapping(t_bytes32,t_bool)",
+          "typeLabel": "mapping(bytes32 => bool)"
+        },
+        {
+          "label": "_consumedEntitlements",
+          "offset": 0,
+          "projectionId": "profile.adapter.consumedEntitlements",
+          "slot": 13,
+          "typeId": "t_mapping(t_bytes32,t_bool)",
+          "typeLabel": "mapping(bytes32 => bool)"
+        },
+        {
+          "label": "_owned",
+          "offset": 0,
+          "projectionId": "profile.adapter.owned",
+          "slot": 14,
+          "typeId": "t_mapping(t_address,t_struct(OwnedState)6235_storage)",
+          "typeLabel": "mapping(address => struct ERC3643ProfileTypes.OwnedState)"
+        },
+        {
+          "label": "_freezeHeads",
+          "offset": 0,
+          "projectionId": "profile.adapter.freezeHeads",
+          "slot": 15,
+          "typeId": "t_mapping(t_address,t_struct(EffectHead)6241_storage)",
+          "typeLabel": "mapping(address => struct ERC3643ProfileTypes.EffectHead)"
+        },
+        {
+          "label": "_restrictionHeads",
+          "offset": 0,
+          "projectionId": "profile.adapter.restrictionHeads",
+          "slot": 16,
+          "typeId": "t_mapping(t_address,t_struct(EffectHead)6241_storage)",
+          "typeLabel": "mapping(address => struct ERC3643ProfileTypes.EffectHead)"
+        },
+        {
+          "label": "_custodyBacking",
+          "offset": 0,
+          "projectionId": "profile.adapter.custodyBacking",
+          "slot": 17,
+          "typeId": "t_mapping(t_address,t_uint256)",
+          "typeLabel": "mapping(address => uint256)"
+        }
+      ]
+    },
+    "profileGovernor": {
+      "contract": "ProfileGovernor",
+      "routes": [
+        {
+          "decimal": 249044032,
+          "name": "importManifestHash",
+          "routeClass": "Route_Seal_View",
+          "selector": "0x0ed81c40",
+          "signature": "importManifestHash()",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 323885300,
+          "name": "identityRegistry",
+          "routeClass": "Route_Immutable_View",
+          "selector": "0x134e18f4",
+          "signature": "identityRegistry()",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 1653638749,
+          "name": "compliance",
+          "routeClass": "Route_Immutable_View",
+          "selector": "0x6290865d",
+          "signature": "compliance()",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 2134638570,
+          "name": "topologySealed",
+          "routeClass": "Route_Seal_View",
+          "selector": "0x7f3bffea",
+          "signature": "topologySealed()",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 2194210079,
+          "name": "seal",
+          "routeClass": "Route_Seal_Command",
+          "selector": "0x82c8fd1f",
+          "signature": "seal(address,(address,uint256,bool)[])",
+          "stateMutability": "nonpayable"
+        },
+        {
+          "decimal": 3001380254,
+          "name": "manifestHashOf",
+          "routeClass": "Route_Seal_View",
+          "selector": "0xb2e56d9e",
+          "signature": "manifestHashOf((address,uint256,bool)[])",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 3040142763,
+          "name": "expectedTokenCodeId",
+          "routeClass": "Route_Immutable_View",
+          "selector": "0xb534e5ab",
+          "signature": "expectedTokenCodeId()",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 3112633780,
+          "name": "sealedBinding",
+          "routeClass": "Route_Seal_View",
+          "selector": "0xb98705b4",
+          "signature": "sealedBinding()",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 3458836473,
+          "name": "bootstrapAuthority",
+          "routeClass": "Route_Immutable_View",
+          "selector": "0xce29a7f9",
+          "signature": "bootstrapAuthority()",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 3571345754,
+          "name": "isFull",
+          "routeClass": "Route_Seal_View",
+          "selector": "0xd4de695a",
+          "signature": "isFull(address)",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 4168597491,
+          "name": "exclusiveAdapter",
+          "routeClass": "Route_Seal_View",
+          "selector": "0xf877bff3",
+          "signature": "exclusiveAdapter()",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 4228666474,
+          "name": "token",
+          "routeClass": "Route_Immutable_View",
+          "selector": "0xfc0c546a",
+          "signature": "token()",
+          "stateMutability": "view"
+        }
+      ],
+      "runtime": {
+        "bytes": 2790,
+        "sha256": "ba2d63c8e93db7997ce57fe128a36dcfa761fb993e5babc9920d2911764f358e"
+      },
+      "source": "implementation/src/profiles/ProfileGovernor.sol",
+      "storage": [
+        {
+          "label": "exclusiveAdapter",
+          "offset": 0,
+          "projectionId": "profile.governor.exclusiveAdapter",
+          "slot": 0,
+          "typeId": "t_address",
+          "typeLabel": "address"
+        },
+        {
+          "label": "sealedBinding",
+          "offset": 0,
+          "projectionId": "profile.governor.sealedBinding",
+          "slot": 1,
+          "typeId": "t_bytes32",
+          "typeLabel": "bytes32"
+        },
+        {
+          "label": "importManifestHash",
+          "offset": 0,
+          "projectionId": "profile.governor.importManifestHash",
+          "slot": 2,
+          "typeId": "t_bytes32",
+          "typeLabel": "bytes32"
+        },
+        {
+          "label": "topologySealed",
+          "offset": 0,
+          "projectionId": "profile.governor.topologySealed",
+          "slot": 3,
+          "typeId": "t_bool",
+          "typeLabel": "bool"
+        }
+      ]
+    }
+  },
+  "typedFailureSelectors": [
+    {
+      "decimal": 2364935023,
+      "name": "TrustRejected",
+      "selector": "0x8cf60b6f",
+      "signature": "TrustRejected(bytes32,uint16)"
+    },
+    {
+      "decimal": 946785368,
+      "name": "TrustOperationalFailure",
+      "selector": "0x386ecc58",
+      "signature": "TrustOperationalFailure(bytes32,uint16,bytes32)"
+    },
+    {
+      "decimal": 2573951284,
+      "name": "TrustUnauthorized",
+      "selector": "0x996b6134",
+      "signature": "TrustUnauthorized(address,bytes32)"
+    },
+    {
+      "decimal": 1921260329,
+      "name": "TrustReplay",
+      "selector": "0x72841b29",
+      "signature": "TrustReplay(bytes32)"
+    },
+    {
+      "decimal": 3982638099,
+      "name": "TrustInvalidCommand",
+      "selector": "0xed623c13",
+      "signature": "TrustInvalidCommand(bytes32,uint16)"
+    },
+    {
+      "decimal": 2799851459,
+      "name": "TrustTerminal",
+      "selector": "0xa6e257c3",
+      "signature": "TrustTerminal(bytes32)"
+    }
+  ]
+}

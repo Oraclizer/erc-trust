@@ -248,6 +248,35 @@ if (!exists(receiptPaths.isabelleBuild)) {
     : pending("isabelleRuntimeBinding", "formal refinement change: regenerate the runtime bridge theories for the successor runtime");
 }
 
+// obligationLedger: the central obligation ledger of the successor endpoints is verified
+// and its summary is bound to the current bridge schema, the rendered theory, and the
+// runtime template of the deterministic build
+{
+  const summaryPath = "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json";
+  const bridgeSchemaPath = "evidence/end-to-end-refinement/runtime-bridge-v2/schema.json";
+  const bridgeManifestPath = "evidence/end-to-end-refinement/runtime-bridge-v2/generated-manifest.json";
+  if (!exists(summaryPath) || !exists(bridgeManifestPath)) {
+    lanes.obligationLedger = pending("obligationLedger", "formal refinement change: obligation ledger summary and runtime bridge manifest");
+  } else {
+    const summary = json(summaryPath);
+    const manifest = json(bridgeManifestPath);
+    check(summary.schema === "erc-trust-obligation-ledger-summary-v3" && summary.candidate === candidate, "obligation ledger summary identity");
+    check(summary.counts.currentMandatory === 0, "obligation ledger has current mandatory rows");
+    check(summary.bridgeSchema.sha256 === sha256(bytes(bridgeSchemaPath)), "obligation ledger summary binds a different bridge schema");
+    check(summary.ledger.sha256 === sha256(bytes(summary.ledger.path)), "obligation ledger summary binds a different ledger");
+    check(summary.generatedTheory.sha256 === sha256(bytes(summary.generatedTheory.path)), "rendered obligation ledger theory drift");
+    check(manifest.schema.sha256 === sha256(bytes(bridgeSchemaPath)), "bridge manifest binds a different bridge schema");
+    for (const generated of manifest.generated) check(sha256(bytes(generated.path)) === generated.sha256, `generated bridge drift: ${generated.path}`);
+    const bound = runtimeTemplateSha256 !== null
+      && manifest.runtimes.native === runtimeTemplateSha256
+      && summary.runtimeTemplateSha256 === runtimeTemplateSha256;
+    const detail = { closure: summary.closure, claim: summary.claim, rows: summary.counts };
+    lanes.obligationLedger = bound
+      ? { status: "PASS", summary: fileRef(summaryPath), ...detail }
+      : { ...pending("obligationLedger", "runtime assurance change: deterministic build receipt binding the bridge runtime"), ...detail };
+  }
+}
+
 // kontrol and its inputs
 if (!exists(receiptPaths.kontrol)) {
   lanes.kontrol = pending("kontrol", "formal refinement change: symbolic cross-checks on the successor runtime");

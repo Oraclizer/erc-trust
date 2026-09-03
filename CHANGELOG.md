@@ -2,6 +2,25 @@
 
 ## Unreleased
 
+- Connect both kernel version 2 endpoints to the abstract model through a central
+  obligation ledger (`evidence/end-to-end-refinement/obligation-ledger-v3.json`, checked
+  and rendered by `scripts/verify-obligation-ledger-v3.mjs` in CI). The Isabelle session is
+  rewritten for kernel version 2: typed commands, the case transition table, the ordered
+  dependency root with the global epoch, the unified receipt, custody backing and floor
+  arithmetic, the ordinary transfer relation, and the verified-profile onboarding with the
+  import manifest and the single immutable authority. The runtime bridge is regenerated for
+  the three successor runtimes by `scripts/generate-runtime-bridge-v2.mjs` (checked in CI)
+  and binds runtime hashes, every selector with its route class, storage layouts, error
+  selectors, event topics, and the fixed-width guard positions. The candidate 2 bridge
+  theories, current-profile theories, and KEVM claim inputs move byte for byte under
+  `evidence/candidate-2/formal/`. The four Kontrol proofs are rerun on the successor native
+  runtime. Every closed ledger row names its source consumer, positive test,
+  consumer-removal mutation (the campaign grows from fifty-one to one hundred and eleven
+  faults), and compiled consumer; the two rows that name the undischarged runtime link stay
+  open, so the closure is conditional and the claim is "mapped implementation evidence;
+  end-to-end refinement incomplete". The unused effect hash of the effect head and effect
+  record is removed from both endpoints (decision 10); the storage slots are unchanged. No
+  completion, Full, or refinement-complete claim is made.
 - Wire the ERC-3643 Verified Full profile adapter to kernel version 2. The
   adapter and its governor consume the same generated kernel copy as the native
   token, report the kernel interface identifier, and feed the dependency root
