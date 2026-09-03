@@ -8,11 +8,13 @@ Start with:
 
 - [`claim-matrix.md`](claim-matrix.md): which claim is backed by which
   artifact, tool, and command.
-- [`verification-summary.md`](verification-summary.md): the candidate 2 results
-  across the Foundry, Certora, Kontrol, KEVM, and Isabelle lanes; the successor is
-  tracked lane by lane in `current-profile-release-index-v3.json`.
-- [`trust-ref-matrix.md`](trust-ref-matrix.md): how the reference maps onto
-  the specification surface.
+- [`verification-summary.md`](verification-summary.md): the successor results
+  lane by lane, with the candidate 2 results kept as history.
+- [`known-limitations.md`](known-limitations.md): what the code, the evidence,
+  and the documents do not establish, with the artifact that owns each entry.
+- [`trust-ref-matrix.md`](trust-ref-matrix.md): the candidate 2 obligation
+  matrix, kept as history; the successor map is the obligation ledger under
+  `end-to-end-refinement/`.
 
 Contents:
 

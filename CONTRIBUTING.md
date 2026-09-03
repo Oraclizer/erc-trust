@@ -93,8 +93,9 @@ exact gate that fails.
 
 Two of these checks compare regenerated files against the committed ones, so
 when your change touches a protected release input, commit the regenerated
-`vectors/conformance-v1.json` and `evidence/release-manifest.json` in the same
-pull request; otherwise the determinism checks fail with a diff showing
+outputs of the kernel generator (`spec/generated/`, `sdk/src/kernel-v2.ts`,
+`vectors/conformance-v2.json`), the runtime bridge, the obligation ledger
+renderings, and `evidence/release-manifest.json` in the same pull request; otherwise the determinism checks fail with a diff showing
 exactly what moved. Protected inputs include implementation and verification
 source, replay evidence, schemas, vectors, toolchain locks, SDK source and
 dependency locks, and release scripts. Ordinary documentation, community
@@ -123,7 +124,7 @@ are easy to trip without knowing them:
   `dash punctuation: <path>`. Use a comma, a colon, or parentheses.
 - Adding or removing any tracked file changes the retained-path count, and
   the count is pinned: update `retainedFiles` in
-  `evidence/public-release/diet-manifest-v1.json` in the same pull request,
+  `evidence/public-release/diet-manifest-v2.json` in the same pull request,
   or the check fails with `retained path count drift`.
 - The README badge row is pinned to its exact badge count for the same
   reason; changing the badges means updating the pin in
@@ -143,10 +144,10 @@ Changes to Certora Verification Language rules or K assertions must identify:
 3. the positive evidence that passes;
 4. a negative mutation or counterexample that detects regression.
 
-The reference-candidate Certora entrypoints are
-`implementation/certora/TrustToken.conf` and
-`implementation/certora/TrustToken.inventory.conf`. The KEVM harness is
-`implementation/kontrol/TrustTokenKontrolTest.t.sol`.
+The candidate 2 Certora entrypoints are preserved as history under
+`evidence/candidate-2/implementation/certora/` (`TrustToken.conf` and
+`TrustToken.inventory.conf`); the successor has no Certora lane yet. The KEVM
+harness is `implementation/kontrol/TrustTokenKontrolTest.t.sol`.
 
 ## Pull Request requirements
 

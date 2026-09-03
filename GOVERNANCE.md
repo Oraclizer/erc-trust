@@ -54,10 +54,11 @@ A version tag and GitHub release must:
 Candidate tags use `vX.Y.Z-candidate.N`; later stable tags use `vX.Y.Z`.
 No other tag naming family is used.
 
-The historical tag `v0.1.0-candidate.1` remains immutable. Candidate 2 is the
-current repaired reference candidate. Its tag and any GitHub Release are
-separate maintainer actions whose current state is shown by the repository's
-tag and Release records.
+The historical tag `v0.1.0-candidate.1` remains immutable. Candidate 2
+(`0.1.0-candidate.2`) is the shipped reference candidate; the successor on
+the integration branch carries the working label `0.2.0-candidate.1`. Tags and
+GitHub Releases for either are separate maintainer actions whose current state
+is shown by the repository's tag and Release records.
 
 ## Standards process
 

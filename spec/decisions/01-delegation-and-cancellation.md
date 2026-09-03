@@ -25,7 +25,7 @@ Status: frozen in kernel version 2 machine source. Native endpoint wired (`imple
 
 In the shipped version 1 candidate the delegation check compared only an
 action mask, a validity time, and a caller-supplied opaque `scopeHash`
-(`implementation/src/LegacyRouteAuthorizer.sol`). The contract never
+(the removed `LegacyRouteAuthorizer.sol`). The contract never
 recomputed that hash from the subject, amount, or case, so a delegate holding
 an approved `scopeHash` could submit a command for a different subject or
 amount. That is weaker than the abstract model, whose authorization compares

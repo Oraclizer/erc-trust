@@ -2,6 +2,30 @@
 
 ## Unreleased
 
+- Rewrite the public packet for kernel version 2. The proposal text
+  `docs/ERC-DRAFT.md` is rewritten in EIP-1 form from the kernel machine source
+  and the decision records: the types and interface with their identifiers, the
+  hash preimages, authorization and replay, the validation order and field
+  rules, the outcomes with the definition of a full-state stutter, the case
+  transition table, the reversal effects, the receipt with the sourcing of every
+  field, the dependency root and epoch, the bound dependency boundary, the two
+  reference profiles including onboarding and owned upstream state, the ERC-7943
+  route, and the rationale, compatibility, test cases, reference, and security
+  sections. The kernel machine source states in prose what the independent
+  reproduction had to infer (full-state stutter, the profile interface identifier
+  rule, the meaning of `same` in the field rules, the sourcing of reversal receipt
+  fields and the external commitment, the per-kind binding epoch), with no value,
+  selector, vector, or generated Solidity byte changing. README,
+  FORMAL_VERIFICATION, PROFILES, INTEGRATION, ARCHITECTURE, SECURITY,
+  COMMUNITY-REVIEW, CITATION.cff, CONTRIBUTING, GOVERNANCE, the specification
+  README, the evidence README, the verification summary, and the SDK README
+  describe the successor as current and keep the candidate 2 measurements as
+  history; `evidence/known-limitations.md` lists what the code, the evidence, and
+  the documents do not establish, each entry with its owner. The link checker
+  classifies every link (repository, EIP repository, allowlisted external host,
+  mailto) and checks that every backtick path names a file or directory in the
+  tree. No completion, release, or Full claim is made; the Certora lanes stay
+  pending by decision.
 - Bind the runtime identity of the three successor endpoints to their evidence. The
   deterministic build receipt records two isolated clean builds of the native token, the
   ERC-3643 profile adapter, and the profile governor; the release manifest binds all three

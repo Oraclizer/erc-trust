@@ -22,8 +22,8 @@ The ERC-3643 profile adapter consumes the same generated copy; see
    (bindings, authorities, overlay heads and effect records, custody, pending
    route data, the route ticket) and the pure helpers in
    `implementation/src/TrustNativeDecision.sol`. The version 1 type library
-   `implementation/src/TrustTypes.sol` and `implementation/src/TrustDecision.sol`
-   were removed with the profile change; the adapter keeps its own
+   `TrustTypes.sol` and the decision helpers `TrustDecision.sol` (both under
+   the removed version 1 source) were removed with the profile change; the adapter keeps its own
    implementation-only records in `implementation/src/profiles/ERC3643ProfileTypes.sol`.
 4. Every public view of the native token is either an ERC-20 view, an ERC-7943
    view, a kernel view, or a governance write. The version 1 convenience getters
@@ -91,9 +91,10 @@ records recovers the runtime budget that the larger receipt, the case records,
 the dependency root, and the live profile descriptor need: the native runtime
 went from 24,177 bytes with a 399-byte margin to 20,474 bytes with a 4,102-byte
 margin under the same pinned compiler settings (measured by `forge build --sizes`
-during the implementation change; the number after the formal connection change is
+during the implementation change). After the formal connection change removed the
+unused effect hash the native runtime is 20,043 bytes with a 4,533-byte margin,
 recorded in `spec/decisions/10-refinement-closure.md` and bound by
-`evidence/release-manifest.json`).
+`evidence/release-manifest.json` and `evidence/deterministic-build.json`.
 
 ## Consequences
 

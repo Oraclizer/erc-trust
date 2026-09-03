@@ -2,13 +2,16 @@
 
 ## Current status
 
-ERC-TRUST `0.1.0-candidate.2` is an unaudited research and reference
-candidate. It is not for production use. No deployed instance, fork, proxy,
+ERC-TRUST is an unaudited research and reference candidate. The shipped
+candidate is `0.1.0-candidate.2`; the successor under development on the
+integration branch carries the working label `0.2.0-candidate.1` and has no
+tag or release. Neither is for production use. No deployed instance, fork, proxy,
 migration, operator, key-management process, or downstream integration is
 covered by this policy.
 
 | Version | Security support |
 | --- | --- |
+| `0.2.0-candidate.1` (integration branch, no tag) | Reports accepted for evaluation; no patch service-level agreement |
 | `0.1.0-candidate.2` | Reports accepted for evaluation; no patch service-level agreement |
 | `0.1.0-candidate.1` | Superseded research candidate; unsupported |
 | Earlier commits and forks | Unsupported |
@@ -67,14 +70,15 @@ bugs may use the issue tracker after the repository becomes public.
 
 ## Verification and audit boundary
 
-The published Foundry, Certora, Kontrol, mutation, deterministic-build, and
-Isabelle results apply only to their exact candidate, harnesses, assumptions,
-and claim boundaries. They are not an independent security audit and do not
+The published Foundry, Certora, Kontrol, mutation, deterministic-build,
+runtime-binding, obligation-ledger, and Isabelle results apply only to their
+exact candidate, harnesses, assumptions, and claim boundaries. They are not an independent security audit and do not
 cover deployments or external legal and factual truth.
 
 See:
 
 - [Verification summary](evidence/verification-summary.md)
+- [Known limitations](evidence/known-limitations.md)
 - [Public claim matrix](evidence/claim-matrix.md)
 - [Disclaimer](DISCLAIMER.md)
 - [Formal verification and refinement map](FORMAL_VERIFICATION.md)

@@ -16,7 +16,8 @@ headers, as listed in the README.
   candidate, rules, harnesses, assumptions, and artifacts identified in the
   evidence package, and can be replayed from the repository.
 - The verified properties and their exact scope are listed in the README
-  assurance snapshot and the claim matrix under `evidence/`.
+  assurance snapshot, the claim matrix under `evidence/`, and
+  `evidence/known-limitations.md`.
 
 ## Boundaries
 

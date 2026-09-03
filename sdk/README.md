@@ -57,10 +57,13 @@ when intentionally selecting the native exact-use ERC-7943 wrapper.
 - Populate all fields. Action-specific zero and nonzero requirements are
   security-relevant.
 - Derive IDs from the actual chain ID and deployed contract address.
-- Bind the current authority, policy, scope, epoch, nonce, validity, and
-  action-specific evidence before encoding.
+- Bind the current authority and epoch, the dependency root and epoch,
+  nonce, validity, and action-specific commitments before encoding.
 - Compare results against
-  [`../vectors/conformance-v1.json`](../vectors/conformance-v1.json).
+  [`../vectors/conformance-v2.json`](../vectors/conformance-v2.json) for
+  kernel version 2 and
+  [`../vectors/conformance-v1.json`](../vectors/conformance-v1.json) for the
+  shipped version 1 helpers.
 - Recompute the stored receipt and emitted receipt hash independently.
 - Never treat SDK output as proof that an upstream fact or authority is valid.
 
@@ -70,6 +73,9 @@ request and failure lifecycle.
 ## Kernel version 2 helpers
 
 `src/kernel-v2.ts` is generated from `spec/erc-trust-kernel-v2.json` and
-provides the version 2 identifiers, command hashes, dependency root, and the
-unified action and reversal receipt hash. It is not yet wired to the shipped
-Solidity candidate, which still implements kernel version 1; see `spec/README.md`.
+provides the version 2 identifiers, command hashes, dependency root, binding
+hash, nonce key, and the unified action and reversal receipt hash. The
+Solidity endpoints under `implementation/` implement kernel version 2; the
+package entry point (`src/index.ts`) and the example above still expose the
+version 1 helpers of the shipped candidate, so use `src/kernel-v2.ts` for
+the successor until the entry point is switched.
