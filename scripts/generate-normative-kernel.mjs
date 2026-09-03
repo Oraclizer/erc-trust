@@ -342,7 +342,7 @@ ${Object.entries(schema.profileInterfaces).map(([name, entry]) => `### ${name}\n
 
 Common: ${schema.shapeRules.common.map((rule) => `\`${rule}\``).join("; ")}.
 
-${table(["Action", "Rule"], Object.entries(schema.shapeRules).filter(([name]) => name !== "common").map(([name, rules]) => [`\`${name}\``, Object.entries(rules).map(([field, rule]) => `${field}: ${rule}`).join("; ")]))}
+${table(["Action", "Rule"], Object.entries(schema.shapeRules).filter(([name]) => name !== "common").map(([name, rules]) => [`\`${name}\``, typeof rules === "string" ? rules : Object.entries(rules).map(([field, rule]) => `${field}: ${rule}`).join("; ")]))}
 
 ## Case transitions
 

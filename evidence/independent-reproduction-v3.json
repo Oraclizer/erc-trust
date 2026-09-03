@@ -1,0 +1,2070 @@
+{
+  "schema": "erc-trust-independent-reproduction-v3",
+  "kernelVersion": 2,
+  "producer": {
+    "program": "independent-reproduction-v3.mjs",
+    "role": "independent implementer, specification only",
+    "inputsRead": [
+      "spec/erc-trust-kernel-v2.json",
+      "spec/generated/kernel-v2.md",
+      "spec/generated/kernel-v2-abi.json",
+      "vectors/conformance-v2.json"
+    ],
+    "inputsNotRead": [
+      "implementation/",
+      "sdk/src/",
+      "sdk/*.ts",
+      "scripts/",
+      "formal/",
+      "evidence/",
+      "pilot/",
+      "docs/",
+      "README.md",
+      "FORMAL_VERIFICATION.md"
+    ],
+    "externalModule": {
+      "name": "ethers",
+      "version": "6.17.0",
+      "usedFor": "keccak-256 and an independent ABI cross-check"
+    }
+  },
+  "inputs": {
+    "vectorsPath": "vectors/conformance-v2.json",
+    "vectorsBytes": 52063,
+    "vectorsSha256": "0x08e5b7e8e67104cbc8142c2a330a391f3ebb693d7cce149a778ce4b7c80c18b8",
+    "vectorsKeccak256": "0xf8643d56bd447fae431b1a3f9b495ed6c522bad1a38765463e7af044b6576274",
+    "vectorsSchema": "erc-trust-conformance-vectors-v2",
+    "vectorsSource": "spec/erc-trust-kernel-v2.json"
+  },
+  "counts": {
+    "perKind": {
+      "constants": {
+        "vectors": 4,
+        "assertions": 19,
+        "passed": 4,
+        "failed": 0
+      },
+      "encoder": {
+        "vectors": 1,
+        "assertions": 3,
+        "passed": 1,
+        "failed": 0
+      },
+      "fixture": {
+        "vectors": 1,
+        "assertions": 6,
+        "passed": 1,
+        "failed": 0
+      },
+      "actions": {
+        "vectors": 7,
+        "assertions": 176,
+        "passed": 7,
+        "failed": 0
+      },
+      "reversals": {
+        "vectors": 3,
+        "assertions": 75,
+        "passed": 3,
+        "failed": 0
+      },
+      "negative": {
+        "vectors": 7,
+        "assertions": 121,
+        "passed": 7,
+        "failed": 0
+      }
+    },
+    "totals": {
+      "vectors": 23,
+      "assertions": 400,
+      "passed": 23,
+      "failed": 0
+    }
+  },
+  "verdict": "PASS",
+  "failures": [],
+  "findings": [
+    {
+      "id": "NEG-FIELD-BINDING domain row",
+      "observation": "The vector's expected text is 'TrustInvalidCommand reason 2' for all nineteen mutations, and that holds for eighteen of them. For the domain row it does not, because the common rule list places the domain rule ahead of the identifier rule, so an endpoint that checks in list order answers reason 1. The vector's primary claim, that every mutation yields a different derived actionId, holds for all nineteen.",
+      "impact": "Documentation only. No identifier or hash in the vectors is affected."
+    },
+    {
+      "id": "check order is unspecified and two negative vectors disagree on the domain field",
+      "observation": "NEG-WRONG-DOMAIN expects reason 1 for a wrong domain and NEG-FIELD-BINDING expects reason 2 for every one-field mutation, the domain field included. Both are satisfiable at once only if the domain rule is evaluated before the identifier rule and NEG-WRONG-DOMAIN is read as re-deriving the identifier over the mutated request. The specification states neither the evaluation order nor whether NEG-WRONG-DOMAIN re-derives.",
+      "impact": "An independent implementer can reproduce every published identifier and hash without resolving this, but cannot predict the reason code of a request that breaks more than one rule."
+    },
+    {
+      "id": "generated prose renders shapeRules.appliesTo character by character",
+      "observation": "In spec/generated/kernel-v2.md the shape rules table has an 'appliesTo' row printed as '0: c; 1: o; 2: m; ...', one numbered entry per letter of the sentence held in the schema. The prose generator is treating a string value as a map of fields. The machine source itself is correct.",
+      "impact": "Cosmetic defect in the normative prose. No hash, identifier or calldata is affected."
+    },
+    {
+      "id": "profile interface identifiers are declared without a rule",
+      "observation": "The generated prose and the generated ABI publish identifiers for IERCTrustNativeRoute and ITrustBoundDependency, but only the kernel interface has a stated derivation rule. Applying the kernel's XOR rule to the profile interfaces reproduces both declared values, so the rule is the same one; it is simply not written down for them.",
+      "impact": "Reproducible, but only by assuming a rule the specification does not state for these two identifiers."
+    },
+    {
+      "id": "ACTION and REVERSAL receipts can share a commandKind byte",
+      "observation": "Receipt.commandKind holds an ActionKind value for ACTION receipts and a ReversalKind value for REVERSAL receipts, and both enumerations start at zero. A FREEZE action receipt and an UNFREEZE reversal receipt therefore carry commandKind 0, and only the receiptKind word separates the two preimages. NEG-RECEIPT-KIND is the vector that pins this separation, and it reproduces exactly.",
+      "impact": "Not a defect. It is the reason the receiptKind word has to be in the preimage, and the vectors do exercise it."
+    }
+  ],
+  "notEvaluable": [
+    {
+      "item": "full-state stutter",
+      "where": "expected text of NEG-CASE-CONFLICT, NEG-TERMINAL and NEG-REPLAY",
+      "why": "The phrase is used as part of the expected outcome but is defined nowhere in the machine source, the generated prose or the generated ABI. The program checks the typed error and the reason code of those three vectors and cannot check the stutter claim."
+    },
+    {
+      "item": "reason 4 (authority epoch)",
+      "where": "shapeRules.common",
+      "why": "The vectors state that the fixture does not model the authority registry and that reason 4 is not exercised, so the program models no authority epoch check."
+    },
+    {
+      "item": "balance availability and cross-case custody backing (reason 8 on the direct path)",
+      "where": "shapeRules.SEIZE and shapeRules.CONFISCATE",
+      "why": "The fixture carries no balances, so 'available without consuming custody backing of another case' cannot be evaluated. The program models the per-case custody record only."
+    },
+    {
+      "item": "assessmentEvidence, preState and postState",
+      "where": "Receipt fields 12 to 14",
+      "why": "Their preimages are profile-defined and the fixture calls them opaque values, so the program consumes them from the vector rather than deriving them."
+    }
+  ],
+  "method": {
+    "encoding": {
+      "implemented": [
+        "The hash encoding rule says that abi.encode is taken over the listed items in order, that a struct encodes as the static tuple of its fields in the order of its fields array, and that every item occupies one 32-byte word with addresses and narrow integers left-padded and enums carried as their uint8 value. Because every field of both request structs is static, that reduces to concatenating one big-endian 32-byte word per field, so the encoder in this program builds each word directly from the schema's field list.",
+        "The canonicality sentence says the received calldata and the canonical encoding coincide for every accepted command, so calldata is checked as the selector followed by exactly that encoding, with no offset word for the struct argument.",
+        "The signature rule says a canonical signature is the name followed by the parenthesized comma-separated parameter types with no spaces, a struct parameter is the parenthesized list of its field types in field order, enum fields are uint8, and the selector is the first four bytes of the keccak-256 of that string."
+      ],
+      "crossChecked": "The hand-written encoder was compared byte for byte against an independent ABI coder for the ActionRequest tuple, the ReversalRequest tuple and the full nested actionId preimage."
+    },
+    "constants": {
+      "implemented": "Each constant in the schema is a string paired with a keccak256 value, which this program reads as the keccak-256 digest of the UTF-8 bytes of that string. The domain, the dependency-root tag and both profile identifiers are derived that way and compared with the vectors."
+    },
+    "actionId": {
+      "implemented": "keccak-256 over the four preimage items domain, endpoint address, chain id and the ActionRequest with actionId set to bytes32(0). The endpoint sentence fixes the endpoint as the address a caller invokes, which the fixture supplies; the chain id sentence fixes it as the EIP-155 identifier, which the fixture also supplies. The rule that the request's actionId field must equal this value is checked separately for every action vector."
+    },
+    "commandHash": {
+      "implemented": "The same four items with the completed request, actionId filled."
+    },
+    "reversalId": {
+      "implemented": "The same shape over the ReversalRequest with reversalId set to bytes32(0)."
+    },
+    "reversalHash": {
+      "implemented": "The same over the completed ReversalRequest."
+    },
+    "bindingHash": {
+      "implemented": "keccak-256 over domain, the BindingKind value as uint8, the dependency address, runtimeCodeId, configurationDigest, schema and the uint64 epoch, using the per-dependency epoch the fixture records."
+    },
+    "dependencyRoot": {
+      "implemented": "keccak-256 over domain, the DEPENDENCY_ROOT tag and the four binding hashes ordered by BindingKind, that is policy, identity, settlement, entitlement."
+    },
+    "receiptHash": {
+      "implemented": "keccak-256 of seventeen words: the domain constant followed by every Receipt field except receiptHash, in the order the struct lists them. The Receipt description states exactly that ordering and the prefix. The program checks the hash twice for every vector, once over the receipt input as published and once over a receipt it derives itself from the request, using the field meanings: the receipt kind discriminator, the command identifier, the command kind as the ActionKind or ReversalKind value, a zero parent for actions and the reversed actionId for reversals, the effective destination that is the custodian for SEIZE, the custodian as the source of a RELEASE and the declared prior holder as its destination, and the external commitment that is keccak-256 of the settlement and proceeds commitments for LIQUIDATE, the entitlement commitment for RECOVER and zero everywhere else."
+    },
+    "nonceKey": {
+      "implemented": "keccak-256 over domain, authorityRef, the uint64 authority epoch and the uint256 nonce."
+    },
+    "interfaceIds": {
+      "implemented": "The kernel identifier is the XOR of the selectors of the nine listed functions with supportsInterface excluded, exactly as the erc165 rule states. The two profile interface identifiers are computed with the same XOR rule and compared against the values the generated prose and the generated ABI declare, because neither document states a rule for them."
+    },
+    "shapeAndCaseRules": {
+      "implemented": "The six common rules were implemented in the order the schema lists them, with their bound reason codes. The per-action field rules were implemented one clause at a time, treating a violation without its own code as reason 6. The case table CT-1 to CT-16 was implemented as a small state machine over case records, per-subject overlay heads for the FREEZE and RESTRICT families, per-case custody records and the consumed nonce and command identifier sets, which is what the negative vectors need in order to be evaluated rather than merely restated."
+    },
+    "ambiguities": [
+      "Check order is not stated. The schema lists the six common rules and numbers their reasons in the same order, but never says that an endpoint evaluates them in that order, so a request that violates several rules has no determined reason code. Every negative scenario in this program was therefore built so that exactly one rule can fail, and the ordering assumption is recorded rather than relied on.",
+      "Where replay detection and the TERMINAL case check sit relative to each other and to the shape rules is not stated. The program checks replay before the terminal case and both before the per-action field rules, and isolates each negative scenario so the choice does not decide any verdict.",
+      "The phrase 'full-state stutter' appears in the expected outcome of three negative vectors and is defined nowhere in the machine source, the prose or the ABI. It is not evaluable from the specification.",
+      "The 'same: CONFISCATE' key in the LIQUIDATE and RECOVER shape rules is never given a meaning. It was read as inheriting the CONFISCATE clauses and overriding the ones restated, which is the only reading that makes the LIQUIDATE and RECOVER vectors well formed.",
+      "The relation between the per-dependency epoch inside bindingHash and the endpoint's dependencyEpoch is not stated. The fixture happens to set both to 1. The rebinding scenario therefore changes only the configuration digest and advances the endpoint epoch by one, which is the part the specification does state.",
+      "For a reversal receipt the specification gives rules for source and destination but none for subject, amount or caseId, none of which exist on a ReversalRequest. They were taken from the action being reversed, which the vectors confirm but the text does not say.",
+      "For a reversal receipt it is not stated whether authorityRef and dependencyRoot come from the reversal request or from the reversed action. The vectors cannot distinguish the two because both commands carry the same authority reference and the same dependency root. The program uses the reversal request's own values.",
+      "Receipt.commandKind is typed uint8 with the meaning 'ActionKind value when receiptKind is ACTION, ReversalKind value when REVERSAL'. Since both enumerations start at zero, an ACTION receipt for FREEZE and a REVERSAL receipt for UNFREEZE carry the same commandKind byte, and only the receiptKind word separates them. NEG-RECEIPT-KIND is the vector that exercises this separation.",
+      "The observation commitments assessmentEvidence, preState and postState are profile-defined; the native-full profile only says the preimage is 'documented by the implementation together with its runtime identity'. Nothing in the specification lets an independent implementer compute them, so they were consumed from the fixture.",
+      "The generated prose renders the shapeRules 'appliesTo' entry character by character, as a table row numbering each letter of the sentence. That is a defect of the prose generator, not of the machine source; the sentence itself was read from the schema.",
+      "Neither the prose nor the ABI states how the two profile interface identifiers are derived. The ERC-165 XOR rule stated for the kernel interface was applied to them and the result compared with the declared values."
+    ]
+  },
+  "results": {
+    "constants": [
+      {
+        "id": "CONSTANTS",
+        "status": "PASS",
+        "checks": [
+          {
+            "name": "domain == keccak256(utf8 'ERC-TRUST/v2')",
+            "status": "PASS"
+          },
+          {
+            "name": "dependencyRootTag == keccak256(utf8 'ERC-TRUST/v2/dependency-root')",
+            "status": "PASS"
+          },
+          {
+            "name": "profileId native-full",
+            "status": "PASS"
+          },
+          {
+            "name": "profileId erc3643-verified-full",
+            "status": "PASS"
+          }
+        ],
+        "derived": {
+          "domain": "0xb5303e4083d2781d6c7d6a68d30b6354ebda11f0a2a037b946d87b3eec40b74e",
+          "dependencyRootTag": "0x8dd0ff19b096a49997e6e0fa1eea2dee5d61291bb86d3d10640e517c9e6cbe18"
+        }
+      },
+      {
+        "id": "SELECTORS",
+        "status": "PASS",
+        "checks": [
+          {
+            "name": "selector executeRegulatoryAction((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+            "status": "PASS"
+          },
+          {
+            "name": "selector executeRegulatoryReversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+            "status": "PASS"
+          },
+          {
+            "name": "selector deriveActionId((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+            "status": "PASS"
+          },
+          {
+            "name": "selector deriveReversalId((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+            "status": "PASS"
+          },
+          {
+            "name": "selector actionRecord(bytes32)",
+            "status": "PASS"
+          },
+          {
+            "name": "selector receipt(bytes32)",
+            "status": "PASS"
+          },
+          {
+            "name": "selector caseRecord(bytes32)",
+            "status": "PASS"
+          },
+          {
+            "name": "selector dependencyState()",
+            "status": "PASS"
+          },
+          {
+            "name": "selector trustProfile()",
+            "status": "PASS"
+          },
+          {
+            "name": "selector signature set matches the schema function list",
+            "status": "PASS"
+          }
+        ],
+        "derived": {
+          "selectors": {
+            "executeRegulatoryAction((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))": "0x2f4e0773",
+            "executeRegulatoryReversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))": "0x2b892e8f",
+            "deriveActionId((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))": "0xfc6a9112",
+            "deriveReversalId((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))": "0xf3315a6c",
+            "actionRecord(bytes32)": "0x330fcfde",
+            "receipt(bytes32)": "0x198a27aa",
+            "caseRecord(bytes32)": "0x2a408631",
+            "dependencyState()": "0x7bf8f8b6",
+            "trustProfile()": "0x5ba37779"
+          }
+        }
+      },
+      {
+        "id": "INTERFACE-IDS",
+        "status": "PASS",
+        "checks": [
+          {
+            "name": "kernel interface id == XOR of the nine selectors",
+            "status": "PASS"
+          },
+          {
+            "name": "IERCTrustNativeRoute id == XOR of its two selectors (value declared by the specification, not by the vectors)",
+            "status": "PASS"
+          },
+          {
+            "name": "ITrustBoundDependency id == XOR of its two selectors (value declared by the specification, not by the vectors)",
+            "status": "PASS"
+          }
+        ],
+        "derived": {
+          "kernelInterfaceId": "0x2b020308",
+          "nativeRouteInterfaceId": "0x5cd8d207",
+          "boundDependencyInterfaceId": "0xb2306fd2"
+        }
+      },
+      {
+        "id": "CALLDATA-LENGTHS",
+        "status": "PASS",
+        "checks": [
+          {
+            "name": "action calldata length == 4 + 32 * 20",
+            "status": "PASS"
+          },
+          {
+            "name": "reversal calldata length == 4 + 32 * 12",
+            "status": "PASS"
+          }
+        ],
+        "derived": {}
+      }
+    ],
+    "encoder": [
+      {
+        "id": "ENCODER-CROSS-CHECK",
+        "status": "PASS",
+        "checks": [
+          {
+            "name": "hand-written ActionRequest encoding == AbiCoder tuple encoding",
+            "status": "PASS"
+          },
+          {
+            "name": "hand-written ReversalRequest encoding == AbiCoder tuple encoding",
+            "status": "PASS"
+          },
+          {
+            "name": "actionId preimage == AbiCoder nested encoding",
+            "status": "PASS"
+          }
+        ],
+        "derived": {}
+      }
+    ],
+    "fixture": [
+      {
+        "id": "FIXTURE",
+        "status": "PASS",
+        "checks": [
+          {
+            "name": "bindingHash policy",
+            "status": "PASS"
+          },
+          {
+            "name": "bindingHash identity",
+            "status": "PASS"
+          },
+          {
+            "name": "bindingHash settlement",
+            "status": "PASS"
+          },
+          {
+            "name": "bindingHash entitlement",
+            "status": "PASS"
+          },
+          {
+            "name": "dependencyRoot",
+            "status": "PASS"
+          },
+          {
+            "name": "nonceKey example",
+            "status": "PASS"
+          }
+        ],
+        "derived": {
+          "bindingHashes": {
+            "policy": "0xde687fdd0b976ad32592998b42ea7d4a3347d8105bdb890d03e813aedade31a1",
+            "identity": "0x787a922e80cbe4b572aa5e37f315b45d7d1a2d74f81d9d1053d175d520818468",
+            "settlement": "0x2271ae1a1bcc75848268372df2daef4696eb63c234822118200cd1355982f9ed",
+            "entitlement": "0xc4d8a1c195b4efb9d2ce8ff43803f3ad067a4c832f373e02360bc6f9c6e49e46"
+          },
+          "dependencyRoot": "0xb70eec0e65252f695f779201d9c277572da5c3621fe42b6c81590d881813a06d"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "id": "ACTION-FREEZE",
+        "status": "PASS",
+        "checks": [
+          {
+            "name": "derived actionId",
+            "status": "PASS"
+          },
+          {
+            "name": "request.actionId equals the derived identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "commandHash",
+            "status": "PASS"
+          },
+          {
+            "name": "calldata",
+            "status": "PASS"
+          },
+          {
+            "name": "calldata length",
+            "status": "PASS"
+          },
+          {
+            "name": "request.domain == the domain constant",
+            "status": "PASS"
+          },
+          {
+            "name": "request.dependencyRoot == the fixture root",
+            "status": "PASS"
+          },
+          {
+            "name": "request.dependencyEpoch == the fixture epoch",
+            "status": "PASS"
+          },
+          {
+            "name": "declared action name matches the enum value",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field receiptKind",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field commandId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field commandKind",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field parentCommandId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field subject",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field source",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field destination",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field amount",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field caseId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field authorityRef",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field dependencyRoot",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field provenanceCommitment",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field externalCommitment",
+            "status": "PASS"
+          },
+          {
+            "name": "receiptHash from the vector receipt input",
+            "status": "PASS"
+          },
+          {
+            "name": "receiptHash from the independently derived receipt",
+            "status": "PASS"
+          },
+          {
+            "name": "accepted by the shape and case rules",
+            "status": "PASS"
+          }
+        ],
+        "derived": {
+          "caseRule": "CT-1",
+          "actionId": "0x5c68254034435f741ccf482239eb1838375ab076f04a56fa387c93772621794c",
+          "commandHash": "0x3e475d2429143d65751900f7c42205c04bbd3e2db2fb09bfce4d91a49f4f2f66",
+          "receiptHash": "0x6332c7cf1068a665347a05517f41015892faca1182e044eff290821406c18168",
+          "externalCommitment": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "note": "FREEZE / direct"
+      },
+      {
+        "id": "ACTION-SEIZE",
+        "status": "PASS",
+        "checks": [
+          {
+            "name": "derived actionId",
+            "status": "PASS"
+          },
+          {
+            "name": "request.actionId equals the derived identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "commandHash",
+            "status": "PASS"
+          },
+          {
+            "name": "calldata",
+            "status": "PASS"
+          },
+          {
+            "name": "calldata length",
+            "status": "PASS"
+          },
+          {
+            "name": "request.domain == the domain constant",
+            "status": "PASS"
+          },
+          {
+            "name": "request.dependencyRoot == the fixture root",
+            "status": "PASS"
+          },
+          {
+            "name": "request.dependencyEpoch == the fixture epoch",
+            "status": "PASS"
+          },
+          {
+            "name": "declared action name matches the enum value",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field receiptKind",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field commandId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field commandKind",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field parentCommandId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field subject",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field source",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field destination",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field amount",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field caseId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field authorityRef",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field dependencyRoot",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field provenanceCommitment",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field externalCommitment",
+            "status": "PASS"
+          },
+          {
+            "name": "receiptHash from the vector receipt input",
+            "status": "PASS"
+          },
+          {
+            "name": "receiptHash from the independently derived receipt",
+            "status": "PASS"
+          },
+          {
+            "name": "accepted by the shape and case rules",
+            "status": "PASS"
+          }
+        ],
+        "derived": {
+          "caseRule": "CT-9",
+          "actionId": "0xfe3c2f4341429d56d767ffc95634767928a50aea6263c336383b9e1ae5574f46",
+          "commandHash": "0x1cea0679848ec59bf1c476acad36075069e90c2e39b36d3bdec1a4b3bef680a5",
+          "receiptHash": "0x2965a4022473c5d39ce3ca4bbf1ec5538208e2780f5960ac8de970ff21b06d1f",
+          "externalCommitment": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "note": "SEIZE / direct"
+      },
+      {
+        "id": "ACTION-CONFISCATE",
+        "status": "PASS",
+        "checks": [
+          {
+            "name": "derived actionId",
+            "status": "PASS"
+          },
+          {
+            "name": "request.actionId equals the derived identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "commandHash",
+            "status": "PASS"
+          },
+          {
+            "name": "calldata",
+            "status": "PASS"
+          },
+          {
+            "name": "calldata length",
+            "status": "PASS"
+          },
+          {
+            "name": "request.domain == the domain constant",
+            "status": "PASS"
+          },
+          {
+            "name": "request.dependencyRoot == the fixture root",
+            "status": "PASS"
+          },
+          {
+            "name": "request.dependencyEpoch == the fixture epoch",
+            "status": "PASS"
+          },
+          {
+            "name": "declared action name matches the enum value",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field receiptKind",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field commandId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field commandKind",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field parentCommandId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field subject",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field source",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field destination",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field amount",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field caseId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field authorityRef",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field dependencyRoot",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field provenanceCommitment",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field externalCommitment",
+            "status": "PASS"
+          },
+          {
+            "name": "receiptHash from the vector receipt input",
+            "status": "PASS"
+          },
+          {
+            "name": "receiptHash from the independently derived receipt",
+            "status": "PASS"
+          },
+          {
+            "name": "accepted by the shape and case rules",
+            "status": "PASS"
+          }
+        ],
+        "derived": {
+          "caseRule": "CT-13",
+          "actionId": "0xfd068c83e95990effb240a286698152c9aa8e80acf234556e5ab4ade36e0f774",
+          "commandHash": "0xd5e775ddb081107e71fe1f41de9c051266fbc5b9e8d5443c31d392ba5008e0fa",
+          "receiptHash": "0x0b3f637d6e9a81dbf3c57ee86d4f40bcb4f96118138742ae566d3b49c6261478",
+          "externalCommitment": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "note": "CONFISCATE / direct"
+      },
+      {
+        "id": "ACTION-LIQUIDATE",
+        "status": "PASS",
+        "checks": [
+          {
+            "name": "derived actionId",
+            "status": "PASS"
+          },
+          {
+            "name": "request.actionId equals the derived identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "commandHash",
+            "status": "PASS"
+          },
+          {
+            "name": "calldata",
+            "status": "PASS"
+          },
+          {
+            "name": "calldata length",
+            "status": "PASS"
+          },
+          {
+            "name": "request.domain == the domain constant",
+            "status": "PASS"
+          },
+          {
+            "name": "request.dependencyRoot == the fixture root",
+            "status": "PASS"
+          },
+          {
+            "name": "request.dependencyEpoch == the fixture epoch",
+            "status": "PASS"
+          },
+          {
+            "name": "declared action name matches the enum value",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field receiptKind",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field commandId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field commandKind",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field parentCommandId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field subject",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field source",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field destination",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field amount",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field caseId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field authorityRef",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field dependencyRoot",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field provenanceCommitment",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field externalCommitment",
+            "status": "PASS"
+          },
+          {
+            "name": "receiptHash from the vector receipt input",
+            "status": "PASS"
+          },
+          {
+            "name": "receiptHash from the independently derived receipt",
+            "status": "PASS"
+          },
+          {
+            "name": "accepted by the shape and case rules",
+            "status": "PASS"
+          }
+        ],
+        "derived": {
+          "caseRule": "CT-13",
+          "actionId": "0xf788ecd3c24d416e4857fcd87ed0ec21dc5028a0b76b600c47937a071b91c337",
+          "commandHash": "0xdc541d939d631e749501ad160141ab99750d714d885a84b6f50559a83eb549f0",
+          "receiptHash": "0xe811183dfa7fe48ea5696f385b758939d22427ebaa583e1190f4a37efa21e58e",
+          "externalCommitment": "0xdf4c5238606f154dc1009fc9bbd4a8e30a20f9140b4f8ea590275bdb7329793b"
+        },
+        "note": "LIQUIDATE / direct"
+      },
+      {
+        "id": "ACTION-RESTRICT",
+        "status": "PASS",
+        "checks": [
+          {
+            "name": "derived actionId",
+            "status": "PASS"
+          },
+          {
+            "name": "request.actionId equals the derived identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "commandHash",
+            "status": "PASS"
+          },
+          {
+            "name": "calldata",
+            "status": "PASS"
+          },
+          {
+            "name": "calldata length",
+            "status": "PASS"
+          },
+          {
+            "name": "request.domain == the domain constant",
+            "status": "PASS"
+          },
+          {
+            "name": "request.dependencyRoot == the fixture root",
+            "status": "PASS"
+          },
+          {
+            "name": "request.dependencyEpoch == the fixture epoch",
+            "status": "PASS"
+          },
+          {
+            "name": "declared action name matches the enum value",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field receiptKind",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field commandId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field commandKind",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field parentCommandId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field subject",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field source",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field destination",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field amount",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field caseId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field authorityRef",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field dependencyRoot",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field provenanceCommitment",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field externalCommitment",
+            "status": "PASS"
+          },
+          {
+            "name": "receiptHash from the vector receipt input",
+            "status": "PASS"
+          },
+          {
+            "name": "receiptHash from the independently derived receipt",
+            "status": "PASS"
+          },
+          {
+            "name": "accepted by the shape and case rules",
+            "status": "PASS"
+          }
+        ],
+        "derived": {
+          "caseRule": "CT-5",
+          "actionId": "0x11671c4056a51b29c8e3614c2531949fe0051d1fb344f81c8c9570b3e50e746f",
+          "commandHash": "0x3bb5eef5236c6a68318a15665c799e7d1e992134665622e4c1463d879cdb4ba9",
+          "receiptHash": "0x251e1d80582270ac025bf06bffc1e12adfdbcb9a1c7e736380c2ebd9d30e471f",
+          "externalCommitment": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "note": "RESTRICT / direct"
+      },
+      {
+        "id": "ACTION-RECOVER",
+        "status": "PASS",
+        "checks": [
+          {
+            "name": "derived actionId",
+            "status": "PASS"
+          },
+          {
+            "name": "request.actionId equals the derived identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "commandHash",
+            "status": "PASS"
+          },
+          {
+            "name": "calldata",
+            "status": "PASS"
+          },
+          {
+            "name": "calldata length",
+            "status": "PASS"
+          },
+          {
+            "name": "request.domain == the domain constant",
+            "status": "PASS"
+          },
+          {
+            "name": "request.dependencyRoot == the fixture root",
+            "status": "PASS"
+          },
+          {
+            "name": "request.dependencyEpoch == the fixture epoch",
+            "status": "PASS"
+          },
+          {
+            "name": "declared action name matches the enum value",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field receiptKind",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field commandId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field commandKind",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field parentCommandId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field subject",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field source",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field destination",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field amount",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field caseId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field authorityRef",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field dependencyRoot",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field provenanceCommitment",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field externalCommitment",
+            "status": "PASS"
+          },
+          {
+            "name": "receiptHash from the vector receipt input",
+            "status": "PASS"
+          },
+          {
+            "name": "receiptHash from the independently derived receipt",
+            "status": "PASS"
+          },
+          {
+            "name": "accepted by the shape and case rules",
+            "status": "PASS"
+          }
+        ],
+        "derived": {
+          "caseRule": "CT-13",
+          "actionId": "0x2dd6e6daf8e3dff00d4a4fec759dbb7504cd97d6ddd087e5f914cdc9d8dbc1f2",
+          "commandHash": "0x5a0b73a1047ef5667fc2cc8fba82b6042b538623897b80731f5ad66fc8ce0ee5",
+          "receiptHash": "0x7f2fd9aea33e0a91c49f647aaa5c66c5df093f76cbb4d66fee72c832fd8b24b6",
+          "externalCommitment": "0xe3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3"
+        },
+        "note": "RECOVER / direct"
+      },
+      {
+        "id": "ACTION-CONFISCATE-CUSTODY",
+        "status": "PASS",
+        "checks": [
+          {
+            "name": "derived actionId",
+            "status": "PASS"
+          },
+          {
+            "name": "request.actionId equals the derived identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "commandHash",
+            "status": "PASS"
+          },
+          {
+            "name": "calldata",
+            "status": "PASS"
+          },
+          {
+            "name": "calldata length",
+            "status": "PASS"
+          },
+          {
+            "name": "request.domain == the domain constant",
+            "status": "PASS"
+          },
+          {
+            "name": "request.dependencyRoot == the fixture root",
+            "status": "PASS"
+          },
+          {
+            "name": "request.dependencyEpoch == the fixture epoch",
+            "status": "PASS"
+          },
+          {
+            "name": "declared action name matches the enum value",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field receiptKind",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field commandId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field commandKind",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field parentCommandId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field subject",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field source",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field destination",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field amount",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field caseId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field authorityRef",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field dependencyRoot",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field provenanceCommitment",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field externalCommitment",
+            "status": "PASS"
+          },
+          {
+            "name": "receiptHash from the vector receipt input",
+            "status": "PASS"
+          },
+          {
+            "name": "receiptHash from the independently derived receipt",
+            "status": "PASS"
+          },
+          {
+            "name": "opening SEIZE of the custody scenario is accepted",
+            "status": "PASS"
+          },
+          {
+            "name": "accepted by the shape and case rules",
+            "status": "PASS"
+          }
+        ],
+        "derived": {
+          "caseRule": "CT-12",
+          "actionId": "0xa0cabd6e4e54f42ff7f9934cbe529e8b260e834aead7587c8d390c229fe27cb1",
+          "commandHash": "0xd75aca2a9ceff50fb7e56adf070b34006a5d7be8e62b20dd837dd81ca0f38d9d",
+          "receiptHash": "0xd1a4e98b092adb937a6162275dd05865d962ac68153b915c560e79f55eb59d0c",
+          "externalCommitment": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "note": "CONFISCATE / custody disposition"
+      }
+    ],
+    "reversals": [
+      {
+        "id": "REVERSAL-UNFREEZE",
+        "status": "PASS",
+        "checks": [
+          {
+            "name": "derived reversalId",
+            "status": "PASS"
+          },
+          {
+            "name": "request.reversalId equals the derived identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "reversalHash",
+            "status": "PASS"
+          },
+          {
+            "name": "calldata",
+            "status": "PASS"
+          },
+          {
+            "name": "calldata length",
+            "status": "PASS"
+          },
+          {
+            "name": "request.actionId is the referenced action",
+            "status": "PASS"
+          },
+          {
+            "name": "declared reversal name matches the enum value",
+            "status": "PASS"
+          },
+          {
+            "name": "reversal pairs with the action kind",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field receiptKind",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field commandId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field commandKind",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field parentCommandId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field subject",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field source",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field destination",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field amount",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field caseId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field authorityRef",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field dependencyRoot",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field provenanceCommitment",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field externalCommitment",
+            "status": "PASS"
+          },
+          {
+            "name": "receiptHash from the vector receipt input",
+            "status": "PASS"
+          },
+          {
+            "name": "receiptHash from the independently derived receipt",
+            "status": "PASS"
+          },
+          {
+            "name": "the reversed action is accepted first",
+            "status": "PASS"
+          },
+          {
+            "name": "accepted by the pairing and case rules",
+            "status": "PASS"
+          }
+        ],
+        "derived": {
+          "reversalId": "0xc0503901b21cf615dded567d41ca3c256d3b22a0b5291250e9cc7c1f09491e2b",
+          "reversalHash": "0xf869e041bfe9edb0ed1a6b1c840088936210f3b1a9ff4e5a24a6a65b931b7475"
+        },
+        "note": "UNFREEZE reverses ACTION-FREEZE"
+      },
+      {
+        "id": "REVERSAL-RELEASE",
+        "status": "PASS",
+        "checks": [
+          {
+            "name": "derived reversalId",
+            "status": "PASS"
+          },
+          {
+            "name": "request.reversalId equals the derived identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "reversalHash",
+            "status": "PASS"
+          },
+          {
+            "name": "calldata",
+            "status": "PASS"
+          },
+          {
+            "name": "calldata length",
+            "status": "PASS"
+          },
+          {
+            "name": "request.actionId is the referenced action",
+            "status": "PASS"
+          },
+          {
+            "name": "declared reversal name matches the enum value",
+            "status": "PASS"
+          },
+          {
+            "name": "reversal pairs with the action kind",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field receiptKind",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field commandId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field commandKind",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field parentCommandId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field subject",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field source",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field destination",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field amount",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field caseId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field authorityRef",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field dependencyRoot",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field provenanceCommitment",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field externalCommitment",
+            "status": "PASS"
+          },
+          {
+            "name": "receiptHash from the vector receipt input",
+            "status": "PASS"
+          },
+          {
+            "name": "receiptHash from the independently derived receipt",
+            "status": "PASS"
+          },
+          {
+            "name": "the reversed action is accepted first",
+            "status": "PASS"
+          },
+          {
+            "name": "accepted by the pairing and case rules",
+            "status": "PASS"
+          }
+        ],
+        "derived": {
+          "reversalId": "0xcc7999a6b2f13963e681bc512ba987197a723735434d4bedc2fb1a3f4db27142",
+          "reversalHash": "0xc99bdb14700f3a9f4dba02e1342f570d086aa5637ba710621ab67f7d0e312f89"
+        },
+        "note": "RELEASE reverses ACTION-SEIZE"
+      },
+      {
+        "id": "REVERSAL-UNRESTRICT",
+        "status": "PASS",
+        "checks": [
+          {
+            "name": "derived reversalId",
+            "status": "PASS"
+          },
+          {
+            "name": "request.reversalId equals the derived identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "reversalHash",
+            "status": "PASS"
+          },
+          {
+            "name": "calldata",
+            "status": "PASS"
+          },
+          {
+            "name": "calldata length",
+            "status": "PASS"
+          },
+          {
+            "name": "request.actionId is the referenced action",
+            "status": "PASS"
+          },
+          {
+            "name": "declared reversal name matches the enum value",
+            "status": "PASS"
+          },
+          {
+            "name": "reversal pairs with the action kind",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field receiptKind",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field commandId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field commandKind",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field parentCommandId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field subject",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field source",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field destination",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field amount",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field caseId",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field authorityRef",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field dependencyRoot",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field provenanceCommitment",
+            "status": "PASS"
+          },
+          {
+            "name": "receipt field externalCommitment",
+            "status": "PASS"
+          },
+          {
+            "name": "receiptHash from the vector receipt input",
+            "status": "PASS"
+          },
+          {
+            "name": "receiptHash from the independently derived receipt",
+            "status": "PASS"
+          },
+          {
+            "name": "the reversed action is accepted first",
+            "status": "PASS"
+          },
+          {
+            "name": "accepted by the pairing and case rules",
+            "status": "PASS"
+          }
+        ],
+        "derived": {
+          "reversalId": "0xbd8c54d61b794132f56eca7d574f35d57bb1b6b7d7ac98ee54ed0c05ecfb83fa",
+          "reversalHash": "0x23ee7d9d35cd3fd3fc14135fa6e52ee2a3ce5c7bedd89bfddcd1404bc5e34cb8"
+        },
+        "note": "UNRESTRICT reverses ACTION-RESTRICT"
+      }
+    ],
+    "negative": [
+      {
+        "id": "NEG-WRONG-DOMAIN",
+        "status": "PASS",
+        "checks": [
+          {
+            "name": "rejected with TrustInvalidCommand",
+            "status": "PASS"
+          },
+          {
+            "name": "reason 1",
+            "status": "PASS"
+          },
+          {
+            "name": "expectation text names reason 1",
+            "status": "PASS"
+          },
+          {
+            "name": "the mutation also changes the derived identifier",
+            "status": "PASS"
+          }
+        ],
+        "derived": {
+          "rejection": {
+            "error": "TrustInvalidCommand",
+            "reason": 1,
+            "rule": "domain == domain.keccak256"
+          }
+        },
+        "note": "request.domain is not the kernel domain"
+      },
+      {
+        "id": "NEG-FIELD-BINDING",
+        "status": "PASS",
+        "checks": [
+          {
+            "name": "every ActionRequest field except actionId is covered",
+            "status": "PASS"
+          },
+          {
+            "name": "originalValue of domain matches the base request",
+            "status": "PASS"
+          },
+          {
+            "name": "derived actionId for mutated domain",
+            "status": "PASS"
+          },
+          {
+            "name": "mutated domain changes the identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "rejected for mutated domain (reason 1 under list-order checking)",
+            "status": "PASS"
+          },
+          {
+            "name": "originalValue of action matches the base request",
+            "status": "PASS"
+          },
+          {
+            "name": "derived actionId for mutated action",
+            "status": "PASS"
+          },
+          {
+            "name": "mutated action changes the identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "rejected for mutated action (reason 2 under list-order checking)",
+            "status": "PASS"
+          },
+          {
+            "name": "originalValue of subject matches the base request",
+            "status": "PASS"
+          },
+          {
+            "name": "derived actionId for mutated subject",
+            "status": "PASS"
+          },
+          {
+            "name": "mutated subject changes the identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "rejected for mutated subject (reason 2 under list-order checking)",
+            "status": "PASS"
+          },
+          {
+            "name": "originalValue of source matches the base request",
+            "status": "PASS"
+          },
+          {
+            "name": "derived actionId for mutated source",
+            "status": "PASS"
+          },
+          {
+            "name": "mutated source changes the identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "rejected for mutated source (reason 2 under list-order checking)",
+            "status": "PASS"
+          },
+          {
+            "name": "originalValue of destination matches the base request",
+            "status": "PASS"
+          },
+          {
+            "name": "derived actionId for mutated destination",
+            "status": "PASS"
+          },
+          {
+            "name": "mutated destination changes the identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "rejected for mutated destination (reason 2 under list-order checking)",
+            "status": "PASS"
+          },
+          {
+            "name": "originalValue of custodian matches the base request",
+            "status": "PASS"
+          },
+          {
+            "name": "derived actionId for mutated custodian",
+            "status": "PASS"
+          },
+          {
+            "name": "mutated custodian changes the identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "rejected for mutated custodian (reason 2 under list-order checking)",
+            "status": "PASS"
+          },
+          {
+            "name": "originalValue of amount matches the base request",
+            "status": "PASS"
+          },
+          {
+            "name": "derived actionId for mutated amount",
+            "status": "PASS"
+          },
+          {
+            "name": "mutated amount changes the identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "rejected for mutated amount (reason 2 under list-order checking)",
+            "status": "PASS"
+          },
+          {
+            "name": "originalValue of caseId matches the base request",
+            "status": "PASS"
+          },
+          {
+            "name": "derived actionId for mutated caseId",
+            "status": "PASS"
+          },
+          {
+            "name": "mutated caseId changes the identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "rejected for mutated caseId (reason 2 under list-order checking)",
+            "status": "PASS"
+          },
+          {
+            "name": "originalValue of dependencyRoot matches the base request",
+            "status": "PASS"
+          },
+          {
+            "name": "derived actionId for mutated dependencyRoot",
+            "status": "PASS"
+          },
+          {
+            "name": "mutated dependencyRoot changes the identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "rejected for mutated dependencyRoot (reason 2 under list-order checking)",
+            "status": "PASS"
+          },
+          {
+            "name": "originalValue of dependencyEpoch matches the base request",
+            "status": "PASS"
+          },
+          {
+            "name": "derived actionId for mutated dependencyEpoch",
+            "status": "PASS"
+          },
+          {
+            "name": "mutated dependencyEpoch changes the identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "rejected for mutated dependencyEpoch (reason 2 under list-order checking)",
+            "status": "PASS"
+          },
+          {
+            "name": "originalValue of provenanceCommitment matches the base request",
+            "status": "PASS"
+          },
+          {
+            "name": "derived actionId for mutated provenanceCommitment",
+            "status": "PASS"
+          },
+          {
+            "name": "mutated provenanceCommitment changes the identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "rejected for mutated provenanceCommitment (reason 2 under list-order checking)",
+            "status": "PASS"
+          },
+          {
+            "name": "originalValue of settlementCommitment matches the base request",
+            "status": "PASS"
+          },
+          {
+            "name": "derived actionId for mutated settlementCommitment",
+            "status": "PASS"
+          },
+          {
+            "name": "mutated settlementCommitment changes the identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "rejected for mutated settlementCommitment (reason 2 under list-order checking)",
+            "status": "PASS"
+          },
+          {
+            "name": "originalValue of proceedsCommitment matches the base request",
+            "status": "PASS"
+          },
+          {
+            "name": "derived actionId for mutated proceedsCommitment",
+            "status": "PASS"
+          },
+          {
+            "name": "mutated proceedsCommitment changes the identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "rejected for mutated proceedsCommitment (reason 2 under list-order checking)",
+            "status": "PASS"
+          },
+          {
+            "name": "originalValue of entitlementCommitment matches the base request",
+            "status": "PASS"
+          },
+          {
+            "name": "derived actionId for mutated entitlementCommitment",
+            "status": "PASS"
+          },
+          {
+            "name": "mutated entitlementCommitment changes the identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "rejected for mutated entitlementCommitment (reason 2 under list-order checking)",
+            "status": "PASS"
+          },
+          {
+            "name": "originalValue of authorityRef matches the base request",
+            "status": "PASS"
+          },
+          {
+            "name": "derived actionId for mutated authorityRef",
+            "status": "PASS"
+          },
+          {
+            "name": "mutated authorityRef changes the identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "rejected for mutated authorityRef (reason 2 under list-order checking)",
+            "status": "PASS"
+          },
+          {
+            "name": "originalValue of authorityEpoch matches the base request",
+            "status": "PASS"
+          },
+          {
+            "name": "derived actionId for mutated authorityEpoch",
+            "status": "PASS"
+          },
+          {
+            "name": "mutated authorityEpoch changes the identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "rejected for mutated authorityEpoch (reason 2 under list-order checking)",
+            "status": "PASS"
+          },
+          {
+            "name": "originalValue of nonce matches the base request",
+            "status": "PASS"
+          },
+          {
+            "name": "derived actionId for mutated nonce",
+            "status": "PASS"
+          },
+          {
+            "name": "mutated nonce changes the identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "rejected for mutated nonce (reason 2 under list-order checking)",
+            "status": "PASS"
+          },
+          {
+            "name": "originalValue of validAfter matches the base request",
+            "status": "PASS"
+          },
+          {
+            "name": "derived actionId for mutated validAfter",
+            "status": "PASS"
+          },
+          {
+            "name": "mutated validAfter changes the identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "rejected for mutated validAfter (reason 2 under list-order checking)",
+            "status": "PASS"
+          },
+          {
+            "name": "originalValue of validBefore matches the base request",
+            "status": "PASS"
+          },
+          {
+            "name": "derived actionId for mutated validBefore",
+            "status": "PASS"
+          },
+          {
+            "name": "mutated validBefore changes the identifier",
+            "status": "PASS"
+          },
+          {
+            "name": "rejected for mutated validBefore (reason 2 under list-order checking)",
+            "status": "PASS"
+          },
+          {
+            "name": "expectation text names reason 2",
+            "status": "PASS"
+          }
+        ],
+        "derived": {},
+        "note": "change one request field after deriving actionId (every field except actionId is covered)"
+      },
+      {
+        "id": "NEG-STALE-DEPENDENCY",
+        "status": "PASS",
+        "checks": [
+          {
+            "name": "rebinding policy changes the binding hash",
+            "status": "PASS"
+          },
+          {
+            "name": "rebinding policy changes the dependency root",
+            "status": "PASS"
+          },
+          {
+            "name": "stale request after rebinding policy is TrustInvalidCommand",
+            "status": "PASS"
+          },
+          {
+            "name": "reason 5 after rebinding policy",
+            "status": "PASS"
+          },
+          {
+            "name": "rebinding identity changes the binding hash",
+            "status": "PASS"
+          },
+          {
+            "name": "rebinding identity changes the dependency root",
+            "status": "PASS"
+          },
+          {
+            "name": "stale request after rebinding identity is TrustInvalidCommand",
+            "status": "PASS"
+          },
+          {
+            "name": "reason 5 after rebinding identity",
+            "status": "PASS"
+          },
+          {
+            "name": "rebinding settlement changes the binding hash",
+            "status": "PASS"
+          },
+          {
+            "name": "rebinding settlement changes the dependency root",
+            "status": "PASS"
+          },
+          {
+            "name": "stale request after rebinding settlement is TrustInvalidCommand",
+            "status": "PASS"
+          },
+          {
+            "name": "reason 5 after rebinding settlement",
+            "status": "PASS"
+          },
+          {
+            "name": "rebinding entitlement changes the binding hash",
+            "status": "PASS"
+          },
+          {
+            "name": "rebinding entitlement changes the dependency root",
+            "status": "PASS"
+          },
+          {
+            "name": "stale request after rebinding entitlement is TrustInvalidCommand",
+            "status": "PASS"
+          },
+          {
+            "name": "reason 5 after rebinding entitlement",
+            "status": "PASS"
+          },
+          {
+            "name": "expectation text names reason 5",
+            "status": "PASS"
+          }
+        ],
+        "derived": {},
+        "note": "any of the four dependencies is rebound after the request was built"
+      },
+      {
+        "id": "NEG-CASE-CONFLICT",
+        "status": "PASS",
+        "checks": [
+          {
+            "name": "CT-3 second FREEZE in another case is TrustInvalidCommand",
+            "status": "PASS"
+          },
+          {
+            "name": "CT-3 reason 10",
+            "status": "PASS"
+          },
+          {
+            "name": "CT-7 second RESTRICT in another case is TrustInvalidCommand",
+            "status": "PASS"
+          },
+          {
+            "name": "CT-7 reason 10",
+            "status": "PASS"
+          },
+          {
+            "name": "CT-14 disposition against an open overlay case is TrustInvalidCommand",
+            "status": "PASS"
+          },
+          {
+            "name": "CT-14 reason 10",
+            "status": "PASS"
+          },
+          {
+            "name": "expectation text names reason 10",
+            "status": "PASS"
+          }
+        ],
+        "derived": {},
+        "note": "FREEZE or RESTRICT while the subject's live head belongs to a different open case; or a disposition against an open overlay case"
+      },
+      {
+        "id": "NEG-TERMINAL",
+        "status": "PASS",
+        "checks": [
+          {
+            "name": "the direct disposition closes the case",
+            "status": "PASS"
+          },
+          {
+            "name": "case phase is TERMINAL",
+            "status": "PASS"
+          },
+          {
+            "name": "a further action in a TERMINAL case is TrustTerminal",
+            "status": "PASS"
+          },
+          {
+            "name": "TrustTerminal carries the caseId",
+            "status": "PASS"
+          },
+          {
+            "name": "a reversal against a TERMINAL case is TrustTerminal",
+            "status": "PASS"
+          },
+          {
+            "name": "expectation text names TrustTerminal",
+            "status": "PASS"
+          }
+        ],
+        "derived": {},
+        "note": "any action or reversal against a TERMINAL case"
+      },
+      {
+        "id": "NEG-REPLAY",
+        "status": "PASS",
+        "checks": [
+          {
+            "name": "resubmitting an applied command is TrustReplay",
+            "status": "PASS"
+          },
+          {
+            "name": "the replay key is the commandId",
+            "status": "PASS"
+          },
+          {
+            "name": "reusing a nonce is TrustReplay",
+            "status": "PASS"
+          },
+          {
+            "name": "the replay key is the nonceKey",
+            "status": "PASS"
+          },
+          {
+            "name": "the reported key is that nonceKey",
+            "status": "PASS"
+          },
+          {
+            "name": "expectation text names TrustReplay",
+            "status": "PASS"
+          }
+        ],
+        "derived": {},
+        "note": "submit an applied command again, or reuse its nonce under the same authority epoch"
+      },
+      {
+        "id": "NEG-RECEIPT-KIND",
+        "status": "PASS",
+        "checks": [
+          {
+            "name": "the reversal receipt hash matches the example",
+            "status": "PASS"
+          },
+          {
+            "name": "the same fields with receiptKind ACTION give the recorded hash",
+            "status": "PASS"
+          },
+          {
+            "name": "the two hashes differ",
+            "status": "PASS"
+          }
+        ],
+        "derived": {
+          "sameFieldsWithActionKind": "0x00b6871067eb37247ea94ba37cdbe0664d225c45a20ba8c44109c8649f566b53"
+        },
+        "note": "recompute a REVERSAL receipt with receiptKind ACTION"
+      }
+    ]
+  }
+}

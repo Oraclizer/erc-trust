@@ -114,18 +114,32 @@ function Invoke-IsolatedBuild([string]$Name) {
       ($buildOutput -join "`n"))
   }
 
-  $artifactPath = Join-Path $directory 'out\TrustToken.sol\TrustToken.json'
-  $artifactBytes = [System.IO.File]::ReadAllBytes($artifactPath)
-  $artifact = Get-Content -LiteralPath $artifactPath -Raw | ConvertFrom-Json
-  $creationBytes = Convert-HexToBytes ($artifact.bytecode.object.Substring(2))
-  $runtimeBytes = Convert-HexToBytes (
-    $artifact.deployedBytecode.object.Substring(2))
+  $subjects = [ordered]@{}
+  foreach ($subject in @(
+      @{ Key = 'native'; Path = 'out\TrustToken.sol\TrustToken.json' },
+      @{ Key = 'erc3643Adapter'; Path = 'out\ERC3643TrustAdapter.sol\ERC3643TrustAdapter.json' },
+      @{ Key = 'profileGovernor'; Path = 'out\ProfileGovernor.sol\ProfileGovernor.json' })) {
+    $artifactPath = Join-Path $directory $subject.Path
+    $artifactBytes = [System.IO.File]::ReadAllBytes($artifactPath)
+    $artifact = Get-Content -LiteralPath $artifactPath -Raw | ConvertFrom-Json
+    $creationBytes = Convert-HexToBytes ($artifact.bytecode.object.Substring(2))
+    $runtimeBytes = Convert-HexToBytes ($artifact.deployedBytecode.object.Substring(2))
+    $subjects[$subject.Key] = [ordered]@{
+      artifactSha256 = Get-Sha256Bytes $artifactBytes
+      creationSha256 = Get-Sha256Bytes $creationBytes
+      runtimeSha256 = Get-Sha256Bytes $runtimeBytes
+      creationBytes = $creationBytes.Length
+      runtimeBytes = $runtimeBytes.Length
+    }
+  }
+  $native = $subjects['native']
   return [ordered]@{
-    artifactSha256 = Get-Sha256Bytes $artifactBytes
-    creationSha256 = Get-Sha256Bytes $creationBytes
-    runtimeSha256 = Get-Sha256Bytes $runtimeBytes
-    creationBytes = $creationBytes.Length
-    runtimeBytes = $runtimeBytes.Length
+    artifactSha256 = $native.artifactSha256
+    creationSha256 = $native.creationSha256
+    runtimeSha256 = $native.runtimeSha256
+    creationBytes = $native.creationBytes
+    runtimeBytes = $native.runtimeBytes
+    subjects = $subjects
   }
 }
 
@@ -152,16 +166,21 @@ $sourceRootSha = Get-Sha256Bytes ([System.Text.Encoding]::UTF8.GetBytes(($source
 [System.IO.Directory]::CreateDirectory($runRoot) | Out-Null
 $buildA = Invoke-IsolatedBuild 'build-a'
 $buildB = Invoke-IsolatedBuild 'build-b'
-$pass = (
-  $buildA.artifactSha256 -eq $buildB.artifactSha256 -and
-  $buildA.creationSha256 -eq $buildB.creationSha256 -and
-  $buildA.runtimeSha256 -eq $buildB.runtimeSha256 -and
-  $buildA.creationBytes -eq $buildB.creationBytes -and
-  $buildA.runtimeBytes -eq $buildB.runtimeBytes
-)
+$pass = $true
+foreach ($key in @('native', 'erc3643Adapter', 'profileGovernor')) {
+  $left = $buildA.subjects[$key]
+  $right = $buildB.subjects[$key]
+  if (
+    $left.artifactSha256 -ne $right.artifactSha256 -or
+    $left.creationSha256 -ne $right.creationSha256 -or
+    $left.runtimeSha256 -ne $right.runtimeSha256 -or
+    $left.creationBytes -ne $right.creationBytes -or
+    $left.runtimeBytes -ne $right.runtimeBytes
+  ) { $pass = $false }
+}
 
 $result = [ordered]@{
-  schema = 'erc-trust-deterministic-build-v2'
+  schema = 'erc-trust-deterministic-build-v3'
   status = if ($pass) { 'PASS' } else { 'FAIL' }
   candidateInput = [ordered]@{
     gitHead = (git -C $repoRoot rev-parse HEAD).Trim()
@@ -213,5 +232,7 @@ if (-not $pass) {
   throw 'Isolated build outputs are not byte-for-byte deterministic'
 }
 Write-Output (
-  "deterministic build PASS: runtime $($buildA.runtimeBytes) bytes, " +
+  "deterministic build PASS: native runtime $($buildA.runtimeBytes) bytes, " +
+  "adapter $($buildA.subjects['erc3643Adapter'].runtimeBytes) bytes, " +
+  "governor $($buildA.subjects['profileGovernor'].runtimeBytes) bytes, " +
   "artifact $($buildA.artifactSha256)")

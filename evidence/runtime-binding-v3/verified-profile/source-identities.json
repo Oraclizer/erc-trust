@@ -1,0 +1,32 @@
+[
+  {
+    "bytes": 637,
+    "path": "implementation/src/TrustErrors.sol",
+    "sha256": "fbe1dffd50792b2da9604a0de37a5b089c427b329c96f80253ff317bb16491df"
+  },
+  {
+    "bytes": 10239,
+    "path": "implementation/src/generated/IERCTrustKernel.sol",
+    "sha256": "405a465c9b91e55270035638566f7d9e682efc90166f611d3e9a9eea1c9e2c88"
+  },
+  {
+    "bytes": 1726,
+    "path": "implementation/src/interfaces/IERC3643External.sol",
+    "sha256": "701bae4ffedc2f7a00287b882247bd8de5c68131e13ac3c3e957f1d678d12119"
+  },
+  {
+    "bytes": 2256,
+    "path": "implementation/src/profiles/ERC3643ProfileTypes.sol",
+    "sha256": "e82b9a0dcd3c65aca0c77741eb239a1b39966c25bed31b108e9b689273a15c93"
+  },
+  {
+    "bytes": 56596,
+    "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+    "sha256": "e0bdb5a06c7bbf88f226686ce8536e18cdbe5241819c84069fbc74bf5a16ba61"
+  },
+  {
+    "bytes": 6606,
+    "path": "implementation/src/profiles/ProfileGovernor.sol",
+    "sha256": "b767422ce222cc9be3201229d2abc4f7bfe485911854bcb0cc7864e3be6f1e32"
+  }
+]

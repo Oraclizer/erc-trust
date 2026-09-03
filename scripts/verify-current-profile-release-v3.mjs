@@ -151,11 +151,15 @@ const pending = (lane, owner) => ({ status: "PENDING", receipt: receiptPaths[lan
 
 // runtime: deterministic double build of the native runtime
 let runtimeTemplateSha256 = null;
+let deterministicReceipt = null;
 if (!exists(receiptPaths.runtime)) {
   lanes.runtime = pending("runtime", "this change: deterministic build receipt for the successor source");
 } else {
   const deterministic = json(receiptPaths.runtime);
-  check(deterministic.schema === "erc-trust-deterministic-build-v2", "deterministic build receipt schema");
+  check(deterministic.schema === "erc-trust-deterministic-build-v3", "deterministic build receipt schema");
+  for (const key of ["native", "erc3643Adapter", "profileGovernor"]) {
+    check(deterministic.buildA.subjects?.[key]?.runtimeSha256 && deterministic.buildA.subjects[key].runtimeBytes <= EIP170_LIMIT, `deterministic build receipt lacks subject ${key}`);
+  }
   check(deterministic.status === "PASS", "deterministic build status");
   check(JSON.stringify(deterministic.buildA) === JSON.stringify(deterministic.buildB), "deterministic build pair mismatch");
   check(deterministic.buildA.runtimeBytes <= EIP170_LIMIT, "runtime exceeds the EIP-170 limit");
@@ -170,7 +174,13 @@ if (!exists(receiptPaths.runtime)) {
     && manifest.trustToken.runtimeBytes === deterministic.buildA.runtimeBytes
     && manifest.trustToken.creationSha256 === deterministic.buildA.creationSha256,
     "deterministic build receipt binds a different runtime than the release manifest");
+  for (const key of ["erc3643Adapter", "profileGovernor"]) {
+    check(manifest.profileRuntimes?.[key]?.runtimeSha256 === deterministic.buildA.subjects?.[key]?.runtimeSha256
+      && manifest.profileRuntimes?.[key]?.creationSha256 === deterministic.buildA.subjects?.[key]?.creationSha256,
+      `deterministic build receipt binds a different ${key} runtime than the release manifest`);
+  }
   runtimeTemplateSha256 = deterministic.buildA.runtimeSha256;
+  deterministicReceipt = deterministic;
   lanes.runtime = {
     status: "PASS",
     receipt: fileRef(receiptPaths.runtime),
@@ -316,6 +326,21 @@ if (!exists(receiptPaths.certora)) {
   lanes.certoraInputs = { status: "PASS", inputsRootSha256: identity.certoraInputsSha256 };
 }
 
+// independentReproduction: a specification-only implementation reproduces the conformance vectors
+{
+  const receiptPath = "evidence/independent-reproduction-v3.json";
+  if (!exists(receiptPath)) {
+    lanes.independentReproduction = pending("independentReproduction", "runtime assurance change: specification-only reproduction of the conformance vectors");
+  } else {
+    const reproduction = json(receiptPath);
+    check(reproduction.schema === "erc-trust-independent-reproduction-v3" && reproduction.kernelVersion === 2, "independent reproduction receipt identity");
+    check(reproduction.verdict === "PASS" && reproduction.counts?.totals?.failed === 0 && (reproduction.failures ?? []).length === 0, "independent reproduction verdict");
+    const vectorsSha256 = `0x${sha256(bytes("vectors/conformance-v2.json"))}`;
+    check(reproduction.inputs?.vectorsSha256 === vectorsSha256, "independent reproduction receipt binds different vectors");
+    lanes.independentReproduction = { status: "PASS", receipt: fileRef(receiptPath), assertions: reproduction.counts.totals.assertions };
+  }
+}
+
 // runtimeBinding: pinned-compiler replay and semantic projections of the deployed subjects
 if (!exists(receiptPaths.runtimeBinding)) {
   lanes.runtimeBinding = pending("runtimeBinding", "runtime assurance change: two-layer runtime binding for the successor subjects");
@@ -325,7 +350,15 @@ if (!exists(receiptPaths.runtimeBinding)) {
   check(binding.status === "PASS_RUNTIME_SEMANTIC_IDENTITY", "runtime binding status");
   check(runtimeTemplateSha256 !== null && binding.runtimeTemplateSha256 === runtimeTemplateSha256,
     "runtime binding receipt binds a different runtime");
-  lanes.runtimeBinding = { status: "PASS", receipt: fileRef(receiptPaths.runtimeBinding) };
+  check(binding.sourceRootSha256 === identity.sourceRootSha256, "runtime binding receipt binds a different source root");
+  const bindingSubjects = Object.fromEntries((binding.subjects ?? []).map((subject) => [subject.id, subject]));
+  for (const [id, key] of [["native", "native"], ["profileAdapter", "erc3643Adapter"], ["profileGovernor", "profileGovernor"]]) {
+    check(bindingSubjects[id]?.runtimeTemplate?.sha256 === deterministicReceipt?.buildA.subjects?.[key]?.runtimeSha256, `runtime binding subject ${id} differs from the deterministic build`);
+    for (const name of ["abi", "storageLayout", "creationBytecode", "runtimeTemplate", "methodIdentifiers", "immutableReferences"]) {
+      check(bindingSubjects[id]?.semanticChecks?.[name] === true, `runtime binding semantic check ${name} not passed for ${id}`);
+    }
+  }
+  lanes.runtimeBinding = { status: "PASS", receipt: fileRef(receiptPaths.runtimeBinding), subjects: Object.keys(bindingSubjects) };
 }
 
 // ---------------------------------------------------------------------------

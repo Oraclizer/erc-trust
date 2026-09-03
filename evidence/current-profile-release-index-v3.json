@@ -35,6 +35,14 @@
       "status": "PASS",
       "tests": 89
     },
+    "independentReproduction": {
+      "assertions": 400,
+      "receipt": {
+        "path": "evidence/independent-reproduction-v3.json",
+        "sha256": "4a2e86e71104841f8644b1010b55de373b4872fc63404c9e9c7411a88c304d0a"
+      },
+      "status": "PASS"
+    },
     "isabelleBuild": {
       "receipt": {
         "path": "evidence/isabelle-results-v3.json",
@@ -198,23 +206,30 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "592796a71c33625d653ac045f4c9cc48de03bdd6f28759006caa3aa4106de1c8"
+        "sha256": "cf5b9dba89bd37e407e0dfd7b892e561378d325da404d0834f18521af39dc470"
       }
     },
     "runtime": {
       "eip170MarginBytes": 4533,
       "receipt": {
         "path": "evidence/deterministic-build.json",
-        "sha256": "ee18a42f0c04ed432ff732caba7128043f8fea41aa2820e9ee309e1e0007b144"
+        "sha256": "d80c116eaba336a83ea45cc52284f2f767f7b8ae891f2a6ca8188a5e266cd09d"
       },
       "runtimeBytes": 20043,
       "runtimeTemplateSha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1",
       "status": "PASS"
     },
     "runtimeBinding": {
-      "owner": "runtime assurance change: two-layer runtime binding for the successor subjects",
-      "receipt": "evidence/runtime-binding-v3.json",
-      "status": "PENDING"
+      "receipt": {
+        "path": "evidence/runtime-binding-v3.json",
+        "sha256": "2784b5a34b5b4624edbe769f456db8fded36922d0c707f9542ba7f3c7e61a222"
+      },
+      "status": "PASS",
+      "subjects": [
+        "native",
+        "profileAdapter",
+        "profileGovernor"
+      ]
     }
   },
   "mode": "successor-development",
@@ -226,8 +241,7 @@
   ],
   "pendingLanes": [
     "certora",
-    "certoraInputs",
-    "runtimeBinding"
+    "certoraInputs"
   ],
   "replay": {
     "release": "node scripts/verify-current-profile-release-v3.mjs"

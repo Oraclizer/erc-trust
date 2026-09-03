@@ -42,6 +42,9 @@ and operations require separate evidence.
 | Successor runtime bridge | `evidence/end-to-end-refinement/runtime-bridge-v2/`; `formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy`; `formal/kevm/generated/trust-runtime-bridge.k` |
 | Successor Kontrol receipt | `evidence/kontrol-results-v3.json`, written by `scripts/record-kontrol-results-v3.mjs`; absent while the kontrol lane is pending |
 | Superseded candidate 2 formal artifacts | `evidence/candidate-2/formal/` |
+| Successor runtime binding (two layers) | `evidence/runtime-binding-v3.json`; `evidence/runtime-binding-v3/`; `scripts/generate-runtime-binding-v3.mjs`; `scripts/verify-runtime-binding-v3.mjs` |
+| Successor deterministic build (three runtimes) | `evidence/deterministic-build.json` (schema v3) |
+| Independent specification-only reproduction | `evidence/independent-reproduction-v3.json`; `scripts/independent-reproduction-v3.mjs` |
 | End-to-end evidence map | `evidence/candidate-2/end-to-end-refinement/README.md` |
 | End-to-end semantic decision | `evidence/candidate-2/end-to-end-refinement/semantic-alignment-decision.md` |
 | End-to-end theorem obligations | `evidence/candidate-2/end-to-end-refinement/theorem-obligations.md` |
@@ -110,6 +113,21 @@ consumer-removal negatives are established by the mutation campaign
 (`scripts/run-mutations.ps1`) and the symbolic lane by the Kontrol run; the
 ledger verifier requires their receipts once they exist and reports pending
 rows until then.
+
+The runtime identity of the successor is bound by three receipts
+(`spec/decisions/11-runtime-assurance.md`): the deterministic build of all three
+runtimes, the release manifest, and the two-layer runtime binding
+`evidence/runtime-binding-v3.json`, whose second layer recompiles the exact
+sources under the pinned compiler and requires the six semantic projections to
+match the artifacts. An independent, specification-only implementation
+reproduces the conformance vectors (`evidence/independent-reproduction-v3.json`).
+None of this discharges the runtime link; it fixes which bytes the open
+obligation is about. Replay:
+
+```bash
+node scripts/verify-runtime-binding-v3.mjs --replay
+node scripts/independent-reproduction-v3.mjs --vectors vectors/conformance-v2.json --ethers sdk/node_modules/ethers --out /tmp/independent.json
+```
 
 The sections that follow describe the shipped `0.1.0-candidate.2` package and
 its historical evidence.

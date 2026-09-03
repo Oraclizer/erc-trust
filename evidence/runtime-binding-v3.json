@@ -1,0 +1,357 @@
+{
+  "bridge": {
+    "path": "evidence/end-to-end-refinement/runtime-bridge-v2/schema.json",
+    "sha256": "20516f2e63a9cef94da420d65345076c307374cef65c543983de99ea9ae93aaf"
+  },
+  "bundles": [
+    {
+      "compilerRun": {
+        "outputSha256": "41fce3fa8931e76a71321d4cdb4e6f43bab4bbf13d31912181501bf8f2c1b65b"
+      },
+      "files": [
+        {
+          "path": "evidence/runtime-binding-v3/native/standard-json-input.json",
+          "sha256": "687c38bbe20d92575e1653b6ecb9d3dc8f2c8c2d9eaf4c06d5a10bd110ac78cf"
+        },
+        {
+          "path": "evidence/runtime-binding-v3/native/bridge-artifacts.json",
+          "sha256": "e5ad6c4e54e66f2be7928a9ceb7667b1b0dc0de0ed6f4a29458db9685277847b"
+        },
+        {
+          "path": "evidence/runtime-binding-v3/native/source-identities.json",
+          "sha256": "5011cdcbf9b73ed78aa0d893ae9b885b1697abb0fc21bccc259c8f10d30d5eb4"
+        }
+      ],
+      "id": "native",
+      "roots": [
+        "implementation/src/TrustToken.sol"
+      ],
+      "sourceCount": 10,
+      "subjects": [
+        "native"
+      ]
+    },
+    {
+      "compilerRun": {
+        "outputSha256": "a2f44e03c2b2aa3a06238b504315bf32af246c6fb246622f46ad3129855a3db7"
+      },
+      "files": [
+        {
+          "path": "evidence/runtime-binding-v3/verified-profile/standard-json-input.json",
+          "sha256": "8322bee39bc9e640e70c6679c6f9295e2e752f477fa1c99219b5446f0b710d28"
+        },
+        {
+          "path": "evidence/runtime-binding-v3/verified-profile/bridge-artifacts.json",
+          "sha256": "5096ec64b4290bff18c9e436f2a78042301511e69fa484cfbcf820e826d27721"
+        },
+        {
+          "path": "evidence/runtime-binding-v3/verified-profile/source-identities.json",
+          "sha256": "2c6833ff8cb53c637a79f8c344d42a4e4e47eeefe2c435b201e42238264e5e35"
+        }
+      ],
+      "id": "verified-profile",
+      "roots": [
+        "implementation/src/profiles/ERC3643TrustAdapter.sol",
+        "implementation/src/profiles/ProfileGovernor.sol"
+      ],
+      "sourceCount": 6,
+      "subjects": [
+        "profileAdapter",
+        "profileGovernor"
+      ]
+    }
+  ],
+  "candidate": "0.2.0-candidate.1",
+  "compiler": {
+    "binaryLocator": {
+      "distribution": "Ubuntu",
+      "kind": "svm",
+      "version": "0.8.36"
+    },
+    "binarySha256": "c8d35afdddc3cd2743ee88b8f25e0fecd16e2bdd5f2120f37e52cd9cc45ae0e6",
+    "correctnessClaimed": false,
+    "foundryTomlSha256": "0ba6dbb2f1b4947845f7133677bb849e6947dc398d6a57a68ea577beaf83e2a5",
+    "settingsSha256": "d9930424243171189d87ccc9de6e1cbc94c335864d1442f8d4e5996095be8201",
+    "version": "0.8.36+commit.8a079791"
+  },
+  "kind": "ERC_TRUST_RUNTIME_BINDING_V3",
+  "layers": {
+    "pinnedCompilerReplay": "the exact import closure of each subject compiled again with the pinned solc binary through standard JSON with the settings of foundry.toml; the six semantic projections of the output equal the Foundry artifact",
+    "templateIdentity": "the Foundry artifact runtime and creation hashes of each subject, bound to the generated runtime bridge, the release manifest, and the deterministic build receipt"
+  },
+  "nonclaims": [
+    "Equality of the six semantic projections between the pinned compiler output and the Foundry artifact binds the compiled bytes to the exact sources; it does not establish compiler correctness.",
+    "The runtime template is the unresolved artifact runtime; constructor execution, immutable resolution, and deployment identity are outside this receipt.",
+    "No audit, deployment, production, or legal-truth claim is made."
+  ],
+  "replay": {
+    "check": "node scripts/generate-runtime-binding-v3.mjs --check",
+    "generate": "node scripts/generate-runtime-binding-v3.mjs",
+    "verify": "node scripts/verify-runtime-binding-v3.mjs"
+  },
+  "runtimeTemplateSha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1",
+  "schema": "erc-trust-runtime-binding-v3",
+  "sourceRootAlgorithm": "sha256-raw-files-case-sensitive-path-order-v1",
+  "sourceRootSha256": "7d4b77b88ce1cfc9255abc810d306217df9cd34f27060dc9325fda8a9a35920e",
+  "status": "PASS_RUNTIME_SEMANTIC_IDENTITY",
+  "subjects": [
+    {
+      "artifact": "out/TrustToken.sol/TrustToken.json",
+      "bundle": "native",
+      "contract": "TrustToken",
+      "creationBytecode": {
+        "bytes": 23361,
+        "sha256": "9acee86581d2c37099f1f92f1d51808e6d7fb0a0408815f3c2c3283fddf50d6a"
+      },
+      "id": "native",
+      "immutableReferences": [
+        {
+          "length": 32,
+          "start": 489
+        },
+        {
+          "length": 32,
+          "start": 1664
+        },
+        {
+          "length": 32,
+          "start": 4653
+        },
+        {
+          "length": 32,
+          "start": 6789
+        },
+        {
+          "length": 32,
+          "start": 16473
+        }
+      ],
+      "runtimeTemplate": {
+        "bytes": 20043,
+        "eip170MarginBytes": 4533,
+        "sha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1"
+      },
+      "semanticChecks": {
+        "abi": true,
+        "creationBytecode": true,
+        "immutableReferences": true,
+        "methodIdentifiers": true,
+        "runtimeTemplate": true,
+        "storageLayout": true
+      },
+      "source": "implementation/src/TrustToken.sol"
+    },
+    {
+      "artifact": "out/ERC3643TrustAdapter.sol/ERC3643TrustAdapter.json",
+      "bundle": "verified-profile",
+      "contract": "ERC3643TrustAdapter",
+      "creationBytecode": {
+        "bytes": 19802,
+        "sha256": "df05a777012cced5ef7c70a486c661e4f43bad6f60dcc531d6a59d5946bedc45"
+      },
+      "id": "profileAdapter",
+      "immutableReferences": [
+        {
+          "length": 32,
+          "start": 279
+        },
+        {
+          "length": 32,
+          "start": 380
+        },
+        {
+          "length": 32,
+          "start": 437
+        },
+        {
+          "length": 32,
+          "start": 654
+        },
+        {
+          "length": 32,
+          "start": 3287
+        },
+        {
+          "length": 32,
+          "start": 3544
+        },
+        {
+          "length": 32,
+          "start": 4024
+        },
+        {
+          "length": 32,
+          "start": 4225
+        },
+        {
+          "length": 32,
+          "start": 7653
+        },
+        {
+          "length": 32,
+          "start": 11211
+        },
+        {
+          "length": 32,
+          "start": 12385
+        },
+        {
+          "length": 32,
+          "start": 12706
+        },
+        {
+          "length": 32,
+          "start": 12782
+        },
+        {
+          "length": 32,
+          "start": 13487
+        },
+        {
+          "length": 32,
+          "start": 14332
+        },
+        {
+          "length": 32,
+          "start": 14408
+        },
+        {
+          "length": 32,
+          "start": 15598
+        },
+        {
+          "length": 32,
+          "start": 15718
+        },
+        {
+          "length": 32,
+          "start": 15840
+        },
+        {
+          "length": 32,
+          "start": 17049
+        },
+        {
+          "length": 32,
+          "start": 17478
+        },
+        {
+          "length": 32,
+          "start": 18678
+        },
+        {
+          "length": 32,
+          "start": 18748
+        }
+      ],
+      "runtimeTemplate": {
+        "bytes": 19218,
+        "eip170MarginBytes": 5358,
+        "sha256": "2a7214a83e298e02e85bcfddeb022f0f339bd6cd616e0c7333247728c32f2541"
+      },
+      "semanticChecks": {
+        "abi": true,
+        "creationBytecode": true,
+        "immutableReferences": true,
+        "methodIdentifiers": true,
+        "runtimeTemplate": true,
+        "storageLayout": true
+      },
+      "source": "implementation/src/profiles/ERC3643TrustAdapter.sol"
+    },
+    {
+      "artifact": "out/ProfileGovernor.sol/ProfileGovernor.json",
+      "bundle": "verified-profile",
+      "contract": "ProfileGovernor",
+      "creationBytecode": {
+        "bytes": 3228,
+        "sha256": "f5da3ace73fa19a386a2925891b14f72038c7e4ec2d95b674e0b0a456c05f353"
+      },
+      "id": "profileGovernor",
+      "immutableReferences": [
+        {
+          "length": 32,
+          "start": 183
+        },
+        {
+          "length": 32,
+          "start": 425
+        },
+        {
+          "length": 32,
+          "start": 526
+        },
+        {
+          "length": 32,
+          "start": 689
+        },
+        {
+          "length": 32,
+          "start": 881
+        },
+        {
+          "length": 32,
+          "start": 1040
+        },
+        {
+          "length": 32,
+          "start": 1113
+        },
+        {
+          "length": 32,
+          "start": 1256
+        },
+        {
+          "length": 32,
+          "start": 1324
+        },
+        {
+          "length": 32,
+          "start": 1867
+        },
+        {
+          "length": 32,
+          "start": 1902
+        },
+        {
+          "length": 32,
+          "start": 2062
+        },
+        {
+          "length": 32,
+          "start": 2154
+        },
+        {
+          "length": 32,
+          "start": 2599
+        },
+        {
+          "length": 32,
+          "start": 2639
+        },
+        {
+          "length": 32,
+          "start": 2685
+        },
+        {
+          "length": 32,
+          "start": 2725
+        }
+      ],
+      "runtimeTemplate": {
+        "bytes": 2790,
+        "eip170MarginBytes": 21786,
+        "sha256": "ba2d63c8e93db7997ce57fe128a36dcfa761fb993e5babc9920d2911764f358e"
+      },
+      "semanticChecks": {
+        "abi": true,
+        "creationBytecode": true,
+        "immutableReferences": true,
+        "methodIdentifiers": true,
+        "runtimeTemplate": true,
+        "storageLayout": true
+      },
+      "source": "implementation/src/profiles/ProfileGovernor.sol"
+    }
+  ]
+}

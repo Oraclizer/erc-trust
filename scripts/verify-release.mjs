@@ -64,12 +64,28 @@ if (sha256(runtime) !== manifest.trustToken.runtimeSha256) {
   failures.push("runtime bytecode mismatch");
 }
 if (runtime.length > 24576) failures.push(`EIP-170 overflow: ${runtime.length}`);
+for (const [key, expected] of Object.entries(manifest.profileRuntimes ?? {})) {
+  const profileArtifact = JSON.parse(readFileSync(resolve(root, expected.artifact), "utf8"));
+  const profileCreation = Buffer.from(profileArtifact.bytecode.object.slice(2), "hex");
+  const profileRuntime = Buffer.from(profileArtifact.deployedBytecode.object.slice(2), "hex");
+  if (sha256(profileCreation) !== expected.creationSha256 || profileCreation.length !== expected.creationBytes) failures.push(`${key} creation bytecode mismatch`);
+  if (sha256(profileRuntime) !== expected.runtimeSha256 || profileRuntime.length !== expected.runtimeBytes) failures.push(`${key} runtime bytecode mismatch`);
+  if (profileRuntime.length > 24576) failures.push(`EIP-170 overflow: ${key} ${profileRuntime.length}`);
+}
 
 const deterministicPath = resolve(root, "evidence", "deterministic-build.json");
 if (!existsSync(deterministicPath)) {
   console.log("deterministic build receipt absent: lane pending, governed by evidence/current-profile-release-index-v3.json");
 } else {
   const deterministic = JSON.parse(readFileSync(deterministicPath, "utf8"));
+  for (const [key, expected] of Object.entries(manifest.profileRuntimes ?? {})) {
+    for (const [name, build] of [["buildA", deterministic.buildA], ["buildB", deterministic.buildB]]) {
+      const subject = build.subjects?.[key];
+      if (!subject || subject.runtimeSha256 !== expected.runtimeSha256 || subject.creationSha256 !== expected.creationSha256) {
+        failures.push(`deterministic ${name} ${key} identity mismatch`);
+      }
+    }
+  }
   for (const [name, build] of [["buildA", deterministic.buildA], ["buildB", deterministic.buildB]]) {
     if (build.creationSha256 !== sha256(creation) || build.creationBytes !== creation.length) {
       failures.push(`deterministic ${name} creation identity mismatch`);
