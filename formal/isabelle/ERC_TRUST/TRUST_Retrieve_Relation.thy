@@ -48,9 +48,8 @@ where
      current_manifest_id configuration = manifest_numeric_id manifest \<and>
      manifest_schema_sha256 manifest = runtime_bridge_schema_sha256 \<and>
      (\<forall>address\<in>footprint_addresses (current_footprint configuration).
-       case manifest_expected_code manifest (current_topology configuration) address of
-         None \<Rightarrow> True
-       | Some code \<Rightarrow> account_code_at configuration address = Some code)"
+       \<exists>code. manifest_expected_code manifest (current_topology configuration) address = Some code \<and>
+              account_code_at configuration address = Some code)"
 
 definition footprint_nonalias ::
   "trust_runtime_manifest \<Rightarrow> current_trust_configuration \<Rightarrow> bool"
@@ -195,14 +194,85 @@ theorem receipt_projection_is_exact:
   using assms
   by (auto simp: alpha_current_def projected_compositional_state_def split: if_splits)
 
-theorem profile_freeze_target_comes_from_adapter_projection:
+theorem pinned_runtime_pins_every_footprint_address:
   assumes "alpha_current manifest configuration = Some state"
-      and "current_topology configuration =
-             TRUST_Verified_Profile adapter governor token identity compliance"
-  shows "frozen_targets state account =
-         manifest_frozen_targets manifest configuration account"
-  using assms
-  by (auto simp: alpha_current_def projected_compositional_state_def split: if_splits)
+      and "address \<in> footprint_addresses (current_footprint configuration)"
+  shows "\<exists>code. manifest_expected_code manifest (current_topology configuration) address = Some code \<and>
+                account_code_at configuration address = Some code"
+  using alpha_current_requires_exact_runtime[OF assms(1)] assms(2)
+  by (simp add: pinned_runtime_def)
+
+text \<open>
+  The retrieve relation is inhabited by a configuration with a nonempty footprint
+  whose only address carries the code the manifest pins.  This is the typed
+  inhabitant of the relation: it shows that the well-formedness predicates are
+  jointly satisfiable and that the pin is not vacuous.
+\<close>
+
+definition inhabitant_manifest :: "evm_bytes \<Rightarrow> trust_runtime_manifest" where
+  "inhabitant_manifest code =
+     \<lparr>manifest_numeric_id = 0,
+      manifest_schema_sha256 = runtime_bridge_schema_sha256,
+      manifest_expected_code = (\<lambda>_ _. Some code),
+      manifest_mapping_preimages = (\<lambda>_. []),
+      manifest_keccak256 = (\<lambda>_. 0),
+      manifest_physical_balances = (\<lambda>_ _. 0),
+      manifest_allowances = (\<lambda>_ _ _. 0),
+      manifest_total_supply = (\<lambda>_. 0),
+      manifest_frozen_targets = (\<lambda>_ _. 0),
+      manifest_restriction_flags = (\<lambda>_ _. False),
+      manifest_custody_backing = (\<lambda>_ _. 0),
+      manifest_freeze_heads = (\<lambda>_ _. empty_head),
+      manifest_restriction_heads = (\<lambda>_ _. empty_head),
+      manifest_effect_links = (\<lambda>_ _. None),
+      manifest_action_records = (\<lambda>_ _. None),
+      manifest_custody_records = (\<lambda>_ _. None),
+      manifest_case_records = (\<lambda>_ _. empty_case),
+      manifest_consumed_entitlements = (\<lambda>_. {}),
+      manifest_authorities = (\<lambda>_ _. None),
+      manifest_consumed_nonces = (\<lambda>_. {}),
+      manifest_bindings = (\<lambda>_ _. None),
+      manifest_dependency_root = (\<lambda>_. 0),
+      manifest_dependency_epoch = (\<lambda>_. 1),
+      manifest_receipts = (\<lambda>_ _. None),
+      manifest_layout_matches = (\<lambda>_. True),
+      manifest_footprint_complete = (\<lambda>_. True),
+      manifest_topology_well_formed = (\<lambda>_. True),
+      manifest_canonical_words = (\<lambda>_. True),
+      manifest_idle_auxiliary_state = (\<lambda>_. True)\<rparr>"
+
+definition inhabitant_configuration ::
+  "trust_address \<Rightarrow> evm_bytes \<Rightarrow> current_trust_configuration"
+where
+  "inhabitant_configuration endpoint code =
+     \<lparr>current_world =
+        (\<lambda>address. if address = endpoint
+           then Some \<lparr>evm_account_nonce = 1, evm_account_balance = 0,
+                      evm_account_code = code, evm_account_storage = (\<lambda>_. 0)\<rparr>
+           else None),
+      current_topology = TRUST_Native endpoint,
+      current_endpoint = endpoint,
+      current_manifest_id = 0,
+      current_footprint =
+        \<lparr>footprint_addresses = {endpoint}, footprint_cases = {}, footprint_actions = {},
+         footprint_receipts = {}, footprint_authorities = {}, footprint_nonce_keys = {},
+         footprint_mapping_inputs = {}\<rparr>\<rparr>"
+
+theorem inhabitant_configuration_is_well_formed:
+  "current_configuration_wf (inhabitant_manifest code) (inhabitant_configuration endpoint code)"
+  by (simp add: current_configuration_wf_def current_configuration_well_bounded_def
+      pinned_runtime_def footprint_nonalias_def account_code_at_def
+      inhabitant_manifest_def inhabitant_configuration_def)
+
+theorem current_configuration_wf_is_inhabited:
+  "\<exists>manifest configuration state. alpha_current manifest configuration = Some state"
+  using inhabitant_configuration_is_well_formed[of code endpoint]
+  by (auto simp: alpha_current_def)
+
+theorem inhabitant_pins_the_endpoint_code:
+  "account_code_at (inhabitant_configuration endpoint code) endpoint = Some code \<and>
+   endpoint \<in> footprint_addresses (current_footprint (inhabitant_configuration endpoint code))"
+  by (simp add: account_code_at_def inhabitant_configuration_def)
 
 theorem current_state_does_not_assume_history:
   fixes left right :: current_trust_configuration

@@ -142,9 +142,15 @@ const receipts = {};
 for (const [lane, path] of Object.entries(paths.receipts)) {
   receipts[lane] = exists(path) ? { path, sha256: sha256(canonical(path)), data: readJson(path) } : null;
 }
-// A mutation receipt is current only when it lists exactly the declared campaign.
+// A mutation receipt is current only when it lists exactly the declared campaign and binds
+// the current source root (implementation sources, tests, and foundry.toml, raw bytes).
+const sourceRootSha256 = (() => {
+  const paths = [...walk("implementation/src"), ...walk("implementation/test"), "foundry.toml"].sort((left, right) => (left < right ? -1 : left > right ? 1 : 0));
+  return sha256(Buffer.from(paths.map((path) => `${sha256(readFileSync(abs(path)))}  ${path}\n`).join(""), "utf8"));
+})();
 const mutationReceiptCurrent = receipts.mutation !== null
-  && JSON.stringify(receipts.mutation.data.results.map((result) => result.id)) === JSON.stringify([...declaredMutations.keys()]);
+  && JSON.stringify(receipts.mutation.data.results.map((result) => result.id)) === JSON.stringify([...declaredMutations.keys()])
+  && receipts.mutation.data.candidateInput?.sourceRootSha256 === sourceRootSha256;
 const runtimeSha256 = receipts.deterministic?.data?.buildA?.runtimeSha256 ?? null;
 const bridgeBindsRuntime = runtimeSha256 !== null && bridge.subjects.native.runtime.sha256 === runtimeSha256;
 const kontrolReceiptCurrent = receipts.kontrol !== null && runtimeSha256 !== null

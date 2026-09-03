@@ -106,16 +106,20 @@ theorem compiler_correctness_remains_a_nonclaim:
   "\<not> tcb_solc_correctness_claimed approved_exact_tcb"
   by (simp add: approved_exact_tcb_def)
 
+text \<open>
+  The locale assumes exactly what its theorems use: the runtime link.  The
+  runtime certificate and the external assumptions are recorded by the
+  definitions above and by the central refinement closure artifact; they are
+  not hypotheses of any theorem in this locale, and listing them here would
+  suggest a dependence that does not exist.
+\<close>
+
 locale pinned_runtime_refinement =
   fixes manifest :: trust_runtime_manifest
     and bridge :: trust_transaction_bridge
-    and certificate :: trust_runtime_certificate
-    and assumptions :: trust_external_assumptions
     and runtime_execution :: "trust_transaction_execution \<Rightarrow> bool"
     and runtime_abstraction :: "trust_transaction_execution \<Rightarrow> trust_transaction_abstraction"
-  assumes certificate_complete: "runtime_certificate_complete certificate"
-      and external_assumptions: "external_assumptions_complete assumptions"
-      and runtime_link:
+  assumes runtime_link:
         "runtime_execution execution \<Longrightarrow>
          alpha_transaction manifest bridge execution (runtime_abstraction execution)"
 begin
