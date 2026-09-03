@@ -54,6 +54,8 @@ jobs:
               pilot/test/TrustFreezePilot.t.sol | sort)"
       - name: Verify successor evidence lanes
         run: node scripts/verify-current-profile-release-v3.mjs
+      - name: Verify the obligation ledger
+        run: node scripts/verify-obligation-ledger-v3.mjs
       - name: Verify public release tree
         run: node scripts/verify-public-release-tree.mjs
       - name: Verify public surface

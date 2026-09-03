@@ -40,7 +40,7 @@ and operations require separate evidence.
 | Isabelle/Solidity applicability | `evidence/isabelle-solidity-applicability.md` |
 | Successor obligation ledger (kernel version 2) | `evidence/end-to-end-refinement/obligation-ledger-v3.json`; rendered `obligation-ledger-summary-v3.json`, `central-closure-v3.json`, and `formal/isabelle/ERC_TRUST/TRUST_Obligation_Ledger_Generated.thy` |
 | Successor runtime bridge | `evidence/end-to-end-refinement/runtime-bridge-v2/`; `formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy`; `formal/kevm/generated/trust-runtime-bridge.k` |
-| Successor Kontrol receipt | `evidence/kontrol-results-v3.json` |
+| Successor Kontrol receipt | `evidence/kontrol-results-v3.json`, written by `scripts/record-kontrol-results-v3.mjs`; absent while the kontrol lane is pending |
 | Superseded candidate 2 formal artifacts | `evidence/candidate-2/formal/` |
 | End-to-end evidence map | `evidence/candidate-2/end-to-end-refinement/README.md` |
 | End-to-end semantic decision | `evidence/candidate-2/end-to-end-refinement/semantic-alignment-decision.md` |
@@ -104,6 +104,12 @@ forge build
 node scripts/generate-runtime-bridge-v2.mjs --check
 node scripts/verify-obligation-ledger-v3.mjs
 ```
+
+These commands verify the anchors and the rendered artifacts. The
+consumer-removal negatives are established by the mutation campaign
+(`scripts/run-mutations.ps1`) and the symbolic lane by the Kontrol run; the
+ledger verifier requires their receipts once they exist and reports pending
+rows until then.
 
 The sections that follow describe the shipped `0.1.0-candidate.2` package and
 its historical evidence.
@@ -316,14 +322,14 @@ canonical receipt log. Exact proof IDs and timings are in
 
 Two isolated clean builds produced byte-for-byte identical `TrustToken`
 artifact, creation bytecode, and runtime bytecode. The machine-readable result
-is `evidence/deterministic-build.json`.
+is `evidence/candidate-2/deterministic-build.json`.
 
 Twelve temporary negative mutations were killed. In addition to
 frozen-floor, route-ticket, receipt-order, fail-closed, fixed-action, nonce,
 and ERC-3643 bypass faults, the campaign covers FREEZE direction, case
 terminality, custody closure, current-policy reversal, and ERC-3643
 FREEZE-direction checks. The
-machine-readable result is `evidence/mutation-results.json`.
+machine-readable result is `evidence/candidate-2/mutation-results.json`.
 
 ### Abstract model and preserved pilot
 

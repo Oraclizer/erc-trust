@@ -170,15 +170,16 @@ function loadArtifact(subject) {
   check(Array.isArray(artifact.storageLayout?.storage), `artifact without storage layout: ${subject.artifact}`);
   check(artifact.methodIdentifiers && typeof artifact.methodIdentifiers === "object", `artifact without method identifiers: ${subject.artifact}`);
   // The artifact identity hashes the compiler outputs that the bridge consumes (ABI, creation
-  // and runtime bytecode, compiler metadata, storage layout, method identifiers), not the whole
-  // artifact file: the AST node identifiers in the file depend on every other file of the
-  // compilation, so the file hash would drift when an unrelated test changes.
+  // and runtime bytecode, compiler metadata, storage layout without AST node identifiers,
+  // method identifiers), not the whole artifact file: AST node identifiers depend on every
+  // other file of the compilation and on the order in which the compiler visited them, so
+  // they differ between hosts and drift when an unrelated test changes.
   const artifactSha256 = sha256(Buffer.from(JSON.stringify({
     abi: artifact.abi,
     bytecode: artifact.bytecode?.object ?? null,
     deployedBytecode: artifact.deployedBytecode.object,
     rawMetadata: artifact.rawMetadata ?? null,
-    storageLayout: artifact.storageLayout.storage,
+    storageLayout: artifact.storageLayout.storage.map((entry) => ({ contract: entry.contract, label: entry.label, offset: entry.offset, slot: entry.slot, type: entry.type })),
     methodIdentifiers: artifact.methodIdentifiers,
   }), "utf8"));
   return { artifact, artifactSha256 };
@@ -345,7 +346,7 @@ const schema = {
   sourceBinding: {
     kernelSchema: { path: kernelSchemaPath, sha256: sha256(readFileSync(resolve(root, kernelSchemaPath))) },
     kernelAbi: { path: kernelAbiPath, sha256: sha256(readFileSync(resolve(root, kernelAbiPath))) },
-    artifactHashing: "sha256 of the JSON of {abi, bytecode.object, deployedBytecode.object, rawMetadata, storageLayout.storage, methodIdentifiers} of the forge artifact",
+    artifactHashing: "sha256 of the JSON of {abi, bytecode.object, deployedBytecode.object, rawMetadata, storageLayout.storage without astId, methodIdentifiers} of the forge artifact",
     artifacts: loaded.map((entry) => ({ subject: entry.subject.id, contract: entry.subject.contract, source: entry.subject.source, path: entry.subject.artifact, sha256: entry.artifactSha256 })),
   },
   interfaceIds: {

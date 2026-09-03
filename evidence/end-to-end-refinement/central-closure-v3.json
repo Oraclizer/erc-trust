@@ -44,7 +44,7 @@
   "candidate": "0.2.0-candidate.1",
   "claim": {
     "current": "mapped implementation evidence; end-to-end refinement incomplete",
-    "currentMeaning": "Every load-bearing abstract condition of the kernel version 2 model has a named source consumer in the final code, a test that exercises its positive branch, a mutation or behavioral negative that fails when the consumer is removed, and a compiled or downstream consumer. The abstract model is machine-checked. The link between the compiled runtime and the abstract transition system (the locale assumption pinned_runtime_refinement.runtime_link) is not discharged, so no theorem states that the compiled runtime implements the model.",
+    "currentMeaning": "Every load-bearing abstract condition of the kernel version 2 model has a named source consumer in the final code, a test that exercises its positive branch, a declared consumer-removal mutation or behavioral negative that is recorded as killed once a receipt of the current identity exists, and a compiled or downstream consumer. The abstract model is machine-checked. The link between the compiled runtime and the abstract transition system (the locale assumption pinned_runtime_refinement.runtime_link) is not discharged, so no theorem states that the compiled runtime implements the model.",
     "forbiddenWording": [
       "TRUST 1.1 complete",
       "Native Full complete",
@@ -56,19 +56,19 @@
     "nextRung": "end-to-end refinement complete: requires a machine-checked discharge of pinned_runtime_refinement.runtime_link for the exact runtime templates named in the generated bridge, replayed independently, before any Full or refinement-complete wording is used."
   },
   "counts": {
-    "closed": 3,
+    "closed": 4,
     "closedPendingReceipt": 65,
     "currentMandatory": 0,
     "notApplicable": 1,
-    "rows": 71,
+    "rows": 72,
     "separateProfile": 0,
     "successorMandatory": 2
   },
   "identity": {
     "bridgeBindsRuntime": false,
-    "bridgeSchemaSha256": "40c15f3716aed0d76369eb0c1d449c93b6990d5f0ad6584d924216a10585a8e2",
+    "bridgeSchemaSha256": "20516f2e63a9cef94da420d65345076c307374cef65c543983de99ea9ae93aaf",
     "deterministicBuildRuntimeSha256": null,
-    "ledgerSha256": "27f0a24a80b1acf30d2acddb52f11b5f6043651100fef248e48ac860caefd939",
+    "ledgerSha256": "96a4661c3b65fb48c6cf8dde7e73453a3797c698a7fdeddd3d686714be68f731",
     "runtimes": {
       "native": {
         "bytes": 20043,
@@ -423,7 +423,7 @@
       "id": "NAT-ROUTE-02"
     },
     {
-      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "effectiveStatus": "CLOSED",
       "id": "NAT-RETR-01"
     },
     {
@@ -465,6 +465,10 @@
     {
       "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "ADP-REV-01"
+    },
+    {
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "id": "ADP-DISP-01"
     },
     {
       "effectiveStatus": "CLOSED-PENDING-RECEIPT",

@@ -262,11 +262,15 @@ if (!exists(receiptPaths.isabelleBuild)) {
     const manifest = json(bridgeManifestPath);
     check(summary.schema === "erc-trust-obligation-ledger-summary-v3" && summary.candidate === candidate, "obligation ledger summary identity");
     check(summary.counts.currentMandatory === 0, "obligation ledger has current mandatory rows");
-    check(summary.bridgeSchema.sha256 === sha256(bytes(bridgeSchemaPath)), "obligation ledger summary binds a different bridge schema");
-    check(summary.ledger.sha256 === sha256(bytes(summary.ledger.path)), "obligation ledger summary binds a different ledger");
-    check(summary.generatedTheory.sha256 === sha256(bytes(summary.generatedTheory.path)), "rendered obligation ledger theory drift");
-    check(manifest.schema.sha256 === sha256(bytes(bridgeSchemaPath)), "bridge manifest binds a different bridge schema");
-    for (const generated of manifest.generated) check(sha256(bytes(generated.path)) === generated.sha256, `generated bridge drift: ${generated.path}`);
+    check(summary.ledger.path === "evidence/end-to-end-refinement/obligation-ledger-v3.json", "obligation ledger summary names a different ledger path");
+    check(summary.generatedTheory.path === "formal/isabelle/ERC_TRUST/TRUST_Obligation_Ledger_Generated.thy", "obligation ledger summary names a different theory path");
+    check(summary.closureRecord?.path === "evidence/end-to-end-refinement/central-closure-v3.json", "obligation ledger summary names a different closure record path");
+    check(summary.bridgeSchema.sha256 === sha256(canonicalBytes(bridgeSchemaPath)), "obligation ledger summary binds a different bridge schema");
+    check(summary.ledger.sha256 === sha256(canonicalBytes(summary.ledger.path)), "obligation ledger summary binds a different ledger");
+    check(summary.generatedTheory.sha256 === sha256(canonicalBytes(summary.generatedTheory.path)), "rendered obligation ledger theory drift");
+    check(summary.closureRecord.sha256 === sha256(canonicalBytes(summary.closureRecord.path)), "central closure record drift");
+    check(manifest.schema.sha256 === sha256(canonicalBytes(bridgeSchemaPath)), "bridge manifest binds a different bridge schema");
+    for (const generated of manifest.generated) check(sha256(canonicalBytes(generated.path)) === generated.sha256, `generated bridge drift: ${generated.path}`);
     const bound = runtimeTemplateSha256 !== null
       && manifest.runtimes.native === runtimeTemplateSha256
       && summary.runtimeTemplateSha256 === runtimeTemplateSha256;

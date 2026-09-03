@@ -44,6 +44,7 @@ const singleFiles = [
   "sdk/package.json",
   "sdk/pnpm-lock.yaml",
   "sdk/tsconfig.json",
+  "evidence/README.md",
   "evidence/claim-matrix.md",
   "evidence/clean-room-provenance.md",
   "evidence/evidence-mode.json",

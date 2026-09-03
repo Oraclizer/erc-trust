@@ -25,8 +25,10 @@ What exists today for the successor runtimes is the first arrow (the Isabelle se
 (`evidence/end-to-end-refinement/obligation-ledger-v3.json`, decision 10). The second arrow is
 the locale assumption `pinned_runtime_refinement.runtime_link` in
 `TRUST_End_To_End_Composition.thy`; it is not discharged. The four bounded Kontrol proofs
-under `implementation/kontrol/` are instances of it on the native runtime, recorded in
-`evidence/kontrol-results-v3.json`; they are not the KEVM program.
+under `implementation/kontrol/` are instances of it on the native runtime; their receipt is
+`evidence/kontrol-results-v3.json`, written by `scripts/record-kontrol-results-v3.mjs` from
+the committed tree and absent while the kontrol lane is pending in the successor index. They
+are not the KEVM program.
 
 The candidate 2 KEVM claim specifications, row bundles, reusable claims, runner scripts, and
 generated bridges were bound to the candidate 2 runtime template and the version 1 kernel.

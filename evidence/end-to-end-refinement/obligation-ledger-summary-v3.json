@@ -2,27 +2,31 @@
   "bridgeBindsRuntime": false,
   "bridgeSchema": {
     "path": "evidence/end-to-end-refinement/runtime-bridge-v2/schema.json",
-    "sha256": "40c15f3716aed0d76369eb0c1d449c93b6990d5f0ad6584d924216a10585a8e2"
+    "sha256": "20516f2e63a9cef94da420d65345076c307374cef65c543983de99ea9ae93aaf"
   },
   "candidate": "0.2.0-candidate.1",
   "claim": "mapped implementation evidence; end-to-end refinement incomplete",
   "closure": "CONDITIONAL",
+  "closureRecord": {
+    "path": "evidence/end-to-end-refinement/central-closure-v3.json",
+    "sha256": "8600b724851a8b61cbcc60c5daf9aac06868d97c3aff1c4e26ab9f3e09367d4b"
+  },
   "counts": {
-    "closed": 3,
+    "closed": 4,
     "closedPendingReceipt": 65,
     "currentMandatory": 0,
     "notApplicable": 1,
-    "rows": 71,
+    "rows": 72,
     "separateProfile": 0,
     "successorMandatory": 2
   },
   "generatedTheory": {
     "path": "formal/isabelle/ERC_TRUST/TRUST_Obligation_Ledger_Generated.thy",
-    "sha256": "ba65775e845bda2adb3cbea4b12fa207ac899cb81c88fa68a3bc39eefca29cb9"
+    "sha256": "d2549a759f0bd23956b3f4a41f544cd7c83a8125d0f11f95df346a4c308ce6a8"
   },
   "ledger": {
     "path": "evidence/end-to-end-refinement/obligation-ledger-v3.json",
-    "sha256": "27f0a24a80b1acf30d2acddb52f11b5f6043651100fef248e48ac860caefd939"
+    "sha256": "96a4661c3b65fb48c6cf8dde7e73453a3797c698a7fdeddd3d686714be68f731"
   },
   "receiptCurrency": {
     "foundry": false,
@@ -476,11 +480,9 @@
       "id": "NAT-ROUTE-02"
     },
     {
-      "awaiting": [
-        "mutation receipt for MUT-65-CASE-GENERATION"
-      ],
+      "awaiting": [],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "effectiveStatus": "CLOSED",
       "endpoint": "native",
       "id": "NAT-RETR-01"
     },
@@ -604,6 +606,15 @@
     },
     {
       "awaiting": [
+        "mutation receipt for MUT-106-ERC3643-ENTITLEMENT-ONCE"
+      ],
+      "declaredStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "endpoint": "profileAdapter",
+      "id": "ADP-DISP-01"
+    },
+    {
+      "awaiting": [
         "mutation receipt for MUT-36-ERC3643-CUSTODIAN-CONFINEMENT",
         "mutation receipt for MUT-46-ERC3643-CUSTODY-CLOSURE",
         "Foundry receipt bound to the bridge runtime for invariantSupplyConserved"
@@ -617,7 +628,7 @@
       "awaiting": [
         "mutation receipt for MUT-28-ERC3643-IMPORT-VERIFICATION",
         "mutation receipt for MUT-45-ERC3643-IMPORTED-CASE",
-        "mutation receipt for MUT-44-ERC3643-MANIFEST-BINDING"
+        "Foundry receipt bound to the bridge runtime for testExactImportManifestOpensReversibleCases"
       ],
       "declaredStatus": "CLOSED",
       "effectiveStatus": "CLOSED-PENDING-RECEIPT",
@@ -676,7 +687,7 @@
     {
       "awaiting": [
         "mutation receipt for MUT-29-ERC3643-TOPOLOGY-GATE",
-        "mutation receipt for MUT-07-ERC3643-RAW-BYPASS"
+        "Foundry receipt bound to the bridge runtime for testUnsealedAdapterIsNotFullAndCannotExecute"
       ],
       "declaredStatus": "CLOSED",
       "effectiveStatus": "CLOSED-PENDING-RECEIPT",
@@ -693,7 +704,8 @@
     {
       "awaiting": [
         "mutation receipt for MUT-107-ERC3643-MANIFEST-CANONICAL",
-        "mutation receipt for MUT-44-ERC3643-MANIFEST-BINDING"
+        "mutation receipt for MUT-44-ERC3643-MANIFEST-BINDING",
+        "Foundry receipt bound to the bridge runtime for testSealIsOneWayAndManifestMustBeCanonical"
       ],
       "declaredStatus": "CLOSED",
       "effectiveStatus": "CLOSED-PENDING-RECEIPT",
@@ -710,7 +722,9 @@
     {
       "awaiting": [
         "mutation receipt for MUT-23-CALLDATA-LENGTH",
-        "mutation receipt for MUT-41-ERC3643-CALLDATA-LENGTH"
+        "mutation receipt for MUT-41-ERC3643-CALLDATA-LENGTH",
+        "mutation receipt for MUT-26-REVERSAL-CALLDATA-LENGTH",
+        "mutation receipt for MUT-42-ERC3643-REVERSAL-CALLDATA-LENGTH"
       ],
       "declaredStatus": "CLOSED",
       "effectiveStatus": "CLOSED-PENDING-RECEIPT",
@@ -728,7 +742,8 @@
       "awaiting": [
         "mutation receipt for MUT-74-ORDINARY-BACKING",
         "mutation receipt for MUT-01-FROZEN-FLOOR",
-        "mutation receipt for MUT-72-UNBACKED-GUARD"
+        "mutation receipt for MUT-72-UNBACKED-GUARD",
+        "Foundry receipt bound to the bridge runtime for testCustodyBackingAndOwnFrozenFloorDoNotDoubleCount"
       ],
       "declaredStatus": "CLOSED",
       "effectiveStatus": "CLOSED-PENDING-RECEIPT",

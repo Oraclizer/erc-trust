@@ -21,9 +21,8 @@ Contents:
 | `release-manifest.json` | Hash binding over the protected release inputs; regenerated and diff-checked in CI |
 | `evidence-mode.json` | Whether pending evidence lanes are acceptable (successor development) or not (release) |
 | `current-profile-release-index-v3.json` | Lane-by-lane evidence index of the successor code, written and checked by `scripts/verify-current-profile-release-v3.mjs` |
-| `deterministic-build.json`, `mutation-results.json` | Successor deterministic build and consumer-removal mutation receipts |
+| `deterministic-build.json`, `foundry-results-v3.json`, `mutation-results.json`, `isabelle-results-v3.json`, `kontrol-results-v3.json` | Successor lane receipts, written from the committed tree by `scripts/check-deterministic-build.ps1`, `scripts/record-foundry-results-v3.mjs`, `scripts/run-mutations.ps1`, `scripts/record-isabelle-results-v3.mjs`, and `scripts/record-kontrol-results-v3.mjs`; a receipt is absent while its lane is pending in `current-profile-release-index-v3.json` |
 | `end-to-end-refinement/` | The successor obligation ledger, its rendered summary and central closure record, and the regenerated runtime bridge schema and manifest (decision 10) |
-| `kontrol-results-v3.json` | The four Kontrol proofs rerun on the successor native runtime |
 | `candidate-2/` | The candidate 2 receipts, proof inputs, and superseded formal artifacts, preserved byte for byte (see its own README) |
 | `mutator-inventory.md`, `pilot-*`, `clean-room-provenance.md` | Mutation inventory, the byte-bound pilot, and the clean-room provenance record |
 | `model-regression.json`, `isabelle-solidity-applicability.md` | Model-level regression and applicability notes |

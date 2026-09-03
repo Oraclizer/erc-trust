@@ -361,26 +361,26 @@
   },
   "schemaVersion": 2,
   "sourceBinding": {
-    "artifactHashing": "sha256 of the JSON of {abi, bytecode.object, deployedBytecode.object, rawMetadata, storageLayout.storage, methodIdentifiers} of the forge artifact",
+    "artifactHashing": "sha256 of the JSON of {abi, bytecode.object, deployedBytecode.object, rawMetadata, storageLayout.storage without astId, methodIdentifiers} of the forge artifact",
     "artifacts": [
       {
         "contract": "TrustToken",
         "path": "out/TrustToken.sol/TrustToken.json",
-        "sha256": "190c6c42de80cc3223782bb638c8a6f8e328bb09744a83a61c67be7befc9fffe",
+        "sha256": "fe5199826aad36694832374f040e8b8a4621ec5636b67c17f959a2bf2482648c",
         "source": "implementation/src/TrustToken.sol",
         "subject": "native"
       },
       {
         "contract": "ERC3643TrustAdapter",
         "path": "out/ERC3643TrustAdapter.sol/ERC3643TrustAdapter.json",
-        "sha256": "3045f3b1508485a1483ecba270bf8a9314dacf3e5e2b35c7da4a51b58f24b4bb",
+        "sha256": "7a10c35ec0745d097558d26e8b57b1819f87cfce2a5f9d941ea3af0d32ba6c11",
         "source": "implementation/src/profiles/ERC3643TrustAdapter.sol",
         "subject": "profileAdapter"
       },
       {
         "contract": "ProfileGovernor",
         "path": "out/ProfileGovernor.sol/ProfileGovernor.json",
-        "sha256": "216a136b2c45e43f2d45a0ae0eb16313ef587f45231ef7b3d894a67af0673074",
+        "sha256": "f4e601a476e9ee22012e849394a4b00923926a7b7e5aef2358136c63cdd3146e",
         "source": "implementation/src/profiles/ProfileGovernor.sol",
         "subject": "profileGovernor"
       }
