@@ -33,7 +33,7 @@
   "sourceTree": {
     "scope": "protected-release-inputs-v1",
     "algorithm": "sha256-canonical-utf8-lf-lines-v1",
-    "root": "f4b15dced52cc27442ae1b7a7fa9c9747206b324946755b978ee52482642bf8b",
+    "root": "8de75fe8891dbec6a962633d89eaed6f982ad149e4d034282b07beceb6eec35b",
     "files": {
       "evidence/README.md": "76acee803d2f89111dd5e96db2a6fe46777e06256a45ea0fc8fddc45b11d9a0d",
       "evidence/candidate-2/README.md": "04407d7f2edca1613d4934f509f76dbdca7449c8676b35225553b6d018d0a662",
@@ -843,7 +843,7 @@
       "scripts/verify-pilot-binding.mjs": "4f237dd536f1ddc463bff1de10a2482e106eda502da7b512c1158d1ea88eba84",
       "scripts/verify-public-release-tree.mjs": "db686418b5c17c5f68e9d7fad5ff80a6188b99f5ebbd472cd3adef04651c80b7",
       "scripts/verify-public-surface.mjs": "ad46d832afe9eb667e4d6c0eea486c1271052ed6d38bda9c92416c530cef9012",
-      "scripts/verify-release.mjs": "c2b6c466eb3f5918a586b7b0a2cb90d0a84647cf2021a359ee9379f357c4235c",
+      "scripts/verify-release.mjs": "eaedd39ab95309158baa8e2b3a82100ff3da77a887a95dfab57f201ada22231b",
       "scripts/verify-repository-health.mjs": "d3ecefd8e39f11c81d2b1c06f30c5f0ef239371212584b7b312bfae62fdfe8a0",
       "scripts/verify-runtime-binding-v3.mjs": "4078fc9822bcc61a0d1a40d2594efcdcb243dff02e56865c9ba4aeba5eab64b6",
       "scripts/verify-runtime-binding.mjs": "e6667779026800ee37b3a27a1dc564a3429039c9fa2b45416f49afb01ee83205",
@@ -868,7 +868,7 @@
       "spec/decisions/08-native-wiring.md": "babb4f138518ea926516383811a778187b529c36f62e7848519bf69b44ceae31",
       "spec/decisions/09-erc3643-profile-wiring.md": "17bfb015efd9cb3998a17a23501fa6d9c9fa3bd4f11102014563280d0c060afb",
       "spec/decisions/10-refinement-closure.md": "0a4d27ffe2a2d96cd133d33e5b8c83b94f1ab5ca56f505e7c1cdbf53db167ce8",
-      "spec/decisions/11-runtime-assurance.md": "59d9b762cba7b75384752ac8ecf693b65eb7bec5198bdc2fad535287374e44de",
+      "spec/decisions/11-runtime-assurance.md": "fc9c4d4dc36ef1b92103872bd2d1d5f4a59b9fce28e76fddc56e063a5c3e1a39",
       "spec/erc-trust-kernel-v2.json": "188ae0491bbd81faf0c1eed5bc8e806ecaf74cd62a38f2bca52753180dc3bdc1",
       "spec/generated/IERCTrustKernel.sol": "405a465c9b91e55270035638566f7d9e682efc90166f611d3e9a9eea1c9e2c88",
       "spec/generated/kernel-v2-abi.json": "73b45cee3e8e6a2abd484a306a21d51aaa3fc4da75b976dd3c938d936352814b",
