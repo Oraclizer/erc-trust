@@ -199,22 +199,16 @@ shortcuts. The native reference rejects raw calls.
 
 ## Assurance snapshot
 
-Most of this repository is proof, not implementation. By line count, the
-machine-checked formal artifacts outweigh the Solidity reference
-implementation roughly five to one, which is why the repository language bar
-is dominated by K and Isabelle rather than Solidity. The table describes the
-shipped `0.1.0-candidate.2` package: its KEVM claim specifications are
-preserved under `evidence/candidate-2/formal/kevm/`, the successor KEVM program
-has not been restarted (`formal/kevm/README.md`), and the successor Isabelle
-session models kernel version 2 in 22 theories (`FORMAL_VERIFICATION.md`,
-section "Successor refinement closure"):
+Most of this repository is proof and evidence rather than implementation,
+which is why the repository language bar is dominated by K and Isabelle rather
+than Solidity. Measured on this tree (files | lines):
 
-| Layer | Files | Lines | What it is |
+| Layer | Successor (kernel version 2) | Preserved candidate 2 history | What it is |
 | --- | --- | --- | --- |
-| KEVM proof specifications | 248 | 35,114 | Bytecode-level proof claims and lemmas for the candidate 2 compiled runtime, including generated claim bundles (preserved under `evidence/candidate-2/formal/kevm/`) |
-| Isabelle/HOL theories | 30 | 8,661 | The abstract model and its mechanically checked theorems |
-| Certora rules | 28 | 1,105 | Bounded rules and mutator classifications against the Solidity source |
-| Solidity reference implementation | 22 | 9,062 | The contract code those artifacts are about |
+| Isabelle/HOL theories | 22 | 9,358 (`formal/isabelle/ERC_TRUST/`) | 41 | 2,802 (`evidence/candidate-2/`) | The abstract model, its theorems, and the generated bridge and ledger theories |
+| KEVM and Kontrol K sources | 1 | 37 (`formal/kevm/`, generated bridge and lemmas only) | 252 | 35,416 (`evidence/candidate-2/formal/kevm/`) | Bytecode-level claims and lemmas; the successor KEVM program has not been restarted |
+| Certora rules | none (lane pending) | 12 | 1,214 | Bounded rules against the candidate 2 source |
+| Solidity | 14 | 3,156 (`implementation/src/`) plus 14 | 4,777 of tests and the Kontrol harness | 30 | 15,315 (`evidence/candidate-2/`, `pilot/`) | The reference contracts those artifacts are about |
 
 The boundaries of what that evidence does and does not establish are stated
 below, in `evidence/claim-matrix.md`, and in `evidence/known-limitations.md`;

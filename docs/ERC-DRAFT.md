@@ -7,7 +7,7 @@ status: Draft
 type: Standards Track
 category: ERC
 created: 2026-09-02
-requires: 20, 165, 7943, 8319
+requires: 20, 165, 1450, 3643, 7943, 8319
 ---
 
 ## Abstract
@@ -275,7 +275,7 @@ interface IERCTrustNativeRoute {
 /// Native profile dependency boundary. Read-only.
 interface ITrustBoundDependency {
     function configurationDigest() external view returns (bytes32 digest);
-    function assess(bytes32 commandHash, uint8 operation, address subject, address destination, uint256 amount, bytes32 bindingHash, uint64 bindingEpoch) external view returns (uint8 outcome, bytes32 evidence, bytes32 commandEcho, bytes32 bindingEcho);
+    function assess(bytes32 commandHash, uint8 operation, address subject, address destination, uint256 amount, bytes32 bindingHash, uint64 bindingEpoch) external view returns (uint8 outcome, bytes32 commandEcho, bytes32 bindingEcho, bytes32 evidenceHash);
 }
 ```
 
@@ -304,6 +304,22 @@ integers are left-padded with zero bytes, and enums are their `uint8` value.
 | `reversalHash` | `DOMAIN`, endpoint address, chain id, the completed `ReversalRequest` |
 | `nonceKey` | `DOMAIN`, `authorityRef`, `authorityEpoch`, `nonce` |
 | `receiptHash` | `DOMAIN`, then the first sixteen fields of `Receipt` in declared order |
+
+The endpoint address is the address of the conformance endpoint that
+executes the command: the token for the native profile, the adapter for a
+profile endpoint. It is the address a caller invokes, so for a proxy-fronted
+endpoint it is the proxy address, never the implementation address (in
+Solidity, `address(this)` of the executing contract). The chain id is the
+EIP-155 chain identifier of the chain the endpoint is deployed on
+(`block.chainid`).
+
+The endpoint address is the address of the conformance endpoint that
+executes the command: the token for the native profile, the adapter for a
+profile endpoint. It is the address a caller invokes, so for a proxy-fronted
+endpoint it is the proxy address, never the implementation address (in
+Solidity, `address(this)` of the executing contract). The chain id is the
+EIP-155 chain identifier of the chain the endpoint is deployed on
+(`block.chainid`).
 
 The `actionId` field of a request MUST equal the derived value; the same
 holds for `reversalId`. `deriveActionId` and `deriveReversalId` MUST return
@@ -356,16 +372,21 @@ earliest one.
 7. The nonce tuple was not already consumed (`TrustReplay`).
 8. The field rules of the command (reason 6 unless a rule names its own
    code).
-9. The state-dependent rules: case phase (`TrustTerminal`), reversal pairing
-   (reason 7), custody (reason 8), entitlement consumption (reason 9), case
-   conflict (reason 10), current effect (reason 11), freeze direction
-   (reason 12), and no state change (reason 13).
+9. The state-dependent rules. A `TERMINAL` case is reported first, as
+   `TrustTerminal`; for a reversal the referenced action's lifecycle and live
+   head (reason 11) are checked before the pairing (reason 7). The remaining
+   rules (custody, reason 8; entitlement consumption, reason 9; case
+   conflict, reason 10; freeze direction, reason 12; no state change, reason
+   13) are checked in an implementation-defined order.
 
 A replayed or stale command is therefore reported before any rule that
-depends on case or effect state. Assessment of the bound dependencies happens
+depends on case or effect state. The ordered list above is also stated by
+the machine-readable definition. Assessment of the bound dependencies happens
 after validation and before any state is consumed.
 
-The field rules are:
+The field rules are (an *overlay family* is `FREEZE` or `RESTRICT`: a live
+effect on a subject that a later reversal removes, defined with the case
+model below):
 
 | Command | Rule |
 | --- | --- |
@@ -441,8 +462,8 @@ The required token effects are:
 | `RECOVER` | as `CONFISCATE`, binding an entitlement commitment that is consumed exactly once; terminal |
 
 Tokens held under a custody record are *custody backing* of the custodian's
-balance: the custodian cannot spend them by ordinary transfer, and no other
-case may consume them (reason 8). The custody disposition path of a
+balance: an ordinary transfer MUST NOT spend them, and another case MUST NOT
+consume them (reason 8). The custody disposition path of a
 disposition consumes the whole record of its own case.
 
 The case transition table is normative. `OPEN(F)` is an open case of family
@@ -473,9 +494,11 @@ frozen target it imposes saturates at the current balance when observed. And
 custody records are per case, so several custody cases MAY encumber the same
 source, each with its own backing.
 
-`caseRecord(caseId)` returns the phase, the family, the head action of an
-open overlay case, and a generation counter that advances with every command
-applied to the case. The case record does not state how a terminal custody
+`caseRecord(caseId)` returns the phase, the family, `headActionId`, and a
+generation counter that advances with every command applied to the case.
+`headActionId` is the live overlay head of an open `FREEZE` or `RESTRICT`
+case, the active custody action of an open `CUSTODY` case, and zero when the
+case is `NONE` or `TERMINAL`. The case record does not state how a terminal custody
 case ended; whether it was closed by `RELEASE` or by a disposition is read
 from the receipts and action records of the case.
 
@@ -677,9 +700,11 @@ balance, so an integrator that needs a custodian's ordinary capacity uses
 `canTransfer` rather than `balance - getFrozenTokens`.
 
 Raw calls to `setFrozenTokens` and `forcedTransfer` MUST fail. The native
-route (`IERCTrustNativeRoute`) validates, assesses, and consumes a typed
-command, then invokes the sensitive selector in the same transaction under an
-exact-use ticket that records the command identifier, the selector, the
+route (`IERCTrustNativeRoute`) accepts the five actions that have an ERC-7943
+mechanic (`RESTRICT` has none and is rejected with reason 6) and the
+`UNFREEZE` reversal only (any other reversal is rejected with reason 7). It
+validates, assesses, and consumes a typed command, then invokes the sensitive
+selector in the same transaction under an exact-use ticket that records the command identifier, the selector, the
 calldata hash, and the dependency root and epoch current at preparation.
 Consumption MUST compare every recorded field against the sensitive call and
 the current dependency state, the sensitive selector MUST compare the
@@ -818,8 +843,10 @@ produce the listed result.
 | Raw sensitive selector | call `setFrozenTokens` or `forcedTransfer` without a live ticket | revert |
 | Interface honesty | `supportsInterface(0xffffffff)` or an interface the endpoint does not implement completely | `false` |
 
-An independent implementation written from the kernel definition and the
-vectors alone reproduces every entry; its program and receipt accompany the
+An independent program written from the kernel definition and the vectors
+alone reproduces every identifier, hash, calldata, and receipt hash of the
+vectors; the behavioural rows above are exercised by the reference test
+suite, not by that program. The program and its receipt accompany the
 reference implementation.
 
 ## Reference Implementation
@@ -957,6 +984,3 @@ interface. The reference has not been audited and is not production-ready.
 ## Copyright
 
 Copyright and related rights waived via [CC0](LICENSE-CC0.md).
-
-The ERC-3643 declarations are clean-room interface signatures only; no GPL
-implementation source is copied or adapted.

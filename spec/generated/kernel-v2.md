@@ -415,7 +415,7 @@ Common: `domain == domain.keccak256 (reason 1)`; `actionId or reversalId == the 
 
 | Action | Rule |
 | --- | --- |
-| `order` | the common rules are checked in the listed order, then the per-action field rules; the first failing rule names the reason, so a request with several defects reports the earliest one |
+| `order` | an endpoint validates a request in this order and reports the first failure: 1 domain (reason 1); 2 identifier (reason 2); 3 command identifier not already applied (TrustReplay); 4 validity window (reason 3); 5 authority epoch (reason 4) and registered account (TrustUnauthorized); 6 dependency root and epoch (reason 5); 7 nonce tuple not already consumed (TrustReplay); 8 the common rules are checked in the listed order, then the per-action field rules; the first failing rule names the reason, so a request with several defects reports the earliest one; 9 the state-dependent rules, where a TERMINAL case is reported first (TrustTerminal) and, for a reversal, the referenced action's lifecycle and live head (reason 11) are checked before the pairing (reason 7), the remaining rules (8, 9, 10, 12, 13) in implementation-defined order; assessment of the bound dependencies follows validation, so a replayed or stale command is reported before any state-dependent rule |
 | `FREEZE` | source: == subject; destination: == 0; custodian: == 0; amount: > current absolute frozen target of subject (reason 12 otherwise); settlementCommitment: == 0; proceedsCommitment: == 0; entitlementCommitment: == 0 |
 | `RESTRICT` | source: == subject; destination: == 0; custodian: == 0; amount: == 0; settlementCommitment: == 0; proceedsCommitment: == 0; entitlementCommitment: == 0; state: the subject has no live RESTRICT head owned by this case; a second RESTRICT in its own case is rejected with reason 13, and a live RESTRICT head owned by another case is rejected with reason 10 (CT-7) |
 | `SEIZE` | source: == subject; custodian: != 0; destination: == custodian; amount: > 0 and available without consuming custody backing of another case (reason 8 when custody backing would be consumed); settlementCommitment: == 0; proceedsCommitment: == 0; entitlementCommitment: == 0 |
@@ -485,7 +485,7 @@ uint16 reason registry. Classes are normative; an implementation MAY add codes i
 | actionMask | 0x3f |
 | reversalMask | 0x07 |
 | dependencies | four read-only ITrustBoundDependency bindings, one per BindingKind; assessment and execution use the same current binding |
-| route | IERCTrustNativeRoute; raw setFrozenTokens and forcedTransfer calls fail |
+| route | IERCTrustNativeRoute; raw setFrozenTokens and forcedTransfer calls fail; the route accepts the five actions that have an ERC-7943 mechanic (RESTRICT is rejected with reason 6) and the UNFREEZE reversal only (any other reversal is rejected with reason 7) |
 | authority | direct: the current account registered for authorityRef, which MAY be a contract; no delegation surface |
 | observationPreimage | documented by the implementation together with its runtime identity |
 | manifestHash | dependencyRoot |

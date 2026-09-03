@@ -36,7 +36,8 @@ jobs:
           test "$(sed -n '3p' sdk/LICENSE)" = "Copyright (c) 2026 Oraclizer Labs, Inc."
           grep -Fq "MIT License for four historical pilot source files" README.md
           grep -Fq "Copyright and related rights waived via [CC0](LICENSE-CC0.md)." docs/ERC-DRAFT.md
-          grep -Fq "date-released: 2026-09-01" CITATION.cff
+          grep -Fq 'version: "0.2.0-candidate.1"' CITATION.cff
+          test -z "$(grep -F "date-released" CITATION.cff)"
           grep -Fq "license: BSD-3-Clause" CITATION.cff
           for path in \
             pilot/src/TrustFreezePilot.sol \

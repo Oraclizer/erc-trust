@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you reference ERC-TRUST, cite this repository and the exact candidate commit."
+message: "If you reference ERC-TRUST, cite this repository and the exact commit; the working label has no release date until a tag exists."
 title: "ERC-TRUST: Typed Regulatory Uniformity for Security Tokens"
 type: software
 authors:
@@ -7,7 +7,6 @@ authors:
     given-names: "Jinwook"
     orcid: "https://orcid.org/0009-0004-4993-8005"
 version: "0.2.0-candidate.1"
-date-released: 2026-09-03
 license: BSD-3-Clause
 repository-code: "https://github.com/Oraclizer/erc-trust"
 url: "https://github.com/Oraclizer/erc-trust"

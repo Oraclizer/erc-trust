@@ -48,6 +48,7 @@ const singleFiles = [
   "evidence/README.md",
   "evidence/independent-reproduction-v3.json",
   "evidence/claim-matrix.md",
+  "evidence/known-limitations.md",
   "evidence/clean-room-provenance.md",
   "evidence/evidence-mode.json",
   "evidence/current-profile-release-index-v3.json",
