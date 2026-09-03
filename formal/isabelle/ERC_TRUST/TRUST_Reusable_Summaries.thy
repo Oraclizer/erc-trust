@@ -5,6 +5,8 @@ begin
 record trust_action_summary =
   summary_pre_state :: trust_compositional_state
   summary_post_state :: trust_compositional_state
+  summary_sender :: trust_address
+  summary_time :: nat
   summary_command :: trust_forward_command
   summary_witness :: trust_success_witness
   summary_outcome :: trust_abstract_transaction_outcome
@@ -20,8 +22,8 @@ definition action_summary_valid :: "trust_action_summary \<Rightarrow> bool" whe
   "action_summary_valid summary \<longleftrightarrow>
     (case summary_outcome summary of
        TRUST_Abstract_Applied \<Rightarrow>
-         forward_shape_wf (summary_pre_state summary) (summary_command summary) \<and>
-         forward_fresh (summary_pre_state summary) (summary_command summary) \<and>
+         forward_admitted (summary_pre_state summary) (summary_sender summary)
+           (summary_time summary) (summary_command summary) (summary_witness summary) \<and>
          summary_post_state summary =
            forward_success_state (summary_pre_state summary)
              (summary_command summary) (summary_witness summary) \<and>
@@ -46,6 +48,8 @@ definition action_summary_valid :: "trust_action_summary \<Rightarrow> bool" whe
 record trust_reversal_summary =
   reversal_summary_pre_state :: trust_compositional_state
   reversal_summary_post_state :: trust_compositional_state
+  reversal_summary_sender :: trust_address
+  reversal_summary_time :: nat
   reversal_summary_command :: trust_reversal_command
   reversal_summary_witness :: trust_reversal_witness
   reversal_summary_outcome :: trust_abstract_transaction_outcome
@@ -57,6 +61,9 @@ definition reversal_summary_valid :: "trust_reversal_summary \<Rightarrow> bool"
   "reversal_summary_valid summary \<longleftrightarrow>
     (case reversal_summary_outcome summary of
        TRUST_Abstract_Applied \<Rightarrow>
+         reversal_admitted (reversal_summary_pre_state summary) (reversal_summary_sender summary)
+           (reversal_summary_time summary) (reversal_summary_command summary)
+           (reversal_summary_witness summary) \<and>
          reversal_summary_post_state summary =
            reversal_success_state (reversal_summary_pre_state summary)
              (reversal_summary_command summary) (reversal_summary_witness summary) \<and>
@@ -77,6 +84,13 @@ theorem action_summary_success_commits_exact_abstract_state:
   shows "summary_post_state summary =
          forward_success_state (summary_pre_state summary)
            (summary_command summary) (summary_witness summary)"
+  using assms by (simp add: action_summary_valid_def)
+
+theorem action_summary_success_was_admitted:
+  assumes "action_summary_valid summary"
+      and "summary_outcome summary = TRUST_Abstract_Applied"
+  shows "forward_admitted (summary_pre_state summary) (summary_sender summary)
+           (summary_time summary) (summary_command summary) (summary_witness summary)"
   using assms by (simp add: action_summary_valid_def)
 
 theorem action_summary_failure_restores_state_and_authorization:
@@ -114,18 +128,25 @@ proof -
     using action_summary_success_commits_exact_abstract_state assms(1,2) .
   have wf:
     "forward_shape_wf (summary_pre_state summary) (summary_command summary)"
-    using assms(1,2) by (simp add: action_summary_valid_def)
+    using action_summary_success_was_admitted[OF assms(1,2)]
+    by (simp add: forward_admitted_def)
   have strict:
     "frozen_targets (summary_pre_state summary)
        (forward_subject (summary_command summary)) <
      forward_amount (summary_command summary)"
-    using freeze_success_forward_is_strict[OF wf assms(3)] .
+    using freeze_success_requires_strict_increase[OF wf assms(3)] .
   have post:
     "frozen_targets (summary_post_state summary)
        (forward_subject (summary_command summary)) =
      forward_amount (summary_command summary)"
-    using target freeze_success_forward[OF assms(3)] by simp
+    using target freeze_success_sets_absolute_target[OF assms(3)] by simp
   show ?thesis using strict post by blast
 qed
+
+theorem reversal_summary_success_was_admissible:
+  assumes "reversal_summary_valid summary"
+      and "reversal_summary_outcome summary = TRUST_Abstract_Applied"
+  shows "reversal_admissible (reversal_summary_pre_state summary) (reversal_summary_command summary)"
+  using assms by (simp add: reversal_summary_valid_def reversal_admitted_def)
 
 end

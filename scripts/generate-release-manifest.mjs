@@ -17,6 +17,7 @@ const roots = [
   "formal/isabelle/ERC_TRUST",
   "formal/kevm",
   "evidence/candidate-2",
+  "evidence/end-to-end-refinement",
   "evidence/public-release",
   "sdk/src",
   "schemas",

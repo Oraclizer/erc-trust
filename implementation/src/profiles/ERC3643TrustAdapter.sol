@@ -486,17 +486,14 @@ contract ERC3643TrustAdapter is IERCTrustKernel, IERC3643VerifiedProfile {
             }
             return;
         }
-        ERC3643ProfileTypes.EffectRecord storage effect = _effects[actionId];
-        if (effect.generation == 0 || effect.effectHash != _effectHash(original, effect)) {
-            revert TrustInvalidCommand(reversalId, REASON_CURRENT_EFFECT);
-        }
+        if (_effects[actionId].generation == 0) revert TrustInvalidCommand(reversalId, REASON_CURRENT_EFFECT);
         ERC3643ProfileTypes.EffectHead storage head = reversal == TrustKernelTypes.ReversalKind.UNFREEZE
             ? _freezeHeads[original.subject]
             : _restrictionHeads[original.subject];
         bool stateMatches = reversal == TrustKernelTypes.ReversalKind.UNFREEZE
             ? _owned[original.subject].frozenTarget == original.amount
             : _owned[original.subject].restricted;
-        if (head.actionId != actionId || head.effectHash != effect.effectHash || !stateMatches) {
+        if (head.actionId != actionId || !stateMatches) {
             revert TrustInvalidCommand(reversalId, REASON_CURRENT_EFFECT);
         }
     }
@@ -634,13 +631,13 @@ contract ERC3643TrustAdapter is IERCTrustKernel, IERC3643VerifiedProfile {
         if (request.action == TrustKernelTypes.ActionKind.FREEZE) {
             ERC3643ProfileTypes.OwnedState storage owned = _owned[request.subject];
             record.priorAmount = owned.frozenTarget;
-            _pushEffect(request.actionId, record, _freezeHeads[request.subject]);
+            _pushEffect(request.actionId, _freezeHeads[request.subject]);
             owned.frozenTarget = request.amount;
             _syncFrozen(request.actionId, request.subject);
             _openOverlay(caseState, TrustKernelTypes.CaseFamily.FREEZE, request.actionId);
         } else if (request.action == TrustKernelTypes.ActionKind.RESTRICT) {
             record.priorFlag = _owned[request.subject].restricted;
-            _pushEffect(request.actionId, record, _restrictionHeads[request.subject]);
+            _pushEffect(request.actionId, _restrictionHeads[request.subject]);
             _setRestricted(request.actionId, request.subject, true);
             _openOverlay(caseState, TrustKernelTypes.CaseFamily.RESTRICT, request.actionId);
         } else if (request.action == TrustKernelTypes.ActionKind.SEIZE) {
@@ -816,17 +813,11 @@ contract ERC3643TrustAdapter is IERCTrustKernel, IERC3643VerifiedProfile {
         return true;
     }
 
-    function _pushEffect(
-        bytes32 actionId,
-        TrustKernelTypes.ActionRecord storage record,
-        ERC3643ProfileTypes.EffectHead storage head
-    ) internal {
+    function _pushEffect(bytes32 actionId, ERC3643ProfileTypes.EffectHead storage head) internal {
         ERC3643ProfileTypes.EffectRecord storage effect = _effects[actionId];
         effect.parentActionId = head.actionId;
         effect.generation = head.generation + 1;
-        effect.effectHash = _effectHash(record, effect);
         head.actionId = actionId;
-        head.effectHash = effect.effectHash;
         head.generation = effect.generation;
     }
 
@@ -837,20 +828,7 @@ contract ERC3643TrustAdapter is IERCTrustKernel, IERC3643VerifiedProfile {
     ) internal returns (bytes32 parent) {
         parent = originalEffect.parentActionId;
         head.actionId = parent;
-        head.effectHash = parent == bytes32(0) ? bytes32(0) : _effects[parent].effectHash;
         head.generation += 1;
-    }
-
-    function _effectHash(TrustKernelTypes.ActionRecord storage record, ERC3643ProfileTypes.EffectRecord storage effect)
-        internal
-        view
-        returns (bytes32)
-    {
-        return keccak256(
-            abi.encode(
-                record.commandHash, effect.parentActionId, effect.generation, record.priorAmount, record.priorFlag
-            )
-        );
     }
 
     // ---------------------------------------------------------------------
@@ -902,7 +880,6 @@ contract ERC3643TrustAdapter is IERCTrustKernel, IERC3643VerifiedProfile {
         record.dependencyEpoch = SEAL_EPOCH;
         _pushEffect(
             actionId,
-            record,
             family == TrustKernelTypes.CaseFamily.FREEZE
                 ? _freezeHeads[entry.account]
                 : _restrictionHeads[entry.account]

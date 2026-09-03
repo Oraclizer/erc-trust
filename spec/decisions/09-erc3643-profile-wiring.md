@@ -1,8 +1,9 @@
 # Decision 09: how the ERC-3643 Verified Full profile consumes the kernel machine source
 
 Status: implemented for the profile adapter (`implementation/src/profiles/ERC3643TrustAdapter.sol`,
-`implementation/src/profiles/ProfileGovernor.sol`). The formal mapping of the profile and the
-runtime evidence for its bytecode follow in later changes.
+`implementation/src/profiles/ProfileGovernor.sol`). The formal mapping of the profile is
+decision 10 (`10-refinement-closure.md`); the runtime evidence for its bytecode follows in the
+runtime assurance change.
 
 ## Decision
 

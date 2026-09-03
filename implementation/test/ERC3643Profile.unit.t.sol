@@ -658,6 +658,7 @@ abstract contract ERC3643ProfileTestBase {
         adapter.executeRegulatoryReversal(unfreeze);
         (ok, result) = _call(abi.encodeCall(adapter.executeRegulatoryReversal, (unfreeze)));
         _assert(!ok && _selector(result) == IERCTrustKernel.TrustReplay.selector, "reversal replay");
+        _assertEq(_wordAt(result, 0), unfreeze.reversalId, "replay key is the reversalId");
     }
 
     function testRootAndEpochAreCheckedIndependently() external {

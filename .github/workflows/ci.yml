@@ -80,6 +80,8 @@ jobs:
         run: node scripts/generate-normative-kernel.mjs --check
       - name: Build release artifacts
         run: forge build
+      - name: Check runtime bridge generation determinism
+        run: node scripts/generate-runtime-bridge-v2.mjs --check
       - name: Compile the generated kernel interface with the pinned compiler
         run: node scripts/verify-normative-kernel-solidity.mjs
       - name: Regenerate release manifest
@@ -90,6 +92,8 @@ jobs:
         run: git diff --exit-code -- evidence/release-manifest.json
       - name: Verify successor evidence lanes
         run: node scripts/verify-current-profile-release-v3.mjs
+      - name: Verify the obligation ledger
+        run: node scripts/verify-obligation-ledger-v3.mjs
       - name: Verify local links
         run: node scripts/verify-links.mjs
       - name: Verify public surface

@@ -1,3 +1,13 @@
+(*
+  Fail-closed classification of a bound dependency observation.
+
+  Reason codes follow the kernel version 2 dependency failure mapping: 200 for
+  changed runtime code, 201 for a changed configuration digest, 202 for a call
+  that reverts, returns a length other than 128 bytes, or returns an outcome
+  word above 2, 203 for a command or binding echo mismatch, and 204 when the
+  dependency itself reports an operational failure.
+*)
+
 theory TRUST_Bound_Dependency_Assume_Guarantee
   imports TRUST_State_Abi_Normal_Form
 begin
@@ -29,10 +39,10 @@ where
              \<not> configuration_matches observation
        then Dependency_Operational 201
      else if \<not> assessment_call_ok observation \<or>
-             assessment_length observation \<noteq> 128
+             assessment_length observation \<noteq> 128 \<or>
+             assessment_word observation > 2
        then Dependency_Operational 202
-     else if assessment_word observation > 2 \<or>
-             \<not> command_echo_matches observation \<or>
+     else if \<not> command_echo_matches observation \<or>
              \<not> binding_echo_matches observation
        then Dependency_Operational 203
      else if assessment_word observation = 0
@@ -81,24 +91,26 @@ theorem dependency_configuration_failure_is_reason_201:
   shows "classify_dependency observation = Dependency_Operational 201"
   using assms by (auto simp: classify_dependency_def)
 
-theorem dependency_transport_shape_failure_is_reason_202:
+theorem dependency_malformed_response_is_reason_202:
   assumes "dependency_identity_ok observation"
       and "configuration_call_ok observation"
       and "configuration_length observation = 32"
       and "configuration_matches observation"
-      and "\<not> assessment_call_ok observation \<or> assessment_length observation \<noteq> 128"
+      and "\<not> assessment_call_ok observation \<or>
+           assessment_length observation \<noteq> 128 \<or>
+           assessment_word observation > 2"
   shows "classify_dependency observation = Dependency_Operational 202"
   using assms by (auto simp: classify_dependency_def)
 
-theorem dependency_word_or_echo_failure_is_reason_203:
+theorem dependency_echo_failure_is_reason_203:
   assumes "dependency_identity_ok observation"
       and "configuration_call_ok observation"
       and "configuration_length observation = 32"
       and "configuration_matches observation"
       and "assessment_call_ok observation"
       and "assessment_length observation = 128"
-      and "assessment_word observation > 2 \<or>
-           \<not> command_echo_matches observation \<or>
+      and "assessment_word observation \<le> 2"
+      and "\<not> command_echo_matches observation \<or>
            \<not> binding_echo_matches observation"
   shows "classify_dependency observation = Dependency_Operational 203"
   using assms by (auto simp: classify_dependency_def)
@@ -115,6 +127,11 @@ theorem dependency_canonical_operational_is_reason_204:
       and "binding_echo_matches observation"
   shows "classify_dependency observation = Dependency_Operational 204"
   using assms by (simp add: classify_dependency_def)
+
+theorem dependency_never_applies_without_matching_echoes:
+  assumes "classify_dependency observation = Dependency_Applicable evidence"
+  shows "command_echo_matches observation \<and> binding_echo_matches observation"
+  using assms by (auto simp: classify_dependency_def split: if_splits)
 
 definition dependency_failure_post ::
   "'state \<Rightarrow> dependency_classification \<Rightarrow> 'state"

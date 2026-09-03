@@ -3,9 +3,9 @@
   "schema": "erc-trust-normative-kernel",
   "kernelVersion": 2,
   "status": {
-    "stage": "normative kernel frozen for the successor candidate; native endpoint and ERC-3643 profile adapter wired; formal mapping and runtime evidence pending",
+    "stage": "normative kernel frozen for the successor candidate; native endpoint and ERC-3643 profile adapter wired; abstract model and obligation ledger connected to both endpoints (decision 10); runtime evidence pending",
     "assurance": "unaudited-not-for-production",
-    "note": "This file defines the common wire format that the native token and the ERC-3643 adapter profile both implement. Both endpoints under implementation/ consume the generated copy of this kernel (decisions 08 and 09). Conformance of either endpoint is established only by the evidence lanes, never by this file."
+    "note": "This file defines the common wire format that the native token and the ERC-3643 adapter profile both implement. Both endpoints under implementation/ consume the generated copy of this kernel (decisions 08 and 09) and are connected to the abstract model by the obligation ledger (decision 10). Conformance of either endpoint is established only by the evidence lanes, never by this file."
   },
   "domain": {
     "string": "ERC-TRUST/v2",

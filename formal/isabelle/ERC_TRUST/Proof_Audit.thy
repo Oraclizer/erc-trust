@@ -8,7 +8,9 @@
 *)
 
 theory Proof_Audit
-  imports TRUST_End_To_End_Composition
+  imports
+    TRUST_Obligation_Ledger_Generated
+    TRUST_M4_Action_Reversal_Row_Corollaries
 begin
 
 ML \<open>
@@ -23,9 +25,17 @@ ML \<open>
      "TRUST_Compositional_State",
      "TRUST_Concrete_Configuration",
      "TRUST_Runtime_Bridge_Generated",
+     "TRUST_State_Abi_Normal_Form",
+     "TRUST_C0_Decode_Slices",
+     "TRUST_Decoder_Guard_Words",
+     "TRUST_Bound_Dependency_Assume_Guarantee",
      "TRUST_Retrieve_Relation",
      "TRUST_Transaction_Refinement",
-     "TRUST_End_To_End_Composition"];
+     "TRUST_Reusable_Summaries",
+     "TRUST_End_To_End_Composition",
+     "TRUST_Verified_Profile_Onboarding",
+     "TRUST_Obligation_Ledger_Generated",
+     "TRUST_M4_Action_Reversal_Row_Corollaries"];
 
   fun explicit_root_name line =
     (case String.tokens Char.isSpace line of

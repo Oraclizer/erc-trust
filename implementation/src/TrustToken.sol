@@ -729,13 +729,13 @@ contract TrustToken is TrustStorage, IERC20, IERC7943Fungible, IERCTrustKernel, 
 
         if (request.action == TrustKernelTypes.ActionKind.FREEZE) {
             record.priorAmount = _frozen[request.subject];
-            _pushEffect(request.actionId, record, _freezeHeads[request.subject]);
+            _pushEffect(request.actionId, _freezeHeads[request.subject]);
             _frozen[request.subject] = request.amount;
             emit Frozen(request.subject, request.amount);
             _openOverlay(caseState, TrustKernelTypes.CaseFamily.FREEZE, request.actionId);
         } else if (request.action == TrustKernelTypes.ActionKind.RESTRICT) {
             record.priorFlag = _restricted[request.subject];
-            _pushEffect(request.actionId, record, _restrictionHeads[request.subject]);
+            _pushEffect(request.actionId, _restrictionHeads[request.subject]);
             _restricted[request.subject] = true;
             _openOverlay(caseState, TrustKernelTypes.CaseFamily.RESTRICT, request.actionId);
         } else if (request.action == TrustKernelTypes.ActionKind.SEIZE) {
@@ -1098,32 +1098,23 @@ contract TrustToken is TrustStorage, IERC20, IERC7943Fungible, IERCTrustKernel, 
             }
             return;
         }
-        TrustNativeTypes.EffectRecord storage effect = _effects[actionId];
-        if (effect.generation == 0 || effect.effectHash != _effectHash(original, effect)) {
-            revert TrustInvalidCommand(reversalId, REASON_CURRENT_EFFECT);
-        }
+        if (_effects[actionId].generation == 0) revert TrustInvalidCommand(reversalId, REASON_CURRENT_EFFECT);
         TrustNativeTypes.EffectHead storage head = reversal == TrustKernelTypes.ReversalKind.UNFREEZE
             ? _freezeHeads[original.subject]
             : _restrictionHeads[original.subject];
         bool stateMatches = reversal == TrustKernelTypes.ReversalKind.UNFREEZE
             ? _frozen[original.subject] == original.amount
             : _restricted[original.subject];
-        if (head.actionId != actionId || head.effectHash != effect.effectHash || !stateMatches) {
+        if (head.actionId != actionId || !stateMatches) {
             revert TrustInvalidCommand(reversalId, REASON_CURRENT_EFFECT);
         }
     }
 
-    function _pushEffect(
-        bytes32 actionId,
-        TrustKernelTypes.ActionRecord storage record,
-        TrustNativeTypes.EffectHead storage head
-    ) internal {
+    function _pushEffect(bytes32 actionId, TrustNativeTypes.EffectHead storage head) internal {
         TrustNativeTypes.EffectRecord storage effect = _effects[actionId];
         effect.parentActionId = head.actionId;
         effect.generation = head.generation + 1;
-        effect.effectHash = _effectHash(record, effect);
         head.actionId = actionId;
-        head.effectHash = effect.effectHash;
         head.generation = effect.generation;
     }
 
@@ -1134,20 +1125,7 @@ contract TrustToken is TrustStorage, IERC20, IERC7943Fungible, IERCTrustKernel, 
     {
         parent = originalEffect.parentActionId;
         head.actionId = parent;
-        head.effectHash = parent == bytes32(0) ? bytes32(0) : _effects[parent].effectHash;
         head.generation += 1;
-    }
-
-    function _effectHash(TrustKernelTypes.ActionRecord storage record, TrustNativeTypes.EffectRecord storage effect)
-        internal
-        view
-        returns (bytes32)
-    {
-        return keccak256(
-            abi.encode(
-                record.commandHash, effect.parentActionId, effect.generation, record.priorAmount, record.priorFlag
-            )
-        );
     }
 
     function _requireUnbacked(address account, uint256 amount, bytes32 commandId) internal view {

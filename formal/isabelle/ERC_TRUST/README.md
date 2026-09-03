@@ -15,13 +15,19 @@ of the CDSP entry or transfer product ownership.
 ## Theory order
 
 The authoritative order is the session declaration in `ROOT`. The current
-sequence contains the base regulatory model, compositional and concrete
-configuration layers, generated runtime bridges, C0 decoder and guard
-theories, reusable summaries, end-to-end composition, the ACT-01 current
-profile theorem, the sealed `STATE-04` and `STATE-05` per-row theories, and
-the action/reversal row-negative batch theory. Two final conditional
-certificate theories cover the remaining balance/reversal and contract
-boundary rows. `Proof_Audit.thy` remains last.
+sequence models kernel version 2: the base regulatory model and claim
+boundary, the compositional state, the state ABI normal form, the generated
+runtime bridge (`TRUST_Runtime_Bridge_Generated.thy`, written by
+`scripts/generate-runtime-bridge-v2.mjs`), the C0 decoder slices and the
+decoder guard word theorems, the bound dependency assume/guarantee theory, the
+retrieve relation, the transaction refinement, the reusable summaries, the
+end-to-end composition with its undischarged `runtime_link` locale assumption,
+the verified-profile onboarding theory, the rendered obligation ledger
+(`TRUST_Obligation_Ledger_Generated.thy`, written by
+`scripts/verify-obligation-ledger-v3.mjs`), and the proof-bound row corollaries.
+`Proof_Audit.thy` remains last. The candidate 2 bridge and current-profile
+theories are preserved under `evidence/candidate-2/formal/isabelle/ERC_TRUST/`
+and are not part of the session.
 
 ## Build
 

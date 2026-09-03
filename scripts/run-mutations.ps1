@@ -541,6 +541,610 @@ $mutations = @(
         ExpectedOccurrences = 1
         Contract = "ERC3643ProfileTrexFixtureTest"
         Test = "testInboundGrowthIsRefrozenByPermissionlessResynchronisation"
+    },
+    # Refinement closure change: every fault below removes or weakens one load-bearing consumer that a row of
+    # evidence/end-to-end-refinement/obligation-ledger-v3.json cites as its consumer-removal negative.
+    @{
+        Id = "MUT-52-AUTHORITY-ACCOUNT"
+        Fault = "Accept any caller as the registered authority account"
+        File = "implementation\src\TrustToken.sol"
+        Old = "if (!authority_.active || caller != authority_.account) revert TrustUnauthorized(caller, authorityRef);"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testReplayNonceAndAuthorityRotation"
+    },
+    @{
+        Id = "MUT-53-AUTHORITY-EPOCH"
+        Fault = "Accept a command whose authority epoch is not the current epoch"
+        File = "implementation\src\TrustToken.sol"
+        Old = "if (authority_.epoch != authorityEpoch) revert TrustInvalidCommand(commandId, REASON_AUTHORITY_EPOCH);"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testReplayNonceAndAuthorityRotation"
+    },
+    @{
+        Id = "MUT-54-AUTHORITY-ROTATION-EPOCH"
+        Fault = "Rotate the authority without advancing its epoch"
+        File = "implementation\src\TrustToken.sol"
+        Old = "authorityConfig.epoch += 1;"
+        New = "authorityConfig.epoch += 0;"
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testReplayNonceAndAuthorityRotation"
+    },
+    @{
+        Id = "MUT-55-ACTION-ID-REPLAY"
+        Fault = "Accept an action identifier that already has a record"
+        File = "implementation\src\TrustToken.sol"
+        Old = "if (_actions[request.actionId].lifecycle != TrustKernelTypes.Lifecycle.NONE) {`n            revert TrustReplay(request.actionId);`n        }"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testReplayNonceAndAuthorityRotation"
+    },
+    @{
+        Id = "MUT-56-REVERSAL-ID-REPLAY"
+        Fault = "Accept a reversal identifier that already has a receipt"
+        File = "implementation\src\TrustToken.sol"
+        Old = "if (_receipts[request.reversalId].receiptKind != TrustKernelTypes.ReceiptKind.NONE) {`n            revert TrustReplay(request.reversalId);`n        }"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testReversalReplayAndRestrictionTransferBlock"
+    },
+    @{
+        Id = "MUT-57-NONCE-FRESHNESS"
+        Fault = "Accept a nonce that was already consumed"
+        File = "implementation\src\TrustToken.sol"
+        Old = "if (_usedNonces[authorityRef][authorityEpoch][nonce]) {`n            revert TrustReplay(TrustNativeDecision.nonceKey(authorityRef, authorityEpoch, nonce));`n        }"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testReplayNonceAndAuthorityRotation"
+    },
+    @{
+        Id = "MUT-58-REVERSAL-DEPENDENCY-ROOT"
+        Fault = "Compare only the dependency epoch of a reversal and ignore the root"
+        File = "implementation\src\TrustToken.sol"
+        Old = "if (request.dependencyRoot != _dependencyRoot || request.dependencyEpoch != _dependencyEpoch) {`n            revert TrustInvalidCommand(request.reversalId, REASON_DEPENDENCY_BINDING);"
+        New = "if (request.dependencyEpoch != _dependencyEpoch) {`n            revert TrustInvalidCommand(request.reversalId, REASON_DEPENDENCY_BINDING);"
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testRootAndEpochAreCheckedIndependently"
+    },
+    @{
+        Id = "MUT-59-ACTION-SHAPE"
+        Fault = "Skip the per-action shape rules and the case transition table"
+        File = "implementation\src\TrustToken.sol"
+        Old = "_validateActionShape(request);"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testDirectDispositionsAndShapeRules"
+    },
+    @{
+        Id = "MUT-60-FREEZE-PRIOR-TARGET"
+        Fault = "Record zero instead of the prior absolute target on FREEZE"
+        File = "implementation\src\TrustToken.sol"
+        Old = "record.priorAmount = _frozen[request.subject];"
+        New = "record.priorAmount = 0;"
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testFreezeAmendmentChainReopensAfterPop"
+    },
+    @{
+        Id = "MUT-61-TERMINAL-CASE-ACTION"
+        Fault = "Accept an action on a terminal case"
+        File = "implementation\src\TrustToken.sol"
+        Old = "if (caseState.phase == TrustKernelTypes.CasePhase.TERMINAL) revert TrustTerminal(request.caseId);"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals"
+    },
+    @{
+        Id = "MUT-62-OVERLAY-REQUIRES-FRESH-CASE"
+        Fault = "Open an overlay inside a case that already has another family"
+        File = "implementation\src\TrustToken.sol"
+        Old = "if (caseState.phase != TrustKernelTypes.CasePhase.NONE) {`n                revert TrustInvalidCommand(actionId, REASON_CASE_CONFLICT);`n            }"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testCustodyLifecycleAndDispositions"
+    },
+    @{
+        Id = "MUT-63-RESTRICT-NO-STATE-CHANGE"
+        Fault = "Accept a second RESTRICT in the case that already restricts the subject"
+        File = "implementation\src\TrustToken.sol"
+        Old = "if (head.actionId != bytes32(0) && caseState.headActionId == head.actionId) {`n                revert TrustInvalidCommand(request.actionId, REASON_NO_STATE_CHANGE);`n            }"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testOverlayCaseConflictsAndFamilies"
+    },
+    @{
+        Id = "MUT-64-SEIZE-OPEN-CASE"
+        Fault = "Accept a SEIZE into a case that is already open"
+        File = "implementation\src\TrustToken.sol"
+        Old = "if (caseState.phase == TrustKernelTypes.CasePhase.OPEN) {`n                    revert TrustInvalidCommand(`n                        request.actionId,`n                        caseState.family == TrustKernelTypes.CaseFamily.CUSTODY ? REASON_CUSTODY : REASON_CASE_CONFLICT`n                    );`n                }"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testCustodyLifecycleAndDispositions"
+    },
+    @{
+        Id = "MUT-65-CASE-GENERATION"
+        Fault = "Do not advance the case generation on an applied action"
+        File = "implementation\src\TrustToken.sol"
+        Old = "caseState.generation += 1;"
+        New = "caseState.generation += 0;"
+        ExpectedOccurrences = 2
+        FirstOnly = $true
+        Contract = "TrustActionsUnitTest"
+        Test = "testSixActionsAndThreeReversalsWithReceipts"
+    },
+    @{
+        Id = "MUT-66-REVERSAL-CURRENT-HEAD"
+        Fault = "Reverse an overlay action that is not the live head or whose state no longer matches"
+        File = "implementation\src\TrustToken.sol"
+        Old = "if (head.actionId != actionId || !stateMatches) {"
+        New = "if (false) {"
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testFreezeAmendmentChainReopensAfterPop"
+    },
+    @{
+        Id = "MUT-67-REVERSAL-PAIRING"
+        Fault = "Accept a reversal kind that does not pair with the original action"
+        File = "implementation\src\TrustToken.sol"
+        Old = "if (!TrustNativeDecision.reversalMatches(original.action, request.reversal)) {`n            revert TrustInvalidCommand(request.reversalId, REASON_REVERSAL_PAIRING);`n        }"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testDirectDispositionsAndShapeRules"
+    },
+    @{
+        Id = "MUT-68-UNFREEZE-PRIOR-TARGET"
+        Fault = "Restore zero instead of the prior absolute target on UNFREEZE"
+        File = "implementation\src\TrustToken.sol"
+        Old = "_frozen[original.subject] = original.priorAmount;"
+        New = "_frozen[original.subject] = 0;"
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testFreezeAmendmentChainReopensAfterPop"
+    },
+    @{
+        Id = "MUT-69-UNRESTRICT-PRIOR-FLAG"
+        Fault = "Keep the restriction flag set on UNRESTRICT"
+        File = "implementation\src\TrustToken.sol"
+        Old = "_restricted[original.subject] = original.priorFlag;"
+        New = "_restricted[original.subject] = true;"
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testSixActionsAndThreeReversalsWithReceipts"
+    },
+    @{
+        Id = "MUT-70-RELEASE-BACKING"
+        Fault = "Release custody without releasing the custody backing"
+        File = "implementation\src\TrustToken.sol"
+        Old = "_custodyBacking[custody.custodian] -= original.amount;"
+        New = "_custodyBacking[custody.custodian] -= 0;"
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testCustodyBackingAndOwnFrozenFloorDoNotDoubleCount"
+    },
+    @{
+        Id = "MUT-71-SEIZE-BACKING"
+        Fault = "Seize without recording the custody backing"
+        File = "implementation\src\TrustToken.sol"
+        Old = "_custodyBacking[request.custodian] += request.amount;"
+        New = "_custodyBacking[request.custodian] += 0;"
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testCustodyBackingAndOwnFrozenFloorDoNotDoubleCount"
+    },
+    @{
+        Id = "MUT-72-UNBACKED-GUARD"
+        Fault = "Let a direct enforcement transfer spend custody backing of another case"
+        File = "implementation\src\TrustToken.sol"
+        Old = "if (balance < backing || amount > balance - backing) {`n            revert TrustInvalidCommand(commandId, REASON_CUSTODY);`n        }"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testCustodyBackingAndOwnFrozenFloorDoNotDoubleCount"
+    },
+    @{
+        Id = "MUT-73-CUSTODY-DISPOSITION-MATCH"
+        Fault = "Consume a custody record on a disposition whose fields do not match it"
+        File = "implementation\src\TrustToken.sol"
+        Old = "if (`n            custody.custodian != request.source || custody.encumberedAmount != request.amount`n                || custody.declaredPriorHolder != request.subject`n                || _custodyBacking[custody.custodian] < custody.encumberedAmount`n        ) {`n            revert TrustInvalidCommand(request.actionId, REASON_CUSTODY);`n        }"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testCustodyLifecycleAndDispositions"
+    },
+    @{
+        Id = "MUT-74-ORDINARY-BACKING"
+        Fault = "Let ordinary transfers spend custody backing"
+        File = "implementation\src\TrustToken.sol"
+        Old = "uint256 ownPhysical = balance - backing;"
+        New = "uint256 ownPhysical = balance;"
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testCustodyBackingAndOwnFrozenFloorDoNotDoubleCount"
+    },
+    @{
+        Id = "MUT-75-RESTRICTION-SEND-GATE"
+        Fault = "Let a restricted account send ordinary transfers"
+        File = "implementation\src\TrustToken.sol"
+        Old = "if (!canSend(from)) revert ERC7943CannotSend(from);"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testReversalReplayAndRestrictionTransferBlock"
+    },
+    @{
+        Id = "MUT-76-RECEIPT-DEPENDENCY-ROOT"
+        Fault = "Store a zero dependency root in the action receipt"
+        File = "implementation\src\TrustToken.sol"
+        Old = "dependencyRoot: request.dependencyRoot,"
+        New = "dependencyRoot: bytes32(0),"
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testReceiptBindsCanonicalCommandHashEvidenceAndFinalEvent"
+    },
+    @{
+        Id = "MUT-77-REVERSAL-RECEIPT-PARENT"
+        Fault = "Store a zero parent command in the reversal receipt"
+        File = "implementation\src\TrustToken.sol"
+        Old = "parentCommandId: pending.actionId,"
+        New = "parentCommandId: bytes32(0),"
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testReceiptBindsCanonicalCommandHashEvidenceAndFinalEvent"
+    },
+    @{
+        Id = "MUT-78-GOVERNANCE-REPLAY"
+        Fault = "Accept a governance authorization identifier or nonce twice"
+        File = "implementation\src\TrustToken.sol"
+        Old = "if (authorizationId == bytes32(0) || _usedGovernanceIds[authorizationId] || _usedGovernanceIds[key]) {`n            revert TrustReplay(authorizationId);`n        }"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testGovernanceAuthorizationIsConsumedOnce"
+    },
+    @{
+        Id = "MUT-79-PROFILE-FULL-LIVE"
+        Fault = "Report full while a bound dependency is no longer live"
+        File = "implementation\src\TrustToken.sol"
+        Old = "if (!_bindings[TrustKernelTypes.BindingKind(kind)].live()) {`n                full = false;`n                break;`n            }"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testAssessmentOutcomesAndReasonClasses"
+    },
+    @{
+        Id = "MUT-80-KERNEL-INTERFACE-ID"
+        Fault = "Deny the kernel interface identifier"
+        File = "implementation\src\TrustToken.sol"
+        Old = "interfaceId == type(IERCTrustKernel).interfaceId"
+        New = "false"
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testTrustProfileDescriptorAndInterfaceIdentifiers"
+    },
+    @{
+        Id = "MUT-81-TIME-WINDOW"
+        Fault = "Accept an action outside its validity window"
+        File = "implementation\src\TrustToken.sol"
+        Old = "if (block.timestamp < request.validAfter || request.validBefore == 0 || block.timestamp > request.validBefore) {`n            revert TrustInvalidCommand(request.actionId, REASON_TIME);`n        }"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testDirectDispositionsAndShapeRules"
+    },
+    @{
+        Id = "MUT-82-DOMAIN"
+        Fault = "Accept an action whose domain is not the kernel domain"
+        File = "implementation\src\TrustToken.sol"
+        Old = "if (request.domain != TrustKernelTypes.DOMAIN) revert TrustInvalidCommand(request.actionId, REASON_DOMAIN);"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testDirectDispositionsAndShapeRules"
+    },
+    @{
+        Id = "MUT-83-IDENTIFIER"
+        Fault = "Accept an action whose identifier is not the derived identifier"
+        File = "implementation\src\TrustToken.sol"
+        Old = "if (request.actionId == bytes32(0) || request.actionId != _actionHash(request, true)) {`n            revert TrustInvalidCommand(request.actionId, REASON_IDENTIFIER);`n        }"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testDirectDispositionsAndShapeRules"
+    },
+    @{
+        Id = "MUT-84-ENTITLEMENT-ONCE"
+        Fault = "Accept an entitlement commitment that was already consumed"
+        File = "implementation\src\TrustToken.sol"
+        Old = "if (_consumedEntitlements[request.entitlementCommitment]) {`n                revert TrustInvalidCommand(request.actionId, REASON_ENTITLEMENT);`n            }"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testSixActionsAndThreeReversalsWithReceipts"
+    },
+    @{
+        Id = "MUT-85-ERC3643-AUTHORITY-ACCOUNT"
+        Fault = "Accept any caller as the immutable authority of the profile"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "if (requestedRef != authorityRef || caller != authority) revert TrustUnauthorized(caller, requestedRef);"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testReplayNonceAndAuthority"
+    },
+    @{
+        Id = "MUT-86-ERC3643-AUTHORITY-EPOCH"
+        Fault = "Accept a command whose authority epoch is not the seal epoch"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "if (requestedEpoch != currentEpoch) revert TrustInvalidCommand(commandId, REASON_AUTHORITY_EPOCH);"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testReplayNonceAndAuthority"
+    },
+    @{
+        Id = "MUT-87-ERC3643-ACTION-ID-REPLAY"
+        Fault = "Accept an action identifier that already has a record"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "if (_actions[request.actionId].lifecycle != TrustKernelTypes.Lifecycle.NONE) {`n            revert TrustReplay(request.actionId);`n        }"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testReplayNonceAndAuthority"
+    },
+    @{
+        Id = "MUT-88-ERC3643-REVERSAL-ID-REPLAY"
+        Fault = "Accept a reversal identifier that already has a receipt"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "if (_receipts[request.reversalId].receiptKind != TrustKernelTypes.ReceiptKind.NONE) {`n            revert TrustReplay(request.reversalId);`n        }"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testReplayNonceAndAuthority"
+    },
+    @{
+        Id = "MUT-89-ERC3643-NONCE-FRESHNESS"
+        Fault = "Accept a nonce that was already consumed"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "if (_usedNonces[key]) revert TrustReplay(key);"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testReplayNonceAndAuthority"
+    },
+    @{
+        Id = "MUT-90-ERC3643-REVERSAL-DEPENDENCY-ROOT"
+        Fault = "Compare only the dependency epoch of a reversal and ignore the root"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "if (request.dependencyRoot != _dependencyRoot || request.dependencyEpoch != _dependencyEpoch) {`n            revert TrustInvalidCommand(request.reversalId, REASON_DEPENDENCY_BINDING);"
+        New = "if (request.dependencyEpoch != _dependencyEpoch) {`n            revert TrustInvalidCommand(request.reversalId, REASON_DEPENDENCY_BINDING);"
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testRootAndEpochAreCheckedIndependently"
+    },
+    @{
+        Id = "MUT-91-ERC3643-ACTION-SHAPE"
+        Fault = "Skip the per-action shape rules and the case transition table"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "_validateActionShape(request);"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testDirectDispositionsAndShapeRules"
+    },
+    @{
+        Id = "MUT-92-ERC3643-TERMINAL-CASE-ACTION"
+        Fault = "Accept an action on a terminal case"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "if (caseState.phase == TrustKernelTypes.CasePhase.TERMINAL) revert TrustTerminal(request.caseId);"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals"
+    },
+    @{
+        Id = "MUT-93-ERC3643-OVERLAY-REQUIRES-FRESH-CASE"
+        Fault = "Open an overlay inside a case that already has another family"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "if (caseState.phase != TrustKernelTypes.CasePhase.NONE) {`n                revert TrustInvalidCommand(actionId, REASON_CASE_CONFLICT);`n            }"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testOverlayCaseConflictsAndFamilies"
+    },
+    @{
+        Id = "MUT-94-ERC3643-RESTRICT-NO-STATE-CHANGE"
+        Fault = "Accept a second RESTRICT in the case that already restricts the subject"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "if (head.actionId != bytes32(0) && caseState.headActionId == head.actionId) {`n                revert TrustInvalidCommand(request.actionId, REASON_NO_STATE_CHANGE);`n            }"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testOverlayCaseConflictsAndFamilies"
+    },
+    @{
+        Id = "MUT-95-ERC3643-SEIZE-OPEN-CASE"
+        Fault = "Accept a SEIZE into a case that is already open"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "if (caseState.phase == TrustKernelTypes.CasePhase.OPEN) {`n                    revert TrustInvalidCommand(`n                        request.actionId,`n                        caseState.family == TrustKernelTypes.CaseFamily.CUSTODY ? REASON_CUSTODY : REASON_CASE_CONFLICT`n                    );`n                }"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testCustodyLifecycleAndConfinement"
+    },
+    @{
+        Id = "MUT-96-ERC3643-DISPOSITION-TERMINAL"
+        Fault = "Leave a disposition case open instead of terminal"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "if (!consumedCustody) caseState.family = TrustKernelTypes.CaseFamily.DISPOSITION;`n            caseState.phase = TrustKernelTypes.CasePhase.TERMINAL;"
+        New = "if (!consumedCustody) caseState.family = TrustKernelTypes.CaseFamily.DISPOSITION;`n            caseState.phase = TrustKernelTypes.CasePhase.OPEN;"
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals"
+    },
+    @{
+        Id = "MUT-97-ERC3643-REVERSAL-CURRENT-HEAD"
+        Fault = "Reverse an overlay action that is not the live head or whose state no longer matches"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "if (head.actionId != actionId || !stateMatches) {"
+        New = "if (false) {"
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testAllSixActionsAndReversals"
+    },
+    @{
+        Id = "MUT-98-ERC3643-REVERSAL-PAIRING"
+        Fault = "Accept a reversal kind that does not pair with the original action"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "if (!_reversalMatches(original.action, request.reversal)) {`n            revert TrustInvalidCommand(request.reversalId, REASON_REVERSAL_PAIRING);`n        }"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testDirectDispositionsAndShapeRules"
+    },
+    @{
+        Id = "MUT-99-ERC3643-UNFREEZE-PRIOR-TARGET"
+        Fault = "Restore zero instead of the prior absolute target on UNFREEZE"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "_owned[original.subject].frozenTarget = original.priorAmount;"
+        New = "_owned[original.subject].frozenTarget = 0;"
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testAllSixActionsAndReversals"
+    },
+    @{
+        Id = "MUT-100-ERC3643-RECEIPT-PREIMAGE"
+        Fault = "Drop the last receipt field from the hash preimage"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "mcopy(add(ptr, 0x20), record, 0x200)"
+        New = "mcopy(add(ptr, 0x20), record, 0x1e0)"
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testAllSixActionsAndReversals"
+    },
+    @{
+        Id = "MUT-101-ERC3643-RECEIPT-DEPENDENCY-ROOT"
+        Fault = "Store a zero dependency root in the action receipt"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "dependencyRoot: request.dependencyRoot,"
+        New = "dependencyRoot: bytes32(0),"
+        ExpectedOccurrences = 2
+        FirstOnly = $true
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testReceiptBindsEvidenceAuthorityRootAndFinalEvent"
+    },
+    @{
+        Id = "MUT-102-ERC3643-KERNEL-INTERFACE-ID"
+        Fault = "Deny the kernel interface identifier"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "interfaceId == type(IERCTrustKernel).interfaceId"
+        New = "false"
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testDescriptorDependencyStateAndInterfaceIdentifiers"
+    },
+    @{
+        Id = "MUT-103-ERC3643-TIME-WINDOW"
+        Fault = "Accept an action outside its validity window"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "if (block.timestamp < request.validAfter || request.validBefore == 0 || block.timestamp > request.validBefore) {`n            revert TrustInvalidCommand(request.actionId, REASON_TIME);`n        }"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testDirectDispositionsAndShapeRules"
+    },
+    @{
+        Id = "MUT-104-ERC3643-DOMAIN"
+        Fault = "Accept an action whose domain is not the kernel domain"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "if (request.domain != TrustKernelTypes.DOMAIN) revert TrustInvalidCommand(request.actionId, REASON_DOMAIN);"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testDirectDispositionsAndShapeRules"
+    },
+    @{
+        Id = "MUT-105-ERC3643-IDENTIFIER"
+        Fault = "Accept an action whose identifier is not the derived identifier"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "if (request.actionId == bytes32(0) || request.actionId != _actionHash(request, true)) {`n            revert TrustInvalidCommand(request.actionId, REASON_IDENTIFIER);`n        }"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testDirectDispositionsAndShapeRules"
+    },
+    @{
+        Id = "MUT-106-ERC3643-ENTITLEMENT-ONCE"
+        Fault = "Accept an entitlement commitment that was already consumed"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "if (_consumedEntitlements[request.entitlementCommitment]) {`n                revert TrustInvalidCommand(request.actionId, REASON_ENTITLEMENT);`n            }"
+        New = ""
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testAllSixActionsAndReversals"
+    },
+    @{
+        Id = "MUT-107-ERC3643-MANIFEST-CANONICAL"
+        Fault = "Seal an import manifest that is not canonical"
+        File = "implementation\src\profiles\ProfileGovernor.sol"
+        Old = "entry.account == address(0) || entry.account <= previous`n                    || (entry.frozenAmount == 0 && !entry.restricted)"
+        New = "false"
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testSealIsOneWayAndManifestMustBeCanonical"
+    },
+    @{
+        Id = "MUT-108-FREEZE-TARGET"
+        Fault = "Apply a FREEZE without recording the absolute frozen target"
+        File = "implementation\src\TrustToken.sol"
+        Old = "_frozen[request.subject] = request.amount;"
+        New = "_frozen[request.subject] = _frozen[request.subject];"
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testSixActionsAndThreeReversalsWithReceipts"
+    },
+    @{
+        Id = "MUT-109-RESTRICT-FLAG"
+        Fault = "Apply a RESTRICT without setting the restriction flag"
+        File = "implementation\src\TrustToken.sol"
+        Old = "_restricted[request.subject] = true;"
+        New = "_restricted[request.subject] = _restricted[request.subject];"
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testReversalReplayAndRestrictionTransferBlock"
+    },
+    @{
+        Id = "MUT-110-BALANCE-MOVE"
+        Fault = "Move a balance without crediting the destination"
+        File = "implementation\src\TrustToken.sol"
+        Old = "_balances[to] += amount;"
+        New = "_balances[to] += 0;"
+        ExpectedOccurrences = 1
+        Contract = "TrustActionsUnitTest"
+        Test = "testSixActionsAndThreeReversalsWithReceipts"
+    },
+    @{
+        Id = "MUT-111-ERC3643-FREEZE-TARGET"
+        Fault = "Apply a profile FREEZE without recording the owned frozen target"
+        File = "implementation\src\profiles\ERC3643TrustAdapter.sol"
+        Old = "owned.frozenTarget = request.amount;"
+        New = "owned.frozenTarget = owned.frozenTarget;"
+        ExpectedOccurrences = 1
+        Contract = "ERC3643ProfileUnitTest"
+        Test = "testAllSixActionsAndReversals"
     }
 )
 

@@ -1,4 +1,4 @@
-(* Partial retrieve relation from pinned EVM world state to TRUST state. *)
+(* Partial retrieve relation from pinned EVM world state to the kernel version 2 TRUST state. *)
 
 theory TRUST_Retrieve_Relation
   imports TRUST_Runtime_Bridge_Generated
@@ -21,15 +21,13 @@ record trust_runtime_manifest =
   manifest_effect_links :: "current_trust_configuration \<Rightarrow> trust_action_id \<Rightarrow> compositional_effect_link option"
   manifest_action_records :: "current_trust_configuration \<Rightarrow> trust_action_id \<Rightarrow> compositional_action_record option"
   manifest_custody_records :: "current_trust_configuration \<Rightarrow> trust_case_id \<Rightarrow> compositional_custody option"
-  manifest_terminal_cases :: "current_trust_configuration \<Rightarrow> trust_case_id \<Rightarrow> bool"
-  manifest_settlement_records :: "current_trust_configuration \<Rightarrow> trust_action_id \<Rightarrow> compositional_settlement option"
-  manifest_entitlement_records :: "current_trust_configuration \<Rightarrow> trust_action_id \<Rightarrow> compositional_entitlement option"
+  manifest_case_records :: "current_trust_configuration \<Rightarrow> trust_case_id \<Rightarrow> compositional_case"
   manifest_consumed_entitlements :: "current_trust_configuration \<Rightarrow> trust_hash set"
   manifest_authorities :: "current_trust_configuration \<Rightarrow> trust_authority_ref \<Rightarrow> compositional_authority option"
-  manifest_delegations :: "current_trust_configuration \<Rightarrow> trust_authority_ref \<Rightarrow> trust_address \<Rightarrow> compositional_delegation option"
   manifest_consumed_nonces :: "current_trust_configuration \<Rightarrow> trust_nonce_key set"
-  manifest_consumed_command_ids :: "current_trust_configuration \<Rightarrow> trust_hash set"
   manifest_bindings :: "current_trust_configuration \<Rightarrow> trust_binding_kind \<Rightarrow> compositional_binding option"
+  manifest_dependency_root :: "current_trust_configuration \<Rightarrow> trust_hash"
+  manifest_dependency_epoch :: "current_trust_configuration \<Rightarrow> nat"
   manifest_receipts :: "current_trust_configuration \<Rightarrow> trust_hash \<Rightarrow> compositional_receipt option"
   manifest_layout_matches :: "current_trust_configuration \<Rightarrow> bool"
   manifest_footprint_complete :: "current_trust_configuration \<Rightarrow> bool"
@@ -91,15 +89,13 @@ where
       effect_links = manifest_effect_links manifest configuration,
       action_records = manifest_action_records manifest configuration,
       custody_records = manifest_custody_records manifest configuration,
-      terminal_cases = manifest_terminal_cases manifest configuration,
-      settlement_records = manifest_settlement_records manifest configuration,
-      entitlement_records = manifest_entitlement_records manifest configuration,
+      case_records = manifest_case_records manifest configuration,
       consumed_entitlements = manifest_consumed_entitlements manifest configuration,
       authorities = manifest_authorities manifest configuration,
-      delegations = manifest_delegations manifest configuration,
       compositional_consumed_nonces = manifest_consumed_nonces manifest configuration,
-      consumed_command_ids = manifest_consumed_command_ids manifest configuration,
       compositional_bindings = manifest_bindings manifest configuration,
+      dependency_root = manifest_dependency_root manifest configuration,
+      dependency_epoch = manifest_dependency_epoch manifest configuration,
       compositional_receipts = manifest_receipts manifest configuration\<rparr>"
 
 definition alpha_current ::
@@ -149,6 +145,11 @@ theorem alpha_current_rejects_runtime_substitution:
   shows "alpha_current manifest configuration = None"
   using assms by (simp add: alpha_current_def current_configuration_wf_def)
 
+theorem alpha_current_binds_the_generated_bridge_schema:
+  assumes "alpha_current manifest configuration = Some state"
+  shows "manifest_schema_sha256 manifest = runtime_bridge_schema_sha256"
+  using alpha_current_requires_exact_runtime[OF assms] by (simp add: pinned_runtime_def)
+
 theorem nonce_projection_is_exact:
   assumes "alpha_current manifest configuration = Some state"
   shows "compositional_consumed_nonces state =
@@ -156,7 +157,7 @@ theorem nonce_projection_is_exact:
   using assms
   by (auto simp: alpha_current_def projected_compositional_state_def split: if_splits)
 
-theorem freeze_and_restriction_are_independent:
+theorem freeze_and_restriction_projections_are_independent:
   assumes "alpha_current manifest configuration = Some state"
   shows "frozen_targets state = manifest_frozen_targets manifest configuration \<and>
          restriction_flags state = manifest_restriction_flags manifest configuration"
@@ -169,9 +170,28 @@ theorem custody_backing_projection_is_exact:
   using assms
   by (auto simp: alpha_current_def projected_compositional_state_def split: if_splits)
 
-theorem case_terminality_is_scoped:
+theorem case_record_projection_is_exact:
   assumes "alpha_current manifest configuration = Some state"
-  shows "terminal_cases state case_id = manifest_terminal_cases manifest configuration case_id"
+  shows "case_records state case_id = manifest_case_records manifest configuration case_id"
+  using assms
+  by (auto simp: alpha_current_def projected_compositional_state_def split: if_splits)
+
+theorem dependency_state_projection_is_exact:
+  assumes "alpha_current manifest configuration = Some state"
+  shows "dependency_root state = manifest_dependency_root manifest configuration \<and>
+         dependency_epoch state = manifest_dependency_epoch manifest configuration"
+  using assms
+  by (auto simp: alpha_current_def projected_compositional_state_def split: if_splits)
+
+theorem authority_projection_is_exact:
+  assumes "alpha_current manifest configuration = Some state"
+  shows "authorities state = manifest_authorities manifest configuration"
+  using assms
+  by (auto simp: alpha_current_def projected_compositional_state_def split: if_splits)
+
+theorem receipt_projection_is_exact:
+  assumes "alpha_current manifest configuration = Some state"
+  shows "compositional_receipts state = manifest_receipts manifest configuration"
   using assms
   by (auto simp: alpha_current_def projected_compositional_state_def split: if_splits)
 

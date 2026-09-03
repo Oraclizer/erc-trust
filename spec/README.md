@@ -9,8 +9,9 @@ case transition table, reason classes, and profile descriptors.
 > the wire format. The native token and the ERC-3643 profile adapter under
 > `implementation/` both consume the generated copy of this kernel
 > (`decisions/08-native-wiring.md`, `decisions/09-erc3643-profile-wiring.md`);
-> the formal mapping and the runtime evidence for the successor code follow in
-> later changes. Conformance of an endpoint is established only by the evidence lanes
+> the abstract model and the obligation ledger connect both endpoints
+> (`decisions/10-refinement-closure.md`); the runtime evidence for the successor code
+> follows in the runtime assurance change. Conformance of an endpoint is established only by the evidence lanes
 > in `../evidence/current-profile-release-index-v3.json`, never by this
 > directory.
 
