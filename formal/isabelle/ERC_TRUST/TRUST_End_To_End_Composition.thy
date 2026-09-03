@@ -362,7 +362,10 @@ theorem runtime_dependency_revert_stutters:
          abstraction_pre_state (runtime_abstraction execution)"
   using runtime_link[OF assms(1)] assms(2) dependency_revert_is_abstract_stutter by blast
 
-theorem end_to_end_refinement:
+(* The locale assumption runtime_link specialised to one execution.  It is the
+   statement the runtime link would deliver, not a discharged result: nothing
+   outside this locale may use it without first establishing runtime_link. *)
+theorem end_to_end_refinement_under_runtime_link:
   assumes "runtime_execution execution"
   shows "alpha_transaction manifest bridge execution (runtime_abstraction execution)"
   using assms runtime_link by blast

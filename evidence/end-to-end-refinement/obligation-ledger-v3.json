@@ -5,7 +5,7 @@
   "purpose": "Bidirectional obligation ledger between the Isabelle abstract model of kernel version 2 and the final source of the native token, the ERC-3643 profile adapter, and the profile governor. Every row names one load-bearing abstract condition and the four pieces of evidence that connect it to the code: the exact source consumer, the positive activation test, the consumer-removal negative, and the compiled or downstream consumer. scripts/verify-obligation-ledger-v3.mjs checks every anchor against the current tree and renders the Isabelle ledger theory, the summary, and the central closure record.",
   "claimLadder": {
     "current": "mapped implementation evidence; end-to-end refinement incomplete",
-    "currentMeaning": "Every load-bearing abstract condition of the kernel version 2 model has a named source consumer in the final code, a test that exercises its positive branch, a mutation or behavioral negative that fails when the consumer is removed, and a compiled or downstream consumer. The abstract model is machine-checked. The link between the compiled runtime and the abstract transition system (the locale assumption pinned_runtime_refinement.runtime_link) is not discharged, so no theorem states that the compiled runtime implements the model.",
+    "currentMeaning": "Every load-bearing abstract condition of the kernel version 2 model has a named source consumer in the final code, a test that exercises its positive branch, a declared consumer-removal mutation or behavioral negative that is recorded as killed once a receipt of the current identity exists, and a compiled or downstream consumer. The abstract model is machine-checked. The link between the compiled runtime and the abstract transition system (the locale assumption pinned_runtime_refinement.runtime_link) is not discharged, so no theorem states that the compiled runtime implements the model.",
     "nextRung": "end-to-end refinement complete: requires a machine-checked discharge of pinned_runtime_refinement.runtime_link for the exact runtime templates named in the generated bridge, replayed independently, before any Full or refinement-complete wording is used.",
     "forbiddenWording": [
       "TRUST 1.1 complete",
@@ -398,6 +398,12 @@
       "TRUST_Obligation_Ledger_Generated (rendered from this ledger)"
     ]
   },
+  "campaignOnlyMutations": [
+    {
+      "id": "MUT-07-ERC3643-RAW-BYPASS",
+      "reason": "mutates the exclusive-agent guard of the ERC-3643 test fixture (implementation/test/mocks/MockERC3643Token.sol), not endpoint code; it shows that the profile seal and bypass-closure test depends on the upstream token being closed to non-adapters, which is an assumption (A-EXTERNAL) rather than a ledger row"
+    }
+  ],
   "rows": [
     {
       "id": "NAT-AUTH-01",
@@ -819,11 +825,12 @@
     {
       "id": "NAT-STALE-03",
       "endpoint": "native",
-      "title": "The dependency root is the tagged, ordered keccak of the four binding hashes",
+      "title": "Rebinding stores the supplied dependency root and advances the epoch by one; the root formula (tagged, ordered keccak of the four binding hashes) is bound by the code, the vectors, and the keccak assumption, not by the abstract model",
       "abstractCondition": {
         "theory": "TRUST_Transaction_Refinement",
         "facts": [
-          "rebind_dependency_def"
+          "rebind_dependency_def",
+          "rebind_advances_the_global_epoch_by_one"
         ]
       },
       "normativeReceiver": [
@@ -1046,6 +1053,10 @@
         {
           "path": "implementation/src/TrustToken.sol",
           "snippet": "_validateActionShape(request);"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (request.custodian != address(0)) revert TrustInvalidCommand(request.actionId, REASON_SHAPE);"
         }
       ],
       "positiveActivation": [
@@ -2846,14 +2857,13 @@
     {
       "id": "NAT-RETR-01",
       "endpoint": "native",
-      "title": "The abstract state is a function of the concrete storage under the exact pinned runtime; every projection is exact and independent",
+      "title": "The abstract state is a function of the concrete storage of the exact pinned runtime, read projection by projection from the declared mappings",
       "abstractCondition": {
         "theory": "TRUST_Retrieve_Relation",
         "facts": [
           "pinned_runtime_def",
           "projected_compositional_state_def",
           "alpha_current_def",
-          "alpha_current_is_functional",
           "alpha_current_requires_exact_runtime",
           "alpha_current_rejects_runtime_substitution",
           "alpha_current_binds_the_generated_bridge_schema",
@@ -2903,10 +2913,7 @@
           "kind": "behavioral-negative",
           "contract": "TrustStatefulInvariantTest",
           "test": "invariantNoPersistentRouteTicket",
-          "note": "the invariant reads the packed route ticket word directly at the slot derived from the compiler layout (ROUTE_TICKET_PACKED_SLOT in the test base, cross-checked against the bridge by the ledger verifier); a layout drift moves the word and fails the read"
-        },
-        {
-          "mutation": "MUT-65-CASE-GENERATION"
+          "note": "the invariant reads the packed route ticket word directly at the slot derived from the compiler layout (ROUTE_TICKET_PACKED_SLOT in the test base, cross-checked against the bridge by the ledger verifier); a layout drift moves the word and fails the read. A layout change that is not regenerated into the bridge also fails scripts/generate-runtime-bridge-v2.mjs --check in continuous integration. No single source line can be removed to perturb one projection without changing the layout, so this row carries no code mutation."
         }
       ],
       "compiledConsumer": [
@@ -2934,10 +2941,10 @@
         "facts": [
           "locale:pinned_runtime_refinement",
           "pinned_runtime_refinement.runtime_execution_implements_concrete_transaction",
-          "pinned_runtime_refinement.end_to_end_refinement",
           "pinned_runtime_refinement.successful_reversal_never_targets_a_terminal_case",
           "heterogeneous_composition_is_conditional_until_certificate",
-          "compiler_correctness_remains_a_nonclaim"
+          "compiler_correctness_remains_a_nonclaim",
+          "pinned_runtime_refinement.end_to_end_refinement_under_runtime_link"
         ]
       },
       "normativeReceiver": [
@@ -3245,6 +3252,10 @@
         {
           "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
           "snippet": "_validateActionShape(request);"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (request.custodian != address(0)) revert TrustInvalidCommand(request.actionId, REASON_SHAPE);"
         }
       ],
       "positiveActivation": [
@@ -3442,7 +3453,9 @@
         "facts": [
           "saturated_target_def",
           "resynchronisation_reaches_the_saturated_target",
-          "resynchronisation_never_lowers_an_owned_frozen_amount"
+          "resynchronisation_never_lowers_an_owned_frozen_amount",
+          "resynchronise_def",
+          "saturated_target_is_bounded_by_target_and_balance"
         ]
       },
       "normativeReceiver": [
@@ -3539,6 +3552,10 @@
         {
           "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
           "snippet": "if (_cases[original.caseId].phase == TrustKernelTypes.CasePhase.TERMINAL) {"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (request.provenanceCommitment == bytes32(0)) revert TrustInvalidCommand(request.reversalId, REASON_SHAPE);"
         }
       ],
       "positiveActivation": [
@@ -3573,6 +3590,47 @@
           "kind": "bounded-runtime-execution",
           "contract": "ERC3643ProfileUnitTest",
           "test": "testKernelVectorsReproduceOnTheAdapterRuntime"
+        }
+      ],
+      "assumptions": [],
+      "status": "CLOSED"
+    },
+    {
+      "id": "ADP-DISP-01",
+      "endpoint": "profileAdapter",
+      "title": "RECOVER consumes its entitlement commitment once",
+      "abstractCondition": {
+        "theory": "TRUST_Transaction_Refinement",
+        "facts": [
+          "recover_success_consumes_entitlement",
+          "consumed_entitlement_is_rejected"
+        ]
+      },
+      "normativeReceiver": [
+        "shapeRules.RECOVER",
+        "reasonClasses.classes.1.codes.9"
+      ],
+      "finalSourceConsumers": [
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (_consumedEntitlements[request.entitlementCommitment]) {"
+        }
+      ],
+      "positiveActivation": [
+        {
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testAllSixActionsAndReversals"
+        }
+      ],
+      "consumerRemovalNegative": [
+        {
+          "mutation": "MUT-106-ERC3643-ENTITLEMENT-ONCE"
+        }
+      ],
+      "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "reasonCodes[ENTITLEMENT]"
         }
       ],
       "assumptions": [],
@@ -3697,15 +3755,17 @@
         },
         {
           "mutation": "MUT-45-ERC3643-IMPORTED-CASE"
-        },
-        {
-          "mutation": "MUT-44-ERC3643-MANIFEST-BINDING"
         }
       ],
       "compiledConsumer": [
         {
           "kind": "bridge",
-          "path": "subjects.profileAdapter.storage"
+          "path": "reasonCodes[IMPORT_MANIFEST_MISMATCH]"
+        },
+        {
+          "kind": "bounded-runtime-execution",
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testExactImportManifestOpensReversibleCases"
         }
       ],
       "assumptions": [
@@ -3724,7 +3784,11 @@
           "owned_upstream_state_def",
           "unowned_upstream_state_is_an_operational_stutter",
           "resynchronisation_never_lowers_an_owned_frozen_amount",
-          "resynchronisation_reaches_the_saturated_target"
+          "resynchronisation_reaches_the_saturated_target",
+          "upstream_guarded_transition_def",
+          "owned_upstream_state_admits_the_transition",
+          "resynchronise_def",
+          "resynchronisation_changes_no_other_account"
         ]
       },
       "normativeReceiver": [
@@ -4053,15 +4117,21 @@
       "consumerRemovalNegative": [
         {
           "mutation": "MUT-29-ERC3643-TOPOLOGY-GATE"
-        },
-        {
-          "mutation": "MUT-07-ERC3643-RAW-BYPASS"
         }
       ],
       "compiledConsumer": [
         {
           "kind": "bridge",
-          "path": "subjects.profileGovernor.storage"
+          "path": "reasonCodes[SEAL_INVALID]"
+        },
+        {
+          "kind": "bridge",
+          "path": "reasonCodes[TOPOLOGY_NOT_FULL]"
+        },
+        {
+          "kind": "bounded-runtime-execution",
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testUnsealedAdapterIsNotFullAndCannotExecute"
         }
       ],
       "assumptions": [
@@ -4077,8 +4147,8 @@
         "theory": "TRUST_End_To_End_Composition",
         "facts": [
           "locale:pinned_runtime_refinement",
-          "pinned_runtime_refinement.end_to_end_refinement",
-          "heterogeneous_composition_is_conditional_until_certificate"
+          "heterogeneous_composition_is_conditional_until_certificate",
+          "pinned_runtime_refinement.end_to_end_refinement_under_runtime_link"
         ]
       },
       "normativeReceiver": [
@@ -4166,11 +4236,16 @@
       "compiledConsumer": [
         {
           "kind": "bridge",
-          "path": "subjects.profileGovernor.routes"
+          "path": "reasonCodes[TOPOLOGY_MISMATCH_AT_SEAL]"
         },
         {
           "kind": "bridge",
-          "path": "subjects.profileGovernor.storage"
+          "path": "subjects.profileGovernor.routes"
+        },
+        {
+          "kind": "bounded-runtime-execution",
+          "contract": "ERC3643ProfileUnitTest",
+          "test": "testSealIsOneWayAndManifestMustBeCanonical"
         }
       ],
       "assumptions": [
@@ -4314,6 +4389,12 @@
         },
         {
           "mutation": "MUT-41-ERC3643-CALLDATA-LENGTH"
+        },
+        {
+          "mutation": "MUT-26-REVERSAL-CALLDATA-LENGTH"
+        },
+        {
+          "mutation": "MUT-42-ERC3643-REVERSAL-CALLDATA-LENGTH"
         }
       ],
       "compiledConsumer": [
@@ -4445,7 +4526,12 @@
       "compiledConsumer": [
         {
           "kind": "bridge",
-          "path": "subjects.native.storage"
+          "path": "reasonCodes[CUSTODY]"
+        },
+        {
+          "kind": "bounded-runtime-execution",
+          "contract": "TrustActionsUnitTest",
+          "test": "testCustodyBackingAndOwnFrozenFloorDoNotDoubleCount"
         }
       ],
       "assumptions": [],
@@ -4495,6 +4581,10 @@
         }
       ],
       "compiledConsumer": [
+        {
+          "kind": "bridge",
+          "path": "sourceBinding.artifacts"
+        },
         {
           "kind": "bridge",
           "path": "subjects.native.storage"

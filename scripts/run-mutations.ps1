@@ -9,7 +9,7 @@ param(
 $ErrorActionPreference = "Stop"
 $repoRoot = Split-Path -Parent $PSScriptRoot
 if ([string]::IsNullOrWhiteSpace($OutputPath)) {
-    $OutputPath = Join-Path $repoRoot "evidence\mutation-results.json"
+    $OutputPath = Join-Path $repoRoot "evidence/mutation-results.json"
 }
 $systemTempRoot = (Resolve-Path -LiteralPath ([System.IO.Path]::GetTempPath())).Path
 if ([string]::IsNullOrWhiteSpace($Workspace)) {
@@ -1186,10 +1186,10 @@ function Invoke-Forge([string[]]$Arguments) {
     }
 }
 
-$testSourceFiles = Get-ChildItem -LiteralPath (Join-Path $repoRoot "implementation\test") -Filter "*.sol" -Recurse
+$testSourceFiles = Get-ChildItem -LiteralPath (Join-Path $repoRoot "implementation/test") -Filter "*.sol" -Recurse
 
 foreach ($mutation in $mutations) {
-    $target = Join-Path $repoRoot $mutation.File
+    $target = Join-Path $repoRoot ($mutation.File -replace '\\', '/')
     if (-not (Test-Path -LiteralPath $target -PathType Leaf)) {
         throw "$($mutation.Id): target file missing: $($mutation.File)"
     }
@@ -1220,8 +1220,8 @@ if ($PreflightOnly) {
 
 $sourceFileNames = [string[]]@(
     @(
-        Get-ChildItem -LiteralPath (Join-Path $repoRoot "implementation\src") -File -Recurse
-        Get-ChildItem -LiteralPath (Join-Path $repoRoot "implementation\test") -File -Recurse
+        Get-ChildItem -LiteralPath (Join-Path $repoRoot "implementation/src") -File -Recurse
+        Get-ChildItem -LiteralPath (Join-Path $repoRoot "implementation/test") -File -Recurse
         Get-Item -LiteralPath (Join-Path $repoRoot "foundry.toml")
     ) | ForEach-Object { $_.FullName }
 )

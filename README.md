@@ -87,9 +87,11 @@ code hash, token owner, Identity Registry, Compliance contract, and exclusive
 adapter Agent. Ordinary ERC-3643 deployments do not automatically qualify.
 
 Proxy and migration support are intentionally `false` in candidate 2. The
-native runtime is 24,177 bytes under the pinned compiler settings, leaving 399
-bytes below the EIP-170 limit. Any native source change requires the full
-size, test, proof, mutation, and manifest replay.
+candidate 2 native runtime was 24,177 bytes under the pinned compiler settings,
+399 bytes below the EIP-170 limit; the successor runtime size is bound by
+`evidence/release-manifest.json` (20,043 bytes at the formal connection change).
+Any native source change requires the full size, test, proof, mutation, and
+manifest replay.
 
 ## Architecture
 
@@ -181,11 +183,16 @@ shortcuts. The native reference rejects raw calls.
 Most of this repository is proof, not implementation. By line count, the
 machine-checked formal artifacts outweigh the Solidity reference
 implementation roughly five to one, which is why the repository language bar
-is dominated by K and Isabelle rather than Solidity:
+is dominated by K and Isabelle rather than Solidity. The table describes the
+shipped `0.1.0-candidate.2` package: its KEVM claim specifications are
+preserved under `evidence/candidate-2/formal/kevm/`, the successor KEVM program
+has not been restarted (`formal/kevm/README.md`), and the successor Isabelle
+session models kernel version 2 in 22 theories (`FORMAL_VERIFICATION.md`,
+section "Successor refinement closure"):
 
 | Layer | Files | Lines | What it is |
 | --- | --- | --- | --- |
-| KEVM proof specifications | 248 | 35,114 | Bytecode-level proof claims and lemmas for the compiled runtime, including generated claim bundles |
+| KEVM proof specifications | 248 | 35,114 | Bytecode-level proof claims and lemmas for the candidate 2 compiled runtime, including generated claim bundles (preserved under `evidence/candidate-2/formal/kevm/`) |
 | Isabelle/HOL theories | 30 | 8,661 | The abstract model and its mechanically checked theorems |
 | Certora rules | 28 | 1,105 | Bounded rules and mutator classifications against the Solidity source |
 | Solidity reference implementation | 22 | 9,062 | The contract code those artifacts are about |

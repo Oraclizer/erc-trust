@@ -91,8 +91,9 @@ records recovers the runtime budget that the larger receipt, the case records,
 the dependency root, and the live profile descriptor need: the native runtime
 went from 24,177 bytes with a 399-byte margin to 20,474 bytes with a 4,102-byte
 margin under the same pinned compiler settings (measured by `forge build --sizes`
-during the implementation change; the exact final number is the one recorded in
-`evidence/deterministic-build.json`).
+during the implementation change; the number after the formal connection change is
+recorded in `spec/decisions/10-refinement-closure.md` and bound by
+`evidence/release-manifest.json`).
 
 ## Consequences
 

@@ -86,11 +86,12 @@ function walk(path) {
 // Inputs
 // ---------------------------------------------------------------------------
 
-const ledgerBytes = readFileSync(abs(paths.ledger));
+const canonical = (path) => Buffer.from(readText(path), "utf8");
+const ledgerBytes = canonical(paths.ledger);
 const ledger = JSON.parse(ledgerBytes.toString("utf8"));
 const ledgerSha256 = sha256(ledgerBytes);
 if (ledger.schema !== "erc-trust-obligation-ledger-v3") fail("ledger schema drift");
-const bridgeBytes = readFileSync(abs(paths.bridgeSchema));
+const bridgeBytes = canonical(paths.bridgeSchema);
 const bridge = JSON.parse(bridgeBytes.toString("utf8"));
 const bridgeSchemaSha256 = sha256(bridgeBytes);
 const bridgeManifest = readJson(paths.bridgeManifest);
@@ -132,14 +133,14 @@ function testExists(contract, test) {
 
 const mutationSource = readText(paths.mutations);
 const declaredMutations = new Map();
-for (const match of mutationSource.matchAll(/Id = "([^"]+)"[\s\S]*?Contract = "([^"]+)"\s*\n\s*Test = "([^"]+)"/g)) {
-  declaredMutations.set(match[1], { contract: match[2], test: match[3] });
+for (const match of mutationSource.matchAll(/Id = "([^"]+)"[\s\S]*?File = "([^"]+)"[\s\S]*?Contract = "([^"]+)"\s*\n\s*Test = "([^"]+)"/g)) {
+  declaredMutations.set(match[1], { file: match[2].replace(/\\/g, "/"), contract: match[3], test: match[4] });
 }
 if (declaredMutations.size === 0) fail("no mutations declared in scripts/run-mutations.ps1");
 
 const receipts = {};
 for (const [lane, path] of Object.entries(paths.receipts)) {
-  receipts[lane] = exists(path) ? { path, sha256: sha256(readFileSync(abs(path))), data: readJson(path) } : null;
+  receipts[lane] = exists(path) ? { path, sha256: sha256(canonical(path)), data: readJson(path) } : null;
 }
 // A mutation receipt is current only when it lists exactly the declared campaign.
 const mutationReceiptCurrent = receipts.mutation !== null
@@ -189,6 +190,7 @@ function factExists(theory, fact) {
 
 const rowReports = [];
 const seenIds = new Set();
+const citedMutations = new Set();
 for (const row of ledger.rows) {
   const report = { id: row.id, endpoint: row.endpoint, declaredStatus: row.status, awaiting: [], issues: [] };
   const issue = (message) => { report.issues.push(message); fail(`${row.id}: ${message}`); };
@@ -248,9 +250,13 @@ for (const row of ledger.rows) {
   for (const negative of row.consumerRemovalNegative ?? []) {
     if (negative.mutation) {
       hasRealNegative = true;
+      citedMutations.add(negative.mutation);
       const declared = declaredMutations.get(negative.mutation);
       if (!declared) { issue(`mutation not declared: ${negative.mutation}`); continue; }
       if (!testExists(declared.contract, declared.test)) issue(`mutation detector missing: ${negative.mutation}`);
+      if (!(row.finalSourceConsumers ?? []).some((consumer) => consumer.path === declared.file)) {
+        issue(`mutation ${negative.mutation} mutates ${declared.file}, which is not a consumer file of this row`);
+      }
       if (mutationReceiptCurrent) {
         const result = receipts.mutation.data.results.find((entry) => entry.id === negative.mutation);
         if (!result || result.result !== "KILLED") issue(`mutation not killed in the current receipt: ${negative.mutation}`);
@@ -305,6 +311,18 @@ for (const row of ledger.rows) {
   rowReports.push(report);
 }
 
+// every declared fault of the campaign is the negative of at least one row, or is listed as
+// campaign-only with the reason it has no row (a fault in a test fixture rather than endpoint code)
+for (const entry of ledger.campaignOnlyMutations ?? []) {
+  if (!declaredMutations.has(entry.id)) fail(`campaign-only mutation not declared: ${entry.id}`);
+  if (!entry.reason) fail(`campaign-only mutation without a reason: ${entry.id}`);
+  if (citedMutations.has(entry.id)) fail(`campaign-only mutation is also cited by a row: ${entry.id}`);
+  citedMutations.add(entry.id);
+}
+for (const id of declaredMutations.keys()) {
+  if (!citedMutations.has(id)) fail(`declared mutation is not cited by any ledger row: ${id}`);
+}
+
 // state and receipt identity tables
 for (const entry of ledger.stateIdentity ?? []) {
   for (const subject of ["native", "profileAdapter", "profileGovernor"]) {
@@ -341,6 +359,12 @@ const counts = {
   notApplicable: rowReports.filter((report) => report.declaredStatus === "NOT-APPLICABLE").length,
 };
 if (counts.currentMandatory > 0) fail(`${counts.currentMandatory} current mandatory rows remain`);
+// In release mode every closed row must be backed by a receipt of the current identity; in
+// successor-development mode a missing receipt is reported as pending and owned by the lane index.
+const evidenceMode = readJson("evidence/evidence-mode.json");
+if (evidenceMode.mode === "release" && counts.closedPendingReceipt > 0) {
+  fail(`release mode: ${counts.closedPendingReceipt} closed rows await a receipt of the current identity`);
+}
 if (counts.successorMandatory > 0 && ledger.closure.status !== "CONDITIONAL") fail("closure cannot leave CONDITIONAL while successor mandatory rows remain");
 if (counts.successorMandatory === 0 && ledger.closure.status === "CONDITIONAL") fail("closure is CONDITIONAL without a successor mandatory row naming the missing link");
 
@@ -404,8 +428,8 @@ theorem obligation_ledger_binds_the_generated_bridge:
   "obligation_ledger_bridge_schema_sha256 = runtime_bridge_schema_sha256"
   by (simp add: obligation_ledger_bridge_schema_sha256_def runtime_bridge_schema_sha256_def)
 
-theorem obligation_ledger_closure_is_conditional:
-  "obligation_ledger_closure_status = ''CONDITIONAL''"
+theorem obligation_ledger_closure_status_is_declared:
+  "obligation_ledger_closure_status = ${isabelleString(ledger.closure.status)}"
   by (simp add: obligation_ledger_closure_status_def)
 
 end
@@ -456,6 +480,8 @@ const closure = {
   rows: rowReports.map((report) => ({ id: report.id, effectiveStatus: report.effectiveStatus })),
   supersededCandidate2: ledger.supersededCandidate2,
 };
+
+summary.closureRecord = { path: paths.closure, sha256: sha256(Buffer.from(text(closure), "utf8")) };
 
 const rendered = [
   { path: paths.theory, content: theory },

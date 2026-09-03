@@ -14,9 +14,10 @@
   selectors, event topics, and the fixed-width guard positions. The candidate 2 bridge
   theories, current-profile theories, and KEVM claim inputs move byte for byte under
   `evidence/candidate-2/formal/`. The four Kontrol proofs are rerun on the successor native
-  runtime. Every closed ledger row names its source consumer, positive test,
-  consumer-removal mutation (the campaign grows from fifty-one to one hundred and eleven
-  faults), and compiled consumer; the two rows that name the undischarged runtime link stay
+  runtime, and the deterministic build, Foundry, mutation, Isabelle, and Kontrol receipts
+  are recorded from the committed tree by the tracked recorder scripts. Every closed ledger row names its source consumer, positive test,
+  consumer-removal mutation or behavioral negative (the campaign grows from fifty-one to
+  one hundred and eleven faults), and compiled consumer; the two rows that name the undischarged runtime link stay
   open, so the closure is conditional and the claim is "mapped implementation evidence;
   end-to-end refinement incomplete". The unused effect hash of the effect head and effect
   record is removed from both endpoints (decision 10); the storage slots are unchanged. No

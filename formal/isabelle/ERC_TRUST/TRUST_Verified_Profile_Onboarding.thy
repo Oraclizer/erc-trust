@@ -207,19 +207,64 @@ where
   "saturated_target st view account =
      min (frozen_targets st account) (upstream_balance view account)"
 
+text \<open>
+  The adapter consumes a command only when the upstream state of every account
+  it acts on is the state it declared or applied.  The guarded transition below
+  is that decision as a function of ownership: the command's abstract transition
+  when the state is owned, and the operational-failure stutter otherwise.
+\<close>
+
+definition upstream_guarded_transition ::
+  "trust_compositional_state \<Rightarrow> (trust_address \<Rightarrow> nat) \<Rightarrow> upstream_view \<Rightarrow>
+   trust_address \<Rightarrow> (trust_compositional_state \<Rightarrow> trust_compositional_state) \<Rightarrow>
+   trust_compositional_state \<times> trust_abstract_failure option"
+where
+  "upstream_guarded_transition st applied view account transition =
+     (if owned_upstream_state st applied view account
+      then (transition st, None)
+      else (fst (abstract_failure_transition st TRUST_Abstract_Operational_Failure),
+            Some TRUST_Abstract_Operational_Failure))"
+
 theorem unowned_upstream_state_is_an_operational_stutter:
   assumes "\<not> owned_upstream_state st applied view account"
-  shows "fst (abstract_failure_transition st TRUST_Abstract_Operational_Failure) = st"
-  by (simp add: abstract_failure_transition_def)
+  shows "upstream_guarded_transition st applied view account transition =
+         (st, Some TRUST_Abstract_Operational_Failure)"
+  using assms by (simp add: upstream_guarded_transition_def abstract_failure_transition_def)
+
+theorem owned_upstream_state_admits_the_transition:
+  assumes "owned_upstream_state st applied view account"
+  shows "upstream_guarded_transition st applied view account transition = (transition st, None)"
+  using assms by (simp add: upstream_guarded_transition_def)
+
+text \<open>
+  Resynchronisation is the permissionless operation that brings the upstream
+  frozen amount of one account to the owned target saturated at the current
+  balance.  It touches no other account and never lowers an owned amount.
+\<close>
+
+definition resynchronise ::
+  "trust_compositional_state \<Rightarrow> upstream_view \<Rightarrow> trust_address \<Rightarrow> upstream_view"
+where
+  "resynchronise st view account =
+     view\<lparr>upstream_frozen := (upstream_frozen view)(account := saturated_target st view account)\<rparr>"
+
+theorem resynchronisation_reaches_the_saturated_target:
+  "upstream_frozen (resynchronise st view account) account = saturated_target st view account"
+  by (simp add: resynchronise_def)
 
 theorem resynchronisation_never_lowers_an_owned_frozen_amount:
   assumes "owned_upstream_state st applied view account"
       and "applied account \<le> frozen_targets st account"
       and "applied account \<le> upstream_balance view account"
-  shows "upstream_frozen view account \<le> saturated_target st view account"
-  using assms by (simp add: owned_upstream_state_def saturated_target_def)
+  shows "upstream_frozen view account \<le> upstream_frozen (resynchronise st view account) account"
+  using assms by (simp add: resynchronise_def owned_upstream_state_def saturated_target_def)
 
-theorem resynchronisation_reaches_the_saturated_target:
+theorem resynchronisation_changes_no_other_account:
+  assumes "other \<noteq> account"
+  shows "upstream_frozen (resynchronise st view account) other = upstream_frozen view other"
+  using assms by (simp add: resynchronise_def)
+
+theorem saturated_target_is_bounded_by_target_and_balance:
   "saturated_target st view account \<le> frozen_targets st account \<and>
    saturated_target st view account \<le> upstream_balance view account"
   by (simp add: saturated_target_def)

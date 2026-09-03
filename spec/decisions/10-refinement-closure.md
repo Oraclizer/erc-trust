@@ -81,7 +81,11 @@ stronger.
   only; it is the input side of a KEVM program that has not been restarted for kernel
   version 2.
 - The mutation campaign gains sixty faults (fifty-two to one hundred and eleven) so that
-  every closed ledger row has a consumer-removal negative in the code, not only in a test.
+  every closed ledger row has a consumer-removal negative: a code mutation wherever a single
+  source line carries the condition, and a behavioral negative test for the rows whose
+  consumer is compiler-generated or whose condition is a whole-state invariant (the ledger
+  names which). Killed mutations are established by the mutation receipt, not by the
+  ledger verifier alone.
 - Any change to the kernel schema, the compiled artifacts, the storage layout, or a cited
   theorem reopens the ledger: the generator check, the ledger verifier, and the Isabelle
   build fail until the ledger is regenerated and every row is re-examined.

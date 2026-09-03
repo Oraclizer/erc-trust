@@ -42,6 +42,9 @@ jobs:
           FOUNDRY_INVARIANT_DEPTH: "500"
       - name: Lint Solidity
         run: forge lint
+      - name: Check mutation anchors and detectors
+        shell: pwsh
+        run: ./scripts/run-mutations.ps1 -PreflightOnly
 
   sdk-and-package:
     name: SDK and repository package
@@ -117,6 +120,8 @@ jobs:
           node-version: 24.14.0
       - name: Verify successor evidence lanes
         run: node scripts/verify-current-profile-release-v3.mjs
+      - name: Verify the obligation ledger
+        run: node scripts/verify-obligation-ledger-v3.mjs
       - name: Verify public release tree
         run: node scripts/verify-public-release-tree.mjs
 

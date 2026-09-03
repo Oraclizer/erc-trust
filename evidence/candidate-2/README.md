@@ -25,7 +25,11 @@ candidate only. None of it is evidence for the successor code under
 | `formal/kevm/` | the candidate 2 KEVM claim specifications, row bundles, reusable claims, runner scripts, runtime verification module, and generated bridges; the successor inputs are under `formal/kevm/` at the repository root |
 
 Paths recorded inside these files are relative to the candidate 2 tree; add the
-`evidence/candidate-2/` prefix to locate a file here. The historical verifiers
+`evidence/candidate-2/` prefix to locate a file here. The two proof-bound scripts
+`scripts/generate-current-profile-runtime-bridge-v1.mjs` and
+`scripts/verify-current-profile-runtime-bridge-v1.mjs` are candidate 2 tooling whose
+inputs and outputs now live under `evidence/candidate-2/formal/`; they are kept byte
+for byte by the proof-bound allowlist and must not be run against the successor tree. The historical verifiers
 `scripts/verify-current-profile-release.mjs`,
 `scripts/verify-current-profile-release-v2.mjs`,
 `scripts/verify-runtime-binding.mjs`, and

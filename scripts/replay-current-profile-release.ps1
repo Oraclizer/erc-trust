@@ -11,10 +11,10 @@ $RepositoryRoot = (Resolve-Path $RepositoryRoot).Path
 
 Push-Location $RepositoryRoot
 try {
-  node scripts/verify-current-profile-release-v2.mjs
-  if ($LASTEXITCODE -ne 0) { throw "current-profile release verification failed with exit $LASTEXITCODE" }
-  node scripts/verify-runtime-binding.mjs --check-receipt
-  if ($LASTEXITCODE -ne 0) { throw "runtime-binding receipt verification failed with exit $LASTEXITCODE" }
+  node scripts/verify-current-profile-release-v3.mjs
+  if ($LASTEXITCODE -ne 0) { throw "successor evidence lane verification failed with exit $LASTEXITCODE" }
+  node scripts/verify-obligation-ledger-v3.mjs
+  if ($LASTEXITCODE -ne 0) { throw "obligation ledger verification failed with exit $LASTEXITCODE" }
   node scripts/verify-release.mjs
   if ($LASTEXITCODE -ne 0) { throw "release binding verification failed with exit $LASTEXITCODE" }
 }

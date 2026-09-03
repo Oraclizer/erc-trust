@@ -71,13 +71,13 @@ const candidate = mode.candidate;
 // Inputs of the run, hashed from the current tree and compared with the observed hashes.
 const inputPaths = ["implementation/src/TrustToken.sol", ...walk("implementation/kontrol")].sort();
 const sourceInputs = inputPaths.map((path) => ({ path, sha256: sha256(bytes(path)) }));
-for (const observed of run.observedInputs ?? []) {
+const observedInputs = [...(run.observedInputs ?? [])].sort((left, right) => (left.path < right.path ? -1 : left.path > right.path ? 1 : 0));
+check(JSON.stringify(observedInputs.map((entry) => entry.path)) === JSON.stringify(sourceInputs.map((entry) => entry.path)),
+  "run summary does not observe exactly the current Kontrol input set (the token source and every file under implementation/kontrol)");
+for (const observed of observedInputs) {
   const current = sourceInputs.find((entry) => entry.path === observed.path);
-  check(current !== undefined, `observed input is not in the tree: ${observed.path}`);
   if (current) check(current.sha256 === observed.sha256, `input changed since the run: ${observed.path}`);
 }
-check((run.observedInputs ?? []).some((entry) => entry.path === "implementation/src/TrustToken.sol"), "run summary does not name the token source");
-check((run.observedInputs ?? []).some((entry) => entry.path === "implementation/kontrol/TrustTokenKontrolTest.t.sol"), "run summary does not name the Kontrol test");
 const inputsRootSha256 = rootOf(walk("implementation/kontrol"));
 
 // Runtime template of the compiled artifact, bound to the generated bridge.

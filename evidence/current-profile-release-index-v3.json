@@ -7,7 +7,7 @@
   "identity": {
     "certoraInputsSha256": null,
     "formalRoot": {
-      "rootSha256": "6f614023d8b2a7d1a2e964b9c8a971e14f7711eaece04cf7e57daf9bdfd03385",
+      "rootSha256": "03268d2f662c8157b0e81e0088b8ece7d6a3dc18dbb88a76036a089bf15fa794",
       "theoryFiles": 22
     },
     "kontrolInputsSha256": "5d8f38006416e02aa7664a68f3ad108e2e05aba1d9abe0c7d339f8e64c4e67fb",
@@ -64,11 +64,11 @@
       "owner": "runtime assurance change: deterministic build receipt binding the bridge runtime",
       "receipt": null,
       "rows": {
-        "closed": 3,
+        "closed": 4,
         "closedPendingReceipt": 65,
         "currentMandatory": 0,
         "notApplicable": 1,
-        "rows": 71,
+        "rows": 72,
         "separateProfile": 0,
         "successorMandatory": 2
       },
