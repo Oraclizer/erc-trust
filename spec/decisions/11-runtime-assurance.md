@@ -57,6 +57,13 @@ Certora lanes, which stay pending until source may be sent to the cloud prover.
    `evidence/runtime-binding-v3/` are the exact byte streams the replay pipes to the pinned
    compiler and the comparison targets of the offline check; they are kept because the
    replay is not reproducible without them.
+8. Receipts bind byte roots, not commit ancestry. The trunk is reached by GitHub merges
+   that rewrite commit identities (rebase for own pull requests, squash for external ones),
+   so the commit a receipt names is never an ancestor of `main`. The lane verifier therefore
+   compares the source root or formal root a receipt declares with the root it recomputes
+   from the tree it runs on, and keeps the recorded commit as provenance that the recorder
+   checked at record time. Ancestry checks were removed from the verifier before the
+   integration branch reached `main`.
 
 ## Consequences
 
