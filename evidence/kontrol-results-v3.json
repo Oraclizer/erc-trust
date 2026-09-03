@@ -1,0 +1,92 @@
+{
+  "build": {
+    "command": "kontrol build --foundry-project-root . --regen --rekompile",
+    "seconds": 103
+  },
+  "candidate": "0.2.0-candidate.1",
+  "claimBoundary": "Four bounded symbolic proofs on the successor native runtime: raw sensitive selectors stay closed, an operational dependency failure and a non-increasing FREEZE stutter the projection, and LIQUIDATE moves the exact delta with the receipt as the final log. They are bounded instances of the undischarged runtime link of the abstract model, not a proof of it, and they cover the native token only. Not an audit, deployment result, or production-safety claim.",
+  "inputsRootSha256": "5d8f38006416e02aa7664a68f3ad108e2e05aba1d9abe0c7d339f8e64c4e67fb",
+  "proofs": [
+    {
+      "executionSeconds": 97,
+      "id": "implementation%kontrol%TrustTokenKontrolTest.testKontrol_RawSensitiveSelectorsStayClosed():0",
+      "lemmas": null,
+      "nodes": 29,
+      "reinitialized": false,
+      "status": "PASS",
+      "test": "testKontrol_RawSensitiveSelectorsStayClosed"
+    },
+    {
+      "executionSeconds": 160,
+      "id": "implementation%kontrol%TrustTokenKontrolTest.testKontrol_OperationalFailureStuttersProjection():0",
+      "lemmas": null,
+      "nodes": null,
+      "reinitialized": false,
+      "status": "PASS",
+      "test": "testKontrol_OperationalFailureStuttersProjection"
+    },
+    {
+      "executionSeconds": 290,
+      "id": "implementation%kontrol%TrustTokenKontrolTest.testKontrol_NonincreasingFreezeStuttersProjection():0",
+      "lemmas": null,
+      "nodes": null,
+      "reinitialized": false,
+      "status": "PASS",
+      "test": "testKontrol_NonincreasingFreezeStuttersProjection"
+    },
+    {
+      "executionSeconds": 257,
+      "id": "implementation%kontrol%TrustTokenKontrolTest.testKontrol_LiquidateExactDeltaReceiptAndFinalLog():0",
+      "lemmas": "implementation/kontrol/erc-trust-log-assertions.k:ERC-TRUST-LOG-ASSERTIONS",
+      "nodes": null,
+      "reinitialized": true,
+      "status": "PASS",
+      "test": "testKontrol_LiquidateExactDeltaReceiptAndFinalLog"
+    }
+  ],
+  "run": {
+    "finishedAt": "2026-09-03T01:54:54Z",
+    "host": "WSL2 Ubuntu on the development host; isolated copy of implementation/, vectors/, and foundry.toml under the Linux file system; Kontrol and KEVM from the pinned nix profile",
+    "replay": "node scripts/record-kontrol-results-v3.mjs --run <run-summary.json>",
+    "startedAt": "2026-09-03T01:39:40Z"
+  },
+  "runtimeBinding": {
+    "bridge": {
+      "path": "evidence/end-to-end-refinement/runtime-bridge-v2/schema.json",
+      "sha256": "20516f2e63a9cef94da420d65345076c307374cef65c543983de99ea9ae93aaf"
+    },
+    "kind": "FOUNDRY_ARTIFACT_RUNTIME_TEMPLATE",
+    "note": "Kontrol rebuilt the exact source under the pinned compiler with the kontrol Foundry profile. The template hash identifies the default-profile Foundry artifact that the generated bridge names; the proofs run on the kontrol-profile build of the same source. No claim that the proof graph itself was keyed by the template hash.",
+    "runtimeBytes": 20043,
+    "runtimeSha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1"
+  },
+  "schema": "erc-trust-kontrol-results-v3",
+  "sourceInputs": [
+    {
+      "path": "implementation/kontrol/TrustTokenKontrolTest.t.sol",
+      "sha256": "ebd82721dfd8b367a2d1db7c734d0d6e50925ef64911e9a405335effa93c006f"
+    },
+    {
+      "path": "implementation/kontrol/erc-trust-log-assertions.k",
+      "sha256": "0619502b5d9d0615fdcf587e6ac4619a912fc1b3d4d3b5c5fd1863d9af3510e3"
+    },
+    {
+      "path": "implementation/src/TrustToken.sol",
+      "sha256": "deeedf231b461035ac4496b36438d6ea28298ed2935b920bf9c01cb31f94ef1b"
+    }
+  ],
+  "status": "PASS",
+  "summary": {
+    "failed": 0,
+    "passed": 4,
+    "total": 4
+  },
+  "toolchain": {
+    "forge": "1.7.1",
+    "foundryProfile": "kontrol",
+    "kevm": "1.0.678",
+    "kontrol": "1.0.255",
+    "schedule": "CANCUN",
+    "solidity": "0.8.36"
+  }
+}

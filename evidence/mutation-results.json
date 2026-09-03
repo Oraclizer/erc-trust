@@ -1,0 +1,1130 @@
+{
+    "schema":  "erc-trust-mutation-result-v2",
+    "candidateInput":  {
+                           "gitHead":  "1de893b8d6bf1e26669baf0d8e6a8d3216f5a44e",
+                           "sourceRootAlgorithm":  "sha256-raw-files-case-sensitive-path-order-v1",
+                           "sourceRootSha256":  "7d4b77b88ce1cfc9255abc810d306217df9cd34f27060dc9325fda8a9a35920e"
+                       },
+    "toolchain":  {
+                      "forge":  "1.7.1",
+                      "solc":  "0.8.36",
+                      "fuzzRunsPerMutation":  64
+                  },
+    "total":  111,
+    "killed":  111,
+    "survived":  0,
+    "results":  [
+                    {
+                        "id":  "MUT-01-FROZEN-FLOOR",
+                        "fault":  "Ignore the shared ordinary-transfer frozen floor",
+                        "detector":  "TrustActionsFuzzTest.testFuzzFreezeAbsoluteAndOrdinaryFloor",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-02-ROUTE-CONSUMPTION",
+                        "fault":  "Keep an ERC-7943 route ticket live after use",
+                        "detector":  "TrustActionsUnitTest.testERC7943ExactUseRoutesAndRawClosure",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-03-RECEIPT-LAST",
+                        "fault":  "Emit a base event after the canonical TRUST receipt",
+                        "detector":  "TrustActionsUnitTest.testCanonicalEventOrderAndRevertedTransactionsLeaveNothing",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-04-FAIL-CLOSED",
+                        "fault":  "Allow OperationalFailure assessment to continue",
+                        "detector":  "TrustActionsUnitTest.testAssessmentOutcomesAndReasonClasses",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-05-FIXED-ACTION",
+                        "fault":  "Remove destination from action-id binding",
+                        "detector":  "TrustKernelVectorsTest.testFieldBindingNegativeVectors",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-06-NONCE-CONSUMPTION",
+                        "fault":  "Do not consume the action nonce",
+                        "detector":  "TrustActionsFuzzTest.testFuzzForcedActionsPreserveSupply",
+                        "anchorOccurrences":  2,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-07-ERC3643-RAW-BYPASS",
+                        "fault":  "Permit any caller to use ERC-3643 Agent mutators",
+                        "detector":  "ERC3643ProfileUnitTest.testProfileSealAndDirectBypassClosure",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-08-FREEZE-DIRECTION",
+                        "fault":  "Permit equal or decreasing targets through FREEZE",
+                        "detector":  "TrustActionsUnitTest.testFreezeAmendmentChainReopensAfterPop",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-09-CASE-TERMINALITY",
+                        "fault":  "Leave a disposition case open instead of terminal",
+                        "detector":  "TrustActionsUnitTest.testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-10-CUSTODY-CLOSURE",
+                        "fault":  "Skip matched custody closure before disposition",
+                        "detector":  "TrustActionsUnitTest.testCustodyLifecycleAndDispositions",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-11-REVERSAL-POLICY",
+                        "fault":  "Skip current-policy assessment before direct reversal",
+                        "detector":  "TrustActionsUnitTest.testReversalAssessmentFailsClosedAfterPolicyRebind",
+                        "anchorOccurrences":  2,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-12-ERC3643-FREEZE-DIRECTION",
+                        "fault":  "Permit equal or decreasing targets through the ERC-3643 profile",
+                        "detector":  "ERC3643ProfileUnitTest.testAllSixActionsAndReversals",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-13-TERMINAL-REVERSAL-GUARD",
+                        "fault":  "Remove the terminal-case guard from reversal validation",
+                        "detector":  "TrustActionsUnitTest.testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-14-DEPENDENCY-ROOT-COMPARISON",
+                        "fault":  "Compare only the dependency epoch and ignore the root",
+                        "detector":  "TrustActionsUnitTest.testRootAndEpochAreCheckedIndependently",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-15-DEPENDENCY-EPOCH-INCREMENT",
+                        "fault":  "Do not advance the global dependency epoch on rebind",
+                        "detector":  "TrustActionsUnitTest.testEveryDependencyRebindMakesEarlierCommandsStale",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-16-ROOT-TAG",
+                        "fault":  "Compute the dependency root without its domain-separation tag",
+                        "detector":  "TrustActionsUnitTest.testDependencyRootFormulaAndInitialEvents",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-17-ROOT-ORDER",
+                        "fault":  "Swap the identity and settlement bindings in the dependency root",
+                        "detector":  "TrustActionsUnitTest.testDependencyRootFormulaAndInitialEvents",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-18-CASE-CONFLICT",
+                        "fault":  "Allow an overlay head owned by another case to be stacked",
+                        "detector":  "TrustActionsUnitTest.testOverlayCaseConflictsAndFamilies",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-19-OVERLAY-DISPOSITION",
+                        "fault":  "Allow a disposition against an open overlay case",
+                        "detector":  "TrustActionsUnitTest.testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-20-RECEIPT-KIND-TAG",
+                        "fault":  "Tag reversal receipts as action receipts",
+                        "detector":  "TrustActionsUnitTest.testReceiptBindsCanonicalCommandHashEvidenceAndFinalEvent",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-21-REVERSAL-CLOSES-CHAIN",
+                        "fault":  "Close the case after every unfreeze even when an amendment parent remains",
+                        "detector":  "TrustActionsUnitTest.testFreezeAmendmentChainReopensAfterPop",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-22-RECEIPT-PREIMAGE",
+                        "fault":  "Drop the last receipt field from the hash preimage",
+                        "detector":  "TrustActionsUnitTest.testSixActionsAndThreeReversalsWithReceipts",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-23-CALLDATA-LENGTH",
+                        "fault":  "Accept action calldata of any length on both action entrypoints",
+                        "detector":  "TrustActionsUnitTest.testNonCanonicalCalldataIsRejected",
+                        "anchorOccurrences":  2,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-24-IDENTITY-ASSESSMENT",
+                        "fault":  "Skip the identity dependency for transfer actions",
+                        "detector":  "TrustActionsUnitTest.testAssessmentOutcomesAndReasonClasses",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-25-BINDING-ECHO",
+                        "fault":  "Accept a dependency response whose binding echo does not match the bound binding",
+                        "detector":  "TrustActionsUnitTest.testAssessmentOutcomesAndReasonClasses",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-26-REVERSAL-CALLDATA-LENGTH",
+                        "fault":  "Accept reversal calldata of any length on both reversal entrypoints",
+                        "detector":  "TrustActionsUnitTest.testNonCanonicalCalldataIsRejected",
+                        "anchorOccurrences":  2,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-27-ERC3643-OWNED-UPSTREAM-STATE",
+                        "fault":  "Act on upstream frozen or restricted state the adapter never declared or applied",
+                        "detector":  "ERC3643ProfileUnitTest.testUndeclaredUpstreamStateFailsClosed",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-28-ERC3643-IMPORT-VERIFICATION",
+                        "fault":  "Import a manifest entry without verifying it against the live upstream state",
+                        "detector":  "ERC3643ProfileUnitTest.testImportManifestMustMatchUpstreamExactly",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-29-ERC3643-TOPOLOGY-GATE",
+                        "fault":  "Execute without checking that the sealed topology still holds",
+                        "detector":  "ERC3643ProfileUnitTest.testTopologyDriftFailsClosedAndClearsFull",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-30-ERC3643-DEPENDENCY-CODE",
+                        "fault":  "Execute against a Compliance whose runtime code changed since the seal",
+                        "detector":  "ERC3643ProfileUnitTest.testDependencyCodeDriftFailsClosed",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-31-ERC3643-TRANSFER-POSTSTATE",
+                        "fault":  "Trust the forced transfer return value instead of verifying both balances",
+                        "detector":  "ERC3643ProfileUnitTest.testUpstreamFailureModesAreTyped",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-32-ERC3643-FROZEN-POSTSTATE",
+                        "fault":  "Skip the frozen-amount post-state check after a freeze or unfreeze call",
+                        "detector":  "ERC3643ProfileUnitTest.testUpstreamFailureModesAreTyped",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-33-ERC3643-TERMINAL-REVERSAL-GUARD",
+                        "fault":  "Remove the terminal-case guard from reversal validation",
+                        "detector":  "ERC3643ProfileUnitTest.testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-34-ERC3643-DEPENDENCY-ROOT-COMPARISON",
+                        "fault":  "Compare only the dependency epoch and ignore the root",
+                        "detector":  "ERC3643ProfileUnitTest.testRootAndEpochAreCheckedIndependently",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-35-ERC3643-ROOT-TAG",
+                        "fault":  "Compute the profile dependency root without its domain-separation tag",
+                        "detector":  "ERC3643ProfileUnitTest.testDescriptorDependencyStateAndInterfaceIdentifiers",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-36-ERC3643-CUSTODIAN-CONFINEMENT",
+                        "fault":  "Accept any nonzero custodian instead of confining custody to the adapter",
+                        "detector":  "ERC3643ProfileUnitTest.testCustodyLifecycleAndConfinement",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-37-ERC3643-IDENTITY-ASSESSMENT",
+                        "fault":  "Skip the Identity Registry for the destination of a transfer action",
+                        "detector":  "ERC3643ProfileUnitTest.testRejectedAndOperationalFailureFailClosedWithStutter",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-38-ERC3643-COMPLIANCE-ASSESSMENT",
+                        "fault":  "Skip the Compliance policy for a transfer action",
+                        "detector":  "ERC3643ProfileUnitTest.testRejectedAndOperationalFailureFailClosedWithStutter",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-39-ERC3643-RECEIPT-KIND-TAG",
+                        "fault":  "Tag adapter reversal receipts as action receipts",
+                        "detector":  "ERC3643ProfileUnitTest.testReceiptBindsEvidenceAuthorityRootAndFinalEvent",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-40-ERC3643-CASE-CONFLICT",
+                        "fault":  "Allow an overlay head owned by another case to be stacked",
+                        "detector":  "ERC3643ProfileUnitTest.testOverlayCaseConflictsAndFamilies",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-41-ERC3643-CALLDATA-LENGTH",
+                        "fault":  "Accept action calldata of any length",
+                        "detector":  "ERC3643ProfileUnitTest.testNonCanonicalCalldataIsRejected",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-42-ERC3643-REVERSAL-CALLDATA-LENGTH",
+                        "fault":  "Accept reversal calldata of any length",
+                        "detector":  "ERC3643ProfileUnitTest.testNonCanonicalCalldataIsRejected",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-43-ERC3643-NONCE-CONSUMPTION",
+                        "fault":  "Do not consume the nonce of an action or a reversal",
+                        "detector":  "ERC3643ProfileUnitTest.testReplayNonceAndAuthority",
+                        "anchorOccurrences":  2,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-44-ERC3643-MANIFEST-BINDING",
+                        "fault":  "Seal a binding that does not commit to the import manifest",
+                        "detector":  "ERC3643ProfileUnitTest.testExactImportManifestOpensReversibleCases",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-45-ERC3643-IMPORTED-CASE",
+                        "fault":  "Import a declared frozen amount without opening its case and live head",
+                        "detector":  "ERC3643ProfileUnitTest.testExactImportManifestOpensReversibleCases",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-46-ERC3643-CUSTODY-CLOSURE",
+                        "fault":  "Skip matched custody closure before a custody disposition",
+                        "detector":  "ERC3643ProfileUnitTest.testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-47-ERC3643-REVERSAL-CLOSES-CHAIN",
+                        "fault":  "Close the case after every unfreeze even when an amendment parent remains",
+                        "detector":  "ERC3643ProfileUnitTest.testAllSixActionsAndReversals",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-48-ERC3643-REVERSAL-OWNED-STATE",
+                        "fault":  "Reverse an overlay without checking that the subject\u0027s upstream state is owned",
+                        "detector":  "ERC3643ProfileUnitTest.testDriftedUpstreamStateFailsClosedOnEveryTouchedAccount",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-49-ERC3643-CUSTODIAN-OWNED-STATE",
+                        "fault":  "Seize without checking that the custodian\u0027s upstream state is owned",
+                        "detector":  "ERC3643ProfileUnitTest.testDriftedUpstreamStateFailsClosedOnEveryTouchedAccount",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-50-ERC3643-RESYNC-OWNED-STATE",
+                        "fault":  "Resynchronise an account without checking that its upstream state is owned",
+                        "detector":  "ERC3643ProfileUnitTest.testDriftedUpstreamStateFailsClosedOnEveryTouchedAccount",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-51-ERC3643-RESYNC-RAISES-FROZEN",
+                        "fault":  "Never raise the upstream frozen amount toward the owned target",
+                        "detector":  "ERC3643ProfileTrexFixtureTest.testInboundGrowthIsRefrozenByPermissionlessResynchronisation",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-52-AUTHORITY-ACCOUNT",
+                        "fault":  "Accept any caller as the registered authority account",
+                        "detector":  "TrustActionsUnitTest.testReplayNonceAndAuthorityRotation",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-53-AUTHORITY-EPOCH",
+                        "fault":  "Accept a command whose authority epoch is not the current epoch",
+                        "detector":  "TrustActionsUnitTest.testReplayNonceAndAuthorityRotation",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-54-AUTHORITY-ROTATION-EPOCH",
+                        "fault":  "Rotate the authority without advancing its epoch",
+                        "detector":  "TrustActionsUnitTest.testReplayNonceAndAuthorityRotation",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-55-ACTION-ID-REPLAY",
+                        "fault":  "Accept an action identifier that already has a record",
+                        "detector":  "TrustActionsUnitTest.testReplayNonceAndAuthorityRotation",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-56-REVERSAL-ID-REPLAY",
+                        "fault":  "Accept a reversal identifier that already has a receipt",
+                        "detector":  "TrustActionsUnitTest.testReversalReplayAndRestrictionTransferBlock",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-57-NONCE-FRESHNESS",
+                        "fault":  "Accept a nonce that was already consumed",
+                        "detector":  "TrustActionsUnitTest.testReplayNonceAndAuthorityRotation",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-58-REVERSAL-DEPENDENCY-ROOT",
+                        "fault":  "Compare only the dependency epoch of a reversal and ignore the root",
+                        "detector":  "TrustActionsUnitTest.testRootAndEpochAreCheckedIndependently",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-59-ACTION-SHAPE",
+                        "fault":  "Skip the per-action shape rules and the case transition table",
+                        "detector":  "TrustActionsUnitTest.testDirectDispositionsAndShapeRules",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-60-FREEZE-PRIOR-TARGET",
+                        "fault":  "Record zero instead of the prior absolute target on FREEZE",
+                        "detector":  "TrustActionsUnitTest.testFreezeAmendmentChainReopensAfterPop",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-61-TERMINAL-CASE-ACTION",
+                        "fault":  "Accept an action on a terminal case",
+                        "detector":  "TrustActionsUnitTest.testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-62-OVERLAY-REQUIRES-FRESH-CASE",
+                        "fault":  "Open an overlay inside a case that already has another family",
+                        "detector":  "TrustActionsUnitTest.testCustodyLifecycleAndDispositions",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-63-RESTRICT-NO-STATE-CHANGE",
+                        "fault":  "Accept a second RESTRICT in the case that already restricts the subject",
+                        "detector":  "TrustActionsUnitTest.testOverlayCaseConflictsAndFamilies",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-64-SEIZE-OPEN-CASE",
+                        "fault":  "Accept a SEIZE into a case that is already open",
+                        "detector":  "TrustActionsUnitTest.testCustodyLifecycleAndDispositions",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-65-CASE-GENERATION",
+                        "fault":  "Do not advance the case generation on an applied action",
+                        "detector":  "TrustActionsUnitTest.testSixActionsAndThreeReversalsWithReceipts",
+                        "anchorOccurrences":  2,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-66-REVERSAL-CURRENT-HEAD",
+                        "fault":  "Reverse an overlay action that is not the live head or whose state no longer matches",
+                        "detector":  "TrustActionsUnitTest.testFreezeAmendmentChainReopensAfterPop",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-67-REVERSAL-PAIRING",
+                        "fault":  "Accept a reversal kind that does not pair with the original action",
+                        "detector":  "TrustActionsUnitTest.testDirectDispositionsAndShapeRules",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-68-UNFREEZE-PRIOR-TARGET",
+                        "fault":  "Restore zero instead of the prior absolute target on UNFREEZE",
+                        "detector":  "TrustActionsUnitTest.testFreezeAmendmentChainReopensAfterPop",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-69-UNRESTRICT-PRIOR-FLAG",
+                        "fault":  "Keep the restriction flag set on UNRESTRICT",
+                        "detector":  "TrustActionsUnitTest.testSixActionsAndThreeReversalsWithReceipts",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-70-RELEASE-BACKING",
+                        "fault":  "Release custody without releasing the custody backing",
+                        "detector":  "TrustActionsUnitTest.testCustodyBackingAndOwnFrozenFloorDoNotDoubleCount",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-71-SEIZE-BACKING",
+                        "fault":  "Seize without recording the custody backing",
+                        "detector":  "TrustActionsUnitTest.testCustodyBackingAndOwnFrozenFloorDoNotDoubleCount",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-72-UNBACKED-GUARD",
+                        "fault":  "Let a direct enforcement transfer spend custody backing of another case",
+                        "detector":  "TrustActionsUnitTest.testCustodyBackingAndOwnFrozenFloorDoNotDoubleCount",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-73-CUSTODY-DISPOSITION-MATCH",
+                        "fault":  "Consume a custody record on a disposition whose fields do not match it",
+                        "detector":  "TrustActionsUnitTest.testCustodyLifecycleAndDispositions",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-74-ORDINARY-BACKING",
+                        "fault":  "Let ordinary transfers spend custody backing",
+                        "detector":  "TrustActionsUnitTest.testCustodyBackingAndOwnFrozenFloorDoNotDoubleCount",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-75-RESTRICTION-SEND-GATE",
+                        "fault":  "Let a restricted account send ordinary transfers",
+                        "detector":  "TrustActionsUnitTest.testReversalReplayAndRestrictionTransferBlock",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-76-RECEIPT-DEPENDENCY-ROOT",
+                        "fault":  "Store a zero dependency root in the action receipt",
+                        "detector":  "TrustActionsUnitTest.testReceiptBindsCanonicalCommandHashEvidenceAndFinalEvent",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-77-REVERSAL-RECEIPT-PARENT",
+                        "fault":  "Store a zero parent command in the reversal receipt",
+                        "detector":  "TrustActionsUnitTest.testReceiptBindsCanonicalCommandHashEvidenceAndFinalEvent",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-78-GOVERNANCE-REPLAY",
+                        "fault":  "Accept a governance authorization identifier or nonce twice",
+                        "detector":  "TrustActionsUnitTest.testGovernanceAuthorizationIsConsumedOnce",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-79-PROFILE-FULL-LIVE",
+                        "fault":  "Report full while a bound dependency is no longer live",
+                        "detector":  "TrustActionsUnitTest.testAssessmentOutcomesAndReasonClasses",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-80-KERNEL-INTERFACE-ID",
+                        "fault":  "Deny the kernel interface identifier",
+                        "detector":  "TrustActionsUnitTest.testTrustProfileDescriptorAndInterfaceIdentifiers",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-81-TIME-WINDOW",
+                        "fault":  "Accept an action outside its validity window",
+                        "detector":  "TrustActionsUnitTest.testDirectDispositionsAndShapeRules",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-82-DOMAIN",
+                        "fault":  "Accept an action whose domain is not the kernel domain",
+                        "detector":  "TrustActionsUnitTest.testDirectDispositionsAndShapeRules",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-83-IDENTIFIER",
+                        "fault":  "Accept an action whose identifier is not the derived identifier",
+                        "detector":  "TrustActionsUnitTest.testDirectDispositionsAndShapeRules",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-84-ENTITLEMENT-ONCE",
+                        "fault":  "Accept an entitlement commitment that was already consumed",
+                        "detector":  "TrustActionsUnitTest.testSixActionsAndThreeReversalsWithReceipts",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-85-ERC3643-AUTHORITY-ACCOUNT",
+                        "fault":  "Accept any caller as the immutable authority of the profile",
+                        "detector":  "ERC3643ProfileUnitTest.testReplayNonceAndAuthority",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-86-ERC3643-AUTHORITY-EPOCH",
+                        "fault":  "Accept a command whose authority epoch is not the seal epoch",
+                        "detector":  "ERC3643ProfileUnitTest.testReplayNonceAndAuthority",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-87-ERC3643-ACTION-ID-REPLAY",
+                        "fault":  "Accept an action identifier that already has a record",
+                        "detector":  "ERC3643ProfileUnitTest.testReplayNonceAndAuthority",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-88-ERC3643-REVERSAL-ID-REPLAY",
+                        "fault":  "Accept a reversal identifier that already has a receipt",
+                        "detector":  "ERC3643ProfileUnitTest.testReplayNonceAndAuthority",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-89-ERC3643-NONCE-FRESHNESS",
+                        "fault":  "Accept a nonce that was already consumed",
+                        "detector":  "ERC3643ProfileUnitTest.testReplayNonceAndAuthority",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-90-ERC3643-REVERSAL-DEPENDENCY-ROOT",
+                        "fault":  "Compare only the dependency epoch of a reversal and ignore the root",
+                        "detector":  "ERC3643ProfileUnitTest.testRootAndEpochAreCheckedIndependently",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-91-ERC3643-ACTION-SHAPE",
+                        "fault":  "Skip the per-action shape rules and the case transition table",
+                        "detector":  "ERC3643ProfileUnitTest.testDirectDispositionsAndShapeRules",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-92-ERC3643-TERMINAL-CASE-ACTION",
+                        "fault":  "Accept an action on a terminal case",
+                        "detector":  "ERC3643ProfileUnitTest.testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-93-ERC3643-OVERLAY-REQUIRES-FRESH-CASE",
+                        "fault":  "Open an overlay inside a case that already has another family",
+                        "detector":  "ERC3643ProfileUnitTest.testOverlayCaseConflictsAndFamilies",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-94-ERC3643-RESTRICT-NO-STATE-CHANGE",
+                        "fault":  "Accept a second RESTRICT in the case that already restricts the subject",
+                        "detector":  "ERC3643ProfileUnitTest.testOverlayCaseConflictsAndFamilies",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-95-ERC3643-SEIZE-OPEN-CASE",
+                        "fault":  "Accept a SEIZE into a case that is already open",
+                        "detector":  "ERC3643ProfileUnitTest.testCustodyLifecycleAndConfinement",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-96-ERC3643-DISPOSITION-TERMINAL",
+                        "fault":  "Leave a disposition case open instead of terminal",
+                        "detector":  "ERC3643ProfileUnitTest.testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-97-ERC3643-REVERSAL-CURRENT-HEAD",
+                        "fault":  "Reverse an overlay action that is not the live head or whose state no longer matches",
+                        "detector":  "ERC3643ProfileUnitTest.testAllSixActionsAndReversals",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-98-ERC3643-REVERSAL-PAIRING",
+                        "fault":  "Accept a reversal kind that does not pair with the original action",
+                        "detector":  "ERC3643ProfileUnitTest.testDirectDispositionsAndShapeRules",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-99-ERC3643-UNFREEZE-PRIOR-TARGET",
+                        "fault":  "Restore zero instead of the prior absolute target on UNFREEZE",
+                        "detector":  "ERC3643ProfileUnitTest.testAllSixActionsAndReversals",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-100-ERC3643-RECEIPT-PREIMAGE",
+                        "fault":  "Drop the last receipt field from the hash preimage",
+                        "detector":  "ERC3643ProfileUnitTest.testAllSixActionsAndReversals",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-101-ERC3643-RECEIPT-DEPENDENCY-ROOT",
+                        "fault":  "Store a zero dependency root in the action receipt",
+                        "detector":  "ERC3643ProfileUnitTest.testReceiptBindsEvidenceAuthorityRootAndFinalEvent",
+                        "anchorOccurrences":  2,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-102-ERC3643-KERNEL-INTERFACE-ID",
+                        "fault":  "Deny the kernel interface identifier",
+                        "detector":  "ERC3643ProfileUnitTest.testDescriptorDependencyStateAndInterfaceIdentifiers",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-103-ERC3643-TIME-WINDOW",
+                        "fault":  "Accept an action outside its validity window",
+                        "detector":  "ERC3643ProfileUnitTest.testDirectDispositionsAndShapeRules",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-104-ERC3643-DOMAIN",
+                        "fault":  "Accept an action whose domain is not the kernel domain",
+                        "detector":  "ERC3643ProfileUnitTest.testDirectDispositionsAndShapeRules",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-105-ERC3643-IDENTIFIER",
+                        "fault":  "Accept an action whose identifier is not the derived identifier",
+                        "detector":  "ERC3643ProfileUnitTest.testDirectDispositionsAndShapeRules",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-106-ERC3643-ENTITLEMENT-ONCE",
+                        "fault":  "Accept an entitlement commitment that was already consumed",
+                        "detector":  "ERC3643ProfileUnitTest.testAllSixActionsAndReversals",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-107-ERC3643-MANIFEST-CANONICAL",
+                        "fault":  "Seal an import manifest that is not canonical",
+                        "detector":  "ERC3643ProfileUnitTest.testSealIsOneWayAndManifestMustBeCanonical",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-108-FREEZE-TARGET",
+                        "fault":  "Apply a FREEZE without recording the absolute frozen target",
+                        "detector":  "TrustActionsUnitTest.testSixActionsAndThreeReversalsWithReceipts",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-109-RESTRICT-FLAG",
+                        "fault":  "Apply a RESTRICT without setting the restriction flag",
+                        "detector":  "TrustActionsUnitTest.testReversalReplayAndRestrictionTransferBlock",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-110-BALANCE-MOVE",
+                        "fault":  "Move a balance without crediting the destination",
+                        "detector":  "TrustActionsUnitTest.testSixActionsAndThreeReversalsWithReceipts",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    },
+                    {
+                        "id":  "MUT-111-ERC3643-FREEZE-TARGET",
+                        "fault":  "Apply a profile FREEZE without recording the owned frozen target",
+                        "detector":  "ERC3643ProfileUnitTest.testAllSixActionsAndReversals",
+                        "anchorOccurrences":  1,
+                        "detectorDiscovered":  1,
+                        "detectorExecuted":  1,
+                        "mutantCompiled":  true,
+                        "result":  "KILLED"
+                    }
+                ],
+    "replay":  "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run-mutations.ps1",
+    "claim":  "All declared mutations were killed. This is detector evidence, not an audit or completeness proof."
+}

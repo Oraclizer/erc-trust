@@ -1,0 +1,33 @@
+{
+    "schema":  "erc-trust-deterministic-build-v2",
+    "status":  "PASS",
+    "candidateInput":  {
+                           "gitHead":  "326b2a6beb1e1749addae2fafb4b8bae6a8dcf9f",
+                           "sourceRootAlgorithm":  "sha256-raw-files-case-sensitive-path-order-v1",
+                           "sourceRootSha256":  "7d4b77b88ce1cfc9255abc810d306217df9cd34f27060dc9325fda8a9a35920e"
+                       },
+    "toolchain":  {
+                      "forge":  "1.7.1",
+                      "forgeCommit":  "4072e48705af9d93e3c0f6e29e93b5e9a40caed8",
+                      "solidity":  "0.8.36+commit.8a079791",
+                      "evmVersion":  "cancun",
+                      "optimizerRuns":  1,
+                      "viaIR":  true,
+                      "bytecodeHash":  "none",
+                      "cborMetadata":  false
+                  },
+    "buildA":  {
+                   "artifactSha256":  "880e44e72bb441a31dfaf18dd158ddcdc2c67b3b683397f5483c757a4bccd1c9",
+                   "creationSha256":  "9acee86581d2c37099f1f92f1d51808e6d7fb0a0408815f3c2c3283fddf50d6a",
+                   "runtimeSha256":  "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1",
+                   "creationBytes":  23361,
+                   "runtimeBytes":  20043
+               },
+    "buildB":  {
+                   "artifactSha256":  "880e44e72bb441a31dfaf18dd158ddcdc2c67b3b683397f5483c757a4bccd1c9",
+                   "creationSha256":  "9acee86581d2c37099f1f92f1d51808e6d7fb0a0408815f3c2c3283fddf50d6a",
+                   "runtimeSha256":  "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1",
+                   "creationBytes":  23361,
+                   "runtimeBytes":  20043
+               }
+}

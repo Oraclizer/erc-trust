@@ -1,0 +1,32 @@
+{
+  "candidate": "0.2.0-candidate.1",
+  "checks": {
+    "bannedSourceForms": 0,
+    "cleanBuild": "PASS",
+    "explicitRootCount": 405,
+    "oracleDependencyCount": 0,
+    "proofExport": "PASS",
+    "qualifiedFactCount": 406
+  },
+  "claimBoundary": "Kernel-checked clean build and proof audit of the exact formal source tree at the named commit. The formal source models kernel version 2 and is connected to the successor endpoints by the generated runtime bridge and the obligation ledger; the runtime link of the composition locale is not discharged. This does not establish compiler correctness or a complete Isabelle-to-EVM refinement theorem.",
+  "formalSource": {
+    "algorithm": "sha256-raw-files-lexicographic-path-order-v1",
+    "path": "formal/isabelle/ERC_TRUST",
+    "rootSha256": "03268d2f662c8157b0e81e0088b8ece7d6a3dc18dbb88a76036a089bf15fa794",
+    "theoryFiles": 22
+  },
+  "schema": "erc-trust-isabelle-results-v3",
+  "sourceCommit": "1de893b8d6bf1e26669baf0d8e6a8d3216f5a44e",
+  "status": "PASS",
+  "toolchain": {
+    "foundationCommit": "db8e0802e55f0229cf7bc9e5e6cfbf40681adbba",
+    "isabelle": "Isabelle2025-2",
+    "session": "ERC_TRUST"
+  },
+  "workflow": {
+    "jobConclusion": "success",
+    "jobId": 100505377244,
+    "runId": 33709364208,
+    "url": "https://github.com/Oraclizer/erc-trust/actions/runs/33709364208/job/100505377244"
+  }
+}
