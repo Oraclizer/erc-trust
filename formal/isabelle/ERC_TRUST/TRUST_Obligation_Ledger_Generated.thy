@@ -12,7 +12,7 @@ definition obligation_ledger_sha256 :: string where
   "obligation_ledger_sha256 = ''57ffb713d38974ac514ef2f84bcf471b7706c87257c22a5d0b849d34ae7980d1''"
 
 definition obligation_ledger_bridge_schema_sha256 :: string where
-  "obligation_ledger_bridge_schema_sha256 = ''74b1433e6d3ff742184f42fec2657707e4d2d5d9bd2daaf14007fa7cfdbe69e5''"
+  "obligation_ledger_bridge_schema_sha256 = ''4eafcd217534274cba5323b3d2aff6a58a6fb951e14abf578aac284b7ad03dc9''"
 
 definition obligation_ledger_closure_status :: string where
   "obligation_ledger_closure_status = ''CONDITIONAL''"

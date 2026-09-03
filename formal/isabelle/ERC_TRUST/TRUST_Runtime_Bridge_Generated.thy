@@ -4,7 +4,7 @@ theory TRUST_Runtime_Bridge_Generated
 begin
 
 definition runtime_bridge_schema_sha256 :: string where
-  "runtime_bridge_schema_sha256 = ''74b1433e6d3ff742184f42fec2657707e4d2d5d9bd2daaf14007fa7cfdbe69e5''"
+  "runtime_bridge_schema_sha256 = ''4eafcd217534274cba5323b3d2aff6a58a6fb951e14abf578aac284b7ad03dc9''"
 
 definition native_runtime_template_sha256 :: string where
   "native_runtime_template_sha256 = ''b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1''"

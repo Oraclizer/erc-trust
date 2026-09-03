@@ -30,8 +30,8 @@
   },
   "inputs": {
     "vectorsPath": "vectors/conformance-v2.json",
-    "schemaSha256": "0x1c4433460d58376b393611f026e7e31b6d063799728d31689200797b7c39e7bd",
-    "abiSha256": "0x51b2a9147dcceb9d3bba6351121eda778473a6a02ee3250fef861d180378ff37",
+    "schemaSha256": "0x290c0ca499a185b6326ebf5ca5cbc18a14f5173a1cc29d973d44c2aeaf41ef46",
+    "abiSha256": "0x73b45cee3e8e6a2abd484a306a21d51aaa3fc4da75b976dd3c938d936352814b",
     "vectorsBytes": 52152,
     "vectorsSha256": "0x7905342ae31386b1bfbe4e7cabf7f2f362678c711981427fb15ad8f36bfdc16c",
     "vectorsKeccak256": "0x49648031d0b16a0b97a58d76776f36f6d9e31627b881f3574bab8685ccbf3f75",

@@ -7,7 +7,7 @@
     "keccak256": "0xb5303e4083d2781d6c7d6a68d30b6354ebda11f0a2a037b946d87b3eec40b74e"
   },
   "interfaceId": "0x2b020308",
-  "interfaceIdRule": "XOR of the selectors of every function listed below. The inherited supportsInterface(bytes4) selector is excluded. A conforming endpoint MUST return true for this identifier and false for 0xffffffff.",
+  "interfaceIdRule": "XOR of the selectors of every function listed below. The inherited supportsInterface(bytes4) selector is excluded. A conforming endpoint MUST return true for this identifier and false for 0xffffffff. The profile interfaces (IERCTrustNativeRoute, ITrustBoundDependency) are identified by the same rule applied to their own function lists; their identifiers are never part of the kernel identifier.",
   "selectors": {
     "executeRegulatoryAction((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))": "0x2f4e0773",
     "executeRegulatoryReversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))": "0x2b892e8f",
