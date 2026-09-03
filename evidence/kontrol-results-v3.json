@@ -53,7 +53,7 @@
   "runtimeBinding": {
     "bridge": {
       "path": "evidence/end-to-end-refinement/runtime-bridge-v2/schema.json",
-      "sha256": "74b1433e6d3ff742184f42fec2657707e4d2d5d9bd2daaf14007fa7cfdbe69e5"
+      "sha256": "4eafcd217534274cba5323b3d2aff6a58a6fb951e14abf578aac284b7ad03dc9"
     },
     "kind": "FOUNDRY_ARTIFACT_RUNTIME_TEMPLATE",
     "note": "Kontrol rebuilt the exact source under the pinned compiler with the kontrol Foundry profile. The template hash identifies the default-profile Foundry artifact that the generated bridge names; the proofs run on the kontrol-profile build of the same source. No claim that the proof graph itself was keyed by the template hash.",

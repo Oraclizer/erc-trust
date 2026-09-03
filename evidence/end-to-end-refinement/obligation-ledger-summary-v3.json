@@ -2,14 +2,14 @@
   "bridgeBindsRuntime": true,
   "bridgeSchema": {
     "path": "evidence/end-to-end-refinement/runtime-bridge-v2/schema.json",
-    "sha256": "74b1433e6d3ff742184f42fec2657707e4d2d5d9bd2daaf14007fa7cfdbe69e5"
+    "sha256": "4eafcd217534274cba5323b3d2aff6a58a6fb951e14abf578aac284b7ad03dc9"
   },
   "candidate": "0.2.0-candidate.1",
   "claim": "mapped implementation evidence; end-to-end refinement incomplete",
   "closure": "CONDITIONAL",
   "closureRecord": {
     "path": "evidence/end-to-end-refinement/central-closure-v3.json",
-    "sha256": "940b015363876b34dad0b05ab04d426b8353352b6ef4f03ba16c5606c34b43cb"
+    "sha256": "5f73779f226418a14ece58f74e588693a48a8a32322e630b0aac2eb5948e10b6"
   },
   "counts": {
     "closed": 68,
@@ -22,7 +22,7 @@
   },
   "generatedTheory": {
     "path": "formal/isabelle/ERC_TRUST/TRUST_Obligation_Ledger_Generated.thy",
-    "sha256": "825eaea72089555ad34b9400e77de937fe37e9890a6852e4498dda73ab09b88d"
+    "sha256": "adc060d273fd56a3ed6d0598789e7ad2553857afd1a8ca6297484b27c98b2f38"
   },
   "ledger": {
     "path": "evidence/end-to-end-refinement/obligation-ledger-v3.json",
@@ -44,7 +44,7 @@
     },
     "kontrol": {
       "path": "evidence/kontrol-results-v3.json",
-      "sha256": "80467a3ac9ff39e2a9c87e60fc789bba7b065ba5c61e5303dbead49e034c1633"
+      "sha256": "fb912d2e40e88bb97048f5a13ff8869a5d35f1da6b0ecb690c05b6d4a3ca17f9"
     },
     "mutation": {
       "path": "evidence/mutation-results.json",
