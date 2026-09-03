@@ -41,6 +41,23 @@ Certora lanes, which stay pending until source may be sent to the cloud prover.
    approval; every other lane is a receipt of the current identity. Release mode requires
    zero pending lanes and is therefore not switched in this change.
 
+6. Two corrections of the normative prose were found by the independent reproduction and
+   the review of this change and are applied here with the generator rerun: a missing
+   `RECOVER` entitlement commitment is a field rule (reason 6) and reason 9 is reserved for a
+   commitment already consumed, which is what the endpoints do; and the shape rules state
+   their check order (common rules in the listed order, then the field rules; the earliest
+   failing rule names the reason), which is why the `domain` row of the field-binding
+   vectors reports reason 1. The independent program was aligned to the corrected text after
+   its original run; both the original run (against the text before the correction) and the
+   aligned run reproduce every vector.
+7. The stale-evidence rejection of the runtime binding verifier covers the five receipts
+   it enumerates (deterministic build, Foundry, mutation, Kontrol, Certora) when they are
+   present and lists the absent ones; the lane index carries the source-root checks of the
+   receipts that bind code identity. The stored compiler inputs under
+   `evidence/runtime-binding-v3/` are the exact byte streams the replay pipes to the pinned
+   compiler and the comparison targets of the offline check; they are kept because the
+   replay is not reproducible without them.
+
 ## Consequences
 
 - Any change to `implementation/**` or `foundry.toml` invalidates the deterministic build,

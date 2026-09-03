@@ -10,8 +10,8 @@ case transition table, reason classes, and profile descriptors.
 > `implementation/` both consume the generated copy of this kernel
 > (`decisions/08-native-wiring.md`, `decisions/09-erc3643-profile-wiring.md`);
 > the abstract model and the obligation ledger connect both endpoints
-> (`decisions/10-refinement-closure.md`); the runtime evidence for the successor code
-> follows in the runtime assurance change. Conformance of an endpoint is established only by the evidence lanes
+> (`decisions/10-refinement-closure.md`); the runtime identity of the successor code is
+> bound by the runtime assurance change (`decisions/11-runtime-assurance.md`). Conformance of an endpoint is established only by the evidence lanes
 > in `../evidence/current-profile-release-index-v3.json`, never by this
 > directory.
 
@@ -51,7 +51,11 @@ records alone, without reading the generator, the SDK, or the Solidity under
 `implementation/`. The reproduction needs keccak-256, the ABI encoding of
 static tuples, and the ABI rule for function selectors, all of which the
 schema restates under `hashes.encoding`; nothing else. If a value cannot be reproduced from the schema
-text, that is a defect in the schema, not in the reproduction.
+text, that is a defect in the schema, not in the reproduction. Such a reproduction exists:
+`scripts/independent-reproduction-v3.mjs`, written from the machine source, the generated prose
+and ABI, and the vectors alone, records `evidence/independent-reproduction-v3.json` and is
+rerun in continuous integration; the specification corrections it produced are recorded in
+`decisions/11-runtime-assurance.md`.
 
 ## Relationship to the release manifest
 

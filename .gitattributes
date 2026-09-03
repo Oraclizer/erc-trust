@@ -1,3 +1,4 @@
+* text=auto eol=lf
 # Certora .spec files use Certora Verification Language, not Python.
 *.spec linguist-detectable=false
 

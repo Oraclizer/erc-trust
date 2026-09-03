@@ -89,7 +89,8 @@ adapter Agent. Ordinary ERC-3643 deployments do not automatically qualify.
 Proxy and migration support are intentionally `false` in candidate 2. The
 candidate 2 native runtime was 24,177 bytes under the pinned compiler settings,
 399 bytes below the EIP-170 limit; the successor runtime size is bound by
-`evidence/release-manifest.json` (20,043 bytes at the formal connection change).
+`evidence/release-manifest.json` (20,043 bytes for the native token, 19,218 for the
+ERC-3643 profile adapter, and 2,790 for the profile governor at the runtime assurance change).
 Any native source change requires the full size, test, proof, mutation, and
 manifest replay.
 

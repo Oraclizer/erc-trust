@@ -6,8 +6,10 @@
 // Without flags the verifier needs only the tree and the Foundry artifacts: it rejects a
 // receipt whose source root, stored compiler input, source identities, bridge artifacts,
 // or runtime hashes differ from the current tree, the generated runtime bridge, the release
-// manifest, and the deterministic build receipt; it rejects every other successor receipt
-// that binds a different source root or runtime template (stale evidence); and it proves
+// manifest, and the deterministic build receipt; it rejects each of the five enumerated
+// successor receipts (deterministic build, Foundry, mutation, Kontrol, Certora) that is
+// present and binds a different source root or runtime template (stale evidence), and lists
+// the absent ones; it requires the stored compiler settings to be the pinned settings; and it proves
 // that its own semantic classifier kills one deliberate mutant per semantic class and
 // subject. With --replay it also recompiles the stored standard JSON input with the pinned
 // solc binary and requires the output hash and the six semantic projections to match.
@@ -22,7 +24,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { dirname, posix, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { resolvePinnedSolc } from "./lib/resolve-pinned-solc.mjs";
-import { artifactAsCompilerContract, normalizedAbi, semanticCheckNames, semanticChecks, semanticMutant, semanticStorageLayout, stable } from "./lib/runtime-binding-semantics.mjs";
+import { artifactAsCompilerContract, immutablePositions, normalizedAbi, pinnedCompilerSettings, semanticCheckNames, semanticChecks, semanticMutant, semanticStorageLayout, stable } from "./lib/runtime-binding-semantics.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const replay = process.argv.includes("--replay");
@@ -33,7 +35,6 @@ const exists = (path) => existsSync(abs(path));
 const bytes = (path) => readFileSync(abs(path));
 const text = (path) => bytes(path).toString("utf8").replace(/\r\n?/g, "\n");
 const json = (path) => JSON.parse(text(path));
-const stableJson = (value) => `${JSON.stringify(stable(value), null, 2)}\n`;
 const failures = [];
 const check = (condition, message) => { if (!condition) failures.push(message); };
 function walk(path) {
@@ -100,20 +101,17 @@ for (const subject of receipt.subjects) {
   check(sha256(creation) === subject.creationBytecode.sha256 && creation.length === subject.creationBytecode.bytes, `layer 1: creation bytecode of ${subject.id} differs from the Foundry artifact`);
   check(bridge.subjects[subject.id]?.runtime?.sha256 === subject.runtimeTemplate.sha256, `runtime of ${subject.id} differs from the generated runtime bridge`);
   check(subject.runtimeTemplate.bytes <= 24576, `EIP-170 overflow: ${subject.id}`);
+  check(JSON.stringify(stable(immutablePositions(artifact.deployedBytecode.immutableReferences))) === JSON.stringify(stable(subject.immutableReferences)), `immutable reference positions of ${subject.id} differ from the Foundry artifact`);
   for (const name of semanticCheckNames) check(subject.semanticChecks?.[name] === true, `layer 2 check ${name} not recorded as passed for ${subject.id}`);
 }
 check(receipt.runtimeTemplateSha256 === subjectsById.get("native")?.runtimeTemplate.sha256, "runtimeTemplateSha256 is not the native runtime");
 check(manifest.trustToken?.runtimeSha256 === receipt.runtimeTemplateSha256, "release manifest binds a different native runtime");
-if (manifest.profileRuntimes) {
-  check(manifest.profileRuntimes.erc3643Adapter?.runtimeSha256 === subjectsById.get("profileAdapter")?.runtimeTemplate.sha256, "release manifest binds a different adapter runtime");
-  check(manifest.profileRuntimes.profileGovernor?.runtimeSha256 === subjectsById.get("profileGovernor")?.runtimeTemplate.sha256, "release manifest binds a different governor runtime");
-}
-if (deterministic) {
-  check(deterministic.buildA?.runtimeSha256 === receipt.runtimeTemplateSha256, "deterministic build receipt binds a different native runtime");
-  for (const [id, key] of [["profileAdapter", "erc3643Adapter"], ["profileGovernor", "profileGovernor"]]) {
-    const built = deterministic.buildA?.subjects?.[key];
-    if (built) check(built.runtimeSha256 === subjectsById.get(id)?.runtimeTemplate.sha256, `deterministic build receipt binds a different ${id} runtime`);
-  }
+check(manifest.profileRuntimes?.erc3643Adapter?.runtimeSha256 === subjectsById.get("profileAdapter")?.runtimeTemplate.sha256, "release manifest does not bind the adapter runtime of the receipt");
+check(manifest.profileRuntimes?.profileGovernor?.runtimeSha256 === subjectsById.get("profileGovernor")?.runtimeTemplate.sha256, "release manifest does not bind the governor runtime of the receipt");
+check(deterministic !== null, "deterministic build receipt missing: the runtime binding cannot be verified without it");
+check(deterministic?.buildA?.runtimeSha256 === receipt.runtimeTemplateSha256, "deterministic build receipt binds a different native runtime");
+for (const [id, key] of [["profileAdapter", "erc3643Adapter"], ["profileGovernor", "profileGovernor"]]) {
+  check(deterministic?.buildA?.subjects?.[key]?.runtimeSha256 === subjectsById.get(id)?.runtimeTemplate.sha256, `deterministic build receipt does not bind the ${id} runtime of the receipt`);
 }
 
 // Every other successor receipt that binds a source root or a runtime template must bind the current one.
@@ -125,8 +123,9 @@ const staleChecks = [
   ["evidence/certora-results-v3.json", (data) => data.runtimeTemplateSha256 === receipt.runtimeTemplateSha256],
 ];
 const staleEvidence = [];
+const skippedReceipts = [];
 for (const [path, current] of staleChecks) {
-  if (!exists(path)) continue;
+  if (!exists(path)) { skippedReceipts.push(path); continue; }
   const ok = current(json(path));
   staleEvidence.push({ path, current: ok });
   check(ok, `stale evidence rejected: ${path} binds a different source root or runtime`);
@@ -145,6 +144,7 @@ for (const bundle of receipt.bundles) {
   if (!exists(`${dir}/standard-json-input.json`)) continue;
   const stored = json(`${dir}/standard-json-input.json`);
   const closure = importClosure(bundle.roots);
+  check(JSON.stringify(stable(stored.settings)) === JSON.stringify(stable(pinnedCompilerSettings)), `stored compiler settings of ${bundle.id} are not the pinned settings`);
   check(JSON.stringify(Object.keys(stored.sources)) === JSON.stringify([...closure.keys()]), `stored compiler input of ${bundle.id} does not name the current import closure`);
   for (const [path, content] of closure) check(stored.sources[path]?.content === content, `stored compiler input of ${bundle.id} differs from the current source ${path}`);
   const identities = json(`${dir}/source-identities.json`);
@@ -202,5 +202,6 @@ console.log(JSON.stringify({
   replay,
   subjects: receipt.subjects.map((subject) => ({ id: subject.id, runtime: subject.runtimeTemplate.sha256, bytes: subject.runtimeTemplate.bytes })),
   staleEvidence,
+  skippedReceipts,
   verifierMutationValidation: { killed, required },
 }, null, 2));
