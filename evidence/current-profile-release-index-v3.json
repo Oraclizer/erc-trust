@@ -7,7 +7,7 @@
   "identity": {
     "certoraInputsSha256": null,
     "formalRoot": {
-      "rootSha256": "83297feb6a97770012fc8f5cd24344106e3cac48062a20656f860bee49dca2a7",
+      "rootSha256": "db93d8fad590175af2e8192de14b3118a2696eb4287a2f40433824d683270c6c",
       "theoryFiles": 22
     },
     "kontrolInputsSha256": "5d8f38006416e02aa7664a68f3ad108e2e05aba1d9abe0c7d339f8e64c4e67fb",
@@ -49,7 +49,7 @@
     "isabelleBuild": {
       "receipt": {
         "path": "evidence/isabelle-results-v3.json",
-        "sha256": "42958b9fb503f05d7269404b8f33dc8e6e6b5d73ce1122cac65c429ffd7c1073"
+        "sha256": "cd274a6717514fdb8e1f60447383ba9a9119b53bebe29ef4d42c8949d3f5ebca"
       },
       "status": "PASS"
     },
@@ -64,7 +64,7 @@
       "proofs": 4,
       "receipt": {
         "path": "evidence/kontrol-results-v3.json",
-        "sha256": "e0a66008a3432dc23b15b9081eedf93098f6cf93b9394018337022bf372a672b"
+        "sha256": "80467a3ac9ff39e2a9c87e60fc789bba7b065ba5c61e5303dbead49e034c1633"
       },
       "status": "PASS"
     },
@@ -209,7 +209,7 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "cf5b9dba89bd37e407e0dfd7b892e561378d325da404d0834f18521af39dc470"
+        "sha256": "ee191d365e34477863c473c7e9bd4ab3ba7f5698d8e073999ee243b655cc99fa"
       }
     },
     "runtime": {
@@ -226,7 +226,7 @@
       "basis": "this index checks the receipt against the deterministic build; layer 2 (pinned-compiler replay and the six semantic projections) is re-executed by scripts/generate-runtime-binding-v3.mjs --check and scripts/verify-runtime-binding-v3.mjs --replay in the sdk-and-package job",
       "receipt": {
         "path": "evidence/runtime-binding-v3.json",
-        "sha256": "6704be745b932bda94ad39cd6f36c63b50b1fee93a13ac64fc9e7eedc1c4b0a3"
+        "sha256": "5ff9ad738dbce07eda2f4b5d83294bf6fbf4f53f9fbd6cd7d3cd6c15078a58ef"
       },
       "status": "PASS",
       "subjects": [
