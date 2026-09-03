@@ -391,7 +391,7 @@
     },
     "kernelSchema": {
       "path": "spec/erc-trust-kernel-v2.json",
-      "sha256": "7b80aa08ae7892a5bc2004cb65155fbafd5b54cb71ca58b9d6c664e7f9f060cb"
+      "sha256": "1c4433460d58376b393611f026e7e31b6d063799728d31689200797b7c39e7bd"
     }
   },
   "subjects": {
