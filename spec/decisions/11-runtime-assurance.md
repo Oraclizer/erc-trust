@@ -62,8 +62,9 @@ Certora lanes, which stay pending until source may be sent to the cloud prover.
    so the commit a receipt names is never an ancestor of `main`. The lane verifier therefore
    compares the source root or formal root a receipt declares with the root it recomputes
    from the tree it runs on, and keeps the recorded commit as provenance that the recorder
-   checked at record time. Ancestry checks were removed from the verifier before the
-   integration branch reached `main`.
+   checked at record time. Ancestry checks were removed from the lane verifier before the
+   integration branch reached `main`, and from the full mode of the release verifier
+   (which the pull request mode had not exercised) right after.
 
 ## Consequences
 

@@ -130,13 +130,11 @@ if (mutation === null) {
     || mutation.survived !== 0 || declaredMutationIds.length === 0
     || JSON.stringify(receiptIds) !== JSON.stringify(declaredMutationIds)
   ) failures.push(`mutation receipt does not match the declared campaign of ${declaredMutationIds.length} faults`);
-  try {
-    execFileSync("git", ["merge-base", "--is-ancestor", mutation.candidateInput.gitHead, "HEAD"], {
-      cwd: root,
-      stdio: "ignore",
-    });
-  } catch {
-    failures.push("mutation gitHead is not an ancestor of the candidate");
+  // The commit the campaign ran on is provenance: the trunk is reached by merges that rewrite
+  // commit identities, so it is never an ancestor of main. The source root comparison above binds
+  // the receipt to the bytes of the tree; the commit only has to be a full identifier.
+  if (!/^[0-9a-f]{40}$/.test(String(mutation.candidateInput?.gitHead ?? ""))) {
+    failures.push("mutation receipt names no commit");
   }
   for (const result of mutation.results ?? []) {
     if (
