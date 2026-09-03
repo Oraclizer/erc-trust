@@ -7,6 +7,30 @@
 
 export const semanticCheckNames = ["abi", "storageLayout", "creationBytecode", "runtimeTemplate", "methodIdentifiers", "immutableReferences"];
 
+// The standard JSON equivalent of foundry.toml. The generator writes it into every stored
+// compiler input and the verifier requires every stored input to carry exactly this object.
+export const pinnedCompilerSettings = {
+  optimizer: { enabled: true, runs: 1 },
+  metadata: { useLiteralContent: false, bytecodeHash: "none", appendCBOR: false },
+  outputSelection: {
+    "*": {
+      "*": [
+        "abi",
+        "evm.bytecode.object",
+        "evm.bytecode.linkReferences",
+        "evm.deployedBytecode.object",
+        "evm.deployedBytecode.linkReferences",
+        "evm.deployedBytecode.immutableReferences",
+        "evm.methodIdentifiers",
+        "storageLayout",
+      ],
+    },
+  },
+  evmVersion: "cancun",
+  viaIR: true,
+  libraries: {},
+};
+
 export function stable(value) {
   if (Array.isArray(value)) return value.map(stable);
   if (value !== null && typeof value === "object") return Object.fromEntries(Object.keys(value).sort().map((key) => [key, stable(value[key])]));

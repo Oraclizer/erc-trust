@@ -126,7 +126,7 @@ obligation is about. Replay:
 
 ```bash
 node scripts/verify-runtime-binding-v3.mjs --replay
-node scripts/independent-reproduction-v3.mjs --vectors vectors/conformance-v2.json --ethers sdk/node_modules/ethers --out /tmp/independent.json
+node scripts/independent-reproduction-v3.mjs --vectors vectors/conformance-v2.json --ethers sdk/node_modules/ethers --schema spec/erc-trust-kernel-v2.json --abi spec/generated/kernel-v2-abi.json --out independent.json
 ```
 
 The sections that follow describe the shipped `0.1.0-candidate.2` package and

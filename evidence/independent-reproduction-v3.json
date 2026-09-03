@@ -4,12 +4,12 @@
   "producer": {
     "program": "independent-reproduction-v3.mjs",
     "role": "independent implementer, specification only",
-    "inputsRead": [
+    "specificationTranscribedFrom": [
       "spec/erc-trust-kernel-v2.json",
       "spec/generated/kernel-v2.md",
-      "spec/generated/kernel-v2-abi.json",
-      "vectors/conformance-v2.json"
+      "spec/generated/kernel-v2-abi.json"
     ],
+    "note": "The program transcribes the specification by hand and reads the vectors file at run time; the schema and ABI files are hashed (not parsed) so that a change to either reopens this receipt.",
     "inputsNotRead": [
       "implementation/",
       "sdk/src/",
@@ -30,9 +30,11 @@
   },
   "inputs": {
     "vectorsPath": "vectors/conformance-v2.json",
-    "vectorsBytes": 52063,
-    "vectorsSha256": "0x08e5b7e8e67104cbc8142c2a330a391f3ebb693d7cce149a778ce4b7c80c18b8",
-    "vectorsKeccak256": "0xf8643d56bd447fae431b1a3f9b495ed6c522bad1a38765463e7af044b6576274",
+    "schemaSha256": "0x1c4433460d58376b393611f026e7e31b6d063799728d31689200797b7c39e7bd",
+    "abiSha256": "0x51b2a9147dcceb9d3bba6351121eda778473a6a02ee3250fef861d180378ff37",
+    "vectorsBytes": 52152,
+    "vectorsSha256": "0x7905342ae31386b1bfbe4e7cabf7f2f362678c711981427fb15ad8f36bfdc16c",
+    "vectorsKeccak256": "0x49648031d0b16a0b97a58d76776f36f6d9e31627b881f3574bab8685ccbf3f75",
     "vectorsSchema": "erc-trust-conformance-vectors-v2",
     "vectorsSource": "spec/erc-trust-kernel-v2.json"
   },
@@ -87,7 +89,7 @@
   "findings": [
     {
       "id": "NEG-FIELD-BINDING domain row",
-      "observation": "The vector's expected text is 'TrustInvalidCommand reason 2' for all nineteen mutations, and that holds for eighteen of them. For the domain row it does not, because the common rule list places the domain rule ahead of the identifier rule, so an endpoint that checks in list order answers reason 1. The vector's primary claim, that every mutation yields a different derived actionId, holds for all nineteen.",
+      "observation": "Eighteen of the nineteen mutations are rejected by the identifier rule with reason 2; the domain row is rejected first by the domain rule with reason 1, as the shape-rule order in the schema and the vector's expected text state. The vector's primary claim, that every mutation yields a different derived actionId, holds for all nineteen.",
       "impact": "Documentation only. No identifier or hash in the vectors is affected."
     },
     {
@@ -97,7 +99,7 @@
     },
     {
       "id": "generated prose renders shapeRules.appliesTo character by character",
-      "observation": "In spec/generated/kernel-v2.md the shape rules table has an 'appliesTo' row printed as '0: c; 1: o; 2: m; ...', one numbered entry per letter of the sentence held in the schema. The prose generator is treating a string value as a map of fields. The machine source itself is correct.",
+      "observation": "At the base of the change that added this program, spec/generated/kernel-v2.md rendered the shape rules 'appliesTo' entry character by character, one numbered entry per letter of the sentence held in the schema, because the prose generator treated a string value as a map of fields. The machine source was correct; the generator was corrected in the same change and the prose now shows the sentence.",
       "impact": "Cosmetic defect in the normative prose. No hash, identifier or calldata is affected."
     },
     {
@@ -185,7 +187,7 @@
       "For a reversal receipt it is not stated whether authorityRef and dependencyRoot come from the reversal request or from the reversed action. The vectors cannot distinguish the two because both commands carry the same authority reference and the same dependency root. The program uses the reversal request's own values.",
       "Receipt.commandKind is typed uint8 with the meaning 'ActionKind value when receiptKind is ACTION, ReversalKind value when REVERSAL'. Since both enumerations start at zero, an ACTION receipt for FREEZE and a REVERSAL receipt for UNFREEZE carry the same commandKind byte, and only the receiptKind word separates them. NEG-RECEIPT-KIND is the vector that exercises this separation.",
       "The observation commitments assessmentEvidence, preState and postState are profile-defined; the native-full profile only says the preimage is 'documented by the implementation together with its runtime identity'. Nothing in the specification lets an independent implementer compute them, so they were consumed from the fixture.",
-      "The generated prose renders the shapeRules 'appliesTo' entry character by character, as a table row numbering each letter of the sentence. That is a defect of the prose generator, not of the machine source; the sentence itself was read from the schema.",
+      "At the base of the change that added this program, the generated prose rendered the shapeRules 'appliesTo' entry character by character; the machine source was correct and the generator was corrected in the same change.",
       "Neither the prose nor the ABI states how the two profile interface identifiers are derived. The ERC-165 XOR rule stated for the kernel interface was applied to them and the result compared with the declared values."
     ]
   },
@@ -1860,7 +1862,7 @@
             "status": "PASS"
           },
           {
-            "name": "expectation text names reason 2",
+            "name": "expectation text names reason 2 and the domain exception",
             "status": "PASS"
           }
         ],

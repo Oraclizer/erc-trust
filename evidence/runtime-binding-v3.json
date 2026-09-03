@@ -87,7 +87,7 @@
   "replay": {
     "check": "node scripts/generate-runtime-binding-v3.mjs --check",
     "generate": "node scripts/generate-runtime-binding-v3.mjs",
-    "verify": "node scripts/verify-runtime-binding-v3.mjs"
+    "verify": "node scripts/verify-runtime-binding-v3.mjs --replay"
   },
   "runtimeTemplateSha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1",
   "schema": "erc-trust-runtime-binding-v3",

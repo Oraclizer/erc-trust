@@ -75,16 +75,16 @@ jobs:
         run: pnpm --dir sdk install --frozen-lockfile --ignore-scripts
       - name: Test SDK
         run: pnpm --dir sdk test
-      - name: Rerun the independent specification-only reproduction and compare its receipt
-        run: |
-          node scripts/independent-reproduction-v3.mjs --vectors vectors/conformance-v2.json --ethers sdk/node_modules/ethers --out "$RUNNER_TEMP/independent-reproduction-v3.json" > /dev/null
-          diff -q "$RUNNER_TEMP/independent-reproduction-v3.json" evidence/independent-reproduction-v3.json
       - name: Regenerate conformance vectors
         run: node scripts/generate-vectors.mjs
       - name: Check vector determinism
         run: git diff --exit-code -- vectors/conformance-v1.json
       - name: Check normative kernel generation determinism
         run: node scripts/generate-normative-kernel.mjs --check
+      - name: Rerun the independent specification-only reproduction and compare its receipt
+        run: |
+          node scripts/independent-reproduction-v3.mjs --vectors vectors/conformance-v2.json --ethers sdk/node_modules/ethers --schema spec/erc-trust-kernel-v2.json --abi spec/generated/kernel-v2-abi.json --out "$RUNNER_TEMP/independent-reproduction-v3.json" > /dev/null
+          diff -q "$RUNNER_TEMP/independent-reproduction-v3.json" evidence/independent-reproduction-v3.json
       - name: Build release artifacts
         run: forge build
       - name: Check runtime bridge generation determinism

@@ -28,7 +28,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 
 import { dirname, join, posix, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { resolvePinnedSolc } from "./lib/resolve-pinned-solc.mjs";
-import { immutablePositions, normalizeHex, semanticCheckNames, semanticChecks, semanticStorageLayout, stable } from "./lib/runtime-binding-semantics.mjs";
+import { immutablePositions, normalizeHex, pinnedCompilerSettings, semanticCheckNames, semanticChecks, semanticStorageLayout, stable } from "./lib/runtime-binding-semantics.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const checkMode = process.argv.includes("--check");
@@ -60,27 +60,7 @@ function rootOf(paths) {
 const dependencyLock = json("formal/kevm/dependencies.lock.json");
 const solc = dependencyLock.components.solc;
 const pinnedSolc = resolvePinnedSolc(solc);
-const settings = {
-  optimizer: { enabled: true, runs: 1 },
-  metadata: { useLiteralContent: false, bytecodeHash: "none", appendCBOR: false },
-  outputSelection: {
-    "*": {
-      "*": [
-        "abi",
-        "evm.bytecode.object",
-        "evm.bytecode.linkReferences",
-        "evm.deployedBytecode.object",
-        "evm.deployedBytecode.linkReferences",
-        "evm.deployedBytecode.immutableReferences",
-        "evm.methodIdentifiers",
-        "storageLayout",
-      ],
-    },
-  },
-  evmVersion: "cancun",
-  viaIR: true,
-  libraries: {},
-};
+const settings = pinnedCompilerSettings;
 
 const bundles = [
   {
@@ -219,7 +199,7 @@ const receipt = {
   bundles: bundleRecords,
   replay: {
     generate: "node scripts/generate-runtime-binding-v3.mjs",
-    verify: "node scripts/verify-runtime-binding-v3.mjs",
+    verify: "node scripts/verify-runtime-binding-v3.mjs --replay",
     check: "node scripts/generate-runtime-binding-v3.mjs --check",
   },
   nonclaims: [

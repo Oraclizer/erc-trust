@@ -31,6 +31,7 @@ const receiptPaths = {
   mutation: "evidence/mutation-results.json",
   isabelleBuild: "evidence/isabelle-results-v3.json",
   kontrol: "evidence/kontrol-results-v3.json",
+  independentReproduction: "evidence/independent-reproduction-v3.json",
   certora: "evidence/certora-results-v3.json",
   runtimeBinding: "evidence/runtime-binding-v3.json",
 };
@@ -328,7 +329,7 @@ if (!exists(receiptPaths.certora)) {
 
 // independentReproduction: a specification-only implementation reproduces the conformance vectors
 {
-  const receiptPath = "evidence/independent-reproduction-v3.json";
+  const receiptPath = receiptPaths.independentReproduction;
   if (!exists(receiptPath)) {
     lanes.independentReproduction = pending("independentReproduction", "runtime assurance change: specification-only reproduction of the conformance vectors");
   } else {
@@ -337,7 +338,14 @@ if (!exists(receiptPaths.certora)) {
     check(reproduction.verdict === "PASS" && reproduction.counts?.totals?.failed === 0 && (reproduction.failures ?? []).length === 0, "independent reproduction verdict");
     const vectorsSha256 = `0x${sha256(bytes("vectors/conformance-v2.json"))}`;
     check(reproduction.inputs?.vectorsSha256 === vectorsSha256, "independent reproduction receipt binds different vectors");
-    lanes.independentReproduction = { status: "PASS", receipt: fileRef(receiptPath), assertions: reproduction.counts.totals.assertions };
+    lanes.independentReproduction = {
+      status: "PASS",
+      receipt: fileRef(receiptPath),
+      assertions: reproduction.counts.totals.assertions,
+      findings: (reproduction.findings ?? []).length,
+      notEvaluable: (reproduction.notEvaluable ?? []).length,
+      basis: "the receipt is the output of scripts/independent-reproduction-v3.mjs; the sdk-and-package job reruns the program against the committed vectors and requires the committed receipt to match byte for byte",
+    };
   }
 }
 
@@ -358,13 +366,21 @@ if (!exists(receiptPaths.runtimeBinding)) {
       check(bindingSubjects[id]?.semanticChecks?.[name] === true, `runtime binding semantic check ${name} not passed for ${id}`);
     }
   }
-  lanes.runtimeBinding = { status: "PASS", receipt: fileRef(receiptPaths.runtimeBinding), subjects: Object.keys(bindingSubjects) };
+  lanes.runtimeBinding = {
+    status: "PASS",
+    receipt: fileRef(receiptPaths.runtimeBinding),
+    subjects: Object.keys(bindingSubjects),
+    basis: "this index checks the receipt against the deterministic build; layer 2 (pinned-compiler replay and the six semantic projections) is re-executed by scripts/generate-runtime-binding-v3.mjs --check and scripts/verify-runtime-binding-v3.mjs --replay in the sdk-and-package job",
+  };
 }
 
 // ---------------------------------------------------------------------------
 // Aggregate
 // ---------------------------------------------------------------------------
 
+const requiredLanes = ["runtime", "foundry", "mutation", "isabelleBuild", "isabelleRuntimeBinding", "obligationLedger", "kontrol", "kontrolInputs", "certora", "certoraInputs", "independentReproduction", "runtimeBinding"];
+for (const name of requiredLanes) check(lanes[name] !== undefined, `lane ${name} was not evaluated`);
+check(Object.keys(lanes).every((name) => requiredLanes.includes(name)), "an unlisted lane was evaluated");
 const pendingLanes = Object.entries(lanes).filter(([, lane]) => lane.status === "PENDING").map(([name]) => name);
 if (mode.mode === "release") check(pendingLanes.length === 0, `release mode with pending lanes: ${pendingLanes.join(", ")}`);
 check(exists(historicalIndexPath), "historical candidate 2 index missing");

@@ -342,7 +342,7 @@ ${Object.entries(schema.profileInterfaces).map(([name, entry]) => `### ${name}\n
 
 Common: ${schema.shapeRules.common.map((rule) => `\`${rule}\``).join("; ")}.
 
-${table(["Action", "Rule"], Object.entries(schema.shapeRules).filter(([name]) => name !== "common").map(([name, rules]) => [`\`${name}\``, typeof rules === "string" ? rules : Object.entries(rules).map(([field, rule]) => `${field}: ${rule}`).join("; ")]))}
+${table(["Action", "Rule"], Object.entries(schema.shapeRules).filter(([name]) => name !== "common").map(([name, rules]) => [`\`${name}\``, typeof rules === "object" && rules !== null && !Array.isArray(rules) ? Object.entries(rules).map(([field, rule]) => `${field}: ${rule}`).join("; ") : String(rules)]))}
 
 ## Case transitions
 
@@ -813,7 +813,7 @@ const vectors = {
       id: "NEG-FIELD-BINDING",
       mutation: "change one request field after deriving actionId (every field except actionId is covered)",
       base: "ACTION-FREEZE",
-      expected: "TrustInvalidCommand reason 2; every mutation below yields a different derived actionId",
+      expected: "TrustInvalidCommand reason 2 for every mutated field except domain, which the domain rule rejects first with reason 1; every mutation below yields a different derived actionId",
       rule: "each entry mutates exactly one field of the ACTION-FREEZE request from originalValue to mutatedValue, re-derives actionId with actionId zeroed, and records the result",
       mutatedDerivedActionIds: mutatedIds,
     },

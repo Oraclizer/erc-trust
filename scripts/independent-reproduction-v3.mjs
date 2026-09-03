@@ -36,6 +36,8 @@ function parseArgs(argv) {
     if (a === "--vectors") { out.vectors = argv[i + 1]; i += 1; }
     else if (a === "--ethers") { out.ethers = argv[i + 1]; i += 1; }
     else if (a === "--out") { out.out = argv[i + 1]; i += 1; }
+    else if (a === "--schema") { out.schema = argv[i + 1]; i += 1; }
+    else if (a === "--abi") { out.abi = argv[i + 1]; i += 1; }
     else throw new Error("unknown argument: " + a);
   }
   if (!out.vectors) throw new Error("missing --vectors <path>");
@@ -529,7 +531,7 @@ class EndpointState {
         if (!isZero32(request.settlementCommitment)) return invalid(R.SHAPE, "RECOVER settlementCommitment == 0");
         if (!isZero32(request.proceedsCommitment)) return invalid(R.SHAPE, "RECOVER proceedsCommitment == 0");
         if (isZero32(request.entitlementCommitment)) {
-          return invalid(R.ENTITLEMENT, "RECOVER entitlementCommitment != 0");
+          return invalid(R.SHAPE, "RECOVER entitlementCommitment != 0 (a missing commitment is a field rule, reason 6)");
         }
         if (this.consumedEntitlements.has(request.entitlementCommitment.toLowerCase())) {
           return invalid(R.ENTITLEMENT, "RECOVER entitlementCommitment not previously consumed");
@@ -1116,18 +1118,19 @@ async function main() {
         // The vector describes the mutation as happening after actionId was
         // derived, so the original actionId is kept and the identifier rule is
         // the one that rejects it, which is the reason 2 the vector expects.
-        // The only exception is the domain row: the domain rule is listed ahead
-        // of the identifier rule, so a list-order endpoint answers reason 1.
+        // The domain row is the stated exception: the schema's shape-rule order
+        // checks the domain rule ahead of the identifier rule, so the endpoint
+        // answers reason 1, and the vector's expected text says so.
         const st = freshState();
         const out = st.executeAction({ ...mutated, actionId: freeze.request.actionId });
         const expected = m.field === "domain" ? 1 : 2;
         rec.check(e, "negative", "rejected for mutated " + m.field + " (reason " + expected + " under list-order checking)",
           expected, out.reason);
       }
-      rec.check(e, "negative", "expectation text names reason 2", true, /reason 2\b/.test(neg.expected));
+      rec.check(e, "negative", "expectation text names reason 2 and the domain exception", true, /reason 2\b/.test(neg.expected) && /domain/.test(neg.expected));
       findings.push({
         id: "NEG-FIELD-BINDING domain row",
-        observation: "The vector's expected text is 'TrustInvalidCommand reason 2' for all nineteen mutations, and that holds for eighteen of them. For the domain row it does not, because the common rule list places the domain rule ahead of the identifier rule, so an endpoint that checks in list order answers reason 1. The vector's primary claim, that every mutation yields a different derived actionId, holds for all nineteen.",
+        observation: "Eighteen of the nineteen mutations are rejected by the identifier rule with reason 2; the domain row is rejected first by the domain rule with reason 1, as the shape-rule order in the schema and the vector's expected text state. The vector's primary claim, that every mutation yields a different derived actionId, holds for all nineteen.",
         impact: "Documentation only. No identifier or hash in the vectors is affected.",
       });
     }
@@ -1267,7 +1270,7 @@ async function main() {
   });
   findings.push({
     id: "generated prose renders shapeRules.appliesTo character by character",
-    observation: "In spec/generated/kernel-v2.md the shape rules table has an 'appliesTo' row printed as '0: c; 1: o; 2: m; ...', one numbered entry per letter of the sentence held in the schema. The prose generator is treating a string value as a map of fields. The machine source itself is correct.",
+    observation: "At the base of the change that added this program, spec/generated/kernel-v2.md rendered the shape rules 'appliesTo' entry character by character, one numbered entry per letter of the sentence held in the schema, because the prose generator treated a string value as a map of fields. The machine source was correct; the generator was corrected in the same change and the prose now shows the sentence.",
     impact: "Cosmetic defect in the normative prose. No hash, identifier or calldata is affected.",
   });
   findings.push({
@@ -1320,12 +1323,12 @@ async function main() {
     producer: {
       program: "independent-reproduction-v3.mjs",
       role: "independent implementer, specification only",
-      inputsRead: [
+      specificationTranscribedFrom: [
         "spec/erc-trust-kernel-v2.json",
         "spec/generated/kernel-v2.md",
         "spec/generated/kernel-v2-abi.json",
-        "vectors/conformance-v2.json",
       ],
+      note: "The program transcribes the specification by hand and reads the vectors file at run time; the schema and ABI files are hashed (not parsed) so that a change to either reopens this receipt.",
       inputsNotRead: [
         "implementation/", "sdk/src/", "sdk/*.ts", "scripts/", "formal/",
         "evidence/", "pilot/", "docs/", "README.md", "FORMAL_VERIFICATION.md",
@@ -1333,7 +1336,9 @@ async function main() {
       externalModule: { name: "ethers", version: ethersVersion, usedFor: "keccak-256 and an independent ABI cross-check" },
     },
     inputs: {
-      vectorsPath: args.vectors.split("\\").join("/"),
+      vectorsPath: path.relative(process.cwd(), path.resolve(args.vectors)).split(path.sep).join("/"),
+      schemaSha256: args.schema ? "0x" + createHash("sha256").update(readFileSync(args.schema)).digest("hex") : null,
+      abiSha256: args.abi ? "0x" + createHash("sha256").update(readFileSync(args.abi)).digest("hex") : null,
       vectorsBytes: vectorBytes.length,
       vectorsSha256,
       vectorsKeccak256,
@@ -1405,7 +1410,7 @@ const METHOD = {
     "For a reversal receipt it is not stated whether authorityRef and dependencyRoot come from the reversal request or from the reversed action. The vectors cannot distinguish the two because both commands carry the same authority reference and the same dependency root. The program uses the reversal request's own values.",
     "Receipt.commandKind is typed uint8 with the meaning 'ActionKind value when receiptKind is ACTION, ReversalKind value when REVERSAL'. Since both enumerations start at zero, an ACTION receipt for FREEZE and a REVERSAL receipt for UNFREEZE carry the same commandKind byte, and only the receiptKind word separates them. NEG-RECEIPT-KIND is the vector that exercises this separation.",
     "The observation commitments assessmentEvidence, preState and postState are profile-defined; the native-full profile only says the preimage is 'documented by the implementation together with its runtime identity'. Nothing in the specification lets an independent implementer compute them, so they were consumed from the fixture.",
-    "The generated prose renders the shapeRules 'appliesTo' entry character by character, as a table row numbering each letter of the sentence. That is a defect of the prose generator, not of the machine source; the sentence itself was read from the schema.",
+    "At the base of the change that added this program, the generated prose rendered the shapeRules 'appliesTo' entry character by character; the machine source was correct and the generator was corrected in the same change.",
     "Neither the prose nor the ABI states how the two profile interface identifiers are derived. The ERC-165 XOR rule stated for the kernel interface was applied to them and the result compared with the declared values.",
   ],
 };

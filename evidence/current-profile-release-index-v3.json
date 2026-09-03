@@ -37,9 +37,12 @@
     },
     "independentReproduction": {
       "assertions": 400,
+      "basis": "the receipt is the output of scripts/independent-reproduction-v3.mjs; the sdk-and-package job reruns the program against the committed vectors and requires the committed receipt to match byte for byte",
+      "findings": 5,
+      "notEvaluable": 4,
       "receipt": {
         "path": "evidence/independent-reproduction-v3.json",
-        "sha256": "4a2e86e71104841f8644b1010b55de373b4872fc63404c9e9c7411a88c304d0a"
+        "sha256": "dc4f03472f58bfbfea916966331004e1c685063999748958315807f3e33bc858"
       },
       "status": "PASS"
     },
@@ -220,9 +223,10 @@
       "status": "PASS"
     },
     "runtimeBinding": {
+      "basis": "this index checks the receipt against the deterministic build; layer 2 (pinned-compiler replay and the six semantic projections) is re-executed by scripts/generate-runtime-binding-v3.mjs --check and scripts/verify-runtime-binding-v3.mjs --replay in the sdk-and-package job",
       "receipt": {
         "path": "evidence/runtime-binding-v3.json",
-        "sha256": "2784b5a34b5b4624edbe769f456db8fded36922d0c707f9542ba7f3c7e61a222"
+        "sha256": "6704be745b932bda94ad39cd6f36c63b50b1fee93a13ac64fc9e7eedc1c4b0a3"
       },
       "status": "PASS",
       "subjects": [

@@ -1067,6 +1067,7 @@
       "dependencyRoot == current root and dependencyEpoch == current epoch (reason 5)",
       "provenanceCommitment != 0, and for action requests subject != 0 and caseId != 0 (reason 6)"
     ],
+    "order": "the common rules are checked in the listed order, then the per-action field rules; the first failing rule names the reason, so a request with several defects reports the earliest one",
     "FREEZE": {
       "source": "== subject",
       "destination": "== 0",
@@ -1115,7 +1116,7 @@
       "same": "CONFISCATE",
       "settlementCommitment": "== 0",
       "proceedsCommitment": "== 0",
-      "entitlementCommitment": "!= 0 and not previously consumed (reason 9)"
+      "entitlementCommitment": "!= 0 (reason 6 when zero, as a field rule) and not previously consumed (reason 9)"
     },
     "reversal": {
       "pairing": "UNFREEZE only for an applied FREEZE, RELEASE only for an applied SEIZE, UNRESTRICT only for an applied RESTRICT (reason 7)",
@@ -1131,7 +1132,7 @@
       "6": "any per-action field rule below that is not given its own code",
       "7": "reversal kind does not pair with the original action",
       "8": "custody record missing, active when it must not be, or not matching",
-      "9": "entitlement commitment missing or already consumed",
+      "9": "entitlement commitment already consumed (a missing commitment is reason 6, the field rule)",
       "10": "case conflict (CT-3, CT-7, CT-14, CT-16)",
       "11": "referenced action is not the subject's live head or the case's active custody",
       "12": "FREEZE target not strictly greater than the current target",
