@@ -33,7 +33,7 @@
   "sourceTree": {
     "scope": "protected-release-inputs-v1",
     "algorithm": "sha256-canonical-utf8-lf-lines-v1",
-    "root": "54d7786cd20126ae6f1d9af2e4cdd6a2a3637d5e247964770da2fde83cc8c33a",
+    "root": "7de52b023c920fe71d1d88a263b027074a73503dac5518f812047a7a16650586",
     "files": {
       "evidence/README.md": "e1ae0f2ebc44c3a063f95fb1027b274449b9e3cb3511dfcbf81ad66bbba05415",
       "evidence/candidate-2/README.md": "04407d7f2edca1613d4934f509f76dbdca7449c8676b35225553b6d018d0a662",
@@ -707,7 +707,7 @@
       "evidence/candidate-2/mutation-results.json": "d869dd4d4264a91d73bc2df645f317e26161ae1d32e7f60fa306e483f3106049",
       "evidence/claim-matrix.md": "fca59e3348b3ae3af7317d47e20c59fe946af2aa8ce3335b5209dfd968b7b17e",
       "evidence/clean-room-provenance.md": "b87dce61009c7a63bd73748b2d78732ac3871355a25ed62c62af63c82b497e2a",
-      "evidence/current-profile-release-index-v3.json": "dba7af00e1fb9e200c29170ec029d01d4171df03bdeca85279020f897ee98532",
+      "evidence/current-profile-release-index-v3.json": "87513d1a1e4209fd1650e35447e0d06df4af0f9411f433bb32eb6f58da0337a9",
       "evidence/deterministic-build.json": "d80c116eaba336a83ea45cc52284f2f767f7b8ae891f2a6ca8188a5e266cd09d",
       "evidence/end-to-end-refinement/central-closure-v3.json": "940b015363876b34dad0b05ab04d426b8353352b6ef4f03ba16c5606c34b43cb",
       "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json": "ee191d365e34477863c473c7e9bd4ab3ba7f5698d8e073999ee243b655cc99fa",
@@ -717,7 +717,7 @@
       "evidence/evidence-mode.json": "1fa539b576fb5edeab2238781dc0d38db5c01793872c0555d4d574d5947833f9",
       "evidence/foundry-results-v3.json": "1a29a6b57d7ea680c9ef54213f16beafc5f3e0de2157f382c1c535c5a5c12662",
       "evidence/independent-reproduction-v3.json": "dc4f03472f58bfbfea916966331004e1c685063999748958315807f3e33bc858",
-      "evidence/isabelle-results-v3.json": "42958b9fb503f05d7269404b8f33dc8e6e6b5d73ce1122cac65c429ffd7c1073",
+      "evidence/isabelle-results-v3.json": "cd274a6717514fdb8e1f60447383ba9a9119b53bebe29ef4d42c8949d3f5ebca",
       "evidence/isabelle-solidity-applicability.md": "e641ab7edf40788cd8b05f9dddbec8e53687b1a05b9ea86558bea2e803796a43",
       "evidence/kontrol-results-v3.json": "80467a3ac9ff39e2a9c87e60fc789bba7b065ba5c61e5303dbead49e034c1633",
       "evidence/model-regression.json": "829e9779ec35008b0911cf1f0a8efba3b7eb5545b9ffd0a7511b779fe70065ea",
