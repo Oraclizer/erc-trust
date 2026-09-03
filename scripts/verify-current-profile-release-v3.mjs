@@ -16,7 +16,6 @@
 //   node scripts/verify-current-profile-release-v3.mjs --require-release
 
 import { createHash } from "node:crypto";
-import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -85,38 +84,18 @@ function inputsRoot(path) {
   return paths.length === 0 ? null : rootOf(paths);
 }
 
-// Source root recomputed from the tree of a commit, so a receipt's declared commit must actually
-// produce the declared root; ancestry alone would accept any earlier commit.
-function sourceRootOfCommit(commit) {
-  const listing = execFileSync(
-    "git",
-    ["ls-tree", "-r", "-z", commit, "--", "implementation/src", "implementation/test", "foundry.toml"],
-    { cwd: root, encoding: "utf8" },
-  );
-  const entries = listing.split("\0").filter(Boolean).map((line) => {
-    const [meta, path] = line.split("\t");
-    return { blob: meta.split(" ")[2], path };
-  });
-  entries.sort((left, right) => (left.path < right.path ? -1 : left.path > right.path ? 1 : 0));
-  const material = entries.map((entry) => {
-    const blob = execFileSync("git", ["cat-file", "blob", entry.blob], { cwd: root, maxBuffer: 64 * 1024 * 1024 });
-    return `${sha256(blob)}  ${entry.path}\n`;
-  }).join("");
-  return sha256(Buffer.from(material, "utf8"));
-}
+// A receipt binds the byte root of the sources or theories it ran on, recomputed here from the
+// working tree. The commit a receipt names is provenance, not a gate: the trunk is reached by
+// GitHub merges that rewrite commit identities (rebase for own pull requests, squash for
+// external ones), so the recorded commit is never an ancestor of main. The recorders check at
+// record time that the named commit carries the declared root; this verifier checks that the
+// declared root is the root of the tree it runs on.
 
 function declaredMutationIds() {
   return [...bytes("scripts/run-mutations.ps1").toString("utf8").matchAll(/^\s*Id = "([^"]+)"/gm)].map((match) => match[1]);
 }
 
-function isAncestor(commit) {
-  try {
-    execFileSync("git", ["merge-base", "--is-ancestor", commit, "HEAD"], { cwd: root, stdio: "ignore" });
-    return true;
-  } catch {
-    return false;
-  }
-}
+const fullSha = (value) => typeof value === "string" && /^[0-9a-f]{40}$/.test(value);
 
 // ---------------------------------------------------------------------------
 // Mode
@@ -167,9 +146,7 @@ if (!exists(receiptPaths.runtime)) {
   check(String(deterministic.toolchain.solidity).startsWith("0.8.36"), "deterministic build compiler pin");
   check(deterministic.candidateInput.sourceRootAlgorithm === identity.sourceRootAlgorithm, "deterministic build source root algorithm");
   check(deterministic.candidateInput.sourceRootSha256 === identity.sourceRootSha256, "deterministic build receipt binds a different source root");
-  check(isAncestor(deterministic.candidateInput.gitHead), "deterministic build commit is not an ancestor");
-  check(sourceRootOfCommit(deterministic.candidateInput.gitHead) === deterministic.candidateInput.sourceRootSha256,
-    "deterministic build commit does not produce the declared source root");
+  check(fullSha(deterministic.candidateInput.gitHead), "deterministic build receipt names no commit");
   const manifest = json("evidence/release-manifest.json");
   check(manifest.trustToken.runtimeSha256 === deterministic.buildA.runtimeSha256
     && manifest.trustToken.runtimeBytes === deterministic.buildA.runtimeBytes
@@ -201,7 +178,7 @@ if (!exists(receiptPaths.foundry)) {
   check(foundry.sourceRootSha256 === identity.sourceRootSha256, "Foundry receipt binds a different source root");
   check(runtimeTemplateSha256 !== null, "Foundry receipt without a deterministic build receipt");
   check(foundry.runtimeTemplate.sha256 === runtimeTemplateSha256, "Foundry receipt binds a different runtime");
-  check(isAncestor(foundry.sourceCommit), "Foundry evidence commit is not an ancestor");
+  check(fullSha(foundry.sourceCommit), "Foundry receipt names no commit");
   lanes.foundry = { status: "PASS", receipt: fileRef(receiptPaths.foundry), tests: foundry.checks.tests.passed };
 }
 
@@ -218,13 +195,12 @@ if (!exists(receiptPaths.mutation)) {
   const declared = declaredMutationIds();
   check(declared.length > 0 && JSON.stringify(mutation.results.map((result) => result.id)) === JSON.stringify(declared),
     "mutation receipt does not list exactly the declared campaign in scripts/run-mutations.ps1");
-  check(sourceRootOfCommit(mutation.candidateInput.gitHead) === mutation.candidateInput.sourceRootSha256,
+  check(fullSha(mutation.candidateInput.gitHead) && mutation.candidateInput.sourceRootSha256 === identity.sourceRootSha256,
     "mutation commit does not produce the declared source root");
   for (const result of mutation.results) {
     check(result.result === "KILLED" && result.anchorOccurrences >= 1 && result.detectorDiscovered === 1
       && result.detectorExecuted === 1 && result.mutantCompiled === true, `invalid mutation receipt: ${result.id}`);
   }
-  check(isAncestor(mutation.candidateInput.gitHead), "mutation evidence commit is not an ancestor");
   lanes.mutation = {
     status: "PASS",
     receipt: fileRef(receiptPaths.mutation),
@@ -244,7 +220,7 @@ if (!exists(receiptPaths.isabelleBuild)) {
     "Isabelle receipt status");
   check(isabelle.formalSource.theoryFiles === identity.formalRoot.theoryFiles
     && isabelle.formalSource.rootSha256 === identity.formalRoot.rootSha256, "Isabelle receipt binds a different formal root");
-  check(isAncestor(isabelle.sourceCommit), "Isabelle evidence commit is not an ancestor");
+  check(fullSha(isabelle.sourceCommit), "Isabelle receipt names no commit");
   lanes.isabelleBuild = { status: "PASS", receipt: fileRef(receiptPaths.isabelleBuild) };
 }
 

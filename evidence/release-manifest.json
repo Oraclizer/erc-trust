@@ -33,7 +33,7 @@
   "sourceTree": {
     "scope": "protected-release-inputs-v1",
     "algorithm": "sha256-canonical-utf8-lf-lines-v1",
-    "root": "43dad7df1e307761e639a7e71188409cc56f2c85a144cca43110ddd4abb1d052",
+    "root": "1324cb4df17e79d54e87fdad91a74362fe3cc346d4d564f1cae77b1a489af1a2",
     "files": {
       "evidence/README.md": "76acee803d2f89111dd5e96db2a6fe46777e06256a45ea0fc8fddc45b11d9a0d",
       "evidence/candidate-2/README.md": "04407d7f2edca1613d4934f509f76dbdca7449c8676b35225553b6d018d0a662",
@@ -833,7 +833,7 @@
       "scripts/run-mutations.ps1": "c28210bec081c305f4a364d7dc71fec04c08615f249ed2c3b3e058f000f14264",
       "scripts/run-pilot-regression-mutations.ps1": "465bbf17df910d163c9509db2552c4fa47d056e1e6c7861dfc8d8f919b0ab87b",
       "scripts/verify-current-profile-release-v2.mjs": "b78a18a4487069d671e4ecb9179b41cc136f6d4dd90c77e49c4bc531bd39564b",
-      "scripts/verify-current-profile-release-v3.mjs": "297563efb36ff320ce17cda1de2b6b2914392ba23b51c68fbcfe4e7b5b8dfe9e",
+      "scripts/verify-current-profile-release-v3.mjs": "2af2123f63ecda2143b84a0407148935b4dfc6a2ddae88c5fa934166e0092a30",
       "scripts/verify-current-profile-release.mjs": "297010585e4e7c477308af881e417df41290c6dbc60fa54ed9719ece0e026bf1",
       "scripts/verify-current-profile-runtime-bridge-v1.mjs": "307b388a6203b2b8f40c659973bde3b93b3f400131f79be6d23470b265773b6d",
       "scripts/verify-formal-foundation-supersession.mjs": "171111dea1f9b68f62af282746bd30d1a03091cdba9dff15e132cbff3f4c75a3",
@@ -868,7 +868,7 @@
       "spec/decisions/08-native-wiring.md": "babb4f138518ea926516383811a778187b529c36f62e7848519bf69b44ceae31",
       "spec/decisions/09-erc3643-profile-wiring.md": "17bfb015efd9cb3998a17a23501fa6d9c9fa3bd4f11102014563280d0c060afb",
       "spec/decisions/10-refinement-closure.md": "0a4d27ffe2a2d96cd133d33e5b8c83b94f1ab5ca56f505e7c1cdbf53db167ce8",
-      "spec/decisions/11-runtime-assurance.md": "b303f8e98daf182b300f0e47f28cf54766492d9595cfda6246f761123b193e1d",
+      "spec/decisions/11-runtime-assurance.md": "59d9b762cba7b75384752ac8ecf693b65eb7bec5198bdc2fad535287374e44de",
       "spec/erc-trust-kernel-v2.json": "188ae0491bbd81faf0c1eed5bc8e806ecaf74cd62a38f2bca52753180dc3bdc1",
       "spec/generated/IERCTrustKernel.sol": "405a465c9b91e55270035638566f7d9e682efc90166f611d3e9a9eea1c9e2c88",
       "spec/generated/kernel-v2-abi.json": "73b45cee3e8e6a2abd484a306a21d51aaa3fc4da75b976dd3c938d936352814b",
