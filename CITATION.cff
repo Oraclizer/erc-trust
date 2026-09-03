@@ -6,8 +6,8 @@ authors:
   - family-names: "Kim"
     given-names: "Jinwook"
     orcid: "https://orcid.org/0009-0004-4993-8005"
-version: "0.1.0-candidate.2"
-date-released: 2026-09-01
+version: "0.2.0-candidate.1"
+date-released: 2026-09-03
 license: BSD-3-Clause
 repository-code: "https://github.com/Oraclizer/erc-trust"
 url: "https://github.com/Oraclizer/erc-trust"
@@ -23,7 +23,8 @@ keywords:
 abstract: >-
   ERC-TRUST is a pre-ERC interface and reference candidate for typed,
   fail-closed regulatory actions and recomputable receipts for security
-  tokens. The candidate is unaudited and not for production.
+  tokens (kernel version 2). The candidate is unaudited and not for
+  production; cite the exact commit.
 references:
   - type: article
     title: "Mechanizing Typed Regulatory Actions for Security Tokens: Semantics, Falsification, and Bounded EVM Evidence"

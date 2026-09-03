@@ -1,10 +1,13 @@
 # ERC-TRUST verification and refinement map
 
-This is the repository-level entry point for the exact
-`0.1.0-candidate.2` verification package. It separates the abstract Isabelle
-model, the native Solidity reference, the ERC-3643 conformance fixture, and the
-preserved FREEZE pilot. A PASS below applies only to the named source, build, rule,
-and harness boundary.
+This is the repository-level entry point for the verification package of the
+successor (kernel version 2, working label `0.2.0-candidate.1`, on the
+integration branch) and for the shipped candidate `0.1.0-candidate.2`, whose
+evidence is preserved as history. It separates the abstract Isabelle model, the
+native Solidity reference, the ERC-3643 profile adapter and governor, and the
+preserved FREEZE pilot. A PASS below applies only to the named source, build,
+rule, and harness boundary; what none of it establishes is listed in
+`evidence/known-limitations.md`.
 
 The accompanying [research paper](https://arxiv.org/abs/2608.29134) explains
 the domain semantics and evidence taxonomy. This repository remains the exact
@@ -33,14 +36,15 @@ and operations require separate evidence.
 | Native reference implementation | `implementation/src/TrustToken.sol` |
 | ERC-3643 fixture profile | `implementation/src/profiles/` |
 | Unit, fuzz, and invariant evidence | `implementation/test/` |
-| Bounded CVL rules | `implementation/certora/` |
+| Bounded CVL rules (candidate 2, history) | `evidence/candidate-2/implementation/certora/` |
 | KEVM high-risk cross-checks | `implementation/kontrol/` |
 | Preserved FREEZE pilot | `pilot/` |
 | Exact result and release bindings | `evidence/` |
 | Isabelle/Solidity applicability | `evidence/isabelle-solidity-applicability.md` |
 | Successor obligation ledger (kernel version 2) | `evidence/end-to-end-refinement/obligation-ledger-v3.json`; rendered `obligation-ledger-summary-v3.json`, `central-closure-v3.json`, and `formal/isabelle/ERC_TRUST/TRUST_Obligation_Ledger_Generated.thy` |
 | Successor runtime bridge | `evidence/end-to-end-refinement/runtime-bridge-v2/`; `formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy`; `formal/kevm/generated/trust-runtime-bridge.k` |
-| Successor Kontrol receipt | `evidence/kontrol-results-v3.json`, written by `scripts/record-kontrol-results-v3.mjs`; absent while the kontrol lane is pending |
+| Successor lane index | `evidence/current-profile-release-index-v3.json` under `evidence/evidence-mode.json`, written and checked by `scripts/verify-current-profile-release-v3.mjs` |
+| Successor Foundry, mutation, Isabelle, and Kontrol receipts | `evidence/foundry-results-v3.json`, `evidence/mutation-results.json`, `evidence/isabelle-results-v3.json`, `evidence/kontrol-results-v3.json`, written from the committed tree by the tracked recorder scripts |
 | Superseded candidate 2 formal artifacts | `evidence/candidate-2/formal/` |
 | Successor runtime binding (two layers) | `evidence/runtime-binding-v3.json`; `evidence/runtime-binding-v3/`; `scripts/generate-runtime-binding-v3.mjs`; `scripts/verify-runtime-binding-v3.mjs` |
 | Successor deterministic build (three runtimes) | `evidence/deterministic-build.json` (schema v3) |
@@ -122,15 +126,60 @@ sources under the pinned compiler and requires the six semantic projections to
 match the artifacts. An independent, specification-only implementation
 reproduces the conformance vectors (`evidence/independent-reproduction-v3.json`).
 None of this discharges the runtime link; it fixes which bytes the open
-obligation is about. Replay:
+obligation is about.
+
+The successor disposition, lane by lane:
+
+| Lane | Result | Receipt |
+| --- | --- | --- |
+| Foundry | 89/89 tests across seven suites; two fuzz properties at 256 runs; nine invariants at 256 runs and depth 500 (1,152,000 calls, zero reverts); format, lint, and size gates PASS | `evidence/foundry-results-v3.json` |
+| Mutation | 111/111 declared faults killed; every fault names the detector that kills it and, where it removes a load-bearing consumer, the obligation ledger row it serves | `evidence/mutation-results.json` |
+| Kontrol and KEVM | 4/4 proofs rerun on the successor native runtime under Kontrol 1.0.255 and KEVM 1.0.678; the adapter has no symbolic lane | `evidence/kontrol-results-v3.json` |
+| Isabelle/HOL | 22 theories; clean build and proof audit in continuous integration with 409 explicit roots, 410 qualified facts, zero oracle dependencies, zero banned source forms | `evidence/isabelle-results-v3.json` |
+| Obligation ledger | 72 rows: 68 closed, 2 open (the runtime link), 2 not applicable; closure conditional | `evidence/end-to-end-refinement/obligation-ledger-summary-v3.json` |
+| Deterministic build | Two isolated clean builds of the native token (20,043 bytes), the adapter (19,218), and the governor (2,790), byte-identical | `evidence/deterministic-build.json` |
+| Runtime binding | Three runtimes agree with the pinned-compiler replay in ABI, semantic storage layout, creation and runtime bytecode, method identifiers, and immutable references; verifier self-mutation 18/18; stale receipts rejected | `evidence/runtime-binding-v3.json` |
+| Independent reproduction | 23 vectors, 400 assertions, reproduced from the machine source, the generated prose and ABI, and the vectors alone | `evidence/independent-reproduction-v3.json` |
+| Certora | Pending by decision; no successor source has been sent to the cloud prover, and the evidence mode stays `successor-development` | `evidence/evidence-mode.json` |
+
+Replay:
 
 ```bash
 node scripts/verify-runtime-binding-v3.mjs --replay
 node scripts/independent-reproduction-v3.mjs --vectors vectors/conformance-v2.json --ethers sdk/node_modules/ethers --schema spec/erc-trust-kernel-v2.json --abi spec/generated/kernel-v2-abi.json --out independent.json
 ```
 
+The full replay of the successor from a clean checkout is:
+
+```text
+forge fmt --check
+forge build --sizes
+FOUNDRY_FUZZ_RUNS=256 FOUNDRY_INVARIANT_RUNS=256 \
+  FOUNDRY_INVARIANT_DEPTH=500 forge test
+forge lint
+
+FOUNDRY_PROFILE=kontrol kontrol build --foundry-project-root . --regen --rekompile
+FOUNDRY_PROFILE=kontrol kontrol prove --foundry-project-root . --schedule CANCUN \
+  --match-test <exact-proof-name>
+
+node scripts/generate-normative-kernel.mjs --check
+node scripts/generate-runtime-bridge-v2.mjs --check
+node scripts/verify-obligation-ledger-v3.mjs
+node scripts/generate-runtime-binding-v3.mjs --check
+node scripts/verify-runtime-binding-v3.mjs --replay
+node scripts/verify-current-profile-release-v3.mjs
+node scripts/verify-release.mjs
+```
+
+The deterministic build (`scripts/check-deterministic-build.ps1`) and the
+mutation campaign (`scripts/run-mutations.ps1`) run on Windows with a WSL
+Foundry and write their receipts from the committed tree; the Isabelle
+receipt is written from the Proofs workflow run by
+`scripts/record-isabelle-results-v3.mjs`.
+
 The sections that follow describe the shipped `0.1.0-candidate.2` package and
-its historical evidence.
+its historical evidence; their numbers are candidate 2 measurements, not
+measurements of the successor.
 
 ## Native Full financial-core refinement scope
 
@@ -252,8 +301,10 @@ The pinned Isabelle/EVM candidate passed an isolated Isabelle2025-2
 compatibility build, but its root theory-source license is not stated. It is
 therefore not adopted or vendored, and implementation is stopped at the
 dependency gate. Exact identity, hashes, replay command, semantic limits, and
-resume alternatives are recorded in
-`evidence/candidate-2/end-to-end-refinement/isabelle-evm-feasibility.md`.
+resume alternatives were recorded in the candidate 2 feasibility note, which the
+public tree does not carry (it is listed in
+`evidence/public-release/diet-manifest-v1.json`); the dependency-gate
+disposition stands as history.
 
 The official Isabelle/Solidity AFP framework was source-inspected and its
 selected session was clean-built successfully. Its candidate disposition is
@@ -264,11 +315,11 @@ shallow embedding does not connect to the Solidity compiler or EVM bytecode.
 The exact source binding and non-claims are in
 `evidence/isabelle-solidity-applicability.md`.
 
-## Exact reference-candidate verification disposition
+## Exact reference-candidate verification disposition (candidate 2, history)
 
 ### Foundry
 
-The pinned Foundry 1.7.1 / Solidity 0.8.36 build passed:
+The pinned Foundry 1.7.1 / Solidity 0.8.36 build of candidate 2 passed:
 
 - 31 tests, 0 failures, 0 skipped;
 - two fuzz properties at 256 runs each;
@@ -356,7 +407,7 @@ The generated manifest contains 18 TRUST rows and 35 foundation-model rows; the
 independent Node reverse checker re-enumerated the same unique key sets. The model negative
 mutation campaign remains a model-level gate and does not prove Solidity.
 
-The preserved pilot is byte-for-byte bound by `pilot/evidence/hashes.json`.
+The preserved pilot is byte-for-byte bound by `pilot/evidence/hashes-v2.json`.
 Its current local Foundry replay remains 13/13 PASS at 256 fuzz runs. The
 previous Certora 13/13 and Kontrol 2/2 results remain historical provenance.
 Public-label-only edits changed source/harness file hashes while leaving the
@@ -364,31 +415,23 @@ compiled pilot bytecode and CVL rule logic unchanged, so no fresh remote or
 symbolic proof run is claimed and those results are not reused as
 reference-candidate proof.
 
-## Replaying the candidate
+## Replaying candidate 2 (history)
+
+The candidate 2 receipts under `evidence/candidate-2/` are replayed against
+their own bytes by the candidate 2 tooling, which is kept in the tree:
 
 ```text
-forge fmt --check
-forge build --sizes
-FOUNDRY_FUZZ_RUNS=256 FOUNDRY_INVARIANT_RUNS=256 \
-  FOUNDRY_INVARIANT_DEPTH=500 forge test
-forge lint
-
 (cd implementation && certoraRun certora/TrustFreezeDirection.conf \
   --rule strict_increase_is_the_only_accepted_freeze_shape \
          nonincreasing_freeze_shape_reverts_and_restores_storage)
-
-FOUNDRY_PROFILE=kontrol kontrol build --foundry-project-root . --regen --rekompile
-FOUNDRY_PROFILE=kontrol kontrol prove --foundry-project-root . --schedule CANCUN \
-  --match-test <exact-proof-name>
 
 node scripts/generate-pure-runtime-fixture.mjs --check
 node scripts/verify-runtime-binding.mjs --check-receipt
 node scripts/verify-current-profile-release-v2.mjs
 ```
 
-Windows replay commands for deterministic builds, mutation checks, manifest
-generation, release verification, and public-surface scanning are under
-`scripts/`.
+These commands measure candidate 2; the successor replay is the block in
+"Successor refinement closure" above.
 
 ## Change discipline
 

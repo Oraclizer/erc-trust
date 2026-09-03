@@ -12,16 +12,20 @@ and implementation assurance into one opaque privileged call.
 
 The draft defines six actions: freeze, seize, confiscate, liquidate, restrict,
 and recover. Unfreeze, release, and unrestrict are separate reversals. A
-request binds its authority, scope, epochs, nonce, validity window, policy and
-provenance commitments, and action-specific evidence. Successful execution
-ends with a recomputable canonical receipt.
+request binds its authority and authority epoch, its case, the endpoint's
+current dependency root and epoch, its nonce and validity window, its
+provenance commitment, and its action-specific commitments. A case transition
+table fixes what a second command in a case means and when a case can never
+be reused. Successful execution ends with a recomputable receipt that actions
+and reversals share.
 
 The reference candidate demonstrates two mechanisms:
 
-- an immutable native token with versioned read-only dependencies and an
-  exact-use, same-transaction ERC-7943 route ticket; and
+- an immutable native token with four read-only dependencies folded into one
+  dependency root and an exact-use, same-transaction ERC-7943 route ticket;
+  and
 - an ERC-3643 adapter that is Full only under a sealed exclusive-Agent
-  topology.
+  topology with a declared initial state and owned upstream state.
 
 The design deliberately does not claim that a commitment proves legal title,
 identity, settlement completion, proceeds, entitlement, or ownership truth.
@@ -39,6 +43,10 @@ identity, settlement completion, proceeds, entitlement, or ownership truth.
    interoperable relayers and monitoring systems?
 6. Do the action-specific custody, terminal-case, settlement, proceeds, and
    entitlement rules expose any unintended legal interpretation?
+7. Is a single dependency root with a global epoch the right granularity for
+   stale-command invalidation, or should some profiles bind per-kind epochs?
+8. Should the kernel stay free of a delegation surface, leaving delegation to
+   the registered authority account?
 
 ## Questions for implementation reviewers
 
@@ -63,6 +71,7 @@ identity, settlement completion, proceeds, entitlement, or ownership truth.
 - [TRUST-REF matrix](../evidence/trust-ref-matrix.md)
 - [Public claim matrix](../evidence/claim-matrix.md)
 - [Verification summary](../evidence/verification-summary.md)
+- [Known limitations](../evidence/known-limitations.md)
 - [Release manifest](../evidence/release-manifest.json)
 
 Answers to the open questions above are welcome through the Specification

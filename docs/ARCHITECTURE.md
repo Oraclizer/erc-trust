@@ -15,36 +15,48 @@ state, and the evidence supporting a claim about this implementation.
   <img src="assets/architecture-action-flow.svg" alt="Four-stage flow from the command boundary through validation and bound inputs to the state transition, ending with the canonical receipt emitted last" width="900">
 </div>
 
-The request commits to authority, scope, epochs, validity, nonce, policy,
-provenance, and action-specific evidence. A successful transition records a
-receipt only after state mutation and required compatibility events complete.
-Rejected or operationally unavailable assessments revert the transaction, so
-authorization is not consumed on a failed command.
+A typed command commits to its authority and authority epoch, its case, the
+endpoint's current dependency root and epoch, its validity window and nonce,
+its provenance, and its action-specific commitments. The endpoint validates
+the command in a fixed order (domain, identifier, replay, window, authority,
+dependency pair, nonce, field rules, state-dependent rules), assesses its
+bound dependencies, applies the transition, and only then stores and emits
+the receipt as the final log. Every failure reverts and leaves the endpoint
+exactly as it was, so no identifier or nonce is consumed by a failed command.
 
 ## Component ownership
 
 | Component | Owns | Reads or calls | Must not be treated as |
 | --- | --- | --- | --- |
-| `TrustToken` | ERC-20 balances, freeze/restriction state, action lifecycle, custody, settlement, entitlement, tickets, receipts | Four bound read-only dependencies | A legal adjudicator or deployment |
-| `TrustDecision` | Shape and action-specific decision logic | Request and dependency results | An external-fact oracle |
-| `TrustPolicyBinding` | Runtime code hash, configuration, schema, epoch, and binding digest | Bound dependency metadata | A guarantee that dependency output is true |
-| `ERC7943RouteTicket` | Exact-use route-key derivation and consumption | Current wrapper call | Standing authority for raw ERC-7943 calls |
-| `ERC3643TrustAdapter` | TRUST action state, custody, terminal cases, receipts | Upstream token, Identity Registry, Compliance, sealed topology | Proof that an arbitrary ERC-3643 deployment is Full |
-| `ProfileGovernor` | One-way topology seal | Token code hash, owner, registry, compliance, exclusive Agent | A general-purpose administrator |
-| Operator SDK | Deterministic IDs, hashes, and calldata | Caller-provided request data | A signer, relayer, fact checker, or policy engine |
+| `TrustToken` | ERC-20 balances, frozen targets and restriction flags, cases and overlay heads, custody records and backing, action records, receipts, replay keys, authorities, dependency bindings and the dependency root | Four bound read-only dependencies | A legal adjudicator or a deployment |
+| `TrustNativeDecision` | Pure shape and case-transition helpers of the native token | Request fields and stored records | An external-fact oracle |
+| `TrustDependencyBinding` | Per-kind binding hash (address, runtime code, configuration digest, schema, per-kind epoch) and the ordered dependency root | Bound dependency metadata | A guarantee that dependency output is true |
+| `ERC7943RouteTicket` | The exact-use route ticket of the sensitive ERC-7943 selectors | The current wrapper call | Standing authority for raw ERC-7943 calls |
+| `ERC3643TrustAdapter` | Kernel state over a sealed ERC-3643 token: cases, custody, owned frozen targets and restriction flags, receipts, the single immutable authority | Upstream token, Identity Registry, Compliance, the sealed topology | Proof that an arbitrary ERC-3643 deployment is Full |
+| `ProfileGovernor` | The one-way topology seal and the import manifest | Token code identity, owner, registries, exclusive Agent, live upstream state at the seal | A general-purpose administrator |
+| Operator SDK | Deterministic identifiers, hashes, and calldata | Caller-provided request data | A signer, relayer, fact checker, or policy engine |
 
-## Native Full v1
+The kernel types and interfaces that every component consumes are generated
+from the machine-readable kernel source (`spec/erc-trust-kernel-v2.json`)
+into `implementation/src/generated/IERCTrustKernel.sol`; the generator's check
+mode rejects any drift between that copy and `spec/generated/`.
+
+## Native Full
 
 `TrustToken` is an immutable ERC-20, ERC-165, and ERC-7943 fungible
-implementation. It is the sole owner of balances and regulatory state. The
-candidate exposes no proxy, `delegatecall`, `selfdestruct`, public mint, or
-public burn surface.
+implementation and the sole owner of balances and regulatory state. It
+exposes no proxy, `delegatecall`, `selfdestruct`, public mint, or public burn
+surface.
 
-The four external dependencies are policy, identity, settlement, and
-entitlement views. Each binding records the dependency address, runtime code
-hash, configuration digest, schema, epoch, and resulting binding hash. Calls
-are read-only and fail closed when code, schema, configuration, return data, or
-availability does not match the request's bound assumptions.
+The four external dependencies (policy, identity, settlement, entitlement)
+are read-only `ITrustBoundDependency` endpoints. Each binding records the
+dependency address, runtime code identity, configuration digest, schema, and
+per-kind epoch; the four bindings are folded, in `BindingKind` order, into
+one dependency root, and every rebind of any kind advances the global
+dependency epoch by one. A command that carries a stale root or epoch is
+rejected before any state-dependent rule. Calls fail closed when the code,
+configuration, return length, outcome word, command echo, or binding echo
+does not match.
 
 ### Native action path
 
@@ -52,32 +64,41 @@ availability does not match the request's bound assumptions.
   <img src="assets/architecture-native-sequence.svg" alt="Sequence diagram of the native action path between the operator, TrustToken, a bound dependency, and the transition kernel, showing the applicable and the rejected branches" width="900">
 </div>
 
-The kernel enforces action-specific rules. `FREEZE` only increases a frozen
-amount; a decrease requires a separately authorized `UNFREEZE` that rechecks
-the current policy binding. `SEIZE` opens exact custody. `RELEASE` returns that
-same encumbered amount to the declared prior holder and closes custody
-atomically. A disposition must match the active custodian, prior holder, and
-amount. `CONFISCATE` makes the case terminal. `LIQUIDATE` binds settlement and
-proceeds commitments. `RECOVER` consumes an entitlement commitment once.
+The case transition table of the kernel governs every command. `FREEZE`
+raises a subject's absolute frozen target and records the prior target;
+`UNFREEZE` restores it and pops the head. `RESTRICT` and `UNRESTRICT` do the
+same for the restriction flag. `SEIZE` opens the one custody record of its
+case and moves the amount to the custodian, where it stays as custody backing
+that ordinary transfers cannot spend; `RELEASE` returns the encumbered amount
+to the declared prior holder and closes the case. `CONFISCATE`, `LIQUIDATE`,
+and `RECOVER` are terminal, either directly against the subject or as a
+disposition of the case's custody; `LIQUIDATE` binds settlement and proceeds
+commitments and `RECOVER` consumes an entitlement commitment once. A terminal
+case accepts no further command, and an overlay owned by another case is
+never cleared by a disposition.
 
 ## ERC-7943 exact-use route
 
 The sensitive `setFrozenTokens` and `forcedTransfer` selectors are self-call
 targets, not public authority surfaces.
 
-1. `executeERC7943Action` or `executeERC7943Reversal` validates and authorizes
-   the complete typed command.
-2. The wrapper consumes the authorization and creates one route ticket bound
-   to command ID, selector, calldata hash, route kind, action or reversal,
-   authority epoch, policy epoch, and current binding.
+1. `executeERC7943Action` or `executeERC7943Reversal` validates, assesses,
+   and consumes the complete typed command.
+2. The wrapper records one route ticket holding the command identifier, the
+   selector, the calldata hash, and the dependency root and epoch current at
+   preparation.
 3. The token calls its own sensitive selector in the same transaction.
-4. The selector consumes the ticket before applying the transition.
-5. Reuse, altered calldata, direct external calls, and wrong selectors revert.
+4. The selector compares every recorded field against the call and the
+   current dependency state, compares the prepared record against its
+   arguments, consumes the ticket, and applies the transition.
+5. Reuse, altered calldata, a direct external call, a wrong selector, or a
+   dependency change in between reverts with `TrustRouteMismatch`, whose
+   identifier is computed only on failure and never stored.
 
 The ticket is not persisted as reusable authority. It exists only during the
 validated wrapper path.
 
-## ERC-3643 Verified Full v1
+## ERC-3643 Verified Full
 
 The adapter profile deliberately separates state ownership:
 
@@ -85,28 +106,48 @@ The adapter profile deliberately separates state ownership:
   <img src="assets/architecture-erc3643-profile.svg" alt="Privileged control path, bound upstream inputs, and separated state ownership in the ERC-3643 Verified Full profile" width="900">
 </div>
 
-`ERC3643TrustAdapter` owns TRUST action records, custody state, terminal cases,
-and receipts. The upstream token owns balances and token-level frozen state.
-`ProfileGovernor` owns the token and seals the expected token runtime code
-hash, token address, adapter address, Identity Registry, Compliance contract,
-chain, and exclusive-Agent relationship.
+`ERC3643TrustAdapter` owns the kernel state: cases, custody, owned frozen
+targets and restriction flags, action records, and receipts. The upstream
+token owns balances and its own frozen amounts. `ProfileGovernor` owns the
+token and seals the expected token code identity, the token, the adapter,
+the Identity Registry, the Compliance contract, the chain, the exclusive-Agent
+relationship, and the import manifest.
 
-After sealing, `ProfileGovernor` has no arbitrary-call or Agent-management
-surface. Before every action, the adapter requires the topology to remain Full.
-It treats Identity Registry and Compliance responses as fail-closed inputs,
-invokes only the expected Agent mutator, and checks exact balance or frozen
-postconditions before recording a receipt.
+Onboarding is a fresh zero-state seal or an exact import manifest that the
+seal verifies entry by entry against the live upstream state; a declared
+frozen amount or address freeze becomes an imported case with a live head, so
+declared legacy state is reversible under the transition table. Before every
+command the adapter checks that each account it acts on carries exactly the
+upstream state it declared or applied (reason 304 otherwise); it never
+overwrites or silently adopts upstream state it does not own. After sealing,
+`ProfileGovernor` has no arbitrary-call, Agent-management, or registry
+rebinding surface, and the adapter rechecks the topology before consuming
+any command. Identity Registry and Compliance responses are fail-closed
+inputs (reasons 100 and 101 for denials, 402 and 403 for unavailability),
+upstream execution is typed (400 and 401), and custody is confined to the
+adapter.
 
-The repository's clean-room test double is only a conformance harness. It is
-not an ERC-3643 implementation, and compatibility with it is not evidence that
-an external token satisfies the Verified Full profile.
+Because the token holds a frozen amount and the kernel a frozen target, the
+adapter restores both accounts of a forced transfer to their owned targets
+saturated at the current balance, and the profile surface offers
+`resynchroniseFrozen` for the inbound-growth window described in
+`PROFILES.md`.
+
+The repository's clean-room test doubles are conformance harnesses only.
+They are not ERC-3643 implementations, and compatibility with them is not
+evidence that an external token satisfies the Verified Full profile.
 
 ## Receipt and observation boundary
 
-A receipt commits to the command, action or reversal kind, source,
-destination, amount, case, policy binding, provenance, pre-state, post-state,
-and the action-specific external commitment. It is recomputable from the
-declared inputs and observations.
+Action and reversal receipts share one seventeen-field struct and one
+preimage, domain separated by the receipt kind. A receipt commits to the
+command identifier and kind, the parent command of a reversal, the subject,
+source, destination, amount, case, authority reference, dependency root,
+provenance commitment, assessment evidence, pre-state and post-state
+observations, and the action-specific external commitment. It is
+recomputable from the stored fields alone through `receipt(commandId)`; the
+pre-state, post-state, and assessment evidence preimages are profile-defined
+and documented with each profile's runtime identity.
 
 A receipt proves neither that:
 
@@ -122,7 +163,7 @@ Those truths remain outside the software boundary.
 
 This repository includes no deployment manifest, address, chain claim, proxy,
 migration procedure, or key-management design. Both reference profiles report
-`proxySupported=false`; candidate v1 also treats migration support as false.
+`proxySupported = false`, and proxy or migration profiles are unsupported.
 
 A deployment claim needs a separate manifest that binds the exact source tree,
 compiler and optimizer settings, runtime bytecode, constructor inputs,
@@ -132,11 +173,13 @@ inheriting this repository's Full label.
 
 ## Assurance boundary
 
-The evidence package includes tests, bounded formal rules, selected bytecode
-proofs, negative mutations, deterministic builds, claim matrices, and
-provenance records. Their precise scope is in
-[`FORMAL_VERIFICATION.md`](../FORMAL_VERIFICATION.md) and
-[`evidence/verification-summary.md`](../evidence/verification-summary.md).
+The evidence package includes tests, the Isabelle model with its obligation
+ledger, selected bytecode proofs, negative mutations, deterministic builds,
+the two-layer runtime binding, an independent specification-only
+reproduction, claim matrices, and provenance records. Their precise scope is
+in [`FORMAL_VERIFICATION.md`](../FORMAL_VERIFICATION.md),
+[`evidence/verification-summary.md`](../evidence/verification-summary.md), and
+[`evidence/known-limitations.md`](../evidence/known-limitations.md).
 
 It does not establish a complete Isabelle-to-Solidity-to-EVM refinement
 theorem, an independent audit, or production safety.

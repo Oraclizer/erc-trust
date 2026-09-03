@@ -1,12 +1,12 @@
 # TRUST-REF evidence matrix
 
-> Status note: this document describes the shipped candidate `0.1.0-candidate.2`.
-> On the successor branch the receipts it cites live under `evidence/candidate-2/`,
-> and the lane-by-lane status of the successor code is
-> `evidence/current-profile-release-index-v3.json` under
-> `evidence/evidence-mode.json`. This document is rewritten in the documentation
-> change that closes the successor; until then its numbers are candidate 2 history,
-> not measurements of the successor code.
+> Status note: this matrix describes the shipped candidate `0.1.0-candidate.2`
+> and is kept as history; its receipts live under `evidence/candidate-2/`. The
+> successor's obligation-by-obligation map is the central obligation ledger
+> (`evidence/end-to-end-refinement/obligation-ledger-v3.json`, rendered in
+> `obligation-ledger-summary-v3.json`), and its lane-by-lane status is
+> `evidence/current-profile-release-index-v3.json`; see
+> `verification-summary.md` for the successor results.
 
 Candidate: `0.1.0-candidate.2`
 

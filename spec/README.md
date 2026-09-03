@@ -65,7 +65,7 @@ generated renderings are bound to the same identity as the code they govern.
 
 ## Relationship to the draft
 
-`docs/ERC-DRAFT.md` is the prose proposal. The prose is updated to kernel
-version 2 in the documentation change that closes this project; until then the
-schema, not the prose, is the authority for the version 2 wire format, and the
-prose remains the authority for the shipped version 1 candidate.
+`docs/ERC-DRAFT.md` is the prose proposal for kernel version 2, written from
+this schema. When the two disagree the schema is the authority and the prose
+is corrected; the generated rendering `generated/kernel-v2.md` is the bridge
+between them.

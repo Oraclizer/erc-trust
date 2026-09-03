@@ -44,9 +44,12 @@ into an audit, deployment verification, compiler-correctness result, or a
 complete Isabelle-to-EVM refinement theorem.
 
 The permanent arXiv record preserves its version history: v1 binds candidate
-1, while candidate 2 is the corrected successor described by this repository
-and its replacement line. Readers should use the latest arXiv version together
-with the exact candidate and manifest identities stated here.
+1 and v2 binds candidate 2, the shipped candidate. The successor on the
+integration branch implements kernel version 2 of the wire format, which the
+paper does not yet describe; a revision is pending, and until it appears this
+repository, not the paper, describes the successor. Readers should use the
+latest arXiv version together with the exact commit and manifest identities
+stated here.
 
 ## The problem
 
@@ -67,32 +70,43 @@ the underlying legal facts.
 
 ## Candidate at a glance
 
-The immutable native reference implements:
+The wire format is kernel version 2, defined once in the machine-readable
+source `spec/erc-trust-kernel-v2.json`, from which the Solidity interface,
+the ABI, the SDK types, the human-readable rendering, and the conformance
+vectors are generated. The immutable native reference implements:
 
 - the six typed actions `FREEZE`, `SEIZE`, `CONFISCATE`, `LIQUIDATE`,
-  `RESTRICT`, and `RECOVER`;
-- the separate `UNFREEZE`, `RELEASE`, and `UNRESTRICT` reversals;
-- ERC-20, ERC-165, and the ERC-7943 fungible interface;
-- exactly-once action identifiers and authority nonces;
-- distinct `Rejected` and `OperationalFailure` outcomes with revert stutter;
-- versioned, runtime-code-hash-bound policy, identity, settlement, and
-  entitlement views;
-- same-transaction exact-use tickets for sensitive ERC-7943 selectors;
-- custody, settlement, proceeds, and one-time entitlement records;
-- a final canonical receipt emitted after token and compatibility events.
+  `RESTRICT`, and `RECOVER`, and the separate `UNFREEZE`, `RELEASE`, and
+  `UNRESTRICT` reversals;
+- ERC-20, ERC-165, the ERC-7943 fungible interface, and the kernel
+  interface `0x2b020308`;
+- exactly-once command identifiers and authority nonce tuples, with stale
+  and replayed commands reported before any state-dependent rule;
+- a case transition table with one live overlay head per subject and
+  family, one custody record per case, and terminal cases;
+- distinct `TrustRejected` and `TrustOperationalFailure` outcomes, every
+  failure a full-state stutter;
+- four read-only dependencies bound by address, runtime code, configuration
+  digest, schema, and epoch, folded into one dependency root that every
+  command carries and any rebind invalidates;
+- same-transaction exact-use tickets for the sensitive ERC-7943 selectors;
+- one seventeen-field receipt for actions and reversals, stored, returned by
+  `receipt(commandId)`, and emitted as the final log of the command.
 
-The optional ERC-3643 Verified Full profile uses a separate adapter. It reports
-Full only when a one-way `ProfileGovernor` seals the expected token runtime
-code hash, token owner, Identity Registry, Compliance contract, and exclusive
-adapter Agent. Ordinary ERC-3643 deployments do not automatically qualify.
+The optional ERC-3643 Verified Full profile uses a separate adapter over a
+sealed token. It reports Full only when a one-way `ProfileGovernor` seals the
+expected token code identity, token owner, Identity Registry, Compliance
+contract, exclusive adapter Agent, and the declared initial state, and only
+while every account a command touches carries exactly the upstream state the
+adapter declared or applied. Ordinary ERC-3643 deployments do not
+automatically qualify.
 
-Proxy and migration support are intentionally `false` in candidate 2. The
-candidate 2 native runtime was 24,177 bytes under the pinned compiler settings,
-399 bytes below the EIP-170 limit; the successor runtime size is bound by
-`evidence/release-manifest.json` (20,043 bytes for the native token, 19,218 for the
-ERC-3643 profile adapter, and 2,790 for the profile governor at the runtime assurance change).
-Any native source change requires the full size, test, proof, mutation, and
-manifest replay.
+Proxy and migration support are `false` for both endpoints. The native
+runtime is 20,043 bytes under the pinned compiler settings (4,533 bytes below
+the EIP-170 limit), the ERC-3643 profile adapter 19,218, and the profile
+governor 2,790, as bound by `evidence/release-manifest.json` and
+`evidence/deterministic-build.json`. Any native source change requires the
+full size, test, proof, mutation, and manifest replay.
 
 ## Architecture
 
@@ -117,8 +131,8 @@ ownership, action flow, failure behavior, and deployment boundaries.
 
 | Profile | Intended use | Full-status condition |
 | --- | --- | --- |
-| Native Full v1 | New immutable ERC-20 deployment | Exact source, compiler settings, and bound read-only dependencies |
-| ERC-3643 Verified Full v1 | Existing ERC-3643 topology | Sealed runtime code hash, inert owner, and exclusive adapter Agent |
+| Native Full | New immutable ERC-20 deployment | Exact source, compiler settings, and four bound read-only dependencies |
+| ERC-3643 Verified Full | Existing ERC-3643 topology | Sealed code identity, inert owner, exclusive adapter Agent, declared initial state, owned upstream state |
 | ERC-3643 Partial | Integration that cannot prove every topology condition | Must identify every missing Full condition |
 | Unsupported | Missing or contradictory evidence | No reliable conformance declaration |
 
@@ -159,14 +173,18 @@ pnpm --dir sdk test
 ### Verify generated artifacts and public surface
 
 ```bash
-node scripts/generate-vectors.mjs
+node scripts/generate-normative-kernel.mjs --check
 forge build
+node scripts/generate-runtime-bridge-v2.mjs --check
+node scripts/verify-obligation-ledger-v3.mjs
+node scripts/generate-runtime-binding-v3.mjs --check
+node scripts/verify-runtime-binding-v3.mjs --replay
+node scripts/verify-current-profile-release-v3.mjs
 node scripts/generate-release-manifest.mjs
 node scripts/verify-release.mjs
 node scripts/verify-links.mjs
 node scripts/verify-public-surface.mjs
 node scripts/verify-repository-health.mjs
-node scripts/verify-current-profile-release-v2.mjs
 ```
 
 On Windows, the complete current-profile release replay is:
@@ -198,10 +216,9 @@ section "Successor refinement closure"):
 | Certora rules | 28 | 1,105 | Bounded rules and mutator classifications against the Solidity source |
 | Solidity reference implementation | 22 | 9,062 | The contract code those artifacts are about |
 
-To our knowledge, no ERC before this one has shipped machine-checked formal
-artifacts of this depth as part of the proposal itself. The boundaries of
-what that evidence does and does not establish are stated below and are part
-of the claim.
+The boundaries of what that evidence does and does not establish are stated
+below, in `evidence/claim-matrix.md`, and in `evidence/known-limitations.md`;
+they are part of the claim.
 
 <div align="center">
   <img src="docs/assets/verification-architecture.svg" alt="ERC-TRUST verification architecture separating the Isabelle abstract model, Solidity and Certora checks, compiled EVM bytecode, Kontrol and KEVM proofs, the unclaimed full refinement theorem, and the separate deployment boundary" width="900">
@@ -212,25 +229,30 @@ show actual artifact or verification inputs. The coral obligation boundary
 does not claim a complete Isabelle-to-Solidity-to-EVM refinement theorem, and
 the deployment boundary remains separate from repository evidence.
 
-Candidate `0.1.0-candidate.2` has the following exact disposition:
+The successor on the integration branch (kernel version 2, working label
+`0.2.0-candidate.1`) has the following disposition, lane by lane in
+`evidence/current-profile-release-index-v3.json`:
 
 | Layer | Result |
 | --- | --- |
-| Foundry | 31/31 tests; two fuzz properties with 256 runs each; three invariants with 384,000 total calls |
-| Certora | 2/2 targeted production FREEZE-direction rules; broader candidate 1 results remain historical only |
-| Kontrol and KEVM | 4/4 selected high-risk bytecode proofs |
-| Mutation | 12/12 declared reference-candidate faults detected |
-| Deterministic build | Two isolated clean builds produced identical artifact and bytecode hashes |
-| Isabelle/HOL abstract model | Mechanically verified within the declared abstract semantic domain |
-| Mandatory current profile | Seven reusable packages, 49/49 Core rows, and 24/24 Supporting rows qualified; optional assurance backlog 0/6 |
-| SDK | 3/3 tests and a minimal dry-run package |
+| Foundry | 89/89 tests across seven suites; two fuzz properties at 256 runs; nine invariants at 256 runs and depth 500 (1,152,000 calls, zero reverts) |
+| Mutation | 111/111 declared faults killed, each bound to an obligation ledger row or a campaign-only negative |
+| Kontrol and KEVM | 4/4 proofs rerun on the successor native runtime; the adapter has no symbolic lane |
+| Isabelle/HOL abstract model | 22 theories modelling kernel version 2; clean build and proof audit with 409 explicit roots and zero oracle dependencies |
+| Obligation ledger | 72 rows: 68 closed, 2 open (the undischarged runtime link), 2 not applicable; closure conditional |
+| Deterministic build | Two isolated clean builds of the three runtimes, byte-identical |
+| Runtime binding | Three runtimes agree with the pinned-compiler replay in six semantic projections; verifier self-mutation 18/18 |
+| Independent reproduction | 23 vectors, 400 assertions reproduced from the specification alone |
+| Certora | Pending by decision; no successor source has been sent to the cloud prover |
+| SDK | 12 tests |
 
-The successor profile rebinds every package and row to the repaired source by
-current evidence or a verifier-enforced two-guard delta. It does not claim
-that 73 independent whole-runtime proofs were rerun.
-
-The exact runs, hashes, harnesses, qualifiers, and replay commands are in the
-[verification summary](evidence/verification-summary.md) and
+The claim this supports is "mapped implementation evidence; end-to-end
+refinement incomplete": no theorem states that the compiled runtime
+implements the model, and no Full or refinement-complete wording applies. The
+shipped candidate `0.1.0-candidate.2` keeps its own disposition as history in
+the [verification summary](evidence/verification-summary.md); the exact runs,
+hashes, harnesses, and replay commands of both are in that summary,
+[`FORMAL_VERIFICATION.md`](FORMAL_VERIFICATION.md), and the
 [release manifest](evidence/release-manifest.json).
 
 These results do not establish:
@@ -261,8 +283,10 @@ deterministic builds, and provenance.
 | [Integration](docs/INTEGRATION.md) | Build, request lifecycle, receipt handling, and failure behavior |
 | [Profiles](docs/PROFILES.md) | Native and ERC-3643 conformance declarations |
 | [Formal verification](FORMAL_VERIFICATION.md) | Model ownership and model-to-implementation evidence |
-| [TRUST-REF matrix](evidence/trust-ref-matrix.md) | Obligation-by-obligation evidence |
+| [Obligation ledger](evidence/end-to-end-refinement/obligation-ledger-v3.json) | The successor's abstract-condition-by-condition connection to the code |
+| [TRUST-REF matrix](evidence/trust-ref-matrix.md) | The shipped candidate's obligation-by-obligation evidence (history) |
 | [Public claim matrix](evidence/claim-matrix.md) | Allowed and forbidden claims |
+| [Known limitations](evidence/known-limitations.md) | What the code, the evidence, and the documents do not establish |
 | [Community review](docs/COMMUNITY-REVIEW.md) | Questions for standards and implementation reviewers |
 | [Disclaimer](DISCLAIMER.md) | Plain-language use, legal, and deployment boundaries |
 | [Security policy](SECURITY.md) | Private vulnerability reporting |
@@ -285,15 +309,16 @@ its broader regulatory and formal-methods context.
 
 | Path | Role |
 | --- | --- |
+| `spec/` | Normative kernel machine source, decision records, and generated renderings |
 | `implementation/src/` | Native reference and ERC-3643 profile |
 | `implementation/test/` | Unit, fuzz, invariant, and profile tests |
-| `implementation/certora/` | Bounded Certora Verification Language rules and configurations |
+| `evidence/candidate-2/implementation/certora/` | Candidate 2 Certora Verification Language rules and configurations (history); the successor Certora lane is pending |
 | `implementation/kontrol/` | KEVM high-risk cross-checks |
 | `sdk/` | Deterministic TypeScript request, receipt, and calldata helpers |
 | `schemas/` | Canonical receipt schema |
 | `vectors/` | Positive and negative conformance vectors |
 | `evidence/` | Claim, provenance, mutation, proof, and release manifests |
-| `formal/isabelle/ERC_TRUST/` | Abstract regulatory-action model and model-verification evidence |
+| `formal/isabelle/ERC_TRUST/` | Abstract kernel version 2 model, the generated runtime bridge and obligation ledger theories |
 | `pilot/` | Preserved Native FREEZE vertical slice |
 
 ### Tooling and language map
@@ -314,8 +339,10 @@ local environment state do not belong in the tracked public tree.
 
 ## Version and release policy
 
-`0.1.0-candidate.2` identifies the current unaudited reference candidate. The
-historical `v0.1.0-candidate.1` tag remains immutable. A candidate 2 tag and a
+`0.1.0-candidate.2` identifies the shipped unaudited reference candidate;
+`0.2.0-candidate.1` is the working label of the successor on the integration
+branch, which has no tag or release. The historical `v0.1.0-candidate.1` tag
+remains immutable. A candidate 2 tag and a
 GitHub Release are separate maintainer actions whose current state is shown by
 the repository's tags and Releases pages; this README does not infer either.
 Tags, releases, deployment claims, and a production designation require
