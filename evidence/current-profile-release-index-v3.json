@@ -7,7 +7,7 @@
   "identity": {
     "certoraInputsSha256": null,
     "formalRoot": {
-      "rootSha256": "db93d8fad590175af2e8192de14b3118a2696eb4287a2f40433824d683270c6c",
+      "rootSha256": "2775d4987a3b15c72abf3ce5d0becb129cffd837835a769deb85bc2583919097",
       "theoryFiles": 22
     },
     "kontrolInputsSha256": "5d8f38006416e02aa7664a68f3ad108e2e05aba1d9abe0c7d339f8e64c4e67fb",
@@ -42,14 +42,14 @@
       "notEvaluable": 4,
       "receipt": {
         "path": "evidence/independent-reproduction-v3.json",
-        "sha256": "dc4f03472f58bfbfea916966331004e1c685063999748958315807f3e33bc858"
+        "sha256": "33f80fa3b30119abe397c55fafd0f9975db6255005cdbc2ea9e1678116ad707d"
       },
       "status": "PASS"
     },
     "isabelleBuild": {
       "receipt": {
         "path": "evidence/isabelle-results-v3.json",
-        "sha256": "cd274a6717514fdb8e1f60447383ba9a9119b53bebe29ef4d42c8949d3f5ebca"
+        "sha256": "4deb384000ee869a53a3ddd2e7e2bca72b59ce0d2d8b86146e5f98986e6414a9"
       },
       "status": "PASS"
     },
@@ -64,7 +64,7 @@
       "proofs": 4,
       "receipt": {
         "path": "evidence/kontrol-results-v3.json",
-        "sha256": "80467a3ac9ff39e2a9c87e60fc789bba7b065ba5c61e5303dbead49e034c1633"
+        "sha256": "fb912d2e40e88bb97048f5a13ff8869a5d35f1da6b0ecb690c05b6d4a3ca17f9"
       },
       "status": "PASS"
     },
@@ -209,7 +209,7 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "ee191d365e34477863c473c7e9bd4ab3ba7f5698d8e073999ee243b655cc99fa"
+        "sha256": "e1b86eb42f972d328b93376590f7e6c482bd7fe410e807b0db333e634ae97b26"
       }
     },
     "runtime": {
@@ -226,7 +226,7 @@
       "basis": "this index checks the receipt against the deterministic build; layer 2 (pinned-compiler replay and the six semantic projections) is re-executed by scripts/generate-runtime-binding-v3.mjs --check and scripts/verify-runtime-binding-v3.mjs --replay in the sdk-and-package job",
       "receipt": {
         "path": "evidence/runtime-binding-v3.json",
-        "sha256": "5ff9ad738dbce07eda2f4b5d83294bf6fbf4f53f9fbd6cd7d3cd6c15078a58ef"
+        "sha256": "530e4c29eff421dc7168b1dbf1ab47e7a8ef0687bd20eee2b09574dad4cd118a"
       },
       "status": "PASS",
       "subjects": [

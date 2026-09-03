@@ -12,11 +12,11 @@
   "formalSource": {
     "algorithm": "sha256-raw-files-lexicographic-path-order-v1",
     "path": "formal/isabelle/ERC_TRUST",
-    "rootSha256": "db93d8fad590175af2e8192de14b3118a2696eb4287a2f40433824d683270c6c",
+    "rootSha256": "2775d4987a3b15c72abf3ce5d0becb129cffd837835a769deb85bc2583919097",
     "theoryFiles": 22
   },
   "schema": "erc-trust-isabelle-results-v3",
-  "sourceCommit": "97002bd0bc4d3e96dd407d6af7104ef62e1cf0ff",
+  "sourceCommit": "bd8955e41482f2add13b5149b167afe9464e3910",
   "status": "PASS",
   "toolchain": {
     "foundationCommit": "db8e0802e55f0229cf7bc9e5e6cfbf40681adbba",
@@ -25,8 +25,8 @@
   },
   "workflow": {
     "jobConclusion": "success",
-    "jobId": 100542643079,
-    "runId": 33721909106,
-    "url": "https://github.com/Oraclizer/erc-trust/actions/runs/33721909106/job/100542643079"
+    "jobId": 100548341348,
+    "runId": 33723807917,
+    "url": "https://github.com/Oraclizer/erc-trust/actions/runs/33723807917/job/100548341348"
   }
 }
