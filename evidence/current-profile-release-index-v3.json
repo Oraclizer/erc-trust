@@ -28,56 +28,188 @@
       "status": "PENDING"
     },
     "foundry": {
-      "owner": "this change: continuous-integration Foundry receipt for the successor source",
-      "receipt": "evidence/foundry-results-v3.json",
-      "status": "PENDING"
+      "receipt": {
+        "path": "evidence/foundry-results-v3.json",
+        "sha256": "1a29a6b57d7ea680c9ef54213f16beafc5f3e0de2157f382c1c535c5a5c12662"
+      },
+      "status": "PASS",
+      "tests": 89
     },
     "isabelleBuild": {
-      "owner": "this change: continuous-integration Isabelle receipt for the current formal root",
-      "receipt": "evidence/isabelle-results-v3.json",
-      "status": "PENDING"
+      "receipt": {
+        "path": "evidence/isabelle-results-v3.json",
+        "sha256": "e66a1561ce77fe2673d3c96e07e940a013c7cfca78ff621adf316a19e84a21f2"
+      },
+      "status": "PASS"
     },
     "isabelleRuntimeBinding": {
-      "owner": "formal refinement change: regenerate the runtime bridge theories for the successor runtime",
-      "receipt": null,
-      "status": "PENDING"
+      "boundTheories": [
+        "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy"
+      ],
+      "runtimeTemplateSha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1",
+      "status": "PASS"
     },
     "kontrol": {
-      "owner": "formal refinement change: symbolic cross-checks on the successor runtime",
-      "receipt": "evidence/kontrol-results-v3.json",
-      "status": "PENDING"
+      "proofs": 4,
+      "receipt": {
+        "path": "evidence/kontrol-results-v3.json",
+        "sha256": "e0a66008a3432dc23b15b9081eedf93098f6cf93b9394018337022bf372a672b"
+      },
+      "status": "PASS"
     },
     "kontrolInputs": {
       "inputsRootSha256": "5d8f38006416e02aa7664a68f3ad108e2e05aba1d9abe0c7d339f8e64c4e67fb",
-      "owner": "bound together with the Kontrol receipt",
-      "receipt": null,
-      "status": "PENDING"
+      "status": "PASS"
     },
     "mutation": {
-      "owner": "this change: mutation campaign on the successor source",
-      "receipt": "evidence/mutation-results.json",
-      "status": "PENDING"
+      "ids": [
+        "MUT-01-FROZEN-FLOOR",
+        "MUT-02-ROUTE-CONSUMPTION",
+        "MUT-03-RECEIPT-LAST",
+        "MUT-04-FAIL-CLOSED",
+        "MUT-05-FIXED-ACTION",
+        "MUT-06-NONCE-CONSUMPTION",
+        "MUT-07-ERC3643-RAW-BYPASS",
+        "MUT-08-FREEZE-DIRECTION",
+        "MUT-09-CASE-TERMINALITY",
+        "MUT-10-CUSTODY-CLOSURE",
+        "MUT-11-REVERSAL-POLICY",
+        "MUT-12-ERC3643-FREEZE-DIRECTION",
+        "MUT-13-TERMINAL-REVERSAL-GUARD",
+        "MUT-14-DEPENDENCY-ROOT-COMPARISON",
+        "MUT-15-DEPENDENCY-EPOCH-INCREMENT",
+        "MUT-16-ROOT-TAG",
+        "MUT-17-ROOT-ORDER",
+        "MUT-18-CASE-CONFLICT",
+        "MUT-19-OVERLAY-DISPOSITION",
+        "MUT-20-RECEIPT-KIND-TAG",
+        "MUT-21-REVERSAL-CLOSES-CHAIN",
+        "MUT-22-RECEIPT-PREIMAGE",
+        "MUT-23-CALLDATA-LENGTH",
+        "MUT-24-IDENTITY-ASSESSMENT",
+        "MUT-25-BINDING-ECHO",
+        "MUT-26-REVERSAL-CALLDATA-LENGTH",
+        "MUT-27-ERC3643-OWNED-UPSTREAM-STATE",
+        "MUT-28-ERC3643-IMPORT-VERIFICATION",
+        "MUT-29-ERC3643-TOPOLOGY-GATE",
+        "MUT-30-ERC3643-DEPENDENCY-CODE",
+        "MUT-31-ERC3643-TRANSFER-POSTSTATE",
+        "MUT-32-ERC3643-FROZEN-POSTSTATE",
+        "MUT-33-ERC3643-TERMINAL-REVERSAL-GUARD",
+        "MUT-34-ERC3643-DEPENDENCY-ROOT-COMPARISON",
+        "MUT-35-ERC3643-ROOT-TAG",
+        "MUT-36-ERC3643-CUSTODIAN-CONFINEMENT",
+        "MUT-37-ERC3643-IDENTITY-ASSESSMENT",
+        "MUT-38-ERC3643-COMPLIANCE-ASSESSMENT",
+        "MUT-39-ERC3643-RECEIPT-KIND-TAG",
+        "MUT-40-ERC3643-CASE-CONFLICT",
+        "MUT-41-ERC3643-CALLDATA-LENGTH",
+        "MUT-42-ERC3643-REVERSAL-CALLDATA-LENGTH",
+        "MUT-43-ERC3643-NONCE-CONSUMPTION",
+        "MUT-44-ERC3643-MANIFEST-BINDING",
+        "MUT-45-ERC3643-IMPORTED-CASE",
+        "MUT-46-ERC3643-CUSTODY-CLOSURE",
+        "MUT-47-ERC3643-REVERSAL-CLOSES-CHAIN",
+        "MUT-48-ERC3643-REVERSAL-OWNED-STATE",
+        "MUT-49-ERC3643-CUSTODIAN-OWNED-STATE",
+        "MUT-50-ERC3643-RESYNC-OWNED-STATE",
+        "MUT-51-ERC3643-RESYNC-RAISES-FROZEN",
+        "MUT-52-AUTHORITY-ACCOUNT",
+        "MUT-53-AUTHORITY-EPOCH",
+        "MUT-54-AUTHORITY-ROTATION-EPOCH",
+        "MUT-55-ACTION-ID-REPLAY",
+        "MUT-56-REVERSAL-ID-REPLAY",
+        "MUT-57-NONCE-FRESHNESS",
+        "MUT-58-REVERSAL-DEPENDENCY-ROOT",
+        "MUT-59-ACTION-SHAPE",
+        "MUT-60-FREEZE-PRIOR-TARGET",
+        "MUT-61-TERMINAL-CASE-ACTION",
+        "MUT-62-OVERLAY-REQUIRES-FRESH-CASE",
+        "MUT-63-RESTRICT-NO-STATE-CHANGE",
+        "MUT-64-SEIZE-OPEN-CASE",
+        "MUT-65-CASE-GENERATION",
+        "MUT-66-REVERSAL-CURRENT-HEAD",
+        "MUT-67-REVERSAL-PAIRING",
+        "MUT-68-UNFREEZE-PRIOR-TARGET",
+        "MUT-69-UNRESTRICT-PRIOR-FLAG",
+        "MUT-70-RELEASE-BACKING",
+        "MUT-71-SEIZE-BACKING",
+        "MUT-72-UNBACKED-GUARD",
+        "MUT-73-CUSTODY-DISPOSITION-MATCH",
+        "MUT-74-ORDINARY-BACKING",
+        "MUT-75-RESTRICTION-SEND-GATE",
+        "MUT-76-RECEIPT-DEPENDENCY-ROOT",
+        "MUT-77-REVERSAL-RECEIPT-PARENT",
+        "MUT-78-GOVERNANCE-REPLAY",
+        "MUT-79-PROFILE-FULL-LIVE",
+        "MUT-80-KERNEL-INTERFACE-ID",
+        "MUT-81-TIME-WINDOW",
+        "MUT-82-DOMAIN",
+        "MUT-83-IDENTIFIER",
+        "MUT-84-ENTITLEMENT-ONCE",
+        "MUT-85-ERC3643-AUTHORITY-ACCOUNT",
+        "MUT-86-ERC3643-AUTHORITY-EPOCH",
+        "MUT-87-ERC3643-ACTION-ID-REPLAY",
+        "MUT-88-ERC3643-REVERSAL-ID-REPLAY",
+        "MUT-89-ERC3643-NONCE-FRESHNESS",
+        "MUT-90-ERC3643-REVERSAL-DEPENDENCY-ROOT",
+        "MUT-91-ERC3643-ACTION-SHAPE",
+        "MUT-92-ERC3643-TERMINAL-CASE-ACTION",
+        "MUT-93-ERC3643-OVERLAY-REQUIRES-FRESH-CASE",
+        "MUT-94-ERC3643-RESTRICT-NO-STATE-CHANGE",
+        "MUT-95-ERC3643-SEIZE-OPEN-CASE",
+        "MUT-96-ERC3643-DISPOSITION-TERMINAL",
+        "MUT-97-ERC3643-REVERSAL-CURRENT-HEAD",
+        "MUT-98-ERC3643-REVERSAL-PAIRING",
+        "MUT-99-ERC3643-UNFREEZE-PRIOR-TARGET",
+        "MUT-100-ERC3643-RECEIPT-PREIMAGE",
+        "MUT-101-ERC3643-RECEIPT-DEPENDENCY-ROOT",
+        "MUT-102-ERC3643-KERNEL-INTERFACE-ID",
+        "MUT-103-ERC3643-TIME-WINDOW",
+        "MUT-104-ERC3643-DOMAIN",
+        "MUT-105-ERC3643-IDENTIFIER",
+        "MUT-106-ERC3643-ENTITLEMENT-ONCE",
+        "MUT-107-ERC3643-MANIFEST-CANONICAL",
+        "MUT-108-FREEZE-TARGET",
+        "MUT-109-RESTRICT-FLAG",
+        "MUT-110-BALANCE-MOVE",
+        "MUT-111-ERC3643-FREEZE-TARGET"
+      ],
+      "killed": 111,
+      "receipt": {
+        "path": "evidence/mutation-results.json",
+        "sha256": "8839c501f4e896be66b9710a2836d177b9dff5d0de58835378fcb47954c8b941"
+      },
+      "status": "PASS",
+      "total": 111
     },
     "obligationLedger": {
       "claim": "mapped implementation evidence; end-to-end refinement incomplete",
       "closure": "CONDITIONAL",
-      "owner": "runtime assurance change: deterministic build receipt binding the bridge runtime",
-      "receipt": null,
       "rows": {
-        "closed": 4,
-        "closedPendingReceipt": 65,
+        "closed": 69,
+        "closedPendingReceipt": 0,
         "currentMandatory": 0,
         "notApplicable": 1,
         "rows": 72,
         "separateProfile": 0,
         "successorMandatory": 2
       },
-      "status": "PENDING"
+      "status": "PASS",
+      "summary": {
+        "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
+        "sha256": "c5ee6951eb28cc36d4a1933a9bddbae18287585275e649586fb8555b224ff91b"
+      }
     },
     "runtime": {
-      "owner": "this change: deterministic build receipt for the successor source",
-      "receipt": "evidence/deterministic-build.json",
-      "status": "PENDING"
+      "eip170MarginBytes": 4533,
+      "receipt": {
+        "path": "evidence/deterministic-build.json",
+        "sha256": "ee18a42f0c04ed432ff732caba7128043f8fea41aa2820e9ee309e1e0007b144"
+      },
+      "runtimeBytes": 20043,
+      "runtimeTemplateSha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1",
+      "status": "PASS"
     },
     "runtimeBinding": {
       "owner": "runtime assurance change: two-layer runtime binding for the successor subjects",
@@ -93,14 +225,6 @@
     "No compiler correctness, audit, deployment identity, production readiness, or external legal truth is claimed."
   ],
   "pendingLanes": [
-    "runtime",
-    "foundry",
-    "mutation",
-    "isabelleBuild",
-    "isabelleRuntimeBinding",
-    "obligationLedger",
-    "kontrol",
-    "kontrolInputs",
     "certora",
     "certoraInputs",
     "runtimeBinding"
