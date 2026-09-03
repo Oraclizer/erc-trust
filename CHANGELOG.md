@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+- Bind the runtime identity of the three successor endpoints to their evidence. The
+  deterministic build receipt records two isolated clean builds of the native token, the
+  ERC-3643 profile adapter, and the profile governor; the release manifest binds all three
+  creation and runtime hashes; a two-layer runtime binding (`scripts/generate-runtime-binding-v3.mjs`,
+  `scripts/verify-runtime-binding-v3.mjs`) records the template identity of the artifacts and
+  replays the exact sources under the pinned compiler, requiring the six semantic projections
+  to match, rejecting stale receipts, and proving its own classifier against deliberate
+  mutants; an independent, specification-only implementation
+  (`scripts/independent-reproduction-v3.mjs`) reproduces every identifier, hash, calldata, and
+  receipt hash of the conformance vectors and its receipt is checked in continuous
+  integration; the claim matrix gains a successor section; and the generated kernel prose
+  renders string-valued shape rule entries as text (decision 11). The Certora lanes stay
+  pending by decision, so the evidence mode stays successor-development.
 - Connect both kernel version 2 endpoints to the abstract model through a central
   obligation ledger (`evidence/end-to-end-refinement/obligation-ledger-v3.json`, checked
   and rendered by `scripts/verify-obligation-ledger-v3.mjs` in CI). The Isabelle session is

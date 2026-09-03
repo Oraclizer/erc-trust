@@ -18,6 +18,7 @@ const roots = [
   "formal/kevm",
   "evidence/candidate-2",
   "evidence/end-to-end-refinement",
+  "evidence/runtime-binding-v3",
   "evidence/public-release",
   "sdk/src",
   "schemas",
@@ -45,6 +46,7 @@ const singleFiles = [
   "sdk/pnpm-lock.yaml",
   "sdk/tsconfig.json",
   "evidence/README.md",
+  "evidence/independent-reproduction-v3.json",
   "evidence/claim-matrix.md",
   "evidence/clean-room-provenance.md",
   "evidence/evidence-mode.json",
@@ -135,6 +137,22 @@ const manifest = {
     root: sourceTreeRoot,
     files: fileHashes,
   },
+  profileRuntimes: Object.fromEntries([
+    ["erc3643Adapter", "out/ERC3643TrustAdapter.sol/ERC3643TrustAdapter.json"],
+    ["profileGovernor", "out/ProfileGovernor.sol/ProfileGovernor.json"],
+  ].map(([key, artifactPath]) => {
+    const profileArtifact = JSON.parse(readFileSync(resolve(root, artifactPath), "utf8"));
+    const profileCreation = Buffer.from(profileArtifact.bytecode.object.slice(2), "hex");
+    const profileRuntime = Buffer.from(profileArtifact.deployedBytecode.object.slice(2), "hex");
+    return [key, {
+      artifact: artifactPath,
+      creationBytes: profileCreation.length,
+      runtimeBytes: profileRuntime.length,
+      eip170MarginBytes: 24576 - profileRuntime.length,
+      creationSha256: sha256(profileCreation),
+      runtimeSha256: sha256(profileRuntime),
+    }];
+  })),
   trustToken: {
     artifact: "out/TrustToken.sol/TrustToken.json",
     creationBytes: creation.length,

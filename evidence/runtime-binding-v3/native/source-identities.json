@@ -1,0 +1,52 @@
+[
+  {
+    "bytes": 584,
+    "path": "implementation/src/ERC7943RouteTicket.sol",
+    "sha256": "f1a8357a988a648775382603c7eaf2db410f7d55fd08a1cef29763e69de547a6"
+  },
+  {
+    "bytes": 5208,
+    "path": "implementation/src/TrustDependencyBinding.sol",
+    "sha256": "53fb6a74a5168f7f2b9f005657ee7df5528974d53dae2359ea1e4ae3fb063020"
+  },
+  {
+    "bytes": 637,
+    "path": "implementation/src/TrustErrors.sol",
+    "sha256": "fbe1dffd50792b2da9604a0de37a5b089c427b329c96f80253ff317bb16491df"
+  },
+  {
+    "bytes": 1706,
+    "path": "implementation/src/TrustNativeDecision.sol",
+    "sha256": "4643a157f29fd9557ff60e58c6500e98704b9d94b02ef12ffb5c7baecfaa24ee"
+  },
+  {
+    "bytes": 2569,
+    "path": "implementation/src/TrustNativeTypes.sol",
+    "sha256": "f76fc4fd80d74075c3ffdbbc7afb30919eb73bf465ac04e3b83d742c8f88745b"
+  },
+  {
+    "bytes": 1899,
+    "path": "implementation/src/TrustStorage.sol",
+    "sha256": "610170dbd24ba2791d459db9a24e2c05e7d699594c035074379a5700dbdb7931"
+  },
+  {
+    "bytes": 53935,
+    "path": "implementation/src/TrustToken.sol",
+    "sha256": "deeedf231b461035ac4496b36438d6ea28298ed2935b920bf9c01cb31f94ef1b"
+  },
+  {
+    "bytes": 10239,
+    "path": "implementation/src/generated/IERCTrustKernel.sol",
+    "sha256": "405a465c9b91e55270035638566f7d9e682efc90166f611d3e9a9eea1c9e2c88"
+  },
+  {
+    "bytes": 713,
+    "path": "implementation/src/interfaces/IERC20.sol",
+    "sha256": "414510c4de8ff90b066ea33f3d75ce7c4891f4ee43de55c52e333740d6fd8131"
+  },
+  {
+    "bytes": 1189,
+    "path": "implementation/src/interfaces/IERC7943.sol",
+    "sha256": "1b968ee48cd0c9adadf22d33f1f245486b14ed1141df23f7d01385abfbb159f7"
+  }
+]

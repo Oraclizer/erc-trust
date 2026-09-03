@@ -36,7 +36,7 @@
   "receipts": {
     "deterministic": {
       "path": "evidence/deterministic-build.json",
-      "sha256": "ee18a42f0c04ed432ff732caba7128043f8fea41aa2820e9ee309e1e0007b144"
+      "sha256": "d80c116eaba336a83ea45cc52284f2f767f7b8ae891f2a6ca8188a5e266cd09d"
     },
     "foundry": {
       "path": "evidence/foundry-results-v3.json",

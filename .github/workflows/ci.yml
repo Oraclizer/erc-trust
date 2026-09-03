@@ -75,6 +75,10 @@ jobs:
         run: pnpm --dir sdk install --frozen-lockfile --ignore-scripts
       - name: Test SDK
         run: pnpm --dir sdk test
+      - name: Rerun the independent specification-only reproduction and compare its receipt
+        run: |
+          node scripts/independent-reproduction-v3.mjs --vectors vectors/conformance-v2.json --ethers sdk/node_modules/ethers --out "$RUNNER_TEMP/independent-reproduction-v3.json" > /dev/null
+          diff -q "$RUNNER_TEMP/independent-reproduction-v3.json" evidence/independent-reproduction-v3.json
       - name: Regenerate conformance vectors
         run: node scripts/generate-vectors.mjs
       - name: Check vector determinism
@@ -85,6 +89,10 @@ jobs:
         run: forge build
       - name: Check runtime bridge generation determinism
         run: node scripts/generate-runtime-bridge-v2.mjs --check
+      - name: Check the two-layer runtime binding (pinned-compiler replay)
+        run: node scripts/generate-runtime-binding-v3.mjs --check
+      - name: Verify the runtime binding receipt
+        run: node scripts/verify-runtime-binding-v3.mjs --replay
       - name: Compile the generated kernel interface with the pinned compiler
         run: node scripts/verify-normative-kernel-solidity.mjs
       - name: Regenerate release manifest
