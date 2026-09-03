@@ -41,14 +41,24 @@ function walk(path) {
     .flatMap((entry) => walk(resolve(path, entry)));
 }
 
+// Heading text may carry inline HTML; every tag is removed, repeatedly until nothing changes,
+// so that no partial tag survives a single pass, and the anchor is then built from the text.
+function stripTags(text) {
+  let current = text;
+  for (;;) {
+    const next = current.replace(/<[^>]*>/g, "");
+    if (next === current) return current.replace(/[<>]/g, "");
+    current = next;
+  }
+}
+
 function anchorsFor(path) {
   const seen = new Map();
   const anchors = new Set();
   for (const line of readFileSync(path, "utf8").split(/\r?\n/)) {
     const match = /^(#{1,6})\s+(.+?)\s*$/.exec(line);
     if (!match) continue;
-    const base = match[2]
-      .replace(/<[^>]*>/g, "")
+    const base = stripTags(match[2])
       .replace(/[`*_~]/g, "")
       .toLowerCase()
       .replace(/[^\p{L}\p{N}\s-]/gu, "")
