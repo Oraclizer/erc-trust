@@ -5,7 +5,7 @@
   "purpose": "Bidirectional obligation ledger between the Isabelle abstract model of kernel version 2 and the final source of the native token, the ERC-3643 profile adapter, and the profile governor. Every row names one load-bearing abstract condition and the four pieces of evidence that connect it to the code: the exact source consumer, the positive activation test, the consumer-removal negative, and the compiled or downstream consumer. scripts/verify-obligation-ledger-v3.mjs checks every anchor against the current tree and renders the Isabelle ledger theory, the summary, and the central closure record.",
   "claimLadder": {
     "current": "mapped implementation evidence; end-to-end refinement incomplete",
-    "currentMeaning": "Every load-bearing abstract condition of the kernel version 2 model has a named source consumer in the final code, a test that exercises its positive branch, a declared consumer-removal mutation or behavioral negative that is recorded as killed once a receipt of the current identity exists, and a compiled or downstream consumer. The abstract model is machine-checked. The link between the compiled runtime and the abstract transition system (the locale assumption pinned_runtime_refinement.runtime_link) is not discharged, so no theorem states that the compiled runtime implements the model.",
+    "currentMeaning": "Every load-bearing abstract condition that this ledger names has a named source consumer in the final code, a test that exercises its positive branch, a declared consumer-removal mutation or behavioral negative that is recorded as killed once a receipt of the current identity exists, and a compiled or downstream consumer. The ledger is the enumeration of the conditions; the completeness of that enumeration is established by review and by the mechanical check that every declared fault is cited, not by a proof. The abstract model is machine-checked. The link between the compiled runtime and the abstract transition system (the locale assumption pinned_runtime_refinement.runtime_link) is not discharged, so no theorem states that the compiled runtime implements the model.",
     "nextRung": "end-to-end refinement complete: requires a machine-checked discharge of pinned_runtime_refinement.runtime_link for the exact runtime templates named in the generated bridge, replayed independently, before any Full or refinement-complete wording is used.",
     "forbiddenWording": [
       "TRUST 1.1 complete",
@@ -26,7 +26,7 @@
     },
     "reflection": {
       "direction": "final code to abstract model",
-      "statement": "Every guard and state write on the typed command paths of the three endpoints is either the consumer of a row above or listed here as runtime-only with the reason it has no abstract counterpart. Selectors outside the generated route classification fall through the compiler dispatcher and revert with empty data (generic_dispatcher_selector_is_unclassified).",
+      "statement": "Every guard and state write on the typed command paths of the three endpoints is either the consumer of a row above or listed here as runtime-only with the reason it has no abstract counterpart. This direction is enumerated by review, not by a machine scan of the sources; the mechanical parts are that every consumer line a row cites exists with its declared occurrence count, that every declared fault of the mutation campaign is cited by a row or listed as campaign-only, and that every cited fault mutates a consumer file of its row. Selectors outside the generated route classification fall through the compiler dispatcher and revert with empty data (generic_dispatcher_selector_is_unclassified).",
       "runtimeOnly": [
         {
           "item": "governance authorization identifiers (_usedGovernanceIds)",
@@ -2049,6 +2049,10 @@
         {
           "path": "implementation/src/TrustToken.sol",
           "snippet": "if (head.actionId != actionId || !stateMatches) {"
+        },
+        {
+          "path": "implementation/src/TrustToken.sol",
+          "snippet": "if (_effects[actionId].generation == 0) revert TrustInvalidCommand(reversalId, REASON_CURRENT_EFFECT);"
         }
       ],
       "positiveActivation": [
@@ -2064,6 +2068,14 @@
       "consumerRemovalNegative": [
         {
           "mutation": "MUT-66-REVERSAL-CURRENT-HEAD"
+        },
+        {
+          "kind": "redundant-guard",
+          "coveredBy": [
+            "NAT-REV-02",
+            "NAT-NONCE-02"
+          ],
+          "note": "the existence guard on the effect record (the code consumer of the conjunct effect_links st action_id is not None) is masked for every reachable state by the applied-lifecycle check of the original record and by the live-head check of this row: an applied FREEZE or RESTRICT always has an effect record, and an unknown or reversed action fails the earlier checks with the same reason. Removing the guard alone is therefore not detectable by a test; the head-check mutation of this row removes the load-bearing condition."
         }
       ],
       "compiledConsumer": [
@@ -2416,7 +2428,9 @@
           "dependency_echo_failure_is_reason_203",
           "dependency_canonical_operational_is_reason_204",
           "dependency_never_applies_without_matching_echoes",
-          "dependency_denial_or_operational_failure_stutters"
+          "dependency_denial_or_operational_failure_stutters",
+          "dependency_outcome_post_def",
+          "dependency_applicable_admits_the_transition"
         ]
       },
       "normativeReceiver": [
@@ -2484,7 +2498,8 @@
         "facts": [
           "dependency_identity_failure_is_reason_200",
           "dependency_configuration_failure_is_reason_201",
-          "dependency_failure_post_def"
+          "dependency_outcome_post_def",
+          "dependency_applicable_admits_the_transition"
         ]
       },
       "normativeReceiver": [
@@ -2874,7 +2889,11 @@
           "dependency_state_projection_is_exact",
           "authority_projection_is_exact",
           "receipt_projection_is_exact",
-          "current_state_does_not_assume_history"
+          "current_state_does_not_assume_history",
+          "pinned_runtime_pins_every_footprint_address",
+          "inhabitant_configuration_is_well_formed",
+          "current_configuration_wf_is_inhabited",
+          "inhabitant_pins_the_endpoint_code"
         ]
       },
       "normativeReceiver": [
@@ -3556,6 +3575,10 @@
         {
           "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
           "snippet": "if (request.provenanceCommitment == bytes32(0)) revert TrustInvalidCommand(request.reversalId, REASON_SHAPE);"
+        },
+        {
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "snippet": "if (_effects[actionId].generation == 0) revert TrustInvalidCommand(reversalId, REASON_CURRENT_EFFECT);"
         }
       ],
       "positiveActivation": [
@@ -3583,6 +3606,14 @@
         },
         {
           "mutation": "MUT-33-ERC3643-TERMINAL-REVERSAL-GUARD"
+        },
+        {
+          "kind": "redundant-guard",
+          "coveredBy": [
+            "ADP-REV-01",
+            "ADP-NONCE-01"
+          ],
+          "note": "the existence guard on the effect record (the code consumer of the conjunct effect_links st action_id is not None) is masked for every reachable state by the applied-lifecycle check of the original record and by the live-head check of this row: an applied FREEZE or RESTRICT always has an effect record, and an unknown or reversed action fails the earlier checks with the same reason. Removing the guard alone is therefore not detectable by a test; the head-check mutation of this row removes the load-bearing condition."
         }
       ],
       "compiledConsumer": [
@@ -3863,7 +3894,8 @@
           "dependency_identity_failure_is_reason_200",
           "dependency_configuration_failure_is_reason_201",
           "dependency_denial_or_operational_failure_stutters",
-          "dependency_failure_post_def"
+          "dependency_outcome_post_def",
+          "dependency_applicable_admits_the_transition"
         ]
       },
       "normativeReceiver": [
@@ -4351,8 +4383,7 @@
           "c0_unsigned_guard_accepts_iff_word_fits",
           "c0_enum_guard_accepts_iff_below_bound",
           "c0_action_canonicality_is_exact_guard_conjunction",
-          "c0_reversal_canonicality_is_exact_guard_conjunction",
-          "c0_reject_shell_reverts_and_preserves_frame"
+          "c0_reversal_canonicality_is_exact_guard_conjunction"
         ]
       },
       "normativeReceiver": [
@@ -4607,7 +4638,7 @@
     {
       "id": "SHR-ROW-01",
       "endpoint": "shared",
-      "title": "Omitting a terminal flag, a settlement commitment, a restriction flag, an entitlement, a prior amount, or a prior flag from a receipt or state is distinguishable (the row corollaries)",
+      "title": "Retained row corollaries (proof-bound source): no abstract condition of kernel version 2; receipt omission distinguishability is carried by the receipt rows",
       "abstractCondition": {
         "theory": "TRUST_M4_Action_Reversal_Row_Corollaries",
         "facts": [
@@ -4673,7 +4704,8 @@
       "assumptions": [
         "A-KECCAK"
       ],
-      "status": "CLOSED"
+      "status": "NOT-APPLICABLE",
+      "statusReason": "The ten facts of TRUST_M4_Action_Reversal_Row_Corollaries are content-free distinguishability lemmas (statements such as False is not True) retained byte for byte because the theory is a proof-bound allowlisted source; they name no kernel version 2 object. The distinguishability of receipt omissions is carried by the receipt rows NAT-RCPT-01, NAT-RCPT-02, and ADP-RCPT-01 through the preimage mutations; this row keeps the pointers to those mutations and the Kontrol proof but claims no abstract condition of its own."
     }
   ]
 }

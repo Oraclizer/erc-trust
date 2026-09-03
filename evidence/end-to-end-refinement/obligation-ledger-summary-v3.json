@@ -9,24 +9,24 @@
   "closure": "CONDITIONAL",
   "closureRecord": {
     "path": "evidence/end-to-end-refinement/central-closure-v3.json",
-    "sha256": "b66dbfd214992a7e34f76023d98ef7b35224b0d007b6c4f39e3278743e8535bd"
+    "sha256": "807bc418fabf1673871300c1647505d2eb8cee219281871870991fc2def37f94"
   },
   "counts": {
-    "closed": 69,
+    "closed": 68,
     "closedPendingReceipt": 0,
     "currentMandatory": 0,
-    "notApplicable": 1,
+    "notApplicable": 2,
     "rows": 72,
     "separateProfile": 0,
     "successorMandatory": 2
   },
   "generatedTheory": {
     "path": "formal/isabelle/ERC_TRUST/TRUST_Obligation_Ledger_Generated.thy",
-    "sha256": "d2549a759f0bd23956b3f4a41f544cd7c83a8125d0f11f95df346a4c308ce6a8"
+    "sha256": "e7cd7668bf4e052fb89ba5b2aee035aa4912e08b38c484cccfc6ed03bf965432"
   },
   "ledger": {
     "path": "evidence/end-to-end-refinement/obligation-ledger-v3.json",
-    "sha256": "96a4661c3b65fb48c6cf8dde7e73453a3797c698a7fdeddd3d686714be68f731"
+    "sha256": "57ffb713d38974ac514ef2f84bcf471b7706c87257c22a5d0b849d34ae7980d1"
   },
   "receiptCurrency": {
     "foundry": true,
@@ -551,8 +551,8 @@
     },
     {
       "awaiting": [],
-      "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "declaredStatus": "NOT-APPLICABLE",
+      "effectiveStatus": "NOT-APPLICABLE",
       "endpoint": "shared",
       "id": "SHR-ROW-01"
     }

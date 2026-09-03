@@ -44,7 +44,7 @@
   "candidate": "0.2.0-candidate.1",
   "claim": {
     "current": "mapped implementation evidence; end-to-end refinement incomplete",
-    "currentMeaning": "Every load-bearing abstract condition of the kernel version 2 model has a named source consumer in the final code, a test that exercises its positive branch, a declared consumer-removal mutation or behavioral negative that is recorded as killed once a receipt of the current identity exists, and a compiled or downstream consumer. The abstract model is machine-checked. The link between the compiled runtime and the abstract transition system (the locale assumption pinned_runtime_refinement.runtime_link) is not discharged, so no theorem states that the compiled runtime implements the model.",
+    "currentMeaning": "Every load-bearing abstract condition that this ledger names has a named source consumer in the final code, a test that exercises its positive branch, a declared consumer-removal mutation or behavioral negative that is recorded as killed once a receipt of the current identity exists, and a compiled or downstream consumer. The ledger is the enumeration of the conditions; the completeness of that enumeration is established by review and by the mechanical check that every declared fault is cited, not by a proof. The abstract model is machine-checked. The link between the compiled runtime and the abstract transition system (the locale assumption pinned_runtime_refinement.runtime_link) is not discharged, so no theorem states that the compiled runtime implements the model.",
     "forbiddenWording": [
       "TRUST 1.1 complete",
       "Native Full complete",
@@ -56,10 +56,10 @@
     "nextRung": "end-to-end refinement complete: requires a machine-checked discharge of pinned_runtime_refinement.runtime_link for the exact runtime templates named in the generated bridge, replayed independently, before any Full or refinement-complete wording is used."
   },
   "counts": {
-    "closed": 69,
+    "closed": 68,
     "closedPendingReceipt": 0,
     "currentMandatory": 0,
-    "notApplicable": 1,
+    "notApplicable": 2,
     "rows": 72,
     "separateProfile": 0,
     "successorMandatory": 2
@@ -68,7 +68,7 @@
     "bridgeBindsRuntime": true,
     "bridgeSchemaSha256": "20516f2e63a9cef94da420d65345076c307374cef65c543983de99ea9ae93aaf",
     "deterministicBuildRuntimeSha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1",
-    "ledgerSha256": "96a4661c3b65fb48c6cf8dde7e73453a3797c698a7fdeddd3d686714be68f731",
+    "ledgerSha256": "57ffb713d38974ac514ef2f84bcf471b7706c87257c22a5d0b849d34ae7980d1",
     "runtimes": {
       "native": {
         "bytes": 20043,
@@ -195,7 +195,7 @@
         "reason": "carried by ADP-DEP-01 as operational stutters; the abstract model has no upstream token"
       }
     ],
-    "statement": "Every guard and state write on the typed command paths of the three endpoints is either the consumer of a row above or listed here as runtime-only with the reason it has no abstract counterpart. Selectors outside the generated route classification fall through the compiler dispatcher and revert with empty data (generic_dispatcher_selector_is_unclassified)."
+    "statement": "Every guard and state write on the typed command paths of the three endpoints is either the consumer of a row above or listed here as runtime-only with the reason it has no abstract counterpart. This direction is enumerated by review, not by a machine scan of the sources; the mechanical parts are that every consumer line a row cites exists with its declared occurrence count, that every declared fault of the mutation campaign is cited by a row or listed as campaign-only, and that every cited fault mutates a consumer file of its row. Selectors outside the generated route classification fall through the compiler dispatcher and revert with empty data (generic_dispatcher_selector_is_unclassified)."
   },
   "routeExhaustiveness": {
     "nonconformantPath": "any selector outside the classified set falls through the compiler dispatcher and reverts with empty data (generic_dispatcher_revert_is_not_typed_failure)",
@@ -527,7 +527,7 @@
       "id": "SHR-NF-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "NOT-APPLICABLE",
       "id": "SHR-ROW-01"
     }
   ],

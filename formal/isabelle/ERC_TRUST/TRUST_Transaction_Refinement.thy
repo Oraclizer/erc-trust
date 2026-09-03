@@ -1513,10 +1513,7 @@ theorem success_returns_the_stored_receipt_hash:
   using assms by (auto simp: alpha_transaction_def canonical_receipt_trace_def)
 
 theorem committed_history_excludes_failure_receipts:
-  assumes "\<forall>execution\<in>set (committed_transactions history).
-             \<not> transaction_committed execution \<longrightarrow>
-             bridge_committed_receipt bridge execution = None"
-      and "alpha_history bridge history trace"
+  assumes "alpha_history bridge history trace"
   shows "trace = map_some (bridge_committed_receipt bridge)
            (filter transaction_committed (committed_transactions history))"
   using assms by (simp add: alpha_history_def)

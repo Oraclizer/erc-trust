@@ -133,15 +133,29 @@ theorem dependency_never_applies_without_matching_echoes:
   shows "command_echo_matches observation \<and> binding_echo_matches observation"
   using assms by (auto simp: classify_dependency_def split: if_splits)
 
-definition dependency_failure_post ::
-  "'state \<Rightarrow> dependency_classification \<Rightarrow> 'state"
+text \<open>
+  The endpoint applies the command's transition only when the dependency is
+  classified applicable; a denial or an operational failure leaves the state
+  where it was.  The outcome is a function of the classification, so the
+  stutter theorem below depends on its hypothesis.
+\<close>
+
+definition dependency_outcome_post ::
+  "'state \<Rightarrow> dependency_classification \<Rightarrow> ('state \<Rightarrow> 'state) \<Rightarrow> 'state"
 where
-  "dependency_failure_post pre classification = pre"
+  "dependency_outcome_post pre classification transition =
+     (case classification of
+        Dependency_Applicable _ \<Rightarrow> transition pre
+      | _ \<Rightarrow> pre)"
+
+theorem dependency_applicable_admits_the_transition:
+  "dependency_outcome_post pre (Dependency_Applicable evidence) transition = transition pre"
+  by (simp add: dependency_outcome_post_def)
 
 theorem dependency_denial_or_operational_failure_stutters:
   assumes "classification = Dependency_Rejected \<or>
            (\<exists>reason. classification = Dependency_Operational reason)"
-  shows "dependency_failure_post pre classification = pre"
-  using assms by (simp add: dependency_failure_post_def)
+  shows "dependency_outcome_post pre classification transition = pre"
+  using assms by (auto simp: dependency_outcome_post_def)
 
 end
