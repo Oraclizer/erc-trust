@@ -421,7 +421,7 @@ The candidate 2 receipts under `evidence/candidate-2/` are replayed against
 their own bytes by the candidate 2 tooling, which is kept in the tree:
 
 ```text
-(cd implementation && certoraRun certora/TrustFreezeDirection.conf \
+(cd evidence/candidate-2/implementation && certoraRun certora/TrustFreezeDirection.conf \
   --rule strict_increase_is_the_only_accepted_freeze_shape \
          nonincreasing_freeze_shape_reverts_and_restores_storage)
 

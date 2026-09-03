@@ -30,7 +30,7 @@
   },
   "inputs": {
     "vectorsPath": "vectors/conformance-v2.json",
-    "schemaSha256": "0x290c0ca499a185b6326ebf5ca5cbc18a14f5173a1cc29d973d44c2aeaf41ef46",
+    "schemaSha256": "0x188ae0491bbd81faf0c1eed5bc8e806ecaf74cd62a38f2bca52753180dc3bdc1",
     "abiSha256": "0x73b45cee3e8e6a2abd484a306a21d51aaa3fc4da75b976dd3c938d936352814b",
     "vectorsBytes": 52152,
     "vectorsSha256": "0x7905342ae31386b1bfbe4e7cabf7f2f362678c711981427fb15ad8f36bfdc16c",
