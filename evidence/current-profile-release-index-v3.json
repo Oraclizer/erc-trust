@@ -7,7 +7,7 @@
   "identity": {
     "certoraInputsSha256": null,
     "formalRoot": {
-      "rootSha256": "03268d2f662c8157b0e81e0088b8ece7d6a3dc18dbb88a76036a089bf15fa794",
+      "rootSha256": "83297feb6a97770012fc8f5cd24344106e3cac48062a20656f860bee49dca2a7",
       "theoryFiles": 22
     },
     "kontrolInputsSha256": "5d8f38006416e02aa7664a68f3ad108e2e05aba1d9abe0c7d339f8e64c4e67fb",
@@ -38,7 +38,7 @@
     "isabelleBuild": {
       "receipt": {
         "path": "evidence/isabelle-results-v3.json",
-        "sha256": "e66a1561ce77fe2673d3c96e07e940a013c7cfca78ff621adf316a19e84a21f2"
+        "sha256": "42958b9fb503f05d7269404b8f33dc8e6e6b5d73ce1122cac65c429ffd7c1073"
       },
       "status": "PASS"
     },
@@ -187,10 +187,10 @@
       "claim": "mapped implementation evidence; end-to-end refinement incomplete",
       "closure": "CONDITIONAL",
       "rows": {
-        "closed": 69,
+        "closed": 68,
         "closedPendingReceipt": 0,
         "currentMandatory": 0,
-        "notApplicable": 1,
+        "notApplicable": 2,
         "rows": 72,
         "separateProfile": 0,
         "successorMandatory": 2
@@ -198,7 +198,7 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "c5ee6951eb28cc36d4a1933a9bddbae18287585275e649586fb8555b224ff91b"
+        "sha256": "592796a71c33625d653ac045f4c9cc48de03bdd6f28759006caa3aa4106de1c8"
       }
     },
     "runtime": {
