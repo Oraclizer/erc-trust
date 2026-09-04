@@ -2,13 +2,19 @@
 
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
-import { existsSync, readFileSync, statSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, extname, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const sha256 = (value) => createHash("sha256").update(value).digest("hex");
 const readJson = (path) => JSON.parse(readFileSync(resolve(root, path), "utf8"));
+const canonicalTrackedSize = (path) => {
+  const value = readFileSync(resolve(root, path));
+  return value.includes(0)
+    ? value.length
+    : Buffer.byteLength(value.toString("utf8").replace(/\r\n?/g, "\n"), "utf8");
+};
 const failures = [];
 const fail = (message) => failures.push(message);
 const required = [
@@ -153,6 +159,7 @@ const badgeCount = (firstThirty.match(/\[!\[/g) ?? []).length;
 if (badgeCount !== 6) fail(`README badge count drift: ${badgeCount}`);
 if (!readme.includes("scripts/replay-current-profile-release.ps1")) fail("public replay command missing from README");
 const attributes = readFileSync(resolve(root, ".gitattributes"), "utf8");
+if (!attributes.includes("* text=auto eol=lf")) fail("LF text normalization mapping missing");
 if (!attributes.includes("**/generated/** linguist-generated=true")
     || !attributes.includes("**/mutant-runtime-bridge.k linguist-generated=true")) {
   fail("generated-source Linguist mapping missing");
@@ -161,7 +168,7 @@ if (present.length !== diet.summary.retainedFiles) fail(`retained path count dri
 const dietPath = "evidence/public-release/diet-manifest-v2.json";
 const retainedBytesExcludingManifest = present
   .filter((path) => path !== dietPath)
-  .reduce((sum, path) => sum + statSync(resolve(root, path)).size, 0);
+  .reduce((sum, path) => sum + canonicalTrackedSize(path), 0);
 if (retainedBytesExcludingManifest !== diet.summary.retainedBytesExcludingManifest) {
   fail(`retained byte count drift: ${retainedBytesExcludingManifest}`);
 }
@@ -189,7 +196,7 @@ if (failures.length) {
   for (const failure of failures) console.error(failure);
   process.exit(1);
 }
-const bytes = present.reduce((sum, path) => sum + statSync(resolve(root, path)).size, 0);
+const bytes = present.reduce((sum, path) => sum + canonicalTrackedSize(path), 0);
 console.log(JSON.stringify({
   status: releaseTree ? "PASS_PUBLIC_RELEASE_TREE" : "PUBLIC_TREE_SUCCESSOR_DEVELOPMENT",
   evidenceMode: evidenceMode.mode,
