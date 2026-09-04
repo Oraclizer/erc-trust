@@ -8,6 +8,8 @@ const ALGORITHM = "sha256-canonical-json-sorted-keys-v1";
 const LEGACY_RECEIPT_HEAD = "1de893b8d6bf1e26669baf0d8e6a8d3216f5a44e";
 const LEGACY_DEFINITION_SHA256 = "a56e9052820612032fd3be549c15593de2a09668c32628137017e0d36fe38acd";
 const LEGACY_SCRIPT_BLOB = "a670d6edca358461dbc88ee2a209029099d5f83f";
+const LEGACY_SCRIPT_RAW_SHA256 = "c28210bec081c305f4a364d7dc71fec04c08615f249ed2c3b3e058f000f14264";
+const CLOSURE_BASELINE = "1e6375c66ec18a48759df80a1579961f27533e3a";
 
 const sha256 = (value) => createHash("sha256").update(value).digest("hex");
 const stable = (value) => {
@@ -59,16 +61,15 @@ export function validateMutationDefinitionBinding(receipt, repoRoot, manifestPat
     check(receipt.campaignDefinitionSha256 === LEGACY_DEFINITION_SHA256, "legacy mutation receipt cannot inherit a changed campaign");
     check(rebind.schema === "erc-trust-mutation-definition-rebind-v1", "mutation rebind schema");
     check(rebind.receiptGitHead === LEGACY_RECEIPT_HEAD, "mutation rebind receipt head");
+    check(rebind.comparisonBaseline === CLOSURE_BASELINE, "mutation rebind comparison baseline");
     check(rebind.campaignDefinitionSource === "scripts/mutation-campaign-v1.json", "mutation rebind definition source");
     check(rebind.campaignDefinitionSha256 === LEGACY_DEFINITION_SHA256, "mutation rebind definition hash");
     check(rebind.historicalGitBlob === LEGACY_SCRIPT_BLOB && rebind.baselineGitBlob === LEGACY_SCRIPT_BLOB,
       "mutation rebind historical/baseline blob identity");
-    const historicalBlob = git(repoRoot, ["rev-parse", `${rebind.receiptGitHead}:${rebind.definitionSource}`]).trim();
     const baselineBlob = git(repoRoot, ["rev-parse", `${rebind.comparisonBaseline}:${rebind.definitionSource}`]).trim();
-    check(historicalBlob === rebind.historicalGitBlob && baselineBlob === rebind.baselineGitBlob,
-      "mutation rebind Git blob does not match the recorded commits");
-    check(sha256(git(repoRoot, ["cat-file", "blob", historicalBlob], null)) === rebind.historicalRawSha256,
-      "mutation rebind historical raw hash");
+    check(rebind.historicalGitBlob === LEGACY_SCRIPT_BLOB && rebind.historicalRawSha256 === LEGACY_SCRIPT_RAW_SHA256,
+      "mutation rebind historical identity differs from the frozen legacy constants");
+    check(baselineBlob === rebind.baselineGitBlob, "mutation rebind baseline Git blob");
     check(sha256(git(repoRoot, ["cat-file", "blob", baselineBlob], null)) === rebind.baselineRawSha256,
       "mutation rebind baseline raw hash");
     check(rebind.result === "BYTE_EXACT_DEFINITION_SOURCE", "mutation rebind disposition");

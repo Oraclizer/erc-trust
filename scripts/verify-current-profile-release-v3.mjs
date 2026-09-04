@@ -171,15 +171,18 @@ function validateCertoraReceipt(receipt, expected, expectedRoot, expectedRuntime
   check(receipt.run.runId === receipt.run.runHash, "Certora run id/hash mismatch");
   check(typeof receipt.run.outputNamespace === "string" && /^\d+$/.test(receipt.run.outputNamespace),
     "Certora output namespace missing");
+  check(receipt.run.outputNamespace === expected.expectedOutputNamespace, "Certora output namespace mismatch");
   check(typeof receipt.run.runHash === "string" && /^[0-9a-f]{32}$/.test(receipt.run.runHash),
     "Certora run hash format");
   const runUrl = new URL(receipt.run.url);
   check(runUrl.protocol === "https:" && runUrl.hostname === "prover.certora.com"
     && runUrl.pathname === `/output/${receipt.run.outputNamespace}/${receipt.run.runHash}`, "Certora run URL mismatch");
-  check(receipt.run.processExit === 0 && typeof receipt.run.terminalResult === "string" && receipt.run.terminalResult.length > 0,
+  check(receipt.run.processExit === 0 && receipt.run.terminalResult === expected.expectedTerminalResult,
     "Certora terminal provenance missing");
-  check(typeof receipt.toolchain?.certoraCli === "string" && typeof receipt.toolchain?.certoraServer === "string"
-    && receipt.toolchain.ruleSanity === "advanced", "Certora toolchain provenance missing");
+  check(receipt.toolchain?.certoraCli === expected.expectedCertoraCli
+    && receipt.toolchain?.certoraServer === expected.expectedCertoraServer
+    && receipt.toolchain?.solidity === expected.expectedSolidity
+    && receipt.toolchain?.ruleSanity === expected.expectedRuleSanity, "Certora toolchain provenance mismatch");
   requireExactInputRoot(receipt.inputsRootSha256, expectedRoot, expected.expectedInputPaths, receipt.inputs, "Certora");
   check(expected.expectedInputsRootSha256 === expectedRoot, "Certora expected input root drift");
   check(receipt.runtimeTemplateSha256 === expectedRuntime, "Certora receipt binds a different runtime");
@@ -239,6 +242,12 @@ if (selfTest) {
   expectRejected(() => validateCertoraReceipt(zeroCertora, expectations.certora, identity.certoraInputsSha256, expectedRuntime), "zero Certora rules and inputs");
   const certoraExpected = {
     provider: "certora-cloud",
+    expectedOutputNamespace: "1",
+    expectedCertoraCli: "fixture-cli",
+    expectedCertoraServer: "fixture-server",
+    expectedSolidity: "fixture-solidity",
+    expectedRuleSanity: "advanced",
+    expectedTerminalResult: "No errors found by Prover!",
     expectedInputPaths: ["implementation/src/TrustToken.sol"],
     expectedInputsRootSha256: rootOf(["implementation/src/TrustToken.sol"]),
     expectedRuleIds: ["rule-a"],
@@ -250,7 +259,7 @@ if (selfTest) {
     inputs: [{ path: "implementation/src/TrustToken.sol", sha256: sha256(bytes("implementation/src/TrustToken.sol")) }],
     inputsRootSha256: certoraExpected.expectedInputsRootSha256,
     runtimeTemplateSha256: expectedRuntime,
-    toolchain: { certoraCli: "fixture", certoraServer: "fixture", ruleSanity: "advanced" },
+    toolchain: { certoraCli: "fixture-cli", certoraServer: "fixture-server", solidity: "fixture-solidity", ruleSanity: "advanced" },
     run: { provider: "certora-cloud", runId: "0123456789abcdef0123456789abcdef", runHash: "0123456789abcdef0123456789abcdef", outputNamespace: "1", url: "https://prover.certora.com/output/1/0123456789abcdef0123456789abcdef", processExit: 0, terminalResult: "No errors found by Prover!", startedAt: "2026-01-01T00:00:00Z", finishedAt: "2026-01-01T00:01:00Z", replay: "fixture" },
   };
   validateCertoraReceipt(certoraGood, certoraExpected, certoraExpected.expectedInputsRootSha256, expectedRuntime);
@@ -260,6 +269,11 @@ if (selfTest) {
     ["Certora insecure URL", (value) => { value.run.url = value.run.url.replace("https:", "http:"); }],
     ["Certora wrong URL path", (value) => { value.run.url += "/extra"; }],
     ["Certora empty terminal result", (value) => { value.run.terminalResult = ""; }],
+    ["Certora contradictory terminal result", (value) => { value.run.terminalResult = "Errors found by Prover!"; }],
+    ["Certora wrong namespace", (value) => { value.run.outputNamespace = "2"; value.run.url = value.run.url.replace("/1/", "/2/"); }],
+    ["Certora malformed run hash", (value) => { value.run.runId = "x"; value.run.runHash = "x"; value.run.url = "https://prover.certora.com/output/1/x"; }],
+    ["Certora mismatched CLI", (value) => { value.toolchain.certoraCli = ""; }],
+    ["Certora mismatched server", (value) => { value.toolchain.certoraServer = ""; }],
   ]) {
     const changed = structuredClone(certoraGood);
     mutate(changed);
