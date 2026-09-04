@@ -5,14 +5,14 @@
     "sha256": "be7e3933bce1b35e97d64efb3a5e91d7c72bf9b9babfa5e275bc4f80e4e631f6"
   },
   "identity": {
-    "certoraInputsSha256": null,
+    "certoraInputsSha256": "be086bf6456f9e8f59a1b2893f773224c070c1a25d3a8a11b49d1b5de327be09",
     "formalRoot": {
-      "rootSha256": "4584a5146990bf65646be59143758b6d405542dfc70dad8973aa914e211b7097",
+      "rootSha256": "3a9a12ca9b64bf9c5bee52263825b12366b7382905ec85546f006fe3a845c330",
       "theoryFiles": 22
     },
     "kontrolInputsSha256": "a9ae8bd47997bccda566d9a3d002fc8b21c11bed717f5332beae7b4ef9d56294",
     "sourceRootAlgorithm": "sha256-raw-files-case-sensitive-path-order-v1",
-    "sourceRootSha256": "7d4b77b88ce1cfc9255abc810d306217df9cd34f27060dc9325fda8a9a35920e"
+    "sourceRootSha256": "947afab7619b5c2d629da3e233c1cbe76fc6556a61112fbcc51b99c7e7235272"
   },
   "kind": "ERC_TRUST_CURRENT_PROFILE_RELEASE_INDEX_V3",
   "lanes": {
@@ -22,35 +22,36 @@
       "status": "PENDING"
     },
     "certoraInputs": {
-      "inputsRootSha256": null,
+      "inputsRootSha256": "be086bf6456f9e8f59a1b2893f773224c070c1a25d3a8a11b49d1b5de327be09",
       "owner": "bound together with the Certora receipt",
       "receipt": null,
+      "runtimeSubject": "profileAdapter",
       "status": "PENDING"
     },
     "foundry": {
       "receipt": {
         "path": "evidence/foundry-results-v3.json",
-        "sha256": "1a29a6b57d7ea680c9ef54213f16beafc5f3e0de2157f382c1c535c5a5c12662"
+        "sha256": "f627ea97bf5482ca1f3059920b807c6518897cb9ba5b23ff48aa87b73ca3fb77"
       },
       "status": "PASS",
-      "tests": 89
+      "tests": 93
     },
     "independentReproduction": {
-      "assertions": 400,
+      "assertions": 401,
       "basis": "the receipt is the output of scripts/independent-reproduction-v3.mjs; the sdk-and-package job reruns the program against the committed vectors and requires the committed receipt to match byte for byte",
       "findings": 2,
       "historicalFindingsResolved": 7,
       "notEvaluable": 4,
       "receipt": {
         "path": "evidence/independent-reproduction-v3.json",
-        "sha256": "efc6c02b180009cf7427cb61aabb455d66894a5aa8d2f93147df3efbf65e7d63"
+        "sha256": "89ab04593ebd0a08e5dd6667986532e5d843d9be0dbcd27722b46cb62856519d"
       },
       "status": "PASS"
     },
     "isabelleBuild": {
       "receipt": {
         "path": "evidence/isabelle-results-v3.json",
-        "sha256": "bf85ebe1ff2071f3e5418bbaf83f00419000995e9c00d2de1ff0044ccaaf9ef6"
+        "sha256": "44de791b891085bdd9fa244448fe5d1bef100b901b157bff4f34a2239138a439"
       },
       "status": "PASS"
     },
@@ -74,7 +75,7 @@
       "status": "PASS"
     },
     "mutation": {
-      "campaignDefinitionSha256": "a56e9052820612032fd3be549c15593de2a09668c32628137017e0d36fe38acd",
+      "campaignDefinitionSha256": "ebb2f24583cc2407318512730fcbac590a5138883bd28e74e5c8066527560f13",
       "ids": [
         "MUT-01-FROZEN-FLOOR",
         "MUT-02-ROUTE-CONSUMPTION",
@@ -186,39 +187,49 @@
         "MUT-108-FREEZE-TARGET",
         "MUT-109-RESTRICT-FLAG",
         "MUT-110-BALANCE-MOVE",
-        "MUT-111-ERC3643-FREEZE-TARGET"
+        "MUT-111-ERC3643-FREEZE-TARGET",
+        "MUT-112-ERC3643-PARTIAL-DESCRIPTOR-KIND",
+        "MUT-113-ERC3643-PARTIAL-FULL-FLAG",
+        "MUT-114-ERC3643-PARTIAL-PROFILE-ID",
+        "MUT-115-ERC3643-SOURCE-RESTRICTION-POSTSTATE",
+        "MUT-116-ERC3643-DESTINATION-RESTRICTION-POSTSTATE",
+        "MUT-117-ERC3643-SUBJECT-ACTUAL-RESTRICTION-OBSERVATION",
+        "MUT-118-ERC3643-SOURCE-ACTUAL-RESTRICTION-OBSERVATION",
+        "MUT-119-ERC3643-DESTINATION-ACTUAL-RESTRICTION-OBSERVATION",
+        "MUT-120-ERC3643-SEALED-TOPOLOGY-VIEW",
+        "MUT-121-ERC3643-PARTIAL-INTERFACE-ID"
       ],
-      "killed": 111,
+      "killed": 121,
       "receipt": {
         "path": "evidence/mutation-results.json",
-        "sha256": "46230da5d4f35ec992229ff23a4a5eaff75b8971d1b9e35cba8cdf0deda48f03"
+        "sha256": "7267fd6d18b9405cdc9d69c612734eda0a323b23ef271321dd3f1061c55b15cc"
       },
       "status": "PASS",
-      "total": 111
+      "total": 121
     },
     "obligationLedger": {
       "claim": "mapped implementation evidence; end-to-end refinement incomplete",
       "closure": "CONDITIONAL",
       "rows": {
-        "closed": 68,
+        "closed": 70,
         "closedPendingReceipt": 0,
         "currentMandatory": 0,
         "notApplicable": 2,
-        "rows": 72,
+        "rows": 74,
         "separateProfile": 0,
         "successorMandatory": 2
       },
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "9eee17850e43ef37a50451d8f00ece0dd85317cb8502d6bd1512658c25296a82"
+        "sha256": "187fe90cb733255525617d616381888f46ec582e33a57c328afba6cc87387940"
       }
     },
     "runtime": {
       "eip170MarginBytes": 4533,
       "receipt": {
         "path": "evidence/deterministic-build.json",
-        "sha256": "d80c116eaba336a83ea45cc52284f2f767f7b8ae891f2a6ca8188a5e266cd09d"
+        "sha256": "330c6ab8df42e5e19e06df7e2699af97b01bd08b015d61f5cf6671a018fdc817"
       },
       "runtimeBytes": 20043,
       "runtimeTemplateSha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1",
@@ -228,7 +239,7 @@
       "basis": "this index checks the receipt against the deterministic build; layer 2 (pinned-compiler replay and the six semantic projections) is re-executed by scripts/generate-runtime-binding-v3.mjs --check and scripts/verify-runtime-binding-v3.mjs --replay in the sdk-and-package job",
       "receipt": {
         "path": "evidence/runtime-binding-v3.json",
-        "sha256": "b641eee204fea1a697d88f25076c9204caaca0c4860eceabeb8ce2bc481b6421"
+        "sha256": "a97ae836412472bfbe96fb06b338c8ea386e67fd4c620094bcdfd7a941347ae4"
       },
       "status": "PASS",
       "subjects": [

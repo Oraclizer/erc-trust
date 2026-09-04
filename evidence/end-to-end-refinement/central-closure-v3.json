@@ -56,8 +56,8 @@
     "nextRung": "end-to-end refinement complete: requires a machine-checked discharge of pinned_runtime_refinement.runtime_link for the exact runtime templates named in the generated bridge, replayed independently, before any Full or refinement-complete wording is used."
   },
   "counts": {
-    "closed": 48,
-    "closedPendingReceipt": 22,
+    "closed": 70,
+    "closedPendingReceipt": 0,
     "currentMandatory": 0,
     "notApplicable": 2,
     "rows": 74,
@@ -243,11 +243,11 @@
   },
   "rows": [
     {
-      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "effectiveStatus": "CLOSED",
       "id": "NAT-AUTH-01"
     },
     {
-      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "effectiveStatus": "CLOSED",
       "id": "NAT-AUTH-02"
     },
     {
@@ -323,7 +323,7 @@
       "id": "NAT-CASE-06"
     },
     {
-      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "effectiveStatus": "CLOSED",
       "id": "NAT-CASE-07"
     },
     {
@@ -339,7 +339,7 @@
       "id": "NAT-CUST-01"
     },
     {
-      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "effectiveStatus": "CLOSED",
       "id": "NAT-CUST-02"
     },
     {
@@ -387,11 +387,11 @@
       "id": "NAT-REV-07"
     },
     {
-      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "effectiveStatus": "CLOSED",
       "id": "NAT-XFER-01"
     },
     {
-      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "effectiveStatus": "CLOSED",
       "id": "NAT-XFER-02"
     },
     {
@@ -419,7 +419,7 @@
       "id": "NAT-ROUTE-01"
     },
     {
-      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "effectiveStatus": "CLOSED",
       "id": "NAT-ROUTE-02"
     },
     {
@@ -431,7 +431,7 @@
       "id": "NAT-E2E-01"
     },
     {
-      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "effectiveStatus": "CLOSED",
       "id": "ADP-AUTH-01"
     },
     {
@@ -447,7 +447,7 @@
       "id": "ADP-STALE-01"
     },
     {
-      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "effectiveStatus": "CLOSED",
       "id": "ADP-SHAPE-01"
     },
     {
@@ -455,15 +455,15 @@
       "id": "ADP-SHAPE-02"
     },
     {
-      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "effectiveStatus": "CLOSED",
       "id": "ADP-CASE-01"
     },
     {
-      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "effectiveStatus": "CLOSED",
       "id": "ADP-FRZ-01"
     },
     {
-      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "effectiveStatus": "CLOSED",
       "id": "ADP-REV-01"
     },
     {
@@ -471,27 +471,27 @@
       "id": "ADP-DISP-01"
     },
     {
-      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "effectiveStatus": "CLOSED",
       "id": "ADP-CUST-01"
     },
     {
-      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "effectiveStatus": "CLOSED",
       "id": "ADP-IMPORT-01"
     },
     {
-      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "effectiveStatus": "CLOSED",
       "id": "ADP-UPSTREAM-01"
     },
     {
-      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "effectiveStatus": "CLOSED",
       "id": "ADP-DEP-01"
     },
     {
-      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "effectiveStatus": "CLOSED",
       "id": "ADP-RCPT-01"
     },
     {
-      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "effectiveStatus": "CLOSED",
       "id": "ADP-OBS-01"
     },
     {
@@ -499,11 +499,11 @@
       "id": "ADP-ROUTE-01"
     },
     {
-      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "effectiveStatus": "CLOSED",
       "id": "ADP-SEAL-01"
     },
     {
-      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "effectiveStatus": "CLOSED",
       "id": "ADP-PROFILE-01"
     },
     {
@@ -511,7 +511,7 @@
       "id": "ADP-E2E-01"
     },
     {
-      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "effectiveStatus": "CLOSED",
       "id": "GOV-SEAL-01"
     },
     {
@@ -527,7 +527,7 @@
       "id": "SHR-DEC-02"
     },
     {
-      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "effectiveStatus": "CLOSED",
       "id": "SHR-STATE-01"
     },
     {
