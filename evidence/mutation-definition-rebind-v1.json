@@ -11,8 +11,9 @@
   "campaignDefinitionAlgorithm": "sha256-canonical-json-sorted-keys-v1",
   "campaignDefinitionSha256": "a56e9052820612032fd3be549c15593de2a09668c32628137017e0d36fe38acd",
   "result": "BYTE_EXACT_DEFINITION_SOURCE",
-  "disposition": "The historical receipt may bind this definition hash without rerunning the campaign because the complete mutation definition source at the recorded run commit and at the closure baseline was verified byte-identical before the backfill. The original branch commit was rewritten by the rebase merge and is not reachable in a fresh clone; the verifier therefore freezes its observed blob and raw hash as constants and independently rechecks the reachable closure baseline blob and raw bytes. Any later definition change invalidates this disposition and requires a new full campaign.",
+  "disposition": "The historical receipt may bind this definition hash without rerunning the campaign because the complete mutation definition source at the recorded run commit and at the closure baseline was verified byte-identical before the backfill. Rebase history and shallow continuous-integration checkouts do not guarantee that either original object is available later, so the verifier freezes both observed blob and raw hashes as constants and binds the legacy receipt to the canonical normalized definition hash. Any later definition change invalidates this disposition and requires a new full campaign.",
   "campaignDefinitionSource": "scripts/mutation-campaign-v1.json",
   "receiptHeadReachability": "UNREACHABLE_AFTER_REBASE_MERGE",
-  "historicalVerification": "OBSERVED_BEFORE_BACKFILL_AND_FROZEN_BY_VERIFIER_CONSTANTS"
+  "historicalVerification": "OBSERVED_BEFORE_BACKFILL_AND_FROZEN_BY_VERIFIER_CONSTANTS",
+  "ciVerification": "NO_HISTORICAL_GIT_OBJECT_DEPENDENCY"
 }
