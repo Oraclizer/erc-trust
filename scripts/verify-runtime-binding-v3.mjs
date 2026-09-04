@@ -120,7 +120,8 @@ const staleChecks = [
   ["evidence/foundry-results-v3.json", (data) => data.sourceRootSha256 === sourceRootSha256 && data.runtimeTemplate?.sha256 === receipt.runtimeTemplateSha256],
   ["evidence/mutation-results.json", (data) => data.candidateInput?.sourceRootSha256 === sourceRootSha256],
   ["evidence/kontrol-results-v3.json", (data) => data.runtimeBinding?.runtimeSha256 === receipt.runtimeTemplateSha256],
-  ["evidence/certora-results-v3.json", (data) => data.runtimeTemplateSha256 === receipt.runtimeTemplateSha256],
+  ["evidence/certora-results-v3.json", (data) =>
+    data.runtimeTemplateSha256 === subjectsById.get("profileAdapter")?.runtimeTemplate.sha256],
 ];
 const staleEvidence = [];
 const skippedReceipts = [];

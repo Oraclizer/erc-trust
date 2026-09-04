@@ -212,7 +212,7 @@ than Solidity. Measured on this tree (files | lines):
 | --- | --- | --- | --- |
 | Isabelle/HOL theories | 22 files, 9,413 lines in `formal/isabelle/ERC_TRUST/` | 41 files, 2,802 lines under `evidence/candidate-2/` | The abstract model, its theorems, and the generated bridge and ledger theories |
 | KEVM and Kontrol K sources | 1 file, 37 lines under `formal/kevm/` | 248 files, 35,114 lines under `evidence/candidate-2/formal/kevm/` | Bytecode-level claims and lemmas; the successor KEVM program has not been restarted |
-| Certora rules | 1 successor spec with 4 frozen rules and 47 lines under `implementation/certora/`; cloud run pending approval | 11 files, 858 lines under `evidence/candidate-2/` | Bounded source-level rules; no successor source has been sent yet |
+| Certora rules | 1 successor spec with 4 rules and 56 lines under `implementation/certora/`; exact 4/4 PASS receipt recorded | 11 files, 858 lines under `evidence/candidate-2/` | Bounded source-level rules on the current Partial adapter runtime; not an end-to-end refinement result |
 | Solidity | 14 source files, 3,211 lines, plus 15 test, Kontrol, and Certora harness files with 5,022 lines | 30 files, 15,315 lines under `evidence/candidate-2/` and `pilot/` | The reference contracts those artifacts are about |
 
 The boundaries of what that evidence does and does not establish are stated
@@ -242,7 +242,7 @@ The successor on private `main` (kernel version 2, working label
 | Deterministic build | Two isolated clean builds of the three runtimes, byte-identical |
 | Runtime binding | Three runtimes agree with the pinned-compiler replay in six semantic projections; verifier self-mutation 18/18 |
 | Independent reproduction | 23 vectors, 401 assertions reproduced from the specification alone |
-| Certora | Final Partial source/spec/harness and four expected rules frozen; cloud transmission pending separate approval |
+| Certora | 4/4 named rules PASS with advanced sanity, exact nine-file input root, provider provenance, and current Partial adapter runtime binding |
 | SDK | 13 source tests plus a pack-install consumer smoke from the package root |
 
 The claim this supports is "mapped implementation evidence; end-to-end
@@ -311,7 +311,7 @@ its broader regulatory and formal-methods context.
 | `spec/` | Normative kernel machine source, decision records, and generated renderings |
 | `implementation/src/` | Native reference and ERC-3643 profile |
 | `implementation/test/` | Unit, fuzz, invariant, and profile tests |
-| `implementation/certora/` | Frozen successor ERC-3643 Partial harness, four CVL rules, and config; cloud run pending separate approval |
+| `implementation/certora/` | Successor ERC-3643 Partial harness, four CVL rules, and the config recorded by the current Certora receipt |
 | `evidence/candidate-2/implementation/certora/` | Candidate 2 Certora Verification Language rules and configurations (history) |
 | `implementation/kontrol/` | KEVM high-risk cross-checks |
 | `sdk/` | Deterministic TypeScript request, receipt, and calldata helpers |

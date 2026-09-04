@@ -19,13 +19,13 @@ Each claim below names the receipt that backs it and the qualifier it must carry
 | "Every load-bearing abstract condition the obligation ledger names is connected to the final code by a source consumer, a positive test, a declared negative detector, and a compiled or downstream consumer." | Say "mapped implementation evidence; end-to-end refinement incomplete"; a negative is a killed consumer-removal mutation when one source consumer can be removed, otherwise a bounded behavioral negative whose scope the ledger states; the enumeration is limited to conditions the review identified | `evidence/end-to-end-refinement/obligation-ledger-v3.json`, `obligation-ledger-summary-v3.json`, `central-closure-v3.json`; `evidence/mutation-results.json`; `evidence/kontrol-results-v3.json` |
 | "The three runtime templates are byte-for-byte reproducible from the exact sources under the pinned compiler, and the compiled bytes agree with the pinned-compiler replay in ABI, storage layout, creation and runtime bytecode, method identifiers, and immutable references." | Reproducibility and semantic identity, not compiler correctness; no deployment identity | `evidence/deterministic-build.json` (schema v3, three subjects); `evidence/runtime-binding-v3.json` and `evidence/runtime-binding-v3/`; `scripts/verify-runtime-binding-v3.mjs --replay` |
 | "An implementer who reads only the specification and the vectors reproduces every identifier, hash, calldata, and receipt hash of the conformance vectors." | Specification-only reproduction of the vectors; not a second implementation of the endpoints | `evidence/independent-reproduction-v3.json`; `scripts/independent-reproduction-v3.mjs` |
+| "Four named Certora rules pass with advanced sanity on the current ERC-3643 Partial adapter runtime: the descriptor remains Partial and never Full, the restriction predicate is exact, and subject and role observations consume actual upstream restriction flags." | Bounded rule scope only; not manifest completeness, ordinary-transfer hook closure, deployment identity, or end-to-end refinement | `evidence/certora-results-v3.json`; `evidence/evidence-expectations-v3.json`; `implementation/certora/ERC3643Partial.spec` |
 | "Every receipt that binds code identity (deterministic build, Foundry, mutation, Kontrol, runtime binding, and Certora when present) binds the current source root or runtime template, and a stale one is rejected; the Isabelle receipt binds the formal root, the independent reproduction binds the vectors, and the model regression record binds neither." | Receipts are bound to the identity of the artifact they are about, not to time | `scripts/verify-current-profile-release-v3.mjs`; `scripts/verify-runtime-binding-v3.mjs` (stale evidence rejection) |
 
-Pending lanes at this change: `certora` and `certoraInputs` (the final input root and
-four rule IDs are frozen, no source has been sent to the cloud prover, and transmission
-requires separate approval), and nothing else. The evidence mode stays
-`successor-development` until those lanes are recorded; release mode requires zero
-pending lanes.
+All twelve current evidence lanes are PASS and the pending-lane set is empty. The
+evidence mode stays `successor-development`: recording every lane does not by itself
+authorize a release-mode claim, a tag, a deployment assertion, or a complete refinement
+claim.
 
 Forbidden for the successor, in addition to the list above: "end-to-end refinement
 complete", "Native Full complete", "Verified Full complete", "implementation conforms

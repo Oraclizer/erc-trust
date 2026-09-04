@@ -44,7 +44,8 @@ const provider = JSON.parse(readFileSync(resolve(root, runPath), "utf8"));
 check(provider.schema === "erc-trust-certora-provider-run-v1", "provider run schema");
 check(provider.provider === expected.provider, "provider identity");
 check(expected.runtimeSubject === "profileAdapter", "Certora runtime subject");
-check(expected.status === "FROZEN_PENDING_APPROVAL_OR_RUN", "Certora expectations are not frozen");
+check(["FROZEN_PENDING_APPROVAL_OR_RUN", "RECORDED_PASS"].includes(expected.status),
+  "Certora expectations are not frozen or recorded");
 exactSet(provider.rules.map((rule) => rule.id), expected.expectedRuleIds, "provider rules");
 check(provider.rules.every((rule) => rule.status === "PASS" && rule.sanity === "PASS"), "provider rule or sanity failure");
 check(provider.outputNamespace === expected.expectedOutputNamespace, "provider output namespace");

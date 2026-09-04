@@ -150,7 +150,7 @@ The successor disposition, lane by lane:
 | Deterministic build | Two isolated clean builds of the native token (20,043 bytes), the adapter (19,480), and the governor (2,787), byte-identical | `evidence/deterministic-build.json` |
 | Runtime binding | Three runtimes agree with the pinned-compiler replay in ABI, semantic storage layout, creation and runtime bytecode, method identifiers, and immutable references; verifier self-mutation 18/18; stale receipts rejected | `evidence/runtime-binding-v3.json` |
 | Independent reproduction | 23 vectors, 401 assertions, reproduced from the machine source, the generated prose and ABI, and the vectors alone | `evidence/independent-reproduction-v3.json` |
-| Certora | Final ERC-3643 Partial source/spec/harness and four expected rules frozen; no successor source has been sent, cloud transmission awaits separate approval, and evidence mode stays `successor-development` | `implementation/certora/`; `evidence/evidence-expectations-v3.json`; `evidence/evidence-mode.json` |
+| Certora | 4/4 named ERC-3643 Partial rules PASS with advanced sanity; receipt binds the exact nine-file input root, provider run, toolchain, terminal result, and current adapter runtime; evidence mode remains `successor-development` | `implementation/certora/`; `evidence/certora-results-v3.json`; `evidence/current-profile-release-index-v3.json` |
 
 Replay:
 

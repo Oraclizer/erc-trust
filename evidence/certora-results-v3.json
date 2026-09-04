@@ -1,0 +1,95 @@
+{
+  "candidate": "0.2.0-candidate.1",
+  "inputs": [
+    {
+      "path": "implementation/certora/ERC3643Partial.conf",
+      "sha256": "e6fe5e3584ba36913d78181bfae2de7e10d1ca28f297918687039e4823f846eb"
+    },
+    {
+      "path": "implementation/certora/ERC3643Partial.spec",
+      "sha256": "0be0a60b4abe7e8e0facc43745855940e8321388cca0af38ed7551c624d9c6fd"
+    },
+    {
+      "path": "implementation/certora/ERC3643PartialHarness.sol",
+      "sha256": "ede2c6e7f07fcab84d3a0f0cd095bfbb07e5048c5e5a0b4b2079b4268a928c9d"
+    },
+    {
+      "path": "implementation/src/TrustErrors.sol",
+      "sha256": "fbe1dffd50792b2da9604a0de37a5b089c427b329c96f80253ff317bb16491df"
+    },
+    {
+      "path": "implementation/src/generated/IERCTrustKernel.sol",
+      "sha256": "8f179a21b04fa1f172bdddef2f8878a01524d3429570c0abf9aa60cfc8738f7d"
+    },
+    {
+      "path": "implementation/src/interfaces/IERC3643External.sol",
+      "sha256": "701bae4ffedc2f7a00287b882247bd8de5c68131e13ac3c3e957f1d678d12119"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643ProfileTypes.sol",
+      "sha256": "9fbb5b1f379018e7412702324a4eae5a30db57f3937f0da42b24bab0e4efede4"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+      "sha256": "f2806571c8c39984ee6c50f5e8dd0aa94aac5e273564012afcb4ebb55e43320f"
+    },
+    {
+      "path": "implementation/src/profiles/ProfileGovernor.sol",
+      "sha256": "e9fec4c21a65edaa5619ee1368deb93da1645e311984a12cc89ca29131595ae8"
+    }
+  ],
+  "inputsRootSha256": "3cd3ece0bf234c1d295e90cd4ac1124cd6061f78217f6be9f02d0d61f8873faf",
+  "ruleResults": [
+    {
+      "id": "descriptor_is_always_partial_and_never_full",
+      "status": "PASS"
+    },
+    {
+      "id": "restriction_match_is_exact",
+      "status": "PASS"
+    },
+    {
+      "id": "role_observation_binds_actual_restriction",
+      "status": "PASS"
+    },
+    {
+      "id": "subject_observation_binds_actual_restriction",
+      "status": "PASS"
+    }
+  ],
+  "rules": {
+    "fail": 0,
+    "names": [
+      "descriptor_is_always_partial_and_never_full",
+      "restriction_match_is_exact",
+      "role_observation_binds_actual_restriction",
+      "subject_observation_binds_actual_restriction"
+    ],
+    "sanityFail": 0,
+    "success": 4,
+    "timeout": 0,
+    "total": 4,
+    "unknown": 0
+  },
+  "run": {
+    "finishedAt": "2026-09-04T07:28:08.0381Z",
+    "outputNamespace": "10491299",
+    "processExit": 0,
+    "provider": "certora-cloud",
+    "replay": "certoraRun implementation/certora/ERC3643Partial.conf",
+    "runHash": "60639df5f152420997b1ae09c5dc12a1",
+    "runId": "60639df5f152420997b1ae09c5dc12a1",
+    "startedAt": "2026-09-04T07:27:51Z",
+    "terminalResult": "No errors found by Prover!",
+    "url": "https://prover.certora.com/output/10491299/60639df5f152420997b1ae09c5dc12a1"
+  },
+  "runtimeTemplateSha256": "7a2dfa433911dd37e389498129356db30693e8ee8e128f8da63a5d3044a56349",
+  "schema": "erc-trust-certora-results-v3",
+  "status": "PASS",
+  "toolchain": {
+    "certoraCli": "8.19.1",
+    "certoraServer": "8.19.1",
+    "ruleSanity": "advanced",
+    "solidity": "0.8.36+commit.8a079791"
+  }
+}
