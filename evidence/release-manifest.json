@@ -33,7 +33,7 @@
   "sourceTree": {
     "scope": "protected-release-inputs-v1",
     "algorithm": "sha256-canonical-utf8-lf-lines-v1",
-    "root": "0281c6768b336edaeb5350cac4c5cf1ca081d2c3915f56988988343d21b0733a",
+    "root": "c7f05405af67630078965fb0ec48bea537d02e9ae6929b62d49717d697d8480a",
     "files": {
       "evidence/README.md": "76acee803d2f89111dd5e96db2a6fe46777e06256a45ea0fc8fddc45b11d9a0d",
       "evidence/candidate-2/README.md": "04407d7f2edca1613d4934f509f76dbdca7449c8676b35225553b6d018d0a662",
@@ -861,8 +861,8 @@
       "scripts/verify-runtime-bridge.mjs": "a4b7b3836aae3b5427a0409f1bbcf38821c10104fde647a21cea188f28cebf86",
       "scripts/verify-runtime-fixture.mjs": "b1c3a22bb004050bf4ae6049e92482927dbb9f25fb54f648a7c02556be0cfffe",
       "scripts/verify-sdk-package-consumer.mjs": "3bddaf529ceb5b0d89cc7c88db51899a859a6406b62420cf23372e126518e2b1",
-      "sdk/package.json": "634219dd42d5a4890443c5cf2a0363ec830aa9c39db0f4a1fa1af8ecf78ebecc",
-      "sdk/pnpm-lock.yaml": "0b2f9f04665c2ed5490755c677e6c2d8fe83d5f77998193ac9f2b59dff171d2f",
+      "sdk/package.json": "9418d75f5e96113bcdadf379b6f82235247d285ca7a6fce96876d895c2af0f7c",
+      "sdk/pnpm-lock.yaml": "09c31065df4c1066f5766bdc1b30731467f67134e993ebed402d5f65925ad3ba",
       "sdk/src/index.test.ts": "8efe1166181fa05f068b0c78886944d22b88ec15f28363cf68b25fed147392f1",
       "sdk/src/index.ts": "50050e27b158a2ee7cbe79aa99ae9f1a6f4528acce95fe78c2953ef16643c145",
       "sdk/src/kernel-v2.test.ts": "32d4ca9302243b8cbeea4e4c55ebdce86650ecad9048f6bb3cc9b23258420ab9",
