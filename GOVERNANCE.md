@@ -60,7 +60,7 @@ No other tag naming family is used.
 
 The historical tag `v0.1.0-candidate.1` remains immutable. Candidate 2
 (`0.1.0-candidate.2`) is the shipped reference candidate; the successor on
-private `main` carries the working label `0.2.0-candidate.1`. Tags and
+public `main` carries the working label `0.2.0-candidate.1`. Tags and
 GitHub Releases for either are separate maintainer actions whose current state
 is shown by the repository's tag and Release records.
 

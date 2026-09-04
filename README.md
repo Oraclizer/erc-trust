@@ -45,7 +45,7 @@ complete Isabelle-to-EVM refinement theorem.
 
 The permanent arXiv record preserves its version history: v1 binds candidate
 1 and v2 binds candidate 2, the shipped candidate. The successor now on the
-private `main` branch implements kernel version 2 of the wire format, which
+public `main` branch implements kernel version 2 of the wire format, which
 the paper does not yet describe; a revision is pending, and until it appears
 this repository, not the paper, describes the successor. Readers should use
 the latest arXiv version together with the exact commit and manifest
@@ -228,7 +228,7 @@ show actual artifact or verification inputs. The coral obligation boundary
 does not claim a complete Isabelle-to-Solidity-to-EVM refinement theorem, and
 the deployment boundary remains separate from repository evidence.
 
-The successor on private `main` (kernel version 2, working label
+The successor on public `main` (kernel version 2, working label
 `0.2.0-candidate.1`) has the following disposition, lane by lane in
 `evidence/current-profile-release-index-v3.json`:
 
@@ -340,7 +340,7 @@ local environment state do not belong in the tracked public tree.
 ## Version and release policy
 
 `0.1.0-candidate.2` identifies the shipped unaudited reference candidate;
-`0.2.0-candidate.1` is the working label of the successor on private `main`,
+`0.2.0-candidate.1` is the working label of the successor on public `main`,
 which has no tag or release. The historical `v0.1.0-candidate.1` tag
 remains immutable. A candidate 2 tag and a
 GitHub Release are separate maintainer actions whose current state is shown by

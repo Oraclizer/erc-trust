@@ -580,7 +580,7 @@ const index = {
   nonclaims: [
     "A PASS lane is a receipt bound to the exact current identity of its inputs; it is not an audit, a compiler-correctness result, or a deployment claim.",
     "A PENDING lane has no receipt for the current identity; the owning change must produce one. Historical candidate 2 receipts under evidence/candidate-2 never satisfy a lane.",
-    "Only release mode with zero pending lanes describes a release candidate; successor-development mode describes a successor tree under active evidence closure, including when that tree is on private main.",
+    "Only release mode with zero pending lanes describes a release candidate; successor-development mode describes a successor tree under active evidence closure, including when that tree is on public main.",
     "No compiler correctness, audit, deployment identity, production readiness, or external legal truth is claimed.",
   ],
 };

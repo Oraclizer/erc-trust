@@ -1,11 +1,11 @@
 # Public claim matrix
 
-> Status note: the first section describes the successor code on private `main`;
+> Status note: the first section describes the successor code on public `main`;
 > the sections that follow it describe the shipped candidate `0.1.0-candidate.2`,
 > whose receipts live under `evidence/candidate-2/`. The boundary of every claim is
 > also stated, entry by entry, in `known-limitations.md`.
 
-## Successor claims (kernel version 2, private main)
+## Successor claims (kernel version 2, public main)
 
 The successor code under `implementation/` is described by the lane index
 `evidence/current-profile-release-index-v3.json` under `evidence/evidence-mode.json`.
