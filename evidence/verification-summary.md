@@ -15,7 +15,7 @@ paper describes kernel version 1 (candidate 2); a revision for kernel version 2
 is pending.
 
 Disposition: **local source, package, deterministic-build, and runtime-binding
-checks PASS; mutation and remote Foundry/Isabelle receipts in progress; Certora
+checks PASS; remote Foundry/Isabelle receipts in progress; Certora
 cloud transmission pending separate approval; unaudited and not for production**
 
 > No deployment, proxy, migration, end-to-end refinement, or external
@@ -34,10 +34,10 @@ checked by `scripts/verify-current-profile-release-v3.mjs` under
 | Size | native runtime 20,043 bytes (EIP-170 margin 4,533); ERC-3643 adapter 19,480 (margin 5,096); profile governor 2,787 (margin 21,789) | `release-manifest.json`; `deterministic-build.json` |
 | Determinism | two isolated clean builds of the three runtimes produced identical artifact, creation, and runtime hashes (schema v3) | `deterministic-build.json` |
 | Runtime binding | Three runtimes agree with the pinned-compiler (solc 0.8.36) replay in ABI, semantic storage layout, creation bytecode, runtime bytecode, method identifiers, and immutable references; final aggregate check awaits fresh Foundry and mutation receipts | `runtime-binding-v3.json`; `runtime-binding-v3/` |
-| Mutation | 121 definitions and detector anchors PASS preflight; the full campaign is running and no final killed-count claim is made yet | pending replacement of `mutation-results.json` |
+| Mutation | 121/121 declared faults killed, 0 survived; each fault names its detector and, where it removes a load-bearing consumer, its obligation ledger row | `mutation-results.json` |
 | Kontrol/KEVM | 4/4 proofs PASS on the successor native runtime (Kontrol 1.0.255, KEVM 1.0.678, CANCUN); no adapter symbolic lane | `kontrol-results-v3.json` |
 | Isabelle/HOL | The 22-theory source and generated ledger are updated; exact-commit clean build, proof export, and oracle-audit receipt pending | pending replacement of `isabelle-results-v3.json` |
-| Obligation ledger | 74 rows: 7 CLOSED, 63 CLOSED-PENDING-RECEIPT, 2 SUCCESSOR-MANDATORY (the runtime link), 2 NOT-APPLICABLE, 0 CURRENT-MANDATORY; structural verifier `PASS_PENDING_RECEIPTS`, closure CONDITIONAL | `end-to-end-refinement/obligation-ledger-summary-v3.json`; `central-closure-v3.json` |
+| Obligation ledger | 74 rows: 70 CLOSED, 2 SUCCESSOR-MANDATORY (the runtime link), 2 NOT-APPLICABLE, 0 CURRENT-MANDATORY; verifier PASS, closure CONDITIONAL | `end-to-end-refinement/obligation-ledger-summary-v3.json`; `central-closure-v3.json` |
 | Runtime bridge | regenerated from the compiled artifacts of the three runtimes; determinism checked in continuous integration | `end-to-end-refinement/runtime-bridge-v2/` |
 | Independent reproduction | 23 vectors, 401 assertions reproduced by a program written from the machine source, the generated prose and ABI, and the vectors alone; rerun and compared in continuous integration | `independent-reproduction-v3.json` |
 | Certora | PENDING by decision: final ERC-3643 Partial source/spec/harness and four expected rule IDs are frozen, but no successor source has been sent to the cloud prover; the candidate 2 results describe different bytes | `evidence-expectations-v3.json`; `evidence-mode.json` |
