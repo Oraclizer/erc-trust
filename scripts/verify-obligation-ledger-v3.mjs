@@ -40,7 +40,7 @@ const paths = {
   bridgeSchema: "evidence/end-to-end-refinement/runtime-bridge-v2/schema.json",
   bridgeManifest: "evidence/end-to-end-refinement/runtime-bridge-v2/generated-manifest.json",
   kernelSchema: "spec/erc-trust-kernel-v2.json",
-  mutations: "scripts/run-mutations.ps1",
+  mutations: "scripts/mutation-campaign-v1.json",
   vectors: "vectors/conformance-v2.json",
   theoryDir: "formal/isabelle/ERC_TRUST",
   testDir: "implementation/test",
@@ -131,12 +131,16 @@ function testExists(contract, test) {
   return new RegExp(`function\\s+${test.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*\\(`).test(testSources.get(path));
 }
 
-const mutationSource = readText(paths.mutations);
+const mutationCampaign = readJson(paths.mutations);
 const declaredMutations = new Map();
-for (const match of mutationSource.matchAll(/Id = "([^"]+)"[\s\S]*?File = "([^"]+)"[\s\S]*?Contract = "([^"]+)"\s*\n\s*Test = "([^"]+)"/g)) {
-  declaredMutations.set(match[1], { file: match[2].replace(/\\/g, "/"), contract: match[3], test: match[4] });
+for (const definition of mutationCampaign.definitions ?? []) {
+  declaredMutations.set(definition.id, {
+    file: definition.file,
+    contract: definition.detector.contract,
+    test: definition.detector.test,
+  });
 }
-if (declaredMutations.size === 0) fail("no mutations declared in scripts/run-mutations.ps1");
+if (declaredMutations.size === 0) fail("no mutations declared in scripts/mutation-campaign-v1.json");
 
 const receipts = {};
 for (const [lane, path] of Object.entries(paths.receipts)) {
@@ -150,6 +154,7 @@ const sourceRootSha256 = (() => {
 })();
 const mutationReceiptCurrent = receipts.mutation !== null
   && JSON.stringify(receipts.mutation.data.results.map((result) => result.id)) === JSON.stringify([...declaredMutations.keys()])
+  && receipts.mutation.data.campaignDefinitionSha256 === mutationCampaign.campaignDefinitionSha256
   && receipts.mutation.data.candidateInput?.sourceRootSha256 === sourceRootSha256;
 const runtimeSha256 = receipts.deterministic?.data?.buildA?.runtimeSha256 ?? null;
 const bridgeBindsRuntime = runtimeSha256 !== null && bridge.subjects.native.runtime.sha256 === runtimeSha256;

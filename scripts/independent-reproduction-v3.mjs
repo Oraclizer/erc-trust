@@ -895,6 +895,18 @@ async function main() {
       resolution: "the receiptHash rule now names the source of subject, amount, caseId, authorityRef, dependencyRoot, source, and destination",
       anchor: "spec/erc-trust-kernel-v2.json#/hashes/receiptHash/rule",
     },
+    {
+      id: "same-action field-rule inheritance was unstated",
+      discoveredAgainst: "the initial LIQUIDATE and RECOVER shape-rule prose",
+      resolution: "shapeRules.appliesTo now defines same: X as inheritance followed by field-by-field overrides",
+      anchor: "spec/erc-trust-kernel-v2.json#/shapeRules/appliesTo",
+    },
+    {
+      id: "per-kind binding epochs and the endpoint dependency epoch were conflated",
+      discoveredAgainst: "the initial dependency-root prose",
+      resolution: "the bindingHash rule now separates each binding's version counter from the endpoint epoch that every command carries",
+      anchor: "spec/erc-trust-kernel-v2.json#/hashes/bindingHash/rule",
+    },
   ];
 
   // --- constants ----------------------------------------------------------

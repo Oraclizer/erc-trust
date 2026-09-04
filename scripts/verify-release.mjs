@@ -102,8 +102,8 @@ if (!existsSync(deterministicPath)) {
 }
 
 const mutationPath = resolve(root, "evidence", "mutation-results.json");
-const declaredMutationIds = [...readFileSync(resolve(root, "scripts", "run-mutations.ps1"), "utf8")
-  .matchAll(/^\s*Id = "([^"]+)"/gm)].map((match) => match[1]);
+const declaredMutationIds = JSON.parse(readFileSync(resolve(root, "scripts", "mutation-campaign-v1.json"), "utf8"))
+  .definitions.map((definition) => definition.id);
 const mutation = existsSync(mutationPath) ? JSON.parse(readFileSync(mutationPath, "utf8")) : null;
 const mutationInputs = execFileSync(
   "git",
@@ -121,8 +121,9 @@ if (mutation === null) {
 } else {
   validateMutationDefinitionBinding(
     mutation,
-    resolve(root, "scripts", "run-mutations.ps1"),
+    root,
     resolve(root, "scripts", "mutation-campaign-v1.json"),
+    resolve(root, "evidence", "mutation-definition-rebind-v1.json"),
     (condition, message) => { if (!condition) failures.push(message); },
   );
   if (mutation.candidateInput?.sourceRootSha256 !== mutationSourceRoot) {

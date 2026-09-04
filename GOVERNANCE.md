@@ -36,9 +36,11 @@ changes must pass link, public-surface, encoding, and repository-health checks.
 The public signing baseline starts with the 2026-09-01 launch commit. Earlier
 history predates that policy and may be unsigned. Maintainer-authored pull
 requests use rebase merge to preserve `Jay Kim <jay@oraclizer.io>` as the
-author; external contributor pull requests use squash merge so an intermediate
-secret cannot survive in public history. Platform signatures and unsigned
-contributor branch commits are not release identities.
+author; external contributor pull requests use squash merge so intermediate
+contributor commits are not added to `main`. Squash merge is not secret
+erasure: exposed credentials must be rotated and removed through the security
+process. Platform signatures and unsigned contributor branch commits are not
+release identities.
 
 The maintainer may request independent review before accepting security
 critical work. A green check does not oblige a merge.

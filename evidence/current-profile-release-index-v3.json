@@ -39,11 +39,11 @@
       "assertions": 400,
       "basis": "the receipt is the output of scripts/independent-reproduction-v3.mjs; the sdk-and-package job reruns the program against the committed vectors and requires the committed receipt to match byte for byte",
       "findings": 2,
-      "historicalFindingsResolved": 5,
+      "historicalFindingsResolved": 7,
       "notEvaluable": 4,
       "receipt": {
         "path": "evidence/independent-reproduction-v3.json",
-        "sha256": "87beccff1128640913e71cd33cc77a50e40ec6825f51a62a9c7e1311cd218356"
+        "sha256": "efc6c02b180009cf7427cb61aabb455d66894a5aa8d2f93147df3efbf65e7d63"
       },
       "status": "PASS"
     },
@@ -74,7 +74,7 @@
       "status": "PASS"
     },
     "mutation": {
-      "campaignDefinitionSha256": "1a3883567b076f47aa477e75896111a3e892b18b44453d90c445ea5964c4978b",
+      "campaignDefinitionSha256": "a56e9052820612032fd3be549c15593de2a09668c32628137017e0d36fe38acd",
       "ids": [
         "MUT-01-FROZEN-FLOOR",
         "MUT-02-ROUTE-CONSUMPTION",
@@ -191,7 +191,7 @@
       "killed": 111,
       "receipt": {
         "path": "evidence/mutation-results.json",
-        "sha256": "a86886fcd7bfdce3e2a4d7a6db25acdd8a108f6a69cbd6cde60765cf54479121"
+        "sha256": "46230da5d4f35ec992229ff23a4a5eaff75b8971d1b9e35cba8cdf0deda48f03"
       },
       "status": "PASS",
       "total": 111
@@ -211,7 +211,7 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "1ffcd8767cfbba3a44268843aa541fdeb94ee24b764126156ace42b281690654"
+        "sha256": "9eee17850e43ef37a50451d8f00ece0dd85317cb8502d6bd1512658c25296a82"
       }
     },
     "runtime": {
