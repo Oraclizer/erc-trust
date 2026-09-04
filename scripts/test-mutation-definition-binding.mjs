@@ -42,6 +42,10 @@ try {
   changedReceipt.campaignDefinition = changedManifest.definitions;
   changedReceipt.campaignDefinitionSha256 = changedHash;
   changedRebind.campaignDefinitionSha256 = changedHash;
+  // The current receipt is a new nonlegacy campaign and may legitimately carry a new definition set.
+  // Recast the correlated fixture as a claim to the frozen legacy head so the immutable legacy
+  // constants, rather than current Git object reachability, must reject the coordinated drift.
+  changedReceipt.candidateInput.gitHead = changedRebind.receiptGitHead;
   const manifestPath = join(work, "campaign.json");
   const rebindPath = join(work, "rebind.json");
   writeFileSync(manifestPath, JSON.stringify(changedManifest), "utf8");

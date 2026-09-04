@@ -2,7 +2,7 @@
     "schema":  "erc-trust-deterministic-build-v3",
     "status":  "PASS",
     "candidateInput":  {
-                           "gitHead":  "ddf9bff44b6b586a28022031a5b5e62cd604562d",
+                           "gitHead":  "5266a24d12d35e86fcc927b7ea36278964c0f471",
                            "sourceRootAlgorithm":  "sha256-raw-files-case-sensitive-path-order-v1",
                            "sourceRootSha256":  "947afab7619b5c2d629da3e233c1cbe76fc6556a61112fbcc51b99c7e7235272"
                        },

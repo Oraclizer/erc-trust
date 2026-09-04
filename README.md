@@ -235,10 +235,10 @@ The successor on private `main` (kernel version 2, working label
 | Layer | Result |
 | --- | --- |
 | Foundry | Local 93/93 tests across seven suites; two fuzz properties at 256 runs; nine invariants at 256 runs and depth 500 (1,152,000 calls, zero reverts); exact-commit CI receipt pending |
-| Mutation | 121 definitions and detectors pass preflight; full campaign and receipt replacement in progress |
+| Mutation | 121/121 declared faults killed, including Partial descriptor, touched-account restriction post-state, role-authentic observation, sealed-topology view, and Partial interface ID negatives |
 | Kontrol and KEVM | 4/4 proofs rerun on the successor native runtime; the adapter has no symbolic lane |
 | Isabelle/HOL abstract model | 22 theories modelling kernel version 2; clean build and proof audit with 409 explicit roots and zero oracle dependencies |
-| Obligation ledger | 74 rows: 7 closed, 63 closed pending fresh mutation receipt, 2 open (the undischarged runtime link), 2 not applicable; closure conditional |
+| Obligation ledger | 74 rows: 70 closed, 2 open (the undischarged runtime link), 2 not applicable; closure conditional |
 | Deterministic build | Two isolated clean builds of the three runtimes, byte-identical |
 | Runtime binding | Three runtimes agree with the pinned-compiler replay in six semantic projections; verifier self-mutation 18/18 |
 | Independent reproduction | 23 vectors, 401 assertions reproduced from the specification alone |
