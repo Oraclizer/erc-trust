@@ -27,6 +27,7 @@ case transition table, reason classes, and profile descriptors.
 | `generated/kernel-v2.md` | Generated human-readable rendering of the schema. |
 | `../sdk/src/kernel-v2.ts` | Generated TypeScript types and hash helpers. |
 | `../vectors/conformance-v2.json` | Generated conformance vectors for all six actions and three reversals. |
+| `../schemas/receipt.schema.json` | Generated canonical JSON schema for the 17-field action and reversal receipt. |
 
 ## Regenerate and check
 

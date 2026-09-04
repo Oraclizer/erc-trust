@@ -52,6 +52,9 @@ const required = [
   "evidence/candidate-2/current-profile-release-index-v2.json",
   "evidence/current-profile-release-index-v3.json",
   "evidence/evidence-mode.json",
+  "evidence/evidence-expectations-v3.json",
+  "evidence/mutation-definition-rebind-v1.json",
+  "scripts/mutation-campaign-v1.json",
   "evidence/public-release/diet-manifest-v2.json",
   "evidence/public-release/diet-manifest-v1.json",
   "evidence/public-release/proof-bound-identifiers-v1.json",
@@ -181,6 +184,19 @@ for (const path of ["README.md", "docs/ERC-DRAFT.md", "docs/COMMUNITY-REVIEW.md"
   const text = readFileSync(resolve(root, path), "utf8").toLowerCase();
   if (!text.includes("unaudited") || !text.includes("not for production")) {
     failures.push(`missing assurance warning: ${path}`);
+  }
+}
+
+{
+  const proposal = readFileSync(resolve(root, "docs/ERC-DRAFT.md"), "utf8");
+  const specification = proposal.indexOf("## Specification");
+  const rationale = proposal.indexOf("## Rationale");
+  if (specification === -1 || rationale <= specification) {
+    failures.push("proposal Specification or Rationale boundary missing");
+  } else {
+    const outsideSpecification = `${proposal.slice(0, specification)}\n${proposal.slice(rationale)}`;
+    const normative = [...outsideSpecification.matchAll(/\b(?:MUST(?: NOT)?|SHALL(?: NOT)?|SHOULD(?: NOT)?|REQUIRED|RECOMMENDED|NOT RECOMMENDED|MAY|OPTIONAL)\b/g)];
+    if (normative.length > 0) failures.push(`RFC 2119 keyword outside Specification: ${normative[0][0]}`);
   }
 }
 

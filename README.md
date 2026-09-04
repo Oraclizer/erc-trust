@@ -44,12 +44,12 @@ into an audit, deployment verification, compiler-correctness result, or a
 complete Isabelle-to-EVM refinement theorem.
 
 The permanent arXiv record preserves its version history: v1 binds candidate
-1 and v2 binds candidate 2, the shipped candidate. The successor on the
-integration branch implements kernel version 2 of the wire format, which the
-paper does not yet describe; a revision is pending, and until it appears this
-repository, not the paper, describes the successor. Readers should use the
-latest arXiv version together with the exact commit and manifest identities
-stated here.
+1 and v2 binds candidate 2, the shipped candidate. The successor now on the
+private `main` branch implements kernel version 2 of the wire format, which
+the paper does not yet describe; a revision is pending, and until it appears
+this repository, not the paper, describes the successor. Readers should use
+the latest arXiv version together with the exact commit and manifest
+identities stated here.
 
 ## The problem
 
@@ -205,10 +205,10 @@ than Solidity. Measured on this tree (files | lines):
 
 | Layer | Successor (kernel version 2) | Preserved candidate 2 history | What it is |
 | --- | --- | --- | --- |
-| Isabelle/HOL theories | 22 | 9,358 (`formal/isabelle/ERC_TRUST/`) | 41 | 2,802 (`evidence/candidate-2/`) | The abstract model, its theorems, and the generated bridge and ledger theories |
-| KEVM and Kontrol K sources | 1 | 37 (`formal/kevm/`, generated bridge and lemmas only) | 252 | 35,416 (`evidence/candidate-2/formal/kevm/`) | Bytecode-level claims and lemmas; the successor KEVM program has not been restarted |
-| Certora rules | none (lane pending) | 12 | 1,214 | Bounded rules against the candidate 2 source |
-| Solidity | 14 | 3,156 (`implementation/src/`) plus 14 | 4,777 of tests and the Kontrol harness | 30 | 15,315 (`evidence/candidate-2/`, `pilot/`) | The reference contracts those artifacts are about |
+| Isabelle/HOL theories | 22 files, 9,358 lines in `formal/isabelle/ERC_TRUST/` | 41 files, 2,802 lines under `evidence/candidate-2/` | The abstract model, its theorems, and the generated bridge and ledger theories |
+| KEVM and Kontrol K sources | 1 file, 37 lines under `formal/kevm/` | 252 files, 35,416 lines under `evidence/candidate-2/formal/kevm/` | Bytecode-level claims and lemmas; the successor KEVM program has not been restarted |
+| Certora rules | None; the successor lane is pending | 12 files, 1,214 lines under `evidence/candidate-2/` | Bounded rules against the candidate 2 source |
+| Solidity | 14 source files, 3,156 lines, plus 14 test and Kontrol-harness files with 4,777 lines | 30 files, 15,315 lines under `evidence/candidate-2/` and `pilot/` | The reference contracts those artifacts are about |
 
 The boundaries of what that evidence does and does not establish are stated
 below, in `evidence/claim-matrix.md`, and in `evidence/known-limitations.md`;
@@ -223,7 +223,7 @@ show actual artifact or verification inputs. The coral obligation boundary
 does not claim a complete Isabelle-to-Solidity-to-EVM refinement theorem, and
 the deployment boundary remains separate from repository evidence.
 
-The successor on the integration branch (kernel version 2, working label
+The successor on private `main` (kernel version 2, working label
 `0.2.0-candidate.1`) has the following disposition, lane by lane in
 `evidence/current-profile-release-index-v3.json`:
 
@@ -238,7 +238,7 @@ The successor on the integration branch (kernel version 2, working label
 | Runtime binding | Three runtimes agree with the pinned-compiler replay in six semantic projections; verifier self-mutation 18/18 |
 | Independent reproduction | 23 vectors, 400 assertions reproduced from the specification alone |
 | Certora | Pending by decision; no successor source has been sent to the cloud prover |
-| SDK | 12 tests |
+| SDK | 13 source tests plus a pack-install consumer smoke from the package root |
 
 The claim this supports is "mapped implementation evidence; end-to-end
 refinement incomplete": no theorem states that the compiled runtime
@@ -309,7 +309,7 @@ its broader regulatory and formal-methods context.
 | `evidence/candidate-2/implementation/certora/` | Candidate 2 Certora Verification Language rules and configurations (history); the successor Certora lane is pending |
 | `implementation/kontrol/` | KEVM high-risk cross-checks |
 | `sdk/` | Deterministic TypeScript request, receipt, and calldata helpers |
-| `schemas/` | Canonical receipt schema |
+| `schemas/` | Canonical receipt schema generated from the kernel machine source |
 | `vectors/` | Positive and negative conformance vectors |
 | `evidence/` | Claim, provenance, mutation, proof, and release manifests |
 | `formal/isabelle/ERC_TRUST/` | Abstract kernel version 2 model, the generated runtime bridge and obligation ledger theories |
@@ -334,8 +334,8 @@ local environment state do not belong in the tracked public tree.
 ## Version and release policy
 
 `0.1.0-candidate.2` identifies the shipped unaudited reference candidate;
-`0.2.0-candidate.1` is the working label of the successor on the integration
-branch, which has no tag or release. The historical `v0.1.0-candidate.1` tag
+`0.2.0-candidate.1` is the working label of the successor on private `main`,
+which has no tag or release. The historical `v0.1.0-candidate.1` tag
 remains immutable. A candidate 2 tag and a
 GitHub Release are separate maintainer actions whose current state is shown by
 the repository's tags and Releases pages; this README does not infer either.

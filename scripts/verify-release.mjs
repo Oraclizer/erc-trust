@@ -5,6 +5,7 @@ import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { validateMutationDefinitionBinding } from "./lib/mutation-campaign.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const manifestPath = resolve(root, "evidence", "release-manifest.json");
@@ -118,6 +119,12 @@ if (mutation === null) {
   // whether that is acceptable. Release mode is enforced by the lane verifier.
   console.log("mutation receipt absent: lane pending, governed by evidence/current-profile-release-index-v3.json");
 } else {
+  validateMutationDefinitionBinding(
+    mutation,
+    resolve(root, "scripts", "run-mutations.ps1"),
+    resolve(root, "scripts", "mutation-campaign-v1.json"),
+    (condition, message) => { if (!condition) failures.push(message); },
+  );
   if (mutation.candidateInput?.sourceRootSha256 !== mutationSourceRoot) {
     failures.push(
       `mutation source root mismatch: ${mutation.candidateInput?.sourceRootSha256} != ${mutationSourceRoot}`,
@@ -150,5 +157,5 @@ if (failures.length) {
   process.exit(1);
 }
 console.log(
-  `release manifest ${mode} PASS: ${Object.keys(manifest.sourceTree.files).length} protected files, runtime ${runtime.length} bytes`,
+  `release manifest integrity ${mode} PASS: ${Object.keys(manifest.sourceTree.files).length} protected files, runtime ${runtime.length} bytes; evidence eligibility is checked separately`,
 );

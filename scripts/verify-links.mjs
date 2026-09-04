@@ -6,8 +6,9 @@
 // definitions, autolinks, and the src and href attributes of raw HTML are all collected.
 //   repository   a relative target that must exist in the tree (with its heading anchor, if any)
 //   eip          a `./eip-NNNN.md` or `./erc-NNNN.md` target, valid only inside the proposal text,
-//                where it resolves in the ethereum/ERCs tree rather than in this one; every number
-//                so linked must appear in the proposal's `requires` preamble
+//                where it resolves in the ethereum/ERCs tree rather than in this one; normative
+//                dependencies must appear in `requires`, while the reviewed related-work set below
+//                may be linked without becoming a dependency
 //   external     an http(s) target, whose host must be on the allowlist below; the allowlist is
 //                kept to the hosts the tree actually links, so a new host is a reviewed change
 //   mailto       a mailto: target
@@ -25,6 +26,8 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const excluded = new Set([".git", ".certora_internal", ".kontrol", "cache", "dist", "kout", "node_modules", "out"]);
 const externalHosts = new Set(["arxiv.org", "creativecommons.org", "github.com", "img.shields.io", "isa-afp.org", "logicalhacking.com", "prover.certora.com", "www.contributor-covenant.org"]);
 const proposalFile = "docs/ERC-DRAFT.md";
+const requiredEips = new Set(["20", "165", "7943", "8319"]);
+const relatedWorkEips = new Set(["1450", "3643"]);
 const historyRoots = ["evidence/candidate-2/"];
 const pathSegmentsNotInTree = new Set(["node_modules", "out", "cache", "kout", "dist"]);
 const report = process.argv.includes("--report");
@@ -99,6 +102,9 @@ for (const source of markdownFiles) {
   const fences = [...text.matchAll(/```[\s\S]*?```/g)].map((match) => match[0]);
   const withoutFences = text.replace(/```[\s\S]*?```/g, "");
   const requires = sourceRel === proposalFile ? requiresOf(text) : null;
+  if (requires && JSON.stringify([...requires].sort()) !== JSON.stringify([...requiredEips].sort())) {
+    failures.push(`proposal requires drift: expected ${[...requiredEips].join(", ")}`);
+  }
 
   const targets = [];
   for (const match of withoutFences.matchAll(/!?\[[^\]]*]\(([^)\s]+)(?:\s+"[^"]*")?\)/g)) targets.push(match[1]);
@@ -128,7 +134,9 @@ for (const source of markdownFiles) {
     if (eip) {
       counts.eip += 1;
       if (sourceRel !== proposalFile) failures.push(`EIP repository link outside the proposal text: ${label}`);
-      else if (!requires.has(eip[1])) failures.push(`EIP repository link not listed in the requires preamble: ${label}`);
+      else if (!requires.has(eip[1]) && !relatedWorkEips.has(eip[1])) {
+        failures.push(`EIP repository link is neither a required dependency nor reviewed related work: ${label}`);
+      }
       continue;
     }
     counts.repository += 1;

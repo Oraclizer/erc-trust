@@ -9,7 +9,7 @@
   "closure": "CONDITIONAL",
   "closureRecord": {
     "path": "evidence/end-to-end-refinement/central-closure-v3.json",
-    "sha256": "0de55a8ce6a14ab2dc306106b5d32cfe9bd4419246ac51061b781cf1e48609c6"
+    "sha256": "6fa63c85ee106f131eb4069f3f3cfd471876027790324fa92bb51ddfac8f4357"
   },
   "counts": {
     "closed": 68,
@@ -22,11 +22,11 @@
   },
   "generatedTheory": {
     "path": "formal/isabelle/ERC_TRUST/TRUST_Obligation_Ledger_Generated.thy",
-    "sha256": "a231a3af0e426f42c15e30c16ef60855a5a2d3849f69f8dc03bd77499a301a1b"
+    "sha256": "5f23f7a16fcc1be0d2eae0f59bfc34d061ed43adc2cd282641de7a59fba36e9e"
   },
   "ledger": {
     "path": "evidence/end-to-end-refinement/obligation-ledger-v3.json",
-    "sha256": "57ffb713d38974ac514ef2f84bcf471b7706c87257c22a5d0b849d34ae7980d1"
+    "sha256": "caf3334f1e62b6daf7fec9bc182dbaeab120c2c1995ba9055e827359d098ff45"
   },
   "receiptCurrency": {
     "foundry": true,
@@ -44,11 +44,11 @@
     },
     "kontrol": {
       "path": "evidence/kontrol-results-v3.json",
-      "sha256": "c889500f9d55c3f510df209f1d121f1c10a7a9bd46df33dd97fc9fb07cb05454"
+      "sha256": "20d5eac6b01009e29baa80524db7f329f9e0834515a8a96133715f8b0a1f6f2c"
     },
     "mutation": {
       "path": "evidence/mutation-results.json",
-      "sha256": "8839c501f4e896be66b9710a2836d177b9dff5d0de58835378fcb47954c8b941"
+      "sha256": "a86886fcd7bfdce3e2a4d7a6db25acdd8a108f6a69cbd6cde60765cf54479121"
     }
   },
   "rows": [

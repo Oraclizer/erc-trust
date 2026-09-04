@@ -7,7 +7,7 @@ status: Draft
 type: Standards Track
 category: ERC
 created: 2026-09-02
-requires: 20, 165, 1450, 3643, 7943, 8319
+requires: 20, 165, 7943, 8319
 ---
 
 ## Abstract
@@ -304,14 +304,6 @@ integers are left-padded with zero bytes, and enums are their `uint8` value.
 | `reversalHash` | `DOMAIN`, endpoint address, chain id, the completed `ReversalRequest` |
 | `nonceKey` | `DOMAIN`, `authorityRef`, `authorityEpoch`, `nonce` |
 | `receiptHash` | `DOMAIN`, then the first sixteen fields of `Receipt` in declared order |
-
-The endpoint address is the address of the conformance endpoint that
-executes the command: the token for the native profile, the adapter for a
-profile endpoint. It is the address a caller invokes, so for a proxy-fronted
-endpoint it is the proxy address, never the implementation address (in
-Solidity, `address(this)` of the executing contract). The chain id is the
-EIP-155 chain identifier of the chain the endpoint is deployed on
-(`block.chainid`).
 
 The endpoint address is the address of the conformance endpoint that
 executes the command: the token for the native profile, the adapter for a
@@ -748,7 +740,7 @@ table fixes what a second command in the same case means, what a command from
 another family means, and when a case can never be reused.
 
 **No delegation and no cancellation in the kernel.** Delegation is a policy
-of the authority account, which MAY be a contract; putting a registry in the
+of the authority account, which may be a contract; putting a registry in the
 kernel would standardize one such policy. Cancellation would need a second
 consumable state for an unapplied command; the validity window and the
 exactly-once keys already bound a prepared command's life.
@@ -806,7 +798,7 @@ remain unchanged and be described as legacy untyped enforcement, or it can be
 placed behind a profile adapter whose onboarding, ownership, and bypass
 assumptions are stated as above. Applications unaware of this interface can
 keep using the underlying token surfaces; applications that rely on typed
-action identity or receipts MUST first check ERC-165 support for
+action identity or receipts must first check ERC-165 support for
 `0x2b020308` and read `trustProfile()`.
 
 Kernel version 2 is not wire compatible with the earlier candidate of this
@@ -821,7 +813,7 @@ The conformance vectors accompany the machine-readable kernel definition.
 They fix the identifiers, command hashes, binding hash, dependency root,
 receipt hashes of both kinds, interface identifiers, and calldata lengths of
 one fixture for all six actions and three reversals, and the following
-negative cases. An implementation following the Specification section MUST
+negative cases. An implementation following the Specification section must
 produce the listed result.
 
 | Case | Input or mutation | Expected result |
@@ -861,7 +853,11 @@ deployment.
 The abstract model of the kernel is mechanically verified in Isabelle/HOL,
 and every load-bearing condition of that model that the accompanying
 obligation ledger names is connected to the final code by a source consumer,
-a positive test, a killed consumer-removal mutation, and a compiled consumer.
+a positive test, a declared negative detector, and a compiled consumer. A
+negative is a killed consumer-removal mutation when one source consumer can
+be removed; otherwise it is a bounded behavioral negative whose scope the
+ledger states. The ledger enumerates the conditions the review identified;
+the completeness of that enumeration is not proved.
 That connection is mapped implementation evidence; it is not an end-to-end
 refinement proof, and the assumption under which the compiled runtime is
 abstracted to the model is stated as an unproved locale assumption. The three
@@ -888,8 +884,8 @@ contract's own access control, which the kernel does not inspect.
 Every identifier binds the domain, the endpoint address, the chain id, and
 the complete request, and every command carries the current dependency root
 and epoch. Omitting any of these from a derivation would allow replay across
-deployments or after a governance change. Implementations MUST reject reused
-command identifiers and nonce tuples and MUST report stale commands before
+deployments or after a governance change. Implementations must reject reused
+command identifiers and nonce tuples and must report stale commands before
 any state-dependent rule.
 
 ### Raw privileged bypass
@@ -924,15 +920,15 @@ command prepared under the previous root.
 
 `CONFISCATE`, `LIQUIDATE`, and `RECOVER` are terminal. A malformed case,
 destination, custody record, settlement premise, or entitlement can cause an
-irreversible disposition. Implementations SHOULD require stronger
+irreversible disposition. Implementations should require stronger
 authorization and review for terminal actions than for reversible ones.
 
 ### Custody accounting
 
 `SEIZE` separates token custody from a declared prior holder. An
 implementation that treats the current balance holder as legal title can
-misstate ownership. Custody backing MUST remain exactly backed and
-unspendable by ordinary transfers, and `RELEASE` MUST consume the same active
+misstate ownership. Custody backing must remain exactly backed and
+unspendable by ordinary transfers, and `RELEASE` must consume the same active
 custody record; a disposition of custody consumes the whole record.
 
 ### Frozen targets over an adapted token

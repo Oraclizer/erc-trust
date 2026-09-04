@@ -94,7 +94,7 @@ exact gate that fails.
 Two of these checks compare regenerated files against the committed ones, so
 when your change touches a protected release input, commit the regenerated
 outputs of the kernel generator (`spec/generated/`, `sdk/src/kernel-v2.ts`,
-`vectors/conformance-v2.json`), the runtime bridge, the obligation ledger
+`vectors/conformance-v2.json`, `schemas/receipt.schema.json`), the runtime bridge, the obligation ledger
 renderings, and `evidence/release-manifest.json` in the same pull request; otherwise the determinism checks fail with a diff showing
 exactly what moved. Protected inputs include implementation and verification
 source, replay evidence, schemas, vectors, toolchain locks, SDK source and

@@ -8,6 +8,7 @@
 //   spec/generated/kernel-v2.md          human-readable rendering of the schema
 //   sdk/src/kernel-v2.ts                 TypeScript types and hash helpers
 //   vectors/conformance-v2.json          conformance vectors
+//   schemas/receipt.schema.json          canonical 17-field receipt JSON schema
 //
 // Usage:
 //   node scripts/generate-normative-kernel.mjs            write the artifacts
@@ -852,6 +853,48 @@ const vectors = {
   ],
 };
 
+const receiptJsonSchema = {
+  $schema: "https://json-schema.org/draft/2020-12/schema",
+  $id: "receipt.schema.json",
+  title: "ERC-TRUST kernel version 2 canonical receipt",
+  description: "Generated from spec/erc-trust-kernel-v2.json. The object contains every field of TrustKernelTypes.Receipt in canonical order.",
+  type: "object",
+  additionalProperties: false,
+  required: schema.structs.Receipt.fields.map((field) => field.name),
+  properties: Object.fromEntries(schema.structs.Receipt.fields.map((field) => {
+    if (["subject", "source", "destination"].includes(field.name)) return [field.name, { $ref: "#/$defs/address" }];
+    if (field.name === "amount") return [field.name, { $ref: "#/$defs/uintString" }];
+    if (field.name === "receiptKind") return [field.name, { type: "integer", enum: [1, 2] }];
+    if (field.name === "commandKind") return [field.name, { type: "integer", minimum: 0, maximum: 5 }];
+    return [field.name, { $ref: "#/$defs/bytes32" }];
+  })),
+  allOf: [
+    {
+      if: { properties: { receiptKind: { const: schema.enums.ReceiptKind.values.ACTION } }, required: ["receiptKind"] },
+      then: {
+        properties: {
+          commandKind: { maximum: Math.max(...Object.values(schema.enums.ActionKind.values)) },
+          parentCommandId: { const: ZeroHash },
+        },
+      },
+    },
+    {
+      if: { properties: { receiptKind: { const: schema.enums.ReceiptKind.values.REVERSAL } }, required: ["receiptKind"] },
+      then: {
+        properties: {
+          commandKind: { maximum: Math.max(...Object.values(schema.enums.ReversalKind.values)) },
+          parentCommandId: { not: { const: ZeroHash } },
+        },
+      },
+    },
+  ],
+  $defs: {
+    bytes32: { type: "string", pattern: "^0x[0-9a-fA-F]{64}$" },
+    address: { type: "string", pattern: "^0x[0-9a-fA-F]{40}$" },
+    uintString: { type: "string", pattern: "^(0|[1-9][0-9]*)$" },
+  },
+};
+
 // ---------------------------------------------------------------------------
 // Emit or check
 // ---------------------------------------------------------------------------
@@ -863,6 +906,7 @@ const outputs = [
   ["spec/generated/kernel-v2.md", markdown],
   ["sdk/src/kernel-v2.ts", typescript],
   ["vectors/conformance-v2.json", `${JSON.stringify(vectors, null, 2)}\n`],
+  ["schemas/receipt.schema.json", `${JSON.stringify(receiptJsonSchema, null, 2)}\n`],
 ];
 
 if (failures.length) {

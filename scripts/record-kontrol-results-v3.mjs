@@ -78,7 +78,7 @@ for (const observed of observedInputs) {
   const current = sourceInputs.find((entry) => entry.path === observed.path);
   if (current) check(current.sha256 === observed.sha256, `input changed since the run: ${observed.path}`);
 }
-const inputsRootSha256 = rootOf(walk("implementation/kontrol"));
+const inputsRootSha256 = rootOf(inputPaths);
 
 // Runtime template of the compiled artifact, bound to the generated bridge.
 const artifactPath = "out/TrustToken.sol/TrustToken.json";
@@ -93,6 +93,10 @@ check(bridge.subjects.native.runtime.sha256 === runtimeSha256, "compiled runtime
 
 // Proof outcomes.
 const expectedTests = [...bytes("implementation/kontrol/TrustTokenKontrolTest.t.sol").toString("utf8").matchAll(/function\s+(testKontrol_[A-Za-z0-9_]+)\s*\(/g)].map((match) => match[1]);
+check(expectedTests.length > 0 && new Set(expectedTests).size === expectedTests.length, "expected Kontrol proof set must be nonempty and unique");
+for (const field of ["startedAt", "finishedAt", "host", "runId"]) {
+  check(typeof run[field] === "string" && run[field].length > 0, `run summary lacks ${field}`);
+}
 const proofs = (run.proofs ?? []).map((proof) => ({
   id: `implementation%kontrol%TrustTokenKontrolTest.${proof.test}():0`,
   test: proof.test,
@@ -105,7 +109,8 @@ const proofs = (run.proofs ?? []).map((proof) => ({
 for (const test of expectedTests) check(proofs.some((proof) => proof.test === test), `no proof outcome recorded for ${test}`);
 for (const proof of proofs) check(expectedTests.includes(proof.test), `proof outcome for a test that is not in the Kontrol test file: ${proof.test}`);
 const summary = { total: proofs.length, passed: proofs.filter((proof) => proof.status === "PASS").length, failed: proofs.filter((proof) => proof.status !== "PASS").length };
-check(summary.failed === 0 && summary.total === expectedTests.length, "not every Kontrol proof passed");
+check(summary.total > 0 && summary.failed === 0 && summary.total === expectedTests.length, "not every Kontrol proof passed");
+check(new Set(proofs.map((proof) => proof.id)).size === proofs.length, "duplicate Kontrol proof identifier");
 
 const receipt = {
   schema: "erc-trust-kontrol-results-v3",
@@ -124,7 +129,7 @@ const receipt = {
   build: { command: "kontrol build --foundry-project-root . --regen --rekompile", seconds: run.buildSeconds ?? null },
   proofs,
   summary,
-  run: { startedAt: run.startedAt ?? null, finishedAt: run.finishedAt ?? null, host: run.host ?? null, replay: "node scripts/record-kontrol-results-v3.mjs --run <run-summary.json>" },
+  run: { provider: "kontrol-kevm", runId: run.runId, startedAt: run.startedAt, finishedAt: run.finishedAt, host: run.host, replay: "node scripts/record-kontrol-results-v3.mjs --run <run-summary.json>" },
   claimBoundary: "Four bounded symbolic proofs on the successor native runtime: raw sensitive selectors stay closed, an operational dependency failure and a non-increasing FREEZE stutter the projection, and LIQUIDATE moves the exact delta with the receipt as the final log. They are bounded instances of the undischarged runtime link of the abstract model, not a proof of it, and they cover the native token only. Not an audit, deployment result, or production-safety claim.",
 };
 

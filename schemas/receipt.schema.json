@@ -1,37 +1,136 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://erc-trust.example/schemas/receipt.schema.json",
-  "title": "ERC-TRUST canonical receipt",
+  "$id": "receipt.schema.json",
+  "title": "ERC-TRUST kernel version 2 canonical receipt",
+  "description": "Generated from spec/erc-trust-kernel-v2.json. The object contains every field of TrustKernelTypes.Receipt in canonical order.",
   "type": "object",
   "additionalProperties": false,
   "required": [
+    "receiptKind",
     "commandId",
     "commandKind",
+    "parentCommandId",
+    "subject",
     "source",
     "destination",
     "amount",
     "caseId",
-    "policyBinding",
+    "authorityRef",
+    "dependencyRoot",
     "provenanceCommitment",
+    "assessmentEvidence",
     "preState",
     "postState",
     "externalCommitment",
     "receiptHash"
   ],
   "properties": {
-    "commandId": { "$ref": "#/$defs/bytes32" },
-    "commandKind": { "type": "integer", "minimum": 0, "maximum": 255 },
-    "source": { "$ref": "#/$defs/address" },
-    "destination": { "$ref": "#/$defs/address" },
-    "amount": { "$ref": "#/$defs/uintString" },
-    "caseId": { "$ref": "#/$defs/bytes32" },
-    "policyBinding": { "$ref": "#/$defs/bytes32" },
-    "provenanceCommitment": { "$ref": "#/$defs/bytes32" },
-    "preState": { "$ref": "#/$defs/bytes32" },
-    "postState": { "$ref": "#/$defs/bytes32" },
-    "externalCommitment": { "$ref": "#/$defs/bytes32" },
-    "receiptHash": { "$ref": "#/$defs/bytes32" }
+    "receiptKind": {
+      "type": "integer",
+      "enum": [
+        1,
+        2
+      ]
+    },
+    "commandId": {
+      "$ref": "#/$defs/bytes32"
+    },
+    "commandKind": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "parentCommandId": {
+      "$ref": "#/$defs/bytes32"
+    },
+    "subject": {
+      "$ref": "#/$defs/address"
+    },
+    "source": {
+      "$ref": "#/$defs/address"
+    },
+    "destination": {
+      "$ref": "#/$defs/address"
+    },
+    "amount": {
+      "$ref": "#/$defs/uintString"
+    },
+    "caseId": {
+      "$ref": "#/$defs/bytes32"
+    },
+    "authorityRef": {
+      "$ref": "#/$defs/bytes32"
+    },
+    "dependencyRoot": {
+      "$ref": "#/$defs/bytes32"
+    },
+    "provenanceCommitment": {
+      "$ref": "#/$defs/bytes32"
+    },
+    "assessmentEvidence": {
+      "$ref": "#/$defs/bytes32"
+    },
+    "preState": {
+      "$ref": "#/$defs/bytes32"
+    },
+    "postState": {
+      "$ref": "#/$defs/bytes32"
+    },
+    "externalCommitment": {
+      "$ref": "#/$defs/bytes32"
+    },
+    "receiptHash": {
+      "$ref": "#/$defs/bytes32"
+    }
   },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "receiptKind": {
+            "const": 1
+          }
+        },
+        "required": [
+          "receiptKind"
+        ]
+      },
+      "then": {
+        "properties": {
+          "commandKind": {
+            "maximum": 5
+          },
+          "parentCommandId": {
+            "const": "0x0000000000000000000000000000000000000000000000000000000000000000"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "receiptKind": {
+            "const": 2
+          }
+        },
+        "required": [
+          "receiptKind"
+        ]
+      },
+      "then": {
+        "properties": {
+          "commandKind": {
+            "maximum": 2
+          },
+          "parentCommandId": {
+            "not": {
+              "const": "0x0000000000000000000000000000000000000000000000000000000000000000"
+            }
+          }
+        }
+      }
+    }
+  ],
   "$defs": {
     "bytes32": {
       "type": "string",

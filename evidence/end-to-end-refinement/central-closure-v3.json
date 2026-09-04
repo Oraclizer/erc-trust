@@ -44,7 +44,7 @@
   "candidate": "0.2.0-candidate.1",
   "claim": {
     "current": "mapped implementation evidence; end-to-end refinement incomplete",
-    "currentMeaning": "Every load-bearing abstract condition that this ledger names has a named source consumer in the final code, a test that exercises its positive branch, a declared consumer-removal mutation or behavioral negative that is recorded as killed once a receipt of the current identity exists, and a compiled or downstream consumer. The ledger is the enumeration of the conditions; the completeness of that enumeration is established by review and by the mechanical check that every declared fault is cited, not by a proof. The abstract model is machine-checked. The link between the compiled runtime and the abstract transition system (the locale assumption pinned_runtime_refinement.runtime_link) is not discharged, so no theorem states that the compiled runtime implements the model.",
+    "currentMeaning": "Every load-bearing abstract condition that this ledger names has a named source consumer in the final code, a test that exercises its positive branch, a declared negative detector, and a compiled or downstream consumer. When one source consumer can be removed, the negative is a mutation recorded as KILLED by the current receipt. When no single-consumer removal is meaningful, the row names a bounded behavioral negative and its scope. The ledger is the enumeration of the conditions the review identified; the completeness of that enumeration is not proved. The abstract model is machine-checked. The link between the compiled runtime and the abstract transition system (the locale assumption pinned_runtime_refinement.runtime_link) is not discharged, so no theorem states that the compiled runtime implements the model.",
     "forbiddenWording": [
       "TRUST 1.1 complete",
       "Native Full complete",
@@ -68,7 +68,7 @@
     "bridgeBindsRuntime": true,
     "bridgeSchemaSha256": "9bb84191d893772cb73c9898b5431ec3b8cbeb78f27f3a14f3ac69b751f732cb",
     "deterministicBuildRuntimeSha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1",
-    "ledgerSha256": "57ffb713d38974ac514ef2f84bcf471b7706c87257c22a5d0b849d34ae7980d1",
+    "ledgerSha256": "caf3334f1e62b6daf7fec9bc182dbaeab120c2c1995ba9055e827359d098ff45",
     "runtimes": {
       "native": {
         "bytes": 20043,

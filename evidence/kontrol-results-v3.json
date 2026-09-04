@@ -5,7 +5,7 @@
   },
   "candidate": "0.2.0-candidate.1",
   "claimBoundary": "Four bounded symbolic proofs on the successor native runtime: raw sensitive selectors stay closed, an operational dependency failure and a non-increasing FREEZE stutter the projection, and LIQUIDATE moves the exact delta with the receipt as the final log. They are bounded instances of the undischarged runtime link of the abstract model, not a proof of it, and they cover the native token only. Not an audit, deployment result, or production-safety claim.",
-  "inputsRootSha256": "5d8f38006416e02aa7664a68f3ad108e2e05aba1d9abe0c7d339f8e64c4e67fb",
+  "inputsRootSha256": "a9ae8bd47997bccda566d9a3d002fc8b21c11bed717f5332beae7b4ef9d56294",
   "proofs": [
     {
       "executionSeconds": 97,
@@ -47,6 +47,8 @@
   "run": {
     "finishedAt": "2026-09-03T01:54:54Z",
     "host": "WSL2 Ubuntu on the development host; isolated copy of implementation/, vectors/, and foundry.toml under the Linux file system; Kontrol and KEVM from the pinned nix profile",
+    "provider": "kontrol-kevm",
+    "runId": "successor-native-kontrol-2026-09-03T01:39:40Z",
     "replay": "node scripts/record-kontrol-results-v3.mjs --run <run-summary.json>",
     "startedAt": "2026-09-03T01:39:40Z"
   },

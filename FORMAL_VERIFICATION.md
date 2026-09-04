@@ -1,8 +1,8 @@
 # ERC-TRUST verification and refinement map
 
 This is the repository-level entry point for the verification package of the
-successor (kernel version 2, working label `0.2.0-candidate.1`, on the
-integration branch) and for the shipped candidate `0.1.0-candidate.2`, whose
+successor (kernel version 2, working label `0.2.0-candidate.1`, on private
+`main`) and for the shipped candidate `0.1.0-candidate.2`, whose
 evidence is preserved as history. It separates the abstract Isabelle model, the
 native Solidity reference, the ERC-3643 profile adapter and governor, and the
 preserved FREEZE pilot. A PASS below applies only to the named source, build,
@@ -49,14 +49,14 @@ and operations require separate evidence.
 | Successor runtime binding (two layers) | `evidence/runtime-binding-v3.json`; `evidence/runtime-binding-v3/`; `scripts/generate-runtime-binding-v3.mjs`; `scripts/verify-runtime-binding-v3.mjs` |
 | Successor deterministic build (three runtimes) | `evidence/deterministic-build.json` (schema v3) |
 | Independent specification-only reproduction | `evidence/independent-reproduction-v3.json`; `scripts/independent-reproduction-v3.mjs` |
-| End-to-end evidence map | `evidence/candidate-2/end-to-end-refinement/README.md` |
-| End-to-end semantic decision | `evidence/candidate-2/end-to-end-refinement/semantic-alignment-decision.md` |
-| End-to-end theorem obligations | `evidence/candidate-2/end-to-end-refinement/theorem-obligations.md` |
-| Public current-profile release index | `evidence/candidate-2/current-profile-release-index-v2.json` |
-| Successor package qualification | `evidence/candidate-2/end-to-end-refinement/c-series-terminal-qualification-v2.json` |
-| Successor row qualification | `evidence/candidate-2/end-to-end-refinement/current-profile-row-qualifications-v2.json` |
-| Historical row qualification index | `evidence/candidate-2/end-to-end-refinement/m4-current-profile-row-qualifications-v1.json` |
-| Public two-layer runtime binding | `evidence/candidate-2/end-to-end-refinement/runtime-binding-current-profile-qualification-v3.json` |
+| Historical candidate 2 end-to-end evidence map | `evidence/candidate-2/end-to-end-refinement/README.md` |
+| Historical candidate 2 semantic decision | `evidence/candidate-2/end-to-end-refinement/semantic-alignment-decision.md` |
+| Historical candidate 2 theorem obligations | `evidence/candidate-2/end-to-end-refinement/theorem-obligations.md` |
+| Historical candidate 2 release index | `evidence/candidate-2/current-profile-release-index-v2.json` |
+| Historical candidate 2 package qualification | `evidence/candidate-2/end-to-end-refinement/c-series-terminal-qualification-v2.json` |
+| Historical candidate 2 row qualification | `evidence/candidate-2/end-to-end-refinement/current-profile-row-qualifications-v2.json` |
+| Historical candidate 2 row qualification index | `evidence/candidate-2/end-to-end-refinement/m4-current-profile-row-qualifications-v1.json` |
+| Historical candidate 2 two-layer runtime binding | `evidence/candidate-2/end-to-end-refinement/runtime-binding-current-profile-qualification-v3.json` |
 | Public archive separation | `evidence/public-release/diet-manifest-v2.json`; historical removal set in `diet-manifest-v1.json`; `evidence/public-release/supersession-manifest-v1.json` |
 
 The product repository owns the ERC-TRUST model and implementation. The
@@ -90,9 +90,11 @@ the central obligation ledger described in `spec/decisions/10-refinement-closure
 The Isabelle session models kernel version 2 directly; the runtime bridge is
 regenerated from the compiled artifacts of the native token, the ERC-3643
 profile adapter, and the profile governor; and every closed ledger row names
-the exact source consumer, the positive activation test, the consumer-removal
-mutation or behavioral negative, and the compiled or downstream consumer of one
-abstract condition. The verifier checks every anchor against the current tree
+the exact source consumer, the positive activation test, the declared negative
+detector, and the compiled or downstream consumer of one abstract condition.
+The negative is a killed consumer-removal mutation when one source consumer can
+be removed; otherwise it is a bounded behavioral negative whose scope the row
+states. The verifier checks every anchor against the current tree
 and renders the ledger into the Isabelle session, so a cited fact cannot
 disappear without failing the build.
 
@@ -112,11 +114,12 @@ node scripts/generate-runtime-bridge-v2.mjs --check
 node scripts/verify-obligation-ledger-v3.mjs
 ```
 
-These commands verify the anchors and the rendered artifacts. The
-consumer-removal negatives are established by the mutation campaign
-(`scripts/run-mutations.ps1`) and the symbolic lane by the Kontrol run; the
-ledger verifier requires their receipts once they exist and reports pending
-rows until then.
+These commands verify the anchors and the rendered artifacts.
+Consumer-removal mutations are established by the mutation campaign
+(`scripts/run-mutations.ps1`); bounded behavioral negatives are established by
+their named tests or invariants. The symbolic lane is established by the
+Kontrol run. The ledger verifier requires the applicable receipts once they
+exist and reports pending rows until then.
 
 The runtime identity of the successor is bound by three receipts
 (`spec/decisions/11-runtime-assurance.md`): the deterministic build of all three

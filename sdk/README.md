@@ -3,8 +3,8 @@
 This candidate package provides deterministic, side-effect-free helpers for:
 
 - action and reversal identifiers;
-- canonical command and action-receipt hashes;
-- native and ERC-7943 wrapper calldata;
+- canonical command, reversal, dependency, and receipt hashes;
+- kernel version 2 calldata;
 - address checksum normalization.
 
 It does not submit transactions, manage or store keys, decide legal authority,
@@ -32,13 +32,13 @@ pnpm test
 ```ts
 import {
   ActionKind,
-  TRUST_DOMAIN,
+  KERNEL_DOMAIN,
   deriveActionId,
   encodeAction,
 } from "@oraclizer/erc-trust-sdk";
 
 const unsignedRequest = {
-  domain: TRUST_DOMAIN,
+  domain: KERNEL_DOMAIN,
   actionId: "0x" + "00".repeat(32),
   action: ActionKind.FREEZE,
   // Provide every other field from the selected deployment profile and case.
@@ -49,8 +49,15 @@ const request = { ...unsignedRequest, actionId };
 const calldata = encodeAction(request);
 ```
 
-Pass `true` as the second argument to `encodeAction` or `encodeReversal` only
-when intentionally selecting the native exact-use ERC-7943 wrapper.
+The package root is kernel version 2. Historical kernel version 1 helpers are
+available from the explicit `@oraclizer/erc-trust-sdk/v1` subpath:
+
+```ts
+import {
+  TRUST_DOMAIN,
+  actionReceiptHash,
+} from "@oraclizer/erc-trust-sdk/v1";
+```
 
 ## Integration rules
 
@@ -60,22 +67,19 @@ when intentionally selecting the native exact-use ERC-7943 wrapper.
 - Bind the current authority and epoch, the dependency root and epoch,
   nonce, validity, and action-specific commitments before encoding.
 - Compare results against
-  [`../vectors/conformance-v2.json`](../vectors/conformance-v2.json) for
-  kernel version 2 and
-  [`../vectors/conformance-v1.json`](../vectors/conformance-v1.json) for the
-  shipped version 1 helpers.
+  [`../vectors/conformance-v2.json`](../vectors/conformance-v2.json). The
+  explicit `./v1` subpath is compared with
+  [`../vectors/conformance-v1.json`](../vectors/conformance-v1.json).
 - Recompute the stored receipt and emitted receipt hash independently.
 - Never treat SDK output as proof that an upstream fact or authority is valid.
 
 See the repository [integration guide](../docs/INTEGRATION.md) for the complete
 request and failure lifecycle.
 
-## Kernel version 2 helpers
+## Package entry points
 
-`src/kernel-v2.ts` is generated from `spec/erc-trust-kernel-v2.json` and
-provides the version 2 identifiers, command hashes, dependency root, binding
-hash, nonce key, and the unified action and reversal receipt hash. The
-Solidity endpoints under `implementation/` implement kernel version 2; the
-package entry point (`src/index.ts`) and the example above still expose the
-version 1 helpers of the shipped candidate, so use `src/kernel-v2.ts` for
-the successor until the entry point is switched.
+The package root re-exports `src/kernel-v2.ts`, generated from
+`spec/erc-trust-kernel-v2.json`. It provides the version 2 identifiers,
+command hashes, dependency root, binding hash, nonce key, calldata, and the
+unified action and reversal receipt hash. `./v1` preserves the historical
+candidate 2 helper surface without making it the package default.
