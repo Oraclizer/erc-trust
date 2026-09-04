@@ -51,6 +51,7 @@ const singleFiles = [
   "evidence/known-limitations.md",
   "evidence/clean-room-provenance.md",
   "evidence/evidence-mode.json",
+  "evidence/evidence-expectations-v3.json",
   "evidence/current-profile-release-index-v3.json",
   "evidence/model-regression.json",
   "evidence/isabelle-solidity-applicability.md",
