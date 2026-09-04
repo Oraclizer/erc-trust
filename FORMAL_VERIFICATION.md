@@ -1,7 +1,7 @@
 # ERC-TRUST verification and refinement map
 
 This is the repository-level entry point for the verification package of the
-successor (kernel version 2, working label `0.2.0-candidate.1`, on private
+successor (kernel version 2, working label `0.2.0-candidate.1`, on public
 `main`) and for the shipped candidate `0.1.0-candidate.2`, whose
 evidence is preserved as history. It separates the abstract Isabelle model, the
 native Solidity reference, the ERC-3643 profile adapter and governor, and the
@@ -145,7 +145,7 @@ The successor disposition, lane by lane:
 | Foundry | 93/93 tests across seven suites; two fuzz properties at 256 runs; nine invariants at 256 runs and depth 500 (1,152,000 calls, zero reverts); format, lint, and size gates PASS | `evidence/foundry-results-v3.json` |
 | Mutation | 121/121 declared faults killed; every fault names its detector and, where it removes a load-bearing consumer, the obligation ledger row it serves | `evidence/mutation-results.json` |
 | Kontrol and KEVM | 4/4 proofs rerun on the successor native runtime under Kontrol 1.0.255 and KEVM 1.0.678; the adapter has no symbolic lane | `evidence/kontrol-results-v3.json` |
-| Isabelle/HOL | 22 theories; clean build and proof audit in continuous integration with 409 explicit roots, 410 qualified facts, zero oracle dependencies, zero banned source forms | `evidence/isabelle-results-v3.json` |
+| Isabelle/HOL | 22 theories; clean build and proof audit in continuous integration with 412 explicit roots, 413 qualified facts, zero oracle dependencies, zero banned source forms | `evidence/isabelle-results-v3.json` |
 | Obligation ledger | 74 rows: 70 closed, 2 open (the runtime link), 2 not applicable; closure conditional | `evidence/end-to-end-refinement/obligation-ledger-summary-v3.json` |
 | Deterministic build | Two isolated clean builds of the native token (20,043 bytes), the adapter (19,480), and the governor (2,787), byte-identical | `evidence/deterministic-build.json` |
 | Runtime binding | Three runtimes agree with the pinned-compiler replay in ABI, semantic storage layout, creation and runtime bytecode, method identifiers, and immutable references; verifier self-mutation 18/18; stale receipts rejected | `evidence/runtime-binding-v3.json` |

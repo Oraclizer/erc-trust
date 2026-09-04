@@ -3,7 +3,7 @@
 ## Current status
 
 ERC-TRUST is an unaudited research and reference candidate. The shipped
-candidate is `0.1.0-candidate.2`; the successor under development on private
+candidate is `0.1.0-candidate.2`; the successor under development on public
 `main` carries the working label `0.2.0-candidate.1` and has no
 tag or release. Neither is for production use. No deployed instance, fork, proxy,
 migration, operator, key-management process, or downstream integration is
@@ -22,14 +22,13 @@ candidate is secure.
 
 ## Report a vulnerability privately
 
-Use GitHub Private Vulnerability Reporting for this repository after it is
-public:
+Use GitHub Private Vulnerability Reporting for this public repository:
 
 1. Open the repository's **Security** tab.
 2. Select **Advisories**.
 3. Select **Report a vulnerability**.
 
-While the repository remains private, contact the maintainer at
+If the GitHub private reporting form is unavailable, contact the maintainer at
 `jay@oraclizer.io` with the subject `ERC-TRUST SECURITY`. Do not include
 secrets, personal data, production credentials, or unrelated private
 deployment information.

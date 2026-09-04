@@ -33,7 +33,7 @@
   "sourceTree": {
     "scope": "protected-release-inputs-v1",
     "algorithm": "sha256-canonical-utf8-lf-lines-v1",
-    "root": "e8d1b9576638ae5785345a490013dba0ff777f6fbb149eff5da8a96f33e109e6",
+    "root": "2b11f71daf04201e0ebc753820e3fba5875c9b2c65ae4d4ddd94a1e19b4cdf71",
     "files": {
       "evidence/README.md": "76acee803d2f89111dd5e96db2a6fe46777e06256a45ea0fc8fddc45b11d9a0d",
       "evidence/candidate-2/README.md": "04407d7f2edca1613d4934f509f76dbdca7449c8676b35225553b6d018d0a662",
@@ -729,7 +729,7 @@
       "evidence/pilot-mutation-results.json": "206b147e10735729d9b4e2986c90cc89ee20e560aa401927a6d0d02b0d50eda5",
       "evidence/pilot-regression.json": "5517f6591c4b812017b345d203603a420dd4880f528187b22e208529146bae78",
       "evidence/public-release/diet-manifest-v1.json": "0e7aae7185170a71f67f763f146bd2f6b2416c9e2a9783b099282142620b49ea",
-      "evidence/public-release/diet-manifest-v2.json": "68b37bff2542ec7b5a1d0cf5e3cf91645c04c04e4c3e52031f8f8748124f96bc",
+      "evidence/public-release/diet-manifest-v2.json": "1c097b4b63b34b569eddc4000482adf220688d39267270f13937f98f2134032e",
       "evidence/public-release/formal-foundation-supersession-v1.json": "fd42345ad6eee7a898301530e1207162242538e436f0e574a04f1595b381ec45",
       "evidence/public-release/proof-bound-identifiers-v1.json": "86380608677f2628ac16c91bf26dcba0a866d042805d6b82f2cd2883fc0298bf",
       "evidence/public-release/supersession-manifest-v1.json": "720a4e5a4ddc175d7f99953360d1256c763a61b10785b4c7fd9ff6f977770be8",
