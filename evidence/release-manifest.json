@@ -33,7 +33,7 @@
   "sourceTree": {
     "scope": "protected-release-inputs-v1",
     "algorithm": "sha256-canonical-utf8-lf-lines-v1",
-    "root": "a778250afd4b234f3cf72b40f0656446909ab112a8c70246460a43e81693e7ed",
+    "root": "0b457f120d76bb0eee25b3af4953329f9e4032a5f0396d16f0b27e155a57a6e2",
     "files": {
       "evidence/README.md": "76acee803d2f89111dd5e96db2a6fe46777e06256a45ea0fc8fddc45b11d9a0d",
       "evidence/candidate-2/README.md": "04407d7f2edca1613d4934f509f76dbdca7449c8676b35225553b6d018d0a662",
@@ -707,7 +707,7 @@
       "evidence/candidate-2/mutation-results.json": "d869dd4d4264a91d73bc2df645f317e26161ae1d32e7f60fa306e483f3106049",
       "evidence/claim-matrix.md": "eb19a5ff06c91f06965e2f81910821dbff4876175ca43a1c831d2c5b069aa814",
       "evidence/clean-room-provenance.md": "b87dce61009c7a63bd73748b2d78732ac3871355a25ed62c62af63c82b497e2a",
-      "evidence/current-profile-release-index-v3.json": "3eb760a8fa4b13aaf04e7b0af740e2679e035233a53103b0c636f3708bfd156b",
+      "evidence/current-profile-release-index-v3.json": "faf9cd47aa69989cf480c7b69c1866cd3e8ab735394a64c87ab05bf5d853959f",
       "evidence/deterministic-build.json": "330c6ab8df42e5e19e06df7e2699af97b01bd08b015d61f5cf6671a018fdc817",
       "evidence/end-to-end-refinement/central-closure-v3.json": "d65aa5143001203502f2f672d6c6d2591950099d0fe2aabe69adf2b63b0e6106",
       "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json": "187fe90cb733255525617d616381888f46ec582e33a57c328afba6cc87387940",
@@ -780,7 +780,7 @@
       "formal/kevm/generated/trust-runtime-bridge.k": "4345cb3ca0fe01348a606678146e14c674ef26d63d22e953a9a28b439444b8f5",
       "foundry.toml": "0ba6dbb2f1b4947845f7133677bb849e6947dc398d6a57a68ea577beaf83e2a5",
       "implementation/certora/ERC3643Partial.conf": "e6fe5e3584ba36913d78181bfae2de7e10d1ca28f297918687039e4823f846eb",
-      "implementation/certora/ERC3643Partial.spec": "3a3af630aede7fe54235cd67eca47119c50d70a51d6e44c4528d94f6128d9d95",
+      "implementation/certora/ERC3643Partial.spec": "0be0a60b4abe7e8e0facc43745855940e8321388cca0af38ed7551c624d9c6fd",
       "implementation/certora/ERC3643PartialHarness.sol": "ede2c6e7f07fcab84d3a0f0cd095bfbb07e5048c5e5a0b4b2079b4268a928c9d",
       "implementation/kontrol/TrustTokenKontrolTest.t.sol": "ebd82721dfd8b367a2d1db7c734d0d6e50925ef64911e9a405335effa93c006f",
       "implementation/kontrol/erc-trust-log-assertions.k": "0619502b5d9d0615fdcf587e6ac4619a912fc1b3d4d3b5c5fd1863d9af3510e3",
