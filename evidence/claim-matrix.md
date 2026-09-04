@@ -21,11 +21,11 @@ Each claim below names the receipt that backs it and the qualifier it must carry
 | "An implementer who reads only the specification and the vectors reproduces every identifier, hash, calldata, and receipt hash of the conformance vectors." | Specification-only reproduction of the vectors; not a second implementation of the endpoints | `evidence/independent-reproduction-v3.json`; `scripts/independent-reproduction-v3.mjs` |
 | "Every receipt that binds code identity (deterministic build, Foundry, mutation, Kontrol, runtime binding, and Certora when present) binds the current source root or runtime template, and a stale one is rejected; the Isabelle receipt binds the formal root, the independent reproduction binds the vectors, and the model regression record binds neither." | Receipts are bound to the identity of the artifact they are about, not to time | `scripts/verify-current-profile-release-v3.mjs`; `scripts/verify-runtime-binding-v3.mjs` (stale evidence rejection) |
 
-During the PR B evidence-rebinding checkpoint, fresh Foundry, mutation, and Isabelle
-receipts are also pending and no completed successor claim may rely on their historical
-files. The final Certora input root and four rule IDs are frozen, no source has been sent
-to the cloud prover, and transmission requires separate approval. The evidence mode stays
-`successor-development`; release mode requires zero pending lanes.
+Pending lanes at this change: `certora` and `certoraInputs` (the final input root and
+four rule IDs are frozen, no source has been sent to the cloud prover, and transmission
+requires separate approval), and nothing else. The evidence mode stays
+`successor-development` until those lanes are recorded; release mode requires zero
+pending lanes.
 
 Forbidden for the successor, in addition to the list above: "end-to-end refinement
 complete", "Native Full complete", "Verified Full complete", "implementation conforms

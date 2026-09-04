@@ -14,7 +14,7 @@
       "invariantReverts": 0,
       "invariantRunsEach": 256,
       "invariants": 9,
-      "passed": 89,
+      "passed": 93,
       "skipped": 0,
       "suites": 7
     }
@@ -22,14 +22,14 @@
   "claimBoundary": "Pinned Foundry build, format, unit, fuzz, invariant, size, and lint results for the named commit and source root. The three runtime hashes are measured from the compiled artifacts and equal the generated runtime bridge; the deterministic-build receipt binds the native template and the release manifest binds all three. This is not an audit, deployment result, or production-safety claim.",
   "profileRuntimes": {
     "erc3643Adapter": {
-      "bytes": 19218,
-      "eip170MarginBytes": 5358,
-      "sha256": "2a7214a83e298e02e85bcfddeb022f0f339bd6cd616e0c7333247728c32f2541"
+      "bytes": 19480,
+      "eip170MarginBytes": 5096,
+      "sha256": "7a2dfa433911dd37e389498129356db30693e8ee8e128f8da63a5d3044a56349"
     },
     "profileGovernor": {
-      "bytes": 2790,
-      "eip170MarginBytes": 21786,
-      "sha256": "ba2d63c8e93db7997ce57fe128a36dcfa761fb993e5babc9920d2911764f358e"
+      "bytes": 2787,
+      "eip170MarginBytes": 21789,
+      "sha256": "78c08fbe4be793482e44a8cdf32fcc1af3276277c8cc78f48761fdcbc4bf9399"
     }
   },
   "runtimeTemplate": {
@@ -38,19 +38,19 @@
     "sha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1"
   },
   "schema": "erc-trust-foundry-results-v3",
-  "sourceCommit": "1de893b8d6bf1e26669baf0d8e6a8d3216f5a44e",
+  "sourceCommit": "a7c795c1986f1371715f7a48ce7c84a861a11ac5",
   "sourceRootAlgorithm": "sha256-raw-files-case-sensitive-path-order-v1",
-  "sourceRootSha256": "7d4b77b88ce1cfc9255abc810d306217df9cd34f27060dc9325fda8a9a35920e",
+  "sourceRootSha256": "947afab7619b5c2d629da3e233c1cbe76fc6556a61112fbcc51b99c7e7235272",
   "status": "PASS",
   "toolchain": {
     "evmVersion": "cancun",
-    "foundry": "1.7.1",
-    "solidity": "0.8.36+commit.8a079791"
+    "foundry": "1.7.1+4072e48705af9d93e3c0f6e29e93b5e9a40caed8",
+    "solidity": "0.8.36"
   },
   "workflow": {
     "jobConclusion": "success",
-    "jobId": 100505361650,
-    "runId": 33709364184,
-    "url": "https://github.com/Oraclizer/erc-trust/actions/runs/33709364184/job/100505361650"
+    "jobId": 100928315361,
+    "runId": 33842789954,
+    "url": "https://github.com/Oraclizer/erc-trust/actions/runs/33842789954/job/100928315361"
   }
 }
