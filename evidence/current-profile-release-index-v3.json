@@ -7,10 +7,10 @@
   "identity": {
     "certoraInputsSha256": null,
     "formalRoot": {
-      "rootSha256": "85ab14b06080cae5f87d44acd93822900b05efbf9173dea2b6ed8068a44f82c6",
+      "rootSha256": "4584a5146990bf65646be59143758b6d405542dfc70dad8973aa914e211b7097",
       "theoryFiles": 22
     },
-    "kontrolInputsSha256": "5d8f38006416e02aa7664a68f3ad108e2e05aba1d9abe0c7d339f8e64c4e67fb",
+    "kontrolInputsSha256": "a9ae8bd47997bccda566d9a3d002fc8b21c11bed717f5332beae7b4ef9d56294",
     "sourceRootAlgorithm": "sha256-raw-files-case-sensitive-path-order-v1",
     "sourceRootSha256": "7d4b77b88ce1cfc9255abc810d306217df9cd34f27060dc9325fda8a9a35920e"
   },
@@ -38,18 +38,19 @@
     "independentReproduction": {
       "assertions": 400,
       "basis": "the receipt is the output of scripts/independent-reproduction-v3.mjs; the sdk-and-package job reruns the program against the committed vectors and requires the committed receipt to match byte for byte",
-      "findings": 5,
+      "findings": 2,
+      "historicalFindingsResolved": 5,
       "notEvaluable": 4,
       "receipt": {
         "path": "evidence/independent-reproduction-v3.json",
-        "sha256": "b2f03c6ccbb30d59e5b01d93e47b00b4a9fac0874eab1d8ed0d8e9d3bbb4fee7"
+        "sha256": "87beccff1128640913e71cd33cc77a50e40ec6825f51a62a9c7e1311cd218356"
       },
       "status": "PASS"
     },
     "isabelleBuild": {
       "receipt": {
         "path": "evidence/isabelle-results-v3.json",
-        "sha256": "0a38ac5413b85151c5d40c0aaaeda5b24f846d5fa07cd128c818405dc476ecea"
+        "sha256": "bf85ebe1ff2071f3e5418bbaf83f00419000995e9c00d2de1ff0044ccaaf9ef6"
       },
       "status": "PASS"
     },
@@ -64,15 +65,16 @@
       "proofs": 4,
       "receipt": {
         "path": "evidence/kontrol-results-v3.json",
-        "sha256": "c889500f9d55c3f510df209f1d121f1c10a7a9bd46df33dd97fc9fb07cb05454"
+        "sha256": "20d5eac6b01009e29baa80524db7f329f9e0834515a8a96133715f8b0a1f6f2c"
       },
       "status": "PASS"
     },
     "kontrolInputs": {
-      "inputsRootSha256": "5d8f38006416e02aa7664a68f3ad108e2e05aba1d9abe0c7d339f8e64c4e67fb",
+      "inputsRootSha256": "a9ae8bd47997bccda566d9a3d002fc8b21c11bed717f5332beae7b4ef9d56294",
       "status": "PASS"
     },
     "mutation": {
+      "campaignDefinitionSha256": "1a3883567b076f47aa477e75896111a3e892b18b44453d90c445ea5964c4978b",
       "ids": [
         "MUT-01-FROZEN-FLOOR",
         "MUT-02-ROUTE-CONSUMPTION",
@@ -189,7 +191,7 @@
       "killed": 111,
       "receipt": {
         "path": "evidence/mutation-results.json",
-        "sha256": "8839c501f4e896be66b9710a2836d177b9dff5d0de58835378fcb47954c8b941"
+        "sha256": "a86886fcd7bfdce3e2a4d7a6db25acdd8a108f6a69cbd6cde60765cf54479121"
       },
       "status": "PASS",
       "total": 111
@@ -209,7 +211,7 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "ad9faa017c627c2cbf0161869dc68ee3c9fee2d0cf9b55b46514488c12414c36"
+        "sha256": "1ffcd8767cfbba3a44268843aa541fdeb94ee24b764126156ace42b281690654"
       }
     },
     "runtime": {
@@ -240,7 +242,7 @@
   "nonclaims": [
     "A PASS lane is a receipt bound to the exact current identity of its inputs; it is not an audit, a compiler-correctness result, or a deployment claim.",
     "A PENDING lane has no receipt for the current identity; the owning change must produce one. Historical candidate 2 receipts under evidence/candidate-2 never satisfy a lane.",
-    "Only release mode with zero pending lanes describes a release candidate; successor-development mode describes an integration branch under construction.",
+    "Only release mode with zero pending lanes describes a release candidate; successor-development mode describes a successor tree under active evidence closure, including when that tree is on private main.",
     "No compiler correctness, audit, deployment identity, production readiness, or external legal truth is claimed."
   ],
   "pendingLanes": [

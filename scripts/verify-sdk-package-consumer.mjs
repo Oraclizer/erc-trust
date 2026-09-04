@@ -14,11 +14,14 @@ const installRoot = join(work, "consumer");
 const executable = (name) => name === "node" ? process.execPath : process.platform === "win32" ? `${name}.cmd` : name;
 
 function run(command, args, cwd) {
-  const result = spawnSync(executable(command), args, {
-    cwd,
-    encoding: "utf8",
-    shell: process.platform === "win32" && command !== "node",
-  });
+  const result = process.platform === "win32" && command !== "node"
+    ? spawnSync(process.env.ComSpec, [
+        "/d",
+        "/s",
+        "/c",
+        `${executable(command)} ${args.join(" ")}`,
+      ], { cwd, encoding: "utf8" })
+    : spawnSync(executable(command), args, { cwd, encoding: "utf8" });
   if (result.status !== 0) {
     throw new Error(`${command} ${args.join(" ")} failed\n${result.error ?? ""}\n${result.stdout ?? ""}\n${result.stderr ?? ""}`);
   }
