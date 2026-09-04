@@ -34,9 +34,11 @@ relevant, updated formal or bounded verification evidence. Documentation-only
 changes must pass link, public-surface, encoding, and repository-health checks.
 
 The public signing baseline starts with the 2026-09-01 launch commit. Earlier
-history predates that policy and may be unsigned. New commits on `main` are
-squash-merged through GitHub and must display a verified platform signature;
-unsigned contributor branch commits are not release identities.
+history predates that policy and may be unsigned. Maintainer-authored pull
+requests use rebase merge to preserve `Jay Kim <jay@oraclizer.io>` as the
+author; external contributor pull requests use squash merge so an intermediate
+secret cannot survive in public history. Platform signatures and unsigned
+contributor branch commits are not release identities.
 
 The maintainer may request independent review before accepting security
 critical work. A green check does not oblige a merge.
@@ -56,7 +58,7 @@ No other tag naming family is used.
 
 The historical tag `v0.1.0-candidate.1` remains immutable. Candidate 2
 (`0.1.0-candidate.2`) is the shipped reference candidate; the successor on
-the integration branch carries the working label `0.2.0-candidate.1`. Tags and
+private `main` carries the working label `0.2.0-candidate.1`. Tags and
 GitHub Releases for either are separate maintainer actions whose current state
 is shown by the repository's tag and Release records.
 

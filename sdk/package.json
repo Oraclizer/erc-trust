@@ -11,12 +11,20 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./v1": {
+      "types": "./dist/v1.d.ts",
+      "import": "./dist/v1.js"
     }
   },
   "sideEffects": false,
   "files": [
     "dist/index.js",
     "dist/index.d.ts",
+    "dist/kernel-v2.js",
+    "dist/kernel-v2.d.ts",
+    "dist/v1.js",
+    "dist/v1.d.ts",
     "README.md",
     "LICENSE"
   ],
@@ -38,7 +46,8 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "pnpm run build && node --test dist/index.test.js dist/kernel-v2.test.js"
+    "test": "pnpm run build && node --test dist/index.test.js dist/kernel-v2.test.js dist/v1.test.js",
+    "smoke:package": "pnpm run build && node ../scripts/verify-sdk-package-consumer.mjs"
   },
   "dependencies": {
     "ethers": "6.17.0"

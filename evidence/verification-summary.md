@@ -1,7 +1,7 @@
 # ERC-TRUST verification summary
 
-This summary states the exact checks behind the successor on the integration
-branch (kernel version 2, working label `0.2.0-candidate.1`) and keeps the
+This summary states the exact checks behind the successor on private `main`
+(kernel version 2, working label `0.2.0-candidate.1`) and keeps the
 shipped candidate `0.1.0-candidate.2` as history. Every number below is a
 measurement of the named bytes and nothing else.
 
@@ -40,7 +40,7 @@ checked by `scripts/verify-current-profile-release-v3.mjs` under
 | Runtime bridge | regenerated from the compiled artifacts of the three runtimes; determinism checked in continuous integration | `end-to-end-refinement/runtime-bridge-v2/` |
 | Independent reproduction | 23 vectors, 400 assertions reproduced by a program written from the machine source, the generated prose and ABI, and the vectors alone; rerun and compared in continuous integration | `independent-reproduction-v3.json` |
 | Certora | PENDING by decision: no successor source has been sent to the cloud prover; the candidate 2 Certora results describe different bytes | `evidence-mode.json` |
-| SDK | 12 tests PASS (kernel version 1 and version 2 helpers) | continuous integration |
+| SDK | 13 source tests PASS plus a pack-install consumer smoke from the package root | continuous integration |
 
 ## Residual risks and non-claims
 

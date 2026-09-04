@@ -1,0 +1,15 @@
+{
+  "schema": "erc-trust-mutation-definition-rebind-v1",
+  "receipt": "evidence/mutation-results.json",
+  "receiptGitHead": "1de893b8d6bf1e26669baf0d8e6a8d3216f5a44e",
+  "comparisonBaseline": "1e6375c66ec18a48759df80a1579961f27533e3a",
+  "definitionSource": "scripts/run-mutations.ps1",
+  "historicalGitBlob": "a670d6edca358461dbc88ee2a209029099d5f83f",
+  "baselineGitBlob": "a670d6edca358461dbc88ee2a209029099d5f83f",
+  "historicalRawSha256": "c28210bec081c305f4a364d7dc71fec04c08615f249ed2c3b3e058f000f14264",
+  "baselineRawSha256": "c28210bec081c305f4a364d7dc71fec04c08615f249ed2c3b3e058f000f14264",
+  "campaignDefinitionAlgorithm": "sha256-utf8-lf-mutation-definition-block-v1",
+  "campaignDefinitionSha256": "1a3883567b076f47aa477e75896111a3e892b18b44453d90c445ea5964c4978b",
+  "result": "BYTE_EXACT_DEFINITION_SOURCE",
+  "disposition": "The historical receipt may bind this definition hash without rerunning the campaign because the complete mutation definition source at the recorded run commit and at the closure baseline is byte-identical. Any later definition change invalidates this disposition and requires a new full campaign."
+}

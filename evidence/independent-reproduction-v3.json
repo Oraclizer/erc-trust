@@ -93,31 +93,48 @@
       "impact": "Documentation only. No identifier or hash in the vectors is affected."
     },
     {
-      "id": "check order is unspecified and two negative vectors disagree on the domain field",
-      "observation": "NEG-WRONG-DOMAIN expects reason 1 for a wrong domain and NEG-FIELD-BINDING expects reason 2 for every one-field mutation, the domain field included. Both are satisfiable at once only if the domain rule is evaluated before the identifier rule and NEG-WRONG-DOMAIN is read as re-deriving the identifier over the mutated request. The specification states neither the evaluation order nor whether NEG-WRONG-DOMAIN re-derives.",
-      "impact": "An independent implementer can reproduce every published identifier and hash without resolving this, but cannot predict the reason code of a request that breaks more than one rule."
-    },
-    {
-      "id": "generated prose renders shapeRules.appliesTo character by character",
-      "observation": "At the base of the change that added this program, spec/generated/kernel-v2.md rendered the shape rules 'appliesTo' entry character by character, one numbered entry per letter of the sentence held in the schema, because the prose generator treated a string value as a map of fields. The machine source was correct; the generator was corrected in the same change and the prose now shows the sentence.",
-      "impact": "Cosmetic defect in the normative prose. No hash, identifier or calldata is affected."
-    },
-    {
-      "id": "profile interface identifiers are declared without a rule",
-      "observation": "The generated prose and the generated ABI publish identifiers for IERCTrustNativeRoute and ITrustBoundDependency, but only the kernel interface has a stated derivation rule. Applying the kernel's XOR rule to the profile interfaces reproduces both declared values, so the rule is the same one; it is simply not written down for them.",
-      "impact": "Reproducible, but only by assuming a rule the specification does not state for these two identifiers."
-    },
-    {
       "id": "ACTION and REVERSAL receipts can share a commandKind byte",
       "observation": "Receipt.commandKind holds an ActionKind value for ACTION receipts and a ReversalKind value for REVERSAL receipts, and both enumerations start at zero. A FREEZE action receipt and an UNFREEZE reversal receipt therefore carry commandKind 0, and only the receiptKind word separates the two preimages. NEG-RECEIPT-KIND is the vector that pins this separation, and it reproduces exactly.",
       "impact": "Not a defect. It is the reason the receiptKind word has to be in the preimage, and the vectors do exercise it."
+    }
+  ],
+  "historicalFindingsResolved": [
+    {
+      "id": "validation order was unspecified",
+      "discoveredAgainst": "the initial kernel version 2 prose",
+      "resolution": "shapeRules.order now defines domain, identifier, replay, time, authority, dependency, nonce, shape, state, and assessment order",
+      "anchor": "spec/erc-trust-kernel-v2.json#/shapeRules/order"
+    },
+    {
+      "id": "generated prose rendered shapeRules.appliesTo character by character",
+      "discoveredAgainst": "the initial generated kernel prose",
+      "resolution": "the generator renders appliesTo as one rule sentence",
+      "anchor": "spec/erc-trust-kernel-v2.json#/shapeRules/appliesTo"
+    },
+    {
+      "id": "profile interface identifier derivation was unstated",
+      "discoveredAgainst": "the initial interface prose",
+      "resolution": "the ERC-165 rule now applies the same selector XOR rule to each profile interface",
+      "anchor": "spec/erc-trust-kernel-v2.json#/interface/erc165/rule"
+    },
+    {
+      "id": "full-state stutter was undefined",
+      "discoveredAgainst": "the initial negative-vector prose",
+      "resolution": "eventOrder now defines the complete observable state and no-log consequence of every kernel revert",
+      "anchor": "spec/erc-trust-kernel-v2.json#/interface/eventOrder"
+    },
+    {
+      "id": "reversal receipt field sources were incomplete",
+      "discoveredAgainst": "the initial receipt prose",
+      "resolution": "the receiptHash rule now names the source of subject, amount, caseId, authorityRef, dependencyRoot, source, and destination",
+      "anchor": "spec/erc-trust-kernel-v2.json#/hashes/receiptHash/rule"
     }
   ],
   "notEvaluable": [
     {
       "item": "full-state stutter",
       "where": "expected text of NEG-CASE-CONFLICT, NEG-TERMINAL and NEG-REPLAY",
-      "why": "The phrase is used as part of the expected outcome but is defined nowhere in the machine source, the generated prose or the generated ABI. The program checks the typed error and the reason code of those three vectors and cannot check the stutter claim."
+      "why": "The machine source now defines the complete observable state and no-log requirement, but the conformance vectors contain no full pre/post endpoint snapshot. This program checks the typed error and reason code and cannot execute the endpoint-wide stutter claim."
     },
     {
       "item": "reason 4 (authority epoch)",
@@ -172,24 +189,20 @@
       "implemented": "keccak-256 over domain, authorityRef, the uint64 authority epoch and the uint256 nonce."
     },
     "interfaceIds": {
-      "implemented": "The kernel identifier is the XOR of the selectors of the nine listed functions with supportsInterface excluded, exactly as the erc165 rule states. The two profile interface identifiers are computed with the same XOR rule and compared against the values the generated prose and the generated ABI declare, because neither document states a rule for them."
+      "implemented": "The kernel identifier is the XOR of the selectors of the nine listed functions with supportsInterface excluded, exactly as the erc165 rule states. The same rule explicitly applies to each profile interface, and the program reproduces their declared values."
     },
     "shapeAndCaseRules": {
       "implemented": "The six common rules were implemented in the order the schema lists them, with their bound reason codes. The per-action field rules were implemented one clause at a time, treating a violation without its own code as reason 6. The case table CT-1 to CT-16 was implemented as a small state machine over case records, per-subject overlay heads for the FREEZE and RESTRICT families, per-case custody records and the consumed nonce and command identifier sets, which is what the negative vectors need in order to be evaluated rather than merely restated."
     },
-    "ambiguities": [
-      "Check order is not stated. The schema lists the six common rules and numbers their reasons in the same order, but never says that an endpoint evaluates them in that order, so a request that violates several rules has no determined reason code. Every negative scenario in this program was therefore built so that exactly one rule can fail, and the ordering assumption is recorded rather than relied on.",
-      "Where replay detection and the TERMINAL case check sit relative to each other and to the shape rules is not stated. The program checks replay before the terminal case and both before the per-action field rules, and isolates each negative scenario so the choice does not decide any verdict.",
-      "The phrase 'full-state stutter' appears in the expected outcome of three negative vectors and is defined nowhere in the machine source, the prose or the ABI. It is not evaluable from the specification.",
-      "The 'same: CONFISCATE' key in the LIQUIDATE and RECOVER shape rules is never given a meaning. It was read as inheriting the CONFISCATE clauses and overriding the ones restated, which is the only reading that makes the LIQUIDATE and RECOVER vectors well formed.",
-      "The relation between the per-dependency epoch inside bindingHash and the endpoint's dependencyEpoch is not stated. The fixture happens to set both to 1. The rebinding scenario therefore changes only the configuration digest and advances the endpoint epoch by one, which is the part the specification does state.",
-      "For a reversal receipt the specification gives rules for source and destination but none for subject, amount or caseId, none of which exist on a ReversalRequest. They were taken from the action being reversed, which the vectors confirm but the text does not say.",
-      "For a reversal receipt it is not stated whether authorityRef and dependencyRoot come from the reversal request or from the reversed action. The vectors cannot distinguish the two because both commands carry the same authority reference and the same dependency root. The program uses the reversal request's own values.",
-      "Receipt.commandKind is typed uint8 with the meaning 'ActionKind value when receiptKind is ACTION, ReversalKind value when REVERSAL'. Since both enumerations start at zero, an ACTION receipt for FREEZE and a REVERSAL receipt for UNFREEZE carry the same commandKind byte, and only the receiptKind word separates them. NEG-RECEIPT-KIND is the vector that exercises this separation.",
-      "The observation commitments assessmentEvidence, preState and postState are profile-defined; the native-full profile only says the preimage is 'documented by the implementation together with its runtime identity'. Nothing in the specification lets an independent implementer compute them, so they were consumed from the fixture.",
-      "At the base of the change that added this program, the generated prose rendered the shapeRules 'appliesTo' entry character by character; the machine source was correct and the generator was corrected in the same change.",
-      "Neither the prose nor the ABI states how the two profile interface identifiers are derived. The ERC-165 XOR rule stated for the kernel interface was applied to them and the result compared with the declared values."
-    ]
+    "ambiguities": {
+      "historicalResolved": [
+        "Validation order, replay and terminal precedence, full-state stutter, same-action inheritance, the two epoch layers, profile interface identifiers, and reversal receipt field sourcing were ambiguous in the initial specification and are now explicit at the anchors recorded in historicalFindingsResolved."
+      ],
+      "current": [
+        "Receipt.commandKind is typed uint8 with the meaning 'ActionKind value when receiptKind is ACTION, ReversalKind value when REVERSAL'. Since both enumerations start at zero, an ACTION receipt for FREEZE and a REVERSAL receipt for UNFREEZE carry the same commandKind byte, and only the receiptKind word separates them. NEG-RECEIPT-KIND is the vector that exercises this separation.",
+        "The observation commitments assessmentEvidence, preState and postState are profile-defined; the native-full profile only says the preimage is 'documented by the implementation together with its runtime identity'. Nothing in the specification lets an independent implementer compute them, so they were consumed from the fixture."
+      ]
+    }
   },
   "results": {
     "constants": [

@@ -96,7 +96,12 @@ The generated TypeScript helpers in `sdk/src/kernel-v2.ts` derive
 identifiers, hashes, and calldata for kernel version 2:
 
 ```ts
-import { ActionKind, KERNEL_DOMAIN, deriveActionId, encodeAction } from "./kernel-v2";
+import {
+  ActionKind,
+  KERNEL_DOMAIN,
+  deriveActionId,
+  encodeAction,
+} from "@oraclizer/erc-trust-sdk";
 
 const unsigned = {
   domain: KERNEL_DOMAIN,
@@ -110,10 +115,10 @@ const request = { ...unsigned, actionId };
 const calldata = encodeAction(request);
 ```
 
-The published package entry point (`sdk/src/index.ts`) still exports the
-kernel version 1 helpers of the shipped candidate; the version 2 helpers are
-exercised by the SDK tests and reproduced by the independent
-specification-only program (`scripts/independent-reproduction-v3.mjs`).
+The package root exports the kernel version 2 helpers. Historical kernel
+version 1 helpers remain available only from the explicit
+`@oraclizer/erc-trust-sdk/v1` subpath. A pack-install smoke verifies the
+installed package root against the version 2 conformance vectors.
 The SDK does not decide authority, obtain facts, manage keys, submit a
 transaction, or validate a deployment.
 

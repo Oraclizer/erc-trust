@@ -37,7 +37,8 @@ stronger.
    carries one row per load-bearing abstract condition of each endpoint. A row names the
    abstract facts, the normative receiver in the kernel machine source, the exact source
    consumer lines with their occurrence counts, the positive activation tests, the
-   consumer-removal mutations or behavioral negatives, the compiled or downstream consumer
+   declared negative detectors (a killed consumer-removal mutation when one source consumer can
+   be removed, otherwise a bounded behavioral negative whose scope the row states), the compiled or downstream consumer
    (Kontrol proof, bridge field, bounded runtime execution, or conformance vector), the
    assumptions it rests on, and its status. `scripts/verify-obligation-ledger-v3.mjs`
    checks every anchor against the current tree, requires every mutation to be declared and,
@@ -80,9 +81,9 @@ stronger.
 - `formal/kevm/` holds the regenerated bridge, the compile script, and the dependency lock
   only; it is the input side of a KEVM program that has not been restarted for kernel
   version 2.
-- The mutation campaign gains sixty faults (fifty-two to one hundred and eleven) so that
-  every closed ledger row has a consumer-removal negative: a code mutation wherever a single
-  source line carries the condition, and a behavioral negative test for the rows whose
+- The mutation campaign gains sixty faults (fifty-two to one hundred and eleven). Every closed
+  ledger row has a declared negative detector: a code mutation wherever a single source line
+  carries the condition, and a bounded behavioral negative test for the rows whose
   consumer is compiler-generated or whose condition is a whole-state invariant (the ledger
   names which). Killed mutations are established by the mutation receipt, not by the
   ledger verifier alone.

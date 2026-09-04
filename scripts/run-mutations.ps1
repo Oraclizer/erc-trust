@@ -3,6 +3,8 @@ param(
     [string]$Workspace = "",
     [string]$OutputPath = "",
     [switch]$PreflightOnly,
+    [switch]$DefinitionOnly,
+    [switch]$WriteDefinitionManifest,
     [switch]$UseWslForge
 )
 
@@ -24,6 +26,7 @@ if ([System.IO.Path]::GetPathRoot($resolvedWorkspace) -eq $resolvedWorkspace) {
     throw "Refusing broad mutation workspace: $resolvedWorkspace"
 }
 
+# MUTATION_DEFINITIONS_BEGIN
 # Each fault removes or weakens one load-bearing consumer of the kernel version 2 native endpoint.
 # The detector is the exact Foundry test that must fail once the consumer is gone.
 $mutations = @(
@@ -1148,6 +1151,8 @@ $mutations = @(
     }
 )
 
+# MUTATION_DEFINITIONS_END
+
 function Get-TextOccurrences([string]$Content, [string]$Needle) {
     return ([regex]::Matches($Content, [regex]::Escape($Needle))).Count
 }
@@ -1184,6 +1189,62 @@ function Invoke-Forge([string[]]$Arguments) {
         Output = [string[]]$output
         ExitCode = $exitCode
     }
+}
+
+$definitionText = [System.IO.File]::ReadAllText($PSCommandPath).Replace("`r`n", "`n").Replace("`r", "`n")
+$definitionMatch = [regex]::Match(
+    $definitionText,
+    '(?s)# MUTATION_DEFINITIONS_BEGIN\n(.*?)# MUTATION_DEFINITIONS_END')
+if (-not $definitionMatch.Success) {
+    throw "Mutation definition markers missing"
+}
+$campaignDefinitionSha = Get-Sha256Bytes ([System.Text.Encoding]::UTF8.GetBytes($definitionMatch.Groups[1].Value))
+$campaignDefinition = @($mutations | ForEach-Object {
+    [ordered]@{
+        id = $_.Id
+        file = $_.File.Replace('\', '/')
+        old = $_.Old
+        new = $_.New
+        expectedOccurrences = $_.ExpectedOccurrences
+        firstOnly = $_.ContainsKey("FirstOnly") -and [bool]$_.FirstOnly
+        detector = [ordered]@{
+            contract = $_.Contract
+            test = $_.Test
+        }
+    }
+})
+$definitionEnvelope = [ordered]@{
+    schema = "erc-trust-mutation-campaign-v1"
+    algorithm = "sha256-utf8-lf-mutation-definition-block-v1"
+    campaignDefinitionSha256 = $campaignDefinitionSha
+    definitions = $campaignDefinition
+}
+if ($WriteDefinitionManifest) {
+    $manifestPath = Join-Path $repoRoot "scripts/mutation-campaign-v1.json"
+    $manifestText = (($definitionEnvelope | ConvertTo-Json -Depth 8) + "`n").Replace("`r`n", "`n")
+    [System.IO.File]::WriteAllText(
+        $manifestPath,
+        $manifestText,
+        [System.Text.UTF8Encoding]::new($false))
+    Write-Output "mutation definition manifest written: $manifestPath"
+    return
+}
+$expectedDefinitionPath = Join-Path $repoRoot "scripts/mutation-campaign-v1.json"
+if (-not (Test-Path -LiteralPath $expectedDefinitionPath -PathType Leaf)) {
+    throw "Mutation definition manifest missing: $expectedDefinitionPath"
+}
+$expectedDefinition = Get-Content -Raw -LiteralPath $expectedDefinitionPath | ConvertFrom-Json
+$expectedDefinitionsJson = $expectedDefinition.definitions | ConvertTo-Json -Depth 8 -Compress
+$currentDefinitionsJson = $definitionEnvelope.definitions | ConvertTo-Json -Depth 8 -Compress
+if (($expectedDefinition.schema -ne $definitionEnvelope.schema) -or
+    ($expectedDefinition.algorithm -ne $definitionEnvelope.algorithm) -or
+    ($expectedDefinition.campaignDefinitionSha256 -ne $definitionEnvelope.campaignDefinitionSha256) -or
+    ($expectedDefinitionsJson -ne $currentDefinitionsJson)) {
+    throw "Mutation definition manifest drift; rerun with -WriteDefinitionManifest before the full campaign"
+}
+if ($DefinitionOnly) {
+    $definitionEnvelope | ConvertTo-Json -Depth 8
+    return
 }
 
 $testSourceFiles = Get-ChildItem -LiteralPath (Join-Path $repoRoot "implementation/test") -Filter "*.sol" -Recurse
@@ -1328,6 +1389,9 @@ foreach ($mutation in $mutations) {
 
 $summary = [ordered]@{
     schema = "erc-trust-mutation-result-v2"
+    campaignDefinitionAlgorithm = "sha256-utf8-lf-mutation-definition-block-v1"
+    campaignDefinitionSha256 = $campaignDefinitionSha
+    campaignDefinition = $campaignDefinition
     candidateInput = [ordered]@{
         gitHead = (git -C $repoRoot rev-parse HEAD).Trim()
         sourceRootAlgorithm = "sha256-raw-files-case-sensitive-path-order-v1"

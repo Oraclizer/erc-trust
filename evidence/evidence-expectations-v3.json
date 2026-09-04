@@ -1,0 +1,19 @@
+{
+  "schema": "erc-trust-evidence-expectations-v3",
+  "kontrol": {
+    "provider": "kontrol-kevm",
+    "expectedInputsRootSha256": "a9ae8bd47997bccda566d9a3d002fc8b21c11bed717f5332beae7b4ef9d56294",
+    "expectedProofIds": [
+      "implementation%kontrol%TrustTokenKontrolTest.testKontrol_RawSensitiveSelectorsStayClosed():0",
+      "implementation%kontrol%TrustTokenKontrolTest.testKontrol_OperationalFailureStuttersProjection():0",
+      "implementation%kontrol%TrustTokenKontrolTest.testKontrol_NonincreasingFreezeStuttersProjection():0",
+      "implementation%kontrol%TrustTokenKontrolTest.testKontrol_LiquidateExactDeltaReceiptAndFinalLog():0"
+    ]
+  },
+  "certora": {
+    "provider": "certora-cloud",
+    "expectedInputsRootSha256": null,
+    "expectedRuleIds": [],
+    "status": "PENDING_FINAL_SOURCE_SPEC_AND_HARNESS_FREEZE"
+  }
+}

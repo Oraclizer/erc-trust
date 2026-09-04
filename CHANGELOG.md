@@ -2,6 +2,21 @@
 
 ## Unreleased
 
+- Align the installable SDK, receipt schema, evidence gates, and pre-ERC draft
+  with kernel version 2. The package root now exports version 2 while the
+  historical helper remains at `./v1`; continuous integration packs and
+  installs the actual tarball before checking identifiers, calldata, and both
+  receipt kinds. The 17-field receipt schema is generated from the kernel
+  machine source and consumed against the generated Solidity struct and all
+  action and reversal vectors. Kontrol and Certora receipts require nonzero
+  exact proof or rule sets, exact inputs, and run provenance. The mutation
+  receipt is bound to the normalized definitions and their exact source hash,
+  with the historical run reused only after byte-equality of its definition
+  source was established. Ledger claims distinguish killed consumer-removal
+  mutations from bounded behavioral negatives, independent reproduction
+  separates resolved historical findings from current limits, and repository
+  documents describe private `main` and successor-development evidence without
+  a release or refinement-complete claim.
 - Rewrite the public packet for kernel version 2. The proposal text
   `docs/ERC-DRAFT.md` is rewritten in EIP-1 form from the kernel machine source
   and the decision records: the types and interface with their identifiers, the

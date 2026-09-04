@@ -11,7 +11,7 @@ import {
   commandHash,
   deriveActionId,
   encodeAction,
-} from "../sdk/dist/index.js";
+} from "../sdk/dist/v1.js";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const token = "0x1111111111111111111111111111111111111111";
