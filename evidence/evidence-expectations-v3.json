@@ -17,6 +17,12 @@
   },
   "certora": {
     "provider": "certora-cloud",
+    "expectedOutputNamespace": "10491299",
+    "expectedCertoraCli": "8.19.1",
+    "expectedCertoraServer": "8.19.1",
+    "expectedSolidity": "0.8.36+commit.8a079791",
+    "expectedRuleSanity": "advanced",
+    "expectedTerminalResult": "No errors found by Prover!",
     "expectedInputsRootSha256": null,
     "expectedInputPaths": [],
     "expectedRuleIds": [],
