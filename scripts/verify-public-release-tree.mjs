@@ -158,6 +158,20 @@ if (!attributes.includes("**/generated/** linguist-generated=true")
   fail("generated-source Linguist mapping missing");
 }
 if (present.length !== diet.summary.retainedFiles) fail(`retained path count drift: ${present.length}`);
+const dietPath = "evidence/public-release/diet-manifest-v2.json";
+const retainedBytesExcludingManifest = present
+  .filter((path) => path !== dietPath)
+  .reduce((sum, path) => sum + statSync(resolve(root, path)).size, 0);
+if (retainedBytesExcludingManifest !== diet.summary.retainedBytesExcludingManifest) {
+  fail(`retained byte count drift: ${retainedBytesExcludingManifest}`);
+}
+if (diet.summary.successorFilesAdded !== present.length - historicalDiet.summary.retainedFiles) {
+  fail(`successor file count drift: ${diet.summary.successorFilesAdded}`);
+}
+if (diet.summary.successorBytesAdded
+    !== retainedBytesExcludingManifest - historicalDiet.summary.retainedBytesExcludingManifest) {
+  fail(`successor byte count drift: ${diet.summary.successorBytesAdded}`);
+}
 
 // The evidence mode decides whether this tree may be called a release tree. Successor development
 // mode is reported as such and never as a release tree; release mode requires zero pending lanes.
