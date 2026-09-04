@@ -222,19 +222,19 @@ const identity = {
     ? rootOf(expectations.certora.expectedInputPaths)
     : null,
 };
-if (expectations.certora.status === "FROZEN_PENDING_APPROVAL_OR_RUN") {
-  check(expectations.certora.runtimeSubject === "profileAdapter", "frozen Certora runtime subject");
-  exactNonemptySet(
-    expectations.certora.expectedInputPaths,
-    expectations.certora.expectedInputPaths,
-    "frozen Certora inputs",
-  );
-  exactNonemptySet(expectations.certora.expectedRuleIds, expectations.certora.expectedRuleIds, "frozen Certora rules");
-  check(
-    expectations.certora.expectedInputsRootSha256 === identity.certoraInputsSha256,
-    `frozen Certora input root drift: ${expectations.certora.expectedInputsRootSha256} != ${identity.certoraInputsSha256}`,
-  );
-}
+check(["FROZEN_PENDING_APPROVAL_OR_RUN", "RECORDED_PASS"].includes(expectations.certora.status),
+  "unsupported Certora expectation status");
+check(expectations.certora.runtimeSubject === "profileAdapter", "frozen Certora runtime subject");
+exactNonemptySet(
+  expectations.certora.expectedInputPaths,
+  expectations.certora.expectedInputPaths,
+  "frozen Certora inputs",
+);
+exactNonemptySet(expectations.certora.expectedRuleIds, expectations.certora.expectedRuleIds, "frozen Certora rules");
+check(
+  expectations.certora.expectedInputsRootSha256 === identity.certoraInputsSha256,
+  `frozen Certora input root drift: ${expectations.certora.expectedInputsRootSha256} != ${identity.certoraInputsSha256}`,
+);
 
 if (selfTest) {
   const kontrol = json(receiptPaths.kontrol);

@@ -70,11 +70,11 @@ bugs may use the issue tracker after the repository becomes public.
 
 ## Verification and audit boundary
 
-The successor Foundry, Kontrol, mutation, deterministic-build,
+The successor Foundry, Kontrol, Certora, mutation, deterministic-build,
 runtime-binding, obligation-ledger, and Isabelle results apply only to their
 exact source, runtime, harnesses, assumptions, and claim boundaries. The
-successor Certora lane is pending and no successor source has been sent to the
-cloud prover; published Certora receipts under `evidence/candidate-2/` describe
+successor Certora receipt covers four named rules on the current ERC-3643
+Partial adapter runtime; receipts under `evidence/candidate-2/` describe
 different historical bytes. None of these results is an independent security
 audit or covers deployments or external legal and factual truth.
 

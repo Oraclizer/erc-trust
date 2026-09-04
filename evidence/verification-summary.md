@@ -14,8 +14,8 @@ Research companion: [arXiv:2608.29134](https://arxiv.org/abs/2608.29134). The
 paper describes kernel version 1 (candidate 2); a revision for kernel version 2
 is pending.
 
-Disposition: **bounded checks PASS; two Certora lanes pending by decision;
-unaudited and not for production**
+Disposition: **all twelve current evidence lanes PASS in successor-development
+mode; unaudited and not for production**
 
 > No deployment, proxy, migration, end-to-end refinement, or external
 > legal/factual truth is verified. The permitted claim is "mapped
@@ -39,7 +39,7 @@ checked by `scripts/verify-current-profile-release-v3.mjs` under
 | Obligation ledger | 74 rows: 70 CLOSED, 2 SUCCESSOR-MANDATORY (the runtime link), 2 NOT-APPLICABLE, 0 CURRENT-MANDATORY; verifier PASS, closure CONDITIONAL | `end-to-end-refinement/obligation-ledger-summary-v3.json`; `central-closure-v3.json` |
 | Runtime bridge | regenerated from the compiled artifacts of the three runtimes; determinism checked in continuous integration | `end-to-end-refinement/runtime-bridge-v2/` |
 | Independent reproduction | 23 vectors, 401 assertions reproduced by a program written from the machine source, the generated prose and ABI, and the vectors alone; rerun and compared in continuous integration | `independent-reproduction-v3.json` |
-| Certora | PENDING by decision: final ERC-3643 Partial source/spec/harness and four expected rule IDs are frozen, but no successor source has been sent to the cloud prover; the candidate 2 results describe different bytes | `evidence-expectations-v3.json`; `evidence-mode.json` |
+| Certora | 4/4 named rules PASS with advanced sanity; exact nine-file input root `3cd3ece0bf234c1d295e90cd4ac1124cd6061f78217f6be9f02d0d61f8873faf`, Certora CLI/server 8.19.1, solc 0.8.36, provider run `60639df5f152420997b1ae09c5dc12a1`, and current adapter runtime bound | `certora-results-v3.json`; `evidence-expectations-v3.json` |
 | SDK | 13 source tests PASS plus a pack-install consumer smoke from the package root | continuous integration |
 
 ## Residual risks and non-claims
@@ -49,8 +49,10 @@ checked by `scripts/verify-current-profile-release-v3.mjs` under
   conditional.
 - The Kontrol proofs and Foundry executions are bounded instances of that
   link, not a proof of it; the adapter has no symbolic lane.
-- The Certora lanes are pending; switching the evidence mode to release
-  requires every lane to pass.
+- The Certora rules are bounded source-level checks of the named descriptor,
+  restriction, and observation helpers. They do not discharge the runtime link
+  or the deployment boundary. Zero pending lanes does not switch the evidence
+  mode from `successor-development` or authorize a release claim.
 - This package has not received an independent security audit and is not a
   production recommendation.
 - The ERC-3643 result is a fixture-bound Partial reference and reports

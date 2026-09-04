@@ -1,8 +1,9 @@
 # Decision 11: how the runtime identity of the successor endpoints is bound to its evidence
 
 Status: implemented for the native token, the ERC-3643 profile adapter, and the profile
-governor. This decision closes the runtime assurance of the successor code short of the
-Certora lanes, which stay pending until source may be sent to the cloud prover.
+governor. The current Certora receipt is recorded against the exact Partial adapter
+runtime; the evidence mode remains `successor-development` and no release or deployment
+claim follows.
 
 ## Decision
 
@@ -36,10 +37,11 @@ Certora lanes, which stay pending until source may be sent to the cloud prover.
    `evidence/independent-reproduction-v3.json`. Continuous integration reruns it against the
    committed vectors and requires the committed receipt to match. The implementer's report
    of specification ambiguities is an input to the documentation change.
-5. The evidence mode stays `successor-development`. The lanes `certora` and `certoraInputs`
-   are pending because no source has been sent to the cloud prover, which is a separate
-   approval; every other lane is a receipt of the current identity. Release mode requires
-   zero pending lanes and is therefore not switched in this change.
+5. The evidence mode stays `successor-development`. All twelve current lanes are PASS,
+   including `certora` and `certoraInputs`: the receipt records four named rules with
+   advanced sanity, the exact nine-file input root, provider run and toolchain provenance,
+   terminal success, and the current Partial adapter runtime. Zero pending lanes does not
+   itself authorize release mode, a tag, a deployment claim, or end-to-end refinement.
 
 6. Two corrections of the normative prose were found by the independent reproduction and
    the review of this change and are applied here with the generator rerun: a missing

@@ -17,16 +17,18 @@
   "kind": "ERC_TRUST_CURRENT_PROFILE_RELEASE_INDEX_V3",
   "lanes": {
     "certora": {
-      "owner": "formal refinement change: parametric rules on the successor bytecode",
-      "receipt": "evidence/certora-results-v3.json",
-      "status": "PENDING"
+      "receipt": {
+        "path": "evidence/certora-results-v3.json",
+        "sha256": "52e3cba36ebc94d87925ca7e1a05ee86012285773d7a453a73bd7fb05836a8bc"
+      },
+      "rules": 4,
+      "status": "PASS"
     },
     "certoraInputs": {
       "inputsRootSha256": "3cd3ece0bf234c1d295e90cd4ac1124cd6061f78217f6be9f02d0d61f8873faf",
-      "owner": "bound together with the Certora receipt",
-      "receipt": null,
       "runtimeSubject": "profileAdapter",
-      "status": "PENDING"
+      "runtimeTemplateSha256": "7a2dfa433911dd37e389498129356db30693e8ee8e128f8da63a5d3044a56349",
+      "status": "PASS"
     },
     "foundry": {
       "receipt": {
@@ -256,10 +258,7 @@
     "Only release mode with zero pending lanes describes a release candidate; successor-development mode describes a successor tree under active evidence closure, including when that tree is on private main.",
     "No compiler correctness, audit, deployment identity, production readiness, or external legal truth is claimed."
   ],
-  "pendingLanes": [
-    "certora",
-    "certoraInputs"
-  ],
+  "pendingLanes": [],
   "replay": {
     "release": "node scripts/verify-current-profile-release-v3.mjs"
   },

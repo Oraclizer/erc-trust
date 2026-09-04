@@ -42,6 +42,6 @@
       "role_observation_binds_actual_restriction",
       "subject_observation_binds_actual_restriction"
     ],
-    "status": "FROZEN_PENDING_APPROVAL_OR_RUN"
+    "status": "RECORDED_PASS"
   }
 }
