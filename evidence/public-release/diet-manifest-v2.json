@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "kind": "ERC_TRUST_PUBLIC_TREE_DIET_MANIFEST_V2",
   "status": "PASS_SUCCESSOR_TREE_ACCOUNTING",
-  "date": "2026-09-03",
+  "date": "2026-09-04",
   "historicalRemovalSet": {
     "path": "evidence/public-release/diet-manifest-v1.json",
     "sha256": "0e7aae7185170a71f67f763f146bd2f6b2416c9e2a9783b099282142620b49ea",
@@ -12,10 +12,10 @@
   "summary": {
     "removedFiles": 613,
     "removedBytes": 27687711,
-    "retainedFiles": 911,
-    "retainedBytesExcludingManifest": 21500018,
-    "successorFilesAdded": 101,
-    "successorBytesAdded": 6225022
+    "retainedFiles": 915,
+    "retainedBytesExcludingManifest": 21661554,
+    "successorFilesAdded": 105,
+    "successorBytesAdded": 6386558
   },
   "claimBoundary": "This successor accounts for the repaired candidate's retained public tree while preserving the version-1 archive removal set byte-for-byte. It does not rewrite historical removal dispositions or imply a GitHub Release, deployment, audit, or production claim."
 }
