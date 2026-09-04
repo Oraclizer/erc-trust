@@ -1,7 +1,7 @@
 {
   "bridge": {
     "path": "evidence/end-to-end-refinement/runtime-bridge-v2/schema.json",
-    "sha256": "011d379deafc1e606fbc6734f7d0895ea3b598e73b86866f009e3e08b0309610"
+    "sha256": "86d15a9dc6bff41fe6a5c082f3991e0156010497ea74e3ceb6c86093defcf5fa"
   },
   "bundles": [
     {

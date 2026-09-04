@@ -5,7 +5,7 @@ module TRUST-RUNTIME-BRIDGE
     imports EDSL
 
     syntax String ::= "#trustBridgeSchemaSha256" [macro]
-    rule #trustBridgeSchemaSha256 => "011d379deafc1e606fbc6734f7d0895ea3b598e73b86866f009e3e08b0309610"
+    rule #trustBridgeSchemaSha256 => "86d15a9dc6bff41fe6a5c082f3991e0156010497ea74e3ceb6c86093defcf5fa"
 
     syntax Int ::= "#trustActionCalldataLength" [macro]
     rule #trustActionCalldataLength => 644
