@@ -33,7 +33,7 @@
   "sourceTree": {
     "scope": "protected-release-inputs-v1",
     "algorithm": "sha256-canonical-utf8-lf-lines-v1",
-    "root": "cb89114bcc2a7484cabbf5da131d83c535a00bceb9ec3cc046d040f6512e7059",
+    "root": "c1707d41de5f1c667beeb4c401fd091114362dfb2cbff69e878511a85280c72b",
     "files": {
       "evidence/README.md": "76acee803d2f89111dd5e96db2a6fe46777e06256a45ea0fc8fddc45b11d9a0d",
       "evidence/candidate-2/README.md": "04407d7f2edca1613d4934f509f76dbdca7449c8676b35225553b6d018d0a662",
@@ -729,7 +729,7 @@
       "evidence/pilot-mutation-results.json": "206b147e10735729d9b4e2986c90cc89ee20e560aa401927a6d0d02b0d50eda5",
       "evidence/pilot-regression.json": "5517f6591c4b812017b345d203603a420dd4880f528187b22e208529146bae78",
       "evidence/public-release/diet-manifest-v1.json": "0e7aae7185170a71f67f763f146bd2f6b2416c9e2a9783b099282142620b49ea",
-      "evidence/public-release/diet-manifest-v2.json": "778a891c03e329fafcef0f82c78313a845fdd90d50583295bbe7db898f8c7e16",
+      "evidence/public-release/diet-manifest-v2.json": "dc720651834949307466e86786850e1bba526fb09810f325563e6153062b08cf",
       "evidence/public-release/formal-foundation-supersession-v1.json": "fd42345ad6eee7a898301530e1207162242538e436f0e574a04f1595b381ec45",
       "evidence/public-release/proof-bound-identifiers-v1.json": "86380608677f2628ac16c91bf26dcba0a866d042805d6b82f2cd2883fc0298bf",
       "evidence/public-release/supersession-manifest-v1.json": "720a4e5a4ddc175d7f99953360d1256c763a61b10785b4c7fd9ff6f977770be8",
@@ -850,7 +850,7 @@
       "scripts/verify-normative-kernel-solidity.mjs": "1637df51112987c2bb180423e9f51c45722af80e0962a546985282d95ae0c5ee",
       "scripts/verify-obligation-ledger-v3.mjs": "f61d54bda2e28172a21d6c97e22bcc8d42a8641b982719e082eafcbf1a2ef063",
       "scripts/verify-pilot-binding.mjs": "4f237dd536f1ddc463bff1de10a2482e106eda502da7b512c1158d1ea88eba84",
-      "scripts/verify-public-release-tree.mjs": "f2033a95b411a888a5e52546d400148dcfa0be8d34adce64b57289491ecb96a0",
+      "scripts/verify-public-release-tree.mjs": "0e430433cc184774f8769be88311619e27c7eeefea6b6fadb969335afaf92eab",
       "scripts/verify-public-surface.mjs": "97ea2644cf298396b176a776884e08509932848ef2be810f0925d78cbdeb8372",
       "scripts/verify-receipt-schema.mjs": "d26c2da67c7d5db219742fc7d8ef3ab26b6a6285e0319bf044bc288e15affa02",
       "scripts/verify-release.mjs": "87967965d131d4827ef28624af523b208de9a58c428c6df963c892fa054a8d07",
