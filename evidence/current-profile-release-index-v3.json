@@ -46,7 +46,7 @@
       "notEvaluable": 4,
       "receipt": {
         "path": "evidence/independent-reproduction-v3.json",
-        "sha256": "89ab04593ebd0a08e5dd6667986532e5d843d9be0dbcd27722b46cb62856519d"
+        "sha256": "0ce97451c1b67b3ff0a26c6c73f00699dec3af6e3b4297c17d83336af70169b4"
       },
       "status": "PASS"
     },
