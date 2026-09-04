@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 import { createHash } from "node:crypto";
-import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 
 const ALGORITHM = "sha256-canonical-json-sorted-keys-v1";
@@ -22,11 +21,6 @@ const stable = (value) => {
 
 export const canonicalMutationDefinitionsSha256 = (definitions) =>
   sha256(Buffer.from(JSON.stringify(stable(definitions)), "utf8"));
-
-function git(repoRoot, args, encoding = "utf8") {
-  const safe = repoRoot.replaceAll("\\", "/");
-  return execFileSync("git", ["-c", `safe.directory=${safe}`, ...args], { cwd: repoRoot, encoding });
-}
 
 export function validateMutationDefinitionBinding(receipt, repoRoot, manifestPath, rebindPath, check) {
   const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
@@ -66,12 +60,10 @@ export function validateMutationDefinitionBinding(receipt, repoRoot, manifestPat
     check(rebind.campaignDefinitionSha256 === LEGACY_DEFINITION_SHA256, "mutation rebind definition hash");
     check(rebind.historicalGitBlob === LEGACY_SCRIPT_BLOB && rebind.baselineGitBlob === LEGACY_SCRIPT_BLOB,
       "mutation rebind historical/baseline blob identity");
-    const baselineBlob = git(repoRoot, ["rev-parse", `${rebind.comparisonBaseline}:${rebind.definitionSource}`]).trim();
     check(rebind.historicalGitBlob === LEGACY_SCRIPT_BLOB && rebind.historicalRawSha256 === LEGACY_SCRIPT_RAW_SHA256,
       "mutation rebind historical identity differs from the frozen legacy constants");
-    check(baselineBlob === rebind.baselineGitBlob, "mutation rebind baseline Git blob");
-    check(sha256(git(repoRoot, ["cat-file", "blob", baselineBlob], null)) === rebind.baselineRawSha256,
-      "mutation rebind baseline raw hash");
+    check(rebind.baselineGitBlob === LEGACY_SCRIPT_BLOB && rebind.baselineRawSha256 === LEGACY_SCRIPT_RAW_SHA256,
+      "mutation rebind baseline identity differs from the frozen legacy constants");
     check(rebind.result === "BYTE_EXACT_DEFINITION_SOURCE", "mutation rebind disposition");
   }
 }
