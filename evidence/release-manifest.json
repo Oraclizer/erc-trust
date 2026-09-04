@@ -33,7 +33,7 @@
   "sourceTree": {
     "scope": "protected-release-inputs-v1",
     "algorithm": "sha256-canonical-utf8-lf-lines-v1",
-    "root": "b1f36d1293f7128c959486fd664c5e1d7636b5da7f35492efa9cf82cebb5b7d1",
+    "root": "4b4e213234115839a8ee39f627b226249a06b6dd858ca35afccd91c8a28354ee",
     "files": {
       "evidence/README.md": "76acee803d2f89111dd5e96db2a6fe46777e06256a45ea0fc8fddc45b11d9a0d",
       "evidence/candidate-2/README.md": "04407d7f2edca1613d4934f509f76dbdca7449c8676b35225553b6d018d0a662",
@@ -705,6 +705,7 @@
       "evidence/candidate-2/kontrol-results-v2.json": "bb5a8645b345cf3fc68de3ffa5202671357486e86f2ea541401d31d9e48175fd",
       "evidence/candidate-2/kontrol-results.json": "fcc01e4904b278f5c0ae75c6b01daf6134a5941ea710836ff555ca1d4ab18eb1",
       "evidence/candidate-2/mutation-results.json": "d869dd4d4264a91d73bc2df645f317e26161ae1d32e7f60fa306e483f3106049",
+      "evidence/certora-results-v3.json": "52e3cba36ebc94d87925ca7e1a05ee86012285773d7a453a73bd7fb05836a8bc",
       "evidence/claim-matrix.md": "d47e908ad5fe5a2761ce522c65c284d803661eee36379a1149ed325d9121d98a",
       "evidence/clean-room-provenance.md": "b87dce61009c7a63bd73748b2d78732ac3871355a25ed62c62af63c82b497e2a",
       "evidence/current-profile-release-index-v3.json": "70db87347cdfb33463f0cc076751b8aa31984bfeb73a79c705f104b8e726c1fd",
@@ -727,7 +728,7 @@
       "evidence/pilot-mutation-results.json": "206b147e10735729d9b4e2986c90cc89ee20e560aa401927a6d0d02b0d50eda5",
       "evidence/pilot-regression.json": "5517f6591c4b812017b345d203603a420dd4880f528187b22e208529146bae78",
       "evidence/public-release/diet-manifest-v1.json": "0e7aae7185170a71f67f763f146bd2f6b2416c9e2a9783b099282142620b49ea",
-      "evidence/public-release/diet-manifest-v2.json": "f1c2e063bae854bfcf9ae09e87948eca2073bf890a86da49ba040e24c5810a4e",
+      "evidence/public-release/diet-manifest-v2.json": "6b0e8db95967a392872be97ec294afa081a71230496d3bb56b5a0ac8631059ea",
       "evidence/public-release/formal-foundation-supersession-v1.json": "fd42345ad6eee7a898301530e1207162242538e436f0e574a04f1595b381ec45",
       "evidence/public-release/proof-bound-identifiers-v1.json": "86380608677f2628ac16c91bf26dcba0a866d042805d6b82f2cd2883fc0298bf",
       "evidence/public-release/supersession-manifest-v1.json": "720a4e5a4ddc175d7f99953360d1256c763a61b10785b4c7fd9ff6f977770be8",
