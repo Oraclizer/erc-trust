@@ -169,13 +169,17 @@ function validateCertoraReceipt(receipt, expected, expectedRoot, expectedRuntime
     && receipt.rules.timeout === 0 && receipt.rules.unknown === 0, "Certora summary does not describe exact success");
   requireRunProvenance(receipt.run, expected.provider, "Certora");
   check(receipt.run.runId === receipt.run.runHash, "Certora run id/hash mismatch");
-  check(typeof receipt.run.outputNamespace === "string" && receipt.run.outputNamespace.length > 0,
+  check(typeof receipt.run.outputNamespace === "string" && /^\d+$/.test(receipt.run.outputNamespace),
     "Certora output namespace missing");
+  check(typeof receipt.run.runHash === "string" && /^[0-9a-f]{32}$/.test(receipt.run.runHash),
+    "Certora run hash format");
   const runUrl = new URL(receipt.run.url);
-  check(runUrl.hostname === "prover.certora.com"
-    && runUrl.pathname.endsWith(`/${receipt.run.outputNamespace}/${receipt.run.runHash}`), "Certora run URL mismatch");
-  check(receipt.run.processExit === 0 && typeof receipt.run.terminalResult === "string",
+  check(runUrl.protocol === "https:" && runUrl.hostname === "prover.certora.com"
+    && runUrl.pathname === `/output/${receipt.run.outputNamespace}/${receipt.run.runHash}`, "Certora run URL mismatch");
+  check(receipt.run.processExit === 0 && typeof receipt.run.terminalResult === "string" && receipt.run.terminalResult.length > 0,
     "Certora terminal provenance missing");
+  check(typeof receipt.toolchain?.certoraCli === "string" && typeof receipt.toolchain?.certoraServer === "string"
+    && receipt.toolchain.ruleSanity === "advanced", "Certora toolchain provenance missing");
   requireExactInputRoot(receipt.inputsRootSha256, expectedRoot, expected.expectedInputPaths, receipt.inputs, "Certora");
   check(expected.expectedInputsRootSha256 === expectedRoot, "Certora expected input root drift");
   check(receipt.runtimeTemplateSha256 === expectedRuntime, "Certora receipt binds a different runtime");
@@ -206,7 +210,9 @@ const identity = {
   sourceRootSha256: sourceRoot(),
   formalRoot: formalRoot(),
   kontrolInputsSha256: rootOf(["implementation/src/TrustToken.sol", ...walk("implementation/kontrol")]),
-  certoraInputsSha256: inputsRoot("implementation/certora"),
+  certoraInputsSha256: expectations.certora.expectedInputPaths.length > 0
+    ? rootOf(expectations.certora.expectedInputPaths)
+    : null,
 };
 
 if (selfTest) {
@@ -231,7 +237,35 @@ if (selfTest) {
     run: { provider: "certora-cloud", runId: "x", runHash: "x", outputNamespace: "1", url: "https://prover.certora.com/output/1/x", processExit: 0, terminalResult: "ok", startedAt: "2026-01-01T00:00:00Z", finishedAt: "2026-01-01T00:01:00Z", replay: "fixture" },
   };
   expectRejected(() => validateCertoraReceipt(zeroCertora, expectations.certora, identity.certoraInputsSha256, expectedRuntime), "zero Certora rules and inputs");
-  console.log("successor evidence verifier self-test PASS: full Kontrol receipt mutations and zero Certora receipt rejected");
+  const certoraExpected = {
+    provider: "certora-cloud",
+    expectedInputPaths: ["implementation/src/TrustToken.sol"],
+    expectedInputsRootSha256: rootOf(["implementation/src/TrustToken.sol"]),
+    expectedRuleIds: ["rule-a"],
+  };
+  const certoraGood = {
+    schema: "erc-trust-certora-results-v3", status: "PASS",
+    rules: { total: 1, success: 1, fail: 0, sanityFail: 0, timeout: 0, unknown: 0, names: ["rule-a"] },
+    ruleResults: [{ id: "rule-a", status: "PASS" }],
+    inputs: [{ path: "implementation/src/TrustToken.sol", sha256: sha256(bytes("implementation/src/TrustToken.sol")) }],
+    inputsRootSha256: certoraExpected.expectedInputsRootSha256,
+    runtimeTemplateSha256: expectedRuntime,
+    toolchain: { certoraCli: "fixture", certoraServer: "fixture", ruleSanity: "advanced" },
+    run: { provider: "certora-cloud", runId: "0123456789abcdef0123456789abcdef", runHash: "0123456789abcdef0123456789abcdef", outputNamespace: "1", url: "https://prover.certora.com/output/1/0123456789abcdef0123456789abcdef", processExit: 0, terminalResult: "No errors found by Prover!", startedAt: "2026-01-01T00:00:00Z", finishedAt: "2026-01-01T00:01:00Z", replay: "fixture" },
+  };
+  validateCertoraReceipt(certoraGood, certoraExpected, certoraExpected.expectedInputsRootSha256, expectedRuntime);
+  for (const [label, mutate] of [
+    ["Certora failed rule", (value) => { value.ruleResults[0].status = "FAIL"; }],
+    ["Certora missing source input", (value) => { value.inputs = []; }],
+    ["Certora insecure URL", (value) => { value.run.url = value.run.url.replace("https:", "http:"); }],
+    ["Certora wrong URL path", (value) => { value.run.url += "/extra"; }],
+    ["Certora empty terminal result", (value) => { value.run.terminalResult = ""; }],
+  ]) {
+    const changed = structuredClone(certoraGood);
+    mutate(changed);
+    expectRejected(() => validateCertoraReceipt(changed, certoraExpected, certoraExpected.expectedInputsRootSha256, expectedRuntime), label);
+  }
+  console.log("successor evidence verifier self-test PASS: full Kontrol and Certora receipt mutations rejected");
   process.exit(0);
 }
 

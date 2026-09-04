@@ -11,7 +11,10 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const sdk = resolve(root, "sdk");
 const work = mkdtempSync(join(tmpdir(), "erc-trust-sdk-package-"));
 const installRoot = join(work, "consumer");
-const npmCli = resolve(dirname(process.execPath), "node_modules", "npm", "bin", "npm-cli.js");
+const npmCli = [
+  resolve(dirname(process.execPath), "node_modules", "npm", "bin", "npm-cli.js"),
+  resolve(dirname(process.execPath), "..", "lib", "node_modules", "npm", "bin", "npm-cli.js"),
+].find((candidate) => existsSync(candidate));
 
 function run(command, args, cwd) {
   const result = spawnSync(command, args, { cwd, encoding: "utf8" });
@@ -23,7 +26,7 @@ function run(command, args, cwd) {
 const runNpm = (args, cwd) => run(process.execPath, [npmCli, ...args], cwd);
 
 try {
-  assert.equal(existsSync(npmCli), true, "npm CLI must be installed beside Node.js");
+  assert.equal(typeof npmCli, "string", "npm CLI must be installed in the Windows or Unix Node.js prefix");
   runNpm(["pack", "--pack-destination", work], sdk);
   const archives = readdirSync(work).filter((name) => name.endsWith(".tgz"));
   assert.equal(archives.length, 1, "npm pack must produce exactly one tarball");
