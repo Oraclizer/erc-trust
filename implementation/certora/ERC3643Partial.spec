@@ -4,9 +4,9 @@ rule descriptor_is_always_partial_and_never_full(env e) {
     TrustKernelTypes.ProfileDescriptor descriptor = harness.trustProfile(e);
 
     assert descriptor.profileId ==
-        0xa57a63d1a6def0dfce48359b5a32ef71ae339ac73fcb1cf8d123c03b7ada1fe6,
+        to_bytes32(0xa57a63d1a6def0dfce48359b5a32ef71ae339ac73fcb1cf8d123c03b7ada1fe6),
         "the current adapter must report the ERC-3643 Partial identifier";
-    assert descriptor.profileKind == 3,
+    assert assert_uint8(descriptor.profileKind) == 3,
         "the current adapter must report ProfileKind.PARTIAL";
     assert !descriptor.full,
         "sealed-topology liveness must never elevate the current adapter to Full";

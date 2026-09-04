@@ -24,7 +24,7 @@
     "expectedSolidity": "0.8.36+commit.8a079791",
     "expectedRuleSanity": "advanced",
     "expectedTerminalResult": "No errors found by Prover!",
-    "expectedInputsRootSha256": "be086bf6456f9e8f59a1b2893f773224c070c1a25d3a8a11b49d1b5de327be09",
+    "expectedInputsRootSha256": "77abe4bc1ab09de6205d0da73787710a9e27ab290f2693a25e0ba566f1a02af0",
     "expectedInputPaths": [
       "implementation/certora/ERC3643Partial.conf",
       "implementation/certora/ERC3643Partial.spec",
