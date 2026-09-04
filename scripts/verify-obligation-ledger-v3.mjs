@@ -41,6 +41,7 @@ const paths = {
   bridgeManifest: "evidence/end-to-end-refinement/runtime-bridge-v2/generated-manifest.json",
   kernelSchema: "spec/erc-trust-kernel-v2.json",
   mutations: "scripts/mutation-campaign-v1.json",
+  expectations: "evidence/evidence-expectations-v3.json",
   vectors: "vectors/conformance-v2.json",
   theoryDir: "formal/isabelle/ERC_TRUST",
   testDir: "implementation/test",
@@ -132,6 +133,7 @@ function testExists(contract, test) {
 }
 
 const mutationCampaign = readJson(paths.mutations);
+const expectations = readJson(paths.expectations);
 const declaredMutations = new Map();
 for (const definition of mutationCampaign.definitions ?? []) {
   declaredMutations.set(definition.id, {
@@ -148,20 +150,44 @@ for (const [lane, path] of Object.entries(paths.receipts)) {
 }
 // A mutation receipt is current only when it lists exactly the declared campaign and binds
 // the current source root (implementation sources, tests, and foundry.toml, raw bytes).
-const sourceRootSha256 = (() => {
-  const paths = [...walk("implementation/src"), ...walk("implementation/test"), "foundry.toml"].sort((left, right) => (left < right ? -1 : left > right ? 1 : 0));
-  return sha256(Buffer.from(paths.map((path) => `${sha256(readFileSync(abs(path)))}  ${path}\n`).join(""), "utf8"));
-})();
+const rootOf = (inputPaths) => {
+  const sorted = [...inputPaths].sort((left, right) => (left < right ? -1 : left > right ? 1 : 0));
+  return sha256(Buffer.from(sorted.map((path) => `${sha256(readFileSync(abs(path)))}  ${path}\n`).join(""), "utf8"));
+};
+const sameSet = (actual, expected) => JSON.stringify([...actual].sort()) === JSON.stringify([...expected].sort());
+const sourceRootSha256 = rootOf([...walk("implementation/src"), ...walk("implementation/test"), "foundry.toml"]);
 const mutationReceiptCurrent = receipts.mutation !== null
   && JSON.stringify(receipts.mutation.data.results.map((result) => result.id)) === JSON.stringify([...declaredMutations.keys()])
   && receipts.mutation.data.campaignDefinitionSha256 === mutationCampaign.campaignDefinitionSha256
   && receipts.mutation.data.candidateInput?.sourceRootSha256 === sourceRootSha256;
-const runtimeSha256 = receipts.deterministic?.data?.buildA?.runtimeSha256 ?? null;
-const bridgeBindsRuntime = runtimeSha256 !== null && bridge.subjects.native.runtime.sha256 === runtimeSha256;
-const kontrolReceiptCurrent = receipts.kontrol !== null && runtimeSha256 !== null
-  && receipts.kontrol.data.runtimeBinding?.runtimeSha256 === runtimeSha256;
-const foundryReceiptCurrent = receipts.foundry !== null && runtimeSha256 !== null
-  && receipts.foundry.data.runtimeTemplate?.sha256 === runtimeSha256;
+const deterministic = receipts.deterministic?.data ?? null;
+const runtimeSha256 = deterministic?.buildA?.runtimeSha256 ?? null;
+const deterministicReceiptCurrent = deterministic !== null
+  && deterministic.status === "PASS"
+  && deterministic.candidateInput?.sourceRootSha256 === sourceRootSha256
+  && JSON.stringify(deterministic.buildA) === JSON.stringify(deterministic.buildB)
+  && deterministic.buildA.runtimeSha256 === bridge.subjects.native.runtime.sha256
+  && deterministic.buildA.subjects?.erc3643Adapter?.runtimeSha256 === bridge.subjects.profileAdapter.runtime.sha256
+  && deterministic.buildA.subjects?.profileGovernor?.runtimeSha256 === bridge.subjects.profileGovernor.runtime.sha256;
+const bridgeBindsRuntime = deterministicReceiptCurrent;
+const kontrol = receipts.kontrol?.data ?? null;
+const kontrolInputPaths = expectations.kontrol.expectedInputPaths;
+const kontrolReceiptCurrent = kontrol !== null && deterministicReceiptCurrent
+  && kontrol.status === "PASS"
+  && kontrol.runtimeBinding?.runtimeSha256 === runtimeSha256
+  && kontrol.inputsRootSha256 === rootOf(kontrolInputPaths)
+  && kontrol.inputsRootSha256 === expectations.kontrol.expectedInputsRootSha256
+  && sameSet(kontrol.sourceInputs?.map((input) => input.path) ?? [], kontrolInputPaths)
+  && sameSet(kontrol.proofs?.map((proof) => proof.id) ?? [], expectations.kontrol.expectedProofIds)
+  && kontrol.proofs?.length > 0 && kontrol.proofs.every((proof) => proof.status === "PASS")
+  && kontrol.run?.provider === expectations.kontrol.provider && typeof kontrol.run?.runId === "string";
+const foundry = receipts.foundry?.data ?? null;
+const foundryReceiptCurrent = foundry !== null && deterministicReceiptCurrent
+  && foundry.status === "PASS" && foundry.sourceRootSha256 === sourceRootSha256
+  && foundry.runtimeTemplate?.sha256 === bridge.subjects.native.runtime.sha256
+  && foundry.profileRuntimes?.erc3643Adapter?.sha256 === bridge.subjects.profileAdapter.runtime.sha256
+  && foundry.profileRuntimes?.profileGovernor?.sha256 === bridge.subjects.profileGovernor.runtime.sha256
+  && foundry.checks?.tests?.failed === 0 && foundry.checks?.lintErrors === 0;
 
 // ---------------------------------------------------------------------------
 // Pointer resolution
