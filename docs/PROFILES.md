@@ -4,20 +4,23 @@ A profile is an evidence-backed deployment claim, not an interface-detection
 shortcut. A deployment inherits no Full status by importing these contracts,
 using the same function names, or matching an ERC-165 identifier. Every
 endpoint reports one `ProfileDescriptor` through `trustProfile()`; the
-descriptor is a declaration, and its `full` flag is computed from the live
-topology and dependency state, never stored.
+descriptor is a declaration. A Full profile computes `full` from its live
+conformance conditions; a Partial or Unsupported profile always returns
+`full = false`.
 
-| Profile | Identifier | Six actions | ERC-7943 | State owner | Full gate |
+| Profile | Identifier | Six actions | ERC-7943 | State owner | Classification |
 | --- | --- | --- | --- | --- | --- |
 | Native Full | `keccak256("ERC-TRUST/v2/native-full")` | Yes | Fungible `0x3edbb4c4` and the exact-use route `0x5cd8d207` | Token | Exact immutable source, pinned compiler, and four bound read-only dependencies |
-| ERC-3643 Verified Full | `keccak256("ERC-TRUST/v2/erc3643-verified-full")` | Yes | Not claimed | Adapter, over a sealed token | Sealed code identity, inert owner, exact registries, exclusive adapter Agent, declared initial state, owned upstream state |
-| ERC-3643 Partial | profile-specific | Deployment-specific | Not claimed | Adapter or token | One or more Full conditions unproved and listed |
+| ERC-3643 Partial reference | `keccak256("ERC-TRUST/v2/erc3643-partial")` | Yes, within the documented adapter boundary | Not claimed | Adapter, over a sealed token | Current reference; `profileKind = PARTIAL`, `full = false` |
+| ERC-3643 Verified Full | `keccak256("ERC-TRUST/v2/erc3643-verified-full")` | Reserved TRUST 1.2 class | Not claimed | Future hook-enabled endpoint | No current reference reports this identifier |
 | Unsupported | none | No reliable declaration | No | Unknown | Missing, stale, or contradictory evidence |
 
 Both reference profiles implement the kernel interface `0x2b020308` from the
 same generated copy of the kernel machine source (`spec/erc-trust-kernel-v2.json`)
 and report `standardVersion = 2`, `actionMask = 0x3f`, `reversalMask = 0x07`,
-and `proxySupported = false`.
+and `proxySupported = false`. The ERC-3643 reference also reports
+`PROFILE_ERC3643_PARTIAL`, `profileKind = PARTIAL`, and `full = false` even
+while its narrower sealed topology is live.
 
 ## Native Full
 
@@ -46,7 +49,7 @@ its `authorityRef`, which may be a contract; the kernel has no delegation
 surface. Any source, compiler, dependency, authority, or deployment change
 requires a new manifest and an evidence-impact assessment.
 
-## ERC-3643 Verified Full
+## ERC-3643 Partial reference
 
 The conformance unit is a `ProfileGovernor` together with an
 `ERC3643TrustAdapter`; the adapter is the endpoint, the sealed token is
@@ -58,8 +61,10 @@ reference governor seals exactly once, so the dependency epoch is 1 for the
 life of the unit; a profile that offers a reseal must increment the epoch and
 change the root on every reseal.
 
-The declaration is valid only while `ProfileGovernor.isFull(adapter)` remains
-true and the deployment evidence independently establishes:
+`sealedTopologyLive()` is true only while the one-way seal, exclusive Agent
+topology, token code identity, registries, and bound dependency code remain
+live. It is an operational predicate, not a Full-conformance signal. The
+reference checks:
 
 - the exact upstream token runtime code identity declared at the seal (the
   seal binds the declared value to the live code and does not audit the code);
@@ -69,19 +74,23 @@ true and the deployment evidence independently establishes:
 - the adapter as the exclusive Agent;
 - a completed one-way seal bound to the chain, governor, token, expected token
   code identity, adapter, both registries, and the import manifest;
-- an onboarding that was either a fresh zero-state seal or an exact import
-  manifest verified entry by entry against the live upstream state (reason
-  303 on any difference), so that every frozen amount and address freeze the
-  adapter later touches is state it declared or applied;
-- exact postcondition checks after every upstream mutation (reasons 400 and
-  401) and the ownership check before every command (reason 304).
+- an import manifest whose included entries are verified against live upstream
+  state (reason 303 on any difference), without claiming that the manifest is
+  complete or that an empty manifest proves a fresh zero state;
+- exact balance and frozen-amount postconditions after every upstream mutation,
+  plus actual source and destination restriction postconditions after every
+  forced transfer (reasons 400 and 401), and the ownership check before every
+  command (reason 304);
+- receipt observations that bind actual upstream restriction flags for the
+  subject, source, and destination.
 
 Custody is confined to the adapter: `SEIZE` requires the custodian and the
 destination to be the adapter, so the Identity Registry must report the
 adapter as verified for seizures to execute. An ordinary ERC-3643 token with
 several Agents, a mutable owner, an upgradeable runtime, unbound registries,
-or undeclared frozen state is not Verified Full; it is Partial or
-Unsupported according to the evidence actually available.
+or undeclared frozen state remains Partial or Unsupported according to the
+evidence actually available. Exact declared entries do not prove that another
+legacy account was not omitted.
 
 ### Known limitation of the adapted frozen target
 
@@ -96,8 +105,29 @@ frozen amount toward the owned target. Closing that window atomically would
 need a transfer hook inside the token or its Compliance, which this profile
 does not use. `ownedState(account)` exposes the owned target, the applied
 upstream amount, and the owned restriction flag so that an indexer or keeper
-can see when a resynchronisation is due. The full list is in
+can see when a resynchronisation is due. This window is a reason the current
+reference is Partial, not a limitation compatible with Full. The full list is in
 `evidence/known-limitations.md`.
+
+## TRUST 1.2 Verified Full requirements
+
+The Verified Full identifier is reserved for a future profile. A deployment
+may report it only when all of the following are bound to the same runtime and
+evidence identity:
+
+- atomic fresh deployment of the token and endpoint;
+- a complete initial-state gate, not an attestational list of selected entries;
+- a token or Compliance hook that enforces the TRUST frozen target on every
+  ordinary transfer in the same transaction;
+- actual balance, frozen amount, and restriction post-state equality after
+  forced transfers, with the same actual restriction values in receipts;
+- proxy and upgrade paths rejected, or the implementation, admin, and epoch
+  explicitly bound.
+
+Existing T-REX imports are not eligible without an enumerable state root,
+account count, and completeness proof. A generic attestation does not supply
+that missing primitive. This repository does not implement the TRUST 1.2
+profile.
 
 ## Partial and Unsupported
 

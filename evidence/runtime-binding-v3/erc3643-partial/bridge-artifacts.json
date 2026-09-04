@@ -1134,6 +1134,19 @@
         "type": "function"
       },
       {
+        "inputs": [],
+        "name": "sealedTopologyLive",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
         "inputs": [
           {
             "internalType": "bytes4",
@@ -1227,105 +1240,105 @@
       }
     ],
     "artifact": "out/ERC3643TrustAdapter.sol/ERC3643TrustAdapter.json",
-    "bundle": "verified-profile",
+    "bundle": "erc3643-partial",
     "contract": "ERC3643TrustAdapter",
     "creationBytecode": {
-      "bytes": 19802,
-      "sha256": "df05a777012cced5ef7c70a486c661e4f43bad6f60dcc531d6a59d5946bedc45"
+      "bytes": 20064,
+      "sha256": "35473db07d5c95c32668ea06730a4d8d4641be40991826656c830d97d6f703f4"
     },
     "id": "profileAdapter",
     "immutableReferences": [
       {
         "length": 32,
-        "start": 279
+        "start": 290
       },
       {
         "length": 32,
-        "start": 380
+        "start": 391
       },
       {
         "length": 32,
-        "start": 437
+        "start": 448
       },
       {
         "length": 32,
-        "start": 654
+        "start": 665
       },
       {
         "length": 32,
-        "start": 3287
+        "start": 3298
       },
       {
         "length": 32,
-        "start": 3544
+        "start": 3555
       },
       {
         "length": 32,
-        "start": 4024
+        "start": 4008
       },
       {
         "length": 32,
-        "start": 4225
+        "start": 7478
       },
       {
         "length": 32,
-        "start": 7653
+        "start": 9722
       },
       {
         "length": 32,
-        "start": 11211
+        "start": 11242
       },
       {
         "length": 32,
-        "start": 12385
+        "start": 12416
       },
       {
         "length": 32,
-        "start": 12706
+        "start": 12737
       },
       {
         "length": 32,
-        "start": 12782
+        "start": 12813
       },
       {
         "length": 32,
-        "start": 13487
+        "start": 13518
       },
       {
         "length": 32,
-        "start": 14332
+        "start": 14363
       },
       {
         "length": 32,
-        "start": 14408
+        "start": 14439
       },
       {
         "length": 32,
-        "start": 15598
+        "start": 15629
       },
       {
         "length": 32,
-        "start": 15718
+        "start": 15749
       },
       {
         "length": 32,
-        "start": 15840
+        "start": 15871
       },
       {
         "length": 32,
-        "start": 17049
+        "start": 17187
       },
       {
         "length": 32,
-        "start": 17478
+        "start": 17523
       },
       {
         "length": 32,
-        "start": 18678
+        "start": 18901
       },
       {
         "length": 32,
-        "start": 18748
+        "start": 18971
       }
     ],
     "methodIdentifiers": {
@@ -1343,14 +1356,15 @@
       "profileGovernor()": "164068a4",
       "receipt(bytes32)": "198a27aa",
       "resynchroniseFrozen(address)": "24933056",
+      "sealedTopologyLive()": "2ca444f1",
       "supportsInterface(bytes4)": "01ffc9a7",
       "token()": "fc0c546a",
       "trustProfile()": "5ba37779"
     },
     "runtimeTemplate": {
-      "bytes": 19218,
-      "eip170MarginBytes": 5358,
-      "sha256": "2a7214a83e298e02e85bcfddeb022f0f339bd6cd616e0c7333247728c32f2541"
+      "bytes": 19480,
+      "eip170MarginBytes": 5096,
+      "sha256": "7a2dfa433911dd37e389498129356db30693e8ee8e128f8da63a5d3044a56349"
     },
     "semanticChecks": {
       "abi": true,
@@ -2487,25 +2501,6 @@
       {
         "inputs": [
           {
-            "internalType": "address",
-            "name": "adapter",
-            "type": "address"
-          }
-        ],
-        "name": "isFull",
-        "outputs": [
-          {
-            "internalType": "bool",
-            "name": "",
-            "type": "bool"
-          }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
             "components": [
               {
                 "internalType": "address",
@@ -2594,6 +2589,25 @@
         "type": "function"
       },
       {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "adapter",
+            "type": "address"
+          }
+        ],
+        "name": "sealedTopologyLive",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
         "inputs": [],
         "name": "token",
         "outputs": [
@@ -2621,11 +2635,11 @@
       }
     ],
     "artifact": "out/ProfileGovernor.sol/ProfileGovernor.json",
-    "bundle": "verified-profile",
+    "bundle": "erc3643-partial",
     "contract": "ProfileGovernor",
     "creationBytecode": {
-      "bytes": 3228,
-      "sha256": "f5da3ace73fa19a386a2925891b14f72038c7e4ec2d95b674e0b0a456c05f353"
+      "bytes": 3225,
+      "sha256": "d1c8b5d7b05a77408e35ef2607d57a697feff2a859a5f01bbf4e7814469d40d6"
     },
     "id": "profileGovernor",
     "immutableReferences": [
@@ -2635,67 +2649,67 @@
       },
       {
         "length": 32,
-        "start": 425
+        "start": 294
       },
       {
         "length": 32,
-        "start": 526
+        "start": 395
       },
       {
         "length": 32,
-        "start": 689
+        "start": 558
       },
       {
         "length": 32,
-        "start": 881
+        "start": 750
       },
       {
         "length": 32,
-        "start": 1040
+        "start": 909
       },
       {
         "length": 32,
-        "start": 1113
+        "start": 982
       },
       {
         "length": 32,
-        "start": 1256
+        "start": 1125
       },
       {
         "length": 32,
-        "start": 1324
+        "start": 1321
       },
       {
         "length": 32,
-        "start": 1867
+        "start": 1864
       },
       {
         "length": 32,
-        "start": 1902
+        "start": 1899
       },
       {
         "length": 32,
-        "start": 2062
+        "start": 2059
       },
       {
         "length": 32,
-        "start": 2154
+        "start": 2151
       },
       {
         "length": 32,
-        "start": 2599
+        "start": 2596
       },
       {
         "length": 32,
-        "start": 2639
+        "start": 2636
       },
       {
         "length": 32,
-        "start": 2685
+        "start": 2682
       },
       {
         "length": 32,
-        "start": 2725
+        "start": 2722
       }
     ],
     "methodIdentifiers": {
@@ -2705,17 +2719,17 @@
       "expectedTokenCodeId()": "b534e5ab",
       "identityRegistry()": "134e18f4",
       "importManifestHash()": "0ed81c40",
-      "isFull(address)": "d4de695a",
       "manifestHashOf((address,uint256,bool)[])": "b2e56d9e",
       "seal(address,(address,uint256,bool)[])": "82c8fd1f",
       "sealedBinding()": "b98705b4",
+      "sealedTopologyLive(address)": "155917d8",
       "token()": "fc0c546a",
       "topologySealed()": "7f3bffea"
     },
     "runtimeTemplate": {
-      "bytes": 2790,
-      "eip170MarginBytes": 21786,
-      "sha256": "ba2d63c8e93db7997ce57fe128a36dcfa761fb993e5babc9920d2911764f358e"
+      "bytes": 2787,
+      "eip170MarginBytes": 21789,
+      "sha256": "78c08fbe4be793482e44a8cdf32fcc1af3276277c8cc78f48761fdcbc4bf9399"
     },
     "semanticChecks": {
       "abi": true,

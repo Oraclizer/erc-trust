@@ -13,13 +13,15 @@ Status: frozen in kernel version 2 machine source (`structs.ProfileDescriptor`,
 2. `trustProfile()` returns one `ProfileDescriptor`: `profileId`,
    `profileKind`, `standardVersion`, `actionMask`, `reversalMask`,
    `underlyingToken`, `manifestHash`, `full`, `proxySupported`.
-3. `full` MUST be computed from the live topology and dependency state; it is
-   never a stored constant. A native endpoint reports `full` as true only while
-   its bound dependencies match their bindings; a sealed adapter reports true
-   only while the sealed topology holds.
-4. Profile identifiers are `keccak256("ERC-TRUST/v2/native-full")` and
-   `keccak256("ERC-TRUST/v2/erc3643-verified-full")`. The strings name the
-   profile's meaning, not a repository.
+3. A Full profile computes `full` from all live conformance conditions and
+   never stores a stale success bit. A Partial or Unsupported profile reports
+   `full = false`. The current ERC-3643 reference exposes its narrower
+   `sealedTopologyLive()` predicate separately and never maps it to `full`.
+4. Current profile identifiers are `keccak256("ERC-TRUST/v2/native-full")` and
+   `keccak256("ERC-TRUST/v2/erc3643-partial")`. The identifier
+   `keccak256("ERC-TRUST/v2/erc3643-verified-full")` is reserved for the future
+   TRUST 1.2 class and is not reported by the current adapter. The strings name
+   profile meaning, not a repository.
 5. Views that only one profile needs (custody, settlement, and entitlement
    records; the exact-use ERC-7943 route) live in profile interfaces with
    their own identifiers and are not part of the kernel identifier.

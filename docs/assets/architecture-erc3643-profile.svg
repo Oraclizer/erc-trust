@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1120" height="600" viewBox="0 0 1120 600" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="ep-title ep-desc">
-  <title id="ep-title">ERC-3643 Verified Full state ownership</title>
+  <title id="ep-title">ERC-3643 Partial reference state ownership</title>
   <desc id="ep-desc">Three-stage view. Stage one, privileged control path: an authority calls the ERC3643TrustAdapter, which is governed by a sealed ProfileGovernor. Stage two, bound upstream inputs: the adapter reads the Identity Registry and the Compliance contract, and mutates the upstream token as its exclusive Agent, while the ProfileGovernor owns and seals that token. Stage three, separated state ownership: the adapter owns TRUST state and receipts, and the token owns balances and frozen state.</desc>
 
   <defs>

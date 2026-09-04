@@ -109,7 +109,7 @@ const manifest = {
   },
   profile: {
     native: "ERC-TRUST/v2/native-full",
-    erc3643: "ERC-TRUST/v2/erc3643-verified-full",
+    erc3643: "ERC-TRUST/v2/erc3643-partial",
     proxySupported: false,
     migrationSupported: false,
   },

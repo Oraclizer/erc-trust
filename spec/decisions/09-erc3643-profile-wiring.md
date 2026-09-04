@@ -1,4 +1,4 @@
-# Decision 09: how the ERC-3643 Verified Full profile consumes the kernel machine source
+# Decision 09: how the ERC-3643 Partial reference consumes the kernel machine source
 
 Status: implemented for the profile adapter (`implementation/src/profiles/ERC3643TrustAdapter.sol`,
 `implementation/src/profiles/ProfileGovernor.sol`). The formal mapping of the profile is
@@ -29,12 +29,12 @@ runtime assurance change.
    registry rebinding, or arbitrary-call surface, so the dependency epoch is 1 for
    the life of the conformance unit. A profile that offers a reseal MUST increment
    the epoch and change the root on every reseal, as the kernel requires.
-4. Onboarding is a fresh zero-state seal or an exact import manifest, nothing else.
-   The manifest lists every account that carries upstream frozen tokens or an
-   address freeze at the seal, sorted by strictly increasing account, each entry
-   declaring nonzero state; the empty manifest is the fresh zero-state declaration.
-   The seal verifies every entry against the live upstream state and reverts with
-   reason 303 on any difference, so a wrong manifest seals nothing. The adapter then
+4. Onboarding accepts a canonical list of declared import entries. The manifest
+   sorts entries by strictly increasing account and every entry declares nonzero
+   frozen or restricted state. The seal verifies every included entry against the
+   live upstream state and reverts with reason 303 on any difference, so a wrong
+   declared entry seals nothing. It does not prove that no legacy account was
+   omitted, and an empty manifest does not prove a fresh zero state. The adapter then
    owns the declared state: an imported frozen amount opens a `FREEZE` case and an
    imported address freeze opens a `RESTRICT` case, each with a synthetic applied
    head action that has no command hash and no receipt (`RegulatoryStateImported`
@@ -48,8 +48,11 @@ runtime assurance change.
    reason 303) otherwise. Upstream state it does not own is never overwritten and
    never silently adopted. After every forced transfer the adapter brings the
    frozen amount of both accounts back to their owned targets saturated at the
-   current balance (an ERC-3643 forced transfer unfreezes automatically), verifies
-   the post-state, and records the applied value.
+   current balance (an ERC-3643 forced transfer may unfreeze automatically), verifies
+   the frozen post-state, then re-reads the actual source and destination restriction
+   flags and compares them with adapter-owned state. Any mismatch is reason 401 and
+   reverts the entire command. The adapter records the applied frozen value only on
+   success.
    The owned target is materialised upstream only at the adapter's own touch
    points. An ordinary inbound transfer that raises an account's balance between
    two touches leaves the upstream frozen amount at the last applied value, so the
@@ -59,7 +62,7 @@ runtime assurance change.
    unfreezes and it changes no owned state). The native token applies its stored
    target on every transfer; closing that window atomically on an ERC-3643 token
    would need a transfer hook inside the token or its Compliance, which this
-   profile does not use.
+   profile does not use. This is why the current reference is Partial.
 6. Custody is confined to the adapter: `SEIZE` requires `custodian == destination ==
    adapter` (reason 6 otherwise), so seized tokens sit in the adapter's own
    upstream balance and the custody backing rule keeps other cases from spending
@@ -74,15 +77,17 @@ runtime assurance change.
    `keccak256(abi.encode(dependencyRoot, commandHash, consultedMask))` with bit 0 for
    the policy and bit 1 for the identity consultation.
 8. Upstream execution is typed: a forced transfer that reverts or returns anything
-   but a single true word is reason 400, a mismatch of either balance afterwards is
+   but a single true word is reason 400, a mismatch of either balance or either
+   actual touched-account restriction flag afterwards is
    reason 401, a freeze, unfreeze, or address-freeze call that reverts or returns
    data is 400, and a frozen amount or flag that does not match afterwards is 401.
    Upstream views are read with bounded static calls; a revert, a return of any
    length other than 32 bytes, or a flag word above 1 is reason 400.
-9. `preState` and `postState` commit to the token, the subject's balance, owned
-   frozen target, upstream frozen amount, and owned restriction flag, the source's
-   and destination's balance and custody backing, the case's custody record, the
-   subject's overlay heads, the case record, and the sealed binding.
+9. `preState` and `postState` commit to the token; a subject-role hash over the
+   subject balance, owned frozen target, upstream frozen amount, owned restriction,
+   and actual upstream restriction; source-role and destination-role hashes over
+   balance, actual upstream restriction, and custody backing; the case's custody
+   record; the subject's overlay heads; the case record; and the sealed binding.
 10. The adapter has one immutable authority at epoch 1 and no authority rotation or
     governance write. `TrustAuthorityChanged` is emitted at construction and the
     four `TrustDependencyChanged` events (two of them with a zero binding) at the
@@ -93,13 +98,16 @@ runtime assurance change.
     longer holds, reason 200 when a bound dependency's runtime code changed) placed
     where the native token assesses its dependencies: after the command is
     validated and before anything is consumed.
-12. The profile surface `IERC3643VerifiedProfile` (its own ERC-165 identifier, not
+12. The profile surface `IERC3643PartialProfile` (its own ERC-165 identifier, not
     part of the kernel identifier, as decision 06 item 5 provides) exposes
     `ownedState(account)`, the owned frozen target, the applied upstream frozen
     amount, and the owned restriction flag, so that an indexer or keeper can see
     when a resynchronisation is due, and `resynchroniseFrozen(account)`, which
     requires the live topology and the ownership precondition of item 5 and then
-    performs the same synchronisation a command would perform.
+    performs the same synchronisation a command would perform. It also exposes
+    `sealedTopologyLive()`, the narrow operational seal and dependency-code
+    predicate. The descriptor remains `PARTIAL/full=false` whether that view is
+    true or false.
 
 ## Assumptions and deployment preconditions
 
@@ -159,8 +167,8 @@ token has. Any other custodian would need its own Agent power to release them.
   runtime assurance change binds both endpoints.
 - An absolute frozen target above the current balance is enforced by the
   underlying token only up to the balance at the adapter's last touch (item 5).
-  This is a property of adapting a frozen amount to a frozen target, not a
-  defect of one implementation, and it is stated in the profile's limitations.
+  This is the current adapter's Partial limitation and is stated in the
+  profile's limitations; a Verified Full profile cannot admit the window.
 - The refinement ledger must map the abstract initial state onto the import
   manifest and the imported cases, and the abstract authorization onto the single
   immutable authority.
@@ -178,3 +186,7 @@ token has. Any other custodian would need its own Agent power to release them.
 - An upstream token unfreezes or moves tokens outside its Agent surface (for
   example on recovery or on burn by another role); such a token cannot satisfy the
   ownership precondition and is Partial or Unsupported.
+- Reopen a separate TRUST 1.2 design only for an atomic fresh deployment with a
+  complete initial-state gate and a same-transaction token or Compliance hook.
+  Existing imports require an enumerable state root, account count, and
+  completeness proof before Verified Full can be reconsidered.

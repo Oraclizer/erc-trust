@@ -93,8 +93,14 @@ function Invoke-IsolatedBuild([string]$Name) {
   [System.IO.Directory]::CreateDirectory($directory) | Out-Null
   Copy-Item -LiteralPath (Join-Path $repoRoot 'foundry.toml') `
     -Destination (Join-Path $directory 'foundry.toml')
-  Copy-Item -LiteralPath (Join-Path $repoRoot 'implementation') `
-    -Destination (Join-Path $directory 'implementation') -Recurse
+  $isolatedImplementation = Join-Path $directory 'implementation'
+  [System.IO.Directory]::CreateDirectory($isolatedImplementation) | Out-Null
+  foreach ($component in @('src', 'test', 'kontrol', 'certora')) {
+    $source = Join-Path (Join-Path $repoRoot 'implementation') $component
+    if (Test-Path -LiteralPath $source -PathType Container) {
+      Copy-Item -LiteralPath $source -Destination $isolatedImplementation -Recurse
+    }
+  }
 
   $previousErrorAction = $ErrorActionPreference
   $ErrorActionPreference = 'Continue'

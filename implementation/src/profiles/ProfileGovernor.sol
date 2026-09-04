@@ -11,13 +11,13 @@ interface IERC3643SealActivation {
     function activateSeal(ERC3643ProfileTypes.ImportEntry[] calldata entries) external;
 }
 
-/// @notice One-way topology seal of the ERC-3643 Verified Full profile.
+/// @notice One-way topology seal of the ERC-3643 Partial reference profile.
 /// @dev The governor is the inert owner of the underlying token: after the seal it exposes no token
 ///      administration, Agent management, registry rebinding, or arbitrary-call surface, so the sealed
 ///      topology can only drift through the token itself, and the adapter observes that drift.
 contract ProfileGovernor {
-    /// @dev keccak256("ERC-TRUST/v2/erc3643-verified-full/seal")
-    bytes32 internal constant SEAL_DOMAIN = keccak256("ERC-TRUST/v2/erc3643-verified-full/seal");
+    /// @dev keccak256("ERC-TRUST/v2/erc3643-partial/seal")
+    bytes32 internal constant SEAL_DOMAIN = keccak256("ERC-TRUST/v2/erc3643-partial/seal");
     uint16 internal constant REASON_SEAL_INVALID = 301;
     uint16 internal constant REASON_TOPOLOGY_MISMATCH_AT_SEAL = 302;
 
@@ -84,8 +84,9 @@ contract ProfileGovernor {
         IERC3643SealActivation(adapter).activateSeal(entries);
     }
 
-    /// @notice Canonical hash of an import manifest; reverts when the manifest is not canonical.
+    /// @notice Canonical hash of the declared import entries; reverts when an entry is not canonical.
     /// @dev Canonical: accounts strictly increasing, no zero account, every entry declares nonzero state.
+    ///      This checks included entries only and does not prove that no upstream state was omitted.
     function manifestHashOf(ERC3643ProfileTypes.ImportEntry[] calldata entries) public view returns (bytes32) {
         address previous;
         for (uint256 i = 0; i < entries.length; ++i) {
@@ -102,7 +103,8 @@ contract ProfileGovernor {
     }
 
     /// @notice True only while the sealed topology holds for the sealed adapter.
-    function isFull(address adapter) public view returns (bool) {
+    /// @dev This is an operational liveness predicate, not a Full conformance classification.
+    function sealedTopologyLive(address adapter) public view returns (bool) {
         return topologySealed && adapter == exclusiveAdapter && _topologyMatches(adapter)
             && sealedBinding == _binding(adapter, importManifestHash);
     }

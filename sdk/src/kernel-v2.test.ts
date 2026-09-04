@@ -11,6 +11,7 @@ import {
   KERNEL_DOMAIN,
   KERNEL_INTERFACE_ID,
   KERNEL_SELECTORS,
+  PROFILE_IDS,
   RECEIPT_PREIMAGE_TYPES,
   REVERSAL_TUPLE,
   ReceiptKind,
@@ -36,6 +37,7 @@ interface VectorFile {
     domain: string;
     dependencyRootTag: string;
     kernelInterfaceId: string;
+    profileIds: Record<string, string>;
     selectors: Record<string, string>;
     actionCalldataLength: number;
     reversalCalldataLength: number;
@@ -224,6 +226,8 @@ test("constants match the generated vectors", () => {
   assert.equal(KERNEL_DOMAIN, vectors.constants.domain);
   assert.equal(DEPENDENCY_ROOT_TAG, vectors.constants.dependencyRootTag);
   assert.equal(KERNEL_INTERFACE_ID, vectors.constants.kernelInterfaceId);
+  assert.deepEqual(PROFILE_IDS, vectors.constants.profileIds);
+  assert.deepEqual(Object.keys(PROFILE_IDS), ["native-full", "erc3643-partial", "erc3643-verified-full"]);
   for (const [signature, selector] of Object.entries(vectors.constants.selectors)) {
     assert.equal(kernelSelector(signature), selector);
   }

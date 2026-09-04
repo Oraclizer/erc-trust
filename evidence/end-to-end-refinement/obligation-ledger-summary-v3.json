@@ -2,36 +2,36 @@
   "bridgeBindsRuntime": true,
   "bridgeSchema": {
     "path": "evidence/end-to-end-refinement/runtime-bridge-v2/schema.json",
-    "sha256": "9bb84191d893772cb73c9898b5431ec3b8cbeb78f27f3a14f3ac69b751f732cb"
+    "sha256": "842a939d9343a6e03053216d3965da9bc5f19749b1dbf9fe978b392d3170a1f2"
   },
   "candidate": "0.2.0-candidate.1",
   "claim": "mapped implementation evidence; end-to-end refinement incomplete",
   "closure": "CONDITIONAL",
   "closureRecord": {
     "path": "evidence/end-to-end-refinement/central-closure-v3.json",
-    "sha256": "6fa63c85ee106f131eb4069f3f3cfd471876027790324fa92bb51ddfac8f4357"
+    "sha256": "9755e8bff36e7cb5ab16220ea30dbec6766d60acbd746cf1d8aad05e0da8f500"
   },
   "counts": {
-    "closed": 68,
-    "closedPendingReceipt": 0,
+    "closed": 7,
+    "closedPendingReceipt": 63,
     "currentMandatory": 0,
     "notApplicable": 2,
-    "rows": 72,
+    "rows": 74,
     "separateProfile": 0,
     "successorMandatory": 2
   },
   "generatedTheory": {
     "path": "formal/isabelle/ERC_TRUST/TRUST_Obligation_Ledger_Generated.thy",
-    "sha256": "5f23f7a16fcc1be0d2eae0f59bfc34d061ed43adc2cd282641de7a59fba36e9e"
+    "sha256": "35d7f4a596d38e34ce6506491de991b7ad21191c609a946a823b192ee90d6802"
   },
   "ledger": {
     "path": "evidence/end-to-end-refinement/obligation-ledger-v3.json",
-    "sha256": "caf3334f1e62b6daf7fec9bc182dbaeab120c2c1995ba9055e827359d098ff45"
+    "sha256": "79592a27f332b84cac51d6387c2214f0d1612e68e396ea214c6da4a58dff36b6"
   },
   "receiptCurrency": {
     "foundry": true,
     "kontrol": true,
-    "mutation": true
+    "mutation": false
   },
   "receipts": {
     "deterministic": {
@@ -53,142 +53,190 @@
   },
   "rows": [
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-52-AUTHORITY-ACCOUNT"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-AUTH-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-53-AUTHORITY-EPOCH",
+        "mutation receipt for MUT-54-AUTHORITY-ROTATION-EPOCH"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-AUTH-02"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-78-GOVERNANCE-REPLAY"
+      ],
       "declaredStatus": "NOT-APPLICABLE",
       "effectiveStatus": "NOT-APPLICABLE",
       "endpoint": "native",
       "id": "NAT-AUTH-03"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-57-NONCE-FRESHNESS",
+        "mutation receipt for MUT-06-NONCE-CONSUMPTION"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-NONCE-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-55-ACTION-ID-REPLAY"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-NONCE-02"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-56-REVERSAL-ID-REPLAY"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-NONCE-03"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-14-DEPENDENCY-ROOT-COMPARISON",
+        "mutation receipt for MUT-15-DEPENDENCY-EPOCH-INCREMENT"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-STALE-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-58-REVERSAL-DEPENDENCY-ROOT"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-STALE-02"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-16-ROOT-TAG",
+        "mutation receipt for MUT-17-ROOT-ORDER"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-STALE-03"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-82-DOMAIN"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-SHAPE-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-83-IDENTIFIER",
+        "mutation receipt for MUT-05-FIXED-ACTION"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-SHAPE-02"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-81-TIME-WINDOW"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-SHAPE-03"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-59-ACTION-SHAPE"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-SHAPE-04"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-23-CALLDATA-LENGTH",
+        "mutation receipt for MUT-26-REVERSAL-CALLDATA-LENGTH"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-SHAPE-05"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-61-TERMINAL-CASE-ACTION"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-CASE-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-62-OVERLAY-REQUIRES-FRESH-CASE",
+        "mutation receipt for MUT-18-CASE-CONFLICT"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-CASE-02"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-63-RESTRICT-NO-STATE-CHANGE"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-CASE-03"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-64-SEIZE-OPEN-CASE",
+        "mutation receipt for MUT-19-OVERLAY-DISPOSITION"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-CASE-04"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-65-CASE-GENERATION"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-CASE-05"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-09-CASE-TERMINALITY"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-CASE-06"
     },
@@ -200,114 +248,154 @@
       "id": "NAT-CASE-07"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-08-FREEZE-DIRECTION",
+        "mutation receipt for MUT-108-FREEZE-TARGET",
+        "mutation receipt for MUT-60-FREEZE-PRIOR-TARGET"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-FRZ-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-109-RESTRICT-FLAG"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-RSTR-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-71-SEIZE-BACKING",
+        "mutation receipt for MUT-10-CUSTODY-CLOSURE"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-CUST-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-72-UNBACKED-GUARD",
+        "mutation receipt for MUT-74-ORDINARY-BACKING",
+        "mutation receipt for MUT-01-FROZEN-FLOOR"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-CUST-02"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-73-CUSTODY-DISPOSITION-MATCH",
+        "mutation receipt for MUT-10-CUSTODY-CLOSURE"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-CUST-03"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-110-BALANCE-MOVE"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-DISP-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-22-RECEIPT-PREIMAGE"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-DISP-02"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-84-ENTITLEMENT-ONCE"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-DISP-03"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-67-REVERSAL-PAIRING"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-REV-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-66-REVERSAL-CURRENT-HEAD"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-REV-02"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-13-TERMINAL-REVERSAL-GUARD"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-REV-03"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-68-UNFREEZE-PRIOR-TARGET",
+        "mutation receipt for MUT-21-REVERSAL-CLOSES-CHAIN"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-REV-04"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-69-UNRESTRICT-PRIOR-FLAG"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-REV-05"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-70-RELEASE-BACKING"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-REV-06"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-77-REVERSAL-RECEIPT-PARENT",
+        "mutation receipt for MUT-20-RECEIPT-KIND-TAG"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-REV-07"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-75-RESTRICTION-SEND-GATE"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-XFER-01"
     },
@@ -319,30 +407,42 @@
       "id": "NAT-XFER-02"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-25-BINDING-ECHO",
+        "mutation receipt for MUT-04-FAIL-CLOSED",
+        "mutation receipt for MUT-11-REVERSAL-POLICY"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-DEP-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-24-IDENTITY-ASSESSMENT",
+        "mutation receipt for MUT-79-PROFILE-FULL-LIVE"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-DEP-02"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-22-RECEIPT-PREIMAGE",
+        "mutation receipt for MUT-03-RECEIPT-LAST"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-RCPT-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-76-RECEIPT-DEPENDENCY-ROOT"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-RCPT-02"
     },
@@ -354,16 +454,21 @@
       "id": "NAT-FAIL-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-02-ROUTE-CONSUMPTION"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-ROUTE-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-80-KERNEL-INTERFACE-ID",
+        "mutation receipt for MUT-79-PROFILE-FULL-LIVE"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-ROUTE-02"
     },
@@ -382,123 +487,218 @@
       "id": "NAT-E2E-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-85-ERC3643-AUTHORITY-ACCOUNT"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-AUTH-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-86-ERC3643-AUTHORITY-EPOCH"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-AUTH-02"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-89-ERC3643-NONCE-FRESHNESS",
+        "mutation receipt for MUT-87-ERC3643-ACTION-ID-REPLAY",
+        "mutation receipt for MUT-88-ERC3643-REVERSAL-ID-REPLAY",
+        "mutation receipt for MUT-43-ERC3643-NONCE-CONSUMPTION"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-NONCE-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-34-ERC3643-DEPENDENCY-ROOT-COMPARISON",
+        "mutation receipt for MUT-90-ERC3643-REVERSAL-DEPENDENCY-ROOT",
+        "mutation receipt for MUT-35-ERC3643-ROOT-TAG"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-STALE-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-104-ERC3643-DOMAIN",
+        "mutation receipt for MUT-105-ERC3643-IDENTIFIER",
+        "mutation receipt for MUT-103-ERC3643-TIME-WINDOW",
+        "mutation receipt for MUT-91-ERC3643-ACTION-SHAPE"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-SHAPE-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-41-ERC3643-CALLDATA-LENGTH",
+        "mutation receipt for MUT-42-ERC3643-REVERSAL-CALLDATA-LENGTH"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-SHAPE-02"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-92-ERC3643-TERMINAL-CASE-ACTION",
+        "mutation receipt for MUT-93-ERC3643-OVERLAY-REQUIRES-FRESH-CASE",
+        "mutation receipt for MUT-40-ERC3643-CASE-CONFLICT",
+        "mutation receipt for MUT-94-ERC3643-RESTRICT-NO-STATE-CHANGE",
+        "mutation receipt for MUT-95-ERC3643-SEIZE-OPEN-CASE",
+        "mutation receipt for MUT-96-ERC3643-DISPOSITION-TERMINAL"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-CASE-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-12-ERC3643-FREEZE-DIRECTION",
+        "mutation receipt for MUT-111-ERC3643-FREEZE-TARGET",
+        "mutation receipt for MUT-51-ERC3643-RESYNC-RAISES-FROZEN"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-FRZ-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-98-ERC3643-REVERSAL-PAIRING",
+        "mutation receipt for MUT-97-ERC3643-REVERSAL-CURRENT-HEAD",
+        "mutation receipt for MUT-99-ERC3643-UNFREEZE-PRIOR-TARGET",
+        "mutation receipt for MUT-47-ERC3643-REVERSAL-CLOSES-CHAIN",
+        "mutation receipt for MUT-33-ERC3643-TERMINAL-REVERSAL-GUARD"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-REV-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-106-ERC3643-ENTITLEMENT-ONCE"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-DISP-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-36-ERC3643-CUSTODIAN-CONFINEMENT",
+        "mutation receipt for MUT-46-ERC3643-CUSTODY-CLOSURE"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-CUST-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-28-ERC3643-IMPORT-VERIFICATION",
+        "mutation receipt for MUT-45-ERC3643-IMPORTED-CASE"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-IMPORT-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-27-ERC3643-OWNED-UPSTREAM-STATE",
+        "mutation receipt for MUT-48-ERC3643-REVERSAL-OWNED-STATE",
+        "mutation receipt for MUT-49-ERC3643-CUSTODIAN-OWNED-STATE",
+        "mutation receipt for MUT-50-ERC3643-RESYNC-OWNED-STATE",
+        "mutation receipt for MUT-115-ERC3643-SOURCE-RESTRICTION-POSTSTATE",
+        "mutation receipt for MUT-116-ERC3643-DESTINATION-RESTRICTION-POSTSTATE"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-UPSTREAM-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-37-ERC3643-IDENTITY-ASSESSMENT",
+        "mutation receipt for MUT-38-ERC3643-COMPLIANCE-ASSESSMENT",
+        "mutation receipt for MUT-29-ERC3643-TOPOLOGY-GATE",
+        "mutation receipt for MUT-30-ERC3643-DEPENDENCY-CODE",
+        "mutation receipt for MUT-31-ERC3643-TRANSFER-POSTSTATE",
+        "mutation receipt for MUT-32-ERC3643-FROZEN-POSTSTATE",
+        "mutation receipt for MUT-115-ERC3643-SOURCE-RESTRICTION-POSTSTATE",
+        "mutation receipt for MUT-116-ERC3643-DESTINATION-RESTRICTION-POSTSTATE"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-DEP-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-100-ERC3643-RECEIPT-PREIMAGE",
+        "mutation receipt for MUT-101-ERC3643-RECEIPT-DEPENDENCY-ROOT",
+        "mutation receipt for MUT-39-ERC3643-RECEIPT-KIND-TAG"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-RCPT-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-117-ERC3643-SUBJECT-ACTUAL-RESTRICTION-OBSERVATION",
+        "mutation receipt for MUT-118-ERC3643-SOURCE-ACTUAL-RESTRICTION-OBSERVATION",
+        "mutation receipt for MUT-119-ERC3643-DESTINATION-ACTUAL-RESTRICTION-OBSERVATION"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "endpoint": "profileAdapter",
+      "id": "ADP-OBS-01"
+    },
+    {
+      "awaiting": [
+        "mutation receipt for MUT-102-ERC3643-KERNEL-INTERFACE-ID",
+        "mutation receipt for MUT-121-ERC3643-PARTIAL-INTERFACE-ID"
+      ],
+      "declaredStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-ROUTE-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-29-ERC3643-TOPOLOGY-GATE"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-SEAL-01"
+    },
+    {
+      "awaiting": [
+        "mutation receipt for MUT-112-ERC3643-PARTIAL-DESCRIPTOR-KIND",
+        "mutation receipt for MUT-113-ERC3643-PARTIAL-FULL-FLAG",
+        "mutation receipt for MUT-114-ERC3643-PARTIAL-PROFILE-ID",
+        "mutation receipt for MUT-29-ERC3643-TOPOLOGY-GATE",
+        "mutation receipt for MUT-120-ERC3643-SEALED-TOPOLOGY-VIEW"
+      ],
+      "declaredStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "endpoint": "profileAdapter",
+      "id": "ADP-PROFILE-01"
     },
     {
       "awaiting": [],
@@ -508,9 +708,12 @@
       "id": "ADP-E2E-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-107-ERC3643-MANIFEST-CANONICAL",
+        "mutation receipt for MUT-44-ERC3643-MANIFEST-BINDING"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileGovernor",
       "id": "GOV-SEAL-01"
     },
@@ -522,9 +725,14 @@
       "id": "SHR-ABI-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-23-CALLDATA-LENGTH",
+        "mutation receipt for MUT-41-ERC3643-CALLDATA-LENGTH",
+        "mutation receipt for MUT-26-REVERSAL-CALLDATA-LENGTH",
+        "mutation receipt for MUT-42-ERC3643-REVERSAL-CALLDATA-LENGTH"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "shared",
       "id": "SHR-DEC-01"
     },
@@ -536,9 +744,13 @@
       "id": "SHR-DEC-02"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-74-ORDINARY-BACKING",
+        "mutation receipt for MUT-01-FROZEN-FLOOR",
+        "mutation receipt for MUT-72-UNBACKED-GUARD"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "shared",
       "id": "SHR-STATE-01"
     },
@@ -550,7 +762,13 @@
       "id": "SHR-NF-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "mutation receipt for MUT-22-RECEIPT-PREIMAGE",
+        "mutation receipt for MUT-100-ERC3643-RECEIPT-PREIMAGE",
+        "mutation receipt for MUT-09-CASE-TERMINALITY",
+        "mutation receipt for MUT-68-UNFREEZE-PRIOR-TARGET",
+        "mutation receipt for MUT-69-UNRESTRICT-PRIOR-FLAG"
+      ],
       "declaredStatus": "NOT-APPLICABLE",
       "effectiveStatus": "NOT-APPLICABLE",
       "endpoint": "shared",

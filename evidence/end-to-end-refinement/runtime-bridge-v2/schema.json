@@ -110,9 +110,9 @@
   },
   "interfaceIds": {
     "boundDependency": "0xb2306fd2",
+    "erc3643Partial": "0x9e082376",
     "kernel": "0x2b020308",
-    "nativeRoute": "0x5cd8d207",
-    "verifiedProfile": "0xb2ac6787"
+    "nativeRoute": "0x5cd8d207"
   },
   "kernelEvents": [
     {
@@ -293,7 +293,7 @@
     {
       "code": 300,
       "error": "TrustOperationalFailure",
-      "name": "TOPOLOGY_NOT_FULL"
+      "name": "SEALED_TOPOLOGY_NOT_LIVE"
     },
     {
       "code": 301,
@@ -366,21 +366,21 @@
       {
         "contract": "TrustToken",
         "path": "out/TrustToken.sol/TrustToken.json",
-        "sha256": "fe5199826aad36694832374f040e8b8a4621ec5636b67c17f959a2bf2482648c",
+        "sha256": "ffec93d86c8854a0ddba3a0b30cb9d2d30a0d8ea2bc6a9e9503a046ab02ccabe",
         "source": "implementation/src/TrustToken.sol",
         "subject": "native"
       },
       {
         "contract": "ERC3643TrustAdapter",
         "path": "out/ERC3643TrustAdapter.sol/ERC3643TrustAdapter.json",
-        "sha256": "7a10c35ec0745d097558d26e8b57b1819f87cfce2a5f9d941ea3af0d32ba6c11",
+        "sha256": "5e953200177aa15553024365f4dd5e401fc1e34d3564c0ecd56ae17521543f4a",
         "source": "implementation/src/profiles/ERC3643TrustAdapter.sol",
         "subject": "profileAdapter"
       },
       {
         "contract": "ProfileGovernor",
         "path": "out/ProfileGovernor.sol/ProfileGovernor.json",
-        "sha256": "f4e601a476e9ee22012e849394a4b00923926a7b7e5aef2358136c63cdd3146e",
+        "sha256": "ba26756d7575ca120534a6282610c13261312e61916c895d2718e5720484e3d4",
         "source": "implementation/src/profiles/ProfileGovernor.sol",
         "subject": "profileGovernor"
       }
@@ -391,7 +391,7 @@
     },
     "kernelSchema": {
       "path": "spec/erc-trust-kernel-v2.json",
-      "sha256": "188ae0491bbd81faf0c1eed5bc8e806ecaf74cd62a38f2bca52753180dc3bdc1"
+      "sha256": "58a5ceef5cb8dce6bba66465580315c3277aae4eca102fedc4a640b65ecb665c"
     }
   },
   "subjects": {
@@ -754,7 +754,7 @@
           "offset": 0,
           "projectionId": "native.actions",
           "slot": 13,
-          "typeId": "t_mapping(t_bytes32,t_struct(ActionRecord)5697_storage)",
+          "typeId": "t_mapping(t_bytes32,t_struct(ActionRecord)5701_storage)",
           "typeLabel": "mapping(bytes32 => struct TrustKernelTypes.ActionRecord)"
         },
         {
@@ -770,7 +770,7 @@
           "offset": 0,
           "projectionId": "native.receipts",
           "slot": 15,
-          "typeId": "t_mapping(t_bytes32,t_struct(Receipt)5661_storage)",
+          "typeId": "t_mapping(t_bytes32,t_struct(Receipt)5665_storage)",
           "typeLabel": "mapping(bytes32 => struct TrustKernelTypes.Receipt)"
         },
         {
@@ -778,7 +778,7 @@
           "offset": 0,
           "projectionId": "native.cases",
           "slot": 16,
-          "typeId": "t_mapping(t_bytes32,t_struct(CaseRecord)5709_storage)",
+          "typeId": "t_mapping(t_bytes32,t_struct(CaseRecord)5713_storage)",
           "typeLabel": "mapping(bytes32 => struct TrustKernelTypes.CaseRecord)"
         },
         {
@@ -818,7 +818,7 @@
           "offset": 0,
           "projectionId": "native.bindings",
           "slot": 21,
-          "typeId": "t_mapping(t_enum(BindingKind)5525,t_struct(Binding)627_storage)",
+          "typeId": "t_mapping(t_enum(BindingKind)5529,t_struct(Binding)627_storage)",
           "typeLabel": "mapping(enum TrustKernelTypes.BindingKind => struct TrustNativeTypes.Binding)"
         },
         {
@@ -905,6 +905,14 @@
           "selector": "0x2b892e8f",
           "signature": "executeRegulatoryReversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))",
           "stateMutability": "nonpayable"
+        },
+        {
+          "decimal": 748963057,
+          "name": "sealedTopologyLive",
+          "routeClass": "Route_Profile_View",
+          "selector": "0x2ca444f1",
+          "signature": "sealedTopologyLive()",
+          "stateMutability": "view"
         },
         {
           "decimal": 793642867,
@@ -996,8 +1004,8 @@
         }
       ],
       "runtime": {
-        "bytes": 19218,
-        "sha256": "2a7214a83e298e02e85bcfddeb022f0f339bd6cd616e0c7333247728c32f2541"
+        "bytes": 19480,
+        "sha256": "7a2dfa433911dd37e389498129356db30693e8ee8e128f8da63a5d3044a56349"
       },
       "source": "implementation/src/profiles/ERC3643TrustAdapter.sol",
       "storage": [
@@ -1054,7 +1062,7 @@
           "offset": 0,
           "projectionId": "profile.adapter.bindings",
           "slot": 6,
-          "typeId": "t_mapping(t_enum(BindingKind)5525,t_struct(DependencyBinding)6227_storage)",
+          "typeId": "t_mapping(t_enum(BindingKind)5529,t_struct(DependencyBinding)6231_storage)",
           "typeLabel": "mapping(enum TrustKernelTypes.BindingKind => struct ERC3643ProfileTypes.DependencyBinding)"
         },
         {
@@ -1062,7 +1070,7 @@
           "offset": 0,
           "projectionId": "profile.adapter.actions",
           "slot": 7,
-          "typeId": "t_mapping(t_bytes32,t_struct(ActionRecord)5697_storage)",
+          "typeId": "t_mapping(t_bytes32,t_struct(ActionRecord)5701_storage)",
           "typeLabel": "mapping(bytes32 => struct TrustKernelTypes.ActionRecord)"
         },
         {
@@ -1070,7 +1078,7 @@
           "offset": 0,
           "projectionId": "profile.adapter.effects",
           "slot": 8,
-          "typeId": "t_mapping(t_bytes32,t_struct(EffectRecord)6247_storage)",
+          "typeId": "t_mapping(t_bytes32,t_struct(EffectRecord)6251_storage)",
           "typeLabel": "mapping(bytes32 => struct ERC3643ProfileTypes.EffectRecord)"
         },
         {
@@ -1078,7 +1086,7 @@
           "offset": 0,
           "projectionId": "profile.adapter.receipts",
           "slot": 9,
-          "typeId": "t_mapping(t_bytes32,t_struct(Receipt)5661_storage)",
+          "typeId": "t_mapping(t_bytes32,t_struct(Receipt)5665_storage)",
           "typeLabel": "mapping(bytes32 => struct TrustKernelTypes.Receipt)"
         },
         {
@@ -1086,7 +1094,7 @@
           "offset": 0,
           "projectionId": "profile.adapter.cases",
           "slot": 10,
-          "typeId": "t_mapping(t_bytes32,t_struct(CaseRecord)5709_storage)",
+          "typeId": "t_mapping(t_bytes32,t_struct(CaseRecord)5713_storage)",
           "typeLabel": "mapping(bytes32 => struct TrustKernelTypes.CaseRecord)"
         },
         {
@@ -1094,7 +1102,7 @@
           "offset": 0,
           "projectionId": "profile.adapter.custody",
           "slot": 11,
-          "typeId": "t_mapping(t_bytes32,t_struct(CustodyRecord)6259_storage)",
+          "typeId": "t_mapping(t_bytes32,t_struct(CustodyRecord)6263_storage)",
           "typeLabel": "mapping(bytes32 => struct ERC3643ProfileTypes.CustodyRecord)"
         },
         {
@@ -1118,7 +1126,7 @@
           "offset": 0,
           "projectionId": "profile.adapter.owned",
           "slot": 14,
-          "typeId": "t_mapping(t_address,t_struct(OwnedState)6235_storage)",
+          "typeId": "t_mapping(t_address,t_struct(OwnedState)6239_storage)",
           "typeLabel": "mapping(address => struct ERC3643ProfileTypes.OwnedState)"
         },
         {
@@ -1126,7 +1134,7 @@
           "offset": 0,
           "projectionId": "profile.adapter.freezeHeads",
           "slot": 15,
-          "typeId": "t_mapping(t_address,t_struct(EffectHead)6241_storage)",
+          "typeId": "t_mapping(t_address,t_struct(EffectHead)6245_storage)",
           "typeLabel": "mapping(address => struct ERC3643ProfileTypes.EffectHead)"
         },
         {
@@ -1134,7 +1142,7 @@
           "offset": 0,
           "projectionId": "profile.adapter.restrictionHeads",
           "slot": 16,
-          "typeId": "t_mapping(t_address,t_struct(EffectHead)6241_storage)",
+          "typeId": "t_mapping(t_address,t_struct(EffectHead)6245_storage)",
           "typeLabel": "mapping(address => struct ERC3643ProfileTypes.EffectHead)"
         },
         {
@@ -1164,6 +1172,14 @@
           "routeClass": "Route_Immutable_View",
           "selector": "0x134e18f4",
           "signature": "identityRegistry()",
+          "stateMutability": "view"
+        },
+        {
+          "decimal": 358160344,
+          "name": "sealedTopologyLive",
+          "routeClass": "Route_Seal_View",
+          "selector": "0x155917d8",
+          "signature": "sealedTopologyLive(address)",
           "stateMutability": "view"
         },
         {
@@ -1223,14 +1239,6 @@
           "stateMutability": "view"
         },
         {
-          "decimal": 3571345754,
-          "name": "isFull",
-          "routeClass": "Route_Seal_View",
-          "selector": "0xd4de695a",
-          "signature": "isFull(address)",
-          "stateMutability": "view"
-        },
-        {
           "decimal": 4168597491,
           "name": "exclusiveAdapter",
           "routeClass": "Route_Seal_View",
@@ -1248,8 +1256,8 @@
         }
       ],
       "runtime": {
-        "bytes": 2790,
-        "sha256": "ba2d63c8e93db7997ce57fe128a36dcfa761fb993e5babc9920d2911764f358e"
+        "bytes": 2787,
+        "sha256": "78c08fbe4be793482e44a8cdf32fcc1af3276277c8cc78f48761fdcbc4bf9399"
       },
       "source": "implementation/src/profiles/ProfileGovernor.sol",
       "storage": [

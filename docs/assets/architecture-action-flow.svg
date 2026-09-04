@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1120" height="780" viewBox="0 0 1120 780" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="af-title af-desc">
   <title id="af-title">Command, validation, and state transition flow</title>
-  <desc id="af-desc">Four-stage flow. Stage one, command boundary: an operator or delegated authority issues a typed action or reversal. Stage two, validation and bound inputs: request and authorization checks precede versioned, code-hash-bound dependency reads; a rejected or operationally failed assessment reverts with authorization and state unchanged. Stage three, state transition: the TRUST transition kernel selects an execution profile, either Native Full with exact-use ERC-7943 and token state, or ERC-3643 Verified Full with sealed topology and adapter state. Stage four: the canonical receipt is emitted last.</desc>
+  <desc id="af-desc">Four-stage flow. Stage one, command boundary: an operator or delegated authority issues a typed action or reversal. Stage two, validation and bound inputs: request and authorization checks precede versioned, code-hash-bound dependency reads; a rejected or operationally failed assessment reverts with authorization and state unchanged. Stage three, state transition: the TRUST transition kernel selects an execution profile, either Native Full with exact-use ERC-7943 and token state, or ERC-3643 Partial with sealed topology and adapter state. Stage four: the canonical receipt is emitted last.</desc>
 
   <defs>
     <linearGradient id="af-bg" x1="0" y1="0" x2="1" y2="1">
@@ -90,7 +90,7 @@
       <text x="460" y="541" fill="#cfe9ee">Execution profile</text>
       <text x="785" y="490">Native Full</text>
       <text x="785" y="509">exact-use ERC-7943 + token state</text>
-      <text x="805" y="578">ERC-3643 Verified Full</text>
+      <text x="805" y="578">ERC-3643 Partial</text>
       <text x="805" y="597">sealed topology + adapter state</text>
     </g>
     <g font-size="13" text-anchor="middle">

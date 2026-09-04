@@ -1,19 +1,30 @@
 (*
-  ERC-3643 Verified Full profile: onboarding and ownership abstractions.
+  ERC-3643 Partial reference: onboarding and ownership abstractions.
 
-  The profile adapter starts from a fresh zero state or from an exact import
-  manifest.  Each manifest entry declares the upstream frozen amount and the
-  address freeze flag of one account; the seal verifies every entry against
-  the live upstream state and imports each declared state as a case with a
+  The profile adapter accepts a canonical list of declared import entries.
+  Each manifest entry declares the upstream frozen amount and the address
+  freeze flag of one account; the seal verifies every included entry against
+  live upstream state and imports each declared state as a case with a
   synthetic applied head action, so that the declared legacy state is
   reversible and amendable under the same case transition table as every
-  other command.  The adapter has one immutable authority at epoch one, and
-  acts only on upstream state it declared or applied itself.
+  other command.  No theorem here establishes manifest completeness or a
+  fresh zero state.  The adapter has one immutable authority at epoch one,
+  and acts only on upstream state it declared or applied itself.
 *)
 
 theory TRUST_Verified_Profile_Onboarding
   imports TRUST_Transaction_Refinement
 begin
+
+datatype erc3643_conformance_class = ERC3643_Partial | ERC3643_Verified_Full
+
+definition current_erc3643_reference_class :: erc3643_conformance_class where
+  "current_erc3643_reference_class = ERC3643_Partial"
+
+theorem current_erc3643_reference_is_partial_not_verified_full:
+  "current_erc3643_reference_class = ERC3643_Partial \<and>
+   current_erc3643_reference_class \<noteq> ERC3643_Verified_Full"
+  by (simp add: current_erc3643_reference_class_def)
 
 record import_entry =
   import_account :: trust_address
@@ -108,7 +119,7 @@ where
   "imported_state st manifest_hash entries =
      foldl (\<lambda>state entry. import_entry_state state manifest_hash entry) st entries"
 
-theorem empty_manifest_is_the_fresh_zero_state:
+theorem empty_manifest_changes_no_declared_state:
   "imported_state st manifest_hash [] = st"
   by (simp add: imported_state_def)
 
@@ -235,6 +246,45 @@ theorem owned_upstream_state_admits_the_transition:
   assumes "owned_upstream_state st applied view account"
   shows "upstream_guarded_transition st applied view account transition = (transition st, None)"
   using assms by (simp add: upstream_guarded_transition_def)
+
+definition forced_transfer_restrictions_match ::
+  "trust_compositional_state \<Rightarrow> upstream_view \<Rightarrow> trust_address \<Rightarrow> trust_address \<Rightarrow> bool"
+where
+  "forced_transfer_restrictions_match st view source destination \<longleftrightarrow>
+     upstream_restricted view source = restriction_flags st source \<and>
+     upstream_restricted view destination = restriction_flags st destination"
+
+definition restriction_poststate_guarded_transition ::
+  "trust_compositional_state \<Rightarrow> upstream_view \<Rightarrow> trust_address \<Rightarrow> trust_address \<Rightarrow>
+   (trust_compositional_state \<Rightarrow> trust_compositional_state) \<Rightarrow>
+   trust_compositional_state \<times> trust_abstract_failure option"
+where
+  "restriction_poststate_guarded_transition st view source destination transition =
+     (if forced_transfer_restrictions_match st view source destination
+      then (transition st, None)
+      else (st, Some TRUST_Abstract_Operational_Failure))"
+
+theorem forced_transfer_restriction_mismatch_is_an_operational_stutter:
+  assumes "\<not> forced_transfer_restrictions_match st view source destination"
+  shows "restriction_poststate_guarded_transition st view source destination transition =
+         (st, Some TRUST_Abstract_Operational_Failure)"
+  using assms by (simp add: restriction_poststate_guarded_transition_def)
+
+definition actual_restriction_observation ::
+  "upstream_view \<Rightarrow> trust_address \<Rightarrow> trust_address \<Rightarrow> trust_address \<Rightarrow>
+   bool \<times> bool \<times> bool"
+where
+  "actual_restriction_observation view subject source destination =
+     (upstream_restricted view subject,
+      upstream_restricted view source,
+      upstream_restricted view destination)"
+
+theorem restriction_observation_reads_actual_upstream_flags:
+  "actual_restriction_observation view subject source destination =
+   (upstream_restricted view subject,
+    upstream_restricted view source,
+    upstream_restricted view destination)"
+  by (simp add: actual_restriction_observation_def)
 
 text \<open>
   Resynchronisation is the permissionless operation that brings the upstream

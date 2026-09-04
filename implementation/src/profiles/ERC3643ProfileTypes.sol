@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: BSD-3-Clause
 pragma solidity 0.8.36;
 
-/// @notice Implementation-only records of the ERC-3643 Verified Full profile.
+/// @notice Implementation-only records of the ERC-3643 Partial reference profile.
 /// @dev None of these structs is a kernel hash preimage. The kernel wire format (requests, receipts,
 ///      records returned by the kernel views) lives in the generated kernel types.
 library ERC3643ProfileTypes {
     /// @dev One declared entry of the exact import manifest: the upstream frozen amount and address
     ///      freeze flag an account carries at the seal. Entries are sorted by strictly increasing
-    ///      account and every entry declares nonzero state; an empty manifest is the fresh zero-state
-    ///      declaration.
+    ///      account and every entry declares nonzero state. The manifest proves only the correctness of
+    ///      included entries; an empty manifest does not prove that the upstream has no legacy state.
     struct ImportEntry {
         address account;
         uint256 frozenAmount;

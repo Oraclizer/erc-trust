@@ -17,15 +17,31 @@
   },
   "certora": {
     "provider": "certora-cloud",
+    "runtimeSubject": "profileAdapter",
     "expectedOutputNamespace": "10491299",
     "expectedCertoraCli": "8.19.1",
     "expectedCertoraServer": "8.19.1",
     "expectedSolidity": "0.8.36+commit.8a079791",
     "expectedRuleSanity": "advanced",
     "expectedTerminalResult": "No errors found by Prover!",
-    "expectedInputsRootSha256": null,
-    "expectedInputPaths": [],
-    "expectedRuleIds": [],
-    "status": "PENDING_FINAL_SOURCE_SPEC_AND_HARNESS_FREEZE"
+    "expectedInputsRootSha256": "be086bf6456f9e8f59a1b2893f773224c070c1a25d3a8a11b49d1b5de327be09",
+    "expectedInputPaths": [
+      "implementation/certora/ERC3643Partial.conf",
+      "implementation/certora/ERC3643Partial.spec",
+      "implementation/certora/ERC3643PartialHarness.sol",
+      "implementation/src/TrustErrors.sol",
+      "implementation/src/generated/IERCTrustKernel.sol",
+      "implementation/src/interfaces/IERC3643External.sol",
+      "implementation/src/profiles/ERC3643ProfileTypes.sol",
+      "implementation/src/profiles/ERC3643TrustAdapter.sol",
+      "implementation/src/profiles/ProfileGovernor.sol"
+    ],
+    "expectedRuleIds": [
+      "descriptor_is_always_partial_and_never_full",
+      "restriction_match_is_exact",
+      "role_observation_binds_actual_restriction",
+      "subject_observation_binds_actual_restriction"
+    ],
+    "status": "FROZEN_PENDING_APPROVAL_OR_RUN"
   }
 }

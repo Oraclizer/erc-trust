@@ -22,7 +22,7 @@ runtime bridge (`TRUST_Runtime_Bridge_Generated.thy`, written by
 decoder guard word theorems, the bound dependency assume/guarantee theory, the
 retrieve relation, the transaction refinement, the reusable summaries, the
 end-to-end composition with its undischarged `runtime_link` locale assumption,
-the verified-profile onboarding theory, the rendered obligation ledger
+the ERC-3643 Partial declared-entry onboarding theory, the rendered obligation ledger
 (`TRUST_Obligation_Ledger_Generated.thy`, written by
 `scripts/verify-obligation-ledger-v3.mjs`), and the proof-bound row corollaries.
 `Proof_Audit.thy` remains last. The candidate 2 bridge and current-profile

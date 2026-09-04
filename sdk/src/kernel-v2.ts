@@ -12,6 +12,7 @@ export const DEPENDENCY_ROOT_TAG = "0x8dd0ff19b096a49997e6e0fa1eea2dee5d61291bb8
 export const KERNEL_INTERFACE_ID = "0x2b020308";
 export const PROFILE_IDS = {
   "native-full": "0x86ba25e1a29a74ad905fd84744be032fec9dc05645f58f7f1b7788dc60ae866b",
+  "erc3643-partial": "0xa57a63d1a6def0dfce48359b5a32ef71ae339ac73fcb1cf8d123c03b7ada1fe6",
   "erc3643-verified-full": "0xad56e54f83cc255e391dd3838f7dc4befa1b0306b42d8ed7974588f27fec41ad",
 } as const;
 export const KERNEL_SELECTORS = {

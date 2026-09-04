@@ -1,3 +1,5 @@
+// Historical candidate 2 bridge verifier. The kernel v2 successor uses the generated v2 bridge gate.
+
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { readFileSync, statSync } from "node:fs";

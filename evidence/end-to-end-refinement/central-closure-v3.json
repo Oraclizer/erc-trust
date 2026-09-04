@@ -56,31 +56,31 @@
     "nextRung": "end-to-end refinement complete: requires a machine-checked discharge of pinned_runtime_refinement.runtime_link for the exact runtime templates named in the generated bridge, replayed independently, before any Full or refinement-complete wording is used."
   },
   "counts": {
-    "closed": 68,
-    "closedPendingReceipt": 0,
+    "closed": 7,
+    "closedPendingReceipt": 63,
     "currentMandatory": 0,
     "notApplicable": 2,
-    "rows": 72,
+    "rows": 74,
     "separateProfile": 0,
     "successorMandatory": 2
   },
   "identity": {
     "bridgeBindsRuntime": true,
-    "bridgeSchemaSha256": "9bb84191d893772cb73c9898b5431ec3b8cbeb78f27f3a14f3ac69b751f732cb",
+    "bridgeSchemaSha256": "842a939d9343a6e03053216d3965da9bc5f19749b1dbf9fe978b392d3170a1f2",
     "deterministicBuildRuntimeSha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1",
-    "ledgerSha256": "caf3334f1e62b6daf7fec9bc182dbaeab120c2c1995ba9055e827359d098ff45",
+    "ledgerSha256": "79592a27f332b84cac51d6387c2214f0d1612e68e396ea214c6da4a58dff36b6",
     "runtimes": {
       "native": {
         "bytes": 20043,
         "sha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1"
       },
       "profileAdapter": {
-        "bytes": 19218,
-        "sha256": "2a7214a83e298e02e85bcfddeb022f0f339bd6cd616e0c7333247728c32f2541"
+        "bytes": 19500,
+        "sha256": "af9b6956d70b21741c9f7e1fe9f1ca62797a969511e3ef730c6b4ca7d3a0fbd4"
       },
       "profileGovernor": {
-        "bytes": 2790,
-        "sha256": "ba2d63c8e93db7997ce57fe128a36dcfa761fb993e5babc9920d2911764f358e"
+        "bytes": 2787,
+        "sha256": "78c08fbe4be793482e44a8cdf32fcc1af3276277c8cc78f48761fdcbc4bf9399"
       }
     }
   },
@@ -220,10 +220,10 @@
           "Route_Kernel_Command": 2,
           "Route_Kernel_View": 8,
           "Route_Profile_Command": 1,
-          "Route_Profile_View": 1,
+          "Route_Profile_View": 2,
           "Route_Seal_Command": 1
         },
-        "classifiedSelectors": 17
+        "classifiedSelectors": 18
       },
       "profileGovernor": {
         "classes": {
@@ -243,11 +243,11 @@
   },
   "rows": [
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-AUTH-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-AUTH-02"
     },
     {
@@ -255,71 +255,71 @@
       "id": "NAT-AUTH-03"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-NONCE-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-NONCE-02"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-NONCE-03"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-STALE-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-STALE-02"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-STALE-03"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-SHAPE-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-SHAPE-02"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-SHAPE-03"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-SHAPE-04"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-SHAPE-05"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-CASE-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-CASE-02"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-CASE-03"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-CASE-04"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-CASE-05"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-CASE-06"
     },
     {
@@ -327,67 +327,67 @@
       "id": "NAT-CASE-07"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-FRZ-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-RSTR-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-CUST-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-CUST-02"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-CUST-03"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-DISP-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-DISP-02"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-DISP-03"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-REV-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-REV-02"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-REV-03"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-REV-04"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-REV-05"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-REV-06"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-REV-07"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-XFER-01"
     },
     {
@@ -395,19 +395,19 @@
       "id": "NAT-XFER-02"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-DEP-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-DEP-02"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-RCPT-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-RCPT-02"
     },
     {
@@ -415,11 +415,11 @@
       "id": "NAT-FAIL-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-ROUTE-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "NAT-ROUTE-02"
     },
     {
@@ -431,79 +431,87 @@
       "id": "NAT-E2E-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "ADP-AUTH-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "ADP-AUTH-02"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "ADP-NONCE-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "ADP-STALE-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "ADP-SHAPE-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "ADP-SHAPE-02"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "ADP-CASE-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "ADP-FRZ-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "ADP-REV-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "ADP-DISP-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "ADP-CUST-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "ADP-IMPORT-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "ADP-UPSTREAM-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "ADP-DEP-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "ADP-RCPT-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "id": "ADP-OBS-01"
+    },
+    {
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "ADP-ROUTE-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "ADP-SEAL-01"
+    },
+    {
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
+      "id": "ADP-PROFILE-01"
     },
     {
       "effectiveStatus": "SUCCESSOR-MANDATORY",
       "id": "ADP-E2E-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "GOV-SEAL-01"
     },
     {
@@ -511,7 +519,7 @@
       "id": "SHR-ABI-01"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "SHR-DEC-01"
     },
     {
@@ -519,7 +527,7 @@
       "id": "SHR-DEC-02"
     },
     {
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "id": "SHR-STATE-01"
     },
     {

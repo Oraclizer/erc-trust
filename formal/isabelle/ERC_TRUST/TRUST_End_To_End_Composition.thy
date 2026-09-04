@@ -27,14 +27,14 @@ record trust_external_assumptions =
   ticket_exact_selector_and_calldata :: bool
   ticket_exact_root_and_epoch :: bool
   ticket_single_use_and_deleted :: bool
-  verified_profile_token_sealed :: bool
-  verified_profile_agent_exclusive :: bool
-  verified_profile_identity_bound :: bool
-  verified_profile_compliance_bound :: bool
-  verified_profile_owner_governor :: bool
-  verified_profile_custodian_confined :: bool
-  verified_profile_upstream_state_owned :: bool
-  verified_profile_import_manifest_exact :: bool
+  erc3643_partial_token_sealed :: bool
+  erc3643_partial_agent_exclusive :: bool
+  erc3643_partial_identity_bound :: bool
+  erc3643_partial_compliance_bound :: bool
+  erc3643_partial_owner_governor :: bool
+  erc3643_partial_custodian_confined :: bool
+  erc3643_partial_upstream_state_owned :: bool
+  erc3643_partial_declared_import_entries_exact :: bool
 
 definition external_assumptions_complete :: "trust_external_assumptions \<Rightarrow> bool" where
   "external_assumptions_complete assumptions \<longleftrightarrow>
@@ -50,14 +50,14 @@ definition external_assumptions_complete :: "trust_external_assumptions \<Righta
      ticket_exact_selector_and_calldata assumptions \<and>
      ticket_exact_root_and_epoch assumptions \<and>
      ticket_single_use_and_deleted assumptions \<and>
-     verified_profile_token_sealed assumptions \<and>
-     verified_profile_agent_exclusive assumptions \<and>
-     verified_profile_identity_bound assumptions \<and>
-     verified_profile_compliance_bound assumptions \<and>
-     verified_profile_owner_governor assumptions \<and>
-     verified_profile_custodian_confined assumptions \<and>
-     verified_profile_upstream_state_owned assumptions \<and>
-     verified_profile_import_manifest_exact assumptions"
+     erc3643_partial_token_sealed assumptions \<and>
+     erc3643_partial_agent_exclusive assumptions \<and>
+     erc3643_partial_identity_bound assumptions \<and>
+     erc3643_partial_compliance_bound assumptions \<and>
+     erc3643_partial_owner_governor assumptions \<and>
+     erc3643_partial_custodian_confined assumptions \<and>
+     erc3643_partial_upstream_state_owned assumptions \<and>
+     erc3643_partial_declared_import_entries_exact assumptions"
 
 record trust_runtime_certificate =
   certificate_bridge_schema_sha256 :: string

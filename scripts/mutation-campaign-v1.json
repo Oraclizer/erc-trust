@@ -1,7 +1,7 @@
 {
   "schema": "erc-trust-mutation-campaign-v1",
   "algorithm": "sha256-canonical-json-sorted-keys-v1",
-  "campaignDefinitionSha256": "a56e9052820612032fd3be549c15593de2a09668c32628137017e0d36fe38acd",
+  "campaignDefinitionSha256": "ebb2f24583cc2407318512730fcbac590a5138883bd28e74e5c8066527560f13",
   "definitions": [
     {
       "id": "MUT-01-FROZEN-FLOOR",
@@ -371,13 +371,13 @@
       "id": "MUT-29-ERC3643-TOPOLOGY-GATE",
       "fault": "Execute without checking that the sealed topology still holds",
       "file": "implementation/src/profiles/ERC3643TrustAdapter.sol",
-      "old": "if (!_sealed || !profileGovernor.isFull(address(this))) {",
+      "old": "if (!_sealed || !profileGovernor.sealedTopologyLive(address(this))) {",
       "new": "if (!_sealed) {",
       "expectedOccurrences": 1,
       "firstOnly": false,
       "detector": {
         "contract": "ERC3643ProfileUnitTest",
-        "test": "testTopologyDriftFailsClosedAndClearsFull"
+        "test": "testTopologyDriftFailsClosedAndClearsTopologyLiveness"
       }
     },
     {
@@ -1444,6 +1444,136 @@
       "detector": {
         "contract": "ERC3643ProfileUnitTest",
         "test": "testAllSixActionsAndReversals"
+      }
+    },
+    {
+      "id": "MUT-112-ERC3643-PARTIAL-DESCRIPTOR-KIND",
+      "fault": "Report the current ERC-3643 reference as Verified Full instead of Partial",
+      "file": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+      "old": "profileKind: TrustKernelTypes.ProfileKind.PARTIAL,",
+      "new": "profileKind: TrustKernelTypes.ProfileKind.VERIFIED_FULL,",
+      "expectedOccurrences": 1,
+      "firstOnly": false,
+      "detector": {
+        "contract": "ERC3643ProfileUnitTest",
+        "test": "testDescriptorDependencyStateAndInterfaceIdentifiers"
+      }
+    },
+    {
+      "id": "MUT-113-ERC3643-PARTIAL-FULL-FLAG",
+      "fault": "Elevate the Partial descriptor to Full when only the sealed topology is live",
+      "file": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+      "old": "full: false,",
+      "new": "full: _sealedTopologyLive(),",
+      "expectedOccurrences": 1,
+      "firstOnly": false,
+      "detector": {
+        "contract": "ERC3643ProfileUnitTest",
+        "test": "testDescriptorDependencyStateAndInterfaceIdentifiers"
+      }
+    },
+    {
+      "id": "MUT-114-ERC3643-PARTIAL-PROFILE-ID",
+      "fault": "Report the reserved Verified Full identifier from the current Partial adapter",
+      "file": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+      "old": "profileId: TrustKernelTypes.PROFILE_ERC3643_PARTIAL,",
+      "new": "profileId: TrustKernelTypes.PROFILE_ERC3643_VERIFIED_FULL,",
+      "expectedOccurrences": 1,
+      "firstOnly": false,
+      "detector": {
+        "contract": "ERC3643ProfileUnitTest",
+        "test": "testDescriptorDependencyStateAndInterfaceIdentifiers"
+      }
+    },
+    {
+      "id": "MUT-115-ERC3643-SOURCE-RESTRICTION-POSTSTATE",
+      "fault": "Accept a forced transfer that changed the source restriction flag",
+      "file": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+      "old": "if (!_restrictionMatches(_upstreamRestricted(commandId, from), _owned[from].restricted)) {\n            revert TrustOperationalFailure(commandId, REASON_UPSTREAM_POSTSTATE_MISMATCH, _addressRef(from));\n        }",
+      "new": "",
+      "expectedOccurrences": 1,
+      "firstOnly": false,
+      "detector": {
+        "contract": "ERC3643ProfileUnitTest",
+        "test": "testForcedTransferClearingSourceRestrictionRevertsAndStutters"
+      }
+    },
+    {
+      "id": "MUT-116-ERC3643-DESTINATION-RESTRICTION-POSTSTATE",
+      "fault": "Accept a forced transfer that changed the destination restriction flag",
+      "file": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+      "old": "if (to != from && !_restrictionMatches(_upstreamRestricted(commandId, to), _owned[to].restricted)) {\n            revert TrustOperationalFailure(commandId, REASON_UPSTREAM_POSTSTATE_MISMATCH, _addressRef(to));\n        }",
+      "new": "",
+      "expectedOccurrences": 1,
+      "firstOnly": false,
+      "detector": {
+        "contract": "ERC3643ProfileUnitTest",
+        "test": "testForcedTransferClearingDestinationRestrictionRevertsAndStutters"
+      }
+    },
+    {
+      "id": "MUT-117-ERC3643-SUBJECT-ACTUAL-RESTRICTION-OBSERVATION",
+      "fault": "Bind the source restriction in the subject observation role",
+      "file": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+      "old": "_owned[subject].restricted,\n            _upstreamRestricted(commandId, subject)",
+      "new": "_owned[subject].restricted,\n            _upstreamRestricted(commandId, source)",
+      "expectedOccurrences": 1,
+      "firstOnly": false,
+      "detector": {
+        "contract": "ERC3643ProfileUnitTest",
+        "test": "testReceiptObservationBindsActualUpstreamRestrictionForEveryRole"
+      }
+    },
+    {
+      "id": "MUT-118-ERC3643-SOURCE-ACTUAL-RESTRICTION-OBSERVATION",
+      "fault": "Bind the subject restriction in the source observation role",
+      "file": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+      "old": "_upstreamBalance(commandId, source), _upstreamRestricted(commandId, source), _custodyBacking[source]",
+      "new": "_upstreamBalance(commandId, source), _upstreamRestricted(commandId, subject), _custodyBacking[source]",
+      "expectedOccurrences": 1,
+      "firstOnly": false,
+      "detector": {
+        "contract": "ERC3643ProfileUnitTest",
+        "test": "testReceiptObservationBindsActualUpstreamRestrictionForEveryRole"
+      }
+    },
+    {
+      "id": "MUT-119-ERC3643-DESTINATION-ACTUAL-RESTRICTION-OBSERVATION",
+      "fault": "Bind the source restriction in the destination observation role",
+      "file": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+      "old": "_upstreamBalance(commandId, destination),\n                _upstreamRestricted(commandId, destination),\n                _custodyBacking[destination]",
+      "new": "_upstreamBalance(commandId, destination),\n                _upstreamRestricted(commandId, source),\n                _custodyBacking[destination]",
+      "expectedOccurrences": 1,
+      "firstOnly": false,
+      "detector": {
+        "contract": "ERC3643ProfileUnitTest",
+        "test": "testReceiptObservationBindsActualUpstreamRestrictionForEveryRole"
+      }
+    },
+    {
+      "id": "MUT-120-ERC3643-SEALED-TOPOLOGY-VIEW",
+      "fault": "Report sealed topology liveness without checking the governor or bound dependency code",
+      "file": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+      "old": "return _sealed && profileGovernor.sealedTopologyLive(address(this))\n            && _bindingLive(TrustKernelTypes.BindingKind.POLICY) && _bindingLive(TrustKernelTypes.BindingKind.IDENTITY);",
+      "new": "return _sealed;",
+      "expectedOccurrences": 1,
+      "firstOnly": false,
+      "detector": {
+        "contract": "ERC3643ProfileUnitTest",
+        "test": "testTopologyDriftFailsClosedAndClearsTopologyLiveness"
+      }
+    },
+    {
+      "id": "MUT-121-ERC3643-PARTIAL-INTERFACE-ID",
+      "fault": "Deny the ERC-3643 Partial profile interface identifier",
+      "file": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+      "old": "interfaceId == type(IERC3643PartialProfile).interfaceId",
+      "new": "false",
+      "expectedOccurrences": 1,
+      "firstOnly": false,
+      "detector": {
+        "contract": "ERC3643ProfileUnitTest",
+        "test": "testDescriptorDependencyStateAndInterfaceIdentifiers"
       }
     }
   ]

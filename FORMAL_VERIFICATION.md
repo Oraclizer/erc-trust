@@ -34,7 +34,7 @@ and operations require separate evidence.
 | Abstract model | `formal/isabelle/ERC_TRUST/` |
 | Model replay and claim matrix | `formal/isabelle/ERC_TRUST/evidence/model-verification/` |
 | Native reference implementation | `implementation/src/TrustToken.sol` |
-| ERC-3643 fixture profile | `implementation/src/profiles/` |
+| ERC-3643 Partial reference profile | `implementation/src/profiles/` |
 | Unit, fuzz, and invariant evidence | `implementation/test/` |
 | Bounded CVL rules (candidate 2, history) | `evidence/candidate-2/implementation/certora/` |
 | KEVM high-risk cross-checks | `implementation/kontrol/` |
@@ -98,6 +98,13 @@ states. The verifier checks every anchor against the current tree
 and renders the ledger into the Isabelle session, so a cited fact cannot
 disappear without failing the build.
 
+The current ERC-3643 runtime is classified `PARTIAL/full=false`. Its onboarding
+theory proves declared-entry behavior, not manifest completeness or a fresh
+zero state. The runtime adds actual source and destination restriction
+post-state checks and actual restriction values in receipt observations, while
+the ordinary inbound-growth window and absence of a same-transaction transfer
+hook remain explicit reasons that no Verified Full claim is made.
+
 The claim this establishes is "mapped implementation evidence; end-to-end
 refinement incomplete". The locale assumption `runtime_link` in
 `TRUST_End_To_End_Composition.thy` is not discharged: no theorem states that
@@ -135,15 +142,15 @@ The successor disposition, lane by lane:
 
 | Lane | Result | Receipt |
 | --- | --- | --- |
-| Foundry | 89/89 tests across seven suites; two fuzz properties at 256 runs; nine invariants at 256 runs and depth 500 (1,152,000 calls, zero reverts); format, lint, and size gates PASS | `evidence/foundry-results-v3.json` |
-| Mutation | 111/111 declared faults killed; every fault names the detector that kills it and, where it removes a load-bearing consumer, the obligation ledger row it serves | `evidence/mutation-results.json` |
+| Foundry | Local 93/93 tests across seven suites; two fuzz properties at 256 runs; nine invariants at 256 runs and depth 500 (1,152,000 calls, zero reverts); format, lint, and size gates PASS; exact-commit CI receipt pending | pending replacement of `evidence/foundry-results-v3.json` |
+| Mutation | 121 definitions and detector anchors pass preflight; the full campaign and receipt replacement are in progress | pending replacement of `evidence/mutation-results.json` |
 | Kontrol and KEVM | 4/4 proofs rerun on the successor native runtime under Kontrol 1.0.255 and KEVM 1.0.678; the adapter has no symbolic lane | `evidence/kontrol-results-v3.json` |
 | Isabelle/HOL | 22 theories; clean build and proof audit in continuous integration with 409 explicit roots, 410 qualified facts, zero oracle dependencies, zero banned source forms | `evidence/isabelle-results-v3.json` |
-| Obligation ledger | 72 rows: 68 closed, 2 open (the runtime link), 2 not applicable; closure conditional | `evidence/end-to-end-refinement/obligation-ledger-summary-v3.json` |
-| Deterministic build | Two isolated clean builds of the native token (20,043 bytes), the adapter (19,218), and the governor (2,790), byte-identical | `evidence/deterministic-build.json` |
+| Obligation ledger | 74 rows: 7 closed, 63 closed pending fresh mutation receipt, 2 open (the runtime link), 2 not applicable; closure conditional | `evidence/end-to-end-refinement/obligation-ledger-summary-v3.json` |
+| Deterministic build | Two isolated clean builds of the native token (20,043 bytes), the adapter (19,480), and the governor (2,787), byte-identical | `evidence/deterministic-build.json` |
 | Runtime binding | Three runtimes agree with the pinned-compiler replay in ABI, semantic storage layout, creation and runtime bytecode, method identifiers, and immutable references; verifier self-mutation 18/18; stale receipts rejected | `evidence/runtime-binding-v3.json` |
-| Independent reproduction | 23 vectors, 400 assertions, reproduced from the machine source, the generated prose and ABI, and the vectors alone | `evidence/independent-reproduction-v3.json` |
-| Certora | Pending by decision; no successor source has been sent to the cloud prover, and the evidence mode stays `successor-development` | `evidence/evidence-mode.json` |
+| Independent reproduction | 23 vectors, 401 assertions, reproduced from the machine source, the generated prose and ABI, and the vectors alone | `evidence/independent-reproduction-v3.json` |
+| Certora | Final ERC-3643 Partial source/spec/harness and four expected rules frozen; no successor source has been sent, cloud transmission awaits separate approval, and evidence mode stays `successor-development` | `implementation/certora/`; `evidence/evidence-expectations-v3.json`; `evidence/evidence-mode.json` |
 
 Replay:
 

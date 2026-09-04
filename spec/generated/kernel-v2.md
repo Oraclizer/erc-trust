@@ -11,6 +11,7 @@ Status: normative kernel frozen for the successor candidate; native endpoint and
 | DOMAIN | `ERC-TRUST/v2` | `0xb5303e4083d2781d6c7d6a68d30b6354ebda11f0a2a037b946d87b3eec40b74e` |
 | DEPENDENCY_ROOT_TAG | `ERC-TRUST/v2/dependency-root` | `0x8dd0ff19b096a49997e6e0fa1eea2dee5d61291bb86d3d10640e517c9e6cbe18` |
 | profile native-full | `ERC-TRUST/v2/native-full` | `0x86ba25e1a29a74ad905fd84744be032fec9dc05645f58f7f1b7788dc60ae866b` |
+| profile erc3643-partial | `ERC-TRUST/v2/erc3643-partial` | `0xa57a63d1a6def0dfce48359b5a32ef71ae339ac73fcb1cf8d123c03b7ada1fe6` |
 | profile erc3643-verified-full | `ERC-TRUST/v2/erc3643-verified-full` | `0xad56e54f83cc255e391dd3838f7dc4befa1b0306b42d8ed7974588f27fec41ad` |
 
 Standard version: 2. Kernel interface identifier: `0x2b020308`.
@@ -234,7 +235,7 @@ Returned by trustProfile(). A declaration about the endpoint, not proof of confo
 | 4 | `reversalMask` | `uint256` | bit i set only when ReversalKind i is implemented; a Full profile reports 0x07 |
 | 5 | `underlyingToken` | `address` | zero for a native endpoint; the wrapped or adapted token for a profile endpoint |
 | 6 | `manifestHash` | `bytes32` | profile-defined commitment to the endpoint's topology and evidence version |
-| 7 | `full` | `bool` | MUST be computed from the live topology and dependency state, never stored as a constant true |
+| 7 | `full` | `bool` | A Full profile MUST compute true from all live conformance conditions and MUST NOT store a stale success bit; a Partial or Unsupported profile MUST return false |
 | 8 | `proxySupported` | `bool` |  |
 
 ## Hash preimages
@@ -470,7 +471,7 @@ uint16 reason registry. Classes are normative; an implementation MAY add codes i
 | 1 | 1 to 99 | `TrustInvalidCommand` | 1 DOMAIN, 2 IDENTIFIER, 3 TIME, 4 AUTHORITY_EPOCH, 5 DEPENDENCY_BINDING, 6 SHAPE, 7 REVERSAL_PAIRING, 8 CUSTODY, 9 ENTITLEMENT, 10 CASE_CONFLICT, 11 CURRENT_EFFECT, 12 FREEZE_DIRECTION, 13 NO_STATE_CHANGE |
 | 100 | 100 to 199 | `TrustRejected` | 100 POLICY_DENIED, 101 IDENTITY_DENIED, 102 SETTLEMENT_DENIED, 103 ENTITLEMENT_DENIED |
 | 200 | 200 to 299 | `TrustOperationalFailure` | 200 DEPENDENCY_CODE_MISMATCH, 201 DEPENDENCY_CONFIGURATION_MISMATCH, 202 DEPENDENCY_CALL_FAILED_OR_MALFORMED, 203 DEPENDENCY_ECHO_MISMATCH, 204 DEPENDENCY_REPORTED_FAILURE, 205 DEPENDENCY_UNAVAILABLE_AT_BIND |
-| 300 | 300 to 399 | `TrustOperationalFailure` | 300 TOPOLOGY_NOT_FULL, 301 SEAL_INVALID, 302 TOPOLOGY_MISMATCH_AT_SEAL, 303 IMPORT_MANIFEST_MISMATCH, 304 UPSTREAM_STATE_NOT_OWNED |
+| 300 | 300 to 399 | `TrustOperationalFailure` | 300 SEALED_TOPOLOGY_NOT_LIVE, 301 SEAL_INVALID, 302 TOPOLOGY_MISMATCH_AT_SEAL, 303 IMPORT_MANIFEST_MISMATCH, 304 UPSTREAM_STATE_NOT_OWNED |
 | 400 | 400 to 499 | `TrustOperationalFailure` | 400 UPSTREAM_CALL_FAILED, 401 UPSTREAM_POSTSTATE_MISMATCH, 402 IDENTITY_REGISTRY_UNAVAILABLE, 403 COMPLIANCE_UNAVAILABLE |
 
 ## Profiles
@@ -490,19 +491,41 @@ uint16 reason registry. Classes are normative; an implementation MAY add codes i
 | observationPreimage | documented by the implementation together with its runtime identity |
 | manifestHash | dependencyRoot |
 
+### erc3643-partial
+
+| Property | Value |
+| --- | --- |
+| profileKind | PARTIAL |
+| endpoint | the adapter |
+| underlyingToken | the sealed ERC-3643 token |
+| actionMask | 0x3f |
+| reversalMask | 0x07 |
+| dependencies | sealed token runtime identity, Identity Registry, Compliance; the dependency root binds the sealed topology at seal epoch 1 |
+| onboarding | the import manifest verifies only each declared entry; it does not prove that all pre-existing frozen or restricted accounts were declared, and an empty manifest is not a completeness claim |
+| full | false |
+| sealedTopologyLive | computed live from the one-way seal and bound dependency code; this is a narrower operational predicate and never denotes Full conformance |
+| manifestHash | sealed binding |
+| limitation | ordinary inbound balance growth can remain transferable until the next adapter touch or permissionless resynchroniseFrozen call |
+| observation | receipt pre-state and post-state bind role-tagged actual upstream restriction flags for the subject, source, and destination |
+| verifiedFullCandidate | reserved for a TRUST 1.2 atomic fresh deployment with a same-transaction transfer or Compliance hook, a complete initial-state gate, and actual upstream post-state and receipt observation equality |
+
 ### erc3643-verified-full
 
 | Property | Value |
 | --- | --- |
 | profileKind | VERIFIED_FULL |
-| endpoint | the adapter |
-| underlyingToken | the sealed ERC-3643 token |
+| status | reserved TRUST 1.2 candidate class; no current reference implementation reports this profile |
+| endpoint | a future hook-enabled adapter or token endpoint |
+| underlyingToken | an ERC-3643 token deployed atomically with the endpoint |
 | actionMask | 0x3f |
 | reversalMask | 0x07 |
-| dependencies | sealed token runtime identity, Identity Registry, Compliance; the dependency root binds the sealed topology and the epoch increments on every reseal |
-| onboarding | fresh zero-state seal or exact import manifest; any other initial state is Partial or Unsupported |
-| full | computed live from the sealed topology; never a stored constant |
-| manifestHash | sealed binding |
+| onboarding | atomic fresh deployment with a complete initial-state gate; existing T-REX imports are not eligible without an enumerable state root, account count, and completeness proof |
+| transferEnforcement | every ordinary transfer is checked by the token or Compliance hook in the same transaction against the TRUST frozen target |
+| postState | forced transfers bind actual upstream balance, frozen amount, and restriction flags for every touched account |
+| observation | receipt pre-state and post-state bind the actual upstream restriction flags of the subject, source, and destination |
+| upgradeBoundary | proxy and upgrade paths are rejected or bind implementation, admin, and epoch |
+| full | computed only when every TRUST 1.2 requirement above is live |
+| manifestHash | future profile-defined complete deployment and state commitment |
 
 ## Nonclaims
 

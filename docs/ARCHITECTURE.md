@@ -32,8 +32,8 @@ exactly as it was, so no identifier or nonce is consumed by a failed command.
 | `TrustNativeDecision` | Pure shape and case-transition helpers of the native token | Request fields and stored records | An external-fact oracle |
 | `TrustDependencyBinding` | Per-kind binding hash (address, runtime code, configuration digest, schema, per-kind epoch) and the ordered dependency root | Bound dependency metadata | A guarantee that dependency output is true |
 | `ERC7943RouteTicket` | The exact-use route ticket of the sensitive ERC-7943 selectors | The current wrapper call | Standing authority for raw ERC-7943 calls |
-| `ERC3643TrustAdapter` | Kernel state over a sealed ERC-3643 token: cases, custody, owned frozen targets and restriction flags, receipts, the single immutable authority | Upstream token, Identity Registry, Compliance, the sealed topology | Proof that an arbitrary ERC-3643 deployment is Full |
-| `ProfileGovernor` | The one-way topology seal and the import manifest | Token code identity, owner, registries, exclusive Agent, live upstream state at the seal | A general-purpose administrator |
+| `ERC3643TrustAdapter` | Partial-reference kernel state over a sealed ERC-3643 token: cases, custody, owned frozen targets and restriction flags, receipts, the single immutable authority | Upstream token, Identity Registry, Compliance, the sealed topology | Proof of manifest completeness or Full conformance |
+| `ProfileGovernor` | The one-way topology seal and declared-entry manifest | Token code identity, owner, registries, exclusive Agent, included upstream entries at the seal | A completeness oracle or general-purpose administrator |
 | Operator SDK | Deterministic identifiers, hashes, and calldata | Caller-provided request data | A signer, relayer, fact checker, or policy engine |
 
 The kernel types and interfaces that every component consumes are generated
@@ -98,12 +98,12 @@ targets, not public authority surfaces.
 The ticket is not persisted as reusable authority. It exists only during the
 validated wrapper path.
 
-## ERC-3643 Verified Full
+## ERC-3643 Partial reference
 
 The adapter profile deliberately separates state ownership:
 
 <div align="center">
-  <img src="assets/architecture-erc3643-profile.svg" alt="Privileged control path, bound upstream inputs, and separated state ownership in the ERC-3643 Verified Full profile" width="900">
+  <img src="assets/architecture-erc3643-profile.svg" alt="Privileged control path, bound upstream inputs, and separated state ownership in the ERC-3643 Partial reference profile" width="900">
 </div>
 
 `ERC3643TrustAdapter` owns the kernel state: cases, custody, owned frozen
@@ -113,8 +113,9 @@ token and seals the expected token code identity, the token, the adapter,
 the Identity Registry, the Compliance contract, the chain, the exclusive-Agent
 relationship, and the import manifest.
 
-Onboarding is a fresh zero-state seal or an exact import manifest that the
-seal verifies entry by entry against the live upstream state; a declared
+Onboarding accepts a canonical list of declared entries and verifies each one
+against live upstream state. It does not prove that no other legacy account was
+omitted, and an empty manifest does not prove a fresh zero state. A declared
 frozen amount or address freeze becomes an imported case with a live head, so
 declared legacy state is reversible under the transition table. Before every
 command the adapter checks that each account it acts on carries exactly the
@@ -124,18 +125,25 @@ overwrites or silently adopts upstream state it does not own. After sealing,
 rebinding surface, and the adapter rechecks the topology before consuming
 any command. Identity Registry and Compliance responses are fail-closed
 inputs (reasons 100 and 101 for denials, 402 and 403 for unavailability),
-upstream execution is typed (400 and 401), and custody is confined to the
-adapter.
+upstream execution is typed (400 and 401), forced transfers recheck the actual
+source and destination restriction flags after balance and frozen-target
+synchronisation, and custody is confined to the adapter.
 
 Because the token holds a frozen amount and the kernel a frozen target, the
 adapter restores both accounts of a forced transfer to their owned targets
 saturated at the current balance, and the profile surface offers
 `resynchroniseFrozen` for the inbound-growth window described in
-`PROFILES.md`.
+`PROFILES.md`. Receipt observations bind actual upstream restriction flags for
+the subject, source, and destination.
 
 The repository's clean-room test doubles are conformance harnesses only.
 They are not ERC-3643 implementations, and compatibility with them is not
-evidence that an external token satisfies the Verified Full profile.
+evidence that an external token satisfies this Partial reference, much less a
+Verified Full profile.
+
+A future TRUST 1.2 Verified Full profile additionally requires atomic fresh
+deployment, a complete initial-state gate, and a same-transaction token or
+Compliance hook for every ordinary transfer. It is not implemented here.
 
 ## Receipt and observation boundary
 

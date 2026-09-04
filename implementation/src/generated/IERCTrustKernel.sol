@@ -22,6 +22,8 @@ library TrustKernelTypes {
     bytes32 internal constant DEPENDENCY_ROOT_TAG = 0x8dd0ff19b096a49997e6e0fa1eea2dee5d61291bb86d3d10640e517c9e6cbe18;
     /// @dev keccak256("ERC-TRUST/v2/native-full")
     bytes32 internal constant PROFILE_NATIVE_FULL = 0x86ba25e1a29a74ad905fd84744be032fec9dc05645f58f7f1b7788dc60ae866b;
+    /// @dev keccak256("ERC-TRUST/v2/erc3643-partial")
+    bytes32 internal constant PROFILE_ERC3643_PARTIAL = 0xa57a63d1a6def0dfce48359b5a32ef71ae339ac73fcb1cf8d123c03b7ada1fe6;
     /// @dev keccak256("ERC-TRUST/v2/erc3643-verified-full")
     bytes32 internal constant PROFILE_ERC3643_VERIFIED_FULL = 0xad56e54f83cc255e391dd3838f7dc4befa1b0306b42d8ed7974588f27fec41ad;
 

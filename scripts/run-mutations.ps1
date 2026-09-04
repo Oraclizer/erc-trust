@@ -188,7 +188,7 @@ foreach ($mutation in $mutations) {
 
     $target = Join-Path $caseRoot $mutation.File
     $content = [System.IO.File]::ReadAllText($target)
-    if ($mutation.ContainsKey("FirstOnly")) {
+    if ($mutation.Contains("FirstOnly")) {
         $index = $content.IndexOf($mutation.Old)
         $content = $content.Remove($index, $mutation.Old.Length).Insert($index, $mutation.New)
     } else {

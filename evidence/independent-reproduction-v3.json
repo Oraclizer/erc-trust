@@ -30,11 +30,11 @@
   },
   "inputs": {
     "vectorsPath": "vectors/conformance-v2.json",
-    "schemaSha256": "0x188ae0491bbd81faf0c1eed5bc8e806ecaf74cd62a38f2bca52753180dc3bdc1",
+    "schemaSha256": "0x58a5ceef5cb8dce6bba66465580315c3277aae4eca102fedc4a640b65ecb665c",
     "abiSha256": "0x73b45cee3e8e6a2abd484a306a21d51aaa3fc4da75b976dd3c938d936352814b",
-    "vectorsBytes": 52152,
-    "vectorsSha256": "0x7905342ae31386b1bfbe4e7cabf7f2f362678c711981427fb15ad8f36bfdc16c",
-    "vectorsKeccak256": "0x49648031d0b16a0b97a58d76776f36f6d9e31627b881f3574bab8685ccbf3f75",
+    "vectorsBytes": 52247,
+    "vectorsSha256": "0x077a05221ae8f23fea5db8d47aaa6a3a8b7f91f6eee8706fa38d22da9cebeaad",
+    "vectorsKeccak256": "0xd1b43c693d45bdcd0d9e38e31b94835417723e40ce59e37cb477205abd73461e",
     "vectorsSchema": "erc-trust-conformance-vectors-v2",
     "vectorsSource": "spec/erc-trust-kernel-v2.json"
   },
@@ -42,7 +42,7 @@
     "perKind": {
       "constants": {
         "vectors": 4,
-        "assertions": 19,
+        "assertions": 20,
         "passed": 4,
         "failed": 0
       },
@@ -79,7 +79,7 @@
     },
     "totals": {
       "vectors": 23,
-      "assertions": 400,
+      "assertions": 401,
       "passed": 23,
       "failed": 0
     }
@@ -174,7 +174,7 @@
       "crossChecked": "The hand-written encoder was compared byte for byte against an independent ABI coder for the ActionRequest tuple, the ReversalRequest tuple and the full nested actionId preimage."
     },
     "constants": {
-      "implemented": "Each constant in the schema is a string paired with a keccak256 value, which this program reads as the keccak-256 digest of the UTF-8 bytes of that string. The domain, the dependency-root tag and both profile identifiers are derived that way and compared with the vectors."
+      "implemented": "Each constant in the schema is a string paired with a keccak256 value, which this program reads as the keccak-256 digest of the UTF-8 bytes of that string. The domain, the dependency-root tag and all profile identifiers are derived that way and compared with the vectors."
     },
     "actionId": {
       "implemented": "keccak-256 over the four preimage items domain, endpoint address, chain id and the ActionRequest with actionId set to bytes32(0). The endpoint sentence fixes the endpoint as the address a caller invokes, which the fixture supplies; the chain id sentence fixes it as the EIP-155 identifier, which the fixture also supplies. The rule that the request's actionId field must equal this value is checked separately for every action vector."
@@ -232,6 +232,10 @@
           },
           {
             "name": "profileId native-full",
+            "status": "PASS"
+          },
+          {
+            "name": "profileId erc3643-partial",
             "status": "PASS"
           },
           {

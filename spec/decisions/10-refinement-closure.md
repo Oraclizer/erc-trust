@@ -18,12 +18,15 @@ stronger.
    the version 1 burn semantics of `CONFISCATE` are not modelled because kernel version 2
    removed them (decisions 01 to 07). `CONFISCATE` moves the exact amount and preserves
    total supply, as the code does.
-2. The ERC-3643 Verified Full profile is modelled in `TRUST_Verified_Profile_Onboarding`
-   with two facts that decision 09 fixed: the initial state is the fresh zero state or the
-   exact import manifest, whose frozen and restricted entries open reversible imported cases
-   with a live head, and the profile authorization is exactly the single immutable
-   authority at the seal epoch. Upstream state the adapter does not own is an operational
-   stutter, and resynchronisation only raises the upstream frozen amount toward the owned
+2. The ERC-3643 Partial reference is modelled in
+   `TRUST_Verified_Profile_Onboarding` with the declared-entry facts that decision
+   09 fixes: imported frozen and restricted entries open reversible cases with a
+   live head, while an empty manifest changes no declared state and proves no
+   completeness or fresh-zero property. Profile authorization is exactly the
+   single immutable authority at the seal epoch. Upstream state the adapter does
+   not own is an operational stutter; forced-transfer restriction mismatch is a
+   reason-401 stutter; receipt observations consume actual restriction values;
+   and resynchronisation only raises the upstream frozen amount toward the owned
    target.
 3. The generated bridge is regenerated for the three successor runtimes by
    `scripts/generate-runtime-bridge-v2.mjs` from the compiled artifacts and the kernel
@@ -62,7 +65,7 @@ stronger.
    `TrustNativeTypes`, `ERC3643ProfileTypes`, `TrustToken`, and `ERC3643TrustAdapter`. The
    head is identified by the action itself; the action record and the effect record are
    immutable once written. The storage slot numbering of both endpoints is unchanged. The
-   native runtime template becomes 20,043 bytes and the adapter 19,218 bytes. The
+   native runtime template is 20,043 bytes and the current Partial adapter is 19,480 bytes. The
    proposal to add a length-parity view for the derive functions is rejected: it adds bytes
    without closing an abstract condition and is recorded as a nonclaim.
 7. The claim permitted by this decision is "mapped implementation evidence; end-to-end
