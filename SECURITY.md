@@ -11,7 +11,7 @@ covered by this policy.
 
 | Version | Security support |
 | --- | --- |
-| `0.2.0-candidate.1` (private main, no tag) | Reports accepted for evaluation; no patch service-level agreement |
+| `0.2.0-candidate.1` (public main, no tag) | Reports accepted for evaluation; no patch service-level agreement |
 | `0.1.0-candidate.2` | Reports accepted for evaluation; no patch service-level agreement |
 | `0.1.0-candidate.1` | Superseded research candidate; unsupported |
 | Earlier commits and forks | Unsupported |

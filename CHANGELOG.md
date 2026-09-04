@@ -26,7 +26,7 @@
   source was established. Ledger claims distinguish killed consumer-removal
   mutations from bounded behavioral negatives, independent reproduction
   separates resolved historical findings from current limits, and repository
-  documents describe private `main` and successor-development evidence without
+  documents describe the successor `main` branch and successor-development evidence without
   a release or refinement-complete claim.
 - Rewrite the public packet for kernel version 2. The proposal text
   `docs/ERC-DRAFT.md` is rewritten in EIP-1 form from the kernel machine source

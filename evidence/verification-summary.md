@@ -1,6 +1,6 @@
 # ERC-TRUST verification summary
 
-This summary states the exact checks behind the successor on private `main`
+This summary states the exact checks behind the successor on public `main`
 (kernel version 2, working label `0.2.0-candidate.1`) and keeps the
 shipped candidate `0.1.0-candidate.2` as history. Every number below is a
 measurement of the named bytes and nothing else.
