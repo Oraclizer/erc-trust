@@ -8,8 +8,9 @@
   "baselineGitBlob": "a670d6edca358461dbc88ee2a209029099d5f83f",
   "historicalRawSha256": "c28210bec081c305f4a364d7dc71fec04c08615f249ed2c3b3e058f000f14264",
   "baselineRawSha256": "c28210bec081c305f4a364d7dc71fec04c08615f249ed2c3b3e058f000f14264",
-  "campaignDefinitionAlgorithm": "sha256-utf8-lf-mutation-definition-block-v1",
-  "campaignDefinitionSha256": "1a3883567b076f47aa477e75896111a3e892b18b44453d90c445ea5964c4978b",
+  "campaignDefinitionAlgorithm": "sha256-canonical-json-sorted-keys-v1",
+  "campaignDefinitionSha256": "a56e9052820612032fd3be549c15593de2a09668c32628137017e0d36fe38acd",
   "result": "BYTE_EXACT_DEFINITION_SOURCE",
-  "disposition": "The historical receipt may bind this definition hash without rerunning the campaign because the complete mutation definition source at the recorded run commit and at the closure baseline is byte-identical. Any later definition change invalidates this disposition and requires a new full campaign."
+  "disposition": "The historical receipt may bind this definition hash without rerunning the campaign because the complete mutation definition source at the recorded run commit and at the closure baseline is byte-identical. Any later definition change invalidates this disposition and requires a new full campaign.",
+  "campaignDefinitionSource": "scripts/mutation-campaign-v1.json"
 }

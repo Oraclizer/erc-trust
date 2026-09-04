@@ -66,15 +66,16 @@ import {
 - Derive IDs from the actual chain ID and deployed contract address.
 - Bind the current authority and epoch, the dependency root and epoch,
   nonce, validity, and action-specific commitments before encoding.
-- Compare results against
-  [`../vectors/conformance-v2.json`](../vectors/conformance-v2.json). The
-  explicit `./v1` subpath is compared with
-  [`../vectors/conformance-v1.json`](../vectors/conformance-v1.json).
+- Compare results against the repository's
+  [kernel version 2 vectors](https://github.com/Oraclizer/erc-trust/blob/main/vectors/conformance-v2.json).
+  The explicit `./v1` subpath is compared with the preserved
+  [kernel version 1 vectors](https://github.com/Oraclizer/erc-trust/blob/main/vectors/conformance-v1.json).
 - Recompute the stored receipt and emitted receipt hash independently.
 - Never treat SDK output as proof that an upstream fact or authority is valid.
 
-See the repository [integration guide](../docs/INTEGRATION.md) for the complete
-request and failure lifecycle.
+See the repository
+[integration guide](https://github.com/Oraclizer/erc-trust/blob/main/docs/INTEGRATION.md)
+for the complete request and failure lifecycle.
 
 ## Package entry points
 

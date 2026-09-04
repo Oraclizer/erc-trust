@@ -88,6 +88,7 @@
       "if": {
         "properties": {
           "receiptKind": {
+            "type": "integer",
             "const": 1
           }
         },
@@ -98,9 +99,11 @@
       "then": {
         "properties": {
           "commandKind": {
+            "type": "integer",
             "maximum": 5
           },
           "parentCommandId": {
+            "type": "string",
             "const": "0x0000000000000000000000000000000000000000000000000000000000000000"
           }
         }
@@ -110,6 +113,7 @@
       "if": {
         "properties": {
           "receiptKind": {
+            "type": "integer",
             "const": 2
           }
         },
@@ -120,9 +124,11 @@
       "then": {
         "properties": {
           "commandKind": {
+            "type": "integer",
             "maximum": 2
           },
           "parentCommandId": {
+            "type": "string",
             "not": {
               "const": "0x0000000000000000000000000000000000000000000000000000000000000000"
             }

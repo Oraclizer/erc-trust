@@ -206,8 +206,8 @@ than Solidity. Measured on this tree (files | lines):
 | Layer | Successor (kernel version 2) | Preserved candidate 2 history | What it is |
 | --- | --- | --- | --- |
 | Isabelle/HOL theories | 22 files, 9,358 lines in `formal/isabelle/ERC_TRUST/` | 41 files, 2,802 lines under `evidence/candidate-2/` | The abstract model, its theorems, and the generated bridge and ledger theories |
-| KEVM and Kontrol K sources | 1 file, 37 lines under `formal/kevm/` | 252 files, 35,416 lines under `evidence/candidate-2/formal/kevm/` | Bytecode-level claims and lemmas; the successor KEVM program has not been restarted |
-| Certora rules | None; the successor lane is pending | 12 files, 1,214 lines under `evidence/candidate-2/` | Bounded rules against the candidate 2 source |
+| KEVM and Kontrol K sources | 1 file, 37 lines under `formal/kevm/` | 248 files, 35,114 lines under `evidence/candidate-2/formal/kevm/` | Bytecode-level claims and lemmas; the successor KEVM program has not been restarted |
+| Certora rules | None; the successor lane is pending | 11 files, 858 lines under `evidence/candidate-2/` | Bounded rules against the candidate 2 source |
 | Solidity | 14 source files, 3,156 lines, plus 14 test and Kontrol-harness files with 4,777 lines | 30 files, 15,315 lines under `evidence/candidate-2/` and `pilot/` | The reference contracts those artifacts are about |
 
 The boundaries of what that evidence does and does not establish are stated

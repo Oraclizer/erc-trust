@@ -1,40 +1,76 @@
 // SPDX-License-Identifier: BSD-3-Clause
 
 import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 
-const sha256 = (value) => createHash("sha256").update(value).digest("hex");
+const ALGORITHM = "sha256-canonical-json-sorted-keys-v1";
+const LEGACY_RECEIPT_HEAD = "1de893b8d6bf1e26669baf0d8e6a8d3216f5a44e";
+const LEGACY_DEFINITION_SHA256 = "a56e9052820612032fd3be549c15593de2a09668c32628137017e0d36fe38acd";
+const LEGACY_SCRIPT_BLOB = "a670d6edca358461dbc88ee2a209029099d5f83f";
 
-export function mutationDefinitionBlockSha256(path) {
-  const source = readFileSync(path, "utf8").replace(/\r\n?/g, "\n");
-  const match = source.match(/# MUTATION_DEFINITIONS_BEGIN\n([\s\S]*?)# MUTATION_DEFINITIONS_END/);
-  if (!match) throw new Error("mutation definition markers missing");
-  return sha256(Buffer.from(match[1], "utf8"));
+const sha256 = (value) => createHash("sha256").update(value).digest("hex");
+const stable = (value) => {
+  if (Array.isArray(value)) return value.map(stable);
+  if (value !== null && typeof value === "object") {
+    return Object.fromEntries(Object.keys(value).sort().map((key) => [key, stable(value[key])]));
+  }
+  return value;
+};
+
+export const canonicalMutationDefinitionsSha256 = (definitions) =>
+  sha256(Buffer.from(JSON.stringify(stable(definitions)), "utf8"));
+
+function git(repoRoot, args, encoding = "utf8") {
+  const safe = repoRoot.replaceAll("\\", "/");
+  return execFileSync("git", ["-c", `safe.directory=${safe}`, ...args], { cwd: repoRoot, encoding });
 }
 
-export function validateMutationDefinitionBinding(receipt, scriptPath, manifestPath, fail) {
+export function validateMutationDefinitionBinding(receipt, repoRoot, manifestPath, rebindPath, check) {
   const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
-  fail(manifest.schema === "erc-trust-mutation-campaign-v1", "mutation definition manifest schema");
-  fail(manifest.algorithm === "sha256-utf8-lf-mutation-definition-block-v1", "mutation definition manifest algorithm");
-  fail(manifest.campaignDefinitionSha256 === mutationDefinitionBlockSha256(scriptPath), "mutation definition manifest hash drift");
-  fail(receipt.campaignDefinitionAlgorithm === "sha256-utf8-lf-mutation-definition-block-v1", "mutation definition algorithm");
-  fail(receipt.campaignDefinitionSha256 === manifest.campaignDefinitionSha256, "mutation campaign definition hash drift");
-  fail(Array.isArray(receipt.campaignDefinition) && receipt.campaignDefinition.length > 0, "mutation definition set is empty");
-  fail(JSON.stringify(receipt.campaignDefinition) === JSON.stringify(manifest.definitions), "mutation receipt definition set differs from the current manifest");
-  fail(receipt.campaignDefinition.length === receipt.results.length, "mutation definition/result count mismatch");
+  const rebind = JSON.parse(readFileSync(rebindPath, "utf8"));
+  check(manifest.schema === "erc-trust-mutation-campaign-v1", "mutation definition manifest schema");
+  check(manifest.algorithm === ALGORITHM, "mutation definition manifest algorithm");
+  check(Array.isArray(manifest.definitions) && manifest.definitions.length > 0, "mutation definition manifest is empty");
+  check(manifest.campaignDefinitionSha256 === canonicalMutationDefinitionsSha256(manifest.definitions), "mutation definition manifest hash drift");
+  check(receipt.campaignDefinitionAlgorithm === ALGORITHM, "mutation receipt definition algorithm");
+  check(receipt.campaignDefinitionSha256 === manifest.campaignDefinitionSha256, "mutation receipt definition hash drift");
+  check(JSON.stringify(receipt.campaignDefinition) === JSON.stringify(manifest.definitions), "mutation receipt definition set differs from the current manifest");
+  check(receipt.campaignDefinition.length === receipt.results.length, "mutation definition/result count mismatch");
+
   const ids = new Set();
   for (let index = 0; index < receipt.campaignDefinition.length; index += 1) {
     const definition = receipt.campaignDefinition[index];
     const result = receipt.results[index];
-    fail(typeof definition.id === "string" && !ids.has(definition.id), `invalid or duplicate mutation definition id at ${index}`);
+    check(typeof definition.id === "string" && !ids.has(definition.id), `invalid or duplicate mutation definition id at ${index}`);
     ids.add(definition.id);
-    fail(typeof definition.file === "string" && !definition.file.includes("\\"), `mutation definition path is not normalized: ${definition.id}`);
-    fail(typeof definition.old === "string" && typeof definition.new === "string", `mutation definition replacement missing: ${definition.id}`);
-    fail(Number.isInteger(definition.expectedOccurrences) && definition.expectedOccurrences > 0, `mutation definition occurrence count: ${definition.id}`);
-    fail(typeof definition.firstOnly === "boolean", `mutation definition firstOnly: ${definition.id}`);
-    fail(typeof definition.detector?.contract === "string" && typeof definition.detector?.test === "string", `mutation definition detector: ${definition.id}`);
-    fail(result.id === definition.id, `mutation definition/result id mismatch: ${definition.id}`);
-    fail(result.anchorOccurrences === definition.expectedOccurrences, `mutation occurrence receipt mismatch: ${definition.id}`);
-    fail(result.detector === `${definition.detector.contract}.${definition.detector.test}`, `mutation detector receipt mismatch: ${definition.id}`);
+    check(typeof definition.fault === "string" && definition.fault.length > 0, `mutation definition fault: ${definition.id}`);
+    check(typeof definition.file === "string" && !definition.file.includes("\\"), `mutation definition path is not normalized: ${definition.id}`);
+    check(typeof definition.old === "string" && typeof definition.new === "string", `mutation definition replacement missing: ${definition.id}`);
+    check(Number.isInteger(definition.expectedOccurrences) && definition.expectedOccurrences > 0, `mutation definition occurrence count: ${definition.id}`);
+    check(typeof definition.firstOnly === "boolean", `mutation definition firstOnly: ${definition.id}`);
+    check(typeof definition.detector?.contract === "string" && typeof definition.detector?.test === "string", `mutation definition detector: ${definition.id}`);
+    check(result.id === definition.id && result.fault === definition.fault, `mutation definition/result identity mismatch: ${definition.id}`);
+    check(result.anchorOccurrences === definition.expectedOccurrences, `mutation occurrence receipt mismatch: ${definition.id}`);
+    check(result.detector === `${definition.detector.contract}.${definition.detector.test}`, `mutation detector receipt mismatch: ${definition.id}`);
+  }
+
+  if (receipt.candidateInput?.gitHead === LEGACY_RECEIPT_HEAD) {
+    check(receipt.campaignDefinitionSha256 === LEGACY_DEFINITION_SHA256, "legacy mutation receipt cannot inherit a changed campaign");
+    check(rebind.schema === "erc-trust-mutation-definition-rebind-v1", "mutation rebind schema");
+    check(rebind.receiptGitHead === LEGACY_RECEIPT_HEAD, "mutation rebind receipt head");
+    check(rebind.campaignDefinitionSource === "scripts/mutation-campaign-v1.json", "mutation rebind definition source");
+    check(rebind.campaignDefinitionSha256 === LEGACY_DEFINITION_SHA256, "mutation rebind definition hash");
+    check(rebind.historicalGitBlob === LEGACY_SCRIPT_BLOB && rebind.baselineGitBlob === LEGACY_SCRIPT_BLOB,
+      "mutation rebind historical/baseline blob identity");
+    const historicalBlob = git(repoRoot, ["rev-parse", `${rebind.receiptGitHead}:${rebind.definitionSource}`]).trim();
+    const baselineBlob = git(repoRoot, ["rev-parse", `${rebind.comparisonBaseline}:${rebind.definitionSource}`]).trim();
+    check(historicalBlob === rebind.historicalGitBlob && baselineBlob === rebind.baselineGitBlob,
+      "mutation rebind Git blob does not match the recorded commits");
+    check(sha256(git(repoRoot, ["cat-file", "blob", historicalBlob], null)) === rebind.historicalRawSha256,
+      "mutation rebind historical raw hash");
+    check(sha256(git(repoRoot, ["cat-file", "blob", baselineBlob], null)) === rebind.baselineRawSha256,
+      "mutation rebind baseline raw hash");
+    check(rebind.result === "BYTE_EXACT_DEFINITION_SOURCE", "mutation rebind disposition");
   }
 }

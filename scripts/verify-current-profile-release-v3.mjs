@@ -95,7 +95,7 @@ function inputsRoot(path) {
 // declared root is the root of the tree it runs on.
 
 function declaredMutationIds() {
-  return [...bytes("scripts/run-mutations.ps1").toString("utf8").matchAll(/^\s*Id = "([^"]+)"/gm)].map((match) => match[1]);
+  return json("scripts/mutation-campaign-v1.json").definitions.map((definition) => definition.id);
 }
 
 const fullSha = (value) => typeof value === "string" && /^[0-9a-f]{40}$/.test(value);
@@ -112,13 +112,20 @@ function requireRunProvenance(run, provider, label) {
   check(run && typeof run === "object", `${label} run provenance missing`);
   check(run.provider === provider, `${label} provider mismatch`);
   check(typeof run.runId === "string" && run.runId.length > 0, `${label} run id missing`);
-  check(typeof run.startedAt === "string" && typeof run.finishedAt === "string", `${label} run timestamps missing`);
+  check(typeof run.startedAt === "string" && !Number.isNaN(Date.parse(run.startedAt)), `${label} start timestamp missing`);
+  check(typeof run.finishedAt === "string" && !Number.isNaN(Date.parse(run.finishedAt)), `${label} finish timestamp missing`);
   check(typeof run.replay === "string" && run.replay.length > 0, `${label} replay command missing`);
 }
 
-function requireExactInputRoot(receiptRoot, expectedRoot, inputs, label) {
+function requireExactInputRoot(receiptRoot, expectedRoot, expectedPaths, inputs, label) {
   check(typeof expectedRoot === "string" && /^[0-9a-f]{64}$/.test(expectedRoot), `${label} expected input root missing`);
+  exactNonemptySet(expectedPaths, expectedPaths, `${label} expected inputs`);
   check(Array.isArray(inputs) && inputs.length > 0, `${label} input set is empty`);
+  exactNonemptySet(inputs.map((input) => input.path), expectedPaths, `${label} inputs`);
+  for (const input of inputs) {
+    check(typeof input.sha256 === "string" && input.sha256 === sha256(bytes(input.path)), `${label} input drift: ${input.path}`);
+  }
+  check(rootOf(expectedPaths) === expectedRoot, `${label} expected input root drift`);
   check(receiptRoot === expectedRoot, `${label} input root mismatch`);
 }
 
@@ -132,21 +139,46 @@ function expectRejected(fn, label) {
   check(rejected, `self-test did not reject ${label}`);
 }
 
-if (selfTest) {
-  const goodRun = { provider: "kontrol-kevm", runId: "fixture-run", startedAt: "2026-01-01T00:00:00Z", finishedAt: "2026-01-01T00:01:00Z", replay: "fixture" };
-  exactNonemptySet(["proof-a"], ["proof-a"], "fixture proofs");
-  requireRunProvenance(goodRun, "kontrol-kevm", "fixture proofs");
-  requirePositiveTotal(1, "fixture proofs");
-  requireExactInputRoot("a".repeat(64), "a".repeat(64), [{ path: "x", sha256: "b".repeat(64) }], "fixture proofs");
-  expectRejected(() => exactNonemptySet([], ["proof-a"], "zero proofs"), "zero proofs");
-  expectRejected(() => requirePositiveTotal(0, "zero proofs"), "zero proof total");
-  expectRejected(() => requireExactInputRoot("a".repeat(64), "b".repeat(64), [{ path: "x" }], "wrong root"), "wrong input root");
-  expectRejected(() => requireExactInputRoot("a".repeat(64), "a".repeat(64), [], "empty inputs"), "empty input set");
-  expectRejected(() => exactNonemptySet(["proof-b"], ["proof-a"], "wrong proofs"), "wrong proof id");
-  expectRejected(() => requireRunProvenance({}, "kontrol-kevm", "missing provenance"), "missing run provenance");
-  expectRejected(() => exactNonemptySet([], [], "zero rules"), "zero expected and actual rules");
-  console.log("successor evidence verifier self-test PASS: zero-count, identifier-set, and provenance negatives rejected");
-  process.exit(0);
+function validateKontrolReceipt(receipt, expected, expectedRoot, expectedRuntime) {
+  check(receipt.schema === "erc-trust-kontrol-results-v3", "Kontrol receipt schema");
+  check(receipt.status === "PASS", "Kontrol receipt status");
+  requirePositiveTotal(receipt.summary?.total, "Kontrol proofs");
+  check(receipt.proofs.length === receipt.summary.total, "Kontrol proof array/count mismatch");
+  const passed = receipt.proofs.filter((proof) => proof.status === "PASS").length;
+  check(receipt.proofs.every((proof) => proof.status === "PASS"), "Kontrol proof result is not PASS");
+  check(receipt.summary.passed === passed && receipt.summary.failed === receipt.summary.total - passed,
+    "Kontrol summary does not match proof results");
+  exactNonemptySet(receipt.proofs.map((proof) => proof.id), expected.expectedProofIds, "Kontrol proofs");
+  requireRunProvenance(receipt.run, expected.provider, "Kontrol");
+  requireExactInputRoot(receipt.inputsRootSha256, expectedRoot, expected.expectedInputPaths, receipt.sourceInputs, "Kontrol");
+  check(expected.expectedInputsRootSha256 === expectedRoot, "Kontrol expected input root drift");
+  check(receipt.runtimeBinding?.runtimeSha256 === expectedRuntime, "Kontrol receipt binds a different runtime");
+}
+
+function validateCertoraReceipt(receipt, expected, expectedRoot, expectedRuntime) {
+  check(receipt.schema === "erc-trust-certora-results-v3", "Certora receipt schema");
+  check(receipt.status === "PASS", "Certora receipt status");
+  requirePositiveTotal(receipt.rules?.total, "Certora rules");
+  check(receipt.rules.names.length === receipt.rules.total, "Certora rule names/count mismatch");
+  check(Array.isArray(receipt.ruleResults) && receipt.ruleResults.length === receipt.rules.total,
+    "Certora rule result array/count mismatch");
+  check(receipt.ruleResults.every((rule) => rule.status === "PASS"), "Certora rule result is not PASS");
+  exactNonemptySet(receipt.rules.names, expected.expectedRuleIds, "Certora rules");
+  exactNonemptySet(receipt.ruleResults.map((rule) => rule.id), expected.expectedRuleIds, "Certora rule results");
+  check(receipt.rules.success === receipt.rules.total && receipt.rules.fail === 0 && receipt.rules.sanityFail === 0
+    && receipt.rules.timeout === 0 && receipt.rules.unknown === 0, "Certora summary does not describe exact success");
+  requireRunProvenance(receipt.run, expected.provider, "Certora");
+  check(receipt.run.runId === receipt.run.runHash, "Certora run id/hash mismatch");
+  check(typeof receipt.run.outputNamespace === "string" && receipt.run.outputNamespace.length > 0,
+    "Certora output namespace missing");
+  const runUrl = new URL(receipt.run.url);
+  check(runUrl.hostname === "prover.certora.com"
+    && runUrl.pathname.endsWith(`/${receipt.run.outputNamespace}/${receipt.run.runHash}`), "Certora run URL mismatch");
+  check(receipt.run.processExit === 0 && typeof receipt.run.terminalResult === "string",
+    "Certora terminal provenance missing");
+  requireExactInputRoot(receipt.inputsRootSha256, expectedRoot, expected.expectedInputPaths, receipt.inputs, "Certora");
+  check(expected.expectedInputsRootSha256 === expectedRoot, "Certora expected input root drift");
+  check(receipt.runtimeTemplateSha256 === expectedRuntime, "Certora receipt binds a different runtime");
 }
 
 // ---------------------------------------------------------------------------
@@ -176,6 +208,32 @@ const identity = {
   kontrolInputsSha256: rootOf(["implementation/src/TrustToken.sol", ...walk("implementation/kontrol")]),
   certoraInputsSha256: inputsRoot("implementation/certora"),
 };
+
+if (selfTest) {
+  const kontrol = json(receiptPaths.kontrol);
+  const expectedRuntime = json(receiptPaths.runtime).buildA.runtimeSha256;
+  validateKontrolReceipt(kontrol, expectations.kontrol, identity.kontrolInputsSha256, expectedRuntime);
+  for (const [label, mutate] of [
+    ["zero proof total", (value) => { value.summary = { total: 0, passed: 0, failed: 0 }; value.proofs = []; }],
+    ["failed proof hidden by summary", (value) => { value.proofs[0].status = "FAIL"; }],
+    ["proof count mismatch", (value) => { value.summary.total = 1; value.summary.passed = 1; }],
+    ["missing exact input", (value) => { value.sourceInputs.pop(); }],
+    ["wrong input root", (value) => { value.inputsRootSha256 = "0".repeat(64); }],
+    ["missing run provenance", (value) => { delete value.run.runId; }],
+  ]) {
+    const changed = structuredClone(kontrol);
+    mutate(changed);
+    expectRejected(() => validateKontrolReceipt(changed, expectations.kontrol, identity.kontrolInputsSha256, expectedRuntime), label);
+  }
+  const zeroCertora = {
+    schema: "erc-trust-certora-results-v3", status: "PASS", rules: { total: 0, success: 0, fail: 0, sanityFail: 0, timeout: 0, unknown: 0, names: [] },
+    ruleResults: [], inputs: [], inputsRootSha256: null, runtimeTemplateSha256: expectedRuntime,
+    run: { provider: "certora-cloud", runId: "x", runHash: "x", outputNamespace: "1", url: "https://prover.certora.com/output/1/x", processExit: 0, terminalResult: "ok", startedAt: "2026-01-01T00:00:00Z", finishedAt: "2026-01-01T00:01:00Z", replay: "fixture" },
+  };
+  expectRejected(() => validateCertoraReceipt(zeroCertora, expectations.certora, identity.certoraInputsSha256, expectedRuntime), "zero Certora rules and inputs");
+  console.log("successor evidence verifier self-test PASS: full Kontrol receipt mutations and zero Certora receipt rejected");
+  process.exit(0);
+}
 
 // ---------------------------------------------------------------------------
 // Lanes
@@ -249,8 +307,9 @@ if (!exists(receiptPaths.mutation)) {
     "mutation counts");
   validateMutationDefinitionBinding(
     mutation,
-    resolve(root, "scripts/run-mutations.ps1"),
+    root,
     resolve(root, "scripts/mutation-campaign-v1.json"),
+    resolve(root, "evidence/mutation-definition-rebind-v1.json"),
     check,
   );
   const declared = declaredMutationIds();
@@ -336,17 +395,9 @@ if (!exists(receiptPaths.kontrol)) {
   lanes.kontrolInputs = { ...pending("kontrolInputs", "bound together with the Kontrol receipt"), inputsRootSha256: identity.kontrolInputsSha256 };
 } else {
   const kontrol = json(receiptPaths.kontrol);
-  check(kontrol.schema === "erc-trust-kontrol-results-v3" && kontrol.candidate === candidate, "Kontrol receipt identity");
-  check(kontrol.status === "PASS" && kontrol.summary.failed === 0 && kontrol.summary.passed === kontrol.summary.total,
-    "Kontrol receipt status");
-  requirePositiveTotal(kontrol.summary.total, "Kontrol proofs");
-  exactNonemptySet(kontrol.proofs.map((proof) => proof.id), expectations.kontrol.expectedProofIds, "Kontrol proofs");
-  requireRunProvenance(kontrol.run, expectations.kontrol.provider, "Kontrol");
-  requireExactInputRoot(kontrol.inputsRootSha256, identity.kontrolInputsSha256, kontrol.sourceInputs, "Kontrol");
-  check(runtimeTemplateSha256 !== null && kontrol.runtimeBinding.runtimeSha256 === runtimeTemplateSha256,
-    "Kontrol receipt binds a different runtime");
-  for (const input of kontrol.sourceInputs) check(sha256(bytes(input.path)) === input.sha256, `Kontrol input drift: ${input.path}`);
-  check(expectations.kontrol.expectedInputsRootSha256 === identity.kontrolInputsSha256, "Kontrol expected input root drift");
+  check(kontrol.candidate === candidate, "Kontrol receipt candidate");
+  check(runtimeTemplateSha256 !== null, "Kontrol receipt without a deterministic runtime");
+  validateKontrolReceipt(kontrol, expectations.kontrol, identity.kontrolInputsSha256, runtimeTemplateSha256);
   lanes.kontrol = { status: "PASS", receipt: fileRef(receiptPaths.kontrol), proofs: kontrol.summary.passed };
   lanes.kontrolInputs = { status: "PASS", inputsRootSha256: identity.kontrolInputsSha256 };
 }
@@ -357,18 +408,9 @@ if (!exists(receiptPaths.certora)) {
   lanes.certoraInputs = { ...pending("certoraInputs", "bound together with the Certora receipt"), inputsRootSha256: identity.certoraInputsSha256 };
 } else {
   const certora = json(receiptPaths.certora);
-  check(certora.schema === "erc-trust-certora-results-v3" && certora.candidate === candidate, "Certora receipt identity");
-  check(certora.status === "PASS" && certora.rules.fail === 0 && certora.rules.sanityFail === 0
-    && certora.rules.timeout === 0 && certora.rules.unknown === 0 && certora.rules.success === certora.rules.total,
-    "Certora receipt status");
-  requirePositiveTotal(certora.rules.total, "Certora rules");
-  exactNonemptySet(certora.rules.names, expectations.certora.expectedRuleIds, "Certora rules");
-  requireRunProvenance(certora.run, expectations.certora.provider, "Certora");
-  requireExactInputRoot(certora.inputsRootSha256, identity.certoraInputsSha256, certora.inputs, "Certora");
-  for (const input of certora.inputs) check(sha256(bytes(input.path)) === input.sha256, `Certora input drift: ${input.path}`);
-  check(expectations.certora.expectedInputsRootSha256 === identity.certoraInputsSha256, "Certora expected input root drift");
-  check(runtimeTemplateSha256 !== null && certora.runtimeTemplateSha256 === runtimeTemplateSha256,
-    "Certora receipt binds a different runtime");
+  check(certora.candidate === candidate, "Certora receipt candidate");
+  check(runtimeTemplateSha256 !== null, "Certora receipt without a deterministic runtime");
+  validateCertoraReceipt(certora, expectations.certora, identity.certoraInputsSha256, runtimeTemplateSha256);
   lanes.certora = { status: "PASS", receipt: fileRef(receiptPaths.certora), rules: certora.rules.success };
   lanes.certoraInputs = { status: "PASS", inputsRootSha256: identity.certoraInputsSha256 };
 }

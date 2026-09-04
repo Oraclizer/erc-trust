@@ -870,20 +870,20 @@ const receiptJsonSchema = {
   })),
   allOf: [
     {
-      if: { properties: { receiptKind: { const: schema.enums.ReceiptKind.values.ACTION } }, required: ["receiptKind"] },
+      if: { properties: { receiptKind: { type: "integer", const: schema.enums.ReceiptKind.values.ACTION } }, required: ["receiptKind"] },
       then: {
         properties: {
-          commandKind: { maximum: Math.max(...Object.values(schema.enums.ActionKind.values)) },
-          parentCommandId: { const: ZeroHash },
+          commandKind: { type: "integer", maximum: Math.max(...Object.values(schema.enums.ActionKind.values)) },
+          parentCommandId: { type: "string", const: ZeroHash },
         },
       },
     },
     {
-      if: { properties: { receiptKind: { const: schema.enums.ReceiptKind.values.REVERSAL } }, required: ["receiptKind"] },
+      if: { properties: { receiptKind: { type: "integer", const: schema.enums.ReceiptKind.values.REVERSAL } }, required: ["receiptKind"] },
       then: {
         properties: {
-          commandKind: { maximum: Math.max(...Object.values(schema.enums.ReversalKind.values)) },
-          parentCommandId: { not: { const: ZeroHash } },
+          commandKind: { type: "integer", maximum: Math.max(...Object.values(schema.enums.ReversalKind.values)) },
+          parentCommandId: { type: "string", not: { const: ZeroHash } },
         },
       },
     },
