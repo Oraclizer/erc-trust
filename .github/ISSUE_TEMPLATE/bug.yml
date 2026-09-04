@@ -33,7 +33,7 @@ body:
       label: Profile
       options:
         - Native Full v1
-        - ERC-3643 Verified Full v1
+        - ERC-3643 Partial reference v2
         - Pilot
         - SDK/schema/vectors
         - Formal evidence

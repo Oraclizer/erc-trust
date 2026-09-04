@@ -66,6 +66,10 @@ const receiptInput = { ...action.receiptInput, receiptKind: Number(action.receip
 assert.equal(installed.KERNEL_VERSION, 2);
 assert.equal(installed.KERNEL_DOMAIN, vectors.constants.domain);
 assert.equal(installed.KERNEL_INTERFACE_ID, vectors.constants.kernelInterfaceId);
+assert.equal(installed.PROFILE_IDS["erc3643-partial"], vectors.constants.profileIds["erc3643-partial"]);
+assert.equal(installed.PROFILE_IDS["erc3643-verified-full"], vectors.constants.profileIds["erc3643-verified-full"]);
+assert.deepEqual(Object.keys(installed.PROFILE_IDS).sort(), ["erc3643-partial", "erc3643-verified-full", "native-full"]);
+assert.equal(installed.ProfileKind.PARTIAL, 3);
 assert.equal(installed.KERNEL_SELECTORS.executeRegulatoryAction, action.calldata.slice(0, 10));
 assert.equal(installed.KERNEL_SELECTORS.executeRegulatoryReversal, reversal.calldata.slice(0, 10));
 assert.equal(installed.deriveActionId(vectors.fixture.endpoint, BigInt(vectors.fixture.chainId), actionRequest), action.actionId);

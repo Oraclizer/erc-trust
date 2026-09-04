@@ -35,9 +35,9 @@
     "sha256": "deeedf231b461035ac4496b36438d6ea28298ed2935b920bf9c01cb31f94ef1b"
   },
   {
-    "bytes": 10239,
+    "bytes": 10418,
     "path": "implementation/src/generated/IERCTrustKernel.sol",
-    "sha256": "405a465c9b91e55270035638566f7d9e682efc90166f611d3e9a9eea1c9e2c88"
+    "sha256": "8f179a21b04fa1f172bdddef2f8878a01524d3429570c0abf9aa60cfc8738f7d"
   },
   {
     "bytes": 713,

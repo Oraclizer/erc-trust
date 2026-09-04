@@ -32,6 +32,9 @@ const required = [
   "docs/assets/architecture-native-sequence.svg",
   "docs/assets/architecture-erc3643-profile.svg",
   "docs/assets/verification-architecture.svg",
+  "implementation/certora/ERC3643Partial.conf",
+  "implementation/certora/ERC3643Partial.spec",
+  "implementation/certora/ERC3643PartialHarness.sol",
   ".github/ISSUE_TEMPLATE/config.yml",
   ".github/ISSUE_TEMPLATE/documentation.yml",
   ".github/CODEOWNERS",
@@ -185,6 +188,29 @@ for (const path of ["README.md", "docs/ERC-DRAFT.md", "docs/COMMUNITY-REVIEW.md"
   if (!text.includes("unaudited") || !text.includes("not for production")) {
     failures.push(`missing assurance warning: ${path}`);
   }
+}
+
+{
+  const adapter = readFileSync(resolve(root, "implementation/src/profiles/ERC3643TrustAdapter.sol"), "utf8");
+  const governor = readFileSync(resolve(root, "implementation/src/profiles/ProfileGovernor.sol"), "utf8");
+  for (const snippet of [
+    "profileId: TrustKernelTypes.PROFILE_ERC3643_PARTIAL,",
+    "profileKind: TrustKernelTypes.ProfileKind.PARTIAL,",
+    "full: false,",
+    "function sealedTopologyLive() external view returns (bool)",
+  ]) {
+    if (!adapter.includes(snippet)) failures.push(`ERC-3643 Partial surface missing: ${snippet}`);
+  }
+  if (/profileId:\s*TrustKernelTypes\.PROFILE_ERC3643_VERIFIED_FULL/.test(adapter)) {
+    failures.push("current ERC-3643 adapter reports the reserved Verified Full profile id");
+  }
+  if (/profileKind:\s*TrustKernelTypes\.ProfileKind\.VERIFIED_FULL/.test(adapter)) {
+    failures.push("current ERC-3643 adapter reports Verified Full kind");
+  }
+  if (!governor.includes("function sealedTopologyLive(address adapter) public view returns (bool)")) {
+    failures.push("profile governor lacks the sealed-topology liveness view");
+  }
+  if (/function\s+isFull\s*\(/.test(governor)) failures.push("profile governor exposes the obsolete isFull view");
 }
 
 {

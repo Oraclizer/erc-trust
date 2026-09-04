@@ -69,7 +69,7 @@ const bundles = [
     subjects: [{ id: "native", source: "implementation/src/TrustToken.sol", contract: "TrustToken", artifact: "out/TrustToken.sol/TrustToken.json" }],
   },
   {
-    id: "verified-profile",
+    id: "erc3643-partial",
     roots: ["implementation/src/profiles/ERC3643TrustAdapter.sol", "implementation/src/profiles/ProfileGovernor.sol"],
     subjects: [
       { id: "profileAdapter", source: "implementation/src/profiles/ERC3643TrustAdapter.sol", contract: "ERC3643TrustAdapter", artifact: "out/ERC3643TrustAdapter.sol/ERC3643TrustAdapter.json" },

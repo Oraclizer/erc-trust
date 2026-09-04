@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+- Correct the current ERC-3643 reference from Verified Full to the exact
+  `ERC-TRUST/v2/erc3643-partial` profile with `profileKind = PARTIAL` and
+  `full = false`. `sealedTopologyLive()` now reports only the narrower one-way
+  seal and dependency-code condition. Import manifests verify declared entries
+  without claiming completeness; ordinary inbound growth remains a documented
+  Partial limitation. Forced transfers now recheck the actual source and
+  destination restriction flags after balance and frozen-target synchronization,
+  and receipt observations bind actual restriction flags for subject, source,
+  and destination. The Verified Full identifier is retained as a TRUST 1.2
+  candidate requiring atomic fresh deployment, a complete initial-state gate,
+  and a same-transaction token or Compliance hook; it is not implemented here.
 - Align the installable SDK, receipt schema, evidence gates, and pre-ERC draft
   with kernel version 2. The package root now exports version 2 while the
   historical helper remains at `./v1`; continuous integration packs and
@@ -59,7 +70,7 @@
   and rendered by `scripts/verify-obligation-ledger-v3.mjs` in CI). The Isabelle session is
   rewritten for kernel version 2: typed commands, the case transition table, the ordered
   dependency root with the global epoch, the unified receipt, custody backing and floor
-  arithmetic, the ordinary transfer relation, and the verified-profile onboarding with the
+  arithmetic, the ordinary transfer relation, and the ERC-3643 profile onboarding with the
   import manifest and the single immutable authority. The runtime bridge is regenerated for
   the three successor runtimes by `scripts/generate-runtime-bridge-v2.mjs` (checked in CI)
   and binds runtime hashes, every selector with its route class, storage layouts, error
@@ -74,12 +85,12 @@
   end-to-end refinement incomplete". The unused effect hash of the effect head and effect
   record is removed from both endpoints (decision 10); the storage slots are unchanged. No
   completion, Full, or refinement-complete claim is made.
-- Wire the ERC-3643 Verified Full profile adapter to kernel version 2. The
+- Previously wire the adapter then named ERC-3643 Verified Full to kernel version 2. The
   adapter and its governor consume the same generated kernel copy as the native
   token, report the kernel interface identifier, and feed the dependency root
   from the sealed topology (Compliance as the policy binding, the Identity
   Registry as the identity binding, zero settlement and entitlement bindings).
-  Onboarding is a fresh zero-state seal or an exact import manifest that the
+  Onboarding accepts an empty declared-entry list or an import manifest that the
   seal verifies entry by entry against the live upstream state; declared frozen
   amounts and address freezes become imported cases with a live head, so they are
   reversible under the case transition table. Before consuming any command the
@@ -100,7 +111,7 @@
   full owner and Agent surface), a stateful campaign drives the adapter through
   freezes, seizures, releases, and custody confiscations, and the mutation
   campaign gains twenty-one adapter and governor faults. No completion, release,
-  or Verified Full claim is made; the profile's runtime identity is bound in the
+  or current Verified Full claim is made; the profile's runtime identity is bound in the
   runtime assurance change.
 - Wire the native token to kernel version 2. The token consumes a generated
   copy of the normative kernel types and interfaces, reports the kernel

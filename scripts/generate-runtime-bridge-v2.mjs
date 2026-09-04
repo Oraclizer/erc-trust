@@ -92,7 +92,7 @@ const subjects = [
         "dependencyState", "trustProfile", "supportsInterface",
       ],
       Route_Profile_Command: ["resynchroniseFrozen"],
-      Route_Profile_View: ["ownedState"],
+      Route_Profile_View: ["ownedState", "sealedTopologyLive"],
       Route_Seal_Command: ["activateSeal"],
       Route_Immutable_View: ["token", "profileGovernor", "authority", "authorityRef"],
     },
@@ -107,7 +107,7 @@ const subjects = [
     routes: {
       Route_Seal_Command: ["seal"],
       Route_Seal_View: [
-        "manifestHashOf", "isFull", "exclusiveAdapter", "sealedBinding", "importManifestHash",
+        "manifestHashOf", "sealedTopologyLive", "exclusiveAdapter", "sealedBinding", "importManifestHash",
         "topologySealed",
       ],
       Route_Immutable_View: [
@@ -315,7 +315,11 @@ for (const name of ["executeRegulatoryAction", "executeRegulatoryReversal", "der
   check(adapterRoute(name).selector === nativeRoute(name).selector, `adapter ${name} selector differs from native`);
 }
 const kernelSelectors = Object.fromEntries(Object.entries(kernelAbi.selectors).map(([signature, selector]) => [signature.split("(")[0], selector]));
-const verifiedProfileInterfaceId = `0x${(BigInt(adapterRoute("ownedState").selector) ^ BigInt(adapterRoute("resynchroniseFrozen").selector)).toString(16).padStart(8, "0")}`;
+const erc3643PartialInterfaceId = `0x${(
+  BigInt(adapterRoute("ownedState").selector)
+  ^ BigInt(adapterRoute("resynchroniseFrozen").selector)
+  ^ BigInt(adapterRoute("sealedTopologyLive").selector)
+).toString(16).padStart(8, "0")}`;
 const nativeErrors = errorSelectors(native.artifact, kernelErrorNames);
 const adapterErrors = errorSelectors(adapter.artifact, kernelErrorNames);
 check(JSON.stringify(nativeErrors) === JSON.stringify(adapterErrors), "kernel error selectors differ between endpoints");
@@ -353,7 +357,7 @@ const schema = {
     kernel: kernelAbi.interfaceId,
     nativeRoute: kernelAbi.profileInterfaceIds.IERCTrustNativeRoute,
     boundDependency: kernelAbi.profileInterfaceIds.ITrustBoundDependency,
-    verifiedProfile: verifiedProfileInterfaceId,
+    erc3643Partial: erc3643PartialInterfaceId,
   },
   commands: {
     action: { ...actionGuards, selector: kernelSelectors.executeRegulatoryAction, nativeRouteSelector: nativeRoute("executeERC7943Action").selector },
@@ -435,7 +439,7 @@ definition eip170_runtime_limit :: nat where "eip170_runtime_limit = ${schema.ei
 
 definition kernel_interface_id :: nat where "kernel_interface_id = ${decimal(schema.interfaceIds.kernel)}"
 definition native_route_interface_id :: nat where "native_route_interface_id = ${decimal(schema.interfaceIds.nativeRoute)}"
-definition verified_profile_interface_id :: nat where "verified_profile_interface_id = ${decimal(schema.interfaceIds.verifiedProfile)}"
+definition erc3643_partial_interface_id :: nat where "erc3643_partial_interface_id = ${decimal(schema.interfaceIds.erc3643Partial)}"
 
 definition action_calldata_length :: nat where "action_calldata_length = ${actionGuards.calldataLength}"
 definition reversal_calldata_length :: nat where "reversal_calldata_length = ${reversalGuards.calldataLength}"

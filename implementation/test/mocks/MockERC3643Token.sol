@@ -14,7 +14,9 @@ contract MockERC3643Token {
         FREEZE_NO_EFFECT,
         RESTRICT_NO_EFFECT,
         FROZEN_VIEW_REVERTS,
-        FROZEN_VIEW_LONG
+        FROZEN_VIEW_LONG,
+        TRANSFER_CLEARS_SOURCE_RESTRICTION,
+        TRANSFER_CLEARS_DESTINATION_RESTRICTION
     }
 
     address public owner;
@@ -133,6 +135,8 @@ contract MockERC3643Token {
             balanceOf[from] -= amount;
             balanceOf[to] += amount;
         }
+        if (mode == Mode.TRANSFER_CLEARS_SOURCE_RESTRICTION) isFrozen[from] = false;
+        if (mode == Mode.TRANSFER_CLEARS_DESTINATION_RESTRICTION) isFrozen[to] = false;
         emit Transfer(from, to, amount);
         return true;
     }

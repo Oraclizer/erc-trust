@@ -72,6 +72,14 @@ contract ERC3643ProfileTrexFixtureTest is ERC3643ProfileTestBase {
         _assertEq(_frozen(holder), 70 ether, "the growth is not frozen until the next touch");
         (uint256 target, uint256 applied, bool restricted) = adapter.ownedState(holder);
         _assert(target == 100 ether && applied == 70 ether && !restricted, "owned state shows the gap");
+        _assert(!adapter.trustProfile().full, "inbound growth remains a partial-profile limitation");
+        _assert(adapter.sealedTopologyLive(), "the narrower sealed topology remains live");
+
+        vm.prank(holder);
+        _assert(fixture.transfer(buyer, 30 ether), "the unfrozen inbound growth is transferable before a touch");
+        _assertEq(_balance(holder), 70 ether, "the bounded inbound window is exercised");
+        _assertEq(_frozen(holder), 70 ether, "the original saturated target remains applied");
+        _assert(fixture.transfer(holder, 30 ether), "a second inbound growth recreates the gap");
 
         (bool ok, bytes memory result) =
             stranger.relay(address(adapter), abi.encodeCall(adapter.resynchroniseFrozen, (holder)));
@@ -83,6 +91,7 @@ contract ERC3643ProfileTrexFixtureTest is ERC3643ProfileTestBase {
         _assertEq(adapter.resynchroniseFrozen(holder), 100 ether, "idempotent once synchronised");
         _assertEq(adapter.resynchroniseFrozen(buyer), 0, "an account without owned state is a no-op");
         _assertEq(_frozen(holder), 100 ether, "resynchronisation never unfreezes");
+        _assert(!adapter.trustProfile().full && adapter.sealedTopologyLive(), "resync never elevates conformance");
 
         adapter.executeRegulatoryReversal(_reversal(seize.actionId, TrustKernelTypes.ReversalKind.RELEASE, 222));
         _assertEq(_balance(holder), 130 ether, "released on top of the growth");
@@ -151,6 +160,7 @@ contract ERC3643ProfileTrexFixtureTest is ERC3643ProfileTestBase {
         _assert(
             !fixture.paused() && _frozen(address(this)) == 0 && !_restricted(address(this)), "no mutator changed state"
         );
-        _assert(adapter.trustProfile().full, "still full");
+        _assert(!adapter.trustProfile().full, "reference stays partial");
+        _assert(adapter.sealedTopologyLive(), "sealed topology stays live");
     }
 }

@@ -41,16 +41,19 @@ forbidden by `claim-matrix.md`.
 | A subject has at most one live head per overlay family across all cases: a second open case cannot freeze or restrict a subject whose live `FREEZE` or `RESTRICT` head belongs to another open case (rules CT-3 and CT-7, reason 10). Two regulatory matters that need concurrent overlays on one subject must share a case or wait for the head to be lifted. | `spec/decisions/02-case-transitions.md` |
 | Proxy and migration profiles are unsupported; both reference endpoints report `proxySupported = false`. | `docs/PROFILES.md` |
 
-## ERC-3643 Verified Full profile
+## ERC-3643 Partial reference profile
 
 | Limitation | Owner |
 | --- | --- |
-| The token holds a frozen amount while the kernel holds a frozen target. Tokens received by an ordinary inbound transfer between two adapter touches stay transferable until the next touch or a call to `resynchroniseFrozen(account)`; closing that window atomically would need a transfer hook inside the token or its Compliance, which the profile does not use. | `spec/decisions/09-erc3643-profile-wiring.md` |
+| The import manifest verifies included entries only. It cannot prove that no frozen or restricted legacy account was omitted, and an empty manifest is not a fresh-zero-state proof. | `spec/decisions/09-erc3643-profile-wiring.md` |
+| The token holds a frozen amount while the kernel holds a frozen target. Tokens received by an ordinary inbound transfer between two adapter touches stay transferable until the next touch or a call to `resynchroniseFrozen(account)`; closing that window atomically needs a same-transaction token or Compliance hook, which the current reference does not use. | `spec/decisions/09-erc3643-profile-wiring.md` |
+| Forced transfers now fail with reason 401 if the actual source or destination restriction flag differs from adapter-owned state after balance and frozen synchronization, and receipt observations bind the actual restriction flags of subject, source, and destination. This closes the previously identified touched-command gap but does not solve manifest completeness or ordinary inbound enforcement. | `implementation/src/profiles/ERC3643TrustAdapter.sol` |
 | The seal binds a declared token code identity to the live code. It does not audit the token; any claim about the token's behaviour comes from deployment evidence, not from the seal. | `spec/decisions/09-erc3643-profile-wiring.md` |
 | Custody is confined to the adapter, so the Identity Registry must report the adapter as verified for seizures to execute. A deployment that needs another custodian requires a redesign of the custody backing rule and the Agent topology. | `spec/decisions/09-erc3643-profile-wiring.md` |
 | The reference governor seals exactly once and offers no reseal, Agent management, registry rebinding, or authority rotation; a unit that needs any of these is a different profile with its own epoch increments and evidence. | `spec/decisions/09-erc3643-profile-wiring.md` |
 | A token that unfreezes or moves tokens outside its Agent surface cannot satisfy the ownership precondition and is Partial or Unsupported. | `docs/PROFILES.md` |
-| The profile suite runs against two clean-room fixtures. Compatibility with them is not evidence that an external ERC-3643 token satisfies the profile. | `docs/ARCHITECTURE.md` |
+| The profile suite runs against two clean-room fixtures. Compatibility with them is not evidence that an external ERC-3643 token satisfies the Partial reference. | `docs/ARCHITECTURE.md` |
+| The Verified Full identifier is reserved for a TRUST 1.2 atomic fresh deployment with a complete initial-state gate and same-transaction transfer or Compliance hook. Existing T-REX imports do not qualify without an enumerable state root, account count, and completeness proof. | `docs/PROFILES.md` |
 
 ## Process
 

@@ -12,9 +12,9 @@ import {ERC3643ProfileTypes} from "./ERC3643ProfileTypes.sol";
 import {ProfileGovernor} from "./ProfileGovernor.sol";
 import {TrustReentrancy, TrustZeroAddress} from "../TrustErrors.sol";
 
-/// @notice Profile-specific surface of the ERC-3643 Verified Full endpoint. Its ERC-165 identifier is
-///         separate from the kernel identifier; the kernel interface is unchanged.
-interface IERC3643VerifiedProfile {
+/// @notice Profile-specific surface of the ERC-3643 Partial reference endpoint. Its ERC-165 identifier
+///         is separate from the kernel identifier; the kernel interface is unchanged.
+interface IERC3643PartialProfile {
     /// @dev Emitted when the upstream frozen amount of an owned account is brought back to its owned
     ///      target saturated at the current balance outside a command.
     event FrozenTargetResynchronised(address indexed account, uint256 frozenTarget, uint256 appliedFrozen);
@@ -26,19 +26,23 @@ interface IERC3643VerifiedProfile {
         view
         returns (uint256 frozenTarget, uint256 appliedFrozen, bool restricted);
 
+    /// @notice True only while the one-way seal, exclusive Agent topology, and bound dependency code
+    ///         remain live. This operational predicate does not denote Full conformance.
+    function sealedTopologyLive() external view returns (bool);
+
     /// @notice Brings the upstream frozen amount of an owned account to its owned target saturated at the
     ///         current balance. Callable by anyone: it changes no owned state, requires the live sealed
     ///         topology and the ownership precondition, and only ever raises the upstream frozen amount.
     function resynchroniseFrozen(address account) external returns (uint256 appliedFrozen);
 }
 
-/// @notice Kernel version 2 endpoint of the ERC-3643 Verified Full profile: the only TRUST endpoint and
-///         the exclusive enforcement Agent of one sealed ERC-3643 conformance unit.
+/// @notice Kernel version 2 endpoint of the ERC-3643 Partial reference profile: the only TRUST endpoint
+///         and the exclusive enforcement Agent of one sealed ERC-3643 conformance unit.
 /// @dev The adapter owns the regulatory state (cases, effect heads, custody, frozen targets, address
 ///      freeze flags) and the receipts; the underlying token only executes. Every upstream state the
 ///      adapter acts on must be state it declared at the seal or applied itself; anything else, and
 ///      every unauthenticated, unsealed, malformed, or drifted path, fails closed.
-contract ERC3643TrustAdapter is IERCTrustKernel, IERC3643VerifiedProfile {
+contract ERC3643TrustAdapter is IERCTrustKernel, IERC3643PartialProfile {
     bytes4 internal constant ERC165_INTERFACE_ID = 0x01ffc9a7;
     uint16 internal constant REASON_DOMAIN = 1;
     uint16 internal constant REASON_IDENTIFIER = 2;
@@ -57,7 +61,7 @@ contract ERC3643TrustAdapter is IERCTrustKernel, IERC3643VerifiedProfile {
     uint16 internal constant REASON_IDENTITY_DENIED = 101;
     uint16 internal constant REASON_DEPENDENCY_CODE_MISMATCH = 200;
     uint16 internal constant REASON_DEPENDENCY_UNAVAILABLE_AT_BIND = 205;
-    uint16 internal constant REASON_TOPOLOGY_NOT_FULL = 300;
+    uint16 internal constant REASON_SEALED_TOPOLOGY_NOT_LIVE = 300;
     uint16 internal constant REASON_SEAL_INVALID = 301;
     uint16 internal constant REASON_IMPORT_MANIFEST_MISMATCH = 303;
     uint16 internal constant REASON_UPSTREAM_STATE_NOT_OWNED = 304;
@@ -74,8 +78,8 @@ contract ERC3643TrustAdapter is IERCTrustKernel, IERC3643VerifiedProfile {
     uint256 internal constant PROFILE_ACTION_MASK = 0x3f;
     uint256 internal constant PROFILE_REVERSAL_MASK = 0x07;
     uint256 internal constant UPSTREAM_VIEW_GAS = 200_000;
-    /// @dev keccak256("ERC-TRUST/v2/erc3643-verified-full/import")
-    bytes32 internal constant IMPORT_TAG = keccak256("ERC-TRUST/v2/erc3643-verified-full/import");
+    /// @dev keccak256("ERC-TRUST/v2/erc3643-partial/import")
+    bytes32 internal constant IMPORT_TAG = keccak256("ERC-TRUST/v2/erc3643-partial/import");
 
     address public immutable token;
     ProfileGovernor public immutable profileGovernor;
@@ -176,7 +180,7 @@ contract ERC3643TrustAdapter is IERCTrustKernel, IERC3643VerifiedProfile {
         return interfaceId != 0xffffffff
             && (interfaceId == ERC165_INTERFACE_ID
                 || interfaceId == type(IERCTrustKernel).interfaceId
-                || interfaceId == type(IERC3643VerifiedProfile).interfaceId);
+                || interfaceId == type(IERC3643PartialProfile).interfaceId);
     }
 
     function deriveActionId(TrustKernelTypes.ActionRequest calldata request) external view returns (bytes32) {
@@ -203,17 +207,17 @@ contract ERC3643TrustAdapter is IERCTrustKernel, IERC3643VerifiedProfile {
         return (_dependencyRoot, _dependencyEpoch);
     }
 
-    /// @dev `full` is computed from the live sealed topology and the bound dependency code on every call.
+    /// @dev The current ERC-3643 reference is Partial even while its narrower sealed topology is live.
     function trustProfile() external view returns (TrustKernelTypes.ProfileDescriptor memory descriptor) {
         descriptor = TrustKernelTypes.ProfileDescriptor({
-            profileId: TrustKernelTypes.PROFILE_ERC3643_VERIFIED_FULL,
-            profileKind: TrustKernelTypes.ProfileKind.VERIFIED_FULL,
+            profileId: TrustKernelTypes.PROFILE_ERC3643_PARTIAL,
+            profileKind: TrustKernelTypes.ProfileKind.PARTIAL,
             standardVersion: TrustKernelTypes.STANDARD_VERSION,
             actionMask: PROFILE_ACTION_MASK,
             reversalMask: PROFILE_REVERSAL_MASK,
             underlyingToken: token,
             manifestHash: _sealedBinding,
-            full: _topologyFull(),
+            full: false,
             proxySupported: false
         });
     }
@@ -229,6 +233,10 @@ contract ERC3643TrustAdapter is IERCTrustKernel, IERC3643VerifiedProfile {
     {
         ERC3643ProfileTypes.OwnedState storage owned = _owned[account];
         return (owned.frozenTarget, owned.appliedFrozen, owned.restricted);
+    }
+
+    function sealedTopologyLive() external view returns (bool) {
+        return _sealedTopologyLive();
     }
 
     /// @dev The owned target is materialised upstream at the adapter's touch points only; balance growth
@@ -502,16 +510,16 @@ contract ERC3643TrustAdapter is IERCTrustKernel, IERC3643VerifiedProfile {
     // Topology, dependency assessment, and upstream state ownership
     // ---------------------------------------------------------------------
 
-    function _topologyFull() internal view returns (bool) {
-        return _sealed && profileGovernor.isFull(address(this)) && _bindingLive(TrustKernelTypes.BindingKind.POLICY)
-            && _bindingLive(TrustKernelTypes.BindingKind.IDENTITY);
+    function _sealedTopologyLive() internal view returns (bool) {
+        return _sealed && profileGovernor.sealedTopologyLive(address(this))
+            && _bindingLive(TrustKernelTypes.BindingKind.POLICY) && _bindingLive(TrustKernelTypes.BindingKind.IDENTITY);
     }
 
     /// @dev Class 300 when the sealed topology no longer holds, class 200 when a bound dependency's
     ///      runtime code changed.
     function _requireLiveTopology(bytes32 commandId) internal view {
-        if (!_sealed || !profileGovernor.isFull(address(this))) {
-            revert TrustOperationalFailure(commandId, REASON_TOPOLOGY_NOT_FULL, _tokenRef());
+        if (!_sealed || !profileGovernor.sealedTopologyLive(address(this))) {
+            revert TrustOperationalFailure(commandId, REASON_SEALED_TOPOLOGY_NOT_LIVE, _tokenRef());
         }
         if (!_bindingLive(TrustKernelTypes.BindingKind.POLICY)) {
             revert TrustOperationalFailure(
@@ -894,8 +902,9 @@ contract ERC3643TrustAdapter is IERCTrustKernel, IERC3643VerifiedProfile {
     // Upstream execution with exact post-state verification
     // ---------------------------------------------------------------------
 
-    /// @dev Moves `amount` through the Agent forced transfer and verifies both balances, then brings
-    ///      the frozen amount of both accounts back to their owned targets.
+    /// @dev Moves `amount` through the Agent forced transfer, verifies both balances, brings the frozen
+    ///      amount of both accounts back to their owned targets, and then verifies both actual upstream
+    ///      restriction flags against the adapter-owned flags.
     function _forcedTransfer(bytes32 commandId, address from, address to, uint256 amount) internal {
         uint256 beforeFrom = _upstreamBalance(commandId, from);
         uint256 beforeTo = _upstreamBalance(commandId, to);
@@ -911,7 +920,13 @@ contract ERC3643TrustAdapter is IERCTrustKernel, IERC3643VerifiedProfile {
             revert TrustOperationalFailure(commandId, REASON_UPSTREAM_POSTSTATE_MISMATCH, _tokenRef());
         }
         _syncFrozen(commandId, from);
-        _syncFrozen(commandId, to);
+        if (to != from) _syncFrozen(commandId, to);
+        if (!_restrictionMatches(_upstreamRestricted(commandId, from), _owned[from].restricted)) {
+            revert TrustOperationalFailure(commandId, REASON_UPSTREAM_POSTSTATE_MISMATCH, _addressRef(from));
+        }
+        if (to != from && !_restrictionMatches(_upstreamRestricted(commandId, to), _owned[to].restricted)) {
+            revert TrustOperationalFailure(commandId, REASON_UPSTREAM_POSTSTATE_MISMATCH, _addressRef(to));
+        }
     }
 
     /// @dev Brings the upstream frozen amount of `account` to its owned target saturated at the current
@@ -1015,7 +1030,7 @@ contract ERC3643TrustAdapter is IERCTrustKernel, IERC3643VerifiedProfile {
                     dependency,
                     code,
                     sealedBinding,
-                    TrustKernelTypes.PROFILE_ERC3643_VERIFIED_FULL,
+                    TrustKernelTypes.PROFILE_ERC3643_PARTIAL,
                     SEAL_EPOCH
                 )
             )
@@ -1094,29 +1109,43 @@ contract ERC3643TrustAdapter is IERCTrustKernel, IERC3643VerifiedProfile {
         }
     }
 
-    /// @dev Profile-defined observation preimage documented with the runtime identity: the token, the
-    ///      subject's balance, owned frozen target, upstream frozen amount, and owned restriction flag,
-    ///      the source's and destination's balance and custody backing, the case's custody record, the
-    ///      subject's overlay heads, the case record, and the sealed binding.
+    /// @dev Profile-defined observation preimage documented with the runtime identity. The outer hash
+    ///      binds the token and each role-tagged account hash, then custody, overlay heads, case state,
+    ///      and the sealed binding. The subject hash commits to balance, owned frozen target, actual
+    ///      frozen amount, owned restriction, and actual upstream restriction. Source and destination
+    ///      hashes commit to balance, actual upstream restriction, and custody backing; the zero
+    ///      destination uses the hash of the all-zero tuple.
     function _observation(bytes32 commandId, address subject, address source, address destination, bytes32 caseId)
         internal
         view
         returns (bytes32)
     {
+        bytes32 subjectObservation = _subjectObservationHash(
+            _upstreamBalance(commandId, subject),
+            _owned[subject].frozenTarget,
+            _upstreamFrozen(commandId, subject),
+            _owned[subject].restricted,
+            _upstreamRestricted(commandId, subject)
+        );
+        bytes32 sourceObservation = _roleObservationHash(
+            _upstreamBalance(commandId, source), _upstreamRestricted(commandId, source), _custodyBacking[source]
+        );
+        bytes32 destinationObservation = destination == address(0)
+            ? _roleObservationHash(0, false, 0)
+            : _roleObservationHash(
+                _upstreamBalance(commandId, destination),
+                _upstreamRestricted(commandId, destination),
+                _custodyBacking[destination]
+            );
         return keccak256(
             abi.encode(
                 token,
                 subject,
-                _upstreamBalance(commandId, subject),
-                _owned[subject].frozenTarget,
-                _upstreamFrozen(commandId, subject),
-                _owned[subject].restricted,
+                subjectObservation,
                 source,
-                _upstreamBalance(commandId, source),
-                _custodyBacking[source],
+                sourceObservation,
                 destination,
-                destination == address(0) ? 0 : _upstreamBalance(commandId, destination),
-                _custodyBacking[destination],
+                destinationObservation,
                 _custody[caseId],
                 _freezeHeads[subject],
                 _restrictionHeads[subject],
@@ -1124,6 +1153,28 @@ contract ERC3643TrustAdapter is IERCTrustKernel, IERC3643VerifiedProfile {
                 _sealedBinding
             )
         );
+    }
+
+    function _restrictionMatches(bool actual, bool owned) internal pure returns (bool) {
+        return actual == owned;
+    }
+
+    function _subjectObservationHash(
+        uint256 balance,
+        uint256 frozenTarget,
+        uint256 actualFrozen,
+        bool ownedRestricted,
+        bool actualRestricted
+    ) internal pure returns (bytes32) {
+        return keccak256(abi.encode(balance, frozenTarget, actualFrozen, ownedRestricted, actualRestricted));
+    }
+
+    function _roleObservationHash(uint256 balance, bool actualRestricted, uint256 custodyBacking)
+        internal
+        pure
+        returns (bytes32)
+    {
+        return keccak256(abi.encode(balance, actualRestricted, custodyBacking));
     }
 
     function _requireCalldataLength(uint256 expected) internal pure {

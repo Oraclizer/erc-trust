@@ -18,6 +18,7 @@ interface Vm {
     function getRecordedLogs() external returns (Log[] memory);
     function load(address target, bytes32 slot) external view returns (bytes32);
     function etch(address target, bytes calldata code) external;
+    function prank(address sender) external;
     function chainId(uint256 id) external;
     function readFile(string calldata path) external view returns (string memory);
     function parseJsonBytes32(string calldata json, string calldata key) external pure returns (bytes32);

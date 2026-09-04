@@ -72,6 +72,7 @@ const DOMAIN_STRING = "ERC-TRUST/v2";
 const DEPENDENCY_ROOT_TAG_STRING = "ERC-TRUST/v2/dependency-root";
 const PROFILE_STRINGS = {
   "native-full": "ERC-TRUST/v2/native-full",
+  "erc3643-partial": "ERC-TRUST/v2/erc3643-partial",
   "erc3643-verified-full": "ERC-TRUST/v2/erc3643-verified-full",
 };
 
@@ -1404,7 +1405,7 @@ const METHOD = {
     crossChecked: "The hand-written encoder was compared byte for byte against an independent ABI coder for the ActionRequest tuple, the ReversalRequest tuple and the full nested actionId preimage.",
   },
   constants: {
-    implemented: "Each constant in the schema is a string paired with a keccak256 value, which this program reads as the keccak-256 digest of the UTF-8 bytes of that string. The domain, the dependency-root tag and both profile identifiers are derived that way and compared with the vectors.",
+    implemented: "Each constant in the schema is a string paired with a keccak256 value, which this program reads as the keccak-256 digest of the UTF-8 bytes of that string. The domain, the dependency-root tag and all profile identifiers are derived that way and compared with the vectors.",
   },
   actionId: {
     implemented: "keccak-256 over the four preimage items domain, endpoint address, chain id and the ActionRequest with actionId set to bytes32(0). The endpoint sentence fixes the endpoint as the address a caller invokes, which the fixture supplies; the chain id sentence fixes it as the EIP-155 identifier, which the fixture also supplies. The rule that the request's actionId field must equal this value is checked separately for every action vector.",

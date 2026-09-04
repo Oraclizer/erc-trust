@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: BSD-3-Clause
+// Historical candidate 2 fixture tooling. The kernel v2 successor uses the v3 runtime-binding tools.
 
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";

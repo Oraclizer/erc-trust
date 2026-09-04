@@ -1,3 +1,5 @@
+// Historical candidate 2 bridge generator. The kernel v2 successor uses generate-runtime-bridge-v2.mjs.
+
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";

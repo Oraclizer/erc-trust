@@ -493,7 +493,7 @@
         {
           "name": "full",
           "type": "bool",
-          "meaning": "MUST be computed from the live topology and dependency state, never stored as a constant true"
+          "meaning": "A Full profile MUST compute true from all live conformance conditions and MUST NOT store a stale success bit; a Partial or Unsupported profile MUST return false"
         },
         {
           "name": "proxySupported",
@@ -1366,7 +1366,7 @@
         ],
         "error": "TrustOperationalFailure",
         "codes": {
-          "300": "TOPOLOGY_NOT_FULL",
+          "300": "SEALED_TOPOLOGY_NOT_LIVE",
           "301": "SEAL_INVALID",
           "302": "TOPOLOGY_MISMATCH_AT_SEAL",
           "303": "IMPORT_MANIFEST_MISMATCH",
@@ -1405,20 +1405,43 @@
       "observationPreimage": "documented by the implementation together with its runtime identity",
       "manifestHash": "dependencyRoot"
     },
+    "erc3643-partial": {
+      "profileId": {
+        "string": "ERC-TRUST/v2/erc3643-partial",
+        "keccak256": "0xa57a63d1a6def0dfce48359b5a32ef71ae339ac73fcb1cf8d123c03b7ada1fe6"
+      },
+      "profileKind": "PARTIAL",
+      "endpoint": "the adapter",
+      "underlyingToken": "the sealed ERC-3643 token",
+      "actionMask": "0x3f",
+      "reversalMask": "0x07",
+      "dependencies": "sealed token runtime identity, Identity Registry, Compliance; the dependency root binds the sealed topology at seal epoch 1",
+      "onboarding": "the import manifest verifies only each declared entry; it does not prove that all pre-existing frozen or restricted accounts were declared, and an empty manifest is not a completeness claim",
+      "full": false,
+      "sealedTopologyLive": "computed live from the one-way seal and bound dependency code; this is a narrower operational predicate and never denotes Full conformance",
+      "manifestHash": "sealed binding",
+      "limitation": "ordinary inbound balance growth can remain transferable until the next adapter touch or permissionless resynchroniseFrozen call",
+      "observation": "receipt pre-state and post-state bind role-tagged actual upstream restriction flags for the subject, source, and destination",
+      "verifiedFullCandidate": "reserved for a TRUST 1.2 atomic fresh deployment with a same-transaction transfer or Compliance hook, a complete initial-state gate, and actual upstream post-state and receipt observation equality"
+    },
     "erc3643-verified-full": {
       "profileId": {
         "string": "ERC-TRUST/v2/erc3643-verified-full",
         "keccak256": "0xad56e54f83cc255e391dd3838f7dc4befa1b0306b42d8ed7974588f27fec41ad"
       },
       "profileKind": "VERIFIED_FULL",
-      "endpoint": "the adapter",
-      "underlyingToken": "the sealed ERC-3643 token",
+      "status": "reserved TRUST 1.2 candidate class; no current reference implementation reports this profile",
+      "endpoint": "a future hook-enabled adapter or token endpoint",
+      "underlyingToken": "an ERC-3643 token deployed atomically with the endpoint",
       "actionMask": "0x3f",
       "reversalMask": "0x07",
-      "dependencies": "sealed token runtime identity, Identity Registry, Compliance; the dependency root binds the sealed topology and the epoch increments on every reseal",
-      "onboarding": "fresh zero-state seal or exact import manifest; any other initial state is Partial or Unsupported",
-      "full": "computed live from the sealed topology; never a stored constant",
-      "manifestHash": "sealed binding"
+      "onboarding": "atomic fresh deployment with a complete initial-state gate; existing T-REX imports are not eligible without an enumerable state root, account count, and completeness proof",
+      "transferEnforcement": "every ordinary transfer is checked by the token or Compliance hook in the same transaction against the TRUST frozen target",
+      "postState": "forced transfers bind actual upstream balance, frozen amount, and restriction flags for every touched account",
+      "observation": "receipt pre-state and post-state bind the actual upstream restriction flags of the subject, source, and destination",
+      "upgradeBoundary": "proxy and upgrade paths are rejected or bind implementation, admin, and epoch",
+      "full": "computed only when every TRUST 1.2 requirement above is live",
+      "manifestHash": "future profile-defined complete deployment and state commitment"
     }
   },
   "nonclaims": [

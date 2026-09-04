@@ -217,6 +217,19 @@ const identity = {
     ? rootOf(expectations.certora.expectedInputPaths)
     : null,
 };
+if (expectations.certora.status === "FROZEN_PENDING_APPROVAL_OR_RUN") {
+  check(expectations.certora.runtimeSubject === "profileAdapter", "frozen Certora runtime subject");
+  exactNonemptySet(
+    expectations.certora.expectedInputPaths,
+    expectations.certora.expectedInputPaths,
+    "frozen Certora inputs",
+  );
+  exactNonemptySet(expectations.certora.expectedRuleIds, expectations.certora.expectedRuleIds, "frozen Certora rules");
+  check(
+    expectations.certora.expectedInputsRootSha256 === identity.certoraInputsSha256,
+    `frozen Certora input root drift: ${expectations.certora.expectedInputsRootSha256} != ${identity.certoraInputsSha256}`,
+  );
+}
 
 if (selfTest) {
   const kontrol = json(receiptPaths.kontrol);
@@ -292,6 +305,7 @@ const pending = (lane, owner) => ({ status: "PENDING", receipt: receiptPaths[lan
 
 // runtime: deterministic double build of the native runtime
 let runtimeTemplateSha256 = null;
+let certoraRuntimeTemplateSha256 = null;
 let deterministicReceipt = null;
 if (!exists(receiptPaths.runtime)) {
   lanes.runtime = pending("runtime", "this change: deterministic build receipt for the successor source");
@@ -319,6 +333,8 @@ if (!exists(receiptPaths.runtime)) {
       `deterministic build receipt binds a different ${key} runtime than the release manifest`);
   }
   runtimeTemplateSha256 = deterministic.buildA.runtimeSha256;
+  check(expectations.certora.runtimeSubject === "profileAdapter", "Certora runtime subject drift");
+  certoraRuntimeTemplateSha256 = deterministic.buildA.subjects.erc3643Adapter.runtimeSha256;
   deterministicReceipt = deterministic;
   lanes.runtime = {
     status: "PASS",
@@ -453,14 +469,23 @@ if (!exists(receiptPaths.kontrol)) {
 // certora and its inputs
 if (!exists(receiptPaths.certora)) {
   lanes.certora = pending("certora", "formal refinement change: parametric rules on the successor bytecode");
-  lanes.certoraInputs = { ...pending("certoraInputs", "bound together with the Certora receipt"), inputsRootSha256: identity.certoraInputsSha256 };
+  lanes.certoraInputs = {
+    ...pending("certoraInputs", "bound together with the Certora receipt"),
+    inputsRootSha256: identity.certoraInputsSha256,
+    runtimeSubject: expectations.certora.runtimeSubject,
+  };
 } else {
   const certora = json(receiptPaths.certora);
   check(certora.candidate === candidate, "Certora receipt candidate");
-  check(runtimeTemplateSha256 !== null, "Certora receipt without a deterministic runtime");
-  validateCertoraReceipt(certora, expectations.certora, identity.certoraInputsSha256, runtimeTemplateSha256);
+  check(certoraRuntimeTemplateSha256 !== null, "Certora receipt without a deterministic adapter runtime");
+  validateCertoraReceipt(certora, expectations.certora, identity.certoraInputsSha256, certoraRuntimeTemplateSha256);
   lanes.certora = { status: "PASS", receipt: fileRef(receiptPaths.certora), rules: certora.rules.success };
-  lanes.certoraInputs = { status: "PASS", inputsRootSha256: identity.certoraInputsSha256 };
+  lanes.certoraInputs = {
+    status: "PASS",
+    inputsRootSha256: identity.certoraInputsSha256,
+    runtimeSubject: expectations.certora.runtimeSubject,
+    runtimeTemplateSha256: certoraRuntimeTemplateSha256,
+  };
 }
 
 // independentReproduction: a specification-only implementation reproduces the conformance vectors

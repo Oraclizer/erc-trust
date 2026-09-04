@@ -93,18 +93,23 @@ vectors are generated. The immutable native reference implements:
 - one seventeen-field receipt for actions and reversals, stored, returned by
   `receipt(commandId)`, and emitted as the final log of the command.
 
-The optional ERC-3643 Verified Full profile uses a separate adapter over a
-sealed token. It reports Full only when a one-way `ProfileGovernor` seals the
-expected token code identity, token owner, Identity Registry, Compliance
-contract, exclusive adapter Agent, and the declared initial state, and only
-while every account a command touches carries exactly the upstream state the
-adapter declared or applied. Ordinary ERC-3643 deployments do not
-automatically qualify.
+The optional ERC-3643 reference uses a separate adapter over a sealed token and
+reports `profileKind = PARTIAL`, `full = false`, with profile identifier
+`keccak256("ERC-TRUST/v2/erc3643-partial")`. A one-way `ProfileGovernor` binds
+the expected token code identity, token owner, Identity Registry, Compliance
+contract, exclusive adapter Agent, and declared import entries. The manifest
+checks included entries only; it does not prove global state completeness.
+`sealedTopologyLive()` exposes the narrower operational topology predicate and
+does not elevate the reference to Full. Forced transfers recheck actual source
+and destination restriction flags after balance and frozen-target
+synchronization, and receipt observations bind actual restriction flags for
+subject, source, and destination. The ordinary inbound-growth window remains a
+documented Partial limitation.
 
 Proxy and migration support are `false` for both endpoints. The native
 runtime is 20,043 bytes under the pinned compiler settings (4,533 bytes below
-the EIP-170 limit), the ERC-3643 profile adapter 19,218, and the profile
-governor 2,790, as bound by `evidence/release-manifest.json` and
+the EIP-170 limit), the ERC-3643 profile adapter 19,480, and the profile
+governor 2,787, as bound by `evidence/release-manifest.json` and
 `evidence/deterministic-build.json`. Any native source change requires the
 full size, test, proof, mutation, and manifest replay.
 
@@ -129,11 +134,11 @@ ownership, action flow, failure behavior, and deployment boundaries.
 
 ## Choose a profile
 
-| Profile | Intended use | Full-status condition |
+| Profile | Intended use | Classification condition |
 | --- | --- | --- |
 | Native Full | New immutable ERC-20 deployment | Exact source, compiler settings, and four bound read-only dependencies |
-| ERC-3643 Verified Full | Existing ERC-3643 topology | Sealed code identity, inert owner, exclusive adapter Agent, declared initial state, owned upstream state |
-| ERC-3643 Partial | Integration that cannot prove every topology condition | Must identify every missing Full condition |
+| ERC-3643 Partial reference | Existing ERC-3643 interoperability with declared-entry checks and fail-closed adapter touch points | Always `full = false`; limitations include manifest incompleteness and the ordinary inbound-growth window |
+| ERC-3643 Verified Full | Reserved TRUST 1.2 hook-enabled fresh deployment class | Atomic deployment, complete initial-state gate, same-transaction transfer/Compliance hook, actual upstream post-state and receipt equality |
 | Unsupported | Missing or contradictory evidence | No reliable conformance declaration |
 
 No deployment manifest is included because this repository claims no
@@ -205,10 +210,10 @@ than Solidity. Measured on this tree (files | lines):
 
 | Layer | Successor (kernel version 2) | Preserved candidate 2 history | What it is |
 | --- | --- | --- | --- |
-| Isabelle/HOL theories | 22 files, 9,358 lines in `formal/isabelle/ERC_TRUST/` | 41 files, 2,802 lines under `evidence/candidate-2/` | The abstract model, its theorems, and the generated bridge and ledger theories |
+| Isabelle/HOL theories | 22 files, 9,413 lines in `formal/isabelle/ERC_TRUST/` | 41 files, 2,802 lines under `evidence/candidate-2/` | The abstract model, its theorems, and the generated bridge and ledger theories |
 | KEVM and Kontrol K sources | 1 file, 37 lines under `formal/kevm/` | 248 files, 35,114 lines under `evidence/candidate-2/formal/kevm/` | Bytecode-level claims and lemmas; the successor KEVM program has not been restarted |
-| Certora rules | None; the successor lane is pending | 11 files, 858 lines under `evidence/candidate-2/` | Bounded rules against the candidate 2 source |
-| Solidity | 14 source files, 3,156 lines, plus 14 test and Kontrol-harness files with 4,777 lines | 30 files, 15,315 lines under `evidence/candidate-2/` and `pilot/` | The reference contracts those artifacts are about |
+| Certora rules | 1 successor spec with 4 frozen rules and 47 lines under `implementation/certora/`; cloud run pending approval | 11 files, 858 lines under `evidence/candidate-2/` | Bounded source-level rules; no successor source has been sent yet |
+| Solidity | 14 source files, 3,211 lines, plus 15 test, Kontrol, and Certora harness files with 5,022 lines | 30 files, 15,315 lines under `evidence/candidate-2/` and `pilot/` | The reference contracts those artifacts are about |
 
 The boundaries of what that evidence does and does not establish are stated
 below, in `evidence/claim-matrix.md`, and in `evidence/known-limitations.md`;
@@ -229,15 +234,15 @@ The successor on private `main` (kernel version 2, working label
 
 | Layer | Result |
 | --- | --- |
-| Foundry | 89/89 tests across seven suites; two fuzz properties at 256 runs; nine invariants at 256 runs and depth 500 (1,152,000 calls, zero reverts) |
-| Mutation | 111/111 declared faults killed, each bound to an obligation ledger row or a campaign-only negative |
+| Foundry | Local 93/93 tests across seven suites; two fuzz properties at 256 runs; nine invariants at 256 runs and depth 500 (1,152,000 calls, zero reverts); exact-commit CI receipt pending |
+| Mutation | 121 definitions and detectors pass preflight; full campaign and receipt replacement in progress |
 | Kontrol and KEVM | 4/4 proofs rerun on the successor native runtime; the adapter has no symbolic lane |
 | Isabelle/HOL abstract model | 22 theories modelling kernel version 2; clean build and proof audit with 409 explicit roots and zero oracle dependencies |
-| Obligation ledger | 72 rows: 68 closed, 2 open (the undischarged runtime link), 2 not applicable; closure conditional |
+| Obligation ledger | 74 rows: 7 closed, 63 closed pending fresh mutation receipt, 2 open (the undischarged runtime link), 2 not applicable; closure conditional |
 | Deterministic build | Two isolated clean builds of the three runtimes, byte-identical |
 | Runtime binding | Three runtimes agree with the pinned-compiler replay in six semantic projections; verifier self-mutation 18/18 |
-| Independent reproduction | 23 vectors, 400 assertions reproduced from the specification alone |
-| Certora | Pending by decision; no successor source has been sent to the cloud prover |
+| Independent reproduction | 23 vectors, 401 assertions reproduced from the specification alone |
+| Certora | Final Partial source/spec/harness and four expected rules frozen; cloud transmission pending separate approval |
 | SDK | 13 source tests plus a pack-install consumer smoke from the package root |
 
 The claim this supports is "mapped implementation evidence; end-to-end
@@ -306,7 +311,8 @@ its broader regulatory and formal-methods context.
 | `spec/` | Normative kernel machine source, decision records, and generated renderings |
 | `implementation/src/` | Native reference and ERC-3643 profile |
 | `implementation/test/` | Unit, fuzz, invariant, and profile tests |
-| `evidence/candidate-2/implementation/certora/` | Candidate 2 Certora Verification Language rules and configurations (history); the successor Certora lane is pending |
+| `implementation/certora/` | Frozen successor ERC-3643 Partial harness, four CVL rules, and config; cloud run pending separate approval |
+| `evidence/candidate-2/implementation/certora/` | Candidate 2 Certora Verification Language rules and configurations (history) |
 | `implementation/kontrol/` | KEVM high-risk cross-checks |
 | `sdk/` | Deterministic TypeScript request, receipt, and calldata helpers |
 | `schemas/` | Canonical receipt schema generated from the kernel machine source |

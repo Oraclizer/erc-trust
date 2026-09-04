@@ -24,8 +24,9 @@ The reference candidate demonstrates two mechanisms:
 - an immutable native token with four read-only dependencies folded into one
   dependency root and an exact-use, same-transaction ERC-7943 route ticket;
   and
-- an ERC-3643 adapter that is Full only under a sealed exclusive-Agent
-  topology with a declared initial state and owned upstream state.
+- an ERC-3643 Partial adapter with a sealed exclusive-Agent topology,
+  declared-entry checks, actual touched-account post-state checks, and an
+  explicit `full = false` descriptor.
 
 The design deliberately does not claim that a commitment proves legal title,
 identity, settlement completion, proceeds, entitlement, or ownership truth.
@@ -52,12 +53,13 @@ identity, settlement completion, proceeds, entitlement, or ownership truth.
 
 1. Does the ERC-7943 ticket bind every value needed to prevent confused-deputy,
    reuse, altered-calldata, and direct-selector paths?
-2. Is exclusive adapter Agent, inert owner, exact upstream runtime code hash,
-   and sealed registry/compliance topology an adequate minimum for an
-   ERC-3643 Verified Full profile?
+2. Does the current Partial boundary correctly separate sealed-topology
+   liveness from manifest completeness and same-transaction ordinary-transfer
+   enforcement?
 3. Which additional stateful invariants or negative mutations would most
    increase confidence?
-4. Are receipt pre-state and post-state observations sufficient for
+4. Are receipt pre-state and post-state observations, including actual
+   upstream restriction flags for subject, source, and destination, sufficient for
    independent reconstruction?
 5. Which deployment, signer, relayer, and monitoring risks should a future
    operational profile standardize?

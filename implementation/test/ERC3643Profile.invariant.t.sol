@@ -291,8 +291,11 @@ contract ERC3643ProfileInvariantTest {
         }
     }
 
-    function invariantTopologyStaysFull() external view {
-        require(adapter.trustProfile().full, "full");
+    function invariantSealedTopologyStaysLiveAndDescriptorStaysPartial() external view {
+        TrustKernelTypes.ProfileDescriptor memory descriptor = adapter.trustProfile();
+        require(descriptor.profileKind == TrustKernelTypes.ProfileKind.PARTIAL, "partial kind");
+        require(!descriptor.full, "never full");
+        require(adapter.sealedTopologyLive(), "sealed topology live");
         require(adapter.supportsInterface(0x2b020308), "kernel truth");
         require(!adapter.supportsInterface(0xffffffff), "invalid interface");
         require(token.isAgent(address(adapter)) && !token.isAgent(address(handler)), "exclusive agent");

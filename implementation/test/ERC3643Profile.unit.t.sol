@@ -3,7 +3,7 @@ pragma solidity 0.8.36;
 
 import {Vm} from "./TrustTestBase.t.sol";
 import {IERCTrustKernel, TrustKernelTypes} from "../src/generated/IERCTrustKernel.sol";
-import {ERC3643TrustAdapter, IERC3643VerifiedProfile} from "../src/profiles/ERC3643TrustAdapter.sol";
+import {ERC3643TrustAdapter, IERC3643PartialProfile} from "../src/profiles/ERC3643TrustAdapter.sol";
 import {ProfileGovernor} from "../src/profiles/ProfileGovernor.sol";
 import {ERC3643ProfileTypes} from "../src/profiles/ERC3643ProfileTypes.sol";
 import {MockERC3643Token} from "./mocks/MockERC3643Token.sol";
@@ -31,9 +31,9 @@ abstract contract ERC3643ProfileTestBase {
     Vm internal constant vm = Vm(address(uint160(uint256(keccak256("hevm cheat code")))));
     bytes32 internal constant DOMAIN = TrustKernelTypes.DOMAIN;
     bytes32 internal constant AUTHORITY_REF = keccak256("ERC3643-AUTHORITY");
-    bytes32 internal constant PROFILE_ID = keccak256("ERC-TRUST/v2/erc3643-verified-full");
-    bytes32 internal constant SEAL_DOMAIN = keccak256("ERC-TRUST/v2/erc3643-verified-full/seal");
-    bytes32 internal constant IMPORT_TAG = keccak256("ERC-TRUST/v2/erc3643-verified-full/import");
+    bytes32 internal constant PROFILE_ID = keccak256("ERC-TRUST/v2/erc3643-partial");
+    bytes32 internal constant SEAL_DOMAIN = keccak256("ERC-TRUST/v2/erc3643-partial/seal");
+    bytes32 internal constant IMPORT_TAG = keccak256("ERC-TRUST/v2/erc3643-partial/import");
     bytes32 internal constant ACTION_APPLIED_TOPIC =
         keccak256("RegulatoryActionApplied(bytes32,uint8,bytes32,bytes32)");
     bytes32 internal constant REVERSAL_APPLIED_TOPIC =
@@ -80,14 +80,16 @@ abstract contract ERC3643ProfileTestBase {
     function testDescriptorDependencyStateAndInterfaceIdentifiers() external view {
         TrustKernelTypes.ProfileDescriptor memory descriptor = adapter.trustProfile();
         _assertEq(descriptor.profileId, PROFILE_ID, "profile id");
-        _assertEq(descriptor.profileId, TrustKernelTypes.PROFILE_ERC3643_VERIFIED_FULL, "profile id constant");
-        _assert(descriptor.profileKind == TrustKernelTypes.ProfileKind.VERIFIED_FULL, "profile kind");
+        _assertEq(descriptor.profileId, TrustKernelTypes.PROFILE_ERC3643_PARTIAL, "profile id constant");
+        _assert(descriptor.profileId != TrustKernelTypes.PROFILE_ERC3643_VERIFIED_FULL, "not the future full id");
+        _assert(descriptor.profileKind == TrustKernelTypes.ProfileKind.PARTIAL, "profile kind");
         _assertEq(descriptor.standardVersion, 2, "standard version");
         _assertEq(descriptor.actionMask, 0x3f, "action mask");
         _assertEq(descriptor.reversalMask, 0x07, "reversal mask");
         _assertEq(descriptor.underlyingToken, token, "underlying token");
         _assertEq(descriptor.manifestHash, governor.sealedBinding(), "manifest hash is the sealed binding");
-        _assert(descriptor.full && !descriptor.proxySupported, "flags");
+        _assert(!descriptor.full && !descriptor.proxySupported, "partial flags");
+        _assert(adapter.sealedTopologyLive(), "sealed topology live");
 
         bytes32 manifestHash = keccak256(abi.encode(noEntries));
         _assertEq(governor.importManifestHash(), manifestHash, "empty manifest hash");
@@ -104,11 +106,14 @@ abstract contract ERC3643ProfileTestBase {
         _assert(!adapter.supportsInterface(0xffffffff), "invalid id");
         _assert(!adapter.supportsInterface(0xbcc2afa9), "kernel version 1 profile identifier is gone");
         _assert(!adapter.supportsInterface(0x5cd8d207), "native route identifier is not claimed");
-        _assert(adapter.supportsInterface(type(IERC3643VerifiedProfile).interfaceId), "profile surface identifier");
+        _assert(adapter.supportsInterface(type(IERC3643PartialProfile).interfaceId), "profile surface identifier");
         _assert(
-            type(IERC3643VerifiedProfile).interfaceId != type(IERCTrustKernel).interfaceId,
+            type(IERC3643PartialProfile).interfaceId != type(IERCTrustKernel).interfaceId,
             "profile surface is separate from the kernel identifier"
         );
+        bytes4 legacyProfileSurface =
+            type(IERC3643PartialProfile).interfaceId ^ IERC3643PartialProfile.sealedTopologyLive.selector;
+        _assert(!adapter.supportsInterface(legacyProfileSurface), "old profile surface identifier is not claimed");
     }
 
     function testActivationEmitsBindingsAuthorityAndImportCount() external {
@@ -308,12 +313,19 @@ abstract contract ERC3643ProfileTestBase {
         _assert(_recomputeReceiptHash(retagged) != reversalReceipt, "receipt kind tag separates domains");
     }
 
+    function testReceiptObservationBindsActualUpstreamRestrictionForEveryRole() external {
+        _assertCustodyDispositionObservationWithOneRestrictedRole(true, 14);
+        _freshUnit();
+        _seal(noEntries);
+        _assertCustodyDispositionObservationWithOneRestrictedRole(false, 24);
+    }
+
     // ------------------------------------------------------------------
     // Seal, topology, dependency drift, and bypass closure
     // ------------------------------------------------------------------
 
     function testProfileSealAndDirectBypassClosure() external {
-        _assert(adapter.trustProfile().full, "full");
+        _assert(!adapter.trustProfile().full && adapter.sealedTopologyLive(), "partial with live topology");
         (bool direct,) = token.call(abi.encodeCall(MockERC3643Token.forcedTransfer, (address(this), buyer, 1 ether)));
         _assert(!direct, "raw direct bypass");
         address[] memory from = new address[](1);
@@ -340,10 +352,12 @@ abstract contract ERC3643ProfileTestBase {
         _assertEq(_frozen(address(this)), 0, "no bypass froze anything");
     }
 
-    function testUnsealedAdapterIsNotFullAndCannotExecute() external {
+    function testUnsealedAdapterCannotExecuteAndTopologyIsNotLive() external {
         _freshUnit();
         TrustKernelTypes.ProfileDescriptor memory descriptor = adapter.trustProfile();
         _assert(!descriptor.full, "unsealed is not full");
+        _assert(descriptor.profileKind == TrustKernelTypes.ProfileKind.PARTIAL, "unsealed descriptor stays partial");
+        _assert(!adapter.sealedTopologyLive(), "unsealed topology is not live");
         _assertEq(descriptor.manifestHash, bytes32(0), "no sealed binding");
         (bytes32 root, uint64 epoch) = adapter.dependencyState();
         _assert(root == bytes32(0) && epoch == 0, "no dependency state before the seal");
@@ -378,22 +392,25 @@ abstract contract ERC3643ProfileTestBase {
         (bool wrongCaller,) =
             stranger.relay(address(governor), abi.encodeCall(governor.seal, (address(adapter), noEntries)));
         _assert(!wrongCaller, "only the bootstrap authority seals");
-        _assert(!governor.topologySealed() && !adapter.trustProfile().full, "nothing sealed");
+        _assert(!governor.topologySealed() && !adapter.sealedTopologyLive(), "nothing sealed");
+        _assert(!adapter.trustProfile().full, "descriptor stays partial before seal");
 
         ERC3643TrustAdapter other = new ERC3643TrustAdapter(address(governor), address(this), AUTHORITY_REF);
         (bool mismatch, bytes memory mismatchResult) =
             address(governor).call(abi.encodeCall(governor.seal, (address(other), noEntries)));
         _assert(!mismatch && _reasonOf(mismatchResult) == 302, "adapter that is not the exclusive agent");
         governor.seal(address(adapter), noEntries);
-        _assert(adapter.trustProfile().full, "sealed after the failed attempts");
+        _assert(adapter.sealedTopologyLive(), "topology live after the failed attempts");
+        _assert(!adapter.trustProfile().full, "seal does not elevate the partial profile");
     }
 
-    function testTopologyDriftFailsClosedAndClearsFull() external {
+    function testTopologyDriftFailsClosedAndClearsTopologyLiveness() external {
         TrustKernelTypes.ActionRequest memory request = _request(TrustKernelTypes.ActionKind.FREEZE, 21, 1 ether);
         vm.etch(token, address(compliance).code);
-        _assert(!adapter.trustProfile().full, "token code drift clears full");
+        _assert(!adapter.trustProfile().full, "descriptor remains partial");
+        _assert(!adapter.sealedTopologyLive(), "token code drift clears topology liveness");
         _expectOperationalFailure(abi.encodeCall(adapter.executeRegulatoryAction, (request)), 300, "drifted token");
-        _assert(!governor.isFull(address(adapter)), "governor reports the drift");
+        _assert(!governor.sealedTopologyLive(address(adapter)), "governor reports the drift");
     }
 
     function testDependencyCodeDriftFailsClosed() external {
@@ -404,7 +421,8 @@ abstract contract ERC3643ProfileTestBase {
         bytes32 identityBinding = _expectedBinding(1, governor.sealedBinding());
         bytes32 sealedRoot = _expectedRoot(governor.sealedBinding());
         vm.etch(address(identity), address(compliance).code);
-        _assert(!adapter.trustProfile().full, "identity registry code drift clears full");
+        _assert(!adapter.sealedTopologyLive(), "identity registry code drift clears topology liveness");
+        _assert(!adapter.trustProfile().full, "descriptor remains partial under identity drift");
         (bool ok, bytes memory result) = _call(abi.encodeCall(adapter.executeRegulatoryAction, (transferRequest)));
         _assert(!ok && _selector(result) == IERCTrustKernel.TrustOperationalFailure.selector, "drifted identity");
         _assertEq(_reasonOf(result), 200, "dependency code mismatch");
@@ -413,10 +431,12 @@ abstract contract ERC3643ProfileTestBase {
             abi.encodeCall(adapter.executeRegulatoryAction, (overlay)), 200, "overlay also fails closed"
         );
         vm.etch(address(identity), identityCode);
-        _assert(adapter.trustProfile().full, "restored code restores full");
+        _assert(adapter.sealedTopologyLive(), "restored code restores topology liveness");
+        _assert(!adapter.trustProfile().full, "restored topology does not elevate the profile");
 
         vm.etch(address(compliance), identityCode);
-        _assert(!adapter.trustProfile().full, "compliance code drift clears full");
+        _assert(!adapter.sealedTopologyLive(), "compliance code drift clears topology liveness");
+        _assert(!adapter.trustProfile().full, "descriptor remains partial under compliance drift");
         _expectOperationalFailure(
             abi.encodeCall(adapter.executeRegulatoryAction, (transferRequest)), 200, "drifted compliance"
         );
@@ -463,14 +483,15 @@ abstract contract ERC3643ProfileTestBase {
     }
 
     // ------------------------------------------------------------------
-    // Existing upstream state: fresh zero-state seal or exact import manifest
+    // Existing upstream state: declared-entry seal and exact included entries
     // ------------------------------------------------------------------
 
     function testUndeclaredUpstreamStateFailsClosed() external {
         _freshUnit();
         _seedLegacy(holder, 100 ether, 10 ether, true);
         _seal(noEntries);
-        _assert(adapter.trustProfile().full, "fresh zero-state declaration seals");
+        _assert(adapter.sealedTopologyLive(), "empty declaration can seal the topology");
+        _assert(!adapter.trustProfile().full, "empty declaration does not prove completeness");
 
         TrustKernelTypes.ActionRequest memory freeze = _request(TrustKernelTypes.ActionKind.FREEZE, 40, 50 ether);
         freeze.subject = holder;
@@ -508,7 +529,8 @@ abstract contract ERC3643ProfileTestBase {
         bytes32 manifestHash = keccak256(abi.encode(manifest));
         _assertEq(governor.importManifestHash(), manifestHash, "manifest hash");
         _assertEq(governor.sealedBinding(), _sealedBinding(manifestHash), "binding commits to the manifest");
-        _assert(adapter.trustProfile().full, "import seals full");
+        _assert(adapter.sealedTopologyLive(), "declared entries seal the topology");
+        _assert(!adapter.trustProfile().full, "exact declared entries do not prove global completeness");
 
         bytes32 freezeCase = _importCaseId(manifestHash, holder, TrustKernelTypes.CaseFamily.FREEZE);
         bytes32 freezeHead = _importActionId(freezeCase);
@@ -595,14 +617,16 @@ abstract contract ERC3643ProfileTestBase {
         (ok, result) = address(governor).call(abi.encodeCall(governor.seal, (address(adapter), undeclaredAccount)));
         _assert(!ok && _reasonOf(result) == 303, "declared state the token does not have");
         _assert(!governor.topologySealed(), "a rejected manifest seals nothing");
-        _assert(!adapter.trustProfile().full, "adapter stays unsealed");
+        _assert(!adapter.sealedTopologyLive(), "adapter stays unsealed");
+        _assert(!adapter.trustProfile().full, "descriptor stays partial");
         (bytes32 root, uint64 epoch) = adapter.dependencyState();
         _assert(root == bytes32(0) && epoch == 0, "no bindings after a rejected seal");
 
         ERC3643ProfileTypes.ImportEntry[] memory exact = new ERC3643ProfileTypes.ImportEntry[](1);
         exact[0] = ERC3643ProfileTypes.ImportEntry(holder, 10 ether, false);
         governor.seal(address(adapter), exact);
-        _assert(adapter.trustProfile().full, "exact manifest seals");
+        _assert(adapter.sealedTopologyLive(), "exact declared entries seal the topology");
+        _assert(!adapter.trustProfile().full, "exact declared entries remain partial");
         (bool relayed,) = stranger.relay(address(adapter), abi.encodeCall(adapter.activateSeal, (exact)));
         _assert(!relayed, "activation is governor-only");
     }
@@ -985,6 +1009,11 @@ abstract contract ERC3643ProfileTestBase {
         // The width was asserted above, so the conversion cannot truncate.
         // forge-lint: disable-next-line(unsafe-typecast)
         _assert(fixture.supportsInterface(bytes4(identifier)), "adapter reports the kernel identifier");
+        _assertEq(
+            adapter.trustProfile().profileId,
+            vm.parseJsonBytes32(json, ".constants.profileIds.erc3643-partial"),
+            "adapter reports the generated partial profile id"
+        );
         for (uint256 i = 0; i < 7; ++i) {
             string memory base = string.concat(".actions[", vm.toString(i), "]");
             TrustKernelTypes.ActionRequest memory request = _actionAt(json, string.concat(base, ".request"));
@@ -1143,6 +1172,87 @@ abstract contract ERC3643ProfileTestBase {
                 _expectedBinding(1, binding),
                 bytes32(0),
                 bytes32(0)
+            )
+        );
+    }
+
+    function _assertCustodyDispositionObservationWithOneRestrictedRole(bool sourceRestricted, uint256 nonceBase)
+        internal
+    {
+        address restrictedAccount = sourceRestricted ? address(adapter) : buyer;
+        TrustKernelTypes.ActionRequest memory restrictRole =
+            _request(TrustKernelTypes.ActionKind.RESTRICT, nonceBase, 0);
+        restrictRole.subject = restrictedAccount;
+        restrictRole.source = restrictedAccount;
+        restrictRole.actionId = adapter.deriveActionId(restrictRole);
+        adapter.executeRegulatoryAction(restrictRole);
+
+        TrustKernelTypes.ActionRequest memory seize =
+            _request(TrustKernelTypes.ActionKind.SEIZE, nonceBase + 1, 2 ether);
+        adapter.executeRegulatoryAction(seize);
+        TrustKernelTypes.ActionRequest memory disposition =
+            _custodyDisposition(TrustKernelTypes.ActionKind.CONFISCATE, seize, nonceBase + 2);
+        _assert(
+            disposition.subject != disposition.source && disposition.source != disposition.destination
+                && disposition.subject != disposition.destination,
+            "observation roles are distinct"
+        );
+        _assert(!_restricted(disposition.subject), "subject restriction is false");
+        _assert(_restricted(disposition.source) == sourceRestricted, "source restriction pattern");
+        _assert(_restricted(disposition.destination) == !sourceRestricted, "destination restriction pattern");
+
+        bytes32 expectedPre = _custodyDispositionObservation(disposition, seize);
+        adapter.executeRegulatoryAction(disposition);
+        bytes32 expectedPost = _custodyDispositionObservation(disposition, seize);
+        TrustKernelTypes.Receipt memory r = adapter.receipt(disposition.actionId);
+        _assertEq(r.preState, expectedPre, "pre-state binds role-specific actual restrictions");
+        _assertEq(r.postState, expectedPost, "post-state binds role-specific actual restrictions");
+        _assert(expectedPre != expectedPost, "custody balance and case changes are observed");
+    }
+
+    function _custodyDispositionObservation(
+        TrustKernelTypes.ActionRequest memory request,
+        TrustKernelTypes.ActionRequest memory seize
+    ) internal view returns (bytes32) {
+        (uint256 frozenTarget,, bool ownedRestricted) = adapter.ownedState(request.subject);
+        TrustKernelTypes.CaseRecord memory caseState = adapter.caseRecord(request.caseId);
+        bool custodyActive = caseState.phase == TrustKernelTypes.CasePhase.OPEN;
+        ERC3643ProfileTypes.CustodyRecord memory custody = ERC3643ProfileTypes.CustodyRecord({
+            custodian: seize.custodian,
+            declaredPriorHolder: seize.source,
+            encumberedAmount: custodyActive ? seize.amount : 0,
+            actionId: seize.actionId,
+            active: custodyActive
+        });
+        ERC3643ProfileTypes.EffectHead memory emptyHead;
+        bytes32 subjectObservation = keccak256(
+            abi.encode(
+                _balance(request.subject),
+                frozenTarget,
+                _frozen(request.subject),
+                ownedRestricted,
+                _restricted(request.subject)
+            )
+        );
+        bytes32 sourceObservation = keccak256(
+            abi.encode(_balance(request.source), _restricted(request.source), custodyActive ? seize.amount : uint256(0))
+        );
+        bytes32 destinationObservation =
+            keccak256(abi.encode(_balance(request.destination), _restricted(request.destination), uint256(0)));
+        return keccak256(
+            abi.encode(
+                token,
+                request.subject,
+                subjectObservation,
+                request.source,
+                sourceObservation,
+                request.destination,
+                destinationObservation,
+                custody,
+                emptyHead,
+                emptyHead,
+                caseState,
+                governor.sealedBinding()
             )
         );
     }
@@ -1403,6 +1513,14 @@ abstract contract ERC3643ProfileTestBase {
         return keccak256(bytes.concat(abi.encode(DOMAIN, address(adapter), block.chainid), words));
     }
 
+    function _assertNoCanonicalActionEvent(Vm.Log[] memory logs, bytes32 actionId) internal view {
+        for (uint256 i = 0; i < logs.length; ++i) {
+            bool canonical = logs[i].emitter == address(adapter) && logs[i].topics.length > 1
+                && logs[i].topics[0] == ACTION_APPLIED_TOPIC && logs[i].topics[1] == actionId;
+            _assert(!canonical, "failed command emits no canonical action event");
+        }
+    }
+
     function _assert(bool condition, string memory message) internal pure {
         require(condition, message);
     }
@@ -1461,6 +1579,80 @@ contract ERC3643ProfileUnitTest is ERC3643ProfileTestBase {
         _assert(!_restricted(address(this)), "nothing restricted");
         adapter.executeRegulatoryAction(_request(TrustKernelTypes.ActionKind.CONFISCATE, 166, 1 ether));
         _assertEq(_balance(buyer), 1 ether, "restored upstream admits the command");
+    }
+
+    function testForcedTransferClearingSourceRestrictionRevertsAndStutters() external {
+        MockERC3643Token fixture = MockERC3643Token(token);
+        TrustKernelTypes.ActionRequest memory restrictSource = _request(TrustKernelTypes.ActionKind.RESTRICT, 167, 0);
+        adapter.executeRegulatoryAction(restrictSource);
+        _assert(_restricted(address(this)), "source restriction established");
+
+        TrustKernelTypes.ActionRequest memory transfer = _request(TrustKernelTypes.ActionKind.CONFISCATE, 168, 1 ether);
+        uint256 sourceBefore = _balance(address(this));
+        uint256 destinationBefore = _balance(buyer);
+        fixture.setMode(MockERC3643Token.Mode.TRANSFER_CLEARS_SOURCE_RESTRICTION);
+        vm.recordLogs();
+        (bool ok, bytes memory result) = _call(abi.encodeCall(adapter.executeRegulatoryAction, (transfer)));
+        Vm.Log[] memory logs = vm.getRecordedLogs();
+        _assert(!ok && _selector(result) == IERCTrustKernel.TrustOperationalFailure.selector, "typed failure");
+        _assertEq(_reasonOf(result), 401, "source restriction post-state mismatch");
+        _assertEq(address(uint160(uint256(_wordAt(result, 2)))), address(this), "source account reference");
+        _assertEq(_balance(address(this)), sourceBefore, "source balance stutters");
+        _assertEq(_balance(buyer), destinationBefore, "destination balance stutters");
+        _assert(_restricted(address(this)), "source restriction stutters");
+        _assertEq(_frozen(address(this)), 0, "source frozen amount stutters");
+        _assertEq(_frozen(buyer), 0, "destination frozen amount stutters");
+        _assert(adapter.actionRecord(transfer.actionId).lifecycle == TrustKernelTypes.Lifecycle.NONE, "no action");
+        _assertEq(adapter.receipt(transfer.actionId).receiptHash, bytes32(0), "no receipt");
+        _assert(adapter.caseRecord(transfer.caseId).phase == TrustKernelTypes.CasePhase.NONE, "case stutters");
+        _assertNoCanonicalActionEvent(logs, transfer.actionId);
+
+        fixture.setMode(MockERC3643Token.Mode.NORMAL);
+        adapter.executeRegulatoryAction(transfer);
+        _assert(
+            adapter.actionRecord(transfer.actionId).lifecycle == TrustKernelTypes.Lifecycle.APPLIED, "nonce reusable"
+        );
+        _assert(adapter.receipt(transfer.actionId).receiptHash != bytes32(0), "receipt stored after retry");
+        _assert(_restricted(address(this)), "normal transfer preserves source restriction");
+    }
+
+    function testForcedTransferClearingDestinationRestrictionRevertsAndStutters() external {
+        MockERC3643Token fixture = MockERC3643Token(token);
+        TrustKernelTypes.ActionRequest memory restrictDestination =
+            _request(TrustKernelTypes.ActionKind.RESTRICT, 169, 0);
+        restrictDestination.subject = buyer;
+        restrictDestination.source = buyer;
+        restrictDestination.actionId = adapter.deriveActionId(restrictDestination);
+        adapter.executeRegulatoryAction(restrictDestination);
+        _assert(_restricted(buyer), "destination restriction established");
+
+        TrustKernelTypes.ActionRequest memory transfer = _request(TrustKernelTypes.ActionKind.CONFISCATE, 170, 1 ether);
+        uint256 sourceBefore = _balance(address(this));
+        uint256 destinationBefore = _balance(buyer);
+        fixture.setMode(MockERC3643Token.Mode.TRANSFER_CLEARS_DESTINATION_RESTRICTION);
+        vm.recordLogs();
+        (bool ok, bytes memory result) = _call(abi.encodeCall(adapter.executeRegulatoryAction, (transfer)));
+        Vm.Log[] memory logs = vm.getRecordedLogs();
+        _assert(!ok && _selector(result) == IERCTrustKernel.TrustOperationalFailure.selector, "typed failure");
+        _assertEq(_reasonOf(result), 401, "destination restriction post-state mismatch");
+        _assertEq(address(uint160(uint256(_wordAt(result, 2)))), buyer, "destination account reference");
+        _assertEq(_balance(address(this)), sourceBefore, "source balance stutters");
+        _assertEq(_balance(buyer), destinationBefore, "destination balance stutters");
+        _assert(_restricted(buyer), "destination restriction stutters");
+        _assertEq(_frozen(address(this)), 0, "source frozen amount stutters");
+        _assertEq(_frozen(buyer), 0, "destination frozen amount stutters");
+        _assert(adapter.actionRecord(transfer.actionId).lifecycle == TrustKernelTypes.Lifecycle.NONE, "no action");
+        _assertEq(adapter.receipt(transfer.actionId).receiptHash, bytes32(0), "no receipt");
+        _assert(adapter.caseRecord(transfer.caseId).phase == TrustKernelTypes.CasePhase.NONE, "case stutters");
+        _assertNoCanonicalActionEvent(logs, transfer.actionId);
+
+        fixture.setMode(MockERC3643Token.Mode.NORMAL);
+        adapter.executeRegulatoryAction(transfer);
+        _assert(
+            adapter.actionRecord(transfer.actionId).lifecycle == TrustKernelTypes.Lifecycle.APPLIED, "nonce reusable"
+        );
+        _assert(adapter.receipt(transfer.actionId).receiptHash != bytes32(0), "receipt stored after retry");
+        _assert(_restricted(buyer), "normal transfer preserves destination restriction");
     }
 
     /// @dev Every account a command or a resynchronisation acts on is checked against the owned state;

@@ -59,9 +59,12 @@ Do not infer a profile from a token name or an interface probe. Read
 
 - Native Full requires the exact immutable implementation and its four bound
   read-only dependencies.
-- ERC-3643 Verified Full requires a sealed, exclusive topology, a declared
-  initial state, and owned upstream state.
-- Any missing Full condition must be declared Partial or Unsupported.
+- The current ERC-3643 reference reports the exact Partial profile identifier,
+  `profileKind = PARTIAL`, and `full = false`. Its `sealedTopologyLive()` view
+  reports only the narrower operational seal and dependency-code condition.
+- ERC-3643 Verified Full is a future TRUST 1.2 class requiring atomic fresh
+  deployment, a complete initial-state gate, and same-transaction transfer or
+  Compliance-hook enforcement. Existing T-REX imports are Partial.
 
 This repository provides no deployable address or deployment manifest. An
 integrator evaluating a deployment must create a separate manifest and bind
@@ -132,6 +135,7 @@ transaction, or validate a deployment.
 | ERC-3643 profile action | adapter `executeRegulatoryAction` |
 | ERC-3643 profile reversal | adapter `executeRegulatoryReversal` |
 | ERC-3643 profile resynchronisation | adapter `resynchroniseFrozen(account)` (anyone; only raises the upstream frozen amount toward the owned target) |
+| ERC-3643 sealed-topology health | adapter `sealedTopologyLive()` (operational predicate only; never a Full declaration) |
 
 Never call `setFrozenTokens` or `forcedTransfer` as an operator shortcut. The
 native reference rejects raw calls unless a canonical wrapper has created an
@@ -193,8 +197,8 @@ It does not prove off-chain legal authority or factual truth.
 Before an integration may describe itself as evaluation-ready, it should have:
 
 - a reproducible source and bytecode binding;
-- an explicit Native Full, ERC-3643 Verified Full, Partial, or Unsupported
-  declaration;
+- an explicit Native Full, ERC-3643 Partial, future ERC-3643 Verified Full, or
+  Unsupported declaration, with the current reference kept Partial;
 - independent identifier, calldata, vector, and receipt reproduction;
 - negative tests for replay, stale dependency pairs, dependency failure,
   topology drift, direct ERC-7943 calls, terminal cases, and action-specific

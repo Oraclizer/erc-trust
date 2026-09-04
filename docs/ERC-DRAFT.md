@@ -93,6 +93,8 @@ library TrustKernelTypes {
     bytes32 internal constant DEPENDENCY_ROOT_TAG = 0x8dd0ff19b096a49997e6e0fa1eea2dee5d61291bb86d3d10640e517c9e6cbe18;
     /// keccak256("ERC-TRUST/v2/native-full")
     bytes32 internal constant PROFILE_NATIVE_FULL = 0x86ba25e1a29a74ad905fd84744be032fec9dc05645f58f7f1b7788dc60ae866b;
+    /// keccak256("ERC-TRUST/v2/erc3643-partial")
+    bytes32 internal constant PROFILE_ERC3643_PARTIAL = 0xa57a63d1a6def0dfce48359b5a32ef71ae339ac73fcb1cf8d123c03b7ada1fe6;
     /// keccak256("ERC-TRUST/v2/erc3643-verified-full")
     bytes32 internal constant PROFILE_ERC3643_VERIFIED_FULL = 0xad56e54f83cc255e391dd3838f7dc4befa1b0306b42d8ed7974588f27fec41ad;
 
@@ -421,7 +423,7 @@ The reason classes are:
 | 1 | 1 to 99 | `TrustInvalidCommand` | 1 domain, 2 identifier, 3 time, 4 authority epoch, 5 dependency binding, 6 shape, 7 reversal pairing, 8 custody, 9 entitlement, 10 case conflict, 11 current effect, 12 freeze direction, 13 no state change |
 | 100 | 100 to 199 | `TrustRejected` | 100 policy denied, 101 identity denied, 102 settlement denied, 103 entitlement denied |
 | 200 | 200 to 299 | `TrustOperationalFailure` | 200 dependency code mismatch, 201 dependency configuration mismatch, 202 dependency call failed or malformed, 203 dependency echo mismatch, 204 dependency reported failure, 205 dependency unavailable at bind |
-| 300 | 300 to 399 | `TrustOperationalFailure` | 300 topology not full, 301 seal invalid, 302 topology mismatch at seal, 303 import manifest mismatch, 304 upstream state not owned |
+| 300 | 300 to 399 | `TrustOperationalFailure` | 300 sealed topology not live, 301 seal invalid, 302 topology mismatch at seal, 303 import manifest mismatch, 304 upstream state not owned |
 | 400 | 400 to 499 | `TrustOperationalFailure` | 400 upstream call failed, 401 upstream post-state mismatch, 402 identity registry unavailable, 403 compliance unavailable |
 
 ### Actions, cases, and transitions
@@ -596,10 +598,11 @@ settlement, proceeds, or entitlement claim is true.
 profile kind, the standard version (2), the masks of implemented actions and
 reversals, the underlying token (zero for a native token), a manifest hash,
 whether the endpoint is *full*, and whether it is a proxy. The descriptor is
-a declaration about the endpoint, not proof of conformance. `full` MUST be
-computed from the live topology and dependency state and MUST NOT be a
-stored constant. A profile MAY add interfaces with their own ERC-165
-identifiers; those identifiers are never part of the kernel identifier.
+a declaration about the endpoint, not proof of conformance. A Full profile
+MUST compute `full` from all live conformance conditions and MUST NOT store a
+stale success bit. A Partial or Unsupported profile MUST return `full = false`.
+A profile MAY add interfaces with their own ERC-165 identifiers; those
+identifiers are never part of the kernel identifier.
 
 #### Native Full
 
@@ -615,63 +618,69 @@ identifiers; those identifiers are never part of the kernel identifier.
 | authority | the account currently registered for `authorityRef`, which MAY be a contract |
 | `manifestHash` | the current `dependencyRoot` |
 
-#### ERC-3643 Verified Full
+#### ERC-3643 Partial reference
 
 ERC-3643 identity and compliance responses are upstream inputs, not facts
-proved by this proposal. The conformance unit is a governor together with an
-adapter; the adapter is the endpoint and the token is `underlyingToken`.
+proved by this proposal. The current conformance unit is a governor together
+with an adapter; the adapter is the endpoint and the token is
+`underlyingToken`.
 
 | Property | Value |
 | --- | --- |
-| `profileId` | `keccak256("ERC-TRUST/v2/erc3643-verified-full")` |
-| `profileKind` | `VERIFIED_FULL` |
+| `profileId` | `keccak256("ERC-TRUST/v2/erc3643-partial")` |
+| `profileKind` | `PARTIAL` |
 | dependencies | the sealed token runtime identity, the Identity Registry (`IDENTITY`), and the Compliance contract (`POLICY`); `SETTLEMENT` and `ENTITLEMENT` are zero, so `LIQUIDATE` and `RECOVER` bind their commitments only |
-| `full` | computed live from the sealed topology |
+| `full` | `false` |
 | `manifestHash` | the sealed binding |
 
-A deployment MAY report this profile only while all of the following hold:
+The reference MAY execute only while its narrower sealed topology remains
+live. The adapter is the token's exclusive Agent; the governor is the token
+owner and exposes no arbitrary-call, Agent-management, or registry-rebinding
+path after the seal; the token runtime code, Identity Registry, Compliance,
+owner, and exclusive Agent match the seal; and every privileged direct and
+batch mutator remains unreachable except through the adapter. The profile
+surface reports this operational condition as `sealedTopologyLive()`. That
+view MUST NOT be interpreted as Full conformance.
 
-1. the adapter is the token's exclusive Agent;
-2. the governor is the token owner and, after its one-way seal, exposes no
-   arbitrary-call, Agent-management, or registry-rebinding path;
-3. the token runtime code, Identity Registry, Compliance, owner, and
-   exclusive Agent match the sealed binding (reason 300 when they no longer
-   do, reason 200 when a bound dependency's runtime code changed);
-4. every privileged direct and batch token mutator is unreachable except
-   through the adapter;
-5. the adapter implements all six actions and all three reversals.
-
-Onboarding is a fresh zero-state seal or an exact import manifest, nothing
-else. The manifest lists every account that carries an upstream frozen amount
-or an address freeze at the seal, sorted by strictly increasing account, each
-entry declaring nonzero state; the empty manifest is the fresh declaration.
-The seal MUST verify every entry against the live upstream state and revert
-with reason 303 on any difference. Declared state is then *owned* by the
-adapter: an imported frozen amount opens a `FREEZE` case and an imported
-address freeze opens a `RESTRICT` case, each with a synthetic applied head
-that has no command hash and no receipt, so that declared legacy state is
-reversible and amendable under the transition table. Any other initial state
-makes the deployment Partial or Unsupported.
+The import manifest is a canonical list of declared accounts. Each included
+entry declares a nonzero frozen amount or address freeze, and the seal MUST
+verify that entry against live upstream state or revert with reason 303. The
+manifest does not prove that all legacy state was declared. An empty manifest
+does not prove a fresh zero state. An imported frozen amount opens a `FREEZE`
+case and an imported address freeze opens a `RESTRICT` case, each with a
+synthetic applied head and no command hash or receipt, so declared state is
+reversible and amendable under the transition table.
 
 Before consuming a command, the adapter MUST check that every account the
 command acts on carries exactly the upstream frozen amount and address freeze
-flag that the adapter declared at the seal or applied itself, and MUST revert
-with reason 304 otherwise. Upstream state the adapter does not own is never
-overwritten and never silently adopted. Custody is confined to the adapter:
-`SEIZE` requires the custodian and the destination to be the adapter itself.
+flag that the adapter declared or applied, and MUST revert with reason 304
+otherwise. After a forced transfer, it MUST restore the source and destination
+frozen amounts to their owned targets saturated at current balances, then
+MUST compare both actual upstream restriction flags with adapter-owned state.
+A mismatch MUST revert with reason 401 and leave the command, nonce, state,
+receipt, and canonical event unapplied. Receipt pre-state and post-state
+observations MUST bind actual upstream restriction flags for the subject,
+source, and destination.
 
-Because an ERC-3643 forced transfer unfreezes the moved tokens and the token
-holds a frozen *amount* while the kernel holds a frozen *target*, the adapter
-materialises the owned target upstream only at its own touch points: after
-every forced transfer it restores both accounts to their owned targets
-saturated at the current balance and verifies the post-state (reason 401 on
-mismatch). An ordinary inbound transfer between two touches leaves the
-upstream frozen amount at the last applied value, so the growth is
-transferable until the next command that touches the account or a call to
-the profile's `resynchroniseFrozen(account)`, which any caller MAY make and
-which only raises the upstream frozen amount toward the owned target. This
-window is a property of adapting a frozen amount to a frozen target and MUST
-be stated in the profile's limitations.
+An ordinary inbound transfer between adapter touches can increase balance
+without increasing the upstream frozen amount. The growth remains transferable
+until the next touch or a call to `resynchroniseFrozen(account)`. This is a
+Partial limitation, not a condition permitted by Verified Full.
+
+#### ERC-3643 Verified Full
+
+The identifier `keccak256("ERC-TRUST/v2/erc3643-verified-full")` is reserved
+for a TRUST 1.2 profile. No current reference implementation reports it. A
+deployment MUST NOT report this profile unless it has an atomic fresh
+deployment, a complete initial-state gate, a token or Compliance hook that
+enforces the TRUST frozen target on every ordinary transfer in the same
+transaction, actual upstream balance, frozen amount, and restriction
+post-state equality after forced transfers, matching receipt observations,
+and a rejected or explicitly bound proxy and upgrade surface.
+
+Existing T-REX imports are Partial unless an enumerable state root, account
+count, and completeness proof establish the complete initial state. A generic
+attestation is not that proof.
 
 If a reseal or rebinding surface exists, every reseal MUST increment the
 dependency epoch and change the root. The reference governor seals exactly
@@ -775,8 +784,8 @@ controller transfers. This proposal neither replaces that suite nor infers a
 regulatory action from its function names or generic operator data.
 [ERC-3643](./eip-3643.md) specifies an ERC-20 compatible permissioned token
 suite with identity, compliance, agent, freeze, forced-transfer, and recovery
-mechanisms; those mechanisms can serve as an adapter target, and the Verified
-Full profile above states the conditions under which they do. They do not by
+mechanisms; those mechanisms can serve as an adapter target, and the Partial
+reference above states its bounded conditions. They do not by
 themselves provide the command, case, reversal, receipt, and dependency
 binding semantics defined here. [ERC-7943](./eip-7943.md) provides the
 neutral freeze and forced-transfer mechanics this proposal builds on.
@@ -789,8 +798,8 @@ interface for those meanings.
 The proposal is additive with respect to ERC-20 and ERC-7943: it changes no
 selector, event, storage, or transfer semantics of either, and a native
 conforming token implements the kernel interface alongside them. ERC-3643
-compatibility is profile-specific and does not claim that every ERC-3643
-deployment satisfies the Full topology.
+compatibility is profile-specific and does not claim that any existing
+ERC-3643 deployment satisfies the future Verified Full requirements.
 
 An existing ERC-20, ERC-7943, ERC-1450, or ERC-3643 deployment does not
 become conformant because it exposes similar privileged operations. It can

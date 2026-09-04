@@ -1,3 +1,5 @@
+// Historical candidate 2 runtime binding. The kernel v2 successor uses generate-runtime-binding-v3.mjs.
+
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";

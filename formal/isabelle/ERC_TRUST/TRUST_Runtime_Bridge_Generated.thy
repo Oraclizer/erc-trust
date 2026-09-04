@@ -4,22 +4,22 @@ theory TRUST_Runtime_Bridge_Generated
 begin
 
 definition runtime_bridge_schema_sha256 :: string where
-  "runtime_bridge_schema_sha256 = ''9bb84191d893772cb73c9898b5431ec3b8cbeb78f27f3a14f3ac69b751f732cb''"
+  "runtime_bridge_schema_sha256 = ''011d379deafc1e606fbc6734f7d0895ea3b598e73b86866f009e3e08b0309610''"
 
 definition native_runtime_template_sha256 :: string where
   "native_runtime_template_sha256 = ''b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1''"
 definition native_runtime_bytes :: nat where "native_runtime_bytes = 20043"
 definition profile_adapter_runtime_sha256 :: string where
-  "profile_adapter_runtime_sha256 = ''2a7214a83e298e02e85bcfddeb022f0f339bd6cd616e0c7333247728c32f2541''"
-definition profile_adapter_runtime_bytes :: nat where "profile_adapter_runtime_bytes = 19218"
+  "profile_adapter_runtime_sha256 = ''7a2dfa433911dd37e389498129356db30693e8ee8e128f8da63a5d3044a56349''"
+definition profile_adapter_runtime_bytes :: nat where "profile_adapter_runtime_bytes = 19480"
 definition profile_governor_runtime_sha256 :: string where
-  "profile_governor_runtime_sha256 = ''ba2d63c8e93db7997ce57fe128a36dcfa761fb993e5babc9920d2911764f358e''"
-definition profile_governor_runtime_bytes :: nat where "profile_governor_runtime_bytes = 2790"
+  "profile_governor_runtime_sha256 = ''78c08fbe4be793482e44a8cdf32fcc1af3276277c8cc78f48761fdcbc4bf9399''"
+definition profile_governor_runtime_bytes :: nat where "profile_governor_runtime_bytes = 2787"
 definition eip170_runtime_limit :: nat where "eip170_runtime_limit = 24576"
 
 definition kernel_interface_id :: nat where "kernel_interface_id = 721552136"
 definition native_route_interface_id :: nat where "native_route_interface_id = 1557713415"
-definition verified_profile_interface_id :: nat where "verified_profile_interface_id = 2997643143"
+definition erc3643_partial_interface_id :: nat where "erc3643_partial_interface_id = 2651333494"
 
 definition action_calldata_length :: nat where "action_calldata_length = 644"
 definition reversal_calldata_length :: nat where "reversal_calldata_length = 388"
@@ -138,6 +138,7 @@ definition profile_adapter_routes :: "(nat \<times> trust_route_class) list" whe
      (613625942, Route_Profile_Command),
      (708871729, Route_Kernel_View),
      (730410639, Route_Kernel_Command),
+     (748963057, Route_Profile_View),
      (793642867, Route_Kernel_Command),
      (856674270, Route_Kernel_View),
      (1537439609, Route_Kernel_View),
@@ -151,12 +152,13 @@ definition profile_adapter_routes :: "(nat \<times> trust_route_class) list" whe
      (4234842386, Route_Kernel_View)]"
 
 definition profile_adapter_method_identifiers :: "nat list" where
-  "profile_adapter_method_identifiers = [33540519, 373319844, 428484522, 613625942, 708871729, 730410639, 793642867, 856674270, 1537439609, 2079914166, 2398826873, 2520733649, 3212714319, 4049710945, 4080097900, 4228666474, 4234842386]"
+  "profile_adapter_method_identifiers = [33540519, 373319844, 428484522, 613625942, 708871729, 730410639, 748963057, 793642867, 856674270, 1537439609, 2079914166, 2398826873, 2520733649, 3212714319, 4049710945, 4080097900, 4228666474, 4234842386]"
 
 definition profile_governor_routes :: "(nat \<times> trust_route_class) list" where
   "profile_governor_routes =
     [(249044032, Route_Seal_View),
      (323885300, Route_Immutable_View),
+     (358160344, Route_Seal_View),
      (1653638749, Route_Immutable_View),
      (2134638570, Route_Seal_View),
      (2194210079, Route_Seal_Command),
@@ -164,12 +166,11 @@ definition profile_governor_routes :: "(nat \<times> trust_route_class) list" wh
      (3040142763, Route_Immutable_View),
      (3112633780, Route_Seal_View),
      (3458836473, Route_Immutable_View),
-     (3571345754, Route_Seal_View),
      (4168597491, Route_Seal_View),
      (4228666474, Route_Immutable_View)]"
 
 definition profile_governor_method_identifiers :: "nat list" where
-  "profile_governor_method_identifiers = [249044032, 323885300, 1653638749, 2134638570, 2194210079, 3001380254, 3040142763, 3112633780, 3458836473, 3571345754, 4168597491, 4228666474]"
+  "profile_governor_method_identifiers = [249044032, 323885300, 358160344, 1653638749, 2134638570, 2194210079, 3001380254, 3040142763, 3112633780, 3458836473, 4168597491, 4228666474]"
 
 definition native_storage_slots :: "(string \<times> nat) list" where
   "native_storage_slots =
@@ -253,7 +254,7 @@ definition reason_code_registry :: "(nat \<times> string) list" where
      (203, ''DEPENDENCY_ECHO_MISMATCH''),
      (204, ''DEPENDENCY_REPORTED_FAILURE''),
      (205, ''DEPENDENCY_UNAVAILABLE_AT_BIND''),
-     (300, ''TOPOLOGY_NOT_FULL''),
+     (300, ''SEALED_TOPOLOGY_NOT_LIVE''),
      (301, ''SEAL_INVALID''),
      (302, ''TOPOLOGY_MISMATCH_AT_SEAL''),
      (303, ''IMPORT_MANIFEST_MISMATCH''),
