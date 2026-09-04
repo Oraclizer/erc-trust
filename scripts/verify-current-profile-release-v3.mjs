@@ -139,6 +139,11 @@ function expectRejected(fn, label) {
   check(rejected, `self-test did not reject ${label}`);
 }
 
+function foundryChecksPass(checks) {
+  return checks?.tests?.failed === 0 && checks?.lintErrors === 0
+    && checks?.format === "PASS" && checks?.buildAndSize === "PASS";
+}
+
 function validateKontrolReceipt(receipt, expected, expectedRoot, expectedRuntime) {
   check(receipt.schema === "erc-trust-kontrol-results-v3", "Kontrol receipt schema");
   check(receipt.status === "PASS", "Kontrol receipt status");
@@ -247,6 +252,16 @@ if (selfTest) {
     mutate(changed);
     expectRejected(() => validateKontrolReceipt(changed, expectations.kontrol, identity.kontrolInputsSha256, expectedRuntime), label);
   }
+  const foundryChecks = json(receiptPaths.foundry).checks;
+  check(foundryChecksPass(foundryChecks), "committed Foundry check aggregate is not PASS");
+  for (const [label, mutate] of [
+    ["Foundry format failure", (value) => { value.format = "FAIL"; }],
+    ["Foundry build-and-size failure", (value) => { value.buildAndSize = "FAIL"; }],
+  ]) {
+    const changed = structuredClone(foundryChecks);
+    mutate(changed);
+    check(!foundryChecksPass(changed), `self-test did not reject ${label}`);
+  }
   const zeroCertora = {
     schema: "erc-trust-certora-results-v3", status: "PASS", rules: { total: 0, success: 0, fail: 0, sanityFail: 0, timeout: 0, unknown: 0, names: [] },
     ruleResults: [], inputs: [], inputsRootSha256: null, runtimeTemplateSha256: expectedRuntime,
@@ -292,7 +307,7 @@ if (selfTest) {
     mutate(changed);
     expectRejected(() => validateCertoraReceipt(changed, certoraExpected, certoraExpected.expectedInputsRootSha256, expectedRuntime), label);
   }
-  console.log("successor evidence verifier self-test PASS: full Kontrol and Certora receipt mutations rejected");
+  console.log("successor evidence verifier self-test PASS: Foundry, full Kontrol, and Certora receipt mutations rejected");
   process.exit(0);
 }
 
@@ -351,7 +366,7 @@ if (!exists(receiptPaths.foundry)) {
 } else {
   const foundry = json(receiptPaths.foundry);
   check(foundry.schema === "erc-trust-foundry-results-v3" && foundry.candidate === candidate, "Foundry receipt identity");
-  check(foundry.status === "PASS" && foundry.checks.tests.failed === 0 && foundry.checks.lintErrors === 0, "Foundry receipt status");
+  check(foundry.status === "PASS" && foundryChecksPass(foundry.checks), "Foundry receipt status");
   check(foundry.sourceRootSha256 === identity.sourceRootSha256, "Foundry receipt binds a different source root");
   check(runtimeTemplateSha256 !== null, "Foundry receipt without a deterministic build receipt");
   check(foundry.runtimeTemplate.sha256 === runtimeTemplateSha256, "Foundry receipt binds a different runtime");

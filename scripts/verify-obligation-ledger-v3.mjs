@@ -187,7 +187,8 @@ const foundryReceiptCurrent = foundry !== null && deterministicReceiptCurrent
   && foundry.runtimeTemplate?.sha256 === bridge.subjects.native.runtime.sha256
   && foundry.profileRuntimes?.erc3643Adapter?.sha256 === bridge.subjects.profileAdapter.runtime.sha256
   && foundry.profileRuntimes?.profileGovernor?.sha256 === bridge.subjects.profileGovernor.runtime.sha256
-  && foundry.checks?.tests?.failed === 0 && foundry.checks?.lintErrors === 0;
+  && foundry.checks?.tests?.failed === 0 && foundry.checks?.lintErrors === 0
+  && foundry.checks?.format === "PASS" && foundry.checks?.buildAndSize === "PASS";
 
 // ---------------------------------------------------------------------------
 // Pointer resolution
