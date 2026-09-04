@@ -9,11 +9,11 @@
   "closure": "CONDITIONAL",
   "closureRecord": {
     "path": "evidence/end-to-end-refinement/central-closure-v3.json",
-    "sha256": "d65aa5143001203502f2f672d6c6d2591950099d0fe2aabe69adf2b63b0e6106"
+    "sha256": "60a660fa4b3e61c9c24053e831bae4bcc968abcff2772c16625c3a46e45ab8ab"
   },
   "counts": {
-    "closed": 70,
-    "closedPendingReceipt": 0,
+    "closed": 48,
+    "closedPendingReceipt": 22,
     "currentMandatory": 0,
     "notApplicable": 2,
     "rows": 74,
@@ -29,7 +29,7 @@
     "sha256": "79592a27f332b84cac51d6387c2214f0d1612e68e396ea214c6da4a58dff36b6"
   },
   "receiptCurrency": {
-    "foundry": true,
+    "foundry": false,
     "kontrol": true,
     "mutation": true
   },
@@ -53,21 +53,27 @@
   },
   "rows": [
     {
-      "awaiting": [],
+      "awaiting": [
+        "Foundry receipt bound to the bridge runtime for testReplayNonceAndAuthorityRotation"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-AUTH-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "Foundry receipt bound to the bridge runtime for testReplayNonceAndAuthorityRotation"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-AUTH-02"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "Foundry receipt bound to the bridge runtime for testGovernanceAuthorizationIsConsumedOnce"
+      ],
       "declaredStatus": "NOT-APPLICABLE",
       "effectiveStatus": "NOT-APPLICABLE",
       "endpoint": "native",
@@ -193,9 +199,11 @@
       "id": "NAT-CASE-06"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "Foundry receipt bound to the bridge runtime for testOverlayTargetSaturatesAfterCrossCaseDisposition"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-CASE-07"
     },
@@ -221,9 +229,11 @@
       "id": "NAT-CUST-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "Foundry receipt bound to the bridge runtime for testFuzzFreezeAbsoluteAndOrdinaryFloor"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-CUST-02"
     },
@@ -305,16 +315,20 @@
       "id": "NAT-REV-07"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "Foundry receipt bound to the bridge runtime for testReversalReplayAndRestrictionTransferBlock"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-XFER-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "Foundry receipt bound to the bridge runtime for invariantSupplyConserved"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-XFER-02"
     },
@@ -361,9 +375,11 @@
       "id": "NAT-ROUTE-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "Foundry receipt bound to the bridge runtime for testConstantsMatchTheCompiledKernel"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "native",
       "id": "NAT-ROUTE-02"
     },
@@ -382,9 +398,11 @@
       "id": "NAT-E2E-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "Foundry receipt bound to the bridge runtime for testReplayNonceAndAuthority"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-AUTH-01"
     },
@@ -410,9 +428,11 @@
       "id": "ADP-STALE-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "Foundry receipt bound to the bridge runtime for testKernelVectorsReproduceOnTheAdapterRuntime"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-SHAPE-01"
     },
@@ -424,23 +444,29 @@
       "id": "ADP-SHAPE-02"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "Foundry receipt bound to the bridge runtime for invariantCustodyCaseMatchesTheHandler"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-CASE-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "Foundry receipt bound to the bridge runtime for testForcedTransferAutoUnfreezeIsResynchronised"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-FRZ-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "Foundry receipt bound to the bridge runtime for testKernelVectorsReproduceOnTheAdapterRuntime"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-REV-01"
     },
@@ -452,44 +478,60 @@
       "id": "ADP-DISP-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "Foundry receipt bound to the bridge runtime for invariantSupplyConserved"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-CUST-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "Foundry receipt bound to the bridge runtime for testExactImportManifestOpensReversibleCases"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-IMPORT-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "Foundry receipt bound to the bridge runtime for testEveryUpstreamMutatorIsClosedToNonAdapters",
+        "Foundry receipt bound to the bridge runtime for testForcedTransferClearingSourceRestrictionRevertsAndStutters",
+        "Foundry receipt bound to the bridge runtime for testForcedTransferClearingDestinationRestrictionRevertsAndStutters"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-UPSTREAM-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "Foundry receipt bound to the bridge runtime for invariantSealedTopologyStaysLiveAndDescriptorStaysPartial",
+        "Foundry receipt bound to the bridge runtime for testForcedTransferClearingSourceRestrictionRevertsAndStutters",
+        "Foundry receipt bound to the bridge runtime for testForcedTransferClearingDestinationRestrictionRevertsAndStutters"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-DEP-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "Foundry receipt bound to the bridge runtime for testKernelVectorsReproduceOnTheAdapterRuntime"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-RCPT-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "Foundry receipt bound to the bridge runtime for testReceiptObservationBindsActualUpstreamRestrictionForEveryRole"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-OBS-01"
     },
@@ -501,16 +543,20 @@
       "id": "ADP-ROUTE-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "Foundry receipt bound to the bridge runtime for testUnsealedAdapterCannotExecuteAndTopologyIsNotLive"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-SEAL-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "Foundry receipt bound to the bridge runtime for invariantSealedTopologyStaysLiveAndDescriptorStaysPartial"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileAdapter",
       "id": "ADP-PROFILE-01"
     },
@@ -522,9 +568,11 @@
       "id": "ADP-E2E-01"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "Foundry receipt bound to the bridge runtime for testSealIsOneWayAndManifestMustBeCanonical"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "profileGovernor",
       "id": "GOV-SEAL-01"
     },
@@ -550,9 +598,11 @@
       "id": "SHR-DEC-02"
     },
     {
-      "awaiting": [],
+      "awaiting": [
+        "Foundry receipt bound to the bridge runtime for testCustodyBackingAndOwnFrozenFloorDoNotDoubleCount"
+      ],
       "declaredStatus": "CLOSED",
-      "effectiveStatus": "CLOSED",
+      "effectiveStatus": "CLOSED-PENDING-RECEIPT",
       "endpoint": "shared",
       "id": "SHR-STATE-01"
     },

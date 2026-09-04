@@ -146,7 +146,7 @@ The successor disposition, lane by lane:
 | Mutation | 121/121 declared faults killed; every fault names its detector and, where it removes a load-bearing consumer, the obligation ledger row it serves | `evidence/mutation-results.json` |
 | Kontrol and KEVM | 4/4 proofs rerun on the successor native runtime under Kontrol 1.0.255 and KEVM 1.0.678; the adapter has no symbolic lane | `evidence/kontrol-results-v3.json` |
 | Isabelle/HOL | 22 theories; clean build and proof audit in continuous integration with 409 explicit roots, 410 qualified facts, zero oracle dependencies, zero banned source forms | `evidence/isabelle-results-v3.json` |
-| Obligation ledger | 74 rows: 70 closed, 2 open (the runtime link), 2 not applicable; closure conditional | `evidence/end-to-end-refinement/obligation-ledger-summary-v3.json` |
+| Obligation ledger | 74 rows: 48 closed, 22 closed pending a fresh exact-source Foundry receipt, 2 open (the runtime link), 2 not applicable; closure conditional | `evidence/end-to-end-refinement/obligation-ledger-summary-v3.json` |
 | Deterministic build | Two isolated clean builds of the native token (20,043 bytes), the adapter (19,480), and the governor (2,787), byte-identical | `evidence/deterministic-build.json` |
 | Runtime binding | Three runtimes agree with the pinned-compiler replay in ABI, semantic storage layout, creation and runtime bytecode, method identifiers, and immutable references; verifier self-mutation 18/18; stale receipts rejected | `evidence/runtime-binding-v3.json` |
 | Independent reproduction | 23 vectors, 401 assertions, reproduced from the machine source, the generated prose and ABI, and the vectors alone | `evidence/independent-reproduction-v3.json` |
