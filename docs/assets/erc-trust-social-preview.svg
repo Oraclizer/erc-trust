@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
+  <title id="title">ERC-TRUST social preview</title>
+  <desc id="desc">Social preview for ERC-TRUST, Typed Regulatory Uniformity for Security Tokens.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#04111a"/>
+      <stop offset="0.58" stop-color="#082330"/>
+      <stop offset="1" stop-color="#0b3140"/>
+    </linearGradient>
+    <linearGradient id="field-a" x1="66" y1="64" x2="170" y2="150" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7ae6d4"/>
+      <stop offset="1" stop-color="#2fa9b6"/>
+    </linearGradient>
+    <linearGradient id="field-b" x1="190" y1="192" x2="87" y2="106" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#76a7ef"/>
+      <stop offset="1" stop-color="#3d6fbd"/>
+    </linearGradient>
+    <radialGradient id="ground" cx="50%" cy="43%" r="62%">
+      <stop offset="0" stop-color="#113142"/>
+      <stop offset="1" stop-color="#071923"/>
+    </radialGradient>
+    <linearGradient id="rule" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6bdcca"/>
+      <stop offset="0.62" stop-color="#548fae"/>
+      <stop offset="1" stop-color="#548fae" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0v48" fill="none" stroke="#9ac6cb" stroke-width="1" opacity="0.04"/>
+    </pattern>
+    <filter id="depth" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="7" stdDeviation="9" flood-color="#01070b" flood-opacity="0.42"/>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="640" fill="url(#background)"/>
+  <rect width="1280" height="640" fill="url(#grid)"/>
+  <path d="M507 64v512M528 64v512" stroke="#7adccb" stroke-width="1" opacity="0.12"/>
+  <path d="M574 494h612" stroke="url(#rule)" stroke-width="2"/>
+  <path d="M1164 66h54v54M1218 520v54h-54" fill="none" stroke="#8fc7cb" stroke-width="2" opacity="0.18"/>
+
+  <g transform="translate(44 64) scale(2)">
+    <circle cx="128" cy="128" r="108" fill="#06151f" opacity="0.7"/>
+    <circle cx="128" cy="128" r="106" fill="none" stroke="#70d7c7" stroke-width="1.5" opacity="0.2"/>
+    <circle cx="128" cy="128" r="101" fill="url(#ground)" stroke="#244958" stroke-width="2"/>
+    <circle cx="128" cy="128" r="90" fill="none" stroke="#72dccb" stroke-width="2" stroke-dasharray="1.5 10.28" opacity="0.58"/>
+    <circle cx="128" cy="128" r="80" fill="#09202b" stroke="#2b5262" stroke-width="1.5"/>
+    <g fill="#9ce9dc" opacity="0.8">
+      <rect x="125" y="29" width="6" height="12" rx="3"/>
+      <rect x="125" y="215" width="6" height="12" rx="3"/>
+      <rect x="29" y="125" width="12" height="6" rx="3"/>
+      <rect x="215" y="125" width="12" height="6" rx="3"/>
+    </g>
+    <g fill="#638fbf" opacity="0.68">
+      <circle cx="63" cy="63" r="3"/>
+      <circle cx="193" cy="63" r="3"/>
+      <circle cx="193" cy="193" r="3"/>
+      <circle cx="63" cy="193" r="3"/>
+    </g>
+    <g fill="none" stroke="#031018" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" filter="url(#depth)">
+      <path d="M58 78h20c14 0 21 18 35 29M48 128h55M58 178h20c14 0 21-18 35-29"/>
+      <path d="M198 78h-20c-14 0-21 18-35 29M208 128h-55M198 178h-20c-14 0-21-18-35-29"/>
+    </g>
+    <g fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M58 78h20c14 0 21 18 35 29M48 128h55M58 178h20c14 0 21-18 35-29" stroke="url(#field-a)"/>
+      <path d="M198 78h-20c-14 0-21 18-35 29M208 128h-55M198 178h-20c-14 0-21-18-35-29" stroke="url(#field-b)"/>
+    </g>
+    <g fill="none" stroke="#d8eeeb" stroke-width="1.5" stroke-linecap="round" opacity="0.62">
+      <path d="M58 70h21c18 0 27 18 38 27M58 186h21c18 0 27-18 38-27"/>
+      <path d="M198 70h-21c-18 0-27 18-38 27M198 186h-21c-18 0-27-18-38-27"/>
+    </g>
+    <g fill="#bcebe4" stroke="#09202b" stroke-width="3">
+      <circle cx="58" cy="78" r="6"/>
+      <circle cx="48" cy="128" r="6"/>
+      <circle cx="58" cy="178" r="6"/>
+    </g>
+    <g fill="#79a4df" stroke="#09202b" stroke-width="3">
+      <circle cx="198" cy="78" r="6"/>
+      <circle cx="208" cy="128" r="6"/>
+      <circle cx="198" cy="178" r="6"/>
+    </g>
+    <circle cx="128" cy="128" r="39" fill="#061923" stroke="#b7d7d7" stroke-width="2.5"/>
+    <circle cx="128" cy="128" r="30" fill="none" stroke="#4d8592" stroke-width="1.5" stroke-dasharray="2 5"/>
+    <path d="m128 105 20 11.5v23L128 151l-20-11.5v-23Z" fill="#0d2c39" stroke="#e2eeed" stroke-width="2.5"/>
+    <path d="M128 105v-8M148 116.5l7-4M148 139.5l7 4M128 151v8M108 139.5l-7 4M108 116.5l-7-4" fill="none" stroke="#779eaa" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="128" cy="128" r="5" fill="#e5f7f3"/>
+    <circle cx="128" cy="128" r="2" fill="#174452"/>
+  </g>
+
+  <g font-family="Inter, Segoe UI, Arial, sans-serif">
+    <text x="574" y="128" fill="#78c9c3" font-size="17" font-weight="700" letter-spacing="3.1">INDEPENDENT PRE-ERC CANDIDATE</text>
+    <text x="566" y="240" fill="#f1f5f4" font-size="88" font-weight="760" letter-spacing="1.6">ERC-TRUST</text>
+    <rect x="574" y="272" width="70" height="5" rx="2.5" fill="#67d8c6"/>
+    <text x="574" y="326" fill="#c1dada" font-size="25" font-weight="650" letter-spacing="1.1">TYPED REGULATORY UNIFORMITY</text>
+    <text x="574" y="365" fill="#c1dada" font-size="25" font-weight="650" letter-spacing="1.1">FOR SECURITY TOKENS</text>
+    <text x="574" y="430" fill="#9fb6bd" font-size="20" letter-spacing="0.2">Typed actions  •  fail-closed execution  •  recomputable receipts</text>
+    <text x="574" y="536" fill="#86a1aa" font-size="16" font-weight="600" letter-spacing="1.35">FORMAL SEMANTICS  •  REFERENCE IMPLEMENTATION  •  PUBLIC EVIDENCE</text>
+    <text x="574" y="574" fill="#6f8d96" font-size="15" letter-spacing="0.45">github.com/Oraclizer/erc-trust</text>
+  </g>
+</svg>
