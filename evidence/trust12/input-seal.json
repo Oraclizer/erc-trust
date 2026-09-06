@@ -1,0 +1,168 @@
+{
+  "schema": "trust12-input-seal-v2",
+  "baselineCommit": "2545efa64289ad82fe3ad8a99e5dfad01ff92c10",
+  "branch": "trust-1-2-enhancement",
+  "files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "e25c3f19699b5a67618bfee4a1b856f147f91fb35236e586881dec99f78c7faf"
+    },
+    {
+      "path": ".github/workflows/proofs.yml",
+      "sha256": "246269b84ba2a8e54d89367174c22e558194961e8cfd70924933f85c66562826"
+    },
+    {
+      "path": "FORMAL_VERIFICATION.md",
+      "sha256": "8e81ece7803010567ebc669ae10472671d52e82070ac4284c387b777d7c042fa"
+    },
+    {
+      "path": "docs/PROFILES.md",
+      "sha256": "6f0223df8f523b27ce078c2a1768b4cf8a85972b9632478820c2d286e684f7b0"
+    },
+    {
+      "path": "evidence/trust12/README.md",
+      "sha256": "df70eef21e859cff392ebd4b59d37b00180031e8836e97a229bccecfb1b055ef"
+    },
+    {
+      "path": "evidence/trust12/formal-build.json",
+      "sha256": "b66c7388681740d6f797292387c6932ed121c9ba9cb578b62452a30cef1526ed"
+    },
+    {
+      "path": "evidence/trust12/independent-audit.md",
+      "sha256": "5a416e77cf6d5ca8c24356b9121daf3603169fa5669d193103f8d59a3958dc87"
+    },
+    {
+      "path": "evidence/trust12/mutation-callback-auth.json",
+      "sha256": "a1499eb530d772259ba8cdc520e7b1ef8ccca3b27ce1901552e4c4b0ecd855b1"
+    },
+    {
+      "path": "evidence/trust12/mutation-factory-pin.json",
+      "sha256": "c21eabdd494a783b70b250c9e4d3225ab4b6c45f262155c3ef85168393d6d81e"
+    },
+    {
+      "path": "evidence/trust12/mutation-hidden-agent.json",
+      "sha256": "d8103bd6ceb0c0bccf3585f5727d63716ff28f86a89b912a5489044bf477d6d7"
+    },
+    {
+      "path": "evidence/trust12/mutation-inbound.json",
+      "sha256": "5a56899d53056cd2480db0e033b2654392ec5a7b59654ebb5e3b030f42c7bb8f"
+    },
+    {
+      "path": "evidence/trust12/mutation-initial.json",
+      "sha256": "5ac4a67760bbd11fda09851b43d26bff79c5ef5d35a4b9872035f30079687958"
+    },
+    {
+      "path": "evidence/trust12/mutation-receipt.json",
+      "sha256": "eabc940d87c0a8cc9e03c592c5fa2f96ba7595284b174e30624d570d610337bd"
+    },
+    {
+      "path": "evidence/trust12/obligation-ledger.json",
+      "sha256": "0a04ffda5dde994989a9d29b1a78f6d772911a318a70148934836c38636dfb1a"
+    },
+    {
+      "path": "evidence/trust12/runtime-identity.json",
+      "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
+    },
+    {
+      "path": "evidence/trust12/symbolic-kontrol.json",
+      "sha256": "e40a85b127e3749c0cbce0255833984240853c80f5983e4ef09dd409cf4dd8b2"
+    },
+    {
+      "path": "formal/isabelle/ERC_TRUST/Proof_Audit.thy",
+      "sha256": "2d79454f39a5c241809c60a33bb276918aa8b59bc889ede95dd15c58452d2b1b"
+    },
+    {
+      "path": "formal/isabelle/ERC_TRUST/ROOT",
+      "sha256": "234bc1ea085b9b2fc4bfe5bd4f534e6160c6bf429e60f93f956f6978e22a9b48"
+    },
+    {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Transaction_Refinement.thy",
+      "sha256": "b49b9d7a71455e547bf5185fcd66195597b185bbb5d50441b281e37eabf60149"
+    },
+    {
+      "path": "formal/isabelle/ERC_TRUST/evidence/model-verification/run-trust-closure.ps1",
+      "sha256": "069c46f2e7cc7e6f2ffc36897544f4e69fb8296f55462c46a936f78342294283"
+    },
+    {
+      "path": "formal/isabelle/ROOTS",
+      "sha256": "bc0d98972158b22dd35d8e3f0c99a9231b7d7969b744ead12644ca79603944ad"
+    },
+    {
+      "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/ROOT",
+      "sha256": "5a4b5ff89ba554d04306c1aac98b931b93583b3d36be52f180d65b64996866e4"
+    },
+    {
+      "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST12_Obstruction_Proof_Audit.thy",
+      "sha256": "ba0f92615c72b53c7ef76d563598a23b962af5919a22b41c847aaea53afa7003"
+    },
+    {
+      "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Accounting_Invariant_Obstruction.thy",
+      "sha256": "b9ba46b12ecb03baffd3f4cc0521219c6100fbb31820ad2d15b4a324a12b91fe"
+    },
+    {
+      "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_State_Invariants.thy",
+      "sha256": "5be6a7d9db007d4526c8de6e0be7324a77172e652a5a925113f26007e632266c"
+    },
+    {
+      "path": "foundry.toml",
+      "sha256": "3e7c2222c9200518563b7d6f09f19032a06e0d744be90e6522a87a43307bec7b"
+    },
+    {
+      "path": "implementation/kontrol/trust12/TrustTokenSymbolicKontrolTest.t.sol",
+      "sha256": "d143fc0040e3cd4087cc9c92c588f2c74ff73cd50818e6bbc3c3f7c3d8638491"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643HookAdapter.sol",
+      "sha256": "61056cd3aa34900820cb08592c55803a5add1ab36c493ec36a5e3ee72add9533"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643HookCompliance.sol",
+      "sha256": "700614fcb6db1246099a16859e79cb4b555785545ea1a31c780f8b97b8016e7a"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643HookDeployment.sol",
+      "sha256": "8a830ba8cdfac4a3cf33dc2b3338a8765b9303afd56bf32a207afa32b19e63bf"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643HookFactory.sol",
+      "sha256": "d7e24b5bde9ec8f4ce1d5537e83858fe727067bdca580c7d4a5126c1d35b94b1"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643HookGovernor.sol",
+      "sha256": "69a0b68f72427081acb26c24299ad03afcdc2b615e8885c05d8eaff52eb9d59e"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+      "sha256": "f2806571c8c39984ee6c50f5e8dd0aa94aac5e273564012afcb4ebb55e43320f"
+    },
+    {
+      "path": "implementation/src/profiles/ProfileGovernor.sol",
+      "sha256": "e9fec4c21a65edaa5619ee1368deb93da1645e311984a12cc89ca29131595ae8"
+    },
+    {
+      "path": "implementation/test/ERC3643HookTrexIntegration.t.sol",
+      "sha256": "9e904adced498aa21bd06cada1033b89410f40a61014d67baaa3f1b78a63a4f7"
+    },
+    {
+      "path": "scripts/check-hook-consumer-removal.py",
+      "sha256": "5ed35413edb32ef3ab9f9f54ade72cebb31f9c9d4450f7e294b5d4c4feefe03b"
+    },
+    {
+      "path": "scripts/check-trust12-runtime-identity.py",
+      "sha256": "51d7ce72acb1f07f379dfbb980cbf7230e670ea74ab622fd88b38e9110009839"
+    },
+    {
+      "path": "scripts/generate-trust12-input-seal.py",
+      "sha256": "410c3fb278e9cf875d39bfc453e67d57409dd2bb7ffa90134db7067ba7be8bbd"
+    },
+    {
+      "path": "scripts/prepare-trex-integration.py",
+      "sha256": "62c22a64c7364241ce85a6f5af1c55e66f65d3ba98b7b7e788d46f16822d8172"
+    },
+    {
+      "path": "scripts/verify-trust12-evidence.py",
+      "sha256": "15f5ce8266fd5fe982c45aa4c092d0baa4e1c2034f9c8cda4863ba8bbd8a4613"
+    }
+  ],
+  "nonclaim": "This seals one local development tranche. It is not a deployment, release, conformance approval, or end-to-end refinement result."
+}

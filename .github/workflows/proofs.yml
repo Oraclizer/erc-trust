@@ -121,81 +121,26 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          export ML_SYSTEM="$("$RUNNER_TEMP/Isabelle2025-2/bin/isabelle" getenv -b ML_SYSTEM)"
-          export ISABELLE_PLATFORM64="$("$RUNNER_TEMP/Isabelle2025-2/bin/isabelle" getenv -b ISABELLE_PLATFORM64)"
-          node scripts/proof-ci.mjs identity "$RUNNER_TEMP/proof-identity.json"
-      - name: Restore state written by main
-        id: cache
-        if: ${{ env.CLEAN_REPLAY == 'false' }}
-        continue-on-error: true
-        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: ${{ runner.temp }}/proof-main-state
-          key: proof-state-${{ steps.identity.outputs.profile }}-${{ steps.identity.outputs.source }}
-          restore-keys: |
-            proof-state-${{ steps.identity.outputs.profile }}-
-      - name: Find the successful trusted PR run for this merged source
-        id: pr
-        if: ${{ env.CLEAN_REPLAY == 'false' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: node scripts/proof-ci.mjs select-pr "$RUNNER_TEMP/proof-identity.json"
-      - name: Restore the exact merged-PR artifact
-        id: pr-download
-        if: ${{ steps.pr.outputs.artifact != '' }}
-        continue-on-error: true
-        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
-        with:
-          artifact-ids: ${{ steps.pr.outputs.artifact }}
-          run-id: ${{ steps.pr.outputs.run }}
-          github-token: ${{ github.token }}
-          path: ${{ runner.temp }}/proof-pr-state
-          merge-multiple: true
-      - name: Check restored state integrity and provenance
-        if: ${{ env.CLEAN_REPLAY == 'false' }}
-        env:
-          PR_RUN: ${{ steps.pr.outputs.run }}
+          if grep -R -n -E '^\s*(sorry|oops|axiomatization|oracle)\b|\bby\s+eval\b|\bnative_decide\b|\bskip_proof\b|\bsledgehammer\b|\bsmt_oracle\b' \
+            formal/isabelle/ERC_TRUST formal/isabelle/TRUST12_OBSTRUCTIONS \
+            "$RUNNER_TEMP/formal-foundation-overlay" --include='*.thy'; then
+            exit 1
+          fi
+      - name: Clean-build and audit ERC_TRUST sessions
+        shell: bash
         run: |
-          node scripts/proof-ci.mjs restore "$RUNNER_TEMP/proof-pr-state" \
-            "$RUNNER_TEMP/proof-main-state" "$HOME/.isabelle/Isabelle2025-2/heaps" \
-            "$RUNNER_TEMP/proof-identity.json" "$PR_RUN"
-      - name: Build every session and consume the current proof audit export
-        run: bash scripts/run-proof-ci.sh
-      - name: Seal successful reusable state
-        if: ${{ env.CLEAN_REPLAY == 'false' && ((github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository)) }}
-        run: node scripts/proof-ci.mjs seal "$RUNNER_TEMP/proof-state-output" "$HOME/.isabelle/Isabelle2025-2/heaps" "$RUNNER_TEMP/proof-identity.json"
-      - name: Publish state for the trusted merge consumer
-        if: ${{ env.CLEAN_REPLAY == 'false' && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository }}
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        with:
-          name: isabelle-state-${{ steps.identity.outputs.profile }}-${{ steps.identity.outputs.source }}-${{ github.run_attempt }}
-          path: ${{ runner.temp }}/proof-state-output
-          if-no-files-found: error
-          include-hidden-files: true
-          retention-days: 7
-      - name: Prepare main cache update
-        if: ${{ env.CLEAN_REPLAY == 'false' && github.event_name == 'push' && github.ref == 'refs/heads/main' && steps.cache.outputs.cache-hit != 'true' }}
-        run: |
-          rm -rf "$RUNNER_TEMP/proof-main-state"
-          mv "$RUNNER_TEMP/proof-state-output" "$RUNNER_TEMP/proof-main-state"
-      - name: Save state from successful main build and export audit
-        if: ${{ env.CLEAN_REPLAY == 'false' && github.event_name == 'push' && github.ref == 'refs/heads/main' && steps.cache.outputs.cache-hit != 'true' }}
-        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: ${{ runner.temp }}/proof-main-state
-          key: proof-state-${{ steps.identity.outputs.profile }}-${{ steps.identity.outputs.source }}
-      - name: Save checked Isabelle archive from main
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: ${{ runner.temp }}/Isabelle2025-2_linux.tar.gz
-          key: isabelle-${{ env.ISABELLE_SHA256 }}
-      - name: Save checked AFP archive from main
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: ${{ runner.temp }}/afp-ADS_Functor.tar.gz
-          key: afp-ads-functor-${{ env.AFP_ADS_FUNCTOR_SHA256 }}
+          set -euo pipefail
+          isabelle="$RUNNER_TEMP/Isabelle2025-2/bin/isabelle"
+          afp="$RUNNER_TEMP/afp/ADS_Functor"
+          foundation="$RUNNER_TEMP/formal-foundation-overlay"
+          "$isabelle" build -c -o record_proofs=1 -d "$afp" -d "$foundation" -d formal/isabelle \
+            ERC_TRUST TRUST12_Accounting_Obstruction
+          export_root="$RUNNER_TEMP/isabelle-export"
+          "$isabelle" export -d "$afp" -d "$foundation" -d formal/isabelle -x '*:erc-trust/model-proof-trust.txt' -O "$export_root" ERC_TRUST
+          "$isabelle" export -d "$afp" -d "$foundation" -d formal/isabelle -x '*:erc-trust/trust12-obstruction-proof-trust.txt' -O "$export_root" TRUST12_Accounting_Obstruction
+          grep -R -q '^status=PASS$' "$export_root"
+          grep -R -q '^oracle_dependency_count=0$' "$export_root"
+          test "$(grep -R -l '^status=PASS$' "$export_root" | wc -l)" -eq 2
 
   Proofs:
     name: Proofs

@@ -1,0 +1,13 @@
+{
+  "mutation": "receipt",
+  "status": "KILLED",
+  "semanticMilestone": "SEIZE, custody-source RESTRICT, disposition, independent actual-state receipt comparison",
+  "factoryPinReboundForSemanticReach": "0xc033d9503ea4a1f88b4db8039999c8f8df6bada7dfac0c596a1a95ae1d806178",
+  "exitCode": 1,
+  "secondsIncludingBuild": 18.972,
+  "sourcePath": "implementation/src/profiles/ERC3643HookAdapter.sol",
+  "originalSha256": "61056cd3aa34900820cb08592c55803a5add1ab36c493ec36a5e3ee72add9533",
+  "mutantSha256": "77889551590564fcf3a9b47c6599a0118cbee4db116a58d855f752b6fe6274bf",
+  "detector": "testHookReceiptObservesRestrictedCustodySource",
+  "nonclaim": "A semantic negative detector, not behavioral equivalence or exhaustive coverage."
+}

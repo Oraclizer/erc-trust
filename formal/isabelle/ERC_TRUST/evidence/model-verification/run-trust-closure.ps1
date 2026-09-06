@@ -38,7 +38,9 @@ function Convert-ToCygwinPath([string]$WindowsPath) {
   return "/cygdrive/$drive$tail"
 }
 
-$trustSources = Get-ChildItem -LiteralPath $sessionDir -Filter '*.thy' -File |
+$obstructionDir = Join-Path $repoRoot 'TRUST12_OBSTRUCTIONS'
+$trustSources = @(Get-ChildItem -LiteralPath $sessionDir -Filter '*.thy' -File) +
+  @(Get-ChildItem -LiteralPath $obstructionDir -Filter '*.thy' -File) |
   Sort-Object Name
 $bannedPattern = '^\s*(sorry|oops|axiomatization|oracle)\b|\bby\s+eval\b|\bnative_decide\b|\bskip_proof\b'
 $bannedMatches = @(
@@ -57,7 +59,7 @@ $sessionCyg = Convert-ToCygwinPath $sessionDir
 $repoCyg = Convert-ToCygwinPath $repoRoot
 $adsCyg = Convert-ToCygwinPath $AdsFunctor
 $foundationCyg = Convert-ToCygwinPath $FormalFoundation
-$buildCommand = "export PATH=/usr/local/bin:/usr/bin:/bin; cd '$repoCyg'; '$isabelle' build -c -o record_proofs=1 -d '$adsCyg' -d '$foundationCyg' -d . ERC_TRUST"
+$buildCommand = "export PATH=/usr/local/bin:/usr/bin:/bin; cd '$repoCyg'; '$isabelle' build -c -o record_proofs=1 -d '$adsCyg' -d '$foundationCyg' -d . ERC_TRUST TRUST12_Accounting_Obstruction"
 $buildOutput = @(& $isabelleBash --noprofile --norc -c $buildCommand 2>&1)
 $buildExitCode = $LASTEXITCODE
 $buildLogPath = Join-Path $runDirectory 'isabelle-clean-build.log'
@@ -65,7 +67,7 @@ Write-Utf8Lf $buildLogPath (($buildOutput -join "`n") + "`n")
 
 $exportDirectory = Join-Path $runDirectory 'isabelle-export'
 $exportCyg = Convert-ToCygwinPath $exportDirectory
-$exportCommand = "export PATH=/usr/local/bin:/usr/bin:/bin; '$isabelle' export -d '$adsCyg' -d '$foundationCyg' -d '$repoCyg' -x '*:erc-trust/model-proof-trust.txt' -O '$exportCyg' ERC_TRUST"
+$exportCommand = "export PATH=/usr/local/bin:/usr/bin:/bin; '$isabelle' export -d '$adsCyg' -d '$foundationCyg' -d '$repoCyg' -x '*:erc-trust/model-proof-trust.txt' -O '$exportCyg' ERC_TRUST && '$isabelle' export -d '$adsCyg' -d '$foundationCyg' -d '$repoCyg' -x '*:erc-trust/trust12-obstruction-proof-trust.txt' -O '$exportCyg' TRUST12_Accounting_Obstruction"
 $exportOutput = @(& $isabelleBash --noprofile --norc -c $exportCommand 2>&1)
 $exportExitCode = $LASTEXITCODE
 $exportLogPath = Join-Path $runDirectory 'isabelle-export.log'
@@ -77,12 +79,24 @@ $proofAuditFile = if (Test-Path -LiteralPath $exportDirectory) {
 } else {
   $null
 }
+$obstructionAuditFile = if (Test-Path -LiteralPath $exportDirectory) {
+  Get-ChildItem -LiteralPath $exportDirectory -Filter 'trust12-obstruction-proof-trust.txt' -File -Recurse |
+    Select-Object -First 1
+} else {
+  $null
+}
 $proofAuditText = if ($null -eq $proofAuditFile) { '' } else {
   [System.IO.File]::ReadAllText($proofAuditFile.FullName)
 }
 $proofAuditPass =
   $proofAuditText.Contains('status=PASS') -and
   $proofAuditText.Contains('oracle_dependency_count=0')
+$obstructionAuditText = if ($null -eq $obstructionAuditFile) { '' } else {
+  [System.IO.File]::ReadAllText($obstructionAuditFile.FullName)
+}
+$obstructionAuditPass =
+  $obstructionAuditText.Contains('status=PASS') -and
+  $obstructionAuditText.Contains('oracle_dependency_count=0')
 
 $report = [ordered]@{
   gate = 'ERC-TRUST-model-proof-closure'
@@ -102,8 +116,10 @@ $report = [ordered]@{
     exportExitCode = $exportExitCode
     pass = $proofAuditPass
     text = $proofAuditText.Trim()
+    obstructionPass = $obstructionAuditPass
+    obstructionText = $obstructionAuditText.Trim()
   }
-  status = if ($buildExitCode -eq 0 -and $exportExitCode -eq 0 -and $proofAuditPass) {
+  status = if ($buildExitCode -eq 0 -and $exportExitCode -eq 0 -and $proofAuditPass -and $obstructionAuditPass) {
     'PASS'
   } else {
     'FAIL'
