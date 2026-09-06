@@ -1,0 +1,13 @@
+{
+  "mutation": "initial",
+  "status": "KILLED",
+  "semanticMilestone": "real upstream with undeclared initial restriction was created and admitted",
+  "factoryPinReboundForSemanticReach": "0x8c13b771982d41d77a4c0af6d9f09383872a4edaa420dcb5e539a2c1fd89eebc",
+  "exitCode": 1,
+  "secondsIncludingBuild": 19.317,
+  "sourcePath": "implementation/src/profiles/ERC3643HookDeployment.sol",
+  "originalSha256": "8a830ba8cdfac4a3cf33dc2b3338a8765b9303afd56bf32a207afa32b19e63bf",
+  "mutantSha256": "a728652e7049e011c0d694a3a0e85d4b5bd68d3415f6a127db75ed1f3123eb9f",
+  "detector": "testHookDirectFreshZeroSupplyAndCreationPins",
+  "nonclaim": "A semantic negative detector, not behavioral equivalence or exhaustive coverage."
+}

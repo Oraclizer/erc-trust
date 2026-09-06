@@ -1,0 +1,13 @@
+{
+  "mutation": "factory-pin",
+  "status": "KILLED",
+  "semanticMilestone": "factory deployed and accepted a constructible endpoint that implements no TRUST behavior",
+  "factoryPinReboundForSemanticReach": "0x7e196e99993b30b186c3a1cbeb24e89d926dbd990941fc83b3269a0d39b147b2",
+  "exitCode": 1,
+  "secondsIncludingBuild": 5.374,
+  "sourcePath": "implementation/src/profiles/ERC3643HookFactory.sol",
+  "originalSha256": "d7e24b5bde9ec8f4ce1d5537e83858fe727067bdca580c7d4a5126c1d35b94b1",
+  "mutantSha256": "e25749c58c8f309c36e685d5dabca1f87528e65e7d49325935e44e1e1dbef870",
+  "detector": "testHookDirectFreshZeroSupplyAndCreationPins",
+  "nonclaim": "A semantic negative detector, not behavioral equivalence or exhaustive coverage."
+}

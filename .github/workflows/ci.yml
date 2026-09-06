@@ -34,12 +34,25 @@ jobs:
         run: forge fmt --check
       - name: Build and enforce size gate
         run: forge build --sizes
+      - name: Prepare pinned T-REX integration and initial-state negative
+        run: python3 scripts/prepare-trex-integration.py
+      - name: Check preserved runtimes and fresh-unit creation pin
+        run: python3 scripts/check-trust12-runtime-identity.py
       - name: Run unit, fuzz, and invariant tests
         run: forge test -vv
         env:
           FOUNDRY_FUZZ_RUNS: "256"
           FOUNDRY_INVARIANT_RUNS: "256"
           FOUNDRY_INVARIANT_DEPTH: "500"
+      - name: Exercise TRUST 1.2 semantic consumer removals
+        shell: bash
+        run: |
+          set -euo pipefail
+          for kind in inbound initial receipt callback-auth hidden-agent factory-pin; do
+            python3 scripts/check-hook-consumer-removal.py "$kind" > /dev/null
+          done
+      - name: Verify the TRUST 1.2 conditional evidence ledger
+        run: python3 scripts/verify-trust12-evidence.py
       - name: Lint Solidity
         run: forge lint
       - name: Check mutation anchors and detectors

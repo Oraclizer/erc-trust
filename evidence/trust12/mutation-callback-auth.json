@@ -1,0 +1,13 @@
+{
+  "mutation": "callback-auth",
+  "status": "KILLED",
+  "semanticMilestone": "fresh unit, unauthorized callback invocation, exact caller rejection assertion",
+  "factoryPinReboundForSemanticReach": "0xa72524f69736009b8c73cfb327d409121a7e02d29c603d452aeba3f0a74c71aa",
+  "exitCode": 1,
+  "secondsIncludingBuild": 18.673,
+  "sourcePath": "implementation/src/profiles/ERC3643HookAdapter.sol",
+  "originalSha256": "61056cd3aa34900820cb08592c55803a5add1ab36c493ec36a5e3ee72add9533",
+  "mutantSha256": "6360ca1cd33c1283d71a695a594aa218aecc793dde832e760632eb637b936da2",
+  "detector": "testHookFactoryFreshStateAndAuthorityClosure",
+  "nonclaim": "A semantic negative detector, not behavioral equivalence or exhaustive coverage."
+}

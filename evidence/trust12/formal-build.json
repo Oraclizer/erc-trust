@@ -1,0 +1,51 @@
+{
+  "schema": "trust12-formal-build-v1",
+  "status": "PASS_WITH_OPEN_REFINEMENT",
+  "toolchain": {
+    "isabelle": "Isabelle2025-2",
+    "recordProofs": true,
+    "formalFoundationCommit": "db8e0802e55f0229cf7bc9e5e6cfbf40681adbba",
+    "foundationSupersessionMappings": 14
+  },
+  "sessions": [
+    {
+      "name": "ERC_TRUST",
+      "status": "PASS",
+      "clean": true,
+      "sessionSeconds": 146,
+      "totalSeconds": 156,
+      "buildLogSha256": "36184fe5f9b2799892cb36907ec0671f0574c4b6b82b94b814061feb5d256082",
+      "audit": {
+        "status": "PASS",
+        "explicitRoots": 412,
+        "qualifiedFacts": 413,
+        "oracleDependencies": 0,
+        "exportSha256": "5dfe1d4a6ec7e0ffa459a08eadf98b9b26f4d8ae2246269e30b7d54f62ade5d4"
+      }
+    },
+    {
+      "name": "TRUST12_Accounting_Obstruction",
+      "status": "PASS",
+      "clean": true,
+      "sessionSeconds": 2,
+      "totalSeconds": 11,
+      "buildLogSha256": "53c72ae0919dc5b59a48bb85ac2ea6249ed2b2d8818746e441a866996c1576cc",
+      "audit": {
+        "status": "PASS",
+        "explicitRoots": 12,
+        "qualifiedFacts": 12,
+        "oracleDependencies": 0,
+        "exportSha256": "1092b9eb4db6152601344f6029ac839a2c49082e7aa2b3a9285ebd959f51b326"
+      }
+    }
+  ],
+  "costDisposition": {
+    "failedCombinedAttempts": [
+      "The new large concrete proofs were initially included in the established all-fact audit and timed out at 1200 seconds.",
+      "Raising the same session timeout to 1800 seconds also timed out.",
+      "A child source canary identified two nonessential finite-support lemmas as the remaining cost change; they were removed rather than weakening a theorem or expanding the timeout."
+    ],
+    "finalArchitecture": "The established ERC_TRUST session keeps the repaired transaction definitions. The new state and obstruction theorems are a named child session with their own recursive oracle audit. CI and the local closure runner build both sessions.",
+    "nonclaim": "Clean model builds and oracle-free proof dependencies do not discharge the compiled-runtime link or constructor storage projection."
+  }
+}

@@ -137,21 +137,25 @@ jobs:
         run: |
           set -euo pipefail
           if grep -R -n -E '^\s*(sorry|oops|axiomatization|oracle)\b|\bby\s+eval\b|\bnative_decide\b|\bskip_proof\b|\bsledgehammer\b|\bsmt_oracle\b' \
-            formal/isabelle/ERC_TRUST "$RUNNER_TEMP/formal-foundation-overlay" --include='*.thy'; then
+            formal/isabelle/ERC_TRUST formal/isabelle/TRUST12_OBSTRUCTIONS \
+            "$RUNNER_TEMP/formal-foundation-overlay" --include='*.thy'; then
             exit 1
           fi
-      - name: Clean-build and audit ERC_TRUST
+      - name: Clean-build and audit ERC_TRUST sessions
         shell: bash
         run: |
           set -euo pipefail
           isabelle="$RUNNER_TEMP/Isabelle2025-2/bin/isabelle"
           afp="$RUNNER_TEMP/afp/ADS_Functor"
           foundation="$RUNNER_TEMP/formal-foundation-overlay"
-          "$isabelle" build -c -o record_proofs=1 -d "$afp" -d "$foundation" -d formal/isabelle ERC_TRUST
+          "$isabelle" build -c -o record_proofs=1 -d "$afp" -d "$foundation" -d formal/isabelle \
+            ERC_TRUST TRUST12_Accounting_Obstruction
           export_root="$RUNNER_TEMP/isabelle-export"
           "$isabelle" export -d "$afp" -d "$foundation" -d formal/isabelle -x '*:erc-trust/model-proof-trust.txt' -O "$export_root" ERC_TRUST
+          "$isabelle" export -d "$afp" -d "$foundation" -d formal/isabelle -x '*:erc-trust/trust12-obstruction-proof-trust.txt' -O "$export_root" TRUST12_Accounting_Obstruction
           grep -R -q '^status=PASS$' "$export_root"
           grep -R -q '^oracle_dependency_count=0$' "$export_root"
+          test "$(grep -R -l '^status=PASS$' "$export_root" | wc -l)" -eq 2
 
   Proofs:
     # Single aggregate check for the proof lane; branch protection
