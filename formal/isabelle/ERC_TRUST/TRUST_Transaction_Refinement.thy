@@ -411,7 +411,7 @@ where
      (case custody_records st case_id of
         None \<Rightarrow> custody_records st
       | Some custody \<Rightarrow>
-          (custody_records st)(case_id := Some (custody\<lparr>custody_active := False\<rparr>)))"
+          (custody_records st)(case_id := Some (custody\<lparr>custody_active := False, custody_amount := 0\<rparr>)))"
 
 definition move_balance ::
   "(trust_address \<Rightarrow> nat) \<Rightarrow> trust_address \<Rightarrow> trust_address \<Rightarrow> nat \<Rightarrow>
@@ -419,7 +419,7 @@ definition move_balance ::
 where
   "move_balance balances source destination amount =
      (balances(source := balances source - amount))
-       (destination := balances destination + amount)"
+       (destination := (if destination = source then balances source - amount else balances destination) + amount)"
 
 definition forward_success_state ::
   "trust_compositional_state \<Rightarrow> trust_forward_command \<Rightarrow>

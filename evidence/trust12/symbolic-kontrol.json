@@ -1,0 +1,89 @@
+{
+  "schema": "trust12-symbolic-kontrol-v1",
+  "status": "INCOMPLETE",
+  "target": {
+    "test": "testKontrol_SymbolicNonincreasingFreeze(uint256,uint256)",
+    "source": "implementation/kontrol/trust12/TrustTokenSymbolicKontrolTest.t.sol",
+    "sourceSha256": "d143fc0040e3cd4087cc9c92c588f2c74ff73cd50818e6bbc3c3f7c3d8638491",
+    "inputDomain": "first > 0 and second > 0 and second <= first",
+    "explicitlyNotAssumed": "first <= total supply",
+    "assertions": [
+      "the initial observed frozen amount is min(first,totalSupply)",
+      "the nonincreasing command reverts",
+      "balance and total supply stutter",
+      "no action or receipt is written",
+      "the previous case head remains current",
+      "the exact-use route is not left live"
+    ]
+  },
+  "toolchain": {
+    "forge": "1.7.1",
+    "solidity": "0.8.36",
+    "kontrol": "1.0.255",
+    "schedule": "CANCUN",
+    "workers": 1,
+    "booster": false,
+    "smtTimeoutMs": 10000
+  },
+  "positiveControl": {
+    "provider": "Foundry fuzz",
+    "runs": 256,
+    "status": "PASS",
+    "meaning": "The parameterized harness executes successfully on sampled concrete inputs. This is not a symbolic proof."
+  },
+  "attempts": [
+    {
+      "id": "inline-deployment",
+      "build": {
+        "status": "PASS",
+        "seconds": 122.42,
+        "maximumResidentKb": 4582344,
+        "logSha256": "abadab8c607c4c27799ab46d785b3729dae15a3c02ac261eba90f957706a775a"
+      },
+      "prove": {
+        "status": "TIMEOUT",
+        "exitCode": 124,
+        "seconds": 900.05,
+        "logSha256": "e72f773246076178b7d1b9d7783164bec8d9cb3f6cc24b8b473d41aa4230d360",
+        "proofJsonSha256": "7417e58250759817bfab3b171bc49e517db804598c1bad23a7aecc63c43974a9",
+        "kcfgSha256": "411843194ef54a24636f51180c037b44024acaadc5ede5048162a1170c6073e6",
+        "nodes": 12,
+        "edges": 6,
+        "splits": 2,
+        "vacuousNodes": [9, 11],
+        "stuckNodes": [],
+        "lastVerifiedLocation": "The first token deployment, at the configurationDigest staticcall return before any FREEZE command."
+      }
+    },
+    {
+      "id": "setup-separated-deployment",
+      "experimentalHarnessSha256": "ac1e2ff33bd4cf31d115e9cc5b005193134fca34461c16a32d4ae0b75c367afd",
+      "build": {
+        "status": "PASS",
+        "seconds": 119.40,
+        "maximumResidentKb": 4245492,
+        "logSha256": "566ff94d603aae4cd6c8b5f0d2bdca059778bdb4abc652703d21e7b68db2c68c"
+      },
+      "prove": {
+        "status": "TIMEOUT",
+        "exitCode": 124,
+        "seconds": 900.08,
+        "logSha256": "6a6a1d9c28eef003dba33a2cf5487fca2675bc98caa8b786f5f967ebe35abb59",
+        "proofJsonSha256": "f8f2ea2b6d81c57eb34296b5643b9258ea2f4a218cd1a377e53c437ba5736ded",
+        "kcfgSha256": "b039d4ffe57c65b26fa4f7a3cb3f5c2f4a2cb4d91a3e835733ed3efb328ae8a7",
+        "nodes": 5,
+        "edges": 3,
+        "splits": 0,
+        "vacuousNodes": [],
+        "stuckNodes": [],
+        "lastVerifiedLocation": "The exact concrete setUp deployment did not complete within the bounded proof window."
+      }
+    }
+  ],
+  "disposition": {
+    "claim": "No symbolic proof result is claimed.",
+    "retries": "No third retry with the same deployment formulation or a larger timeout.",
+    "next": "Preserve the graphs and compare a smaller equivalent deployment summary or a single backend change. Any split must cover both first <= supply and first > supply before the original domain can pass.",
+    "runtimeLink": "Even a future PASS would remain bounded compiled-code evidence and would not discharge the Isabelle runtime_link assumption."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "mutation": "hidden-agent",
+  "status": "KILLED",
+  "semanticMilestone": "fresh unit sealed with an added undeclared Agent, sole-Agent assertion",
+  "factoryPinReboundForSemanticReach": "0x4a0b555561871c79007f6fc19d38a0e58da4ae1864ba782f9514c7e574b02f93",
+  "exitCode": 1,
+  "secondsIncludingBuild": 19.649,
+  "sourcePath": "implementation/src/profiles/ERC3643HookDeployment.sol",
+  "originalSha256": "8a830ba8cdfac4a3cf33dc2b3338a8765b9303afd56bf32a207afa32b19e63bf",
+  "mutantSha256": "358607a18e49af2f0eac3bc70707c6f0b9c811451d5a489dfa77c635cd3fd948",
+  "detector": "testHookFactoryFreshStateAndAuthorityClosure",
+  "nonclaim": "A semantic negative detector, not behavioral equivalence or exhaustive coverage."
+}

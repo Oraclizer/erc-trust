@@ -1,0 +1,13 @@
+{
+  "mutation": "inbound",
+  "status": "KILLED",
+  "semanticMilestone": "seal, FREEZE, SEIZE, ordinary inbound, actual frozen-floor assertion",
+  "factoryPinReboundForSemanticReach": "0xb5daca917f5e666f1443fc21d119670587d5af2e66f1803c9547d1362f59a4d8",
+  "exitCode": 1,
+  "secondsIncludingBuild": 19.809,
+  "sourcePath": "implementation/src/profiles/ERC3643HookAdapter.sol",
+  "originalSha256": "61056cd3aa34900820cb08592c55803a5add1ab36c493ec36a5e3ee72add9533",
+  "mutantSha256": "39b3b4d1ef510a3e75dd58ed1a19398c279acb1a3816dc949b40fede1b324b9c",
+  "detector": "testHookInboundCannotEscapeInSameTransaction",
+  "nonclaim": "A semantic negative detector, not behavioral equivalence or exhaustive coverage."
+}

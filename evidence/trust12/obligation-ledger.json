@@ -1,0 +1,214 @@
+{
+  "schema": "trust12-obligation-ledger-v1",
+  "status": "IN_PROGRESS",
+  "claimBoundary": {
+    "hookProfile": "The constructor-sealed development reference has an independent functional-conformance PASS for same-transaction frozen-target enforcement on the pinned T-REX implementation.",
+    "native": "The published Native runtime is byte-exact. The new model source does not automatically renew the previous model-to-runtime mapping.",
+    "partial": "The published ERC-3643 Partial source and runtime are byte-exact and retain full=false.",
+    "refinement": "mapped implementation evidence; end-to-end refinement incomplete"
+  },
+  "identity": {
+    "baselineCommit": "2545efa64289ad82fe3ad8a99e5dfad01ff92c10",
+    "runtimeReceipt": "evidence/trust12/runtime-identity.json",
+    "inputSeal": "evidence/trust12/input-seal.json",
+    "actualIntegration": {
+      "upstream": "TokenySolutions/T-REX",
+      "tag": "4.1.3",
+      "commit": "0fa344b761cf861bb9e8e1c8e472ba72815316c2",
+      "test": "implementation/test/ERC3643HookTrexIntegration.t.sol"
+    }
+  },
+  "obligations": [
+    {
+      "id": "HOOK-FRESH-INITIAL",
+      "abstractCondition": "The Full development profile starts from a complete fresh regulatory state rather than a selected import manifest.",
+      "normativeReceiver": "docs/PROFILES.md: TRUST 1.2 Verified Full requirements",
+      "finalSourceConsumer": "implementation/src/profiles/ERC3643HookDeployment.sol: TOKEN_CREATION_HASH check and constructor-owned deployment sequence",
+      "positiveActivation": "testHookDirectFreshZeroSupplyAndCreationPins",
+      "consumerRemovalNegative": "evidence/trust12/mutation-initial.json",
+      "compiledConsumer": "evidence/trust12/runtime-identity.json and the separately compiled actual T-REX artifact",
+      "assumptionsNonclaims": "The creation-code pin proves the exact source initialization path. Runtime identity alone cannot prove storage completeness; no deployed instance is claimed.",
+      "status": "CLOSED"
+    },
+    {
+      "id": "HOOK-FACTORY-CREATION",
+      "abstractCondition": "The public factory admits only the final HookAdapter creation code and supplies the constructor arguments itself.",
+      "normativeReceiver": "docs/PROFILES.md: constructor-sealed development reference",
+      "finalSourceConsumer": "implementation/src/profiles/ERC3643HookFactory.sol: ADAPTER_CREATION_HASH and abi.encode constructor binding",
+      "positiveActivation": "testHookFactoryFreshStateAndAuthorityClosure",
+      "consumerRemovalNegative": "evidence/trust12/mutation-factory-pin.json",
+      "compiledConsumer": "evidence/trust12/runtime-identity.json: factoryAdapterCreationKeccak256",
+      "assumptionsNonclaims": "Direct deployment of the same exact endpoint creation code is also a fresh supported construction. The factory is not a deployment receipt.",
+      "status": "CLOSED"
+    },
+    {
+      "id": "HOOK-SOLE-AGENT",
+      "abstractCondition": "The exact fresh construction leaves the endpoint as the sole token Agent and the inert governor as owner.",
+      "normativeReceiver": "docs/PROFILES.md: no raw Agent or owner administration path",
+      "finalSourceConsumer": "implementation/src/profiles/ERC3643HookDeployment.sol: one addAgent call and transferOwnership to ERC3643HookGovernor",
+      "positiveActivation": "testHookFactoryFreshStateAndAuthorityClosure",
+      "consumerRemovalNegative": "evidence/trust12/mutation-hidden-agent.json",
+      "compiledConsumer": "The HookAdapter creation code pinned by evidence/trust12/runtime-identity.json contains the construction sequence.",
+      "assumptionsNonclaims": "The stock T-REX Agent mapping is not enumerable. Completeness comes from exact fresh creation code and its only Agent write, not from a live agent-count view.",
+      "status": "CLOSED"
+    },
+    {
+      "id": "HOOK-INBOUND-FLOOR",
+      "abstractCondition": "Every actual balance callback materialises min(owned frozen target, actual balance) before the token operation returns.",
+      "normativeReceiver": "docs/PROFILES.md: same-transaction Compliance hook requirement",
+      "finalSourceConsumer": "implementation/src/profiles/ERC3643HookAdapter.sol: onTokenBalanceChanged and _syncFrozen",
+      "positiveActivation": "testHookInboundCannotEscapeInSameTransaction and testHookBatchAndZeroTransfersEnforceTargets",
+      "consumerRemovalNegative": "evidence/trust12/mutation-inbound.json",
+      "compiledConsumer": "Actual T-REX transfer, transferFrom, batch transfer and forced-transfer callbacks execute the HookAdapter runtime.",
+      "assumptionsNonclaims": "This is evidence for the pinned T-REX callback order and fixed profile. It is not a claim about every ERC-3643 implementation.",
+      "status": "CLOSED"
+    },
+    {
+      "id": "HOOK-CALLER-AUTH",
+      "abstractCondition": "Only the immutable Compliance bound to the token may invoke the balance-change callback.",
+      "normativeReceiver": "The hook cannot be an unauthenticated state-changing entrypoint.",
+      "finalSourceConsumer": "implementation/src/profiles/ERC3643HookAdapter.sol: msg.sender compliance check",
+      "positiveActivation": "Actual token callbacks in testHookInboundCannotEscapeInSameTransaction",
+      "consumerRemovalNegative": "evidence/trust12/mutation-callback-auth.json",
+      "compiledConsumer": "HookAdapter runtime plus exact Compliance and token immutable addresses",
+      "assumptionsNonclaims": "The callback can only move upstream frozen amounts toward adapter-owned targets; it cannot create a TRUST command.",
+      "status": "CLOSED"
+    },
+    {
+      "id": "HOOK-CALLBACK-ROLLBACK",
+      "abstractCondition": "A failed post-balance callback reverts the token balance, allowance and emitted effects in the same transaction.",
+      "normativeReceiver": "Failure during same-transaction enforcement cannot leave a partial transfer.",
+      "finalSourceConsumer": "Pinned T-REX transferFrom calls Compliance after its tentative balance update; EVM reversion restores the call frame.",
+      "positiveActivation": "testHookPostCallbackFailureRollsBackTransferAndAllowance",
+      "consumerRemovalNegative": "The test injects the failing callback and requires exact balance and allowance stutter before a successful recovery transfer.",
+      "compiledConsumer": "Actual T-REX 4.1.3 bytecode under the CANCUN execution schedule",
+      "assumptionsNonclaims": "Correct EVM transaction rollback under the named schedule remains in the trusted execution semantics.",
+      "status": "CLOSED"
+    },
+    {
+      "id": "HOOK-ACTUAL-RECEIPT",
+      "abstractCondition": "The receipt preimage consumes actual upstream restriction values for every observed role.",
+      "normativeReceiver": "docs/PROFILES.md: actual restriction post-state and receipt equality",
+      "finalSourceConsumer": "implementation/src/profiles/ERC3643HookAdapter.sol: _observation role hashes",
+      "positiveActivation": "testHookReceiptObservesRestrictedCustodySource",
+      "consumerRemovalNegative": "evidence/trust12/mutation-receipt.json",
+      "compiledConsumer": "HookAdapter receipt storage and final RegulatoryActionApplied event",
+      "assumptionsNonclaims": "The receipt commits to the observed value. It does not prove the external legal truth of that restriction.",
+      "status": "CLOSED"
+    },
+    {
+      "id": "MODEL-INITIAL-WF",
+      "abstractCondition": "The explicit native abstract initial state satisfies finite balance, empty case, custody and reference consistency.",
+      "normativeReceiver": "Wave 2 initial-state validity",
+      "finalSourceConsumer": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_State_Invariants.thy: native_initial_state",
+      "positiveActivation": "native_initial_accounting_state_wf",
+      "consumerRemovalNegative": "The historical model canary demonstrated the earlier self-transfer and inactive-custody mismatches before they were corrected.",
+      "compiledConsumer": "None. Constructor storage decoding and initialization refinement remain open.",
+      "assumptionsNonclaims": "This is an abstract model initial state, not a theorem about a deployed constructor.",
+      "status": "CLOSED"
+    },
+    {
+      "id": "MODEL-ORDINARY-PRESERVATION",
+      "abstractCondition": "An admitted ordinary transfer preserves finite supply accounting, custody backing and custody/case references.",
+      "normativeReceiver": "Wave 2 ordinary-transfer preservation",
+      "finalSourceConsumer": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_State_Invariants.thy: ordinary_transfer_preserves_accounting_state_wf",
+      "positiveActivation": "The theorem is included in the TRUST12_Accounting_Obstruction child session and its 12-root oracle audit.",
+      "consumerRemovalNegative": "The pre-repair self-transfer canary proved that the former non-sequential move_balance increased the abstract balance.",
+      "compiledConsumer": "None. A checked EVM word-update correspondence remains open.",
+      "assumptionsNonclaims": "Source and destination must be in the finite support. The theorem does not cover regulatory forward or reversal steps.",
+      "status": "CLOSED"
+    },
+    {
+      "id": "MODEL-REGULATORY-PRESERVATION",
+      "abstractCondition": "Every admitted forward and reversal preserves a structural state invariant strong enough to relate overlay heads, actions, cases and custody.",
+      "normativeReceiver": "Wave 2 forward and reversal preservation",
+      "finalSourceConsumer": "No final structural invariant or full preservation theorem yet.",
+      "positiveActivation": "Pending",
+      "consumerRemovalNegative": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Accounting_Invariant_Obstruction.thy proves accounting_state_wf alone is insufficient.",
+      "compiledConsumer": "Pending",
+      "assumptionsNonclaims": "The typed obstruction state is ill formed and is not claimed reachable from native_initial_state.",
+      "status": "CURRENT-MANDATORY"
+    },
+    {
+      "id": "MODEL-LINKED-RUN",
+      "abstractCondition": "Successive executions connect each post-state to the next pre-state and preserve success and failure outcomes in a typed trace.",
+      "normativeReceiver": "Wave 3 run-level relation and result tracking",
+      "finalSourceConsumer": "Pending after MODEL-REGULATORY-PRESERVATION",
+      "positiveActivation": "Pending",
+      "consumerRemovalNegative": "Pending removal of one state-link or outcome observation",
+      "compiledConsumer": "Pending",
+      "assumptionsNonclaims": "A theorem that assumes runtime_link at every step would remain conditional.",
+      "status": "CURRENT-MANDATORY"
+    },
+    {
+      "id": "NATIVE-SYMBOLIC-FREEZE",
+      "abstractCondition": "For every positive first and second target with second <= first, including first above supply, the second FREEZE stutters the named Native projection.",
+      "normativeReceiver": "Wave 4 symbolic input expansion",
+      "finalSourceConsumer": "implementation/kontrol/trust12/TrustTokenSymbolicKontrolTest.t.sol",
+      "positiveActivation": "Foundry fuzz 256 PASS",
+      "consumerRemovalNegative": "Pending guard-removal proof under the same input domain",
+      "compiledConsumer": "evidence/trust12/symbolic-kontrol.json records two exact Kontrol builds and two proof timeouts.",
+      "assumptionsNonclaims": "No Kontrol PASS is claimed; both proof attempts timed out before the target command.",
+      "status": "CURRENT-MANDATORY"
+    },
+    {
+      "id": "RUNTIME-LINK-NATIVE",
+      "abstractCondition": "Accepted compiled Native executions produce alpha_transaction without assuming runtime_link.",
+      "normativeReceiver": "Wave 5 Native runtime connection",
+      "finalSourceConsumer": "Pending checked EVM-to-Isabelle correspondence",
+      "positiveActivation": "Existing Foundry, Certora and Kontrol results are bounded instances only.",
+      "consumerRemovalNegative": "Pending",
+      "compiledConsumer": "Published Native runtime remains byte-exact.",
+      "assumptionsNonclaims": "pinned_runtime_refinement.runtime_link remains an Isabelle locale assumption.",
+      "status": "CURRENT-MANDATORY"
+    },
+    {
+      "id": "RUNTIME-LINK-PARTIAL",
+      "abstractCondition": "Accepted compiled Partial adapter executions produce the matching abstract transaction without assuming runtime_link.",
+      "normativeReceiver": "Wave 5 legacy Partial runtime connection",
+      "finalSourceConsumer": "Pending checked EVM-to-Isabelle correspondence",
+      "positiveActivation": "Existing actual and clean-room tests are bounded instances.",
+      "consumerRemovalNegative": "Pending",
+      "compiledConsumer": "Published Partial adapter and governor source and runtime remain byte-exact.",
+      "assumptionsNonclaims": "Native evidence is not transferred to this profile.",
+      "status": "CURRENT-MANDATORY"
+    },
+    {
+      "id": "RUNTIME-LINK-HOOK",
+      "abstractCondition": "Accepted compiled Hook profile executions and callbacks produce the matching abstract transaction and observation trace.",
+      "normativeReceiver": "Wave 5 new hook runtime connection",
+      "finalSourceConsumer": "Pending checked EVM-to-Isabelle correspondence",
+      "positiveActivation": "Actual integration and six semantic mutations are bounded implementation evidence.",
+      "consumerRemovalNegative": "The current mutations cover named feature consumers but do not construct a general correspondence.",
+      "compiledConsumer": "HookAdapter, governor, Compliance, factory and actual T-REX runtime identities are recorded.",
+      "assumptionsNonclaims": "The hook functional result does not imply end-to-end runtime refinement.",
+      "status": "CURRENT-MANDATORY"
+    },
+    {
+      "id": "HOOK-INDEPENDENT-FINAL",
+      "abstractCondition": "A fresh non-building reviewer reproduces the final source, integration, mutations, identity and allowed claim.",
+      "normativeReceiver": "Wave 6 independent conformance and evidence review",
+      "finalSourceConsumer": "evidence/trust12/independent-audit.md",
+      "positiveActivation": "The final auditor independently reran the actual integration and the repaired factory-pin negative and recalculated the sealed inputs.",
+      "consumerRemovalNegative": "The first audit returned a false-positive factory-pin fixture; the corrected constructible endpoint is actually accepted only by the pin-removal mutant.",
+      "compiledConsumer": "The repair trace reaches endpoint creation, all factory reads, HookUnitCreated and successful return before the detector fails.",
+      "assumptionsNonclaims": "The current live full descriptor is a development-profile runtime result, not an audit or production approval.",
+      "status": "CLOSED"
+    }
+  ],
+  "centralClosure": {
+    "status": "INCOMPLETE",
+    "preservation": "Initial and ordinary accounting results only; regulatory preservation is open.",
+    "reflection": "No general compiled-runtime reflection theorem.",
+    "routeExhaustiveness": "Legacy routes retain their prior inventory; new hook/factory/callback routes have not received final independent reverse enumeration.",
+    "stateReceiptIdentity": "Named hook state and receipt consumers have bounded evidence; constructor and general runtime projection are open.",
+    "currentMandatory": [
+      "MODEL-REGULATORY-PRESERVATION",
+      "MODEL-LINKED-RUN",
+      "NATIVE-SYMBOLIC-FREEZE",
+      "RUNTIME-LINK-NATIVE",
+      "RUNTIME-LINK-PARTIAL",
+      "RUNTIME-LINK-HOOK"
+    ]
+  }
+}

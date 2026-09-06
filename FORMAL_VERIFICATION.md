@@ -480,3 +480,14 @@ A change to a model file, mapped Solidity symbol, verification specification,
 dependency commit, compiler setting, evidence hash, or claim disposition must
 update this map and regenerate the release manifest in the same change.
 Historical raw runs and generated directories are not canonical source.
+
+## TRUST 1.2 development
+
+The fresh T-REX hook reference and additional model invariants are tracked in
+[evidence/trust12](evidence/trust12/README.md). The published baseline runtimes remain
+byte-exact; the new profile and new formal source have separate validation.
+The child session `TRUST12_Accounting_Obstruction` checks that the accounting
+predicate alone is too weak for all regulatory steps; it does not invalidate the
+initial-state or ordinary-transfer preservation theorems.
+The general runtime link remains undischarged. A symbolic harness or a live Full
+profile descriptor does not establish end-to-end refinement.

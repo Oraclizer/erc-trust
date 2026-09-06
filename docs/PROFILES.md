@@ -12,10 +12,10 @@ conformance conditions; a Partial or Unsupported profile always returns
 | --- | --- | --- | --- | --- | --- |
 | Native Full | `keccak256("ERC-TRUST/v2/native-full")` | Yes | Fungible `0x3edbb4c4` and the exact-use route `0x5cd8d207` | Token | Exact immutable source, pinned compiler, and four bound read-only dependencies |
 | ERC-3643 Partial reference | `keccak256("ERC-TRUST/v2/erc3643-partial")` | Yes, within the documented adapter boundary | Not claimed | Adapter, over a sealed token | Current reference; `profileKind = PARTIAL`, `full = false` |
-| ERC-3643 Verified Full | `keccak256("ERC-TRUST/v2/erc3643-verified-full")` | Reserved TRUST 1.2 class | Not claimed | Future hook-enabled endpoint | No current reference reports this identifier |
+| ERC-3643 Verified Full | `keccak256("ERC-TRUST/v2/erc3643-verified-full")` | TRUST 1.2 development reference | Not claimed | Fresh hook-enabled endpoint | Constructor-sealed candidate; independent conformance review pending |
 | Unsupported | none | No reliable declaration | No | Unknown | Missing, stale, or contradictory evidence |
 
-Both reference profiles implement the kernel interface `0x2b020308` from the
+The published Native and Partial references implement the kernel interface `0x2b020308` from the
 same generated copy of the kernel machine source (`spec/erc-trust-kernel-v2.json`)
 and report `standardVersion = 2`, `actionMask = 0x3f`, `reversalMask = 0x07`,
 and `proxySupported = false`. The ERC-3643 reference also reports
@@ -111,7 +111,7 @@ reference is Partial, not a limitation compatible with Full. The full list is in
 
 ## TRUST 1.2 Verified Full requirements
 
-The Verified Full identifier is reserved for a future profile. A deployment
+The Verified Full identifier is used by the TRUST 1.2 development reference. A deployment
 may report it only when all of the following are bound to the same runtime and
 evidence identity:
 
@@ -126,8 +126,18 @@ evidence identity:
 
 Existing T-REX imports are not eligible without an enumerable state root,
 account count, and completeness proof. A generic attestation does not supply
-that missing primitive. This repository does not implement the TRUST 1.2
-profile.
+that missing primitive. The development reference has separate evidence; it does not upgrade an existing import.
+
+The TRUST 1.2 development reference now implements this constructor-sealed profile.
+Its source, actual T-REX integration tests, runtime identity checks, semantic mutations,
+and remaining proof obligations are described in [the development evidence](../evidence/trust12/README.md).
+Functional conformance review and general runtime refinement remain separate judgments.
+
+The endpoint constructor creates its own token, immutable callback and fixed-membership
+registry. It accepts no existing token or governor. The factory pins the endpoint
+creation code; the endpoint independently pins the upstream token creation bytes.
+The reference fixes membership and supply at construction and exposes no proxy,
+owner forwarding or raw Agent administration path.
 
 ## Partial and Unsupported
 

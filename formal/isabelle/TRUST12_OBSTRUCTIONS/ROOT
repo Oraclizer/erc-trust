@@ -1,0 +1,8 @@
+chapter Oraclizer
+
+session TRUST12_Accounting_Obstruction = ERC_TRUST +
+  options [document = false, timeout = 600]
+  theories
+    TRUST_State_Invariants
+    TRUST_Accounting_Invariant_Obstruction
+    TRUST12_Obstruction_Proof_Audit
