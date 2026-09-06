@@ -1,5 +1,8 @@
 <div align="center">
-  <img src="docs/assets/erc-trust-banner.svg" alt="ERC-TRUST: Typed Regulatory Uniformity for Security Tokens" width="860">
+  <picture>
+    <source media="(max-width: 600px)" srcset="docs/assets/erc-trust-banner-mobile.svg">
+    <img src="docs/assets/erc-trust-banner.svg" alt="ERC-TRUST: Typed Regulatory Uniformity for Security Tokens" width="860">
+  </picture>
 
   <p><strong>A typed, fail-closed execution standard candidate for regulatory actions on security tokens.</strong></p>
 
@@ -116,7 +119,10 @@ full size, test, proof, mutation, and manifest replay.
 ## Architecture
 
 <div align="center">
-  <img src="docs/assets/architecture-overview.svg" alt="Four-stage ERC-TRUST action flow: command boundary, fail-closed gate, typed execution across the native and adapter profiles, and a canonical receipt emitted last" width="900">
+  <picture>
+    <source media="(max-width: 600px)" srcset="docs/assets/architecture-overview-mobile.svg">
+    <img src="docs/assets/architecture-overview.svg" alt="Four-stage ERC-TRUST action flow: command boundary, fail-closed gate, typed execution across the native and adapter profiles, and a canonical receipt emitted last" width="900">
+  </picture>
 </div>
 
 The native token owns balances and TRUST state. The ERC-3643 adapter owns
@@ -220,7 +226,10 @@ below, in `evidence/claim-matrix.md`, and in `evidence/known-limitations.md`;
 they are part of the claim.
 
 <div align="center">
-  <img src="docs/assets/verification-architecture.svg" alt="ERC-TRUST verification architecture separating the Isabelle abstract model, Solidity and Certora checks, compiled EVM bytecode, Kontrol and KEVM proofs, the unclaimed full refinement theorem, and the separate deployment boundary" width="900">
+  <picture>
+    <source media="(max-width: 600px)" srcset="docs/assets/verification-architecture-mobile.svg">
+    <img src="docs/assets/verification-architecture.svg" alt="ERC-TRUST verification architecture separating the Isabelle abstract model, Solidity and Certora checks, compiled EVM bytecode, Kontrol and KEVM proofs, the unclaimed full refinement theorem, and the separate deployment boundary" width="900">
+  </picture>
 </div>
 
 The verification layers are complementary, not interchangeable. Solid paths
