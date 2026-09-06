@@ -1,36 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="600" height="1130" viewBox="0 0 600 1130" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="ep-title ep-desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="1230" viewBox="0 0 600 1230" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="ep-title ep-desc">
   <title id="ep-title">ERC-3643 Partial reference state ownership for mobile screens</title>
   <desc id="ep-desc">A vertical view of the privileged control path, bound upstream inputs, and separated adapter and token state ownership.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#05131d"/><stop offset="1" stop-color="#0b2c39"/></linearGradient>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#61b9bd"/></marker>
-    <style>.stage{fill:#071923;stroke:#2b5967;stroke-width:2}.box{fill:#0b2430;stroke:#376c78;stroke-width:2}.label{font:700 24px Inter,Segoe UI,Arial,sans-serif;fill:#c7d9dc}.text{font:20px Inter,Segoe UI,Arial,sans-serif;fill:#d4e1e2}.small{font:17px Inter,Segoe UI,Arial,sans-serif;fill:#8fb0b5}.flow{fill:none;stroke:#61b9bd;stroke-width:3;marker-end:url(#arrow)}</style>
+    <style>.stage{fill:#071923;stroke:#2b5967;stroke-width:2}.box{fill:#0b2430;stroke:#376c78;stroke-width:2}.label{font:700 24px Inter,Segoe UI,Arial,sans-serif;fill:#c7d9dc}.text{font:20px Inter,Segoe UI,Arial,sans-serif;fill:#d4e1e2}.small{font:17px Inter,Segoe UI,Arial,sans-serif;fill:#8fb0b5}.link{fill:none;stroke:#61b9bd;stroke-width:3}.flow{fill:none;stroke:#61b9bd;stroke-width:3;marker-end:url(#arrow)}</style>
   </defs>
-  <rect width="600" height="1130" rx="24" fill="url(#bg)"/>
+  <rect width="600" height="1230" rx="24" fill="url(#bg)"/>
 
-  <rect class="stage" x="24" y="28" width="552" height="334" rx="22"/>
-  <circle cx="58" cy="66" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="73" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="21" fill="#dff4f0">1</text>
-  <text class="label" x="94" y="74">Privileged control path</text>
-  <rect class="box" x="86" y="112" width="428" height="58" rx="14"/><text class="text" x="300" y="148" text-anchor="middle">Authority</text>
-  <path class="flow" d="M300 170v35"/>
-  <rect class="box" x="86" y="209" width="428" height="58" rx="14"/><text class="text" x="300" y="245" text-anchor="middle">ERC3643TrustAdapter</text>
-  <path class="flow" d="M300 267v35"/>
-  <rect class="box" x="86" y="306" width="428" height="58" rx="14"/><text class="text" x="300" y="342" text-anchor="middle">Sealed ProfileGovernor</text>
+  <rect class="stage" x="24" y="28" width="552" height="394" rx="22"/>
+  <circle cx="58" cy="68" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="75" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="21" fill="#dff4f0">1</text>
+  <text class="label" x="94" y="76">Privileged control path</text>
+  <rect class="box" x="86" y="112" width="428" height="64" rx="14"/><text class="text" x="300" y="151" text-anchor="middle">Authority</text>
+  <path class="flow" d="M300 176v36"/>
+  <rect class="box" x="86" y="216" width="428" height="64" rx="14"/><text class="text" x="300" y="255" text-anchor="middle">ERC3643TrustAdapter</text>
+  <path class="flow" d="M300 280v36"/>
+  <rect class="box" x="86" y="320" width="428" height="64" rx="14"/><text class="text" x="300" y="359" text-anchor="middle">Sealed ProfileGovernor</text>
 
-  <path class="flow" d="M300 364v48"/>
-  <rect class="stage" x="24" y="414" width="552" height="354" rx="22"/>
-  <circle cx="58" cy="452" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="459" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="21" fill="#dff4f0">2</text>
-  <text class="label" x="94" y="460">Bound upstream inputs</text>
-  <text class="small" x="300" y="498" text-anchor="middle">Adapter reads every bound input</text>
-  <rect class="box" x="48" y="526" width="240" height="64" rx="13"/><text class="text" x="168" y="566" text-anchor="middle">Identity Registry</text>
-  <rect class="box" x="312" y="526" width="240" height="64" rx="13"/><text class="text" x="432" y="566" text-anchor="middle">Compliance</text>
-  <path class="flow" d="M300 498 168 526"/><path class="flow" d="M300 498 432 526"/>
-  <rect class="box" x="86" y="654" width="428" height="74" rx="14"/><text class="text" x="300" y="684" text-anchor="middle"><tspan x="300">Upstream token</tspan><tspan class="small" x="300" dy="27">exclusive Agent mutation; governor owns and seals</tspan></text>
+  <path class="flow" d="M300 384v74"/>
+  <rect class="stage" x="24" y="462" width="552" height="404" rx="22"/>
+  <circle cx="58" cy="504" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="511" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="21" fill="#dff4f0">2</text>
+  <text class="label" x="94" y="512">Bound upstream inputs</text>
+  <text class="small" x="300" y="558" text-anchor="middle">Adapter reads every bound input</text>
+  <rect class="box" x="48" y="584" width="240" height="68" rx="13"/><text class="text" x="168" y="625" text-anchor="middle">Identity Registry</text>
+  <rect class="box" x="312" y="584" width="240" height="68" rx="13"/><text class="text" x="432" y="625" text-anchor="middle">Compliance</text>
+  <path class="flow" d="M300 560 168 580"/><path class="flow" d="M300 560 432 580"/>
+  <path class="link" d="M168 652v42h132M432 652v42H300"/>
+  <path class="flow" d="M300 694v40"/>
+  <rect class="box" x="86" y="738" width="428" height="80" rx="14"/><text class="text" x="300" y="771" text-anchor="middle"><tspan x="300">Upstream token</tspan><tspan class="small" x="300" dy="27">exclusive Agent mutation; governor owns and seals</tspan></text>
 
-  <rect class="stage" x="24" y="810" width="552" height="290" rx="22"/>
-  <circle cx="58" cy="848" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="855" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="21" fill="#dff4f0">3</text>
-  <text class="label" x="94" y="856">Separated state ownership</text>
-  <rect class="box" x="48" y="908" width="240" height="126" rx="14"/><text class="text" x="168" y="954" text-anchor="middle"><tspan x="168">Adapter-owned</tspan><tspan x="168" dy="29">TRUST state</tspan><tspan x="168" dy="29">and receipts</tspan></text>
-  <rect class="box" x="312" y="908" width="240" height="126" rx="14"/><text class="text" x="432" y="954" text-anchor="middle"><tspan x="432">Token-owned</tspan><tspan x="432" dy="29">balances</tspan><tspan x="432" dy="29">and frozen state</tspan></text>
-  <path class="flow" d="M168 856v52"/><path class="flow" d="M432 856v52"/>
+  <rect class="stage" x="24" y="910" width="552" height="284" rx="22"/>
+  <circle cx="58" cy="950" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="957" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="21" fill="#dff4f0">3</text>
+  <text class="label" x="94" y="958">Separated state ownership</text>
+  <path class="flow" d="M300 982H168v44"/><path class="flow" d="M300 982h132v44"/>
+  <rect class="box" x="48" y="1030" width="240" height="120" rx="14"/><text class="text" x="168" y="1073" text-anchor="middle"><tspan x="168">Adapter-owned</tspan><tspan x="168" dy="29">TRUST state</tspan><tspan x="168" dy="29">and receipts</tspan></text>
+  <rect class="box" x="312" y="1030" width="240" height="120" rx="14"/><text class="text" x="432" y="1073" text-anchor="middle"><tspan x="432">Token-owned</tspan><tspan x="432" dy="29">balances</tspan><tspan x="432" dy="29">and frozen state</tspan></text>
 </svg>

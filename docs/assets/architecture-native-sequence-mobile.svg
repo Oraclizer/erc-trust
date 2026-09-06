@@ -1,57 +1,59 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="600" height="1420" viewBox="0 0 600 1420" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="ns-title ns-desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="1620" viewBox="0 0 600 1620" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="ns-title ns-desc">
   <title id="ns-title">Native action path for mobile screens</title>
   <desc id="ns-desc">A vertical sequence showing the operator, TrustToken, bound dependency, and transition kernel across applicable and rejected branches.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#05131d"/><stop offset="1" stop-color="#0b2c39"/></linearGradient>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#61b9bd"/></marker>
     <marker id="coral" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#cf715e"/></marker>
-    <style>.box{fill:#0b2430;stroke:#376c78;stroke-width:2}.head{font:700 24px Inter,Segoe UI,Arial,sans-serif;fill:#d4e1e2}.text{font:20px Inter,Segoe UI,Arial,sans-serif;fill:#d4e1e2}.small{font:17px Inter,Segoe UI,Arial,sans-serif;fill:#8fb0b5}.step{fill:none;stroke:#61b9bd;stroke-width:3;marker-end:url(#arrow)}</style>
+    <style>.stage{fill:#071923;stroke:#2b5967;stroke-width:2}.box{fill:#0b2430;stroke:#376c78;stroke-width:2}.head{font:700 24px Inter,Segoe UI,Arial,sans-serif;fill:#d4e1e2}.text{font:20px Inter,Segoe UI,Arial,sans-serif;fill:#d4e1e2}.small{font:17px Inter,Segoe UI,Arial,sans-serif;fill:#8fb0b5}.step{fill:none;stroke:#61b9bd;stroke-width:3;marker-end:url(#arrow)}</style>
   </defs>
-  <rect width="600" height="1420" rx="24" fill="url(#bg)"/>
+  <rect width="600" height="1620" rx="24" fill="url(#bg)"/>
   <text class="head" x="34" y="54">Native action sequence</text>
 
+  <rect class="stage" x="24" y="84" width="552" height="390" rx="22"/>
   <g font-family="Inter,Segoe UI,Arial,sans-serif">
-    <circle cx="58" cy="108" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="115" text-anchor="middle" font-size="21" fill="#dff4f0">1</text>
-    <rect class="box" x="98" y="76" width="442" height="68" rx="14"/><text class="small" x="118" y="103">Operator → TrustToken</text><text class="text" x="118" y="130">executeRegulatoryAction(request)</text>
-    <path class="step" d="M58 132v50"/>
+    <circle cx="58" cy="142" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="149" text-anchor="middle" font-size="21" fill="#dff4f0">1</text>
+    <rect class="box" x="98" y="104" width="442" height="76" rx="14"/><text class="small" x="118" y="134">Operator → TrustToken</text><text class="text" x="118" y="163">executeRegulatoryAction(request)</text>
+    <path class="step" d="M58 166v70"/>
 
-    <circle cx="58" cy="216" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="223" text-anchor="middle" font-size="21" fill="#dff4f0">2</text>
-    <rect class="box" x="98" y="174" width="442" height="102" rx="14"/><text class="small" x="118" y="204">TrustToken internal checks</text><text class="text" x="118" y="234"><tspan x="118">domain · ID · time · epoch · shape</tspan><tspan x="118" dy="27">replay · authority</tspan></text>
-    <path class="step" d="M58 240v78"/>
+    <circle cx="58" cy="260" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="267" text-anchor="middle" font-size="21" fill="#dff4f0">2</text>
+    <rect class="box" x="98" y="208" width="442" height="104" rx="14"/><text class="small" x="118" y="238">TrustToken internal checks</text><text class="text" x="118" y="268"><tspan x="118">domain · ID · time · epoch · shape</tspan><tspan x="118" dy="27">replay · authority</tspan></text>
+    <path class="step" d="M58 284v80"/>
 
-    <circle cx="58" cy="352" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="359" text-anchor="middle" font-size="21" fill="#dff4f0">3</text>
-    <rect class="box" x="98" y="310" width="442" height="102" rx="14"/><text class="small" x="118" y="340">TrustToken → bound dependency</text><text class="text" x="118" y="370"><tspan x="118">staticcall with bound schema</tspan><tspan x="118" dy="27">and configuration</tspan></text>
+    <circle cx="58" cy="388" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="395" text-anchor="middle" font-size="21" fill="#dff4f0">3</text>
+    <rect class="box" x="98" y="336" width="442" height="104" rx="14"/><text class="small" x="118" y="366">TrustToken → bound dependency</text><text class="text" x="118" y="396"><tspan x="118">staticcall with bound schema</tspan><tspan x="118" dy="27">and configuration</tspan></text>
   </g>
 
-  <rect x="24" y="454" width="552" height="650" rx="22" fill="#071923" stroke="#2b5967" stroke-width="2"/>
-  <rect x="42" y="432" width="174" height="46" rx="12" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="129" y="462" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18" font-weight="700" fill="#7de0d0">APPLICABLE</text>
-  <path class="step" d="M58 412v82"/>
+  <path class="step" d="M58 412v84"/>
+  <rect class="stage" x="24" y="522" width="552" height="690" rx="22"/>
+  <rect x="42" y="500" width="174" height="46" rx="12" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="129" y="530" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18" font-weight="700" fill="#7de0d0">APPLICABLE</text>
+  <path class="step" d="M58 546v20"/>
 
   <g font-family="Inter,Segoe UI,Arial,sans-serif">
-    <circle cx="58" cy="528" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="535" text-anchor="middle" font-size="21" fill="#dff4f0">4</text>
-    <rect class="box" x="98" y="496" width="442" height="68" rx="14"/><text class="small" x="118" y="523">Dependency → TrustToken</text><text class="text" x="118" y="550">APPLICABLE + evidence</text>
-    <path class="step" d="M58 552v66"/>
+    <circle cx="58" cy="590" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="597" text-anchor="middle" font-size="21" fill="#dff4f0">4</text>
+    <rect class="box" x="98" y="554" width="442" height="76" rx="14"/><text class="small" x="118" y="584">Dependency → TrustToken</text><text class="text" x="118" y="613">APPLICABLE + evidence</text>
+    <path class="step" d="M58 614v82"/>
 
-    <circle cx="58" cy="652" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="659" text-anchor="middle" font-size="21" fill="#dff4f0">5</text>
-    <rect class="box" x="98" y="608" width="442" height="88" rx="14"/><text class="small" x="118" y="638">TrustToken internal effect</text><text class="text" x="118" y="670">consume action ID and authority nonce</text>
-    <path class="step" d="M58 676v64"/>
+    <circle cx="58" cy="720" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="727" text-anchor="middle" font-size="21" fill="#dff4f0">5</text>
+    <rect class="box" x="98" y="674" width="442" height="92" rx="14"/><text class="small" x="118" y="705">TrustToken internal effect</text><text class="text" x="118" y="738">consume action ID and authority nonce</text>
+    <path class="step" d="M58 744v74"/>
 
-    <circle cx="58" cy="774" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="781" text-anchor="middle" font-size="21" fill="#dff4f0">6</text>
-    <rect class="box" x="98" y="730" width="442" height="88" rx="14"/><text class="small" x="118" y="760">TrustToken → transition kernel</text><text class="text" x="118" y="792">apply action-specific transition</text>
-    <path class="step" d="M58 798v64"/>
+    <circle cx="58" cy="842" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="849" text-anchor="middle" font-size="21" fill="#dff4f0">6</text>
+    <rect class="box" x="98" y="796" width="442" height="92" rx="14"/><text class="small" x="118" y="827">TrustToken → transition kernel</text><text class="text" x="118" y="860">apply action-specific transition</text>
+    <path class="step" d="M58 866v74"/>
 
-    <circle cx="58" cy="896" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="903" text-anchor="middle" font-size="21" fill="#dff4f0">7</text>
-    <rect class="box" x="98" y="852" width="442" height="88" rx="14"/><text class="small" x="118" y="882">Transition kernel → TrustToken</text><text class="text" x="118" y="914">post-state</text>
-    <path class="step" d="M58 920v64"/>
+    <circle cx="58" cy="964" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="971" text-anchor="middle" font-size="21" fill="#dff4f0">7</text>
+    <rect class="box" x="98" y="918" width="442" height="92" rx="14"/><text class="small" x="118" y="949">Transition kernel → TrustToken</text><text class="text" x="118" y="982">post-state</text>
+    <path class="step" d="M58 988v74"/>
 
-    <circle cx="58" cy="1018" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="1025" text-anchor="middle" font-size="21" fill="#dff4f0">8</text>
-    <rect x="98" y="974" width="442" height="88" rx="14" fill="#0b2430" stroke="#67d8c6" stroke-width="2"/><text class="small" x="118" y="1004">TrustToken → Operator</text><text class="text" x="118" y="1036">receiptHash; receipt event emitted last</text>
+    <circle cx="58" cy="1086" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="1093" text-anchor="middle" font-size="21" fill="#dff4f0">8</text>
+    <rect x="98" y="1040" width="442" height="92" rx="14" fill="#0b2430" stroke="#67d8c6" stroke-width="2"/><text class="small" x="118" y="1071">TrustToken → Operator</text><text class="text" x="118" y="1104">receiptHash; receipt event emitted last</text>
   </g>
 
-  <rect x="24" y="1152" width="552" height="232" rx="22" fill="#1b1719" stroke="#6d443f" stroke-width="2"/>
-  <rect x="42" y="1130" width="282" height="46" rx="12" fill="#291c1d" stroke="#a35e50" stroke-width="2"/><text x="183" y="1160" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18" font-weight="700" fill="#e0a395">REJECTED OR UNAVAILABLE</text>
-  <text x="300" y="1192" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" fill="#c88f84">Alternative branch from the bound-dependency response</text>
-  <rect x="70" y="1210" width="460" height="76" rx="14" fill="#291c1d" stroke="#a35e50" stroke-width="2"/><text x="300" y="1241" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="20" fill="#e0b7ae"><tspan x="300">Bound dependency rejects or fails</tspan><tspan x="300" dy="27">operationally</tspan></text>
-  <path d="M300 1286v38" fill="none" stroke="#cf715e" stroke-width="3" marker-end="url(#coral)"/>
-  <rect x="70" y="1328" width="460" height="52" rx="14" fill="#291c1d" stroke="#a35e50" stroke-width="2"/><text x="300" y="1361" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="20" fill="#e0b7ae">Revert; full-state stutter</text>
+  <rect x="24" y="1280" width="552" height="304" rx="22" fill="#1b1719" stroke="#6d443f" stroke-width="2"/>
+  <rect x="42" y="1258" width="282" height="46" rx="12" fill="#291c1d" stroke="#a35e50" stroke-width="2"/><text x="183" y="1288" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18" font-weight="700" fill="#e0a395">REJECTED OR UNAVAILABLE</text>
+  <text x="300" y="1336" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="17" fill="#c88f84">Alternative branch from the bound-dependency response</text>
+  <rect x="70" y="1362" width="460" height="80" rx="14" fill="#291c1d" stroke="#a35e50" stroke-width="2"/><text x="300" y="1395" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="20" fill="#e0b7ae"><tspan x="300">Bound dependency rejects or fails</tspan><tspan x="300" dy="27">operationally</tspan></text>
+  <path d="M300 1442v42" fill="none" stroke="#cf715e" stroke-width="3" marker-end="url(#coral)"/>
+  <rect x="70" y="1488" width="460" height="60" rx="14" fill="#291c1d" stroke="#a35e50" stroke-width="2"/><text x="300" y="1525" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="20" fill="#e0b7ae">Revert; full-state stutter</text>
 </svg>
