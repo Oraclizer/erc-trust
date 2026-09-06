@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="1740" viewBox="0 0 600 1740" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="va-title va-desc">
+  <title id="va-title">ERC-TRUST verification architecture for mobile screens</title>
+  <desc id="va-desc">A vertical architecture separating abstract-model checks, implementation and bytecode checks, current evidence, unclaimed refinement, and deployment boundaries.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#05131d"/><stop offset="1" stop-color="#0b2c39"/></linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#61b9bd"/></marker>
+    <marker id="coral" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#cf715e"/></marker>
+    <style>.stage{fill:#071923;stroke:#2b5967;stroke-width:2}.box{fill:#0b2430;stroke:#376c78;stroke-width:2}.label{font:700 24px Inter,Segoe UI,Arial,sans-serif;fill:#c7d9dc}.text{font:20px Inter,Segoe UI,Arial,sans-serif;fill:#d4e1e2}.small{font:17px Inter,Segoe UI,Arial,sans-serif;fill:#8fb0b5}.flow{fill:none;stroke:#61b9bd;stroke-width:3;marker-end:url(#arrow)}</style>
+  </defs>
+  <rect width="600" height="1740" rx="24" fill="url(#bg)"/>
+  <text x="30" y="48" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="28" font-weight="800" fill="#e5eeed">Verification architecture</text>
+  <text x="30" y="78" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="16" fill="#8fb0b5">Checks, artifact connections, and explicit non-claims</text>
+
+  <rect class="stage" x="24" y="106" width="552" height="488" rx="22"/>
+  <circle cx="58" cy="144" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="151" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="21" fill="#dff4f0">1</text>
+  <text class="label" x="94" y="152">Abstract model</text>
+  <rect class="box" x="74" y="194" width="452" height="70" rx="14"/><text class="text" x="300" y="224" text-anchor="middle"><tspan x="300">Reusable foundations</tspan><tspan class="small" x="300" dy="25">CDSP · regulatory composition</tspan></text>
+  <path class="flow" d="M300 264v34"/>
+  <rect class="box" x="74" y="302" width="452" height="70" rx="14"/><text class="text" x="300" y="332" text-anchor="middle"><tspan x="300">ERC-TRUST abstract model</tspan><tspan class="small" x="300" dy="25">states · actions · outcomes</tspan></text>
+  <path class="flow" d="M300 372v34"/>
+  <rect class="box" x="74" y="410" width="452" height="70" rx="14"/><text class="text" x="300" y="440" text-anchor="middle"><tspan x="300">Isabelle/HOL</tspan><tspan class="small" x="300" dy="25">machine-checked logic</tspan></text>
+  <path class="flow" d="M300 480v34"/>
+  <rect class="box" x="74" y="518" width="452" height="58" rx="14"/><text class="text" x="300" y="554" text-anchor="middle">Checked model claims</text>
+
+  <path d="M126 372v260h34" fill="none" stroke="#cf715e" stroke-width="3" stroke-dasharray="9 8" marker-end="url(#coral)"/>
+  <text x="146" y="620" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="16" fill="#e0a395">mapped obligations; no complete refinement theorem</text>
+  <rect class="stage" x="24" y="636" width="552" height="744" rx="22"/>
+  <circle cx="58" cy="674" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="681" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="21" fill="#dff4f0">2</text>
+  <text class="label" x="94" y="682">Implementation and bytecode checks</text>
+  <rect class="box" x="74" y="724" width="452" height="70" rx="14"/><text class="text" x="300" y="754" text-anchor="middle"><tspan x="300">Solidity reference</tspan><tspan class="small" x="300" dy="25">actual contract implementation</tspan></text>
+
+  <rect class="box" x="48" y="834" width="240" height="82" rx="14"/><text class="text" x="168" y="868" text-anchor="middle"><tspan x="168">Foundry tests</tspan><tspan class="small" x="168" dy="25">examples · fuzz · invariants</tspan></text>
+  <rect class="box" x="312" y="834" width="240" height="82" rx="14"/><text class="text" x="432" y="868" text-anchor="middle"><tspan x="432">Certora</tspan><tspan class="small" x="432" dy="25">separate CVL rules</tspan></text>
+  <path class="flow" d="M300 794 168 834"/><path class="flow" d="M300 794 432 834"/>
+
+  <rect class="box" x="74" y="970" width="452" height="78" rx="14"/><text class="text" x="300" y="1003" text-anchor="middle"><tspan x="300">Pinned solc</tspan><tspan class="small" x="300" dy="25">deterministic compiler</tspan></text>
+  <path class="flow" d="M300 794v176"/>
+  <path class="flow" d="M300 1048v36"/>
+  <rect class="box" x="74" y="1088" width="452" height="78" rx="14"/><text class="text" x="300" y="1121" text-anchor="middle"><tspan x="300">EVM runtime bytecode</tspan><tspan class="small" x="300" dy="25">code executed on-chain</tspan></text>
+
+  <rect class="box" x="48" y="1212" width="240" height="82" rx="14"/><text class="text" x="168" y="1246" text-anchor="middle"><tspan x="168">K Framework → KEVM</tspan><tspan class="small" x="168" dy="25">formal EVM semantics</tspan></text>
+  <rect class="box" x="312" y="1212" width="240" height="82" rx="14"/><text class="text" x="432" y="1246" text-anchor="middle"><tspan x="432">Foundry-style harness</tspan><tspan class="small" x="432" dy="25">calls + expected properties</tspan></text>
+  <path class="flow" d="M300 1166v152"/>
+  <path class="flow" d="M168 1294v36h132"/><path class="flow" d="M432 1294v36H300"/>
+  <rect class="box" x="74" y="1318" width="452" height="62" rx="14"/><text class="text" x="300" y="1356" text-anchor="middle">Kontrol selected bytecode proofs</text>
+
+  <path class="flow" d="M300 1380v54"/>
+  <rect class="stage" x="24" y="1438" width="552" height="272" rx="22"/>
+  <circle cx="58" cy="1476" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="1483" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="21" fill="#dff4f0">3</text>
+  <text class="label" x="94" y="1484">Claim boundaries</text>
+  <rect x="54" y="1522" width="492" height="56" rx="14" fill="#0b2a2b" stroke="#4ca696" stroke-width="2"/><text x="300" y="1557" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="19" fill="#c6e3dc">Current evidence: model proofs + bounded checks</text>
+  <rect x="54" y="1594" width="492" height="56" rx="14" fill="#291c1d" stroke="#a35e50" stroke-width="2"/><text x="300" y="1629" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18" fill="#e0b7ae">Not claimed: complete Isabelle → Solidity → EVM theorem</text>
+  <rect x="54" y="1666" width="492" height="32" rx="12" fill="#291c1d" stroke="#a35e50" stroke-width="2"/><text x="300" y="1688" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="16" fill="#e0b7ae">Not included: deployment address · chain · operations</text>
+  <text x="30" y="1730" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" fill="#789ca2">Solid arrows show inputs. Dashed coral marks an undischarged obligation boundary.</text>
+</svg>

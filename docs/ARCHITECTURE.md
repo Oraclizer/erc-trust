@@ -12,7 +12,10 @@ state, and the evidence supporting a claim about this implementation.
 ## System view
 
 <div align="center">
-  <img src="assets/architecture-action-flow.svg" alt="Four-stage flow from the command boundary through validation and bound inputs to the state transition, ending with the canonical receipt emitted last" width="900">
+  <picture>
+    <source media="(max-width: 600px)" srcset="assets/architecture-action-flow-mobile.svg">
+    <img src="assets/architecture-action-flow.svg" alt="Four-stage flow from the command boundary through validation and bound inputs to the state transition, ending with the canonical receipt emitted last" width="900">
+  </picture>
 </div>
 
 A typed command commits to its authority and authority epoch, its case, the
@@ -61,7 +64,10 @@ does not match.
 ### Native action path
 
 <div align="center">
-  <img src="assets/architecture-native-sequence.svg" alt="Sequence diagram of the native action path between the operator, TrustToken, a bound dependency, and the transition kernel, showing the applicable and the rejected branches" width="900">
+  <picture>
+    <source media="(max-width: 600px)" srcset="assets/architecture-native-sequence-mobile.svg">
+    <img src="assets/architecture-native-sequence.svg" alt="Sequence diagram of the native action path between the operator, TrustToken, a bound dependency, and the transition kernel, showing the applicable and the rejected branches" width="900">
+  </picture>
 </div>
 
 The case transition table of the kernel governs every command. `FREEZE`
@@ -103,7 +109,10 @@ validated wrapper path.
 The adapter profile deliberately separates state ownership:
 
 <div align="center">
-  <img src="assets/architecture-erc3643-profile.svg" alt="Privileged control path, bound upstream inputs, and separated state ownership in the ERC-3643 Partial reference profile" width="900">
+  <picture>
+    <source media="(max-width: 600px)" srcset="assets/architecture-erc3643-profile-mobile.svg">
+    <img src="assets/architecture-erc3643-profile.svg" alt="Privileged control path, bound upstream inputs, and separated state ownership in the ERC-3643 Partial reference profile" width="900">
+  </picture>
 </div>
 
 `ERC3643TrustAdapter` owns the kernel state: cases, custody, owned frozen

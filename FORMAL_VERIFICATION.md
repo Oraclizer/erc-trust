@@ -19,7 +19,10 @@ executable artifact and release-identity SSOT.
 ## Verification architecture
 
 <div align="center">
-  <img src="docs/assets/verification-architecture.svg" alt="ERC-TRUST verification architecture separating the Isabelle abstract model, Solidity and Certora checks, compiled EVM bytecode, Kontrol and KEVM proofs, the unclaimed full refinement theorem, and the separate deployment boundary" width="900">
+  <picture>
+    <source media="(max-width: 600px)" srcset="docs/assets/verification-architecture-mobile.svg">
+    <img src="docs/assets/verification-architecture.svg" alt="ERC-TRUST verification architecture separating the Isabelle abstract model, Solidity and Certora checks, compiled EVM bytecode, Kontrol and KEVM proofs, the unclaimed full refinement theorem, and the separate deployment boundary" width="900">
+  </picture>
 </div>
 
 Solid paths show actual artifact or verification inputs. The coral obligation

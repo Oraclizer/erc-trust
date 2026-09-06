@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="1240" viewBox="0 0 600 1240" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="ao-title ao-desc">
+  <title id="ao-title">ERC-TRUST action flow for mobile screens</title>
+  <desc id="ao-desc">A vertical three-stage flow from the command boundary through the fail-closed gate and typed execution to the canonical receipt.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#05131d"/><stop offset="1" stop-color="#0b2c39"/></linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#61b9bd"/></marker>
+    <marker id="coral" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#cf715e"/></marker>
+    <style>.stage{fill:#071923;stroke:#2b5967;stroke-width:2}.box{fill:#0b2430;stroke:#376c78;stroke-width:2}.label{font:700 24px Inter,Segoe UI,Arial,sans-serif;fill:#c7d9dc}.text{font:20px Inter,Segoe UI,Arial,sans-serif;fill:#d4e1e2}.small{font:17px Inter,Segoe UI,Arial,sans-serif;fill:#8fb0b5}.flow{fill:none;stroke:#61b9bd;stroke-width:3;marker-end:url(#arrow)}</style>
+  </defs>
+  <rect width="600" height="1240" rx="24" fill="url(#bg)"/>
+
+  <rect class="stage" x="24" y="28" width="552" height="248" rx="22"/>
+  <circle cx="58" cy="66" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="73" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="21" fill="#dff4f0">1</text>
+  <text class="label" x="94" y="74">Command boundary</text>
+  <rect class="box" x="86" y="111" width="428" height="58" rx="14"/><text class="text" x="300" y="147" text-anchor="middle">Operator or delegated authority</text>
+  <path class="flow" d="M300 169v36"/>
+  <rect class="box" x="86" y="209" width="428" height="58" rx="14"/><text class="text" x="300" y="245" text-anchor="middle">Canonical typed request</text>
+
+  <path class="flow" d="M300 276v44"/>
+  <rect class="stage" x="24" y="322" width="552" height="376" rx="22"/>
+  <circle cx="58" cy="360" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="367" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="21" fill="#dff4f0">2</text>
+  <text class="label" x="94" y="368">Fail-closed gate</text>
+  <rect class="box" x="86" y="405" width="428" height="82" rx="14"/><text class="text" x="300" y="439" text-anchor="middle"><tspan x="300">Shape · replay · epochs</tspan><tspan x="300" dy="27">policy · authority</tspan></text>
+  <path class="flow" d="M300 487v24"/>
+  <rect class="box" x="86" y="515" width="428" height="82" rx="14"/><text class="text" x="300" y="549" text-anchor="middle"><tspan x="300">Code-hash-bound</tspan><tspan x="300" dy="27">dependency reads</tspan></text>
+  <path d="M300 597v21" fill="none" stroke="#cf715e" stroke-width="3" marker-end="url(#coral)"/>
+  <text class="small" x="316" y="614">rejected or unavailable</text>
+  <rect x="86" y="622" width="428" height="68" rx="14" fill="#291c1d" stroke="#a35e50" stroke-width="2"/><text x="300" y="648" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="20" fill="#e0b7ae"><tspan x="300">Revert</tspan><tspan x="300" dy="25">no authorization or state change</tspan></text>
+
+  <path class="flow" d="M86 556H66v183h234v63"/>
+  <text class="small" x="76" y="610">applicable</text>
+  <rect class="stage" x="24" y="742" width="552" height="486" rx="22"/>
+  <circle cx="58" cy="780" r="22" fill="#0d2c39" stroke="#67d8c6" stroke-width="2"/><text x="58" y="787" text-anchor="middle" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="21" fill="#dff4f0">3</text>
+  <text class="label" x="94" y="788">Typed execution</text>
+  <rect class="box" x="86" y="825" width="428" height="58" rx="14"/><text class="text" x="300" y="861" text-anchor="middle">TRUST transition kernel</text>
+  <path class="flow" d="M300 883v40"/>
+  <polygon points="300,923 420,986 300,1049 180,986" fill="#0d2c39" stroke="#559aaa" stroke-width="2"/><text class="text" x="300" y="993" text-anchor="middle">Execution profile</text>
+  <path class="flow" d="M180 986H86v110"/><text class="small" x="92" y="973">Native Full</text>
+  <path class="flow" d="M420 986h94v110"/><text class="small" x="425" y="973">ERC-3643 Partial</text>
+  <rect class="box" x="42" y="1094" width="240" height="64" rx="13"/><text class="small" x="162" y="1120" text-anchor="middle"><tspan x="162">Native token</tspan><tspan x="162" dy="23">balances + TRUST state</tspan></text>
+  <rect class="box" x="318" y="1094" width="240" height="64" rx="13"/><text class="small" x="438" y="1120" text-anchor="middle"><tspan x="438">Adapter: TRUST + receipts</tspan><tspan x="438" dy="23">upstream token balances</tspan></text>
+  <path class="flow" d="M162 1158v34h138"/><path class="flow" d="M438 1158v34H300"/>
+  <rect x="86" y="1178" width="428" height="50" rx="14" fill="#0b2430" stroke="#67d8c6" stroke-width="2"/><text class="text" x="300" y="1210" text-anchor="middle">Canonical receipt emitted last</text>
+</svg>
