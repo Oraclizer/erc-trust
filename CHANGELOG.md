@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Record the separate identical-input Booster comparison without reusing a
+  no-Booster certificate. It reaches deployed Native calls, then times out at
+  900 seconds with no target cover. Required evidence rejects a fabricated PASS;
+  the six mandatory obligations remain open. Document the checked producer still
+  missing for constructor/storage, command admission, effects and observations.
+
 - Connect the TRUST 1.2 development evidence to every v3 aggregate entrypoint.
   Local Foundry and deterministic receipts retain their actual execution identity;
   a fresh local Isabelle build binds both named sessions and the exact dependency

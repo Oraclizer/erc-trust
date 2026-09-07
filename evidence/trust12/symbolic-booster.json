@@ -1,0 +1,101 @@
+{
+  "schema": "trust12-symbolic-backend-comparison-v1",
+  "status": "INCOMPLETE",
+  "sourceCommit": "672743031593f6a43211999866630f3d55e08298",
+  "changedFactor": "use-booster enabled; source and domain unchanged",
+  "sourceInputReceipt": {
+    "path": "out/trust12/booster-input.json",
+    "sha256": "748603a6ff608b4a56f68c261c592677366bda40d4f79936c3b969a190c4e4fd"
+  },
+  "harnessSha256": "d143fc0040e3cd4087cc9c92c588f2c74ff73cd50818e6bbc3c3f7c3d8638491",
+  "inputDomain": "first > 0 and second > 0 and second <= first",
+  "notAssumed": "first <= supply",
+  "backend": {
+    "kontrol": "1.0.255",
+    "booster": true,
+    "wrapperSha256": "66b332be411293e2a58b90d533dee6a04feda16921812c9be6f5ff0beeb1ac0d",
+    "binarySha256": "3d2d03aea11c2eb1231373606152d1b6e7dac4da9c1c7191106dc96f77d000eb",
+    "workers": 1,
+    "maxDepth": 10000,
+    "maxIterations": 1000,
+    "smtTimeoutMs": 10000,
+    "wallTimeoutSeconds": 900,
+    "schedule": "CANCUN"
+  },
+  "build": {
+    "startedAt": "2026-09-07T08:51:08.4283858Z",
+    "finishedAt": "2026-09-07T08:52:56.6002760Z",
+    "exitCode": 0,
+    "logPath": "out/trust12/booster-build.log",
+    "logSha256": "41478e4cb92b8ec3aad769918386c6ad2374e4a4c9f0f74c19ab30c3a47747ea"
+  },
+  "prove": {
+    "startedAt": "2026-09-07T08:55:04.7664409Z",
+    "finishedAt": "2026-09-07T09:10:05.0279536Z",
+    "exitCode": 124,
+    "logPath": "out/trust12/booster-prove.log",
+    "logSha256": "5c51612d2180db28a7364092e465619cc27c8a633d077b85161bdae4790eedc0"
+  },
+  "graph": {
+    "proofSha256": "986f7607eede79042040d19ca5e3b1c9533a15369bf3cc8c720e2585e7547951",
+    "kcfgSha256": "176d5e54040cbe8ab8ee48b80c8c3a8f702e95eb808ca41e3a6ee914ef80dfae",
+    "nodes": 20,
+    "edges": 14,
+    "covers": 0,
+    "splits": 2,
+    "lastNode": 20,
+    "lastNodeCells": [
+      {
+        "cell": "<program>",
+        "bytes": 20043,
+        "sha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+      },
+      {
+        "cell": "<pc>",
+        "value": "19574"
+      },
+      {
+        "cell": "<callDepth>",
+        "value": "1"
+      },
+      {
+        "cell": "<program>",
+        "bytes": 39828,
+        "sha256": "287badb127964467b0b070bab56a40acf56829d1cca4ef7aee2d120792d10971"
+      },
+      {
+        "cell": "<pc>",
+        "value": "10563"
+      },
+      {
+        "cell": "<callDepth>",
+        "value": "0"
+      },
+      {
+        "cell": "<program>",
+        "bytes": 772,
+        "sha256": "880ecc469658f26c09de7664637fe56e2ab7f3d3902f12bfad737aa3e6be5c49"
+      },
+      {
+        "cell": "<pc>",
+        "value": "218"
+      },
+      {
+        "cell": "<callDepth>",
+        "value": "2"
+      }
+    ]
+  },
+  "scope": {
+    "constructorMilestone": "Saved state contains the 20043-byte Native deployed program with resolved immutables, beyond the prior creation-program stop.",
+    "freezeBodyReached": "NOT_ESTABLISHED",
+    "targetProof": "TIMEOUT; no PASS or counterexample",
+    "guardRemoval": "NOT_RUN because the positive proof did not complete",
+    "runtimeLink": "NOT_DISCHARGED",
+    "backendPeakMemory": "Not measured; GNU time reports the launcher and is not a detached RPC peak."
+  },
+  "next": "No repeat with the same backend/deployment or larger timeout. A complete exact deployment summary or another materially different approach requires a new feasibility disposition.",
+  "provider": "local-wsl-kontrol",
+  "rawCapture": "out/trust12/kontrol-capture/booster",
+  "workspaceDisposition": "The proof bytes were copied and compared before the owned WSL execution directory was removed; no remaining solver was found."
+}
