@@ -89,8 +89,27 @@ local double build and all 102 Foundry tests at the first Hook checkpoint.
 Run `node scripts/test-trust12-evidence-reuse.mjs` to reproduce those controls.
 They are not a rerun of the historical 121 implementation mutations.
 
-The aggregate release evidence remains incomplete. The three legacy verifiers
-still reject the outstanding deterministic/Foundry/runtime-binding or rendered
-ledger drift. The current release verifier explicitly accepts development mode
-only. Closing its profile-scoped evidence and the TRUST 1.2 mandatory ledger is a
-separate next step; this checkpoint does not claim an integrated release green.
+## Required aggregate evidence
+
+The three v3 aggregate entrypoints consume `verify-trust12-required.mjs`. It binds
+legacy Native and Partial evidence, the exact previously audited Hook inputs, the
+nine actual T-REX integration tests and six semantic mutations, the complete
+Isabelle parent/child session graph, and the open TRUST 1.2 obligations. A passing
+check means consistent development evidence; general runtime refinement remains
+incomplete and release mode stays prohibited.
+
+The Foundry recorder accepts `--local` with the original `local-validation.json`.
+It checks raw log hashes and individual test outcomes against the recorded source
+commit. `record-trust12-deterministic.mjs` promotes the existing double build while
+retaining its execution commit and output. No CI run identifiers are invented.
+
+`formal-build-replay.json` records a fresh local clean build and proof export of
+both named sessions. The formal input identity includes theories, ROOT/ROOTS,
+foundation locks and workflow, plus the exact foundation overlay and ADS input
+inventory. The previous `formal-build.json` remains historical evidence.
+
+Pinned-compiler replay now covers the three legacy runtime subjects and the four
+Hook subjects. The Hook subjects bind their own feature identity receipt and
+receive no legacy HOL bridge credit. Run `node scripts/test-trust12-required.mjs`
+for the missing-input, altered-provenance, session-graph and release-promotion
+controls. These controls are separate from implementation mutation campaigns.

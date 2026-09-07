@@ -60,8 +60,20 @@ $repoCyg = Convert-ToCygwinPath $repoRoot
 $adsCyg = Convert-ToCygwinPath $AdsFunctor
 $foundationCyg = Convert-ToCygwinPath $FormalFoundation
 $buildCommand = "export PATH=/usr/local/bin:/usr/bin:/bin; cd '$repoCyg'; '$isabelle' build -c -o record_proofs=1 -d '$adsCyg' -d '$foundationCyg' -d . ERC_TRUST TRUST12_Accounting_Obstruction"
+$productRoot = [System.IO.Path]::GetFullPath((Join-Path $repoRoot '..\..'))
+$captureScript = Join-Path $productRoot 'scripts\capture-isabelle-local-inputs.mjs'
+$inputBefore = Join-Path $runDirectory 'build-input-before.json'
+$inputAfter = Join-Path $runDirectory 'build-input-after.json'
+& node $captureScript --foundation $FormalFoundation --ads $AdsFunctor --out $inputBefore
+if ($LASTEXITCODE -ne 0) { throw 'Build input capture failed before execution' }
+$startedAt = [DateTime]::UtcNow.ToString('o')
 $buildOutput = @(& $isabelleBash --noprofile --norc -c $buildCommand 2>&1)
 $buildExitCode = $LASTEXITCODE
+$finishedAt = [DateTime]::UtcNow.ToString('o')
+& node $captureScript --foundation $FormalFoundation --ads $AdsFunctor --out $inputAfter
+if ($LASTEXITCODE -ne 0) { throw 'Build input capture failed after execution' }
+if ((Get-Sha256File $inputBefore) -ne (Get-Sha256File $inputAfter)) { throw 'Build inputs changed during execution' }
+
 $buildLogPath = Join-Path $runDirectory 'isabelle-clean-build.log'
 Write-Utf8Lf $buildLogPath (($buildOutput -join "`n") + "`n")
 
@@ -100,6 +112,9 @@ $obstructionAuditPass =
 
 $report = [ordered]@{
   gate = 'ERC-TRUST-model-proof-closure'
+  inputCapture = [ordered]@{ before = 'build-input-before.json'; after = 'build-input-after.json'; sha256 = (Get-Sha256File $inputBefore).ToLowerInvariant() }
+  startedAt = $startedAt
+  finishedAt = $finishedAt
   runId = $runId
   branch = (& git -C $repoRoot branch --show-current).Trim()
   repositoryCommit = (& git -C $repoRoot rev-parse HEAD).Trim()

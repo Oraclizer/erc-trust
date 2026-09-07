@@ -59,6 +59,39 @@
         "profileAdapter",
         "profileGovernor"
       ]
+    },
+    {
+      "compilerRun": {
+        "outputSha256": "9b8ade69cd8da20109f6ecb7d60a91d1bd7af4edc3c81f043fbdc04db34757c8"
+      },
+      "files": [
+        {
+          "path": "evidence/runtime-binding-v3/erc3643-hook/standard-json-input.json",
+          "sha256": "d7e29f9e6863af59c037e42652028569b00c2d097aa2478311f8fd0851ed844e"
+        },
+        {
+          "path": "evidence/runtime-binding-v3/erc3643-hook/bridge-artifacts.json",
+          "sha256": "99362fa5bdebbb6534aea01fbb43d2fbe95f1642dbec7a3af99b2f395040d01e"
+        },
+        {
+          "path": "evidence/runtime-binding-v3/erc3643-hook/source-identities.json",
+          "sha256": "72e7320b87f81b547a34fa077073eb8c5a518690e56aa121877007d1d5b31082"
+        }
+      ],
+      "id": "erc3643-hook",
+      "roots": [
+        "implementation/src/profiles/ERC3643HookAdapter.sol",
+        "implementation/src/profiles/ERC3643HookGovernor.sol",
+        "implementation/src/profiles/ERC3643HookCompliance.sol",
+        "implementation/src/profiles/ERC3643HookFactory.sol"
+      ],
+      "sourceCount": 10,
+      "subjects": [
+        "ERC3643HookAdapter",
+        "ERC3643HookGovernor",
+        "ERC3643HookCompliance",
+        "ERC3643HookFactory"
+      ]
     }
   ],
   "candidate": "0.2.0-candidate.1",
@@ -70,9 +103,14 @@
     },
     "binarySha256": "c8d35afdddc3cd2743ee88b8f25e0fecd16e2bdd5f2120f37e52cd9cc45ae0e6",
     "correctnessClaimed": false,
-    "foundryTomlSha256": "0ba6dbb2f1b4947845f7133677bb849e6947dc398d6a57a68ea577beaf83e2a5",
+    "foundryTomlSha256": "3e7c2222c9200518563b7d6f09f19032a06e0d744be90e6522a87a43307bec7b",
     "settingsSha256": "d9930424243171189d87ccc9de6e1cbc94c335864d1442f8d4e5996095be8201",
     "version": "0.8.36+commit.8a079791"
+  },
+  "hookIdentity": {
+    "claim": "Hook semantic identity is bound to its own development receipt; no legacy HOL bridge or proof credit is transferred.",
+    "path": "evidence/trust12/runtime-identity.json",
+    "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
   },
   "kind": "ERC_TRUST_RUNTIME_BINDING_V3",
   "layers": {
@@ -92,7 +130,7 @@
   "runtimeTemplateSha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1",
   "schema": "erc-trust-runtime-binding-v3",
   "sourceRootAlgorithm": "sha256-raw-files-case-sensitive-path-order-v1",
-  "sourceRootSha256": "947afab7619b5c2d629da3e233c1cbe76fc6556a61112fbcc51b99c7e7235272",
+  "sourceRootSha256": "158420df1daf7b8abe43b722f01bdb124dcec32a5e46ffbe339bb51330711abd",
   "status": "PASS_RUNTIME_SEMANTIC_IDENTITY",
   "subjects": [
     {
@@ -352,6 +390,350 @@
         "storageLayout": true
       },
       "source": "implementation/src/profiles/ProfileGovernor.sol"
+    },
+    {
+      "artifact": "out/ERC3643HookAdapter.sol/ERC3643HookAdapter.json",
+      "bundle": "erc3643-hook",
+      "contract": "ERC3643HookAdapter",
+      "creationBytecode": {
+        "bytes": 30915,
+        "sha256": "9711a7dd332574c2312b761b615649c3eba03e4fb890d2f9cd04041a2c66d4b3"
+      },
+      "id": "ERC3643HookAdapter",
+      "immutableReferences": [
+        {
+          "length": 32,
+          "start": 301
+        },
+        {
+          "length": 32,
+          "start": 402
+        },
+        {
+          "length": 32,
+          "start": 459
+        },
+        {
+          "length": 32,
+          "start": 575
+        },
+        {
+          "length": 32,
+          "start": 987
+        },
+        {
+          "length": 32,
+          "start": 3604
+        },
+        {
+          "length": 32,
+          "start": 3861
+        },
+        {
+          "length": 32,
+          "start": 4325
+        },
+        {
+          "length": 32,
+          "start": 7794
+        },
+        {
+          "length": 32,
+          "start": 11388
+        },
+        {
+          "length": 32,
+          "start": 13051
+        },
+        {
+          "length": 32,
+          "start": 13898
+        },
+        {
+          "length": 32,
+          "start": 13974
+        },
+        {
+          "length": 32,
+          "start": 14243
+        },
+        {
+          "length": 32,
+          "start": 14319
+        },
+        {
+          "length": 32,
+          "start": 14761
+        },
+        {
+          "length": 32,
+          "start": 15298
+        },
+        {
+          "length": 32,
+          "start": 15973
+        },
+        {
+          "length": 32,
+          "start": 16093
+        },
+        {
+          "length": 32,
+          "start": 16215
+        },
+        {
+          "length": 32,
+          "start": 17531
+        },
+        {
+          "length": 32,
+          "start": 17867
+        },
+        {
+          "length": 32,
+          "start": 19245
+        },
+        {
+          "length": 32,
+          "start": 19315
+        }
+      ],
+      "runtimeTemplate": {
+        "bytes": 19824,
+        "eip170MarginBytes": 4752,
+        "sha256": "f84c886b203dacd380c29b2aa3afd2ed401e487ed79f95e14b4d24edb24c1b85"
+      },
+      "semanticChecks": {
+        "abi": true,
+        "creationBytecode": true,
+        "immutableReferences": true,
+        "methodIdentifiers": true,
+        "runtimeTemplate": true,
+        "storageLayout": true
+      },
+      "source": "implementation/src/profiles/ERC3643HookAdapter.sol"
+    },
+    {
+      "artifact": "out/ERC3643HookGovernor.sol/ERC3643HookGovernor.json",
+      "bundle": "erc3643-hook",
+      "contract": "ERC3643HookGovernor",
+      "creationBytecode": {
+        "bytes": 3496,
+        "sha256": "3f048ce4f3a332b110ad8a09ab76a69af0fd6ae1930e8508db2a3cdf2fb2b514"
+      },
+      "id": "ERC3643HookGovernor",
+      "immutableReferences": [
+        {
+          "length": 32,
+          "start": 192
+        },
+        {
+          "length": 32,
+          "start": 303
+        },
+        {
+          "length": 32,
+          "start": 402
+        },
+        {
+          "length": 32,
+          "start": 455
+        },
+        {
+          "length": 32,
+          "start": 700
+        },
+        {
+          "length": 32,
+          "start": 917
+        },
+        {
+          "length": 32,
+          "start": 975
+        },
+        {
+          "length": 32,
+          "start": 1065
+        },
+        {
+          "length": 32,
+          "start": 1272
+        },
+        {
+          "length": 32,
+          "start": 1469
+        },
+        {
+          "length": 32,
+          "start": 1544
+        },
+        {
+          "length": 32,
+          "start": 1669
+        },
+        {
+          "length": 32,
+          "start": 2296
+        },
+        {
+          "length": 32,
+          "start": 2418
+        },
+        {
+          "length": 32,
+          "start": 2539
+        },
+        {
+          "length": 32,
+          "start": 2573
+        },
+        {
+          "length": 32,
+          "start": 2614
+        },
+        {
+          "length": 32,
+          "start": 2648
+        },
+        {
+          "length": 32,
+          "start": 2689
+        },
+        {
+          "length": 32,
+          "start": 2723
+        },
+        {
+          "length": 32,
+          "start": 2829
+        },
+        {
+          "length": 32,
+          "start": 2869
+        },
+        {
+          "length": 32,
+          "start": 2915
+        },
+        {
+          "length": 32,
+          "start": 2955
+        }
+      ],
+      "runtimeTemplate": {
+        "bytes": 3026,
+        "eip170MarginBytes": 21550,
+        "sha256": "0978059dea47b1286326902332f41079029836cf257691fb13c99bc2b5064012"
+      },
+      "semanticChecks": {
+        "abi": true,
+        "creationBytecode": true,
+        "immutableReferences": true,
+        "methodIdentifiers": true,
+        "runtimeTemplate": true,
+        "storageLayout": true
+      },
+      "source": "implementation/src/profiles/ERC3643HookGovernor.sol"
+    },
+    {
+      "artifact": "out/ERC3643HookCompliance.sol/ERC3643HookCompliance.json",
+      "bundle": "erc3643-hook",
+      "contract": "ERC3643HookCompliance",
+      "creationBytecode": {
+        "bytes": 2333,
+        "sha256": "3c955389a01d9b687210d8664c343c264626c10d484bda9717f74bb69c552164"
+      },
+      "id": "ERC3643HookCompliance",
+      "immutableReferences": [
+        {
+          "length": 32,
+          "start": 230
+        },
+        {
+          "length": 32,
+          "start": 369
+        },
+        {
+          "length": 32,
+          "start": 450
+        },
+        {
+          "length": 32,
+          "start": 786
+        },
+        {
+          "length": 32,
+          "start": 1283
+        },
+        {
+          "length": 32,
+          "start": 1339
+        },
+        {
+          "length": 32,
+          "start": 1423
+        },
+        {
+          "length": 32,
+          "start": 1647
+        },
+        {
+          "length": 32,
+          "start": 1773
+        },
+        {
+          "length": 32,
+          "start": 1948
+        }
+      ],
+      "runtimeTemplate": {
+        "bytes": 2078,
+        "eip170MarginBytes": 22498,
+        "sha256": "ebcf0ea744e5e505fb1bd5bd02a9ab0b4c0a112c628ee37cb8916ea7ce3f8881"
+      },
+      "semanticChecks": {
+        "abi": true,
+        "creationBytecode": true,
+        "immutableReferences": true,
+        "methodIdentifiers": true,
+        "runtimeTemplate": true,
+        "storageLayout": true
+      },
+      "source": "implementation/src/profiles/ERC3643HookCompliance.sol"
+    },
+    {
+      "artifact": "out/ERC3643HookFactory.sol/ERC3643HookFactory.json",
+      "bundle": "erc3643-hook",
+      "contract": "ERC3643HookFactory",
+      "creationBytecode": {
+        "bytes": 2459,
+        "sha256": "346548e20644aa662bdba9dfcac1ce058568b3720475b742ae2944379b96838a"
+      },
+      "id": "ERC3643HookFactory",
+      "immutableReferences": [
+        {
+          "length": 32,
+          "start": 600
+        },
+        {
+          "length": 32,
+          "start": 1337
+        }
+      ],
+      "runtimeTemplate": {
+        "bytes": 1812,
+        "eip170MarginBytes": 22764,
+        "sha256": "9636463d4fba1eebc1690648aad3439b30f53156927161bc93c899df1056d680"
+      },
+      "semanticChecks": {
+        "abi": true,
+        "creationBytecode": true,
+        "immutableReferences": true,
+        "methodIdentifiers": true,
+        "runtimeTemplate": true,
+        "storageLayout": true
+      },
+      "source": "implementation/src/profiles/ERC3643HookFactory.sol"
     }
   ]
 }

@@ -15,6 +15,8 @@
 //   node scripts/verify-current-profile-release-v3.mjs --write    rewrite the index from the receipts
 //   node scripts/verify-current-profile-release-v3.mjs --require-release
 
+import { verifyTrust12Required } from "./verify-trust12-required.mjs";
+import { formalIdentity } from "./lib/formal-inputs.mjs";
 import { createHash } from "node:crypto";
 import { verifyTrust12EvidenceReuse, mutationInputMatches, assertTrust12DevelopmentMode } from "./verify-trust12-evidence-reuse.mjs";
 import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
@@ -78,10 +80,7 @@ function sourceRoot() {
   return rootOf([...walk("implementation/src"), ...walk("implementation/test"), "foundry.toml"]);
 }
 
-function formalRoot() {
-  const paths = walk("formal/isabelle/ERC_TRUST").filter((path) => path.endsWith(".thy"));
-  return { theoryFiles: paths.length, rootSha256: rootOf(paths) };
-}
+function formalRoot() { return formalIdentity(root); }
 
 function inputsRoot(path) {
   const paths = walk(path);
@@ -216,6 +215,7 @@ const candidate = mode.candidate;
 // ---------------------------------------------------------------------------
 
 const trust12Reuse = verifyTrust12EvidenceReuse(root);
+const trust12Required = verifyTrust12Required(root);
 const identity = {
   sourceRootAlgorithm: "sha256-raw-files-case-sensitive-path-order-v1",
   sourceRootSha256: sourceRoot(),
@@ -419,7 +419,7 @@ if (!exists(receiptPaths.isabelleBuild)) {
 } else {
   const isabelle = json(receiptPaths.isabelleBuild);
   check(isabelle.schema === "erc-trust-isabelle-results-v3" && isabelle.candidate === candidate, "Isabelle receipt identity");
-  check(isabelle.status === "PASS" && isabelle.checks.bannedSourceForms === 0 && isabelle.checks.oracleDependencyCount === 0,
+  check(isabelle.status === "PASS" && isabelle.checks.cleanBuild === "PASS" && isabelle.checks.proofExport === "PASS" && isabelle.checks.bannedSourceForms === 0 && isabelle.checks.oracleDependencyCount === 0,
     "Isabelle receipt status");
   check(isabelle.formalSource.theoryFiles === identity.formalRoot.theoryFiles
     && isabelle.formalSource.rootSha256 === identity.formalRoot.rootSha256, "Isabelle receipt binds a different formal root");
@@ -562,7 +562,8 @@ if (!exists(receiptPaths.runtimeBinding)) {
 // Aggregate
 // ---------------------------------------------------------------------------
 
-const requiredLanes = ["runtime", "foundry", "mutation", "isabelleBuild", "isabelleRuntimeBinding", "obligationLedger", "kontrol", "kontrolInputs", "certora", "certoraInputs", "independentReproduction", "runtimeBinding"];
+lanes.trust12Required = { status: "PASS", ...trust12Required, status: "PASS", scope: "Evidence consistency; refinement remains incomplete" };
+const requiredLanes = ["trust12Required", "runtime", "foundry", "mutation", "isabelleBuild", "isabelleRuntimeBinding", "obligationLedger", "kontrol", "kontrolInputs", "certora", "certoraInputs", "independentReproduction", "runtimeBinding"];
 for (const name of requiredLanes) check(lanes[name] !== undefined, `lane ${name} was not evaluated`);
 check(Object.keys(lanes).every((name) => requiredLanes.includes(name)), "an unlisted lane was evaluated");
 const pendingLanes = Object.entries(lanes).filter(([, lane]) => lane.status === "PENDING").map(([name]) => name);
@@ -579,6 +580,7 @@ const index = {
   lanes,
   pendingLanes,
   trust12EvidenceReuse: trust12Reuse,
+  trust12Required,
   historicalBaseline: fileRef(historicalIndexPath),
   replay: { release: "node scripts/verify-current-profile-release-v3.mjs" },
   nonclaims: [

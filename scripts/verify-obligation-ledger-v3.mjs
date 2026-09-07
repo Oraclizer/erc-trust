@@ -28,6 +28,7 @@
 // whose status is SUCCESSOR-MANDATORY is required for the next rung of the
 // claim ladder only; while one exists the closure status must stay CONDITIONAL.
 
+import { verifyTrust12Required } from "./verify-trust12-required.mjs";
 import { createHash } from "node:crypto";
 import { verifyTrust12EvidenceReuse, mutationInputMatches } from "./verify-trust12-evidence-reuse.mjs";
 import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
@@ -36,6 +37,7 @@ import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 verifyTrust12EvidenceReuse(root); // Always check the complete inventory, even without a mutation receipt.
+const trust12Required = verifyTrust12Required(root);
 const writeMode = process.argv.includes("--write");
 const paths = {
   ledger: "evidence/end-to-end-refinement/obligation-ledger-v3.json",
@@ -476,6 +478,7 @@ end
 `;
 
 const summary = {
+  trust12Required,
   schema: "erc-trust-obligation-ledger-summary-v3",
   candidate: ledger.candidate,
   ledger: { path: paths.ledger, sha256: ledgerSha256 },
@@ -491,6 +494,7 @@ const summary = {
   generatedTheory: { path: paths.theory, sha256: sha256(Buffer.from(theory, "utf8")) },
 };
 const closure = {
+  trust12Required,
   schema: "erc-trust-central-refinement-closure-v3",
   kind: "ERC_TRUST_CENTRAL_REFINEMENT_CLOSURE_V3",
   candidate: ledger.candidate,
@@ -528,6 +532,7 @@ const rendered = [
   { path: paths.summary, content: text(summary) },
   { path: paths.closure, content: text(closure) },
 ];
+if (failures.length) { for (const failure of failures) console.error(failure); process.exit(1); }
 if (writeMode) {
   for (const entry of rendered) writeFileSync(abs(entry.path), entry.content, "utf8");
 } else {

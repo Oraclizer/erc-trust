@@ -22,6 +22,7 @@
 // scripts/verify-current-profile-release-v3.mjs, so a stale receipt is rejected by the
 // lane verifier and by scripts/verify-runtime-binding-v3.mjs.
 
+import { runtimeBundles } from "./lib/runtime-bundles.mjs";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -62,21 +63,10 @@ const solc = dependencyLock.components.solc;
 const pinnedSolc = resolvePinnedSolc(solc);
 const settings = pinnedCompilerSettings;
 
-const bundles = [
-  {
-    id: "native",
-    roots: ["implementation/src/TrustToken.sol"],
-    subjects: [{ id: "native", source: "implementation/src/TrustToken.sol", contract: "TrustToken", artifact: "out/TrustToken.sol/TrustToken.json" }],
-  },
-  {
-    id: "erc3643-partial",
-    roots: ["implementation/src/profiles/ERC3643TrustAdapter.sol", "implementation/src/profiles/ProfileGovernor.sol"],
-    subjects: [
-      { id: "profileAdapter", source: "implementation/src/profiles/ERC3643TrustAdapter.sol", contract: "ERC3643TrustAdapter", artifact: "out/ERC3643TrustAdapter.sol/ERC3643TrustAdapter.json" },
-      { id: "profileGovernor", source: "implementation/src/profiles/ProfileGovernor.sol", contract: "ProfileGovernor", artifact: "out/ProfileGovernor.sol/ProfileGovernor.json" },
-    ],
-  },
-];
+const bundles = runtimeBundles;
+const hookContracts = runtimeBundles.find(bundle => bundle.id === "erc3643-hook").subjects.map(subject => subject.id);
+const hookIdentityPath = "evidence/trust12/runtime-identity.json";
+const hookIdentity = json(hookIdentityPath);
 
 // ---------------------------------------------------------------------------
 // Exact compiler input: the import closure of each bundle's roots
@@ -144,7 +134,7 @@ for (const bundle of bundles) {
     if (failed.length !== 0) throw new Error(`pinned-compiler replay differs from the Foundry artifact for ${subject.id}: ${failed.join(", ")}`);
     const runtime = Buffer.from(normalizeHex(compiler.evm.deployedBytecode.object), "hex");
     const creation = Buffer.from(normalizeHex(compiler.evm.bytecode.object), "hex");
-    const bridgeSubject = bridge.subjects[subject.id];
+    const bridgeSubject = bridge.subjects[subject.id] ?? (hookContracts.includes(subject.id) ? { runtime: { sha256: hookIdentity.runtimes[subject.id]?.runtimeSha256 } } : null);
     if (!bridgeSubject || bridgeSubject.runtime.sha256 !== sha256(runtime)) throw new Error(`runtime of ${subject.id} differs from the generated runtime bridge`);
     const record = {
       id: subject.id,
@@ -191,6 +181,7 @@ const receipt = {
     correctnessClaimed: false,
   },
   bridge: { path: "evidence/end-to-end-refinement/runtime-bridge-v2/schema.json", sha256: sha256(bytes("evidence/end-to-end-refinement/runtime-bridge-v2/schema.json")) },
+  hookIdentity: { path: hookIdentityPath, sha256: sha256(bytes(hookIdentityPath)), claim: "Hook semantic identity is bound to its own development receipt; no legacy HOL bridge or proof credit is transferred." },
   layers: {
     templateIdentity: "the Foundry artifact runtime and creation hashes of each subject, bound to the generated runtime bridge, the release manifest, and the deterministic build receipt",
     pinnedCompilerReplay: "the exact import closure of each subject compiled again with the pinned solc binary through standard JSON with the settings of foundry.toml; the six semantic projections of the output equal the Foundry artifact",

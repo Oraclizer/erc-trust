@@ -124,6 +124,8 @@ jobs:
         run: node scripts/verify-current-profile-release-v3.mjs
       - name: Exercise evidence-verifier negative controls
         run: node scripts/verify-current-profile-release-v3.mjs --self-test
+      - name: Exercise TRUST 1.2 required evidence controls
+        run: node scripts/test-trust12-required.mjs
       - name: Verify the obligation ledger
         run: node scripts/verify-obligation-ledger-v3.mjs
       - name: Verify local links

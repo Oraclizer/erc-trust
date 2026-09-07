@@ -1,0 +1,172 @@
+{
+  "negativeControls": [
+    {
+      "name": "missing-required:evidence/trust12/formal-build-replay.json",
+      "reason": "required TRUST 1.2 input is not sealed",
+      "status": "REJECTED"
+    },
+    {
+      "name": "missing-required:evidence/trust12/local-validation.json",
+      "reason": "required TRUST 1.2 input is not sealed",
+      "status": "REJECTED"
+    },
+    {
+      "name": "missing-required:evidence/trust12/independent-audit.md",
+      "reason": "required TRUST 1.2 input is not sealed",
+      "status": "REJECTED"
+    },
+    {
+      "name": "missing-required:evidence/trust12/mutation-inbound.json",
+      "reason": "required TRUST 1.2 input is not sealed",
+      "status": "REJECTED"
+    },
+    {
+      "name": "changed-formal:formal/isabelle/ERC_TRUST/TRUST_Transaction_Refinement.thy",
+      "reason": "local input inventory drift",
+      "status": "REJECTED"
+    },
+    {
+      "name": "changed-formal:formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_State_Invariants.thy",
+      "reason": "local input inventory drift",
+      "status": "REJECTED"
+    },
+    {
+      "name": "changed-formal:formal/isabelle/ERC_TRUST/ROOT",
+      "reason": "local input inventory drift",
+      "status": "REJECTED"
+    },
+    {
+      "name": "changed-formal:formal/isabelle/TRUST12_OBSTRUCTIONS/ROOT",
+      "reason": "local input inventory drift",
+      "status": "REJECTED"
+    },
+    {
+      "name": "changed-formal:formal/isabelle/ROOTS",
+      "reason": "local input inventory drift",
+      "status": "REJECTED"
+    },
+    {
+      "name": "changed-formal:formal-dependencies-public-v1.lock.json",
+      "reason": "local input inventory drift",
+      "status": "REJECTED"
+    },
+    {
+      "name": "paired-formal-receipt-drift",
+      "reason": "formal inputs differ from the admitted clean build",
+      "status": "REJECTED"
+    },
+    {
+      "name": "missing-whole-hook-compiler-bundle",
+      "reason": "required compiler bundle inventory missing",
+      "status": "REJECTED"
+    },
+    {
+      "name": "missing-hook-bundle-file-reference",
+      "reason": "required compiler bundle files missing",
+      "status": "REJECTED"
+    },
+    {
+      "name": "paired-dependency-receipt-drift",
+      "reason": "admitted execution or dependency evidence drift",
+      "status": "REJECTED"
+    },
+    {
+      "name": "missing-child-session",
+      "reason": "local Isabelle session/dependency provenance mismatch",
+      "status": "REJECTED"
+    },
+    {
+      "name": "failed-clean-build",
+      "reason": "required clean proof build/export failed",
+      "status": "REJECTED"
+    },
+    {
+      "name": "failed-export",
+      "reason": "required clean proof build/export failed",
+      "status": "REJECTED"
+    },
+    {
+      "name": "zero-test-summary",
+      "reason": "required named Foundry test set or results drift",
+      "status": "REJECTED"
+    },
+    {
+      "name": "missing-hook-test",
+      "reason": "required named Foundry test set or results drift",
+      "status": "REJECTED"
+    },
+    {
+      "name": "local-claims-ci-workflow",
+      "reason": "local receipt cannot assert CI",
+      "status": "REJECTED"
+    },
+    {
+      "name": "forged-local-provider",
+      "reason": "local receipt cannot assert CI",
+      "status": "REJECTED"
+    },
+    {
+      "name": "rewritten-local-commit",
+      "reason": "local provider or execution commit mismatch",
+      "status": "REJECTED"
+    },
+    {
+      "name": "failed-exit-with-rehashed-provenance",
+      "reason": "local Foundry command failed",
+      "status": "REJECTED"
+    },
+    {
+      "name": "backwards-time-with-rehashed-provenance",
+      "reason": "local Foundry command failed",
+      "status": "REJECTED"
+    },
+    {
+      "name": "rewritten-deterministic-execution",
+      "reason": "deterministic execution identity was rewritten",
+      "status": "REJECTED"
+    },
+    {
+      "name": "false-symbolic-pass",
+      "reason": "symbolic scope or source drift",
+      "status": "REJECTED"
+    },
+    {
+      "name": "narrowed-symbolic-domain",
+      "reason": "symbolic input domain narrowed",
+      "status": "REJECTED"
+    },
+    {
+      "name": "false-mandatory-closure",
+      "reason": "unreviewed mandatory obligation removal",
+      "status": "REJECTED"
+    },
+    {
+      "name": "release-with-open-obligations",
+      "reason": "open TRUST 1.2 obligations prohibit release",
+      "status": "REJECTED"
+    },
+    {
+      "name": "required-consumer:verify-current-profile-release-v3",
+      "reason": "required TRUST 1.2 input is not sealed",
+      "status": "REJECTED"
+    },
+    {
+      "name": "required-consumer:verify-obligation-ledger-v3",
+      "reason": "required TRUST 1.2 input is not sealed",
+      "status": "REJECTED"
+    },
+    {
+      "name": "required-consumer:verify-runtime-binding-v3",
+      "reason": "required TRUST 1.2 input is not sealed",
+      "status": "REJECTED"
+    }
+  ],
+  "nonclaim": "Admission and required-consumer controls. No new implementation mutation campaign, symbolic theorem or runtime refinement is claimed.",
+  "positive": "PASS_CONSISTENT_DEVELOPMENT",
+  "schema": "trust12-required-controls-v1",
+  "source": {
+    "testSha256": "a1fd303e4cd81d18cc8634ae044c70bf19f482e2b41ae5ae07650e4e0b8941b8",
+    "verifierSha256": "4cb7e2c330d7643ddac21c5525a4247c620fd2ba8f231cbbacae09c24637e840"
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,137 @@
+{
+  "inputRootSha256": "7f5104e0adbbefb9cb01f48294d72017dc2529f8fb68b38b4cbb56621398bd91",
+  "inputs": [
+    {
+      "path": "evidence/trust12/independent-audit.md",
+      "sha256": "5a416e77cf6d5ca8c24356b9121daf3603169fa5669d193103f8d59a3958dc87"
+    },
+    {
+      "path": "evidence/trust12/mutation-callback-auth.json",
+      "sha256": "a1499eb530d772259ba8cdc520e7b1ef8ccca3b27ce1901552e4c4b0ecd855b1"
+    },
+    {
+      "path": "evidence/trust12/mutation-factory-pin.json",
+      "sha256": "c21eabdd494a783b70b250c9e4d3225ab4b6c45f262155c3ef85168393d6d81e"
+    },
+    {
+      "path": "evidence/trust12/mutation-hidden-agent.json",
+      "sha256": "d8103bd6ceb0c0bccf3585f5727d63716ff28f86a89b912a5489044bf477d6d7"
+    },
+    {
+      "path": "evidence/trust12/mutation-inbound.json",
+      "sha256": "5a56899d53056cd2480db0e033b2654392ec5a7b59654ebb5e3b030f42c7bb8f"
+    },
+    {
+      "path": "evidence/trust12/mutation-initial.json",
+      "sha256": "5ac4a67760bbd11fda09851b43d26bff79c5ef5d35a4b9872035f30079687958"
+    },
+    {
+      "path": "evidence/trust12/mutation-receipt.json",
+      "sha256": "eabc940d87c0a8cc9e03c592c5fa2f96ba7595284b174e30624d570d610337bd"
+    },
+    {
+      "path": "evidence/trust12/runtime-identity.json",
+      "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
+    },
+    {
+      "path": "foundry.toml",
+      "sha256": "3e7c2222c9200518563b7d6f09f19032a06e0d744be90e6522a87a43307bec7b"
+    },
+    {
+      "path": "implementation/src/ERC7943RouteTicket.sol",
+      "sha256": "f1a8357a988a648775382603c7eaf2db410f7d55fd08a1cef29763e69de547a6"
+    },
+    {
+      "path": "implementation/src/TrustDependencyBinding.sol",
+      "sha256": "53fb6a74a5168f7f2b9f005657ee7df5528974d53dae2359ea1e4ae3fb063020"
+    },
+    {
+      "path": "implementation/src/TrustErrors.sol",
+      "sha256": "fbe1dffd50792b2da9604a0de37a5b089c427b329c96f80253ff317bb16491df"
+    },
+    {
+      "path": "implementation/src/TrustNativeDecision.sol",
+      "sha256": "4643a157f29fd9557ff60e58c6500e98704b9d94b02ef12ffb5c7baecfaa24ee"
+    },
+    {
+      "path": "implementation/src/TrustNativeTypes.sol",
+      "sha256": "f76fc4fd80d74075c3ffdbbc7afb30919eb73bf465ac04e3b83d742c8f88745b"
+    },
+    {
+      "path": "implementation/src/TrustStorage.sol",
+      "sha256": "610170dbd24ba2791d459db9a24e2c05e7d699594c035074379a5700dbdb7931"
+    },
+    {
+      "path": "implementation/src/TrustToken.sol",
+      "sha256": "deeedf231b461035ac4496b36438d6ea28298ed2935b920bf9c01cb31f94ef1b"
+    },
+    {
+      "path": "implementation/src/generated/IERCTrustKernel.sol",
+      "sha256": "8f179a21b04fa1f172bdddef2f8878a01524d3429570c0abf9aa60cfc8738f7d"
+    },
+    {
+      "path": "implementation/src/interfaces/IERC20.sol",
+      "sha256": "414510c4de8ff90b066ea33f3d75ce7c4891f4ee43de55c52e333740d6fd8131"
+    },
+    {
+      "path": "implementation/src/interfaces/IERC3643External.sol",
+      "sha256": "701bae4ffedc2f7a00287b882247bd8de5c68131e13ac3c3e957f1d678d12119"
+    },
+    {
+      "path": "implementation/src/interfaces/IERC7943.sol",
+      "sha256": "1b968ee48cd0c9adadf22d33f1f245486b14ed1141df23f7d01385abfbb159f7"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643HookAdapter.sol",
+      "sha256": "61056cd3aa34900820cb08592c55803a5add1ab36c493ec36a5e3ee72add9533"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643HookCompliance.sol",
+      "sha256": "700614fcb6db1246099a16859e79cb4b555785545ea1a31c780f8b97b8016e7a"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643HookDeployment.sol",
+      "sha256": "8a830ba8cdfac4a3cf33dc2b3338a8765b9303afd56bf32a207afa32b19e63bf"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643HookFactory.sol",
+      "sha256": "d7e24b5bde9ec8f4ce1d5537e83858fe727067bdca580c7d4a5126c1d35b94b1"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643HookGovernor.sol",
+      "sha256": "69a0b68f72427081acb26c24299ad03afcdc2b615e8885c05d8eaff52eb9d59e"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643ProfileTypes.sol",
+      "sha256": "9fbb5b1f379018e7412702324a4eae5a30db57f3937f0da42b24bab0e4efede4"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+      "sha256": "f2806571c8c39984ee6c50f5e8dd0aa94aac5e273564012afcb4ebb55e43320f"
+    },
+    {
+      "path": "implementation/src/profiles/ProfileGovernor.sol",
+      "sha256": "e9fec4c21a65edaa5619ee1368deb93da1645e311984a12cc89ca29131595ae8"
+    },
+    {
+      "path": "implementation/test/ERC3643HookTrexIntegration.t.sol",
+      "sha256": "9e904adced498aa21bd06cada1033b89410f40a61014d67baaa3f1b78a63a4f7"
+    },
+    {
+      "path": "scripts/check-hook-consumer-removal.py",
+      "sha256": "5ed35413edb32ef3ab9f9f54ade72cebb31f9c9d4450f7e294b5d4c4feefe03b"
+    },
+    {
+      "path": "scripts/check-trust12-runtime-identity.py",
+      "sha256": "51d7ce72acb1f07f379dfbb980cbf7230e670ea74ab622fd88b38e9110009839"
+    },
+    {
+      "path": "scripts/prepare-trex-integration.py",
+      "sha256": "62c22a64c7364241ce85a6f5af1c55e66f65d3ba98b7b7e788d46f16822d8172"
+    }
+  ],
+  "nonclaim": "Recomputed Git-blob identity of the previously audited Hook feature inputs. The original independent audit keeps its historical seal and scope. No new functional audit or implementation execution is asserted.",
+  "schema": "trust12-functional-evidence-reuse-v1",
+  "sourceCommit": "b40a0901cc543f8384e4d11406dd46a383008fcb",
+  "testsRootSha256": "23f88d74a162d19792b51bdbd976d111c65e731b96ba5aac495b51be33125d7d"
+}

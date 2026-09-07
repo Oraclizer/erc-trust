@@ -18,6 +18,8 @@
 //   node scripts/verify-runtime-binding-v3.mjs            structural verification
 //   node scripts/verify-runtime-binding-v3.mjs --replay   plus pinned-compiler replay
 
+import { verifyTrust12Required } from "./verify-trust12-required.mjs";
+import { verifyRuntimeBundles } from "./lib/runtime-bundles.mjs";
 import { createHash } from "node:crypto";
 import { verifyTrust12EvidenceReuse, mutationInputMatches } from "./verify-trust12-evidence-reuse.mjs";
 import { execFileSync } from "node:child_process";
@@ -29,6 +31,7 @@ import { artifactAsCompilerContract, immutablePositions, normalizedAbi, pinnedCo
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 verifyTrust12EvidenceReuse(root); // Always check the complete inventory, even without a mutation receipt.
+const trust12Required = verifyTrust12Required(root);
 const replay = process.argv.includes("--replay");
 const receiptPath = "evidence/runtime-binding-v3.json";
 const sha256 = (value) => createHash("sha256").update(value).digest("hex");
@@ -80,6 +83,7 @@ function importClosure(roots) {
 check(exists(receiptPath), `runtime binding receipt missing: ${receiptPath}`);
 if (!exists(receiptPath)) { for (const failure of failures) console.error(failure); process.exit(1); }
 const receipt = json(receiptPath);
+verifyRuntimeBundles(root, receipt);
 const mode = json("evidence/evidence-mode.json");
 check(receipt.schema === "erc-trust-runtime-binding-v3" && receipt.candidate === mode.candidate, "runtime binding receipt identity");
 check(receipt.status === "PASS_RUNTIME_SEMANTIC_IDENTITY", "runtime binding status");
@@ -92,7 +96,11 @@ const manifest = json("evidence/release-manifest.json");
 const deterministic = exists("evidence/deterministic-build.json") ? json("evidence/deterministic-build.json") : null;
 
 const subjectsById = new Map(receipt.subjects.map((subject) => [subject.id, subject]));
-for (const id of ["native", "profileAdapter", "profileGovernor"]) check(subjectsById.has(id), `receipt lacks subject ${id}`);
+const hookContracts = ["ERC3643HookAdapter", "ERC3643HookGovernor", "ERC3643HookCompliance", "ERC3643HookFactory"];
+const hookIdentity = json("evidence/trust12/runtime-identity.json");
+check(receipt.hookIdentity?.path === "evidence/trust12/runtime-identity.json" && receipt.hookIdentity.sha256 === sha256(bytes(receipt.hookIdentity.path)), "Hook runtime identity receipt drift");
+check(subjectsById.size === 7 && receipt.subjects.length === 7, "runtime subject inventory mismatch");
+for (const id of ["native", "profileAdapter", "profileGovernor", ...hookContracts]) check(subjectsById.has(id), `receipt lacks subject ${id}`);
 for (const subject of receipt.subjects) {
   check(exists(subject.artifact), `Foundry artifact missing: ${subject.artifact}; run forge build first`);
   if (!exists(subject.artifact)) continue;
@@ -101,7 +109,7 @@ for (const subject of receipt.subjects) {
   const creation = Buffer.from(artifact.bytecode.object.replace(/^0x/, ""), "hex");
   check(sha256(runtime) === subject.runtimeTemplate.sha256 && runtime.length === subject.runtimeTemplate.bytes, `layer 1: runtime of ${subject.id} differs from the Foundry artifact`);
   check(sha256(creation) === subject.creationBytecode.sha256 && creation.length === subject.creationBytecode.bytes, `layer 1: creation bytecode of ${subject.id} differs from the Foundry artifact`);
-  check(bridge.subjects[subject.id]?.runtime?.sha256 === subject.runtimeTemplate.sha256, `runtime of ${subject.id} differs from the generated runtime bridge`);
+  check((hookContracts.includes(subject.id) ? hookIdentity.runtimes[subject.id]?.runtimeSha256 : bridge.subjects[subject.id]?.runtime?.sha256) === subject.runtimeTemplate.sha256, `runtime of ${subject.id} differs from the generated runtime bridge`);
   check(subject.runtimeTemplate.bytes <= 24576, `EIP-170 overflow: ${subject.id}`);
   check(JSON.stringify(stable(immutablePositions(artifact.deployedBytecode.immutableReferences))) === JSON.stringify(stable(subject.immutableReferences)), `immutable reference positions of ${subject.id} differ from the Foundry artifact`);
   for (const name of semanticCheckNames) check(subject.semanticChecks?.[name] === true, `layer 2 check ${name} not recorded as passed for ${subject.id}`);
@@ -203,6 +211,7 @@ if (failures.length) { for (const failure of failures) console.error(failure); p
 console.log(JSON.stringify({
   status: "PASS",
   replay,
+  trust12Required,
   subjects: receipt.subjects.map((subject) => ({ id: subject.id, runtime: subject.runtimeTemplate.sha256, bytes: subject.runtimeTemplate.bytes })),
   staleEvidence,
   skippedReceipts,

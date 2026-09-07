@@ -1,0 +1,52 @@
+[
+  {
+    "bytes": 637,
+    "path": "implementation/src/TrustErrors.sol",
+    "sha256": "fbe1dffd50792b2da9604a0de37a5b089c427b329c96f80253ff317bb16491df"
+  },
+  {
+    "bytes": 10418,
+    "path": "implementation/src/generated/IERCTrustKernel.sol",
+    "sha256": "8f179a21b04fa1f172bdddef2f8878a01524d3429570c0abf9aa60cfc8738f7d"
+  },
+  {
+    "bytes": 1726,
+    "path": "implementation/src/interfaces/IERC3643External.sol",
+    "sha256": "701bae4ffedc2f7a00287b882247bd8de5c68131e13ac3c3e957f1d678d12119"
+  },
+  {
+    "bytes": 61253,
+    "path": "implementation/src/profiles/ERC3643HookAdapter.sol",
+    "sha256": "61056cd3aa34900820cb08592c55803a5add1ab36c493ec36a5e3ee72add9533"
+  },
+  {
+    "bytes": 2141,
+    "path": "implementation/src/profiles/ERC3643HookCompliance.sol",
+    "sha256": "700614fcb6db1246099a16859e79cb4b555785545ea1a31c780f8b97b8016e7a"
+  },
+  {
+    "bytes": 3445,
+    "path": "implementation/src/profiles/ERC3643HookDeployment.sol",
+    "sha256": "8a830ba8cdfac4a3cf33dc2b3338a8765b9303afd56bf32a207afa32b19e63bf"
+  },
+  {
+    "bytes": 2588,
+    "path": "implementation/src/profiles/ERC3643HookFactory.sol",
+    "sha256": "d7e24b5bde9ec8f4ce1d5537e83858fe727067bdca580c7d4a5126c1d35b94b1"
+  },
+  {
+    "bytes": 4330,
+    "path": "implementation/src/profiles/ERC3643HookGovernor.sol",
+    "sha256": "69a0b68f72427081acb26c24299ad03afcdc2b615e8885c05d8eaff52eb9d59e"
+  },
+  {
+    "bytes": 2339,
+    "path": "implementation/src/profiles/ERC3643ProfileTypes.sol",
+    "sha256": "9fbb5b1f379018e7412702324a4eae5a30db57f3937f0da42b24bab0e4efede4"
+  },
+  {
+    "bytes": 6812,
+    "path": "implementation/src/profiles/ProfileGovernor.sol",
+    "sha256": "e9fec4c21a65edaa5619ee1368deb93da1645e311984a12cc89ca29131595ae8"
+  }
+]
