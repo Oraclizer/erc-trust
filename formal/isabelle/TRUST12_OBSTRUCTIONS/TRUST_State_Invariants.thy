@@ -164,4 +164,178 @@ proof -
     unfolding accounting_state_wf_def by blast
 qed
 
+
+section \<open>Regulatory references at transaction boundaries\<close>
+
+definition record_at where "record_at st i = the (action_records st i)"
+definition link_at where "link_at st i = the (effect_links st i)"
+
+definition effect_history_wf :: "trust_compositional_state \<Rightarrow> bool" where
+ "effect_history_wf st \<longleftrightarrow> (\<forall>i e. effect_links st i = Some e \<longrightarrow>
+   action_records st i \<noteq> None \<and> i \<noteq> 0 \<and>
+   (let r = record_at st i in abstract_subject r \<noteq> 0 \<and> abstract_case r \<noteq> 0 \<and>
+    abstract_action r \<in> {Legal_Freeze, Legal_Restrict} \<and>
+    effect_generation e > 0 \<and>
+    effect_generation e \<le> head_generation
+      (if abstract_action r = Legal_Freeze then freeze_heads st (abstract_subject r)
+       else restriction_heads st (abstract_subject r)) \<and>
+    (case effect_parent e of None \<Rightarrow> abstract_prior_amount r = 0 \<and> \<not> abstract_prior_flag r
+     | Some j \<Rightarrow> abstract_action r = Legal_Freeze \<and> action_records st j \<noteq> None \<and>
+        effect_links st j \<noteq> None \<and> abstract_action (record_at st j) = Legal_Freeze \<and>
+        abstract_subject (record_at st j) = abstract_subject r \<and>
+        abstract_case (record_at st j) = abstract_case r \<and>
+        effect_generation (link_at st j) < effect_generation e \<and>
+        abstract_prior_amount r = abstract_amount (record_at st j))))"
+
+fun live_freeze_chain :: "trust_compositional_state \<Rightarrow> trust_address \<Rightarrow> trust_case_id \<Rightarrow> trust_action_id list \<Rightarrow> bool" where
+ "live_freeze_chain st a c [] = True"
+| "live_freeze_chain st a c (i # xs) = (action_records st i \<noteq> None \<and> effect_links st i \<noteq> None \<and>
+    abstract_action (record_at st i) = Legal_Freeze \<and> abstract_lifecycle (record_at st i) = Record_Applied \<and>
+    abstract_subject (record_at st i) = a \<and> abstract_case (record_at st i) = c \<and>
+    abstract_prior_amount (record_at st i) < abstract_amount (record_at st i) \<and>
+    effect_parent (link_at st i) = (case xs of [] \<Rightarrow> None | j # _ \<Rightarrow> Some j) \<and>
+    live_freeze_chain st a c xs)"
+
+definition freeze_structure_wf :: "trust_compositional_state \<Rightarrow> bool" where
+ "freeze_structure_wf st \<longleftrightarrow> (\<forall>a. case head_action (freeze_heads st a) of
+   None \<Rightarrow> frozen_targets st a = 0
+ | Some i \<Rightarrow> (\<exists>xs. distinct (i # xs) \<and>
+    live_freeze_chain st a (abstract_case (record_at st i)) (i # xs)) \<and>
+    frozen_targets st a = abstract_amount (record_at st i) \<and>
+    open_case st (abstract_case (record_at st i)) \<and>
+    case_family (case_records st (abstract_case (record_at st i))) = Family_Freeze \<and>
+    case_head (case_records st (abstract_case (record_at st i))) = Some i)"
+
+definition restriction_structure_wf :: "trust_compositional_state \<Rightarrow> bool" where
+ "restriction_structure_wf st \<longleftrightarrow> (\<forall>a. case head_action (restriction_heads st a) of
+   None \<Rightarrow> \<not> restriction_flags st a
+ | Some i \<Rightarrow> restriction_flags st a \<and> action_records st i \<noteq> None \<and> effect_links st i \<noteq> None \<and>
+    abstract_action (record_at st i) = Legal_Restrict \<and> abstract_lifecycle (record_at st i) = Record_Applied \<and>
+    abstract_subject (record_at st i) = a \<and> \<not> abstract_prior_flag (record_at st i) \<and>
+    effect_parent (link_at st i) = None \<and> open_case st (abstract_case (record_at st i)) \<and>
+    case_family (case_records st (abstract_case (record_at st i))) = Family_Restrict \<and>
+    case_head (case_records st (abstract_case (record_at st i))) = Some i)"
+
+definition case_structure_wf :: "trust_compositional_state \<Rightarrow> bool" where
+ "case_structure_wf st \<longleftrightarrow> (\<forall>c. case case_phase (case_records st c) of
+   Case_None \<Rightarrow> case_records st c = empty_case
+ | Case_Terminal \<Rightarrow> case_head (case_records st c) = None
+ | Case_Open \<Rightarrow> (case case_head (case_records st c) of None \<Rightarrow> False | Some i \<Rightarrow>
+    action_records st i \<noteq> None \<and> abstract_case (record_at st i) = c \<and>
+    (case case_family (case_records st c) of
+      Family_Freeze \<Rightarrow> head_action (freeze_heads st (abstract_subject (record_at st i))) = Some i
+    | Family_Restrict \<Rightarrow> head_action (restriction_heads st (abstract_subject (record_at st i))) = Some i
+    | Family_Custody \<Rightarrow> abstract_action (record_at st i) = Legal_Seize
+    | _ \<Rightarrow> False)))"
+
+definition action_identity_wf :: "trust_compositional_state \<Rightarrow> bool" where
+ "action_identity_wf st \<longleftrightarrow> (\<forall>i r. action_records st i = Some r \<longrightarrow>
+   i \<noteq> 0 \<and> abstract_subject r \<noteq> 0 \<and> abstract_case r \<noteq> 0 \<and>
+   abstract_lifecycle r \<in> {Record_Applied, Record_Reversed} \<and>
+   case_phase (case_records st (abstract_case r)) \<noteq> Case_None \<and>
+   \<not> abstract_prior_flag r \<and>
+   ((effect_links st i \<noteq> None) = (abstract_action r \<in> {Legal_Freeze, Legal_Restrict})) \<and>
+   (case abstract_action r of
+     Legal_Freeze \<Rightarrow> abstract_source r = abstract_subject r \<and> abstract_destination r = 0 \<and>
+       abstract_custodian r = 0 \<and> abstract_prior_amount r < abstract_amount r \<and>
+       case_family (case_records st (abstract_case r)) = Family_Freeze
+   | Legal_Restrict \<Rightarrow> abstract_source r = abstract_subject r \<and> abstract_destination r = 0 \<and>
+       abstract_custodian r = 0 \<and> abstract_amount r = 0 \<and> abstract_prior_amount r = 0 \<and>
+       case_family (case_records st (abstract_case r)) = Family_Restrict
+   | Legal_Seize \<Rightarrow> abstract_source r = abstract_subject r \<and> abstract_destination r = abstract_custodian r \<and>
+       abstract_custodian r \<noteq> 0 \<and> abstract_subject r \<noteq> abstract_custodian r \<and>
+       abstract_amount r > 0 \<and> abstract_prior_amount r = 0 \<and>
+       case_family (case_records st (abstract_case r)) = Family_Custody
+   | _ \<Rightarrow> abstract_source r \<noteq> 0 \<and> abstract_destination r \<noteq> 0 \<and>
+       abstract_source r \<noteq> abstract_destination r \<and> abstract_custodian r = 0 \<and>
+       abstract_amount r > 0 \<and> abstract_prior_amount r = 0 \<and> abstract_lifecycle r = Record_Applied \<and>
+       case_phase (case_records st (abstract_case r)) = Case_Terminal \<and>
+       case_family (case_records st (abstract_case r)) \<in> {Family_Disposition, Family_Custody}))"
+
+definition regulatory_structure_wf where
+ "regulatory_structure_wf st \<longleftrightarrow> action_identity_wf st \<and> effect_history_wf st \<and> freeze_structure_wf st \<and>
+    restriction_structure_wf st \<and> case_structure_wf st \<and> custody_case_wf st"
+
+lemmas structure_defs = regulatory_structure_wf_def action_identity_wf_def effect_history_wf_def freeze_structure_wf_def
+ restriction_structure_wf_def case_structure_wf_def custody_case_wf_def record_at_def link_at_def
+ open_case_def empty_case_def empty_head_def
+
+theorem initial_structure:
+ "regulatory_structure_wf (native_initial_state holder supply ref authority bindings root)"
+ by (simp add: structure_defs native_initial_state_def)
+
+
+lemma balance_wf_expands_support:
+ assumes "balance_wf A st" "A \<subseteq> B" "finite B"
+ shows "balance_wf B st"
+proof -
+ have sums: "(\<Sum>a\<in>B. physical_balances st a) = (\<Sum>a\<in>A. physical_balances st a)"
+   by (rule sum.mono_neutral_right) (use assms in \<open>auto simp: balance_wf_def\<close>)
+ show ?thesis using assms sums by (auto simp: balance_wf_def)
+qed
+
+lemma case_scope_expands_support:
+ assumes "case_scope C st" "C \<subseteq> D" "finite D"
+ shows "case_scope D st"
+ using assms by (auto simp: case_scope_def)
+
+lemma active_custody_sum_expands_support:
+ assumes "case_scope C st" "C \<subseteq> D" "finite D"
+ shows "active_custody_sum D st a = active_custody_sum C st a"
+ unfolding active_custody_sum_def
+ by (rule sum.mono_neutral_right) (use assms in \<open>auto simp: case_scope_def\<close>)
+
+lemma accounting_state_wf_expands_support:
+ assumes "accounting_state_wf A C st" "A \<subseteq> B" "finite B" "C \<subseteq> D" "finite D"
+ shows "accounting_state_wf B D st"
+proof -
+ have bal: "balance_wf B st" using assms balance_wf_expands_support unfolding accounting_state_wf_def by blast
+ have scope: "case_scope D st" using assms case_scope_expands_support unfolding accounting_state_wf_def by blast
+ have sums: "\<And>a. active_custody_sum D st a = active_custody_sum C st a"
+   using assms active_custody_sum_expands_support unfolding accounting_state_wf_def by blast
+ show ?thesis using assms(1) assms(5) bal scope sums
+   by (auto simp: accounting_state_wf_def custody_consistent_def)
+qed
+
+theorem ordinary_transfer_expands_account_support:
+ assumes "accounting_state_wf A C st" "ordinary_transfer_allowed st src dst amount"
+ shows "accounting_state_wf (A \<union> {src,dst}) C (ordinary_transfer_state st src dst amount)"
+proof -
+ have finiteA: "finite A" and finiteC: "finite C" using assms(1)
+   by (auto simp: accounting_state_wf_def balance_wf_def case_scope_def)
+ have expanded: "accounting_state_wf (A \<union> {src,dst}) C st"
+   by (rule accounting_state_wf_expands_support[OF assms(1)]) (use finiteA finiteC in auto)
+ show ?thesis by (rule ordinary_transfer_preserves_accounting_state_wf[OF expanded assms(2)]) auto
+qed
+
+lemma chain_ordinary_frame [simp]:
+ "live_freeze_chain (ordinary_transfer_state st src dst amount) a c xs = live_freeze_chain st a c xs"
+ by (induction xs) (simp_all add: ordinary_transfer_state_def record_at_def link_at_def)
+lemma chain_authority_frame [simp]:
+ "live_freeze_chain (rotate_authority st ref account active) a c xs = live_freeze_chain st a c xs"
+ by (induction xs) (simp_all add: rotate_authority_def record_at_def link_at_def)
+lemma chain_dependency_frame [simp]:
+ "live_freeze_chain (rebind_dependency st kind binding root) a c xs = live_freeze_chain st a c xs"
+ by (induction xs) (simp_all add: rebind_dependency_def record_at_def link_at_def)
+
+theorem ordinary_transfer_preserves_structure:
+ "regulatory_structure_wf (ordinary_transfer_state st src dst amount) = regulatory_structure_wf st"
+ unfolding structure_defs
+ by (simp only: chain_ordinary_frame; simp add: ordinary_transfer_state_def record_at_def link_at_def open_case_def cong: option.case_cong trust_case_phase.case_cong trust_case_family.case_cong legal_action_kind.case_cong)
+
+theorem authority_rotation_preserves_structure:
+ "regulatory_structure_wf (rotate_authority st ref account active) = regulatory_structure_wf st"
+ unfolding structure_defs
+ by (simp only: chain_authority_frame; simp add: rotate_authority_def record_at_def link_at_def open_case_def cong: option.case_cong trust_case_phase.case_cong trust_case_family.case_cong legal_action_kind.case_cong)
+
+theorem dependency_rebind_preserves_structure:
+ "regulatory_structure_wf (rebind_dependency st kind binding root) = regulatory_structure_wf st"
+ unfolding structure_defs
+ by (simp only: chain_dependency_frame; simp add: rebind_dependency_def record_at_def link_at_def open_case_def cong: option.case_cong trust_case_phase.case_cong trust_case_family.case_cong legal_action_kind.case_cong)
+
+theorem all_failure_outcomes_preserve_structure:
+ "regulatory_structure_wf (fst (abstract_failure_transition st outcome)) = regulatory_structure_wf st \<and>
+  snd (abstract_failure_transition st outcome) = outcome"
+ by (simp add: abstract_failure_transition_def)
+
 end

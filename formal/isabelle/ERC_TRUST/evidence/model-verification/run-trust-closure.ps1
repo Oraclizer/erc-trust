@@ -59,8 +59,11 @@ $sessionCyg = Convert-ToCygwinPath $sessionDir
 $repoCyg = Convert-ToCygwinPath $repoRoot
 $adsCyg = Convert-ToCygwinPath $AdsFunctor
 $foundationCyg = Convert-ToCygwinPath $FormalFoundation
-$buildCommand = "export PATH=/usr/local/bin:/usr/bin:/bin; cd '$repoCyg'; '$isabelle' build -c -o record_proofs=1 -d '$adsCyg' -d '$foundationCyg' -d . ERC_TRUST TRUST12_Accounting_Obstruction"
+$buildCommand = "export PATH=/usr/local/bin:/usr/bin:/bin; cd '$repoCyg'; '$isabelle' build -c -o record_proofs=1 -o threads=2 -o parallel_proofs=0 -d '$adsCyg' -d '$foundationCyg' -d . ERC_TRUST TRUST12_Accounting_Obstruction"
 $productRoot = [System.IO.Path]::GetFullPath((Join-Path $repoRoot '..\..'))
+$auditGenerator = Join-Path $productRoot 'scripts\generate-trust12-proof-audit.py'
+& python $auditGenerator
+if ($LASTEXITCODE -ne 0) { throw 'Child proof audit inventory check failed' }
 $captureScript = Join-Path $productRoot 'scripts\capture-isabelle-local-inputs.mjs'
 $inputBefore = Join-Path $runDirectory 'build-input-before.json'
 $inputAfter = Join-Path $runDirectory 'build-input-after.json'

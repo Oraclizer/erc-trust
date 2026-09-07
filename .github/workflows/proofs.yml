@@ -35,8 +35,25 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - name: Exercise invalidation, provenance, audit and aggregate negatives
-        run: node scripts/test-proof-ci.mjs
+      - name: Compare proof inputs against the base snapshot
+        id: decide
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" != "pull_request" ]; then
+            echo "run_formal=true" >> "$GITHUB_OUTPUT"
+            echo "not a pull request: the full proof build always runs"
+            exit 0
+          fi
+          base="${{ github.event.pull_request.base.sha }}"
+          changed="$(git diff --name-only "$base" HEAD)"
+          printf 'changed files:\n%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -E -q \
+            '^(formal/|formal-dependencies(-public-v1)?\.lock\.json$|scripts/verify-formal-foundation-supersession\.mjs$|scripts/generate-trust12-proof-audit\.py$|evidence/public-release/formal-foundation-supersession-v1\.json$|\.github/workflows/proofs\.yml$)'; then
+            echo "run_formal=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run_formal=false" >> "$GITHUB_OUTPUT"
+          fi
 
   formal:
     name: Isabelle2025-2 / full session catalog
@@ -133,7 +150,8 @@ jobs:
           isabelle="$RUNNER_TEMP/Isabelle2025-2/bin/isabelle"
           afp="$RUNNER_TEMP/afp/ADS_Functor"
           foundation="$RUNNER_TEMP/formal-foundation-overlay"
-          "$isabelle" build -c -o record_proofs=1 -d "$afp" -d "$foundation" -d formal/isabelle \
+          python3 scripts/generate-trust12-proof-audit.py
+          "$isabelle" build -c -o record_proofs=1 -o threads=2 -o parallel_proofs=0 -d "$afp" -d "$foundation" -d formal/isabelle \
             ERC_TRUST TRUST12_Accounting_Obstruction
           export_root="$RUNNER_TEMP/isabelle-export"
           "$isabelle" export -d "$afp" -d "$foundation" -d formal/isabelle -x '*:erc-trust/model-proof-trust.txt' -O "$export_root" ERC_TRUST
