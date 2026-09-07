@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+- Prove the TRUST 1.2 structural and accounting invariant across all six
+  forward actions and three reversals, with initial, ordinary-transfer,
+  governance and failure preservation. Connected abstract runs retain every
+  transaction outcome and expose success receipts only for Applied results.
+  Typed controls cover disconnected steps, erased outcomes, post-state
+  substitution, shared custody, below/above-supply freezes and repeated pops.
+  The local 219-root audit reports 236 facts and no oracle dependencies.
+  Committed-source clean-build admission and integration review remain open;
+  the general compiled-runtime link and symbolic FREEZE proof are incomplete.
+
 - Record the separate identical-input Booster comparison without reusing a
   no-Booster certificate. It reaches deployed Native calls, then times out at
   900 seconds with no target cover. Required evidence rejects a fabricated PASS;

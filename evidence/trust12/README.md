@@ -127,3 +127,22 @@ compared before the owned WSL workspace was removed.
 `runtime-link-source-blockers.md` assigns the seven correspondence parts to each
 profile and states the exact checked producer, replay conditions and trust-boundary
 work still needed. Its source inspection is not an impossibility theorem.
+
+## Structural model work in progress
+
+The canonical child theories now separate state definitions, custody arithmetic,
+six forward actions, UNRESTRICT, UNFREEZE and RELEASE preservation. The general
+`forward_preserves_state_wf` and `reversal_preserves_state_wf` results have a local
+kernel build. The linked-run, shared-custodian, below/above-supply and
+source-effect removal controls also passed. The 219-root, 236-fact recursive
+audit reports zero oracle dependencies. Independent integration review and
+admission of the fresh committed-source clean build remain in progress. None of these model results supplies an EVM-to-HOL producer.
+
+`generate-trust12-proof-audit.py` enumerates every declared child theorem, using
+qualified names for locale theorems. Both the local closure runner and proof CI
+check the generated inventory before building. The generator is itself part of
+the formal input identity, and the review seal includes every child theory.
+
+`model-preservation-audit.md` records the bounded seven-source independent review.
+`record-trust12-model-results.mjs` requires the current clean-build identity and
+actual proof export before recording the model theorem and control groups.

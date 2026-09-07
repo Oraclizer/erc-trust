@@ -18,11 +18,11 @@ export const requiredTrust12Paths = [
   'evidence/trust12/evidence-reuse.json','evidence/trust12/evidence-reuse-controls.json',
   'evidence/trust12/evidence-reuse-audit.md','evidence/trust12/functional-evidence-reuse.json',
   ...mutationIds.map(id => `evidence/trust12/mutation-${id}.json`),
-  'scripts/capture-isabelle-local-inputs.mjs','scripts/lib/runtime-bundles.mjs',
+  'scripts/capture-isabelle-local-inputs.mjs','scripts/lib/runtime-bundles.mjs','scripts/generate-trust12-proof-audit.py',
   'scripts/test-trust12-required.mjs',
   'scripts/verify-trust12-required.mjs','scripts/lib/local-evidence.mjs','scripts/lib/formal-inputs.mjs',
   'scripts/record-foundry-results-v3.mjs','scripts/record-isabelle-results-v3.mjs',
-  'scripts/record-trust12-deterministic.mjs','scripts/generate-runtime-binding-v3.mjs',
+  'scripts/record-trust12-deterministic.mjs','scripts/record-trust12-model-results.mjs','scripts/generate-runtime-binding-v3.mjs',
 ];
 export function verifyTrust12Required(root = repository) {
   const seal = json(root,'evidence/trust12/input-seal.json');

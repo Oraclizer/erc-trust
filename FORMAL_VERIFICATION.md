@@ -486,9 +486,20 @@ Historical raw runs and generated directories are not canonical source.
 The fresh T-REX hook reference and additional model invariants are tracked in
 [evidence/trust12](evidence/trust12/README.md). The published baseline runtimes remain
 byte-exact; the new profile and new formal source have separate validation.
-The child session `TRUST12_Accounting_Obstruction` checks that the accounting
-predicate alone is too weak for all regulatory steps; it does not invalidate the
-initial-state or ordinary-transfer preservation theorems.
+The child session `TRUST12_Accounting_Obstruction` preserves the accounting-only
+obstruction and now defines the stronger `state_wf`. Canonical source contains
+initial, ordinary-transfer, authority/dependency-change and failure preservation,
+and preservation for all six forward and three reversal actions. The nine
+regulatory preservation results and linked-run controls have a local kernel
+build with 219 declared roots, 236 qualified facts and no oracle dependencies.
+The seven-file preservation source review passed; linked-run integration review
+and admission of a clean build at the committed source are in progress.
+
+`TRUST_Linked_Run.thy` provides the checked run-level extension. Its step predicate
+uses the existing admitted success-state function and failure stutters. A run
+requires every post-state to be the next pre-state and retains every outcome.
+Only Applied observations carry a success receipt. The concrete-run corollary
+remains conditional on the runtime link and connected concrete configurations.
 The general runtime link remains undischarged. A symbolic harness or a live Full
 profile descriptor does not establish end-to-end refinement.
 
