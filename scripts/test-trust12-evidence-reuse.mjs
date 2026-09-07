@@ -53,7 +53,8 @@ try{
    const dir=fixture(name),scripts=resolve(dir,"scripts");mkdirSync(scripts,{recursive:true});
    copyFileSync(resolve(root,"scripts",name),resolve(scripts,name));
    copyFileSync(resolve(root,"scripts/verify-trust12-evidence-reuse.mjs"),resolve(scripts,"verify-trust12-evidence-reuse.mjs"));
-   for(const helper of ["mutation-campaign.mjs","resolve-pinned-solc.mjs","runtime-binding-semantics.mjs"]){
+   copyFileSync(resolve(root,"scripts/verify-trust12-required.mjs"),resolve(scripts,"verify-trust12-required.mjs"));
+   for(const helper of ["runtime-bundles.mjs","local-evidence.mjs","formal-inputs.mjs","mutation-campaign.mjs","resolve-pinned-solc.mjs","runtime-binding-semantics.mjs"]){
      mkdirSync(resolve(scripts,"lib"),{recursive:true});copyFileSync(resolve(root,"scripts/lib",helper),resolve(scripts,"lib",helper));
    }
    copyFileSync(resolve(root,"evidence/evidence-mode.json"),resolve(dir,"evidence/evidence-mode.json"));

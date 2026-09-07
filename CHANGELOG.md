@@ -2,13 +2,15 @@
 
 ## Unreleased
 
-- Add the TRUST 1.2 fresh T-REX Hook development checkpoint and explicit
-  preservation checks for the unchanged Native and legacy Partial evidence.
-  Local replay reproduces the three legacy runtime templates and 102 Foundry
-  tests. Fourteen input and entrypoint controls check evidence-reuse rejection.
-  Aggregate release evidence and general runtime refinement remain incomplete;
-  the current gate permits development mode only. The earlier Partial behavior
-  described below remains the behavior of the legacy adapter.
+- Connect the TRUST 1.2 development evidence to every v3 aggregate entrypoint.
+  Local Foundry and deterministic receipts retain their actual execution identity;
+  a fresh local Isabelle build binds both named sessions and the exact dependency
+  inputs captured before and after execution. Pinned-compiler replay covers the
+  three preserved runtimes and four Hook runtimes in six semantic projections.
+  Thirty-two admission controls and the independent audit's counterexamples check
+  missing evidence, paired metadata changes and release promotion. The aggregate
+  is consistent in development mode; six mandatory proof obligations and general
+  runtime refinement remain incomplete. The legacy adapter stays Partial.
 
 - Correct the current ERC-3643 reference from Verified Full to the exact
   `ERC-TRUST/v2/erc3643-partial` profile with `profileKind = PARTIAL` and

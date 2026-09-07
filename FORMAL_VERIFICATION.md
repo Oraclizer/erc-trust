@@ -491,3 +491,12 @@ predicate alone is too weak for all regulatory steps; it does not invalidate the
 initial-state or ordinary-transfer preservation theorems.
 The general runtime link remains undischarged. A symbolic harness or a live Full
 profile descriptor does not establish end-to-end refinement.
+
+The required development gate is `scripts/verify-trust12-required.mjs`, consumed by
+all three v3 aggregate entrypoints. `formal-build-replay.json` binds the complete
+parent/child source and session graph, the actual foundation and ADS input bytes,
+and both recursive proof-audit exports. Its admitted digest is fixed only after
+execution and independent review; a new input must reopen that admission.
+`aggregate-evidence-audit.md` records the bounded independent review and repairs.
+A passing aggregate keeps Native, Partial and the pinned fresh Hook feature
+results separate from the six unresolved model, symbolic and runtime obligations.

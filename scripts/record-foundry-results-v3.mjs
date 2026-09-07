@@ -20,6 +20,7 @@
 //                 fuzzProperties, fuzzRunsEach, invariants, invariantRunsEach, invariantDepth,
 //                 invariantCalls, invariantReverts }, "lintErrors", "intentionalTimestampWarnings" } }
 
+import { localFoundryRun } from "./lib/local-evidence.mjs";
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -75,7 +76,8 @@ function runtimeOf(artifactPath) {
   return { bytes: length, eip170MarginBytes: EIP170_LIMIT - length, sha256: sha256(Buffer.from(hex, "hex")) };
 }
 
-const run = JSON.parse(readFileSync(resolve(process.cwd(), runPath), "utf8"));
+const localMode = args.includes("--local");
+const run = localMode ? localFoundryRun(root, runPath, commit) : JSON.parse(readFileSync(resolve(process.cwd(), runPath), "utf8"));
 const mode = JSON.parse(bytes("evidence/evidence-mode.json").toString("utf8"));
 const sourceRootSha256 = rootOf([...walk("implementation/src"), ...walk("implementation/test"), "foundry.toml"]);
 check(/^[0-9a-f]{40}$/.test(commit), "commit must be a full sha");
@@ -91,7 +93,7 @@ check(profileGovernor?.sha256 === bridge.subjects.profileGovernor.runtime.sha256
 
 const checks = run.checks;
 check(checks?.tests?.failed === 0 && checks?.lintErrors === 0 && checks?.format === "PASS" && checks?.buildAndSize === "PASS", "run summary does not describe a passing job");
-check(run.workflow?.jobConclusion === "success" && Number.isInteger(run.workflow?.runId) && Number.isInteger(run.workflow?.jobId), "workflow identity incomplete");
+if (!localMode) check(run.workflow?.jobConclusion === "success" && Number.isInteger(run.workflow?.runId) && Number.isInteger(run.workflow?.jobId), "workflow identity incomplete");
 
 const receipt = {
   schema: "erc-trust-foundry-results-v3",
@@ -100,7 +102,7 @@ const receipt = {
   sourceCommit: commit,
   sourceRootAlgorithm: "sha256-raw-files-case-sensitive-path-order-v1",
   sourceRootSha256,
-  workflow: run.workflow,
+  ...(localMode ? { provider: run.provider, run: run.run, testInventory: run.testInventory } : { provider: "github-actions", workflow: run.workflow }),
   toolchain: run.toolchain,
   checks,
   runtimeTemplate,

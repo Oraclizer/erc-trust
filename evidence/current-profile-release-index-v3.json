@@ -7,12 +7,149 @@
   "identity": {
     "certoraInputsSha256": "3cd3ece0bf234c1d295e90cd4ac1124cd6061f78217f6be9f02d0d61f8873faf",
     "formalRoot": {
-      "rootSha256": "5c8459b6500fb4889345bca2bd40a89c52f5cd8b951613e6feed10f5814306cf",
-      "theoryFiles": 22
+      "algorithm": "sha256-formal-session-graph-inputs-v2",
+      "foundationCommit": "db8e0802e55f0229cf7bc9e5e6cfbf40681adbba",
+      "inputs": [
+        {
+          "path": ".github/workflows/proofs.yml",
+          "sha256": "246269b84ba2a8e54d89367174c22e558194961e8cfd70924933f85c66562826"
+        },
+        {
+          "path": "evidence/public-release/formal-foundation-supersession-v1.json",
+          "sha256": "fd42345ad6eee7a898301530e1207162242538e436f0e574a04f1595b381ec45"
+        },
+        {
+          "path": "formal-dependencies-public-v1.lock.json",
+          "sha256": "eb26e09a60e74a90ca5e86d9b040fd9b20bca31589b1c9e9ab8ee4d54d6455f5"
+        },
+        {
+          "path": "formal-dependencies.lock.json",
+          "sha256": "f0bf6cfa4b05bef9e40a1be64b6309ec7722059bdbdacee5c6924df3bb35cab6"
+        },
+        {
+          "path": "formal/isabelle/ERC_TRUST/Claim_Boundary.thy",
+          "sha256": "313549026c3645fbd9bb7eb7da4b32a47c4eb6257d625342de5f0927fd1da7eb"
+        },
+        {
+          "path": "formal/isabelle/ERC_TRUST/Executable_Regulatory_Kernel.thy",
+          "sha256": "72f531eadbe62f39849248bbf1d1de61182abc85d8d865bc8138ebd4aaf27bb8"
+        },
+        {
+          "path": "formal/isabelle/ERC_TRUST/Privileged_Governance.thy",
+          "sha256": "bca0c163d55f69a35350c8d79a990d6174c5ce3478682f80a285dfa53d0d614c"
+        },
+        {
+          "path": "formal/isabelle/ERC_TRUST/Proof_Audit.thy",
+          "sha256": "2d79454f39a5c241809c60a33bb276918aa8b59bc889ede95dd15c58452d2b1b"
+        },
+        {
+          "path": "formal/isabelle/ERC_TRUST/RCP_Action_Mapping.thy",
+          "sha256": "e628178a9b09f3dab7759503db1a9a47141e932f591d4f3f19cceac359e900a4"
+        },
+        {
+          "path": "formal/isabelle/ERC_TRUST/ROOT",
+          "sha256": "234bc1ea085b9b2fc4bfe5bd4f534e6160c6bf429e60f93f956f6978e22a9b48"
+        },
+        {
+          "path": "formal/isabelle/ERC_TRUST/Regulatory_Execution_Semantics.thy",
+          "sha256": "6b621b3b36342c0d432f1d7971a6153faaa87f9c9f3c97a80593f28fb3c295c1"
+        },
+        {
+          "path": "formal/isabelle/ERC_TRUST/Regulatory_Execution_Simulation.thy",
+          "sha256": "68a477f4335d4572cfa01490947b2c5a6a7729d7ce1fc635bb3e6bebc318428d"
+        },
+        {
+          "path": "formal/isabelle/ERC_TRUST/TRUST_Bound_Dependency_Assume_Guarantee.thy",
+          "sha256": "6ed2c7919a25b03170232bcb109c3c6be31d31569b5178760d09709eb5104258"
+        },
+        {
+          "path": "formal/isabelle/ERC_TRUST/TRUST_C0_Decode_Slices.thy",
+          "sha256": "88a238346d74c3a6627e01972d0b52cbb76755ea070cfa0ce450b7e275fe4b9a"
+        },
+        {
+          "path": "formal/isabelle/ERC_TRUST/TRUST_Compositional_State.thy",
+          "sha256": "ecb28da66b0ea1d1e1e4d05255a00246294d5ec9b5aafd320866af92c3ac880a"
+        },
+        {
+          "path": "formal/isabelle/ERC_TRUST/TRUST_Concrete_Configuration.thy",
+          "sha256": "642daa38742595bb7a00700b08b0a24d74e18d1239eb848f45e197c78ba5ce56"
+        },
+        {
+          "path": "formal/isabelle/ERC_TRUST/TRUST_Decoder_Guard_Words.thy",
+          "sha256": "e19b61acc6748a6059ae0194dd0ea4144612d36562873869fdf54af385e037ae"
+        },
+        {
+          "path": "formal/isabelle/ERC_TRUST/TRUST_End_To_End_Composition.thy",
+          "sha256": "dde2f9c95d702cf4f394dc3bde7e0e000203ba95698cfd7a8ba6569e59f8ccc5"
+        },
+        {
+          "path": "formal/isabelle/ERC_TRUST/TRUST_M4_Action_Reversal_Row_Corollaries.thy",
+          "sha256": "ae3b862dcdf0ba6b2049b0d4c92e216ce99c8745757ddc7b606854f1be3db355"
+        },
+        {
+          "path": "formal/isabelle/ERC_TRUST/TRUST_Obligation_Ledger_Generated.thy",
+          "sha256": "cb366dfbcd821ee87e4593cae4b64af95cbcc617ccb8912c4fd12598ed00b5e6"
+        },
+        {
+          "path": "formal/isabelle/ERC_TRUST/TRUST_Retrieve_Relation.thy",
+          "sha256": "5fe73a17b58d636ca2f489a02e42a442309f8f42f99cb99e72de678090475587"
+        },
+        {
+          "path": "formal/isabelle/ERC_TRUST/TRUST_Reusable_Summaries.thy",
+          "sha256": "932d138e9c9b96e3c0c8e62753970d52af9826d1f3df7ff356cef3626fc337fa"
+        },
+        {
+          "path": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy",
+          "sha256": "1293bdb284db5e2545e6031617464fb6e9e4800e6d43d154348e69d6ed17ab1a"
+        },
+        {
+          "path": "formal/isabelle/ERC_TRUST/TRUST_State_Abi_Normal_Form.thy",
+          "sha256": "b645ce637c97ee3ca7a91c889d6b05efbb233404fe056b22d21816fe3abf710f"
+        },
+        {
+          "path": "formal/isabelle/ERC_TRUST/TRUST_Transaction_Refinement.thy",
+          "sha256": "b49b9d7a71455e547bf5185fcd66195597b185bbb5d50441b281e37eabf60149"
+        },
+        {
+          "path": "formal/isabelle/ERC_TRUST/TRUST_Verified_Profile_Onboarding.thy",
+          "sha256": "2abd913f98815a695e8d006a7586b2accacebe8ba19cb8efeae60752ee13075e"
+        },
+        {
+          "path": "formal/isabelle/ERC_TRUST/Token_Compatibility.thy",
+          "sha256": "07e1c6cc1ad470bdd9fc3bebaa8acac31998c18a6b8e7cd2221f8fd1dc01ef96"
+        },
+        {
+          "path": "formal/isabelle/ROOTS",
+          "sha256": "bc0d98972158b22dd35d8e3f0c99a9231b7d7969b744ead12644ca79603944ad"
+        },
+        {
+          "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/ROOT",
+          "sha256": "5a4b5ff89ba554d04306c1aac98b931b93583b3d36be52f180d65b64996866e4"
+        },
+        {
+          "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST12_Obstruction_Proof_Audit.thy",
+          "sha256": "ba0f92615c72b53c7ef76d563598a23b962af5919a22b41c847aaea53afa7003"
+        },
+        {
+          "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Accounting_Invariant_Obstruction.thy",
+          "sha256": "b9ba46b12ecb03baffd3f4cc0521219c6100fbb31820ad2d15b4a324a12b91fe"
+        },
+        {
+          "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_State_Invariants.thy",
+          "sha256": "5be6a7d9db007d4526c8de6e0be7324a77172e652a5a925113f26007e632266c"
+        }
+      ],
+      "path": "formal/isabelle",
+      "rootSha256": "2694f614332e31338f0fd492bf02baa8834c517238bbfe22516181743de94874",
+      "sessions": [
+        "ERC_TRUST",
+        "TRUST12_Accounting_Obstruction"
+      ],
+      "theoryFiles": 25
     },
     "kontrolInputsSha256": "a9ae8bd47997bccda566d9a3d002fc8b21c11bed717f5332beae7b4ef9d56294",
     "sourceRootAlgorithm": "sha256-raw-files-case-sensitive-path-order-v1",
-    "sourceRootSha256": "947afab7619b5c2d629da3e233c1cbe76fc6556a61112fbcc51b99c7e7235272"
+    "sourceRootSha256": "158420df1daf7b8abe43b722f01bdb124dcec32a5e46ffbe339bb51330711abd"
   },
   "kind": "ERC_TRUST_CURRENT_PROFILE_RELEASE_INDEX_V3",
   "lanes": {
@@ -33,10 +170,10 @@
     "foundry": {
       "receipt": {
         "path": "evidence/foundry-results-v3.json",
-        "sha256": "f627ea97bf5482ca1f3059920b807c6518897cb9ba5b23ff48aa87b73ca3fb77"
+        "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
       },
       "status": "PASS",
-      "tests": 93
+      "tests": 102
     },
     "independentReproduction": {
       "assertions": 401,
@@ -53,7 +190,7 @@
     "isabelleBuild": {
       "receipt": {
         "path": "evidence/isabelle-results-v3.json",
-        "sha256": "544654e147c1e2074eaf2b61ec53171c515f952c59fd3f6916499cce173856bb"
+        "sha256": "0ee3e1cea2703b2f6f53937c1126a7cba3952143347443216ce371abe6b9e4cc"
       },
       "status": "PASS"
     },
@@ -224,14 +361,14 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "2cfb27a5bde616047d26e3552228c1593f5bef44f32cf1c05fa685fb1778d5a2"
+        "sha256": "b00d2bd4d4bb793771928093e067afb14accbf83d7e79fb90a3c81308b672cf9"
       }
     },
     "runtime": {
       "eip170MarginBytes": 4533,
       "receipt": {
         "path": "evidence/deterministic-build.json",
-        "sha256": "330c6ab8df42e5e19e06df7e2699af97b01bd08b015d61f5cf6671a018fdc817"
+        "sha256": "a6b5c9756fec0dc1447950fb9cb3e4bab3694f31772e4687927380fae7239ef7"
       },
       "runtimeBytes": 20043,
       "runtimeTemplateSha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1",
@@ -241,14 +378,127 @@
       "basis": "this index checks the receipt against the deterministic build; layer 2 (pinned-compiler replay and the six semantic projections) is re-executed by scripts/generate-runtime-binding-v3.mjs --check and scripts/verify-runtime-binding-v3.mjs --replay in the sdk-and-package job",
       "receipt": {
         "path": "evidence/runtime-binding-v3.json",
-        "sha256": "6b7b20e6eb52f3792c81b38a56c69f7f3caf6b3a0018d9795b74f05f8db3f640"
+        "sha256": "3e74b9d39df89700f063cb3dde587eb4001a5dd93dbaf5971907c922ab86c63d"
       },
       "status": "PASS",
       "subjects": [
         "native",
         "profileAdapter",
-        "profileGovernor"
+        "profileGovernor",
+        "ERC3643HookAdapter",
+        "ERC3643HookGovernor",
+        "ERC3643HookCompliance",
+        "ERC3643HookFactory"
       ]
+    },
+    "trust12Required": {
+      "centralClosure": "INCOMPLETE",
+      "currentMandatory": [
+        "MODEL-LINKED-RUN",
+        "MODEL-REGULATORY-PRESERVATION",
+        "NATIVE-SYMBOLIC-FREEZE",
+        "RUNTIME-LINK-HOOK",
+        "RUNTIME-LINK-NATIVE",
+        "RUNTIME-LINK-PARTIAL"
+      ],
+      "evidence": [
+        {
+          "path": "evidence/trust12/obligation-ledger.json",
+          "sha256": "0a04ffda5dde994989a9d29b1a78f6d772911a318a70148934836c38636dfb1a"
+        },
+        {
+          "path": "evidence/trust12/runtime-identity.json",
+          "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
+        },
+        {
+          "path": "evidence/trust12/independent-audit.md",
+          "sha256": "5a416e77cf6d5ca8c24356b9121daf3603169fa5669d193103f8d59a3958dc87"
+        },
+        {
+          "path": "evidence/trust12/symbolic-kontrol.json",
+          "sha256": "e40a85b127e3749c0cbce0255833984240853c80f5983e4ef09dd409cf4dd8b2"
+        },
+        {
+          "path": "evidence/trust12/formal-build.json",
+          "sha256": "b66c7388681740d6f797292387c6932ed121c9ba9cb578b62452a30cef1526ed"
+        },
+        {
+          "path": "evidence/trust12/formal-build-replay.json",
+          "sha256": "4d4bd6e299d1f2ef5418f9441785493bd11e6459adcbbccf7df4909a49db2e3c"
+        },
+        {
+          "path": "evidence/trust12/local-validation.json",
+          "sha256": "e98c68cd306bf7e973a3642ec1898cbb09f94ebe260f7b3b4420d92fc3fdb273"
+        },
+        {
+          "path": "evidence/trust12/deterministic-build-replay.json",
+          "sha256": "f10d88a567718b05ac017686be7a7baacb75150b3ef3945ff8c11f69113064e3"
+        },
+        {
+          "path": "evidence/trust12/evidence-reuse.json",
+          "sha256": "7d25dc41ea3d83bd49e41f29139daa795815f9d324e2790a4258b6a40fe0979a"
+        },
+        {
+          "path": "evidence/trust12/evidence-reuse-controls.json",
+          "sha256": "3aa5f81cc50866df65c92aeedeb82a39e623ca819873c0d0ee59e0ad489dd183"
+        },
+        {
+          "path": "evidence/trust12/evidence-reuse-audit.md",
+          "sha256": "55579ee45cbd35e63b3b7ca84215ee0ee92fe40731b5c65199c50f980486da92"
+        },
+        {
+          "path": "evidence/trust12/functional-evidence-reuse.json",
+          "sha256": "e9ffa7ef2d26272069f1c4205739f582f03e261b9738befb7806861bdc1e9a2b"
+        },
+        {
+          "path": "evidence/trust12/mutation-callback-auth.json",
+          "sha256": "a1499eb530d772259ba8cdc520e7b1ef8ccca3b27ce1901552e4c4b0ecd855b1"
+        },
+        {
+          "path": "evidence/trust12/mutation-factory-pin.json",
+          "sha256": "c21eabdd494a783b70b250c9e4d3225ab4b6c45f262155c3ef85168393d6d81e"
+        },
+        {
+          "path": "evidence/trust12/mutation-hidden-agent.json",
+          "sha256": "d8103bd6ceb0c0bccf3585f5727d63716ff28f86a89b912a5489044bf477d6d7"
+        },
+        {
+          "path": "evidence/trust12/mutation-inbound.json",
+          "sha256": "5a56899d53056cd2480db0e033b2654392ec5a7b59654ebb5e3b030f42c7bb8f"
+        },
+        {
+          "path": "evidence/trust12/mutation-initial.json",
+          "sha256": "5ac4a67760bbd11fda09851b43d26bff79c5ef5d35a4b9872035f30079687958"
+        },
+        {
+          "path": "evidence/trust12/mutation-receipt.json",
+          "sha256": "eabc940d87c0a8cc9e03c592c5fa2f96ba7595284b174e30624d570d610337bd"
+        },
+        {
+          "path": "evidence/trust12/input-seal.json",
+          "sha256": "f5bd09645e28069ffc9ab16392656c138b7b9ddfe6cb6c0699d917bb75d6cc80"
+        }
+      ],
+      "nonclaim": "Required evidence is present and bound to the current inputs. This consistency result does not close any pending model, symbolic or compiled-runtime obligation.",
+      "profiles": {
+        "hook": {
+          "functionalConformance": "PASS_PINNED_FRESH_TREX",
+          "integrationTests": 9,
+          "runtimeRefinement": "INCOMPLETE",
+          "semanticMutations": 6
+        },
+        "native": {
+          "existingEvidence": "PRESERVED",
+          "runtimeRefinement": "INCOMPLETE"
+        },
+        "partial": {
+          "existingEvidence": "PRESERVED",
+          "full": false,
+          "runtimeRefinement": "INCOMPLETE"
+        }
+      },
+      "scope": "Evidence consistency; refinement remains incomplete",
+      "status": "PASS"
     }
   },
   "mode": "successor-development",
@@ -263,5 +513,158 @@
     "release": "node scripts/verify-current-profile-release-v3.mjs"
   },
   "schemaVersion": 3,
-  "status": "CONSISTENT_SUCCESSOR_DEVELOPMENT"
+  "status": "CONSISTENT_SUCCESSOR_DEVELOPMENT",
+  "trust12EvidenceReuse": {
+    "claim": "Legacy exact-input results are preserved. The new Hook and expanded symbolic target receive no legacy proof credit.",
+    "currentSourceRootSha256": "158420df1daf7b8abe43b722f01bdb124dcec32a5e46ffbe339bb51330711abd",
+    "kontrolInputPaths": [
+      "implementation/kontrol/TrustTokenKontrolTest.t.sol",
+      "implementation/kontrol/erc-trust-log-assertions.k",
+      "implementation/src/TrustToken.sol"
+    ],
+    "legacyMutationSourceRootSha256": "947afab7619b5c2d629da3e233c1cbe76fc6556a61112fbcc51b99c7e7235272",
+    "manifest": {
+      "path": "evidence/trust12/evidence-reuse.json",
+      "sha256": "7d25dc41ea3d83bd49e41f29139daa795815f9d324e2790a4258b6a40fe0979a"
+    },
+    "owners": [
+      {
+        "owner": "hook-functional",
+        "path": "implementation/src/profiles/ERC3643HookAdapter.sol"
+      },
+      {
+        "owner": "hook-functional",
+        "path": "implementation/src/profiles/ERC3643HookCompliance.sol"
+      },
+      {
+        "owner": "hook-functional",
+        "path": "implementation/src/profiles/ERC3643HookDeployment.sol"
+      },
+      {
+        "owner": "hook-functional",
+        "path": "implementation/src/profiles/ERC3643HookFactory.sol"
+      },
+      {
+        "owner": "hook-functional",
+        "path": "implementation/src/profiles/ERC3643HookGovernor.sol"
+      },
+      {
+        "owner": "hook-functional",
+        "path": "implementation/test/ERC3643HookTrexIntegration.t.sol"
+      },
+      {
+        "owner": "native-symbolic-expanded",
+        "path": "implementation/kontrol/trust12/TrustTokenSymbolicKontrolTest.t.sol"
+      }
+    ],
+    "schema": "trust12-evidence-reuse-v1"
+  },
+  "trust12Required": {
+    "centralClosure": "INCOMPLETE",
+    "currentMandatory": [
+      "MODEL-LINKED-RUN",
+      "MODEL-REGULATORY-PRESERVATION",
+      "NATIVE-SYMBOLIC-FREEZE",
+      "RUNTIME-LINK-HOOK",
+      "RUNTIME-LINK-NATIVE",
+      "RUNTIME-LINK-PARTIAL"
+    ],
+    "evidence": [
+      {
+        "path": "evidence/trust12/obligation-ledger.json",
+        "sha256": "0a04ffda5dde994989a9d29b1a78f6d772911a318a70148934836c38636dfb1a"
+      },
+      {
+        "path": "evidence/trust12/runtime-identity.json",
+        "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
+      },
+      {
+        "path": "evidence/trust12/independent-audit.md",
+        "sha256": "5a416e77cf6d5ca8c24356b9121daf3603169fa5669d193103f8d59a3958dc87"
+      },
+      {
+        "path": "evidence/trust12/symbolic-kontrol.json",
+        "sha256": "e40a85b127e3749c0cbce0255833984240853c80f5983e4ef09dd409cf4dd8b2"
+      },
+      {
+        "path": "evidence/trust12/formal-build.json",
+        "sha256": "b66c7388681740d6f797292387c6932ed121c9ba9cb578b62452a30cef1526ed"
+      },
+      {
+        "path": "evidence/trust12/formal-build-replay.json",
+        "sha256": "4d4bd6e299d1f2ef5418f9441785493bd11e6459adcbbccf7df4909a49db2e3c"
+      },
+      {
+        "path": "evidence/trust12/local-validation.json",
+        "sha256": "e98c68cd306bf7e973a3642ec1898cbb09f94ebe260f7b3b4420d92fc3fdb273"
+      },
+      {
+        "path": "evidence/trust12/deterministic-build-replay.json",
+        "sha256": "f10d88a567718b05ac017686be7a7baacb75150b3ef3945ff8c11f69113064e3"
+      },
+      {
+        "path": "evidence/trust12/evidence-reuse.json",
+        "sha256": "7d25dc41ea3d83bd49e41f29139daa795815f9d324e2790a4258b6a40fe0979a"
+      },
+      {
+        "path": "evidence/trust12/evidence-reuse-controls.json",
+        "sha256": "3aa5f81cc50866df65c92aeedeb82a39e623ca819873c0d0ee59e0ad489dd183"
+      },
+      {
+        "path": "evidence/trust12/evidence-reuse-audit.md",
+        "sha256": "55579ee45cbd35e63b3b7ca84215ee0ee92fe40731b5c65199c50f980486da92"
+      },
+      {
+        "path": "evidence/trust12/functional-evidence-reuse.json",
+        "sha256": "e9ffa7ef2d26272069f1c4205739f582f03e261b9738befb7806861bdc1e9a2b"
+      },
+      {
+        "path": "evidence/trust12/mutation-callback-auth.json",
+        "sha256": "a1499eb530d772259ba8cdc520e7b1ef8ccca3b27ce1901552e4c4b0ecd855b1"
+      },
+      {
+        "path": "evidence/trust12/mutation-factory-pin.json",
+        "sha256": "c21eabdd494a783b70b250c9e4d3225ab4b6c45f262155c3ef85168393d6d81e"
+      },
+      {
+        "path": "evidence/trust12/mutation-hidden-agent.json",
+        "sha256": "d8103bd6ceb0c0bccf3585f5727d63716ff28f86a89b912a5489044bf477d6d7"
+      },
+      {
+        "path": "evidence/trust12/mutation-inbound.json",
+        "sha256": "5a56899d53056cd2480db0e033b2654392ec5a7b59654ebb5e3b030f42c7bb8f"
+      },
+      {
+        "path": "evidence/trust12/mutation-initial.json",
+        "sha256": "5ac4a67760bbd11fda09851b43d26bff79c5ef5d35a4b9872035f30079687958"
+      },
+      {
+        "path": "evidence/trust12/mutation-receipt.json",
+        "sha256": "eabc940d87c0a8cc9e03c592c5fa2f96ba7595284b174e30624d570d610337bd"
+      },
+      {
+        "path": "evidence/trust12/input-seal.json",
+        "sha256": "f5bd09645e28069ffc9ab16392656c138b7b9ddfe6cb6c0699d917bb75d6cc80"
+      }
+    ],
+    "nonclaim": "Required evidence is present and bound to the current inputs. This consistency result does not close any pending model, symbolic or compiled-runtime obligation.",
+    "profiles": {
+      "hook": {
+        "functionalConformance": "PASS_PINNED_FRESH_TREX",
+        "integrationTests": 9,
+        "runtimeRefinement": "INCOMPLETE",
+        "semanticMutations": 6
+      },
+      "native": {
+        "existingEvidence": "PRESERVED",
+        "runtimeRefinement": "INCOMPLETE"
+      },
+      "partial": {
+        "existingEvidence": "PRESERVED",
+        "full": false,
+        "runtimeRefinement": "INCOMPLETE"
+      }
+    },
+    "status": "PASS_CONSISTENT_DEVELOPMENT"
+  }
 }

@@ -1,0 +1,3280 @@
+[
+  {
+    "abi": [
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenCreationSource",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "authority_",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "authorityRef_",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "holder",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "supply",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address[]",
+            "name": "eligible",
+            "type": "address[]"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "commandId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint16",
+            "name": "reason",
+            "type": "uint16"
+          }
+        ],
+        "name": "TrustInvalidCommand",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "commandId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint16",
+            "name": "reason",
+            "type": "uint16"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "dependencyRef",
+            "type": "bytes32"
+          }
+        ],
+        "name": "TrustOperationalFailure",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "TrustReentrancy",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "commandId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint16",
+            "name": "reason",
+            "type": "uint16"
+          }
+        ],
+        "name": "TrustRejected",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "key",
+            "type": "bytes32"
+          }
+        ],
+        "name": "TrustReplay",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "caseId",
+            "type": "bytes32"
+          }
+        ],
+        "name": "TrustTerminal",
+        "type": "error"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "caller",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "authorityRef",
+            "type": "bytes32"
+          }
+        ],
+        "name": "TrustUnauthorized",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "TrustZeroAddress",
+        "type": "error"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "frozenTarget",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "appliedFrozen",
+            "type": "uint256"
+          }
+        ],
+        "name": "FrozenTargetResynchronised",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "binding",
+            "type": "bytes32"
+          },
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "importManifestHash",
+            "type": "bytes32"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "importedEntries",
+            "type": "uint256"
+          }
+        ],
+        "name": "ProfileActivated",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "actionId",
+            "type": "bytes32"
+          },
+          {
+            "indexed": true,
+            "internalType": "uint8",
+            "name": "action",
+            "type": "uint8"
+          },
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "caseId",
+            "type": "bytes32"
+          },
+          {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "receiptHash",
+            "type": "bytes32"
+          }
+        ],
+        "name": "RegulatoryActionApplied",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "reversalId",
+            "type": "bytes32"
+          },
+          {
+            "indexed": true,
+            "internalType": "uint8",
+            "name": "reversal",
+            "type": "uint8"
+          },
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "actionId",
+            "type": "bytes32"
+          },
+          {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "receiptHash",
+            "type": "bytes32"
+          }
+        ],
+        "name": "RegulatoryReversalApplied",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "caseId",
+            "type": "bytes32"
+          },
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "actionId",
+            "type": "bytes32"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "subject",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint8",
+            "name": "family",
+            "type": "uint8"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "frozenAmount",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "bool",
+            "name": "restricted",
+            "type": "bool"
+          }
+        ],
+        "name": "RegulatoryStateImported",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "authorityRef",
+            "type": "bytes32"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint64",
+            "name": "epoch",
+            "type": "uint64"
+          },
+          {
+            "indexed": false,
+            "internalType": "bool",
+            "name": "active",
+            "type": "bool"
+          }
+        ],
+        "name": "TrustAuthorityChanged",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "uint8",
+            "name": "kind",
+            "type": "uint8"
+          },
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "previousBinding",
+            "type": "bytes32"
+          },
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "currentBinding",
+            "type": "bytes32"
+          },
+          {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "dependencyRoot",
+            "type": "bytes32"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint64",
+            "name": "dependencyEpoch",
+            "type": "uint64"
+          }
+        ],
+        "name": "TrustDependencyChanged",
+        "type": "event"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "actionId",
+            "type": "bytes32"
+          }
+        ],
+        "name": "actionRecord",
+        "outputs": [
+          {
+            "components": [
+              {
+                "internalType": "enum TrustKernelTypes.ActionKind",
+                "name": "action",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum TrustKernelTypes.Lifecycle",
+                "name": "lifecycle",
+                "type": "uint8"
+              },
+              {
+                "internalType": "address",
+                "name": "subject",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "source",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "destination",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "custodian",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "priorAmount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bool",
+                "name": "priorFlag",
+                "type": "bool"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "caseId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "authorityRef",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint64",
+                "name": "authorityEpoch",
+                "type": "uint64"
+              },
+              {
+                "internalType": "uint64",
+                "name": "dependencyEpoch",
+                "type": "uint64"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "commandHash",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "evidenceHash",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "receiptHash",
+                "type": "bytes32"
+              }
+            ],
+            "internalType": "struct TrustKernelTypes.ActionRecord",
+            "name": "",
+            "type": "tuple"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "components": [
+              {
+                "internalType": "address",
+                "name": "account",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "frozenAmount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bool",
+                "name": "restricted",
+                "type": "bool"
+              }
+            ],
+            "internalType": "struct ERC3643ProfileTypes.ImportEntry[]",
+            "name": "entries",
+            "type": "tuple[]"
+          }
+        ],
+        "name": "activateSeal",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "authority",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "authorityRef",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "caseId",
+            "type": "bytes32"
+          }
+        ],
+        "name": "caseRecord",
+        "outputs": [
+          {
+            "components": [
+              {
+                "internalType": "enum TrustKernelTypes.CasePhase",
+                "name": "phase",
+                "type": "uint8"
+              },
+              {
+                "internalType": "enum TrustKernelTypes.CaseFamily",
+                "name": "family",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "headActionId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint64",
+                "name": "generation",
+                "type": "uint64"
+              }
+            ],
+            "internalType": "struct TrustKernelTypes.CaseRecord",
+            "name": "",
+            "type": "tuple"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "dependencyState",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "dependencyRoot",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint64",
+            "name": "dependencyEpoch",
+            "type": "uint64"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "domain",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "actionId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "enum TrustKernelTypes.ActionKind",
+                "name": "action",
+                "type": "uint8"
+              },
+              {
+                "internalType": "address",
+                "name": "subject",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "source",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "destination",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "custodian",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "caseId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "dependencyRoot",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint64",
+                "name": "dependencyEpoch",
+                "type": "uint64"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "provenanceCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "settlementCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "proceedsCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "entitlementCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "authorityRef",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint64",
+                "name": "authorityEpoch",
+                "type": "uint64"
+              },
+              {
+                "internalType": "uint256",
+                "name": "nonce",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint48",
+                "name": "validAfter",
+                "type": "uint48"
+              },
+              {
+                "internalType": "uint48",
+                "name": "validBefore",
+                "type": "uint48"
+              }
+            ],
+            "internalType": "struct TrustKernelTypes.ActionRequest",
+            "name": "request",
+            "type": "tuple"
+          }
+        ],
+        "name": "deriveActionId",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "domain",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "reversalId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "actionId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "enum TrustKernelTypes.ReversalKind",
+                "name": "reversal",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "dependencyRoot",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint64",
+                "name": "dependencyEpoch",
+                "type": "uint64"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "provenanceCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "authorityRef",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint64",
+                "name": "authorityEpoch",
+                "type": "uint64"
+              },
+              {
+                "internalType": "uint256",
+                "name": "nonce",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint48",
+                "name": "validAfter",
+                "type": "uint48"
+              },
+              {
+                "internalType": "uint48",
+                "name": "validBefore",
+                "type": "uint48"
+              }
+            ],
+            "internalType": "struct TrustKernelTypes.ReversalRequest",
+            "name": "request",
+            "type": "tuple"
+          }
+        ],
+        "name": "deriveReversalId",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "domain",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "actionId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "enum TrustKernelTypes.ActionKind",
+                "name": "action",
+                "type": "uint8"
+              },
+              {
+                "internalType": "address",
+                "name": "subject",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "source",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "destination",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "custodian",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "caseId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "dependencyRoot",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint64",
+                "name": "dependencyEpoch",
+                "type": "uint64"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "provenanceCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "settlementCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "proceedsCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "entitlementCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "authorityRef",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint64",
+                "name": "authorityEpoch",
+                "type": "uint64"
+              },
+              {
+                "internalType": "uint256",
+                "name": "nonce",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint48",
+                "name": "validAfter",
+                "type": "uint48"
+              },
+              {
+                "internalType": "uint48",
+                "name": "validBefore",
+                "type": "uint48"
+              }
+            ],
+            "internalType": "struct TrustKernelTypes.ActionRequest",
+            "name": "request",
+            "type": "tuple"
+          }
+        ],
+        "name": "executeRegulatoryAction",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "receiptHash",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "domain",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "reversalId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "actionId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "enum TrustKernelTypes.ReversalKind",
+                "name": "reversal",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "dependencyRoot",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint64",
+                "name": "dependencyEpoch",
+                "type": "uint64"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "provenanceCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "authorityRef",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint64",
+                "name": "authorityEpoch",
+                "type": "uint64"
+              },
+              {
+                "internalType": "uint256",
+                "name": "nonce",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint48",
+                "name": "validAfter",
+                "type": "uint48"
+              },
+              {
+                "internalType": "uint48",
+                "name": "validBefore",
+                "type": "uint48"
+              }
+            ],
+            "internalType": "struct TrustKernelTypes.ReversalRequest",
+            "name": "request",
+            "type": "tuple"
+          }
+        ],
+        "name": "executeRegulatoryReversal",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "receiptHash",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          }
+        ],
+        "name": "onTokenBalanceChanged",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "ownedState",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "frozenTarget",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "appliedFrozen",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "restricted",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "profileGovernor",
+        "outputs": [
+          {
+            "internalType": "contract ProfileGovernor",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes32",
+            "name": "commandId",
+            "type": "bytes32"
+          }
+        ],
+        "name": "receipt",
+        "outputs": [
+          {
+            "components": [
+              {
+                "internalType": "enum TrustKernelTypes.ReceiptKind",
+                "name": "receiptKind",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "commandId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "uint8",
+                "name": "commandKind",
+                "type": "uint8"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "parentCommandId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "address",
+                "name": "subject",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "source",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "destination",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "caseId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "authorityRef",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "dependencyRoot",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "provenanceCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "assessmentEvidence",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "preState",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "postState",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "externalCommitment",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "receiptHash",
+                "type": "bytes32"
+              }
+            ],
+            "internalType": "struct TrustKernelTypes.Receipt",
+            "name": "",
+            "type": "tuple"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+          }
+        ],
+        "name": "resynchroniseFrozen",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "appliedFrozen",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "sealedTopologyLive",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes4",
+            "name": "interfaceId",
+            "type": "bytes4"
+          }
+        ],
+        "name": "supportsInterface",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "pure",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "token",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "trustProfile",
+        "outputs": [
+          {
+            "components": [
+              {
+                "internalType": "bytes32",
+                "name": "profileId",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "enum TrustKernelTypes.ProfileKind",
+                "name": "profileKind",
+                "type": "uint8"
+              },
+              {
+                "internalType": "uint8",
+                "name": "standardVersion",
+                "type": "uint8"
+              },
+              {
+                "internalType": "uint256",
+                "name": "actionMask",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "reversalMask",
+                "type": "uint256"
+              },
+              {
+                "internalType": "address",
+                "name": "underlyingToken",
+                "type": "address"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "manifestHash",
+                "type": "bytes32"
+              },
+              {
+                "internalType": "bool",
+                "name": "full",
+                "type": "bool"
+              },
+              {
+                "internalType": "bool",
+                "name": "proxySupported",
+                "type": "bool"
+              }
+            ],
+            "internalType": "struct TrustKernelTypes.ProfileDescriptor",
+            "name": "descriptor",
+            "type": "tuple"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      }
+    ],
+    "artifact": "out/ERC3643HookAdapter.sol/ERC3643HookAdapter.json",
+    "bundle": "erc3643-hook",
+    "contract": "ERC3643HookAdapter",
+    "creationBytecode": {
+      "bytes": 30915,
+      "sha256": "9711a7dd332574c2312b761b615649c3eba03e4fb890d2f9cd04041a2c66d4b3"
+    },
+    "id": "ERC3643HookAdapter",
+    "immutableReferences": [
+      {
+        "length": 32,
+        "start": 301
+      },
+      {
+        "length": 32,
+        "start": 402
+      },
+      {
+        "length": 32,
+        "start": 459
+      },
+      {
+        "length": 32,
+        "start": 575
+      },
+      {
+        "length": 32,
+        "start": 987
+      },
+      {
+        "length": 32,
+        "start": 3604
+      },
+      {
+        "length": 32,
+        "start": 3861
+      },
+      {
+        "length": 32,
+        "start": 4325
+      },
+      {
+        "length": 32,
+        "start": 7794
+      },
+      {
+        "length": 32,
+        "start": 11388
+      },
+      {
+        "length": 32,
+        "start": 13051
+      },
+      {
+        "length": 32,
+        "start": 13898
+      },
+      {
+        "length": 32,
+        "start": 13974
+      },
+      {
+        "length": 32,
+        "start": 14243
+      },
+      {
+        "length": 32,
+        "start": 14319
+      },
+      {
+        "length": 32,
+        "start": 14761
+      },
+      {
+        "length": 32,
+        "start": 15298
+      },
+      {
+        "length": 32,
+        "start": 15973
+      },
+      {
+        "length": 32,
+        "start": 16093
+      },
+      {
+        "length": 32,
+        "start": 16215
+      },
+      {
+        "length": 32,
+        "start": 17531
+      },
+      {
+        "length": 32,
+        "start": 17867
+      },
+      {
+        "length": 32,
+        "start": 19245
+      },
+      {
+        "length": 32,
+        "start": 19315
+      }
+    ],
+    "methodIdentifiers": {
+      "actionRecord(bytes32)": "330fcfde",
+      "activateSeal((address,uint256,bool)[])": "8efb3179",
+      "authority()": "bf7e214f",
+      "authorityRef()": "f161af61",
+      "caseRecord(bytes32)": "2a408631",
+      "dependencyState()": "7bf8f8b6",
+      "deriveActionId((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))": "fc6a9112",
+      "deriveReversalId((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))": "f3315a6c",
+      "executeRegulatoryAction((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))": "2f4e0773",
+      "executeRegulatoryReversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))": "2b892e8f",
+      "onTokenBalanceChanged(address,address)": "9cbfdbf8",
+      "ownedState(address)": "963f57d1",
+      "profileGovernor()": "164068a4",
+      "receipt(bytes32)": "198a27aa",
+      "resynchroniseFrozen(address)": "24933056",
+      "sealedTopologyLive()": "2ca444f1",
+      "supportsInterface(bytes4)": "01ffc9a7",
+      "token()": "fc0c546a",
+      "trustProfile()": "5ba37779"
+    },
+    "runtimeTemplate": {
+      "bytes": 19824,
+      "eip170MarginBytes": 4752,
+      "sha256": "f84c886b203dacd380c29b2aa3afd2ed401e487ed79f95e14b4d24edb24c1b85"
+    },
+    "semanticChecks": {
+      "abi": true,
+      "creationBytecode": true,
+      "immutableReferences": true,
+      "methodIdentifiers": true,
+      "runtimeTemplate": true,
+      "storageLayout": true
+    },
+    "source": "implementation/src/profiles/ERC3643HookAdapter.sol",
+    "storageLayout": [
+      {
+        "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+        "label": "_entered",
+        "offset": 0,
+        "slot": "0",
+        "type": {
+          "encoding": "inplace",
+          "label": "uint256",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+        "label": "_sealed",
+        "offset": 0,
+        "slot": "1",
+        "type": {
+          "encoding": "inplace",
+          "label": "bool",
+          "numberOfBytes": "1"
+        }
+      },
+      {
+        "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+        "label": "_sealedBinding",
+        "offset": 0,
+        "slot": "2",
+        "type": {
+          "encoding": "inplace",
+          "label": "bytes32",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+        "label": "_importManifestHash",
+        "offset": 0,
+        "slot": "3",
+        "type": {
+          "encoding": "inplace",
+          "label": "bytes32",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+        "label": "_dependencyRoot",
+        "offset": 0,
+        "slot": "4",
+        "type": {
+          "encoding": "inplace",
+          "label": "bytes32",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+        "label": "_dependencyEpoch",
+        "offset": 0,
+        "slot": "5",
+        "type": {
+          "encoding": "inplace",
+          "label": "uint64",
+          "numberOfBytes": "8"
+        }
+      },
+      {
+        "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+        "label": "_bindings",
+        "offset": 0,
+        "slot": "6",
+        "type": {
+          "encoding": "mapping",
+          "key": {
+            "encoding": "inplace",
+            "label": "enum TrustKernelTypes.BindingKind",
+            "numberOfBytes": "1"
+          },
+          "label": "mapping(enum TrustKernelTypes.BindingKind => struct ERC3643ProfileTypes.DependencyBinding)",
+          "numberOfBytes": "32",
+          "value": {
+            "encoding": "inplace",
+            "label": "struct ERC3643ProfileTypes.DependencyBinding",
+            "members": [
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "dependency",
+                "offset": 0,
+                "slot": "0",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "address",
+                  "numberOfBytes": "20"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "codeId",
+                "offset": 0,
+                "slot": "1",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "bytes32",
+                  "numberOfBytes": "32"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "bindingHash",
+                "offset": 0,
+                "slot": "2",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "bytes32",
+                  "numberOfBytes": "32"
+                }
+              }
+            ],
+            "numberOfBytes": "96"
+          }
+        }
+      },
+      {
+        "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+        "label": "_actions",
+        "offset": 0,
+        "slot": "7",
+        "type": {
+          "encoding": "mapping",
+          "key": {
+            "encoding": "inplace",
+            "label": "bytes32",
+            "numberOfBytes": "32"
+          },
+          "label": "mapping(bytes32 => struct TrustKernelTypes.ActionRecord)",
+          "numberOfBytes": "32",
+          "value": {
+            "encoding": "inplace",
+            "label": "struct TrustKernelTypes.ActionRecord",
+            "members": [
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "action",
+                "offset": 0,
+                "slot": "0",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "enum TrustKernelTypes.ActionKind",
+                  "numberOfBytes": "1"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "lifecycle",
+                "offset": 1,
+                "slot": "0",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "enum TrustKernelTypes.Lifecycle",
+                  "numberOfBytes": "1"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "subject",
+                "offset": 2,
+                "slot": "0",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "address",
+                  "numberOfBytes": "20"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "source",
+                "offset": 0,
+                "slot": "1",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "address",
+                  "numberOfBytes": "20"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "destination",
+                "offset": 0,
+                "slot": "2",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "address",
+                  "numberOfBytes": "20"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "custodian",
+                "offset": 0,
+                "slot": "3",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "address",
+                  "numberOfBytes": "20"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "amount",
+                "offset": 0,
+                "slot": "4",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "uint256",
+                  "numberOfBytes": "32"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "priorAmount",
+                "offset": 0,
+                "slot": "5",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "uint256",
+                  "numberOfBytes": "32"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "priorFlag",
+                "offset": 0,
+                "slot": "6",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "bool",
+                  "numberOfBytes": "1"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "caseId",
+                "offset": 0,
+                "slot": "7",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "bytes32",
+                  "numberOfBytes": "32"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "authorityRef",
+                "offset": 0,
+                "slot": "8",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "bytes32",
+                  "numberOfBytes": "32"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "authorityEpoch",
+                "offset": 0,
+                "slot": "9",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "uint64",
+                  "numberOfBytes": "8"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "dependencyEpoch",
+                "offset": 8,
+                "slot": "9",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "uint64",
+                  "numberOfBytes": "8"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "commandHash",
+                "offset": 0,
+                "slot": "10",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "bytes32",
+                  "numberOfBytes": "32"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "evidenceHash",
+                "offset": 0,
+                "slot": "11",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "bytes32",
+                  "numberOfBytes": "32"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "receiptHash",
+                "offset": 0,
+                "slot": "12",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "bytes32",
+                  "numberOfBytes": "32"
+                }
+              }
+            ],
+            "numberOfBytes": "416"
+          }
+        }
+      },
+      {
+        "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+        "label": "_effects",
+        "offset": 0,
+        "slot": "8",
+        "type": {
+          "encoding": "mapping",
+          "key": {
+            "encoding": "inplace",
+            "label": "bytes32",
+            "numberOfBytes": "32"
+          },
+          "label": "mapping(bytes32 => struct ERC3643ProfileTypes.EffectRecord)",
+          "numberOfBytes": "32",
+          "value": {
+            "encoding": "inplace",
+            "label": "struct ERC3643ProfileTypes.EffectRecord",
+            "members": [
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "parentActionId",
+                "offset": 0,
+                "slot": "0",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "bytes32",
+                  "numberOfBytes": "32"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "generation",
+                "offset": 0,
+                "slot": "1",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "uint64",
+                  "numberOfBytes": "8"
+                }
+              }
+            ],
+            "numberOfBytes": "64"
+          }
+        }
+      },
+      {
+        "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+        "label": "_receipts",
+        "offset": 0,
+        "slot": "9",
+        "type": {
+          "encoding": "mapping",
+          "key": {
+            "encoding": "inplace",
+            "label": "bytes32",
+            "numberOfBytes": "32"
+          },
+          "label": "mapping(bytes32 => struct TrustKernelTypes.Receipt)",
+          "numberOfBytes": "32",
+          "value": {
+            "encoding": "inplace",
+            "label": "struct TrustKernelTypes.Receipt",
+            "members": [
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "receiptKind",
+                "offset": 0,
+                "slot": "0",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "enum TrustKernelTypes.ReceiptKind",
+                  "numberOfBytes": "1"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "commandId",
+                "offset": 0,
+                "slot": "1",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "bytes32",
+                  "numberOfBytes": "32"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "commandKind",
+                "offset": 0,
+                "slot": "2",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "uint8",
+                  "numberOfBytes": "1"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "parentCommandId",
+                "offset": 0,
+                "slot": "3",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "bytes32",
+                  "numberOfBytes": "32"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "subject",
+                "offset": 0,
+                "slot": "4",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "address",
+                  "numberOfBytes": "20"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "source",
+                "offset": 0,
+                "slot": "5",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "address",
+                  "numberOfBytes": "20"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "destination",
+                "offset": 0,
+                "slot": "6",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "address",
+                  "numberOfBytes": "20"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "amount",
+                "offset": 0,
+                "slot": "7",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "uint256",
+                  "numberOfBytes": "32"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "caseId",
+                "offset": 0,
+                "slot": "8",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "bytes32",
+                  "numberOfBytes": "32"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "authorityRef",
+                "offset": 0,
+                "slot": "9",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "bytes32",
+                  "numberOfBytes": "32"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "dependencyRoot",
+                "offset": 0,
+                "slot": "10",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "bytes32",
+                  "numberOfBytes": "32"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "provenanceCommitment",
+                "offset": 0,
+                "slot": "11",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "bytes32",
+                  "numberOfBytes": "32"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "assessmentEvidence",
+                "offset": 0,
+                "slot": "12",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "bytes32",
+                  "numberOfBytes": "32"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "preState",
+                "offset": 0,
+                "slot": "13",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "bytes32",
+                  "numberOfBytes": "32"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "postState",
+                "offset": 0,
+                "slot": "14",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "bytes32",
+                  "numberOfBytes": "32"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "externalCommitment",
+                "offset": 0,
+                "slot": "15",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "bytes32",
+                  "numberOfBytes": "32"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "receiptHash",
+                "offset": 0,
+                "slot": "16",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "bytes32",
+                  "numberOfBytes": "32"
+                }
+              }
+            ],
+            "numberOfBytes": "544"
+          }
+        }
+      },
+      {
+        "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+        "label": "_cases",
+        "offset": 0,
+        "slot": "10",
+        "type": {
+          "encoding": "mapping",
+          "key": {
+            "encoding": "inplace",
+            "label": "bytes32",
+            "numberOfBytes": "32"
+          },
+          "label": "mapping(bytes32 => struct TrustKernelTypes.CaseRecord)",
+          "numberOfBytes": "32",
+          "value": {
+            "encoding": "inplace",
+            "label": "struct TrustKernelTypes.CaseRecord",
+            "members": [
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "phase",
+                "offset": 0,
+                "slot": "0",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "enum TrustKernelTypes.CasePhase",
+                  "numberOfBytes": "1"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "family",
+                "offset": 1,
+                "slot": "0",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "enum TrustKernelTypes.CaseFamily",
+                  "numberOfBytes": "1"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "headActionId",
+                "offset": 0,
+                "slot": "1",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "bytes32",
+                  "numberOfBytes": "32"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "generation",
+                "offset": 0,
+                "slot": "2",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "uint64",
+                  "numberOfBytes": "8"
+                }
+              }
+            ],
+            "numberOfBytes": "96"
+          }
+        }
+      },
+      {
+        "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+        "label": "_custody",
+        "offset": 0,
+        "slot": "11",
+        "type": {
+          "encoding": "mapping",
+          "key": {
+            "encoding": "inplace",
+            "label": "bytes32",
+            "numberOfBytes": "32"
+          },
+          "label": "mapping(bytes32 => struct ERC3643ProfileTypes.CustodyRecord)",
+          "numberOfBytes": "32",
+          "value": {
+            "encoding": "inplace",
+            "label": "struct ERC3643ProfileTypes.CustodyRecord",
+            "members": [
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "custodian",
+                "offset": 0,
+                "slot": "0",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "address",
+                  "numberOfBytes": "20"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "declaredPriorHolder",
+                "offset": 0,
+                "slot": "1",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "address",
+                  "numberOfBytes": "20"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "encumberedAmount",
+                "offset": 0,
+                "slot": "2",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "uint256",
+                  "numberOfBytes": "32"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "actionId",
+                "offset": 0,
+                "slot": "3",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "bytes32",
+                  "numberOfBytes": "32"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "active",
+                "offset": 0,
+                "slot": "4",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "bool",
+                  "numberOfBytes": "1"
+                }
+              }
+            ],
+            "numberOfBytes": "160"
+          }
+        }
+      },
+      {
+        "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+        "label": "_usedNonces",
+        "offset": 0,
+        "slot": "12",
+        "type": {
+          "encoding": "mapping",
+          "key": {
+            "encoding": "inplace",
+            "label": "bytes32",
+            "numberOfBytes": "32"
+          },
+          "label": "mapping(bytes32 => bool)",
+          "numberOfBytes": "32",
+          "value": {
+            "encoding": "inplace",
+            "label": "bool",
+            "numberOfBytes": "1"
+          }
+        }
+      },
+      {
+        "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+        "label": "_consumedEntitlements",
+        "offset": 0,
+        "slot": "13",
+        "type": {
+          "encoding": "mapping",
+          "key": {
+            "encoding": "inplace",
+            "label": "bytes32",
+            "numberOfBytes": "32"
+          },
+          "label": "mapping(bytes32 => bool)",
+          "numberOfBytes": "32",
+          "value": {
+            "encoding": "inplace",
+            "label": "bool",
+            "numberOfBytes": "1"
+          }
+        }
+      },
+      {
+        "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+        "label": "_owned",
+        "offset": 0,
+        "slot": "14",
+        "type": {
+          "encoding": "mapping",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "label": "mapping(address => struct ERC3643ProfileTypes.OwnedState)",
+          "numberOfBytes": "32",
+          "value": {
+            "encoding": "inplace",
+            "label": "struct ERC3643ProfileTypes.OwnedState",
+            "members": [
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "frozenTarget",
+                "offset": 0,
+                "slot": "0",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "uint256",
+                  "numberOfBytes": "32"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "appliedFrozen",
+                "offset": 0,
+                "slot": "1",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "uint256",
+                  "numberOfBytes": "32"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "restricted",
+                "offset": 0,
+                "slot": "2",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "bool",
+                  "numberOfBytes": "1"
+                }
+              }
+            ],
+            "numberOfBytes": "96"
+          }
+        }
+      },
+      {
+        "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+        "label": "_freezeHeads",
+        "offset": 0,
+        "slot": "15",
+        "type": {
+          "encoding": "mapping",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "label": "mapping(address => struct ERC3643ProfileTypes.EffectHead)",
+          "numberOfBytes": "32",
+          "value": {
+            "encoding": "inplace",
+            "label": "struct ERC3643ProfileTypes.EffectHead",
+            "members": [
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "actionId",
+                "offset": 0,
+                "slot": "0",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "bytes32",
+                  "numberOfBytes": "32"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "generation",
+                "offset": 0,
+                "slot": "1",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "uint64",
+                  "numberOfBytes": "8"
+                }
+              }
+            ],
+            "numberOfBytes": "64"
+          }
+        }
+      },
+      {
+        "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+        "label": "_restrictionHeads",
+        "offset": 0,
+        "slot": "16",
+        "type": {
+          "encoding": "mapping",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "label": "mapping(address => struct ERC3643ProfileTypes.EffectHead)",
+          "numberOfBytes": "32",
+          "value": {
+            "encoding": "inplace",
+            "label": "struct ERC3643ProfileTypes.EffectHead",
+            "members": [
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "actionId",
+                "offset": 0,
+                "slot": "0",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "bytes32",
+                  "numberOfBytes": "32"
+                }
+              },
+              {
+                "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+                "label": "generation",
+                "offset": 0,
+                "slot": "1",
+                "type": {
+                  "encoding": "inplace",
+                  "label": "uint64",
+                  "numberOfBytes": "8"
+                }
+              }
+            ],
+            "numberOfBytes": "64"
+          }
+        }
+      },
+      {
+        "contract": "implementation/src/profiles/ERC3643HookAdapter.sol:ERC3643HookAdapter",
+        "label": "_custodyBacking",
+        "offset": 0,
+        "slot": "17",
+        "type": {
+          "encoding": "mapping",
+          "key": {
+            "encoding": "inplace",
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "label": "mapping(address => uint256)",
+          "numberOfBytes": "32",
+          "value": {
+            "encoding": "inplace",
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "abi": [
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "token_",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "registry_",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "compliance_",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "tokenCodeId_",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "caller",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "authorityRef",
+            "type": "bytes32"
+          }
+        ],
+        "name": "TrustUnauthorized",
+        "type": "error"
+      },
+      {
+        "inputs": [],
+        "name": "TrustZeroAddress",
+        "type": "error"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "adapter",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "tokenCodeId",
+            "type": "bytes32"
+          },
+          {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "binding",
+            "type": "bytes32"
+          },
+          {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "importManifestHash",
+            "type": "bytes32"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "importedEntries",
+            "type": "uint256"
+          }
+        ],
+        "name": "ProfileSealed",
+        "type": "event"
+      },
+      {
+        "inputs": [],
+        "name": "bootstrapAuthority",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "compliance",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "exclusiveAdapter",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "expectedComplianceCodeId",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "expectedRegistryCodeId",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "expectedTokenCodeId",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "identityRegistry",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "importManifestHash",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "sealFresh",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "binding",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "sealedBinding",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "adapter",
+            "type": "address"
+          }
+        ],
+        "name": "sealedTopologyLive",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "token",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "topologySealed",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      }
+    ],
+    "artifact": "out/ERC3643HookGovernor.sol/ERC3643HookGovernor.json",
+    "bundle": "erc3643-hook",
+    "contract": "ERC3643HookGovernor",
+    "creationBytecode": {
+      "bytes": 3496,
+      "sha256": "3f048ce4f3a332b110ad8a09ab76a69af0fd6ae1930e8508db2a3cdf2fb2b514"
+    },
+    "id": "ERC3643HookGovernor",
+    "immutableReferences": [
+      {
+        "length": 32,
+        "start": 192
+      },
+      {
+        "length": 32,
+        "start": 303
+      },
+      {
+        "length": 32,
+        "start": 402
+      },
+      {
+        "length": 32,
+        "start": 455
+      },
+      {
+        "length": 32,
+        "start": 700
+      },
+      {
+        "length": 32,
+        "start": 917
+      },
+      {
+        "length": 32,
+        "start": 975
+      },
+      {
+        "length": 32,
+        "start": 1065
+      },
+      {
+        "length": 32,
+        "start": 1272
+      },
+      {
+        "length": 32,
+        "start": 1469
+      },
+      {
+        "length": 32,
+        "start": 1544
+      },
+      {
+        "length": 32,
+        "start": 1669
+      },
+      {
+        "length": 32,
+        "start": 2296
+      },
+      {
+        "length": 32,
+        "start": 2418
+      },
+      {
+        "length": 32,
+        "start": 2539
+      },
+      {
+        "length": 32,
+        "start": 2573
+      },
+      {
+        "length": 32,
+        "start": 2614
+      },
+      {
+        "length": 32,
+        "start": 2648
+      },
+      {
+        "length": 32,
+        "start": 2689
+      },
+      {
+        "length": 32,
+        "start": 2723
+      },
+      {
+        "length": 32,
+        "start": 2829
+      },
+      {
+        "length": 32,
+        "start": 2869
+      },
+      {
+        "length": 32,
+        "start": 2915
+      },
+      {
+        "length": 32,
+        "start": 2955
+      }
+    ],
+    "methodIdentifiers": {
+      "bootstrapAuthority()": "ce29a7f9",
+      "compliance()": "6290865d",
+      "exclusiveAdapter()": "f877bff3",
+      "expectedComplianceCodeId()": "a35530ba",
+      "expectedRegistryCodeId()": "83300190",
+      "expectedTokenCodeId()": "b534e5ab",
+      "identityRegistry()": "134e18f4",
+      "importManifestHash()": "0ed81c40",
+      "sealFresh()": "a941f8f9",
+      "sealedBinding()": "b98705b4",
+      "sealedTopologyLive(address)": "155917d8",
+      "token()": "fc0c546a",
+      "topologySealed()": "7f3bffea"
+    },
+    "runtimeTemplate": {
+      "bytes": 3026,
+      "eip170MarginBytes": 21550,
+      "sha256": "0978059dea47b1286326902332f41079029836cf257691fb13c99bc2b5064012"
+    },
+    "semanticChecks": {
+      "abi": true,
+      "creationBytecode": true,
+      "immutableReferences": true,
+      "methodIdentifiers": true,
+      "runtimeTemplate": true,
+      "storageLayout": true
+    },
+    "source": "implementation/src/profiles/ERC3643HookGovernor.sol",
+    "storageLayout": [
+      {
+        "contract": "implementation/src/profiles/ERC3643HookGovernor.sol:ERC3643HookGovernor",
+        "label": "exclusiveAdapter",
+        "offset": 0,
+        "slot": "0",
+        "type": {
+          "encoding": "inplace",
+          "label": "address",
+          "numberOfBytes": "20"
+        }
+      },
+      {
+        "contract": "implementation/src/profiles/ERC3643HookGovernor.sol:ERC3643HookGovernor",
+        "label": "sealedBinding",
+        "offset": 0,
+        "slot": "1",
+        "type": {
+          "encoding": "inplace",
+          "label": "bytes32",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "implementation/src/profiles/ERC3643HookGovernor.sol:ERC3643HookGovernor",
+        "label": "importManifestHash",
+        "offset": 0,
+        "slot": "2",
+        "type": {
+          "encoding": "inplace",
+          "label": "bytes32",
+          "numberOfBytes": "32"
+        }
+      },
+      {
+        "contract": "implementation/src/profiles/ERC3643HookGovernor.sol:ERC3643HookGovernor",
+        "label": "topologySealed",
+        "offset": 0,
+        "slot": "3",
+        "type": {
+          "encoding": "inplace",
+          "label": "bool",
+          "numberOfBytes": "1"
+        }
+      }
+    ]
+  },
+  {
+    "abi": [
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "token_",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "endpoint_",
+            "type": "address"
+          }
+        ],
+        "name": "activate",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "token_",
+            "type": "address"
+          }
+        ],
+        "name": "bindToken",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "bound",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "name": "canTransfer",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "pure",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "name": "created",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "name": "destroyed",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "endpoint",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "factory",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "getTokenBound",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "token_",
+            "type": "address"
+          }
+        ],
+        "name": "isTokenBound",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "token",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "name": "transferred",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "unbindToken",
+        "outputs": [],
+        "stateMutability": "pure",
+        "type": "function"
+      }
+    ],
+    "artifact": "out/ERC3643HookCompliance.sol/ERC3643HookCompliance.json",
+    "bundle": "erc3643-hook",
+    "contract": "ERC3643HookCompliance",
+    "creationBytecode": {
+      "bytes": 2333,
+      "sha256": "3c955389a01d9b687210d8664c343c264626c10d484bda9717f74bb69c552164"
+    },
+    "id": "ERC3643HookCompliance",
+    "immutableReferences": [
+      {
+        "length": 32,
+        "start": 230
+      },
+      {
+        "length": 32,
+        "start": 369
+      },
+      {
+        "length": 32,
+        "start": 450
+      },
+      {
+        "length": 32,
+        "start": 786
+      },
+      {
+        "length": 32,
+        "start": 1283
+      },
+      {
+        "length": 32,
+        "start": 1339
+      },
+      {
+        "length": 32,
+        "start": 1423
+      },
+      {
+        "length": 32,
+        "start": 1647
+      },
+      {
+        "length": 32,
+        "start": 1773
+      },
+      {
+        "length": 32,
+        "start": 1948
+      }
+    ],
+    "methodIdentifiers": {
+      "activate(address)": "1c5a9d9c",
+      "bindToken(address)": "3ff5aa02",
+      "bound()": "be4df7d6",
+      "canTransfer(address,address,uint256)": "e46638e6",
+      "created(address,uint256)": "5f8dead3",
+      "destroyed(address,uint256)": "8d2ea772",
+      "endpoint()": "5e280f11",
+      "factory()": "c45a0155",
+      "getTokenBound()": "6a3edf28",
+      "isTokenBound(address)": "993e8b95",
+      "token()": "fc0c546a",
+      "transferred(address,address,uint256)": "8baf29b4",
+      "unbindToken(address)": "40db3b50"
+    },
+    "runtimeTemplate": {
+      "bytes": 2078,
+      "eip170MarginBytes": 22498,
+      "sha256": "ebcf0ea744e5e505fb1bd5bd02a9ab0b4c0a112c628ee37cb8916ea7ce3f8881"
+    },
+    "semanticChecks": {
+      "abi": true,
+      "creationBytecode": true,
+      "immutableReferences": true,
+      "methodIdentifiers": true,
+      "runtimeTemplate": true,
+      "storageLayout": true
+    },
+    "source": "implementation/src/profiles/ERC3643HookCompliance.sol",
+    "storageLayout": [
+      {
+        "contract": "implementation/src/profiles/ERC3643HookCompliance.sol:ERC3643HookCompliance",
+        "label": "endpoint",
+        "offset": 0,
+        "slot": "0",
+        "type": {
+          "encoding": "inplace",
+          "label": "address",
+          "numberOfBytes": "20"
+        }
+      },
+      {
+        "contract": "implementation/src/profiles/ERC3643HookCompliance.sol:ERC3643HookCompliance",
+        "label": "bound",
+        "offset": 20,
+        "slot": "0",
+        "type": {
+          "encoding": "inplace",
+          "label": "bool",
+          "numberOfBytes": "1"
+        }
+      }
+    ]
+  },
+  {
+    "abi": [
+      {
+        "inputs": [
+          {
+            "internalType": "bytes",
+            "name": "tokenCreationCode",
+            "type": "bytes"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "adapter",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "governor",
+            "type": "address"
+          }
+        ],
+        "name": "HookUnitCreated",
+        "type": "event"
+      },
+      {
+        "inputs": [],
+        "name": "ADAPTER_CREATION_HASH",
+        "outputs": [
+          {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "bytes",
+            "name": "adapterCreationCode",
+            "type": "bytes"
+          },
+          {
+            "internalType": "address",
+            "name": "authority",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "authorityRef",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "address",
+            "name": "initialHolder",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "supply",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address[]",
+            "name": "eligible",
+            "type": "address[]"
+          }
+        ],
+        "name": "deploy",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "adapter",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "governor",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "tokenCreationSource",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      }
+    ],
+    "artifact": "out/ERC3643HookFactory.sol/ERC3643HookFactory.json",
+    "bundle": "erc3643-hook",
+    "contract": "ERC3643HookFactory",
+    "creationBytecode": {
+      "bytes": 2459,
+      "sha256": "346548e20644aa662bdba9dfcac1ce058568b3720475b742ae2944379b96838a"
+    },
+    "id": "ERC3643HookFactory",
+    "immutableReferences": [
+      {
+        "length": 32,
+        "start": 600
+      },
+      {
+        "length": 32,
+        "start": 1337
+      }
+    ],
+    "methodIdentifiers": {
+      "ADAPTER_CREATION_HASH()": "1f0678e4",
+      "deploy(bytes,address,bytes32,address,uint256,address[])": "39c6db74",
+      "tokenCreationSource()": "af897f60"
+    },
+    "runtimeTemplate": {
+      "bytes": 1812,
+      "eip170MarginBytes": 22764,
+      "sha256": "9636463d4fba1eebc1690648aad3439b30f53156927161bc93c899df1056d680"
+    },
+    "semanticChecks": {
+      "abi": true,
+      "creationBytecode": true,
+      "immutableReferences": true,
+      "methodIdentifiers": true,
+      "runtimeTemplate": true,
+      "storageLayout": true
+    },
+    "source": "implementation/src/profiles/ERC3643HookFactory.sol",
+    "storageLayout": []
+  }
+]

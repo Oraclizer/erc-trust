@@ -5,7 +5,7 @@
   "files": [
     {
       "path": ".github/workflows/ci.yml",
-      "sha256": "e25c3f19699b5a67618bfee4a1b856f147f91fb35236e586881dec99f78c7faf"
+      "sha256": "41bb4fa69e470e78eacc4dc64f1d603f5707fc6147c6533d78b27c8c62f814f7"
     },
     {
       "path": ".github/workflows/proofs.yml",
@@ -13,11 +13,11 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "fdf7b227552f7e28fb42b2f75eedcea7b7c51ead674d3011f3012a4ad1c3aabe"
+      "sha256": "6d43a9db6f5bd93cb7aa1e950a5c0bcf02666967af602babb91b598ce3c0d4df"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
-      "sha256": "8e81ece7803010567ebc669ae10472671d52e82070ac4284c387b777d7c042fa"
+      "sha256": "60ef9d1b265ec0857339a1c23e096574ca1c7df81634bea69c8f97427500168b"
     },
     {
       "path": "docs/PROFILES.md",
@@ -25,7 +25,11 @@
     },
     {
       "path": "evidence/trust12/README.md",
-      "sha256": "d07cd48d872f1a73a2c71ee08c1e7a4453c6fada528d3a48ca2273c2e92c60cd"
+      "sha256": "0e1645b40dc7919c5743e8096d712b29c45a3efe8f55098342a43f060f57eb8d"
+    },
+    {
+      "path": "evidence/trust12/aggregate-evidence-audit.md",
+      "sha256": "586325d81cca0b61e4139b0cb6a7f189b2ff1e43c3f3cbf0b606b3e5cf1ef3c7"
     },
     {
       "path": "evidence/trust12/deterministic-build-replay.json",
@@ -44,8 +48,16 @@
       "sha256": "7d25dc41ea3d83bd49e41f29139daa795815f9d324e2790a4258b6a40fe0979a"
     },
     {
+      "path": "evidence/trust12/formal-build-replay.json",
+      "sha256": "4d4bd6e299d1f2ef5418f9441785493bd11e6459adcbbccf7df4909a49db2e3c"
+    },
+    {
       "path": "evidence/trust12/formal-build.json",
       "sha256": "b66c7388681740d6f797292387c6932ed121c9ba9cb578b62452a30cef1526ed"
+    },
+    {
+      "path": "evidence/trust12/functional-evidence-reuse.json",
+      "sha256": "e9ffa7ef2d26272069f1c4205739f582f03e261b9738befb7806861bdc1e9a2b"
     },
     {
       "path": "evidence/trust12/independent-audit.md",
@@ -84,6 +96,10 @@
       "sha256": "0a04ffda5dde994989a9d29b1a78f6d772911a318a70148934836c38636dfb1a"
     },
     {
+      "path": "evidence/trust12/required-controls.json",
+      "sha256": "8a6aab98aefdd59d6e460ed9a2cd9656ad5e8c3f3562986efe4191ba34a4fb2e"
+    },
+    {
       "path": "evidence/trust12/runtime-identity.json",
       "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
     },
@@ -105,7 +121,7 @@
     },
     {
       "path": "formal/isabelle/ERC_TRUST/evidence/model-verification/run-trust-closure.ps1",
-      "sha256": "069c46f2e7cc7e6f2ffc36897544f4e69fb8296f55462c46a936f78342294283"
+      "sha256": "714e2a202bbec00b887a463c686623b72d6d005a43a911e0f9f21470aaa68529"
     },
     {
       "path": "formal/isabelle/ROOTS",
@@ -168,6 +184,10 @@
       "sha256": "9e904adced498aa21bd06cada1033b89410f40a61014d67baaa3f1b78a63a4f7"
     },
     {
+      "path": "scripts/capture-isabelle-local-inputs.mjs",
+      "sha256": "421fb8663011d8d6192bce9f8bcfdb50f586bb21133eb9a677f53e236213713e"
+    },
+    {
       "path": "scripts/check-hook-consumer-removal.py",
       "sha256": "5ed35413edb32ef3ab9f9f54ade72cebb31f9c9d4450f7e294b5d4c4feefe03b"
     },
@@ -176,28 +196,60 @@
       "sha256": "51d7ce72acb1f07f379dfbb980cbf7230e670ea74ab622fd88b38e9110009839"
     },
     {
+      "path": "scripts/generate-runtime-binding-v3.mjs",
+      "sha256": "5eb38df9d1fcc9e6b5ce1d7072bed8d97e18f9d9cc06944006571660870069af"
+    },
+    {
       "path": "scripts/generate-trust12-input-seal.py",
-      "sha256": "42c5e9378977787d8a01d50b97f4b9dfecc15a80262561a251569c70b18488c9"
+      "sha256": "d24835076df5aac2540dadfcbe51b47e7ff1f22baa593f1837824ded29c7bce8"
+    },
+    {
+      "path": "scripts/lib/formal-inputs.mjs",
+      "sha256": "6f1a9b84e3e8e79431420a95e665ffba74c9ff470597ad64452ebf1b1aa9138f"
+    },
+    {
+      "path": "scripts/lib/local-evidence.mjs",
+      "sha256": "9064f4444a4be43a330438bf33c50dca6b0155429d5de46e59ce6cb5a3fc5dd1"
+    },
+    {
+      "path": "scripts/lib/runtime-bundles.mjs",
+      "sha256": "ef53ec8c9a6b362d0d0bbc11565f2714cad5a8b0bff554b60d4ecd3b35868c2d"
     },
     {
       "path": "scripts/prepare-trex-integration.py",
       "sha256": "62c22a64c7364241ce85a6f5af1c55e66f65d3ba98b7b7e788d46f16822d8172"
     },
     {
+      "path": "scripts/record-foundry-results-v3.mjs",
+      "sha256": "3e39668f9d610464135ba690a984333eaa5418348b0ea1b2f9833d72e142f4c2"
+    },
+    {
+      "path": "scripts/record-isabelle-results-v3.mjs",
+      "sha256": "8f3738fbfda8816825738bea1543ea7df296e2aa165bcc96f51748a4237b40b0"
+    },
+    {
+      "path": "scripts/record-trust12-deterministic.mjs",
+      "sha256": "9c3c9aeea5ebf372708be18733aa38363679b3a08288f9eb4f96c6ceadea94d4"
+    },
+    {
       "path": "scripts/test-trust12-evidence-reuse.mjs",
-      "sha256": "f44bff21158707a04ed16cc68df788167606d55425efde9d50eab12a04d55bc5"
+      "sha256": "29b886f2d41ba3c6fad59902d67a3570e01be965a91655b9e3b3efd5a1c51301"
+    },
+    {
+      "path": "scripts/test-trust12-required.mjs",
+      "sha256": "a1fd303e4cd81d18cc8634ae044c70bf19f482e2b41ae5ae07650e4e0b8941b8"
     },
     {
       "path": "scripts/verify-current-profile-release-v3.mjs",
-      "sha256": "8baa8b3c3ed6511ce0db87387c85389d7692601aa77fbad60d2e6f4fada9a8ed"
+      "sha256": "9e7eb370b8c074695465c085b409388c313123c6d9487822d7a45d2f6753fd1f"
     },
     {
       "path": "scripts/verify-obligation-ledger-v3.mjs",
-      "sha256": "4a9c219bd873b65f005330e4e8b205b267df89d061ca9ab3aabfb8ab8a858415"
+      "sha256": "7419031237e10a398e02bd061be90d582070ecf7fa3a5920f0e196317abcc640"
     },
     {
       "path": "scripts/verify-runtime-binding-v3.mjs",
-      "sha256": "e3d47a7217832463e7eee7f678d699bd5bc07058216956a3fda0e97aabd9591e"
+      "sha256": "78aefdaea32d841dd74c460f56336499467243f87b8c92b516de0a4e30836bd4"
     },
     {
       "path": "scripts/verify-trust12-evidence-reuse.mjs",
@@ -206,6 +258,10 @@
     {
       "path": "scripts/verify-trust12-evidence.py",
       "sha256": "15f5ce8266fd5fe982c45aa4c092d0baa4e1c2034f9c8cda4863ba8bbd8a4613"
+    },
+    {
+      "path": "scripts/verify-trust12-required.mjs",
+      "sha256": "4cb7e2c330d7643ddac21c5525a4247c620fd2ba8f231cbbacae09c24637e840"
     }
   ],
   "nonclaim": "This seals one local development tranche. It is not a deployment, release, conformance approval, or end-to-end refinement result."

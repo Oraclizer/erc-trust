@@ -7,6 +7,16 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 EXACT = [
+    "scripts/capture-isabelle-local-inputs.mjs",
+    "scripts/lib/runtime-bundles.mjs",
+    "scripts/test-trust12-required.mjs",
+    "scripts/verify-trust12-required.mjs",
+    "scripts/lib/local-evidence.mjs",
+    "scripts/lib/formal-inputs.mjs",
+    "scripts/record-foundry-results-v3.mjs",
+    "scripts/record-isabelle-results-v3.mjs",
+    "scripts/record-trust12-deterministic.mjs",
+    "scripts/generate-runtime-binding-v3.mjs",
     "CHANGELOG.md",
     "scripts/verify-trust12-evidence-reuse.mjs",
     "scripts/test-trust12-evidence-reuse.mjs",
