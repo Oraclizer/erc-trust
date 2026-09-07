@@ -3,20 +3,31 @@
   "checks": {
     "buildAndSize": "PASS",
     "format": "PASS",
-    "intentionalTimestampWarnings": 8,
     "lintErrors": 0,
     "tests": {
       "failed": 0,
       "fuzzProperties": 2,
-      "fuzzRunsEach": 256,
+      "fuzzRuns": [
+        256,
+        256
+      ],
       "invariantCalls": 1152000,
-      "invariantDepth": 500,
       "invariantReverts": 0,
-      "invariantRunsEach": 256,
+      "invariantRuns": [
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256
+      ],
       "invariants": 9,
-      "passed": 93,
+      "passed": 102,
       "skipped": 0,
-      "suites": 7
+      "suites": 8
     }
   },
   "claimBoundary": "Pinned Foundry build, format, unit, fuzz, invariant, size, and lint results for the named commit and source root. The three runtime hashes are measured from the compiled artifacts and equal the generated runtime bridge; the deterministic-build receipt binds the native template and the release manifest binds all three. This is not an audit, deployment result, or production-safety claim.",
@@ -32,25 +43,717 @@
       "sha256": "78c08fbe4be793482e44a8cdf32fcc1af3276277c8cc78f48761fdcbc4bf9399"
     }
   },
+  "provider": "local-wsl-foundry",
+  "run": {
+    "commands": [
+      {
+        "command": "forge fmt --check",
+        "exitCode": 0,
+        "finishedAt": "2026-09-07T01:27:58.5074436Z",
+        "id": "format",
+        "logPath": "out/trust12/local-foundry-format.log",
+        "logSha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "startedAt": "2026-09-07T01:27:54.5536290Z"
+      },
+      {
+        "command": "forge build --sizes",
+        "exitCode": 0,
+        "finishedAt": "2026-09-07T01:28:00.1373180Z",
+        "id": "build-size",
+        "logPath": "out/trust12/local-foundry-build-size.log",
+        "logSha256": "b29560c261a7047988201f85f1488a8d0ff36012f99e4b24096b929d9a2ca861",
+        "startedAt": "2026-09-07T01:27:58.6119089Z"
+      },
+      {
+        "command": "forge test --json",
+        "exitCode": 0,
+        "finishedAt": "2026-09-07T01:28:28.1686099Z",
+        "id": "tests",
+        "logPath": "out/trust12/local-foundry-tests.log",
+        "logSha256": "3418e86911e8a69b6b93749751a77534e323f0bb32cfc83aa1a24183947ba9f3",
+        "startedAt": "2026-09-07T01:28:00.1557134Z"
+      },
+      {
+        "command": "forge lint",
+        "exitCode": 0,
+        "finishedAt": "2026-09-07T01:28:31.7545687Z",
+        "id": "lint",
+        "logPath": "out/trust12/local-foundry-lint.log",
+        "logSha256": "e3393dc8a81b72223403dc8ebfda40b60f02e7cfbc903e84d39fb92be9c15856",
+        "startedAt": "2026-09-07T01:28:30.6269997Z"
+      }
+    ],
+    "observation": "Actual local process exits and SHA-256 checked raw logs; no GitHub workflow identity is asserted.",
+    "provider": "local-wsl-foundry",
+    "source": {
+      "path": "evidence/trust12/local-validation.json",
+      "sha256": "e98c68cd306bf7e973a3642ec1898cbb09f94ebe260f7b3b4420d92fc3fdb273"
+    },
+    "sourceInputs": [
+      {
+        "path": "foundry.toml",
+        "sha256": "3e7c2222c9200518563b7d6f09f19032a06e0d744be90e6522a87a43307bec7b"
+      },
+      {
+        "path": "implementation/src/ERC7943RouteTicket.sol",
+        "sha256": "f1a8357a988a648775382603c7eaf2db410f7d55fd08a1cef29763e69de547a6"
+      },
+      {
+        "path": "implementation/src/TrustDependencyBinding.sol",
+        "sha256": "53fb6a74a5168f7f2b9f005657ee7df5528974d53dae2359ea1e4ae3fb063020"
+      },
+      {
+        "path": "implementation/src/TrustErrors.sol",
+        "sha256": "fbe1dffd50792b2da9604a0de37a5b089c427b329c96f80253ff317bb16491df"
+      },
+      {
+        "path": "implementation/src/TrustNativeDecision.sol",
+        "sha256": "4643a157f29fd9557ff60e58c6500e98704b9d94b02ef12ffb5c7baecfaa24ee"
+      },
+      {
+        "path": "implementation/src/TrustNativeTypes.sol",
+        "sha256": "f76fc4fd80d74075c3ffdbbc7afb30919eb73bf465ac04e3b83d742c8f88745b"
+      },
+      {
+        "path": "implementation/src/TrustStorage.sol",
+        "sha256": "610170dbd24ba2791d459db9a24e2c05e7d699594c035074379a5700dbdb7931"
+      },
+      {
+        "path": "implementation/src/TrustToken.sol",
+        "sha256": "deeedf231b461035ac4496b36438d6ea28298ed2935b920bf9c01cb31f94ef1b"
+      },
+      {
+        "path": "implementation/src/generated/IERCTrustKernel.sol",
+        "sha256": "8f179a21b04fa1f172bdddef2f8878a01524d3429570c0abf9aa60cfc8738f7d"
+      },
+      {
+        "path": "implementation/src/interfaces/IERC20.sol",
+        "sha256": "414510c4de8ff90b066ea33f3d75ce7c4891f4ee43de55c52e333740d6fd8131"
+      },
+      {
+        "path": "implementation/src/interfaces/IERC3643External.sol",
+        "sha256": "701bae4ffedc2f7a00287b882247bd8de5c68131e13ac3c3e957f1d678d12119"
+      },
+      {
+        "path": "implementation/src/interfaces/IERC7943.sol",
+        "sha256": "1b968ee48cd0c9adadf22d33f1f245486b14ed1141df23f7d01385abfbb159f7"
+      },
+      {
+        "path": "implementation/src/profiles/ERC3643HookAdapter.sol",
+        "sha256": "61056cd3aa34900820cb08592c55803a5add1ab36c493ec36a5e3ee72add9533"
+      },
+      {
+        "path": "implementation/src/profiles/ERC3643HookCompliance.sol",
+        "sha256": "700614fcb6db1246099a16859e79cb4b555785545ea1a31c780f8b97b8016e7a"
+      },
+      {
+        "path": "implementation/src/profiles/ERC3643HookDeployment.sol",
+        "sha256": "8a830ba8cdfac4a3cf33dc2b3338a8765b9303afd56bf32a207afa32b19e63bf"
+      },
+      {
+        "path": "implementation/src/profiles/ERC3643HookFactory.sol",
+        "sha256": "d7e24b5bde9ec8f4ce1d5537e83858fe727067bdca580c7d4a5126c1d35b94b1"
+      },
+      {
+        "path": "implementation/src/profiles/ERC3643HookGovernor.sol",
+        "sha256": "69a0b68f72427081acb26c24299ad03afcdc2b615e8885c05d8eaff52eb9d59e"
+      },
+      {
+        "path": "implementation/src/profiles/ERC3643ProfileTypes.sol",
+        "sha256": "9fbb5b1f379018e7412702324a4eae5a30db57f3937f0da42b24bab0e4efede4"
+      },
+      {
+        "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+        "sha256": "f2806571c8c39984ee6c50f5e8dd0aa94aac5e273564012afcb4ebb55e43320f"
+      },
+      {
+        "path": "implementation/src/profiles/ProfileGovernor.sol",
+        "sha256": "e9fec4c21a65edaa5619ee1368deb93da1645e311984a12cc89ca29131595ae8"
+      },
+      {
+        "path": "implementation/test/ERC3643HookTrexIntegration.t.sol",
+        "sha256": "9e904adced498aa21bd06cada1033b89410f40a61014d67baaa3f1b78a63a4f7"
+      },
+      {
+        "path": "implementation/test/ERC3643Profile.invariant.t.sol",
+        "sha256": "ce59df496a51c821e5fe3343e5a76212d8a941ffb9dd03c5dda4d46a8a5031ef"
+      },
+      {
+        "path": "implementation/test/ERC3643Profile.unit.t.sol",
+        "sha256": "ea647e5c405cb3410f3fa8bab63991f28b7fe202d762f7c9e9ed28a672bd7ada"
+      },
+      {
+        "path": "implementation/test/ERC3643ProfileTrexFixture.t.sol",
+        "sha256": "b7033e8c7e86cf0c1d9b54793d54bb1a2217fa2ac35bf35ddc588d0ec9404d3c"
+      },
+      {
+        "path": "implementation/test/TrustActions.fuzz.t.sol",
+        "sha256": "b775fd5bcc7f96ae7cdf3ea53c9f7a7ad5e247c6d09cf52ffc2b588a75936199"
+      },
+      {
+        "path": "implementation/test/TrustActions.unit.t.sol",
+        "sha256": "8dc0d6643700eb2545ab23ee8f5629e0fdb87efb9431ec9fde168f1f58786400"
+      },
+      {
+        "path": "implementation/test/TrustKernelVectors.t.sol",
+        "sha256": "b874e08b72d739df8b1cbe852026a84ad999ddf107391eaab6d728a614625dc5"
+      },
+      {
+        "path": "implementation/test/TrustStateful.invariant.t.sol",
+        "sha256": "2cccbc6476f1d673157c19ff8ab825b5d08775ccfc72c3a9a7150d32b2962f87"
+      },
+      {
+        "path": "implementation/test/TrustTestBase.t.sol",
+        "sha256": "570a8e368299b48a328c48cbef98a4641642dc57d86e95a46555aa8c9761d0e9"
+      },
+      {
+        "path": "implementation/test/mocks/Actor.sol",
+        "sha256": "3e5f4d51ae056431fb2bbed53cf1f0f759b73fe20283c48f1f146ea4435787e5"
+      },
+      {
+        "path": "implementation/test/mocks/MockBoundDependency.sol",
+        "sha256": "184fc5df8c37eef0f0388194546d107c63a89785e69cc9d6f14cba4ae5bcd1b8"
+      },
+      {
+        "path": "implementation/test/mocks/MockERC3643Dependencies.sol",
+        "sha256": "acbfc4c650f44c83ad95be5c1bb14c21eebc5b8ab03369ddf56bb3ff0b7701b1"
+      },
+      {
+        "path": "implementation/test/mocks/MockERC3643Token.sol",
+        "sha256": "884cabbde0396a5c906f2b99d4010fbde6ab3e430b7e52784b98dfefa4eb0438"
+      },
+      {
+        "path": "implementation/test/mocks/MockERC3643TokenTrex.sol",
+        "sha256": "870bf2344e6f6a4a26f307fba5e141a6605003abe7d894052552ccaf28bcc23c"
+      }
+    ],
+    "sourceRootSha256": "158420df1daf7b8abe43b722f01bdb124dcec32a5e46ffbe339bb51330711abd"
+  },
   "runtimeTemplate": {
     "bytes": 20043,
     "eip170MarginBytes": 4533,
     "sha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1"
   },
   "schema": "erc-trust-foundry-results-v3",
-  "sourceCommit": "a7c795c1986f1371715f7a48ce7c84a861a11ac5",
+  "sourceCommit": "b40a0901cc543f8384e4d11406dd46a383008fcb",
   "sourceRootAlgorithm": "sha256-raw-files-case-sensitive-path-order-v1",
-  "sourceRootSha256": "947afab7619b5c2d629da3e233c1cbe76fc6556a61112fbcc51b99c7e7235272",
+  "sourceRootSha256": "158420df1daf7b8abe43b722f01bdb124dcec32a5e46ffbe339bb51330711abd",
   "status": "PASS",
+  "testInventory": [
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest",
+      "test": "testHookBatchAndZeroTransfersEnforceTargets()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest",
+      "test": "testHookDirectFreshZeroSupplyAndCreationPins()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest",
+      "test": "testHookFactoryFreshStateAndAuthorityClosure()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest",
+      "test": "testHookInboundCannotEscapeInSameTransaction()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest",
+      "test": "testHookPostCallbackFailureRollsBackTransferAndAllowance()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest",
+      "test": "testHookReceiptObservesRestrictedCustodySource()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest",
+      "test": "testHookRemovalIsDetectedByInboundConsumer()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest",
+      "test": "testHookSixActionsThreeReversalsAndFinalReceipt()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest",
+      "test": "testHookTransferFromInboundAndSelfTransfer()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.invariant.t.sol:ERC3643ProfileInvariantTest",
+      "test": "invariantCustodyCaseMatchesTheHandler()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.invariant.t.sol:ERC3643ProfileInvariantTest",
+      "test": "invariantSealedTopologyStaysLiveAndDescriptorStaysPartial()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.invariant.t.sol:ERC3643ProfileInvariantTest",
+      "test": "invariantSupplyConserved()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.invariant.t.sol:ERC3643ProfileInvariantTest",
+      "test": "invariantUpstreamFrozenTracksTheOwnedTarget()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testActivationEmitsBindingsAuthorityAndImportCount()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testAllSixActionsAndReversals()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testCanonicalEventOrderAndRevertedTransactionsLeaveNothing()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testCustodyLifecycleAndConfinement()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testDependencyCodeDriftFailsClosed()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testDescriptorDependencyStateAndInterfaceIdentifiers()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testDirectDispositionsAndShapeRules()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testDriftedUpstreamStateFailsClosedOnEveryTouchedAccount()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testExactImportManifestOpensReversibleCases()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testForcedTransferClearingDestinationRestrictionRevertsAndStutters()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testForcedTransferClearingSourceRestrictionRevertsAndStutters()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testImportManifestMustMatchUpstreamExactly()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testKernelVectorsReproduceOnTheAdapterRuntime()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testNonCanonicalCalldataIsRejected()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testOverlayCaseConflictsAndFamilies()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testProfileFreezeTargetIsUnboundedAndUpstreamFloorSaturates()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testProfileSealAndDirectBypassClosure()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testReceiptBindsEvidenceAuthorityRootAndFinalEvent()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testReceiptObservationBindsActualUpstreamRestrictionForEveryRole()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testRejectedAndOperationalFailureFailClosedWithStutter()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testReplayNonceAndAuthority()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testRootAndEpochAreCheckedIndependently()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testSealIsOneWayAndManifestMustBeCanonical()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testTopologyDriftFailsClosedAndClearsTopologyLiveness()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testUndeclaredUpstreamStateFailsClosed()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testUnsealedAdapterCannotExecuteAndTopologyIsNotLive()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+      "test": "testUpstreamFailureModesAreTyped()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testActivationEmitsBindingsAuthorityAndImportCount()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testAllSixActionsAndReversals()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testCanonicalEventOrderAndRevertedTransactionsLeaveNothing()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testCustodyLifecycleAndConfinement()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testDependencyCodeDriftFailsClosed()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testDescriptorDependencyStateAndInterfaceIdentifiers()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testDirectDispositionsAndShapeRules()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testEveryUpstreamMutatorIsClosedToNonAdapters()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testExactImportManifestOpensReversibleCases()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testForcedTransferAutoUnfreezeIsResynchronised()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testImportManifestMustMatchUpstreamExactly()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testInboundGrowthIsRefrozenByPermissionlessResynchronisation()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testKernelVectorsReproduceOnTheAdapterRuntime()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testNonCanonicalCalldataIsRejected()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testOrdinaryTransfersRespectAdapterOwnedState()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testOverlayCaseConflictsAndFamilies()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testProfileFreezeTargetIsUnboundedAndUpstreamFloorSaturates()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testProfileSealAndDirectBypassClosure()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testReceiptBindsEvidenceAuthorityRootAndFinalEvent()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testReceiptObservationBindsActualUpstreamRestrictionForEveryRole()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testRejectedAndOperationalFailureFailClosedWithStutter()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testReplayNonceAndAuthority()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testRootAndEpochAreCheckedIndependently()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testSealIsOneWayAndManifestMustBeCanonical()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testTopologyDriftFailsClosedAndClearsTopologyLiveness()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testUndeclaredUpstreamStateFailsClosed()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+      "test": "testUnsealedAdapterCannotExecuteAndTopologyIsNotLive()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustActions.fuzz.t.sol:TrustActionsFuzzTest",
+      "test": "testFuzzForcedActionsPreserveSupply(uint8,uint96)"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustActions.fuzz.t.sol:TrustActionsFuzzTest",
+      "test": "testFuzzFreezeAbsoluteAndOrdinaryFloor(uint96,uint96)"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+      "test": "testAssessmentOutcomesAndReasonClasses()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+      "test": "testCanonicalEventOrderAndRevertedTransactionsLeaveNothing()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+      "test": "testCustodyBackingAndOwnFrozenFloorDoNotDoubleCount()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+      "test": "testCustodyLifecycleAndDispositions()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+      "test": "testDependencyRootFormulaAndInitialEvents()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+      "test": "testDirectDispositionsAndShapeRules()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+      "test": "testDispositionOnOpenOverlayCaseIsRejectedAndTerminalCasesRejectReversals()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+      "test": "testERC7943ExactUseRoutesAndRawClosure()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+      "test": "testEveryDependencyRebindMakesEarlierCommandsStale()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+      "test": "testFreezeAmendmentChainReopensAfterPop()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+      "test": "testGovernanceAuthorizationIsConsumedOnce()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+      "test": "testNonCanonicalCalldataIsRejected()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+      "test": "testOverlayCaseConflictsAndFamilies()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+      "test": "testOverlayTargetSaturatesAfterCrossCaseDisposition()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+      "test": "testReceiptBindsCanonicalCommandHashEvidenceAndFinalEvent()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+      "test": "testReplayNonceAndAuthorityRotation()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+      "test": "testReversalAssessmentFailsClosedAfterPolicyRebind()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+      "test": "testReversalReplayAndRestrictionTransferBlock()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+      "test": "testRootAndEpochAreCheckedIndependently()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+      "test": "testSixActionsAndThreeReversalsWithReceipts()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+      "test": "testTrustProfileDescriptorAndInterfaceIdentifiers()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustKernelVectors.t.sol:TrustKernelVectorsTest",
+      "test": "testActionVectorsReproduce()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustKernelVectors.t.sol:TrustKernelVectorsTest",
+      "test": "testConstantsMatchTheCompiledKernel()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustKernelVectors.t.sol:TrustKernelVectorsTest",
+      "test": "testFieldBindingNegativeVectors()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustKernelVectors.t.sol:TrustKernelVectorsTest",
+      "test": "testFixtureBindingsAndDependencyRoot()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustKernelVectors.t.sol:TrustKernelVectorsTest",
+      "test": "testReversalVectorsReproduce()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustStateful.invariant.t.sol:TrustStatefulInvariantTest",
+      "test": "invariantCustodyCaseMatchesTheHandler()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustStateful.invariant.t.sol:TrustStatefulInvariantTest",
+      "test": "invariantFrozenTargetTracksTheLiveHead()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustStateful.invariant.t.sol:TrustStatefulInvariantTest",
+      "test": "invariantInterfaceTruth()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustStateful.invariant.t.sol:TrustStatefulInvariantTest",
+      "test": "invariantNoPersistentRouteTicket()"
+    },
+    {
+      "status": "Success",
+      "suite": "implementation/test/TrustStateful.invariant.t.sol:TrustStatefulInvariantTest",
+      "test": "invariantSupplyConserved()"
+    }
+  ],
   "toolchain": {
     "evmVersion": "cancun",
     "foundry": "1.7.1+4072e48705af9d93e3c0f6e29e93b5e9a40caed8",
-    "solidity": "0.8.36"
-  },
-  "workflow": {
-    "jobConclusion": "success",
-    "jobId": 100928315361,
-    "runId": 33842789954,
-    "url": "https://github.com/Oraclizer/erc-trust/actions/runs/33842789954/job/100928315361"
+    "solidity": "0.8.36+commit.8a079791"
   }
 }

@@ -764,5 +764,113 @@
       "TRUST_End_To_End_Composition",
       "Proof_Audit"
     ]
+  },
+  "trust12Required": {
+    "centralClosure": "INCOMPLETE",
+    "currentMandatory": [
+      "MODEL-LINKED-RUN",
+      "MODEL-REGULATORY-PRESERVATION",
+      "NATIVE-SYMBOLIC-FREEZE",
+      "RUNTIME-LINK-HOOK",
+      "RUNTIME-LINK-NATIVE",
+      "RUNTIME-LINK-PARTIAL"
+    ],
+    "evidence": [
+      {
+        "path": "evidence/trust12/obligation-ledger.json",
+        "sha256": "0a04ffda5dde994989a9d29b1a78f6d772911a318a70148934836c38636dfb1a"
+      },
+      {
+        "path": "evidence/trust12/runtime-identity.json",
+        "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
+      },
+      {
+        "path": "evidence/trust12/independent-audit.md",
+        "sha256": "5a416e77cf6d5ca8c24356b9121daf3603169fa5669d193103f8d59a3958dc87"
+      },
+      {
+        "path": "evidence/trust12/symbolic-kontrol.json",
+        "sha256": "e40a85b127e3749c0cbce0255833984240853c80f5983e4ef09dd409cf4dd8b2"
+      },
+      {
+        "path": "evidence/trust12/formal-build.json",
+        "sha256": "b66c7388681740d6f797292387c6932ed121c9ba9cb578b62452a30cef1526ed"
+      },
+      {
+        "path": "evidence/trust12/formal-build-replay.json",
+        "sha256": "4d4bd6e299d1f2ef5418f9441785493bd11e6459adcbbccf7df4909a49db2e3c"
+      },
+      {
+        "path": "evidence/trust12/local-validation.json",
+        "sha256": "e98c68cd306bf7e973a3642ec1898cbb09f94ebe260f7b3b4420d92fc3fdb273"
+      },
+      {
+        "path": "evidence/trust12/deterministic-build-replay.json",
+        "sha256": "f10d88a567718b05ac017686be7a7baacb75150b3ef3945ff8c11f69113064e3"
+      },
+      {
+        "path": "evidence/trust12/evidence-reuse.json",
+        "sha256": "7d25dc41ea3d83bd49e41f29139daa795815f9d324e2790a4258b6a40fe0979a"
+      },
+      {
+        "path": "evidence/trust12/evidence-reuse-controls.json",
+        "sha256": "3aa5f81cc50866df65c92aeedeb82a39e623ca819873c0d0ee59e0ad489dd183"
+      },
+      {
+        "path": "evidence/trust12/evidence-reuse-audit.md",
+        "sha256": "55579ee45cbd35e63b3b7ca84215ee0ee92fe40731b5c65199c50f980486da92"
+      },
+      {
+        "path": "evidence/trust12/functional-evidence-reuse.json",
+        "sha256": "e9ffa7ef2d26272069f1c4205739f582f03e261b9738befb7806861bdc1e9a2b"
+      },
+      {
+        "path": "evidence/trust12/mutation-callback-auth.json",
+        "sha256": "a1499eb530d772259ba8cdc520e7b1ef8ccca3b27ce1901552e4c4b0ecd855b1"
+      },
+      {
+        "path": "evidence/trust12/mutation-factory-pin.json",
+        "sha256": "c21eabdd494a783b70b250c9e4d3225ab4b6c45f262155c3ef85168393d6d81e"
+      },
+      {
+        "path": "evidence/trust12/mutation-hidden-agent.json",
+        "sha256": "d8103bd6ceb0c0bccf3585f5727d63716ff28f86a89b912a5489044bf477d6d7"
+      },
+      {
+        "path": "evidence/trust12/mutation-inbound.json",
+        "sha256": "5a56899d53056cd2480db0e033b2654392ec5a7b59654ebb5e3b030f42c7bb8f"
+      },
+      {
+        "path": "evidence/trust12/mutation-initial.json",
+        "sha256": "5ac4a67760bbd11fda09851b43d26bff79c5ef5d35a4b9872035f30079687958"
+      },
+      {
+        "path": "evidence/trust12/mutation-receipt.json",
+        "sha256": "eabc940d87c0a8cc9e03c592c5fa2f96ba7595284b174e30624d570d610337bd"
+      },
+      {
+        "path": "evidence/trust12/input-seal.json",
+        "sha256": "f5bd09645e28069ffc9ab16392656c138b7b9ddfe6cb6c0699d917bb75d6cc80"
+      }
+    ],
+    "nonclaim": "Required evidence is present and bound to the current inputs. This consistency result does not close any pending model, symbolic or compiled-runtime obligation.",
+    "profiles": {
+      "hook": {
+        "functionalConformance": "PASS_PINNED_FRESH_TREX",
+        "integrationTests": 9,
+        "runtimeRefinement": "INCOMPLETE",
+        "semanticMutations": 6
+      },
+      "native": {
+        "existingEvidence": "PRESERVED",
+        "runtimeRefinement": "INCOMPLETE"
+      },
+      "partial": {
+        "existingEvidence": "PRESERVED",
+        "full": false,
+        "runtimeRefinement": "INCOMPLETE"
+      }
+    },
+    "status": "PASS_CONSISTENT_DEVELOPMENT"
   }
 }
