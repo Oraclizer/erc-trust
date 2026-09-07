@@ -49,7 +49,7 @@ jobs:
           changed="$(git diff --name-only "$base" HEAD)"
           printf 'changed files:\n%s\n' "$changed"
           if printf '%s\n' "$changed" | grep -E -q \
-            '^(formal/|formal-dependencies(-public-v1)?\.lock\.json$|scripts/verify-formal-foundation-supersession\.mjs$|scripts/generate-trust12-proof-audit\.py$|evidence/public-release/formal-foundation-supersession-v1\.json$|\.github/workflows/proofs\.yml$)'; then
+            '^(formal/|formal-dependencies(-public-v1)?\.lock\.json$|scripts/verify-formal-foundation-supersession\.mjs$|scripts/generate-trust12-proof-audit\.py$|scripts/capture-isabelle-local-inputs\.mjs$|scripts/lib/formal-inputs\.mjs$|evidence/public-release/formal-foundation-supersession-v1\.json$|\.github/workflows/proofs\.yml$)'; then
             echo "run_formal=true" >> "$GITHUB_OUTPUT"
           else
             echo "run_formal=false" >> "$GITHUB_OUTPUT"

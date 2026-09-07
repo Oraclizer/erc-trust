@@ -9,7 +9,7 @@
     },
     {
       "path": ".github/workflows/proofs.yml",
-      "sha256": "73c91a0732892f81a7a111845ca4290c427dbd96a84d2fbf535bdf552f14d2da"
+      "sha256": "88455607a86e9191da3f5d12a5cc3b09f36e3a7bc1bb93e22dcf2bbcedf5bf13"
     },
     {
       "path": "CHANGELOG.md",
@@ -141,7 +141,7 @@
     },
     {
       "path": "formal/isabelle/ERC_TRUST/evidence/model-verification/run-trust-closure.ps1",
-      "sha256": "a97748b21597fc07d5416244c123100a79932d9069f1f34c9f37ffb9809cc83a"
+      "sha256": "3ad425ff797f90937c67833b368b17463c511ecc5d6eef311461c6c201eece5a"
     },
     {
       "path": "formal/isabelle/ROOTS",
@@ -261,7 +261,7 @@
     },
     {
       "path": "scripts/lib/formal-inputs.mjs",
-      "sha256": "eb3495a7d66df3f58aa4e0cf57acc4505479265a2d234925c62ba3d0698b6efd"
+      "sha256": "8ecc60429a99411c8f588e17796dcf470bdb394e52e30787dca6315e5f49eb15"
     },
     {
       "path": "scripts/lib/local-evidence.mjs",
