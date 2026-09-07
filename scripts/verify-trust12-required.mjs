@@ -9,11 +9,14 @@ const repository = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const functionalRoot = '7f5104e0adbbefb9cb01f48294d72017dc2529f8fb68b38b4cbb56621398bd91';
 const testsRoot = '23f88d74a162d19792b51bdbd976d111c65e731b96ba5aac495b51be33125d7d';
 const mutationIds = ['callback-auth','factory-pin','hidden-agent','inbound','initial','receipt'];
-const mandatoryIds = ['MODEL-LINKED-RUN','MODEL-REGULATORY-PRESERVATION','NATIVE-SYMBOLIC-FREEZE','RUNTIME-LINK-HOOK','RUNTIME-LINK-NATIVE','RUNTIME-LINK-PARTIAL'];
+const mandatoryIds = ['NATIVE-SYMBOLIC-FREEZE','RUNTIME-LINK-HOOK','RUNTIME-LINK-NATIVE','RUNTIME-LINK-PARTIAL'];
 export const requiredTrust12Paths = [
   'evidence/trust12/obligation-ledger.json','evidence/trust12/runtime-identity.json','evidence/trust12/runtime-link-source-blockers.md',
   'evidence/trust12/independent-audit.md','evidence/trust12/symbolic-kontrol.json','evidence/trust12/symbolic-booster.json',
+  'evidence/trust12/runtime-producer-feasibility.json',
   'evidence/trust12/formal-build.json','evidence/trust12/formal-build-replay.json',
+  'evidence/trust12/model-results.json','evidence/trust12/model-preservation-audit.md',
+  'evidence/trust12/linked-controls-audit.md','evidence/trust12/model-source-normalization.json',
   'evidence/trust12/local-validation.json','evidence/trust12/deterministic-build-replay.json',
   'evidence/trust12/evidence-reuse.json','evidence/trust12/evidence-reuse-controls.json',
   'evidence/trust12/evidence-reuse-audit.md','evidence/trust12/functional-evidence-reuse.json',
@@ -62,11 +65,11 @@ export function verifyTrust12Required(root = repository) {
   const formal = json(root,'evidence/isabelle-results-v3.json');
   checkLocalReceiptProvenance(root,formal,'local-windows-isabelle');
   validateFormalIdentity(root,formal.formalSource);
-  check(formal.formalSource.rootSha256 === '2694f614332e31338f0fd492bf02baa8834c517238bbfe22516181743de94874', 'formal inputs differ from the admitted clean build; new execution and review required');
+  check(formal.formalSource.rootSha256 === '63e69742a093fd80d95b69c6bfcafff5063cd02b55c99e23d5284e9b239cb6fe', 'formal inputs differ from the admitted clean build; new execution and review required');
   const formalReplay = json(root,'evidence/trust12/formal-build-replay.json');
   // Recomputed from the actual captured inputs and both original proof exports.
   // New proof inputs must receive execution and independent review before admission.
-  const admittedBuild = '54cf33dc4f49df53d50e1093a9a9b89bf7f9b466894597553155e1aaa7e2c483';
+  const admittedBuild = '4fe8d225182e8dcd34e85f68158650cd0c1e2f43e9e285105024719ee33639d3';
   check(formalAdmissionDigest(formalReplay) === admittedBuild && formalReplay.admissionDigest === admittedBuild
     && formal.admissionDigest === admittedBuild, 'admitted execution or dependency evidence drift');
 
@@ -78,6 +81,33 @@ export function verifyTrust12Required(root = repository) {
     && encoded(formal.sessions) === encoded(formalReplay.sessions), 'formal named session evidence mismatch');
   for (const session of formal.sessions) check(session.status === 'PASS' && session.cleanBuild === 'PASS' && session.proofExport === 'PASS'
     && session.explicitRoots > 0 && session.oracleDependencies === 0 && /^[a-f0-9]{64}$/.test(session.exportSha256), `formal session incomplete: ${session.name}`);
+  // These model bytes are admitted only with the current clean build and source reviews.
+  const modelPath = 'evidence/trust12/model-results.json';
+  const model = json(root,modelPath);
+  check(sha256(read(root,modelPath)) === '7572efbbef9689c69dfc318e9d72902a8f87b32ba1d5df9b711418f29d989bce', 'unreviewed model result promotion');
+  const child = formal.sessions.find(s=>s.name==='TRUST12_Accounting_Obstruction');
+  check(model.status === 'PASS_KERNEL_CHECKED_MODEL' && model.executionCommit === formal.sourceCommit
+    && model.formalRootSha256 === formal.formalSource.rootSha256 && model.formalAdmissionDigest === admittedBuild,
+    'model result does not match current clean execution');
+  check(model.proofAudit.explicitRoots === child.explicitRoots && model.proofAudit.qualifiedFacts === child.qualifiedFacts
+    && model.proofAudit.exportSha256 === child.exportSha256 && model.proofAudit.oracleDependencies === 0,
+    'model theorem inventory differs from actual kernel export');
+  const references = [model.proofAudit,model.sourceReviews.preservation,model.sourceReviews.linkedRun,model.sourceNormalization,...model.controls];
+  for(const ref of references) check(sha256(read(root,ref.path)) === ref.sha256, `model source or review reference drift: ${ref.path}`);
+  check(Object.values(model.nonclaims).every(value=>value===false), 'model result cannot discharge runtime or constructor obligations');
+  const normalization = json(root,model.sourceNormalization.path);
+  check(normalization.status === 'PASS_REVERSIBLE_LINE_ENDING_ONLY' && normalization.files.length === 2, 'model normalization inventory drift');
+  for(const entry of normalization.files) {
+    check(['formal/isabelle/TRUST12_OBSTRUCTIONS/ROOT','formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Release_Preservation.thy'].includes(entry.path), 'unexpected normalized model source');
+    const current = read(root,entry.path), rule = entry.reconstructReviewedBytes;
+    check(sha256(current) === entry.afterSha256, 'normalized model source drift');
+    let reviewed;
+    if(rule.kind === 'append-final-LF' && rule.count === 1) reviewed = Buffer.concat([current,Buffer.from('\n')]);
+    else if(rule.kind === 'insert-CR-before-LF' && Number.isInteger(rule.byteOffset) && current[rule.byteOffset] === 10)
+      reviewed = Buffer.concat([current.subarray(0,rule.byteOffset),Buffer.from('\r'),current.subarray(rule.byteOffset)]);
+    else check(false,'invalid model normalization reconstruction');
+    check(sha256(reviewed) === entry.beforeSha256, 'reviewed model bytes do not reconstruct');
+  }
   const symbolic = json(root,'evidence/trust12/symbolic-kontrol.json');
   check(symbolic.status === 'INCOMPLETE' && symbolic.target.sourceSha256 === sha256(read(root,symbolic.target.source)), 'symbolic scope or source drift');
   check(symbolic.target.inputDomain === 'first > 0 and second > 0 and second <= first'
@@ -89,13 +119,23 @@ export function verifyTrust12Required(root = repository) {
     'unreviewed Booster proof result promotion');
   check(booster.harnessSha256 === symbolic.target.sourceSha256 && booster.inputDomain === symbolic.target.inputDomain
     && booster.notAssumed === 'first <= supply', 'Booster source or input domain drift');
+  const feasibility = json(root,'evidence/trust12/runtime-producer-feasibility.json');
+  check(feasibility.schema === 'trust12-runtime-producer-feasibility-v1' && feasibility.status === 'PARTIAL_SOURCE_BLOCKED'
+    && feasibility.receiver.status === 'NOT_FOUND_IN_INSPECTED_LOCAL_SOURCE'
+    && feasibility.feasibility.checkedProducer === 'NOT_ESTABLISHED' && feasibility.feasibility.formalBuildingOpened === false
+    && feasibility.executionBoundary.runtimeLinkDischarged === false && feasibility.executionBoundary.newProverRuns === 0,
+    'feasibility inspection cannot discharge runtime link');
+  check(feasibility.dataWitness.status === 'PARSED_KCFG_DATA_ONLY' && feasibility.dataWitness.sourceBeforeAfterEqual === true
+    && feasibility.dataWitness.sourceKcfgSha256 === booster.graph.kcfgSha256
+    && feasibility.dataWitness.sourceProofSha256 === booster.graph.proofSha256,
+    'runtime data witness identity or nonclaim drift');
   const ledger = json(root,'evidence/trust12/obligation-ledger.json');
   const rows = new Map(ledger.obligations.map(row=>[row.id,row]));
   check(rows.size === ledger.obligations.length, 'duplicate TRUST 1.2 obligation');
   const mandatory = ledger.obligations.filter(row=>row.status==='CURRENT-MANDATORY').map(row=>row.id).sort();
   check(encoded(mandatory) === encoded(mandatoryIds) && encoded([...ledger.centralClosure.currentMandatory].sort()) === encoded(mandatory), 'unreviewed mandatory obligation removal or promotion');
   check(ledger.status === 'IN_PROGRESS' && ledger.centralClosure.status === 'INCOMPLETE', 'incomplete TRUST 1.2 cannot become complete');
-  const expectedRows = ['HOOK-FRESH-INITIAL','HOOK-FACTORY-CREATION','HOOK-SOLE-AGENT','HOOK-INBOUND-FLOOR','HOOK-CALLER-AUTH','HOOK-CALLBACK-ROLLBACK','HOOK-ACTUAL-RECEIPT','HOOK-INDEPENDENT-FINAL','MODEL-INITIAL-WF','MODEL-ORDINARY-PRESERVATION'];
+  const expectedRows = ['HOOK-FRESH-INITIAL','HOOK-FACTORY-CREATION','HOOK-SOLE-AGENT','HOOK-INBOUND-FLOOR','HOOK-CALLER-AUTH','HOOK-CALLBACK-ROLLBACK','HOOK-ACTUAL-RECEIPT','HOOK-INDEPENDENT-FINAL','MODEL-INITIAL-WF','MODEL-ORDINARY-PRESERVATION','MODEL-REGULATORY-PRESERVATION','MODEL-LINKED-RUN'];
   check(rows.size === expectedRows.length + mandatoryIds.length && expectedRows.every(id=>rows.get(id)?.status==='CLOSED'), 'named feature/model obligation inventory drift');
   const binding = json(root,'evidence/runtime-binding-v3.json');
   verifyRuntimeBundles(root,binding);
@@ -109,8 +149,9 @@ export function verifyTrust12Required(root = repository) {
     profiles: { native: { existingEvidence: 'PRESERVED', runtimeRefinement: 'INCOMPLETE' },
       partial: { existingEvidence: 'PRESERVED', full: false, runtimeRefinement: 'INCOMPLETE' },
       hook: { functionalConformance: 'PASS_PINNED_FRESH_TREX', integrationTests: hookTests.length, semanticMutations: mutationIds.length, runtimeRefinement: 'INCOMPLETE' } },
+    models: { preservation:'PASS_ABSTRACT_MODEL',linkedRun:'PASS_ABSTRACT_MODEL',runtimeConnection:'CONDITIONAL' },
     symbolicBackendComparison: { status: booster.status, proofExit: booster.prove.exitCode, guardRemoval: booster.scope.guardRemoval },
     evidence: [...requiredTrust12Paths.filter(p=>p.startsWith('evidence/')), 'evidence/trust12/input-seal.json'].map(p=>fileRef(root,p)),
-    nonclaim: 'Required evidence is present and bound to the current inputs. This consistency result does not close any pending model, symbolic or compiled-runtime obligation.' };
+    nonclaim: 'Required evidence is present and bound to the current inputs. The admitted abstract model results do not close the outstanding symbolic or compiled-runtime obligations.' };
 }
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) console.log(JSON.stringify(verifyTrust12Required(),null,2));

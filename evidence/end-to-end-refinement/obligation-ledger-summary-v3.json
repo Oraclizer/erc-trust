@@ -9,7 +9,7 @@
   "closure": "CONDITIONAL",
   "closureRecord": {
     "path": "evidence/end-to-end-refinement/central-closure-v3.json",
-    "sha256": "1b852783e30abc75d9404e5f895518bcf26a2de67c72e9d615dc61bbf4918618"
+    "sha256": "8f5d22d1224d746708069c8cc32081b5cde83c084486ebaa2d600b5ef744df56"
   },
   "counts": {
     "closed": 70,
@@ -576,8 +576,6 @@
   "trust12Required": {
     "centralClosure": "INCOMPLETE",
     "currentMandatory": [
-      "MODEL-LINKED-RUN",
-      "MODEL-REGULATORY-PRESERVATION",
       "NATIVE-SYMBOLIC-FREEZE",
       "RUNTIME-LINK-HOOK",
       "RUNTIME-LINK-NATIVE",
@@ -586,7 +584,7 @@
     "evidence": [
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "1b380c11afdaaa4d04fb4ccd0dfcd2116eaf88226c60babe6ca1f7b63c9a3cf8"
+        "sha256": "1b4bf6d93ad0df080f17b60474535f9350141f25797ff0dd2a02247aa09c7bc6"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -594,7 +592,7 @@
       },
       {
         "path": "evidence/trust12/runtime-link-source-blockers.md",
-        "sha256": "742ca21c216fe7b2a20a3cd1003f52da4a09c1bbe7dc3b89cd7f6703a6b8a230"
+        "sha256": "bb4e9d9585c7407487a0533a52d49dbbc10b965ad5bf9d8e0a8d1f5938c945a4"
       },
       {
         "path": "evidence/trust12/independent-audit.md",
@@ -609,12 +607,32 @@
         "sha256": "5122e62e25bab00410949ce3ec12c8a3ce540e0ad104fb68356ed37829a89851"
       },
       {
+        "path": "evidence/trust12/runtime-producer-feasibility.json",
+        "sha256": "5e79eeefba7228515868535bbb43150d1d84e724103ed3542f1d81338751939e"
+      },
+      {
         "path": "evidence/trust12/formal-build.json",
         "sha256": "b66c7388681740d6f797292387c6932ed121c9ba9cb578b62452a30cef1526ed"
       },
       {
         "path": "evidence/trust12/formal-build-replay.json",
-        "sha256": "4d4bd6e299d1f2ef5418f9441785493bd11e6459adcbbccf7df4909a49db2e3c"
+        "sha256": "d388eda901481cf3ded651f97a625bda19abff2fc6baeae25a184734039806fa"
+      },
+      {
+        "path": "evidence/trust12/model-results.json",
+        "sha256": "7572efbbef9689c69dfc318e9d72902a8f87b32ba1d5df9b711418f29d989bce"
+      },
+      {
+        "path": "evidence/trust12/model-preservation-audit.md",
+        "sha256": "c98404dba5955eddc5f0f04a29f53f3036b03a5a114d26f7597e9417fb407bc0"
+      },
+      {
+        "path": "evidence/trust12/linked-controls-audit.md",
+        "sha256": "fca6a8b9e59b3687267d11a12ecb68896dfdfbfd316a337c3c31369878459d64"
+      },
+      {
+        "path": "evidence/trust12/model-source-normalization.json",
+        "sha256": "525bed6acec68b8afb5e1f9316099fb0e38d97e45f47fdb0d8a9e40442a9b24d"
       },
       {
         "path": "evidence/trust12/local-validation.json",
@@ -666,10 +684,15 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "18af8ffca93b25c0a47ead332f6d7d2c448380635d3129ea19f9daf1bac8bbed"
+        "sha256": "bc3ae8823c50abbedd59d4af93540e3bfed2398128c4a5d93715e7701491532f"
       }
     ],
-    "nonclaim": "Required evidence is present and bound to the current inputs. This consistency result does not close any pending model, symbolic or compiled-runtime obligation.",
+    "models": {
+      "linkedRun": "PASS_ABSTRACT_MODEL",
+      "preservation": "PASS_ABSTRACT_MODEL",
+      "runtimeConnection": "CONDITIONAL"
+    },
+    "nonclaim": "Required evidence is present and bound to the current inputs. The admitted abstract model results do not close the outstanding symbolic or compiled-runtime obligations.",
     "profiles": {
       "hook": {
         "functionalConformance": "PASS_PINNED_FRESH_TREX",

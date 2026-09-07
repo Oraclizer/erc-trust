@@ -9,13 +9,14 @@
   Typed controls cover disconnected steps, erased outcomes, post-state
   substitution, shared custody, below/above-supply freezes and repeated pops.
   The local 219-root audit reports 236 facts and no oracle dependencies.
-  Committed-source clean-build admission and integration review remain open;
-  the general compiled-runtime link and symbolic FREEZE proof are incomplete.
+  Bind the committed-source clean build and reviewed model results to required
+  development admission. The symbolic FREEZE and three general runtime producer
+  obligations remain incomplete; 49 admission negatives reject false promotion.
 
 - Record the separate identical-input Booster comparison without reusing a
   no-Booster certificate. It reaches deployed Native calls, then times out at
   900 seconds with no target cover. Required evidence rejects a fabricated PASS;
-  the six mandatory obligations remain open. Document the checked producer still
+  the symbolic and runtime obligations remain open. Document the checked producer still
   missing for constructor/storage, command admission, effects and observations.
 
 - Connect the TRUST 1.2 development evidence to every v3 aggregate entrypoint.
@@ -25,8 +26,8 @@
   three preserved runtimes and four Hook runtimes in six semantic projections.
   Thirty-two admission controls and the independent audit's counterexamples check
   missing evidence, paired metadata changes and release promotion. The aggregate
-  is consistent in development mode; six mandatory proof obligations and general
-  runtime refinement remain incomplete. The legacy adapter stays Partial.
+  is consistent in development mode; the open proof obligations and general
+  runtime refinement remain explicit. The legacy adapter stays Partial.
 
 - Correct the current ERC-3643 reference from Verified Full to the exact
   `ERC-TRUST/v2/erc3643-partial` profile with `profileKind = PARTIAL` and

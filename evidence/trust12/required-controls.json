@@ -21,6 +21,31 @@
       "status": "REJECTED"
     },
     {
+      "name": "missing-required:evidence/trust12/model-results.json",
+      "reason": "required TRUST 1.2 input is not sealed",
+      "status": "REJECTED"
+    },
+    {
+      "name": "missing-required:evidence/trust12/model-preservation-audit.md",
+      "reason": "required TRUST 1.2 input is not sealed",
+      "status": "REJECTED"
+    },
+    {
+      "name": "missing-required:evidence/trust12/linked-controls-audit.md",
+      "reason": "required TRUST 1.2 input is not sealed",
+      "status": "REJECTED"
+    },
+    {
+      "name": "missing-required:evidence/trust12/model-source-normalization.json",
+      "reason": "required TRUST 1.2 input is not sealed",
+      "status": "REJECTED"
+    },
+    {
+      "name": "missing-required:evidence/trust12/runtime-producer-feasibility.json",
+      "reason": "required TRUST 1.2 input is not sealed",
+      "status": "REJECTED"
+    },
+    {
       "name": "changed-formal:formal/isabelle/ERC_TRUST/TRUST_Transaction_Refinement.thy",
       "reason": "local input inventory drift",
       "status": "REJECTED"
@@ -47,6 +72,36 @@
     },
     {
       "name": "changed-formal:formal-dependencies-public-v1.lock.json",
+      "reason": "local input inventory drift",
+      "status": "REJECTED"
+    },
+    {
+      "name": "changed-formal:formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Linked_Run.thy",
+      "reason": "local input inventory drift",
+      "status": "REJECTED"
+    },
+    {
+      "name": "changed-formal:formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_State_Interaction_Controls.thy",
+      "reason": "local input inventory drift",
+      "status": "REJECTED"
+    },
+    {
+      "name": "changed-formal:scripts/generate-trust12-proof-audit.py",
+      "reason": "local input inventory drift",
+      "status": "REJECTED"
+    },
+    {
+      "name": "changed-formal:scripts/capture-isabelle-local-inputs.mjs",
+      "reason": "local input inventory drift",
+      "status": "REJECTED"
+    },
+    {
+      "name": "changed-formal:scripts/lib/formal-inputs.mjs",
+      "reason": "local input inventory drift",
+      "status": "REJECTED"
+    },
+    {
+      "name": "changed-formal:formal/isabelle/ERC_TRUST/evidence/model-verification/run-trust-closure.ps1",
       "reason": "local input inventory drift",
       "status": "REJECTED"
     },
@@ -126,6 +181,31 @@
       "status": "REJECTED"
     },
     {
+      "name": "rewritten-model-execution",
+      "reason": "unreviewed model result promotion",
+      "status": "REJECTED"
+    },
+    {
+      "name": "removed-model-state-link-control",
+      "reason": "unreviewed model result promotion",
+      "status": "REJECTED"
+    },
+    {
+      "name": "false-model-runtime-discharge",
+      "reason": "unreviewed model result promotion",
+      "status": "REJECTED"
+    },
+    {
+      "name": "paired-model-review-drift",
+      "reason": "unreviewed model result promotion",
+      "status": "REJECTED"
+    },
+    {
+      "name": "false-feasibility-completion",
+      "reason": "feasibility inspection cannot discharge runtime link",
+      "status": "REJECTED"
+    },
+    {
       "name": "false-booster-pass",
       "reason": "unreviewed Booster proof result promotion",
       "status": "REJECTED"
@@ -170,8 +250,8 @@
   "positive": "PASS_CONSISTENT_DEVELOPMENT",
   "schema": "trust12-required-controls-v1",
   "source": {
-    "testSha256": "bb29201d61c32feb9e483d74a0f2d99d261d40ef3337381bccf0eb54221a13f7",
-    "verifierSha256": "432381ca0b606bd752839c50fad2f647f742126c5389f3c617681a0ca45bf227"
+    "testSha256": "dce0e6b0569a75c4c1ce3833e264f5404bf640ab042043d2da8c508da324c24e",
+    "verifierSha256": "08382cbf87748f5af9f73e52c89465875a89646657a963cd0486bfea13d678c0"
   },
   "status": "PASS"
 }

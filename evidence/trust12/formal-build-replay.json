@@ -1,10 +1,10 @@
 {
-  "admissionDigest": "54cf33dc4f49df53d50e1093a9a9b89bf7f9b466894597553155e1aaa7e2c483",
+  "admissionDigest": "4fe8d225182e8dcd34e85f68158650cd0c1e2f43e9e285105024719ee33639d3",
   "buildLog": {
-    "path": "formal/isabelle/ERC_TRUST/evidence/model-verification/out/runs/20260907T082427Z/isabelle-clean-build.log",
-    "sha256": "0bf5e643da5885700887263bcff016f29d40bba3c12f292b0f57935c04d0f9c7"
+    "path": "formal/isabelle/ERC_TRUST/evidence/model-verification/out/runs/20260907T132857Z/isabelle-clean-build.log",
+    "sha256": "e40be3e9abdec6bfaa9a30445101dfe7ec8da35ac1ee0c864e86e4ee9b2d914e"
   },
-  "command": "isabelle build -c -o record_proofs=1 -d <ADS_Functor> -d <verified-foundation-overlay> -d formal/isabelle ERC_TRUST TRUST12_Accounting_Obstruction",
+  "command": "isabelle build -c -o record_proofs=1 -o threads=2 -o parallel_proofs=0 -d <ADS_Functor> -d <verified-foundation-overlay> -d formal/isabelle ERC_TRUST TRUST12_Accounting_Obstruction",
   "dependencyInputs": {
     "adsFunctor": [
       {
@@ -85,17 +85,17 @@
     ]
   },
   "exportLog": {
-    "path": "formal/isabelle/ERC_TRUST/evidence/model-verification/out/runs/20260907T082427Z/isabelle-export.log",
-    "sha256": "dffa419d2b4fe25273ca7150c1e4b60a35300b50ce50622c52b767bf9de1cb78"
+    "path": "formal/isabelle/ERC_TRUST/evidence/model-verification/out/runs/20260907T132857Z/isabelle-export.log",
+    "sha256": "da67438a2089ef93700a7a8aa58647248ac44cf4048f8679307d7b52e648c4ca"
   },
-  "finishedAt": "2026-09-07T08:26:41.7106026Z",
+  "finishedAt": "2026-09-07T13:34:47.4364685Z",
   "formalSource": {
     "algorithm": "sha256-formal-session-graph-inputs-v2",
     "foundationCommit": "db8e0802e55f0229cf7bc9e5e6cfbf40681adbba",
     "inputs": [
       {
         "path": ".github/workflows/proofs.yml",
-        "sha256": "246269b84ba2a8e54d89367174c22e558194961e8cfd70924933f85c66562826"
+        "sha256": "88455607a86e9191da3f5d12a5cc3b09f36e3a7bc1bb93e22dcf2bbcedf5bf13"
       },
       {
         "path": "evidence/public-release/formal-foundation-supersession-v1.json",
@@ -202,44 +202,92 @@
         "sha256": "07e1c6cc1ad470bdd9fc3bebaa8acac31998c18a6b8e7cd2221f8fd1dc01ef96"
       },
       {
+        "path": "formal/isabelle/ERC_TRUST/evidence/model-verification/run-trust-closure.ps1",
+        "sha256": "3ad425ff797f90937c67833b368b17463c511ecc5d6eef311461c6c201eece5a"
+      },
+      {
         "path": "formal/isabelle/ROOTS",
         "sha256": "bc0d98972158b22dd35d8e3f0c99a9231b7d7969b744ead12644ca79603944ad"
       },
       {
         "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/ROOT",
-        "sha256": "5a4b5ff89ba554d04306c1aac98b931b93583b3d36be52f180d65b64996866e4"
+        "sha256": "93a8ce9c52f9a2bc1b60952fabcb3625b580d4817babfec92db6b6d908a78d5d"
       },
       {
         "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST12_Obstruction_Proof_Audit.thy",
-        "sha256": "ba0f92615c72b53c7ef76d563598a23b962af5919a22b41c847aaea53afa7003"
+        "sha256": "e073c4787c450f41eaeb437e6e630995e082b3a2bf749958a0bc8e69208a9e68"
       },
       {
         "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Accounting_Invariant_Obstruction.thy",
         "sha256": "b9ba46b12ecb03baffd3f4cc0521219c6100fbb31820ad2d15b4a324a12b91fe"
       },
       {
+        "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Custody_Accounting.thy",
+        "sha256": "bee1f0f5cbf68f91fa9c3ca92fb5851020dd272a61b13ce5db18ccc8c8044ce9"
+      },
+      {
+        "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Linked_Run.thy",
+        "sha256": "47813adc486ad97b256df3721baf792f0a59d6edd4906babf1eca4c1a0d88f68"
+      },
+      {
+        "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Regulatory_Preservation.thy",
+        "sha256": "77a5ccac16322ea85c35d968a40f53d786d2911254ddb7e6697659bea797b4fb"
+      },
+      {
+        "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Release_Preservation.thy",
+        "sha256": "bbab722b3115ef246d9b083d6b3a405a9d3fa3ba675ad870c66278b39e9554de"
+      },
+      {
+        "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Reversal_Preservation.thy",
+        "sha256": "fcaa7178a21e63e077d303069ba80ef76cc8aef2c9e7440bc16921febf3e6aba"
+      },
+      {
+        "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_State_Interaction_Controls.thy",
+        "sha256": "68c740c4e75fb0b95facc1c3bd174fb9959e6c0fbf3a74179d2f255d100afc4e"
+      },
+      {
         "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_State_Invariants.thy",
-        "sha256": "5be6a7d9db007d4526c8de6e0be7324a77172e652a5a925113f26007e632266c"
+        "sha256": "1f05719150c9c1eac15ca417eb0516b738150077589da0fa827acb19cdc792fe"
+      },
+      {
+        "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Structure_Invariant_Controls.thy",
+        "sha256": "d9c5603ae6343151448e3fc97d2448fd0eda0c764d8868610f9bf5742e527bdc"
+      },
+      {
+        "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Unfreeze_Preservation.thy",
+        "sha256": "142a7302a0c9378b4d2631a5994b56cd32edd0330664364c59150a2c4e4f4654"
+      },
+      {
+        "path": "scripts/capture-isabelle-local-inputs.mjs",
+        "sha256": "421fb8663011d8d6192bce9f8bcfdb50f586bb21133eb9a677f53e236213713e"
+      },
+      {
+        "path": "scripts/generate-trust12-proof-audit.py",
+        "sha256": "a749060fd8a192e82a3b7bb95074b2986cdcf661488a6e6d13ed474581783997"
+      },
+      {
+        "path": "scripts/lib/formal-inputs.mjs",
+        "sha256": "8ecc60429a99411c8f588e17796dcf470bdb394e52e30787dca6315e5f49eb15"
       }
     ],
     "path": "formal/isabelle",
-    "rootSha256": "2694f614332e31338f0fd492bf02baa8834c517238bbfe22516181743de94874",
+    "rootSha256": "63e69742a093fd80d95b69c6bfcafff5063cd02b55c99e23d5284e9b239cb6fe",
     "sessions": [
       "ERC_TRUST",
       "TRUST12_Accounting_Obstruction"
     ],
-    "theoryFiles": 25
+    "theoryFiles": 33
   },
   "inputCapture": {
     "beforeAfterEqual": true,
-    "sha256": "66559c4fe1393258a8d6c85d5908812775240eca31302b2bbc6f7ed05180a237"
+    "sha256": "78ef6bc9798f9ce8986762e7a7fab49884b177f631b0afcb613209204f5aaf53"
   },
   "nonclaim": "A local kernel-checked model build with explicit dependency bytes. No CI execution, constructor decoding, compiler correctness or runtime_link discharge is asserted.",
   "processExit": 0,
   "provider": "local-windows-isabelle",
   "rawRun": {
-    "path": "out/trust12/repaired-formal-run.json",
-    "sha256": "27be7f32cbe2b4e47f48388851051497d6c2898c540081f8e6e70746acfc9035"
+    "path": "out/trust12/model-final-clean-run.json",
+    "sha256": "2079b8b896f63137ef6928dd6a52b0c82296d895276952244f4cee38b67a799b"
   },
   "schema": "trust12-formal-build-replay-v1",
   "sessions": [
@@ -255,16 +303,16 @@
     },
     {
       "cleanBuild": "PASS",
-      "explicitRoots": 12,
-      "exportSha256": "1092b9eb4db6152601344f6029ac839a2c49082e7aa2b3a9285ebd959f51b326",
+      "explicitRoots": 219,
+      "exportSha256": "85fe1610f63a4a0922fab0f77cabf7058862e3fd3f008102d94448d75326dd51",
       "name": "TRUST12_Accounting_Obstruction",
       "oracleDependencies": 0,
       "proofExport": "PASS",
-      "qualifiedFacts": 12,
+      "qualifiedFacts": 236,
       "status": "PASS"
     }
   ],
-  "sourceCommit": "dfbd779ef5a49d5907ead2e8d3322859378519ec",
-  "startedAt": "2026-09-07T08:24:27.3730066Z",
+  "sourceCommit": "16a01c7f6ed252baa56ef504a224eccae3abc8bd",
+  "startedAt": "2026-09-07T13:28:56.8302192Z",
   "status": "PASS"
 }
