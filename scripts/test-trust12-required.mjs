@@ -31,8 +31,8 @@ function test(name, mutate, expected, entrypoint = null) {
 }
 try {
   verifyTrust12Required(scratch);
-  for(const path of ['evidence/trust12/formal-build-replay.json','evidence/trust12/local-validation.json','evidence/trust12/independent-audit.md','evidence/trust12/mutation-inbound.json']) test(`missing-required:${path}`,()=>{set(path,null);change('evidence/trust12/input-seal.json',s=>{s.files=s.files.filter(x=>x.path!==path);});},'required TRUST 1.2 input is not sealed');
-  for(const path of ['formal/isabelle/ERC_TRUST/TRUST_Transaction_Refinement.thy','formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_State_Invariants.thy','formal/isabelle/ERC_TRUST/ROOT','formal/isabelle/TRUST12_OBSTRUCTIONS/ROOT','formal/isabelle/ROOTS','formal-dependencies-public-v1.lock.json']) test(`changed-formal:${path}`,()=>set(path,Buffer.concat([readFileSync(resolve(scratch,path)),Buffer.from('\n ')])),'local input inventory drift');
+  for(const path of ['evidence/trust12/formal-build-replay.json','evidence/trust12/local-validation.json','evidence/trust12/independent-audit.md','evidence/trust12/mutation-inbound.json','evidence/trust12/model-results.json','evidence/trust12/model-preservation-audit.md','evidence/trust12/linked-controls-audit.md','evidence/trust12/model-source-normalization.json','evidence/trust12/runtime-producer-feasibility.json']) test(`missing-required:${path}`,()=>{set(path,null);change('evidence/trust12/input-seal.json',s=>{s.files=s.files.filter(x=>x.path!==path);});},'required TRUST 1.2 input is not sealed');
+  for(const path of ['formal/isabelle/ERC_TRUST/TRUST_Transaction_Refinement.thy','formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_State_Invariants.thy','formal/isabelle/ERC_TRUST/ROOT','formal/isabelle/TRUST12_OBSTRUCTIONS/ROOT','formal/isabelle/ROOTS','formal-dependencies-public-v1.lock.json','formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Linked_Run.thy','formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_State_Interaction_Controls.thy','scripts/generate-trust12-proof-audit.py','scripts/capture-isabelle-local-inputs.mjs','scripts/lib/formal-inputs.mjs','formal/isabelle/ERC_TRUST/evidence/model-verification/run-trust-closure.ps1']) test(`changed-formal:${path}`,()=>set(path,Buffer.concat([readFileSync(resolve(scratch,path)),Buffer.from('\n ')])),'local input inventory drift');
   test('paired-formal-receipt-drift',()=>{
     const path='formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_State_Invariants.thy';
     set(path,Buffer.concat([readFileSync(resolve(scratch,path)),Buffer.from('\n(* paired drift *)\n')]));
@@ -60,6 +60,15 @@ try {
   test('failed-exit-with-rehashed-provenance',()=>{change('evidence/trust12/local-validation.json',r=>{r.commands[0].exitCode=1;});rebindFoundrySource();},'local Foundry command failed');
   test('backwards-time-with-rehashed-provenance',()=>{change('evidence/trust12/local-validation.json',r=>{r.commands[0].finishedAt='2000-01-01T00:00:00Z';});rebindFoundrySource();},'local Foundry command failed');
   test('rewritten-deterministic-execution',()=>change('evidence/deterministic-build.json',r=>{r.candidateInput.gitHead='0'.repeat(40);}),'deterministic execution identity was rewritten');
+  test('rewritten-model-execution',()=>change('evidence/trust12/model-results.json',r=>{r.executionCommit='0'.repeat(40);}),'unreviewed model result promotion');
+  test('removed-model-state-link-control',()=>change('evidence/trust12/model-results.json',r=>{r.groups.linkedNegative=r.groups.linkedNegative.filter(x=>x!=='state_link_removal_accepts_spliced_steps');}),'unreviewed model result promotion');
+  test('false-model-runtime-discharge',()=>change('evidence/trust12/model-results.json',r=>{r.nonclaims.runtimeLinkDischarged=true;}),'unreviewed model result promotion');
+  test('paired-model-review-drift',()=>{
+    const path='evidence/trust12/linked-controls-audit.md';
+    set(path,Buffer.concat([readFileSync(resolve(scratch,path)),Buffer.from('\nChanged review.\n')]));
+    change('evidence/trust12/model-results.json',r=>{r.sourceReviews.linkedRun.sha256=sha256(readFileSync(resolve(scratch,path)));});
+  },'unreviewed model result promotion');
+  test('false-feasibility-completion',()=>change('evidence/trust12/runtime-producer-feasibility.json',r=>{r.status='FEASIBLE';r.executionBoundary.runtimeLinkDischarged=true;}),'feasibility inspection cannot discharge runtime link');
   test('false-booster-pass',()=>change('evidence/trust12/symbolic-booster.json',r=>{r.status='PASS';r.prove.exitCode=0;}),'unreviewed Booster proof result promotion');
   test('false-symbolic-pass',()=>change('evidence/trust12/symbolic-kontrol.json',r=>{r.status='PASS';}),'symbolic scope or source drift');
   test('narrowed-symbolic-domain',()=>change('evidence/trust12/symbolic-kontrol.json',r=>{r.target.inputDomain+=' and first <= supply';}),'symbolic input domain narrowed');

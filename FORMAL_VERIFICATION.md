@@ -492,8 +492,9 @@ initial, ordinary-transfer, authority/dependency-change and failure preservation
 and preservation for all six forward and three reversal actions. The nine
 regulatory preservation results and linked-run controls have a local kernel
 build with 219 declared roots, 236 qualified facts and no oracle dependencies.
-The seven-file preservation source review passed; linked-run integration review
-and admission of a clean build at the committed source are in progress.
+The preservation and linked-run/control source reviews passed. The actual
+committed-source clean build binds all 44 inputs, both named sessions, and the
+fixed foundation and ADS bytes. `model-results.json` records the admitted scope.
 
 `TRUST_Linked_Run.thy` provides the checked run-level extension. Its step predicate
 uses the existing admitted success-state function and failure stutters. A run
@@ -510,4 +511,4 @@ and both recursive proof-audit exports. Its admitted digest is fixed only after
 execution and independent review; a new input must reopen that admission.
 `aggregate-evidence-audit.md` records the bounded independent review and repairs.
 A passing aggregate keeps Native, Partial and the pinned fresh Hook feature
-results separate from the six unresolved model, symbolic and runtime obligations.
+results separate from the four unresolved symbolic and runtime obligations.

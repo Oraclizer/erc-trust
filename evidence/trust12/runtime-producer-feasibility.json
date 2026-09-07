@@ -1,0 +1,202 @@
+{
+  "schema": "trust12-runtime-producer-feasibility-v1",
+  "status": "PARTIAL_SOURCE_BLOCKED",
+  "provider": "local-source-interface-inspection",
+  "sourceCommit": "16a01c7f6ed252baa56ef504a224eccae3abc8bd",
+  "startedAt": "2026-09-07T13:57:28.4134797Z",
+  "finishedAt": "2026-09-07T14:18:30.360713+00:00",
+  "maximumMinutes": 45,
+  "elapsedSeconds": 1261.947,
+  "target": "Actual Native constructor/storage and one FREEZE success plus same-case nonincreasing rejection must produce an Isabelle-checked alpha_transaction derivation.",
+  "sourceAnchors": [
+    {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_End_To_End_Composition.thy",
+      "sha256": "dde2f9c95d702cf4f394dc3bde7e0e000203ba95698cfd7a8ba6569e59f8ccc5"
+    },
+    {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Transaction_Refinement.thy",
+      "sha256": "b49b9d7a71455e547bf5185fcd66195597b185bbb5d50441b281e37eabf60149"
+    },
+    {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Retrieve_Relation.thy",
+      "sha256": "5fe73a17b58d636ca2f489a02e42a442309f8f42f99cb99e72de678090475587"
+    },
+    {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Concrete_Configuration.thy",
+      "sha256": "642daa38742595bb7a00700b08b0a24d74e18d1239eb848f45e197c78ba5ce56"
+    },
+    {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_State_Abi_Normal_Form.thy",
+      "sha256": "b645ce637c97ee3ca7a91c889d6b05efbb233404fe056b22d21816fe3abf710f"
+    },
+    {
+      "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Linked_Run.thy",
+      "sha256": "47813adc486ad97b256df3721baf792f0a59d6edd4906babf1eca4c1a0d88f68"
+    },
+    {
+      "path": "implementation/src/TrustToken.sol",
+      "sha256": "deeedf231b461035ac4496b36438d6ea28298ed2935b920bf9c01cb31f94ef1b"
+    },
+    {
+      "path": "implementation/kontrol/TrustTokenKontrolTest.t.sol",
+      "sha256": "ebd82721dfd8b367a2d1db7c734d0d6e50925ef64911e9a405335effa93c006f"
+    }
+  ],
+  "installedTool": {
+    "reportedKontrolVersion": "1.0.255",
+    "pythonSourceCensus": {
+      "kontrol": 18,
+      "pyk": 123
+    },
+    "inspectedSources": [
+      {
+        "packagePath": "kontrol/__main__.py",
+        "sha256": "fa2adbae02dbea93a4ed12829924816164ac6128965d95fe5f538d04f43d6c91"
+      },
+      {
+        "packagePath": "kontrol/cli.py",
+        "sha256": "2c62b8cd2041fe6a992f84683d0f9179c083fd95fa0e6c440dff5376515021b4"
+      },
+      {
+        "packagePath": "kontrol/display.py",
+        "sha256": "88ae74d1cd9844d1876028160dcc09e416293d3bf8b0c32a56040895de14a8a6"
+      },
+      {
+        "packagePath": "kontrol/foundry.py",
+        "sha256": "ed4871f200cc05ab5e10a4b240be4148e5870c93ff3552a815666d7123013a82"
+      },
+      {
+        "packagePath": "kontrol/options.py",
+        "sha256": "f39ffef86b3c24cb2d6387003da9fa88175d7bff342c51fd22690a51e6627550"
+      },
+      {
+        "packagePath": "kontrol/state_record.py",
+        "sha256": "ffedd21e1a2966146a9cd4744491ec5f224d36a4b3b8fa69844283a238f3e476"
+      },
+      {
+        "packagePath": "pyk/kcfg/kcfg.py",
+        "sha256": "8fcf78a39f34a807c28c5376517b5cca5f9833faacbd0a11714134e84764978a"
+      },
+      {
+        "packagePath": "pyk/kcfg/show.py",
+        "sha256": "fe01f120639ca75414c8a157dc7b70fee422714da3098dabec2261a81898b811"
+      },
+      {
+        "packagePath": "pyk/kore/rpc.py",
+        "sha256": "f81b434c81c1386ad3424817b5e7da9a37cf305d81693e79221dc9aedb6a5450"
+      },
+      {
+        "packagePath": "pyk/proof/implies.py",
+        "sha256": "41e9a5c4f0428bd59ff1eaad88b4e6eea0b7e43943f90f277bcc11a591059b0d"
+      },
+      {
+        "packagePath": "pyk/proof/proof.py",
+        "sha256": "98d9d61a40ff1d2e0f948cdf305c7f7f590c240bc9b50b6863101bca50ab62fb"
+      },
+      {
+        "packagePath": "pyk/proof/reachability.py",
+        "sha256": "dfc1f86ef0e8cae44c5833efd4b0d613ee90ff4d7747e0663d3c575b0191fd30"
+      }
+    ],
+    "outputs": {
+      "load-state": "Solidity state-loading contracts",
+      "show-to-module": "KFlatModule from graph edges",
+      "show-to-kevm-claims": "best-effort KEVM claims",
+      "show-to-kevm-rules": "best-effort KEVM optimization rules"
+    },
+    "scopeLimit": "The package census and selected exporter/serialization source were inspected; this is not an impossibility claim about all tools or future versions."
+  },
+  "dataWitness": {
+    "schema": "trust12-runtime-data-witness-v1",
+    "status": "PARSED_KCFG_DATA_ONLY",
+    "sourceKcfgSha256": "176d5e54040cbe8ab8ee48b80c8c3a8f702e95eb808ca41e3a6ee914ef80dfae",
+    "sourceProofSha256": "986f7607eede79042040d19ca5e3b1c9533a15369bf3cc8c720e2585e7547951",
+    "pythonType": "pyk.kcfg.kcfg.KCFG",
+    "nodes": 20,
+    "edges": 14,
+    "covers": 0,
+    "splits": 2,
+    "proofType": "APRProof",
+    "proofDeclaredId": "implementation%kontrol%trust12%TrustTokenSymbolicKontrolTest.testKontrol_SymbolicNonincreasingFreeze(uint256,uint256):0",
+    "sourceFiles": 22,
+    "sourceBeforeAfterEqual": true,
+    "nonclaim": "This parses saved data. It executes no EVM step, proves no claim, produces no Isabelle theorem and does not discharge runtime_link."
+  },
+  "receiver": {
+    "status": "NOT_FOUND_IN_INSPECTED_LOCAL_SOURCE",
+    "runtimeExecution": "free locale predicate",
+    "runtimeLink": "locale assumption",
+    "storageProjection": "manifest-provided functions; no actual constructor decoder",
+    "calldataBoundary": "existing native decoder returns a word list, not a typed command from actual EVM calldata bytes",
+    "transactionRecord": "typed data carrier, not evidence that EVM semantics produced the fields",
+    "linkedRun": "conditional consumer of runtime_link and connected concrete configurations"
+  },
+  "feasibility": {
+    "depth": "FULL",
+    "exactTarget": "ANCHORED",
+    "sourceData": "PARSED_KCFG_DATA_ONLY",
+    "checkedProducer": "NOT_ESTABLISHED",
+    "sourceBoundHOLInhabitant": "NOT_PRODUCED",
+    "positiveNegativeCorrespondence": "NOT_RUN_NO_CHECKED_RECEIVER",
+    "semanticMutationCorrespondence": "NOT_RUN_NO_CHECKED_RECEIVER",
+    "consumer": "RUNTIME-LINK-NATIVE; the same receiver gap remains for Partial and Hook",
+    "formalBuildingOpened": false
+  },
+  "trustModel": {
+    "changed": false,
+    "manualCertificateAlternative": "REJECTED_FOR_COMPLETION",
+    "reason": "A graph, slot/selector map, typed record, success flag or unproved HOL premise cannot supply the missing operational derivation."
+  },
+  "nextWork": {
+    "minimumScope": [
+      "concrete constructor/storage decoder",
+      "actual calldata-to-typed-command decoder",
+      "external-call/return/revert/receipt/log decoder",
+      "checked pinned-EVM operational semantics or verified proof/trace translation into alpha_transaction"
+    ],
+    "validation": "One actual success and rejection, one semantic observation-removal mutation, and absence of runtime_link or manual PASS in the resulting proof assumptions.",
+    "costEstimate": "Complete implementation cannot yet be estimated reliably because the checked operational receiver or translation architecture must first be selected and demonstrated.",
+    "paidComputeUsed": 0,
+    "requiresDesignDecisionBeforeTrustModelChange": true
+  },
+  "executionBoundary": {
+    "newProverRuns": 0,
+    "deploymentRetries": 0,
+    "inputNarrowed": false,
+    "timeoutIncreased": false,
+    "actUsed": false,
+    "hevmUsed": false,
+    "rocqUsed": false,
+    "runtimeLinkDischarged": false
+  },
+  "rawEvidence": [
+    {
+      "path": "out/trust12/runtime-producer-interface-probe-lf.log",
+      "sha256": "c6e03ab6fa37896b277cf410151bec2fda13bf39083b05d990fffbce0036a3b8"
+    },
+    {
+      "path": "out/trust12/runtime-producer-interface-probe-lf.exit",
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "path": "out/trust12/runtime-producer-package-probe.log",
+      "sha256": "32a1d71352f18a78b19bbcf7952f922489873104dd2327ee34c96523eaf12af0"
+    },
+    {
+      "path": "out/trust12/runtime-producer-package-probe.exit",
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "path": "out/trust12/runtime-producer-serialization-probe.log",
+      "sha256": "83e6ca04a79e9963eeba4df4200a6b30e22ea94b14b9cb61ab1266e76bbc39da"
+    },
+    {
+      "path": "out/trust12/runtime-producer-serialization-probe.exit",
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "path": "out/trust12/runtime-producer-data-witness.json",
+      "sha256": "85c1fa53f44ea9d719fb02dcb74df64def485ac2f1125fb52a6752a5a41662c3"
+    }
+  ]
+}

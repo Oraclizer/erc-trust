@@ -51,12 +51,31 @@ an executable producer plus an Isabelle-checked relationship to actual EVM
 semantics, with state/receipt observation removal controls. A table of slots,
 selectors, hashes or externally asserted PASS values does not meet that target.
 
-A proposed first feasibility window is 45 minutes to locate or construct a typed
-execution witness and a checked receiver in the existing stack. This window has
-not been run. A reliable estimate for a complete implementation is unavailable
-until that smallest correspondence is demonstrated; it must not be represented
-as a routine recorder repair. No new paid service is required for the proposed
-local diagnostic, and no external computation has been authorized by this file.
+The local feasibility window has now completed in 1,261.947 seconds (about
+21 minutes) within its 45-minute limit. `runtime-producer-feasibility.json`
+records the installed Kontrol 1.0.255 interface and source inspection, the
+18-file Kontrol and 123-file pyk Python census, selected exporter/serialization
+source hashes, and the actual saved-graph parse. The 22 source proof files
+remained byte-exact. The graph parsed as pyk KCFG with 20 nodes, 14 edges,
+two splits and zero covers. This is data-format evidence only.
+
+The inspected load-state path emits Solidity state-loading contracts; graph
+export emits K/KEVM modules or best-effort claims/rules. No Isabelle-checked
+operational receiver was found in the inspected local source. The HOL review
+separately confirmed that the execution record merely carries supplied fields,
+manifest projections are supplied functions, and the native word decoder does
+not implement bytes-to-typed-command decoding. A source-bound HOL execution
+inhabitant, correspondence positive/negative pair and semantic mutation were
+therefore not produced. Formal correspondence Building was not opened.
+
+The disposition is PARTIAL / SOURCE_BLOCKED, not an impossibility theorem.
+A reliable complete-implementation estimate is unavailable until a checked EVM
+receiver or verified trace/proof translator is selected and demonstrated. The
+minimum Native slice needs actual constructor/storage, calldata, external-call,
+return/revert and receipt/log decoding, plus a checked operational derivation.
+No new prover, deployment, paid calculation or alternative proof stack was run
+in this feasibility window. Existing model and bounded implementation evidence
+retain their separate validity.
 
 A kernel-checked operational correspondence can keep the Isabelle proof kernel
 as the final checker, but the exact EVM semantics and any translation must still

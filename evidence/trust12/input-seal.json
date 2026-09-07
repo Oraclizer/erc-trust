@@ -13,11 +13,11 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "ee052dd068eac84a07ac45be2db375ef83a2d66725094015603e6a126d32bb07"
+      "sha256": "79964ea65a1152f8df6c09a883b682e473d2c1eb05cc691395a6ce155a1a28b6"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
-      "sha256": "3967a81a1a33d81fbbcbf9f2844bf070e37671929cd7a4d2bb82bc792bf1c4cf"
+      "sha256": "ac3dd644dda69976489b70bf103e9b3bb90c4f047b7e6d9c7a10691c24cdd376"
     },
     {
       "path": "docs/PROFILES.md",
@@ -25,11 +25,11 @@
     },
     {
       "path": "evidence/trust12/README.md",
-      "sha256": "fd27e23f7c5ef3f26b0e0c0149136f7fb9e1287c8c37c73b5b0e907cb6774061"
+      "sha256": "8db2805ee754d3f67b47a4a664ed3fbb0abc91e0f4f2d5352d5ea3eb494d8ca3"
     },
     {
       "path": "evidence/trust12/aggregate-evidence-audit.md",
-      "sha256": "a1260ae9b7618c6f6f99d4b1c7cf1ad45cc30937ce08b3dd90b8421b1bf4cabe"
+      "sha256": "3f94ebbf51f65d6491077af5a2579175bce97926efeb36883728b7a8fe024856"
     },
     {
       "path": "evidence/trust12/deterministic-build-replay.json",
@@ -49,7 +49,7 @@
     },
     {
       "path": "evidence/trust12/formal-build-replay.json",
-      "sha256": "4d4bd6e299d1f2ef5418f9441785493bd11e6459adcbbccf7df4909a49db2e3c"
+      "sha256": "d388eda901481cf3ded651f97a625bda19abff2fc6baeae25a184734039806fa"
     },
     {
       "path": "evidence/trust12/formal-build.json",
@@ -74,6 +74,10 @@
     {
       "path": "evidence/trust12/model-preservation-audit.md",
       "sha256": "c98404dba5955eddc5f0f04a29f53f3036b03a5a114d26f7597e9417fb407bc0"
+    },
+    {
+      "path": "evidence/trust12/model-results.json",
+      "sha256": "7572efbbef9689c69dfc318e9d72902a8f87b32ba1d5df9b711418f29d989bce"
     },
     {
       "path": "evidence/trust12/model-source-normalization.json",
@@ -105,11 +109,11 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "aae47b64f1c8a9e298d4b3851713d50bb2da6fd7ef70ebb127ab2c9fbe0bb8e3"
+      "sha256": "1b4bf6d93ad0df080f17b60474535f9350141f25797ff0dd2a02247aa09c7bc6"
     },
     {
       "path": "evidence/trust12/required-controls.json",
-      "sha256": "5f14772f75917b0f8da8a133fd12ed0b36abb16d5ecc99d7a7416fbddcdcfd25"
+      "sha256": "7df81db7d1df82e9c85515c71f7754c4d81ec7b067f78a950347582ed9d8b957"
     },
     {
       "path": "evidence/trust12/runtime-identity.json",
@@ -117,7 +121,11 @@
     },
     {
       "path": "evidence/trust12/runtime-link-source-blockers.md",
-      "sha256": "742ca21c216fe7b2a20a3cd1003f52da4a09c1bbe7dc3b89cd7f6703a6b8a230"
+      "sha256": "bb4e9d9585c7407487a0533a52d49dbbc10b965ad5bf9d8e0a8d1f5938c945a4"
+    },
+    {
+      "path": "evidence/trust12/runtime-producer-feasibility.json",
+      "sha256": "5e79eeefba7228515868535bbb43150d1d84e724103ed3542f1d81338751939e"
     },
     {
       "path": "evidence/trust12/symbolic-booster.json",
@@ -297,7 +305,7 @@
     },
     {
       "path": "scripts/test-trust12-required.mjs",
-      "sha256": "bb29201d61c32feb9e483d74a0f2d99d261d40ef3337381bccf0eb54221a13f7"
+      "sha256": "dce0e6b0569a75c4c1ce3833e264f5404bf640ab042043d2da8c508da324c24e"
     },
     {
       "path": "scripts/verify-current-profile-release-v3.mjs",
@@ -321,7 +329,7 @@
     },
     {
       "path": "scripts/verify-trust12-required.mjs",
-      "sha256": "5bb5bc5a7b6cc882b097443ef8d91a7dbf543f4587d4115f0a6b1ec9d1dfc3e4"
+      "sha256": "08382cbf87748f5af9f73e52c89465875a89646657a963cd0486bfea13d678c0"
     }
   ],
   "nonclaim": "This seals one local development tranche. It is not a deployment, release, conformance approval, or end-to-end refinement result."
