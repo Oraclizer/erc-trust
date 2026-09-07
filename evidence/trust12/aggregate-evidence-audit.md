@@ -50,3 +50,16 @@ is not complete Assurance of TRUST 1.2, an implementation mutation rerun, a new
 Kontrol/Certora result, a deployment audit or a discharge of any runtime link.
 The six current mandatory obligations remain open. Input, dependency, session or
 admission changes reopen the affected execution and review.
+
+## Additional symbolic timeout review
+
+A subsequent read-only review checked the distinct Booster timeout receipt and
+its required-gate control. The 42 input files equal the named commit and current
+source, all 22 copied proof files match their hashes, and the 20-node graph uses
+CANCUN. The saved Native program differs from the template only at declared
+immutable positions. The four normal gates passed; the 33 admission controls
+include rejection of a fabricated Booster PASS. The original two no-Booster
+receipts and all mandatory obligations remain unchanged in status. This review
+credits an incomplete diagnostic result, not a symbolic proof. The reviewer did
+not rerun the backend binary, WSL cleanup or solver; it inspected the captured
+identity, scripts, logs and the runner's observations for those facts.

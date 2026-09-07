@@ -11,8 +11,8 @@ const testsRoot = '23f88d74a162d19792b51bdbd976d111c65e731b96ba5aac495b51be33125
 const mutationIds = ['callback-auth','factory-pin','hidden-agent','inbound','initial','receipt'];
 const mandatoryIds = ['MODEL-LINKED-RUN','MODEL-REGULATORY-PRESERVATION','NATIVE-SYMBOLIC-FREEZE','RUNTIME-LINK-HOOK','RUNTIME-LINK-NATIVE','RUNTIME-LINK-PARTIAL'];
 export const requiredTrust12Paths = [
-  'evidence/trust12/obligation-ledger.json','evidence/trust12/runtime-identity.json',
-  'evidence/trust12/independent-audit.md','evidence/trust12/symbolic-kontrol.json',
+  'evidence/trust12/obligation-ledger.json','evidence/trust12/runtime-identity.json','evidence/trust12/runtime-link-source-blockers.md',
+  'evidence/trust12/independent-audit.md','evidence/trust12/symbolic-kontrol.json','evidence/trust12/symbolic-booster.json',
   'evidence/trust12/formal-build.json','evidence/trust12/formal-build-replay.json',
   'evidence/trust12/local-validation.json','evidence/trust12/deterministic-build-replay.json',
   'evidence/trust12/evidence-reuse.json','evidence/trust12/evidence-reuse-controls.json',
@@ -83,6 +83,12 @@ export function verifyTrust12Required(root = repository) {
   check(symbolic.target.inputDomain === 'first > 0 and second > 0 and second <= first'
     && symbolic.target.explicitlyNotAssumed === 'first <= total supply', 'symbolic input domain narrowed');
   check(symbolic.attempts.every(a=>a.prove.status==='TIMEOUT' && a.prove.exitCode===124), 'unreviewed symbolic result promotion');
+  const booster = json(root,'evidence/trust12/symbolic-booster.json');
+  check(booster.status === 'INCOMPLETE' && booster.provider === 'local-wsl-kontrol' && booster.build.exitCode === 0
+    && booster.prove.exitCode === 124 && booster.backend.booster === true && booster.backend.wallTimeoutSeconds === 900,
+    'unreviewed Booster proof result promotion');
+  check(booster.harnessSha256 === symbolic.target.sourceSha256 && booster.inputDomain === symbolic.target.inputDomain
+    && booster.notAssumed === 'first <= supply', 'Booster source or input domain drift');
   const ledger = json(root,'evidence/trust12/obligation-ledger.json');
   const rows = new Map(ledger.obligations.map(row=>[row.id,row]));
   check(rows.size === ledger.obligations.length, 'duplicate TRUST 1.2 obligation');
@@ -103,6 +109,7 @@ export function verifyTrust12Required(root = repository) {
     profiles: { native: { existingEvidence: 'PRESERVED', runtimeRefinement: 'INCOMPLETE' },
       partial: { existingEvidence: 'PRESERVED', full: false, runtimeRefinement: 'INCOMPLETE' },
       hook: { functionalConformance: 'PASS_PINNED_FRESH_TREX', integrationTests: hookTests.length, semanticMutations: mutationIds.length, runtimeRefinement: 'INCOMPLETE' } },
+    symbolicBackendComparison: { status: booster.status, proofExit: booster.prove.exitCode, guardRemoval: booster.scope.guardRemoval },
     evidence: [...requiredTrust12Paths.filter(p=>p.startsWith('evidence/')), 'evidence/trust12/input-seal.json'].map(p=>fileRef(root,p)),
     nonclaim: 'Required evidence is present and bound to the current inputs. This consistency result does not close any pending model, symbolic or compiled-runtime obligation.' };
 }

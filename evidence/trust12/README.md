@@ -113,3 +113,17 @@ Hook subjects. The Hook subjects bind their own feature identity receipt and
 receive no legacy HOL bridge credit. Run `node scripts/test-trust12-required.mjs`
 for the missing-input, altered-provenance, session-graph and release-promotion
 controls. These controls are separate from implementation mutation campaigns.
+
+## Symbolic backend comparison
+
+`symbolic-booster.json` records one new proof identity with the original symbolic
+harness and domain, changing only Booster selection. Its build passed and its
+prove timed out at the same 900-second bound. The saved state reaches deployed
+Native runtime calls beyond the earlier constructor stop. It is neither a PASS
+nor a counterexample and has no completed guard-removal counterpart. The original
+two no-Booster receipts remain unchanged. Raw proof files were recovered and
+compared before the owned WSL workspace was removed.
+
+`runtime-link-source-blockers.md` assigns the seven correspondence parts to each
+profile and states the exact checked producer, replay conditions and trust-boundary
+work still needed. Its source inspection is not an impossibility theorem.
