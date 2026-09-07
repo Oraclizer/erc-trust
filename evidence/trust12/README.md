@@ -128,15 +128,15 @@ compared before the owned WSL workspace was removed.
 profile and states the exact checked producer, replay conditions and trust-boundary
 work still needed. Its source inspection is not an impossibility theorem.
 
-## Structural model work in progress
+## Structural model verification
 
 The canonical child theories now separate state definitions, custody arithmetic,
 six forward actions, UNRESTRICT, UNFREEZE and RELEASE preservation. The general
 `forward_preserves_state_wf` and `reversal_preserves_state_wf` results have a local
 kernel build. The linked-run, shared-custodian, below/above-supply and
 source-effect removal controls also passed. The 219-root, 236-fact recursive
-audit reports zero oracle dependencies. Independent integration review and
-admission of the fresh committed-source clean build remain in progress. None of these model results supplies an EVM-to-HOL producer.
+audit reports zero oracle dependencies. Both source review scopes passed, and
+the clean build is bound to its actual committed inputs in `model-results.json`. None of these model results supplies an EVM-to-HOL producer.
 
 `generate-trust12-proof-audit.py` enumerates every declared child theorem, using
 qualified names for locale theorems. Both the local closure runner and proof CI
@@ -146,3 +146,15 @@ the formal input identity, and the review seal includes every child theory.
 `model-preservation-audit.md` records the bounded seven-source independent review.
 `record-trust12-model-results.mjs` requires the current clean-build identity and
 actual proof export before recording the model theorem and control groups.
+
+`linked-controls-audit.md` records the separate linked-run and control review.
+`model-source-normalization.json` reconstructs the reviewed bytes across the
+small line-ending edits. The required gate binds the exact model result and
+rejects model, review, input and release-promotion drift. Its current controls
+contain 49 rejected negative fixtures. The symbolic FREEZE and three runtime
+producer obligations remain open; the legacy Partial profile remains full=false.
+
+`runtime-producer-feasibility.json` records the completed 21-minute local
+source/interface window. It parsed the saved KCFG without changing its 22 files,
+but found no checked EVM-to-Isabelle receiver in the inspected stack. Its
+PARTIAL / SOURCE_BLOCKED disposition carries no new proof or runtime credit.

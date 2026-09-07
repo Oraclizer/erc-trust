@@ -120,25 +120,25 @@
     },
     {
       "id": "MODEL-REGULATORY-PRESERVATION",
-      "abstractCondition": "Every admitted forward and reversal preserves a structural state invariant strong enough to relate overlay heads, actions, cases and custody.",
+      "abstractCondition": "From a state satisfying state_wf, every admitted forward and reversal preserves its structural and accounting references.",
       "normativeReceiver": "Wave 2 forward and reversal preservation",
       "finalSourceConsumer": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Regulatory_Preservation.thy: forward_preserves_state_wf; TRUST_Release_Preservation.thy: reversal_preserves_state_wf",
-      "positiveActivation": "All six forward and three reversal preservation theorems were kernel-built locally. Fresh independent review, new typed controls and current formal admission are in progress.",
-      "consumerRemovalNegative": "TRUST_Accounting_Invariant_Obstruction.thy preserves the typed accounting-only obstruction. TRUST_Structure_Invariant_Controls.thy adds source-derived state-effect removal controls; integrated validation is pending.",
+      "positiveActivation": "model-results.json binds the initial, ordinary, governance, failure, six forward and three reversal theorems to the current clean build and 219-root recursive audit.",
+      "consumerRemovalNegative": "model-results.json regulatoryNegative records typed accounting-only, head-pop, flag-restoration, backing-debit and custody-reference controls from the current compiled theories.",
       "compiledConsumer": "None for this model row. RUNTIME-LINK-NATIVE/PARTIAL/HOOK own the checked EVM producer obligations.",
-      "assumptionsNonclaims": "state_wf is a structural invariant, not a complete characterization of reachable states. Historical parent lifecycle and head-generation increments are retained; FREEZE is not bounded by supply. Current row stays mandatory until controls, independent review and execution admission are complete.",
-      "status": "CURRENT-MANDATORY"
+      "assumptionsNonclaims": "This is a structural/accounting model invariant, not a complete reachable-state characterization. Historical Reversed parents and increasing pop generations are allowed. FREEZE has no supply ceiling. Constructor and EVM word/storage correspondence remain separate.",
+      "status": "CLOSED"
     },
     {
       "id": "MODEL-LINKED-RUN",
-      "abstractCondition": "Successive executions connect each post-state to the next pre-state and preserve success and failure outcomes in a typed trace.",
+      "abstractCondition": "A typed abstract run connects every post-state to the next pre-state and preserves command, success and failure observations.",
       "normativeReceiver": "Wave 3 run-level relation and result tracking",
-      "finalSourceConsumer": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Linked_Run.thy: model_transaction_step, linked_run, run_observations (candidate under local repair)",
-      "positiveActivation": "Pending integrated build of linked state transitions and all outcome controls",
-      "consumerRemovalNegative": "Pending state-link deletion, outcome deletion and post-state substitution controls",
+      "finalSourceConsumer": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Linked_Run.thy: model_transaction_step, linked_run, run_observations",
+      "positiveActivation": "model-results.json linkedPositive and linkedModel bind admitted Applied-to-Rejected, SEIZE-to-RELEASE-to-new-command, shared custody and supply-crossing/pop sequences to the current clean build.",
+      "consumerRemovalNegative": "model-results.json linkedNegative binds deletion of the state link or outcome and substitution of success/failure post-state and malformed command, plus the failure-witness receipt trap.",
       "compiledConsumer": "Conditional composition from connected concrete configurations and per-step alpha_transaction only.",
-      "assumptionsNonclaims": "pinned_runtime_refinement.runtime_link remains assumed. Failure tags are preserved, but their complete rejection/operational cause is not derived. Success receipts are observed only for Applied; no equality with alpha_history is asserted.",
-      "status": "CURRENT-MANDATORY"
+      "assumptionsNonclaims": "The runtime corollary still assumes runtime_link and connected concrete configurations. Failure kinds are retained without proving complete failure causes. Applied-only receipts are not identified with alpha_history.",
+      "status": "CLOSED"
     },
     {
       "id": "NATIVE-SYMBOLIC-FREEZE",
@@ -198,13 +198,11 @@
   ],
   "centralClosure": {
     "status": "INCOMPLETE",
-    "preservation": "Canonical initial/ordinary/governance/failure and all nine regulatory state_wf preservation theorems have a local kernel build. New controls, independent source review, linked-run repair and formal evidence admission are in progress.",
+    "preservation": "PASS_ABSTRACT_MODEL: initial, ordinary, governance, failure and all nine regulatory state_wf preservation, linked-run induction and outcome-sensitive controls. Actual committed-source clean build and bounded independent source reviews are recorded in model-results.json and its references.",
     "reflection": "No general compiled-runtime reflection theorem.",
     "routeExhaustiveness": "Legacy routes retain their prior inventory; new hook/factory/callback routes have not received final independent reverse enumeration.",
     "stateReceiptIdentity": "Named hook state and receipt consumers have bounded evidence; constructor and general runtime projection are open.",
     "currentMandatory": [
-      "MODEL-REGULATORY-PRESERVATION",
-      "MODEL-LINKED-RUN",
       "NATIVE-SYMBOLIC-FREEZE",
       "RUNTIME-LINK-NATIVE",
       "RUNTIME-LINK-PARTIAL",

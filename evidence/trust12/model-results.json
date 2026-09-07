@@ -1,0 +1,172 @@
+{
+  "assuranceBoundary": "The source review covers its seven named inputs. Final integration review is a separate recorded review, not implied by the kernel build or theorem counts.",
+  "controls": [
+    {
+      "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Structure_Invariant_Controls.thy",
+      "sha256": "d9c5603ae6343151448e3fc97d2448fd0eda0c764d8868610f9bf5742e527bdc",
+      "theoremDeclarations": [
+        "first_above_supply_admitted",
+        "first_above_supply_structure",
+        "malformed_head_excluded",
+        "pop_generation_is_not_parent_generation",
+        "restrict_first_structure",
+        "repeat_restrict_reaches_unguarded_branch",
+        "repeat_restrict_without_guard_breaks_structure",
+        "seize_control_admitted",
+        "seize_control_state_wf",
+        "control_initial_state_wf",
+        "freeze_control_state_wf",
+        "restrict_control_admitted",
+        "restrict_control_state_wf",
+        "disposition_direct_control_admitted",
+        "disposition_custody_control_admitted",
+        "disposition_controls_preserve_state_wf",
+        "unfreeze_root_control_admitted",
+        "unrestrict_control_admitted",
+        "release_control_admitted",
+        "second_above_supply_control_admitted",
+        "unfreeze_parent_control_admitted",
+        "nonhead_freeze_control_rejected",
+        "reversal_controls_preserve_state_wf",
+        "parent_restoration_control_state_wf",
+        "parent_restoration_control_values",
+        "released_control_values",
+        "unfreeze_head_pop_removal_breaks_structure",
+        "unrestrict_flag_restore_removal_breaks_structure",
+        "release_backing_debit_removal_breaks_accounting",
+        "forward_control_is_model_step",
+        "reversal_control_is_model_step",
+        "failure_control_is_model_step",
+        "freeze_control_changes_state",
+        "linked_applied_then_rejected_control",
+        "rejected_repeat_control_is_not_admitted",
+        "linked_failure_between_applied_controls",
+        "after_release_new_command_admitted",
+        "linked_seize_release_new_command_control",
+        "state_link_removal_accepts_spliced_steps",
+        "outcome_removal_merges_distinct_failures",
+        "failure_witness_cannot_leak_success_receipt",
+        "applied_post_state_substitution_rejected",
+        "failure_post_state_substitution_rejected",
+        "malformed_typed_command_substitution_rejected",
+        "all_failure_kinds_remain_in_order"
+      ]
+    },
+    {
+      "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_State_Interaction_Controls.thy",
+      "sha256": "68c740c4e75fb0b95facc1c3bd174fb9959e6c0fbf3a74179d2f255d100afc4e",
+      "theoremDeclarations": [
+        "first_shared_custodian_seize_admitted",
+        "second_shared_custodian_seize_admitted",
+        "one_of_two_custody_releases_admitted",
+        "shared_custodian_release_control_linked",
+        "shared_custodian_release_preserves_other_case",
+        "shared_custodian_release_control_wf",
+        "wrong_custody_action_is_detected",
+        "wrong_custody_holder_is_detected",
+        "wrong_custody_amount_is_detected",
+        "inactive_amount_clear_removal_is_detected",
+        "ordinary_transfer_to_new_support_control",
+        "allowed_self_transfer_control",
+        "below_supply_freeze_control_admitted",
+        "crossed_supply_freeze_control_admitted",
+        "crossed_supply_parent_pop_admitted",
+        "crossed_supply_root_pop_admitted",
+        "new_case_after_two_pops_admitted",
+        "crossed_supply_two_pops_new_case_linked",
+        "historical_reversed_parent_and_new_head_control",
+        "historical_parent_lifecycle_and_generation_values",
+        "coexisting_restriction_admitted",
+        "coexisting_unrestriction_admitted",
+        "restriction_removal_preserves_coexisting_freeze",
+        "repeated_restriction_and_other_case_amendment_rejected"
+      ]
+    }
+  ],
+  "executionCommit": "16a01c7f6ed252baa56ef504a224eccae3abc8bd",
+  "formalAdmissionDigest": "4fe8d225182e8dcd34e85f68158650cd0c1e2f43e9e285105024719ee33639d3",
+  "formalRootSha256": "63e69742a093fd80d95b69c6bfcafff5063cd02b55c99e23d5284e9b239cb6fe",
+  "groups": {
+    "conditionalConnection": [
+      "connected_alpha_transactions_form_linked_run",
+      "pinned_runtime_refinement.runtime_linked_run_conditional"
+    ],
+    "linkedModel": [
+      "model_transaction_step_preserves_state_wf",
+      "linked_run_preserves_state_wf",
+      "linked_run_every_prefix_preserves_state_wf",
+      "all_transaction_outcomes_retained",
+      "failure_observation_has_no_success_receipt",
+      "applied_model_step_has_receipt"
+    ],
+    "linkedNegative": [
+      "state_link_removal_accepts_spliced_steps",
+      "outcome_removal_merges_distinct_failures",
+      "failure_witness_cannot_leak_success_receipt",
+      "applied_post_state_substitution_rejected",
+      "failure_post_state_substitution_rejected",
+      "malformed_typed_command_substitution_rejected"
+    ],
+    "linkedPositive": [
+      "linked_applied_then_rejected_control",
+      "linked_failure_between_applied_controls",
+      "linked_seize_release_new_command_control",
+      "shared_custodian_release_control_linked",
+      "crossed_supply_two_pops_new_case_linked"
+    ],
+    "regulatoryNegative": [
+      "malformed_head_excluded",
+      "repeat_restrict_without_guard_breaks_structure",
+      "unfreeze_head_pop_removal_breaks_structure",
+      "unrestrict_flag_restore_removal_breaks_structure",
+      "release_backing_debit_removal_breaks_accounting",
+      "wrong_custody_action_is_detected",
+      "wrong_custody_holder_is_detected",
+      "wrong_custody_amount_is_detected",
+      "inactive_amount_clear_removal_is_detected"
+    ],
+    "statePreservation": [
+      "native_initial_state_wf",
+      "ordinary_transfer_preserves_state_wf",
+      "authority_rotation_preserves_state_wf",
+      "dependency_rebind_preserves_state_wf",
+      "failure_preserves_state_wf_and_outcome",
+      "forward_preserves_state_wf",
+      "reversal_preserves_state_wf"
+    ]
+  },
+  "nonclaims": {
+    "allERC3643ImplementationsCovered": false,
+    "constructorStorageDecoded": false,
+    "evmWordArithmeticRefined": false,
+    "failureCausesComplete": false,
+    "reachableStateCharacterization": false,
+    "runtimeLinkDischarged": false
+  },
+  "proofAudit": {
+    "explicitRoots": 219,
+    "exportSha256": "85fe1610f63a4a0922fab0f77cabf7058862e3fd3f008102d94448d75326dd51",
+    "oracleDependencies": 0,
+    "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST12_Obstruction_Proof_Audit.thy",
+    "qualifiedFacts": 236,
+    "sha256": "e073c4787c450f41eaeb437e6e630995e082b3a2bf749958a0bc8e69208a9e68"
+  },
+  "provider": "local-windows-isabelle",
+  "schema": "trust12-model-results-v1",
+  "scope": "Structural/accounting preservation for nine model actions and connected abstract runs retaining every outcome. Conditional runtime composition is listed separately.",
+  "sourceNormalization": {
+    "path": "evidence/trust12/model-source-normalization.json",
+    "sha256": "525bed6acec68b8afb5e1f9316099fb0e38d97e45f47fdb0d8a9e40442a9b24d"
+  },
+  "sourceReviews": {
+    "linkedRun": {
+      "path": "evidence/trust12/linked-controls-audit.md",
+      "sha256": "fca6a8b9e59b3687267d11a12ecb68896dfdfbfd316a337c3c31369878459d64"
+    },
+    "preservation": {
+      "path": "evidence/trust12/model-preservation-audit.md",
+      "sha256": "c98404dba5955eddc5f0f04a29f53f3036b03a5a114d26f7597e9417fb407bc0"
+    }
+  },
+  "status": "PASS_KERNEL_CHECKED_MODEL"
+}

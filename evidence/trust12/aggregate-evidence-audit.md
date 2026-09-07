@@ -63,3 +63,82 @@ receipts and all mandatory obligations remain unchanged in status. This review
 credits an incomplete diagnostic result, not a symbolic proof. The reviewer did
 not rerun the backend binary, WSL cleanup or solver; it inspected the captured
 identity, scripts, logs and the runner's observations for those facts.
+
+## Model execution admission and linked-run completion
+
+A fresh read-only reviewer checked the 91-file frozen admission input
+`92e3320d92e3ae00063e0f1c8292bffcccd4de3df08c9bc66e429852446f1b5d` and independently
+reconstructed staged tree `932757c04abe53e965888ff82e7f9c1188eee513`. The source,
+current bytes and execution commit `16a01c7f6ed252baa56ef504a224eccae3abc8bd` agree
+for all 44 formal inputs and 33 theories. The actual before/after capture is
+byte-exact at `78ef6bc9798f9ce8986762e7a7fab49884b177f631b0afcb613209204f5aaf53`.
+The actual foundation overlay has 12 files and ADS has 6, with matching bytes.
+
+The reviewer directly read both Cleaned/Finished messages, parent 181 seconds,
+child 124 seconds, total build 317 seconds, wrapper exit 0, and the two actual
+proof exports. Parent remains 412 roots/413 facts; child is 219 roots/236 facts;
+both report zero oracle dependencies. The earlier 12-root child receipt was
+read from the execution commit's Git blob. Its execution identity was not
+rewritten into the new result.
+
+Independently recomputed admission values:
+
+- Formal input root: `63e69742a093fd80d95b69c6bfcafff5063cd02b55c99e23d5284e9b239cb6fe`.
+- Execution/dependency/export digest: `4fe8d225182e8dcd34e85f68158650cd0c1e2f43e9e285105024719ee33639d3`.
+- Model result: `7572efbbef9689c69dfc318e9d72902a8f87b32ba1d5df9b711418f29d989bce`.
+- Formal replay: `d388eda901481cf3ded651f97a625bda19abff2fc6baeae25a184734039806fa`.
+- Global Isabelle receipt: `4bf7795e439189a3904809aea081e5ae937776b09e3860ebc53b0cd6b373b3a9`.
+
+The required gate consumes the exact model result and its source/audit
+references. The new generator, capture helper, formal-input code and local
+runner are included in the recorded formal inputs. The source-review scopes
+and both reversible line-ending rules were independently reconciled. Four
+normal verifiers were directly executed by the reviewer with exit 0. The
+preserved release-denial raw reports exit 1 and `release mode required`.
+
+MODEL-REGULATORY-PRESERVATION and MODEL-LINKED-RUN are CLOSED as abstract model
+results. The symbolic FREEZE and three runtime producer rows remain mandatory,
+with INCOMPLETE propagated into the global summary, closure and index. The
+19 implementation source files remain byte-exact against the first Hook
+checkpoint. Existing Foundry, deterministic, mutation and runtime identities
+retain their own evidence ownership; the Partial profile stays full=false.
+
+## Runtime feasibility admission: affected review
+
+The follow-up read-only review checked the 32-file delta
+`0a3647bd3d14811f6b9bba073ed8dbf09a46d1cfda25c125140c90ead8640705`, independently
+reconstructing staged tree `be412370f25edae1aa3ca8f706028c8a2bc3f032`. Ten files
+from the earlier input changed and were all declared in the delta; no other
+drift was found. Formal input, model result and the four mandatory rows remain
+unchanged. Main independently compared all 32 final hashes before this entry.
+
+The runtime feasibility receipt is bound at
+`5e79eeefba7228515868535bbb43150d1d84e724103ed3542f1d81338751939e`.
+The reviewer checked its eight source anchors, seven raw references, exact
+1,261.947-second duration, installed 18-file Kontrol/123-file pyk census and
+12 selected package-source hashes. It confirmed Solidity/K/KEVM output paths
+and the absence of an operational Isabelle receiver in the inspected source.
+This is a bounded source inspection, not an impossibility result.
+
+The saved APRProof has admitted=false. Current graph data contains 22 files,
+20 nodes, 14 edges, zero covers and two splits. The current file-inventory root
+is `df20fafd53ece4921267ef109d55b134e27471aaa55ede48ccb1e1cf76765e98`.
+The data parser called KCFG.from_dict and reported a successful before/after
+comparison. Its historical per-file before/after list was not itself saved,
+so an independent historical comparison of every node file is not claimed.
+The source program, raw result, graph identities and current inventory were
+checked. This carries data-format credit only, with no new prover execution.
+
+The two added negatives reject missing feasibility evidence and fabricated
+feasibility completion. All earlier 47 controls remain and all 49 unique
+negative fixtures are REJECTED. Raw and curated controls match at
+`7df81db7d1df82e9c85515c71f7754c4d81ec7b067f78a950347582ed9d8b957`.
+The reviewer matched verifier `08382cbf87748f5af9f73e52c89465875a89646657a963cd0486bfea13d678c0`
+and test `dce0e6b0569a75c4c1ce3833e264f5404bf640ab042043d2da8c508da324c24e`
+to the recorded source identities, and directly ran all four normal verifiers.
+
+Both admission reviews returned PASS with no required source repair. They did
+not rerun Isabelle, the mutation fixtures or external provers. Final evidence
+and checkpoint accounting are Main responsibilities. No review closes the
+runtime_link assumption, constructor/storage decoding, EVM word correspondence,
+legal truth or support for every ERC-3643 implementation.

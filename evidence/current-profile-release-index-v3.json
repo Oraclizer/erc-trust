@@ -12,7 +12,7 @@
       "inputs": [
         {
           "path": ".github/workflows/proofs.yml",
-          "sha256": "246269b84ba2a8e54d89367174c22e558194961e8cfd70924933f85c66562826"
+          "sha256": "88455607a86e9191da3f5d12a5cc3b09f36e3a7bc1bb93e22dcf2bbcedf5bf13"
         },
         {
           "path": "evidence/public-release/formal-foundation-supersession-v1.json",
@@ -119,33 +119,81 @@
           "sha256": "07e1c6cc1ad470bdd9fc3bebaa8acac31998c18a6b8e7cd2221f8fd1dc01ef96"
         },
         {
+          "path": "formal/isabelle/ERC_TRUST/evidence/model-verification/run-trust-closure.ps1",
+          "sha256": "3ad425ff797f90937c67833b368b17463c511ecc5d6eef311461c6c201eece5a"
+        },
+        {
           "path": "formal/isabelle/ROOTS",
           "sha256": "bc0d98972158b22dd35d8e3f0c99a9231b7d7969b744ead12644ca79603944ad"
         },
         {
           "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/ROOT",
-          "sha256": "5a4b5ff89ba554d04306c1aac98b931b93583b3d36be52f180d65b64996866e4"
+          "sha256": "93a8ce9c52f9a2bc1b60952fabcb3625b580d4817babfec92db6b6d908a78d5d"
         },
         {
           "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST12_Obstruction_Proof_Audit.thy",
-          "sha256": "ba0f92615c72b53c7ef76d563598a23b962af5919a22b41c847aaea53afa7003"
+          "sha256": "e073c4787c450f41eaeb437e6e630995e082b3a2bf749958a0bc8e69208a9e68"
         },
         {
           "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Accounting_Invariant_Obstruction.thy",
           "sha256": "b9ba46b12ecb03baffd3f4cc0521219c6100fbb31820ad2d15b4a324a12b91fe"
         },
         {
+          "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Custody_Accounting.thy",
+          "sha256": "bee1f0f5cbf68f91fa9c3ca92fb5851020dd272a61b13ce5db18ccc8c8044ce9"
+        },
+        {
+          "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Linked_Run.thy",
+          "sha256": "47813adc486ad97b256df3721baf792f0a59d6edd4906babf1eca4c1a0d88f68"
+        },
+        {
+          "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Regulatory_Preservation.thy",
+          "sha256": "77a5ccac16322ea85c35d968a40f53d786d2911254ddb7e6697659bea797b4fb"
+        },
+        {
+          "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Release_Preservation.thy",
+          "sha256": "bbab722b3115ef246d9b083d6b3a405a9d3fa3ba675ad870c66278b39e9554de"
+        },
+        {
+          "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Reversal_Preservation.thy",
+          "sha256": "fcaa7178a21e63e077d303069ba80ef76cc8aef2c9e7440bc16921febf3e6aba"
+        },
+        {
+          "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_State_Interaction_Controls.thy",
+          "sha256": "68c740c4e75fb0b95facc1c3bd174fb9959e6c0fbf3a74179d2f255d100afc4e"
+        },
+        {
           "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_State_Invariants.thy",
-          "sha256": "5be6a7d9db007d4526c8de6e0be7324a77172e652a5a925113f26007e632266c"
+          "sha256": "1f05719150c9c1eac15ca417eb0516b738150077589da0fa827acb19cdc792fe"
+        },
+        {
+          "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Structure_Invariant_Controls.thy",
+          "sha256": "d9c5603ae6343151448e3fc97d2448fd0eda0c764d8868610f9bf5742e527bdc"
+        },
+        {
+          "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Unfreeze_Preservation.thy",
+          "sha256": "142a7302a0c9378b4d2631a5994b56cd32edd0330664364c59150a2c4e4f4654"
+        },
+        {
+          "path": "scripts/capture-isabelle-local-inputs.mjs",
+          "sha256": "421fb8663011d8d6192bce9f8bcfdb50f586bb21133eb9a677f53e236213713e"
+        },
+        {
+          "path": "scripts/generate-trust12-proof-audit.py",
+          "sha256": "a749060fd8a192e82a3b7bb95074b2986cdcf661488a6e6d13ed474581783997"
+        },
+        {
+          "path": "scripts/lib/formal-inputs.mjs",
+          "sha256": "8ecc60429a99411c8f588e17796dcf470bdb394e52e30787dca6315e5f49eb15"
         }
       ],
       "path": "formal/isabelle",
-      "rootSha256": "2694f614332e31338f0fd492bf02baa8834c517238bbfe22516181743de94874",
+      "rootSha256": "63e69742a093fd80d95b69c6bfcafff5063cd02b55c99e23d5284e9b239cb6fe",
       "sessions": [
         "ERC_TRUST",
         "TRUST12_Accounting_Obstruction"
       ],
-      "theoryFiles": 25
+      "theoryFiles": 33
     },
     "kontrolInputsSha256": "a9ae8bd47997bccda566d9a3d002fc8b21c11bed717f5332beae7b4ef9d56294",
     "sourceRootAlgorithm": "sha256-raw-files-case-sensitive-path-order-v1",
@@ -190,7 +238,7 @@
     "isabelleBuild": {
       "receipt": {
         "path": "evidence/isabelle-results-v3.json",
-        "sha256": "0ee3e1cea2703b2f6f53937c1126a7cba3952143347443216ce371abe6b9e4cc"
+        "sha256": "4bf7795e439189a3904809aea081e5ae937776b09e3860ebc53b0cd6b373b3a9"
       },
       "status": "PASS"
     },
@@ -361,7 +409,7 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "8e7fc2f050adb0b7ce61878368fe6f2ee2b21d2eeb1d88c11c065a1a35f5e7d8"
+        "sha256": "9fd63b764b950379ba64b9c90182526d8211e2d5aa9fc27cfea279539b30ad56"
       }
     },
     "runtime": {
@@ -394,8 +442,6 @@
     "trust12Required": {
       "centralClosure": "INCOMPLETE",
       "currentMandatory": [
-        "MODEL-LINKED-RUN",
-        "MODEL-REGULATORY-PRESERVATION",
         "NATIVE-SYMBOLIC-FREEZE",
         "RUNTIME-LINK-HOOK",
         "RUNTIME-LINK-NATIVE",
@@ -404,7 +450,7 @@
       "evidence": [
         {
           "path": "evidence/trust12/obligation-ledger.json",
-          "sha256": "1b380c11afdaaa4d04fb4ccd0dfcd2116eaf88226c60babe6ca1f7b63c9a3cf8"
+          "sha256": "1b4bf6d93ad0df080f17b60474535f9350141f25797ff0dd2a02247aa09c7bc6"
         },
         {
           "path": "evidence/trust12/runtime-identity.json",
@@ -412,7 +458,7 @@
         },
         {
           "path": "evidence/trust12/runtime-link-source-blockers.md",
-          "sha256": "742ca21c216fe7b2a20a3cd1003f52da4a09c1bbe7dc3b89cd7f6703a6b8a230"
+          "sha256": "bb4e9d9585c7407487a0533a52d49dbbc10b965ad5bf9d8e0a8d1f5938c945a4"
         },
         {
           "path": "evidence/trust12/independent-audit.md",
@@ -427,12 +473,32 @@
           "sha256": "5122e62e25bab00410949ce3ec12c8a3ce540e0ad104fb68356ed37829a89851"
         },
         {
+          "path": "evidence/trust12/runtime-producer-feasibility.json",
+          "sha256": "5e79eeefba7228515868535bbb43150d1d84e724103ed3542f1d81338751939e"
+        },
+        {
           "path": "evidence/trust12/formal-build.json",
           "sha256": "b66c7388681740d6f797292387c6932ed121c9ba9cb578b62452a30cef1526ed"
         },
         {
           "path": "evidence/trust12/formal-build-replay.json",
-          "sha256": "4d4bd6e299d1f2ef5418f9441785493bd11e6459adcbbccf7df4909a49db2e3c"
+          "sha256": "d388eda901481cf3ded651f97a625bda19abff2fc6baeae25a184734039806fa"
+        },
+        {
+          "path": "evidence/trust12/model-results.json",
+          "sha256": "7572efbbef9689c69dfc318e9d72902a8f87b32ba1d5df9b711418f29d989bce"
+        },
+        {
+          "path": "evidence/trust12/model-preservation-audit.md",
+          "sha256": "c98404dba5955eddc5f0f04a29f53f3036b03a5a114d26f7597e9417fb407bc0"
+        },
+        {
+          "path": "evidence/trust12/linked-controls-audit.md",
+          "sha256": "fca6a8b9e59b3687267d11a12ecb68896dfdfbfd316a337c3c31369878459d64"
+        },
+        {
+          "path": "evidence/trust12/model-source-normalization.json",
+          "sha256": "525bed6acec68b8afb5e1f9316099fb0e38d97e45f47fdb0d8a9e40442a9b24d"
         },
         {
           "path": "evidence/trust12/local-validation.json",
@@ -484,10 +550,15 @@
         },
         {
           "path": "evidence/trust12/input-seal.json",
-          "sha256": "18af8ffca93b25c0a47ead332f6d7d2c448380635d3129ea19f9daf1bac8bbed"
+          "sha256": "bc3ae8823c50abbedd59d4af93540e3bfed2398128c4a5d93715e7701491532f"
         }
       ],
-      "nonclaim": "Required evidence is present and bound to the current inputs. This consistency result does not close any pending model, symbolic or compiled-runtime obligation.",
+      "models": {
+        "linkedRun": "PASS_ABSTRACT_MODEL",
+        "preservation": "PASS_ABSTRACT_MODEL",
+        "runtimeConnection": "CONDITIONAL"
+      },
+      "nonclaim": "Required evidence is present and bound to the current inputs. The admitted abstract model results do not close the outstanding symbolic or compiled-runtime obligations.",
       "profiles": {
         "hook": {
           "functionalConformance": "PASS_PINNED_FRESH_TREX",
@@ -575,8 +646,6 @@
   "trust12Required": {
     "centralClosure": "INCOMPLETE",
     "currentMandatory": [
-      "MODEL-LINKED-RUN",
-      "MODEL-REGULATORY-PRESERVATION",
       "NATIVE-SYMBOLIC-FREEZE",
       "RUNTIME-LINK-HOOK",
       "RUNTIME-LINK-NATIVE",
@@ -585,7 +654,7 @@
     "evidence": [
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "1b380c11afdaaa4d04fb4ccd0dfcd2116eaf88226c60babe6ca1f7b63c9a3cf8"
+        "sha256": "1b4bf6d93ad0df080f17b60474535f9350141f25797ff0dd2a02247aa09c7bc6"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -593,7 +662,7 @@
       },
       {
         "path": "evidence/trust12/runtime-link-source-blockers.md",
-        "sha256": "742ca21c216fe7b2a20a3cd1003f52da4a09c1bbe7dc3b89cd7f6703a6b8a230"
+        "sha256": "bb4e9d9585c7407487a0533a52d49dbbc10b965ad5bf9d8e0a8d1f5938c945a4"
       },
       {
         "path": "evidence/trust12/independent-audit.md",
@@ -608,12 +677,32 @@
         "sha256": "5122e62e25bab00410949ce3ec12c8a3ce540e0ad104fb68356ed37829a89851"
       },
       {
+        "path": "evidence/trust12/runtime-producer-feasibility.json",
+        "sha256": "5e79eeefba7228515868535bbb43150d1d84e724103ed3542f1d81338751939e"
+      },
+      {
         "path": "evidence/trust12/formal-build.json",
         "sha256": "b66c7388681740d6f797292387c6932ed121c9ba9cb578b62452a30cef1526ed"
       },
       {
         "path": "evidence/trust12/formal-build-replay.json",
-        "sha256": "4d4bd6e299d1f2ef5418f9441785493bd11e6459adcbbccf7df4909a49db2e3c"
+        "sha256": "d388eda901481cf3ded651f97a625bda19abff2fc6baeae25a184734039806fa"
+      },
+      {
+        "path": "evidence/trust12/model-results.json",
+        "sha256": "7572efbbef9689c69dfc318e9d72902a8f87b32ba1d5df9b711418f29d989bce"
+      },
+      {
+        "path": "evidence/trust12/model-preservation-audit.md",
+        "sha256": "c98404dba5955eddc5f0f04a29f53f3036b03a5a114d26f7597e9417fb407bc0"
+      },
+      {
+        "path": "evidence/trust12/linked-controls-audit.md",
+        "sha256": "fca6a8b9e59b3687267d11a12ecb68896dfdfbfd316a337c3c31369878459d64"
+      },
+      {
+        "path": "evidence/trust12/model-source-normalization.json",
+        "sha256": "525bed6acec68b8afb5e1f9316099fb0e38d97e45f47fdb0d8a9e40442a9b24d"
       },
       {
         "path": "evidence/trust12/local-validation.json",
@@ -665,10 +754,15 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "18af8ffca93b25c0a47ead332f6d7d2c448380635d3129ea19f9daf1bac8bbed"
+        "sha256": "bc3ae8823c50abbedd59d4af93540e3bfed2398128c4a5d93715e7701491532f"
       }
     ],
-    "nonclaim": "Required evidence is present and bound to the current inputs. This consistency result does not close any pending model, symbolic or compiled-runtime obligation.",
+    "models": {
+      "linkedRun": "PASS_ABSTRACT_MODEL",
+      "preservation": "PASS_ABSTRACT_MODEL",
+      "runtimeConnection": "CONDITIONAL"
+    },
+    "nonclaim": "Required evidence is present and bound to the current inputs. The admitted abstract model results do not close the outstanding symbolic or compiled-runtime obligations.",
     "profiles": {
       "hook": {
         "functionalConformance": "PASS_PINNED_FRESH_TREX",
