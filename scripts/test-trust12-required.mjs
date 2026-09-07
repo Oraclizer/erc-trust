@@ -60,6 +60,7 @@ try {
   test('failed-exit-with-rehashed-provenance',()=>{change('evidence/trust12/local-validation.json',r=>{r.commands[0].exitCode=1;});rebindFoundrySource();},'local Foundry command failed');
   test('backwards-time-with-rehashed-provenance',()=>{change('evidence/trust12/local-validation.json',r=>{r.commands[0].finishedAt='2000-01-01T00:00:00Z';});rebindFoundrySource();},'local Foundry command failed');
   test('rewritten-deterministic-execution',()=>change('evidence/deterministic-build.json',r=>{r.candidateInput.gitHead='0'.repeat(40);}),'deterministic execution identity was rewritten');
+  test('false-booster-pass',()=>change('evidence/trust12/symbolic-booster.json',r=>{r.status='PASS';r.prove.exitCode=0;}),'unreviewed Booster proof result promotion');
   test('false-symbolic-pass',()=>change('evidence/trust12/symbolic-kontrol.json',r=>{r.status='PASS';}),'symbolic scope or source drift');
   test('narrowed-symbolic-domain',()=>change('evidence/trust12/symbolic-kontrol.json',r=>{r.target.inputDomain+=' and first <= supply';}),'symbolic input domain narrowed');
   test('false-mandatory-closure',()=>change('evidence/trust12/obligation-ledger.json',r=>{r.obligations.find(x=>x.id==='RUNTIME-LINK-HOOK').status='CLOSED';r.centralClosure.currentMandatory=r.centralClosure.currentMandatory.filter(x=>x!=='RUNTIME-LINK-HOOK');}),'unreviewed mandatory obligation removal');

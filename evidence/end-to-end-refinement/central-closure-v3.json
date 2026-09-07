@@ -778,11 +778,15 @@
     "evidence": [
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "0a04ffda5dde994989a9d29b1a78f6d772911a318a70148934836c38636dfb1a"
+        "sha256": "1b380c11afdaaa4d04fb4ccd0dfcd2116eaf88226c60babe6ca1f7b63c9a3cf8"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
         "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
+      },
+      {
+        "path": "evidence/trust12/runtime-link-source-blockers.md",
+        "sha256": "742ca21c216fe7b2a20a3cd1003f52da4a09c1bbe7dc3b89cd7f6703a6b8a230"
       },
       {
         "path": "evidence/trust12/independent-audit.md",
@@ -791,6 +795,10 @@
       {
         "path": "evidence/trust12/symbolic-kontrol.json",
         "sha256": "e40a85b127e3749c0cbce0255833984240853c80f5983e4ef09dd409cf4dd8b2"
+      },
+      {
+        "path": "evidence/trust12/symbolic-booster.json",
+        "sha256": "5122e62e25bab00410949ce3ec12c8a3ce540e0ad104fb68356ed37829a89851"
       },
       {
         "path": "evidence/trust12/formal-build.json",
@@ -850,7 +858,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "f5bd09645e28069ffc9ab16392656c138b7b9ddfe6cb6c0699d917bb75d6cc80"
+        "sha256": "18af8ffca93b25c0a47ead332f6d7d2c448380635d3129ea19f9daf1bac8bbed"
       }
     ],
     "nonclaim": "Required evidence is present and bound to the current inputs. This consistency result does not close any pending model, symbolic or compiled-runtime obligation.",
@@ -871,6 +879,11 @@
         "runtimeRefinement": "INCOMPLETE"
       }
     },
-    "status": "PASS_CONSISTENT_DEVELOPMENT"
+    "status": "PASS_CONSISTENT_DEVELOPMENT",
+    "symbolicBackendComparison": {
+      "guardRemoval": "NOT_RUN because the positive proof did not complete",
+      "proofExit": 124,
+      "status": "INCOMPLETE"
+    }
   }
 }

@@ -126,6 +126,11 @@
       "status": "REJECTED"
     },
     {
+      "name": "false-booster-pass",
+      "reason": "unreviewed Booster proof result promotion",
+      "status": "REJECTED"
+    },
+    {
       "name": "false-symbolic-pass",
       "reason": "symbolic scope or source drift",
       "status": "REJECTED"
@@ -165,8 +170,8 @@
   "positive": "PASS_CONSISTENT_DEVELOPMENT",
   "schema": "trust12-required-controls-v1",
   "source": {
-    "testSha256": "a1fd303e4cd81d18cc8634ae044c70bf19f482e2b41ae5ae07650e4e0b8941b8",
-    "verifierSha256": "4cb7e2c330d7643ddac21c5525a4247c620fd2ba8f231cbbacae09c24637e840"
+    "testSha256": "bb29201d61c32feb9e483d74a0f2d99d261d40ef3337381bccf0eb54221a13f7",
+    "verifierSha256": "432381ca0b606bd752839c50fad2f647f742126c5389f3c617681a0ca45bf227"
   },
   "status": "PASS"
 }
