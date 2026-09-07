@@ -64,7 +64,7 @@ if (local) {
   };
   localReplay = { schema: 'trust12-formal-build-replay-v1', status: 'PASS', provider: source.provider, sourceCommit: commit,
     startedAt: source.startedAt, finishedAt: source.finishedAt, processExit: 0,
-    command: 'isabelle build -c -o record_proofs=1 -d <ADS_Functor> -d <verified-foundation-overlay> -d formal/isabelle ERC_TRUST TRUST12_Accounting_Obstruction',
+    command: 'isabelle build -c -o record_proofs=1 -o threads=2 -o parallel_proofs=0 -d <ADS_Functor> -d <verified-foundation-overlay> -d formal/isabelle ERC_TRUST TRUST12_Accounting_Obstruction',
     inputCapture: { sha256: report.inputCapture.sha256, beforeAfterEqual: true },
     rawRun: fileRef(root, runPath), buildLog: fileRef(root, `${dir}/isabelle-clean-build.log`),
     exportLog: fileRef(root, `${dir}/isabelle-export.log`), formalSource, dependencyInputs, sessions,

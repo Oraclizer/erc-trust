@@ -8,6 +8,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 EXACT = [
     "scripts/capture-isabelle-local-inputs.mjs",
+    "scripts/generate-trust12-proof-audit.py",
     "scripts/lib/runtime-bundles.mjs",
     "scripts/test-trust12-required.mjs",
     "scripts/verify-trust12-required.mjs",
@@ -16,6 +17,7 @@ EXACT = [
     "scripts/record-foundry-results-v3.mjs",
     "scripts/record-isabelle-results-v3.mjs",
     "scripts/record-trust12-deterministic.mjs",
+    "scripts/record-trust12-model-results.mjs",
     "scripts/generate-runtime-binding-v3.mjs",
     "CHANGELOG.md",
     "scripts/verify-trust12-evidence-reuse.mjs",
@@ -64,7 +66,9 @@ def main() -> None:
         for path in (ROOT / "evidence/trust12").glob("*")
         if path.is_file() and path.name != "input-seal.json"
     )
-    paths = sorted(set(EXACT + evidence))
+    child_theories = [path.relative_to(ROOT).as_posix()
+                      for path in (ROOT / "formal/isabelle/TRUST12_OBSTRUCTIONS").glob("*.thy")]
+    paths = sorted(set(EXACT + evidence + child_theories))
     missing = [path for path in paths if not (ROOT / path).is_file()]
     if missing:
         raise RuntimeError("missing sealed inputs: " + ", ".join(missing))

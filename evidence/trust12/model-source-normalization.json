@@ -1,0 +1,25 @@
+{
+  "schema": "trust12-model-source-normalization-v1",
+  "status": "PASS_REVERSIBLE_LINE_ENDING_ONLY",
+  "files": [
+    {
+      "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/ROOT",
+      "beforeSha256": "04a30338160d9f7cb8c725ff15e4e7acda46c1483a0650f26029d08d6bb8ac5d",
+      "afterSha256": "93a8ce9c52f9a2bc1b60952fabcb3625b580d4817babfec92db6b6d908a78d5d",
+      "reconstructReviewedBytes": {
+        "kind": "append-final-LF",
+        "count": 1
+      }
+    },
+    {
+      "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Release_Preservation.thy",
+      "beforeSha256": "bd67dc946e059fed4d779b4ca44d6e5ba7721a7e6f301ea06d8b08b38ca74eb6",
+      "afterSha256": "bbab722b3115ef246d9b083d6b3a405a9d3fa3ba675ad870c66278b39e9554de",
+      "reconstructReviewedBytes": {
+        "kind": "insert-CR-before-LF",
+        "byteOffset": 27080
+      }
+    }
+  ],
+  "nonclaim": "Only the declared line-ending differences separate reviewed and normalized bytes. The committed-source clean build is recorded separately."
+}

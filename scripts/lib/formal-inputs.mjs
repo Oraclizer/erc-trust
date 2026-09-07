@@ -5,7 +5,8 @@ export function formalInputPaths(root) {
   return [...walk(root, 'formal/isabelle').filter(path => !path.includes('/evidence/') &&
     (path.endsWith('.thy') || path.endsWith('.ML') || ['ROOT', 'ROOTS'].includes(basename(path)))),
     'formal-dependencies.lock.json', 'formal-dependencies-public-v1.lock.json',
-    'evidence/public-release/formal-foundation-supersession-v1.json', '.github/workflows/proofs.yml'].sort();
+    'evidence/public-release/formal-foundation-supersession-v1.json', '.github/workflows/proofs.yml',
+    'scripts/generate-trust12-proof-audit.py'].sort();
 }
 export function formalIdentity(root, commit = null) {
   const paths = formalInputPaths(root);

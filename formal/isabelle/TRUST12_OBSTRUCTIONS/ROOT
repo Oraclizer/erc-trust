@@ -5,4 +5,12 @@ session TRUST12_Accounting_Obstruction = ERC_TRUST +
   theories
     TRUST_State_Invariants
     TRUST_Accounting_Invariant_Obstruction
+    TRUST_Custody_Accounting
+    TRUST_Regulatory_Preservation
+    TRUST_Reversal_Preservation
+    TRUST_Unfreeze_Preservation
+    TRUST_Release_Preservation
+    TRUST_Linked_Run
+    TRUST_Structure_Invariant_Controls
+    TRUST_State_Interaction_Controls
     TRUST12_Obstruction_Proof_Audit

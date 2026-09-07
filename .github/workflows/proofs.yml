@@ -51,7 +51,7 @@ jobs:
           changed="$(git diff --name-only "$base" HEAD)"
           printf 'changed files:\n%s\n' "$changed"
           if printf '%s\n' "$changed" | grep -E -q \
-            '^(formal/|formal-dependencies(-public-v1)?\.lock\.json$|scripts/verify-formal-foundation-supersession\.mjs$|evidence/public-release/formal-foundation-supersession-v1\.json$|\.github/workflows/proofs\.yml$)'; then
+            '^(formal/|formal-dependencies(-public-v1)?\.lock\.json$|scripts/verify-formal-foundation-supersession\.mjs$|scripts/generate-trust12-proof-audit\.py$|evidence/public-release/formal-foundation-supersession-v1\.json$|\.github/workflows/proofs\.yml$)'; then
             echo "run_formal=true" >> "$GITHUB_OUTPUT"
           else
             echo "run_formal=false" >> "$GITHUB_OUTPUT"
@@ -148,7 +148,8 @@ jobs:
           isabelle="$RUNNER_TEMP/Isabelle2025-2/bin/isabelle"
           afp="$RUNNER_TEMP/afp/ADS_Functor"
           foundation="$RUNNER_TEMP/formal-foundation-overlay"
-          "$isabelle" build -c -o record_proofs=1 -d "$afp" -d "$foundation" -d formal/isabelle \
+          python3 scripts/generate-trust12-proof-audit.py
+          "$isabelle" build -c -o record_proofs=1 -o threads=2 -o parallel_proofs=0 -d "$afp" -d "$foundation" -d formal/isabelle \
             ERC_TRUST TRUST12_Accounting_Obstruction
           export_root="$RUNNER_TEMP/isabelle-export"
           "$isabelle" export -d "$afp" -d "$foundation" -d formal/isabelle -x '*:erc-trust/model-proof-trust.txt' -O "$export_root" ERC_TRUST
