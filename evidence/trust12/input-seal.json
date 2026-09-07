@@ -12,6 +12,10 @@
       "sha256": "246269b84ba2a8e54d89367174c22e558194961e8cfd70924933f85c66562826"
     },
     {
+      "path": "CHANGELOG.md",
+      "sha256": "fdf7b227552f7e28fb42b2f75eedcea7b7c51ead674d3011f3012a4ad1c3aabe"
+    },
+    {
       "path": "FORMAL_VERIFICATION.md",
       "sha256": "8e81ece7803010567ebc669ae10472671d52e82070ac4284c387b777d7c042fa"
     },
@@ -21,7 +25,23 @@
     },
     {
       "path": "evidence/trust12/README.md",
-      "sha256": "df70eef21e859cff392ebd4b59d37b00180031e8836e97a229bccecfb1b055ef"
+      "sha256": "d07cd48d872f1a73a2c71ee08c1e7a4453c6fada528d3a48ca2273c2e92c60cd"
+    },
+    {
+      "path": "evidence/trust12/deterministic-build-replay.json",
+      "sha256": "f10d88a567718b05ac017686be7a7baacb75150b3ef3945ff8c11f69113064e3"
+    },
+    {
+      "path": "evidence/trust12/evidence-reuse-audit.md",
+      "sha256": "55579ee45cbd35e63b3b7ca84215ee0ee92fe40731b5c65199c50f980486da92"
+    },
+    {
+      "path": "evidence/trust12/evidence-reuse-controls.json",
+      "sha256": "3aa5f81cc50866df65c92aeedeb82a39e623ca819873c0d0ee59e0ad489dd183"
+    },
+    {
+      "path": "evidence/trust12/evidence-reuse.json",
+      "sha256": "7d25dc41ea3d83bd49e41f29139daa795815f9d324e2790a4258b6a40fe0979a"
     },
     {
       "path": "evidence/trust12/formal-build.json",
@@ -30,6 +50,10 @@
     {
       "path": "evidence/trust12/independent-audit.md",
       "sha256": "5a416e77cf6d5ca8c24356b9121daf3603169fa5669d193103f8d59a3958dc87"
+    },
+    {
+      "path": "evidence/trust12/local-validation.json",
+      "sha256": "e98c68cd306bf7e973a3642ec1898cbb09f94ebe260f7b3b4420d92fc3fdb273"
     },
     {
       "path": "evidence/trust12/mutation-callback-auth.json",
@@ -153,11 +177,31 @@
     },
     {
       "path": "scripts/generate-trust12-input-seal.py",
-      "sha256": "410c3fb278e9cf875d39bfc453e67d57409dd2bb7ffa90134db7067ba7be8bbd"
+      "sha256": "42c5e9378977787d8a01d50b97f4b9dfecc15a80262561a251569c70b18488c9"
     },
     {
       "path": "scripts/prepare-trex-integration.py",
       "sha256": "62c22a64c7364241ce85a6f5af1c55e66f65d3ba98b7b7e788d46f16822d8172"
+    },
+    {
+      "path": "scripts/test-trust12-evidence-reuse.mjs",
+      "sha256": "f44bff21158707a04ed16cc68df788167606d55425efde9d50eab12a04d55bc5"
+    },
+    {
+      "path": "scripts/verify-current-profile-release-v3.mjs",
+      "sha256": "8baa8b3c3ed6511ce0db87387c85389d7692601aa77fbad60d2e6f4fada9a8ed"
+    },
+    {
+      "path": "scripts/verify-obligation-ledger-v3.mjs",
+      "sha256": "4a9c219bd873b65f005330e4e8b205b267df89d061ca9ab3aabfb8ab8a858415"
+    },
+    {
+      "path": "scripts/verify-runtime-binding-v3.mjs",
+      "sha256": "e3d47a7217832463e7eee7f678d699bd5bc07058216956a3fda0e97aabd9591e"
+    },
+    {
+      "path": "scripts/verify-trust12-evidence-reuse.mjs",
+      "sha256": "ba99c4f1b32b173a696d92678b580f7e944073ae9ed81ee7b7685cd732f48fec"
     },
     {
       "path": "scripts/verify-trust12-evidence.py",

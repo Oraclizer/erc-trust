@@ -1,0 +1,83 @@
+{
+  "schema": "trust12-evidence-reuse-controls-v1",
+  "status": "PASS",
+  "positive": "PASS",
+  "negativeControls": [
+    {
+      "name": "paired-runner-change",
+      "status": "REJECTED",
+      "reason": "preserved baseline inventory root drift"
+    },
+    {
+      "name": "fabricated-historical-proof",
+      "status": "REJECTED",
+      "reason": "preserved baseline inventory root drift"
+    },
+    {
+      "name": "changed-preserved-source",
+      "status": "REJECTED",
+      "reason": "reuse current aggregate source root drift"
+    },
+    {
+      "name": "missing-runtime-vector",
+      "status": "REJECTED",
+      "reason": "preserved baseline inventory root drift"
+    },
+    {
+      "name": "new-source-unowned",
+      "status": "REJECTED",
+      "reason": "reuse current aggregate source root drift"
+    },
+    {
+      "name": "missing-owner",
+      "status": "REJECTED",
+      "reason": "new input ownership drift"
+    },
+    {
+      "name": "duplicate-owner",
+      "status": "REJECTED",
+      "reason": "new input ownership drift"
+    },
+    {
+      "name": "changed-compiler",
+      "status": "REJECTED",
+      "reason": "compiler or execution configuration changed beyond the two Hook artifact reads"
+    },
+    {
+      "name": "changed-receipt",
+      "status": "REJECTED",
+      "reason": "historical mutation receipt changed"
+    },
+    {
+      "name": "current-root-fast-path",
+      "status": "REJECTED",
+      "reason": "preserved input drift: scripts/run-mutations.ps1"
+    },
+    {
+      "name": "release-mode",
+      "status": "REJECTED",
+      "reason": "TRUST 1.2 checkpoint is development-only: profile-scoped mandatory obligations and release evidence are not closed"
+    },
+    {
+      "name": "entrypoint:verify-current-profile-release-v3.mjs",
+      "status": "REJECTED",
+      "reason": "preserved baseline inventory root drift before absent mutation receipt"
+    },
+    {
+      "name": "entrypoint:verify-obligation-ledger-v3.mjs",
+      "status": "REJECTED",
+      "reason": "preserved baseline inventory root drift before absent mutation receipt"
+    },
+    {
+      "name": "entrypoint:verify-runtime-binding-v3.mjs",
+      "status": "REJECTED",
+      "reason": "preserved baseline inventory root drift before absent mutation receipt"
+    }
+  ],
+  "inputs": {
+    "verifierSha256": "ba99c4f1b32b173a696d92678b580f7e944073ae9ed81ee7b7685cd732f48fec",
+    "testSha256": "f44bff21158707a04ed16cc68df788167606d55425efde9d50eab12a04d55bc5",
+    "manifestSha256": "7d25dc41ea3d83bd49e41f29139daa795815f9d324e2790a4258b6a40fe0979a"
+  },
+  "nonclaim": "These are input-verifier and entrypoint controls, not new implementation mutation runs, symbolic proofs, model proofs, or end-to-end refinement."
+}

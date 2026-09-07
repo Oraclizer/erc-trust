@@ -1,0 +1,212 @@
+{
+  "baselineCommit": "2545efa64289ad82fe3ad8a99e5dfad01ff92c10",
+  "currentSourceRootSha256": "158420df1daf7b8abe43b722f01bdb124dcec32a5e46ffbe339bb51330711abd",
+  "foundryConfiguration": {
+    "baselineText": "[profile.default]\nsrc = \"implementation/src\"\ntest = \"implementation/test\"\nout = \"out\"\ncache_path = \"cache\"\nsolc_version = \"0.8.36\"\nevm_version = \"cancun\"\noptimizer = true\noptimizer_runs = 1\nvia_ir = true\nbytecode_hash = \"none\"\ncbor_metadata = false\nast = true\nbuild_info = true\nextra_output = [\"storageLayout\"]\nffi = false\nfs_permissions = [{ access = \"read\", path = \"./vectors/conformance-v2.json\" }]\n\n[profile.kontrol]\ntest = \"implementation/kontrol\"\n\n[fmt]\n# The kernel copy is generated from the normative machine source and checked byte for byte;\n# the formatter must not rewrite it.\nignore = [\"implementation/src/generated/**/*\"]\n",
+    "permittedChange": "Two read-only T-REX artifact paths used solely by the new integration test; compiler and legacy detector settings are unchanged."
+  },
+  "inputCommit": "b40a0901cc543f8384e4d11406dd46a383008fcb",
+  "newInputs": [
+    {
+      "owner": "hook-functional",
+      "path": "implementation/src/profiles/ERC3643HookAdapter.sol",
+      "sha256": "61056cd3aa34900820cb08592c55803a5add1ab36c493ec36a5e3ee72add9533"
+    },
+    {
+      "owner": "hook-functional",
+      "path": "implementation/src/profiles/ERC3643HookCompliance.sol",
+      "sha256": "700614fcb6db1246099a16859e79cb4b555785545ea1a31c780f8b97b8016e7a"
+    },
+    {
+      "owner": "hook-functional",
+      "path": "implementation/src/profiles/ERC3643HookDeployment.sol",
+      "sha256": "8a830ba8cdfac4a3cf33dc2b3338a8765b9303afd56bf32a207afa32b19e63bf"
+    },
+    {
+      "owner": "hook-functional",
+      "path": "implementation/src/profiles/ERC3643HookFactory.sol",
+      "sha256": "d7e24b5bde9ec8f4ce1d5537e83858fe727067bdca580c7d4a5126c1d35b94b1"
+    },
+    {
+      "owner": "hook-functional",
+      "path": "implementation/src/profiles/ERC3643HookGovernor.sol",
+      "sha256": "69a0b68f72427081acb26c24299ad03afcdc2b615e8885c05d8eaff52eb9d59e"
+    },
+    {
+      "owner": "hook-functional",
+      "path": "implementation/test/ERC3643HookTrexIntegration.t.sol",
+      "sha256": "9e904adced498aa21bd06cada1033b89410f40a61014d67baaa3f1b78a63a4f7"
+    },
+    {
+      "owner": "native-symbolic-expanded",
+      "path": "implementation/kontrol/trust12/TrustTokenSymbolicKontrolTest.t.sol",
+      "sha256": "d143fc0040e3cd4087cc9c92c588f2c74ff73cd50818e6bbc3c3f7c3d8638491"
+    }
+  ],
+  "nonclaim": "The original receipts retain their original execution identities. This receipt proves input preservation, not a new prover run or general runtime correspondence.",
+  "preservedInputs": [
+    {
+      "path": "formal/kevm/dependencies.lock.json",
+      "sha256": "3134e7692086170f86b6dd42e7ebd0256c188da8db8cbd17241c3d2c8d315196"
+    },
+    {
+      "path": "implementation/certora/ERC3643Partial.conf",
+      "sha256": "e6fe5e3584ba36913d78181bfae2de7e10d1ca28f297918687039e4823f846eb"
+    },
+    {
+      "path": "implementation/certora/ERC3643Partial.spec",
+      "sha256": "0be0a60b4abe7e8e0facc43745855940e8321388cca0af38ed7551c624d9c6fd"
+    },
+    {
+      "path": "implementation/certora/ERC3643PartialHarness.sol",
+      "sha256": "ede2c6e7f07fcab84d3a0f0cd095bfbb07e5048c5e5a0b4b2079b4268a928c9d"
+    },
+    {
+      "path": "implementation/kontrol/TrustTokenKontrolTest.t.sol",
+      "sha256": "ebd82721dfd8b367a2d1db7c734d0d6e50925ef64911e9a405335effa93c006f"
+    },
+    {
+      "path": "implementation/kontrol/erc-trust-log-assertions.k",
+      "sha256": "0619502b5d9d0615fdcf587e6ac4619a912fc1b3d4d3b5c5fd1863d9af3510e3"
+    },
+    {
+      "path": "implementation/src/ERC7943RouteTicket.sol",
+      "sha256": "f1a8357a988a648775382603c7eaf2db410f7d55fd08a1cef29763e69de547a6"
+    },
+    {
+      "path": "implementation/src/TrustDependencyBinding.sol",
+      "sha256": "53fb6a74a5168f7f2b9f005657ee7df5528974d53dae2359ea1e4ae3fb063020"
+    },
+    {
+      "path": "implementation/src/TrustErrors.sol",
+      "sha256": "fbe1dffd50792b2da9604a0de37a5b089c427b329c96f80253ff317bb16491df"
+    },
+    {
+      "path": "implementation/src/TrustNativeDecision.sol",
+      "sha256": "4643a157f29fd9557ff60e58c6500e98704b9d94b02ef12ffb5c7baecfaa24ee"
+    },
+    {
+      "path": "implementation/src/TrustNativeTypes.sol",
+      "sha256": "f76fc4fd80d74075c3ffdbbc7afb30919eb73bf465ac04e3b83d742c8f88745b"
+    },
+    {
+      "path": "implementation/src/TrustStorage.sol",
+      "sha256": "610170dbd24ba2791d459db9a24e2c05e7d699594c035074379a5700dbdb7931"
+    },
+    {
+      "path": "implementation/src/TrustToken.sol",
+      "sha256": "deeedf231b461035ac4496b36438d6ea28298ed2935b920bf9c01cb31f94ef1b"
+    },
+    {
+      "path": "implementation/src/generated/IERCTrustKernel.sol",
+      "sha256": "8f179a21b04fa1f172bdddef2f8878a01524d3429570c0abf9aa60cfc8738f7d"
+    },
+    {
+      "path": "implementation/src/interfaces/IERC20.sol",
+      "sha256": "414510c4de8ff90b066ea33f3d75ce7c4891f4ee43de55c52e333740d6fd8131"
+    },
+    {
+      "path": "implementation/src/interfaces/IERC3643External.sol",
+      "sha256": "701bae4ffedc2f7a00287b882247bd8de5c68131e13ac3c3e957f1d678d12119"
+    },
+    {
+      "path": "implementation/src/interfaces/IERC7943.sol",
+      "sha256": "1b968ee48cd0c9adadf22d33f1f245486b14ed1141df23f7d01385abfbb159f7"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643ProfileTypes.sol",
+      "sha256": "9fbb5b1f379018e7412702324a4eae5a30db57f3937f0da42b24bab0e4efede4"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+      "sha256": "f2806571c8c39984ee6c50f5e8dd0aa94aac5e273564012afcb4ebb55e43320f"
+    },
+    {
+      "path": "implementation/src/profiles/ProfileGovernor.sol",
+      "sha256": "e9fec4c21a65edaa5619ee1368deb93da1645e311984a12cc89ca29131595ae8"
+    },
+    {
+      "path": "implementation/test/ERC3643Profile.invariant.t.sol",
+      "sha256": "ce59df496a51c821e5fe3343e5a76212d8a941ffb9dd03c5dda4d46a8a5031ef"
+    },
+    {
+      "path": "implementation/test/ERC3643Profile.unit.t.sol",
+      "sha256": "ea647e5c405cb3410f3fa8bab63991f28b7fe202d762f7c9e9ed28a672bd7ada"
+    },
+    {
+      "path": "implementation/test/ERC3643ProfileTrexFixture.t.sol",
+      "sha256": "b7033e8c7e86cf0c1d9b54793d54bb1a2217fa2ac35bf35ddc588d0ec9404d3c"
+    },
+    {
+      "path": "implementation/test/TrustActions.fuzz.t.sol",
+      "sha256": "b775fd5bcc7f96ae7cdf3ea53c9f7a7ad5e247c6d09cf52ffc2b588a75936199"
+    },
+    {
+      "path": "implementation/test/TrustActions.unit.t.sol",
+      "sha256": "8dc0d6643700eb2545ab23ee8f5629e0fdb87efb9431ec9fde168f1f58786400"
+    },
+    {
+      "path": "implementation/test/TrustKernelVectors.t.sol",
+      "sha256": "b874e08b72d739df8b1cbe852026a84ad999ddf107391eaab6d728a614625dc5"
+    },
+    {
+      "path": "implementation/test/TrustStateful.invariant.t.sol",
+      "sha256": "2cccbc6476f1d673157c19ff8ab825b5d08775ccfc72c3a9a7150d32b2962f87"
+    },
+    {
+      "path": "implementation/test/TrustTestBase.t.sol",
+      "sha256": "570a8e368299b48a328c48cbef98a4641642dc57d86e95a46555aa8c9761d0e9"
+    },
+    {
+      "path": "implementation/test/mocks/Actor.sol",
+      "sha256": "3e5f4d51ae056431fb2bbed53cf1f0f759b73fe20283c48f1f146ea4435787e5"
+    },
+    {
+      "path": "implementation/test/mocks/MockBoundDependency.sol",
+      "sha256": "184fc5df8c37eef0f0388194546d107c63a89785e69cc9d6f14cba4ae5bcd1b8"
+    },
+    {
+      "path": "implementation/test/mocks/MockERC3643Dependencies.sol",
+      "sha256": "acbfc4c650f44c83ad95be5c1bb14c21eebc5b8ab03369ddf56bb3ff0b7701b1"
+    },
+    {
+      "path": "implementation/test/mocks/MockERC3643Token.sol",
+      "sha256": "884cabbde0396a5c906f2b99d4010fbde6ab3e430b7e52784b98dfefa4eb0438"
+    },
+    {
+      "path": "implementation/test/mocks/MockERC3643TokenTrex.sol",
+      "sha256": "870bf2344e6f6a4a26f307fba5e141a6605003abe7d894052552ccaf28bcc23c"
+    },
+    {
+      "path": "scripts/lib/mutation-campaign.mjs",
+      "sha256": "a457d093da6e04293d993aa4b89d490a8454b5020980cad5eead258e8dc3b73c"
+    },
+    {
+      "path": "scripts/mutation-campaign-v1.json",
+      "sha256": "17a5c7d2b96ce3c9c3e3af54cf39e1426f53b3c16acd14172c026177c82d36a8"
+    },
+    {
+      "path": "scripts/run-mutations.ps1",
+      "sha256": "8686dd23defe863c1210c15f2bf1dad6c2e6e48ada3d65fe356a302af5ec6ef4"
+    },
+    {
+      "path": "vectors/conformance-v2.json",
+      "sha256": "077a05221ae8f23fea5db8d47aaa6a3a8b7f91f6eee8706fa38d22da9cebeaad"
+    }
+  ],
+  "preservedMutation": {
+    "execution": "Historical execution retained without rewriting its candidateInput; all 121 detector, source, vector and campaign inputs are compared here. No new execution is claimed.",
+    "receiptPath": "evidence/mutation-results.json",
+    "receiptSha256": "7267fd6d18b9405cdc9d69c612734eda0a323b23ef271321dd3f1061c55b15cc",
+    "sourceRootSha256": "947afab7619b5c2d629da3e233c1cbe76fc6556a61112fbcc51b99c7e7235272"
+  },
+  "preservedProofs": {
+    "certora": {
+      "receiptSha256": "52e3cba36ebc94d87925ca7e1a05ee86012285773d7a453a73bd7fb05836a8bc"
+    },
+    "kontrol": {
+      "receiptSha256": "20d5eac6b01009e29baa80524db7f329f9e0834515a8a96133715f8b0a1f6f2c"
+    }
+  },
+  "schema": "trust12-evidence-reuse-v1"
+}

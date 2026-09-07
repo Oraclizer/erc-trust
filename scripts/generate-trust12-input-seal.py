@@ -7,6 +7,12 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 EXACT = [
+    "CHANGELOG.md",
+    "scripts/verify-trust12-evidence-reuse.mjs",
+    "scripts/test-trust12-evidence-reuse.mjs",
+    "scripts/verify-current-profile-release-v3.mjs",
+    "scripts/verify-obligation-ledger-v3.mjs",
+    "scripts/verify-runtime-binding-v3.mjs",
     ".github/workflows/ci.yml",
     ".github/workflows/proofs.yml",
     "FORMAL_VERIFICATION.md",
@@ -61,7 +67,7 @@ def main() -> None:
     }
     encoded = json.dumps(report, indent=2) + "\n"
     if "--write" in sys.argv:
-        (ROOT / "evidence/trust12/input-seal.json").write_text(encoded, encoding="utf8")
+        (ROOT / "evidence/trust12/input-seal.json").write_text(encoded, encoding="utf8", newline="\n")
     print(encoded, end="")
 
 
