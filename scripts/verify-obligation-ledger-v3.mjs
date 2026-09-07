@@ -29,11 +29,13 @@
 // claim ladder only; while one exists the closure status must stay CONDITIONAL.
 
 import { createHash } from "node:crypto";
+import { verifyTrust12EvidenceReuse, mutationInputMatches } from "./verify-trust12-evidence-reuse.mjs";
 import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+verifyTrust12EvidenceReuse(root); // Always check the complete inventory, even without a mutation receipt.
 const writeMode = process.argv.includes("--write");
 const paths = {
   ledger: "evidence/end-to-end-refinement/obligation-ledger-v3.json",
@@ -159,7 +161,7 @@ const sourceRootSha256 = rootOf([...walk("implementation/src"), ...walk("impleme
 const mutationReceiptCurrent = receipts.mutation !== null
   && JSON.stringify(receipts.mutation.data.results.map((result) => result.id)) === JSON.stringify([...declaredMutations.keys()])
   && receipts.mutation.data.campaignDefinitionSha256 === mutationCampaign.campaignDefinitionSha256
-  && receipts.mutation.data.candidateInput?.sourceRootSha256 === sourceRootSha256;
+  && mutationInputMatches(root, receipts.mutation.data.candidateInput?.sourceRootSha256, sourceRootSha256);
 const deterministic = receipts.deterministic?.data ?? null;
 const runtimeSha256 = deterministic?.buildA?.runtimeSha256 ?? null;
 const deterministicReceiptCurrent = deterministic !== null

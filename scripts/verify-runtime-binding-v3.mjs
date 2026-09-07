@@ -19,6 +19,7 @@
 //   node scripts/verify-runtime-binding-v3.mjs --replay   plus pinned-compiler replay
 
 import { createHash } from "node:crypto";
+import { verifyTrust12EvidenceReuse, mutationInputMatches } from "./verify-trust12-evidence-reuse.mjs";
 import { execFileSync } from "node:child_process";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { dirname, posix, resolve } from "node:path";
@@ -27,6 +28,7 @@ import { resolvePinnedSolc } from "./lib/resolve-pinned-solc.mjs";
 import { artifactAsCompilerContract, immutablePositions, normalizedAbi, pinnedCompilerSettings, semanticCheckNames, semanticChecks, semanticMutant, semanticStorageLayout, stable } from "./lib/runtime-binding-semantics.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+verifyTrust12EvidenceReuse(root); // Always check the complete inventory, even without a mutation receipt.
 const replay = process.argv.includes("--replay");
 const receiptPath = "evidence/runtime-binding-v3.json";
 const sha256 = (value) => createHash("sha256").update(value).digest("hex");
@@ -118,7 +120,7 @@ for (const [id, key] of [["profileAdapter", "erc3643Adapter"], ["profileGovernor
 const staleChecks = [
   ["evidence/deterministic-build.json", (data) => data.candidateInput?.sourceRootSha256 === sourceRootSha256],
   ["evidence/foundry-results-v3.json", (data) => data.sourceRootSha256 === sourceRootSha256 && data.runtimeTemplate?.sha256 === receipt.runtimeTemplateSha256],
-  ["evidence/mutation-results.json", (data) => data.candidateInput?.sourceRootSha256 === sourceRootSha256],
+  ["evidence/mutation-results.json", (data) => mutationInputMatches(root, data.candidateInput?.sourceRootSha256, sourceRootSha256)],
   ["evidence/kontrol-results-v3.json", (data) => data.runtimeBinding?.runtimeSha256 === receipt.runtimeTemplateSha256],
   ["evidence/certora-results-v3.json", (data) =>
     data.runtimeTemplateSha256 === subjectsById.get("profileAdapter")?.runtimeTemplate.sha256],
