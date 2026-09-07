@@ -16,6 +16,7 @@
 //   node scripts/verify-current-profile-release-v3.mjs --require-release
 
 import { createHash } from "node:crypto";
+import { verifyTrust12EvidenceReuse, mutationInputMatches, assertTrust12DevelopmentMode } from "./verify-trust12-evidence-reuse.mjs";
 import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -203,6 +204,7 @@ const mode = json(modePath);
 const expectations = json(expectationsPath);
 check(expectations.schema === "erc-trust-evidence-expectations-v3", "evidence expectations schema drift");
 check(mode.schema === "erc-trust-evidence-mode-v1", "evidence mode schema drift");
+assertTrust12DevelopmentMode(mode.mode);
 check(["successor-development", "release"].includes(mode.mode), `unsupported evidence mode: ${mode.mode}`);
 check(mode.pendingAllowed === (mode.mode !== "release"), "pendingAllowed must follow the mode");
 check(typeof mode.candidate === "string" && /^\d+\.\d+\.\d+-candidate\.\d+$/.test(mode.candidate), "candidate label");
@@ -213,11 +215,12 @@ const candidate = mode.candidate;
 // Identity of the tree under verification
 // ---------------------------------------------------------------------------
 
+const trust12Reuse = verifyTrust12EvidenceReuse(root);
 const identity = {
   sourceRootAlgorithm: "sha256-raw-files-case-sensitive-path-order-v1",
   sourceRootSha256: sourceRoot(),
   formalRoot: formalRoot(),
-  kontrolInputsSha256: rootOf(["implementation/src/TrustToken.sol", ...walk("implementation/kontrol")]),
+  kontrolInputsSha256: rootOf(trust12Reuse.kontrolInputPaths),
   certoraInputsSha256: expectations.certora.expectedInputPaths.length > 0
     ? rootOf(expectations.certora.expectedInputPaths)
     : null,
@@ -381,7 +384,7 @@ if (!exists(receiptPaths.mutation)) {
   const mutation = json(receiptPaths.mutation);
   check(mutation.schema === "erc-trust-mutation-result-v2", "mutation receipt schema");
   check(mutation.candidateInput.sourceRootAlgorithm === identity.sourceRootAlgorithm, "mutation source root algorithm");
-  check(mutation.candidateInput.sourceRootSha256 === identity.sourceRootSha256, "mutation receipt binds a different source root");
+  check(mutationInputMatches(root, mutation.candidateInput.sourceRootSha256, identity.sourceRootSha256), "mutation receipt binds a different source root");
   check(mutation.total === mutation.results.length && mutation.killed === mutation.total && mutation.survived === 0,
     "mutation counts");
   validateMutationDefinitionBinding(
@@ -394,7 +397,7 @@ if (!exists(receiptPaths.mutation)) {
   const declared = declaredMutationIds();
   check(declared.length > 0 && JSON.stringify(mutation.results.map((result) => result.id)) === JSON.stringify(declared),
     "mutation receipt does not list exactly the declared campaign in scripts/run-mutations.ps1");
-  check(fullSha(mutation.candidateInput.gitHead) && mutation.candidateInput.sourceRootSha256 === identity.sourceRootSha256,
+  check(fullSha(mutation.candidateInput.gitHead) && mutationInputMatches(root, mutation.candidateInput.sourceRootSha256, identity.sourceRootSha256),
     "mutation commit does not produce the declared source root");
   for (const result of mutation.results) {
     check(result.result === "KILLED" && result.anchorOccurrences >= 1 && result.detectorDiscovered === 1
@@ -575,6 +578,7 @@ const index = {
   identity,
   lanes,
   pendingLanes,
+  trust12EvidenceReuse: trust12Reuse,
   historicalBaseline: fileRef(historicalIndexPath),
   replay: { release: "node scripts/verify-current-profile-release-v3.mjs" },
   nonclaims: [

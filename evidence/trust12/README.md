@@ -73,3 +73,24 @@ The mutation runner rebinds the isolated factory's creation-code pin to the muta
 endpoint so that the detector reaches the intended semantic check. It reports this
 adjustment explicitly. A compiler error, stale pin, or setup failure is not a killed
 semantic mutation.
+
+## Evidence-reuse checkpoint
+
+`evidence-reuse.json` records the exact unchanged inputs of the historical Native
+and Partial results. `scripts/verify-trust12-evidence-reuse.mjs` checks a baseline
+inventory root independently reconstructed from 37 Git blobs, the unchanged
+compiler settings, the two added Hook-only artifact reads, and the exhaustive
+ownership of new implementation and proof inputs. The historical mutation,
+Kontrol and Certora receipts keep their original execution identities.
+
+`local-validation.json` and `deterministic-build-replay.json` preserve a fresh
+local double build and all 102 Foundry tests at the first Hook checkpoint.
+`evidence-reuse-controls.json` records 14 negative input and entrypoint controls.
+Run `node scripts/test-trust12-evidence-reuse.mjs` to reproduce those controls.
+They are not a rerun of the historical 121 implementation mutations.
+
+The aggregate release evidence remains incomplete. The three legacy verifiers
+still reject the outstanding deterministic/Foundry/runtime-binding or rendered
+ledger drift. The current release verifier explicitly accepts development mode
+only. Closing its profile-scoped evidence and the TRUST 1.2 mandatory ledger is a
+separate next step; this checkpoint does not claim an integrated release green.

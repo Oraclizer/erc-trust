@@ -1,0 +1,79 @@
+{
+  "schema": "erc-trust-deterministic-build-v3",
+  "status": "PASS",
+  "candidateInput": {
+    "gitHead": "b40a0901cc543f8384e4d11406dd46a383008fcb",
+    "sourceRootAlgorithm": "sha256-raw-files-case-sensitive-path-order-v1",
+    "sourceRootSha256": "158420df1daf7b8abe43b722f01bdb124dcec32a5e46ffbe339bb51330711abd"
+  },
+  "toolchain": {
+    "forge": "1.7.1",
+    "forgeCommit": "4072e48705af9d93e3c0f6e29e93b5e9a40caed8",
+    "solidity": "0.8.36+commit.8a079791",
+    "evmVersion": "cancun",
+    "optimizerRuns": 1,
+    "viaIR": true,
+    "bytecodeHash": "none",
+    "cborMetadata": false
+  },
+  "buildA": {
+    "artifactSha256": "fcc75e0cfcca87c278afe1d65942f95df31132489ab563a58a40d21815562dc7",
+    "creationSha256": "9acee86581d2c37099f1f92f1d51808e6d7fb0a0408815f3c2c3283fddf50d6a",
+    "runtimeSha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1",
+    "creationBytes": 23361,
+    "runtimeBytes": 20043,
+    "subjects": {
+      "native": {
+        "artifactSha256": "fcc75e0cfcca87c278afe1d65942f95df31132489ab563a58a40d21815562dc7",
+        "creationSha256": "9acee86581d2c37099f1f92f1d51808e6d7fb0a0408815f3c2c3283fddf50d6a",
+        "runtimeSha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1",
+        "creationBytes": 23361,
+        "runtimeBytes": 20043
+      },
+      "erc3643Adapter": {
+        "artifactSha256": "28ff8616c9c445f90c588bf8b62f684edbe69f66941a817d307139086ef15dd0",
+        "creationSha256": "35473db07d5c95c32668ea06730a4d8d4641be40991826656c830d97d6f703f4",
+        "runtimeSha256": "7a2dfa433911dd37e389498129356db30693e8ee8e128f8da63a5d3044a56349",
+        "creationBytes": 20064,
+        "runtimeBytes": 19480
+      },
+      "profileGovernor": {
+        "artifactSha256": "0f07135e6eaf9c0acd58495b04591e462136f597572a741220d9e8cc390b8f57",
+        "creationSha256": "d1c8b5d7b05a77408e35ef2607d57a697feff2a859a5f01bbf4e7814469d40d6",
+        "runtimeSha256": "78c08fbe4be793482e44a8cdf32fcc1af3276277c8cc78f48761fdcbc4bf9399",
+        "creationBytes": 3225,
+        "runtimeBytes": 2787
+      }
+    }
+  },
+  "buildB": {
+    "artifactSha256": "fcc75e0cfcca87c278afe1d65942f95df31132489ab563a58a40d21815562dc7",
+    "creationSha256": "9acee86581d2c37099f1f92f1d51808e6d7fb0a0408815f3c2c3283fddf50d6a",
+    "runtimeSha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1",
+    "creationBytes": 23361,
+    "runtimeBytes": 20043,
+    "subjects": {
+      "native": {
+        "artifactSha256": "fcc75e0cfcca87c278afe1d65942f95df31132489ab563a58a40d21815562dc7",
+        "creationSha256": "9acee86581d2c37099f1f92f1d51808e6d7fb0a0408815f3c2c3283fddf50d6a",
+        "runtimeSha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1",
+        "creationBytes": 23361,
+        "runtimeBytes": 20043
+      },
+      "erc3643Adapter": {
+        "artifactSha256": "28ff8616c9c445f90c588bf8b62f684edbe69f66941a817d307139086ef15dd0",
+        "creationSha256": "35473db07d5c95c32668ea06730a4d8d4641be40991826656c830d97d6f703f4",
+        "runtimeSha256": "7a2dfa433911dd37e389498129356db30693e8ee8e128f8da63a5d3044a56349",
+        "creationBytes": 20064,
+        "runtimeBytes": 19480
+      },
+      "profileGovernor": {
+        "artifactSha256": "0f07135e6eaf9c0acd58495b04591e462136f597572a741220d9e8cc390b8f57",
+        "creationSha256": "d1c8b5d7b05a77408e35ef2607d57a697feff2a859a5f01bbf4e7814469d40d6",
+        "runtimeSha256": "78c08fbe4be793482e44a8cdf32fcc1af3276277c8cc78f48761fdcbc4bf9399",
+        "creationBytes": 3225,
+        "runtimeBytes": 2787
+      }
+    }
+  }
+}

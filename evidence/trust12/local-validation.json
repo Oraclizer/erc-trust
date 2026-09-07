@@ -1,0 +1,76 @@
+{
+  "schema": "trust12-local-validation-v1",
+  "status": "PASS_NAMED_CHECKS",
+  "provider": "local-wsl-foundry",
+  "sourceCommit": "b40a0901cc543f8384e4d11406dd46a383008fcb",
+  "sourceRootSha256": "158420df1daf7b8abe43b722f01bdb124dcec32a5e46ffbe339bb51330711abd",
+  "toolchain": {
+    "forge": "1.7.1",
+    "forgeCommit": "4072e48705af9d93e3c0f6e29e93b5e9a40caed8",
+    "solidity": "0.8.36+commit.8a079791",
+    "evmVersion": "cancun",
+    "optimizerRuns": 1,
+    "viaIR": true,
+    "bytecodeHash": "none",
+    "cborMetadata": false
+  },
+  "commands": [
+    {
+      "finishedAt": "2026-09-07T01:27:58.5074436Z",
+      "logSha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "exitCode": 0,
+      "startedAt": "2026-09-07T01:27:54.5536290Z",
+      "id": "format",
+      "logPath": "out/trust12/local-foundry-format.log",
+      "command": "forge fmt --check"
+    },
+    {
+      "finishedAt": "2026-09-07T01:28:00.1373180Z",
+      "logSha256": "b29560c261a7047988201f85f1488a8d0ff36012f99e4b24096b929d9a2ca861",
+      "exitCode": 0,
+      "startedAt": "2026-09-07T01:27:58.6119089Z",
+      "id": "build-size",
+      "logPath": "out/trust12/local-foundry-build-size.log",
+      "command": "forge build --sizes"
+    },
+    {
+      "finishedAt": "2026-09-07T01:28:28.1686099Z",
+      "logSha256": "3418e86911e8a69b6b93749751a77534e323f0bb32cfc83aa1a24183947ba9f3",
+      "exitCode": 0,
+      "startedAt": "2026-09-07T01:28:00.1557134Z",
+      "id": "tests",
+      "logPath": "out/trust12/local-foundry-tests.log",
+      "command": "forge test --json"
+    },
+    {
+      "finishedAt": "2026-09-07T01:28:31.7545687Z",
+      "logSha256": "e3393dc8a81b72223403dc8ebfda40b60f02e7cfbc903e84d39fb92be9c15856",
+      "exitCode": 0,
+      "startedAt": "2026-09-07T01:28:30.6269997Z",
+      "id": "lint",
+      "logPath": "out/trust12/local-foundry-lint.log",
+      "command": "forge lint"
+    }
+  ],
+  "tests": {
+    "suites": 8,
+    "passed": 102,
+    "failed": 0,
+    "skipped": 0
+  },
+  "deterministicBuild": {
+    "path": "evidence/trust12/deterministic-build-replay.json",
+    "sha256": "f10d88a567718b05ac017686be7a7baacb75150b3ef3945ff8c11f69113064e3",
+    "rawReplaySha256": "5e263831e6a1fdcfccb0809f348b7dc95da2d49deab7b11aa9d5f9e439a7c439",
+    "serialization": "The tracked replay uses LF line endings; the raw replay and parsed data are otherwise unchanged."
+  },
+  "evidenceReuseControls": {
+    "path": "evidence/trust12/evidence-reuse-controls.json",
+    "sha256": "3aa5f81cc50866df65c92aeedeb82a39e623ca819873c0d0ee59e0ad489dd183",
+    "positive": "PASS",
+    "negativeControls": 14
+  },
+  "aggregateReleaseEvidence": "INCOMPLETE: the new replay receipts have not superseded the global deterministic, Foundry or Isabelle receipts; runtime-binding regeneration and central profile-scoped release integration remain open.",
+  "proofs": "No new Isabelle or Kontrol proof was run in this checkpoint. Prior model and bounded compiled-code results retain their own exact scopes.",
+  "nonclaim": "This is local replay evidence at the named source commit, not a GitHub Actions run, new implementation mutation campaign, general runtime refinement, deployment or production audit."
+}
