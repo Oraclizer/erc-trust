@@ -9,7 +9,7 @@
   "closure": "CONDITIONAL",
   "closureRecord": {
     "path": "evidence/end-to-end-refinement/central-closure-v3.json",
-    "sha256": "84eb87a554fdde7b4fddcbdab0ded4a5c56dc2637af16a321f121bed9c236512"
+    "sha256": "197c038d04b3b11caf82799614ba0ef7dac088691099933d6335fe44258b0683"
   },
   "counts": {
     "closed": 70,
@@ -684,7 +684,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "c5bab1e933ed2e469736e8ec62988f3b51f5bfd4d44268b7e0afb0df7494b617"
+        "sha256": "ee6de9646b477fdf37a55c8b9b77b04d2a94b9e1b83954b1425dfeb270164470"
       }
     ],
     "models": {
