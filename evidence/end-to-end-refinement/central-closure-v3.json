@@ -776,7 +776,7 @@
     "evidence": [
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "1b4bf6d93ad0df080f17b60474535f9350141f25797ff0dd2a02247aa09c7bc6"
+        "sha256": "9ef8a5b0d5c1329a9d347089c31859bc28dbc06aee0cdcf2a08bfccd0c2522f3"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -836,7 +836,7 @@
       },
       {
         "path": "evidence/trust12/evidence-reuse.json",
-        "sha256": "7d25dc41ea3d83bd49e41f29139daa795815f9d324e2790a4258b6a40fe0979a"
+        "sha256": "bd6b1cdfc5cdb347a7a8dc5518ab78348b066bf196eade713d2cdb46dc2fc5b5"
       },
       {
         "path": "evidence/trust12/evidence-reuse-controls.json",
@@ -876,7 +876,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "bc3ae8823c50abbedd59d4af93540e3bfed2398128c4a5d93715e7701491532f"
+        "sha256": "12baccbf2e39b32b160ff505fb9f16b0c9dcd40476a9fc4cd56cb2f66943d02c"
       }
     ],
     "models": {

@@ -149,7 +149,12 @@
       "consumerRemovalNegative": "Pending guard-removal proof under the same input domain",
       "compiledConsumer": "evidence/trust12/symbolic-kontrol.json preserves the two original proof timeouts. symbolic-booster.json records a separate identical-input Booster build and timeout, with a saved deployed Native runtime state beyond the earlier creation stop.",
       "assumptionsNonclaims": "No Kontrol PASS or counterexample is claimed. The Booster run reached deployed runtime calls but completed neither the named FREEZE proof nor a same-domain guard-removal proof.",
-      "status": "CURRENT-MANDATORY"
+      "status": "CURRENT-MANDATORY",
+      "supplementalEvidence": [
+        "evidence/trust12/veri-observation-results.json",
+        "evidence/trust12/veri-symbolic-results.json",
+        "evidence/trust12/veri-integration-audit.md"
+      ]
     },
     {
       "id": "RUNTIME-LINK-NATIVE",
@@ -160,7 +165,12 @@
       "consumerRemovalNegative": "Pending",
       "compiledConsumer": "Published Native runtime remains byte-exact.",
       "assumptionsNonclaims": "pinned_runtime_refinement.runtime_link remains an Isabelle locale assumption.",
-      "status": "CURRENT-MANDATORY"
+      "status": "CURRENT-MANDATORY",
+      "supplementalEvidence": [
+        "evidence/trust12/veri-observation-results.json",
+        "evidence/trust12/veri-symbolic-results.json",
+        "evidence/trust12/veri-integration-audit.md"
+      ]
     },
     {
       "id": "RUNTIME-LINK-PARTIAL",
@@ -171,7 +181,12 @@
       "consumerRemovalNegative": "Pending",
       "compiledConsumer": "Published Partial adapter and governor source and runtime remain byte-exact.",
       "assumptionsNonclaims": "Native evidence is not transferred to this profile.",
-      "status": "CURRENT-MANDATORY"
+      "status": "CURRENT-MANDATORY",
+      "supplementalEvidence": [
+        "evidence/trust12/veri-observation-results.json",
+        "evidence/trust12/veri-symbolic-results.json",
+        "evidence/trust12/veri-integration-audit.md"
+      ]
     },
     {
       "id": "RUNTIME-LINK-HOOK",
@@ -182,7 +197,12 @@
       "consumerRemovalNegative": "The current mutations cover named feature consumers but do not construct a general correspondence.",
       "compiledConsumer": "HookAdapter, governor, Compliance, factory and actual T-REX runtime identities are recorded.",
       "assumptionsNonclaims": "The hook functional result does not imply end-to-end runtime refinement.",
-      "status": "CURRENT-MANDATORY"
+      "status": "CURRENT-MANDATORY",
+      "supplementalEvidence": [
+        "evidence/trust12/veri-observation-results.json",
+        "evidence/trust12/veri-symbolic-results.json",
+        "evidence/trust12/veri-integration-audit.md"
+      ]
     },
     {
       "id": "HOOK-INDEPENDENT-FINAL",

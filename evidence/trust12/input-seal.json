@@ -25,7 +25,7 @@
     },
     {
       "path": "evidence/trust12/README.md",
-      "sha256": "8db2805ee754d3f67b47a4a664ed3fbb0abc91e0f4f2d5352d5ea3eb494d8ca3"
+      "sha256": "6a0c80c0fa4d67a971b155b9886958959ed928e872da9b5eb037f1de2039f879"
     },
     {
       "path": "evidence/trust12/aggregate-evidence-audit.md",
@@ -45,7 +45,7 @@
     },
     {
       "path": "evidence/trust12/evidence-reuse.json",
-      "sha256": "7d25dc41ea3d83bd49e41f29139daa795815f9d324e2790a4258b6a40fe0979a"
+      "sha256": "bd6b1cdfc5cdb347a7a8dc5518ab78348b066bf196eade713d2cdb46dc2fc5b5"
     },
     {
       "path": "evidence/trust12/formal-build-replay.json",
@@ -109,7 +109,7 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "1b4bf6d93ad0df080f17b60474535f9350141f25797ff0dd2a02247aa09c7bc6"
+      "sha256": "9ef8a5b0d5c1329a9d347089c31859bc28dbc06aee0cdcf2a08bfccd0c2522f3"
     },
     {
       "path": "evidence/trust12/required-controls.json",
@@ -134,6 +134,22 @@
     {
       "path": "evidence/trust12/symbolic-kontrol.json",
       "sha256": "e40a85b127e3749c0cbce0255833984240853c80f5983e4ef09dd409cf4dd8b2"
+    },
+    {
+      "path": "evidence/trust12/veri-dependency.json",
+      "sha256": "e996f78a53c5d95e2da4ae96f4d778d5007739c8b43351738f4fddfa7dba09ad"
+    },
+    {
+      "path": "evidence/trust12/veri-integration-audit.md",
+      "sha256": "074050512a3e2b1bc58b5c8e74f855618542739fc629a099917ffd5c85d60c3e"
+    },
+    {
+      "path": "evidence/trust12/veri-observation-results.json",
+      "sha256": "4d790b7391ac9fc051cb62b46bda74eff700d0208aa72d90cc1d6571a087ba7f"
+    },
+    {
+      "path": "evidence/trust12/veri-symbolic-results.json",
+      "sha256": "66924874741ce2f346367a06e1f48bed587cb102b2450fc2b2efcc0fd0757813"
     },
     {
       "path": "formal/isabelle/ERC_TRUST/Proof_Audit.thy",
@@ -208,6 +224,10 @@
       "sha256": "3e7c2222c9200518563b7d6f09f19032a06e0d744be90e6522a87a43307bec7b"
     },
     {
+      "path": "implementation/kontrol/trust12/TrustTokenDeferredSymbolicKontrolTest.t.sol",
+      "sha256": "b5504889dc679943b7ffeb3994c9b4c3c97239a8f3b804f835012056811be946"
+    },
+    {
       "path": "implementation/kontrol/trust12/TrustTokenSymbolicKontrolTest.t.sol",
       "sha256": "d143fc0040e3cd4087cc9c92c588f2c74ff73cd50818e6bbc3c3f7c3d8638491"
     },
@@ -261,7 +281,7 @@
     },
     {
       "path": "scripts/generate-trust12-input-seal.py",
-      "sha256": "ade26e0a039c0413acf664c61c6d8491ea6db8a5a17be7ff49ac1fafb85a3f79"
+      "sha256": "821238b889ad87f8ae6fdf8f2fdd6eb8c9e305fa3a23f07c9c7495aedb37b9f4"
     },
     {
       "path": "scripts/generate-trust12-proof-audit.py",
@@ -300,12 +320,52 @@
       "sha256": "381df03d4b72fda1238c183df6c95f0ad93ff19c45e276ecbe256f99a30e1374"
     },
     {
+      "path": "scripts/record-veri-observations.py",
+      "sha256": "82b4d9d6d23d728f99ea6006db7ced089382f54e9f800316bbb0d339ff612f7b"
+    },
+    {
+      "path": "scripts/replay-veri-mutants.py",
+      "sha256": "83a78aff7e5a24e93526884eb91ae489c9e615eb25a57e843482f80f6b2847cb"
+    },
+    {
+      "path": "scripts/run-deferred-symbolic.py",
+      "sha256": "d1bfb145e3e898b4855081f8163eb347e3984ed72b0f67557a271a949d03e9b1"
+    },
+    {
+      "path": "scripts/run-veri-mutations.py",
+      "sha256": "2253b02bff6dde2b315c59d6d2d33d833395a31233e922c2c70f62e34eafbc5c"
+    },
+    {
+      "path": "scripts/run-veri-native.py",
+      "sha256": "3f7c355f7d45db93a811d44164ffa432267911167b07c66ff06f7121ca32c740"
+    },
+    {
+      "path": "scripts/run-veri-observation-controls.py",
+      "sha256": "b755be950ad91f4c25b3f2fc2681b7a8b1bca282ce54e76620b9d416d739f1ef"
+    },
+    {
+      "path": "scripts/run-veri-profiles.py",
+      "sha256": "5b9fba6f1438b5cb3898675e1b4c83e4936fa94adda34f07f9077e0076ebcc67"
+    },
+    {
+      "path": "scripts/run-veri-symbolic-summaries.py",
+      "sha256": "96295b1f19f1f694d8084845b2fd4238241c7fbfb419c0f81fe3bedc5420c620"
+    },
+    {
       "path": "scripts/test-trust12-evidence-reuse.mjs",
       "sha256": "29b886f2d41ba3c6fad59902d67a3570e01be965a91655b9e3b3efd5a1c51301"
     },
     {
       "path": "scripts/test-trust12-required.mjs",
       "sha256": "dce0e6b0569a75c4c1ce3833e264f5404bf640ab042043d2da8c508da324c24e"
+    },
+    {
+      "path": "scripts/test-veri-dependency.py",
+      "sha256": "e81be3d18e158a735625264af0274d1cfc61b67a39e20d7af5914bc1f58e6dae"
+    },
+    {
+      "path": "scripts/veri_dependency.py",
+      "sha256": "39b7e7352f77ab26ee98d23fb71c6491286003c057df23d8ea9e5f005e9adf9c"
     },
     {
       "path": "scripts/verify-current-profile-release-v3.mjs",
@@ -321,7 +381,7 @@
     },
     {
       "path": "scripts/verify-trust12-evidence-reuse.mjs",
-      "sha256": "ba99c4f1b32b173a696d92678b580f7e944073ae9ed81ee7b7685cd732f48fec"
+      "sha256": "6c266c098197d6bb8cff85f41bd768dc776c37e0bf561755d4e5f75cfad191ae"
     },
     {
       "path": "scripts/verify-trust12-evidence.py",
