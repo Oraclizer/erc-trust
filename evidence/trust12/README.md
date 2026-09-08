@@ -44,7 +44,7 @@ initcode length, including the membership array.
   consistency alone cannot establish preservation across every regulatory step.
 - The symbolic Native harness admits every positive pair `second <= first`,
   including targets above supply. A Foundry fuzz pass is not a Kontrol proof receipt.
-- General `runtime_link`, full forward/reversal invariant preservation, connected
+- General `runtime_link` and connected
   runtime histories, and fresh independent conformance/assurance remain separate
   obligations. Legacy evidence is not automatically credited to the new hook profile.
 - `obligation-ledger.json` keeps functional conformance and runtime refinement separate.
@@ -158,3 +158,27 @@ producer obligations remain open; the legacy Partial profile remains full=false.
 source/interface window. It parsed the saved KCFG without changing its 22 files,
 but found no checked EVM-to-Isabelle receiver in the inspected stack. Its
 PARTIAL / SOURCE_BLOCKED disposition carries no new proof or runtime credit.
+
+## Oraclizer Veri supplemental execution evidence
+
+The [pinned Veri core](veri-dependency.json) is consumed from a separate repository.
+[Native and profile observations](veri-observation-results.json) bind their actual
+input source, driver, tool revision, storage reads and execution results. The
+[review](veri-integration-audit.md) records the bounded scope and the detector repairs.
+The strong abstract state-preservation and linked-run model results remain admitted;
+these new observations do not discharge their conditional runtime connection.
+
+With the pinned library available, run:
+
+```sh
+python3 scripts/run-veri-native.py --veri-root /path/to/oraclizer-veri --output out/veri-native
+python3 scripts/run-veri-profiles.py --veri-root /path/to/oraclizer-veri --output out/veri-profiles
+python3 scripts/run-veri-mutations.py --veri-root /path/to/oraclizer-veri --output out/veri-mutations
+python3 scripts/run-veri-observation-controls.py --veri-root /path/to/oraclizer-veri --output out/veri-observation-controls
+```
+
+Each output directory must be new. Prepare the existing T-REX artifacts first.
+The [symbolic development record](veri-symbolic-results.json) distinguishes completed
+CSE dependency summaries, the checked instance and partial consumer execution from
+the unfinished full-domain Native target. Do not repeat the old whole-run timeout.
+The optional Veri summary utilities use the Kontrol-provided Python environment.

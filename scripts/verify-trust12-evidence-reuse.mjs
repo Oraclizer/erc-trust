@@ -15,6 +15,7 @@ const newInputs=[
   ...["Adapter","Compliance","Deployment","Factory","Governor"].map(n=>({path:`implementation/src/profiles/ERC3643Hook${n}.sol`,owner:"hook-functional"})),
   {path:"implementation/test/ERC3643HookTrexIntegration.t.sol",owner:"hook-functional"},
   {path:"implementation/kontrol/trust12/TrustTokenSymbolicKontrolTest.t.sol",owner:"native-symbolic-expanded"},
+  {path:"implementation/kontrol/trust12/TrustTokenDeferredSymbolicKontrolTest.t.sol",owner:"native-symbolic-deferred"},
 ];
 const extraPaths=["vectors/conformance-v2.json","formal/kevm/dependencies.lock.json","scripts/run-mutations.ps1","scripts/mutation-campaign-v1.json","scripts/lib/mutation-campaign.mjs"];
 const hash=x=>createHash("sha256").update(x).digest("hex");

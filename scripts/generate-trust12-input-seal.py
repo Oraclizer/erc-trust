@@ -7,6 +7,17 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 EXACT = [
+    "implementation/kontrol/trust12/TrustTokenDeferredSymbolicKontrolTest.t.sol",
+    "scripts/veri_dependency.py",
+    "scripts/run-veri-native.py",
+    "scripts/run-veri-profiles.py",
+    "scripts/run-veri-mutations.py",
+    "scripts/replay-veri-mutants.py",
+    "scripts/run-veri-observation-controls.py",
+    "scripts/record-veri-observations.py",
+    "scripts/test-veri-dependency.py",
+    "scripts/run-deferred-symbolic.py",
+    "scripts/run-veri-symbolic-summaries.py",
     "scripts/capture-isabelle-local-inputs.mjs",
     "scripts/generate-trust12-proof-audit.py",
     "scripts/lib/runtime-bundles.mjs",
