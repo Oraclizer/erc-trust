@@ -25,7 +25,7 @@
     },
     {
       "path": "evidence/trust12/README.md",
-      "sha256": "ae4f15093d3d4f39cf8c87cf42281afd0be5e393513e510aed30e9fa1e8d8919"
+      "sha256": "a11cfcc45f6e3429623d536e97c7e5b550759ab37a981ce8c88d74c19063a96c"
     },
     {
       "path": "evidence/trust12/aggregate-evidence-audit.md",
@@ -149,11 +149,11 @@
     },
     {
       "path": "evidence/trust12/veri-symbolic-results.json",
-      "sha256": "17fa739d16e283a5901b49662efd31ca368a833f9dc0f5b208e1b4da474b3419"
+      "sha256": "de7494af0b8ee4231aaa0c2797b7a852c5368ebd4b063e3a47240c5825e94fb7"
     },
     {
       "path": "evidence/trust12/veri-symbolic-storage-diagnostics.json",
-      "sha256": "28a8c987d73ab5e15dbb3617c5f64a4e0fe34f4027945b4763bcae992ee8c449"
+      "sha256": "9c30805699c84295cde1698047145af07be82cc2b8c11bd6dbd72aa157d51c9e"
     },
     {
       "path": "formal/isabelle/ERC_TRUST/Proof_Audit.thy",
