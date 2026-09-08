@@ -36,6 +36,59 @@
       "failing": 0,
       "node": 31,
       "pc": 14098
+    },
+    {
+      "kind": "native-record-stores",
+      "status": "BOUNDED_PROGRESS",
+      "fromNode": 31,
+      "toNode": 33,
+      "steps": [
+        2,
+        50
+      ],
+      "seconds": [
+        24.729,
+        51.503
+      ],
+      "exit": 0,
+      "scope": "commandHash, evidenceHash and zero receiptHash writes; original constraints and prior entries preserved"
+    },
+    {
+      "kind": "incremental-apr",
+      "status": "INCOMPLETE",
+      "fromNode": 33,
+      "toNode": 97,
+      "savedNodes": 90,
+      "pending": 1,
+      "failing": 0,
+      "seconds": [
+        54.67,
+        344.809
+      ],
+      "exit": 0,
+      "scope": "Checkpoint after two per-step timeouts; no final target"
+    },
+    {
+      "kind": "instruction-prefix-localization",
+      "status": "BOUNDED_PROGRESS",
+      "fromNode": 97,
+      "toNode": 99,
+      "pc": 19231,
+      "savedNodes": 92,
+      "pending": 1,
+      "failing": 0,
+      "seconds": [
+        15.345,
+        16.329
+      ],
+      "scope": "Actual SHL/push/PC execution; isolated a SLOAD at the freeze-head generation key"
+    },
+    {
+      "kind": "fast-subsumption-continuation",
+      "status": "TIMEOUT_WITHOUT_NEW_CHECKPOINT",
+      "limitSeconds": 360,
+      "exit": 124,
+      "scope": "Existing APR fast-check option, unchanged source, original constraints and original target"
     }
   ],
   "dependencySummaries": {
@@ -79,7 +132,7 @@
     "transport": "KRule JSON -> KFlatModule -> standard Kore converter; module name explicitly selected",
     "scope": "One source-bound callsite; no new kernel correspondence"
   },
-  "nextConsumer": "Continue from diagnostic proof :2 node31/PC14098 after locating the next symbolic storage/byte obligation. Do not repeat the whole constructor or unmodified timeout.",
+  "nextConsumer": "Continue from original diagnostic proof :2 node99/PC19231. Prove the required storage-map definedness and lookup projection without assuming it, using the retained functional update and original input constraints. Scalar observation or syntax inventory is not proof completion.",
   "nonclaim": "No original symbolic target completion, symbolic guard-removal proof, full runtime correspondence, or production approval.",
   "summaryToolPin": {
     "revision": "b65e569a7562a92f2d9e0a0796f0d9cff6236fc6",
@@ -94,5 +147,13 @@
         "sha256": "c2a8591061ffc552ab2d3cdd112f8bc0b2ebe514a1cd3f34cc39316fcc6b0111"
       }
     ]
-  }
+  },
+  "backendAssumptions": {
+    "symbolicKeccak": "The existing compiled Kontrol KECCAK-LEMMAS includes injectivity, symbolic/concrete inequality, and exclusions near the word bounds. These are inherited idealizations, not newly proved statements about all concrete Keccak inputs.",
+    "definitionSha256": "b72f0bfe103c075909dc7938e4ede3d8008b61f054f8e9b3039667636535b66a",
+    "newAssumptionsAddedToNative": false,
+    "assumeDefinedEnabled": false,
+    "experimentalRulesOrProfilesAppliedToNative": false
+  },
+  "storageDiagnostics": "veri-symbolic-storage-diagnostics.json"
 }
