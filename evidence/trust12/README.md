@@ -165,7 +165,7 @@ The [pinned Veri core](veri-dependency.json) is consumed from a separate reposit
 [Native and profile observations](veri-observation-results.json) bind their actual
 input source, driver, tool revision, storage reads and execution results. The
 [review](veri-integration-audit.md) records the bounded scope and the detector repairs.
-The strong abstract state-preservation and linked-run model results remain admitted;
+The strong abstract state-preservation and linked-run model results remain verified at the model level;
 these new observations do not discharge their conditional runtime connection.
 
 With the pinned library available, run:
@@ -182,3 +182,10 @@ The [symbolic development record](veri-symbolic-results.json) distinguishes comp
 CSE dependency summaries, the checked instance and partial consumer execution from
 the unfinished full-domain Native target. Do not repeat the old whole-run timeout.
 The optional Veri summary utilities use the Kontrol-provided Python environment.
+
+The [storage diagnostic record](veri-symbolic-storage-diagnostics.json) preserves
+the later Native SLOAD checkpoint. The optional pinned Veri inventory tool retains
+both visible bindings and functional map updates. Its counts do not evaluate the
+map or certify an entire storage footprint. A separately observed SLOAD returning
+7 rejects an expected value of 0; this is a bounded control, not the unfinished
+general frame projection or the original Native proof.

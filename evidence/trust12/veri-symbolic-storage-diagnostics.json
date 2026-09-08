@@ -1,0 +1,124 @@
+{
+  "schema": "trust-veri-symbolic-storage-diagnostics-v1",
+  "status": "INCOMPLETE",
+  "runtimeLinkDischarged": false,
+  "nativeCheckpoint": {
+    "node": 99,
+    "pc": 19231,
+    "nodes": 92,
+    "pending": 1,
+    "failing": 0,
+    "ctermSha256": "3944f752467157233871462439e17389366b0873745637600f0cec7284b89bd5",
+    "nativeProgramSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0",
+    "originalConstraints": 13
+  },
+  "readTarget": {
+    "kind": "freeze-head generation storage word",
+    "key": "24890058885594772868082194210704315982890157730123342977540955694542831943487"
+  },
+  "inventory": {
+    "classification": "syntax only, partial",
+    "bindingOccurrences": 46,
+    "functionalUpdates": 1,
+    "bindingsOutsideUpdateBase": 33,
+    "bindingsInsideUpdateBase": 13,
+    "completeStorageFootprint": false,
+    "evaluated": false,
+    "aliasingAssessed": false,
+    "proofValidated": false,
+    "rawSha256": "4a73d9219a7aa60019f2ab6d71852968f2999869d8a1356ba494ba70597e920f"
+  },
+  "inspectorPin": {
+    "revision": "71d61d25af57d39d76ca4ea0e60c97cdb7105786",
+    "tree": "ca8612409282e7b952859ee0712de3fd1e960017",
+    "path": "Scripts/inspect-k-storage.py",
+    "sha256": "61ecc3c65d249d32bfd4fea14191a85bf7310eba8e5110ac33742c53e7063ffb"
+  },
+  "keyComparisons": {
+    "status": "ALL_46_VISIBLE_BINDING_KEYS_DIFFER",
+    "scope": "The additional functional update is separate; this is not a complete evaluated footprint.",
+    "seconds": 57.775
+  },
+  "stockUpdateCanary": {
+    "results": [
+      {
+        "case": "different-key",
+        "status": "PASS",
+        "result": "#lookup ( STORAGE_FRAME:Map , 24890058885594772868082194210704315982890157730123342977540955694542831943487 )",
+        "seconds": 1.067
+      },
+      {
+        "case": "same-key-control",
+        "status": "PASS",
+        "result": "7",
+        "seconds": 1.013
+      }
+    ],
+    "graphModified": false,
+    "extraRules": 0,
+    "seconds": 11.469
+  },
+  "boundedOpcodeControl": {
+    "status": "PASS",
+    "actualValue": 7,
+    "expectedSevenAccepted": true,
+    "incorrectZeroRejected": true,
+    "reachedPc": 19232,
+    "steps": 8,
+    "seconds": 22.211,
+    "generalFrameTheorem": false,
+    "classification": "bounded opcode observation and semantic target control; no implication proof",
+    "proofPassed": false,
+    "sourceProofModified": false,
+    "newRules": 0
+  },
+  "abstractFrame": {
+    "typecheck": "PASS",
+    "sourceRecoveredByExactSubstitution": true,
+    "fullProjectionProof": "INCOMPLETE",
+    "directSteps": 9,
+    "generalFrameTheorem": false,
+    "actualNativeConsumerClosed": false
+  },
+  "lookupRuleInstantiations": {
+    "sourceRuleId": "dfc2478b32bf433a9b162fe01e3ecd652e8383feba2a398aaefdc74796d7fa4a",
+    "bodyRequiresEnsuresPreserved": true,
+    "independentReview": "Exact substitution checked; operational improvement not established",
+    "appliedToNative": false
+  },
+  "failureLocalization": {
+    "evidence": "Kore equation log reports an unproved matching requirement ceil(Map) in addition to the numeric inequality. Both stock and derived lookup rules are in the active import closure.",
+    "nonclaim": "No product counterexample, backend impossibility theorem or justified new premise follows from the timeout."
+  },
+  "rawRoot": "out/trust12",
+  "rawEntries": [
+    "node99-instruction-diagnostic.json",
+    "veri-storage-inventory-01.json",
+    "storage-map-functional-nodes.json",
+    "lookup-update-layer-canary/result.json",
+    "sload-frame-concrete-observation/result.json",
+    "sload-frame-feasibility/contract.json",
+    "sload-frame-feasibility/direct-result.json",
+    "lookup-abstract-equation-log/lookup-failure-reasons.json",
+    "lookup-module-closure.json",
+    "sload-frame-feasibility/source-node99.json",
+    "sload-frame-feasibility/abstract-init.json",
+    "sload-frame-feasibility/original-frame.json",
+    "sload-frame-feasibility/typed-architecture.json",
+    "storage-key-comparison-sorted/result.json",
+    "symbolic-storage-checkpoint-verification.json"
+  ],
+  "nonclaim": "No original Native target completion, no original guard-removal symbolic proof and no general EVM-to-model correspondence. Feasibility remains partial.",
+  "independentReview": {
+    "status": "CONSISTENT",
+    "nativeGoalStillIncomplete": true,
+    "checked": [
+      "original node and runtime identity",
+      "exact storage AST and update counts",
+      "raw canary equality",
+      "abstract-frame substitution",
+      "equation-log matching requirement",
+      "active module closure"
+    ]
+  }
+}

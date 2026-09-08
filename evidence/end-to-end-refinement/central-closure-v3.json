@@ -876,7 +876,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "12baccbf2e39b32b160ff505fb9f16b0c9dcd40476a9fc4cd56cb2f66943d02c"
+        "sha256": "c5bab1e933ed2e469736e8ec62988f3b51f5bfd4d44268b7e0afb0df7494b617"
       }
     ],
     "models": {
