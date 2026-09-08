@@ -41,6 +41,11 @@
       "owner": "native-symbolic-expanded",
       "path": "implementation/kontrol/trust12/TrustTokenSymbolicKontrolTest.t.sol",
       "sha256": "d143fc0040e3cd4087cc9c92c588f2c74ff73cd50818e6bbc3c3f7c3d8638491"
+    },
+    {
+      "path": "implementation/kontrol/trust12/TrustTokenDeferredSymbolicKontrolTest.t.sol",
+      "owner": "native-symbolic-deferred",
+      "sha256": "b5504889dc679943b7ffeb3994c9b4c3c97239a8f3b804f835012056811be946"
     }
   ],
   "nonclaim": "The original receipts retain their original execution identities. This receipt proves input preservation, not a new prover run or general runtime correspondence.",

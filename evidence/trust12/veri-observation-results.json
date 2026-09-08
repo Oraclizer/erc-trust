@@ -1,0 +1,268 @@
+{
+  "schema": "trust-veri-observations-v1",
+  "status": "PASS_BOUNDED_OBSERVATIONS",
+  "runtimeLinkDischarged": false,
+  "tool": {
+    "revision": "dd37188f6416b377f220543ab06d4c23b1e94144",
+    "tree": "240732dfd613ae05173b58513e9794d691062352",
+    "files": [
+      {
+        "path": "veri/__init__.py",
+        "sha256": "ca7b8d0f0892b598249fc96b7394d93cb62875ae1783161b779a55968d16aa14"
+      },
+      {
+        "path": "veri/__main__.py",
+        "sha256": "a1f710b13d5c810648c865261ceac66f1ae7e1c849c3a47be8680fe2e7755a96"
+      },
+      {
+        "path": "veri/abi.py",
+        "sha256": "399fc3bbf929a2e0a4efacb3bebf56e509cb854570aa13b56bcb5f09f791e606"
+      },
+      {
+        "path": "veri/evm.py",
+        "sha256": "5dbaad16202206747bf9fd240c863727a04483a743a5c6b8e33a45b9bb49c5c7"
+      },
+      {
+        "path": "veri/storage.py",
+        "sha256": "aeca6ed9f8a3857f5059d951aa34a03c3eb9a3924363b8261a38d0394d7a4995"
+      }
+    ]
+  },
+  "native": {
+    "cases": [
+      {
+        "first": "60",
+        "second": "40",
+        "status": "PASS",
+        "runtimeSha256": "c36edb92ded235d4b2fb4391e3cf9ec9b2f4e2c5c0c8514ea2e50dab93cb8bc7",
+        "constructor": "0x068b466a769466888f0cf023f2c278e2db84cdb342230d9f6bb77aa7c54ee3ac",
+        "success": "0xdf162ebf9c60998de085ebb2dc0d38dea6f3cea2e880eccd0d7a74fca002b104",
+        "rejection": "0x33393f0594c79ea97338469087c8adb5bd4d442954ef21c7d88ced759552c8ea",
+        "receiptHash": "0x0a221a7f97da0da7639286856b4ffe96b96928b8a08eb0f72ee4afd70129ad4a",
+        "storedFrozen": "60",
+        "rollbackWrittenSlots": [
+          "28"
+        ]
+      },
+      {
+        "first": "140",
+        "second": "120",
+        "status": "PASS",
+        "runtimeSha256": "c36edb92ded235d4b2fb4391e3cf9ec9b2f4e2c5c0c8514ea2e50dab93cb8bc7",
+        "constructor": "0x272c3eda97564e3354691393ed95bf6a3f94f7c805d6e93ba019c18e44917b73",
+        "success": "0xc768990f8bda0052e837eaf9de7569cddd2af5f7f3ed3b056db44f462c33dbc8",
+        "rejection": "0x6ba353022ef204f9518653851b40cc3f1c0a98bcf26176d37868477b061362b7",
+        "receiptHash": "0x1907aec2f53515c50add6b576abb06d2234e762333d6e10c54debf2c5a834410",
+        "storedFrozen": "140",
+        "rollbackWrittenSlots": [
+          "28"
+        ]
+      },
+      {
+        "first": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+        "second": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+        "status": "PASS",
+        "runtimeSha256": "c36edb92ded235d4b2fb4391e3cf9ec9b2f4e2c5c0c8514ea2e50dab93cb8bc7",
+        "constructor": "0xcdd9232b4bc5101db72f376ee0e39c6598860f9b09bd1967d17a8e8192b2ed99",
+        "success": "0x3c4e173ee1713440919fa73da126a70548a7ee6d8de57766cb9770e39fe270bb",
+        "rejection": "0x913b3f81ee769bcf929d3d0702475b6de0019560b6aa71342fdea4fc53983838",
+        "receiptHash": "0x730d23840fa46e3f3f49f8b97e30db790715eada047ac62560bf6fa79a48e0a7",
+        "storedFrozen": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+        "rollbackWrittenSlots": [
+          "28"
+        ]
+      }
+    ],
+    "driver": {
+      "path": "scripts/run-veri-native.py",
+      "sha256": "3f7c355f7d45db93a811d44164ffa432267911167b07c66ff06f7121ca32c740"
+    },
+    "transactions": 12,
+    "stateAndViewReads": 456,
+    "boundSources": {
+      "implementation/src/ERC7943RouteTicket.sol": "f1a8357a988a648775382603c7eaf2db410f7d55fd08a1cef29763e69de547a6",
+      "implementation/src/TrustDependencyBinding.sol": "53fb6a74a5168f7f2b9f005657ee7df5528974d53dae2359ea1e4ae3fb063020",
+      "implementation/src/TrustErrors.sol": "fbe1dffd50792b2da9604a0de37a5b089c427b329c96f80253ff317bb16491df",
+      "implementation/src/TrustNativeDecision.sol": "4643a157f29fd9557ff60e58c6500e98704b9d94b02ef12ffb5c7baecfaa24ee",
+      "implementation/src/TrustNativeTypes.sol": "f76fc4fd80d74075c3ffdbbc7afb30919eb73bf465ac04e3b83d742c8f88745b",
+      "implementation/src/TrustStorage.sol": "610170dbd24ba2791d459db9a24e2c05e7d699594c035074379a5700dbdb7931",
+      "implementation/src/TrustToken.sol": "deeedf231b461035ac4496b36438d6ea28298ed2935b920bf9c01cb31f94ef1b",
+      "implementation/src/generated/IERCTrustKernel.sol": "8f179a21b04fa1f172bdddef2f8878a01524d3429570c0abf9aa60cfc8738f7d",
+      "implementation/src/interfaces/IERC20.sol": "414510c4de8ff90b066ea33f3d75ce7c4891f4ee43de55c52e333740d6fd8131",
+      "implementation/src/interfaces/IERC7943.sol": "1b968ee48cd0c9adadf22d33f1f245486b14ed1141df23f7d01385abfbb159f7",
+      "implementation/test/mocks/MockBoundDependency.sol": "184fc5df8c37eef0f0388194546d107c63a89785e69cc9d6f14cba4ae5bcd1b8"
+    },
+    "raw": {
+      "path": "out/trust12/veri-native-pinned-final/result.json",
+      "sha256": "660454ed927a02d6ab4ced2111f992e85d464a6ab1c1a3c2889a03fefd073303"
+    }
+  },
+  "profiles": {
+    "results": [
+      {
+        "profile": "partial",
+        "status": "PASS",
+        "storedReceipt": "0x8fe550327426ff8569bb6ac2d13572f145fcf637f770b47921cdd9cff5b35dcc",
+        "underlying": "clean-room ERC3643 fixture",
+        "inboundFrozen": "70",
+        "outboundAfterInbound": "allowed",
+        "fullConformanceFlag": false
+      },
+      {
+        "profile": "hook",
+        "status": "PASS",
+        "storedReceipt": "0xfe96a5ac973023d63481f84094d068999b6a349028a0ba531ff73e994add6de8",
+        "underlying": "Tokeny T-REX 4.1.3",
+        "inboundFrozen": "100",
+        "outboundAfterInbound": "rejected",
+        "fullConformanceFlag": true
+      }
+    ],
+    "driver": {
+      "path": "scripts/run-veri-profiles.py",
+      "sha256": "5b9fba6f1438b5cb3898675e1b4c83e4936fa94adda34f07f9077e0076ebcc67"
+    },
+    "transactions": 64,
+    "stateAndViewReads": 67,
+    "hookRouteControls": [
+      "removeAgent",
+      "renounceOwnership",
+      "setIdentityRegistry",
+      "setCompliance",
+      "transferOwnership",
+      "setName",
+      "setSymbol",
+      "setOnchainID",
+      "pause",
+      "unpause",
+      "unfreezePartialTokens",
+      "freezePartialTokens",
+      "mint",
+      "burn",
+      "setAddressFrozen",
+      "batchMint",
+      "batchBurn",
+      "batchSetAddressFrozen",
+      "batchFreezePartialTokens",
+      "batchUnfreezePartialTokens",
+      "batchForcedTransfer",
+      "transferred",
+      "created",
+      "destroyed",
+      "bindToken",
+      "unbindToken",
+      "activate",
+      "batch atomic rollback",
+      "addAgent",
+      "forcedTransfer",
+      "recoveryAddress",
+      "repeat init",
+      "sealFresh",
+      "activateSeal",
+      "resynchronise topology drift"
+    ],
+    "raw": {
+      "path": "out/trust12/veri-profiles-final-records/result.json",
+      "sha256": "d9bcde3b4bd9b699f813acb4604b3e28951bcceb665b8669b31bd565ae1926b6"
+    }
+  },
+  "controls": {
+    "results": [
+      {
+        "mutation": "direction",
+        "status": "DETECTED",
+        "exit": 1,
+        "error": "CheckFailure: nonincreasing target accepted",
+        "sourceBindingChecked": true,
+        "actualTransactions": 4
+      },
+      {
+        "mutation": "receipt-event",
+        "status": "DETECTED",
+        "exit": 1,
+        "error": "CheckFailure: FREEZE event count",
+        "sourceBindingChecked": true,
+        "actualTransactions": 3
+      },
+      {
+        "mutation": "storage-write",
+        "status": "DETECTED",
+        "exit": 1,
+        "error": "CheckFailure: stored frozen target mismatch",
+        "sourceBindingChecked": true,
+        "actualTransactions": 3
+      },
+      {
+        "mutation": "balance",
+        "status": "DETECTED",
+        "exit": 1,
+        "error": "CheckFailure: FREEZE changed balance or supply",
+        "sourceBindingChecked": true,
+        "actualTransactions": 3
+      },
+      {
+        "mutation": "receipt-source",
+        "status": "DETECTED",
+        "exit": 1,
+        "error": "CheckFailure: receipt field source mismatch",
+        "sourceBindingChecked": true,
+        "actualTransactions": 3
+      },
+      {
+        "mutation": "stale-artifact",
+        "status": "DETECTED",
+        "exit": 1,
+        "error": "CheckFailure: source/artifact mismatch: implementation/src/TrustToken.sol"
+      },
+      {
+        "mutation": "storage-decoder",
+        "status": "DETECTED",
+        "exit": 1,
+        "error": "CheckFailure: stored frozen target mismatch"
+      },
+      {
+        "mutation": "receipt-state",
+        "status": "DETECTED",
+        "compileExit": 0,
+        "exit": 1,
+        "error": "CheckFailure: receipt state observation mismatch",
+        "sourceBindingChecked": true,
+        "transactions": 3
+      },
+      {
+        "mutation": "assessment-binding",
+        "status": "DETECTED",
+        "compileExit": 0,
+        "exit": 1,
+        "error": "CheckFailure: assessment binding hash or epoch",
+        "sourceBindingChecked": true,
+        "transactions": 3
+      }
+    ],
+    "raw": [
+      {
+        "path": "out/trust12/veri-audit-final/result.json",
+        "sha256": "8808082df2575f5e11aa5c768d685bc8a555a00726ec9ed775fc57bc023cf776"
+      },
+      {
+        "path": "out/trust12/veri-observation-controls-02/result.json",
+        "sha256": "c6a8af35996a839791b30c61038cbfc15306d08719070e4a8c6d22e886d0bfcf"
+      }
+    ]
+  },
+  "pinControl": {
+    "schema": "trust-veri-dependency-controls-v1",
+    "positive": "PASS",
+    "modifiedLibrary": "REJECTED",
+    "revision": "dd37188f6416b377f220543ab06d4c23b1e94144",
+    "evmStarted": false
+  },
+  "assumptions": [
+    "Anvil and trace correctness",
+    "compiler metadata is trusted provenance, not arbitrary-artifact authentication",
+    "Keccak implementation",
+    "specified constructor/dependency inputs",
+    "project observation footprint"
+  ],
+  "nonclaim": "No general EVM-to-Isabelle derivation, exhaustive input proof, production certification, or publication approval."
+}

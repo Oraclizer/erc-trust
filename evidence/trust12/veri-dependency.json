@@ -1,0 +1,28 @@
+{
+  "schema": "trust-veri-dependency-v1",
+  "revision": "dd37188f6416b377f220543ab06d4c23b1e94144",
+  "tree": "240732dfd613ae05173b58513e9794d691062352",
+  "files": [
+    {
+      "path": "veri/__init__.py",
+      "sha256": "ca7b8d0f0892b598249fc96b7394d93cb62875ae1783161b779a55968d16aa14"
+    },
+    {
+      "path": "veri/__main__.py",
+      "sha256": "a1f710b13d5c810648c865261ceac66f1ae7e1c849c3a47be8680fe2e7755a96"
+    },
+    {
+      "path": "veri/abi.py",
+      "sha256": "399fc3bbf929a2e0a4efacb3bebf56e509cb854570aa13b56bcb5f09f791e606"
+    },
+    {
+      "path": "veri/evm.py",
+      "sha256": "5dbaad16202206747bf9fd240c863727a04483a743a5c6b8e33a45b9bb49c5c7"
+    },
+    {
+      "path": "veri/storage.py",
+      "sha256": "aeca6ed9f8a3857f5059d951aa34a03c3eb9a3924363b8261a38d0394d7a4995"
+    }
+  ],
+  "scope": "Bounded execution observations. No proof-kernel runtime correspondence."
+}
