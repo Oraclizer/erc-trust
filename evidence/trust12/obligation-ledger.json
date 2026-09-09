@@ -148,7 +148,7 @@
       "positiveActivation": "Foundry fuzz 256 PASS; the original uint256-domain deferred state additionally has an actual first SLOAD returning 0 and bounded runtime progress to node148. No complete symbolic target proof.",
       "consumerRemovalNegative": "Pending guard-removal proof under the same input domain",
       "compiledConsumer": "symbolic-kontrol.json and symbolic-booster.json preserve historical incomplete runs. native-storage-progress.json binds the unchanged original proof, checked finite-map helpers, actual EVM.sload/push/pc.inc edges and the pending Native continuation.",
-      "assumptionsNonclaims": "Existing K/KEVM and Keccak idealizations remain explicit. First SLOAD and a completed abstract JUMPI CSE are bounded results; actual case20 CSE consumption, the full Native proof and same-domain guard-removal proof remain incomplete.",
+      "assumptionsNonclaims": "Existing K/KEVM and Keccak idealizations remain explicit. The first SLOAD is a bounded Booster execution. The abstract JUMPI edge used the proxy's internal fallback definedness assumption; its separate strict post-state cover does not discharge that boundary. Actual case20 consumption, the full Native proof and same-domain guard-removal proof remain incomplete.",
       "status": "CURRENT-MANDATORY",
       "supplementalEvidence": [
         "evidence/trust12/veri-observation-results.json",

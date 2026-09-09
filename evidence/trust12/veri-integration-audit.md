@@ -51,11 +51,19 @@ the actual SLOAD, push and PC-increment edges. A separate review rehashed all
 digest mismatch was found. Returned RPC implications are normalized terms; the
 original Ceil requests remain preserved separately.
 
-The case20 operational CSE contains an actual EVM.jumpi.false edge followed by
-a strict checked cover to the original target. Its WORD domain, frame variables
-and export are preserved, with no added Ceil premise or trust attribute. The
-first actual Native consumer was interrupted during add-module before execute.
-The reviewed receipt therefore gives it no actual Native-consumption credit.
+The case20 operational CSE contains a `kore-rpc` EVM.jumpi.false edge followed
+by a separate strict checked cover to the original target. Its WORD domain,
+frame variables and export are preserved, with no added Ceil premise or trust
+attribute. The caller requested `assumeStateDefined=false`; the installed proxy
+sets true on its internal fallback execute. The fallback definedness boundary
+remains undischarged. The first actual Native consumer was interrupted during
+add-module before execute. The reviewed receipt therefore gives the CSE no
+actual Native-consumption credit.
+
+The original node99 SLOAD, push and PC-increment edges are distinct: their
+stored rewrite origins are `booster`, and this route does not invoke that legacy
+fallback execute. The value-zero simplification completed, but its detailed
+simplification engine was not recorded.
 
 This is a bounded source/artifact review, not independent full solver replay,
 same-domain FREEZE guard-removal completion or an EVM-to-Isabelle receiver.
