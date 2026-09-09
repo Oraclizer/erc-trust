@@ -234,12 +234,12 @@
     "admitted": false,
     "circularity": false,
     "noPostExecSimplify": true,
-    "currentBlocker": "Concrete case20 phase lookup at JUMPI; equality and definedness helpers proved, actual branch consumption incomplete."
+    "currentBlocker": "Node148 has a direct-strict theorem for the exact CHECK expression over typed frames and an exact structural actual substitution. The substitution is not a checker-returned CSubst and the full actual execute timed out, so original graph consumption remains incomplete."
   },
   "rawInputInventory": {
     "path": "evidence/trust12/native-storage-raw-inventory.json",
-    "sha256": "10e9a5f2d791c988e7b00258a0797b71fd59305f0379a4a5923d587c9dfa5a40",
-    "files": 789
+    "sha256": "c4ac00c103dee5ee1eec330a370b82c9dda19773f36b9ac642c1d8a05426da83",
+    "files": 885
   },
   "proofPreservation": {
     "path": "out/trust12/native-storage-checkpoint-curation-v2/proof-preservation.json",
@@ -253,7 +253,7 @@
     "No complete Native symbolic FREEZE or same-domain guard-removal proof.",
     "No EVM-to-Isabelle transaction receiver or runtime_link discharge.",
     "No constructor or dependency CSE re-execution.",
-    "No new initial definedness premise, forced storage value, admission, circularity or preserves-definedness attribute was consumed.",
+    "No caller-supplied initial definedness premise, forced storage value, admission, circularity or preserves-definedness attribute was consumed. The proxy's internal fallback definedness setting is recorded separately above and remains undischarged.",
     "Raw evidence inspection and hashing do not replace independent full solver reproduction."
   ],
   "operationalCaseCSE": {
@@ -294,5 +294,50 @@
   "independentReview": {
     "scope": "Read-only source, proof graph, exact inputs, exported rules, normalized RPC responses and consumer boundaries reviewed by non-writing agents; Main rechecked artifacts.",
     "fullIndependentSolverReproductionComplete": false
+  },
+  "nativeCase20DirectProgress": {
+    "status": "GENERAL_FRAME_THEOREM_WITH_UNCONSUMED_EXACT_ACTUAL_SUBSTITUTION",
+    "conditionalCse": {
+      "endpoint": "/nix/store/wij5nr1s0q3ksvyng4lcybhy467bn9gh-kore-rpc/bin/kore-rpc",
+      "effectiveAssumeDefined": false,
+      "depth": 1,
+      "nextStates": 0,
+      "strictApiReturnedEmptyCSubst": true,
+      "ruleSha256": "04dbed0cfbf0a7d07040775c7d1fe6fc1d3baf52c7946c7cbac9128eb3d7da7b",
+      "actualNativeConsumed": false
+    },
+    "actualCheck": {
+      "endpoint": "/nix/store/wij5nr1s0q3ksvyng4lcybhy467bn9gh-kore-rpc/bin/kore-rpc",
+      "underOriginalP3": "STRICT_TRUE_TOP_TOP",
+      "seconds": 26.068810086,
+      "wrongValueOneValid": false,
+      "conditionAddedToOriginalNative": false
+    },
+    "phaseThreeNegative": {
+      "direct": "ACTUAL_DEPTH_ONE_EXPECTED_TRUE_BRANCH",
+      "proxy": "ACTUAL_DEPTH_ONE_EXPECTED_TRUE_BRANCH",
+      "expectedRule": "EVM.jumpi.true"
+    },
+    "actualCheckGeneralFrame": {
+      "endpoint": "/nix/store/wij5nr1s0q3ksvyng4lcybhy467bn9gh-kore-rpc/bin/kore-rpc",
+      "effectiveAssumeStateDefined": false,
+      "depth": 1,
+      "nextStates": 0,
+      "strictApiReturnedCSubst": true,
+      "ruleSha256": "c0cf0af0f2e7dad093dd22e3eb8176d7a217e88dd345a392cfeda15bcf852621",
+      "requires": "Original P3 only",
+      "localCheckZeroConditionRemoved": true,
+      "actualFrameSubstitutionStructurallyExact": true,
+      "substitutionReturnedByChecker": false,
+      "executionRuleIdKnown": false,
+      "actualGraphEdgeMaterialized": false
+    },
+    "fullNode148Consumers": {
+      "direct": "TIMEOUT_WITHOUT_RESPONSE_OR_EDGE",
+      "proxy": "TIMEOUT_WITHOUT_RESPONSE_OR_EDGE",
+      "limitSecondsEach": 55
+    },
+    "independentReview": "PASS for the conditional CSE and general frame theorem; actual structural substitution remains unconsumed.",
+    "nonclaim": "No checked actual node148 instance, original graph edge, full Native proof, guard-removal proof or runtime link."
   }
 }

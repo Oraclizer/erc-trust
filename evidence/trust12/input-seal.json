@@ -13,7 +13,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "07a9b1e13768f2f1c595d5ee009ae845007153a2797bdce9e16c1a6df4ccc9e0"
+      "sha256": "ed53cb1fe8a02c20bb9d997a762f67dcbb46ccc77ce7dbae083f05b1f1301f4f"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
@@ -25,7 +25,7 @@
     },
     {
       "path": "evidence/trust12/README.md",
-      "sha256": "cd652c844a3624a2eee0e7abd7e630f00fd72f8d890ccdc614c3ec13b2bbc7b4"
+      "sha256": "831283874f0da2b630692460b9bbce2632e238389229dd0f5467a4996400d5db"
     },
     {
       "path": "evidence/trust12/aggregate-evidence-audit.md",
@@ -109,15 +109,15 @@
     },
     {
       "path": "evidence/trust12/native-storage-progress.json",
-      "sha256": "bbb382879647be3367c25b954a3633966b709b7fb6754bd52c535fcd7f133cf5"
+      "sha256": "f477b1b50af4a377e19eb68bb51e6277d650144403a84cd3c4d78e8503eaa4de"
     },
     {
       "path": "evidence/trust12/native-storage-raw-inventory.json",
-      "sha256": "10e9a5f2d791c988e7b00258a0797b71fd59305f0379a4a5923d587c9dfa5a40"
+      "sha256": "c4ac00c103dee5ee1eec330a370b82c9dda19773f36b9ac642c1d8a05426da83"
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "3a27fe7ca90bce6a4acbdf73d141bb451c558868e8fd2396e6cb2ddd7d2194c3"
+      "sha256": "a6d38e54a13cb2f9e7e75efab6dcd8cb6258a8e7d9cbdc0192867bc62c3b28ee"
     },
     {
       "path": "evidence/trust12/required-controls.json",
@@ -149,7 +149,7 @@
     },
     {
       "path": "evidence/trust12/veri-integration-audit.md",
-      "sha256": "db81e099cd1ec7ef23fc79176de7f9943c7427a68a492c2109a26042928f84fd"
+      "sha256": "04970fe84b5fac9c1f402904eb577d4ef065889bf9ce17527da8816500aac74d"
     },
     {
       "path": "evidence/trust12/veri-observation-results.json",
@@ -157,7 +157,7 @@
     },
     {
       "path": "evidence/trust12/veri-symbolic-results.json",
-      "sha256": "ab118eca1034c27371c285fec5932db1dffbb09387875dbb77ffaec0d24e7314"
+      "sha256": "73612f98adeec10fe3f1e2c0e4cb32df84cd0152d346e8969da70ef2c189314f"
     },
     {
       "path": "evidence/trust12/veri-symbolic-storage-diagnostics.json",
