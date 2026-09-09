@@ -17,6 +17,7 @@ EXACT = [
     "scripts/record-veri-observations.py",
     "scripts/test-veri-dependency.py",
     "scripts/run-deferred-symbolic.py",
+    "scripts/prepare-native-storage-predicates.py",
     "scripts/run-veri-symbolic-summaries.py",
     "scripts/capture-isabelle-local-inputs.mjs",
     "scripts/generate-trust12-proof-audit.py",

@@ -144,16 +144,17 @@
       "id": "NATIVE-SYMBOLIC-FREEZE",
       "abstractCondition": "For every positive first and second target with second <= first, including first above supply, the second FREEZE stutters the named Native projection.",
       "normativeReceiver": "Wave 4 symbolic input expansion",
-      "finalSourceConsumer": "implementation/kontrol/trust12/TrustTokenSymbolicKontrolTest.t.sol",
-      "positiveActivation": "Foundry fuzz 256 PASS",
+      "finalSourceConsumer": "implementation/kontrol/trust12/TrustTokenSymbolicKontrolTest.t.sol and its deferred continuation in TrustTokenDeferredSymbolicKontrolTest.t.sol",
+      "positiveActivation": "Foundry fuzz 256 PASS; the original uint256-domain deferred state additionally has an actual first SLOAD returning 0 and bounded runtime progress to node148. No complete symbolic target proof.",
       "consumerRemovalNegative": "Pending guard-removal proof under the same input domain",
-      "compiledConsumer": "evidence/trust12/symbolic-kontrol.json preserves the two original proof timeouts. symbolic-booster.json records a separate identical-input Booster build and timeout, with a saved deployed Native runtime state beyond the earlier creation stop.",
-      "assumptionsNonclaims": "No Kontrol PASS or counterexample is claimed. The Booster run reached deployed runtime calls but completed neither the named FREEZE proof nor a same-domain guard-removal proof.",
+      "compiledConsumer": "symbolic-kontrol.json and symbolic-booster.json preserve historical incomplete runs. native-storage-progress.json binds the unchanged original proof, checked finite-map helpers, actual EVM.sload/push/pc.inc edges and the pending Native continuation.",
+      "assumptionsNonclaims": "Existing K/KEVM and Keccak idealizations remain explicit. First SLOAD and a completed abstract JUMPI CSE are bounded results; actual case20 CSE consumption, the full Native proof and same-domain guard-removal proof remain incomplete.",
       "status": "CURRENT-MANDATORY",
       "supplementalEvidence": [
         "evidence/trust12/veri-observation-results.json",
         "evidence/trust12/veri-symbolic-results.json",
-        "evidence/trust12/veri-integration-audit.md"
+        "evidence/trust12/veri-integration-audit.md",
+        "evidence/trust12/native-storage-progress.json"
       ]
     },
     {
@@ -169,7 +170,8 @@
       "supplementalEvidence": [
         "evidence/trust12/veri-observation-results.json",
         "evidence/trust12/veri-symbolic-results.json",
-        "evidence/trust12/veri-integration-audit.md"
+        "evidence/trust12/veri-integration-audit.md",
+        "evidence/trust12/native-storage-progress.json"
       ]
     },
     {

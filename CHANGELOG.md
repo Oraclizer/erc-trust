@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Resolve the first pending Native storage read with checked finite-map
+  definedness helpers and actual SLOAD, push and PC-increment execution under
+  the original symbolic domain. Preserve both dependency CSEs and record the
+  bounded continuation at node148. A separate abstract case-branch CSE passes
+  strict checking, while its actual consumer remains blocked at registration.
+  Bind exact queries, normalized responses and local proof files without
+  claiming symbolic FREEZE completion or EVM-to-Isabelle refinement.
+
 - Prove the TRUST 1.2 structural and accounting invariant across all six
   forward actions and three reversals, with initial, ordinary-transfer,
   governance and failure preservation. Connected abstract runs retain every

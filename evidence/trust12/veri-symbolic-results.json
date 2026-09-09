@@ -132,7 +132,7 @@
     "transport": "KRule JSON -> KFlatModule -> standard Kore converter; module name explicitly selected",
     "scope": "One source-bound callsite; no new kernel correspondence"
   },
-  "nextConsumer": "Continue from original diagnostic proof :2 node99/PC19231. Prove the required storage-map definedness and lookup projection without assuming it, using the retained functional update and original input constraints. Scalar observation or syntax inventory is not proof completion.",
+  "nextConsumer": "Continue from the preserved diagnostic copy in native-deferred-effect-word-apr at node148/PC7618. First SLOAD from original node99 has completed under its original 13 constraints. The case20 JUMPI has a checked abstract operational CSE; its first actual-consumer registration was interrupted before execute. Preserve the original init, target, uint256 domain and two dependency CSEs.",
   "nonclaim": "No original symbolic target completion, symbolic guard-removal proof, full runtime correspondence, or production approval.",
   "summaryToolPin": {
     "revision": "b65e569a7562a92f2d9e0a0796f0d9cff6236fc6",
@@ -153,7 +153,10 @@
     "definitionSha256": "b72f0bfe103c075909dc7938e4ede3d8008b61f054f8e9b3039667636535b66a",
     "newAssumptionsAddedToNative": false,
     "assumeDefinedEnabled": false,
-    "experimentalRulesOrProfilesAppliedToNative": false
+    "unprovedRulesOrNewProfilesAppliedToNative": false,
+    "provenStoragePredicateRulesAppliedToNative": 13,
+    "preservesDefinednessAttributeAppliedToNative": false
   },
-  "storageDiagnostics": "veri-symbolic-storage-diagnostics.json"
+  "storageDiagnostics": "veri-symbolic-storage-diagnostics.json",
+  "nativeStorageProgress": "native-storage-progress.json"
 }

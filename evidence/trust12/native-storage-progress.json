@@ -1,0 +1,294 @@
+{
+  "schema": "trust-native-storage-checkpoint-v1",
+  "status": "INCOMPLETE",
+  "owningObligations": [
+    "NATIVE-SYMBOLIC-FREEZE",
+    "RUNTIME-LINK-NATIVE"
+  ],
+  "sourceCheckpoint": {
+    "head": "5e73553045f1f5c4f667c3019c2bb2661642988c",
+    "tree": "84c1b8f798ec01b6c09f964c39fd9c06beeaa3b9",
+    "node": 99,
+    "pc": 19231,
+    "constraints": 13,
+    "ctermSha256": "3944f752467157233871462439e17389366b0873745637600f0cec7284b89bd5"
+  },
+  "inputShape": {
+    "outerConcreteBindings": 33,
+    "functionalUpdates": 1,
+    "symbolicBindingsInsideUpdate": 13,
+    "completeStorageFootprintClaimed": false
+  },
+  "definitionSha256": "b72f0bfe103c075909dc7938e4ede3d8008b61f054f8e9b3039667636535b66a",
+  "firstSload": {
+    "status": "ACTUAL_EVM_STEP_COMPLETED",
+    "root": "out/trust12/native-suffix-cut-consumer/proofs/implementation%kontrol%trust12%TrustTokenDeferredSymbolicKontrolTest.testKontrol_DeferredSymbolicNonincreasingFreeze():2",
+    "moduleSha256": "4b44372ab9245beae2c33f822d2b7da8f3e5c6490477054666f943614fb7d66e",
+    "helperRuleIds": [
+      "b10758bcdb776c2ccfb837d26e0098613341adce8c6bc08037f6bfd7018d7741",
+      "fff9d8eb019959d2be3a9a851e19727a81d0bac9e2b67259bb4d7d8495a96599",
+      "20ee1ae64efb41cc82a54f25b9c5f8ead222a41599d569d08d763d28df7c56f4",
+      "f44edb82a7d2362b2fda85c058ac5d9794a3a5df16d0089196b7bb0273ae812e",
+      "176d70f8e5304bcb1e0eb1b73a1542a9c9e5465286bfe296fafa18ff3af7144e",
+      "a27a7e28ef03fd69fd17381ea60b8104f8118ac310f8d8f004966db17b25f29f",
+      "1f013dd4f84205f59ad6147fb0a909ae4a90794d1bf9bb508c4bc4872acb76ed",
+      "39c6b06d4a396517506120cb53777e10f63a15dcbdd337056d2a6289f745525f",
+      "a3f64e45bb8e68208b74c97541e1b11a09f00465cf884a2756bf50ad6a1ca282",
+      "b3973e25b6bd88b6042c16d55f0fb5f6b63c639e1a82b5d5c1ce36cb001fe8bd",
+      "7fe1619dd1975389b2d2bfc1007b8ff54803be0d5ec6646ecfcf545cbcf3a59b",
+      "f818f84118131172ed4200462781dc896fb05ada176bb7e91fe7f9c7eead45a0",
+      "d17aeb574dbb09e2488c120ee464e5971d66959609b89c9303148dc2c1bda3d9"
+    ],
+    "edges": [
+      {
+        "source": 99,
+        "target": 100,
+        "depth": 1,
+        "rules": [
+          "EVM.step:/nix/store/4l084li5y3yhw365rf6i1m9cyaa845zl-kontrol-pyk-env/lib/python3.10/site-packages/kevm_pyk/kproj/evm-semantics/evm.md:(338, 10, 341, 38)"
+        ]
+      },
+      {
+        "source": 100,
+        "target": 101,
+        "depth": 1,
+        "rules": [
+          "a49bbf5c4b82ee9c477b266571ac6462951ccd1a83f52cbf657b2c60368c2c04:/nix/store/4l084li5y3yhw365rf6i1m9cyaa845zl-kontrol-pyk-env/lib/python3.10/site-packages/kevm_pyk/kproj/evm-semantics/evm.md:(361, 10, 370, 64)"
+        ]
+      },
+      {
+        "source": 101,
+        "target": 102,
+        "depth": 1,
+        "rules": [
+          "f445bdd373dac8403ad00559717364f6630b19cbc6e53d3bbd6fa784e4089f0d:/nix/store/4l084li5y3yhw365rf6i1m9cyaa845zl-kontrol-pyk-env/lib/python3.10/site-packages/kevm_pyk/kproj/evm-semantics/evm.md:(527, 10, 528, 62)"
+        ]
+      },
+      {
+        "source": 102,
+        "target": 103,
+        "depth": 1,
+        "rules": [
+          "3994b880dce2902dc91ff998fb17608dc8257734651c5150258c6d96f5819af9:/nix/store/4l084li5y3yhw365rf6i1m9cyaa845zl-kontrol-pyk-env/lib/python3.10/site-packages/kevm_pyk/kproj/evm-semantics/evm.md:(487, 10, 487, 155)"
+        ]
+      },
+      {
+        "source": 103,
+        "target": 104,
+        "depth": 1,
+        "rules": [
+          "9940b671074c218a6c5f0f9e7b90d05efbcc000ee2884306b43860e14f6979e4:/nix/store/4l084li5y3yhw365rf6i1m9cyaa845zl-kontrol-pyk-env/lib/python3.10/site-packages/kevm_pyk/kproj/evm-semantics/evm.md:(2702, 10, 2702, 69)"
+        ]
+      },
+      {
+        "source": 104,
+        "target": 105,
+        "depth": 1,
+        "rules": [
+          "EVM.sload:/nix/store/4l084li5y3yhw365rf6i1m9cyaa845zl-kontrol-pyk-env/lib/python3.10/site-packages/kevm_pyk/kproj/evm-semantics/evm.md:(1520, 10, 1526, 20)"
+        ]
+      },
+      {
+        "source": 105,
+        "target": 106,
+        "depth": 1,
+        "rules": [
+          "cf46a1c55ae03d7124b8c4d35be85667c49f90ee5e2aa9e23faa9190b8e37682:/nix/store/4l084li5y3yhw365rf6i1m9cyaa845zl-kontrol-pyk-env/lib/python3.10/site-packages/kevm_pyk/kproj/evm-semantics/evm.md:(1025, 10, 1025, 83)"
+        ]
+      },
+      {
+        "source": 106,
+        "target": 107,
+        "depth": 1,
+        "rules": [
+          "EVM.pc.inc:/nix/store/4l084li5y3yhw365rf6i1m9cyaa845zl-kontrol-pyk-env/lib/python3.10/site-packages/kevm_pyk/kproj/evm-semantics/evm.md:(556, 10, 557, 55)"
+        ]
+      }
+    ],
+    "returnedInt": 0,
+    "finalNode": 107,
+    "finalPC": 19232,
+    "originalConstraintsAccountsProgramPreserved": true
+  },
+  "suffixCuts": [
+    {
+      "suffixSize": 3,
+      "originalToResidual": "STRICT_TRUE_TOP_TOP",
+      "residualToCeil": "STRICT_TRUE_TOP_TOP",
+      "exactIntermediateIdentity": true,
+      "duplicateNegativeValid": false,
+      "requestedConsequentKind": "Ceil",
+      "returnedImplicationIsNormalized": true,
+      "normalizedConsequentEqualsRecordedIntermediate": true,
+      "originalRequestSha256": "38e6512d4efc8d0fe3002274a3627af318054b565a82fef68fe3fecdb18bf235",
+      "normalizedResponseSha256": "c37e10eff0b3ed1dc862b392edff523d7d5aa68a7f5fe9bab9698aac5ce24e37"
+    },
+    {
+      "suffixSize": 4,
+      "originalToResidual": "STRICT_TRUE_TOP_TOP",
+      "residualToCeil": "STRICT_TRUE_TOP_TOP",
+      "exactIntermediateIdentity": true,
+      "duplicateNegativeValid": false,
+      "requestedConsequentKind": "Ceil",
+      "returnedImplicationIsNormalized": true,
+      "normalizedConsequentEqualsRecordedIntermediate": true,
+      "originalRequestSha256": "ec7a60e15688023bdc663392d633c0e1b2b59f60dfebee1395413b99b42898bf",
+      "normalizedResponseSha256": "955c5aef6ad6c3c82f9fcb003934e2e074411f397238f89d972ad9f019c68c5a"
+    },
+    {
+      "suffixSize": 5,
+      "originalToResidual": "STRICT_TRUE_TOP_TOP",
+      "residualToCeil": "STRICT_TRUE_TOP_TOP",
+      "exactIntermediateIdentity": true,
+      "duplicateNegativeValid": false,
+      "requestedConsequentKind": "Ceil",
+      "returnedImplicationIsNormalized": true,
+      "normalizedConsequentEqualsRecordedIntermediate": true,
+      "originalRequestSha256": "e009edf5eb29b4f5d4787cbefd9d585da9c9e8bb39d977ff39f053cc37d05efc",
+      "normalizedResponseSha256": "b2a904c13d7397413ff6a91a919ea871f7d409f5921e197b1f2b97c5bd621482"
+    },
+    {
+      "suffixSize": 6,
+      "originalToResidual": "STRICT_TRUE_TOP_TOP",
+      "residualToCeil": "STRICT_TRUE_TOP_TOP",
+      "exactIntermediateIdentity": true,
+      "duplicateNegativeValid": false,
+      "requestedConsequentKind": "Ceil",
+      "returnedImplicationIsNormalized": true,
+      "normalizedConsequentEqualsRecordedIntermediate": true,
+      "originalRequestSha256": "db1459d4365cc0fad716565ae53cb473b8272d164494d1a6fc37277db77460fe",
+      "normalizedResponseSha256": "22b2b4ed7eb5cdbb9018a6e2059fc36b27e5946a80d72ae26542bd01c22c91df"
+    },
+    {
+      "suffixSize": 7,
+      "originalToResidual": "STRICT_TRUE_TOP_TOP",
+      "residualToCeil": "STRICT_TRUE_TOP_TOP",
+      "exactIntermediateIdentity": true,
+      "duplicateNegativeValid": false,
+      "requestedConsequentKind": "Ceil",
+      "returnedImplicationIsNormalized": true,
+      "normalizedConsequentEqualsRecordedIntermediate": true,
+      "originalRequestSha256": "dbc9ad28250079347a3252a331891c78d12c5cb1eb52866e9328f5d3f2828f20",
+      "normalizedResponseSha256": "7e43207ecc6e96ab2e9b953323a24f06c8bb3bdfc1c5d71536ae8916fb7502ed"
+    },
+    {
+      "suffixSize": 9,
+      "originalToResidual": "STRICT_TRUE_TOP_TOP",
+      "residualToCeil": "STRICT_TRUE_TOP_TOP",
+      "exactIntermediateIdentity": true,
+      "duplicateNegativeValid": false,
+      "requestedConsequentKind": "Ceil",
+      "returnedImplicationIsNormalized": true,
+      "normalizedConsequentEqualsRecordedIntermediate": true,
+      "originalRequestSha256": "07e3a6e72696be78c75f93010a3a37b4b79899bc4760f80cd1325992a10064df",
+      "normalizedResponseSha256": "ed8f83ecabf70fd175e8eb413185654b25559068111ca5e67315884b877e411d"
+    },
+    {
+      "suffixSize": 10,
+      "originalToResidual": "STRICT_TRUE_TOP_TOP",
+      "residualToCeil": "STRICT_TRUE_TOP_TOP",
+      "exactIntermediateIdentity": true,
+      "duplicateNegativeValid": false,
+      "requestedConsequentKind": "Ceil",
+      "returnedImplicationIsNormalized": true,
+      "normalizedConsequentEqualsRecordedIntermediate": true,
+      "originalRequestSha256": "22cf9dfab3d8e70c0820c771ab0e9f3cbc24faf71ca95502131e87bba41555bc",
+      "normalizedResponseSha256": "407bb06f26907cb843e36cee5b9690c0125cc8f3c2b329eb2c89254624da278f"
+    },
+    {
+      "suffixSize": 11,
+      "originalToResidual": "STRICT_TRUE_TOP_TOP",
+      "residualToCeil": "STRICT_TRUE_TOP_TOP",
+      "exactIntermediateIdentity": true,
+      "duplicateNegativeValid": false,
+      "requestedConsequentKind": "Ceil",
+      "returnedImplicationIsNormalized": true,
+      "normalizedConsequentEqualsRecordedIntermediate": true,
+      "originalRequestSha256": "2de349721a1095d901aca786c045c98ddb0722ed9bbcacb67b95173f50c57af2",
+      "normalizedResponseSha256": "ae90046d50eaeb5bfe29fe4177280067ab961518b4859217e4310b0daac31b48"
+    },
+    {
+      "suffixSize": 12,
+      "originalToResidual": "STRICT_TRUE_TOP_TOP",
+      "residualToCeil": "STRICT_TRUE_TOP_TOP",
+      "exactIntermediateIdentity": true,
+      "duplicateNegativeValid": false,
+      "requestedConsequentKind": "Ceil",
+      "returnedImplicationIsNormalized": true,
+      "normalizedConsequentEqualsRecordedIntermediate": true,
+      "originalRequestSha256": "087037e2b955bee40b61d6d49b935bb6730c7a96b0cca185d7de859350319fc4",
+      "normalizedResponseSha256": "65fe5aeddb18ba8c1e59342b4c2fc3da8a95364bf6ef00b01d0c0d2099faa660"
+    }
+  ],
+  "dependencyCSEsReused": 2,
+  "exactAssessSha256": "157cf380b7d1c367e0e043b47319008d0022be583401b9b4dbfe25cd61b9df71",
+  "continuedNative": {
+    "status": "INCOMPLETE",
+    "root": "out/trust12/native-deferred-effect-word-apr/proofs/implementation%kontrol%trust12%TrustTokenDeferredSymbolicKontrolTest.testKontrol_DeferredSymbolicNonincreasingFreeze():2",
+    "node": 148,
+    "pc": 7618,
+    "nodes": 141,
+    "pending": 1,
+    "failing": 0,
+    "originalInitTargetAndHistoricalNodesPreserved": true,
+    "admitted": false,
+    "circularity": false,
+    "noPostExecSimplify": true,
+    "currentBlocker": "Concrete case20 phase lookup at JUMPI; equality and definedness helpers proved, actual branch consumption incomplete."
+  },
+  "rawInputInventory": {
+    "path": "evidence/trust12/native-storage-raw-inventory.json",
+    "sha256": "10e9a5f2d791c988e7b00258a0797b71fd59305f0379a4a5923d587c9dfa5a40",
+    "files": 789
+  },
+  "proofPreservation": {
+    "path": "out/trust12/native-storage-checkpoint-curation-v2/proof-preservation.json",
+    "sha256": "d0509c818fac10f33597c7d97165765221890d874d965e56d0efcf862a83ac6e"
+  },
+  "assumptions": [
+    "The unchanged pinned K/KEVM semantics and existing Keccak idealization remain the basis.",
+    "Finite-offset map facts are not an unconditional collision theorem about real Keccak."
+  ],
+  "nonclaims": [
+    "No complete Native symbolic FREEZE or same-domain guard-removal proof.",
+    "No EVM-to-Isabelle transaction receiver or runtime_link discharge.",
+    "No constructor or dependency CSE re-execution.",
+    "No new initial definedness premise, forced storage value, admission, circularity or preserves-definedness attribute was consumed.",
+    "Raw evidence inspection and hashing do not replace independent full solver reproduction."
+  ],
+  "operationalCaseCSE": {
+    "status": "CHECKED_ABSTRACT_OPERATIONAL_CSE",
+    "proofRoot": "out/trust12/native-case20-operational-cse-completion/proofs/TRUST-NATIVE-CASE20-JUMPI-OPERATIONAL",
+    "rulePath": "out/trust12/native-case20-operational-cse-completion/checked-rule.json",
+    "ruleSha256": "8206e8fc58a7cd265852c27bfeb9b01ff20376614787c17917441d293337fea8",
+    "ruleId": "APRPROOF-TRUST-NATIVE-CASE20-JUMPI-OPERATIONAL",
+    "actualEvmRule": "EVM.jumpi.false",
+    "depth": 1,
+    "stopReason": "DEPTH_BOUND",
+    "nextStates": 0,
+    "postToOriginalTarget": "STRICT_TRUE_TOP_TOP_WITH_RETURNED_CSUBST",
+    "originalP3AndTargetPreserved": true,
+    "admitted": false,
+    "circularity": false,
+    "ceilPremises": 0,
+    "trustAttributeUsed": false,
+    "actualConsumerStatus": "INTERRUPTED_DURING_ADD_MODULE_BEFORE_EXECUTE",
+    "actualConsumerEvidence": "out/trust12/native-case20-operational-consumer/registration-interruption.json",
+    "actualNativeCredit": false
+  },
+  "caseLookup": {
+    "equality": "STRICT_TRUE_TOP_TOP_UNDER_ORIGINAL_P3",
+    "definedness": "STRICT_TRUE_TOP_TOP_UNDER_ORIGINAL_P3",
+    "wrongValueOneValid": false,
+    "undefinedLookupValid": false,
+    "lookupRoot": "out/trust12/native-case20-lookup-gate-v2",
+    "definednessRoot": "out/trust12/native-case20-definedness-gate",
+    "fullStorageDefinednessGate": "TIMEOUT_WITHOUT_RESULT",
+    "fullStorageDefinednessRoot": "out/trust12/native-case20-storage-definedness-gate",
+    "nonclaim": "These helper results do not establish actual node148 consumption."
+  },
+  "independentReview": {
+    "scope": "Read-only source, proof graph, exact inputs, exported rules, normalized RPC responses and consumer boundaries reviewed by non-writing agents; Main rechecked artifacts.",
+    "fullIndependentSolverReproductionComplete": false
+  }
+}
