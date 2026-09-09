@@ -40,3 +40,24 @@ Curated entrypoints: [observations](veri-observation-results.json),
 [symbolic development](veri-symbolic-results.json), and [library pin](veri-dependency.json).
 The original abstract model, source-bound legacy evidence and existing runtime blockers
 retain their separate validity. The four current mandatory obligations remain open.
+
+## Native storage and operational CSE review (2026-09-09)
+
+Independent non-writing reviews checked the finite-map queries, exact intermediate
+predicates, strict Top/Top results, duplicate controls and total-term instances.
+Main then rechecked the retained original proofs, both dependency CSE copies and
+the actual SLOAD, push and PC-increment edges. A separate review rehashed all
+789 retained inputs in native-storage-raw-inventory.json: no missing file or
+digest mismatch was found. Returned RPC implications are normalized terms; the
+original Ceil requests remain preserved separately.
+
+The case20 operational CSE contains an actual EVM.jumpi.false edge followed by
+a strict checked cover to the original target. Its WORD domain, frame variables
+and export are preserved, with no added Ceil premise or trust attribute. The
+first actual Native consumer was interrupted during add-module before execute.
+The reviewed receipt therefore gives it no actual Native-consumption credit.
+
+This is a bounded source/artifact review, not independent full solver replay,
+same-domain FREEZE guard-removal completion or an EVM-to-Isabelle receiver.
+The four mandatory obligations remain open. Current curated evidence is
+[native-storage-progress.json](native-storage-progress.json).

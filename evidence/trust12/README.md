@@ -189,3 +189,25 @@ both visible bindings and functional map updates. Its counts do not evaluate the
 map or certify an entire storage footprint. A separately observed SLOAD returning
 7 rejects an expected value of 0; this is a bounded control, not the unfinished
 general frame projection or the original Native proof.
+
+
+## Native storage execution checkpoint
+
+native-storage-progress.json records the original node99 SLOAD returning 0 in
+actual EVM.sload, push and PC-increment edges. Thirteen checked finite-map
+helpers preserve the functional update, original constraints and runtime input.
+The continued Native proof remains at node148/PC7618 with one pending node.
+native-storage-raw-inventory.json binds the retained local proof files, exact
+queries, normalized RPC results, helper exporters, modules and runners.
+
+The case20 lookup equality and definedness have strict K results. An abstract
+EVM.jumpi.false CSE also has an actual depth-one edge and a strict checked cover
+to its original target. Its first actual Native consumer stopped during module
+registration before execute, so it has no actual Native-consumption credit.
+No preserves-definedness attribute or new initial premise was consumed.
+
+Duplicate-map and wrong-value controls are local helper checks. They do not
+replace the pending same-domain FREEZE guard-removal proof. All four mandatory
+symbolic/runtime obligations remain open. The existing aggregate gate checks
+sealed development-evidence consistency; it does not replay these K proofs or
+supply an Isabelle runtime receiver. Raw files remain under ignored out/trust12.

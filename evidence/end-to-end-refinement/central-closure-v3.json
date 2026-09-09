@@ -776,7 +776,7 @@
     "evidence": [
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "9ef8a5b0d5c1329a9d347089c31859bc28dbc06aee0cdcf2a08bfccd0c2522f3"
+        "sha256": "68348e150f06fa10d09015f28a2c9c988fa8c61558304e2ee086d1471c4e91e3"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -876,7 +876,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "ee6de9646b477fdf37a55c8b9b77b04d2a94b9e1b83954b1425dfeb270164470"
+        "sha256": "2af3c30192e7fdd1da29d0c6ed255c7d85e0aa401507c3188f927328a565423e"
       }
     ],
     "models": {
