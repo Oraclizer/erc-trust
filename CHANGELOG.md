@@ -5,8 +5,9 @@
 - Resolve the first pending Native storage read with checked finite-map
   definedness helpers and actual SLOAD, push and PC-increment execution under
   the original symbolic domain. Preserve both dependency CSEs and record the
-  bounded continuation at node148. A separate abstract case-branch CSE passes
-  strict checking, while its actual consumer remains blocked at registration.
+  bounded continuation at node148. A separate abstract case-branch edge has a
+  strict post-state cover, while its proxy fallback definedness boundary and
+  actual Native consumer remain incomplete.
   Bind exact queries, normalized responses and local proof files without
   claiming symbolic FREEZE completion or EVM-to-Isabelle refinement.
 

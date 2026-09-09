@@ -9,7 +9,7 @@
   "closure": "CONDITIONAL",
   "closureRecord": {
     "path": "evidence/end-to-end-refinement/central-closure-v3.json",
-    "sha256": "123ebfc29be183ca8352112a07bf16ff783838ff8ca7b757748598360991252a"
+    "sha256": "f414ed6bdb3b98b3093104e21d4d9964715b5d05a842ff3503f54ff442ec79f5"
   },
   "counts": {
     "closed": 70,
@@ -584,7 +584,7 @@
     "evidence": [
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "68348e150f06fa10d09015f28a2c9c988fa8c61558304e2ee086d1471c4e91e3"
+        "sha256": "3a27fe7ca90bce6a4acbdf73d141bb451c558868e8fd2396e6cb2ddd7d2194c3"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -684,7 +684,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "2af3c30192e7fdd1da29d0c6ed255c7d85e0aa401507c3188f927328a565423e"
+        "sha256": "3baaf1ce5845cb2ce8686f422a16a73293e0becfef3c295520a6395178b06fe9"
       }
     ],
     "models": {
