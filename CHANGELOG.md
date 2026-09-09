@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Add a direct-strict case20 frame theorem for the exact Native CHECK expression
+  under the original symbolic word conditions. Preserve an exact structural
+  node148 substitution as an unconsumed candidate, record a phase-three branch
+  control, and keep both full-node timeouts without inventing a graph edge.
+
 - Resolve the first pending Native storage read with checked finite-map
   definedness helpers and actual SLOAD, push and PC-increment execution under
   the original symbolic domain. Preserve both dependency CSEs and record the
