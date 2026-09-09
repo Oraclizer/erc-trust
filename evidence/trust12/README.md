@@ -201,10 +201,13 @@ native-storage-raw-inventory.json binds the retained local proof files, exact
 queries, normalized RPC results, helper exporters, modules and runners.
 
 The case20 lookup equality and definedness have strict K results. An abstract
-EVM.jumpi.false CSE also has an actual depth-one edge and a strict checked cover
-to its original target. Its first actual Native consumer stopped during module
-registration before execute, so it has no actual Native-consumption credit.
-No preserves-definedness attribute or new initial premise was consumed.
+EVM.jumpi.false CSE has a depth-one `kore-rpc` edge and a separate strict checked
+cover to its original target. The caller requested `assumeStateDefined=false`,
+but the installed proxy internally uses true for its fallback execute. That
+definedness boundary is not discharged and the CSE has no actual Native credit.
+Its first actual Native consumer stopped during module registration before
+execute. No preserves-definedness attribute or new initial premise was supplied
+by the TRUST driver.
 
 Duplicate-map and wrong-value controls are local helper checks. They do not
 replace the pending same-domain FREEZE guard-removal proof. All four mandatory

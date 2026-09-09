@@ -13,7 +13,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "b254d511602eecbb9247ae05e2254b26bf0232675b26ada9511e690f9452c82a"
+      "sha256": "07a9b1e13768f2f1c595d5ee009ae845007153a2797bdce9e16c1a6df4ccc9e0"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
@@ -25,7 +25,7 @@
     },
     {
       "path": "evidence/trust12/README.md",
-      "sha256": "d9316adc218ba1ac830f4ed93f42a75d31bc33a9defd749e3b39d5b22025a6ac"
+      "sha256": "cd652c844a3624a2eee0e7abd7e630f00fd72f8d890ccdc614c3ec13b2bbc7b4"
     },
     {
       "path": "evidence/trust12/aggregate-evidence-audit.md",
@@ -109,7 +109,7 @@
     },
     {
       "path": "evidence/trust12/native-storage-progress.json",
-      "sha256": "b80a485b57f9dbcca41fca1e054588873d8dc3fb12f4c0ffd7e730d2a36f47eb"
+      "sha256": "bbb382879647be3367c25b954a3633966b709b7fb6754bd52c535fcd7f133cf5"
     },
     {
       "path": "evidence/trust12/native-storage-raw-inventory.json",
@@ -117,7 +117,7 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "68348e150f06fa10d09015f28a2c9c988fa8c61558304e2ee086d1471c4e91e3"
+      "sha256": "3a27fe7ca90bce6a4acbdf73d141bb451c558868e8fd2396e6cb2ddd7d2194c3"
     },
     {
       "path": "evidence/trust12/required-controls.json",
@@ -149,7 +149,7 @@
     },
     {
       "path": "evidence/trust12/veri-integration-audit.md",
-      "sha256": "7cf644dc205e0a864c5b1542bd5e7de870d8cff9a659efc10baed7318c612331"
+      "sha256": "db81e099cd1ec7ef23fc79176de7f9943c7427a68a492c2109a26042928f84fd"
     },
     {
       "path": "evidence/trust12/veri-observation-results.json",
@@ -157,7 +157,7 @@
     },
     {
       "path": "evidence/trust12/veri-symbolic-results.json",
-      "sha256": "e306a07b3985d77eeff41abbd63c9084c63d6c0dd204415f56adba1770cd569d"
+      "sha256": "ab118eca1034c27371c285fec5932db1dffbb09387875dbb77ffaec0d24e7314"
     },
     {
       "path": "evidence/trust12/veri-symbolic-storage-diagnostics.json",
