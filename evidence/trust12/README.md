@@ -214,3 +214,13 @@ replace the pending same-domain FREEZE guard-removal proof. All four mandatory
 symbolic/runtime obligations remain open. The existing aggregate gate checks
 sealed development-evidence consistency; it does not replay these K proofs or
 supply an Isabelle runtime receiver. Raw files remain under ignored out/trust12.
+
+## Direct strict case20 frame theorem
+
+A smaller conditional JUMPI proof and a separate CHECK-expression proof use the
+direct legacy endpoint with effective `assumeStateDefined=false`. The resulting
+general frame theorem retains the exact node148 CHECK expression and original P3.
+Its structural frame substitution reconstructs node148 and the one-head-removed
+target, but the substitution is not a checker-returned CSubst and no original
+Native graph edge is recorded. Direct and proxy full-node executions both timed
+out. The phase-three control takes `EVM.jumpi.true`.

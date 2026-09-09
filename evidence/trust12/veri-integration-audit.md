@@ -69,3 +69,13 @@ This is a bounded source/artifact review, not independent full solver replay,
 same-domain FREEZE guard-removal completion or an EVM-to-Isabelle receiver.
 The four mandatory obligations remain open. Current curated evidence is
 [native-storage-progress.json](native-storage-progress.json).
+
+## Direct case20 frame review (2026-09-09)
+
+A non-writing review checked the direct endpoint command, effective false
+definedness setting, conditional and general-frame proof graphs, exported rules,
+P3 conditions, typed frame paths and exact structural node148 substitution. The
+general-frame rule has no local CHECK premise, Ceil, admission, circularity or
+trust attribute. Its dynamic rewrite log reports an unknown rule identifier. The
+structural substitution was not returned by a checker and was not used as a cover.
+Accordingly this review does not claim actual node148 consumption.
