@@ -13,7 +13,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "79964ea65a1152f8df6c09a883b682e473d2c1eb05cc691395a6ce155a1a28b6"
+      "sha256": "b254d511602eecbb9247ae05e2254b26bf0232675b26ada9511e690f9452c82a"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
@@ -25,7 +25,7 @@
     },
     {
       "path": "evidence/trust12/README.md",
-      "sha256": "a11cfcc45f6e3429623d536e97c7e5b550759ab37a981ce8c88d74c19063a96c"
+      "sha256": "d9316adc218ba1ac830f4ed93f42a75d31bc33a9defd749e3b39d5b22025a6ac"
     },
     {
       "path": "evidence/trust12/aggregate-evidence-audit.md",
@@ -108,8 +108,16 @@
       "sha256": "eabc940d87c0a8cc9e03c592c5fa2f96ba7595284b174e30624d570d610337bd"
     },
     {
+      "path": "evidence/trust12/native-storage-progress.json",
+      "sha256": "b80a485b57f9dbcca41fca1e054588873d8dc3fb12f4c0ffd7e730d2a36f47eb"
+    },
+    {
+      "path": "evidence/trust12/native-storage-raw-inventory.json",
+      "sha256": "10e9a5f2d791c988e7b00258a0797b71fd59305f0379a4a5923d587c9dfa5a40"
+    },
+    {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "9ef8a5b0d5c1329a9d347089c31859bc28dbc06aee0cdcf2a08bfccd0c2522f3"
+      "sha256": "68348e150f06fa10d09015f28a2c9c988fa8c61558304e2ee086d1471c4e91e3"
     },
     {
       "path": "evidence/trust12/required-controls.json",
@@ -141,7 +149,7 @@
     },
     {
       "path": "evidence/trust12/veri-integration-audit.md",
-      "sha256": "074050512a3e2b1bc58b5c8e74f855618542739fc629a099917ffd5c85d60c3e"
+      "sha256": "7cf644dc205e0a864c5b1542bd5e7de870d8cff9a659efc10baed7318c612331"
     },
     {
       "path": "evidence/trust12/veri-observation-results.json",
@@ -149,7 +157,7 @@
     },
     {
       "path": "evidence/trust12/veri-symbolic-results.json",
-      "sha256": "de7494af0b8ee4231aaa0c2797b7a852c5368ebd4b063e3a47240c5825e94fb7"
+      "sha256": "e306a07b3985d77eeff41abbd63c9084c63d6c0dd204415f56adba1770cd569d"
     },
     {
       "path": "evidence/trust12/veri-symbolic-storage-diagnostics.json",
@@ -285,7 +293,7 @@
     },
     {
       "path": "scripts/generate-trust12-input-seal.py",
-      "sha256": "821238b889ad87f8ae6fdf8f2fdd6eb8c9e305fa3a23f07c9c7495aedb37b9f4"
+      "sha256": "60f4f6265d3bc45f1425d1400d3fa3c91a4a04f4a60b1780486b3640720ad12b"
     },
     {
       "path": "scripts/generate-trust12-proof-audit.py",
@@ -302,6 +310,10 @@
     {
       "path": "scripts/lib/runtime-bundles.mjs",
       "sha256": "ef53ec8c9a6b362d0d0bbc11565f2714cad5a8b0bff554b60d4ecd3b35868c2d"
+    },
+    {
+      "path": "scripts/prepare-native-storage-predicates.py",
+      "sha256": "afefeb71c39ec386dc22aafbb41e4e536cdd927046c161ebfc26f894bcf54743"
     },
     {
       "path": "scripts/prepare-trex-integration.py",
