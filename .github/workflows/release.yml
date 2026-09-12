@@ -19,6 +19,12 @@ jobs:
 
   proofs:
     uses: ./.github/workflows/proofs.yml
+    with:
+      clean: true
+    permissions:
+      contents: read
+      actions: read
+      pull-requests: read
 
   identity:
     uses: ./.github/workflows/identity.yml
