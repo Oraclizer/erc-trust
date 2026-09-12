@@ -126,7 +126,8 @@ try {
       check(() => assert(!eligibleRun({ ...run, pull_requests, ...mismatch }, pr, repository)));
     }
   }
-  for (const change of [{ merged: false }, { author_association: "CONTRIBUTOR" }, { head: { ...pr.head, repo: { full_name: "fork/proofs" } } }]) check(() => assert(!eligibleRun(run, { ...pr, ...change }, repository)));
+  for (const change of [{ merged: false }, { head: { ...pr.head, repo: { full_name: "fork/proofs" } } }]) check(() => assert(!eligibleRun(run, { ...pr, ...change }, repository)));
+  check(() => assert(eligibleRun(run, { ...pr, author_association: "CONTRIBUTOR" }, repository)));
   let permission = "write";
   let artifactName = `isabelle-state-${profile}-${identity.source}-1`;
   const api = async (path) => {
@@ -138,6 +139,16 @@ try {
     throw Error(`Unexpected API: ${path}`);
   };
   assert.deepEqual(await selectPrArtifact(api, repository, "merged", identity), { run: "12", artifact: "20" }); checks++;
+  // A job token reported CONTRIBUTOR for a maintainer whose permission was
+  // admin. The direct permission must authorize every association label.
+  for (const association of ["CONTRIBUTOR", "NONE", "MEMBER"]) {
+    pr.author_association = association;
+    permission = "admin";
+    assert.deepEqual(await selectPrArtifact(api, repository, "merged", identity), { run: "12", artifact: "20" }); checks++;
+    permission = "read";
+    assert.equal(await selectPrArtifact(api, repository, "merged", identity), null); checks++;
+  }
+  permission = "write";
   run.pull_requests = [];
   assert.deepEqual(await selectPrArtifact(api, repository, "merged", identity), { run: "12", artifact: "20" }); checks++;
   run.pull_requests = [{ number: 9 }];
