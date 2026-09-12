@@ -119,9 +119,10 @@ try {
   const pr = { number: 8, merged: true, merge_commit_sha: "merged", author_association: "MEMBER", base: { ref: "main", repo: { full_name: repository } }, head: { sha: "head", repo: { full_name: repository } } };
   const run = { id: 12, run_attempt: 1, event: "pull_request", status: "completed", conclusion: "success", path: ".github/workflows/proofs.yml", repository: { full_name: repository }, head_repository: { full_name: repository }, head_sha: "head", pull_requests: [{ number: 8 }], actor: { login: "maintainer" } };
   check(() => assert(eligibleRun(run, pr, repository)));
-  check(() => assert(eligibleRun({ ...run, pull_requests: [] }, pr, repository)));
-  for (const change of [{ conclusion: "failure" }, { status: "in_progress" }, { event: "push" }, { head_sha: "old" }, { path: ".github/workflows/other.yml" }, { head_repository: { full_name: "fork/proofs" } }, { pull_requests: [{ number: 9 }] }, { pull_requests: undefined }]) check(() => assert(!eligibleRun({ ...run, ...change }, pr, repository)));
-  for (const pull_requests of [[], [{ number: 8 }], [{ number: 9 }]]) {
+  const associations = [[], [{ number: 8 }], [{ number: 9, head: { sha: "newer-head" } }], null, undefined];
+  for (const change of [{ conclusion: "failure" }, { status: "in_progress" }, { event: "push" }, { head_sha: "old" }, { path: ".github/workflows/other.yml" }, { head_repository: { full_name: "fork/proofs" } }]) check(() => assert(!eligibleRun({ ...run, ...change }, pr, repository)));
+  for (const pull_requests of associations) {
+    check(() => assert(eligibleRun({ ...run, pull_requests }, pr, repository)));
     for (const mismatch of [{ head_sha: "other-head" }, { head_repository: { full_name: "fork/proofs" } }, { repository: { full_name: "other/proofs" } }]) {
       check(() => assert(!eligibleRun({ ...run, pull_requests, ...mismatch }, pr, repository)));
     }
@@ -149,10 +150,15 @@ try {
     assert.equal(await selectPrArtifact(api, repository, "merged", identity), null); checks++;
   }
   permission = "write";
-  run.pull_requests = [];
-  assert.deepEqual(await selectPrArtifact(api, repository, "merged", identity), { run: "12", artifact: "20" }); checks++;
-  run.pull_requests = [{ number: 9 }];
-  assert.equal(await selectPrArtifact(api, repository, "merged", identity), null); checks++;
+  for (const pull_requests of associations) {
+    run.pull_requests = pull_requests;
+    permission = "write";
+    assert.deepEqual(await selectPrArtifact(api, repository, "merged", identity), { run: "12", artifact: "20" }); checks++;
+    permission = "read";
+    assert.equal(await selectPrArtifact(api, repository, "merged", identity), null); checks++;
+    permission = "write";
+    assert.equal(await selectPrArtifact(api, repository, "different-merge", identity), null); checks++;
+  }
   run.pull_requests = [{ number: 8 }];
   permission = "read";
   assert.equal(await selectPrArtifact(api, repository, "merged", identity), null); checks++;
