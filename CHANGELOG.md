@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Reuse validated Isabelle heaps and session databases while selecting the
+  complete proof catalog on every PR and main push. Always consume the current
+  proof audit export; remove duplicate topic-push proof builds; preserve weekly,
+  manual clean, and release full replays. Main accepts matching state only from
+  its own successful builds or an eligible successful merged PR.
 - Correct the current ERC-3643 reference from Verified Full to the exact
   `ERC-TRUST/v2/erc3643-partial` profile with `profileKind = PARTIAL` and
   `full = false`. `sealedTopologyLive()` now reports only the narrower one-way

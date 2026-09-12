@@ -119,6 +119,8 @@ jobs:
         run: node scripts/verify-public-surface.mjs
       - name: Verify repository health
         run: node scripts/verify-repository-health.mjs
+      - name: Exercise proof reuse policy without proof computation
+        run: node scripts/test-proof-ci.mjs
 
   release-identity:
     name: Release tree identity
