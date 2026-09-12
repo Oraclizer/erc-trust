@@ -78,6 +78,14 @@ jobs:
           };
           const selected = await selectPrArtifact(api, repository, commit, identity);
           emit('selection', { selected });
+          if (!selected) {
+            for (const run of state.runs || []) {
+              if (run.id !== 34673546563) continue;
+              emit('authority-control', { runId: run.id, actor: run.actor.login });
+              await api(`/repos/${repository}/collaborators/${encodeURIComponent(run.actor.login)}/permission`);
+              await api(`/repos/${repository}/actions/runs/${run.id}/artifacts?per_page=100`);
+            }
+          }
           NODE
 
   implementation:
