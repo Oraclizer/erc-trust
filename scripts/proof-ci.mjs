@@ -119,10 +119,12 @@ export async function validateState(state, identity, repository, origin = "main"
 export function eligibleRun(run, pr, repository) {
   // GitHub may empty this supplemental list after merge. The caller binds the
   // commit to the merged PR, and the exact head/repository checks remain below.
+  // Author association is an informational label and can differ by token.
+  // selectPrArtifact checks the run actor's current repository write permission.
   const linkedPr = Array.isArray(run.pull_requests) &&
     (run.pull_requests.length === 0 || run.pull_requests.some((item) => item.number === pr.number));
   return pr.merged === true && pr.base?.ref === "main" && pr.base?.repo?.full_name === repository &&
-    pr.head?.repo?.full_name === repository && ["OWNER", "MEMBER", "COLLABORATOR"].includes(pr.author_association) &&
+    pr.head?.repo?.full_name === repository &&
     run.event === "pull_request" && run.status === "completed" && run.conclusion === "success" &&
     run.path === ".github/workflows/proofs.yml" && run.repository?.full_name === repository &&
     run.head_repository?.full_name === repository && run.head_sha === pr.head.sha &&
