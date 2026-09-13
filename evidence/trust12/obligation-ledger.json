@@ -1066,7 +1066,11 @@
       ],
       "requiredForRelease": false,
       "proofCompleted": false,
-      "disposition": "Preserved general machine-checked runtime-to-Isabelle correspondence research obligation. Not proved or deleted by the release-scope reset."
+      "disposition": "Preserved general machine-checked runtime-to-Isabelle correspondence research obligation. Not proved or deleted by the release-scope reset.",
+      "receivingProcess": "Undecided; Jay decides at TRUST 1.2 internal completion (separate research track or a later TRUST version).",
+      "responsibleArtifact": "This ledger row and the preserved Veri Formal/Kore assets identified by source-freeze50 SHA-256 763cbe1d98ac7b904dd53fb2a8b6b7400e756aaa7624d556ed697b89b98a9488.",
+      "closureEvidence": "Kernel-checked discharge of this profile's runtime_link with positive and negative consumers.",
+      "reopenCondition": "When Jay designates the receiving process."
     },
     {
       "id": "RESEARCH-RUNTIME-LINK-PARTIAL",
@@ -1085,7 +1089,11 @@
       ],
       "requiredForRelease": false,
       "proofCompleted": false,
-      "disposition": "Preserved general machine-checked runtime-to-Isabelle correspondence research obligation. Not proved or deleted by the release-scope reset."
+      "disposition": "Preserved general machine-checked runtime-to-Isabelle correspondence research obligation. Not proved or deleted by the release-scope reset.",
+      "receivingProcess": "Undecided; Jay decides at TRUST 1.2 internal completion (separate research track or a later TRUST version).",
+      "responsibleArtifact": "This ledger row and the preserved Veri Formal/Kore assets identified by source-freeze50 SHA-256 763cbe1d98ac7b904dd53fb2a8b6b7400e756aaa7624d556ed697b89b98a9488.",
+      "closureEvidence": "Kernel-checked discharge of this profile's runtime_link with positive and negative consumers.",
+      "reopenCondition": "When Jay designates the receiving process."
     },
     {
       "id": "RESEARCH-RUNTIME-LINK-HOOK",
@@ -1104,7 +1112,11 @@
       ],
       "requiredForRelease": false,
       "proofCompleted": false,
-      "disposition": "Preserved general machine-checked runtime-to-Isabelle correspondence research obligation. Not proved or deleted by the release-scope reset."
+      "disposition": "Preserved general machine-checked runtime-to-Isabelle correspondence research obligation. Not proved or deleted by the release-scope reset.",
+      "receivingProcess": "Undecided; Jay decides at TRUST 1.2 internal completion (separate research track or a later TRUST version).",
+      "responsibleArtifact": "This ledger row and the preserved Veri Formal/Kore assets identified by source-freeze50 SHA-256 763cbe1d98ac7b904dd53fb2a8b6b7400e756aaa7624d556ed697b89b98a9488.",
+      "closureEvidence": "Kernel-checked discharge of this profile's runtime_link with positive and negative consumers.",
+      "reopenCondition": "When Jay designates the receiving process."
     }
   ],
   "centralClosure": {

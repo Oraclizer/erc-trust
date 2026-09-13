@@ -125,7 +125,7 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "a32d15295d55381e62ef8c5a0caaea7beacb7b2af503d89113dfa103dcd50c55"
+      "sha256": "8637e2a21eb0f8b01243c04ba635909e2b886b639d79662fc63b23dd4f1b85ce"
     },
     {
       "path": "evidence/trust12/release-notes.md",
@@ -133,7 +133,7 @@
     },
     {
       "path": "evidence/trust12/release-policy.json",
-      "sha256": "39f104dbe0ff2842658f1ad4a888253c37532c4755883e89b63c79e51f92a791"
+      "sha256": "226879ddf71a6aa7bfaf54ee318ccc8903e59e9b92512cd8b3f9dfe50017b016"
     },
     {
       "path": "evidence/trust12/required-controls.json",
@@ -329,7 +329,7 @@
     },
     {
       "path": "scripts/lib/trust12-policy.mjs",
-      "sha256": "f6d7021ef1588949af457b57ad3cbb82ff0167b0622bf5ccdf9165954f1fb929"
+      "sha256": "5ded646251bc9da2e363e0a147c80ce95dc52be90e148de5c73ec84f640074f4"
     },
     {
       "path": "scripts/prepare-native-storage-predicates.py",
@@ -393,7 +393,7 @@
     },
     {
       "path": "scripts/test-trust12-policy.mjs",
-      "sha256": "3068099c366c2e9dd280320c3cd793792e0e98d1fe59f2dc0e01db9a55284c9c"
+      "sha256": "b8dd02ca49f12ebde7154b067381372d1b2f13ab46215e950851d1ae59d2ea78"
     },
     {
       "path": "scripts/test-trust12-required.mjs",
