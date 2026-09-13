@@ -113,6 +113,8 @@ export function verifyTrust12Policy(root) {
   for (const id of researchIds) {
     const row = rows.get(id);
     check(row.requiredForRelease === false && nonempty(row.abstractCondition) && row.proofCompleted === false, 'research boundary drift');
+    for (const key of ['receivingProcess', 'responsibleArtifact', 'closureEvidence', 'reopenCondition'])
+      check(nonempty(row[key]), `research residual missing ${key}: ${id}`);
   }
   for (const p of profiles) {
     const row = rows.get(`RUNTIME-LINK-${p}`);
