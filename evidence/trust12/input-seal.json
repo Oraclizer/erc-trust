@@ -25,15 +25,15 @@
     },
     {
       "path": "evidence/claim-matrix.md",
-      "sha256": "f5c5e5208c2827c615582f132d932233d232e8698c24415e516ba2d9b0b276e3"
+      "sha256": "1c4a8fbafcd3dd222215834694ce30225430d04ee94fc95fade6c0a5e7298462"
     },
     {
       "path": "evidence/known-limitations.md",
-      "sha256": "57f4c6cdd5c40ef7c957db8eae25c0525423b9fce2279acaacae83fa3e3f8ee9"
+      "sha256": "693891bdaec7f8a6f18a27b6bb047618c30e5f9435172a139c95bb4baa840bd5"
     },
     {
       "path": "evidence/trust12/README.md",
-      "sha256": "04ef2ff533a14cc80c3cc3addc90a5e8f9553aa156e78bbc694955b1df78e5ab"
+      "sha256": "6f4644b0c3744d6efc28b05a06bcd5d825ab880dc4d555544e2d79e14da0342e"
     },
     {
       "path": "evidence/trust12/aggregate-evidence-audit.md",
@@ -116,6 +116,10 @@
       "sha256": "eabc940d87c0a8cc9e03c592c5fa2f96ba7595284b174e30624d570d610337bd"
     },
     {
+      "path": "evidence/trust12/native-alternative-probe.json",
+      "sha256": "d4a59954d075ec9b8000672f27df14edb32f2ee816bddb1c89bb1e74ccb315be"
+    },
+    {
       "path": "evidence/trust12/native-storage-progress.json",
       "sha256": "f477b1b50af4a377e19eb68bb51e6277d650144403a84cd3c4d78e8503eaa4de"
     },
@@ -125,15 +129,19 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "8637e2a21eb0f8b01243c04ba635909e2b886b639d79662fc63b23dd4f1b85ce"
+      "sha256": "b9f364ec9b5037b25709ba155f2a53d32d7d2e43773944c7b1caabe017e76f58"
+    },
+    {
+      "path": "evidence/trust12/profile-implementation-evidence-review.json",
+      "sha256": "39cf9abc04adb9f896664c7f9618b4295a8dee1c7412e22e570c64ff0ca90168"
     },
     {
       "path": "evidence/trust12/release-notes.md",
-      "sha256": "50241abeb170c56fe16ec014e76deee34d5f58f7047f8525b292b2ce62130093"
+      "sha256": "d42e4e8c81d79cdca512fe1fd50909c6c4fb244abd1b2a896576d70545a4b3e8"
     },
     {
       "path": "evidence/trust12/release-policy.json",
-      "sha256": "226879ddf71a6aa7bfaf54ee318ccc8903e59e9b92512cd8b3f9dfe50017b016"
+      "sha256": "56379b8d6057d7bcb4dbc6160e9745e1fb6989a2efa15430eb8f0afaf5d4b090"
     },
     {
       "path": "evidence/trust12/required-controls.json",
@@ -329,7 +337,7 @@
     },
     {
       "path": "scripts/lib/trust12-policy.mjs",
-      "sha256": "5ded646251bc9da2e363e0a147c80ce95dc52be90e148de5c73ec84f640074f4"
+      "sha256": "b54385fa96e2b0b1e4f93e4469bcbdd917048896a2493014440012f41a3a557e"
     },
     {
       "path": "scripts/prepare-native-storage-predicates.py",
@@ -393,7 +401,7 @@
     },
     {
       "path": "scripts/test-trust12-policy.mjs",
-      "sha256": "b8dd02ca49f12ebde7154b067381372d1b2f13ab46215e950851d1ae59d2ea78"
+      "sha256": "cc189ad5acb288e7fbfcc443c4affc19cf48c45e6c901dc5cefa547755136847"
     },
     {
       "path": "scripts/test-trust12-required.mjs",

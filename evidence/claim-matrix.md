@@ -45,13 +45,22 @@ Each of seven components in each profile records its exact input/state scope,
 pinned tools, positive and negative evidence, artifact bindings and scope review.
 The profile grade is its weakest component: full declared-scope proof, limited-scope
 proof, execution tests/fuzz, or unverified. A test result never becomes a general
-proof by aggregation. The initial remapped components are unverified pending the
-evidence inventory; historical receipts remain valid in their original scopes.
+proof by aggregation. The 21 components have been scope-reviewed. Native, Partial and
+Hook each contain seven execution-test components. The weakest component makes every
+profile row EXECUTION_TESTS. No test or bounded proof was upgraded beyond its
+original scope. The three profile implementation-evidence rows are closed within
+those declared scopes, while all three general `runtime_link` research residuals
+remain unproved. Existing Kontrol PASS records remain supplemental bounded evidence
+because their receipt does not record the proof metadata required for proof-grade credit.
 
-Native symbolic FREEZE retains its original general input domain. A one-day
-alternative-decomposition probe cannot close an incomplete proof. Any shipping
-exception requires a separate row-specific Jay approval, retained unproven scope,
-carryover duties and matching disclosures. No public release is authorized here.
+TRUST 1.2 profile row grades: Native EXECUTION_TESTS; Partial EXECUTION_TESTS; Hook EXECUTION_TESTS.
+
+Native symbolic FREEZE retains its original general input domain. The bounded
+alternative-decomposition probe advanced an exact checked-summary instance through
+the program-counter step, then stopped after the second standard single-step timeout.
+The general proof and same-domain guard-removal negative remain incomplete. Any
+shipping exception requires a separate row-specific Jay approval, retained unproven
+scope, carryover duties and matching disclosures. No public release is authorized here.
 
 TRUST 1.2 shipping exceptions: none.
 
