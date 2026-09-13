@@ -7,6 +7,11 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 EXACT = [
+    "scripts/lib/trust12-policy.mjs",
+    "scripts/verify-trust12-policy.mjs",
+    "scripts/test-trust12-policy.mjs",
+    "evidence/claim-matrix.md",
+    "evidence/known-limitations.md",
     "implementation/kontrol/trust12/TrustTokenDeferredSymbolicKontrolTest.t.sol",
     "scripts/veri_dependency.py",
     "scripts/run-veri-native.py",

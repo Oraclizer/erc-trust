@@ -22,6 +22,22 @@ forbidden by `claim-matrix.md`.
 | The abstract model is verified within its declared semantic domain. Compiler correctness, EVM semantics, and the K-to-Isabelle correspondence of the composite decoder-guard result are trust seams, not proved objects. | `FORMAL_VERIFICATION.md` |
 | The published research paper describes kernel version 1 (candidate 2). A revision for kernel version 2 is pending; until it appears, the repository, not the paper, describes the successor. | `README.md` |
 
+## TRUST 1.2 release evidence (unreleased)
+
+The 2026-09-13 release-scope reset uses the verified abstract model plus explicitly
+scoped external-prover and execution evidence. General `runtime_link` discharge
+remains unproven research, separate from release-evidence readiness. The required
+label remains "mapped implementation evidence; end-to-end refinement incomplete".
+The 21 component entries are initially unverified pending scope inventory; an
+existing test or proof is credited only for its original inputs, states and claims.
+Native general symbolic FREEZE remains open. Timeout is not proof, and a separately
+approved shipping exception cannot be described as proof completion.
+
+TRUST 1.2 shipping exceptions: none.
+
+Policy: `evidence/trust12/release-policy.json`. Current release notes:
+`evidence/trust12/release-notes.md`. No deployment or public release is approved.
+
 ## Runtime identity
 
 | Limitation | Owner |
