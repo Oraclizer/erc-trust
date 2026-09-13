@@ -4,7 +4,7 @@
     "kind": "RELEASE_SCOPE_RESET",
     "approvedBy": "Jay Kim",
     "date": "2026-09-13",
-    "userInstruction": "아래는 클로드 의견 합의가 된거면 공정 반영 하고 새 세션용 프롬프트 알려줘",
+    "userInstruction": "Adopt the reconciled release-evidence policy, apply it to the product evidence, and prepare the next session.",
     "scope": "Adopt the reconciled release-evidence policy, grading, explicit shipping-exception mechanism and probe decision. This is not approval of any individual shipping exception or public release."
   },
   "generalRuntimeLinkRequiredForRelease": false,
