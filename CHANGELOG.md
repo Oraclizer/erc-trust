@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Reset TRUST 1.2 release scope to the verified abstract model plus explicitly
+  graded profile implementation evidence under declared external tools. Preserve
+  general runtime-to-model correspondence as unproved research residuals. Keep
+  Native symbolic FREEZE open and require separate Jay approval for any shipping
+  exception; add shared validator controls and limited-claim disclosures.
+
 - Add a direct-strict case20 frame theorem for the exact Native CHECK expression
   under the original symbolic word conditions. Preserve an exact structural
   node148 substitution as an unconsumed candidate, record a phase-three branch

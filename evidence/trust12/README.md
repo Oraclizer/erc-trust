@@ -4,6 +4,21 @@ The implementation adds a fresh T-REX hook profile. This directory records devel
 evidence separately from the published kernel version 2 baseline. It does not declare
 all TRUST 1.2 work complete or discharge the general runtime link.
 
+## Current release policy (2026-09-13)
+
+`release-policy.json` records the approved release-scope reset. The three profile
+rows in `obligation-ledger.json` now track seven components of scoped implementation
+evidence each. Their grades are initially unverified until the existing receipts
+are mapped and reviewed. The original general `runtime_link` goals remain unproved
+research residuals. Native symbolic FREEZE remains mandatory; a one-day probe cannot
+close it by timeout. No shipping exception is currently approved.
+
+`release-notes.md` records the limited claim and exception disclosures.
+`scripts/verify-trust12-policy.mjs` is shared by both evidence entrypoints;
+`scripts/test-trust12-policy.mjs` exercises grading and exception rejection controls.
+This metadata check is not a proof run or release authorization. Veri Formal/Kore
+and its local receiver candidates are preservation-only research assets.
+
 ## Implemented profile
 
 The `ERC3643HookAdapter` constructor creates the token, a fixed-membership Identity

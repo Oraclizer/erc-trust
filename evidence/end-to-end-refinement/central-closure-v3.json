@@ -775,8 +775,24 @@
     ],
     "evidence": [
       {
+        "path": "evidence/trust12/release-policy.json",
+        "sha256": "39f104dbe0ff2842658f1ad4a888253c37532c4755883e89b63c79e51f92a791"
+      },
+      {
+        "path": "evidence/trust12/release-notes.md",
+        "sha256": "50241abeb170c56fe16ec014e76deee34d5f58f7047f8525b292b2ce62130093"
+      },
+      {
+        "path": "evidence/claim-matrix.md",
+        "sha256": "f5c5e5208c2827c615582f132d932233d232e8698c24415e516ba2d9b0b276e3"
+      },
+      {
+        "path": "evidence/known-limitations.md",
+        "sha256": "57f4c6cdd5c40ef7c957db8eae25c0525423b9fce2279acaacae83fa3e3f8ee9"
+      },
+      {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "a6d38e54a13cb2f9e7e75efab6dcd8cb6258a8e7d9cbdc0192867bc62c3b28ee"
+        "sha256": "a32d15295d55381e62ef8c5a0caaea7beacb7b2af503d89113dfa103dcd50c55"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -784,7 +800,7 @@
       },
       {
         "path": "evidence/trust12/runtime-link-source-blockers.md",
-        "sha256": "bb4e9d9585c7407487a0533a52d49dbbc10b965ad5bf9d8e0a8d1f5938c945a4"
+        "sha256": "1c73b46de7efb1f7561bb0414ef341557c2d3a27c3d4236d0e8038fe7bf0ca15"
       },
       {
         "path": "evidence/trust12/independent-audit.md",
@@ -876,15 +892,16 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "bba35b0106df51dd3bbc16eb4ee4a3d6d28dcde2f5af3a2dd920de5bc642fb43"
+        "sha256": "d60a4516b6f4a694746fede5531195239ad8afebe47e7cc7d57dd0b40dc3fc56"
       }
     ],
+    "fullRefinementComplete": false,
     "models": {
       "linkedRun": "PASS_ABSTRACT_MODEL",
       "preservation": "PASS_ABSTRACT_MODEL",
       "runtimeConnection": "CONDITIONAL"
     },
-    "nonclaim": "Required evidence is present and bound to the current inputs. The admitted abstract model results do not close the outstanding symbolic or compiled-runtime obligations.",
+    "nonclaim": "Required evidence is present and bound to the current inputs. Policy consistency is not proof completion or shipping approval; the general runtime link remains a research residual.",
     "profiles": {
       "hook": {
         "functionalConformance": "PASS_PINNED_FRESH_TREX",
@@ -902,6 +919,13 @@
         "runtimeRefinement": "INCOMPLETE"
       }
     },
+    "releaseReadiness": "PENDING",
+    "researchResiduals": [
+      "RESEARCH-RUNTIME-LINK-HOOK",
+      "RESEARCH-RUNTIME-LINK-NATIVE",
+      "RESEARCH-RUNTIME-LINK-PARTIAL"
+    ],
+    "shippingExceptions": [],
     "status": "PASS_CONSISTENT_DEVELOPMENT",
     "symbolicBackendComparison": {
       "guardRemoval": "NOT_RUN because the positive proof did not complete",

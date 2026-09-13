@@ -1,5 +1,5 @@
 {
-  "schema": "trust12-obligation-ledger-v1",
+  "schema": "trust12-obligation-ledger-v2",
   "status": "IN_PROGRESS",
   "claimBoundary": {
     "hookProfile": "The constructor-sealed development reference has an independent functional-conformance PASS for same-transaction frozen-target enforcement on the pinned T-REX implementation.",
@@ -155,55 +155,886 @@
         "evidence/trust12/veri-symbolic-results.json",
         "evidence/trust12/veri-integration-audit.md",
         "evidence/trust12/native-storage-progress.json"
-      ]
+      ],
+      "inputDomain": "first > 0 and second > 0 and second <= first",
+      "notAssumed": "first <= total supply",
+      "symbolicEvidence": {
+        "property": "For every positive first and second target with second <= first, including first above supply, the second FREEZE stutters the named Native projection.",
+        "evidenceGrade": "UNVERIFIED",
+        "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
+        "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+        "toolPins": {
+          "isabelle": "Isabelle2025-2",
+          "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+          "kCommit": "4a46d1231473b599c699160132fd6e76a5c46406",
+          "koreCommit": "38afc81fc9414f1e11e609b01a43a436b613bd2d",
+          "z3": "4.13.4",
+          "solc": "0.8.36+commit.8a079791",
+          "kontrol": "1.0.255",
+          "foundry": "1.7.1",
+          "schedule": "CANCUN",
+          "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+        },
+        "assumptions": [],
+        "evidence": [],
+        "artifactBindings": [],
+        "negative": {
+          "kind": "UNVERIFIED",
+          "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
+          "evidence": []
+        },
+        "reuseCandidates": [
+          {
+            "path": "evidence/trust12/symbolic-kontrol.json",
+            "sha256": "e40a85b127e3749c0cbce0255833984240853c80f5983e4ef09dd409cf4dd8b2"
+          },
+          {
+            "path": "evidence/trust12/native-storage-progress.json",
+            "sha256": "f477b1b50af4a377e19eb68bb51e6277d650144403a84cd3c4d78e8503eaa4de"
+          }
+        ]
+      },
+      "probeDisposition": "After one day of alternative decomposition, report to Jay if incomplete. No timeout-based closure and no shipping exception currently approved."
     },
     {
       "id": "RUNTIME-LINK-NATIVE",
-      "abstractCondition": "Accepted compiled Native executions produce alpha_transaction without assuming runtime_link.",
+      "abstractCondition": "NATIVE compiled-code TRUST properties have profile-specific, explicitly scoped implementation evidence under the declared external tools and execution semantics.",
       "normativeReceiver": "Wave 5 Native runtime connection",
-      "finalSourceConsumer": "evidence/trust12/runtime-link-source-blockers.md: constructor/storage, calldata, authorization/replay, dependency calls, effects/frame, revert, receipt/log checked-producer obligations",
-      "positiveActivation": "Existing Foundry, Certora and Kontrol results are bounded instances only.",
-      "consumerRemovalNegative": "Pending",
+      "finalSourceConsumer": "The seven component entries of this row and their exact source, scope, artifact, positive/negative and review bindings.",
+      "positiveActivation": "Pending per-component evidence inventory and scope review; existing receipts remain reuse candidates only.",
+      "consumerRemovalNegative": "Pending per-component classification as killed consumer removal or bounded behavioral negative.",
       "compiledConsumer": "Published Native runtime remains byte-exact.",
-      "assumptionsNonclaims": "pinned_runtime_refinement.runtime_link remains an Isabelle locale assumption.",
+      "assumptionsNonclaims": "Release implementation evidence only. The general runtime_link discharge is a separate RESEARCH-RESIDUAL; source tests are not promoted to full-scope proofs.",
       "status": "CURRENT-MANDATORY",
       "supplementalEvidence": [
         "evidence/trust12/veri-observation-results.json",
         "evidence/trust12/veri-symbolic-results.json",
         "evidence/trust12/veri-integration-audit.md",
         "evidence/trust12/native-storage-progress.json"
+      ],
+      "criterion": "PROFILE_IMPLEMENTATION_EVIDENCE",
+      "researchResidualId": "RESEARCH-RUNTIME-LINK-NATIVE",
+      "evidenceGrade": "UNVERIFIED",
+      "components": [
+        {
+          "id": "constructor-storage",
+          "property": "Creation, immutable resolution and declared initial storage state.",
+          "evidenceGrade": "UNVERIFIED",
+          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
+          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "toolPins": {
+            "isabelle": "Isabelle2025-2",
+            "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+            "kCommit": "4a46d1231473b599c699160132fd6e76a5c46406",
+            "koreCommit": "38afc81fc9414f1e11e609b01a43a436b613bd2d",
+            "z3": "4.13.4",
+            "solc": "0.8.36+commit.8a079791",
+            "kontrol": "1.0.255",
+            "foundry": "1.7.1",
+            "schedule": "CANCUN",
+            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+          },
+          "assumptions": [],
+          "evidence": [],
+          "artifactBindings": [],
+          "negative": {
+            "kind": "UNVERIFIED",
+            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
+            "evidence": []
+          },
+          "reuseCandidates": [
+            {
+              "path": "evidence/kontrol-results-v3.json",
+              "sha256": "20d5eac6b01009e29baa80524db7f329f9e0834515a8a96133715f8b0a1f6f2c"
+            },
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ]
+        },
+        {
+          "id": "calldata-dispatch",
+          "property": "Actual byte dispatch, lengths, word/enum decoding and malformed outcomes.",
+          "evidenceGrade": "UNVERIFIED",
+          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
+          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "toolPins": {
+            "isabelle": "Isabelle2025-2",
+            "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+            "kCommit": "4a46d1231473b599c699160132fd6e76a5c46406",
+            "koreCommit": "38afc81fc9414f1e11e609b01a43a436b613bd2d",
+            "z3": "4.13.4",
+            "solc": "0.8.36+commit.8a079791",
+            "kontrol": "1.0.255",
+            "foundry": "1.7.1",
+            "schedule": "CANCUN",
+            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+          },
+          "assumptions": [],
+          "evidence": [],
+          "artifactBindings": [],
+          "negative": {
+            "kind": "UNVERIFIED",
+            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
+            "evidence": []
+          },
+          "reuseCandidates": [
+            {
+              "path": "evidence/kontrol-results-v3.json",
+              "sha256": "20d5eac6b01009e29baa80524db7f329f9e0834515a8a96133715f8b0a1f6f2c"
+            },
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ]
+        },
+        {
+          "id": "authorization-replay",
+          "property": "Caller, authority, epoch, identifier and replay checks.",
+          "evidenceGrade": "UNVERIFIED",
+          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
+          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "toolPins": {
+            "isabelle": "Isabelle2025-2",
+            "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+            "kCommit": "4a46d1231473b599c699160132fd6e76a5c46406",
+            "koreCommit": "38afc81fc9414f1e11e609b01a43a436b613bd2d",
+            "z3": "4.13.4",
+            "solc": "0.8.36+commit.8a079791",
+            "kontrol": "1.0.255",
+            "foundry": "1.7.1",
+            "schedule": "CANCUN",
+            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+          },
+          "assumptions": [],
+          "evidence": [],
+          "artifactBindings": [],
+          "negative": {
+            "kind": "UNVERIFIED",
+            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
+            "evidence": []
+          },
+          "reuseCandidates": [
+            {
+              "path": "evidence/kontrol-results-v3.json",
+              "sha256": "20d5eac6b01009e29baa80524db7f329f9e0834515a8a96133715f8b0a1f6f2c"
+            },
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ]
+        },
+        {
+          "id": "dependency-calls",
+          "property": "Declared dependencies, external calls, response shapes and echoed fields.",
+          "evidenceGrade": "UNVERIFIED",
+          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
+          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "toolPins": {
+            "isabelle": "Isabelle2025-2",
+            "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+            "kCommit": "4a46d1231473b599c699160132fd6e76a5c46406",
+            "koreCommit": "38afc81fc9414f1e11e609b01a43a436b613bd2d",
+            "z3": "4.13.4",
+            "solc": "0.8.36+commit.8a079791",
+            "kontrol": "1.0.255",
+            "foundry": "1.7.1",
+            "schedule": "CANCUN",
+            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+          },
+          "assumptions": [],
+          "evidence": [],
+          "artifactBindings": [],
+          "negative": {
+            "kind": "UNVERIFIED",
+            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
+            "evidence": []
+          },
+          "reuseCandidates": [
+            {
+              "path": "evidence/kontrol-results-v3.json",
+              "sha256": "20d5eac6b01009e29baa80524db7f329f9e0834515a8a96133715f8b0a1f6f2c"
+            },
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ]
+        },
+        {
+          "id": "effects-frame",
+          "property": "Post-storage effects, untouched fields and word/overflow conditions.",
+          "evidenceGrade": "UNVERIFIED",
+          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
+          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "toolPins": {
+            "isabelle": "Isabelle2025-2",
+            "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+            "kCommit": "4a46d1231473b599c699160132fd6e76a5c46406",
+            "koreCommit": "38afc81fc9414f1e11e609b01a43a436b613bd2d",
+            "z3": "4.13.4",
+            "solc": "0.8.36+commit.8a079791",
+            "kontrol": "1.0.255",
+            "foundry": "1.7.1",
+            "schedule": "CANCUN",
+            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+          },
+          "assumptions": [],
+          "evidence": [],
+          "artifactBindings": [],
+          "negative": {
+            "kind": "UNVERIFIED",
+            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
+            "evidence": []
+          },
+          "reuseCandidates": [
+            {
+              "path": "evidence/kontrol-results-v3.json",
+              "sha256": "20d5eac6b01009e29baa80524db7f329f9e0834515a8a96133715f8b0a1f6f2c"
+            },
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ]
+        },
+        {
+          "id": "revert",
+          "property": "Failure classification and persistent-state/log rollback.",
+          "evidenceGrade": "UNVERIFIED",
+          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
+          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "toolPins": {
+            "isabelle": "Isabelle2025-2",
+            "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+            "kCommit": "4a46d1231473b599c699160132fd6e76a5c46406",
+            "koreCommit": "38afc81fc9414f1e11e609b01a43a436b613bd2d",
+            "z3": "4.13.4",
+            "solc": "0.8.36+commit.8a079791",
+            "kontrol": "1.0.255",
+            "foundry": "1.7.1",
+            "schedule": "CANCUN",
+            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+          },
+          "assumptions": [],
+          "evidence": [],
+          "artifactBindings": [],
+          "negative": {
+            "kind": "UNVERIFIED",
+            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
+            "evidence": []
+          },
+          "reuseCandidates": [
+            {
+              "path": "evidence/kontrol-results-v3.json",
+              "sha256": "20d5eac6b01009e29baa80524db7f329f9e0834515a8a96133715f8b0a1f6f2c"
+            },
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ]
+        },
+        {
+          "id": "receipt-logs",
+          "property": "Return values, receipt preimages, emitted data and event order.",
+          "evidenceGrade": "UNVERIFIED",
+          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
+          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "toolPins": {
+            "isabelle": "Isabelle2025-2",
+            "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+            "kCommit": "4a46d1231473b599c699160132fd6e76a5c46406",
+            "koreCommit": "38afc81fc9414f1e11e609b01a43a436b613bd2d",
+            "z3": "4.13.4",
+            "solc": "0.8.36+commit.8a079791",
+            "kontrol": "1.0.255",
+            "foundry": "1.7.1",
+            "schedule": "CANCUN",
+            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+          },
+          "assumptions": [],
+          "evidence": [],
+          "artifactBindings": [],
+          "negative": {
+            "kind": "UNVERIFIED",
+            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
+            "evidence": []
+          },
+          "reuseCandidates": [
+            {
+              "path": "evidence/kontrol-results-v3.json",
+              "sha256": "20d5eac6b01009e29baa80524db7f329f9e0834515a8a96133715f8b0a1f6f2c"
+            },
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ]
+        }
       ]
     },
     {
       "id": "RUNTIME-LINK-PARTIAL",
-      "abstractCondition": "Accepted compiled Partial adapter executions produce the matching abstract transaction without assuming runtime_link.",
+      "abstractCondition": "PARTIAL compiled-code TRUST properties have profile-specific, explicitly scoped implementation evidence under the declared external tools and execution semantics.",
       "normativeReceiver": "Wave 5 legacy Partial runtime connection",
-      "finalSourceConsumer": "evidence/trust12/runtime-link-source-blockers.md: constructor/storage, calldata, authorization/replay, dependency calls, effects/frame, revert, receipt/log checked-producer obligations",
-      "positiveActivation": "Existing actual and clean-room tests are bounded instances.",
-      "consumerRemovalNegative": "Pending",
+      "finalSourceConsumer": "The seven component entries of this row and their exact source, scope, artifact, positive/negative and review bindings.",
+      "positiveActivation": "Pending per-component evidence inventory and scope review; existing receipts remain reuse candidates only.",
+      "consumerRemovalNegative": "Pending per-component classification as killed consumer removal or bounded behavioral negative.",
       "compiledConsumer": "Published Partial adapter and governor source and runtime remain byte-exact.",
-      "assumptionsNonclaims": "Native evidence is not transferred to this profile.",
+      "assumptionsNonclaims": "Release implementation evidence only. The general runtime_link discharge is a separate RESEARCH-RESIDUAL; source tests are not promoted to full-scope proofs.",
       "status": "CURRENT-MANDATORY",
       "supplementalEvidence": [
         "evidence/trust12/veri-observation-results.json",
         "evidence/trust12/veri-symbolic-results.json",
         "evidence/trust12/veri-integration-audit.md"
+      ],
+      "criterion": "PROFILE_IMPLEMENTATION_EVIDENCE",
+      "researchResidualId": "RESEARCH-RUNTIME-LINK-PARTIAL",
+      "evidenceGrade": "UNVERIFIED",
+      "components": [
+        {
+          "id": "constructor-storage",
+          "property": "Creation, immutable resolution and declared initial storage state.",
+          "evidenceGrade": "UNVERIFIED",
+          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
+          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "toolPins": {
+            "isabelle": "Isabelle2025-2",
+            "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+            "kCommit": "4a46d1231473b599c699160132fd6e76a5c46406",
+            "koreCommit": "38afc81fc9414f1e11e609b01a43a436b613bd2d",
+            "z3": "4.13.4",
+            "solc": "0.8.36+commit.8a079791",
+            "kontrol": "1.0.255",
+            "foundry": "1.7.1",
+            "schedule": "CANCUN",
+            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+          },
+          "assumptions": [],
+          "evidence": [],
+          "artifactBindings": [],
+          "negative": {
+            "kind": "UNVERIFIED",
+            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
+            "evidence": []
+          },
+          "reuseCandidates": [
+            {
+              "path": "evidence/certora-results-v3.json",
+              "sha256": "52e3cba36ebc94d87925ca7e1a05ee86012285773d7a453a73bd7fb05836a8bc"
+            },
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ]
+        },
+        {
+          "id": "calldata-dispatch",
+          "property": "Actual byte dispatch, lengths, word/enum decoding and malformed outcomes.",
+          "evidenceGrade": "UNVERIFIED",
+          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
+          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "toolPins": {
+            "isabelle": "Isabelle2025-2",
+            "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+            "kCommit": "4a46d1231473b599c699160132fd6e76a5c46406",
+            "koreCommit": "38afc81fc9414f1e11e609b01a43a436b613bd2d",
+            "z3": "4.13.4",
+            "solc": "0.8.36+commit.8a079791",
+            "kontrol": "1.0.255",
+            "foundry": "1.7.1",
+            "schedule": "CANCUN",
+            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+          },
+          "assumptions": [],
+          "evidence": [],
+          "artifactBindings": [],
+          "negative": {
+            "kind": "UNVERIFIED",
+            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
+            "evidence": []
+          },
+          "reuseCandidates": [
+            {
+              "path": "evidence/certora-results-v3.json",
+              "sha256": "52e3cba36ebc94d87925ca7e1a05ee86012285773d7a453a73bd7fb05836a8bc"
+            },
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ]
+        },
+        {
+          "id": "authorization-replay",
+          "property": "Caller, authority, epoch, identifier and replay checks.",
+          "evidenceGrade": "UNVERIFIED",
+          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
+          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "toolPins": {
+            "isabelle": "Isabelle2025-2",
+            "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+            "kCommit": "4a46d1231473b599c699160132fd6e76a5c46406",
+            "koreCommit": "38afc81fc9414f1e11e609b01a43a436b613bd2d",
+            "z3": "4.13.4",
+            "solc": "0.8.36+commit.8a079791",
+            "kontrol": "1.0.255",
+            "foundry": "1.7.1",
+            "schedule": "CANCUN",
+            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+          },
+          "assumptions": [],
+          "evidence": [],
+          "artifactBindings": [],
+          "negative": {
+            "kind": "UNVERIFIED",
+            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
+            "evidence": []
+          },
+          "reuseCandidates": [
+            {
+              "path": "evidence/certora-results-v3.json",
+              "sha256": "52e3cba36ebc94d87925ca7e1a05ee86012285773d7a453a73bd7fb05836a8bc"
+            },
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ]
+        },
+        {
+          "id": "dependency-calls",
+          "property": "Declared dependencies, external calls, response shapes and echoed fields.",
+          "evidenceGrade": "UNVERIFIED",
+          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
+          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "toolPins": {
+            "isabelle": "Isabelle2025-2",
+            "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+            "kCommit": "4a46d1231473b599c699160132fd6e76a5c46406",
+            "koreCommit": "38afc81fc9414f1e11e609b01a43a436b613bd2d",
+            "z3": "4.13.4",
+            "solc": "0.8.36+commit.8a079791",
+            "kontrol": "1.0.255",
+            "foundry": "1.7.1",
+            "schedule": "CANCUN",
+            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+          },
+          "assumptions": [],
+          "evidence": [],
+          "artifactBindings": [],
+          "negative": {
+            "kind": "UNVERIFIED",
+            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
+            "evidence": []
+          },
+          "reuseCandidates": [
+            {
+              "path": "evidence/certora-results-v3.json",
+              "sha256": "52e3cba36ebc94d87925ca7e1a05ee86012285773d7a453a73bd7fb05836a8bc"
+            },
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ]
+        },
+        {
+          "id": "effects-frame",
+          "property": "Post-storage effects, untouched fields and word/overflow conditions.",
+          "evidenceGrade": "UNVERIFIED",
+          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
+          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "toolPins": {
+            "isabelle": "Isabelle2025-2",
+            "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+            "kCommit": "4a46d1231473b599c699160132fd6e76a5c46406",
+            "koreCommit": "38afc81fc9414f1e11e609b01a43a436b613bd2d",
+            "z3": "4.13.4",
+            "solc": "0.8.36+commit.8a079791",
+            "kontrol": "1.0.255",
+            "foundry": "1.7.1",
+            "schedule": "CANCUN",
+            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+          },
+          "assumptions": [],
+          "evidence": [],
+          "artifactBindings": [],
+          "negative": {
+            "kind": "UNVERIFIED",
+            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
+            "evidence": []
+          },
+          "reuseCandidates": [
+            {
+              "path": "evidence/certora-results-v3.json",
+              "sha256": "52e3cba36ebc94d87925ca7e1a05ee86012285773d7a453a73bd7fb05836a8bc"
+            },
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ]
+        },
+        {
+          "id": "revert",
+          "property": "Failure classification and persistent-state/log rollback.",
+          "evidenceGrade": "UNVERIFIED",
+          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
+          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "toolPins": {
+            "isabelle": "Isabelle2025-2",
+            "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+            "kCommit": "4a46d1231473b599c699160132fd6e76a5c46406",
+            "koreCommit": "38afc81fc9414f1e11e609b01a43a436b613bd2d",
+            "z3": "4.13.4",
+            "solc": "0.8.36+commit.8a079791",
+            "kontrol": "1.0.255",
+            "foundry": "1.7.1",
+            "schedule": "CANCUN",
+            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+          },
+          "assumptions": [],
+          "evidence": [],
+          "artifactBindings": [],
+          "negative": {
+            "kind": "UNVERIFIED",
+            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
+            "evidence": []
+          },
+          "reuseCandidates": [
+            {
+              "path": "evidence/certora-results-v3.json",
+              "sha256": "52e3cba36ebc94d87925ca7e1a05ee86012285773d7a453a73bd7fb05836a8bc"
+            },
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ]
+        },
+        {
+          "id": "receipt-logs",
+          "property": "Return values, receipt preimages, emitted data and event order.",
+          "evidenceGrade": "UNVERIFIED",
+          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
+          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "toolPins": {
+            "isabelle": "Isabelle2025-2",
+            "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+            "kCommit": "4a46d1231473b599c699160132fd6e76a5c46406",
+            "koreCommit": "38afc81fc9414f1e11e609b01a43a436b613bd2d",
+            "z3": "4.13.4",
+            "solc": "0.8.36+commit.8a079791",
+            "kontrol": "1.0.255",
+            "foundry": "1.7.1",
+            "schedule": "CANCUN",
+            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+          },
+          "assumptions": [],
+          "evidence": [],
+          "artifactBindings": [],
+          "negative": {
+            "kind": "UNVERIFIED",
+            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
+            "evidence": []
+          },
+          "reuseCandidates": [
+            {
+              "path": "evidence/certora-results-v3.json",
+              "sha256": "52e3cba36ebc94d87925ca7e1a05ee86012285773d7a453a73bd7fb05836a8bc"
+            },
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ]
+        }
       ]
     },
     {
       "id": "RUNTIME-LINK-HOOK",
-      "abstractCondition": "Accepted compiled Hook profile executions and callbacks produce the matching abstract transaction and observation trace.",
+      "abstractCondition": "HOOK compiled-code TRUST properties have profile-specific, explicitly scoped implementation evidence under the declared external tools and execution semantics.",
       "normativeReceiver": "Wave 5 new hook runtime connection",
-      "finalSourceConsumer": "evidence/trust12/runtime-link-source-blockers.md: constructor/storage, calldata, authorization/replay, dependency calls, effects/frame, revert, receipt/log checked-producer obligations",
-      "positiveActivation": "Actual integration and six semantic mutations are bounded implementation evidence.",
-      "consumerRemovalNegative": "The current mutations cover named feature consumers but do not construct a general correspondence.",
+      "finalSourceConsumer": "The seven component entries of this row and their exact source, scope, artifact, positive/negative and review bindings.",
+      "positiveActivation": "Pending per-component evidence inventory and scope review; existing receipts remain reuse candidates only.",
+      "consumerRemovalNegative": "Pending per-component classification as killed consumer removal or bounded behavioral negative.",
       "compiledConsumer": "HookAdapter, governor, Compliance, factory and actual T-REX runtime identities are recorded.",
-      "assumptionsNonclaims": "The hook functional result does not imply end-to-end runtime refinement.",
+      "assumptionsNonclaims": "Release implementation evidence only. The general runtime_link discharge is a separate RESEARCH-RESIDUAL; source tests are not promoted to full-scope proofs.",
       "status": "CURRENT-MANDATORY",
       "supplementalEvidence": [
         "evidence/trust12/veri-observation-results.json",
         "evidence/trust12/veri-symbolic-results.json",
         "evidence/trust12/veri-integration-audit.md"
+      ],
+      "criterion": "PROFILE_IMPLEMENTATION_EVIDENCE",
+      "researchResidualId": "RESEARCH-RUNTIME-LINK-HOOK",
+      "evidenceGrade": "UNVERIFIED",
+      "components": [
+        {
+          "id": "constructor-storage",
+          "property": "Creation, immutable resolution and declared initial storage state.",
+          "evidenceGrade": "UNVERIFIED",
+          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
+          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "toolPins": {
+            "isabelle": "Isabelle2025-2",
+            "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+            "kCommit": "4a46d1231473b599c699160132fd6e76a5c46406",
+            "koreCommit": "38afc81fc9414f1e11e609b01a43a436b613bd2d",
+            "z3": "4.13.4",
+            "solc": "0.8.36+commit.8a079791",
+            "kontrol": "1.0.255",
+            "foundry": "1.7.1",
+            "schedule": "CANCUN",
+            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+          },
+          "assumptions": [],
+          "evidence": [],
+          "artifactBindings": [],
+          "negative": {
+            "kind": "UNVERIFIED",
+            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
+            "evidence": []
+          },
+          "reuseCandidates": [
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            },
+            {
+              "path": "evidence/trust12/runtime-identity.json",
+              "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
+            }
+          ]
+        },
+        {
+          "id": "calldata-dispatch",
+          "property": "Actual byte dispatch, lengths, word/enum decoding and malformed outcomes.",
+          "evidenceGrade": "UNVERIFIED",
+          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
+          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "toolPins": {
+            "isabelle": "Isabelle2025-2",
+            "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+            "kCommit": "4a46d1231473b599c699160132fd6e76a5c46406",
+            "koreCommit": "38afc81fc9414f1e11e609b01a43a436b613bd2d",
+            "z3": "4.13.4",
+            "solc": "0.8.36+commit.8a079791",
+            "kontrol": "1.0.255",
+            "foundry": "1.7.1",
+            "schedule": "CANCUN",
+            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+          },
+          "assumptions": [],
+          "evidence": [],
+          "artifactBindings": [],
+          "negative": {
+            "kind": "UNVERIFIED",
+            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
+            "evidence": []
+          },
+          "reuseCandidates": [
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            },
+            {
+              "path": "evidence/trust12/runtime-identity.json",
+              "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
+            }
+          ]
+        },
+        {
+          "id": "authorization-replay",
+          "property": "Caller, authority, epoch, identifier and replay checks.",
+          "evidenceGrade": "UNVERIFIED",
+          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
+          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "toolPins": {
+            "isabelle": "Isabelle2025-2",
+            "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+            "kCommit": "4a46d1231473b599c699160132fd6e76a5c46406",
+            "koreCommit": "38afc81fc9414f1e11e609b01a43a436b613bd2d",
+            "z3": "4.13.4",
+            "solc": "0.8.36+commit.8a079791",
+            "kontrol": "1.0.255",
+            "foundry": "1.7.1",
+            "schedule": "CANCUN",
+            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+          },
+          "assumptions": [],
+          "evidence": [],
+          "artifactBindings": [],
+          "negative": {
+            "kind": "UNVERIFIED",
+            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
+            "evidence": []
+          },
+          "reuseCandidates": [
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            },
+            {
+              "path": "evidence/trust12/runtime-identity.json",
+              "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
+            }
+          ]
+        },
+        {
+          "id": "dependency-calls",
+          "property": "Declared dependencies, external calls, response shapes and echoed fields.",
+          "evidenceGrade": "UNVERIFIED",
+          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
+          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "toolPins": {
+            "isabelle": "Isabelle2025-2",
+            "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+            "kCommit": "4a46d1231473b599c699160132fd6e76a5c46406",
+            "koreCommit": "38afc81fc9414f1e11e609b01a43a436b613bd2d",
+            "z3": "4.13.4",
+            "solc": "0.8.36+commit.8a079791",
+            "kontrol": "1.0.255",
+            "foundry": "1.7.1",
+            "schedule": "CANCUN",
+            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+          },
+          "assumptions": [],
+          "evidence": [],
+          "artifactBindings": [],
+          "negative": {
+            "kind": "UNVERIFIED",
+            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
+            "evidence": []
+          },
+          "reuseCandidates": [
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            },
+            {
+              "path": "evidence/trust12/runtime-identity.json",
+              "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
+            }
+          ]
+        },
+        {
+          "id": "effects-frame",
+          "property": "Post-storage effects, untouched fields and word/overflow conditions.",
+          "evidenceGrade": "UNVERIFIED",
+          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
+          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "toolPins": {
+            "isabelle": "Isabelle2025-2",
+            "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+            "kCommit": "4a46d1231473b599c699160132fd6e76a5c46406",
+            "koreCommit": "38afc81fc9414f1e11e609b01a43a436b613bd2d",
+            "z3": "4.13.4",
+            "solc": "0.8.36+commit.8a079791",
+            "kontrol": "1.0.255",
+            "foundry": "1.7.1",
+            "schedule": "CANCUN",
+            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+          },
+          "assumptions": [],
+          "evidence": [],
+          "artifactBindings": [],
+          "negative": {
+            "kind": "UNVERIFIED",
+            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
+            "evidence": []
+          },
+          "reuseCandidates": [
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            },
+            {
+              "path": "evidence/trust12/runtime-identity.json",
+              "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
+            }
+          ]
+        },
+        {
+          "id": "revert",
+          "property": "Failure classification and persistent-state/log rollback.",
+          "evidenceGrade": "UNVERIFIED",
+          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
+          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "toolPins": {
+            "isabelle": "Isabelle2025-2",
+            "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+            "kCommit": "4a46d1231473b599c699160132fd6e76a5c46406",
+            "koreCommit": "38afc81fc9414f1e11e609b01a43a436b613bd2d",
+            "z3": "4.13.4",
+            "solc": "0.8.36+commit.8a079791",
+            "kontrol": "1.0.255",
+            "foundry": "1.7.1",
+            "schedule": "CANCUN",
+            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+          },
+          "assumptions": [],
+          "evidence": [],
+          "artifactBindings": [],
+          "negative": {
+            "kind": "UNVERIFIED",
+            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
+            "evidence": []
+          },
+          "reuseCandidates": [
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            },
+            {
+              "path": "evidence/trust12/runtime-identity.json",
+              "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
+            }
+          ]
+        },
+        {
+          "id": "receipt-logs",
+          "property": "Return values, receipt preimages, emitted data and event order.",
+          "evidenceGrade": "UNVERIFIED",
+          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
+          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "toolPins": {
+            "isabelle": "Isabelle2025-2",
+            "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+            "kCommit": "4a46d1231473b599c699160132fd6e76a5c46406",
+            "koreCommit": "38afc81fc9414f1e11e609b01a43a436b613bd2d",
+            "z3": "4.13.4",
+            "solc": "0.8.36+commit.8a079791",
+            "kontrol": "1.0.255",
+            "foundry": "1.7.1",
+            "schedule": "CANCUN",
+            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+          },
+          "assumptions": [],
+          "evidence": [],
+          "artifactBindings": [],
+          "negative": {
+            "kind": "UNVERIFIED",
+            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
+            "evidence": []
+          },
+          "reuseCandidates": [
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            },
+            {
+              "path": "evidence/trust12/runtime-identity.json",
+              "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
+            }
+          ]
+        }
       ]
     },
     {
@@ -216,6 +1047,64 @@
       "compiledConsumer": "The repair trace reaches endpoint creation, all factory reads, HookUnitCreated and successful return before the detector fails.",
       "assumptionsNonclaims": "The current live full descriptor is a development-profile runtime result, not an audit or production approval.",
       "status": "CLOSED"
+    },
+    {
+      "id": "RESEARCH-RUNTIME-LINK-NATIVE",
+      "abstractCondition": "Accepted compiled Native executions produce alpha_transaction without assuming runtime_link.",
+      "normativeReceiver": "Wave 5 Native runtime connection",
+      "finalSourceConsumer": "evidence/trust12/runtime-link-source-blockers.md: constructor/storage, calldata, authorization/replay, dependency calls, effects/frame, revert, receipt/log checked-producer obligations",
+      "positiveActivation": "Existing Foundry, Certora and Kontrol results are bounded instances only.",
+      "consumerRemovalNegative": "Pending",
+      "compiledConsumer": "Published Native runtime remains byte-exact.",
+      "assumptionsNonclaims": "pinned_runtime_refinement.runtime_link remains an Isabelle locale assumption.",
+      "status": "RESEARCH-RESIDUAL",
+      "supplementalEvidence": [
+        "evidence/trust12/veri-observation-results.json",
+        "evidence/trust12/veri-symbolic-results.json",
+        "evidence/trust12/veri-integration-audit.md",
+        "evidence/trust12/native-storage-progress.json"
+      ],
+      "requiredForRelease": false,
+      "proofCompleted": false,
+      "disposition": "Preserved general machine-checked runtime-to-Isabelle correspondence research obligation. Not proved or deleted by the release-scope reset."
+    },
+    {
+      "id": "RESEARCH-RUNTIME-LINK-PARTIAL",
+      "abstractCondition": "Accepted compiled Partial adapter executions produce the matching abstract transaction without assuming runtime_link.",
+      "normativeReceiver": "Wave 5 legacy Partial runtime connection",
+      "finalSourceConsumer": "evidence/trust12/runtime-link-source-blockers.md: constructor/storage, calldata, authorization/replay, dependency calls, effects/frame, revert, receipt/log checked-producer obligations",
+      "positiveActivation": "Existing actual and clean-room tests are bounded instances.",
+      "consumerRemovalNegative": "Pending",
+      "compiledConsumer": "Published Partial adapter and governor source and runtime remain byte-exact.",
+      "assumptionsNonclaims": "Native evidence is not transferred to this profile.",
+      "status": "RESEARCH-RESIDUAL",
+      "supplementalEvidence": [
+        "evidence/trust12/veri-observation-results.json",
+        "evidence/trust12/veri-symbolic-results.json",
+        "evidence/trust12/veri-integration-audit.md"
+      ],
+      "requiredForRelease": false,
+      "proofCompleted": false,
+      "disposition": "Preserved general machine-checked runtime-to-Isabelle correspondence research obligation. Not proved or deleted by the release-scope reset."
+    },
+    {
+      "id": "RESEARCH-RUNTIME-LINK-HOOK",
+      "abstractCondition": "Accepted compiled Hook profile executions and callbacks produce the matching abstract transaction and observation trace.",
+      "normativeReceiver": "Wave 5 new hook runtime connection",
+      "finalSourceConsumer": "evidence/trust12/runtime-link-source-blockers.md: constructor/storage, calldata, authorization/replay, dependency calls, effects/frame, revert, receipt/log checked-producer obligations",
+      "positiveActivation": "Actual integration and six semantic mutations are bounded implementation evidence.",
+      "consumerRemovalNegative": "The current mutations cover named feature consumers but do not construct a general correspondence.",
+      "compiledConsumer": "HookAdapter, governor, Compliance, factory and actual T-REX runtime identities are recorded.",
+      "assumptionsNonclaims": "The hook functional result does not imply end-to-end runtime refinement.",
+      "status": "RESEARCH-RESIDUAL",
+      "supplementalEvidence": [
+        "evidence/trust12/veri-observation-results.json",
+        "evidence/trust12/veri-symbolic-results.json",
+        "evidence/trust12/veri-integration-audit.md"
+      ],
+      "requiredForRelease": false,
+      "proofCompleted": false,
+      "disposition": "Preserved general machine-checked runtime-to-Isabelle correspondence research obligation. Not proved or deleted by the release-scope reset."
     }
   ],
   "centralClosure": {
@@ -229,6 +1118,19 @@
       "RUNTIME-LINK-NATIVE",
       "RUNTIME-LINK-PARTIAL",
       "RUNTIME-LINK-HOOK"
-    ]
+    ],
+    "researchResiduals": [
+      "RESEARCH-RUNTIME-LINK-HOOK",
+      "RESEARCH-RUNTIME-LINK-NATIVE",
+      "RESEARCH-RUNTIME-LINK-PARTIAL"
+    ],
+    "shippingExceptions": [],
+    "releaseScopeReset": "Jay Kim, 2026-09-13; three release implementation-evidence criteria replace the previous general correspondence release requirement; original proof obligations preserved as research residuals."
+  },
+  "releasePolicy": "evidence/trust12/release-policy.json",
+  "releaseAssessment": {
+    "status": "PENDING",
+    "fullRefinementComplete": false,
+    "meaning": "Release-evidence readiness is distinct from proof completeness and public release approval."
   }
 }
