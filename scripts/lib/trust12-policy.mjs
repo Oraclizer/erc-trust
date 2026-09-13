@@ -15,6 +15,7 @@ const legacyClosedIds = ['HOOK-FRESH-INITIAL','HOOK-FACTORY-CREATION','HOOK-SOLE
   'MODEL-REGULATORY-PRESERVATION','MODEL-LINKED-RUN'];
 export const disclosures = ['evidence/claim-matrix.md', 'evidence/known-limitations.md',
   'evidence/trust12/release-notes.md'];
+export const implementationDisclosures = [...disclosures, 'evidence/trust12/README.md'];
 const nonempty = value => typeof value === 'string' && value.trim().length > 0;
 const sameSet = (a, b) => Array.isArray(a) && new Set(a).size === a.length
   && encoded([...a].sort()) === encoded([...b].sort());
@@ -49,6 +50,13 @@ function evidence(root, cell, toolchain) {
       && cell.result.admittedGoals === 0 && cell.result.vacuous === false
       && Array.isArray(cell.result.claimIds) && cell.result.claimIds.length > 0
       && cell.result.claimIds.every(nonempty), 'proof grade lacks completed nonvacuous proof claims');
+    reference(root, cell.result.receipt, 'proof result');
+    const proofReceipt = json(root, cell.result.receipt.path);
+    check(Array.isArray(proofReceipt.proofs) && cell.result.claimIds.every(id => {
+      const item = proofReceipt.proofs.find(proof => proof.id === id);
+      return item?.status === 'PASS' && item.unresolvedGoals === 0
+        && item.admittedGoals === 0 && item.vacuous === false;
+    }), 'proof result metadata is not receipt-backed');
     if (cell.result.tool === 'Certora') check(!toolchain.certora.startsWith('UNRECORDED'), 'Certora proof requires exact run version');
     if (cell.evidenceGrade === 'LIMITED_SCOPE_PROOF') check(nonempty(cell.result.limits), 'limited proof lacks limits');
     if (cell.evidenceGrade === 'FULL_SCOPE_PROOF') check(cell.result.coversDeclaredScope === true, 'full proof does not cover declared scope');
@@ -97,6 +105,10 @@ export function verifyTrust12Policy(root) {
   const symbolic = json(root, 'evidence/trust12/symbolic-kontrol.json');
   check(policy.toolchain.kontrol === symbolic.toolchain.kontrol
     && policy.toolchain.foundry === symbolic.toolchain.forge && policy.toolchain.schedule === symbolic.toolchain.schedule, 'execution tool pins drift');
+  const certora = json(root, 'evidence/certora-results-v3.json');
+  check(policy.toolchain.certora === certora.toolchain?.certoraCli
+    && policy.toolchain.certora === certora.toolchain?.certoraServer
+    && nonempty(policy.certoraVersionPolicy), 'Certora tool version differs from current receipt');
   const rows = new Map(ledger.obligations.map(row => [row.id, row]));
   check(rows.size === ledger.obligations.length, 'duplicate obligation id');
   check(sameSet([...rows.keys()], [...legacyClosedIds, ...mandatoryIds, ...researchIds])
@@ -157,6 +169,12 @@ export function verifyTrust12Policy(root) {
     check(text.includes('mapped implementation evidence; end-to-end refinement incomplete'), `missing limited claim: ${path}`);
     check(text.includes('TRUST 1.2 shipping exceptions: none.') === (exceptions.length === 0), `exception summary drift: ${path}`);
   }
+  const profileRows = profiles.map(profile => rows.get(`RUNTIME-LINK-${profile}`));
+  check(profileRows.every(row => row.status === 'CLOSED' && row.components.every(cell => cell.evidenceGrade !== 'UNVERIFIED')),
+    'profile implementation evidence inventory incomplete');
+  const gradeDisclosure = `TRUST 1.2 profile row grades: Native ${profileRows[0].evidenceGrade}; Partial ${profileRows[1].evidenceGrade}; Hook ${profileRows[2].evidenceGrade}.`;
+  for (const path of implementationDisclosures)
+    check(read(root, path).toString('utf8').includes(gradeDisclosure), `profile grade disclosure drift: ${path}`);
   return { status: 'PASS_POLICY_CONSISTENCY', releaseReadiness: readiness, currentMandatory: pending,
     researchResiduals: researchIds, shippingExceptions: exceptions.map(r => r.id), fullRefinementComplete: false };
 }

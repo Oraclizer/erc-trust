@@ -1,0 +1,72 @@
+{
+  "schema": "trust12-profile-implementation-evidence-review-v1",
+  "status": "PASS_SCOPED_INVENTORY",
+  "sourceHead": "3f4f795e76dcd7bfcc6819d2a8ad74744aa991a2",
+  "sourceInputSealSha256": "2c35df71d30ea46972fe6595743e59f2119d9b5bb97283f8e7f81c6658ee0aee",
+  "inventories": {
+    "NATIVE": {
+      "path": "out/trust12/evidence-inventory-native/inventory.json",
+      "sha256": "0a375b0c67d73a2496154c750f0e7bea14a9033f03052326ff068d0173215105"
+    },
+    "PARTIAL": {
+      "path": "out/trust12/evidence-inventory-partial/inventory.json",
+      "sha256": "467eb6f5c576d3e79fb208ee3f5737067d2ab7ef83c98743577d6edde235bdb4"
+    },
+    "HOOK": {
+      "path": "out/trust12/evidence-inventory-hook/inventory.json",
+      "sha256": "19cbd2d2e49e033fc86874b7d28a2d16f9ab9626036d0c9f83769e05f2237090"
+    }
+  },
+  "componentCount": 21,
+  "grades": {
+    "NATIVE": {
+      "constructor-storage": "EXECUTION_TESTS",
+      "calldata-dispatch": "EXECUTION_TESTS",
+      "authorization-replay": "EXECUTION_TESTS",
+      "dependency-calls": "EXECUTION_TESTS",
+      "effects-frame": "EXECUTION_TESTS",
+      "revert": "EXECUTION_TESTS",
+      "receipt-logs": "EXECUTION_TESTS"
+    },
+    "PARTIAL": {
+      "constructor-storage": "EXECUTION_TESTS",
+      "calldata-dispatch": "EXECUTION_TESTS",
+      "authorization-replay": "EXECUTION_TESTS",
+      "dependency-calls": "EXECUTION_TESTS",
+      "effects-frame": "EXECUTION_TESTS",
+      "revert": "EXECUTION_TESTS",
+      "receipt-logs": "EXECUTION_TESTS"
+    },
+    "HOOK": {
+      "constructor-storage": "EXECUTION_TESTS",
+      "calldata-dispatch": "EXECUTION_TESTS",
+      "authorization-replay": "EXECUTION_TESTS",
+      "dependency-calls": "EXECUTION_TESTS",
+      "effects-frame": "EXECUTION_TESTS",
+      "revert": "EXECUTION_TESTS",
+      "receipt-logs": "EXECUTION_TESTS"
+    }
+  },
+  "rowGrades": {
+    "NATIVE": "EXECUTION_TESTS",
+    "PARTIAL": "EXECUTION_TESTS",
+    "HOOK": "EXECUTION_TESTS"
+  },
+  "certoraVersionRecovery": {
+    "status": "RECOVERED_FROM_PRIMARY_RECEIPT",
+    "path": "evidence/certora-results-v3.json",
+    "sha256": "52e3cba36ebc94d87925ca7e1a05ee86012285773d7a453a73bd7fb05836a8bc",
+    "cli": "8.19.1",
+    "server": "8.19.1",
+    "newExecution": false
+  },
+  "scopeReview": "All 21 components are graded EXECUTION_TESTS after direct receipt review. Existing Kontrol PASS results remain named supplemental bounded evidence; the current receipt does not record unresolved-goal, admitted-goal and vacuity metadata, so it cannot support LIMITED_SCOPE_PROOF credit under the release policy. No test or receipt was promoted beyond its original scope.",
+  "routeReview": "Hook factory, direct deployment, adapter, governor, compliance and callback routes were reverse-enumerated. Permissionless resynchroniseFrozen is present but unexecuted in the actual T-REx inventory. activateSeal is unreachable after fresh construction and also unexecuted. batchForcedTransfer, recovery and post-activation mint/burn callbacks remain outside the graded scope.",
+  "permittedClaim": "mapped implementation evidence; end-to-end refinement incomplete",
+  "nonclaims": [
+    "No general runtime_link is discharged.",
+    "No component is graded FULL_SCOPE_PROOF.",
+    "No deployment, public release, audit or production readiness is claimed.",
+    "The Native general symbolic FREEZE obligation remains open."
+  ]
+}

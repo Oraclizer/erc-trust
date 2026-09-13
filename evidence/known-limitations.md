@@ -13,7 +13,7 @@ forbidden by `claim-matrix.md`.
 
 | Limitation | Owner |
 | --- | --- |
-| No theorem states that the compiled runtime implements the abstract model. The locale assumption `runtime_link` in `formal/isabelle/ERC_TRUST/TRUST_End_To_End_Composition.thy` is not discharged; the two obligation ledger rows that name it stay open, and the closure record is conditional. The permitted wording is "mapped implementation evidence; end-to-end refinement incomplete". | `spec/decisions/10-refinement-closure.md`; `evidence/end-to-end-refinement/central-closure-v3.json` |
+| No theorem states that the compiled runtime implements the abstract model. The locale assumption `runtime_link` in `formal/isabelle/ERC_TRUST/TRUST_End_To_End_Composition.thy` is not discharged; the three research-residual obligation ledger rows that name it stay open, and the closure record is conditional. The permitted wording is "mapped implementation evidence; end-to-end refinement incomplete". | `spec/decisions/10-refinement-closure.md`; `evidence/end-to-end-refinement/central-closure-v3.json` |
 | The four Kontrol proofs rerun on the successor native runtime and the Foundry executions are bounded instances of that link, not a proof of it. The ERC-3643 adapter has no symbolic lane. | `evidence/kontrol-results-v3.json`; `FORMAL_VERIFICATION.md` |
 | The KEVM program has not been restarted for kernel version 2: `formal/kevm/` holds the regenerated bridge, the compile script, and the dependency lock only, and the KEVM claim specifications preserved under `evidence/candidate-2/formal/kevm/` describe the candidate 2 runtime. | `spec/decisions/10-refinement-closure.md`; `formal/kevm/README.md` |
 | The successor Certora receipt proves four named rules on the exact current ERC-3643 Partial adapter runtime and nine-file input root. It does not prove manifest completeness, the ordinary inbound hook, the runtime link to the abstract model, a deployment, or external truth. Candidate 2 Certora results remain historical evidence about different bytes. | `evidence/certora-results-v3.json`; `evidence/current-profile-release-index-v3.json` |
@@ -28,14 +28,25 @@ The 2026-09-13 release-scope reset uses the verified abstract model plus explici
 scoped external-prover and execution evidence. General `runtime_link` discharge
 remains unproven research, separate from release-evidence readiness. The required
 label remains "mapped implementation evidence; end-to-end refinement incomplete".
-The 21 component entries are initially unverified pending scope inventory; an
-existing test or proof is credited only for its original inputs, states and claims.
-Native general symbolic FREEZE remains open. Timeout is not proof, and a separately
-approved shipping exception cannot be described as proof completion.
+The 21 component entries have been scope-reviewed. Native, Partial and Hook each have
+seven execution-test components. The weakest component makes all three profile rows
+EXECUTION_TESTS. Existing tests and proofs retain only their original inputs, states
+and claims. The exact Certora CLI and server version 8.19.1 came from the existing
+receipt; no new run occurred. Native general symbolic FREEZE remains open after the
+alternative probe stopped on its second standard single-step timeout. Its same-domain
+guard-removal negative was not run. Timeout is not proof, and a separately approved
+shipping exception cannot be described as proof completion.
+
+Existing Kontrol PASS records remain supplemental bounded evidence because their
+receipt does not record the proof metadata required for proof-grade credit.
+
+TRUST 1.2 profile row grades: Native EXECUTION_TESTS; Partial EXECUTION_TESTS; Hook EXECUTION_TESTS.
 
 TRUST 1.2 shipping exceptions: none.
 
-Policy: `evidence/trust12/release-policy.json`. Current release notes:
+Policy: `evidence/trust12/release-policy.json`. Scope inventory:
+`evidence/trust12/profile-implementation-evidence-review.json`. Native probe:
+`evidence/trust12/native-alternative-probe.json`. Current release notes:
 `evidence/trust12/release-notes.md`. No deployment or public release is approved.
 
 ## Runtime identity

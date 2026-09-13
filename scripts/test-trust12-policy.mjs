@@ -4,7 +4,7 @@ import { mkdirSync, mkdtempSync, readFileSync, writeFileSync, rmSync } from 'nod
 import { dirname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { check, encoded, fileRef, json } from './lib/local-evidence.mjs';
-import { components, disclosures, profiles, verifyTrust12Policy } from './lib/trust12-policy.mjs';
+import { components, disclosures, implementationDisclosures, profiles, verifyTrust12Policy } from './lib/trust12-policy.mjs';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const out = resolve(root, 'out/trust12');
 mkdirSync(out, { recursive: true });
@@ -22,9 +22,10 @@ function collect(value) {
   for (const v of Object.values(value)) collect(v);
 }
 collect(policy); collect(baseline);
-for (const path of new Set([...refs.keys(), 'evidence/trust12/symbolic-kontrol.json', ...disclosures]))
+for (const path of new Set([...refs.keys(), 'evidence/trust12/symbolic-kontrol.json',
+  'evidence/certora-results-v3.json', ...implementationDisclosures]))
   put(path, readFileSync(resolve(root, path)));
-const documents = Object.fromEntries(disclosures.map(path => [path, readFileSync(resolve(root, path), 'utf8')]));
+const documents = Object.fromEntries(implementationDisclosures.map(path => [path, readFileSync(resolve(root, path), 'utf8')]));
 function reset() {
   put(policyPath, policy); put(ledgerPath, baseline);
   for (const [path, text] of Object.entries(documents)) put(path, text);
@@ -61,6 +62,7 @@ function approvedException(ledger) {
     disclosure: 'TEST ONLY: NATIVE-SYMBOLIC-FREEZE remains unproven; approved test exception.' };
   ledger.centralClosure.currentMandatory = ledger.centralClosure.currentMandatory.filter(id => id !== r.id);
   ledger.centralClosure.shippingExceptions = [r.id];
+  ledger.releaseAssessment.status='READY_WITH_EXCEPTIONS'; ledger.status='EVIDENCE_COMPLETE_WITH_EXCEPTIONS';
   for (const [path, text] of Object.entries(documents))
     put(path, text.replace('TRUST 1.2 shipping exceptions: none.', r.shippingException.disclosure));
   return r;
@@ -68,12 +70,15 @@ function approvedException(ledger) {
 function nativeProofFixture(ledger) {
   const r=row(ledger,'NATIVE-SYMBOLIC-FREEZE'), e=r.symbolicEvidence;
   promoteTests(e);
+  const proofPath='evidence/trust12/fixture-proof-result.json';
+  put(proofPath,{proofs:[{id:'test-only-general-claim',status:'PASS',unresolvedGoals:0,admittedGoals:0,vacuous:false}]});
   Object.assign(e,{evidenceGrade:'FULL_SCOPE_PROOF',property:r.abstractCondition,inputScope:r.inputDomain,notAssumed:r.notAssumed,
     result:{tool:'Kontrol/KEVM',kind:'PROOF',status:'PASS',unresolvedGoals:0,admittedGoals:0,vacuous:false,
-      claimIds:['test-only-general-claim'],coversDeclaredScope:true}});
+      claimIds:['test-only-general-claim'],coversDeclaredScope:true,receipt:fileRef(scratch,proofPath)}});
   Object.assign(e.negative,{kind:'KILLED_CONSUMER_REMOVAL',inputScope:r.inputDomain,notAssumed:r.notAssumed,coversDeclaredScope:true});
   r.status='CLOSED';r.positiveActivation='Test-only full scope';r.consumerRemovalNegative='Test-only same-domain removal';
   ledger.centralClosure.currentMandatory=ledger.centralClosure.currentMandatory.filter(id=>id!==r.id);
+  ledger.releaseAssessment.status='EVIDENCE_READY'; ledger.status='EVIDENCE_COMPLETE';
   return e;
 }
 try {
@@ -84,7 +89,9 @@ try {
   test('grade-inflation', l => { row(l).evidenceGrade = 'FULL_SCOPE_PROOF'; }, 'weakest component');
   test('test-is-not-proof', l => { const r = row(l); for (const c of r.components) promoteTests(c);
     r.evidenceGrade = 'FULL_SCOPE_PROOF'; }, 'weakest component');
-  test('one-unverified-prevents-closure', l => { const r = row(l); r.status='CLOSED';
+  test('one-unverified-prevents-closure', l => { const r = row(l), c=r.components[0];
+    c.evidenceGrade='UNVERIFIED'; delete c.result; c.negative={kind:'UNVERIFIED',scope:'Test fixture',evidence:[]};
+    r.evidenceGrade='UNVERIFIED'; r.status='CLOSED';
     r.positiveActivation='Completed fixture'; r.consumerRemovalNegative='Completed fixture'; }, 'unreviewed mandatory obligation removal');
   test('missing-positive', l => { const c = row(l).components[0]; promoteTests(c); c.evidence=[]; }, 'lacks bound evidence');
   test('stale-artifact', l => { const c = row(l).components[0]; promoteTests(c);
@@ -94,6 +101,11 @@ try {
     c.result={tool:'Kontrol/KEVM',kind:'PROOF',status:'TIMEOUT'}; }, 'no PASS result');
   test('unresolved-not-proof', l => { const c = row(l).components[0]; promoteTests(c); c.evidenceGrade='FULL_SCOPE_PROOF';
     c.result={tool:'Kontrol/KEVM',kind:'PROOF',status:'PASS',unresolvedGoals:1}; }, 'completed nonvacuous proof');
+  test('ledger-only-proof-metadata-rejected', l => { const c=row(l,'RUNTIME-LINK-NATIVE').components[1];
+    c.evidenceGrade='LIMITED_SCOPE_PROOF'; c.result={tool:'Kontrol/KEVM',kind:'PROOF',status:'PASS',unresolvedGoals:0,
+      admittedGoals:0,vacuous:false,claimIds:['implementation%kontrol%TrustTokenKontrolTest.testKontrol_RawSensitiveSelectorsStayClosed():0'],
+      limits:'Test fixture',receipt:c.evidence.find(ref=>ref.path==='evidence/kontrol-results-v3.json')};
+  }, 'proof result metadata is not receipt-backed');
   test('research-stays-open', l => { row(l,'RESEARCH-RUNTIME-LINK-HOOK').status='CURRENT-MANDATORY'; }, 'runtime research residual');
   test('research-carryover-required', l => { delete row(l,'RESEARCH-RUNTIME-LINK-HOOK').reopenCondition; }, 'research residual missing reopenCondition');
   test('native-domain-not-narrowed', l => { row(l,'NATIVE-SYMBOLIC-FREEZE').inputDomain+=' and first <= supply'; }, 'native general domain narrowed');
@@ -105,6 +117,10 @@ try {
   test('native-bounded-behavior-negative', l => { nativeProofFixture(l).negative.kind='BOUNDED_BEHAVIORAL'; }, 'Native negative');
   test('short-tool-pin', (l,p) => { p.toolchain.kevmCommit=p.toolchain.kevmCommit.slice(0,7); }, 'tool pin differs from formal TCB');
   test('swapped-tool-pin', (l,p) => { p.toolchain.kevmCommit=p.toolchain.kCommit; }, 'tool pin differs from formal TCB');
+  test('stale-certora-version', (l,p) => { p.toolchain.certora='UNRECORDED'; }, 'Certora tool version');
+  test('profile-grade-disclosure-required', () => {
+    const path='evidence/trust12/README.md'; put(path, readFileSync(resolve(root,path),'utf8').replace('TRUST 1.2 profile row grades:', 'Removed profile grades:'));
+  }, 'profile grade disclosure drift');
   test('bounded-native-not-closed', l => { const r=row(l,'NATIVE-SYMBOLIC-FREEZE'); promoteTests(r.symbolicEvidence);
     r.status='CLOSED'; r.positiveActivation='Fixture'; r.consumerRemovalNegative='Fixture'; }, 'bounded evidence cannot close');
   test('exception-requires-approval', l => { row(l,'NATIVE-SYMBOLIC-FREEZE').status='OPEN-SHIPPING-EXCEPTION';

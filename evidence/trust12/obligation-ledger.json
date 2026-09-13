@@ -145,24 +145,25 @@
       "abstractCondition": "For every positive first and second target with second <= first, including first above supply, the second FREEZE stutters the named Native projection.",
       "normativeReceiver": "Wave 4 symbolic input expansion",
       "finalSourceConsumer": "implementation/kontrol/trust12/TrustTokenSymbolicKontrolTest.t.sol and its deferred continuation in TrustTokenDeferredSymbolicKontrolTest.t.sol",
-      "positiveActivation": "Foundry fuzz 256 PASS; the original uint256-domain deferred state has an actual first SLOAD returning 0 and bounded runtime progress to node148. A direct-strict general frame theorem evaluates the exact next CHECK under original P3, but its exact actual substitution is not consumed by the checker.",
-      "consumerRemovalNegative": "Pending guard-removal proof under the same input domain",
+      "positiveActivation": "The alternative probe exactly consumed the checked case20 frame summary and advanced the standard EVM.pc.inc step from PC 7618 to 7619. The next standard opcode 0x56 decode timed out twice across whole-state and typed-frame decompositions.",
+      "consumerRemovalNegative": "Not run because the same-domain positive proof remains incomplete.",
       "compiledConsumer": "symbolic-kontrol.json and symbolic-booster.json preserve historical incomplete runs. native-storage-progress.json binds the unchanged original proof, checked finite-map helpers, actual EVM.sload/push/pc.inc edges and the pending Native continuation.",
-      "assumptionsNonclaims": "Existing K/KEVM and Keccak idealizations remain explicit. The first SLOAD is a bounded Booster execution. The new case20 frame theorem uses direct kore-rpc with effective assumeStateDefined=false, but no checked actual node148 instance or graph edge exists. Full Native and same-domain guard-removal proofs remain incomplete.",
+      "assumptionsNonclaims": "Existing K/KEVM and Keccak idealizations remain explicit. The first SLOAD is a bounded Booster execution. The prior direct kore-rpc attempt returned no checker-produced actual-node148 substitution or graph edge. The alternative probe later instantiated the checked frame summary exactly and advanced EVM.pc.inc to PC 7619, but the standard JUMP decode, Full Native proof and same-domain guard-removal proof remain incomplete.",
       "status": "CURRENT-MANDATORY",
       "supplementalEvidence": [
         "evidence/trust12/veri-observation-results.json",
         "evidence/trust12/veri-symbolic-results.json",
         "evidence/trust12/veri-integration-audit.md",
-        "evidence/trust12/native-storage-progress.json"
+        "evidence/trust12/native-storage-progress.json",
+        "evidence/trust12/native-alternative-probe.json"
       ],
       "inputDomain": "first > 0 and second > 0 and second <= first",
       "notAssumed": "first <= total supply",
       "symbolicEvidence": {
         "property": "For every positive first and second target with second <= first, including first above supply, the second FREEZE stutters the named Native projection.",
         "evidenceGrade": "UNVERIFIED",
-        "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
-        "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+        "inputScope": "first > 0 and second > 0 and second <= first",
+        "stateScope": "Original source node148 with 13 constraints; checked summary instantiation reached PC 7619, where standard opcode 0x56 decode remained incomplete.",
         "toolPins": {
           "isabelle": "Isabelle2025-2",
           "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
@@ -173,14 +174,31 @@
           "kontrol": "1.0.255",
           "foundry": "1.7.1",
           "schedule": "CANCUN",
-          "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+          "certora": "8.19.1"
         },
-        "assumptions": [],
-        "evidence": [],
-        "artifactBindings": [],
+        "assumptions": [
+          "The unchanged pinned K/KEVM semantics and existing Keccak idealization remain the basis.",
+          "The reused general-frame summary and program-counter step are limited to their exact recorded state and do not complete the general proof."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/trust12/native-alternative-probe.json",
+            "sha256": "d4a59954d075ec9b8000672f27df14edb32f2ee816bddb1c89bb1e74ccb315be"
+          }
+        ],
+        "artifactBindings": [
+          {
+            "path": "evidence/trust12/native-storage-progress.json",
+            "sha256": "f477b1b50af4a377e19eb68bb51e6277d650144403a84cd3c4d78e8503eaa4de"
+          },
+          {
+            "path": "evidence/trust12/native-alternative-probe.json",
+            "sha256": "d4a59954d075ec9b8000672f27df14edb32f2ee816bddb1c89bb1e74ccb315be"
+          }
+        ],
         "negative": {
           "kind": "UNVERIFIED",
-          "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
+          "scope": "The same-domain guard-removal negative was not run because the positive proof did not complete.",
           "evidence": []
         },
         "reuseCandidates": [
@@ -194,18 +212,18 @@
           }
         ]
       },
-      "probeDisposition": "After one day of alternative decomposition, report to Jay if incomplete. No timeout-based closure and no shipping exception currently approved."
+      "probeDisposition": "Stopped after the second STANDARD_SINGLE_STEP_TIMEOUT. General proof remains CURRENT-MANDATORY pending Jay's continue or row-specific shipping-exception decision."
     },
     {
       "id": "RUNTIME-LINK-NATIVE",
       "abstractCondition": "NATIVE compiled-code TRUST properties have profile-specific, explicitly scoped implementation evidence under the declared external tools and execution semantics.",
       "normativeReceiver": "Wave 5 Native runtime connection",
       "finalSourceConsumer": "The seven component entries of this row and their exact source, scope, artifact, positive/negative and review bindings.",
-      "positiveActivation": "Pending per-component evidence inventory and scope review; existing receipts remain reuse candidates only.",
-      "consumerRemovalNegative": "Pending per-component classification as killed consumer removal or bounded behavioral negative.",
+      "positiveActivation": "All seven NATIVE components were scope-reviewed at EXECUTION_TESTS. Existing Kontrol PASS records remain supplemental bounded evidence and are not promoted to proof grade without explicit unresolved-goal, admitted-goal and vacuity metadata.",
+      "consumerRemovalNegative": "Every graded component has either a killed consumer-removal mutation or an explicitly bounded behavioral negative with a bound receipt.",
       "compiledConsumer": "Published Native runtime remains byte-exact.",
-      "assumptionsNonclaims": "Release implementation evidence only. The general runtime_link discharge is a separate RESEARCH-RESIDUAL; source tests are not promoted to full-scope proofs.",
-      "status": "CURRENT-MANDATORY",
+      "assumptionsNonclaims": "Release implementation evidence only. The general runtime_link discharge is a separate RESEARCH-RESIDUAL. The alternative probe exactly instantiated the checked node148 frame summary and EVM.pc.inc step to PC 7619, but it produced no checker-returned actual-node148 CSubst, no standard JUMP decode, no complete Native FREEZE proof and no same-domain guard-removal negative.",
+      "status": "CLOSED",
       "supplementalEvidence": [
         "evidence/trust12/veri-observation-results.json",
         "evidence/trust12/veri-symbolic-results.json",
@@ -214,14 +232,14 @@
       ],
       "criterion": "PROFILE_IMPLEMENTATION_EVIDENCE",
       "researchResidualId": "RESEARCH-RUNTIME-LINK-NATIVE",
-      "evidenceGrade": "UNVERIFIED",
+      "evidenceGrade": "EXECUTION_TESTS",
       "components": [
         {
           "id": "constructor-storage",
-          "property": "Creation, immutable resolution and declared initial storage state.",
-          "evidenceGrade": "UNVERIFIED",
-          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
-          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "property": "Creation, immutable resolution, dependency binding, initial supply/balance, and declared initial storage state.",
+          "evidenceGrade": "EXECUTION_TESTS",
+          "inputScope": "{\"constructor\":{\"name\":\"ERC-TRUST Reference\",\"symbol\":\"TRUST\",\"decimals\":18,\"governor\":\"test contract\",\"initialHolder\":\"test contract\",\"initialSupply\":\"1,000,000 ether\",\"authorityRef\":\"keccak256('AUTHORITY') in Foundry and keccak256('KONTROL-AUTHORITY') in Kontrol\",\"initialAuthority\":\"test contract\",\"dependencies\":\"four addresses all point to one MockBoundDependency instance in the principal Native fixtures\",\"schema\":\"keccak256('SCHEMA-V2') in Foundry and keccak256('KONTROL-SCHEMA') in Kontrol\"},\"observedChecks\":[\"four initial TrustDependencyChanged events\",\"each per-kind binding hash\",\"ordered dependency root\",\"dependency epoch 1\",\"manifestHash equals dependency root\",\"subsequent balance, supply, authority, and action behavior\"]}",
+          "stateScope": "{\"initialWorld\":\"Freshly deployed TrustToken with a contract-backed mock dependency whose configurationDigest succeeds.\",\"compiledLayout\":\"Compiler-declared Native storage slots 0 through 28, including mappings and the packed route-ticket tail; equality is checked as a compiler artifact projection, not decoded from a deployed instance.\",\"exclusions\":[\"arbitrary constructor values\",\"arbitrary dependency code/configurations at construction\",\"complete zero-state enumeration for every mapping\",\"deployed immutable resolution\",\"deployment identity\"]}",
           "toolPins": {
             "isabelle": "Isabelle2025-2",
             "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
@@ -232,15 +250,51 @@
             "kontrol": "1.0.255",
             "foundry": "1.7.1",
             "schedule": "CANCUN",
-            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+            "certora": "8.19.1"
           },
-          "assumptions": [],
-          "evidence": [],
-          "artifactBindings": [],
+          "assumptions": [
+            "A-COMPILER: compiler artifact projections reflect the exact source",
+            "A-LAYOUT: the compiler storage layout is the relevant layout",
+            "MockBoundDependency implements only the fixture behavior",
+            "No deployed instance is claimed"
+          ],
+          "evidence": [
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            },
+            {
+              "path": "evidence/runtime-binding-v3.json",
+              "sha256": "3e74b9d39df89700f063cb3dde587eb4001a5dd93dbaf5971907c922ab86c63d"
+            },
+            {
+              "path": "evidence/deterministic-build.json",
+              "sha256": "a6b5c9756fec0dc1447950fb9cb3e4bab3694f31772e4687927380fae7239ef7"
+            }
+          ],
+          "artifactBindings": [
+            {
+              "path": "evidence/runtime-binding-v3.json",
+              "sha256": "3e74b9d39df89700f063cb3dde587eb4001a5dd93dbaf5971907c922ab86c63d"
+            },
+            {
+              "path": "evidence/runtime-binding-v3/native/bridge-artifacts.json",
+              "sha256": "e5ad6c4e54e66f2be7928a9ceb7667b1b0dc0de0ed6f4a29458db9685277847b"
+            }
+          ],
           "negative": {
-            "kind": "UNVERIFIED",
-            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
-            "evidence": []
+            "kind": "BOUNDED_BEHAVIORAL",
+            "scope": "The fixed constructor fixture checks four distinct initial binding events, zero previous bindings, epoch 1, the exact tagged/order-sensitive dependency root, and a live profile. Runtime-binding structural verification detects changed creation, immutable, and layout projections. There is no direct constructor-consumer-removal mutation.",
+            "evidence": [
+              {
+                "path": "evidence/foundry-results-v3.json",
+                "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+              },
+              {
+                "path": "evidence/mutation-results.json",
+                "sha256": "7267fd6d18b9405cdc9d69c612734eda0a323b23ef271321dd3f1061c55b15cc"
+              }
+            ]
           },
           "reuseCandidates": [
             {
@@ -251,14 +305,24 @@
               "path": "evidence/foundry-results-v3.json",
               "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
             }
-          ]
+          ],
+          "result": {
+            "tool": "Foundry",
+            "kind": "TESTS",
+            "status": "PASS",
+            "sampleScope": "Named Foundry executions within this component's declared input and state scope. The Kontrol PASS receipt remains supplemental bounded evidence, but it does not record the unresolved-goal, admitted-goal and vacuity metadata required for proof-grade credit."
+          },
+          "review": {
+            "path": "evidence/trust12/profile-implementation-evidence-review.json",
+            "sha256": "39cf9abc04adb9f896664c7f9618b4295a8dee1c7412e22e570c64ff0ca90168"
+          }
         },
         {
           "id": "calldata-dispatch",
-          "property": "Actual byte dispatch, lengths, word/enum decoding and malformed outcomes.",
-          "evidenceGrade": "UNVERIFIED",
-          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
-          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "property": "Actual byte dispatch, exact lengths, narrow-word and enum decoding, selector routing, and malformed outcomes.",
+          "evidenceGrade": "EXECUTION_TESTS",
+          "inputScope": "{\"proved\":[\"raw setFrozenTokens(address(this), 1 ether)\",\"raw forcedTransfer(address(this), address(0xbeef), 1 ether) on the fixed Kontrol deployment\"],\"tested\":[\"four typed action/reversal entrypoints with trailing calldata\",\"selected dirty action words: dependencyEpoch, subject, validBefore\",\"selected dirty reversal words\",\"one out-of-range action enum\",\"short and trailing typed tuples exercised by the unit fixture\"],\"wireSizes\":{\"actionBytes\":644,\"reversalBytes\":388},\"selectors\":{\"executeRegulatoryAction\":\"0x2f4e0773\",\"executeRegulatoryReversal\":\"0x2b892e8f\",\"executeERC7943Action\":\"0x40a9c893\",\"executeERC7943Reversal\":\"0x1c711a94\",\"setFrozenTokens\":\"0xebe45cba\",\"forcedTransfer\":\"0x9fc1d0e7\"}}",
+          "stateScope": "{\"proved\":\"Fresh fixed Kontrol deployment, applicable mock dependencies, supply 1,000,000 ether, no live route ticket before each raw call.\",\"tested\":\"Fresh Foundry Native fixture and the concrete state produced by the named unit tests.\",\"exclusions\":[\"all selector values\",\"all dirty-bit positions\",\"all short lengths\",\"arbitrary prior storage\",\"compiler dispatcher correctness\"]}",
           "toolPins": {
             "isabelle": "Isabelle2025-2",
             "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
@@ -269,15 +333,42 @@
             "kontrol": "1.0.255",
             "foundry": "1.7.1",
             "schedule": "CANCUN",
-            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+            "certora": "8.19.1"
           },
-          "assumptions": [],
-          "evidence": [],
-          "artifactBindings": [],
+          "assumptions": [
+            "A-COMPILER for Solidity ABI dispatcher generation",
+            "A-EVM for CANCUN calldata and revert semantics",
+            "The Kontrol-profile build consumes the same exact source but is not identified by the default-profile runtime hash"
+          ],
+          "evidence": [
+            {
+              "path": "evidence/kontrol-results-v3.json",
+              "sha256": "20d5eac6b01009e29baa80524db7f329f9e0834515a8a96133715f8b0a1f6f2c"
+            },
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ],
+          "artifactBindings": [
+            {
+              "path": "evidence/runtime-binding-v3.json",
+              "sha256": "3e74b9d39df89700f063cb3dde587eb4001a5dd93dbaf5971907c922ab86c63d"
+            },
+            {
+              "path": "evidence/runtime-binding-v3/native/bridge-artifacts.json",
+              "sha256": "e5ad6c4e54e66f2be7928a9ceb7667b1b0dc0de0ed6f4a29458db9685277847b"
+            }
+          ],
           "negative": {
-            "kind": "UNVERIFIED",
-            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
-            "evidence": []
+            "kind": "KILLED_CONSUMER_REMOVAL",
+            "scope": "Removing both action length checks or both reversal length checks is detected by the named current unit test. Removing route-ticket consumption is also detected. These do not exhaust the compiler dispatcher.",
+            "evidence": [
+              {
+                "path": "evidence/mutation-results.json",
+                "sha256": "7267fd6d18b9405cdc9d69c612734eda0a323b23ef271321dd3f1061c55b15cc"
+              }
+            ]
           },
           "reuseCandidates": [
             {
@@ -288,14 +379,24 @@
               "path": "evidence/foundry-results-v3.json",
               "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
             }
-          ]
+          ],
+          "result": {
+            "tool": "Foundry",
+            "kind": "TESTS",
+            "status": "PASS",
+            "sampleScope": "Named Foundry executions within this component's declared input and state scope. The Kontrol PASS receipt remains supplemental bounded evidence, but it does not record the unresolved-goal, admitted-goal and vacuity metadata required for proof-grade credit."
+          },
+          "review": {
+            "path": "evidence/trust12/profile-implementation-evidence-review.json",
+            "sha256": "39cf9abc04adb9f896664c7f9618b4295a8dee1c7412e22e570c64ff0ca90168"
+          }
         },
         {
           "id": "authorization-replay",
-          "property": "Caller, authority, epoch, identifier and replay checks.",
-          "evidenceGrade": "UNVERIFIED",
-          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
-          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "property": "Caller, authority account and epoch, command identifiers, nonce tuples, validity windows, and governance replay checks.",
+          "evidenceGrade": "EXECUTION_TESTS",
+          "inputScope": "{\"tested\":[\"one active authority at epoch 1\",\"action identifier replay\",\"nonce reuse across a different action\",\"wrong contract caller\",\"authority rotation to epochs 2 and 3\",\"inactive authority\",\"one reversal replay path\",\"governance authorization identifier and governor/nonce key reuse\",\"selected expired/not-yet-valid windows\"],\"fuzzed\":\"Nonce consumption after one of the bounded forced-action choices in testFuzzForcedActionsPreserveSupply with uint8 and uint96 inputs.\"}",
+          "stateScope": "{\"world\":\"Fresh fixture followed by the exact action, rotation, deactivation, and reversal sequences of the named tests.\",\"storage\":\"_authorities at compiler slot 10, _usedNonces at slot 11, _usedGovernanceIds at slot 12, action records at slot 13, receipts at slot 15.\",\"exclusions\":[\"arbitrary authority maps\",\"arbitrary epoch/nonce histories\",\"all interleavings\",\"storage alias/collision proof\",\"signatures or delegated authorization\"]}",
           "toolPins": {
             "isabelle": "Isabelle2025-2",
             "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
@@ -306,15 +407,38 @@
             "kontrol": "1.0.255",
             "foundry": "1.7.1",
             "schedule": "CANCUN",
-            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+            "certora": "8.19.1"
           },
-          "assumptions": [],
-          "evidence": [],
-          "artifactBindings": [],
+          "assumptions": [
+            "A-KECCAK for action, reversal, and nonce-key separation",
+            "A-EVM for msg.sender, block.timestamp, and revert rollback",
+            "The authority map starts from the fixed constructor fixture"
+          ],
+          "evidence": [
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ],
+          "artifactBindings": [
+            {
+              "path": "evidence/runtime-binding-v3.json",
+              "sha256": "3e74b9d39df89700f063cb3dde587eb4001a5dd93dbaf5971907c922ab86c63d"
+            },
+            {
+              "path": "evidence/runtime-binding-v3/native/bridge-artifacts.json",
+              "sha256": "e5ad6c4e54e66f2be7928a9ceb7667b1b0dc0de0ed6f4a29458db9685277847b"
+            }
+          ],
           "negative": {
-            "kind": "UNVERIFIED",
-            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
-            "evidence": []
+            "kind": "KILLED_CONSUMER_REMOVAL",
+            "scope": "The preserved campaign removes or weakens individual caller, epoch, rotation, action/reversal identifier, nonce freshness/consumption, time-window, and governance replay consumers. Each named detector fails the mutant.",
+            "evidence": [
+              {
+                "path": "evidence/mutation-results.json",
+                "sha256": "7267fd6d18b9405cdc9d69c612734eda0a323b23ef271321dd3f1061c55b15cc"
+              }
+            ]
           },
           "reuseCandidates": [
             {
@@ -325,14 +449,24 @@
               "path": "evidence/foundry-results-v3.json",
               "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
             }
-          ]
+          ],
+          "result": {
+            "tool": "Foundry",
+            "kind": "TESTS",
+            "status": "PASS",
+            "sampleScope": "Named Foundry executions within this component's declared input and state scope. The Kontrol PASS receipt remains supplemental bounded evidence, but it does not record the unresolved-goal, admitted-goal and vacuity metadata required for proof-grade credit."
+          },
+          "review": {
+            "path": "evidence/trust12/profile-implementation-evidence-review.json",
+            "sha256": "39cf9abc04adb9f896664c7f9618b4295a8dee1c7412e22e570c64ff0ca90168"
+          }
         },
         {
           "id": "dependency-calls",
-          "property": "Declared dependencies, external calls, response shapes and echoed fields.",
-          "evidenceGrade": "UNVERIFIED",
-          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
-          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "property": "Four declared read-only dependencies, code/config identity, bounded STATICCALL behavior, response shape, outcome and echo checks, and evidence chaining.",
+          "evidenceGrade": "EXECUTION_TESTS",
+          "inputScope": "{\"proved\":[\"FREEZE amount 7 ether with MockBoundDependency.Mode.REVERTING on the fixed Kontrol deployment\",\"LIQUIDATE amount 9 ether with the same applicable mock bound as policy, identity, settlement, and entitlement; only policy, identity, and settlement are consulted by LIQUIDATE\"],\"tested\":[\"POLICY, IDENTITY, SETTLEMENT, ENTITLEMENT denial modes\",\"revert\",\"32-byte-short and oversized/malformed returns\",\"wrong command echo\",\"wrong binding echo\",\"outcome word greater than 2\",\"reported operational failure\",\"configuration drift\",\"dependency rebind\"]}",
+          "stateScope": "{\"world\":\"Exact mock dependency code and configuration used by the named tests; STATICCALL gas cap is 100,000.\",\"storage\":\"Bindings at slot 21, dependency root at slot 22, dependency epoch at slot 23.\",\"exclusions\":[\"arbitrary external contract bytecode\",\"all gas behaviors\",\"all return byte strings\",\"dependency internal correctness\",\"external legal/factual truth\"]}",
           "toolPins": {
             "isabelle": "Isabelle2025-2",
             "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
@@ -343,15 +477,43 @@
             "kontrol": "1.0.255",
             "foundry": "1.7.1",
             "schedule": "CANCUN",
-            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+            "certora": "8.19.1"
           },
-          "assumptions": [],
-          "evidence": [],
-          "artifactBindings": [],
+          "assumptions": [
+            "A-EXTERNAL: dependencies are trusted only through the typed boundary",
+            "A-EVM for STATICCALL, EXTCODEHASH, gas, return-data, and rollback semantics",
+            "A-KECCAK for binding/root/evidence chaining",
+            "Mock modes are a finite behavioral catalogue, not exhaustive external code"
+          ],
+          "evidence": [
+            {
+              "path": "evidence/kontrol-results-v3.json",
+              "sha256": "20d5eac6b01009e29baa80524db7f329f9e0834515a8a96133715f8b0a1f6f2c"
+            },
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ],
+          "artifactBindings": [
+            {
+              "path": "evidence/runtime-binding-v3.json",
+              "sha256": "3e74b9d39df89700f063cb3dde587eb4001a5dd93dbaf5971907c922ab86c63d"
+            },
+            {
+              "path": "evidence/runtime-binding-v3/native/bridge-artifacts.json",
+              "sha256": "e5ad6c4e54e66f2be7928a9ceb7667b1b0dc0de0ed6f4a29458db9685277847b"
+            }
+          ],
           "negative": {
-            "kind": "UNVERIFIED",
-            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
-            "evidence": []
+            "kind": "KILLED_CONSUMER_REMOVAL",
+            "scope": "The preserved campaign detects skipped operational-failure handling, skipped reversal policy assessment, ignored root, missing epoch increment, skipped identity assessment, and weakened binding-echo validation. It does not mutate every STATICCALL failure or every evidence-chain position.",
+            "evidence": [
+              {
+                "path": "evidence/mutation-results.json",
+                "sha256": "7267fd6d18b9405cdc9d69c612734eda0a323b23ef271321dd3f1061c55b15cc"
+              }
+            ]
           },
           "reuseCandidates": [
             {
@@ -362,14 +524,24 @@
               "path": "evidence/foundry-results-v3.json",
               "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
             }
-          ]
+          ],
+          "result": {
+            "tool": "Foundry",
+            "kind": "TESTS",
+            "status": "PASS",
+            "sampleScope": "Named Foundry executions within this component's declared input and state scope. The Kontrol PASS receipt remains supplemental bounded evidence, but it does not record the unresolved-goal, admitted-goal and vacuity metadata required for proof-grade credit."
+          },
+          "review": {
+            "path": "evidence/trust12/profile-implementation-evidence-review.json",
+            "sha256": "39cf9abc04adb9f896664c7f9618b4295a8dee1c7412e22e570c64ff0ca90168"
+          }
         },
         {
           "id": "effects-frame",
-          "property": "Post-storage effects, untouched fields and word/overflow conditions.",
-          "evidenceGrade": "UNVERIFIED",
-          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
-          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "property": "Post-storage effects, action/reversal case transitions, custody and overlay state, supply/balance frame, untouched fields, and word/overflow conditions.",
+          "evidenceGrade": "EXECUTION_TESTS",
+          "inputScope": "{\"proved\":[\"LIQUIDATE 9 ether from the fixed authority/holder to address(0xbeef)\",\"FREEZE 10 ether followed by equal 10 ether and decrease to 5 ether\"],\"tested\":[\"six actions\",\"UNFREEZE, RELEASE, UNRESTRICT\",\"freeze amendment chains\",\"custody disposition\",\"ordinary frozen floor\",\"uint96-derived fuzz amounts\",\"stateful freeze, unfreeze, seize, release, custody confiscation and bounded ordinary transfer\"]}",
+          "stateScope": "{\"proved\":\"Fresh fixed Kontrol fixture and only the states produced inside the two named proof tests.\",\"tested\":\"Fresh Foundry fixture plus bounded stateful-handler reachable states. The receipt records nine invariant campaigns and 1,152,000 aggregate invariant calls across both profiles; it does not allocate that aggregate per Native invariant.\",\"exclusions\":[\"arbitrary storage\",\"complete untouched-slot frame\",\"all uint256 overflow boundaries\",\"all action interleavings\",\"general FREEZE first/second domain\"]}",
           "toolPins": {
             "isabelle": "Isabelle2025-2",
             "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
@@ -380,15 +552,43 @@
             "kontrol": "1.0.255",
             "foundry": "1.7.1",
             "schedule": "CANCUN",
-            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+            "certora": "8.19.1"
           },
-          "assumptions": [],
-          "evidence": [],
-          "artifactBindings": [],
+          "assumptions": [
+            "A-EVM for CANCUN storage, arithmetic, call and revert semantics",
+            "A-COMPILER and A-LAYOUT for source-to-storage projection",
+            "Reachable fixed-supply fixtures constrain the unchecked destination credit in _move",
+            "The incomplete expanded symbolic FREEZE graph has no grade credit"
+          ],
+          "evidence": [
+            {
+              "path": "evidence/kontrol-results-v3.json",
+              "sha256": "20d5eac6b01009e29baa80524db7f329f9e0834515a8a96133715f8b0a1f6f2c"
+            },
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ],
+          "artifactBindings": [
+            {
+              "path": "evidence/runtime-binding-v3.json",
+              "sha256": "3e74b9d39df89700f063cb3dde587eb4001a5dd93dbaf5971907c922ab86c63d"
+            },
+            {
+              "path": "evidence/runtime-binding-v3/native/bridge-artifacts.json",
+              "sha256": "e5ad6c4e54e66f2be7928a9ceb7667b1b0dc0de0ed6f4a29458db9685277847b"
+            }
+          ],
           "negative": {
-            "kind": "UNVERIFIED",
-            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
-            "evidence": []
+            "kind": "KILLED_CONSUMER_REMOVAL",
+            "scope": "The preserved campaign removes selected freeze, restriction, balance credit, custody, case, reversal-head, restoration, backing, and entitlement consumers. Detectors kill those mutants, but the campaign is not a completeness proof of the whole frame.",
+            "evidence": [
+              {
+                "path": "evidence/mutation-results.json",
+                "sha256": "7267fd6d18b9405cdc9d69c612734eda0a323b23ef271321dd3f1061c55b15cc"
+              }
+            ]
           },
           "reuseCandidates": [
             {
@@ -399,14 +599,24 @@
               "path": "evidence/foundry-results-v3.json",
               "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
             }
-          ]
+          ],
+          "result": {
+            "tool": "Foundry",
+            "kind": "TESTS",
+            "status": "PASS",
+            "sampleScope": "Named Foundry executions within this component's declared input and state scope. The Kontrol PASS receipt remains supplemental bounded evidence, but it does not record the unresolved-goal, admitted-goal and vacuity metadata required for proof-grade credit."
+          },
+          "review": {
+            "path": "evidence/trust12/profile-implementation-evidence-review.json",
+            "sha256": "39cf9abc04adb9f896664c7f9618b4295a8dee1c7412e22e570c64ff0ca90168"
+          }
         },
         {
           "id": "revert",
-          "property": "Failure classification and persistent-state/log rollback.",
-          "evidenceGrade": "UNVERIFIED",
-          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
-          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "property": "Failure classification and complete persistent-state and log rollback.",
+          "evidenceGrade": "EXECUTION_TESTS",
+          "inputScope": "{\"proved\":[\"FREEZE 7 ether against a reverting policy dependency\",\"after FREEZE 10 ether, equal FREEZE 10 ether and decreasing FREEZE 5 ether\"],\"tested\":[\"policy rejection\",\"dependency revert and malformed/long/wrong-echo/noncanonical results\",\"wrong root/epoch\",\"replay\",\"wrong authority\",\"invalid shape\",\"terminal and current-effect errors\",\"trailing and dirty calldata\",\"raw sensitive-route calls\"]}",
+          "stateScope": "{\"proved\":\"The exact projected fields asserted in the two fixed Kontrol tests: balance, observed frozen amount, dependency state/config, action record, receipt, case head, total supply, and route ticket.\",\"tested\":\"Selected Foundry before/after snapshots and log recordings from fresh fixtures and concrete histories.\",\"exclusions\":[\"every observable slot named by the normative eventOrder text\",\"arbitrary prestate\",\"all nested external-call frames\",\"all typed and plain-revert paths\"]}",
           "toolPins": {
             "isabelle": "Isabelle2025-2",
             "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
@@ -417,15 +627,46 @@
             "kontrol": "1.0.255",
             "foundry": "1.7.1",
             "schedule": "CANCUN",
-            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+            "certora": "8.19.1"
           },
-          "assumptions": [],
-          "evidence": [],
-          "artifactBindings": [],
+          "assumptions": [
+            "A-EVM: CANCUN reversion restores persistent state and discards logs for the reverting frame",
+            "A-COMPILER: Solidity revert paths compile to the expected EVM failure behavior",
+            "The projection asserted by each proof is not a complete storage frame"
+          ],
+          "evidence": [
+            {
+              "path": "evidence/kontrol-results-v3.json",
+              "sha256": "20d5eac6b01009e29baa80524db7f329f9e0834515a8a96133715f8b0a1f6f2c"
+            },
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ],
+          "artifactBindings": [
+            {
+              "path": "evidence/runtime-binding-v3.json",
+              "sha256": "3e74b9d39df89700f063cb3dde587eb4001a5dd93dbaf5971907c922ab86c63d"
+            },
+            {
+              "path": "evidence/runtime-binding-v3/native/bridge-artifacts.json",
+              "sha256": "e5ad6c4e54e66f2be7928a9ceb7667b1b0dc0de0ed6f4a29458db9685277847b"
+            }
+          ],
           "negative": {
-            "kind": "UNVERIFIED",
-            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
-            "evidence": []
+            "kind": "BOUNDED_BEHAVIORAL",
+            "scope": "Named tests and Kontrol proofs compare selected before/after state and log observations on failure. Individual guard-removal mutants support the detectors, but no single removal represents the universal EVM rollback consumer.",
+            "evidence": [
+              {
+                "path": "evidence/foundry-results-v3.json",
+                "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+              },
+              {
+                "path": "evidence/mutation-results.json",
+                "sha256": "7267fd6d18b9405cdc9d69c612734eda0a323b23ef271321dd3f1061c55b15cc"
+              }
+            ]
           },
           "reuseCandidates": [
             {
@@ -436,14 +677,24 @@
               "path": "evidence/foundry-results-v3.json",
               "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
             }
-          ]
+          ],
+          "result": {
+            "tool": "Foundry",
+            "kind": "TESTS",
+            "status": "PASS",
+            "sampleScope": "Named Foundry executions within this component's declared input and state scope. The Kontrol PASS receipt remains supplemental bounded evidence, but it does not record the unresolved-goal, admitted-goal and vacuity metadata required for proof-grade credit."
+          },
+          "review": {
+            "path": "evidence/trust12/profile-implementation-evidence-review.json",
+            "sha256": "39cf9abc04adb9f896664c7f9618b4295a8dee1c7412e22e570c64ff0ca90168"
+          }
         },
         {
           "id": "receipt-logs",
-          "property": "Return values, receipt preimages, emitted data and event order.",
-          "evidenceGrade": "UNVERIFIED",
-          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
-          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "property": "Return values, stored receipts, 17-word receipt preimages, effect-event order, applied-event data, and final-log position.",
+          "evidenceGrade": "EXECUTION_TESTS",
+          "inputScope": "{\"proved\":\"One LIQUIDATE request with amount 9 ether, fixed caller/holder, destination address(0xbeef), fixed dependency/configuration, current root/epoch, nonce 2, and fixed commitments produced by the Kontrol fixture.\",\"tested\":[\"six action receipts\",\"three reversal receipts\",\"receipt kind domain separation\",\"dependency root and assessment evidence\",\"parent action id\",\"canonical command hash\",\"FREEZE effect event before RegulatoryActionApplied\",\"applied event as final log\",\"no logs/receipt on selected failed route\"]}",
+          "stateScope": "{\"proved\":\"Fresh fixed Kontrol deployment followed by the single LIQUIDATE transition; assertions cover supply and balances, action lifecycle, case terminality, stored/returned receipt hash, receipt kind, absent route ticket, and final log topics/data.\",\"tested\":\"Concrete Foundry histories for all action/reversal kinds.\",\"exclusions\":[\"arbitrary receipt fields\",\"all event sequences on every route\",\"all reversal final logs under proof\",\"indexer/deployment finality\",\"external factual truth of commitments\"]}",
           "toolPins": {
             "isabelle": "Isabelle2025-2",
             "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
@@ -454,15 +705,43 @@
             "kontrol": "1.0.255",
             "foundry": "1.7.1",
             "schedule": "CANCUN",
-            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+            "certora": "8.19.1"
           },
-          "assumptions": [],
-          "evidence": [],
-          "artifactBindings": [],
+          "assumptions": [
+            "A-KECCAK for receipt preimage binding and domain separation",
+            "A-EVM for LOG order and reverted-log removal",
+            "A-COMPILER for memory struct layout used by mcopy",
+            "Commitments prove only what was recorded, not external legal or factual truth"
+          ],
+          "evidence": [
+            {
+              "path": "evidence/kontrol-results-v3.json",
+              "sha256": "20d5eac6b01009e29baa80524db7f329f9e0834515a8a96133715f8b0a1f6f2c"
+            },
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ],
+          "artifactBindings": [
+            {
+              "path": "evidence/runtime-binding-v3.json",
+              "sha256": "3e74b9d39df89700f063cb3dde587eb4001a5dd93dbaf5971907c922ab86c63d"
+            },
+            {
+              "path": "evidence/runtime-binding-v3/native/bridge-artifacts.json",
+              "sha256": "e5ad6c4e54e66f2be7928a9ceb7667b1b0dc0de0ed6f4a29458db9685277847b"
+            }
+          ],
           "negative": {
-            "kind": "UNVERIFIED",
-            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
-            "evidence": []
+            "kind": "KILLED_CONSUMER_REMOVAL",
+            "scope": "The preserved campaign changes final event order, reversal receipt kind, receipt preimage length, action receipt dependency root, and reversal parent id. Named tests kill each mutation. This is not exhaustive over every preimage field or log.",
+            "evidence": [
+              {
+                "path": "evidence/mutation-results.json",
+                "sha256": "7267fd6d18b9405cdc9d69c612734eda0a323b23ef271321dd3f1061c55b15cc"
+              }
+            ]
           },
           "reuseCandidates": [
             {
@@ -473,7 +752,17 @@
               "path": "evidence/foundry-results-v3.json",
               "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
             }
-          ]
+          ],
+          "result": {
+            "tool": "Foundry",
+            "kind": "TESTS",
+            "status": "PASS",
+            "sampleScope": "Named Foundry executions within this component's declared input and state scope. The Kontrol PASS receipt remains supplemental bounded evidence, but it does not record the unresolved-goal, admitted-goal and vacuity metadata required for proof-grade credit."
+          },
+          "review": {
+            "path": "evidence/trust12/profile-implementation-evidence-review.json",
+            "sha256": "39cf9abc04adb9f896664c7f9618b4295a8dee1c7412e22e570c64ff0ca90168"
+          }
         }
       ]
     },
@@ -482,11 +771,11 @@
       "abstractCondition": "PARTIAL compiled-code TRUST properties have profile-specific, explicitly scoped implementation evidence under the declared external tools and execution semantics.",
       "normativeReceiver": "Wave 5 legacy Partial runtime connection",
       "finalSourceConsumer": "The seven component entries of this row and their exact source, scope, artifact, positive/negative and review bindings.",
-      "positiveActivation": "Pending per-component evidence inventory and scope review; existing receipts remain reuse candidates only.",
-      "consumerRemovalNegative": "Pending per-component classification as killed consumer removal or bounded behavioral negative.",
+      "positiveActivation": "All seven PARTIAL components were scope-reviewed and graded; the row grade is EXECUTION_TESTS because it is the weakest component grade.",
+      "consumerRemovalNegative": "Every graded component has either a killed consumer-removal mutation or an explicitly bounded behavioral negative with a bound receipt.",
       "compiledConsumer": "Published Partial adapter and governor source and runtime remain byte-exact.",
       "assumptionsNonclaims": "Release implementation evidence only. The general runtime_link discharge is a separate RESEARCH-RESIDUAL; source tests are not promoted to full-scope proofs.",
-      "status": "CURRENT-MANDATORY",
+      "status": "CLOSED",
       "supplementalEvidence": [
         "evidence/trust12/veri-observation-results.json",
         "evidence/trust12/veri-symbolic-results.json",
@@ -494,14 +783,14 @@
       ],
       "criterion": "PROFILE_IMPLEMENTATION_EVIDENCE",
       "researchResidualId": "RESEARCH-RUNTIME-LINK-PARTIAL",
-      "evidenceGrade": "UNVERIFIED",
+      "evidenceGrade": "EXECUTION_TESTS",
       "components": [
         {
           "id": "constructor-storage",
           "property": "Creation, immutable resolution and declared initial storage state.",
-          "evidenceGrade": "UNVERIFIED",
-          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
-          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "evidenceGrade": "EXECUTION_TESTS",
+          "inputScope": "Nonzero ProfileGovernor(token, identityRegistry, compliance, bootstrapAuthority, expectedTokenCodeId) and ERC3643TrustAdapter(governor, authority, authorityRef) arguments used by the two local fixtures; seal(adapter, entries) with an empty manifest or one exact declared entry, plus unsorted, zero-state, wrong-state, wrong-caller, wrong-adapter and reseal examples.",
+          "stateScope": "Fresh local mock token owned by the governor after setup, adapter as exclusive Agent, mock identity and compliance dependencies, dependency epoch 1, and included import entries only. Empty import does not prove a globally fresh zero upstream state.",
           "toolPins": {
             "isabelle": "Isabelle2025-2",
             "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
@@ -512,15 +801,43 @@
             "kontrol": "1.0.255",
             "foundry": "1.7.1",
             "schedule": "CANCUN",
-            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+            "certora": "8.19.1"
           },
-          "assumptions": [],
-          "evidence": [],
-          "artifactBindings": [],
+          "assumptions": [
+            "The deployer-provided expected token code hash identifies the intended token but does not audit token behavior.",
+            "The governor and adapter constructor arguments are nonzero in the credited positive executions.",
+            "The two test tokens are clean-room fixtures, not an external ERC-3643 deployment.",
+            "The canonical manifest checks included entries only and do not establish completeness."
+          ],
+          "evidence": [
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            },
+            {
+              "path": "evidence/certora-results-v3.json",
+              "sha256": "52e3cba36ebc94d87925ca7e1a05ee86012285773d7a453a73bd7fb05836a8bc"
+            }
+          ],
+          "artifactBindings": [
+            {
+              "path": "evidence/runtime-binding-v3.json",
+              "sha256": "3e74b9d39df89700f063cb3dde587eb4001a5dd93dbaf5971907c922ab86c63d"
+            },
+            {
+              "path": "evidence/runtime-binding-v3/erc3643-partial/bridge-artifacts.json",
+              "sha256": "b25af3abcfdc219ee223526d711aa6f6c0514004da9f131149e29d950725c0d7"
+            }
+          ],
           "negative": {
-            "kind": "UNVERIFIED",
-            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
-            "evidence": []
+            "kind": "KILLED_CONSUMER_REMOVAL",
+            "scope": "Declared-entry verification, manifest binding, imported-case creation, manifest canonicality and Partial descriptor fields only. Constructor zero-address rejection and deployed immutable resolution have no credited removal mutation.",
+            "evidence": [
+              {
+                "path": "evidence/mutation-results.json",
+                "sha256": "7267fd6d18b9405cdc9d69c612734eda0a323b23ef271321dd3f1061c55b15cc"
+              }
+            ]
           },
           "reuseCandidates": [
             {
@@ -531,14 +848,24 @@
               "path": "evidence/foundry-results-v3.json",
               "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
             }
-          ]
+          ],
+          "result": {
+            "tool": "Foundry",
+            "kind": "TESTS",
+            "status": "PASS",
+            "sampleScope": "Foundry executes fresh construction, one-way seal activation, empty and declared-entry imports, and state reads in two clean-room fixtures. Runtime receipts bind creation bytes, immutable-reference positions, ABI and storage layout, but explicitly exclude constructor execution and deployed immutable resolution. The narrow Certora descriptor rule does not cover construction or seal storage."
+          },
+          "review": {
+            "path": "evidence/trust12/profile-implementation-evidence-review.json",
+            "sha256": "39cf9abc04adb9f896664c7f9618b4295a8dee1c7412e22e570c64ff0ca90168"
+          }
         },
         {
           "id": "calldata-dispatch",
-          "property": "Actual byte dispatch, lengths, word/enum decoding and malformed outcomes.",
-          "evidenceGrade": "UNVERIFIED",
-          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
-          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "property": "Actual byte dispatch, lengths, word and enum decoding, and malformed outcomes.",
+          "evidenceGrade": "EXECUTION_TESTS",
+          "inputScope": "executeRegulatoryAction tuple calldata with exact total length 644 and executeRegulatoryReversal tuple calldata with exact total length 388, plus representative trailing word, dirty uint64, dirty address, dirty uint48 and action-enum value 6 negatives. The generated bridge inventories all compiled selectors, while behavioral credit is limited to the tested command routes.",
+          "stateScope": "Fresh sealed fixture state with epoch 1 and canonical requests produced by the local helpers. Malformed examples execute against the same fixture and are checked for generic or typed revert and state stutter where asserted.",
           "toolPins": {
             "isabelle": "Isabelle2025-2",
             "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
@@ -549,15 +876,38 @@
             "kontrol": "1.0.255",
             "foundry": "1.7.1",
             "schedule": "CANCUN",
-            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+            "certora": "8.19.1"
           },
-          "assumptions": [],
-          "evidence": [],
-          "artifactBindings": [],
+          "assumptions": [
+            "Solidity 0.8.36 ABI decoder behavior under Cancun is trusted for compiler-generated dirty-word and enum rejection.",
+            "The generated runtime bridge classifies selectors from the compiled artifact but does not prove dispatcher semantics.",
+            "The tested malformed inputs are representatives, not an exhaustive byte partition."
+          ],
+          "evidence": [
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ],
+          "artifactBindings": [
+            {
+              "path": "evidence/runtime-binding-v3.json",
+              "sha256": "3e74b9d39df89700f063cb3dde587eb4001a5dd93dbaf5971907c922ab86c63d"
+            },
+            {
+              "path": "evidence/runtime-binding-v3/erc3643-partial/bridge-artifacts.json",
+              "sha256": "b25af3abcfdc219ee223526d711aa6f6c0514004da9f131149e29d950725c0d7"
+            }
+          ],
           "negative": {
-            "kind": "UNVERIFIED",
-            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
-            "evidence": []
+            "kind": "KILLED_CONSUMER_REMOVAL",
+            "scope": "Removal of the explicit action and reversal exact-length guards. Compiler-generated dirty-word and enum negatives are bounded behavioral tests without a compiler-dispatch mutation.",
+            "evidence": [
+              {
+                "path": "evidence/mutation-results.json",
+                "sha256": "7267fd6d18b9405cdc9d69c612734eda0a323b23ef271321dd3f1061c55b15cc"
+              }
+            ]
           },
           "reuseCandidates": [
             {
@@ -568,14 +918,24 @@
               "path": "evidence/foundry-results-v3.json",
               "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
             }
-          ]
+          ],
+          "result": {
+            "tool": "Foundry",
+            "kind": "TESTS",
+            "status": "PASS",
+            "sampleScope": "Foundry executes canonical action and reversal calldata, trailing-word rejection, dirty fixed-width words and an out-of-range enum. Two removal mutations establish that the explicit 644-byte and 388-byte guards are consumed. The Partial adapter has no symbolic Kontrol or KEVM lane, so no universal byte-domain proof is credited."
+          },
+          "review": {
+            "path": "evidence/trust12/profile-implementation-evidence-review.json",
+            "sha256": "39cf9abc04adb9f896664c7f9618b4295a8dee1c7412e22e570c64ff0ca90168"
+          }
         },
         {
           "id": "authorization-replay",
-          "property": "Caller, authority, epoch, identifier and replay checks.",
-          "evidenceGrade": "UNVERIFIED",
-          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
-          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "property": "Caller, authority, epoch, identifier, time, dependency state and replay checks.",
+          "evidenceGrade": "EXECUTION_TESTS",
+          "inputScope": "Action and reversal requests generated for the fixed immutable authority at epoch 1, with representative action-id replay, reversal-id replay, nonce replay, wrong caller, wrong authority reference, authority epochs 0 and 2, wrong dependency root, dependency epoch 2, expired action, wrong domain, corrupted identifier and reused entitlement commitment.",
+          "stateScope": "Sealed epoch-1 local fixture with adapter storage for action records, receipts, used nonce keys and consumed entitlement commitments. The kernel has no delegation or cancellation surface and the profile has no authority rotation.",
           "toolPins": {
             "isabelle": "Isabelle2025-2",
             "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
@@ -586,15 +946,39 @@
             "kontrol": "1.0.255",
             "foundry": "1.7.1",
             "schedule": "CANCUN",
-            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+            "certora": "8.19.1"
           },
-          "assumptions": [],
-          "evidence": [],
-          "artifactBindings": [],
+          "assumptions": [
+            "The registered authority account has the intended off-contract access control; the adapter checks only address equality.",
+            "block.timestamp has ordinary EVM timestamp semantics.",
+            "keccak256 collision resistance is trusted for identifiers and nonce keys.",
+            "No delegation, cancellation, authority rotation or reseal behavior is claimed for this profile."
+          ],
+          "evidence": [
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ],
+          "artifactBindings": [
+            {
+              "path": "evidence/runtime-binding-v3.json",
+              "sha256": "3e74b9d39df89700f063cb3dde587eb4001a5dd93dbaf5971907c922ab86c63d"
+            },
+            {
+              "path": "evidence/runtime-binding-v3/erc3643-partial/bridge-artifacts.json",
+              "sha256": "b25af3abcfdc219ee223526d711aa6f6c0514004da9f131149e29d950725c0d7"
+            }
+          ],
           "negative": {
-            "kind": "UNVERIFIED",
-            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
-            "evidence": []
+            "kind": "KILLED_CONSUMER_REMOVAL",
+            "scope": "Direct caller, authority epoch, action and reversal identifier replay, nonce freshness and consumption, action and reversal dependency roots, time, domain, identifier and entitlement-once source checks.",
+            "evidence": [
+              {
+                "path": "evidence/mutation-results.json",
+                "sha256": "7267fd6d18b9405cdc9d69c612734eda0a323b23ef271321dd3f1061c55b15cc"
+              }
+            ]
           },
           "reuseCandidates": [
             {
@@ -605,14 +989,24 @@
               "path": "evidence/foundry-results-v3.json",
               "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
             }
-          ]
+          ],
+          "result": {
+            "tool": "Foundry",
+            "kind": "TESTS",
+            "status": "PASS",
+            "sampleScope": "Foundry covers action and reversal replays, nonce reuse, wrong caller, authority reference and epoch, dependency root and epoch, time, domain, identifier and entitlement reuse. Removal mutations kill each named source consumer. The checks are bounded fixture executions and are not a proof over all requests and histories."
+          },
+          "review": {
+            "path": "evidence/trust12/profile-implementation-evidence-review.json",
+            "sha256": "39cf9abc04adb9f896664c7f9618b4295a8dee1c7412e22e570c64ff0ca90168"
+          }
         },
         {
           "id": "dependency-calls",
-          "property": "Declared dependencies, external calls, response shapes and echoed fields.",
-          "evidenceGrade": "UNVERIFIED",
-          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
-          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "property": "Declared dependencies, external calls, response shapes, code identity and post-state echoes.",
+          "evidenceGrade": "EXECUTION_TESTS",
+          "inputScope": "Identity Registry isVerified(destination), Compliance canTransfer(source,destination,amount), token balanceOf, getFrozenTokens, isFrozen, forcedTransfer, freezePartialTokens, unfreezePartialTokens and setAddressFrozen. Credited response cases are the explicit modes in MockERC3643IdentityRegistry, MockERC3643Compliance and MockERC3643Token, plus the second clean-room token surface.",
+          "stateScope": "One-way sealed topology with fixed token, Identity Registry and Compliance addresses, their code hashes at seal, adapter as exclusive Agent, governor as token owner, and exactly owned touched-account frozen and restricted state.",
           "toolPins": {
             "isabelle": "Isabelle2025-2",
             "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
@@ -623,15 +1017,39 @@
             "kontrol": "1.0.255",
             "foundry": "1.7.1",
             "schedule": "CANCUN",
-            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+            "certora": "8.19.1"
           },
-          "assumptions": [],
-          "evidence": [],
-          "artifactBindings": [],
+          "assumptions": [
+            "The token, Identity Registry and Compliance contracts at deployment match the reviewed interfaces and intended behaviors.",
+            "The 200000-gas staticcall bound is sufficient for the selected external contracts.",
+            "Return data has ordinary EVM ABI semantics and external call rollback follows Cancun EVM semantics.",
+            "The clean-room fixtures are not evidence for a specific external ERC-3643 release or deployment."
+          ],
+          "evidence": [
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ],
+          "artifactBindings": [
+            {
+              "path": "evidence/runtime-binding-v3.json",
+              "sha256": "3e74b9d39df89700f063cb3dde587eb4001a5dd93dbaf5971907c922ab86c63d"
+            },
+            {
+              "path": "evidence/runtime-binding-v3/erc3643-partial/bridge-artifacts.json",
+              "sha256": "b25af3abcfdc219ee223526d711aa6f6c0514004da9f131149e29d950725c0d7"
+            }
+          ],
           "negative": {
-            "kind": "UNVERIFIED",
-            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
-            "evidence": []
+            "kind": "KILLED_CONSUMER_REMOVAL",
+            "scope": "Sealed topology, Compliance code identity, transfer balance post-state, frozen post-state, identity and policy assessments, and actual source and destination restriction post-state checks.",
+            "evidence": [
+              {
+                "path": "evidence/mutation-results.json",
+                "sha256": "7267fd6d18b9405cdc9d69c612734eda0a323b23ef271321dd3f1061c55b15cc"
+              }
+            ]
           },
           "reuseCandidates": [
             {
@@ -642,14 +1060,24 @@
               "path": "evidence/foundry-results-v3.json",
               "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
             }
-          ]
+          ],
+          "result": {
+            "tool": "Foundry",
+            "kind": "TESTS",
+            "status": "PASS",
+            "sampleScope": "Foundry exercises policy and identity allow, reject, revert, empty, long and noncanonical responses, token view failures, mutator return and no-effect failures, dependency-code drift, topology drift and touched-account post-state mismatches. Consumer removals are killed. These are local mock and clean-room fixture behaviors, not proof of any external dependency implementation."
+          },
+          "review": {
+            "path": "evidence/trust12/profile-implementation-evidence-review.json",
+            "sha256": "39cf9abc04adb9f896664c7f9618b4295a8dee1c7412e22e570c64ff0ca90168"
+          }
         },
         {
           "id": "effects-frame",
-          "property": "Post-storage effects, untouched fields and word/overflow conditions.",
-          "evidenceGrade": "UNVERIFIED",
-          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
-          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "property": "Post-storage effects, untouched fields, custody accounting, overlay chains and word or overflow conditions.",
+          "evidenceGrade": "EXECUTION_TESTS",
+          "inputScope": "The six ActionKind values and three ReversalKind values used by the local helpers, bounded balances and amounts in deterministic examples, uint96-generated stateful handler amounts, freeze targets including supply plus one ether, direct and custody dispositions, overlay amendments, ordinary transfers and permissionless resynchronisation.",
+          "stateScope": "Reachable states of the two local Partial fixtures and the ERC3643ProfileHandler campaign: slots 7-17 of the adapter for action, effect, receipt, case, custody, nonce, entitlement, owned state, heads and backing, plus upstream mock token balances, frozen amounts and restriction flags. The campaign permits the documented inbound-growth window.",
           "toolPins": {
             "isabelle": "Isabelle2025-2",
             "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
@@ -660,15 +1088,43 @@
             "kontrol": "1.0.255",
             "foundry": "1.7.1",
             "schedule": "CANCUN",
-            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+            "certora": "8.19.1"
           },
-          "assumptions": [],
-          "evidence": [],
-          "artifactBindings": [],
+          "assumptions": [
+            "Arithmetic follows Solidity 0.8.36 checked arithmetic and Cancun EVM transaction semantics.",
+            "Fixture handlers generate only their bounded reachable state space, not all possible storage states.",
+            "An ordinary inbound transfer can temporarily leave the applied frozen amount below the owned target; this is an admitted Partial limitation.",
+            "Certora restriction_match_is_exact applies only to the pure helper and does not prove surrounding state writes."
+          ],
+          "evidence": [
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            },
+            {
+              "path": "evidence/certora-results-v3.json",
+              "sha256": "52e3cba36ebc94d87925ca7e1a05ee86012285773d7a453a73bd7fb05836a8bc"
+            }
+          ],
+          "artifactBindings": [
+            {
+              "path": "evidence/runtime-binding-v3.json",
+              "sha256": "3e74b9d39df89700f063cb3dde587eb4001a5dd93dbaf5971907c922ab86c63d"
+            },
+            {
+              "path": "evidence/runtime-binding-v3/erc3643-partial/bridge-artifacts.json",
+              "sha256": "b25af3abcfdc219ee223526d711aa6f6c0514004da9f131149e29d950725c0d7"
+            }
+          ],
           "negative": {
-            "kind": "UNVERIFIED",
-            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
-            "evidence": []
+            "kind": "KILLED_CONSUMER_REMOVAL",
+            "scope": "Representative load-bearing action shape, freeze direction, case, current-head, custody, owned-state, resynchronisation, post-state and entitlement consumers. This is a declared mutation set, not all possible state-frame faults.",
+            "evidence": [
+              {
+                "path": "evidence/mutation-results.json",
+                "sha256": "7267fd6d18b9405cdc9d69c612734eda0a323b23ef271321dd3f1061c55b15cc"
+              }
+            ]
           },
           "reuseCandidates": [
             {
@@ -679,14 +1135,24 @@
               "path": "evidence/foundry-results-v3.json",
               "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
             }
-          ]
+          ],
+          "result": {
+            "tool": "Foundry",
+            "kind": "TESTS",
+            "status": "PASS",
+            "sampleScope": "Foundry exercises all six action kinds, all three reversals, overlay amendment and pop, case transitions, custody release and disposition, entitlement consumption, saturated frozen targets and stateful invariants. Numerous source-consumer removals are killed. Certora proves only the pure restriction equality helper, not the post-storage frame, so the whole component remains execution-test grade."
+          },
+          "review": {
+            "path": "evidence/trust12/profile-implementation-evidence-review.json",
+            "sha256": "39cf9abc04adb9f896664c7f9618b4295a8dee1c7412e22e570c64ff0ca90168"
+          }
         },
         {
           "id": "revert",
-          "property": "Failure classification and persistent-state/log rollback.",
-          "evidenceGrade": "UNVERIFIED",
-          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
-          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "property": "Failure classification and persistent-state and log rollback.",
+          "evidenceGrade": "EXECUTION_TESTS",
+          "inputScope": "Selected policy and identity denials and malformed responses, unsealed or drifted topology, wrong owned upstream state, failed or no-effect upstream mutators, wrong source or destination restriction post-state, malformed calldata, invalid action shapes and a reverted Compliance call after log recording.",
+          "stateScope": "The local fixture state immediately before and after each selected failing transaction, including upstream balances and flags and adapter action, receipt, case and nonce surfaces that the tests explicitly inspect. Uninspected storage and logs are outside the credited scope.",
           "toolPins": {
             "isabelle": "Isabelle2025-2",
             "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
@@ -697,15 +1163,38 @@
             "kontrol": "1.0.255",
             "foundry": "1.7.1",
             "schedule": "CANCUN",
-            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+            "certora": "8.19.1"
           },
-          "assumptions": [],
-          "evidence": [],
-          "artifactBindings": [],
+          "assumptions": [
+            "Cancun EVM transaction rollback restores state and discards logs for a reverted top-level call.",
+            "Foundry 1.7.1 faithfully executes and reports the selected transaction outcomes.",
+            "The tests inspect only named state and log surfaces; no complete storage-diff proof is present."
+          ],
+          "evidence": [
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ],
+          "artifactBindings": [
+            {
+              "path": "evidence/runtime-binding-v3.json",
+              "sha256": "3e74b9d39df89700f063cb3dde587eb4001a5dd93dbaf5971907c922ab86c63d"
+            },
+            {
+              "path": "evidence/runtime-binding-v3/erc3643-partial/bridge-artifacts.json",
+              "sha256": "b25af3abcfdc219ee223526d711aa6f6c0514004da9f131149e29d950725c0d7"
+            }
+          ],
           "negative": {
-            "kind": "UNVERIFIED",
-            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
-            "evidence": []
+            "kind": "BOUNDED_BEHAVIORAL",
+            "scope": "Concrete failing calls assert no selected persistent state or canonical event survives and that retry can reuse the nonce. This is not a source-removal proof of EVM rollback or a complete storage and log frame.",
+            "evidence": [
+              {
+                "path": "evidence/foundry-results-v3.json",
+                "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+              }
+            ]
           },
           "reuseCandidates": [
             {
@@ -716,14 +1205,24 @@
               "path": "evidence/foundry-results-v3.json",
               "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
             }
-          ]
+          ],
+          "result": {
+            "tool": "Foundry",
+            "kind": "TESTS",
+            "status": "PASS",
+            "sampleScope": "Foundry observes typed failure classes and checks balances, frozen and restricted state, action record, receipt, case, nonce reuse and logs after selected failed calls. EVM rollback itself is supplied by the execution semantics and is not represented by a removable source consumer, so the negative is classified as bounded behavioral evidence."
+          },
+          "review": {
+            "path": "evidence/trust12/profile-implementation-evidence-review.json",
+            "sha256": "39cf9abc04adb9f896664c7f9618b4295a8dee1c7412e22e570c64ff0ca90168"
+          }
         },
         {
           "id": "receipt-logs",
-          "property": "Return values, receipt preimages, emitted data and event order.",
-          "evidenceGrade": "UNVERIFIED",
-          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
-          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "property": "Return values, receipt preimages, emitted data, actual restriction observations and event order.",
+          "evidenceGrade": "EXECUTION_TESTS",
+          "inputScope": "Successful FREEZE, CONFISCATE, LIQUIDATE, RECOVER and UNFREEZE examples plus all six actions and three reversals through shared receipt helpers; subject, source and destination restriction-observation examples; one failed Compliance call for zero persisted logs and receipt.",
+          "stateScope": "Stored Receipt at adapter slot 9, ActionRecord receipt hash at slot 7, pre and post observations of the named subject, source, destination, custody, overlay heads, case and sealed binding, and logs emitted by the local upstream fixture and adapter during the selected transactions.",
           "toolPins": {
             "isabelle": "Isabelle2025-2",
             "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
@@ -734,15 +1233,43 @@
             "kontrol": "1.0.255",
             "foundry": "1.7.1",
             "schedule": "CANCUN",
-            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+            "certora": "8.19.1"
           },
-          "assumptions": [],
-          "evidence": [],
-          "artifactBindings": [],
+          "assumptions": [
+            "keccak256 collision resistance and canonical ABI encoding are trusted.",
+            "The assembly mcopy of 0x200 bytes matches the first sixteen Receipt fields in the Solidity memory layout used by solc 0.8.36.",
+            "The profile-defined observation hash is opaque to the kernel and is validated only through documented preimages and selected checks.",
+            "Event and return behavior is fixture-bound and not a deployment receipt."
+          ],
+          "evidence": [
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            },
+            {
+              "path": "evidence/certora-results-v3.json",
+              "sha256": "52e3cba36ebc94d87925ca7e1a05ee86012285773d7a453a73bd7fb05836a8bc"
+            }
+          ],
+          "artifactBindings": [
+            {
+              "path": "evidence/runtime-binding-v3.json",
+              "sha256": "3e74b9d39df89700f063cb3dde587eb4001a5dd93dbaf5971907c922ab86c63d"
+            },
+            {
+              "path": "evidence/runtime-binding-v3/erc3643-partial/bridge-artifacts.json",
+              "sha256": "b25af3abcfdc219ee223526d711aa6f6c0514004da9f131149e29d950725c0d7"
+            }
+          ],
           "negative": {
-            "kind": "UNVERIFIED",
-            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
-            "evidence": []
+            "kind": "KILLED_CONSUMER_REMOVAL",
+            "scope": "Receipt kind tag, full stored preimage length, action receipt dependency root and subject, source and destination actual restriction observation consumers.",
+            "evidence": [
+              {
+                "path": "evidence/mutation-results.json",
+                "sha256": "7267fd6d18b9405cdc9d69c612734eda0a323b23ef271321dd3f1061c55b15cc"
+              }
+            ]
           },
           "reuseCandidates": [
             {
@@ -753,7 +1280,17 @@
               "path": "evidence/foundry-results-v3.json",
               "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
             }
-          ]
+          ],
+          "result": {
+            "tool": "Foundry",
+            "kind": "TESTS",
+            "status": "PASS",
+            "sampleScope": "Foundry recomputes action and reversal receipt hashes, compares returned, stored and final-event hashes, checks kind separation, authority, dependency root, provenance, evidence masks, external commitments, actual restriction observations and selected event order. Receipt and observation consumer removals are killed. Certora proves only that changing the actual restriction boolean changes three exposed hashes, not the full stored receipt or event trace."
+          },
+          "review": {
+            "path": "evidence/trust12/profile-implementation-evidence-review.json",
+            "sha256": "39cf9abc04adb9f896664c7f9618b4295a8dee1c7412e22e570c64ff0ca90168"
+          }
         }
       ]
     },
@@ -762,11 +1299,11 @@
       "abstractCondition": "HOOK compiled-code TRUST properties have profile-specific, explicitly scoped implementation evidence under the declared external tools and execution semantics.",
       "normativeReceiver": "Wave 5 new hook runtime connection",
       "finalSourceConsumer": "The seven component entries of this row and their exact source, scope, artifact, positive/negative and review bindings.",
-      "positiveActivation": "Pending per-component evidence inventory and scope review; existing receipts remain reuse candidates only.",
-      "consumerRemovalNegative": "Pending per-component classification as killed consumer removal or bounded behavioral negative.",
+      "positiveActivation": "All seven HOOK components were scope-reviewed and graded; the row grade is EXECUTION_TESTS because it is the weakest component grade.",
+      "consumerRemovalNegative": "Every graded component has either a killed consumer-removal mutation or an explicitly bounded behavioral negative with a bound receipt.",
       "compiledConsumer": "HookAdapter, governor, Compliance, factory and actual T-REX runtime identities are recorded.",
       "assumptionsNonclaims": "Release implementation evidence only. The general runtime_link discharge is a separate RESEARCH-RESIDUAL; source tests are not promoted to full-scope proofs.",
-      "status": "CURRENT-MANDATORY",
+      "status": "CLOSED",
       "supplementalEvidence": [
         "evidence/trust12/veri-observation-results.json",
         "evidence/trust12/veri-symbolic-results.json",
@@ -774,14 +1311,14 @@
       ],
       "criterion": "PROFILE_IMPLEMENTATION_EVIDENCE",
       "researchResidualId": "RESEARCH-RUNTIME-LINK-HOOK",
-      "evidenceGrade": "UNVERIFIED",
+      "evidenceGrade": "EXECUTION_TESTS",
       "components": [
         {
           "id": "constructor-storage",
           "property": "Creation, immutable resolution and declared initial storage state.",
-          "evidenceGrade": "UNVERIFIED",
-          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
-          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "evidenceGrade": "EXECUTION_TESTS",
+          "inputScope": "Executed samples: factory deployment with supply 1000000 ether, initial holder and authority equal to the test contract, eligible addresses [0xb0b,0xbeef,0x401d]; direct HookAdapter deployment with supply 0 and eligible=[]; seeded-T-REx, smuggled-endpoint, and hidden-Agent negatives.",
+          "stateScope": "Fresh T-REx initialization; fixed registry membership; bound and activated Compliance; adapter as the only intentionally added Agent; governor as owner; checked supply, initial-holder balance, frozen amount 0, restriction false, live seal, binding and dependency initialization. Fresh-zero private mappings are not individually read by the tests.",
           "toolPins": {
             "isabelle": "Isabelle2025-2",
             "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
@@ -792,15 +1329,51 @@
             "kontrol": "1.0.255",
             "foundry": "1.7.1",
             "schedule": "CANCUN",
-            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+            "certora": "8.19.1"
           },
-          "assumptions": [],
-          "evidence": [],
-          "artifactBindings": [],
+          "assumptions": [
+            "Fresh EVM storage starts at zero except for constructor writes.",
+            "The pinned T-REx creation code implements the separately recorded 4.1.3 source and compiler profile.",
+            "Solidity and EVM constructor semantics are trusted; compiler correctness is not proved.",
+            "The stock T-REx Agent mapping is not enumerable, so sole-Agent completeness comes from exact fresh creation plus the only source-level addAgent write."
+          ],
+          "evidence": [
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            },
+            {
+              "path": "evidence/trust12/independent-audit.md",
+              "sha256": "5a416e77cf6d5ca8c24356b9121daf3603169fa5669d193103f8d59a3958dc87"
+            }
+          ],
+          "artifactBindings": [
+            {
+              "path": "evidence/trust12/runtime-identity.json",
+              "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
+            },
+            {
+              "path": "evidence/runtime-binding-v3/erc3643-hook/bridge-artifacts.json",
+              "sha256": "99362fa5bdebbb6534aea01fbb43d2fbe95f1642dbec7a3af99b2f395040d01e"
+            }
+          ],
           "negative": {
-            "kind": "UNVERIFIED",
-            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
-            "evidence": []
+            "kind": "KILLED_CONSUMER_REMOVAL",
+            "scope": "Three exact consumers only: T-REx creation-code initial-state pin, factory adapter-creation pin, and the sole-Agent construction write.",
+            "evidence": [
+              {
+                "path": "evidence/trust12/mutation-initial.json",
+                "sha256": "5ac4a67760bbd11fda09851b43d26bff79c5ef5d35a4b9872035f30079687958"
+              },
+              {
+                "path": "evidence/trust12/mutation-factory-pin.json",
+                "sha256": "c21eabdd494a783b70b250c9e4d3225ab4b6c45f262155c3ef85168393d6d81e"
+              },
+              {
+                "path": "evidence/trust12/mutation-hidden-agent.json",
+                "sha256": "d8103bd6ceb0c0bccf3585f5727d63716ff28f86a89b912a5489044bf477d6d7"
+              }
+            ]
           },
           "reuseCandidates": [
             {
@@ -811,14 +1384,26 @@
               "path": "evidence/trust12/runtime-identity.json",
               "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
             }
-          ]
+          ],
+          "result": {
+            "status": "PASS",
+            "tool": "Foundry",
+            "kind": "TESTS",
+            "sampleScope": "Two positive fresh-construction samples and three killed construction consumers.",
+            "historicalSourceCommit": "b40a0901cc543f8384e4d11406dd46a383008fcb",
+            "reusedByCurrentSeal": true
+          },
+          "review": {
+            "path": "evidence/trust12/profile-implementation-evidence-review.json",
+            "sha256": "39cf9abc04adb9f896664c7f9618b4295a8dee1c7412e22e570c64ff0ca90168"
+          }
         },
         {
           "id": "calldata-dispatch",
           "property": "Actual byte dispatch, lengths, word/enum decoding and malformed outcomes.",
-          "evidenceGrade": "UNVERIFIED",
-          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
-          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "evidenceGrade": "EXECUTION_TESTS",
+          "inputScope": "Canonical Hook calls for all six ActionKind values and the three supported ReversalKind values; canonical factory deploy ABI; rejected factory adapterCreationCode samples hex00 and a constructible unapproved endpoint. No dirty-word or wrong-length action/reversal sample is executed by the nine actual T-REx tests.",
+          "stateScope": "Fresh live Hook unit under the integration setUp state, plus factory state containing the pinned tokenCreationSource. Dispatch is observed only on these test states.",
           "toolPins": {
             "isabelle": "Isabelle2025-2",
             "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
@@ -829,15 +1414,38 @@
             "kontrol": "1.0.255",
             "foundry": "1.7.1",
             "schedule": "CANCUN",
-            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+            "certora": "8.19.1"
           },
-          "assumptions": [],
-          "evidence": [],
-          "artifactBindings": [],
+          "assumptions": [
+            "The Solidity 0.8.36 ABI dispatcher enforces the generated tuple decoder outside the explicit length guards.",
+            "The compiler bundle's ABI and method-identifier equality is identity evidence, not compiler correctness.",
+            "Unknown-selector and malformed-word behavior is not inferred from legacy Partial-profile tests."
+          ],
+          "evidence": [
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ],
+          "artifactBindings": [
+            {
+              "path": "evidence/trust12/runtime-identity.json",
+              "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
+            },
+            {
+              "path": "evidence/runtime-binding-v3/erc3643-hook/bridge-artifacts.json",
+              "sha256": "99362fa5bdebbb6534aea01fbb43d2fbe95f1642dbec7a3af99b2f395040d01e"
+            }
+          ],
           "negative": {
-            "kind": "UNVERIFIED",
-            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
-            "evidence": []
+            "kind": "BOUNDED_BEHAVIORAL",
+            "scope": "Factory creation-byte admission only: a one-byte payload and a constructible unapproved endpoint are rejected. This is not a dirty ActionRequest or ReversalRequest decoder test.",
+            "evidence": [
+              {
+                "path": "evidence/foundry-results-v3.json",
+                "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+              }
+            ]
           },
           "reuseCandidates": [
             {
@@ -848,14 +1456,26 @@
               "path": "evidence/trust12/runtime-identity.json",
               "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
             }
-          ]
+          ],
+          "result": {
+            "status": "PASS",
+            "tool": "Foundry",
+            "kind": "TESTS",
+            "sampleScope": "Nine canonical command branches and two bounded factory creation-byte rejection cases.",
+            "historicalSourceCommit": "b40a0901cc543f8384e4d11406dd46a383008fcb",
+            "reusedByCurrentSeal": true
+          },
+          "review": {
+            "path": "evidence/trust12/profile-implementation-evidence-review.json",
+            "sha256": "39cf9abc04adb9f896664c7f9618b4295a8dee1c7412e22e570c64ff0ca90168"
+          }
         },
         {
           "id": "authorization-replay",
           "property": "Caller, authority, epoch, identifier and replay checks.",
-          "evidenceGrade": "UNVERIFIED",
-          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
-          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "evidenceGrade": "EXECUTION_TESTS",
+          "inputScope": "Valid immutable authority and epoch 1 for six actions and three reversals; unauthorized direct callback; nine raw token Agent/owner administration calls by non-authorized callers; sole-Agent construction mutation. Duplicate command, nonce, stale epoch, wrong identifier, and invalid time-window cases are not executed on the actual Hook runtime.",
+          "stateScope": "Fresh sealed topology with one immutable authorityRef, authority epoch 1, dependency epoch 1, and unused action/reversal identifiers for the positive commands.",
           "toolPins": {
             "isabelle": "Isabelle2025-2",
             "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
@@ -866,15 +1486,42 @@
             "kontrol": "1.0.255",
             "foundry": "1.7.1",
             "schedule": "CANCUN",
-            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+            "certora": "8.19.1"
           },
-          "assumptions": [],
-          "evidence": [],
-          "artifactBindings": [],
+          "assumptions": [
+            "The authority and authorityRef constructor immutables resolve as the source declares.",
+            "Source-level shared-kernel similarity to the Partial adapter is not treated as Hook proof.",
+            "Agent-set completeness rests on fresh exact creation and the single addAgent source path."
+          ],
+          "evidence": [
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ],
+          "artifactBindings": [
+            {
+              "path": "evidence/trust12/runtime-identity.json",
+              "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
+            },
+            {
+              "path": "evidence/runtime-binding-v3/erc3643-hook/bridge-artifacts.json",
+              "sha256": "99362fa5bdebbb6534aea01fbb43d2fbe95f1642dbec7a3af99b2f395040d01e"
+            }
+          ],
           "negative": {
-            "kind": "UNVERIFIED",
-            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
-            "evidence": []
+            "kind": "KILLED_CONSUMER_REMOVAL",
+            "scope": "The callback Compliance-caller check and the sole-Agent construction consumer. Action/reversal replay and epoch checks have no Hook-specific mutation receipt.",
+            "evidence": [
+              {
+                "path": "evidence/trust12/mutation-callback-auth.json",
+                "sha256": "a1499eb530d772259ba8cdc520e7b1ef8ccca3b27ce1901552e4c4b0ecd855b1"
+              },
+              {
+                "path": "evidence/trust12/mutation-hidden-agent.json",
+                "sha256": "d8103bd6ceb0c0bccf3585f5727d63716ff28f86a89b912a5489044bf477d6d7"
+              }
+            ]
           },
           "reuseCandidates": [
             {
@@ -885,14 +1532,26 @@
               "path": "evidence/trust12/runtime-identity.json",
               "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
             }
-          ]
+          ],
+          "result": {
+            "status": "PASS",
+            "tool": "Foundry",
+            "kind": "TESTS",
+            "sampleScope": "Valid authority calls, unauthorized raw token calls, unauthorized callback, and two killed authorization/topology consumers.",
+            "historicalSourceCommit": "b40a0901cc543f8384e4d11406dd46a383008fcb",
+            "reusedByCurrentSeal": true
+          },
+          "review": {
+            "path": "evidence/trust12/profile-implementation-evidence-review.json",
+            "sha256": "39cf9abc04adb9f896664c7f9618b4295a8dee1c7412e22e570c64ff0ca90168"
+          }
         },
         {
           "id": "dependency-calls",
           "property": "Declared dependencies, external calls, response shapes and echoed fields.",
-          "evidenceGrade": "UNVERIFIED",
-          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
-          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "evidenceGrade": "EXECUTION_TESTS",
+          "inputScope": "Actual pinned T-REx calls reached by ordinary transfer, transferFrom, batchTransfer, regulatory forcedTransfer, frozen/restriction views and setters; Identity Registry and Compliance allow cases; one unknown identity; one Compliance runtime replacement; one injected Compliance callback revert.",
+          "stateScope": "Fresh sealed dependency root with Compliance as POLICY, fixed Identity Registry as IDENTITY, zero settlement and entitlement bindings, epoch 1, and codehash-liveness checks.",
           "toolPins": {
             "isabelle": "Isabelle2025-2",
             "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
@@ -903,15 +1562,43 @@
             "kontrol": "1.0.255",
             "foundry": "1.7.1",
             "schedule": "CANCUN",
-            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+            "certora": "8.19.1"
           },
-          "assumptions": [],
-          "evidence": [],
-          "artifactBindings": [],
+          "assumptions": [
+            "The actual T-REx 4.1.3 callback order in the pinned runtime is the only upstream behavior credited.",
+            "A codehash match identifies runtime bytes but does not prove external facts or legal truth.",
+            "Correct EVM call/staticcall and revert semantics under CANCUN are trusted.",
+            "The fixed Hook Compliance canTransfer always returns true; it is not a general policy implementation."
+          ],
+          "evidence": [
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ],
+          "artifactBindings": [
+            {
+              "path": "evidence/trust12/runtime-identity.json",
+              "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
+            },
+            {
+              "path": "evidence/runtime-binding-v3/erc3643-hook/bridge-artifacts.json",
+              "sha256": "99362fa5bdebbb6534aea01fbb43d2fbe95f1642dbec7a3af99b2f395040d01e"
+            }
+          ],
           "negative": {
-            "kind": "UNVERIFIED",
-            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
-            "evidence": []
+            "kind": "KILLED_CONSUMER_REMOVAL",
+            "scope": "The inbound callback synchronization consumer is removed and killed. Additional bounded negatives cover Compliance code drift, unknown identity, callback caller, and callback revert, but not every response-shape branch.",
+            "evidence": [
+              {
+                "path": "evidence/trust12/mutation-inbound.json",
+                "sha256": "5a56899d53056cd2480db0e033b2654392ec5a7b59654ebb5e3b030f42c7bb8f"
+              },
+              {
+                "path": "evidence/trust12/mutation-callback-auth.json",
+                "sha256": "a1499eb530d772259ba8cdc520e7b1ef8ccca3b27ce1901552e4c4b0ecd855b1"
+              }
+            ]
           },
           "reuseCandidates": [
             {
@@ -922,14 +1609,26 @@
               "path": "evidence/trust12/runtime-identity.json",
               "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
             }
-          ]
+          ],
+          "result": {
+            "status": "PASS",
+            "tool": "Foundry",
+            "kind": "TESTS",
+            "sampleScope": "Named actual T-REx calls, one killed callback consumer, and bounded dependency failure samples.",
+            "historicalSourceCommit": "b40a0901cc543f8384e4d11406dd46a383008fcb",
+            "reusedByCurrentSeal": true
+          },
+          "review": {
+            "path": "evidence/trust12/profile-implementation-evidence-review.json",
+            "sha256": "39cf9abc04adb9f896664c7f9618b4295a8dee1c7412e22e570c64ff0ca90168"
+          }
         },
         {
           "id": "effects-frame",
           "property": "Post-storage effects, untouched fields and word/overflow conditions.",
-          "evidenceGrade": "UNVERIFIED",
-          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
-          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "evidenceGrade": "EXECUTION_TESTS",
+          "inputScope": "One actual-T-REx sample for each of six actions, three reversals, frozen-target inbound synchronization, transferFrom, batch transfer, zero/self transfer, custody-source disposition, and callback rollback.",
+          "stateScope": "Test-created fresh units; touched adapter records include nonce, action, effect, case, custody, backing, owned target/restriction, entitlement, and receipt; touched upstream state includes balances, allowance, frozen amount, address restriction, owner, Agent, and supply.",
           "toolPins": {
             "isabelle": "Isabelle2025-2",
             "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
@@ -940,15 +1639,38 @@
             "kontrol": "1.0.255",
             "foundry": "1.7.1",
             "schedule": "CANCUN",
-            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+            "certora": "8.19.1"
           },
-          "assumptions": [],
-          "evidence": [],
-          "artifactBindings": [],
+          "assumptions": [
+            "Observed state getters represent the exact T-REx state variables named in the source.",
+            "Arithmetic safety follows Solidity 0.8.36 checked arithmetic for the Hook contracts and the separately compiled T-REx behavior in the executed samples.",
+            "The legacy invariant suites and abstract Isabelle model are not promoted to actual-T-REx Hook frame proofs."
+          ],
+          "evidence": [
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ],
+          "artifactBindings": [
+            {
+              "path": "evidence/trust12/runtime-identity.json",
+              "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
+            },
+            {
+              "path": "evidence/runtime-binding-v3/erc3643-hook/bridge-artifacts.json",
+              "sha256": "99362fa5bdebbb6534aea01fbb43d2fbe95f1642dbec7a3af99b2f395040d01e"
+            }
+          ],
           "negative": {
-            "kind": "UNVERIFIED",
-            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
-            "evidence": []
+            "kind": "KILLED_CONSUMER_REMOVAL",
+            "scope": "Removal of the incoming frozen-target synchronization effect only. The detector reaches the actual inbound balance change and fails the frozen-floor assertion.",
+            "evidence": [
+              {
+                "path": "evidence/trust12/mutation-inbound.json",
+                "sha256": "5a56899d53056cd2480db0e033b2654392ec5a7b59654ebb5e3b030f42c7bb8f"
+              }
+            ]
           },
           "reuseCandidates": [
             {
@@ -959,14 +1681,26 @@
               "path": "evidence/trust12/runtime-identity.json",
               "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
             }
-          ]
+          ],
+          "result": {
+            "status": "PASS",
+            "tool": "Foundry",
+            "kind": "TESTS",
+            "sampleScope": "Named state-transition samples plus one killed inbound-effect consumer.",
+            "historicalSourceCommit": "b40a0901cc543f8384e4d11406dd46a383008fcb",
+            "reusedByCurrentSeal": true
+          },
+          "review": {
+            "path": "evidence/trust12/profile-implementation-evidence-review.json",
+            "sha256": "39cf9abc04adb9f896664c7f9618b4295a8dee1c7412e22e570c64ff0ca90168"
+          }
         },
         {
           "id": "revert",
           "property": "Failure classification and persistent-state/log rollback.",
-          "evidenceGrade": "UNVERIFIED",
-          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
-          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "evidenceGrade": "EXECUTION_TESTS",
+          "inputScope": "Frozen-account outbound transfer rejection with balance check; nine raw authority bypasses; unauthenticated callback; invalid factory creation input; Compliance code drift; injected post-callback failure with exact balance and allowance restoration and later recovery transfer.",
+          "stateScope": "Fresh live unit and specific mutated/fault-injected test states. Persistent rollback is directly asserted for balances and allowance in the callback failure, and for balance in the frozen outbound rejection.",
           "toolPins": {
             "isabelle": "Isabelle2025-2",
             "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
@@ -977,15 +1711,38 @@
             "kontrol": "1.0.255",
             "foundry": "1.7.1",
             "schedule": "CANCUN",
-            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+            "certora": "8.19.1"
           },
-          "assumptions": [],
-          "evidence": [],
-          "artifactBindings": [],
+          "assumptions": [
+            "EVM call-frame and transaction rollback semantics under CANCUN are trusted.",
+            "The tests' observed getters cover only named state; unobserved storage is not inferred unchanged.",
+            "A failed transaction's absent persistent logs follow EVM semantics, but the Hook callback-failure test does not explicitly count logs."
+          ],
+          "evidence": [
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            }
+          ],
+          "artifactBindings": [
+            {
+              "path": "evidence/trust12/runtime-identity.json",
+              "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
+            },
+            {
+              "path": "evidence/runtime-binding-v3/erc3643-hook/bridge-artifacts.json",
+              "sha256": "99362fa5bdebbb6534aea01fbb43d2fbe95f1642dbec7a3af99b2f395040d01e"
+            }
+          ],
           "negative": {
-            "kind": "UNVERIFIED",
-            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
-            "evidence": []
+            "kind": "BOUNDED_BEHAVIORAL",
+            "scope": "The injected Compliance callback revert checks exact restoration of two balances and allowance; other failures check only the specific asserted observable.",
+            "evidence": [
+              {
+                "path": "evidence/foundry-results-v3.json",
+                "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+              }
+            ]
           },
           "reuseCandidates": [
             {
@@ -996,14 +1753,26 @@
               "path": "evidence/trust12/runtime-identity.json",
               "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
             }
-          ]
+          ],
+          "result": {
+            "status": "PASS",
+            "tool": "Foundry",
+            "kind": "TESTS",
+            "sampleScope": "Specific authority, dependency, transfer, factory, and callback failure branches with bounded rollback assertions.",
+            "historicalSourceCommit": "b40a0901cc543f8384e4d11406dd46a383008fcb",
+            "reusedByCurrentSeal": true
+          },
+          "review": {
+            "path": "evidence/trust12/profile-implementation-evidence-review.json",
+            "sha256": "39cf9abc04adb9f896664c7f9618b4295a8dee1c7412e22e570c64ff0ca90168"
+          }
         },
         {
           "id": "receipt-logs",
           "property": "Return values, receipt preimages, emitted data and event order.",
-          "evidenceGrade": "UNVERIFIED",
-          "inputScope": "Exact method/input domain to be recorded by the one-day evidence inventory; no general-input credit yet.",
-          "stateScope": "Exact initial storage, topology, dependencies and exclusions to be mapped before grading.",
+          "evidenceGrade": "EXECUTION_TESTS",
+          "inputScope": "All six action kinds check returned/stored/final-event receipt equality; three reversals are executed; one CONFISCATE after SEIZE plus RESTRICT independently computes actual custody-source pre/post observations.",
+          "stateScope": "Fresh live units, with one sample per action and three reversal families, plus a custody case whose adapter address is restricted before disposition.",
           "toolPins": {
             "isabelle": "Isabelle2025-2",
             "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
@@ -1014,15 +1783,42 @@
             "kontrol": "1.0.255",
             "foundry": "1.7.1",
             "schedule": "CANCUN",
-            "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+            "certora": "8.19.1"
           },
-          "assumptions": [],
-          "evidence": [],
-          "artifactBindings": [],
+          "assumptions": [
+            "The test's independent observation helper matches the documented profile observation preimage for the one custody-source scenario.",
+            "The receipt's committed upstream restriction value does not prove the legal truth of that restriction.",
+            "Solidity memory layout used by the receipt hashing assembly is trusted outside the bounded executions."
+          ],
+          "evidence": [
+            {
+              "path": "evidence/foundry-results-v3.json",
+              "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+            },
+            {
+              "path": "evidence/trust12/independent-audit.md",
+              "sha256": "5a416e77cf6d5ca8c24356b9121daf3603169fa5669d193103f8d59a3958dc87"
+            }
+          ],
+          "artifactBindings": [
+            {
+              "path": "evidence/trust12/runtime-identity.json",
+              "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
+            },
+            {
+              "path": "evidence/runtime-binding-v3/erc3643-hook/bridge-artifacts.json",
+              "sha256": "99362fa5bdebbb6534aea01fbb43d2fbe95f1642dbec7a3af99b2f395040d01e"
+            }
+          ],
           "negative": {
-            "kind": "UNVERIFIED",
-            "scope": "Map the actual detector and its mutation or bounded behavioral scope before grading.",
-            "evidence": []
+            "kind": "KILLED_CONSUMER_REMOVAL",
+            "scope": "One source-role actual restriction read in the Hook observation is replaced by false; the custody-source receipt detector kills the mutant.",
+            "evidence": [
+              {
+                "path": "evidence/trust12/mutation-receipt.json",
+                "sha256": "eabc940d87c0a8cc9e03c592c5fa2f96ba7595284b174e30624d570d610337bd"
+              }
+            ]
           },
           "reuseCandidates": [
             {
@@ -1033,7 +1829,19 @@
               "path": "evidence/trust12/runtime-identity.json",
               "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
             }
-          ]
+          ],
+          "result": {
+            "status": "PASS",
+            "tool": "Foundry",
+            "kind": "TESTS",
+            "sampleScope": "Six action final-event/stored/returned receipt checks, three executed reversals, one independently observed custody-source receipt, and one killed observation consumer.",
+            "historicalSourceCommit": "b40a0901cc543f8384e4d11406dd46a383008fcb",
+            "reusedByCurrentSeal": true
+          },
+          "review": {
+            "path": "evidence/trust12/profile-implementation-evidence-review.json",
+            "sha256": "39cf9abc04adb9f896664c7f9618b4295a8dee1c7412e22e570c64ff0ca90168"
+          }
         }
       ]
     },
@@ -1123,13 +1931,10 @@
     "status": "INCOMPLETE",
     "preservation": "PASS_ABSTRACT_MODEL: initial, ordinary, governance, failure and all nine regulatory state_wf preservation, linked-run induction and outcome-sensitive controls. Actual committed-source clean build and bounded independent source reviews are recorded in model-results.json and its references.",
     "reflection": "No general compiled-runtime reflection theorem.",
-    "routeExhaustiveness": "Legacy routes retain their prior inventory; new hook/factory/callback routes have not received final independent reverse enumeration.",
-    "stateReceiptIdentity": "Named hook state and receipt consumers have bounded evidence; constructor and general runtime projection are open.",
+    "routeExhaustiveness": "PASS_SCOPED_INVENTORY: factory, direct deployment, adapter, governor, compliance and executed callback routes were reverse-enumerated. Permissionless resynchroniseFrozen and fresh-lifecycle-unreachable activateSeal are present but unexecuted. batchForcedTransfer, recovery and post-activation mint/burn callbacks remain outside the graded Hook scope.",
+    "stateReceiptIdentity": "All 21 profile components have scope-reviewed implementation evidence and compiled artifact bindings. General runtime-to-model correspondence and the Native general symbolic FREEZE proof remain open.",
     "currentMandatory": [
-      "NATIVE-SYMBOLIC-FREEZE",
-      "RUNTIME-LINK-NATIVE",
-      "RUNTIME-LINK-PARTIAL",
-      "RUNTIME-LINK-HOOK"
+      "NATIVE-SYMBOLIC-FREEZE"
     ],
     "researchResiduals": [
       "RESEARCH-RUNTIME-LINK-HOOK",
@@ -1143,6 +1948,6 @@
   "releaseAssessment": {
     "status": "PENDING",
     "fullRefinementComplete": false,
-    "meaning": "Release-evidence readiness is distinct from proof completeness and public release approval."
+    "meaning": "Three profile implementation-evidence rows are CLOSED at row grade EXECUTION_TESTS. Native general symbolic FREEZE remains open; no shipping exception or public release is authorized."
   }
 }
