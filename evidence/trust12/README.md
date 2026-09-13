@@ -8,12 +8,22 @@ all TRUST 1.2 work complete or discharge the general runtime link.
 
 `release-policy.json` records the approved release-scope reset. The three profile
 rows in `obligation-ledger.json` now track seven components of scoped implementation
-evidence each. Their grades are initially unverified until the existing receipts
-are mapped and reviewed. The original general `runtime_link` goals remain unproved
-research residuals. Native symbolic FREEZE remains mandatory; a one-day probe cannot
-close it by timeout. No shipping exception is currently approved.
+evidence each. All 21 components have been mapped and scope-reviewed. Native, Partial
+and Hook each have seven execution-test components. The weakest component makes all three row
+grades EXECUTION_TESTS. The profile implementation-evidence rows are closed within
+those scopes. The original general `runtime_link` goals remain unproved research
+residuals. Native symbolic FREEZE remains mandatory after the alternative probe
+stopped on its second standard single-step timeout. Its same-domain guard-removal
+negative was not run. No shipping exception is currently approved.
+
+Existing Kontrol PASS records remain supplemental bounded evidence because their
+receipt does not record the proof metadata required for proof-grade credit.
+
+TRUST 1.2 profile row grades: Native EXECUTION_TESTS; Partial EXECUTION_TESTS; Hook EXECUTION_TESTS.
 
 `release-notes.md` records the limited claim and exception disclosures.
+`profile-implementation-evidence-review.json` records the 21-cell scope review.
+`native-alternative-probe.json` records the stopped bounded Native probe.
 `scripts/verify-trust12-policy.mjs` is shared by both evidence entrypoints;
 `scripts/test-trust12-policy.mjs` exercises grading and exception rejection controls.
 This metadata check is not a proof run or release authorization. Veri Formal/Kore
@@ -225,8 +235,10 @@ execute. No preserves-definedness attribute or new initial premise was supplied
 by the TRUST driver.
 
 Duplicate-map and wrong-value controls are local helper checks. They do not
-replace the pending same-domain FREEZE guard-removal proof. All four mandatory
-symbolic/runtime obligations remain open. The existing aggregate gate checks
+replace the pending same-domain FREEZE guard-removal proof. The Native general
+symbolic obligation remains current-mandatory. The three profile implementation-
+evidence obligations are closed at EXECUTION_TESTS, and the three general runtime-
+link obligations remain research residuals. The existing aggregate gate checks
 sealed development-evidence consistency; it does not replay these K proofs or
 supply an Isabelle runtime receiver. Raw files remain under ignored out/trust12.
 

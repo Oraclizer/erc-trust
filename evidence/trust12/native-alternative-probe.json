@@ -1,0 +1,50 @@
+{
+  "schema": "trust12-native-alternative-probe-v1",
+  "status": "STOPPED_AFTER_SECOND_SAME_CLASS_FAILURE",
+  "sourceHead": "3f4f795e76dcd7bfcc6819d2a8ad74744aa991a2",
+  "sourceInputSealSha256": "2c35df71d30ea46972fe6595743e59f2119d9b5bb97283f8e7f81c6658ee0aee",
+  "runLedger": {
+    "path": "out/trust12/native-symbolic-probe-20260913/run-ledger.jsonl",
+    "sha256": "7995e98a25fe934f870ad20072b838a268556f6b18f5d978d7efa370f8cc7612",
+    "attempts": 4
+  },
+  "terminalResult": {
+    "path": "out/trust12/native-symbolic-probe-20260913/result.json",
+    "sha256": "05686da88e42eb6bb8fd37749bef3e870495e8ee1f21fc3c7d98d9cbaa815d5d"
+  },
+  "successfulProgress": [
+    "Reused the checked dependency summary, case20 positive and negative branch, preserved definedness evidence and the registered alias observation without executing the rejected marker modules.",
+    "Exactly instantiated the checked general-frame result into source node148 while preserving all 13 original constraints.",
+    "Executed the standard EVM.pc.inc rule on a smaller typed frame and instantiated it into the exact Native state, advancing PC 7618 to 7619."
+  ],
+  "remaining": [
+    "The standard K/KEVM decode of opcode 0x56 JUMP at PC 7619 did not return within 30 seconds even after the typed-frame split.",
+    "The general Native FREEZE proof over first > 0, second > 0 and second <= first remains incomplete, including first above total supply.",
+    "The same-domain guard-removal negative was not run because the positive proof did not complete."
+  ],
+  "measuredContinuationCost": {
+    "currentProbeWallSeconds": 1226.098,
+    "newNativeComputationSeconds": 95.089,
+    "preparationReviewRepairAndWaitSeconds": 1131.009,
+    "historicalWholeRunTimeoutsSeconds": [
+      900.05,
+      900.08,
+      900
+    ],
+    "historicalNode148WaitsSeconds": [
+      55,
+      55,
+      192.694
+    ],
+    "nextBoundedExperiment": "A new method must isolate or replace the standard JUMP decode simplification without strengthening definedness or using the rejected marker modules. The full proof completion cost remains unbounded by current measurements."
+  },
+  "recommendation": "SHIPPING_EXCEPTION",
+  "recommendationReason": "The allowed alternative probe made two exact summary steps but hit the same standard single-step timeout twice. Continuing the same proof path is prohibited and no measured basis supports a completion date.",
+  "trustedMarkerExecuted": false,
+  "assumeStateDefinedStrengthened": false,
+  "sourceProofModified": false,
+  "generalProofCompleted": false,
+  "guardRemovalNegativeCompleted": false,
+  "runtimeLinkCompleted": false,
+  "nonclaim": "Bounded Native symbolic execution progress only. The original general domain, same-domain guard-removal negative and runtime_link remain incomplete."
+}

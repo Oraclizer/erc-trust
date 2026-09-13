@@ -25,13 +25,13 @@
     "kontrol": "1.0.255",
     "foundry": "1.7.1",
     "schedule": "CANCUN",
-    "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+    "certora": "8.19.1"
   },
   "toolchainSource": {
     "path": "formal/isabelle/ERC_TRUST/TRUST_End_To_End_Composition.thy",
     "sha256": "dde2f9c95d702cf4f394dc3bde7e0e000203ba95698cfd7a8ba6569e59f8ccc5"
   },
-  "certoraVersionPolicy": "Recover an exact run/tool version before newly grading Certora evidence; do not invent the missing version.",
+  "certoraVersionPolicy": "Exact Certora CLI and server version 8.19.1 was recovered from evidence/certora-results-v3.json; no new Certora execution was performed.",
   "gradeOrder": [
     "UNVERIFIED",
     "EXECUTION_TESTS",
