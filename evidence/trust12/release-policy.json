@@ -1,0 +1,47 @@
+{
+  "schema": "trust12-release-policy-v1",
+  "approval": {
+    "kind": "RELEASE_SCOPE_RESET",
+    "approvedBy": "Jay Kim",
+    "date": "2026-09-13",
+    "userInstruction": "아래는 클로드 의견 합의가 된거면 공정 반영 하고 새 세션용 프롬프트 알려줘",
+    "scope": "Adopt the reconciled release-evidence policy, grading, explicit shipping-exception mechanism and probe decision. This is not approval of any individual shipping exception or public release."
+  },
+  "generalRuntimeLinkRequiredForRelease": false,
+  "parserDevelopment": "PRESERVE_ONLY",
+  "nativeProbe": {
+    "budget": "One day of bounded alternative/decomposition work; record actual elapsed work and attempt costs before reassessment.",
+    "automaticBoundedClosure": false,
+    "decisionAuthority": "Jay Kim",
+    "ifIncomplete": "Report proven scope, unverified scope, measured continuation cost; keep general proof open pending Jay decision."
+  },
+  "toolchain": {
+    "isabelle": "Isabelle2025-2",
+    "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
+    "kCommit": "4a46d1231473b599c699160132fd6e76a5c46406",
+    "koreCommit": "38afc81fc9414f1e11e609b01a43a436b613bd2d",
+    "z3": "4.13.4",
+    "solc": "0.8.36+commit.8a079791",
+    "kontrol": "1.0.255",
+    "foundry": "1.7.1",
+    "schedule": "CANCUN",
+    "certora": "UNRECORDED_IN_CURRENT_RECEIPT"
+  },
+  "toolchainSource": {
+    "path": "formal/isabelle/ERC_TRUST/TRUST_End_To_End_Composition.thy",
+    "sha256": "dde2f9c95d702cf4f394dc3bde7e0e000203ba95698cfd7a8ba6569e59f8ccc5"
+  },
+  "certoraVersionPolicy": "Recover an exact run/tool version before newly grading Certora evidence; do not invent the missing version.",
+  "gradeOrder": [
+    "UNVERIFIED",
+    "EXECUTION_TESTS",
+    "LIMITED_SCOPE_PROOF",
+    "FULL_SCOPE_PROOF"
+  ],
+  "aggregation": "The row grade is the weakest of its seven components, within each explicitly declared scope. It is not proof of a general runtime-to-model theorem.",
+  "nonclaims": [
+    "No individual shipping exception is approved by this reset.",
+    "No deployment, public push, tag, release or paid execution is authorized.",
+    "Evidence metadata validation is not proof replay or semantic completeness."
+  ]
+}

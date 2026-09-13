@@ -3,6 +3,7 @@
 from pathlib import Path
 import hashlib
 import json
+import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE = ROOT / "evidence/trust12"
@@ -28,7 +29,11 @@ def main() -> None:
     seal = read_json(EVIDENCE / "input-seal.json")
     check(runtime["status"] == "PASS", "runtime identity is not PASS")
     check(symbolic["status"] == "INCOMPLETE", "symbolic status must remain explicitly incomplete")
-    check(ledger["status"] == "IN_PROGRESS", "ledger must remain in progress while mandatory rows are open")
+    # Share policy/status/exception checks with the required JavaScript consumers.
+    policy = json.loads(subprocess.run(
+        ["node", str(ROOT / "scripts/verify-trust12-policy.mjs")],
+        check=True, capture_output=True, text=True, encoding="utf8",
+    ).stdout)
 
     mutations = {}
     for path in sorted(EVIDENCE.glob("mutation-*.json")):
@@ -44,19 +49,7 @@ def main() -> None:
         "mutation receipt set is incomplete",
     )
 
-    rows = {row["id"]: row for row in ledger["obligations"]}
-    check(len(rows) == len(ledger["obligations"]), "duplicate obligation id")
-    mandatory = {row_id for row_id, row in rows.items() if row["status"] == "CURRENT-MANDATORY"}
-    check(
-        mandatory == set(ledger["centralClosure"]["currentMandatory"]),
-        "central mandatory list differs from obligation statuses",
-    )
-    check(mandatory, "an incomplete central closure cannot have zero mandatory rows")
-    for row in rows.values():
-        check(row["status"] in {"CLOSED", "CURRENT-MANDATORY"}, f"unknown status: {row['id']}")
-        if row["status"] == "CLOSED":
-            check("Pending" not in row["positiveActivation"], f"closed row has pending positive: {row['id']}")
-            check("Pending" not in row["consumerRemovalNegative"], f"closed row has pending negative: {row['id']}")
+    mandatory = policy["currentMandatory"]
 
     check(seal["schema"] == "trust12-input-seal-v2", "unexpected input seal schema")
     sealed_paths = set()
@@ -74,6 +67,10 @@ def main() -> None:
                 "centralClosure": ledger["centralClosure"]["status"],
                 "mutations": sorted(mutations),
                 "mandatory": sorted(mandatory),
+                "releaseReadiness": policy["releaseReadiness"],
+                "researchResiduals": policy["researchResiduals"],
+                "shippingExceptions": policy["shippingExceptions"],
+                "fullRefinementComplete": False,
             },
             indent=2,
         )

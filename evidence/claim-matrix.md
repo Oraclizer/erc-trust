@@ -32,6 +32,32 @@ complete", "Native Full complete", "Verified Full complete", "implementation con
 to the model", and any wording that presents the four Kontrol proofs as a proof of the
 runtime link rather than bounded instances of it.
 
+## TRUST 1.2 release-scope reset (unreleased)
+
+The release scope was explicitly reset by Jay Kim on 2026-09-13. It combines
+the verified Isabelle abstract model with profile-specific compiled-code evidence
+under the declared external provers and execution semantics. The general
+`runtime_link` discharge is an open research residual, not a TRUST 1.2 release
+requirement or a proved theorem. The current label remains
+"mapped implementation evidence; end-to-end refinement incomplete".
+
+Each of seven components in each profile records its exact input/state scope,
+pinned tools, positive and negative evidence, artifact bindings and scope review.
+The profile grade is its weakest component: full declared-scope proof, limited-scope
+proof, execution tests/fuzz, or unverified. A test result never becomes a general
+proof by aggregation. The initial remapped components are unverified pending the
+evidence inventory; historical receipts remain valid in their original scopes.
+
+Native symbolic FREEZE retains its original general input domain. A one-day
+alternative-decomposition probe cannot close an incomplete proof. Any shipping
+exception requires a separate row-specific Jay approval, retained unproven scope,
+carryover duties and matching disclosures. No public release is authorized here.
+
+TRUST 1.2 shipping exceptions: none.
+
+See `evidence/trust12/release-policy.json`, `obligation-ledger.json` and
+`release-notes.md` for the current development decision and validator contract.
+
 ## Allowed exact claims (candidate 2)
 
 | Claim | Required qualifier | Evidence |

@@ -5,12 +5,15 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { check, checkLocalReceiptProvenance, encoded, fileRef, inputInventory, inventoryRoot, json, read, sha256, walk } from './lib/local-evidence.mjs';
 import { formalAdmissionDigest, validateFormalIdentity } from './lib/formal-inputs.mjs';
+import { verifyTrust12Policy, mandatoryIds, researchIds } from './lib/trust12-policy.mjs';
 const repository = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const functionalRoot = '7f5104e0adbbefb9cb01f48294d72017dc2529f8fb68b38b4cbb56621398bd91';
 const testsRoot = '23f88d74a162d19792b51bdbd976d111c65e731b96ba5aac495b51be33125d7d';
 const mutationIds = ['callback-auth','factory-pin','hidden-agent','inbound','initial','receipt'];
-const mandatoryIds = ['NATIVE-SYMBOLIC-FREEZE','RUNTIME-LINK-HOOK','RUNTIME-LINK-NATIVE','RUNTIME-LINK-PARTIAL'];
 export const requiredTrust12Paths = [
+  'evidence/trust12/release-policy.json','evidence/trust12/release-notes.md',
+  'evidence/claim-matrix.md','evidence/known-limitations.md',
+  'scripts/lib/trust12-policy.mjs','scripts/verify-trust12-policy.mjs','scripts/test-trust12-policy.mjs',
   'evidence/trust12/obligation-ledger.json','evidence/trust12/runtime-identity.json','evidence/trust12/runtime-link-source-blockers.md',
   'evidence/trust12/independent-audit.md','evidence/trust12/symbolic-kontrol.json','evidence/trust12/symbolic-booster.json',
   'evidence/trust12/runtime-producer-feasibility.json',
@@ -132,11 +135,10 @@ export function verifyTrust12Required(root = repository) {
   const ledger = json(root,'evidence/trust12/obligation-ledger.json');
   const rows = new Map(ledger.obligations.map(row=>[row.id,row]));
   check(rows.size === ledger.obligations.length, 'duplicate TRUST 1.2 obligation');
-  const mandatory = ledger.obligations.filter(row=>row.status==='CURRENT-MANDATORY').map(row=>row.id).sort();
-  check(encoded(mandatory) === encoded(mandatoryIds) && encoded([...ledger.centralClosure.currentMandatory].sort()) === encoded(mandatory), 'unreviewed mandatory obligation removal or promotion');
-  check(ledger.status === 'IN_PROGRESS' && ledger.centralClosure.status === 'INCOMPLETE', 'incomplete TRUST 1.2 cannot become complete');
+  const policy = verifyTrust12Policy(root);
+  const mandatory = policy.currentMandatory;
   const expectedRows = ['HOOK-FRESH-INITIAL','HOOK-FACTORY-CREATION','HOOK-SOLE-AGENT','HOOK-INBOUND-FLOOR','HOOK-CALLER-AUTH','HOOK-CALLBACK-ROLLBACK','HOOK-ACTUAL-RECEIPT','HOOK-INDEPENDENT-FINAL','MODEL-INITIAL-WF','MODEL-ORDINARY-PRESERVATION','MODEL-REGULATORY-PRESERVATION','MODEL-LINKED-RUN'];
-  check(rows.size === expectedRows.length + mandatoryIds.length && expectedRows.every(id=>rows.get(id)?.status==='CLOSED'), 'named feature/model obligation inventory drift');
+  check(rows.size === expectedRows.length + mandatoryIds.length + researchIds.length && expectedRows.every(id=>rows.get(id)?.status==='CLOSED'), 'named feature/model obligation inventory drift');
   const binding = json(root,'evidence/runtime-binding-v3.json');
   verifyRuntimeBundles(root,binding);
   for (const name of ['ERC3643HookAdapter','ERC3643HookGovernor','ERC3643HookCompliance','ERC3643HookFactory']) {
@@ -146,12 +148,14 @@ export function verifyTrust12Required(root = repository) {
   }
   check(json(root,'evidence/evidence-mode.json').mode === 'successor-development', 'open TRUST 1.2 obligations prohibit release promotion');
   return { status: 'PASS_CONSISTENT_DEVELOPMENT', centralClosure: 'INCOMPLETE', currentMandatory: mandatory,
+    releaseReadiness: policy.releaseReadiness, researchResiduals: policy.researchResiduals,
+    shippingExceptions: policy.shippingExceptions, fullRefinementComplete: false,
     profiles: { native: { existingEvidence: 'PRESERVED', runtimeRefinement: 'INCOMPLETE' },
       partial: { existingEvidence: 'PRESERVED', full: false, runtimeRefinement: 'INCOMPLETE' },
       hook: { functionalConformance: 'PASS_PINNED_FRESH_TREX', integrationTests: hookTests.length, semanticMutations: mutationIds.length, runtimeRefinement: 'INCOMPLETE' } },
     models: { preservation:'PASS_ABSTRACT_MODEL',linkedRun:'PASS_ABSTRACT_MODEL',runtimeConnection:'CONDITIONAL' },
     symbolicBackendComparison: { status: booster.status, proofExit: booster.prove.exitCode, guardRemoval: booster.scope.guardRemoval },
     evidence: [...requiredTrust12Paths.filter(p=>p.startsWith('evidence/')), 'evidence/trust12/input-seal.json'].map(p=>fileRef(root,p)),
-    nonclaim: 'Required evidence is present and bound to the current inputs. The admitted abstract model results do not close the outstanding symbolic or compiled-runtime obligations.' };
+    nonclaim: 'Required evidence is present and bound to the current inputs. Policy consistency is not proof completion or shipping approval; the general runtime link remains a research residual.' };
 }
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) console.log(JSON.stringify(verifyTrust12Required(),null,2));
