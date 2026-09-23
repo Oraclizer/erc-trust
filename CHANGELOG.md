@@ -13,6 +13,9 @@
   and reserve full-release verification for `main` while topic branches use
   the development pull-request boundary. In that boundary, leave historical
   mutation source currency to the separately verified successor lane index.
+  Run the heavy implementation and proof workflows once per pull request and
+  on `main`, while retaining the fast identity and repository-health checks on
+  every branch push.
 
 - Reset TRUST 1.2 release scope to the verified abstract model plus explicitly
   graded profile implementation evidence under declared external tools. Preserve
