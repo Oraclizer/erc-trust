@@ -1,0 +1,2301 @@
+{
+  "schema": "trust12-runtime-link-process-result-v1",
+  "processId": "RL-10-PARTIAL-CLOSE",
+  "status": "PASS_RL10_PARTIAL_CLOSE_READY_FOR_INTEGRATION",
+  "baselineManifestSha256": "ab2bf7dad24b105d82ac3c4d66b21d2a3c222d932cff73fea494ab6ce051078f",
+  "gitActions": [
+    "commit",
+    "push",
+    "draft-pr"
+  ],
+  "createdAt": "2026-09-23T22:43:05.778153+00:00",
+  "purpose": "Complete the exact Partial RELEASE external trace, retrieve relation and runtime-link cell, then return a reviewable operation-specific manifest.",
+  "cell": {
+    "id": "Partial/RELEASE",
+    "profile": "Runtime_Partial",
+    "operation": "Runtime_Reverse TRUST_RELEASE",
+    "reversedAction": "SEIZE (custody)",
+    "certificateCount": 2
+  },
+  "productBaseline": {
+    "commit": "74708d11695211bcdd53e941d3e382adec7e6690",
+    "runtimeBridgeSchemaSha256": "0dbf8a8aeac69f52d181c6d6216dce92d20a47623afba94bcc6b5d28b1f0f347",
+    "pinnedFormalTree": "2ee32a7580728bae28f63ca299f29fa9b0cd882f",
+    "pinnedFiles": 45,
+    "note": "The local proof chain for this cell was rebuilt once in an isolated heap store that reads a pinned copy of the product formal sources instead of the working clone."
+  },
+  "sourceCommit": "74708d11695211bcdd53e941d3e382adec7e6690",
+  "startPreflight": {
+    "status": "PASS_RL_10_PARTIAL_CLOSE_START_PREFLIGHT",
+    "head": "74708d11695211bcdd53e941d3e382adec7e6690",
+    "baselineManifestSha256": "ab2bf7dad24b105d82ac3c4d66b21d2a3c222d932cff73fea494ab6ce051078f"
+  },
+  "contract": {
+    "root": "ORACLIZER",
+    "path": "tools/trust12/runtime-link-process-contracts-v1.json",
+    "bytes": 9869,
+    "sha256": "1ada66cd117a7946b9a04fb189b977f30b53516d32a38ab3592084343ebd6b9f"
+  },
+  "baseline": {
+    "root": "ORACLIZER",
+    "path": "tools/trust12/rl05-baseline-v2/baseline.json",
+    "bytes": 9388,
+    "sha256": "ab2bf7dad24b105d82ac3c4d66b21d2a3c222d932cff73fea494ab6ce051078f"
+  },
+  "frozenInputsRechecked": 32,
+  "chainRebuild": {
+    "records": [
+      {
+        "root": "EVIDENCE",
+        "path": "rl10-partial-close-v1/decision-c-record.json",
+        "bytes": 1325,
+        "sha256": "64c059123dca174eda237de36ba89b86fb86f333cb0d015497dd4d97f852ef79",
+        "decision": "C_DECOUPLE_CHAIN_FROM_CANONICAL_CLONE"
+      },
+      {
+        "root": "EVIDENCE",
+        "path": "rl10-partial-close-v1/pinned-inputs/product-pin-74708d1.json",
+        "bytes": 20294,
+        "sha256": "7587dc2e238936319b620eafacdeef07d06fbf7e818883b4f38d9dc63fb48ba5",
+        "status": "PASS_PRODUCT_FORMAL_INPUTS_PINNED"
+      },
+      {
+        "root": "EVIDENCE",
+        "path": "rl10-partial-close-v1/isolated-store-seed.json",
+        "bytes": 25326,
+        "sha256": "4b4edd069f165a252f7274518d8ce4ced296e27091d3cdc7be91f8368695fc4e",
+        "status": "PASS_PRODUCT_INDEPENDENT_ANCESTORS_SEEDED"
+      },
+      {
+        "root": "EVIDENCE",
+        "path": "rl10-partial-close-v1/rebuild-scope-confirmed.json",
+        "bytes": 6558,
+        "sha256": "c1bc65cb48aeb8cf6636a92b52de2e31ac51054dd04b8a0aebb0b860b3a6104e",
+        "status": "PASS_REBUILD_SCOPE_CONFIRMED_BY_DRY_RUN"
+      },
+      {
+        "root": "EVIDENCE",
+        "path": "rl10-partial-close-v1/chain-rebuild/stage-a-lexer-memory-check/result.json",
+        "bytes": 6887,
+        "sha256": "b2d3fe6fc21c1592012ab94ca00846577f0f09e02eb10d8c45fc2a3cf1398353",
+        "status": "PASS_CHAIN_STAGE_BUILT_TRUST12_NATIVE_SOURCE_STORAGE_LEXER_G4"
+      },
+      {
+        "root": "EVIDENCE",
+        "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/result.json",
+        "bytes": 93102,
+        "sha256": "20bca155b4348b1c40f6bb5922ed68dd025de48f5ac58d66f5d7266b348ff035",
+        "status": "PASS_CHAIN_STAGE_BUILT_TRUST12_PARTIAL_RELEASE_REVERSAL_SEMANTIC_DECODE_G69_V1"
+      },
+      {
+        "root": "EVIDENCE",
+        "path": "rl10-partial-close-v1/chain-rebuild-verification.json",
+        "bytes": 80194,
+        "sha256": "c14233c48517032ae8dbaba81460c10e699f2ee49e0136b3b63f0f46b350af31",
+        "status": "PASS_CHAIN_BOUND_TO_PINNED_PRODUCT_INPUTS"
+      },
+      {
+        "root": "EVIDENCE",
+        "path": "rl10-partial-close-v1/old-store-unchanged.json",
+        "bytes": 426,
+        "sha256": "30c3e19b4e5bcc0efee91c232fd29fb7fb3303e3fe97be76b2d2f92b78169b13",
+        "status": "PASS_OLD_SHARED_STORE_UNCHANGED"
+      },
+      {
+        "root": "EVIDENCE",
+        "path": "rl10-partial-close-v1/cost-actual.json",
+        "bytes": 2721,
+        "sha256": "8fc8f37ef50c580efeb2bae421dfe5674ee34b224f697fb912ce7f79a83adfb4",
+        "schema": "trust12-rl10-cost-actual-v1"
+      },
+      {
+        "root": "EVIDENCE",
+        "path": "rl10-partial-close-v1/incident-ancestor-rebuild/restore-receipt.json",
+        "bytes": 8271,
+        "sha256": "26bd6abe971732b53832ed28ad17377c98f66805697518123524f4bcae57dd73",
+        "status": "PASS_ANCESTOR_HEAPS_RESTORED_TO_EXACT_PRE_INCIDENT_BYTES"
+      }
+    ],
+    "verifiedSessions": 125,
+    "verificationRootSha256": "801f9138a8b8ea0a3172b0024cd3322ab61ba0cc67de6d1988ed7e43a6a67b64",
+    "isolatedHeapStore": "rl10-partial-close-v1/isolated-store/heaps/polyml-5.9.2_x86_64_32-windows",
+    "oldSharedStore": {
+      "restoredToPreIncidentBytes": true,
+      "unchangedDuringRebuild": true,
+      "note": "The first external-trace attempt rebuilt seven ancestor sessions in the old shared store; they were restored from verified exact copies before the isolated rebuild, and the store inventory hash is identical before and after the rebuild."
+    }
+  },
+  "chain": [
+    {
+      "stage": "externalTrace",
+      "session": "TRUST12_PARTIAL_RELEASE_EXTERNAL_TRACE_G70",
+      "theory": "TRUST_Partial_Release_External_Trace_G70",
+      "status": "PASS_KERNEL_CHECKED_TRUST12_PARTIAL_RELEASE_EXTERNAL_TRACE_G70",
+      "parentSession": "TRUST12_PARTIAL_RELEASE_REVERSAL_SEMANTIC_DECODE_G69_V1",
+      "meaning": "the exact completed direct-call sequence of the applied RELEASE certificate, the empty sequence of the rejected certificate, and the negative that removing the single state-changing call breaks the trace relation",
+      "result": {
+        "root": "EVIDENCE",
+        "path": "profile-partial-release-external-trace-g70-v1/KernelRun01/result.json",
+        "bytes": 1893,
+        "sha256": "2a6d251778ebf40e6a0a44f3d74bb0c9590c0cc8741edae3637b801d6fe4b9e0"
+      },
+      "inputBinding": {
+        "root": "EVIDENCE",
+        "path": "profile-partial-release-external-trace-g70-v1/input-binding.json",
+        "bytes": 2287,
+        "sha256": "f1f8eb876609937a07ce4a1db7a40d9914f6219f8c9fa1e277abe2bdf8126536"
+      },
+      "theorySource": {
+        "root": "EVIDENCE",
+        "path": "profile-partial-release-external-trace-g70-v1/TRUST_Partial_Release_External_Trace_G70.thy",
+        "bytes": 20462,
+        "sha256": "f60628c02a9e45ee1d2a579f446248e6710157500b1d174fca9bd94e1123c07f"
+      },
+      "sessionRoot": {
+        "root": "EVIDENCE",
+        "path": "profile-partial-release-external-trace-g70-v1/ROOT",
+        "bytes": 287,
+        "sha256": "f17d4fa4ecbb70c65d45e83d89d144028e8d2dd99b4b6d0050345c418373ea40"
+      },
+      "parent": {
+        "root": "EVIDENCE",
+        "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/rebuilt-semantic-decode-result.json",
+        "bytes": 2352,
+        "sha256": "d231674d41a56a3dc5777c7eb90b3f0436a1e869e54d6c354c96a43c3578f070"
+      },
+      "heap": {
+        "root": "EVIDENCE",
+        "path": "rl10-partial-close-v1/isolated-store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_PARTIAL_RELEASE_EXTERNAL_TRACE_G70",
+        "bytes": 8555763,
+        "sha256": "c538ed849a5770b82a0f0556a87e6fdd960c91d63050faa69710421d443a0bea"
+      },
+      "database": {
+        "root": "EVIDENCE",
+        "path": "rl10-partial-close-v1/isolated-store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_PARTIAL_RELEASE_EXTERNAL_TRACE_G70.db",
+        "bytes": 352256,
+        "sha256": "ca3b1ae011124cc46e3c685efda7a496ee56a317c1807523fd44c984bf450868"
+      },
+      "elapsedSeconds": 474.24782489999996,
+      "proofCommandCeilingSeconds": 180,
+      "maxReportedCommandSeconds": null,
+      "discharged": {
+        "externalCallTraceDischarged": true,
+        "traceRemovalNegativeDischarged": true
+      },
+      "checkedFacts": [
+        "ppr_applied_external_trace_ok",
+        "ppr_rejected_external_trace_ok",
+        "ppr_direct_trace_shape",
+        "ppr_trace_needs_state_changing_call",
+        "ppr_rejected_trace_rejects_applied_calls"
+      ],
+      "trace": {
+        "root": "EVIDENCE",
+        "path": "profile-partial-release-direct-call-trace-g70-v1/result.json",
+        "bytes": 34968,
+        "sha256": "14d6abbd0a894369ae5b07518e958f052294376597e0482881050f375f037e76"
+      },
+      "semanticBinding": {
+        "root": "EVIDENCE",
+        "path": "profile-partial-release-reversal-semantic-decode-g69-v1/input-binding.json",
+        "bytes": 3573,
+        "sha256": "774a9808141aecb441d22a49f1cb745d58d938c2245377209391353272794a96"
+      },
+      "appliedDirectCallCount": 34,
+      "rejectedDirectCallCount": 0,
+      "stateChangingCallIndex": 16,
+      "stateChangingSelector": 2680279271
+    },
+    {
+      "stage": "reversalRetrieve",
+      "session": "TRUST12_PARTIAL_RELEASE_REVERSAL_RETRIEVE_G71_V3",
+      "theory": "TRUST_Partial_Release_Reversal_Retrieve_G71_V3",
+      "status": "PASS_KERNEL_CHECKED_TRUST12_PARTIAL_RELEASE_REVERSAL_RETRIEVE_G71_V3",
+      "parentSession": "TRUST12_PARTIAL_RELEASE_EXTERNAL_TRACE_G70",
+      "meaning": "the exact finite retrieve relation from the four observed worlds to the three abstract states (custody-backed pre state, released post state, rejected state) and the applied reversal admission",
+      "result": {
+        "root": "EVIDENCE",
+        "path": "profile-partial-release-reversal-retrieve-g71-v3/KernelRun01/result.json",
+        "bytes": 1960,
+        "sha256": "388eda8965e28fd82c64a74592123aa4806b7b40653da9fe01c1c32dbe085287"
+      },
+      "inputBinding": {
+        "root": "EVIDENCE",
+        "path": "profile-partial-release-reversal-retrieve-g71-v3/input-binding.json",
+        "bytes": 2713,
+        "sha256": "44bda4ad6683f342c8ce3abb9dbc6862fa10459d648cb8111895729d6ca11c69"
+      },
+      "theorySource": {
+        "root": "EVIDENCE",
+        "path": "profile-partial-release-reversal-retrieve-g71-v3/TRUST_Partial_Release_Reversal_Retrieve_G71_V3.thy",
+        "bytes": 61200,
+        "sha256": "202ba9d4aeec6750d126bfbb46f2e78c552bfd29d305f3891f4be7007d3681ff"
+      },
+      "sessionRoot": {
+        "root": "EVIDENCE",
+        "path": "profile-partial-release-reversal-retrieve-g71-v3/ROOT",
+        "bytes": 286,
+        "sha256": "cd1ed02e96bf69187e5f636605dd2dc53200f897d3766bc5ee31cff79a414f95"
+      },
+      "parent": {
+        "root": "EVIDENCE",
+        "path": "profile-partial-release-external-trace-g70-v1/KernelRun01/result.json",
+        "bytes": 1893,
+        "sha256": "2a6d251778ebf40e6a0a44f3d74bb0c9590c0cc8741edae3637b801d6fe4b9e0"
+      },
+      "heap": {
+        "root": "EVIDENCE",
+        "path": "rl10-partial-close-v1/isolated-store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_PARTIAL_RELEASE_REVERSAL_RETRIEVE_G71_V3",
+        "bytes": 8721069,
+        "sha256": "c61034f73b0f474aa43ff774148d57d9854b20255eb1ecdb6c3839f3e1fbcb08"
+      },
+      "database": {
+        "root": "EVIDENCE",
+        "path": "rl10-partial-close-v1/isolated-store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_PARTIAL_RELEASE_REVERSAL_RETRIEVE_G71_V3.db",
+        "bytes": 397312,
+        "sha256": "ade5ea1909a5db9c475ab2546ca8da1146329cbbe9f4133703103c1e96da1b3f"
+      },
+      "elapsedSeconds": 713.7781394,
+      "proofCommandCeilingSeconds": 240,
+      "maxReportedCommandSeconds": 129.368,
+      "discharged": {
+        "worldDecoderDischarged": true,
+        "appliedReversalAdmittedDischarged": true
+      },
+      "checkedFacts": [
+        "ppr_layout_images",
+        "ppr_selector_images",
+        "ppr_state_images",
+        "ppr_configuration_wf",
+        "ppr_alpha_current_images",
+        "ppr_applied_reversal_admitted"
+      ],
+      "classifications": {
+        "applied": {
+          "root": "EVIDENCE",
+          "path": "profile-partial-storage-classification-v1/release-applied.json",
+          "bytes": 156481,
+          "sha256": "a4d070d6fdaf126808c10d852f6d81d421dc363a2ab305c948c537bb14511197"
+        },
+        "rejected": {
+          "root": "EVIDENCE",
+          "path": "profile-partial-storage-classification-v1/release-rejected.json",
+          "bytes": 184209,
+          "sha256": "2c9ae506513e1d851e03cb1e1f37616369b07aa07f28c92f657c8fdaa530a9b5"
+        }
+      },
+      "worldBinding": {
+        "root": "EVIDENCE",
+        "path": "profile-partial-release-world-canary-g67-v1/input-binding.json",
+        "bytes": 2402,
+        "sha256": "4217f276e4a45c451defe7307f4741b8dc93939caccc265886a90c24103ea77a"
+      },
+      "observedWords": {
+        "appliedPre": 60,
+        "appliedPost": 78,
+        "rejected": 60
+      },
+      "receiptDiscriminator": {
+        "key": 4818446651453487642629536030715258507117332095005563286739332910137737146626,
+        "value": 112331577270212216672586008610692359875021650902610837170926945634576678874836
+      },
+      "familyDiscriminator": {
+        "key": 191246485292892133567619964082269493215104733783718892996246779673920259071,
+        "applied": 0,
+        "rejected": 769
+      },
+      "finiteCertificateImageOnly": true
+    },
+    {
+      "stage": "runtimeCell",
+      "session": "TRUST12_PARTIAL_RELEASE_REVERSAL_RUNTIME_CELL_G72",
+      "theory": "TRUST_Partial_Release_Reversal_Runtime_Cell_G72",
+      "status": "PASS_KERNEL_CHECKED_TRUST12_PARTIAL_RELEASE_REVERSAL_RUNTIME_CELL_G72",
+      "parentSession": "TRUST12_PARTIAL_RELEASE_REVERSAL_RETRIEVE_G71_V3",
+      "meaning": "runtime_link_cell_enforced and runtime_link_cell_bound for (Runtime_Partial, Runtime_Reverse TRUST_RELEASE) over the two checked certificates, and the two certificate-removal negatives",
+      "result": {
+        "root": "EVIDENCE",
+        "path": "profile-partial-release-reversal-runtime-cell-g72-v1/KernelRun01/result.json",
+        "bytes": 1982,
+        "sha256": "95dff80ac2f0d1a575d175cd87e7bb8c67ec0f0a8ca5fca7fdb1bac3c0cb6ae3"
+      },
+      "inputBinding": {
+        "root": "EVIDENCE",
+        "path": "profile-partial-release-reversal-runtime-cell-g72-v1/input-binding.json",
+        "bytes": 1741,
+        "sha256": "8a6e6f796d1b7f2615a972729171ce9d2cfa31be5e63016325d760ab0aa70141"
+      },
+      "theorySource": {
+        "root": "EVIDENCE",
+        "path": "profile-partial-release-reversal-runtime-cell-g72-v1/TRUST_Partial_Release_Reversal_Runtime_Cell_G72.thy",
+        "bytes": 12702,
+        "sha256": "19ef4c1c0e9a94bf2b60f00f63c5996d55cefae660fd824b174dd3142fc58644"
+      },
+      "sessionRoot": {
+        "root": "EVIDENCE",
+        "path": "profile-partial-release-reversal-runtime-cell-g72-v1/ROOT",
+        "bytes": 294,
+        "sha256": "3bac09f9aa85da4cd5aa96f6dec3858a4410e11557ce5885e8050945576d5a9b"
+      },
+      "parent": {
+        "root": "EVIDENCE",
+        "path": "profile-partial-release-reversal-retrieve-g71-v3/KernelRun01/result.json",
+        "bytes": 1960,
+        "sha256": "388eda8965e28fd82c64a74592123aa4806b7b40653da9fe01c1c32dbe085287"
+      },
+      "heap": {
+        "root": "EVIDENCE",
+        "path": "rl10-partial-close-v1/isolated-store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_PARTIAL_RELEASE_REVERSAL_RUNTIME_CELL_G72",
+        "bytes": 9433453,
+        "sha256": "e17e271d18d6dc13b8b732c94a993fe8e98826feaf61c989b83226ff797292c9"
+      },
+      "database": {
+        "root": "EVIDENCE",
+        "path": "rl10-partial-close-v1/isolated-store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_PARTIAL_RELEASE_REVERSAL_RUNTIME_CELL_G72.db",
+        "bytes": 376832,
+        "sha256": "cef58d08688ada57739fe514a65b992e6e9912399a5c395368a066b996660bfe"
+      },
+      "elapsedSeconds": 484.1311613,
+      "proofCommandCeilingSeconds": 180,
+      "maxReportedCommandSeconds": null,
+      "discharged": {
+        "cellBoundDischarged": true,
+        "cellEnforcedDischarged": true,
+        "runtimeLinkCellsDischarged": "Partial/RELEASE",
+        "certificateRemovalNegativesDischarged": 2,
+        "alphaTransactionDischarged": 2,
+        "alphaTransactionEnforcedDischarged": 2,
+        "acceptancePartitionDischarged": false
+      },
+      "checkedFacts": [
+        "ppr_applied_alpha_transaction",
+        "ppr_rejected_alpha_transaction",
+        "ppr_applied_alpha_transaction_enforced",
+        "ppr_rejected_alpha_transaction_enforced",
+        "ppr_accepts_iff",
+        "partial_release_certificate_cell_enforced",
+        "partial_release_certificate_cell_bound",
+        "partial_release_cell_needs_applied_certificate",
+        "partial_release_cell_needs_rejected_certificate"
+      ],
+      "retrieveBinding": {
+        "root": "EVIDENCE",
+        "path": "profile-partial-release-reversal-retrieve-g71-v3/input-binding.json",
+        "bytes": 2713,
+        "sha256": "44bda4ad6683f342c8ce3abb9dbc6862fa10459d648cb8111895729d6ca11c69"
+      },
+      "timeBoundsRequired": [
+        "pev_0000 <= 281474976710655",
+        "pmv_0000 <= 281474976710655"
+      ],
+      "certificateCount": 2
+    }
+  ],
+  "parents": [
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-kevm-aggregate-v1/result.json",
+      "bytes": 26070,
+      "sha256": "ae6f92865f10a9f237010c20834f2ceaa4065ff56718386333222ca6c7614543",
+      "status": "PASS_ERC3643_PARTIAL_18_KEVM_CERTIFICATES",
+      "meaning": "eighteen distinct non-admitted, non-circular Partial APR certificates"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-accounts-g66-v1/KernelRun01/result.json",
+      "bytes": 1647,
+      "sha256": "90708aff3c46fe0d2ccb340358de97f51c52f577eda96e6c8593068a86325289",
+      "status": "PASS_KERNEL_CHECKED_TRUST12_PARTIAL_RELEASE_ACCOUNTS_G66",
+      "meaning": "exact setup entry, post and restored accounts cells (theory rechecked in the isolated chain)"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-world-canary-g67-v1/KernelRun01/result.json",
+      "bytes": 1737,
+      "sha256": "ccf6ec032465a7870fceaa08cacaaee98fa603927bac4b83422bdfdb410fd01a",
+      "status": "PASS_KERNEL_CHECKED_TRUST12_PARTIAL_RELEASE_POINTWISE_WORLD_CANARY_G67",
+      "meaning": "pointwise setup and reversal world facts (theory rechecked in the isolated chain)"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-world-canary-g67-v1/input-binding.json",
+      "bytes": 2402,
+      "sha256": "4217f276e4a45c451defe7307f4741b8dc93939caccc265886a90c24103ea77a",
+      "status": null,
+      "meaning": "world names consumed by the retrieve relation"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-transaction-cells-g68-v2/KernelRun01/result.json",
+      "bytes": 1768,
+      "sha256": "07bbb3839ae9d8cfe5ffe52df082cb1383da26f0dd0f82d815e55011b842928f",
+      "status": "PASS_KERNEL_CHECKED_TRUST12_PARTIAL_RELEASE_TRANSACTION_CELLS_G68_V2",
+      "meaning": "exact reversal transaction KORE cells for both outcomes (theory rechecked in the isolated chain)"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-reversal-semantic-decode-g69-v1/KernelRun01/result.json",
+      "bytes": 1648,
+      "sha256": "bc86ca78cb8bcb436e8ae08de4b46dc96bc4d4537cf94f72ebbc27d6a733358c",
+      "status": "PASS_KERNEL_CHECKED_TRUST12_PARTIAL_RELEASE_REVERSAL_SEMANTIC_DECODE_G69_V1",
+      "meaning": "TRUST_Reverse calldata, parent SEIZE action, receipt/log and typed rejection decode (first check)"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-reversal-semantic-decode-g69-v1/input-binding.json",
+      "bytes": 3573,
+      "sha256": "774a9808141aecb441d22a49f1cb745d58d938c2245377209391353272794a96",
+      "status": null,
+      "meaning": "semantic decode binding consumed by the external trace"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-direct-call-trace-g70-v1/result.json",
+      "bytes": 34968,
+      "sha256": "14d6abbd0a894369ae5b07518e958f052294376597e0482881050f375f037e76",
+      "status": "PASS_PARTIAL_RELEASE_EXACT_DIRECT_CALL_TRACE",
+      "meaning": "exact extracted reversal direct-call trace and proof/KCFG identities"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-storage-classification-v1/release-applied.json",
+      "bytes": 156481,
+      "sha256": "a4d070d6fdaf126808c10d852f6d81d421dc363a2ab305c948c537bb14511197",
+      "status": null,
+      "meaning": "applied storage classification consumed by the retrieve relation"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-storage-classification-v1/release-rejected.json",
+      "bytes": 184209,
+      "sha256": "2c9ae506513e1d851e03cb1e1f37616369b07aa07f28c92f657c8fdaa530a9b5",
+      "status": null,
+      "meaning": "rejected storage classification consumed by the retrieve relation"
+    }
+  ],
+  "tools": [
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/prepare_partial_operation_external_trace.py",
+      "bytes": 9290,
+      "sha256": "39f2154ef941777e6f2c613563f4438a35115d461aa0732f947928ba50ffa3c9"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/run_partial_operation_external_trace.ps1",
+      "bytes": 6361,
+      "sha256": "7915704089a9d1ff6e8712b9b2a620965a2e080fe48ab917b9172b1ef2ad6dbd"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/extract_profile_direct_call_trace.py",
+      "bytes": 9692,
+      "sha256": "c0f894519cce3d887e136969b98954049eb90c33d0cf38b5b15c2b85fa055054"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/extract_partial_operation_direct_call_trace.py",
+      "bytes": 3659,
+      "sha256": "fcc9aa98960e253f2be820f0ba555c457cc871e76555048e769392e5707d8a4c"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/prepare_partial_reversal_retrieve.py",
+      "bytes": 23848,
+      "sha256": "194ad066ba72fc827c23547cd606eb0565a0d908c2c1556aea8022398c89d4bb"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/prepare_partial_freeze_retrieve.py",
+      "bytes": 19642,
+      "sha256": "cd342f10c8110ecbcc507ab9d0c267aa47af7bf825f0fb3210db26b0f947981f"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/run_partial_reversal_retrieve.ps1",
+      "bytes": 6442,
+      "sha256": "4c4f7526b68e3871c4184ceda1a8f6c3950a7fd7d6cc2d2ab4c42117962ac9ec"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/prepare_partial_reversal_runtime_cell.py",
+      "bytes": 16665,
+      "sha256": "8e8eb937fb2d90e352df256fdb68fdc152f5f9ff61e67dcbe1d3bfba70bc5391"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/prepare_partial_forward_semantic_decode.py",
+      "bytes": 20207,
+      "sha256": "4cd3e3e490fc2a77a27e38a0ad81982a776f324cc55af9cc1ff5b4311fd4b525"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/run_partial_reversal_runtime_cell.ps1",
+      "bytes": 6414,
+      "sha256": "e175c58c889ddec0739bf8d1123e690f6c0aec686c9828dd122a955420f673e9"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/poly_compact_hierarchy_policy.sh",
+      "bytes": 3752,
+      "sha256": "2af07155f43148ac571064ad03b3ed8d59c4682317ee8fd29bf7f8890399cada"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/runtime_link_process_control.py",
+      "bytes": 13115,
+      "sha256": "76d4bf7ee4694f5461743dd0cb969ea67531ff5ce0b00e0423b747581d5c1735"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/runtime-link-process-contracts-v1.json",
+      "bytes": 9869,
+      "sha256": "1ada66cd117a7946b9a04fb189b977f30b53516d32a38ab3592084343ebd6b9f"
+    }
+  ],
+  "outputs": [
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-external-trace-g70-v1/input-binding.json",
+      "bytes": 2287,
+      "sha256": "f1f8eb876609937a07ce4a1db7a40d9914f6219f8c9fa1e277abe2bdf8126536"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-external-trace-g70-v1/KernelRun01/build.log",
+      "bytes": 50052,
+      "sha256": "7aa0934e5452866d1843366a7db518842d91c922c55a396fcc4ec9c6852563bc"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-external-trace-g70-v1/KernelRun01/command.sh",
+      "bytes": 13494,
+      "sha256": "ce8dc389ab1192085b40e482ecfd65cf197e0fd5b996c4c720168d645270f892"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-external-trace-g70-v1/KernelRun01/compact-poly-receipts/compact-poly-hierarchy.2t6TfD.json",
+      "bytes": 645,
+      "sha256": "f764d3ef71f7791f66bc7d0f719d8ac138894250709351eaa790f1056a7dc7c7"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-external-trace-g70-v1/KernelRun01/result.json",
+      "bytes": 1893,
+      "sha256": "2a6d251778ebf40e6a0a44f3d74bb0c9590c0cc8741edae3637b801d6fe4b9e0"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-external-trace-g70-v1/KernelRun01/theories-snapshot/TRUST_Partial_Release_External_Trace_G70.thy",
+      "bytes": 20462,
+      "sha256": "f60628c02a9e45ee1d2a579f446248e6710157500b1d174fca9bd94e1123c07f"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-external-trace-g70-v1/ROOT",
+      "bytes": 287,
+      "sha256": "f17d4fa4ecbb70c65d45e83d89d144028e8d2dd99b4b6d0050345c418373ea40"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-external-trace-g70-v1/SUPERSEDED-attempt-note.json",
+      "bytes": 1006,
+      "sha256": "5a2c51b22ad6695993513f7cc3631eff5b4ecf721e506794697d5dfb072faa43"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-external-trace-g70-v1/SUPERSEDED-input-binding-old-store.json",
+      "bytes": 2272,
+      "sha256": "7cfa606bffe58b29dd01f03463ff509515abe23160a12f731352819a8b2ab840"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-external-trace-g70-v1/SUPERSEDED-KernelRun01-old-store-ancestor-drift/build.log",
+      "bytes": 104392,
+      "sha256": "ac548a9463b05e213315635d3a5f7c8923ea0dd8abd051aa8ec9bcff7cc622c0"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-external-trace-g70-v1/SUPERSEDED-KernelRun01-old-store-ancestor-drift/command.sh",
+      "bytes": 13442,
+      "sha256": "e0b53f7daed692a4e288291a52d161876e8105b83f736cf8cdd013d15c89b02b"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-external-trace-g70-v1/SUPERSEDED-KernelRun01-old-store-ancestor-drift/compact-poly-receipts/compact-poly-hierarchy.CWEdTW.json",
+      "bytes": 645,
+      "sha256": "a08843e322640e05cdda33d6fb20387d5e2ebfe1014743e6bdb4865eac7f04dc"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-external-trace-g70-v1/SUPERSEDED-KernelRun01-old-store-ancestor-drift/compact-poly-receipts/compact-poly-hierarchy.MLQsHe.json",
+      "bytes": 645,
+      "sha256": "609145dfdf8ca86115c6eea81f4ad4f4b1c9983d153049cc78021ca3a536ad99"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-external-trace-g70-v1/SUPERSEDED-KernelRun01-old-store-ancestor-drift/compact-poly-receipts/compact-poly-hierarchy.MREW62.json",
+      "bytes": 645,
+      "sha256": "cdcdb604bb4283a3019b753c56e80319294abfe8443f81999bbb054ca6089dc0"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-external-trace-g70-v1/SUPERSEDED-KernelRun01-old-store-ancestor-drift/compact-poly-receipts/compact-poly-hierarchy.s3guYF.json",
+      "bytes": 645,
+      "sha256": "29619bef23f86b098fcde15f09f3df7b05479b9f48be4946f1f70ed89832700c"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-external-trace-g70-v1/SUPERSEDED-KernelRun01-old-store-ancestor-drift/compact-poly-receipts/compact-poly-hierarchy.U3bpVw.json",
+      "bytes": 645,
+      "sha256": "09cc8aa7110d9f4db0ec990d1f759e5d63e18249baf43c175b922fddbfb35655"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-external-trace-g70-v1/SUPERSEDED-KernelRun01-old-store-ancestor-drift/compact-poly-receipts/compact-poly-hierarchy.U5W3ON.json",
+      "bytes": 645,
+      "sha256": "cd0920fad4b9c92b2bdf2071c97c0c3bcf5773c53d8f5aac975f2293fb51331e"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-external-trace-g70-v1/SUPERSEDED-KernelRun01-old-store-ancestor-drift/compact-poly-receipts/compact-poly-hierarchy.uWWShD.json",
+      "bytes": 645,
+      "sha256": "1b33d84c1d9ca06a189c9841c099423acdbd5b55cb43f27aaaea9906969a9d45"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-external-trace-g70-v1/SUPERSEDED-KernelRun01-old-store-ancestor-drift/result.json",
+      "bytes": 1526,
+      "sha256": "8c30da20036d05a0c58fce6e4de6a2d3c0be9aec8e85def74978d13a89651094"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-external-trace-g70-v1/SUPERSEDED-KernelRun01-old-store-ancestor-drift/theories-snapshot/TRUST_Partial_Release_External_Trace_G70.thy",
+      "bytes": 20462,
+      "sha256": "f60628c02a9e45ee1d2a579f446248e6710157500b1d174fca9bd94e1123c07f"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-external-trace-g70-v1/TRUST_Partial_Release_External_Trace_G70.thy",
+      "bytes": 20462,
+      "sha256": "f60628c02a9e45ee1d2a579f446248e6710157500b1d174fca9bd94e1123c07f"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-reversal-retrieve-g71-v3/input-binding.json",
+      "bytes": 2713,
+      "sha256": "44bda4ad6683f342c8ce3abb9dbc6862fa10459d648cb8111895729d6ca11c69"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-reversal-retrieve-g71-v3/KernelRun01/build.log",
+      "bytes": 101900,
+      "sha256": "99cbe177cd876f0c78f23477a17c4e56c2bc5361e775ca10e05720eedd1a672a"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-reversal-retrieve-g71-v3/KernelRun01/command.sh",
+      "bytes": 13622,
+      "sha256": "f8a69bbefc1477f01d35b9760205fd9a0efc50eb44dc88fbe83549743cea69be"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-reversal-retrieve-g71-v3/KernelRun01/compact-poly-receipts/compact-poly-hierarchy.iSYJuF.json",
+      "bytes": 645,
+      "sha256": "c6ae32088a5539c5dfe4d2f0059fc6e10d367e8b3a328bb67e1645c866617f55"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-reversal-retrieve-g71-v3/KernelRun01/result.json",
+      "bytes": 1960,
+      "sha256": "388eda8965e28fd82c64a74592123aa4806b7b40653da9fe01c1c32dbe085287"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-reversal-retrieve-g71-v3/KernelRun01/theories-snapshot/TRUST_Partial_Release_Reversal_Retrieve_G71_V3.thy",
+      "bytes": 61200,
+      "sha256": "202ba9d4aeec6750d126bfbb46f2e78c552bfd29d305f3891f4be7007d3681ff"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-reversal-retrieve-g71-v3/ROOT",
+      "bytes": 286,
+      "sha256": "cd1ed02e96bf69187e5f636605dd2dc53200f897d3766bc5ee31cff79a414f95"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-reversal-retrieve-g71-v3/TRUST_Partial_Release_Reversal_Retrieve_G71_V3.thy",
+      "bytes": 61200,
+      "sha256": "202ba9d4aeec6750d126bfbb46f2e78c552bfd29d305f3891f4be7007d3681ff"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-reversal-runtime-cell-g72-v1/input-binding.json",
+      "bytes": 1741,
+      "sha256": "8a6e6f796d1b7f2615a972729171ce9d2cfa31be5e63016325d760ab0aa70141"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-reversal-runtime-cell-g72-v1/KernelRun01/build.log",
+      "bytes": 50448,
+      "sha256": "617b2a7879d74e5c50809ce5b816f1255c62f41befafb59577381d7b35c6b8cc"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-reversal-runtime-cell-g72-v1/KernelRun01/command.sh",
+      "bytes": 13750,
+      "sha256": "82d4ef77475e074ec8a130462e884c34d9cf7c61946caaecad52ba87f58a21eb"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-reversal-runtime-cell-g72-v1/KernelRun01/compact-poly-receipts/compact-poly-hierarchy.k9d1ws.json",
+      "bytes": 645,
+      "sha256": "c7a0b99fca142cef615e8be47a4022386ff4439dcc14e482c7746830d95b1d92"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-reversal-runtime-cell-g72-v1/KernelRun01/result.json",
+      "bytes": 1982,
+      "sha256": "95dff80ac2f0d1a575d175cd87e7bb8c67ec0f0a8ca5fca7fdb1bac3c0cb6ae3"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-reversal-runtime-cell-g72-v1/KernelRun01/theories-snapshot/TRUST_Partial_Release_Reversal_Runtime_Cell_G72.thy",
+      "bytes": 12702,
+      "sha256": "19ef4c1c0e9a94bf2b60f00f63c5996d55cefae660fd824b174dd3142fc58644"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-reversal-runtime-cell-g72-v1/ROOT",
+      "bytes": 294,
+      "sha256": "3bac09f9aa85da4cd5aa96f6dec3858a4410e11557ce5885e8050945576d5a9b"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-partial-release-reversal-runtime-cell-g72-v1/TRUST_Partial_Release_Reversal_Runtime_Cell_G72.thy",
+      "bytes": 12702,
+      "sha256": "19ef4c1c0e9a94bf2b60f00f63c5996d55cefae660fd824b174dd3142fc58644"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/dry-run-external-trace/build.log",
+      "bytes": 24152,
+      "sha256": "0821f3e299b1b0c6644796d60277e3c5a63f5ee5242dded6696e4233fc0531ed"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/dry-run-external-trace/command.sh",
+      "bytes": 13499,
+      "sha256": "fbf3fdfdf819d578ee1f8ef163f9be274cb9e912ba2878562c5ddc7742fc11ec"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/dry-run-external-trace/exit.code",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/dry-run-external-trace/result.json",
+      "bytes": 1684,
+      "sha256": "1076a182236c65baa9bc6f7e512fba5e00b282f6e733e03cc4e6481324e536e4"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/dry-run-external-trace/run.sh",
+      "bytes": 467,
+      "sha256": "3b176540c859f96a467f39d75e7fdbabd49943af9ff16c05d527fa9e2dc364d2"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/dry-run-release-chain/build.log",
+      "bytes": 36076,
+      "sha256": "d8dc72c16d41cf9fcf186a7ae3e5e5b1b44a5b06dff85515d53b999d6569865f"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/dry-run-release-chain/command.sh",
+      "bytes": 13395,
+      "sha256": "d90b572e8032e0c6955a9b192ec2e191b91c29ccc508cc2c959297ed69e031b7"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/dry-run-release-chain/exit.code",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/dry-run-release-chain/result.json",
+      "bytes": 1505,
+      "sha256": "5506d9f48c6f473d88be89e4d557f1970633dbf0f9a2856effa483198f8fec66"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/dry-run-release-chain/run.sh",
+      "bytes": 464,
+      "sha256": "9567b76ff9f7689a90459922c476bbbfbfc660915a6d0935e7c515a05b50e694"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/sessions-122.json",
+      "bytes": 6168,
+      "sha256": "a6731c6464ad7a9ea2c4f2cf7148d58a0612165e2c2e90fa12eda050367b787a"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/sessions-125.json",
+      "bytes": 6334,
+      "sha256": "117f6fbee6bab410fcac4c6ec779f40d7271da1de22b830a599ee457d6303744"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-a-lexer-memory-check/build.log",
+      "bytes": 30013,
+      "sha256": "0752248abc4e743af22e3fde3123195379182af417acf452dde043b25d075f06"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-a-lexer-memory-check/command.sh",
+      "bytes": 13380,
+      "sha256": "266407a3ef522d645751516eeff67f6f494e8327e776d566c5ab4c404005de40"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-a-lexer-memory-check/compact-poly-receipts/compact-poly-hierarchy.4eoIfo.json",
+      "bytes": 645,
+      "sha256": "728930eb7386ce0791b897a76a60384bbf542f3f22bf408c837d315459872c76"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-a-lexer-memory-check/compact-poly-receipts/compact-poly-hierarchy.8Aspsx.json",
+      "bytes": 645,
+      "sha256": "5c48afab284e19281e5621767984ce7372f66bb497d98f8ce045f3aa705560e5"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-a-lexer-memory-check/compact-poly-receipts/compact-poly-hierarchy.Atf4Vy.json",
+      "bytes": 645,
+      "sha256": "3db2c49eed7d0be9d2c4b37e02346cf0d97d35a75518183308cb9deb33601632"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-a-lexer-memory-check/compact-poly-receipts/compact-poly-hierarchy.e4aEu7.json",
+      "bytes": 645,
+      "sha256": "410476498803d7dfcda15135b3756bca80f4b07f06837a1e049d48e95e93e605"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-a-lexer-memory-check/compact-poly-receipts/compact-poly-hierarchy.KqbGrN.json",
+      "bytes": 645,
+      "sha256": "9f7ad0c410e9654fe58eab50bee67d207871d787b22a8cebe63b3f5733839202"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-a-lexer-memory-check/compact-poly-receipts/compact-poly-hierarchy.WuxMEO.json",
+      "bytes": 645,
+      "sha256": "674caaa36f288b6fe560b59e455e9ea65be44c94829967cfb18c670d2ca64a5b"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-a-lexer-memory-check/compact-poly-receipts/compact-poly-hierarchy.wZ5NQu.json",
+      "bytes": 645,
+      "sha256": "24dafc7a89841ec97ced14baf9b3e9849b95747228d75ce7ba7fa6764dc1990b"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-a-lexer-memory-check/exit.code",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-a-lexer-memory-check/result.json",
+      "bytes": 6887,
+      "sha256": "b2d3fe6fc21c1592012ab94ca00846577f0f09e02eb10d8c45fc2a3cf1398353"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-a-lexer-memory-check/run.sh",
+      "bytes": 479,
+      "sha256": "a2772f442540e4dd7f8e47441bf0f740943d3a4dd66d45a1171eea67f23fd0de"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/build.log",
+      "bytes": 791357,
+      "sha256": "f4eba9cdfebac22622b125f14f37b4cb991838c9ed8bf09a4ff23a476cd5d387"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/command.sh",
+      "bytes": 13392,
+      "sha256": "43602938a5d284815dcce38d67147c11826e278c11346105408d56af8ba93a90"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.0cG5Zz.json",
+      "bytes": 645,
+      "sha256": "31a6a051d4086c40d7f340344ce9a8067cfd2e124b33598d2891e14e0e0be595"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.0MOx1g.json",
+      "bytes": 645,
+      "sha256": "7f934caa7126f386506f2fabbf534497610275e13f0c0f1a3c6e1a06e891969e"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.0oxCno.json",
+      "bytes": 645,
+      "sha256": "b1156860911afda466ad7b2f99c43d768d81f251bffa385365a1a402cef05f1c"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.23U93e.json",
+      "bytes": 645,
+      "sha256": "fd22de87563c948fab2c6bd24dd0901cee0000b00844cbdb12a8e43501922605"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.2di2df.json",
+      "bytes": 645,
+      "sha256": "2cfcecb31032dd4ac4dac6f77d7f0b6000a8f0b29fbcc08b09018868429036ba"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.2vzoJg.json",
+      "bytes": 645,
+      "sha256": "cb564029861ca93b21a0c0bccc265b8b8c362fe8785bfa133c322634fefba578"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.422MU1.json",
+      "bytes": 645,
+      "sha256": "6548574b7a8d623d6cb07447fc94eb4d5b6bdc263e18f98673b94dd5523c8800"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.44KyCx.json",
+      "bytes": 645,
+      "sha256": "948a0dbec4bb02d7c114a1d4704f1f46e5cd99a6bada765383f6ac6064fa092b"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.4iZEF2.json",
+      "bytes": 645,
+      "sha256": "cecc3d75dc95e2b9710ea748ff1edb35e8c06bc0e21e854274b9220e567a37c6"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.4SIqdZ.json",
+      "bytes": 645,
+      "sha256": "61442156bd575b55e4a54d06ffb72c8c68cae996ba2507e5bc5eb9a251d7b97e"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.4wJDKt.json",
+      "bytes": 645,
+      "sha256": "107438dc5d76d4e3b2b8c32a70cdf0374a4b4e4f3e342f1947f4a3b1ae40d03d"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.6dGFej.json",
+      "bytes": 645,
+      "sha256": "bac38fd67c71b888b52e4274b8d587a428309e391f24512390da811a867e5ea3"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.6Hj0Ul.json",
+      "bytes": 645,
+      "sha256": "a412e2a5cba7b805cb808d8c235ac4a5d955f2f56472f0eb7989c670c995d8b8"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.6POaBr.json",
+      "bytes": 645,
+      "sha256": "314cf357652e7e0b948e9c0419c5cc43496ed9d293b489a25eafe072be3b2824"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.6RqcGy.json",
+      "bytes": 645,
+      "sha256": "586a8abeb43426585d2852aea58589ed7dcdd2aae2171f1eab75154a1f786b9c"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.6RVr1S.json",
+      "bytes": 645,
+      "sha256": "8e6ec678ed09855b8c6db365cccb7c3a1e609fb24039cda40ea37110ff5848ff"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.6xe7z1.json",
+      "bytes": 645,
+      "sha256": "2b7ca98426a7682de62d9ee42b6afb8ca67f679fb0662c8de6fa7e3a2ae50798"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.6ZI4ID.json",
+      "bytes": 645,
+      "sha256": "615ce3ef9ea33846528686becb5941ab69e0cda99639fd3db13f9a625be47db5"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.8CoYwx.json",
+      "bytes": 645,
+      "sha256": "3f5b182a0aa22f856110cd197d6a878b2f4e40bfe1f912d24dfc5965b3d22b57"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.8I48an.json",
+      "bytes": 645,
+      "sha256": "ad831d8b00f98e8d9db4c76c9ac7c37fb1a55b03f9e6018f6e443a60882a2eb5"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.8mEVwG.json",
+      "bytes": 645,
+      "sha256": "dc9bf8a817a25915edd3be02fb603a1df9d2b046ab7b29c99ec051cda1089fa5"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.8QqZJj.json",
+      "bytes": 645,
+      "sha256": "648fdabed7e305a6ab5f518e1c445275cf15bd9f03a2ce0823fee16bebf0191c"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.AlQO8t.json",
+      "bytes": 645,
+      "sha256": "400de745a0de9fe2e8146a70b46d43a31c5d8e1825fbb1ddee96f8fa59ec4e77"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.ANtmvN.json",
+      "bytes": 645,
+      "sha256": "e17f19fafcc7a0bb30a6f169048230e9191cc3b0f9a7f665f560a9f2e7afdadb"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.aUP5Zh.json",
+      "bytes": 645,
+      "sha256": "48d7028079d1ada5347baf3525dfda139a35d75cb9bed7c7cbd689bec442dc5c"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.AZXOQM.json",
+      "bytes": 645,
+      "sha256": "abd1e3a4f531efbf40cbf3c4b68bdc76937949cbc00fe9001a438d86b5f4f6a7"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.c1uGKd.json",
+      "bytes": 645,
+      "sha256": "592bbc1c3b8c60b076ef1579dd3349a99ba19300fbfaa7974be9e3a5365f583f"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.C8IJiR.json",
+      "bytes": 645,
+      "sha256": "00ccc4ae375dafb58c169b2e43a586082c501f707fa0114e3c385da8c2a5a089"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.CaHoHi.json",
+      "bytes": 645,
+      "sha256": "9fab62534796190bd9452425cae4c8f286acd5bd5ad063ad82f19e88fbc9f5af"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.CAsXI0.json",
+      "bytes": 645,
+      "sha256": "f6cbe1150ad4aec2ed9e0d4e578c761c2081582df7e39062c3ebb854b8315fa3"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.cFZQZ2.json",
+      "bytes": 645,
+      "sha256": "42b6588f7e066c4e29a59fd8dea17f91b5fa8e1eec956cadfdd575f96c9f3f04"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.CgmAq8.json",
+      "bytes": 645,
+      "sha256": "d1bb2bffe4f6821190ae1fd89e38f34c61ada23694423dac29b5abaf2816648b"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.chRRwd.json",
+      "bytes": 645,
+      "sha256": "ad65a4113a850e84ae954621ba9f9a061204a23bb5cd6d0edfd0a227ebf12775"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.COQyc0.json",
+      "bytes": 645,
+      "sha256": "f0523a2c10ae7f7e8fe65691c9a807a1d8a485e3248cc5b17f5fa7e957123379"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.Cos94M.json",
+      "bytes": 645,
+      "sha256": "e20757122bce559d7dcded147da770dc66c101ffcdae395ffd84c5ed87b7e220"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.CosGJq.json",
+      "bytes": 645,
+      "sha256": "6aa12697bae09ee7a8f302c496ff9f1f682e7577fe2c10cb682a592d159c1777"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.cRK314.json",
+      "bytes": 645,
+      "sha256": "4cad226ee45f14ba1b5e5ad0c75e4645d8d4e47629077c9fdfe87da93f49d2d3"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.CuKoP7.json",
+      "bytes": 645,
+      "sha256": "5c1f878e9c8afbafac40ba9c95291c527a5796d01adbc71beb2390e216d50520"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.En23te.json",
+      "bytes": 645,
+      "sha256": "8355679d228c7d743c7bd5309483d4b658b43d73af17a035d67143575d57104a"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.Eprm0S.json",
+      "bytes": 645,
+      "sha256": "1a9bb94ff8708d8748cce86c573a52e3dfa6e06322060da92ecdc933760f1daf"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.ET7yY7.json",
+      "bytes": 645,
+      "sha256": "7f7b5b1fb995ec364e2c678d12fb0aee398dacfce93c2b8649359c31f9bbaba2"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.G2WglB.json",
+      "bytes": 645,
+      "sha256": "ebdc5d428033e856e7e791d3b10d2f59ccdec9e9729d4e15487f1f028dc90160"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.gBkeNh.json",
+      "bytes": 645,
+      "sha256": "ee09596692ddd6f8adbf32e74ae86b75b53fea53eb3d66786f24b2968a70dd19"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.gBqhmI.json",
+      "bytes": 645,
+      "sha256": "5f0305911f0d9a1639f3363faf4eacf24a5720cac7f09fa61cbcf7d1cece7013"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.GECOjI.json",
+      "bytes": 645,
+      "sha256": "b2125ccb08cf8f36c4d211eec43c200bccafda4e1d500c853b1639fef64926b5"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.GenY6f.json",
+      "bytes": 645,
+      "sha256": "f52740a4addab9f9b746c1a11fab61d1549fd959eb3562b57a58519309485ad6"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.gFi9te.json",
+      "bytes": 645,
+      "sha256": "16fa4af228f402e83c07c16189edb56e7698e1cda0bc0135bf2b297da96d9fdc"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.gPOOks.json",
+      "bytes": 645,
+      "sha256": "ba07e05361815a6bde919fb1762c173a8a54b840bb3960ef95ae3fb1b1878c41"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.gVoIUV.json",
+      "bytes": 645,
+      "sha256": "0c7dee95de2fc8274e03f24741105df7647151fcd5fd63e36c2483f07b4be253"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.i6ZWT8.json",
+      "bytes": 645,
+      "sha256": "3b5b08af19a7ddddd5d106a2aef54bb7b9b82efe01a6ee5661cded1f49b24b83"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.IdWDKE.json",
+      "bytes": 645,
+      "sha256": "f617a5fb5b28405b86389ce283ccba390b038495531c7f928e2a00991198a7af"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.IjTkdt.json",
+      "bytes": 645,
+      "sha256": "f49ef05a0368c0dd98bbd5bb458446213c573146b9683699a781ff9da627b81c"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.iOECpi.json",
+      "bytes": 645,
+      "sha256": "e21cc368412b7a0a2019961af036e24c0ecaa8ecf410dc7468bc5931c6050e54"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.iQy7jd.json",
+      "bytes": 645,
+      "sha256": "ab4bfc96675e8c2ffa47eef15f6c141fc3aa2271dbd731abe47b16a268cfef7c"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.isRoNm.json",
+      "bytes": 645,
+      "sha256": "d9891b909a78034bf2e9f49b5b010d27ba3dd8cd84fb0fbe78788545f3871b21"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.K6UncY.json",
+      "bytes": 645,
+      "sha256": "780ab2ea01f182b11f6f25cc11eb148bb584a49a6156a49e08d2d561c9dee6c2"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.k7gks3.json",
+      "bytes": 645,
+      "sha256": "eb635e73868567c5789f676f111c8362ca6a04b3d513085608a820ad5e63a99a"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.kBIg6E.json",
+      "bytes": 645,
+      "sha256": "a85fc74275064e230f4e3465ac3bf0d48ccbaeae02958438fcc70696ecb8dbdc"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.KC3zlA.json",
+      "bytes": 645,
+      "sha256": "85b0fb38c0520b9d864f2bf6668bc5ea7600fb245dcf07e6e2c92258805d8cd5"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.KIJrwa.json",
+      "bytes": 645,
+      "sha256": "c1efefd9349d7a76c888d74acf0fc3fb1538efa9353910de688cbd47610e19ee"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.Ko2klL.json",
+      "bytes": 645,
+      "sha256": "dac3a38e6d3d86a5c92f6cbc9b1e3f834340c23d4d28783c8d8d361215c3b8fa"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.kphPJ9.json",
+      "bytes": 645,
+      "sha256": "e575028384c5d8d843ec390c90de462d6225d9f5cc4efabc1834a3855c4070e1"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.kRepap.json",
+      "bytes": 645,
+      "sha256": "be730a3423e797a03e4a6fb99fb5d03ab330bb0cca0c1f696617e84b3736a97b"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.kRrByr.json",
+      "bytes": 645,
+      "sha256": "2c388be7e641da3493ff040df7b24eb440b937ce0be361f85ff02b5142e085ab"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.m2RLWJ.json",
+      "bytes": 645,
+      "sha256": "e0fc2539f4ec65356ae07a505191b06bdfc26275965a637ee4fed83b27e575ac"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.m42J1T.json",
+      "bytes": 645,
+      "sha256": "6265b49e5e4fdcc10b68d4a148af3de2126e5b9aceb51f36cdac1d4116742b36"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.maQxp9.json",
+      "bytes": 645,
+      "sha256": "3924880c4ffebdaea0cb77e664c137c17cf4c78cf12eabbc05c02bfefece4cbc"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.MbUAIE.json",
+      "bytes": 645,
+      "sha256": "39b3d6035a20e145c16f49db426bf93cd58498db8fc6ed84f0222a2ef42e5d9a"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.mEm0hU.json",
+      "bytes": 645,
+      "sha256": "03b9a250a4838752d7dfff7b869528f364eaaa5d1367934ffe7804cc34bab31a"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.Mfwr5t.json",
+      "bytes": 645,
+      "sha256": "ffba65886e4279222e760753b24068154fb9f07bf240ca7676ae44d3cfc698c0"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.moi87N.json",
+      "bytes": 645,
+      "sha256": "d416801aeefef4017e053067e4caa9ab759852222d9361d5d368f6af7c898df7"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.mokbKY.json",
+      "bytes": 645,
+      "sha256": "b0c3491c50e02a74ad5edb66b674d31bbad01ceee14399b24cc390fdb6f80a3f"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.mquRaN.json",
+      "bytes": 645,
+      "sha256": "5688ad03e5c7f04df34848a6b6f04c9662b44fe250c05e8dd99c83d29839551c"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.o5hxGm.json",
+      "bytes": 645,
+      "sha256": "23ea4d5a448d8d44b497ee3480e1e661baaaad6075940fa6692b17994abdbe42"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.oVOH5j.json",
+      "bytes": 645,
+      "sha256": "93eb29c9a538098ef44b9879eaa8565a773ce6deade9f352e475176cbe84e1cc"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.Oyu0cM.json",
+      "bytes": 645,
+      "sha256": "895440324b9b1784d348a698c14d624d259d5b57a118c7e99be68b1f2bfbdb76"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.pngNb5.json",
+      "bytes": 645,
+      "sha256": "1e0139a483af52e7679f4a131352239f0db9c978198ecee78c59b3b78e69f9e2"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.q2q88I.json",
+      "bytes": 645,
+      "sha256": "aee7b043831b55e4e2ec8ef59c7d80afb64bf6094ae2b775da8d98b2f47ebf6f"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.q8twAH.json",
+      "bytes": 645,
+      "sha256": "fe6defa1228f3112ca4fbc6b02865488436c30f427066159d9db7b5ff001704f"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.Q9Lq0U.json",
+      "bytes": 645,
+      "sha256": "de3122304df9039d0ec49ef0aa209955b9e5666d8afdff9ce7b51f9b6101ec15"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.qa8SJj.json",
+      "bytes": 645,
+      "sha256": "5a4043e75ce1a07a61f6722ee243f9986c8b117deff2d7da57ba503c8d727010"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.qagYZA.json",
+      "bytes": 645,
+      "sha256": "3a60cf6f33aacb3c023e9b34f57487176af40d76b7c58c774e2cd666588d8fe7"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.qgetUS.json",
+      "bytes": 645,
+      "sha256": "979f5bcddde65a561ab4b28104be00f19b5a0af5c4b8cfd990049a247a2ad09e"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.Qn8hso.json",
+      "bytes": 645,
+      "sha256": "e771c30662844209224e6e601662686d0657449f1e93b38345205e222d0f161a"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.qQ2NAd.json",
+      "bytes": 645,
+      "sha256": "15080b4adc6fd9223ce2fc1e7b99c78649fc9fe7ff3fb85ebb9295227784870d"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.qYaB76.json",
+      "bytes": 645,
+      "sha256": "458014fbe442f64d83743e29a870df3963f87df8e287f0898d14ce5bc2553a25"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.qYkAP2.json",
+      "bytes": 645,
+      "sha256": "75521868c444f0b75e30727ea92870d01520d17342db3a74c8b47e5f70fcb906"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.s7gRxx.json",
+      "bytes": 645,
+      "sha256": "f07e0be71734587e1da07031343f767e74cc82052f59cdda5ef9d2b3bd8365ce"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.SipPvJ.json",
+      "bytes": 645,
+      "sha256": "9767575b2576f100e4bf377d61fdedbf7d600d8fc8003f460ab75e186d148298"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.sjQRTX.json",
+      "bytes": 645,
+      "sha256": "68ba763876120817978cbd98af36b16291703a313491ab6682cb2e634498e1b0"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.SsVAHi.json",
+      "bytes": 645,
+      "sha256": "d8dd9030a6cfe8a50821a739bc25ee0670d398f8696b58a206d7b8b46f8e49dc"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.SUy5B1.json",
+      "bytes": 645,
+      "sha256": "c67a4a84984fe6292277a4c2e886e69f05ebcf68b486e20f5bd665d7e1b0e192"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.SWOv6I.json",
+      "bytes": 645,
+      "sha256": "cfddafcdf6d70afed7101318cb85107229a8d4357965d540ef12378e866e8be9"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.U32o3N.json",
+      "bytes": 645,
+      "sha256": "758b497a0d5b36d20e7d9bc787759e46f30ab39e3b2fb49cfac299e7c61ff3cc"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.U7odrz.json",
+      "bytes": 645,
+      "sha256": "728d72db73986622e358443bbe59971fa95941ac6ed5bceed84efb1defa48ead"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.ukdnjW.json",
+      "bytes": 645,
+      "sha256": "788d89c4aa9174271e70ccee5bca507b2d22c541e2169ad81d27e8eb3805482c"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.Ur1Zoj.json",
+      "bytes": 645,
+      "sha256": "8329d8141044f1efaaa73f8311e547f049ed298e2cb955af7baecd1e610ad453"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.UtkeFc.json",
+      "bytes": 645,
+      "sha256": "72d71b619bf41c47adf6c0badb1654419affd1b03386481c0300576066bbe5e9"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.UxJklN.json",
+      "bytes": 645,
+      "sha256": "10d7de34d7dbd0cc1ec275b20d3185ce2efba79ff4a32d2d5bdfcd314b24771c"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.UzkemV.json",
+      "bytes": 645,
+      "sha256": "3465787ec924a645eba8a5f0bab919d1429e5cdae705c9fdb2d7836197fb8708"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.VYrmuJ.json",
+      "bytes": 645,
+      "sha256": "67b843b601d3e5139460f974d83da2128755ed164015a6d0938d0e1cef411910"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.W8IWLw.json",
+      "bytes": 645,
+      "sha256": "052c6c88ebc8a18b3b51df5c118e04ae17ea372ae3d9471ddbae784870947abc"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.WI0PpJ.json",
+      "bytes": 645,
+      "sha256": "b10c240250b64ba4f8e1b0afa7b5051f34455a5e9e35b8ff2146c4f9de48d12c"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.wJRrXJ.json",
+      "bytes": 645,
+      "sha256": "aa6e3ca797ca93f0bb11e414c51758d35d2abc625d312bdde33d36d62e7ea8b8"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.WOAovq.json",
+      "bytes": 645,
+      "sha256": "df10d2af7ec1f57a1b2bb58e9e08c60e6746b5e1d3243798fc3892235b4b0f9c"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.WOQIt8.json",
+      "bytes": 645,
+      "sha256": "352d77d95d69800e9573c245f4ae4492648fa15586900863292d27bcc93b4fde"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.wztpXe.json",
+      "bytes": 645,
+      "sha256": "13301797199126a260d2350fddc5d6c0d83d111c92c49a07834114e8cbe0291c"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.y04kSA.json",
+      "bytes": 645,
+      "sha256": "fd0ae53a08416d53935f0e6d42e2bfc5b99309292e5a90590c627f622453ca86"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.Y7V2Vp.json",
+      "bytes": 645,
+      "sha256": "17030d11ff12fc7b6b96106dc3daa2c6e147844e4e7eaf5d238dab0343ac880d"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.yOOXxC.json",
+      "bytes": 645,
+      "sha256": "75c170f4b6175c8c57861b9eb4d891ed6ad20298f00f264dc5d1f2bc6c351f2c"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.YREI8l.json",
+      "bytes": 645,
+      "sha256": "ea760fbc3abf716fc7176f55239c1abe7a8636e6b9f07d977ff2821cdbe2001f"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.ysKs2Y.json",
+      "bytes": 645,
+      "sha256": "44016a3f2feb09237ebb7650a752b2df04bbc9d3d5d8b0db0c514f69d389f046"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.yuazpu.json",
+      "bytes": 645,
+      "sha256": "a4e4ce845d1469925571ab9d04d2f440d1a96d380105a6ebbb5cbab0c731a57b"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.YV0N9O.json",
+      "bytes": 645,
+      "sha256": "a2b347038534e55d61d8e9f4bc5567da4eb444842099e6a55e6c62d9a51642dd"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/compact-poly-receipts/compact-poly-hierarchy.YXsSpn.json",
+      "bytes": 645,
+      "sha256": "f0bcffb6fad90f9c621e49cd93346749c6c2a7fa1382676749b34bd36904f81a"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/exit.code",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/rebuilt-semantic-decode-result.json",
+      "bytes": 2352,
+      "sha256": "d231674d41a56a3dc5777c7eb90b3f0436a1e869e54d6c354c96a43c3578f070"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/result.json",
+      "bytes": 93102,
+      "sha256": "20bca155b4348b1c40f6bb5922ed68dd025de48f5ac58d66f5d7266b348ff035"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/run.sh",
+      "bytes": 464,
+      "sha256": "db5035069cb05817db2d111691272b6033b65fe4accb255076bb91ed790efee5"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild/verification-122.json",
+      "bytes": 78268,
+      "sha256": "e17438e8792dd73f2b205143a3d232f480936b8bc78ca5f44dba6ec2ca8169ff"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain-rebuild-verification.json",
+      "bytes": 80194,
+      "sha256": "c14233c48517032ae8dbaba81460c10e699f2ee49e0136b3b63f0f46b350af31"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/chain_progress.py",
+      "bytes": 2705,
+      "sha256": "d6c7f3294b1739f6c2f59d2fa2af05c0b86e0e10ef62938971f287fabeb6d8f5"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/cost-actual.json",
+      "bytes": 2721,
+      "sha256": "8fc8f37ef50c580efeb2bae421dfe5674ee34b224f697fb912ce7f79a83adfb4"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/cost-baseline.json",
+      "bytes": 1802,
+      "sha256": "4b97c820e245317460d47b6ca309c8a9d649092d7baa622e51034ecb520eb2b8"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/decision-c-record.json",
+      "bytes": 1325,
+      "sha256": "64c059123dca174eda237de36ba89b86fb86f333cb0d015497dd4d97f852ef79"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/estimate_rebuild_scope.py",
+      "bytes": 3307,
+      "sha256": "436792bb7a84ed515b323474d9b5172d33ffb0406bb61d2c2d1923e91e62681b"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/incident-ancestor-rebuild/incident-record.json",
+      "bytes": 5242,
+      "sha256": "fb1ed7491a47b766a7c90d26fa366aeb06f51bf032b1842eec7d1a85f3d15c73"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/incident-ancestor-rebuild/log/TRUST12_NATIVE_C0CF_TYPED_SUBSTITUTION_H5.db",
+      "bytes": 1810432,
+      "sha256": "0f00ef4817a0934aa3537e98a556da8fbc2beb93b7ad0aa86d563832352a2d70"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/incident-ancestor-rebuild/log/TRUST12_NATIVE_C0CF_TYPED_SUBSTITUTION_H5.gz",
+      "bytes": 20,
+      "sha256": "ac73670af3abed54ac6fb4695131f4099be9fbe39d6076c5d0264a6bbdae9d83"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/incident-ancestor-rebuild/log/TRUST12_NATIVE_SOURCE_STORAGE_LEXER_G4",
+      "bytes": 2645,
+      "sha256": "b44363935b7fe67f4ef8a7fcd4ea872632491599f0100562a91dc9c23e1e8976"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/incident-ancestor-rebuild/log/TRUST12_NATIVE_SOURCE_STORAGE_LEXER_G4.db",
+      "bytes": 1806336,
+      "sha256": "1fb4d600df67f1ff8fb41922511439a809aa789757b8e73251a60fbc739ae3c4"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/incident-ancestor-rebuild/log/TRUST12_NATIVE_SSTORE_KORE_G0.db",
+      "bytes": 1187840,
+      "sha256": "4a29807542704f49df7f73ccb2d9314ff80cc42d78e0702eb41a54e132c166c4"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/incident-ancestor-rebuild/log/TRUST12_NATIVE_SSTORE_KORE_G0.gz",
+      "bytes": 20,
+      "sha256": "ac73670af3abed54ac6fb4695131f4099be9fbe39d6076c5d0264a6bbdae9d83"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/incident-ancestor-rebuild/log/TRUST12_NATIVE_SSTORE_WORD_G1.db",
+      "bytes": 196608,
+      "sha256": "9a78eaccdec699840e2445a6a3dfd0a060d5efb990f02e9dbd75ca56fdba3032"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/incident-ancestor-rebuild/log/TRUST12_NATIVE_SSTORE_WORD_G1.gz",
+      "bytes": 20,
+      "sha256": "ac73670af3abed54ac6fb4695131f4099be9fbe39d6076c5d0264a6bbdae9d83"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/incident-ancestor-rebuild/log/TRUST12_NATIVE_STORAGE_MAP_DECODER_G3.db",
+      "bytes": 192512,
+      "sha256": "703e7b63801009eac40aa0eff2e76de3029065f04c2ee5dbc89ad71ae7290a43"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/incident-ancestor-rebuild/log/TRUST12_NATIVE_STORAGE_MAP_DECODER_G3.gz",
+      "bytes": 20,
+      "sha256": "ac73670af3abed54ac6fb4695131f4099be9fbe39d6076c5d0264a6bbdae9d83"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/incident-ancestor-rebuild/log/TRUST12_NATIVE_WORLD_EQUALITY_G0.db",
+      "bytes": 131072,
+      "sha256": "9a3378cddfa6820b5a1834f396d40b01cfc99246c98498e3a116a8838367720f"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/incident-ancestor-rebuild/log/TRUST12_NATIVE_WORLD_EQUALITY_G0.gz",
+      "bytes": 20,
+      "sha256": "ac73670af3abed54ac6fb4695131f4099be9fbe39d6076c5d0264a6bbdae9d83"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/incident-ancestor-rebuild/log/TRUST12_RUNTIME_LINK_27_GATE_G2.db",
+      "bytes": 282624,
+      "sha256": "d47645facc5e2113ba0ffaa402bcb7b962429c60a8caffdf97313666a6ed0a2a"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/incident-ancestor-rebuild/log/TRUST12_RUNTIME_LINK_27_GATE_G2.gz",
+      "bytes": 20,
+      "sha256": "ac73670af3abed54ac6fb4695131f4099be9fbe39d6076c5d0264a6bbdae9d83"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/incident-ancestor-rebuild/post-incident-state.json",
+      "bytes": 5401,
+      "sha256": "231ef1c29e32f709662868335d6512f03bccdfdf9ccf659257753bf7f1861469"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/incident-ancestor-rebuild/restore-receipt.json",
+      "bytes": 8271,
+      "sha256": "26bd6abe971732b53832ed28ad17377c98f66805697518123524f4bcae57dd73"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/incident-ancestor-rebuild/restore-verification.json",
+      "bytes": 28908,
+      "sha256": "800d07582a9023429526c007bd0a4b7f3ad8ac70680e141b5c16d86b8c1c42e0"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/isolated-runners/run_isolated_partial_operation_external_trace.ps1",
+      "bytes": 6364,
+      "sha256": "67c0825d92a0c0714c778c98f307e4ee2419bc66d56ed40c8f03aaf3c4f3f79f"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/isolated-runners/run_isolated_partial_reversal_retrieve.ps1",
+      "bytes": 6445,
+      "sha256": "14c3b7a18837ae8c90888d8b49648a5468eb18036f0829733fc75b1f5f4bcef6"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/isolated-runners/run_isolated_partial_reversal_runtime_cell.ps1",
+      "bytes": 6417,
+      "sha256": "1e127711596b84bbc3d8b7fd128865fb9f8646c17fa9fd2a328a37febb1147bf"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/isolated-store-seed.json",
+      "bytes": 25326,
+      "sha256": "4b4edd069f165a252f7274518d8ce4ced296e27091d3cdc7be91f8368695fc4e"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/old-store-inventory.json",
+      "bytes": 144127,
+      "sha256": "d9a86fcec1385041f32caeb959904a56597d37e437286e1848165f8e3d1037fc"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/old-store-unchanged.json",
+      "bytes": 426,
+      "sha256": "30c3e19b4e5bcc0efee91c232fd29fb7fb3303e3fe97be76b2d2f92b78169b13"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/old_store_inventory.py",
+      "bytes": 2767,
+      "sha256": "912d328212f1fcb5ee6804659b24eadf4508fd5c3655471159e73308c4dd0740"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/Claim_Boundary.thy",
+      "bytes": 4005,
+      "sha256": "313549026c3645fbd9bb7eb7da4b32a47c4eb6257d625342de5f0927fd1da7eb"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/document/root.bib",
+      "bytes": 536,
+      "sha256": "17f37b36ae719608d206e0ebae9dc27cdfc539f2cef1a7a42897ee03fe87dfa4"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/document/root.tex",
+      "bytes": 2263,
+      "sha256": "cd6fd45bc3ac39f297b47efcc3cf5f0092daef52f6f0e3e8206b71cb540f2e59"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/evidence/model-verification/generate-manifest.ps1",
+      "bytes": 9028,
+      "sha256": "06f9ed8fbfe4793841b9c85e756a6eb7c4ca91ca4b9d7fbe11d5e06516ef0c6b"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/evidence/model-verification/model-claim-matrix.md",
+      "bytes": 11071,
+      "sha256": "a495c2559d5213912117edcbd95be220014c04e554bca282d9cec98911dbcdd2"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/evidence/model-verification/README.md",
+      "bytes": 1202,
+      "sha256": "37f7ca6c11138d3b46e731d6ae50cd867f7772e0d442e9c6437facece75a6f63"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/evidence/model-verification/reverse-check-manifest.mjs",
+      "bytes": 11432,
+      "sha256": "05a6a3544eb16b9dfe6a9a88995939daa3090eb90a3b15ec1d60716978d1f6d3"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/evidence/model-verification/run-negative-mutations.ps1",
+      "bytes": 12976,
+      "sha256": "3841f95ae2aa9dad11940b4add728b96a40c65a119ae0d75f7f5aceb7b9c81b4"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/evidence/model-verification/run-trust-closure.ps1",
+      "bytes": 7008,
+      "sha256": "3ad425ff797f90937c67833b368b17463c511ecc5d6eef311461c6c201eece5a"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/Executable_Regulatory_Kernel.thy",
+      "bytes": 17553,
+      "sha256": "72f531eadbe62f39849248bbf1d1de61182abc85d8d865bc8138ebd4aaf27bb8"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/Privileged_Governance.thy",
+      "bytes": 16734,
+      "sha256": "bca0c163d55f69a35350c8d79a990d6174c5ce3478682f80a285dfa53d0d614c"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/Proof_Audit.thy",
+      "bytes": 3970,
+      "sha256": "2d79454f39a5c241809c60a33bb276918aa8b59bc889ede95dd15c58452d2b1b"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/RCP_Action_Mapping.thy",
+      "bytes": 5026,
+      "sha256": "e628178a9b09f3dab7759503db1a9a47141e932f591d4f3f19cceac359e900a4"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/README.md",
+      "bytes": 3473,
+      "sha256": "619b1f6f4a2a2202be91f3aa4af89a37b01b7f295d0ec5d1206d8ba21d1aa178"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/Regulatory_Execution_Semantics.thy",
+      "bytes": 70924,
+      "sha256": "6b621b3b36342c0d432f1d7971a6153faaa87f9c9f3c97a80593f28fb3c295c1"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/Regulatory_Execution_Simulation.thy",
+      "bytes": 93979,
+      "sha256": "68a477f4335d4572cfa01490947b2c5a6a7729d7ce1fc635bb3e6bebc318428d"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/ROOT",
+      "bytes": 845,
+      "sha256": "234bc1ea085b9b2fc4bfe5bd4f534e6160c6bf429e60f93f956f6978e22a9b48"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/Token_Compatibility.thy",
+      "bytes": 14114,
+      "sha256": "07e1c6cc1ad470bdd9fc3bebaa8acac31998c18a6b8e7cd2221f8fd1dc01ef96"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/TRUST_Bound_Dependency_Assume_Guarantee.thy",
+      "bytes": 7058,
+      "sha256": "6ed2c7919a25b03170232bcb109c3c6be31d31569b5178760d09709eb5104258"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/TRUST_C0_Decode_Slices.thy",
+      "bytes": 4101,
+      "sha256": "88a238346d74c3a6627e01972d0b52cbb76755ea070cfa0ce450b7e275fe4b9a"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/TRUST_Compositional_State.thy",
+      "bytes": 15157,
+      "sha256": "ecb28da66b0ea1d1e1e4d05255a00246294d5ec9b5aafd320866af92c3ac880a"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/TRUST_Concrete_Configuration.thy",
+      "bytes": 5896,
+      "sha256": "642daa38742595bb7a00700b08b0a24d74e18d1239eb848f45e197c78ba5ce56"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/TRUST_Decoder_Guard_Words.thy",
+      "bytes": 2409,
+      "sha256": "e19b61acc6748a6059ae0194dd0ea4144612d36562873869fdf54af385e037ae"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/TRUST_End_To_End_Composition.thy",
+      "bytes": 20873,
+      "sha256": "dde2f9c95d702cf4f394dc3bde7e0e000203ba95698cfd7a8ba6569e59f8ccc5"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/TRUST_M4_Action_Reversal_Row_Corollaries.thy",
+      "bytes": 2193,
+      "sha256": "ae3b862dcdf0ba6b2049b0d4c92e216ce99c8745757ddc7b606854f1be3db355"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/TRUST_Obligation_Ledger_Generated.thy",
+      "bytes": 17825,
+      "sha256": "22d3b1c8fa15f9503fe66a932dba89b016e5372844670982868f399fde148698"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/TRUST_Retrieve_Relation.thy",
+      "bytes": 15893,
+      "sha256": "5fe73a17b58d636ca2f489a02e42a442309f8f42f99cb99e72de678090475587"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/TRUST_Reusable_Summaries.thy",
+      "bytes": 7659,
+      "sha256": "932d138e9c9b96e3c0c8e62753970d52af9826d1f3df7ff356cef3626fc337fa"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy",
+      "bytes": 16170,
+      "sha256": "0146d61bf4fdb0808805db475eb63c434c950496262f84d05fdf48e2860f17ad"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/TRUST_State_Abi_Normal_Form.thy",
+      "bytes": 7113,
+      "sha256": "b645ce637c97ee3ca7a91c889d6b05efbb233404fe056b22d21816fe3abf710f"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/TRUST_Transaction_Refinement.thy",
+      "bytes": 78470,
+      "sha256": "b49b9d7a71455e547bf5185fcd66195597b185bbb5d50441b281e37eabf60149"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ERC_TRUST/TRUST_Verified_Profile_Onboarding.thy",
+      "bytes": 16360,
+      "sha256": "2abd913f98815a695e8d006a7586b2accacebe8ba19cb8efeae60752ee13075e"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/ROOTS",
+      "bytes": 31,
+      "sha256": "bc0d98972158b22dd35d8e3f0c99a9231b7d7969b744ead12644ca79603944ad"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/TRUST12_OBSTRUCTIONS/ROOT",
+      "bytes": 488,
+      "sha256": "93a8ce9c52f9a2bc1b60952fabcb3625b580d4817babfec92db6b6d908a78d5d"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST12_Obstruction_Proof_Audit.thy",
+      "bytes": 11231,
+      "sha256": "e073c4787c450f41eaeb437e6e630995e082b3a2bf749958a0bc8e69208a9e68"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Accounting_Invariant_Obstruction.thy",
+      "bytes": 5255,
+      "sha256": "b9ba46b12ecb03baffd3f4cc0521219c6100fbb31820ad2d15b4a324a12b91fe"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Custody_Accounting.thy",
+      "bytes": 7877,
+      "sha256": "bee1f0f5cbf68f91fa9c3ca92fb5851020dd272a61b13ce5db18ccc8c8044ce9"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Linked_Run.thy",
+      "bytes": 11973,
+      "sha256": "47813adc486ad97b256df3721baf792f0a59d6edd4906babf1eca4c1a0d88f68"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Regulatory_Preservation.thy",
+      "bytes": 111130,
+      "sha256": "77a5ccac16322ea85c35d968a40f53d786d2911254ddb7e6697659bea797b4fb"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Release_Preservation.thy",
+      "bytes": 27086,
+      "sha256": "bbab722b3115ef246d9b083d6b3a405a9d3fa3ba675ad870c66278b39e9554de"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Reversal_Preservation.thy",
+      "bytes": 23717,
+      "sha256": "fcaa7178a21e63e077d303069ba80ef76cc8aef2c9e7440bc16921febf3e6aba"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_State_Interaction_Controls.thy",
+      "bytes": 13592,
+      "sha256": "68c740c4e75fb0b95facc1c3bd174fb9959e6c0fbf3a74179d2f255d100afc4e"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_State_Invariants.thy",
+      "bytes": 21220,
+      "sha256": "1f05719150c9c1eac15ca417eb0516b738150077589da0fa827acb19cdc792fe"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Structure_Invariant_Controls.thy",
+      "bytes": 28914,
+      "sha256": "d9c5603ae6343151448e3fc97d2448fd0eda0c764d8868610f9bf5742e527bdc"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-74708d1/formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Unfreeze_Preservation.thy",
+      "bytes": 24571,
+      "sha256": "142a7302a0c9378b4d2631a5994b56cd32edd0330664364c59150a2c4e4f4654"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/pinned-inputs/product-pin-74708d1.json",
+      "bytes": 20294,
+      "sha256": "7587dc2e238936319b620eafacdeef07d06fbf7e818883b4f38d9dc63fb48ba5"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/rebuild-scope-confirmed.json",
+      "bytes": 6558,
+      "sha256": "c1bc65cb48aeb8cf6636a92b52de2e31ac51054dd04b8a0aebb0b860b3a6104e"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/rebuild-scope-estimate.json",
+      "bytes": 45369,
+      "sha256": "95d171f8dbcbf38d82fedec1125e4013c6190fdb622c81ed9287f27006f6804f"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/restore_ancestor_heaps.py",
+      "bytes": 4373,
+      "sha256": "41ca91aa8411b43c2e209532ebfdd8e9913d03f997ceeb400fb88691b1fbfb7d"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/run_chain_stage.ps1",
+      "bytes": 7642,
+      "sha256": "44b9fc9c26699e0bd618b69edd49ed1acfaaea7daf1de0753c5757fb72eb3c88"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/seed_isolated_store.py",
+      "bytes": 4008,
+      "sha256": "b306d72d955c5cce77c7de10451b68fb7e9348fd2eac518a6587c8b06a1d42fc"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/start-preflight.json",
+      "bytes": 623,
+      "sha256": "1402155225b0cf51537595cc14592f4fd8c717ac3cccf1916ecee3d9405b604d"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/verify_chain_rebuild.py",
+      "bytes": 6120,
+      "sha256": "d91866832e92f3993375b1cb26312bd4e4b9e400e237ad0315d91e995e70a30d"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/verify_restore_candidates.py",
+      "bytes": 6009,
+      "sha256": "f9e05c286169703e42b1a3b96202b8547d74aa0cbb312b14189a9d93b44e7e79"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/write_closure_manifest.py",
+      "bytes": 29860,
+      "sha256": "c98deb7448136336915ea676b007f67ee23ba996c0f00adc4bea96d810063ef7"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/write_cost_actual.py",
+      "bytes": 3097,
+      "sha256": "598508acaffbe3dc1c8495867978c88e2a9d7b179c30f0fdbc0cd660ce058739"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl10-partial-close-v1/write_rebuilt_parent_record.py",
+      "bytes": 4465,
+      "sha256": "e603c1ed5a85887f0e2a5752e3da20b7b15b61916abd64e140e76fd14cdbe166"
+    }
+  ],
+  "outputsRootSha256": "f8f3508045bbf68a294bf5659607fa5bdc1b3863535612c94944c2e5028bf235",
+  "outputsRootAlgorithm": "sha256 over the sorted inventory lines '<sha256>  <root>/<path>', each terminated by one line feed",
+  "outputsExclusion": "Heap images and session databases of the isolated store are bound through the chain rebuild verification receipt instead of being listed one by one.",
+  "ledgerPromotionProposal": {
+    "owner": "RL-90-COORD",
+    "applied": false,
+    "row": "cell/Partial/RELEASE",
+    "stage": "E",
+    "description": "runtime_link_cell_bound/enforced over the exact two checked Partial RELEASE reversal certificates",
+    "sourceConsumerFacts": [
+      "ppr_applied_alpha_transaction",
+      "ppr_rejected_alpha_transaction",
+      "ppr_applied_alpha_transaction_enforced",
+      "ppr_rejected_alpha_transaction_enforced"
+    ],
+    "positiveActivationFacts": [
+      "ppr_accepts_iff",
+      "partial_release_certificate_cell_enforced",
+      "partial_release_certificate_cell_bound"
+    ],
+    "consumerRemovalNegativeFacts": [
+      "partial_release_cell_needs_applied_certificate",
+      "partial_release_cell_needs_rejected_certificate"
+    ],
+    "compiledConsumer": [
+      {
+        "path": "profile-partial-release-reversal-runtime-cell-g72-v1/input-binding.json",
+        "status": "PREPARED_PARTIAL_REVERSAL_RUNTIME_CELL_NOT_KERNEL_CHECKED",
+        "meaning": "fail-closed binding of the reversal retrieve parent and the exact two-certificate cell source"
+      },
+      {
+        "path": "rl10-partial-close-v1/chain-rebuild-verification.json",
+        "status": "PASS_CHAIN_BOUND_TO_PINNED_PRODUCT_INPUTS",
+        "meaning": "every rebuilt session records the pinned product inputs and isolated-store ancestors only"
+      },
+      {
+        "path": "rl10-partial-close-v1/chain-rebuild/stage-b-release-chain/rebuilt-semantic-decode-result.json",
+        "status": "TRUST12_PARTIAL_RELEASE_REVERSAL_SEMANTIC_DECODE_G69_V1",
+        "meaning": "the semantic decode kernel-checked again on the pinned product inputs"
+      },
+      {
+        "path": "profile-partial-kevm-aggregate-v1/result.json",
+        "status": "PASS_ERC3643_PARTIAL_18_KEVM_CERTIFICATES",
+        "meaning": "eighteen distinct non-admitted, non-circular Partial APR certificates"
+      },
+      {
+        "path": "profile-partial-release-accounts-g66-v1/KernelRun01/result.json",
+        "status": "PASS_KERNEL_CHECKED_TRUST12_PARTIAL_RELEASE_ACCOUNTS_G66",
+        "meaning": "exact setup entry, post and restored accounts cells (theory rechecked in the isolated chain)"
+      },
+      {
+        "path": "profile-partial-release-world-canary-g67-v1/KernelRun01/result.json",
+        "status": "PASS_KERNEL_CHECKED_TRUST12_PARTIAL_RELEASE_POINTWISE_WORLD_CANARY_G67",
+        "meaning": "pointwise setup and reversal world facts (theory rechecked in the isolated chain)"
+      },
+      {
+        "path": "profile-partial-release-transaction-cells-g68-v2/KernelRun01/result.json",
+        "status": "PASS_KERNEL_CHECKED_TRUST12_PARTIAL_RELEASE_TRANSACTION_CELLS_G68_V2",
+        "meaning": "exact reversal transaction KORE cells for both outcomes (theory rechecked in the isolated chain)"
+      },
+      {
+        "path": "profile-partial-release-reversal-semantic-decode-g69-v1/KernelRun01/result.json",
+        "status": "PASS_KERNEL_CHECKED_TRUST12_PARTIAL_RELEASE_REVERSAL_SEMANTIC_DECODE_G69_V1",
+        "meaning": "TRUST_Reverse calldata, parent SEIZE action, receipt/log and typed rejection decode (first check)"
+      },
+      {
+        "path": "profile-partial-release-direct-call-trace-g70-v1/result.json",
+        "status": "PASS_PARTIAL_RELEASE_EXACT_DIRECT_CALL_TRACE",
+        "meaning": "exact extracted reversal direct-call trace and proof/KCFG identities"
+      },
+      {
+        "path": "profile-partial-release-external-trace-g70-v1/KernelRun01/result.json",
+        "status": "PASS_KERNEL_CHECKED_TRUST12_PARTIAL_RELEASE_EXTERNAL_TRACE_G70",
+        "meaning": "the exact completed direct-call sequence of the applied RELEASE certificate, the empty sequence of the rejected certificate, and the negative that removing the single state-changing call breaks the trace relation"
+      },
+      {
+        "path": "profile-partial-release-reversal-retrieve-g71-v3/KernelRun01/result.json",
+        "status": "PASS_KERNEL_CHECKED_TRUST12_PARTIAL_RELEASE_REVERSAL_RETRIEVE_G71_V3",
+        "meaning": "the exact finite retrieve relation from the four observed worlds to the three abstract states (custody-backed pre state, released post state, rejected state) and the applied reversal admission"
+      }
+    ],
+    "assumptions": [
+      "the two recorded timestamps are within the uint48 validity upper bound, explicit in the runtime-cell theory context"
+    ],
+    "scopeLimits": [
+      "one exact applied/rejected certificate pair for Partial RELEASE; the profile-wide acceptance partition, malformed branch and central closure remain open"
+    ],
+    "baselineIdentity": {
+      "thisCell": {
+        "productCommit": "74708d11695211bcdd53e941d3e382adec7e6690",
+        "runtimeBridgeSchemaSha256": "0dbf8a8aeac69f52d181c6d6216dce92d20a47623afba94bcc6b5d28b1f0f347"
+      },
+      "previouslyClosedCells": {
+        "productCommit": "19b691216ccce9257b8effdc2d6fd9f880785ade",
+        "runtimeBridgeSchemaSha256": "86d15a9dc6bff41fe6a5c082f3991e0156010497ea74e3ceb6c86093defcf5fa"
+      }
+    },
+    "partialNineOfNineClaimed": false,
+    "partialNineOfNineReason": "The other eight Partial cells remain proven on the earlier bridge schema. This process does not re-bind them, so no Partial nine-of-nine claim is made.",
+    "integrationDecisionRequired": "How the ledger records one cell on a different product baseline than the other closed cells, and whether the other cells are rebuilt on the isolated chain before any profile-level promotion."
+  },
+  "backupCandidate": {
+    "owner": "RL-90-COORD",
+    "applied": false,
+    "evidenceDirectories": [
+      "profile-partial-release-external-trace-g70-v1",
+      "profile-partial-release-reversal-retrieve-g71-v3",
+      "profile-partial-release-reversal-runtime-cell-g72-v1",
+      "rl10-partial-close-v1"
+    ],
+    "note": "The isolated store under the process folder holds the rebuilt heaps and must not be moved, because Isabelle binds session identities to source paths."
+  },
+  "integrationNotes": [
+    "This manifest is one new tracked file. The public tree accounting file evidence/public-release/diet-manifest-v2.json is outside this process's write scope, so the retained file and byte counts must be regenerated by the integration owner in the integration merge.",
+    "Official ledger, status, handoff and backup promotion remain with the integration owner."
+  ],
+  "nonclaim": "This returns one exact two-certificate Partial RELEASE reversal runtime-link cell on the pinned product baseline and its evidence chain. It does not promote the official ledger, does not claim Partial nine-of-nine, does not discharge the profile-wide acceptance partition, malformed branch, central bidirectional closure or independent Assurance, and does not authorize a main merge, release, deployment or publication."
+}
