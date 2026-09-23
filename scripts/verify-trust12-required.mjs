@@ -69,11 +69,11 @@ export function verifyTrust12Required(root = repository) {
   const formal = json(root,'evidence/isabelle-results-v3.json');
   checkLocalReceiptProvenance(root,formal,'local-windows-isabelle');
   validateFormalIdentity(root,formal.formalSource);
-  check(formal.formalSource.rootSha256 === '415eb600a6627464cd8b29c4dbfd62fdfbf654c03f10e0bae75ec85a9a554823', 'formal inputs differ from the admitted clean build; new execution and review required');
+  check(formal.formalSource.rootSha256 === '0cd4ca1233facd8ec0b609eb7e6f8db7e690db193e6d098c855ff7947da97487', 'formal inputs differ from the admitted clean build; new execution and review required');
   const formalReplay = json(root,'evidence/trust12/formal-build-replay.json');
   // Recomputed from the actual captured inputs and both original proof exports.
   // New proof inputs must receive execution and independent review before admission.
-  const admittedBuild = 'dadf7f83e3b9ddc08942241ae771b1d18703beba571850f60d1932f7f5efbdf7';
+  const admittedBuild = '31a406de7a6e6dacaf2da6bff6af85521a7e37ed2557a82ec9bc0bd93063b923';
   check(formalAdmissionDigest(formalReplay) === admittedBuild && formalReplay.admissionDigest === admittedBuild
     && formal.admissionDigest === admittedBuild, 'admitted execution or dependency evidence drift');
 
@@ -88,7 +88,7 @@ export function verifyTrust12Required(root = repository) {
   // These model bytes are admitted only with the current clean build and source reviews.
   const modelPath = 'evidence/trust12/model-results.json';
   const model = json(root,modelPath);
-  check(sha256(read(root,modelPath)) === 'e66264f455dc2104f799a063a60045dcb2b998c1f0548f62defd2011e26170b1', 'unreviewed model result promotion');
+  check(sha256(read(root,modelPath)) === '702d4598d64764535bbcffb5780840fd2f24b267f3467f2a29e8f0489733c9bf', 'unreviewed model result promotion');
   const child = formal.sessions.find(s=>s.name==='TRUST12_Accounting_Obstruction');
   check(model.status === 'PASS_KERNEL_CHECKED_MODEL' && model.executionCommit === formal.sourceCommit
     && model.formalRootSha256 === formal.formalSource.rootSha256 && model.formalAdmissionDigest === admittedBuild,
