@@ -1,5 +1,5 @@
 {
-  "admissionDigest": "592a53b7a92af17f7c8bf57924db89a8c0c61468084aedcf9d810d682a9f336f",
+  "admissionDigest": "dadf7f83e3b9ddc08942241ae771b1d18703beba571850f60d1932f7f5efbdf7",
   "candidate": "0.2.0-candidate.1",
   "checks": {
     "bannedSourceForms": 0,
@@ -16,7 +16,7 @@
     "inputs": [
       {
         "path": ".github/workflows/proofs.yml",
-        "sha256": "88455607a86e9191da3f5d12a5cc3b09f36e3a7bc1bb93e22dcf2bbcedf5bf13"
+        "sha256": "0eba75fe3a896f8c5215aadae187f431f05dc0b8c0030cc33f813eaf449794f7"
       },
       {
         "path": "evidence/public-release/formal-foundation-supersession-v1.json",
@@ -192,7 +192,7 @@
       }
     ],
     "path": "formal/isabelle",
-    "rootSha256": "412a36da526bd879318b9a59bf5abcb9a2eb9c71aa5f9bd6f776c91640910c40",
+    "rootSha256": "415eb600a6627464cd8b29c4dbfd62fdfbf654c03f10e0bae75ec85a9a554823",
     "sessions": [
       "ERC_TRUST",
       "TRUST12_Accounting_Obstruction"
@@ -280,7 +280,7 @@
         }
       ]
     },
-    "finishedAt": "2026-09-23T07:41:39.6327648Z",
+    "finishedAt": "2026-09-23T14:05:23.2297654Z",
     "provider": "local-windows-isabelle",
     "sessions": [
       {
@@ -306,12 +306,12 @@
     ],
     "source": {
       "path": "evidence/trust12/formal-build-replay.json",
-      "sha256": "7fe157867f905a5c07781c05e947b71f8b56cb0178c7ffb038edef0af0635a4d"
+      "sha256": "239e625b38cc3e8bc2623f5650b43e6b21eb1c9d3ea106869fc2ba803ced5349"
     },
     "sourceInputs": [
       {
         "path": ".github/workflows/proofs.yml",
-        "sha256": "88455607a86e9191da3f5d12a5cc3b09f36e3a7bc1bb93e22dcf2bbcedf5bf13"
+        "sha256": "0eba75fe3a896f8c5215aadae187f431f05dc0b8c0030cc33f813eaf449794f7"
       },
       {
         "path": "evidence/public-release/formal-foundation-supersession-v1.json",
@@ -486,8 +486,8 @@
         "sha256": "8ecc60429a99411c8f588e17796dcf470bdb394e52e30787dca6315e5f49eb15"
       }
     ],
-    "sourceRootSha256": "412a36da526bd879318b9a59bf5abcb9a2eb9c71aa5f9bd6f776c91640910c40",
-    "startedAt": "2026-09-23T07:37:47.5737753Z"
+    "sourceRootSha256": "415eb600a6627464cd8b29c4dbfd62fdfbf654c03f10e0bae75ec85a9a554823",
+    "startedAt": "2026-09-23T14:01:35.1784746Z"
   },
   "schema": "erc-trust-isabelle-results-v3",
   "sessions": [
@@ -512,7 +512,7 @@
       "status": "PASS"
     }
   ],
-  "sourceCommit": "9a746127e69178135a00b91cbb3aa4ee9e17766a",
+  "sourceCommit": "45c5e36972c9d8318b2874d2b48deea14015fcf0",
   "status": "PASS",
   "toolchain": {
     "foundationCommit": "db8e0802e55f0229cf7bc9e5e6cfbf40681adbba",

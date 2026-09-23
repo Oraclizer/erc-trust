@@ -821,11 +821,11 @@
       },
       {
         "path": "evidence/trust12/formal-build-replay.json",
-        "sha256": "7fe157867f905a5c07781c05e947b71f8b56cb0178c7ffb038edef0af0635a4d"
+        "sha256": "239e625b38cc3e8bc2623f5650b43e6b21eb1c9d3ea106869fc2ba803ced5349"
       },
       {
         "path": "evidence/trust12/model-results.json",
-        "sha256": "b05b970f1fa3777eed7bafaa438f5c63f9274c3552c134ea2c81b7fb82e1cdb8"
+        "sha256": "e66264f455dc2104f799a063a60045dcb2b998c1f0548f62defd2011e26170b1"
       },
       {
         "path": "evidence/trust12/model-preservation-audit.md",
@@ -889,7 +889,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "0ea6a1db5c4f37d5385417c7206e967f576d5911aeb30d35cc5f7e40bc9291f8"
+        "sha256": "368d2df3e866e0a2b8b6fdfc3f35c38727027793ceda0fa9691e8a5a63b0d1f4"
       }
     ],
     "fullRefinementComplete": false,
