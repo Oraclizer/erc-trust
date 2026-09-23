@@ -9,6 +9,7 @@ import { formalIdentity } from './lib/formal-inputs.mjs';
 import { verifyRuntimeBundles } from './lib/runtime-bundles.mjs';
 import { verifyTrust12Required } from './verify-trust12-required.mjs';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..'), output = resolve(root,'out/trust12');
+mkdirSync(output,{recursive:true});
 const scratch = mkdtempSync(resolve(output,'required-controls-'));
 const files = execFileSync('git',['ls-files','--cached','--others','--exclude-standard','-z'],{cwd:root,encoding:'utf8'}).split('\0').filter(Boolean);
 for (const path of files) { mkdirSync(dirname(resolve(scratch,path)),{recursive:true}); copyFileSync(resolve(root,path),resolve(scratch,path)); }
