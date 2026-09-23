@@ -1,0 +1,1324 @@
+{
+  "schema": "trust12-tail-preparation-code-identity-v1",
+  "status": "PREPARED_NOT_CLOSED",
+  "sources": [
+    {
+      "path": "evidence/trust12/runtime-identity.json",
+      "bytes": 6103,
+      "sha256": "7b2251faffe33990edf9326b7a6883d75e9402c36f5a25e4e28cb29075f0a348"
+    },
+    {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy",
+      "bytes": 16170,
+      "sha256": "0146d61bf4fdb0808805db475eb63c434c950496262f84d05fdf48e2860f17ad"
+    },
+    {
+      "path": "spec/generated/kernel-v2-abi.json",
+      "bytes": 25944,
+      "sha256": "73b45cee3e8e6a2abd484a306a21d51aaa3fc4da75b976dd3c938d936352814b"
+    },
+    {
+      "path": "evidence/runtime-binding-v3/native/bridge-artifacts.json",
+      "bytes": 93409,
+      "sha256": "e5ad6c4e54e66f2be7928a9ceb7667b1b0dc0de0ed6f4a29458db9685277847b"
+    },
+    {
+      "path": "evidence/runtime-binding-v3/native/source-identities.json",
+      "bytes": 1651,
+      "sha256": "158f59160973ba4130ffd4a85ca3effe4ad8cd82c5bccc44952c202779ca3208"
+    },
+    {
+      "path": "evidence/runtime-binding-v3/erc3643-partial/bridge-artifacts.json",
+      "bytes": 79050,
+      "sha256": "b25af3abcfdc219ee223526d711aa6f6c0514004da9f131149e29d950725c0d7"
+    },
+    {
+      "path": "evidence/runtime-binding-v3/erc3643-partial/source-identities.json",
+      "bytes": 1035,
+      "sha256": "c6446e4f1d84b52b2b7a393a8d2fc8c0fe685abb28ce66e3277bb3c6082acbbb"
+    },
+    {
+      "path": "evidence/runtime-binding-v3/erc3643-hook/bridge-artifacts.json",
+      "bytes": 89975,
+      "sha256": "99362fa5bdebbb6534aea01fbb43d2fbe95f1642dbec7a3af99b2f395040d01e"
+    },
+    {
+      "path": "evidence/runtime-binding-v3/erc3643-hook/source-identities.json",
+      "bytes": 1741,
+      "sha256": "72e7320b87f81b547a34fa077073eb8c5a518690e56aa121877007d1d5b31082"
+    }
+  ],
+  "matchingRule": "A deployed runtime has the code identity of a template exactly when both have the same length and every byte outside the merged immutable ranges is equal. Templates carry zeros inside those ranges, so the template hash is also the hash of the masked deployed runtime.",
+  "profiles": {
+    "Native": {
+      "profileIndex": "Runtime_Native",
+      "endpoint": "TrustToken",
+      "runtimes": [
+        {
+          "contract": "TrustToken",
+          "source": "implementation/src/TrustToken.sol",
+          "runtimeTemplate": {
+            "sha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1",
+            "bytes": 20043
+          },
+          "creationBytecode": {
+            "bytes": 23361,
+            "sha256": "9acee86581d2c37099f1f92f1d51808e6d7fb0a0408815f3c2c3283fddf50d6a"
+          },
+          "immutableRanges": [
+            [
+              489,
+              521
+            ],
+            [
+              1664,
+              1696
+            ],
+            [
+              4653,
+              4685
+            ],
+            [
+              6789,
+              6821
+            ],
+            [
+              16473,
+              16505
+            ]
+          ],
+          "immutableReferenceCount": 5,
+          "methodIdentifierCount": 30,
+          "declaresEveryTypedFailure": true,
+          "otherErrors": [
+            "ERC7943CannotReceive(address)",
+            "ERC7943CannotSend(address)",
+            "ERC7943CannotTransfer(address,address,uint256)",
+            "ERC7943InsufficientUnfrozenBalance(address,uint256,uint256)",
+            "TrustInsufficientAllowance(address,address,uint256,uint256)",
+            "TrustInsufficientBalance(address,uint256,uint256)",
+            "TrustReentrancy()",
+            "TrustRouteMismatch(bytes32)",
+            "TrustUnsupported(bytes4)",
+            "TrustZeroAddress()"
+          ]
+        }
+      ],
+      "sourceIdentities": [
+        {
+          "bytes": 584,
+          "path": "implementation/src/ERC7943RouteTicket.sol",
+          "sha256": "f1a8357a988a648775382603c7eaf2db410f7d55fd08a1cef29763e69de547a6"
+        },
+        {
+          "bytes": 5208,
+          "path": "implementation/src/TrustDependencyBinding.sol",
+          "sha256": "53fb6a74a5168f7f2b9f005657ee7df5528974d53dae2359ea1e4ae3fb063020"
+        },
+        {
+          "bytes": 637,
+          "path": "implementation/src/TrustErrors.sol",
+          "sha256": "fbe1dffd50792b2da9604a0de37a5b089c427b329c96f80253ff317bb16491df"
+        },
+        {
+          "bytes": 1706,
+          "path": "implementation/src/TrustNativeDecision.sol",
+          "sha256": "4643a157f29fd9557ff60e58c6500e98704b9d94b02ef12ffb5c7baecfaa24ee"
+        },
+        {
+          "bytes": 2569,
+          "path": "implementation/src/TrustNativeTypes.sol",
+          "sha256": "f76fc4fd80d74075c3ffdbbc7afb30919eb73bf465ac04e3b83d742c8f88745b"
+        },
+        {
+          "bytes": 1899,
+          "path": "implementation/src/TrustStorage.sol",
+          "sha256": "610170dbd24ba2791d459db9a24e2c05e7d699594c035074379a5700dbdb7931"
+        },
+        {
+          "bytes": 53935,
+          "path": "implementation/src/TrustToken.sol",
+          "sha256": "deeedf231b461035ac4496b36438d6ea28298ed2935b920bf9c01cb31f94ef1b"
+        },
+        {
+          "bytes": 10418,
+          "path": "implementation/src/generated/IERCTrustKernel.sol",
+          "sha256": "8f179a21b04fa1f172bdddef2f8878a01524d3429570c0abf9aa60cfc8738f7d"
+        },
+        {
+          "bytes": 713,
+          "path": "implementation/src/interfaces/IERC20.sol",
+          "sha256": "414510c4de8ff90b066ea33f3d75ce7c4891f4ee43de55c52e333740d6fd8131"
+        },
+        {
+          "bytes": 1189,
+          "path": "implementation/src/interfaces/IERC7943.sol",
+          "sha256": "1b968ee48cd0c9adadf22d33f1f245486b14ed1141df23f7d01385abfbb159f7"
+        }
+      ],
+      "identityRootSha256": "f19a8bef73333c7608984c530427b69598a5919e8624d80404c89983f896c488"
+    },
+    "Partial": {
+      "profileIndex": "Runtime_Partial",
+      "endpoint": "ERC3643TrustAdapter",
+      "runtimes": [
+        {
+          "contract": "ERC3643TrustAdapter",
+          "source": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "runtimeTemplate": {
+            "sha256": "7a2dfa433911dd37e389498129356db30693e8ee8e128f8da63a5d3044a56349",
+            "bytes": 19480
+          },
+          "creationBytecode": {
+            "bytes": 20064,
+            "sha256": "35473db07d5c95c32668ea06730a4d8d4641be40991826656c830d97d6f703f4"
+          },
+          "immutableRanges": [
+            [
+              290,
+              322
+            ],
+            [
+              391,
+              423
+            ],
+            [
+              448,
+              480
+            ],
+            [
+              665,
+              697
+            ],
+            [
+              3298,
+              3330
+            ],
+            [
+              3555,
+              3587
+            ],
+            [
+              4008,
+              4040
+            ],
+            [
+              7478,
+              7510
+            ],
+            [
+              9722,
+              9754
+            ],
+            [
+              11242,
+              11274
+            ],
+            [
+              12416,
+              12448
+            ],
+            [
+              12737,
+              12769
+            ],
+            [
+              12813,
+              12845
+            ],
+            [
+              13518,
+              13550
+            ],
+            [
+              14363,
+              14395
+            ],
+            [
+              14439,
+              14471
+            ],
+            [
+              15629,
+              15661
+            ],
+            [
+              15749,
+              15781
+            ],
+            [
+              15871,
+              15903
+            ],
+            [
+              17187,
+              17219
+            ],
+            [
+              17523,
+              17555
+            ],
+            [
+              18901,
+              18933
+            ],
+            [
+              18971,
+              19003
+            ]
+          ],
+          "immutableReferenceCount": 23,
+          "methodIdentifierCount": 18,
+          "declaresEveryTypedFailure": true,
+          "otherErrors": [
+            "TrustReentrancy()",
+            "TrustZeroAddress()"
+          ]
+        },
+        {
+          "contract": "ProfileGovernor",
+          "source": "implementation/src/profiles/ProfileGovernor.sol",
+          "runtimeTemplate": {
+            "sha256": "78c08fbe4be793482e44a8cdf32fcc1af3276277c8cc78f48761fdcbc4bf9399",
+            "bytes": 2787
+          },
+          "creationBytecode": {
+            "bytes": 3225,
+            "sha256": "d1c8b5d7b05a77408e35ef2607d57a697feff2a859a5f01bbf4e7814469d40d6"
+          },
+          "immutableRanges": [
+            [
+              183,
+              215
+            ],
+            [
+              294,
+              326
+            ],
+            [
+              395,
+              427
+            ],
+            [
+              558,
+              590
+            ],
+            [
+              750,
+              782
+            ],
+            [
+              909,
+              941
+            ],
+            [
+              982,
+              1014
+            ],
+            [
+              1125,
+              1157
+            ],
+            [
+              1321,
+              1353
+            ],
+            [
+              1864,
+              1896
+            ],
+            [
+              1899,
+              1931
+            ],
+            [
+              2059,
+              2091
+            ],
+            [
+              2151,
+              2183
+            ],
+            [
+              2596,
+              2628
+            ],
+            [
+              2636,
+              2668
+            ],
+            [
+              2682,
+              2714
+            ],
+            [
+              2722,
+              2754
+            ]
+          ],
+          "immutableReferenceCount": 17,
+          "methodIdentifierCount": 12,
+          "declaresEveryTypedFailure": false,
+          "otherErrors": [
+            "TrustZeroAddress()"
+          ]
+        }
+      ],
+      "sourceIdentities": [
+        {
+          "bytes": 637,
+          "path": "implementation/src/TrustErrors.sol",
+          "sha256": "fbe1dffd50792b2da9604a0de37a5b089c427b329c96f80253ff317bb16491df"
+        },
+        {
+          "bytes": 10418,
+          "path": "implementation/src/generated/IERCTrustKernel.sol",
+          "sha256": "8f179a21b04fa1f172bdddef2f8878a01524d3429570c0abf9aa60cfc8738f7d"
+        },
+        {
+          "bytes": 1726,
+          "path": "implementation/src/interfaces/IERC3643External.sol",
+          "sha256": "701bae4ffedc2f7a00287b882247bd8de5c68131e13ac3c3e957f1d678d12119"
+        },
+        {
+          "bytes": 2339,
+          "path": "implementation/src/profiles/ERC3643ProfileTypes.sol",
+          "sha256": "9fbb5b1f379018e7412702324a4eae5a30db57f3937f0da42b24bab0e4efede4"
+        },
+        {
+          "bytes": 58926,
+          "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+          "sha256": "f2806571c8c39984ee6c50f5e8dd0aa94aac5e273564012afcb4ebb55e43320f"
+        },
+        {
+          "bytes": 6812,
+          "path": "implementation/src/profiles/ProfileGovernor.sol",
+          "sha256": "e9fec4c21a65edaa5619ee1368deb93da1645e311984a12cc89ca29131595ae8"
+        }
+      ],
+      "identityRootSha256": "dd5a0bb0c6b930fc2bb8d967095cc955bde0c2d363121c85413abc2facdd9c3b"
+    },
+    "Hook": {
+      "profileIndex": "Runtime_Hook",
+      "endpoint": "ERC3643HookAdapter",
+      "runtimes": [
+        {
+          "contract": "ERC3643HookAdapter",
+          "source": "implementation/src/profiles/ERC3643HookAdapter.sol",
+          "runtimeTemplate": {
+            "sha256": "f84c886b203dacd380c29b2aa3afd2ed401e487ed79f95e14b4d24edb24c1b85",
+            "bytes": 19824
+          },
+          "creationBytecode": {
+            "bytes": 30915,
+            "sha256": "9711a7dd332574c2312b761b615649c3eba03e4fb890d2f9cd04041a2c66d4b3"
+          },
+          "immutableRanges": [
+            [
+              301,
+              333
+            ],
+            [
+              402,
+              434
+            ],
+            [
+              459,
+              491
+            ],
+            [
+              575,
+              607
+            ],
+            [
+              987,
+              1019
+            ],
+            [
+              3604,
+              3636
+            ],
+            [
+              3861,
+              3893
+            ],
+            [
+              4325,
+              4357
+            ],
+            [
+              7794,
+              7826
+            ],
+            [
+              11388,
+              11420
+            ],
+            [
+              13051,
+              13083
+            ],
+            [
+              13898,
+              13930
+            ],
+            [
+              13974,
+              14006
+            ],
+            [
+              14243,
+              14275
+            ],
+            [
+              14319,
+              14351
+            ],
+            [
+              14761,
+              14793
+            ],
+            [
+              15298,
+              15330
+            ],
+            [
+              15973,
+              16005
+            ],
+            [
+              16093,
+              16125
+            ],
+            [
+              16215,
+              16247
+            ],
+            [
+              17531,
+              17563
+            ],
+            [
+              17867,
+              17899
+            ],
+            [
+              19245,
+              19277
+            ],
+            [
+              19315,
+              19347
+            ]
+          ],
+          "immutableReferenceCount": 24,
+          "methodIdentifierCount": 19,
+          "declaresEveryTypedFailure": true,
+          "otherErrors": [
+            "TrustReentrancy()",
+            "TrustZeroAddress()"
+          ]
+        },
+        {
+          "contract": "ERC3643HookGovernor",
+          "source": "implementation/src/profiles/ERC3643HookGovernor.sol",
+          "runtimeTemplate": {
+            "sha256": "0978059dea47b1286326902332f41079029836cf257691fb13c99bc2b5064012",
+            "bytes": 3026
+          },
+          "creationBytecode": {
+            "bytes": 3496,
+            "sha256": "3f048ce4f3a332b110ad8a09ab76a69af0fd6ae1930e8508db2a3cdf2fb2b514"
+          },
+          "immutableRanges": [
+            [
+              192,
+              224
+            ],
+            [
+              303,
+              335
+            ],
+            [
+              402,
+              434
+            ],
+            [
+              455,
+              487
+            ],
+            [
+              700,
+              732
+            ],
+            [
+              917,
+              949
+            ],
+            [
+              975,
+              1007
+            ],
+            [
+              1065,
+              1097
+            ],
+            [
+              1272,
+              1304
+            ],
+            [
+              1469,
+              1501
+            ],
+            [
+              1544,
+              1576
+            ],
+            [
+              1669,
+              1701
+            ],
+            [
+              2296,
+              2328
+            ],
+            [
+              2418,
+              2450
+            ],
+            [
+              2539,
+              2571
+            ],
+            [
+              2573,
+              2605
+            ],
+            [
+              2614,
+              2646
+            ],
+            [
+              2648,
+              2680
+            ],
+            [
+              2689,
+              2721
+            ],
+            [
+              2723,
+              2755
+            ],
+            [
+              2829,
+              2861
+            ],
+            [
+              2869,
+              2901
+            ],
+            [
+              2915,
+              2947
+            ],
+            [
+              2955,
+              2987
+            ]
+          ],
+          "immutableReferenceCount": 24,
+          "methodIdentifierCount": 13,
+          "declaresEveryTypedFailure": false,
+          "otherErrors": [
+            "TrustZeroAddress()"
+          ]
+        },
+        {
+          "contract": "ERC3643HookCompliance",
+          "source": "implementation/src/profiles/ERC3643HookCompliance.sol",
+          "runtimeTemplate": {
+            "sha256": "ebcf0ea744e5e505fb1bd5bd02a9ab0b4c0a112c628ee37cb8916ea7ce3f8881",
+            "bytes": 2078
+          },
+          "creationBytecode": {
+            "bytes": 2333,
+            "sha256": "3c955389a01d9b687210d8664c343c264626c10d484bda9717f74bb69c552164"
+          },
+          "immutableRanges": [
+            [
+              230,
+              262
+            ],
+            [
+              369,
+              401
+            ],
+            [
+              450,
+              482
+            ],
+            [
+              786,
+              818
+            ],
+            [
+              1283,
+              1315
+            ],
+            [
+              1339,
+              1371
+            ],
+            [
+              1423,
+              1455
+            ],
+            [
+              1647,
+              1679
+            ],
+            [
+              1773,
+              1805
+            ],
+            [
+              1948,
+              1980
+            ]
+          ],
+          "immutableReferenceCount": 10,
+          "methodIdentifierCount": 13,
+          "declaresEveryTypedFailure": false,
+          "otherErrors": []
+        },
+        {
+          "contract": "ERC3643HookFactory",
+          "source": "implementation/src/profiles/ERC3643HookFactory.sol",
+          "runtimeTemplate": {
+            "sha256": "9636463d4fba1eebc1690648aad3439b30f53156927161bc93c899df1056d680",
+            "bytes": 1812
+          },
+          "creationBytecode": {
+            "bytes": 2459,
+            "sha256": "346548e20644aa662bdba9dfcac1ce058568b3720475b742ae2944379b96838a"
+          },
+          "immutableRanges": [
+            [
+              600,
+              632
+            ],
+            [
+              1337,
+              1369
+            ]
+          ],
+          "immutableReferenceCount": 2,
+          "methodIdentifierCount": 3,
+          "declaresEveryTypedFailure": false,
+          "otherErrors": []
+        }
+      ],
+      "sourceIdentities": [
+        {
+          "bytes": 637,
+          "path": "implementation/src/TrustErrors.sol",
+          "sha256": "fbe1dffd50792b2da9604a0de37a5b089c427b329c96f80253ff317bb16491df"
+        },
+        {
+          "bytes": 10418,
+          "path": "implementation/src/generated/IERCTrustKernel.sol",
+          "sha256": "8f179a21b04fa1f172bdddef2f8878a01524d3429570c0abf9aa60cfc8738f7d"
+        },
+        {
+          "bytes": 1726,
+          "path": "implementation/src/interfaces/IERC3643External.sol",
+          "sha256": "701bae4ffedc2f7a00287b882247bd8de5c68131e13ac3c3e957f1d678d12119"
+        },
+        {
+          "bytes": 61253,
+          "path": "implementation/src/profiles/ERC3643HookAdapter.sol",
+          "sha256": "61056cd3aa34900820cb08592c55803a5add1ab36c493ec36a5e3ee72add9533"
+        },
+        {
+          "bytes": 2141,
+          "path": "implementation/src/profiles/ERC3643HookCompliance.sol",
+          "sha256": "700614fcb6db1246099a16859e79cb4b555785545ea1a31c780f8b97b8016e7a"
+        },
+        {
+          "bytes": 3445,
+          "path": "implementation/src/profiles/ERC3643HookDeployment.sol",
+          "sha256": "8a830ba8cdfac4a3cf33dc2b3338a8765b9303afd56bf32a207afa32b19e63bf"
+        },
+        {
+          "bytes": 2588,
+          "path": "implementation/src/profiles/ERC3643HookFactory.sol",
+          "sha256": "d7e24b5bde9ec8f4ce1d5537e83858fe727067bdca580c7d4a5126c1d35b94b1"
+        },
+        {
+          "bytes": 4330,
+          "path": "implementation/src/profiles/ERC3643HookGovernor.sol",
+          "sha256": "69a0b68f72427081acb26c24299ad03afcdc2b615e8885c05d8eaff52eb9d59e"
+        },
+        {
+          "bytes": 2339,
+          "path": "implementation/src/profiles/ERC3643ProfileTypes.sol",
+          "sha256": "9fbb5b1f379018e7412702324a4eae5a30db57f3937f0da42b24bab0e4efede4"
+        },
+        {
+          "bytes": 6812,
+          "path": "implementation/src/profiles/ProfileGovernor.sol",
+          "sha256": "e9fec4c21a65edaa5619ee1368deb93da1645e311984a12cc89ca29131595ae8"
+        }
+      ],
+      "identityRootSha256": "45bfbc13128ba737f349a468827bfd81b0c42bf15b165e8de5f92ba155840879"
+    }
+  },
+  "typedFailures": [
+    {
+      "name": "TrustOperationalFailure",
+      "signature": "TrustOperationalFailure(bytes32,uint16,bytes32)",
+      "selector": "0x386ecc58",
+      "words": [
+        {
+          "word": 0,
+          "name": "commandId",
+          "type": "bytes32",
+          "binding": "the identifier of the decoded command"
+        },
+        {
+          "word": 1,
+          "name": "reason",
+          "type": "uint16",
+          "binding": "a registered reason code"
+        },
+        {
+          "word": 2,
+          "name": "dependencyRef",
+          "type": "bytes32",
+          "binding": "the dependency reference (not bound by the gate)"
+        }
+      ]
+    },
+    {
+      "name": "TrustReplay",
+      "signature": "TrustReplay(bytes32)",
+      "selector": "0x72841b29",
+      "words": [
+        {
+          "word": 0,
+          "name": "key",
+          "type": "bytes32",
+          "binding": "the command identifier or a hashed nonce key (not bound by the gate)"
+        }
+      ]
+    },
+    {
+      "name": "TrustRejected",
+      "signature": "TrustRejected(bytes32,uint16)",
+      "selector": "0x8cf60b6f",
+      "words": [
+        {
+          "word": 0,
+          "name": "commandId",
+          "type": "bytes32",
+          "binding": "the identifier of the decoded command"
+        },
+        {
+          "word": 1,
+          "name": "reason",
+          "type": "uint16",
+          "binding": "a registered reason code"
+        }
+      ]
+    },
+    {
+      "name": "TrustUnauthorized",
+      "signature": "TrustUnauthorized(address,bytes32)",
+      "selector": "0x996b6134",
+      "words": [
+        {
+          "word": 0,
+          "name": "caller",
+          "type": "address",
+          "binding": "the transaction sender"
+        },
+        {
+          "word": 1,
+          "name": "authorityRef",
+          "type": "bytes32",
+          "binding": "the authority reference of the decoded command"
+        }
+      ]
+    },
+    {
+      "name": "TrustTerminal",
+      "signature": "TrustTerminal(bytes32)",
+      "selector": "0xa6e257c3",
+      "words": [
+        {
+          "word": 0,
+          "name": "caseId",
+          "type": "bytes32",
+          "binding": "a case identifier (not bound by the gate)"
+        }
+      ]
+    },
+    {
+      "name": "TrustInvalidCommand",
+      "signature": "TrustInvalidCommand(bytes32,uint16)",
+      "selector": "0xed623c13",
+      "words": [
+        {
+          "word": 0,
+          "name": "commandId",
+          "type": "bytes32",
+          "binding": "the identifier of the decoded command"
+        },
+        {
+          "word": 1,
+          "name": "reason",
+          "type": "uint16",
+          "binding": "a registered reason code"
+        }
+      ]
+    }
+  ],
+  "compiledScan": {
+    "status": "RECOMPUTED",
+    "runtimes": {
+      "TrustToken": {
+        "runtimeSha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1",
+        "typedFailureSelectorLoads": {
+          "TrustOperationalFailure": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": [
+              1221,
+              13128,
+              13288,
+              17678
+            ]
+          },
+          "TrustReplay": {
+            "push4": [
+              9500,
+              12796,
+              15766,
+              16601,
+              17021
+            ],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustRejected": {
+            "push4": [
+              13158,
+              13318,
+              17708
+            ],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustUnauthorized": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": [
+              1272,
+              1926,
+              16826
+            ]
+          },
+          "TrustTerminal": {
+            "push4": [
+              9308
+            ],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustInvalidCommand": {
+            "push4": [
+              3965,
+              6037,
+              9161,
+              9285,
+              9327,
+              9351,
+              9417,
+              9519,
+              9602,
+              11632,
+              11669,
+              11741,
+              11765,
+              11968,
+              12227,
+              12258,
+              12441,
+              12480,
+              12504,
+              12600,
+              12646,
+              12713,
+              12815,
+              16878,
+              17203,
+              17309,
+              17407,
+              19016,
+              19880
+            ],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          }
+        }
+      },
+      "ERC3643TrustAdapter": {
+        "runtimeSha256": "7a2dfa433911dd37e389498129356db30693e8ee8e128f8da63a5d3044a56349",
+        "typedFailureSelectorLoads": {
+          "TrustOperationalFailure": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": [
+              2956,
+              3140,
+              3274,
+              3531,
+              7453,
+              11218,
+              12392,
+              12546,
+              12627,
+              12680,
+              12713,
+              14256,
+              14307,
+              14338,
+              14595,
+              15699,
+              16624,
+              16804,
+              17748,
+              17819,
+              17862,
+              17960
+            ]
+          },
+          "TrustReplay": {
+            "push4": [
+              8146,
+              9511
+            ],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustRejected": {
+            "push4": [
+              16600,
+              16780
+            ],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustUnauthorized": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": [
+              3781,
+              15829
+            ]
+          },
+          "TrustTerminal": {
+            "push4": [
+              9322,
+              11694
+            ],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustInvalidCommand": {
+            "push4": [
+              8315,
+              8339,
+              8373,
+              8426,
+              8462,
+              8486,
+              8700,
+              8967,
+              8998,
+              9153,
+              9220,
+              9341,
+              9386,
+              9441,
+              9529,
+              9569,
+              11547,
+              11671,
+              11713,
+              15913,
+              16140,
+              16245,
+              16343,
+              18573,
+              19189
+            ],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          }
+        }
+      },
+      "ProfileGovernor": {
+        "runtimeSha256": "78c08fbe4be793482e44a8cdf32fcc1af3276277c8cc78f48761fdcbc4bf9399",
+        "typedFailureSelectorLoads": {
+          "TrustOperationalFailure": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": [
+              885,
+              958
+            ]
+          },
+          "TrustReplay": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustRejected": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustUnauthorized": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": [
+              1048
+            ]
+          },
+          "TrustTerminal": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustInvalidCommand": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          }
+        }
+      },
+      "ERC3643HookAdapter": {
+        "runtimeSha256": "f84c886b203dacd380c29b2aa3afd2ed401e487ed79f95e14b4d24edb24c1b85",
+        "typedFailureSelectorLoads": {
+          "TrustOperationalFailure": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": [
+              3278,
+              3462,
+              3580,
+              3837,
+              7769,
+              11364,
+              12380,
+              13788,
+              13841,
+              13874,
+              14136,
+              14187,
+              14218,
+              14475,
+              14737,
+              16043,
+              16968,
+              17148,
+              18092,
+              18163,
+              18206,
+              18304
+            ]
+          },
+          "TrustReplay": {
+            "push4": [
+              8462,
+              9827
+            ],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustRejected": {
+            "push4": [
+              16944,
+              17124
+            ],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustUnauthorized": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": [
+              732,
+              4087,
+              16173
+            ]
+          },
+          "TrustTerminal": {
+            "push4": [
+              9638,
+              11840
+            ],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustInvalidCommand": {
+            "push4": [
+              8631,
+              8655,
+              8689,
+              8742,
+              8778,
+              8802,
+              9016,
+              9283,
+              9314,
+              9469,
+              9536,
+              9657,
+              9702,
+              9757,
+              9845,
+              9885,
+              11693,
+              11817,
+              11859,
+              16257,
+              16484,
+              16589,
+              16687,
+              18917,
+              19533
+            ],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          }
+        }
+      },
+      "ERC3643HookGovernor": {
+        "runtimeSha256": "0978059dea47b1286326902332f41079029836cf257691fb13c99bc2b5064012",
+        "typedFailureSelectorLoads": {
+          "TrustOperationalFailure": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustReplay": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustRejected": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustUnauthorized": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": [
+              872
+            ]
+          },
+          "TrustTerminal": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustInvalidCommand": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          }
+        }
+      },
+      "ERC3643HookCompliance": {
+        "runtimeSha256": "ebcf0ea744e5e505fb1bd5bd02a9ab0b4c0a112c628ee37cb8916ea7ce3f8881",
+        "typedFailureSelectorLoads": {
+          "TrustOperationalFailure": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustReplay": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustRejected": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustUnauthorized": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustTerminal": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustInvalidCommand": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          }
+        }
+      },
+      "ERC3643HookFactory": {
+        "runtimeSha256": "9636463d4fba1eebc1690648aad3439b30f53156927161bc93c899df1056d680",
+        "typedFailureSelectorLoads": {
+          "TrustOperationalFailure": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustReplay": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustRejected": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustUnauthorized": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustTerminal": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustInvalidCommand": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          }
+        }
+      }
+    }
+  },
+  "openItems": [
+    "The formal runtime bridge constants name the Native and Partial runtimes only; the Hook runtimes are bound by the runtime binding and the TRUST 1.2 runtime identity, not by a formal bridge constant.",
+    "No certificate of a runtime-link cell records its program bytes in this document; the certificate registry binds each certificate to one of these identities."
+  ],
+  "nonclaim": "Preparation only. This document describes inputs, checks and acceptance criteria for conditions that remain open. It does not discharge a runtime-link cell, the malformed branch, the acceptance partition, the central refinement closure or the independent Assurance, and it does not authorize a merge, a release or a deployment."
+}

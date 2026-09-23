@@ -1,0 +1,437 @@
+{
+  "schema": "trust12-runtime-link-process-result-v1",
+  "processId": "RL-20-TAIL-PREP",
+  "status": "PASS_RL20_TAIL_PREP_READY_FOR_INTEGRATION",
+  "baselineManifestSha256": "ab2bf7dad24b105d82ac3c4d66b21d2a3c222d932cff73fea494ab6ce051078f",
+  "gitActions": [
+    "commit",
+    "push",
+    "draft-pr"
+  ],
+  "preparedConditions": [
+    "typed-failure-report-binding",
+    "twenty-seven-cell-architecture",
+    "enforced-cell-witnesses",
+    "malformed-native",
+    "malformed-partial",
+    "malformed-hook",
+    "preservation-and-reflection",
+    "route-exhaustiveness",
+    "state-and-receipt-identity",
+    "accepted-set-is-certificate-image",
+    "independent-assurance"
+  ],
+  "findings": [
+    "check-order-before-canonical-validation",
+    "nonzero-call-value-domain",
+    "per-certificate-program-identity",
+    "unclassified-hook-routes",
+    "open-runtime-only-storage",
+    "no-formal-storage-reader"
+  ],
+  "checks": [
+    {
+      "id": "unit-tests",
+      "workingRoot": "PROCESS_WORKTREE",
+      "command": "python3 -m unittest discover -s scripts/trust12/tail-preparation -p test_*.py -v",
+      "exitCode": 0,
+      "log": {
+        "path": "rl20-tail-prep-v1/logs/unit-tests.log",
+        "sha256": "61f212ef64bf035e3b654f44582a0c8bbb7ce129ca0bce613eb677b524d72eea"
+      }
+    },
+    {
+      "id": "generated-documents-check",
+      "workingRoot": "PROCESS_WORKTREE",
+      "command": "python3 scripts/trust12/tail-preparation/prepare_tail.py check",
+      "exitCode": 0,
+      "log": {
+        "path": "rl20-tail-prep-v1/logs/generated-documents-check.log",
+        "sha256": "88c31981bf3f8b95870de37aa8eac63ee9d4b84d809b596522f1fcf6b759b4a2"
+      }
+    },
+    {
+      "id": "generated-documents-check-with-artifacts",
+      "workingRoot": "PROCESS_WORKTREE",
+      "command": "python3 scripts/trust12/tail-preparation/prepare_tail.py check --artifacts PRODUCT_BUILD_OUT",
+      "exitCode": 0,
+      "log": {
+        "path": "rl20-tail-prep-v1/logs/generated-documents-check-with-artifacts.log",
+        "sha256": "88c31981bf3f8b95870de37aa8eac63ee9d4b84d809b596522f1fcf6b759b4a2"
+      }
+    },
+    {
+      "id": "public-links",
+      "workingRoot": "PROCESS_WORKTREE",
+      "command": "node scripts/verify-links.mjs",
+      "exitCode": 0,
+      "log": {
+        "path": "rl20-tail-prep-v1/logs/public-links.log",
+        "sha256": "cba475037668f3a007e053b6e257c2b2cc8202baab1883e7911aaaa1ced1b5b9"
+      }
+    },
+    {
+      "id": "public-surface",
+      "workingRoot": "PROCESS_WORKTREE",
+      "command": "node scripts/verify-public-surface.mjs",
+      "exitCode": 0,
+      "log": {
+        "path": "rl20-tail-prep-v1/logs/public-surface.log",
+        "sha256": "e3ad35cf3d90d03901bdd252badf6d5f77accb1b6997a253acbd5d361fa01e29"
+      }
+    },
+    {
+      "id": "repository-health",
+      "workingRoot": "PROCESS_WORKTREE",
+      "command": "node scripts/verify-repository-health.mjs",
+      "exitCode": 0,
+      "log": {
+        "path": "rl20-tail-prep-v1/logs/repository-health.log",
+        "sha256": "b16647d66b2549c74b69e0420afc899d99df61a7b30b24800e8eb84caff5e529"
+      }
+    },
+    {
+      "id": "probe-format-check",
+      "workingRoot": "PROCESS_WORKTREE",
+      "command": "forge fmt --check scripts/trust12/tail-preparation/foundry/",
+      "exitCode": 0,
+      "log": {
+        "path": "rl20-tail-prep-v1/logs/probe-format-check.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "certificate-registry-dry-run",
+      "workingRoot": "EVIDENCE",
+      "result": "DRY_RUN_PARTIAL_COVERAGE",
+      "checks": {
+        "certificate-keys-unique": "PASS",
+        "apr-proofs-distinct": "PASS",
+        "certificate-records-consistent": "PASS",
+        "cells-agree-with-ledger-and-kernels": "PASS",
+        "program-identity": "PASS"
+      },
+      "output": {
+        "path": "rl20-tail-prep-v1/certificate-registry-dry-run.json",
+        "sha256": "be7234c87df21f35d71fd9e789c1f73e67ef49f999b4d00fec0920b3445fa16b"
+      }
+    },
+    {
+      "id": "assurance-seal-dry-run",
+      "workingRoot": "EVIDENCE",
+      "result": "TEMPLATE_DRY_RUN",
+      "verified": "PASS_ASSURANCE_INPUT_SEAL_VERIFIED",
+      "files": 2806,
+      "sealRootSha256": "3105363b617a19477cfeca42f8a94ccf217f5a83536166630ba24d105d09e111",
+      "output": {
+        "path": "rl20-tail-prep-v1/assurance-seal-dry-run.json",
+        "sha256": "d0343adf3ccb40c53f9c35a4f69f4d5a42d6ff0320ad6cf72b913a72fd5a0cf7"
+      }
+    },
+    {
+      "id": "ledger-row-map",
+      "workingRoot": "EVIDENCE",
+      "result": "PASS_ROW_MAP_MATCHES_OPEN_TAIL_ROWS",
+      "output": {
+        "path": "rl20-tail-prep-v1/ledger-row-map-check.json",
+        "sha256": "cdad51442bfc8e6043c1edf6fd20a9ab025825701742f0b4610295c9e1a68793"
+      }
+    },
+    {
+      "id": "malformed-probe",
+      "workingRoot": "EVIDENCE",
+      "result": "PROBE_RECORDED",
+      "observedRecipes": 305,
+      "verdicts": {
+        "CONFORMS": 177,
+        "CONTROL_DETECTED": 8,
+        "RECORDED_PARTITION_DOMAIN": 8,
+        "TYPED_BEFORE_CANONICAL_CHECK": 112
+      },
+      "output": {
+        "path": "rl20-tail-prep-v1/malformed-probe/receipt.json",
+        "sha256": "1d0d943968119462278c3084808d76b39b0b2d23bd82c98c5946e17e4deb620a"
+      }
+    }
+  ],
+  "integrationAccounting": {
+    "publicTreeAccounting": {
+      "file": "evidence/public-release/diet-manifest-v2.json",
+      "trackedFilesAddedByThisProcess": 27,
+      "canonicalBytesAddedExcludingTheReturnManifest": 526350,
+      "note": "The return manifest itself is also added; the integration owner recomputes the summary counts over the merged tree with the same formulas as scripts/verify-public-release-tree.mjs."
+    },
+    "releaseManifest": {
+      "file": "evidence/release-manifest.json",
+      "protectedFilesAdded": {
+        "scripts/trust12/tail-preparation/assurance_seal.py": "3b47c773b2e01748dca665b1cce14feb2fad9d8aaf866e3e995b3e0ac0deb3c7",
+        "scripts/trust12/tail-preparation/certificate_registry.py": "7cb0c0cbabcef1b48612bbe525b52281162aec67ab3048f405ac593845c2aaea",
+        "scripts/trust12/tail-preparation/code_identity.py": "fca66b88dbdb986418a940022f2057dd24303b45070fe204af29a8dec0e8ca57",
+        "scripts/trust12/tail-preparation/foundry/HookMalformedProbe.t.sol": "329b5fbfbbdaf5125a04f07003bbba91ca280e29ea0b5f9daaac3dbb00854dcb",
+        "scripts/trust12/tail-preparation/foundry/MalformedProbeCore.sol": "a8a65230c2c290a232de0b7d9126ba4acad4209b5c12314135b2fdd18ac0e27c",
+        "scripts/trust12/tail-preparation/foundry/MalformedProbeRecipes.sol": "6f8cf3f642ba9deecc4f14b2ed4e3964f291f22d72b230f96f59fec06efc106d",
+        "scripts/trust12/tail-preparation/foundry/NativeMalformedProbe.t.sol": "0ae50b62942cfda940a5778080ecb49413d4c2d0ff72124f6791e5dc163450f0",
+        "scripts/trust12/tail-preparation/foundry/PartialMalformedProbe.t.sol": "26b67a3b060ab1ccc7078d4dc14039a5ebca0d4f3d9e8fc086501378d422424a",
+        "scripts/trust12/tail-preparation/malformed_inputs.py": "f2db72a271019ef82a97833b24f9ee1ce4b8a3c9608de6a0c6e2c67591b77be5",
+        "scripts/trust12/tail-preparation/prepare_tail.py": "dd3bc1ccd23a305c7c58be401a711ad6c4d0c78bf5e32677a687c0f4db0ca182",
+        "scripts/trust12/tail-preparation/route_inventory.py": "81963370e073c659fe7dbffac8bd07f833b41566ccfa3babe443e9325fcda6db",
+        "scripts/trust12/tail-preparation/run_malformed_probe.py": "b365d1e643cc31a018d583011fa8e2d5fc88a3c3bbd45ac7814fb432bebec82a",
+        "scripts/trust12/tail-preparation/state_receipt_crosswalk.py": "65a9c7b503be841da31b2e743d8223ece77340231f627b0c7f2f0b3020dffd3d",
+        "scripts/trust12/tail-preparation/tail_common.py": "b9ee4b6809e7a8f306d8157b149fb672e3c2cdd15197df1ebf67f1ece34b473f",
+        "scripts/trust12/tail-preparation/test_assurance_seal.py": "e917470c957ce16a56d8b2594958bd21d9469b0d71ccf014e07ee15e15904e1f",
+        "scripts/trust12/tail-preparation/test_tail_preparation.py": "b0b404cff2678048dd28bcaf92613df0982584c554c54dac9e82e236c046c2bf"
+      },
+      "regenerate": "forge build && node scripts/generate-release-manifest.mjs"
+    },
+    "reason": "Both documents account for the whole tracked tree. This process may write only its two preparation directories, so the checks that compare them with the tree fail on the process branch until the integration owner regenerates them once for all merged processes."
+  },
+  "outputs": [
+    {
+      "root": "PROCESS_WORKTREE",
+      "path": "evidence/trust12/runtime-link/tail-preparation/assurance-checklist-v1.md",
+      "bytes": 4700,
+      "sha256": "c6abc67f85932c8ba71e5d9d4630f5ce08dbadd40347fd07d7ec0d19a810e397"
+    },
+    {
+      "root": "PROCESS_WORKTREE",
+      "path": "evidence/trust12/runtime-link/tail-preparation/assurance-input-seal-schema-v1.json",
+      "bytes": 8224,
+      "sha256": "c17eb6c14af44ec335b71ed11119044b0abee24318b9f8991f22ae32acc12d22"
+    },
+    {
+      "root": "PROCESS_WORKTREE",
+      "path": "evidence/trust12/runtime-link/tail-preparation/assurance-input-seal-spec-v1.json",
+      "bytes": 15614,
+      "sha256": "9f5ef2b69b2dba1e0c163f516a0bfc9db8224981add4f16e54c1e362ed786a21"
+    },
+    {
+      "root": "PROCESS_WORKTREE",
+      "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-schema-v1.json",
+      "bytes": 12039,
+      "sha256": "2eb7c15c4944839e181b0d9fa8a58426c4deefc8657fcc9a457a7780e4fd9cd6"
+    },
+    {
+      "root": "PROCESS_WORKTREE",
+      "path": "evidence/trust12/runtime-link/tail-preparation/code-identity-v1.json",
+      "bytes": 34712,
+      "sha256": "793b7d9f3c58722ae24143174fe5cc86e520f22af74fffa4486c49046cb8f331"
+    },
+    {
+      "root": "PROCESS_WORKTREE",
+      "path": "evidence/trust12/runtime-link/tail-preparation/malformed-inputs-v1.json",
+      "bytes": 131795,
+      "sha256": "ab19717e4e5bf0c740e3cab39b25cd23d28fac1fe25cfb2dbf399ec9242f088a"
+    },
+    {
+      "root": "PROCESS_WORKTREE",
+      "path": "evidence/trust12/runtime-link/tail-preparation/README.md",
+      "bytes": 6137,
+      "sha256": "4e7bcdee29152cd38c52a3b99dce82d7124c1cb6dd85157fc2a98b631b4126f2"
+    },
+    {
+      "root": "PROCESS_WORKTREE",
+      "path": "evidence/trust12/runtime-link/tail-preparation/route-inventory-v1.json",
+      "bytes": 53288,
+      "sha256": "05af0f6acf991ae623b33c488c08c844924d41ba5f56819e668a194992dfc973"
+    },
+    {
+      "root": "PROCESS_WORKTREE",
+      "path": "evidence/trust12/runtime-link/tail-preparation/state-receipt-crosswalk-v1.json",
+      "bytes": 41284,
+      "sha256": "17728de68c678da59e11ba5dbe6b1b97e4e38344c13584cb12c32b02c0513546"
+    },
+    {
+      "root": "PROCESS_WORKTREE",
+      "path": "evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json",
+      "bytes": 16838,
+      "sha256": "7acd261fc475ed79f53df64f57903247f8095d08d382da1633050f82e55ea2d9"
+    },
+    {
+      "root": "PROCESS_WORKTREE",
+      "path": "scripts/trust12/tail-preparation/assurance_seal.py",
+      "bytes": 16387,
+      "sha256": "3b47c773b2e01748dca665b1cce14feb2fad9d8aaf866e3e995b3e0ac0deb3c7"
+    },
+    {
+      "root": "PROCESS_WORKTREE",
+      "path": "scripts/trust12/tail-preparation/certificate_registry.py",
+      "bytes": 19919,
+      "sha256": "7cb0c0cbabcef1b48612bbe525b52281162aec67ab3048f405ac593845c2aaea"
+    },
+    {
+      "root": "PROCESS_WORKTREE",
+      "path": "scripts/trust12/tail-preparation/code_identity.py",
+      "bytes": 15448,
+      "sha256": "fca66b88dbdb986418a940022f2057dd24303b45070fe204af29a8dec0e8ca57"
+    },
+    {
+      "root": "PROCESS_WORKTREE",
+      "path": "scripts/trust12/tail-preparation/foundry/HookMalformedProbe.t.sol",
+      "bytes": 4195,
+      "sha256": "329b5fbfbbdaf5125a04f07003bbba91ca280e29ea0b5f9daaac3dbb00854dcb"
+    },
+    {
+      "root": "PROCESS_WORKTREE",
+      "path": "scripts/trust12/tail-preparation/foundry/MalformedProbeCore.sol",
+      "bytes": 11766,
+      "sha256": "a8a65230c2c290a232de0b7d9126ba4acad4209b5c12314135b2fdd18ac0e27c"
+    },
+    {
+      "root": "PROCESS_WORKTREE",
+      "path": "scripts/trust12/tail-preparation/foundry/MalformedProbeRecipes.sol",
+      "bytes": 17720,
+      "sha256": "6f8cf3f642ba9deecc4f14b2ed4e3964f291f22d72b230f96f59fec06efc106d"
+    },
+    {
+      "root": "PROCESS_WORKTREE",
+      "path": "scripts/trust12/tail-preparation/foundry/NativeMalformedProbe.t.sol",
+      "bytes": 1229,
+      "sha256": "0ae50b62942cfda940a5778080ecb49413d4c2d0ff72124f6791e5dc163450f0"
+    },
+    {
+      "root": "PROCESS_WORKTREE",
+      "path": "scripts/trust12/tail-preparation/foundry/PartialMalformedProbe.t.sol",
+      "bytes": 4567,
+      "sha256": "26b67a3b060ab1ccc7078d4dc14039a5ebca0d4f3d9e8fc086501378d422424a"
+    },
+    {
+      "root": "PROCESS_WORKTREE",
+      "path": "scripts/trust12/tail-preparation/malformed_inputs.py",
+      "bytes": 22640,
+      "sha256": "f2db72a271019ef82a97833b24f9ee1ce4b8a3c9608de6a0c6e2c67591b77be5"
+    },
+    {
+      "root": "PROCESS_WORKTREE",
+      "path": "scripts/trust12/tail-preparation/prepare_tail.py",
+      "bytes": 12576,
+      "sha256": "dd3bc1ccd23a305c7c58be401a711ad6c4d0c78bf5e32677a687c0f4db0ca182"
+    },
+    {
+      "root": "PROCESS_WORKTREE",
+      "path": "scripts/trust12/tail-preparation/route_inventory.py",
+      "bytes": 10851,
+      "sha256": "81963370e073c659fe7dbffac8bd07f833b41566ccfa3babe443e9325fcda6db"
+    },
+    {
+      "root": "PROCESS_WORKTREE",
+      "path": "scripts/trust12/tail-preparation/run_malformed_probe.py",
+      "bytes": 10115,
+      "sha256": "b365d1e643cc31a018d583011fa8e2d5fc88a3c3bbd45ac7814fb432bebec82a"
+    },
+    {
+      "root": "PROCESS_WORKTREE",
+      "path": "scripts/trust12/tail-preparation/state_receipt_crosswalk.py",
+      "bytes": 12571,
+      "sha256": "65a9c7b503be841da31b2e743d8223ece77340231f627b0c7f2f0b3020dffd3d"
+    },
+    {
+      "root": "PROCESS_WORKTREE",
+      "path": "scripts/trust12/tail-preparation/tail_common.py",
+      "bytes": 12799,
+      "sha256": "b9ee4b6809e7a8f306d8157b149fb672e3c2cdd15197df1ebf67f1ece34b473f"
+    },
+    {
+      "root": "PROCESS_WORKTREE",
+      "path": "scripts/trust12/tail-preparation/test_assurance_seal.py",
+      "bytes": 9629,
+      "sha256": "e917470c957ce16a56d8b2594958bd21d9469b0d71ccf014e07ee15e15904e1f"
+    },
+    {
+      "root": "PROCESS_WORKTREE",
+      "path": "scripts/trust12/tail-preparation/test_tail_preparation.py",
+      "bytes": 19307,
+      "sha256": "b0b404cff2678048dd28bcaf92613df0982584c554c54dac9e82e236c046c2bf"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl20-tail-prep-v1/assurance-seal-dry-run.json",
+      "bytes": 768144,
+      "sha256": "d0343adf3ccb40c53f9c35a4f69f4d5a42d6ff0320ad6cf72b913a72fd5a0cf7"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl20-tail-prep-v1/certificate-locators.json",
+      "bytes": 32080,
+      "sha256": "a2fd484a9791f574b84ff1bfa57dce1ceb0913ac4f2e95dbbefa755df1c08de7"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl20-tail-prep-v1/certificate-registry-dry-run.json",
+      "bytes": 46259,
+      "sha256": "be7234c87df21f35d71fd9e789c1f73e67ef49f999b4d00fec0920b3445fa16b"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl20-tail-prep-v1/checks.json",
+      "bytes": 4560,
+      "sha256": "873ad61dd7d27bde25dc0cdbbc9627d979cb0101795585925660b1808b448020"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl20-tail-prep-v1/ledger-row-map-check.json",
+      "bytes": 3641,
+      "sha256": "cdad51442bfc8e6043c1edf6fd20a9ab025825701742f0b4610295c9e1a68793"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl20-tail-prep-v1/ledger-row-map.json",
+      "bytes": 946,
+      "sha256": "43ecb9020fc1af524e8baff585c0ffbddde42086f1228f7d0440c16c26d58b33"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl20-tail-prep-v1/logs/exit-codes.txt",
+      "bytes": 157,
+      "sha256": "95d9eddba87e50aed4ae3a6b4132365f53847b52d36146d8eee5400392d708cc"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl20-tail-prep-v1/logs/generated-documents-check-with-artifacts.log",
+      "bytes": 614,
+      "sha256": "88c31981bf3f8b95870de37aa8eac63ee9d4b84d809b596522f1fcf6b759b4a2"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl20-tail-prep-v1/logs/generated-documents-check.log",
+      "bytes": 614,
+      "sha256": "88c31981bf3f8b95870de37aa8eac63ee9d4b84d809b596522f1fcf6b759b4a2"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl20-tail-prep-v1/logs/probe-format-check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl20-tail-prep-v1/logs/public-links.log",
+      "bytes": 167,
+      "sha256": "cba475037668f3a007e053b6e257c2b2cc8202baab1883e7911aaaa1ced1b5b9"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl20-tail-prep-v1/logs/public-surface.log",
+      "bytes": 56,
+      "sha256": "e3ad35cf3d90d03901bdd252badf6d5f77accb1b6997a253acbd5d361fa01e29"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl20-tail-prep-v1/logs/repository-health.log",
+      "bytes": 45,
+      "sha256": "b16647d66b2549c74b69e0420afc899d99df61a7b30b24800e8eb84caff5e529"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl20-tail-prep-v1/logs/unit-tests.log",
+      "bytes": 4828,
+      "sha256": "61f212ef64bf035e3b654f44582a0c8bbb7ce129ca0bce613eb677b524d72eea"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "rl20-tail-prep-v1/malformed-probe/receipt.json",
+      "bytes": 169787,
+      "sha256": "1d0d943968119462278c3084808d76b39b0b2d23bd82c98c5946e17e4deb620a"
+    }
+  ],
+  "nonclaim": "Preparation only. This document describes inputs, checks and acceptance criteria for conditions that remain open. It does not discharge a runtime-link cell, the malformed branch, the acceptance partition, the central refinement closure or the independent Assurance, and it does not authorize a merge, a release or a deployment."
+}

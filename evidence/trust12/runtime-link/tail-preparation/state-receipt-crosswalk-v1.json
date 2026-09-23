@@ -1,0 +1,1398 @@
+{
+  "schema": "trust12-tail-preparation-state-receipt-crosswalk-v1",
+  "status": "PREPARED_NOT_CLOSED",
+  "sources": [
+    {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Compositional_State.thy",
+      "bytes": 15157,
+      "sha256": "ecb28da66b0ea1d1e1e4d05255a00246294d5ec9b5aafd320866af92c3ac880a"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/obligation-ledger-v3.json",
+      "bytes": 165906,
+      "sha256": "79592a27f332b84cac51d6387c2214f0d1612e68e396ea214c6da4a58dff36b6"
+    },
+    {
+      "path": "evidence/end-to-end-refinement/central-closure-v3.json",
+      "bytes": 31933,
+      "sha256": "760215cb1c1edb92f5f729e3509e3be0e830d56587d602af33bdb5ca15374473"
+    },
+    {
+      "path": "spec/erc-trust-kernel-v2.json",
+      "bytes": 52448,
+      "sha256": "cafe969e6cb5e9e03710c36829f7bebe62b03525e5fee9c51a80d55a93d0abd1"
+    },
+    {
+      "path": "spec/generated/kernel-v2-abi.json",
+      "bytes": 25944,
+      "sha256": "73b45cee3e8e6a2abd484a306a21d51aaa3fc4da75b976dd3c938d936352814b"
+    },
+    {
+      "path": "schemas/receipt.schema.json",
+      "bytes": 3229,
+      "sha256": "70004225026a71cc86b2c74056e7d40304d7bd44b194fb8dd74acb8a22d00dc8"
+    },
+    {
+      "path": "evidence/runtime-binding-v3/native/bridge-artifacts.json",
+      "bytes": 93409,
+      "sha256": "e5ad6c4e54e66f2be7928a9ceb7667b1b0dc0de0ed6f4a29458db9685277847b"
+    },
+    {
+      "path": "evidence/runtime-binding-v3/erc3643-partial/bridge-artifacts.json",
+      "bytes": 79050,
+      "sha256": "b25af3abcfdc219ee223526d711aa6f6c0514004da9f131149e29d950725c0d7"
+    },
+    {
+      "path": "evidence/runtime-binding-v3/erc3643-hook/bridge-artifacts.json",
+      "bytes": 89975,
+      "sha256": "99362fa5bdebbb6534aea01fbb43d2fbe95f1642dbec7a3af99b2f395040d01e"
+    }
+  ],
+  "stateFields": [
+    {
+      "abstract": "physical_balances",
+      "abstractType": "trust_address \\<Rightarrow> nat",
+      "note": "adapter balances live in the sealed upstream ERC-3643 token and are observed through the typed upstream views",
+      "runtimes": {
+        "TrustToken": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "native.balances",
+            "label": "_balances",
+            "slot": 3,
+            "offset": 0,
+            "type": "mapping(address => uint256)"
+          }
+        },
+        "ERC3643TrustAdapter": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ProfileGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ERC3643HookAdapter": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ERC3643HookGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        }
+      }
+    },
+    {
+      "abstract": "compositional_allowances",
+      "abstractType": "trust_address \\<Rightarrow> trust_address \\<Rightarrow> nat",
+      "note": null,
+      "runtimes": {
+        "TrustToken": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "native.allowances",
+            "label": "_allowances",
+            "slot": 4,
+            "offset": 0,
+            "type": "mapping(address => mapping(address => uint256))"
+          }
+        },
+        "ERC3643TrustAdapter": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ProfileGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ERC3643HookAdapter": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ERC3643HookGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        }
+      }
+    },
+    {
+      "abstract": "compositional_total_supply",
+      "abstractType": "nat",
+      "note": null,
+      "runtimes": {
+        "TrustToken": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "native.totalSupply",
+            "label": "_totalSupply",
+            "slot": 2,
+            "offset": 0,
+            "type": "uint256"
+          }
+        },
+        "ERC3643TrustAdapter": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ProfileGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ERC3643HookAdapter": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ERC3643HookGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        }
+      }
+    },
+    {
+      "abstract": "frozen_targets",
+      "abstractType": "trust_address \\<Rightarrow> nat",
+      "note": "adapter: OwnedState.frozenTarget; the upstream frozen amount is a saturated projection of it",
+      "runtimes": {
+        "TrustToken": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "native.frozen",
+            "label": "_frozen",
+            "slot": 5,
+            "offset": 0,
+            "type": "mapping(address => uint256)"
+          }
+        },
+        "ERC3643TrustAdapter": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "profile.adapter.owned",
+            "label": "_owned",
+            "slot": 14,
+            "offset": 0,
+            "type": "mapping(address => struct ERC3643ProfileTypes.OwnedState)"
+          }
+        },
+        "ProfileGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ERC3643HookAdapter": {
+          "status": "DERIVED_BY_LAYOUT_IDENTITY",
+          "storage": {
+            "projection": null,
+            "label": "_owned",
+            "slot": 14,
+            "offset": 0,
+            "type": "mapping(address => struct ERC3643ProfileTypes.OwnedState)"
+          }
+        },
+        "ERC3643HookGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        }
+      }
+    },
+    {
+      "abstract": "restriction_flags",
+      "abstractType": "trust_address \\<Rightarrow> bool",
+      "note": "adapter: OwnedState.restricted mirrored to the upstream address freeze",
+      "runtimes": {
+        "TrustToken": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "native.restricted",
+            "label": "_restricted",
+            "slot": 6,
+            "offset": 0,
+            "type": "mapping(address => bool)"
+          }
+        },
+        "ERC3643TrustAdapter": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "profile.adapter.owned",
+            "label": "_owned",
+            "slot": 14,
+            "offset": 0,
+            "type": "mapping(address => struct ERC3643ProfileTypes.OwnedState)"
+          }
+        },
+        "ProfileGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ERC3643HookAdapter": {
+          "status": "DERIVED_BY_LAYOUT_IDENTITY",
+          "storage": {
+            "projection": null,
+            "label": "_owned",
+            "slot": 14,
+            "offset": 0,
+            "type": "mapping(address => struct ERC3643ProfileTypes.OwnedState)"
+          }
+        },
+        "ERC3643HookGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        }
+      }
+    },
+    {
+      "abstract": "custody_backing",
+      "abstractType": "trust_address \\<Rightarrow> nat",
+      "note": null,
+      "runtimes": {
+        "TrustToken": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "native.custodyBacking",
+            "label": "_custodyBacking",
+            "slot": 7,
+            "offset": 0,
+            "type": "mapping(address => uint256)"
+          }
+        },
+        "ERC3643TrustAdapter": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "profile.adapter.custodyBacking",
+            "label": "_custodyBacking",
+            "slot": 17,
+            "offset": 0,
+            "type": "mapping(address => uint256)"
+          }
+        },
+        "ProfileGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ERC3643HookAdapter": {
+          "status": "DERIVED_BY_LAYOUT_IDENTITY",
+          "storage": {
+            "projection": null,
+            "label": "_custodyBacking",
+            "slot": 17,
+            "offset": 0,
+            "type": "mapping(address => uint256)"
+          }
+        },
+        "ERC3643HookGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        }
+      }
+    },
+    {
+      "abstract": "freeze_heads",
+      "abstractType": "trust_address \\<Rightarrow> compositional_effect_head",
+      "note": null,
+      "runtimes": {
+        "TrustToken": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "native.freezeHeads",
+            "label": "_freezeHeads",
+            "slot": 8,
+            "offset": 0,
+            "type": "mapping(address => struct TrustNativeTypes.EffectHead)"
+          }
+        },
+        "ERC3643TrustAdapter": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "profile.adapter.freezeHeads",
+            "label": "_freezeHeads",
+            "slot": 15,
+            "offset": 0,
+            "type": "mapping(address => struct ERC3643ProfileTypes.EffectHead)"
+          }
+        },
+        "ProfileGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ERC3643HookAdapter": {
+          "status": "DERIVED_BY_LAYOUT_IDENTITY",
+          "storage": {
+            "projection": null,
+            "label": "_freezeHeads",
+            "slot": 15,
+            "offset": 0,
+            "type": "mapping(address => struct ERC3643ProfileTypes.EffectHead)"
+          }
+        },
+        "ERC3643HookGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        }
+      }
+    },
+    {
+      "abstract": "restriction_heads",
+      "abstractType": "trust_address \\<Rightarrow> compositional_effect_head",
+      "note": null,
+      "runtimes": {
+        "TrustToken": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "native.restrictionHeads",
+            "label": "_restrictionHeads",
+            "slot": 9,
+            "offset": 0,
+            "type": "mapping(address => struct TrustNativeTypes.EffectHead)"
+          }
+        },
+        "ERC3643TrustAdapter": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "profile.adapter.restrictionHeads",
+            "label": "_restrictionHeads",
+            "slot": 16,
+            "offset": 0,
+            "type": "mapping(address => struct ERC3643ProfileTypes.EffectHead)"
+          }
+        },
+        "ProfileGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ERC3643HookAdapter": {
+          "status": "DERIVED_BY_LAYOUT_IDENTITY",
+          "storage": {
+            "projection": null,
+            "label": "_restrictionHeads",
+            "slot": 16,
+            "offset": 0,
+            "type": "mapping(address => struct ERC3643ProfileTypes.EffectHead)"
+          }
+        },
+        "ERC3643HookGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        }
+      }
+    },
+    {
+      "abstract": "effect_links",
+      "abstractType": "trust_action_id \\<Rightarrow> compositional_effect_link option",
+      "note": null,
+      "runtimes": {
+        "TrustToken": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "native.effects",
+            "label": "_effects",
+            "slot": 14,
+            "offset": 0,
+            "type": "mapping(bytes32 => struct TrustNativeTypes.EffectRecord)"
+          }
+        },
+        "ERC3643TrustAdapter": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "profile.adapter.effects",
+            "label": "_effects",
+            "slot": 8,
+            "offset": 0,
+            "type": "mapping(bytes32 => struct ERC3643ProfileTypes.EffectRecord)"
+          }
+        },
+        "ProfileGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ERC3643HookAdapter": {
+          "status": "DERIVED_BY_LAYOUT_IDENTITY",
+          "storage": {
+            "projection": null,
+            "label": "_effects",
+            "slot": 8,
+            "offset": 0,
+            "type": "mapping(bytes32 => struct ERC3643ProfileTypes.EffectRecord)"
+          }
+        },
+        "ERC3643HookGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        }
+      }
+    },
+    {
+      "abstract": "action_records",
+      "abstractType": "trust_action_id \\<Rightarrow> compositional_action_record option",
+      "note": null,
+      "runtimes": {
+        "TrustToken": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "native.actions",
+            "label": "_actions",
+            "slot": 13,
+            "offset": 0,
+            "type": "mapping(bytes32 => struct TrustKernelTypes.ActionRecord)"
+          }
+        },
+        "ERC3643TrustAdapter": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "profile.adapter.actions",
+            "label": "_actions",
+            "slot": 7,
+            "offset": 0,
+            "type": "mapping(bytes32 => struct TrustKernelTypes.ActionRecord)"
+          }
+        },
+        "ProfileGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ERC3643HookAdapter": {
+          "status": "DERIVED_BY_LAYOUT_IDENTITY",
+          "storage": {
+            "projection": null,
+            "label": "_actions",
+            "slot": 7,
+            "offset": 0,
+            "type": "mapping(bytes32 => struct TrustKernelTypes.ActionRecord)"
+          }
+        },
+        "ERC3643HookGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        }
+      }
+    },
+    {
+      "abstract": "custody_records",
+      "abstractType": "trust_case_id \\<Rightarrow> compositional_custody option",
+      "note": null,
+      "runtimes": {
+        "TrustToken": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "native.custody",
+            "label": "_custody",
+            "slot": 17,
+            "offset": 0,
+            "type": "mapping(bytes32 => struct TrustNativeTypes.CustodyRecord)"
+          }
+        },
+        "ERC3643TrustAdapter": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "profile.adapter.custody",
+            "label": "_custody",
+            "slot": 11,
+            "offset": 0,
+            "type": "mapping(bytes32 => struct ERC3643ProfileTypes.CustodyRecord)"
+          }
+        },
+        "ProfileGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ERC3643HookAdapter": {
+          "status": "DERIVED_BY_LAYOUT_IDENTITY",
+          "storage": {
+            "projection": null,
+            "label": "_custody",
+            "slot": 11,
+            "offset": 0,
+            "type": "mapping(bytes32 => struct ERC3643ProfileTypes.CustodyRecord)"
+          }
+        },
+        "ERC3643HookGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        }
+      }
+    },
+    {
+      "abstract": "case_records",
+      "abstractType": "trust_case_id \\<Rightarrow> compositional_case",
+      "note": null,
+      "runtimes": {
+        "TrustToken": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "native.cases",
+            "label": "_cases",
+            "slot": 16,
+            "offset": 0,
+            "type": "mapping(bytes32 => struct TrustKernelTypes.CaseRecord)"
+          }
+        },
+        "ERC3643TrustAdapter": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "profile.adapter.cases",
+            "label": "_cases",
+            "slot": 10,
+            "offset": 0,
+            "type": "mapping(bytes32 => struct TrustKernelTypes.CaseRecord)"
+          }
+        },
+        "ProfileGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ERC3643HookAdapter": {
+          "status": "DERIVED_BY_LAYOUT_IDENTITY",
+          "storage": {
+            "projection": null,
+            "label": "_cases",
+            "slot": 10,
+            "offset": 0,
+            "type": "mapping(bytes32 => struct TrustKernelTypes.CaseRecord)"
+          }
+        },
+        "ERC3643HookGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        }
+      }
+    },
+    {
+      "abstract": "consumed_entitlements",
+      "abstractType": "trust_hash set",
+      "note": null,
+      "runtimes": {
+        "TrustToken": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "native.consumedEntitlements",
+            "label": "_consumedEntitlements",
+            "slot": 18,
+            "offset": 0,
+            "type": "mapping(bytes32 => bool)"
+          }
+        },
+        "ERC3643TrustAdapter": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "profile.adapter.consumedEntitlements",
+            "label": "_consumedEntitlements",
+            "slot": 13,
+            "offset": 0,
+            "type": "mapping(bytes32 => bool)"
+          }
+        },
+        "ProfileGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ERC3643HookAdapter": {
+          "status": "DERIVED_BY_LAYOUT_IDENTITY",
+          "storage": {
+            "projection": null,
+            "label": "_consumedEntitlements",
+            "slot": 13,
+            "offset": 0,
+            "type": "mapping(bytes32 => bool)"
+          }
+        },
+        "ERC3643HookGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        }
+      }
+    },
+    {
+      "abstract": "authorities",
+      "abstractType": "trust_authority_ref \\<Rightarrow> compositional_authority option",
+      "note": "adapter: the single authority is an immutable of the adapter, not storage (profile_authorities)",
+      "runtimes": {
+        "TrustToken": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "native.authorities",
+            "label": "_authorities",
+            "slot": 10,
+            "offset": 0,
+            "type": "mapping(bytes32 => struct TrustNativeTypes.Authority)"
+          }
+        },
+        "ERC3643TrustAdapter": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ProfileGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ERC3643HookAdapter": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ERC3643HookGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        }
+      }
+    },
+    {
+      "abstract": "compositional_consumed_nonces",
+      "abstractType": "trust_nonce_key set",
+      "note": null,
+      "runtimes": {
+        "TrustToken": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "native.usedNonces",
+            "label": "_usedNonces",
+            "slot": 11,
+            "offset": 0,
+            "type": "mapping(bytes32 => mapping(uint64 => mapping(uint256 => bool)))"
+          }
+        },
+        "ERC3643TrustAdapter": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "profile.adapter.usedNonces",
+            "label": "_usedNonces",
+            "slot": 12,
+            "offset": 0,
+            "type": "mapping(bytes32 => bool)"
+          }
+        },
+        "ProfileGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ERC3643HookAdapter": {
+          "status": "DERIVED_BY_LAYOUT_IDENTITY",
+          "storage": {
+            "projection": null,
+            "label": "_usedNonces",
+            "slot": 12,
+            "offset": 0,
+            "type": "mapping(bytes32 => bool)"
+          }
+        },
+        "ERC3643HookGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        }
+      }
+    },
+    {
+      "abstract": "compositional_bindings",
+      "abstractType": "trust_binding_kind \\<Rightarrow> compositional_binding option",
+      "note": null,
+      "runtimes": {
+        "TrustToken": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "native.bindings",
+            "label": "_bindings",
+            "slot": 21,
+            "offset": 0,
+            "type": "mapping(enum TrustKernelTypes.BindingKind => struct TrustNativeTypes.Binding)"
+          }
+        },
+        "ERC3643TrustAdapter": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "profile.adapter.bindings",
+            "label": "_bindings",
+            "slot": 6,
+            "offset": 0,
+            "type": "mapping(enum TrustKernelTypes.BindingKind => struct ERC3643ProfileTypes.DependencyBinding)"
+          }
+        },
+        "ProfileGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ERC3643HookAdapter": {
+          "status": "DERIVED_BY_LAYOUT_IDENTITY",
+          "storage": {
+            "projection": null,
+            "label": "_bindings",
+            "slot": 6,
+            "offset": 0,
+            "type": "mapping(enum TrustKernelTypes.BindingKind => struct ERC3643ProfileTypes.DependencyBinding)"
+          }
+        },
+        "ERC3643HookGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        }
+      }
+    },
+    {
+      "abstract": "dependency_root",
+      "abstractType": "trust_hash",
+      "note": null,
+      "runtimes": {
+        "TrustToken": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "native.dependencyRoot",
+            "label": "_dependencyRoot",
+            "slot": 22,
+            "offset": 0,
+            "type": "bytes32"
+          }
+        },
+        "ERC3643TrustAdapter": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "profile.adapter.dependencyRoot",
+            "label": "_dependencyRoot",
+            "slot": 4,
+            "offset": 0,
+            "type": "bytes32"
+          }
+        },
+        "ProfileGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ERC3643HookAdapter": {
+          "status": "DERIVED_BY_LAYOUT_IDENTITY",
+          "storage": {
+            "projection": null,
+            "label": "_dependencyRoot",
+            "slot": 4,
+            "offset": 0,
+            "type": "bytes32"
+          }
+        },
+        "ERC3643HookGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        }
+      }
+    },
+    {
+      "abstract": "dependency_epoch",
+      "abstractType": "nat",
+      "note": null,
+      "runtimes": {
+        "TrustToken": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "native.dependencyEpoch",
+            "label": "_dependencyEpoch",
+            "slot": 23,
+            "offset": 0,
+            "type": "uint64"
+          }
+        },
+        "ERC3643TrustAdapter": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "profile.adapter.dependencyEpoch",
+            "label": "_dependencyEpoch",
+            "slot": 5,
+            "offset": 0,
+            "type": "uint64"
+          }
+        },
+        "ProfileGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ERC3643HookAdapter": {
+          "status": "DERIVED_BY_LAYOUT_IDENTITY",
+          "storage": {
+            "projection": null,
+            "label": "_dependencyEpoch",
+            "slot": 5,
+            "offset": 0,
+            "type": "uint64"
+          }
+        },
+        "ERC3643HookGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        }
+      }
+    },
+    {
+      "abstract": "compositional_receipts",
+      "abstractType": "trust_hash \\<Rightarrow> compositional_receipt option",
+      "note": null,
+      "runtimes": {
+        "TrustToken": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "native.receipts",
+            "label": "_receipts",
+            "slot": 15,
+            "offset": 0,
+            "type": "mapping(bytes32 => struct TrustKernelTypes.Receipt)"
+          }
+        },
+        "ERC3643TrustAdapter": {
+          "status": "BOUND_BY_CENTRAL_LEDGER",
+          "storage": {
+            "projection": "profile.adapter.receipts",
+            "label": "_receipts",
+            "slot": 9,
+            "offset": 0,
+            "type": "mapping(bytes32 => struct TrustKernelTypes.Receipt)"
+          }
+        },
+        "ProfileGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        },
+        "ERC3643HookAdapter": {
+          "status": "DERIVED_BY_LAYOUT_IDENTITY",
+          "storage": {
+            "projection": null,
+            "label": "_receipts",
+            "slot": 9,
+            "offset": 0,
+            "type": "mapping(bytes32 => struct TrustKernelTypes.Receipt)"
+          }
+        },
+        "ERC3643HookGovernor": {
+          "status": "NO_STORAGE",
+          "storage": null
+        }
+      }
+    }
+  ],
+  "controlFields": {
+    "authorization": [
+      "authorities",
+      "compositional_bindings"
+    ],
+    "nonce": [
+      "compositional_consumed_nonces"
+    ],
+    "terminality": [
+      "case_records"
+    ],
+    "dependency currency": [
+      "dependency_root",
+      "dependency_epoch"
+    ],
+    "receipt": [
+      "compositional_receipts"
+    ]
+  },
+  "subRecords": [
+    {
+      "abstract": "compositional_receipt",
+      "kernelStruct": "Receipt",
+      "fields": [
+        {
+          "abstract": "compositional_receipt_kind",
+          "kernel": "receiptKind"
+        },
+        {
+          "abstract": "compositional_command_id",
+          "kernel": "commandId"
+        },
+        {
+          "abstract": "compositional_command_kind",
+          "kernel": "commandKind"
+        },
+        {
+          "abstract": "compositional_parent_command_id",
+          "kernel": "parentCommandId"
+        },
+        {
+          "abstract": "compositional_subject",
+          "kernel": "subject"
+        },
+        {
+          "abstract": "compositional_source",
+          "kernel": "source"
+        },
+        {
+          "abstract": "compositional_destination",
+          "kernel": "destination"
+        },
+        {
+          "abstract": "compositional_amount",
+          "kernel": "amount"
+        },
+        {
+          "abstract": "compositional_case",
+          "kernel": "caseId"
+        },
+        {
+          "abstract": "compositional_authority_ref",
+          "kernel": "authorityRef"
+        },
+        {
+          "abstract": "compositional_dependency_root",
+          "kernel": "dependencyRoot"
+        },
+        {
+          "abstract": "compositional_provenance_commitment",
+          "kernel": "provenanceCommitment"
+        },
+        {
+          "abstract": "compositional_assessment_evidence",
+          "kernel": "assessmentEvidence"
+        },
+        {
+          "abstract": "compositional_pre_observation",
+          "kernel": "preState"
+        },
+        {
+          "abstract": "compositional_post_observation",
+          "kernel": "postState"
+        },
+        {
+          "abstract": "compositional_external_commitment",
+          "kernel": "externalCommitment"
+        },
+        {
+          "abstract": "compositional_receipt_hash",
+          "kernel": "receiptHash"
+        }
+      ]
+    },
+    {
+      "abstract": "compositional_action_record",
+      "kernelStruct": "ActionRecord",
+      "fields": [
+        {
+          "abstract": "abstract_action",
+          "kernel": "action"
+        },
+        {
+          "abstract": "abstract_lifecycle",
+          "kernel": "lifecycle"
+        },
+        {
+          "abstract": "abstract_subject",
+          "kernel": "subject"
+        },
+        {
+          "abstract": "abstract_source",
+          "kernel": "source"
+        },
+        {
+          "abstract": "abstract_destination",
+          "kernel": "destination"
+        },
+        {
+          "abstract": "abstract_custodian",
+          "kernel": "custodian"
+        },
+        {
+          "abstract": "abstract_amount",
+          "kernel": "amount"
+        },
+        {
+          "abstract": "abstract_prior_amount",
+          "kernel": "priorAmount"
+        },
+        {
+          "abstract": "abstract_prior_flag",
+          "kernel": "priorFlag"
+        },
+        {
+          "abstract": "abstract_case",
+          "kernel": "caseId"
+        },
+        {
+          "abstract": "abstract_authority_ref",
+          "kernel": "authorityRef"
+        },
+        {
+          "abstract": "abstract_authority_epoch",
+          "kernel": "authorityEpoch"
+        },
+        {
+          "abstract": "abstract_dependency_epoch",
+          "kernel": "dependencyEpoch"
+        },
+        {
+          "abstract": "abstract_command_hash",
+          "kernel": "commandHash"
+        },
+        {
+          "abstract": "abstract_evidence_hash",
+          "kernel": "evidenceHash"
+        },
+        {
+          "abstract": "abstract_receipt_hash",
+          "kernel": "receiptHash"
+        }
+      ]
+    },
+    {
+      "abstract": "compositional_case",
+      "kernelStruct": "CaseRecord",
+      "fields": [
+        {
+          "abstract": "case_phase",
+          "kernel": "phase"
+        },
+        {
+          "abstract": "case_family",
+          "kernel": "family"
+        },
+        {
+          "abstract": "case_head",
+          "kernel": "headActionId"
+        },
+        {
+          "abstract": "case_generation",
+          "kernel": "generation"
+        }
+      ]
+    }
+  ],
+  "receipt": {
+    "fields": [
+      {
+        "abiField": "receiptKind",
+        "abstract": "compositional_receipt_kind"
+      },
+      {
+        "abiField": "commandId",
+        "abstract": "compositional_command_id"
+      },
+      {
+        "abiField": "commandKind",
+        "abstract": "compositional_command_kind"
+      },
+      {
+        "abiField": "parentCommandId",
+        "abstract": "compositional_parent_command_id"
+      },
+      {
+        "abiField": "subject",
+        "abstract": "compositional_subject"
+      },
+      {
+        "abiField": "source",
+        "abstract": "compositional_source"
+      },
+      {
+        "abiField": "destination",
+        "abstract": "compositional_destination"
+      },
+      {
+        "abiField": "amount",
+        "abstract": "compositional_amount"
+      },
+      {
+        "abiField": "caseId",
+        "abstract": "compositional_case"
+      },
+      {
+        "abiField": "authorityRef",
+        "abstract": "compositional_authority_ref"
+      },
+      {
+        "abiField": "dependencyRoot",
+        "abstract": "compositional_dependency_root"
+      },
+      {
+        "abiField": "provenanceCommitment",
+        "abstract": "compositional_provenance_commitment"
+      },
+      {
+        "abiField": "assessmentEvidence",
+        "abstract": "compositional_assessment_evidence"
+      },
+      {
+        "abiField": "preState",
+        "abstract": "compositional_pre_observation"
+      },
+      {
+        "abiField": "postState",
+        "abstract": "compositional_post_observation"
+      },
+      {
+        "abiField": "externalCommitment",
+        "abstract": "compositional_external_commitment"
+      },
+      {
+        "abiField": "receiptHash",
+        "abstract": "compositional_receipt_hash"
+      }
+    ],
+    "events": {
+      "RegulatoryActionApplied": [
+        {
+          "input": "actionId",
+          "indexed": true,
+          "receiptField": "commandId"
+        },
+        {
+          "input": "action",
+          "indexed": true,
+          "receiptField": "commandKind"
+        },
+        {
+          "input": "caseId",
+          "indexed": true,
+          "receiptField": "caseId"
+        },
+        {
+          "input": "receiptHash",
+          "indexed": false,
+          "receiptField": "receiptHash"
+        }
+      ],
+      "RegulatoryReversalApplied": [
+        {
+          "input": "reversalId",
+          "indexed": true,
+          "receiptField": "commandId"
+        },
+        {
+          "input": "reversal",
+          "indexed": true,
+          "receiptField": "commandKind"
+        },
+        {
+          "input": "actionId",
+          "indexed": true,
+          "receiptField": "parentCommandId"
+        },
+        {
+          "input": "receiptHash",
+          "indexed": false,
+          "receiptField": "receiptHash"
+        }
+      ]
+    },
+    "hashPreimage": "the domain word followed by receipt fields 1 to 16 in kernel schema order"
+  },
+  "storageWithoutAbstractField": {
+    "TrustToken": [
+      {
+        "label": "name",
+        "slot": 0,
+        "offset": 0,
+        "type": "string",
+        "reflection": "ERC-20 surface; allowances are in the abstract state but are not regulatory conditions",
+        "status": "RUNTIME_ONLY_BY_EARLIER_CLOSURE"
+      },
+      {
+        "label": "symbol",
+        "slot": 1,
+        "offset": 0,
+        "type": "string",
+        "reflection": "ERC-20 surface; allowances are in the abstract state but are not regulatory conditions",
+        "status": "RUNTIME_ONLY_BY_EARLIER_CLOSURE"
+      },
+      {
+        "label": "_usedGovernanceIds",
+        "slot": 12,
+        "offset": 0,
+        "type": "mapping(bytes32 => bool)",
+        "reflection": "endpoint operational guard for the out-of-band configureAuthority and rebindDependency calls; the abstract model treats rotation and rebind as atomic administrative transitions (rotate_authority, rebind_dependency)",
+        "status": "RUNTIME_ONLY_BY_EARLIER_CLOSURE"
+      },
+      {
+        "label": "_pendingCommitments",
+        "slot": 19,
+        "offset": 0,
+        "type": "mapping(bytes32 => struct TrustNativeTypes.PendingCommitments)",
+        "reflection": null,
+        "status": "OPEN"
+      },
+      {
+        "label": "_pendingReversals",
+        "slot": 20,
+        "offset": 0,
+        "type": "mapping(bytes32 => struct TrustNativeTypes.PendingReversal)",
+        "reflection": null,
+        "status": "OPEN"
+      },
+      {
+        "label": "_routeTicket",
+        "slot": 24,
+        "offset": 0,
+        "type": "struct TrustNativeTypes.RouteTicket",
+        "reflection": "carried by NAT-ROUTE-01; the abstract model has one typed entrypoint per command and no raw ERC-7943 route",
+        "status": "RUNTIME_ONLY_BY_EARLIER_CLOSURE"
+      },
+      {
+        "label": "_entered",
+        "slot": 28,
+        "offset": 0,
+        "type": "uint256",
+        "reflection": "the abstract transition system is sequential; the guard makes the runtime sequential",
+        "status": "RUNTIME_ONLY_BY_EARLIER_CLOSURE"
+      }
+    ],
+    "ERC3643TrustAdapter": [
+      {
+        "label": "_entered",
+        "slot": 0,
+        "offset": 0,
+        "type": "uint256",
+        "reflection": "the abstract transition system is sequential; the guard makes the runtime sequential",
+        "status": "RUNTIME_ONLY_BY_EARLIER_CLOSURE"
+      },
+      {
+        "label": "_sealed",
+        "slot": 1,
+        "offset": 0,
+        "type": "bool",
+        "reflection": "carried by ADP-SEAL-01 and GOV-SEAL-01; the abstract onboarding theory starts from the sealed state",
+        "status": "RUNTIME_ONLY_BY_EARLIER_CLOSURE"
+      },
+      {
+        "label": "_sealedBinding",
+        "slot": 2,
+        "offset": 0,
+        "type": "bytes32",
+        "reflection": "carried by ADP-SEAL-01 and GOV-SEAL-01; the abstract onboarding theory starts from the sealed state",
+        "status": "RUNTIME_ONLY_BY_EARLIER_CLOSURE"
+      },
+      {
+        "label": "_importManifestHash",
+        "slot": 3,
+        "offset": 0,
+        "type": "bytes32",
+        "reflection": "carried by ADP-SEAL-01 and GOV-SEAL-01; the abstract onboarding theory starts from the sealed state",
+        "status": "RUNTIME_ONLY_BY_EARLIER_CLOSURE"
+      }
+    ],
+    "ProfileGovernor": [
+      {
+        "label": "exclusiveAdapter",
+        "slot": 0,
+        "offset": 0,
+        "type": "address",
+        "reflection": null,
+        "status": "OPEN"
+      },
+      {
+        "label": "sealedBinding",
+        "slot": 1,
+        "offset": 0,
+        "type": "bytes32",
+        "reflection": null,
+        "status": "OPEN"
+      },
+      {
+        "label": "importManifestHash",
+        "slot": 2,
+        "offset": 0,
+        "type": "bytes32",
+        "reflection": null,
+        "status": "OPEN"
+      },
+      {
+        "label": "topologySealed",
+        "slot": 3,
+        "offset": 0,
+        "type": "bool",
+        "reflection": null,
+        "status": "OPEN"
+      }
+    ],
+    "ERC3643HookAdapter": [
+      {
+        "label": "_entered",
+        "slot": 0,
+        "offset": 0,
+        "type": "uint256",
+        "reflection": "the abstract transition system is sequential; the guard makes the runtime sequential",
+        "status": "RUNTIME_ONLY_BY_EARLIER_CLOSURE"
+      },
+      {
+        "label": "_sealed",
+        "slot": 1,
+        "offset": 0,
+        "type": "bool",
+        "reflection": "carried by ADP-SEAL-01 and GOV-SEAL-01; the abstract onboarding theory starts from the sealed state",
+        "status": "RUNTIME_ONLY_BY_EARLIER_CLOSURE"
+      },
+      {
+        "label": "_sealedBinding",
+        "slot": 2,
+        "offset": 0,
+        "type": "bytes32",
+        "reflection": "carried by ADP-SEAL-01 and GOV-SEAL-01; the abstract onboarding theory starts from the sealed state",
+        "status": "RUNTIME_ONLY_BY_EARLIER_CLOSURE"
+      },
+      {
+        "label": "_importManifestHash",
+        "slot": 3,
+        "offset": 0,
+        "type": "bytes32",
+        "reflection": "carried by ADP-SEAL-01 and GOV-SEAL-01; the abstract onboarding theory starts from the sealed state",
+        "status": "RUNTIME_ONLY_BY_EARLIER_CLOSURE"
+      }
+    ],
+    "ERC3643HookGovernor": [
+      {
+        "label": "exclusiveAdapter",
+        "slot": 0,
+        "offset": 0,
+        "type": "address",
+        "reflection": null,
+        "status": "OPEN"
+      },
+      {
+        "label": "sealedBinding",
+        "slot": 1,
+        "offset": 0,
+        "type": "bytes32",
+        "reflection": null,
+        "status": "OPEN"
+      },
+      {
+        "label": "importManifestHash",
+        "slot": 2,
+        "offset": 0,
+        "type": "bytes32",
+        "reflection": null,
+        "status": "OPEN"
+      },
+      {
+        "label": "topologySealed",
+        "slot": 3,
+        "offset": 0,
+        "type": "bool",
+        "reflection": null,
+        "status": "OPEN"
+      }
+    ],
+    "ERC3643HookCompliance": [
+      {
+        "label": "endpoint",
+        "slot": 0,
+        "offset": 0,
+        "type": "address",
+        "reflection": null,
+        "status": "OPEN"
+      },
+      {
+        "label": "bound",
+        "slot": 0,
+        "offset": 20,
+        "type": "bool",
+        "reflection": null,
+        "status": "OPEN"
+      }
+    ],
+    "ERC3643HookFactory": []
+  },
+  "counts": {
+    "stateFields": 19,
+    "hookColumnsDerived": 15,
+    "openStorage": 12
+  },
+  "openItems": [
+    "The formal model reads storage through runtime manifest projections that are locale parameters; no formal rule reads a slot or a mapping key into an abstract field, and no per-profile manifest instance exists. This crosswalk is input to such a reader, not a proof of it.",
+    "Hook columns are derived by storage layout identity with the Partial runtimes and are not reviewed.",
+    "The representation of absent values is not fixed by the model for custody records, for authorities outside the profile reference and for bindings a profile does not store.",
+    "Enum cardinalities differ where the implementation encodes absence as a NONE member: the receipt kind has two abstract and three concrete values, the record lifecycle three and four.",
+    "The model pairs values injectively where the implementation hashes them, for the settlement pair commitment and the import identifiers.",
+    "Profile binding configuration, schema and epoch are not storage fields; they come from the sealed binding and from constants.",
+    "The applied frozen amount of the owned state has no abstract field.",
+    "The upstream token storage of the Hook profile is outside these layouts.",
+    "The kernel schema describes the verified-full profile as reported by no current implementation, while the Hook adapter reports that profile identifier and kind."
+  ],
+  "nonclaim": "Preparation only. This document describes inputs, checks and acceptance criteria for conditions that remain open. It does not discharge a runtime-link cell, the malformed branch, the acceptance partition, the central refinement closure or the independent Assurance, and it does not authorize a merge, a release or a deployment."
+}
