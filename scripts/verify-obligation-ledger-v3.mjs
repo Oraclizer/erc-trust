@@ -22,6 +22,9 @@
 // Usage:
 //   node scripts/verify-obligation-ledger-v3.mjs            verify; fail on drift of the rendered artifacts
 //   node scripts/verify-obligation-ledger-v3.mjs --write    verify and rewrite the rendered artifacts
+//   node scripts/verify-obligation-ledger-v3.mjs --write-theory-only
+//     rewrite only the generated Isabelle ledger after a bridge-schema change,
+//     before replaying the proof receipt that imports that theory
 //
 // A row whose status is CURRENT-MANDATORY fails the check: the ledger is only
 // acceptable when no unresolved row is required for the current claim. A row
@@ -36,9 +39,12 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-verifyTrust12EvidenceReuse(root); // Always check the complete inventory, even without a mutation receipt.
-const trust12Required = verifyTrust12Required(root);
-const writeMode = process.argv.includes("--write");
+const theoryOnly = process.argv.includes("--write-theory-only");
+if (!theoryOnly) verifyTrust12EvidenceReuse(root); // The theory bootstrap precedes the new proof receipt.
+const trust12Required = theoryOnly
+  ? { status: "THEORY_ONLY_BOOTSTRAP_NONCLAIM" }
+  : verifyTrust12Required(root);
+const writeMode = process.argv.includes("--write") || theoryOnly;
 const paths = {
   ledger: "evidence/end-to-end-refinement/obligation-ledger-v3.json",
   bridgeSchema: "evidence/end-to-end-refinement/runtime-bridge-v2/schema.json",
@@ -527,7 +533,9 @@ const closure = {
 
 summary.closureRecord = { path: paths.closure, sha256: sha256(Buffer.from(text(closure), "utf8")) };
 
-const rendered = [
+const rendered = theoryOnly ? [
+  { path: paths.theory, content: theory },
+] : [
   { path: paths.theory, content: theory },
   { path: paths.summary, content: text(summary) },
   { path: paths.closure, content: text(closure) },
@@ -546,7 +554,8 @@ if (failures.length) {
   process.exit(1);
 }
 console.log(JSON.stringify({
-  status: counts.closedPendingReceipt === 0 ? "PASS" : "PASS_PENDING_RECEIPTS",
+  status: theoryOnly ? "PASS_THEORY_ONLY_BOOTSTRAP_NONCLAIM"
+    : counts.closedPendingReceipt === 0 ? "PASS" : "PASS_PENDING_RECEIPTS",
   rows: counts,
   claim: ledger.claimLadder.current,
   closure: ledger.closure.status,

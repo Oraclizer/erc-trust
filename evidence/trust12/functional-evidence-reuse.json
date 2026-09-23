@@ -1,5 +1,5 @@
 {
-  "inputRootSha256": "7f5104e0adbbefb9cb01f48294d72017dc2529f8fb68b38b4cbb56621398bd91",
+  "inputRootSha256": "8d228ae9224b34e8e05eddc308d5ce77f0595ef0e02bc408fff31d1b5df467e2",
   "inputs": [
     {
       "path": "evidence/trust12/independent-audit.md",
@@ -31,7 +31,7 @@
     },
     {
       "path": "evidence/trust12/runtime-identity.json",
-      "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
+      "sha256": "7b2251faffe33990edf9326b7a6883d75e9402c36f5a25e4e28cb29075f0a348"
     },
     {
       "path": "foundry.toml",
@@ -123,7 +123,7 @@
     },
     {
       "path": "scripts/check-trust12-runtime-identity.py",
-      "sha256": "51d7ce72acb1f07f379dfbb980cbf7230e670ea74ab622fd88b38e9110009839"
+      "sha256": "37662cbea362f33abe4d3b0d1dfccb0453f45952c601aa292a588e79872d2efd"
     },
     {
       "path": "scripts/prepare-trex-integration.py",

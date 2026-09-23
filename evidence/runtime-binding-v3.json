@@ -1,7 +1,7 @@
 {
   "bridge": {
     "path": "evidence/end-to-end-refinement/runtime-bridge-v2/schema.json",
-    "sha256": "86d15a9dc6bff41fe6a5c082f3991e0156010497ea74e3ceb6c86093defcf5fa"
+    "sha256": "0dbf8a8aeac69f52d181c6d6216dce92d20a47623afba94bcc6b5d28b1f0f347"
   },
   "bundles": [
     {
@@ -110,7 +110,7 @@
   "hookIdentity": {
     "claim": "Hook semantic identity is bound to its own development receipt; no legacy HOL bridge or proof credit is transferred.",
     "path": "evidence/trust12/runtime-identity.json",
-    "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
+    "sha256": "7b2251faffe33990edf9326b7a6883d75e9402c36f5a25e4e28cb29075f0a348"
   },
   "kind": "ERC_TRUST_RUNTIME_BINDING_V3",
   "layers": {
