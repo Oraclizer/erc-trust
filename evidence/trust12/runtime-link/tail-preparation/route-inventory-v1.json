@@ -1,0 +1,1357 @@
+{
+  "schema": "trust12-tail-preparation-route-inventory-v1",
+  "status": "PREPARED_NOT_CLOSED",
+  "sources": [
+    {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy",
+      "bytes": 16170,
+      "sha256": "0146d61bf4fdb0808805db475eb63c434c950496262f84d05fdf48e2860f17ad"
+    },
+    {
+      "path": "evidence/trust12/runtime-link/tail-preparation/malformed-inputs-v1.json",
+      "bytes": 131795,
+      "sha256": "ab19717e4e5bf0c740e3cab39b25cd23d28fac1fe25cfb2dbf399ec9242f088a"
+    },
+    {
+      "path": "evidence/runtime-binding-v3/native/bridge-artifacts.json",
+      "bytes": 93409,
+      "sha256": "e5ad6c4e54e66f2be7928a9ceb7667b1b0dc0de0ed6f4a29458db9685277847b"
+    },
+    {
+      "path": "evidence/runtime-binding-v3/erc3643-partial/bridge-artifacts.json",
+      "bytes": 79050,
+      "sha256": "b25af3abcfdc219ee223526d711aa6f6c0514004da9f131149e29d950725c0d7"
+    },
+    {
+      "path": "evidence/runtime-binding-v3/erc3643-hook/bridge-artifacts.json",
+      "bytes": 89975,
+      "sha256": "99362fa5bdebbb6534aea01fbb43d2fbe95f1642dbec7a3af99b2f395040d01e"
+    }
+  ],
+  "dispositions": {
+    "IN_RUNTIME_LINK_DOMAIN": "typed command entrypoint; its executions are the domain of the cells and of the malformed branch",
+    "OUTSIDE_NON_MUTATING": "view or pure function; the compiler forbids state changes in it (compiler correctness stays a trusted assumption)",
+    "OUTSIDE_REQUIRES_DISPOSITION": "state-changing entrypoint outside the typed commands; the central closure must justify or model it",
+    "UNCLASSIFIED": "state-changing entrypoint without a normative route class"
+  },
+  "unmatchedSelectors": "A selector outside a runtime's list reaches no function: none of the seven runtimes declares a receive or fallback function, so the compiler dispatcher reverts it with an empty payload. The malformed probe measures this path on the three endpoints with the generic dispatcher input selector.",
+  "runtimes": [
+    {
+      "profile": "Native",
+      "contract": "TrustToken",
+      "routes": [
+        {
+          "signature": "supportsInterface(bytes4)",
+          "selector": "0x01ffc9a7",
+          "decimal": 33540519,
+          "stateMutability": "pure",
+          "routeClass": "Route_Kernel_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "name()",
+          "selector": "0x06fdde03",
+          "decimal": 117300739,
+          "stateMutability": "view",
+          "routeClass": "Route_ERC20_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "approve(address,uint256)",
+          "selector": "0x095ea7b3",
+          "decimal": 157198259,
+          "stateMutability": "nonpayable",
+          "routeClass": "Route_ERC20_Mutator",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_REQUIRES_DISPOSITION",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "governor()",
+          "selector": "0x0c340a24",
+          "decimal": 204737060,
+          "stateMutability": "view",
+          "routeClass": "Route_Immutable_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "getFrozenTokens(address)",
+          "selector": "0x158b1a57",
+          "decimal": 361437783,
+          "stateMutability": "view",
+          "routeClass": "Route_ERC7943_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "totalSupply()",
+          "selector": "0x18160ddd",
+          "decimal": 404098525,
+          "stateMutability": "view",
+          "routeClass": "Route_ERC20_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "receipt(bytes32)",
+          "selector": "0x198a27aa",
+          "decimal": 428484522,
+          "stateMutability": "view",
+          "routeClass": "Route_Kernel_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "executeERC7943Reversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "selector": "0x1c711a94",
+          "decimal": 477174420,
+          "stateMutability": "nonpayable",
+          "routeClass": "Route_Native_Exact_Use",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "IN_RUNTIME_LINK_DOMAIN",
+          "inRuntimeLinkDomainIfAccepted": true
+        },
+        {
+          "signature": "transferFrom(address,address,uint256)",
+          "selector": "0x23b872dd",
+          "decimal": 599290589,
+          "stateMutability": "nonpayable",
+          "routeClass": "Route_ERC20_Mutator",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_REQUIRES_DISPOSITION",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "caseRecord(bytes32)",
+          "selector": "0x2a408631",
+          "decimal": 708871729,
+          "stateMutability": "view",
+          "routeClass": "Route_Kernel_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "executeRegulatoryReversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "selector": "0x2b892e8f",
+          "decimal": 730410639,
+          "stateMutability": "nonpayable",
+          "routeClass": "Route_Kernel_Command",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "IN_RUNTIME_LINK_DOMAIN",
+          "inRuntimeLinkDomainIfAccepted": true
+        },
+        {
+          "signature": "canSend(address)",
+          "selector": "0x2bc06a92",
+          "decimal": 734030482,
+          "stateMutability": "view",
+          "routeClass": "Route_ERC7943_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "executeRegulatoryAction((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "selector": "0x2f4e0773",
+          "decimal": 793642867,
+          "stateMutability": "nonpayable",
+          "routeClass": "Route_Kernel_Command",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "IN_RUNTIME_LINK_DOMAIN",
+          "inRuntimeLinkDomainIfAccepted": true
+        },
+        {
+          "signature": "decimals()",
+          "selector": "0x313ce567",
+          "decimal": 826074471,
+          "stateMutability": "view",
+          "routeClass": "Route_ERC20_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "actionRecord(bytes32)",
+          "selector": "0x330fcfde",
+          "decimal": 856674270,
+          "stateMutability": "view",
+          "routeClass": "Route_Kernel_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "executeERC7943Action((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "selector": "0x40a9c893",
+          "decimal": 1084868755,
+          "stateMutability": "nonpayable",
+          "routeClass": "Route_Native_Exact_Use",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "IN_RUNTIME_LINK_DOMAIN",
+          "inRuntimeLinkDomainIfAccepted": true
+        },
+        {
+          "signature": "trustProfile()",
+          "selector": "0x5ba37779",
+          "decimal": 1537439609,
+          "stateMutability": "view",
+          "routeClass": "Route_Kernel_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "balanceOf(address)",
+          "selector": "0x70a08231",
+          "decimal": 1889567281,
+          "stateMutability": "view",
+          "routeClass": "Route_ERC20_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "dependencyState()",
+          "selector": "0x7bf8f8b6",
+          "decimal": 2079914166,
+          "stateMutability": "view",
+          "routeClass": "Route_Kernel_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "canReceive(address)",
+          "selector": "0x90d370ba",
+          "decimal": 2429776058,
+          "stateMutability": "view",
+          "routeClass": "Route_ERC7943_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "symbol()",
+          "selector": "0x95d89b41",
+          "decimal": 2514000705,
+          "stateMutability": "view",
+          "routeClass": "Route_ERC20_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "forcedTransfer(address,address,uint256)",
+          "selector": "0x9fc1d0e7",
+          "decimal": 2680279271,
+          "stateMutability": "nonpayable",
+          "routeClass": "Route_ERC7943_Sensitive",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_REQUIRES_DISPOSITION",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "configureAuthority(bytes32,address,bool,bytes32,uint256)",
+          "selector": "0xa4fc4aad",
+          "decimal": 2767997613,
+          "stateMutability": "nonpayable",
+          "routeClass": "Route_Governance",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_REQUIRES_DISPOSITION",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "transfer(address,uint256)",
+          "selector": "0xa9059cbb",
+          "decimal": 2835717307,
+          "stateMutability": "nonpayable",
+          "routeClass": "Route_ERC20_Mutator",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_REQUIRES_DISPOSITION",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "allowance(address,address)",
+          "selector": "0xdd62ed3e",
+          "decimal": 3714247998,
+          "stateMutability": "view",
+          "routeClass": "Route_ERC20_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "canTransfer(address,address,uint256)",
+          "selector": "0xe46638e6",
+          "decimal": 3831904486,
+          "stateMutability": "view",
+          "routeClass": "Route_ERC7943_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "setFrozenTokens(address,uint256)",
+          "selector": "0xebe45cba",
+          "decimal": 3957611706,
+          "stateMutability": "nonpayable",
+          "routeClass": "Route_ERC7943_Sensitive",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_REQUIRES_DISPOSITION",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "deriveReversalId((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "selector": "0xf3315a6c",
+          "decimal": 4080097900,
+          "stateMutability": "view",
+          "routeClass": "Route_Kernel_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "rebindDependency(uint8,address,bytes32,bytes32,uint256)",
+          "selector": "0xf60d7b6f",
+          "decimal": 4128078703,
+          "stateMutability": "nonpayable",
+          "routeClass": "Route_Governance",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_REQUIRES_DISPOSITION",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "deriveActionId((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "selector": "0xfc6a9112",
+          "decimal": 4234842386,
+          "stateMutability": "view",
+          "routeClass": "Route_Kernel_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        }
+      ],
+      "summary": {
+        "selectors": 30,
+        "inRuntimeLinkDomain": 4,
+        "outsideNonMutating": 19,
+        "outsideRequiresDisposition": 7,
+        "unclassified": 0
+      }
+    },
+    {
+      "profile": "Partial",
+      "contract": "ERC3643TrustAdapter",
+      "routes": [
+        {
+          "signature": "supportsInterface(bytes4)",
+          "selector": "0x01ffc9a7",
+          "decimal": 33540519,
+          "stateMutability": "pure",
+          "routeClass": "Route_Kernel_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "profileGovernor()",
+          "selector": "0x164068a4",
+          "decimal": 373319844,
+          "stateMutability": "view",
+          "routeClass": "Route_Immutable_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "receipt(bytes32)",
+          "selector": "0x198a27aa",
+          "decimal": 428484522,
+          "stateMutability": "view",
+          "routeClass": "Route_Kernel_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "resynchroniseFrozen(address)",
+          "selector": "0x24933056",
+          "decimal": 613625942,
+          "stateMutability": "nonpayable",
+          "routeClass": "Route_Profile_Command",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_REQUIRES_DISPOSITION",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "caseRecord(bytes32)",
+          "selector": "0x2a408631",
+          "decimal": 708871729,
+          "stateMutability": "view",
+          "routeClass": "Route_Kernel_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "executeRegulatoryReversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "selector": "0x2b892e8f",
+          "decimal": 730410639,
+          "stateMutability": "nonpayable",
+          "routeClass": "Route_Kernel_Command",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "IN_RUNTIME_LINK_DOMAIN",
+          "inRuntimeLinkDomainIfAccepted": true
+        },
+        {
+          "signature": "sealedTopologyLive()",
+          "selector": "0x2ca444f1",
+          "decimal": 748963057,
+          "stateMutability": "view",
+          "routeClass": "Route_Profile_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "executeRegulatoryAction((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "selector": "0x2f4e0773",
+          "decimal": 793642867,
+          "stateMutability": "nonpayable",
+          "routeClass": "Route_Kernel_Command",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "IN_RUNTIME_LINK_DOMAIN",
+          "inRuntimeLinkDomainIfAccepted": true
+        },
+        {
+          "signature": "actionRecord(bytes32)",
+          "selector": "0x330fcfde",
+          "decimal": 856674270,
+          "stateMutability": "view",
+          "routeClass": "Route_Kernel_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "trustProfile()",
+          "selector": "0x5ba37779",
+          "decimal": 1537439609,
+          "stateMutability": "view",
+          "routeClass": "Route_Kernel_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "dependencyState()",
+          "selector": "0x7bf8f8b6",
+          "decimal": 2079914166,
+          "stateMutability": "view",
+          "routeClass": "Route_Kernel_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "activateSeal((address,uint256,bool)[])",
+          "selector": "0x8efb3179",
+          "decimal": 2398826873,
+          "stateMutability": "nonpayable",
+          "routeClass": "Route_Seal_Command",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_REQUIRES_DISPOSITION",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "ownedState(address)",
+          "selector": "0x963f57d1",
+          "decimal": 2520733649,
+          "stateMutability": "view",
+          "routeClass": "Route_Profile_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "authority()",
+          "selector": "0xbf7e214f",
+          "decimal": 3212714319,
+          "stateMutability": "view",
+          "routeClass": "Route_Immutable_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "authorityRef()",
+          "selector": "0xf161af61",
+          "decimal": 4049710945,
+          "stateMutability": "view",
+          "routeClass": "Route_Immutable_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "deriveReversalId((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "selector": "0xf3315a6c",
+          "decimal": 4080097900,
+          "stateMutability": "view",
+          "routeClass": "Route_Kernel_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "token()",
+          "selector": "0xfc0c546a",
+          "decimal": 4228666474,
+          "stateMutability": "view",
+          "routeClass": "Route_Immutable_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "deriveActionId((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "selector": "0xfc6a9112",
+          "decimal": 4234842386,
+          "stateMutability": "view",
+          "routeClass": "Route_Kernel_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        }
+      ],
+      "summary": {
+        "selectors": 18,
+        "inRuntimeLinkDomain": 2,
+        "outsideNonMutating": 14,
+        "outsideRequiresDisposition": 2,
+        "unclassified": 0
+      }
+    },
+    {
+      "profile": "Partial",
+      "contract": "ProfileGovernor",
+      "routes": [
+        {
+          "signature": "importManifestHash()",
+          "selector": "0x0ed81c40",
+          "decimal": 249044032,
+          "stateMutability": "view",
+          "routeClass": "Route_Seal_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "identityRegistry()",
+          "selector": "0x134e18f4",
+          "decimal": 323885300,
+          "stateMutability": "view",
+          "routeClass": "Route_Immutable_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "sealedTopologyLive(address)",
+          "selector": "0x155917d8",
+          "decimal": 358160344,
+          "stateMutability": "view",
+          "routeClass": "Route_Seal_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "compliance()",
+          "selector": "0x6290865d",
+          "decimal": 1653638749,
+          "stateMutability": "view",
+          "routeClass": "Route_Immutable_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "topologySealed()",
+          "selector": "0x7f3bffea",
+          "decimal": 2134638570,
+          "stateMutability": "view",
+          "routeClass": "Route_Seal_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "seal(address,(address,uint256,bool)[])",
+          "selector": "0x82c8fd1f",
+          "decimal": 2194210079,
+          "stateMutability": "nonpayable",
+          "routeClass": "Route_Seal_Command",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_REQUIRES_DISPOSITION",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "manifestHashOf((address,uint256,bool)[])",
+          "selector": "0xb2e56d9e",
+          "decimal": 3001380254,
+          "stateMutability": "view",
+          "routeClass": "Route_Seal_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "expectedTokenCodeId()",
+          "selector": "0xb534e5ab",
+          "decimal": 3040142763,
+          "stateMutability": "view",
+          "routeClass": "Route_Immutable_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "sealedBinding()",
+          "selector": "0xb98705b4",
+          "decimal": 3112633780,
+          "stateMutability": "view",
+          "routeClass": "Route_Seal_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "bootstrapAuthority()",
+          "selector": "0xce29a7f9",
+          "decimal": 3458836473,
+          "stateMutability": "view",
+          "routeClass": "Route_Immutable_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "exclusiveAdapter()",
+          "selector": "0xf877bff3",
+          "decimal": 4168597491,
+          "stateMutability": "view",
+          "routeClass": "Route_Seal_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "token()",
+          "selector": "0xfc0c546a",
+          "decimal": 4228666474,
+          "stateMutability": "view",
+          "routeClass": "Route_Immutable_View",
+          "proposedClass": null,
+          "basis": "formal runtime bridge route table",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        }
+      ],
+      "summary": {
+        "selectors": 12,
+        "inRuntimeLinkDomain": 0,
+        "outsideNonMutating": 11,
+        "outsideRequiresDisposition": 1,
+        "unclassified": 0
+      }
+    },
+    {
+      "profile": "Hook",
+      "contract": "ERC3643HookAdapter",
+      "routes": [
+        {
+          "signature": "supportsInterface(bytes4)",
+          "selector": "0x01ffc9a7",
+          "decimal": 33540519,
+          "stateMutability": "pure",
+          "routeClass": null,
+          "proposedClass": "Route_Kernel_View",
+          "basis": "proposed from the identical selector of ERC3643TrustAdapter; not reviewed",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "profileGovernor()",
+          "selector": "0x164068a4",
+          "decimal": 373319844,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": "Route_Immutable_View",
+          "basis": "proposed from the identical selector of ERC3643TrustAdapter; not reviewed",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "receipt(bytes32)",
+          "selector": "0x198a27aa",
+          "decimal": 428484522,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": "Route_Kernel_View",
+          "basis": "proposed from the identical selector of ERC3643TrustAdapter; not reviewed",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "resynchroniseFrozen(address)",
+          "selector": "0x24933056",
+          "decimal": 613625942,
+          "stateMutability": "nonpayable",
+          "routeClass": null,
+          "proposedClass": "Route_Profile_Command",
+          "basis": "proposed from the identical selector of ERC3643TrustAdapter; not reviewed",
+          "disposition": "UNCLASSIFIED",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "caseRecord(bytes32)",
+          "selector": "0x2a408631",
+          "decimal": 708871729,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": "Route_Kernel_View",
+          "basis": "proposed from the identical selector of ERC3643TrustAdapter; not reviewed",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "executeRegulatoryReversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "selector": "0x2b892e8f",
+          "decimal": 730410639,
+          "stateMutability": "nonpayable",
+          "routeClass": null,
+          "proposedClass": "Route_Kernel_Command",
+          "basis": "proposed from the identical selector of ERC3643TrustAdapter; not reviewed",
+          "disposition": "UNCLASSIFIED",
+          "inRuntimeLinkDomainIfAccepted": true
+        },
+        {
+          "signature": "sealedTopologyLive()",
+          "selector": "0x2ca444f1",
+          "decimal": 748963057,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": "Route_Profile_View",
+          "basis": "proposed from the identical selector of ERC3643TrustAdapter; not reviewed",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "executeRegulatoryAction((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "selector": "0x2f4e0773",
+          "decimal": 793642867,
+          "stateMutability": "nonpayable",
+          "routeClass": null,
+          "proposedClass": "Route_Kernel_Command",
+          "basis": "proposed from the identical selector of ERC3643TrustAdapter; not reviewed",
+          "disposition": "UNCLASSIFIED",
+          "inRuntimeLinkDomainIfAccepted": true
+        },
+        {
+          "signature": "actionRecord(bytes32)",
+          "selector": "0x330fcfde",
+          "decimal": 856674270,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": "Route_Kernel_View",
+          "basis": "proposed from the identical selector of ERC3643TrustAdapter; not reviewed",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "trustProfile()",
+          "selector": "0x5ba37779",
+          "decimal": 1537439609,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": "Route_Kernel_View",
+          "basis": "proposed from the identical selector of ERC3643TrustAdapter; not reviewed",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "dependencyState()",
+          "selector": "0x7bf8f8b6",
+          "decimal": 2079914166,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": "Route_Kernel_View",
+          "basis": "proposed from the identical selector of ERC3643TrustAdapter; not reviewed",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "activateSeal((address,uint256,bool)[])",
+          "selector": "0x8efb3179",
+          "decimal": 2398826873,
+          "stateMutability": "nonpayable",
+          "routeClass": null,
+          "proposedClass": "Route_Seal_Command",
+          "basis": "proposed from the identical selector of ERC3643TrustAdapter; not reviewed",
+          "disposition": "UNCLASSIFIED",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "ownedState(address)",
+          "selector": "0x963f57d1",
+          "decimal": 2520733649,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": "Route_Profile_View",
+          "basis": "proposed from the identical selector of ERC3643TrustAdapter; not reviewed",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "onTokenBalanceChanged(address,address)",
+          "selector": "0x9cbfdbf8",
+          "decimal": 2629819384,
+          "stateMutability": "nonpayable",
+          "routeClass": null,
+          "proposedClass": null,
+          "basis": "no normative route class",
+          "disposition": "UNCLASSIFIED",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "authority()",
+          "selector": "0xbf7e214f",
+          "decimal": 3212714319,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": "Route_Immutable_View",
+          "basis": "proposed from the identical selector of ERC3643TrustAdapter; not reviewed",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "authorityRef()",
+          "selector": "0xf161af61",
+          "decimal": 4049710945,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": "Route_Immutable_View",
+          "basis": "proposed from the identical selector of ERC3643TrustAdapter; not reviewed",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "deriveReversalId((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "selector": "0xf3315a6c",
+          "decimal": 4080097900,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": "Route_Kernel_View",
+          "basis": "proposed from the identical selector of ERC3643TrustAdapter; not reviewed",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "token()",
+          "selector": "0xfc0c546a",
+          "decimal": 4228666474,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": "Route_Immutable_View",
+          "basis": "proposed from the identical selector of ERC3643TrustAdapter; not reviewed",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "deriveActionId((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "selector": "0xfc6a9112",
+          "decimal": 4234842386,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": "Route_Kernel_View",
+          "basis": "proposed from the identical selector of ERC3643TrustAdapter; not reviewed",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        }
+      ],
+      "summary": {
+        "selectors": 19,
+        "inRuntimeLinkDomain": 0,
+        "outsideNonMutating": 14,
+        "outsideRequiresDisposition": 0,
+        "unclassified": 5
+      }
+    },
+    {
+      "profile": "Hook",
+      "contract": "ERC3643HookGovernor",
+      "routes": [
+        {
+          "signature": "importManifestHash()",
+          "selector": "0x0ed81c40",
+          "decimal": 249044032,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": "Route_Seal_View",
+          "basis": "proposed from the identical selector of ProfileGovernor; not reviewed",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "identityRegistry()",
+          "selector": "0x134e18f4",
+          "decimal": 323885300,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": "Route_Immutable_View",
+          "basis": "proposed from the identical selector of ProfileGovernor; not reviewed",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "sealedTopologyLive(address)",
+          "selector": "0x155917d8",
+          "decimal": 358160344,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": "Route_Seal_View",
+          "basis": "proposed from the identical selector of ProfileGovernor; not reviewed",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "compliance()",
+          "selector": "0x6290865d",
+          "decimal": 1653638749,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": "Route_Immutable_View",
+          "basis": "proposed from the identical selector of ProfileGovernor; not reviewed",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "topologySealed()",
+          "selector": "0x7f3bffea",
+          "decimal": 2134638570,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": "Route_Seal_View",
+          "basis": "proposed from the identical selector of ProfileGovernor; not reviewed",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "expectedRegistryCodeId()",
+          "selector": "0x83300190",
+          "decimal": 2200961424,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": null,
+          "basis": "no normative route class",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "expectedComplianceCodeId()",
+          "selector": "0xa35530ba",
+          "decimal": 2740269242,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": null,
+          "basis": "no normative route class",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "sealFresh()",
+          "selector": "0xa941f8f9",
+          "decimal": 2839673081,
+          "stateMutability": "nonpayable",
+          "routeClass": null,
+          "proposedClass": null,
+          "basis": "no normative route class",
+          "disposition": "UNCLASSIFIED",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "expectedTokenCodeId()",
+          "selector": "0xb534e5ab",
+          "decimal": 3040142763,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": "Route_Immutable_View",
+          "basis": "proposed from the identical selector of ProfileGovernor; not reviewed",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "sealedBinding()",
+          "selector": "0xb98705b4",
+          "decimal": 3112633780,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": "Route_Seal_View",
+          "basis": "proposed from the identical selector of ProfileGovernor; not reviewed",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "bootstrapAuthority()",
+          "selector": "0xce29a7f9",
+          "decimal": 3458836473,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": "Route_Immutable_View",
+          "basis": "proposed from the identical selector of ProfileGovernor; not reviewed",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "exclusiveAdapter()",
+          "selector": "0xf877bff3",
+          "decimal": 4168597491,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": "Route_Seal_View",
+          "basis": "proposed from the identical selector of ProfileGovernor; not reviewed",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "token()",
+          "selector": "0xfc0c546a",
+          "decimal": 4228666474,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": "Route_Immutable_View",
+          "basis": "proposed from the identical selector of ProfileGovernor; not reviewed",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        }
+      ],
+      "summary": {
+        "selectors": 13,
+        "inRuntimeLinkDomain": 0,
+        "outsideNonMutating": 12,
+        "outsideRequiresDisposition": 0,
+        "unclassified": 1
+      }
+    },
+    {
+      "profile": "Hook",
+      "contract": "ERC3643HookCompliance",
+      "routes": [
+        {
+          "signature": "activate(address)",
+          "selector": "0x1c5a9d9c",
+          "decimal": 475700636,
+          "stateMutability": "nonpayable",
+          "routeClass": null,
+          "proposedClass": null,
+          "basis": "no normative route class",
+          "disposition": "UNCLASSIFIED",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "bindToken(address)",
+          "selector": "0x3ff5aa02",
+          "decimal": 1073064450,
+          "stateMutability": "nonpayable",
+          "routeClass": null,
+          "proposedClass": null,
+          "basis": "no normative route class",
+          "disposition": "UNCLASSIFIED",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "unbindToken(address)",
+          "selector": "0x40db3b50",
+          "decimal": 1088109392,
+          "stateMutability": "pure",
+          "routeClass": null,
+          "proposedClass": null,
+          "basis": "no normative route class",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "endpoint()",
+          "selector": "0x5e280f11",
+          "decimal": 1579683601,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": null,
+          "basis": "no normative route class",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "created(address,uint256)",
+          "selector": "0x5f8dead3",
+          "decimal": 1603136211,
+          "stateMutability": "nonpayable",
+          "routeClass": null,
+          "proposedClass": null,
+          "basis": "no normative route class",
+          "disposition": "UNCLASSIFIED",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "getTokenBound()",
+          "selector": "0x6a3edf28",
+          "decimal": 1782505256,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": null,
+          "basis": "no normative route class",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "transferred(address,address,uint256)",
+          "selector": "0x8baf29b4",
+          "decimal": 2343512500,
+          "stateMutability": "nonpayable",
+          "routeClass": null,
+          "proposedClass": null,
+          "basis": "no normative route class",
+          "disposition": "UNCLASSIFIED",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "destroyed(address,uint256)",
+          "selector": "0x8d2ea772",
+          "decimal": 2368644978,
+          "stateMutability": "nonpayable",
+          "routeClass": null,
+          "proposedClass": null,
+          "basis": "no normative route class",
+          "disposition": "UNCLASSIFIED",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "isTokenBound(address)",
+          "selector": "0x993e8b95",
+          "decimal": 2571013013,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": null,
+          "basis": "no normative route class",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "bound()",
+          "selector": "0xbe4df7d6",
+          "decimal": 3192780758,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": null,
+          "basis": "no normative route class",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "factory()",
+          "selector": "0xc45a0155",
+          "decimal": 3294232917,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": null,
+          "basis": "no normative route class",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "canTransfer(address,address,uint256)",
+          "selector": "0xe46638e6",
+          "decimal": 3831904486,
+          "stateMutability": "pure",
+          "routeClass": null,
+          "proposedClass": null,
+          "basis": "no normative route class",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "token()",
+          "selector": "0xfc0c546a",
+          "decimal": 4228666474,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": null,
+          "basis": "no normative route class",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        }
+      ],
+      "summary": {
+        "selectors": 13,
+        "inRuntimeLinkDomain": 0,
+        "outsideNonMutating": 8,
+        "outsideRequiresDisposition": 0,
+        "unclassified": 5
+      }
+    },
+    {
+      "profile": "Hook",
+      "contract": "ERC3643HookFactory",
+      "routes": [
+        {
+          "signature": "ADAPTER_CREATION_HASH()",
+          "selector": "0x1f0678e4",
+          "decimal": 520517860,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": null,
+          "basis": "no normative route class",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "deploy(bytes,address,bytes32,address,uint256,address[])",
+          "selector": "0x39c6db74",
+          "decimal": 969333620,
+          "stateMutability": "nonpayable",
+          "routeClass": null,
+          "proposedClass": null,
+          "basis": "no normative route class",
+          "disposition": "UNCLASSIFIED",
+          "inRuntimeLinkDomainIfAccepted": false
+        },
+        {
+          "signature": "tokenCreationSource()",
+          "selector": "0xaf897f60",
+          "decimal": 2945023840,
+          "stateMutability": "view",
+          "routeClass": null,
+          "proposedClass": null,
+          "basis": "no normative route class",
+          "disposition": "OUTSIDE_NON_MUTATING",
+          "inRuntimeLinkDomainIfAccepted": false
+        }
+      ],
+      "summary": {
+        "selectors": 3,
+        "inRuntimeLinkDomain": 0,
+        "outsideNonMutating": 2,
+        "outsideRequiresDisposition": 0,
+        "unclassified": 1
+      }
+    }
+  ],
+  "counts": {
+    "runtimes": 7,
+    "selectors": 108,
+    "unclassifiedStateChanging": 12,
+    "stateChangingOutsideTheTypedCommands": 10
+  },
+  "openItems": [
+    "Hook runtimes have no normative route class. Classes inherited from the legacy Partial runtimes are proposals only, and the Hook-only entrypoints (the balance-change callback of the adapter, the fresh seal of the governor and every entrypoint of the compliance module and the factory) need new classes.",
+    "The pinned upstream ERC-3643 token of the Hook profile is a dependency, not one of these runtimes; its entrypoints are not enumerated here, although the adapter is its only agent.",
+    "Every state-changing entrypoint outside the typed commands needs a disposition in the central closure: ERC-20 and ERC-7943 mutators, governance, seal and profile synchronisation routes."
+  ],
+  "unclassifiedStateChanging": [
+    "ERC3643HookAdapter.resynchroniseFrozen(address)",
+    "ERC3643HookAdapter.executeRegulatoryReversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+    "ERC3643HookAdapter.executeRegulatoryAction((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+    "ERC3643HookAdapter.activateSeal((address,uint256,bool)[])",
+    "ERC3643HookAdapter.onTokenBalanceChanged(address,address)",
+    "ERC3643HookGovernor.sealFresh()",
+    "ERC3643HookCompliance.activate(address)",
+    "ERC3643HookCompliance.bindToken(address)",
+    "ERC3643HookCompliance.created(address,uint256)",
+    "ERC3643HookCompliance.transferred(address,address,uint256)",
+    "ERC3643HookCompliance.destroyed(address,uint256)",
+    "ERC3643HookFactory.deploy(bytes,address,bytes32,address,uint256,address[])"
+  ],
+  "stateChangingOutsideTheTypedCommands": [
+    "TrustToken.approve(address,uint256)",
+    "TrustToken.transferFrom(address,address,uint256)",
+    "TrustToken.forcedTransfer(address,address,uint256)",
+    "TrustToken.configureAuthority(bytes32,address,bool,bytes32,uint256)",
+    "TrustToken.transfer(address,uint256)",
+    "TrustToken.setFrozenTokens(address,uint256)",
+    "TrustToken.rebindDependency(uint8,address,bytes32,bytes32,uint256)",
+    "ERC3643TrustAdapter.resynchroniseFrozen(address)",
+    "ERC3643TrustAdapter.activateSeal((address,uint256,bool)[])",
+    "ProfileGovernor.seal(address,(address,uint256,bool)[])"
+  ],
+  "nonclaim": "Preparation only. This document describes inputs, checks and acceptance criteria for conditions that remain open. It does not discharge a runtime-link cell, the malformed branch, the acceptance partition, the central refinement closure or the independent Assurance, and it does not authorize a merge, a release or a deployment."
+}
