@@ -12,7 +12,7 @@
       "inputs": [
         {
           "path": ".github/workflows/proofs.yml",
-          "sha256": "0eba75fe3a896f8c5215aadae187f431f05dc0b8c0030cc33f813eaf449794f7"
+          "sha256": "1e6f6e62448134e995e15ad61000a1878d6d43e1d527e20ec95ce1029423e643"
         },
         {
           "path": "evidence/public-release/formal-foundation-supersession-v1.json",
@@ -184,11 +184,23 @@
         },
         {
           "path": "scripts/lib/formal-inputs.mjs",
-          "sha256": "8ecc60429a99411c8f588e17796dcf470bdb394e52e30787dca6315e5f49eb15"
+          "sha256": "d7bff305febdb9fc6288c494438e3e3e9e061396aeedf0810fd0d0879e2ba488"
+        },
+        {
+          "path": "scripts/proof-ci.mjs",
+          "sha256": "cc463a7fd0ff8ba6313c2f9a970013dac42bec3ff905f7074a4cafc4896a92b3"
+        },
+        {
+          "path": "scripts/run-proof-ci.sh",
+          "sha256": "74b9240388c75e2683fdbe3d117a473be09e6020bd065ff374964e63adb33acd"
+        },
+        {
+          "path": "scripts/test-proof-ci.mjs",
+          "sha256": "13d832941126334952262d337a096b72fcc72abfe311ea9e4bf95c0e71cc4867"
         }
       ],
       "path": "formal/isabelle",
-      "rootSha256": "415eb600a6627464cd8b29c4dbfd62fdfbf654c03f10e0bae75ec85a9a554823",
+      "rootSha256": "0cd4ca1233facd8ec0b609eb7e6f8db7e690db193e6d098c855ff7947da97487",
       "sessions": [
         "ERC_TRUST",
         "TRUST12_Accounting_Obstruction"
@@ -238,7 +250,7 @@
     "isabelleBuild": {
       "receipt": {
         "path": "evidence/isabelle-results-v3.json",
-        "sha256": "585266b7761dd2c2925910280aa979bc92bd55cf9587e2c5fb4b7e4d165248be"
+        "sha256": "5178a9ec4b5eecab40c28ef25485cfd6d5023b654e91611e76042cabf462ad1f"
       },
       "status": "PASS"
     },
@@ -409,7 +421,7 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "0d750c4d3e4b8738f295e2a701ad97395a51059a6db16879bb911c90b7542c25"
+        "sha256": "a374a235a755b562c9f5b3a130a81106e3f930f1718db3710123f4eacce4fa3f"
       }
     },
     "runtime": {
@@ -495,11 +507,11 @@
         },
         {
           "path": "evidence/trust12/formal-build-replay.json",
-          "sha256": "239e625b38cc3e8bc2623f5650b43e6b21eb1c9d3ea106869fc2ba803ced5349"
+          "sha256": "ffb8dfa22df26344aa59b5361c1df667087d92b6909afe9632f463a3c1d5455f"
         },
         {
           "path": "evidence/trust12/model-results.json",
-          "sha256": "e66264f455dc2104f799a063a60045dcb2b998c1f0548f62defd2011e26170b1"
+          "sha256": "702d4598d64764535bbcffb5780840fd2f24b267f3467f2a29e8f0489733c9bf"
         },
         {
           "path": "evidence/trust12/model-preservation-audit.md",
@@ -563,7 +575,7 @@
         },
         {
           "path": "evidence/trust12/input-seal.json",
-          "sha256": "48efad3802b47b35aaaadb79944a89624d8b24fcd0c0ca267b96dd3777e872ec"
+          "sha256": "5ee19d888f06f65c8eba0e8a7396aa452e59c76cdf066450f5226430827f0362"
         }
       ],
       "fullRefinementComplete": false,
@@ -724,11 +736,11 @@
       },
       {
         "path": "evidence/trust12/formal-build-replay.json",
-        "sha256": "239e625b38cc3e8bc2623f5650b43e6b21eb1c9d3ea106869fc2ba803ced5349"
+        "sha256": "ffb8dfa22df26344aa59b5361c1df667087d92b6909afe9632f463a3c1d5455f"
       },
       {
         "path": "evidence/trust12/model-results.json",
-        "sha256": "e66264f455dc2104f799a063a60045dcb2b998c1f0548f62defd2011e26170b1"
+        "sha256": "702d4598d64764535bbcffb5780840fd2f24b267f3467f2a29e8f0489733c9bf"
       },
       {
         "path": "evidence/trust12/model-preservation-audit.md",
@@ -792,7 +804,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "48efad3802b47b35aaaadb79944a89624d8b24fcd0c0ca267b96dd3777e872ec"
+        "sha256": "5ee19d888f06f65c8eba0e8a7396aa452e59c76cdf066450f5226430827f0362"
       }
     ],
     "fullRefinementComplete": false,

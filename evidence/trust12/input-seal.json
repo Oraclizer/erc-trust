@@ -5,19 +5,19 @@
   "files": [
     {
       "path": ".github/workflows/ci.yml",
-      "sha256": "10a49bf76cf369a8793f897bb7b8b3e74532e28c86c9c564c23d3988e6da8e45"
+      "sha256": "55efc326da0f03cf4aec2664cabdf1edfd6e115fbf8c8eb4f2e63d557c46d178"
     },
     {
       "path": ".github/workflows/proofs.yml",
-      "sha256": "0eba75fe3a896f8c5215aadae187f431f05dc0b8c0030cc33f813eaf449794f7"
+      "sha256": "1e6f6e62448134e995e15ad61000a1878d6d43e1d527e20ec95ce1029423e643"
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "cddbca03c76207c890e7de305c0a7372de237fedb1f5397b32a2b54c9203d9a1"
+      "sha256": "9a6b2be40ddf8ad05851cb3cb97760dde735f4bd1e762ffe72f809b85a0810c3"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
-      "sha256": "ac3dd644dda69976489b70bf103e9b3bb90c4f047b7e6d9c7a10691c24cdd376"
+      "sha256": "c9c520aac7fcb85769b0be943216ff0ad3cb14862d542e0ad84c8dec3c1dd6b4"
     },
     {
       "path": "docs/PROFILES.md",
@@ -57,7 +57,7 @@
     },
     {
       "path": "evidence/trust12/formal-build-replay.json",
-      "sha256": "239e625b38cc3e8bc2623f5650b43e6b21eb1c9d3ea106869fc2ba803ced5349"
+      "sha256": "ffb8dfa22df26344aa59b5361c1df667087d92b6909afe9632f463a3c1d5455f"
     },
     {
       "path": "evidence/trust12/formal-build.json",
@@ -85,7 +85,7 @@
     },
     {
       "path": "evidence/trust12/model-results.json",
-      "sha256": "e66264f455dc2104f799a063a60045dcb2b998c1f0548f62defd2011e26170b1"
+      "sha256": "702d4598d64764535bbcffb5780840fd2f24b267f3467f2a29e8f0489733c9bf"
     },
     {
       "path": "evidence/trust12/model-source-normalization.json",
@@ -317,7 +317,7 @@
     },
     {
       "path": "scripts/generate-trust12-input-seal.py",
-      "sha256": "05805501c91ac9040216b4694a73b970e19ae78736e77e5ec2d8b4c6acbdabce"
+      "sha256": "c76d3db3ccf0cb9d59cfc94008b9ab118676eaff6e0aa4adbc086680fe960cb4"
     },
     {
       "path": "scripts/generate-trust12-proof-audit.py",
@@ -325,7 +325,7 @@
     },
     {
       "path": "scripts/lib/formal-inputs.mjs",
-      "sha256": "8ecc60429a99411c8f588e17796dcf470bdb394e52e30787dca6315e5f49eb15"
+      "sha256": "d7bff305febdb9fc6288c494438e3e3e9e061396aeedf0810fd0d0879e2ba488"
     },
     {
       "path": "scripts/lib/local-evidence.mjs",
@@ -346,6 +346,10 @@
     {
       "path": "scripts/prepare-trex-integration.py",
       "sha256": "62c22a64c7364241ce85a6f5af1c55e66f65d3ba98b7b7e788d46f16822d8172"
+    },
+    {
+      "path": "scripts/proof-ci.mjs",
+      "sha256": "cc463a7fd0ff8ba6313c2f9a970013dac42bec3ff905f7074a4cafc4896a92b3"
     },
     {
       "path": "scripts/record-foundry-results-v3.mjs",
@@ -376,6 +380,10 @@
       "sha256": "d1bfb145e3e898b4855081f8163eb347e3984ed72b0f67557a271a949d03e9b1"
     },
     {
+      "path": "scripts/run-proof-ci.sh",
+      "sha256": "74b9240388c75e2683fdbe3d117a473be09e6020bd065ff374964e63adb33acd"
+    },
+    {
       "path": "scripts/run-veri-mutations.py",
       "sha256": "2253b02bff6dde2b315c59d6d2d33d833395a31233e922c2c70f62e34eafbc5c"
     },
@@ -396,6 +404,10 @@
       "sha256": "96295b1f19f1f694d8084845b2fd4238241c7fbfb419c0f81fe3bedc5420c620"
     },
     {
+      "path": "scripts/test-proof-ci.mjs",
+      "sha256": "13d832941126334952262d337a096b72fcc72abfe311ea9e4bf95c0e71cc4867"
+    },
+    {
       "path": "scripts/test-trust12-evidence-reuse.mjs",
       "sha256": "29b886f2d41ba3c6fad59902d67a3570e01be965a91655b9e3b3efd5a1c51301"
     },
@@ -405,7 +417,7 @@
     },
     {
       "path": "scripts/test-trust12-required.mjs",
-      "sha256": "5cdefdeb151303f1fb91f95b43bc4edddfcea1997e776a59f64a27f5fbdb7b2b"
+      "sha256": "e7a954e5dc4a5c48ba55b9ef4b2068e72f90ab3f5f7e12b3484c2daf0f31e843"
     },
     {
       "path": "scripts/test-veri-dependency.py",
@@ -441,7 +453,7 @@
     },
     {
       "path": "scripts/verify-trust12-required.mjs",
-      "sha256": "37635a4e69aa5058741c5a81e77687f9fa355aba4fce0cbef93a2410a312921b"
+      "sha256": "7f7fe86ccbfce2629a2b6ea2024214416eb6ec1cd4fdfaa731cf71831d85d12e"
     }
   ],
   "nonclaim": "This seals one local development tranche. It is not a deployment, release, conformance approval, or end-to-end refinement result."

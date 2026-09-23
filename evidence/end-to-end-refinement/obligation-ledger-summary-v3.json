@@ -9,7 +9,7 @@
   "closure": "CONDITIONAL",
   "closureRecord": {
     "path": "evidence/end-to-end-refinement/central-closure-v3.json",
-    "sha256": "3470747191d8fe471663b2b3365ca03be4ee61093f45f35b128bf8f52d160d77"
+    "sha256": "760215cb1c1edb92f5f729e3509e3be0e830d56587d602af33bdb5ca15374473"
   },
   "counts": {
     "closed": 70,
@@ -629,11 +629,11 @@
       },
       {
         "path": "evidence/trust12/formal-build-replay.json",
-        "sha256": "239e625b38cc3e8bc2623f5650b43e6b21eb1c9d3ea106869fc2ba803ced5349"
+        "sha256": "ffb8dfa22df26344aa59b5361c1df667087d92b6909afe9632f463a3c1d5455f"
       },
       {
         "path": "evidence/trust12/model-results.json",
-        "sha256": "e66264f455dc2104f799a063a60045dcb2b998c1f0548f62defd2011e26170b1"
+        "sha256": "702d4598d64764535bbcffb5780840fd2f24b267f3467f2a29e8f0489733c9bf"
       },
       {
         "path": "evidence/trust12/model-preservation-audit.md",
@@ -697,7 +697,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "48efad3802b47b35aaaadb79944a89624d8b24fcd0c0ca267b96dd3777e872ec"
+        "sha256": "5ee19d888f06f65c8eba0e8a7396aa452e59c76cdf066450f5226430827f0362"
       }
     ],
     "fullRefinementComplete": false,
