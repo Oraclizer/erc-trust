@@ -37,7 +37,7 @@
       "exitCode": 0,
       "log": {
         "path": "rl20-tail-prep-v1/logs/unit-tests.log",
-        "sha256": "61f212ef64bf035e3b654f44582a0c8bbb7ce129ca0bce613eb677b524d72eea"
+        "sha256": "4826ed5321082f463d239a78fb8cea26f23ca4af9f03523ca05b10c05e0586c2"
       }
     },
     {
@@ -77,7 +77,7 @@
       "exitCode": 0,
       "log": {
         "path": "rl20-tail-prep-v1/logs/public-surface.log",
-        "sha256": "e3ad35cf3d90d03901bdd252badf6d5f77accb1b6997a253acbd5d361fa01e29"
+        "sha256": "3840447ec4c093bb57cb94e9b7d776f241955db14417eb8f97ffcd92866b9882"
       }
     },
     {
@@ -87,7 +87,7 @@
       "exitCode": 0,
       "log": {
         "path": "rl20-tail-prep-v1/logs/repository-health.log",
-        "sha256": "b16647d66b2549c74b69e0420afc899d99df61a7b30b24800e8eb84caff5e529"
+        "sha256": "c98f286ca4c133cdf4af999148cfb9355bb75209292138d5889bcf5bf6475651"
       }
     },
     {
@@ -158,7 +158,7 @@
     "publicTreeAccounting": {
       "file": "evidence/public-release/diet-manifest-v2.json",
       "trackedFilesAddedByThisProcess": 27,
-      "canonicalBytesAddedExcludingTheReturnManifest": 526350,
+      "canonicalBytesAddedExcludingTheReturnManifest": 526914,
       "note": "The return manifest itself is also added; the integration owner recomputes the summary counts over the merged tree with the same formulas as scripts/verify-public-release-tree.mjs."
     },
     "releaseManifest": {
@@ -173,16 +173,22 @@
         "scripts/trust12/tail-preparation/foundry/NativeMalformedProbe.t.sol": "0ae50b62942cfda940a5778080ecb49413d4c2d0ff72124f6791e5dc163450f0",
         "scripts/trust12/tail-preparation/foundry/PartialMalformedProbe.t.sol": "26b67a3b060ab1ccc7078d4dc14039a5ebca0d4f3d9e8fc086501378d422424a",
         "scripts/trust12/tail-preparation/malformed_inputs.py": "f2db72a271019ef82a97833b24f9ee1ce4b8a3c9608de6a0c6e2c67591b77be5",
-        "scripts/trust12/tail-preparation/prepare_tail.py": "dd3bc1ccd23a305c7c58be401a711ad6c4d0c78bf5e32677a687c0f4db0ca182",
+        "scripts/trust12/tail-preparation/prepare_tail.py": "2fe94ace949926af36e69417d0125ec5f4cc6bf51e718e6415fc460ffb43fe65",
         "scripts/trust12/tail-preparation/route_inventory.py": "81963370e073c659fe7dbffac8bd07f833b41566ccfa3babe443e9325fcda6db",
         "scripts/trust12/tail-preparation/run_malformed_probe.py": "b365d1e643cc31a018d583011fa8e2d5fc88a3c3bbd45ac7814fb432bebec82a",
         "scripts/trust12/tail-preparation/state_receipt_crosswalk.py": "65a9c7b503be841da31b2e743d8223ece77340231f627b0c7f2f0b3020dffd3d",
         "scripts/trust12/tail-preparation/tail_common.py": "b9ee4b6809e7a8f306d8157b149fb672e3c2cdd15197df1ebf67f1ece34b473f",
         "scripts/trust12/tail-preparation/test_assurance_seal.py": "e917470c957ce16a56d8b2594958bd21d9469b0d71ccf014e07ee15e15904e1f",
         "scripts/trust12/tail-preparation/test_tail_preparation.py": "b0b404cff2678048dd28bcaf92613df0982584c554c54dac9e82e236c046c2bf"
-      },
-      "regenerate": "forge build && node scripts/generate-release-manifest.mjs"
+      }
     },
+    "integrationOrder": [
+      "forge build",
+      "node scripts/generate-release-manifest.mjs",
+      "update the four summary counts of the public tree accounting over the merged tree with the formulas of scripts/verify-public-release-tree.mjs",
+      "node scripts/generate-release-manifest.mjs again, because the release manifest hashes the public tree accounting; only that hash value changes, so the byte counts stay valid",
+      "confirm that a further regeneration changes nothing, then run verify-release in pr mode and verify-public-release-tree"
+    ],
     "reason": "Both documents account for the whole tracked tree. This process may write only its two preparation directories, so the checks that compare them with the tree fail on the process branch until the integration owner regenerates them once for all merged processes."
   },
   "outputs": [
@@ -303,8 +309,8 @@
     {
       "root": "PROCESS_WORKTREE",
       "path": "scripts/trust12/tail-preparation/prepare_tail.py",
-      "bytes": 12576,
-      "sha256": "dd3bc1ccd23a305c7c58be401a711ad6c4d0c78bf5e32677a687c0f4db0ca182"
+      "bytes": 13140,
+      "sha256": "2fe94ace949926af36e69417d0125ec5f4cc6bf51e718e6415fc460ffb43fe65"
     },
     {
       "root": "PROCESS_WORKTREE",
@@ -364,7 +370,7 @@
       "root": "EVIDENCE",
       "path": "rl20-tail-prep-v1/checks.json",
       "bytes": 4560,
-      "sha256": "873ad61dd7d27bde25dc0cdbbc9627d979cb0101795585925660b1808b448020"
+      "sha256": "cdefcbe0bdcf46ec891e2e5c7f1e97093370181ad6d8fae5ff3d2b37f7ac2cde"
     },
     {
       "root": "EVIDENCE",
@@ -412,19 +418,19 @@
       "root": "EVIDENCE",
       "path": "rl20-tail-prep-v1/logs/public-surface.log",
       "bytes": 56,
-      "sha256": "e3ad35cf3d90d03901bdd252badf6d5f77accb1b6997a253acbd5d361fa01e29"
+      "sha256": "3840447ec4c093bb57cb94e9b7d776f241955db14417eb8f97ffcd92866b9882"
     },
     {
       "root": "EVIDENCE",
       "path": "rl20-tail-prep-v1/logs/repository-health.log",
       "bytes": 45,
-      "sha256": "b16647d66b2549c74b69e0420afc899d99df61a7b30b24800e8eb84caff5e529"
+      "sha256": "c98f286ca4c133cdf4af999148cfb9355bb75209292138d5889bcf5bf6475651"
     },
     {
       "root": "EVIDENCE",
       "path": "rl20-tail-prep-v1/logs/unit-tests.log",
       "bytes": 4828,
-      "sha256": "61f212ef64bf035e3b654f44582a0c8bbb7ce129ca0bce613eb677b524d72eea"
+      "sha256": "4826ed5321082f463d239a78fb8cea26f23ca4af9f03523ca05b10c05e0586c2"
     },
     {
       "root": "EVIDENCE",

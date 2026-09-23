@@ -159,8 +159,17 @@ def integration_accounting(outputs: list[dict[str, Any]]) -> dict[str, Any]:
         "releaseManifest": {
             "file": "evidence/release-manifest.json",
             "protectedFilesAdded": {path: canonical_text_sha256(ROOT / path) for path in protected},
-            "regenerate": "forge build && node scripts/generate-release-manifest.mjs",
         },
+        "integrationOrder": [
+            "forge build",
+            "node scripts/generate-release-manifest.mjs",
+            "update the four summary counts of the public tree accounting over the merged tree with the formulas "
+            "of scripts/verify-public-release-tree.mjs",
+            "node scripts/generate-release-manifest.mjs again, because the release manifest hashes the public tree "
+            "accounting; only that hash value changes, so the byte counts stay valid",
+            "confirm that a further regeneration changes nothing, then run verify-release in pr mode and "
+            "verify-public-release-tree",
+        ],
         "reason": "Both documents account for the whole tracked tree. This process may write only its two "
                   "preparation directories, so the checks that compare them with the tree fail on the process "
                   "branch until the integration owner regenerates them once for all merged processes.",
