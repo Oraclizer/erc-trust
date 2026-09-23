@@ -57,7 +57,7 @@
     },
     {
       "path": "evidence/trust12/formal-build-replay.json",
-      "sha256": "d388eda901481cf3ded651f97a625bda19abff2fc6baeae25a184734039806fa"
+      "sha256": "7fe157867f905a5c07781c05e947b71f8b56cb0178c7ffb038edef0af0635a4d"
     },
     {
       "path": "evidence/trust12/formal-build.json",
@@ -85,7 +85,7 @@
     },
     {
       "path": "evidence/trust12/model-results.json",
-      "sha256": "7572efbbef9689c69dfc318e9d72902a8f87b32ba1d5df9b711418f29d989bce"
+      "sha256": "b05b970f1fa3777eed7bafaa438f5c63f9274c3552c134ea2c81b7fb82e1cdb8"
     },
     {
       "path": "evidence/trust12/model-source-normalization.json",
@@ -145,7 +145,7 @@
     },
     {
       "path": "evidence/trust12/required-controls.json",
-      "sha256": "7df81db7d1df82e9c85515c71f7754c4d81ec7b067f78a950347582ed9d8b957"
+      "sha256": "e58629a3210ec1c2961092e17724e06309432d8a3afd01e4c0feb3937cef2852"
     },
     {
       "path": "evidence/trust12/runtime-identity.json",
@@ -441,7 +441,7 @@
     },
     {
       "path": "scripts/verify-trust12-required.mjs",
-      "sha256": "5612274ab1f68d3810d15b6cc4153fe9e8f9b86602a18ef3779903a4b49a5a11"
+      "sha256": "07401c12cfa655f7b6bdf7b88625f092a464a24c1ffec406e5ae285262ba4edc"
     }
   ],
   "nonclaim": "This seals one local development tranche. It is not a deployment, release, conformance approval, or end-to-end refinement result."

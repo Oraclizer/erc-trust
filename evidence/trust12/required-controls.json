@@ -222,7 +222,7 @@
     },
     {
       "name": "false-mandatory-closure",
-      "reason": "unreviewed mandatory obligation removal",
+      "reason": "bounded evidence cannot close general Native proof",
       "status": "REJECTED"
     },
     {
@@ -250,8 +250,8 @@
   "positive": "PASS_CONSISTENT_DEVELOPMENT",
   "schema": "trust12-required-controls-v1",
   "source": {
-    "testSha256": "dce0e6b0569a75c4c1ce3833e264f5404bf640ab042043d2da8c508da324c24e",
-    "verifierSha256": "08382cbf87748f5af9f73e52c89465875a89646657a963cd0486bfea13d678c0"
+    "testSha256": "47f9b9e1bb2b4bf212a1ce350ec8fe84b2e3f249e9daf0fc961bd4c8ac136348",
+    "verifierSha256": "07401c12cfa655f7b6bdf7b88625f092a464a24c1ffec406e5ae285262ba4edc"
   },
   "status": "PASS"
 }
