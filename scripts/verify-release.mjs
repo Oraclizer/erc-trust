@@ -126,10 +126,12 @@ if (mutation === null) {
     resolve(root, "evidence", "mutation-definition-rebind-v1.json"),
     (condition, message) => { if (!condition) failures.push(message); },
   );
-  if (mutation.candidateInput?.sourceRootSha256 !== mutationSourceRoot) {
+  if (mode === "full" && mutation.candidateInput?.sourceRootSha256 !== mutationSourceRoot) {
     failures.push(
       `mutation source root mismatch: ${mutation.candidateInput?.sourceRootSha256} != ${mutationSourceRoot}`,
     );
+  } else if (mode === "pr" && mutation.candidateInput?.sourceRootSha256 !== mutationSourceRoot) {
+    console.log("historical mutation source differs: successor mutation eligibility is checked by the lane index");
   }
   const receiptIds = (mutation.results ?? []).map((result) => result.id);
   if (

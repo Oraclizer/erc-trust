@@ -11,7 +11,8 @@
   generated-ledger/proof-receipt refresh cycle without promoting a new proof.
   Give the implementation job full Git history for that preservation check,
   and reserve full-release verification for `main` while topic branches use
-  the development pull-request boundary.
+  the development pull-request boundary. In that boundary, leave historical
+  mutation source currency to the separately verified successor lane index.
 
 - Reset TRUST 1.2 release scope to the verified abstract model plus explicitly
   graded profile implementation evidence under declared external tools. Preserve
