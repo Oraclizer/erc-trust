@@ -1,0 +1,252 @@
+{
+  "schema": "trust12-tail-preparation-assurance-seal-spec-v1",
+  "description": "Selectors, toolchain pins, reproduction commands and independent checks from which the seal tool builds the frozen input list of the independent Assurance. The product root is enumerated from Git; the runtime-link evidence root is enumerated only under the paths its obligation ledger cites.",
+  "rootInventory": {
+    "PRODUCT": "git-tracked",
+    "EVIDENCE": "walk"
+  },
+  "bundles": [
+    {
+      "id": "abstract-authority",
+      "centralClosureRole": "abstract authority",
+      "description": "Isabelle theories, sessions and dependency locks that define the abstract model, the transaction relation and the runtime bridge constants.",
+      "selectors": [
+        {"root": "PRODUCT", "include": ["formal/**", "formal-dependencies.lock.json", "formal-dependencies-public-v1.lock.json"]}
+      ]
+    },
+    {
+      "id": "normative-authority",
+      "centralClosureRole": "normative authority",
+      "description": "Kernel schema and generated ABI, receipt schema, conformance vectors and the normative proposal and profile documents.",
+      "selectors": [
+        {"root": "PRODUCT", "include": ["spec/**", "schemas/**", "vectors/**", "docs/ERC-DRAFT.md", "docs/PROFILES.md", "docs/ARCHITECTURE.md"]}
+      ]
+    },
+    {
+      "id": "implementation-target",
+      "centralClosureRole": "implementation target",
+      "description": "Final Solidity sources of the three profiles, their tests and symbolic harnesses, and the compiler configuration.",
+      "selectors": [
+        {"root": "PRODUCT", "include": ["implementation/**", "foundry.toml"]}
+      ]
+    },
+    {
+      "id": "compiled-target",
+      "centralClosureRole": "compiled target",
+      "description": "Recorded runtime identities, the release manifest, the deterministic build receipt, the runtime binding and the prepared code identity document that the Assurance compares against a fresh build.",
+      "selectors": [
+        {
+          "root": "PRODUCT",
+          "include": [
+            "evidence/trust12/runtime-identity.json",
+            "evidence/release-manifest.json",
+            "evidence/deterministic-build.json",
+            "evidence/runtime-binding-v3.json",
+            "evidence/runtime-binding-v3/**",
+            "evidence/trust12/runtime-link/tail-preparation/code-identity-v1.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "product-consumer",
+      "centralClosureRole": "product consumer",
+      "description": "Conditional evidence ledgers, the central closure artifacts, the prepared tail documents and the SDK that consumes the receipt format.",
+      "selectors": [
+        {
+          "root": "PRODUCT",
+          "include": [
+            "evidence/trust12/**",
+            "evidence/end-to-end-refinement/**",
+            "evidence/current-profile-release-index-v3.json",
+            "evidence/evidence-mode.json",
+            "evidence/evidence-expectations-v3.json",
+            "evidence/claim-matrix.md",
+            "evidence/known-limitations.md",
+            "sdk/**"
+          ],
+          "exclude": [
+            "evidence/trust12/runtime-identity.json",
+            "evidence/trust12/runtime-link/tail-preparation/code-identity-v1.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reproduction-tooling",
+      "centralClosureRole": "reproduction tooling",
+      "description": "Verification scripts and continuous-integration workflows that the reproduction commands run.",
+      "selectors": [
+        {"root": "PRODUCT", "include": ["scripts/**", ".github/**"]}
+      ]
+    },
+    {
+      "id": "runtime-link-evidence",
+      "centralClosureRole": "runtime-link evidence",
+      "description": "The runtime-link obligation ledger and, for every kernel run it cites, the recorded result, the recorded command and the session sources of every evidence directory that command loads.",
+      "selectors": [
+        {"root": "EVIDENCE", "include": ["ledger/obligation-ledger.json", "ledger/ledger-summary.json"]},
+        {
+          "root": "EVIDENCE",
+          "ledger": "ledger/obligation-ledger.json",
+          "runFiles": ["result.json"],
+          "optionalRunFiles": ["command.json", "command.sh"],
+          "rootFiles": ["ROOT", "*.thy", "input-binding.json"],
+          "followSessionDirectories": true
+        }
+      ]
+    },
+    {
+      "id": "remaining-tracked-files",
+      "centralClosureRole": "remaining tracked files",
+      "description": "Every other tracked file of the product commit, so that the whole release tree is frozen.",
+      "selectors": [
+        {"root": "PRODUCT", "remainder": true}
+      ]
+    }
+  ],
+  "toolchain": [
+    {"name": "solc", "pin": "0.8.36", "declaredIn": {"root": "PRODUCT", "path": "foundry.toml"}, "declarationText": "solc_version = \"0.8.36\""},
+    {"name": "evm-version", "pin": "cancun", "declaredIn": {"root": "PRODUCT", "path": "foundry.toml"}, "declarationText": "evm_version = \"cancun\""},
+    {"name": "via-ir", "pin": "true", "declaredIn": {"root": "PRODUCT", "path": "foundry.toml"}, "declarationText": "via_ir = true"},
+    {"name": "optimizer-runs", "pin": "1", "declaredIn": {"root": "PRODUCT", "path": "foundry.toml"}, "declarationText": "optimizer_runs = 1"},
+    {"name": "foundry", "pin": "v1.7.1", "declaredIn": {"root": "PRODUCT", "path": ".github/workflows/ci.yml"}, "declarationText": "version: v1.7.1"},
+    {"name": "foundry-commit", "pin": "4072e48705af9d93e3c0f6e29e93b5e9a40caed8", "declaredIn": {"root": "PRODUCT", "path": "scripts/generate-release-manifest.mjs"}, "declarationText": "foundryCommit: \"4072e48705af9d93e3c0f6e29e93b5e9a40caed8\""},
+    {"name": "node", "pin": "24.14.0", "declaredIn": {"root": "PRODUCT", "path": ".github/workflows/ci.yml"}, "declarationText": "node-version: 24.14.0"},
+    {"name": "pnpm", "pin": "11.9.0", "declaredIn": {"root": "PRODUCT", "path": ".github/workflows/ci.yml"}, "declarationText": "version: 11.9.0"},
+    {"name": "isabelle-archive", "pin": "a20a507bc7c1270d8be96a9f3fbec06345387789d2dc2c4d3df6260d47bfb33c", "declaredIn": {"root": "PRODUCT", "path": ".github/workflows/proofs.yml"}, "declarationText": "ISABELLE_SHA256: a20a507bc7c1270d8be96a9f3fbec06345387789d2dc2c4d3df6260d47bfb33c"},
+    {"name": "afp-ads-functor", "pin": "10d6fa8671c461022ae5e71859a07610d616681fed79e2f1c81029a124203c85", "declaredIn": {"root": "PRODUCT", "path": ".github/workflows/proofs.yml"}, "declarationText": "AFP_ADS_FUNCTOR_SHA256: 10d6fa8671c461022ae5e71859a07610d616681fed79e2f1c81029a124203c85"},
+    {"name": "formal-foundation", "pin": "db8e0802e55f0229cf7bc9e5e6cfbf40681adbba", "declaredIn": {"root": "PRODUCT", "path": ".github/workflows/proofs.yml"}, "declarationText": "FORMAL_FOUNDATION_COMMIT: db8e0802e55f0229cf7bc9e5e6cfbf40681adbba"},
+    {"name": "kontrol", "pin": "1.0.255", "declaredIn": {"root": "PRODUCT", "path": "scripts/generate-release-manifest.mjs"}, "declarationText": "kontrol: \"1.0.255\""},
+    {"name": "kevm", "pin": "1.0.678", "declaredIn": {"root": "PRODUCT", "path": "scripts/generate-release-manifest.mjs"}, "declarationText": "kevm: \"1.0.678\""}
+  ],
+  "reproduction": [
+    {
+      "id": "product-build",
+      "purpose": "Compile the sealed sources with the pinned compiler.",
+      "workingRoot": "PRODUCT",
+      "command": "forge build --sizes",
+      "passCriterion": "Exit code 0, and every runtime identity recomputed by the tail preparation code identity check equals the sealed code identity document.",
+      "coldReplay": true
+    },
+    {
+      "id": "product-tests",
+      "purpose": "Run the unit, fuzz, invariant and pinned upstream integration tests of the three profiles.",
+      "workingRoot": "PRODUCT",
+      "command": "python3 scripts/prepare-trex-integration.py && FOUNDRY_FUZZ_RUNS=256 FOUNDRY_INVARIANT_RUNS=256 FOUNDRY_INVARIANT_DEPTH=500 forge test -vv",
+      "passCriterion": "Exit code 0 with no skipped suite.",
+      "coldReplay": true
+    },
+    {
+      "id": "tail-preparation-check",
+      "purpose": "Recompute every prepared tail document from the sealed sources and compiled artifacts.",
+      "workingRoot": "PRODUCT",
+      "command": "python3 scripts/trust12/tail-preparation/prepare_tail.py check --artifacts out",
+      "passCriterion": "Exit code 0: every generated document is byte-identical to its sealed copy.",
+      "coldReplay": true
+    },
+    {
+      "id": "product-evidence-verifiers",
+      "purpose": "Run the conditional evidence verifiers of the product.",
+      "workingRoot": "PRODUCT",
+      "command": "node scripts/verify-current-profile-release-v3.mjs && node scripts/verify-obligation-ledger-v3.mjs && python3 scripts/verify-trust12-evidence.py",
+      "passCriterion": "Exit code 0 for every verifier.",
+      "coldReplay": false
+    },
+    {
+      "id": "proof-sessions-cold",
+      "purpose": "Replay the product proof sessions without saved heaps or databases, after installing the pinned Isabelle archive, AFP entry and formal foundation as the proof workflow does.",
+      "workingRoot": "PRODUCT",
+      "command": "bash scripts/run-proof-ci.sh",
+      "passCriterion": "Every declared session builds, and each proof audit export reports status PASS with oracle_dependency_count 0.",
+      "coldReplay": true
+    },
+    {
+      "id": "runtime-link-kernel-replay",
+      "purpose": "Replay every sealed runtime-link kernel run from its sealed command with the pinned Isabelle, without restoring the recorded heaps.",
+      "workingRoot": "EVIDENCE",
+      "command": "For each sealed run directory, execute the sealed command file in a fresh heap directory and compare the new result with the sealed result.json.",
+      "passCriterion": "Every replay exits 0, reports the sealed status string, and loads theory files whose hashes equal the sealed ones.",
+      "coldReplay": true
+    },
+    {
+      "id": "seal-verify",
+      "purpose": "Confirm that the inputs read by the Assurance are exactly the sealed inputs.",
+      "workingRoot": "PRODUCT",
+      "command": "python3 scripts/trust12/tail-preparation/assurance_seal.py verify --seal SEAL --root PRODUCT=PRODUCT_CHECKOUT --root EVIDENCE=EVIDENCE_ROOT",
+      "passCriterion": "Status PASS_ASSURANCE_INPUT_SEAL_VERIFIED before and after the Assurance run.",
+      "coldReplay": false
+    }
+  ],
+  "assuranceChecks": [
+    {
+      "id": "reconstruct-from-frozen-specification",
+      "question": "Can the command, state and receipt observables be reconstructed from the frozen schema, requirements and vectors alone, without reading the implementation?",
+      "inputs": ["normative-authority"],
+      "procedure": [
+        "Rebuild every conformance vector command, its calldata and its expected receipt from the kernel schema and the generated ABI only.",
+        "Rebuild the malformed input catalog from the kernel ABI and the generated bridge constants and compare it with the sealed catalog.",
+        "Compare the reconstruction with the sealed vectors and the sealed independent reproduction receipt."
+      ],
+      "passCriterion": "Every reconstructed observable equals the sealed one.",
+      "onFailure": "Return to Building. The assessor records the difference and never edits a sealed file."
+    },
+    {
+      "id": "reverse-enumerate-obligations",
+      "question": "Does every route, state write, event and theorem of the final artifacts belong to an obligation row or to a declared runtime-only item?",
+      "inputs": ["implementation-target", "compiled-target", "product-consumer", "runtime-link-evidence"],
+      "procedure": [
+        "Enumerate every public and external selector of every profile runtime from a fresh build and compare it with the sealed route inventory.",
+        "Enumerate every storage variable and emitted event of the profile runtimes and compare them with the sealed state and receipt crosswalk.",
+        "Enumerate every ledger row and every cited theorem and report orphan theorems, orphan code, unmapped routes and unused lifecycle states."
+      ],
+      "passCriterion": "No unmapped route, orphan state write, orphan theorem or unclassified selector remains.",
+      "onFailure": "Return to Building with the list of orphans."
+    },
+    {
+      "id": "reproduce-removal-negatives",
+      "question": "Does removing or weakening each load-bearing consumer actually break the claim that depends on it?",
+      "inputs": ["runtime-link-evidence", "implementation-target", "reproduction-tooling"],
+      "procedure": [
+        "Replay every certificate-removal negative and every consumer-removal negative that the ledger cites.",
+        "Rerun the declared mutation campaign and the semantic consumer removals of the product.",
+        "For the malformed rows, replay the malformed probe with its checks disabled one at a time and confirm that the probe fails."
+      ],
+      "passCriterion": "Every negative fails at the claimed consumer and at no earlier unrelated step.",
+      "onFailure": "Return to Building with the surviving negative."
+    },
+    {
+      "id": "recompute-central-artifact",
+      "question": "Do the numbers, hashes and statuses of the central closure artifact follow from the actual files, build exits and runtime outputs?",
+      "inputs": ["product-consumer", "runtime-link-evidence", "compiled-target"],
+      "procedure": [
+        "Rebuild the obligation ledger from the sealed evidence and compare every row status, count and hash.",
+        "Recompute the certificate registry and the acceptance partition coverage from the sealed kernel results.",
+        "Recompute the central closure counts and confirm that no row is closed by a human-written table alone."
+      ],
+      "passCriterion": "Every recomputed number, hash and status equals the sealed artifact, and current mandatory rows are zero only if the recomputation says so.",
+      "onFailure": "Return to Building. A mismatch is never resolved by editing the expected value."
+    }
+  ],
+  "reuse": {
+    "policy": "Validated earlier results may be reused only as the incremental verification standard allows; a cache hit is never a check result, and the union of new and reused checks must cover the whole declared scope.",
+    "conditions": [
+      "Input identity: sources, transitive dependencies, generated inputs, statements and assumptions of the reused unit equal the sealed ones.",
+      "Tool identity: checker and compiler versions, dependency locks, build options and platform equal the sealed pins; Windows and Linux heaps are never exchanged.",
+      "Materialization: the reused heap, database, proof object or checked certificate is present and its recorded integrity hash matches.",
+      "Provenance: the producing repository, commit, run and permission of the reused state are recorded and trusted for the claim.",
+      "Current consumption: the native checker confirms freshness against the sealed sources and the final consumer reads the reused result."
+    ],
+    "coldReplayRequiredFor": [
+      "the first independent Assurance of the complete runtime link",
+      "any release or public completion statement",
+      "any toolchain or dependency pin change"
+    ]
+  },
+  "exclusions": [
+    "Conclusions, handoffs, status summaries and chat reports of the Building sessions are not Assurance inputs.",
+    "The assessor never edits a sealed file; any needed change returns the work to Building and requires a new seal.",
+    "A seal with status TEMPLATE_DRY_RUN is a format exercise and is never an Assurance input.",
+    "A participant of any Building session of this runtime link does not act as the independent assessor."
+  ]
+}

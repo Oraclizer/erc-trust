@@ -1,0 +1,219 @@
+{
+  "schema": "trust12-tail-preparation-obligations-v1",
+  "status": "PREPARED_NOT_CLOSED",
+  "scope": "The runtime-link conditions that remain after the twenty-seven profile and operation cells: three gate conditions, the malformed branch of each profile, four central closure conditions and the independent Assurance. For each one this document names the four kinds of evidence a closure needs, the prepared inputs in this directory, the acceptance criteria and the findings that block a closure today.",
+  "evidenceKinds": {
+    "sourceConsumer": "the final source check, write, route or receipt computation that consumes the condition",
+    "positiveActivation": "a final-target witness in which the premise and the consumer actually execute",
+    "consumerRemovalNegative": "removing or weakening the consumer makes the same claim fail",
+    "compiledConsumer": "the compiled runtime or a downstream product consumer actually consumes the condition"
+  },
+  "conditions": [
+    {
+      "id": "typed-failure-report-binding",
+      "group": "gate",
+      "condition": "Every accepted rejection or operational failure returns a typed failure whose report, read by the fixed ABI reading of its selector, is bound to the decoded command and to the sender; a malformed or dependency revert carries no typed payload.",
+      "preparedSupport": [
+        {"artifact": "evidence/trust12/runtime-link/tail-preparation/code-identity-v1.json", "role": "the six typed failures with their argument layouts and report bindings, and the selector loads of each endpoint runtime"},
+        {"artifact": "scripts/trust12/tail-preparation/code_identity.py", "role": "recomputes the selector loads from a fresh build"}
+      ],
+      "closureAcceptance": [
+        "Every profile endpoint runtime of the frozen build loads each typed failure selector, and the recorded loads are recomputed from that build.",
+        "Each typed revert site emits the argument layout that the report reading expects, shown per selector on the compiled runtime."
+      ],
+      "blockingFindings": []
+    },
+    {
+      "id": "twenty-seven-cell-architecture",
+      "group": "gate",
+      "condition": "The 27-cell gate holds for one accepted set per profile: sound failure checkers, the acceptance partition, an applied and a non-applied witness in every cell, and the malformed branch of every profile.",
+      "preparedSupport": [
+        {"artifact": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-schema-v1.json", "role": "registry, partition coverage and locator formats"},
+        {"artifact": "scripts/trust12/tail-preparation/certificate_registry.py", "role": "builds and verifies the registry and its coverage, fails closed in closure mode"},
+        {"artifact": "evidence/trust12/runtime-link/tail-preparation/malformed-inputs-v1.json", "role": "malformed classes and probe recipes"}
+      ],
+      "closureAcceptance": [
+        "The registry builds in closure mode: every cell and every malformed branch is covered and no check fails.",
+        "A kernel run instantiates the gate with the accepted set defined as the image of the registered certificates.",
+        "Removing any registered certificate breaks that instantiation."
+      ],
+      "blockingFindings": ["check-order-before-canonical-validation", "nonzero-call-value-domain"]
+    },
+    {
+      "id": "enforced-cell-witnesses",
+      "group": "gate",
+      "condition": "The enforced cell predicate demands a same-route typed rejection, a fixed normal form of non-applied abstractions, no revert without a failed dependency call, and a profile index tied to a code identity.",
+      "preparedSupport": [
+        {"artifact": "evidence/trust12/runtime-link/tail-preparation/code-identity-v1.json", "role": "profile index to runtime templates, immutable ranges and the exact matching rule"},
+        {"artifact": "scripts/trust12/tail-preparation/certificate_registry.py", "role": "reconstructs the executed code of a certificate from the template and its immutable values"}
+      ],
+      "closureAcceptance": [
+        "Every registered certificate records the code it executed, and that code equals its profile template outside the immutable ranges.",
+        "The profile index of every cell names exactly that code identity."
+      ],
+      "blockingFindings": ["per-certificate-program-identity"]
+    },
+    {
+      "id": "malformed-native",
+      "group": "malformed",
+      "profile": "Native",
+      "condition": "The Native endpoint has an accepted malformed execution, and every accepted malformed execution returns without an external call, a log or a net state change and with a payload that is not a typed failure.",
+      "preparedSupport": [
+        {"artifact": "evidence/trust12/runtime-link/tail-preparation/malformed-inputs-v1.json", "role": "symbolic classes and concrete recipes of the Native endpoint"},
+        {"artifact": "scripts/trust12/tail-preparation/foundry/NativeMalformedProbe.t.sol", "role": "concrete probe of every recipe on the Native fixture"},
+        {"artifact": "scripts/trust12/tail-preparation/run_malformed_probe.py", "role": "runs the probe in isolation and compares every observation with the expected behavior"}
+      ],
+      "closureAcceptance": [
+        "Certificates of the malformed classes of the endpoint are registered.",
+        "A kernel run proves the malformed branch over them.",
+        "Disabling the exact length guard or a bounded word check turns a malformed witness into a typed or accepted execution.",
+        "The probe is rerun on the frozen build with every control detected."
+      ],
+      "blockingFindings": ["check-order-before-canonical-validation"]
+    },
+    {
+      "id": "malformed-partial",
+      "group": "malformed",
+      "profile": "Partial",
+      "condition": "The Partial endpoint has an accepted malformed execution, and every accepted malformed execution returns without an external call, a log or a net state change and with a payload that is not a typed failure.",
+      "preparedSupport": [
+        {"artifact": "evidence/trust12/runtime-link/tail-preparation/malformed-inputs-v1.json", "role": "symbolic classes and concrete recipes of the Partial endpoint"},
+        {"artifact": "scripts/trust12/tail-preparation/foundry/PartialMalformedProbe.t.sol", "role": "concrete probe of every recipe on the sealed clean-room Partial deployment"},
+        {"artifact": "scripts/trust12/tail-preparation/run_malformed_probe.py", "role": "runs the probe in isolation and compares every observation with the expected behavior"}
+      ],
+      "closureAcceptance": [
+        "Certificates of the malformed classes of the endpoint are registered.",
+        "A kernel run proves the malformed branch over them.",
+        "Disabling the exact length guard or a bounded word check turns a malformed witness into a typed or accepted execution.",
+        "The probe is rerun on the frozen build with every control detected."
+      ],
+      "blockingFindings": ["check-order-before-canonical-validation"]
+    },
+    {
+      "id": "malformed-hook",
+      "group": "malformed",
+      "profile": "Hook",
+      "condition": "The Hook endpoint has an accepted malformed execution, and every accepted malformed execution returns without an external call, a log or a net state change and with a payload that is not a typed failure.",
+      "preparedSupport": [
+        {"artifact": "evidence/trust12/runtime-link/tail-preparation/malformed-inputs-v1.json", "role": "symbolic classes and concrete recipes of the Hook endpoint"},
+        {"artifact": "scripts/trust12/tail-preparation/foundry/HookMalformedProbe.t.sol", "role": "concrete probe of every recipe on the factory deployment against the pinned upstream token"},
+        {"artifact": "scripts/trust12/tail-preparation/run_malformed_probe.py", "role": "runs the probe in isolation and compares every observation with the expected behavior"}
+      ],
+      "closureAcceptance": [
+        "Certificates of the malformed classes of the endpoint are registered.",
+        "A kernel run proves the malformed branch over them.",
+        "Disabling the exact length guard or a bounded word check turns a malformed witness into a typed or accepted execution.",
+        "The probe is rerun on the frozen build with every control detected."
+      ],
+      "blockingFindings": ["check-order-before-canonical-validation"]
+    },
+    {
+      "id": "preservation-and-reflection",
+      "group": "central",
+      "condition": "Abstract allowed behavior is preserved by the final code, and every concrete success reflects an abstract behavior or is covered by an exact non-claim.",
+      "preparedSupport": [
+        {"artifact": "evidence/trust12/runtime-link/tail-preparation/state-receipt-crosswalk-v1.json", "role": "storage that no abstract field reads, with the earlier runtime-only reason or open"},
+        {"artifact": "evidence/trust12/runtime-link/tail-preparation/route-inventory-v1.json", "role": "state-changing entrypoints outside the typed commands"}
+      ],
+      "closureAcceptance": [
+        "Every guard and state write on the typed command paths is the consumer of an obligation or a listed runtime-only item with a reason.",
+        "The reflection list is produced by a machine scan of the final sources and compiled layouts, not by review alone."
+      ],
+      "blockingFindings": ["open-runtime-only-storage"]
+    },
+    {
+      "id": "route-exhaustiveness",
+      "group": "central",
+      "condition": "Every public, external, inherited, governance and profile entrypoint of every profile runtime belongs to an abstract operation or to an explicit path outside the runtime-link relation.",
+      "preparedSupport": [
+        {"artifact": "evidence/trust12/runtime-link/tail-preparation/route-inventory-v1.json", "role": "every selector of the seven runtimes with its class and disposition"},
+        {"artifact": "scripts/trust12/tail-preparation/route_inventory.py", "role": "recomputes the inventory and fails on any drift from the formal route tables"}
+      ],
+      "closureAcceptance": [
+        "Every selector has a normative class and a disposition, and no state-changing selector is unclassified.",
+        "Every state-changing route outside the typed commands has a justified disposition.",
+        "Selectors that reach no function revert with an empty payload on every endpoint."
+      ],
+      "blockingFindings": ["unclassified-hook-routes"]
+    },
+    {
+      "id": "state-and-receipt-identity",
+      "group": "central",
+      "condition": "Abstract state, authorization, nonce, terminality and receipt fields are traced both ways to the storage, ABI, events and return data of every profile runtime.",
+      "preparedSupport": [
+        {"artifact": "evidence/trust12/runtime-link/tail-preparation/state-receipt-crosswalk-v1.json", "role": "abstract fields to storage of every runtime, sub-record and receipt field order, events"},
+        {"artifact": "scripts/trust12/tail-preparation/state_receipt_crosswalk.py", "role": "recomputes the crosswalk from the formal records, the conditional central ledger and the compiled layouts"}
+      ],
+      "closureAcceptance": [
+        "A formal reader of each profile manifest maps slots and mapping keys to abstract fields and agrees with the crosswalk.",
+        "Every derived Hook column is reviewed or replaced by that reader.",
+        "Every open item of the crosswalk is resolved or turned into an exact non-claim."
+      ],
+      "blockingFindings": ["no-formal-storage-reader"]
+    },
+    {
+      "id": "accepted-set-is-certificate-image",
+      "group": "central",
+      "condition": "The accepted set of each profile is the image of a checked K/KEVM certificate decoder rather than a locale parameter.",
+      "preparedSupport": [
+        {"artifact": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-schema-v1.json", "role": "registry and locator formats"},
+        {"artifact": "scripts/trust12/tail-preparation/certificate_registry.py", "role": "registry builder and verifier with ledger, kernel and program identity checks"}
+      ],
+      "closureAcceptance": [
+        "The accepted set is defined in a kernel run as the image of the registered certificates.",
+        "The registry covers every cell and every malformed branch and binds every certificate to its program identity.",
+        "The partition theorem is proved over the whole registry."
+      ],
+      "blockingFindings": ["check-order-before-canonical-validation", "nonzero-call-value-domain", "per-certificate-program-identity"]
+    },
+    {
+      "id": "independent-assurance",
+      "group": "assurance",
+      "condition": "A fresh assessor who took no part in Building reproduces the frozen closure independently.",
+      "preparedSupport": [
+        {"artifact": "evidence/trust12/runtime-link/tail-preparation/assurance-input-seal-schema-v1.json", "role": "seal format"},
+        {"artifact": "evidence/trust12/runtime-link/tail-preparation/assurance-input-seal-spec-v1.json", "role": "bundles, pins, reproduction commands, independent checks and reuse conditions"},
+        {"artifact": "scripts/trust12/tail-preparation/assurance_seal.py", "role": "seals and verifies the frozen inputs"},
+        {"artifact": "evidence/trust12/runtime-link/tail-preparation/assurance-checklist-v1.md", "role": "procedure of the assessor"}
+      ],
+      "closureAcceptance": [
+        "A seal with status SEALED_FOR_INDEPENDENT_ASSURANCE covers the final inputs.",
+        "A non-participant runs the checklist with a cold replay and records a PASS verdict next to the seal."
+      ],
+      "blockingFindings": []
+    }
+  ],
+  "findings": [
+    {
+      "id": "check-order-before-canonical-validation",
+      "summary": "The runtime evaluates the domain and identifier rules, and by source order further kernel rules, before it validates every bounded word. Calldata that the formal decoder classifies as malformed can therefore end in a typed failure. The concrete probe observed a typed failure for every ordering recipe on all three profiles: a foreign domain returns the invalid-command failure with the domain reason, a stale identifier returns it with the identifier reason. No external call, log or committed write occurred. Under the current decoder no abstraction satisfies the bound relation for such an execution.",
+      "decisionNeeded": "Before malformed certificates are built, the closure has to choose between validating every bounded word before the first kernel rule, which changes every runtime identity and the evidence bound to it, and modeling the actual check order in the decoder and in the malformed branch."
+    },
+    {
+      "id": "nonzero-call-value-domain",
+      "summary": "Canonical calldata sent with a nonzero call value reverts with an empty payload on every typed entrypoint, while the decoder yields a typed command for it.",
+      "decisionNeeded": "The accepted set has to exclude nonzero call values, or the model has to classify them."
+    },
+    {
+      "id": "per-certificate-program-identity",
+      "summary": "The executed code is recorded for one certificate per profile at most; most certificate records name no program identity.",
+      "decisionNeeded": "Each certificate needs the code it executed, bound to the profile template by the exact matching rule."
+    },
+    {
+      "id": "unclassified-hook-routes",
+      "summary": "The Hook runtimes have no normative route classes, so every state-changing Hook selector is unclassified, including the two typed command entrypoints of the Hook adapter.",
+      "decisionNeeded": "Normative classes for the Hook runtimes, including classes for the balance-change callback, the fresh seal, the compliance module and the factory."
+    },
+    {
+      "id": "open-runtime-only-storage",
+      "summary": "Some storage variables that no abstract field reads have no runtime-only reason in the earlier central closure, among them the pending commitment and reversal records of the Native runtime and the topology fields of both governors.",
+      "decisionNeeded": "A reason or an abstract counterpart for each of them."
+    },
+    {
+      "id": "no-formal-storage-reader",
+      "summary": "The formal model reads storage through runtime manifest projections that are locale parameters; no per-profile manifest instance exists.",
+      "decisionNeeded": "A formal reader per profile manifest, checked against the crosswalk."
+    }
+  ],
+  "nonclaim": "Preparation only. This document describes inputs, checks and acceptance criteria for conditions that remain open. It does not discharge a runtime-link cell, the malformed branch, the acceptance partition, the central refinement closure or the independent Assurance, and it does not authorize a merge, a release or a deployment."
+}

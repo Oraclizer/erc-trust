@@ -1,0 +1,290 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "trust12-tail-preparation-certificate-registry-v1",
+  "title": "Certificate registry and acceptance partition coverage of the TRUST 1.2 runtime link",
+  "description": "For every profile, operation and outcome branch, the checked certificates whose executions make up the accepted set, bound to the kernel runs the obligation ledger cites and to the code identity of the profile. Coverage is the finite data of the acceptance partition; the partition theorem itself is proved by a kernel run over the whole registry. The locator file format is defined under $defs.locators.",
+  "type": "object",
+  "required": ["schema", "status", "mode", "inputs", "certificates", "cells", "malformed", "programs", "partition", "checks", "nonclaim"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "trust12-tail-preparation-certificate-registry-v1"},
+    "status": {"enum": ["DRY_RUN_PARTIAL_COVERAGE", "COVERAGE_COMPLETE_CANDIDATE", "FAIL_REGISTRY_INCONSISTENT"]},
+    "mode": {"enum": ["dry-run", "closure"]},
+    "inputs": {
+      "type": "object",
+      "required": ["ledger", "codeIdentity", "locators"],
+      "additionalProperties": false,
+      "properties": {
+        "ledger": {"$ref": "#/$defs/rootedFile"},
+        "codeIdentity": {"$ref": "#/$defs/rootedFile"},
+        "locators": {"oneOf": [{"$ref": "#/$defs/rootedFile"}, {"type": "null"}]}
+      }
+    },
+    "certificates": {"type": "array", "items": {"$ref": "#/$defs/certificate"}},
+    "cells": {"type": "array", "minItems": 27, "maxItems": 27, "items": {"$ref": "#/$defs/cell"}},
+    "malformed": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["profile", "certificates", "coverage"],
+        "additionalProperties": false,
+        "properties": {
+          "profile": {"$ref": "#/$defs/profile"},
+          "certificates": {"type": "array", "items": {"type": "string"}},
+          "coverage": {"enum": ["OPEN", "CANDIDATE"]}
+        }
+      }
+    },
+    "programs": {"type": "array", "items": {"$ref": "#/$defs/program"}},
+    "partition": {
+      "type": "object",
+      "required": ["declaredCells", "boundCells", "openCells", "malformedBranches", "coverageComplete", "meaning"],
+      "additionalProperties": false,
+      "properties": {
+        "declaredCells": {"const": 27},
+        "boundCells": {"type": "integer", "minimum": 0, "maximum": 27},
+        "openCells": {"type": "array", "items": {"type": "string", "pattern": "^(Native|Partial|Hook)/[A-Z]+$"}},
+        "malformedBranches": {
+          "type": "object",
+          "required": ["Native", "Partial", "Hook"],
+          "additionalProperties": false,
+          "properties": {
+            "Native": {"enum": ["OPEN", "CANDIDATE"]},
+            "Partial": {"enum": ["OPEN", "CANDIDATE"]},
+            "Hook": {"enum": ["OPEN", "CANDIDATE"]}
+          }
+        },
+        "coverageComplete": {"type": "boolean"},
+        "meaning": {"type": "string", "minLength": 1}
+      }
+    },
+    "checks": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["id", "status"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "enum": [
+              "certificate-keys-unique",
+              "apr-proofs-distinct",
+              "certificate-records-consistent",
+              "cells-agree-with-ledger-and-kernels",
+              "program-identity"
+            ]
+          },
+          "status": {"enum": ["PASS", "FAIL", "INCOMPLETE"]},
+          "detail": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "nonclaim": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "profile": {"enum": ["Native", "Partial", "Hook"]},
+    "operation": {"enum": ["FREEZE", "SEIZE", "CONFISCATE", "LIQUIDATE", "RESTRICT", "RECOVER", "UNFREEZE", "RELEASE", "UNRESTRICT"]},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "relativePath": {"type": "string", "pattern": "^(?![/\\\\])(?![A-Za-z]:)(?!.*\\.\\.)[^\\\\]+$"},
+    "jsonPointer": {"type": "string", "pattern": "^(/[^/]*)*$"},
+    "rootedFile": {
+      "type": "object",
+      "required": ["root", "path", "sha256"],
+      "additionalProperties": false,
+      "properties": {
+        "root": {"enum": ["PRODUCT", "EVIDENCE"]},
+        "path": {"$ref": "#/$defs/relativePath"},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "sourceRecord": {
+      "type": "object",
+      "required": ["path", "pointer", "sha256"],
+      "additionalProperties": false,
+      "properties": {
+        "path": {"$ref": "#/$defs/relativePath"},
+        "pointer": {"$ref": "#/$defs/jsonPointer"},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "certificate": {
+      "type": "object",
+      "required": ["key", "profile", "operation", "outcome", "form", "source", "problems"],
+      "additionalProperties": false,
+      "properties": {
+        "key": {"type": "string", "pattern": "^(Native|Partial|Hook)/[A-Z]+/(applied|not-applied|malformed)$"},
+        "profile": {"$ref": "#/$defs/profile"},
+        "operation": {"type": "string", "pattern": "^[A-Z]+$"},
+        "outcome": {"enum": ["applied", "not-applied", "malformed"]},
+        "form": {"enum": ["APR_PROOF", "COMPOUND_BOUNDARY"]},
+        "source": {"$ref": "#/$defs/sourceRecord"},
+        "problems": {"type": "array", "items": {"type": "string"}},
+        "proofId": {"type": "string", "minLength": 1},
+        "proofSha256": {"$ref": "#/$defs/sha256"},
+        "kcfgSha256": {"$ref": "#/$defs/sha256"},
+        "boundary": {"type": "string", "minLength": 1},
+        "compoundIdentity": {"type": "object"}
+      }
+    },
+    "kernel": {
+      "type": "object",
+      "required": ["root", "run", "theory", "ledgerResultSha256", "problems"],
+      "additionalProperties": false,
+      "properties": {
+        "root": {"type": "string", "minLength": 1},
+        "run": {"type": "string", "minLength": 1},
+        "theory": {"type": "string", "minLength": 1},
+        "ledgerResultSha256": {"oneOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]},
+        "resultSha256": {"$ref": "#/$defs/sha256"},
+        "status": {"type": "string"},
+        "problems": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "cell": {
+      "type": "object",
+      "required": ["profile", "operation", "ledgerStatus", "applied", "notApplied", "kernels", "coverage", "problems"],
+      "additionalProperties": false,
+      "properties": {
+        "profile": {"$ref": "#/$defs/profile"},
+        "operation": {"$ref": "#/$defs/operation"},
+        "ledgerStatus": {"enum": ["CLOSED", "CURRENT-MANDATORY", "SEPARATE-PROFILE", "NOT-APPLICABLE"]},
+        "applied": {"type": ["string", "null"]},
+        "notApplied": {"type": ["string", "null"]},
+        "kernels": {"type": "array", "items": {"$ref": "#/$defs/kernel"}},
+        "coverage": {"enum": ["BOUND", "OPEN"]},
+        "problems": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "program": {
+      "type": "object",
+      "required": ["profile", "contract", "source", "templateSha256", "actualSha256", "immutableRangeCount", "problems", "reconstruction"],
+      "additionalProperties": false,
+      "properties": {
+        "profile": {"$ref": "#/$defs/profile"},
+        "contract": {"type": "string", "minLength": 1},
+        "source": {"$ref": "#/$defs/sourceRecord"},
+        "templateSha256": {"$ref": "#/$defs/sha256"},
+        "actualSha256": {"$ref": "#/$defs/sha256"},
+        "immutableRangeCount": {"type": "integer", "minimum": 0},
+        "problems": {"type": "array", "items": {"type": "string"}},
+        "reconstruction": {"enum": ["MATCH", "MISMATCH", "NOT_RECOMPUTED"]}
+      }
+    },
+    "sourceSpec": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["path", "pointer"],
+          "additionalProperties": false,
+          "properties": {"path": {"$ref": "#/$defs/relativePath"}, "pointer": {"$ref": "#/$defs/jsonPointer"}}
+        },
+        {
+          "type": "object",
+          "required": ["path", "array", "match"],
+          "additionalProperties": false,
+          "properties": {
+            "path": {"$ref": "#/$defs/relativePath"},
+            "array": {"$ref": "#/$defs/jsonPointer"},
+            "match": {"type": "object"}
+          }
+        }
+      ]
+    },
+    "certificateSpec": {
+      "type": "object",
+      "required": ["outcome", "form", "source", "fields"],
+      "additionalProperties": false,
+      "properties": {
+        "outcome": {"enum": ["applied", "not-applied", "malformed"]},
+        "form": {"enum": ["APR_PROOF", "COMPOUND_BOUNDARY"]},
+        "source": {"$ref": "#/$defs/sourceSpec"},
+        "fields": {"type": "object", "additionalProperties": {"type": "string", "minLength": 1}},
+        "identity": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["path", "pointer", "fields"],
+            "additionalProperties": false,
+            "properties": {
+              "path": {"$ref": "#/$defs/relativePath"},
+              "pointer": {"$ref": "#/$defs/jsonPointer"},
+              "fields": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+            }
+          }
+        },
+        "corroborate": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["path", "fields"],
+            "properties": {
+              "path": {"$ref": "#/$defs/relativePath"},
+              "pointer": {"$ref": "#/$defs/jsonPointer"},
+              "array": {"$ref": "#/$defs/jsonPointer"},
+              "match": {"type": "object"},
+              "fields": {"type": "object", "additionalProperties": {"type": "string", "minLength": 1}}
+            }
+          }
+        }
+      }
+    },
+    "locators": {
+      "type": "object",
+      "required": ["schema", "ledger", "cells"],
+      "additionalProperties": false,
+      "properties": {
+        "schema": {"const": "trust12-tail-preparation-certificate-locators-v1"},
+        "description": {"type": "string"},
+        "ledger": {"$ref": "#/$defs/relativePath"},
+        "cells": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["profile", "operation", "certificates"],
+            "additionalProperties": false,
+            "properties": {
+              "profile": {"$ref": "#/$defs/profile"},
+              "operation": {"$ref": "#/$defs/operation"},
+              "certificates": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/certificateSpec"}}
+            }
+          }
+        },
+        "malformed": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["profile", "certificates"],
+            "additionalProperties": false,
+            "properties": {
+              "profile": {"$ref": "#/$defs/profile"},
+              "certificates": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/certificateSpec"}}
+            }
+          }
+        },
+        "programs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["profile", "contract", "source", "fields"],
+            "additionalProperties": false,
+            "properties": {
+              "profile": {"$ref": "#/$defs/profile"},
+              "contract": {"type": "string", "minLength": 1},
+              "source": {"$ref": "#/$defs/sourceSpec"},
+              "fields": {"type": "object", "additionalProperties": {"type": "string", "minLength": 1}},
+              "actualSource": {
+                "type": "object",
+                "required": ["path", "pointer"],
+                "additionalProperties": false,
+                "properties": {"path": {"$ref": "#/$defs/relativePath"}, "pointer": {"$ref": "#/$defs/jsonPointer"}}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
