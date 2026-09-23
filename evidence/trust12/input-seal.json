@@ -405,7 +405,7 @@
     },
     {
       "path": "scripts/test-trust12-required.mjs",
-      "sha256": "47f9b9e1bb2b4bf212a1ce350ec8fe84b2e3f249e9daf0fc961bd4c8ac136348"
+      "sha256": "5cdefdeb151303f1fb91f95b43bc4edddfcea1997e776a59f64a27f5fbdb7b2b"
     },
     {
       "path": "scripts/test-veri-dependency.py",
