@@ -88,7 +88,7 @@
         },
         {
           "path": "formal/isabelle/ERC_TRUST/TRUST_Obligation_Ledger_Generated.thy",
-          "sha256": "cb366dfbcd821ee87e4593cae4b64af95cbcc617ccb8912c4fd12598ed00b5e6"
+          "sha256": "22d3b1c8fa15f9503fe66a932dba89b016e5372844670982868f399fde148698"
         },
         {
           "path": "formal/isabelle/ERC_TRUST/TRUST_Retrieve_Relation.thy",
@@ -100,7 +100,7 @@
         },
         {
           "path": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy",
-          "sha256": "1293bdb284db5e2545e6031617464fb6e9e4800e6d43d154348e69d6ed17ab1a"
+          "sha256": "0146d61bf4fdb0808805db475eb63c434c950496262f84d05fdf48e2860f17ad"
         },
         {
           "path": "formal/isabelle/ERC_TRUST/TRUST_State_Abi_Normal_Form.thy",
@@ -188,7 +188,7 @@
         }
       ],
       "path": "formal/isabelle",
-      "rootSha256": "63e69742a093fd80d95b69c6bfcafff5063cd02b55c99e23d5284e9b239cb6fe",
+      "rootSha256": "412a36da526bd879318b9a59bf5abcb9a2eb9c71aa5f9bd6f776c91640910c40",
       "sessions": [
         "ERC_TRUST",
         "TRUST12_Accounting_Obstruction"
@@ -238,7 +238,7 @@
     "isabelleBuild": {
       "receipt": {
         "path": "evidence/isabelle-results-v3.json",
-        "sha256": "4bf7795e439189a3904809aea081e5ae937776b09e3860ebc53b0cd6b373b3a9"
+        "sha256": "c90695d96bcc39416e8fa60e3cca3b2babb9b8c2399e77b944097e571e0fde54"
       },
       "status": "PASS"
     },
@@ -409,7 +409,7 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "9ae2e9a130e62862a4aadc5a8d97f686c20592c0b3767d4ede5c86941a94931f"
+        "sha256": "e1cb428643a9e89208a9b30114743d479ea9aa1ecfd10e8111828904982d640b"
       }
     },
     "runtime": {
@@ -426,7 +426,7 @@
       "basis": "this index checks the receipt against the deterministic build; layer 2 (pinned-compiler replay and the six semantic projections) is re-executed by scripts/generate-runtime-binding-v3.mjs --check and scripts/verify-runtime-binding-v3.mjs --replay in the sdk-and-package job",
       "receipt": {
         "path": "evidence/runtime-binding-v3.json",
-        "sha256": "3e74b9d39df89700f063cb3dde587eb4001a5dd93dbaf5971907c922ab86c63d"
+        "sha256": "8414030dfbade4e3e9b4f2518da88d2202a22e16cdfc5ebb0b347391deff030f"
       },
       "status": "PASS",
       "subjects": [
@@ -442,35 +442,32 @@
     "trust12Required": {
       "centralClosure": "INCOMPLETE",
       "currentMandatory": [
-        "NATIVE-SYMBOLIC-FREEZE",
-        "RUNTIME-LINK-HOOK",
-        "RUNTIME-LINK-NATIVE",
-        "RUNTIME-LINK-PARTIAL"
+        "NATIVE-SYMBOLIC-FREEZE"
       ],
       "evidence": [
         {
           "path": "evidence/trust12/release-policy.json",
-          "sha256": "39f104dbe0ff2842658f1ad4a888253c37532c4755883e89b63c79e51f92a791"
+          "sha256": "56379b8d6057d7bcb4dbc6160e9745e1fb6989a2efa15430eb8f0afaf5d4b090"
         },
         {
           "path": "evidence/trust12/release-notes.md",
-          "sha256": "50241abeb170c56fe16ec014e76deee34d5f58f7047f8525b292b2ce62130093"
+          "sha256": "d42e4e8c81d79cdca512fe1fd50909c6c4fb244abd1b2a896576d70545a4b3e8"
         },
         {
           "path": "evidence/claim-matrix.md",
-          "sha256": "f5c5e5208c2827c615582f132d932233d232e8698c24415e516ba2d9b0b276e3"
+          "sha256": "1c4a8fbafcd3dd222215834694ce30225430d04ee94fc95fade6c0a5e7298462"
         },
         {
           "path": "evidence/known-limitations.md",
-          "sha256": "57f4c6cdd5c40ef7c957db8eae25c0525423b9fce2279acaacae83fa3e3f8ee9"
+          "sha256": "693891bdaec7f8a6f18a27b6bb047618c30e5f9435172a139c95bb4baa840bd5"
         },
         {
           "path": "evidence/trust12/obligation-ledger.json",
-          "sha256": "a32d15295d55381e62ef8c5a0caaea7beacb7b2af503d89113dfa103dcd50c55"
+          "sha256": "5dfc7a7ebab32735a481dbfc464d45604d10c650028914b37808fde4052510cb"
         },
         {
           "path": "evidence/trust12/runtime-identity.json",
-          "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
+          "sha256": "7b2251faffe33990edf9326b7a6883d75e9402c36f5a25e4e28cb29075f0a348"
         },
         {
           "path": "evidence/trust12/runtime-link-source-blockers.md",
@@ -498,11 +495,11 @@
         },
         {
           "path": "evidence/trust12/formal-build-replay.json",
-          "sha256": "d388eda901481cf3ded651f97a625bda19abff2fc6baeae25a184734039806fa"
+          "sha256": "7fe157867f905a5c07781c05e947b71f8b56cb0178c7ffb038edef0af0635a4d"
         },
         {
           "path": "evidence/trust12/model-results.json",
-          "sha256": "7572efbbef9689c69dfc318e9d72902a8f87b32ba1d5df9b711418f29d989bce"
+          "sha256": "b05b970f1fa3777eed7bafaa438f5c63f9274c3552c134ea2c81b7fb82e1cdb8"
         },
         {
           "path": "evidence/trust12/model-preservation-audit.md",
@@ -538,7 +535,7 @@
         },
         {
           "path": "evidence/trust12/functional-evidence-reuse.json",
-          "sha256": "e9ffa7ef2d26272069f1c4205739f582f03e261b9738befb7806861bdc1e9a2b"
+          "sha256": "c71ee20950d88578e32133e8e8069c2cd9500ac26c972daa80f5528e17790bf4"
         },
         {
           "path": "evidence/trust12/mutation-callback-auth.json",
@@ -566,7 +563,7 @@
         },
         {
           "path": "evidence/trust12/input-seal.json",
-          "sha256": "d60a4516b6f4a694746fede5531195239ad8afebe47e7cc7d57dd0b40dc3fc56"
+          "sha256": "a76cdecdb96231ba3a711f347d48bf2f29361cead1fe998504693b7843d10a07"
         }
       ],
       "fullRefinementComplete": false,
@@ -674,35 +671,32 @@
   "trust12Required": {
     "centralClosure": "INCOMPLETE",
     "currentMandatory": [
-      "NATIVE-SYMBOLIC-FREEZE",
-      "RUNTIME-LINK-HOOK",
-      "RUNTIME-LINK-NATIVE",
-      "RUNTIME-LINK-PARTIAL"
+      "NATIVE-SYMBOLIC-FREEZE"
     ],
     "evidence": [
       {
         "path": "evidence/trust12/release-policy.json",
-        "sha256": "39f104dbe0ff2842658f1ad4a888253c37532c4755883e89b63c79e51f92a791"
+        "sha256": "56379b8d6057d7bcb4dbc6160e9745e1fb6989a2efa15430eb8f0afaf5d4b090"
       },
       {
         "path": "evidence/trust12/release-notes.md",
-        "sha256": "50241abeb170c56fe16ec014e76deee34d5f58f7047f8525b292b2ce62130093"
+        "sha256": "d42e4e8c81d79cdca512fe1fd50909c6c4fb244abd1b2a896576d70545a4b3e8"
       },
       {
         "path": "evidence/claim-matrix.md",
-        "sha256": "f5c5e5208c2827c615582f132d932233d232e8698c24415e516ba2d9b0b276e3"
+        "sha256": "1c4a8fbafcd3dd222215834694ce30225430d04ee94fc95fade6c0a5e7298462"
       },
       {
         "path": "evidence/known-limitations.md",
-        "sha256": "57f4c6cdd5c40ef7c957db8eae25c0525423b9fce2279acaacae83fa3e3f8ee9"
+        "sha256": "693891bdaec7f8a6f18a27b6bb047618c30e5f9435172a139c95bb4baa840bd5"
       },
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "a32d15295d55381e62ef8c5a0caaea7beacb7b2af503d89113dfa103dcd50c55"
+        "sha256": "5dfc7a7ebab32735a481dbfc464d45604d10c650028914b37808fde4052510cb"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
-        "sha256": "e1d69cbdbce815c1af38a317042ef1eae2d30ef1a4f8a022b2c2b21ebb2785f4"
+        "sha256": "7b2251faffe33990edf9326b7a6883d75e9402c36f5a25e4e28cb29075f0a348"
       },
       {
         "path": "evidence/trust12/runtime-link-source-blockers.md",
@@ -730,11 +724,11 @@
       },
       {
         "path": "evidence/trust12/formal-build-replay.json",
-        "sha256": "d388eda901481cf3ded651f97a625bda19abff2fc6baeae25a184734039806fa"
+        "sha256": "7fe157867f905a5c07781c05e947b71f8b56cb0178c7ffb038edef0af0635a4d"
       },
       {
         "path": "evidence/trust12/model-results.json",
-        "sha256": "7572efbbef9689c69dfc318e9d72902a8f87b32ba1d5df9b711418f29d989bce"
+        "sha256": "b05b970f1fa3777eed7bafaa438f5c63f9274c3552c134ea2c81b7fb82e1cdb8"
       },
       {
         "path": "evidence/trust12/model-preservation-audit.md",
@@ -770,7 +764,7 @@
       },
       {
         "path": "evidence/trust12/functional-evidence-reuse.json",
-        "sha256": "e9ffa7ef2d26272069f1c4205739f582f03e261b9738befb7806861bdc1e9a2b"
+        "sha256": "c71ee20950d88578e32133e8e8069c2cd9500ac26c972daa80f5528e17790bf4"
       },
       {
         "path": "evidence/trust12/mutation-callback-auth.json",
@@ -798,7 +792,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "d60a4516b6f4a694746fede5531195239ad8afebe47e7cc7d57dd0b40dc3fc56"
+        "sha256": "a76cdecdb96231ba3a711f347d48bf2f29361cead1fe998504693b7843d10a07"
       }
     ],
     "fullRefinementComplete": false,
