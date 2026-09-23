@@ -13,7 +13,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "bed873125ff6fad5828ca588985a08bc2e4bf8ffd6a951759ad83dd1f97a663b"
+      "sha256": "8db0567be0f2406990d641ab357dba1d0352aef123d60ff5760ee17d67b69d42"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
@@ -405,7 +405,7 @@
     },
     {
       "path": "scripts/test-trust12-required.mjs",
-      "sha256": "c091a02eddfc638ef379222b394dcbb578a8efb9982c49fff28f02aabde1aeac"
+      "sha256": "47f9b9e1bb2b4bf212a1ce350ec8fe84b2e3f249e9daf0fc961bd4c8ac136348"
     },
     {
       "path": "scripts/test-veri-dependency.py",
