@@ -12,7 +12,7 @@
       "inputs": [
         {
           "path": ".github/workflows/proofs.yml",
-          "sha256": "88455607a86e9191da3f5d12a5cc3b09f36e3a7bc1bb93e22dcf2bbcedf5bf13"
+          "sha256": "0eba75fe3a896f8c5215aadae187f431f05dc0b8c0030cc33f813eaf449794f7"
         },
         {
           "path": "evidence/public-release/formal-foundation-supersession-v1.json",
@@ -188,7 +188,7 @@
         }
       ],
       "path": "formal/isabelle",
-      "rootSha256": "412a36da526bd879318b9a59bf5abcb9a2eb9c71aa5f9bd6f776c91640910c40",
+      "rootSha256": "415eb600a6627464cd8b29c4dbfd62fdfbf654c03f10e0bae75ec85a9a554823",
       "sessions": [
         "ERC_TRUST",
         "TRUST12_Accounting_Obstruction"
@@ -238,7 +238,7 @@
     "isabelleBuild": {
       "receipt": {
         "path": "evidence/isabelle-results-v3.json",
-        "sha256": "c90695d96bcc39416e8fa60e3cca3b2babb9b8c2399e77b944097e571e0fde54"
+        "sha256": "585266b7761dd2c2925910280aa979bc92bd55cf9587e2c5fb4b7e4d165248be"
       },
       "status": "PASS"
     },
@@ -409,7 +409,7 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "44bca29dfbd03e3b11993f334c9f75e2dec6e6e4957c6057627306bb75b1d548"
+        "sha256": "35647b1b2b3cce02a47db930a6ad683d2d9926fca94c7c1caa2f0cc23237d4c0"
       }
     },
     "runtime": {
@@ -495,11 +495,11 @@
         },
         {
           "path": "evidence/trust12/formal-build-replay.json",
-          "sha256": "7fe157867f905a5c07781c05e947b71f8b56cb0178c7ffb038edef0af0635a4d"
+          "sha256": "239e625b38cc3e8bc2623f5650b43e6b21eb1c9d3ea106869fc2ba803ced5349"
         },
         {
           "path": "evidence/trust12/model-results.json",
-          "sha256": "b05b970f1fa3777eed7bafaa438f5c63f9274c3552c134ea2c81b7fb82e1cdb8"
+          "sha256": "e66264f455dc2104f799a063a60045dcb2b998c1f0548f62defd2011e26170b1"
         },
         {
           "path": "evidence/trust12/model-preservation-audit.md",
@@ -563,7 +563,7 @@
         },
         {
           "path": "evidence/trust12/input-seal.json",
-          "sha256": "0ea6a1db5c4f37d5385417c7206e967f576d5911aeb30d35cc5f7e40bc9291f8"
+          "sha256": "368d2df3e866e0a2b8b6fdfc3f35c38727027793ceda0fa9691e8a5a63b0d1f4"
         }
       ],
       "fullRefinementComplete": false,
@@ -724,11 +724,11 @@
       },
       {
         "path": "evidence/trust12/formal-build-replay.json",
-        "sha256": "7fe157867f905a5c07781c05e947b71f8b56cb0178c7ffb038edef0af0635a4d"
+        "sha256": "239e625b38cc3e8bc2623f5650b43e6b21eb1c9d3ea106869fc2ba803ced5349"
       },
       {
         "path": "evidence/trust12/model-results.json",
-        "sha256": "b05b970f1fa3777eed7bafaa438f5c63f9274c3552c134ea2c81b7fb82e1cdb8"
+        "sha256": "e66264f455dc2104f799a063a60045dcb2b998c1f0548f62defd2011e26170b1"
       },
       {
         "path": "evidence/trust12/model-preservation-audit.md",
@@ -792,7 +792,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "0ea6a1db5c4f37d5385417c7206e967f576d5911aeb30d35cc5f7e40bc9291f8"
+        "sha256": "368d2df3e866e0a2b8b6fdfc3f35c38727027793ceda0fa9691e8a5a63b0d1f4"
       }
     ],
     "fullRefinementComplete": false,

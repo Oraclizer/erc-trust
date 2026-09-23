@@ -5,15 +5,15 @@
   "files": [
     {
       "path": ".github/workflows/ci.yml",
-      "sha256": "fc887a28954ab671b6874e56b64a0ec2490d5b12eb640a0a59650469735d5e63"
+      "sha256": "10a49bf76cf369a8793f897bb7b8b3e74532e28c86c9c564c23d3988e6da8e45"
     },
     {
       "path": ".github/workflows/proofs.yml",
-      "sha256": "88455607a86e9191da3f5d12a5cc3b09f36e3a7bc1bb93e22dcf2bbcedf5bf13"
+      "sha256": "0eba75fe3a896f8c5215aadae187f431f05dc0b8c0030cc33f813eaf449794f7"
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "01ca393d1504433bb22907d9ab4882c3ad88819c0412ec8f5eb95889b863d154"
+      "sha256": "cddbca03c76207c890e7de305c0a7372de237fedb1f5397b32a2b54c9203d9a1"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
@@ -57,7 +57,7 @@
     },
     {
       "path": "evidence/trust12/formal-build-replay.json",
-      "sha256": "7fe157867f905a5c07781c05e947b71f8b56cb0178c7ffb038edef0af0635a4d"
+      "sha256": "239e625b38cc3e8bc2623f5650b43e6b21eb1c9d3ea106869fc2ba803ced5349"
     },
     {
       "path": "evidence/trust12/formal-build.json",
@@ -85,7 +85,7 @@
     },
     {
       "path": "evidence/trust12/model-results.json",
-      "sha256": "b05b970f1fa3777eed7bafaa438f5c63f9274c3552c134ea2c81b7fb82e1cdb8"
+      "sha256": "e66264f455dc2104f799a063a60045dcb2b998c1f0548f62defd2011e26170b1"
     },
     {
       "path": "evidence/trust12/model-source-normalization.json",
@@ -441,7 +441,7 @@
     },
     {
       "path": "scripts/verify-trust12-required.mjs",
-      "sha256": "07401c12cfa655f7b6bdf7b88625f092a464a24c1ffec406e5ae285262ba4edc"
+      "sha256": "37635a4e69aa5058741c5a81e77687f9fa355aba4fce0cbef93a2410a312921b"
     }
   ],
   "nonclaim": "This seals one local development tranche. It is not a deployment, release, conformance approval, or end-to-end refinement result."
