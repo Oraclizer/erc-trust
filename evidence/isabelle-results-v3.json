@@ -1,5 +1,5 @@
 {
-  "admissionDigest": "dadf7f83e3b9ddc08942241ae771b1d18703beba571850f60d1932f7f5efbdf7",
+  "admissionDigest": "31a406de7a6e6dacaf2da6bff6af85521a7e37ed2557a82ec9bc0bd93063b923",
   "candidate": "0.2.0-candidate.1",
   "checks": {
     "bannedSourceForms": 0,
@@ -16,7 +16,7 @@
     "inputs": [
       {
         "path": ".github/workflows/proofs.yml",
-        "sha256": "0eba75fe3a896f8c5215aadae187f431f05dc0b8c0030cc33f813eaf449794f7"
+        "sha256": "1e6f6e62448134e995e15ad61000a1878d6d43e1d527e20ec95ce1029423e643"
       },
       {
         "path": "evidence/public-release/formal-foundation-supersession-v1.json",
@@ -188,11 +188,23 @@
       },
       {
         "path": "scripts/lib/formal-inputs.mjs",
-        "sha256": "8ecc60429a99411c8f588e17796dcf470bdb394e52e30787dca6315e5f49eb15"
+        "sha256": "d7bff305febdb9fc6288c494438e3e3e9e061396aeedf0810fd0d0879e2ba488"
+      },
+      {
+        "path": "scripts/proof-ci.mjs",
+        "sha256": "cc463a7fd0ff8ba6313c2f9a970013dac42bec3ff905f7074a4cafc4896a92b3"
+      },
+      {
+        "path": "scripts/run-proof-ci.sh",
+        "sha256": "74b9240388c75e2683fdbe3d117a473be09e6020bd065ff374964e63adb33acd"
+      },
+      {
+        "path": "scripts/test-proof-ci.mjs",
+        "sha256": "13d832941126334952262d337a096b72fcc72abfe311ea9e4bf95c0e71cc4867"
       }
     ],
     "path": "formal/isabelle",
-    "rootSha256": "415eb600a6627464cd8b29c4dbfd62fdfbf654c03f10e0bae75ec85a9a554823",
+    "rootSha256": "0cd4ca1233facd8ec0b609eb7e6f8db7e690db193e6d098c855ff7947da97487",
     "sessions": [
       "ERC_TRUST",
       "TRUST12_Accounting_Obstruction"
@@ -280,7 +292,7 @@
         }
       ]
     },
-    "finishedAt": "2026-09-23T14:05:23.2297654Z",
+    "finishedAt": "2026-09-23T14:45:17.3246047Z",
     "provider": "local-windows-isabelle",
     "sessions": [
       {
@@ -306,12 +318,12 @@
     ],
     "source": {
       "path": "evidence/trust12/formal-build-replay.json",
-      "sha256": "239e625b38cc3e8bc2623f5650b43e6b21eb1c9d3ea106869fc2ba803ced5349"
+      "sha256": "ffb8dfa22df26344aa59b5361c1df667087d92b6909afe9632f463a3c1d5455f"
     },
     "sourceInputs": [
       {
         "path": ".github/workflows/proofs.yml",
-        "sha256": "0eba75fe3a896f8c5215aadae187f431f05dc0b8c0030cc33f813eaf449794f7"
+        "sha256": "1e6f6e62448134e995e15ad61000a1878d6d43e1d527e20ec95ce1029423e643"
       },
       {
         "path": "evidence/public-release/formal-foundation-supersession-v1.json",
@@ -483,11 +495,23 @@
       },
       {
         "path": "scripts/lib/formal-inputs.mjs",
-        "sha256": "8ecc60429a99411c8f588e17796dcf470bdb394e52e30787dca6315e5f49eb15"
+        "sha256": "d7bff305febdb9fc6288c494438e3e3e9e061396aeedf0810fd0d0879e2ba488"
+      },
+      {
+        "path": "scripts/proof-ci.mjs",
+        "sha256": "cc463a7fd0ff8ba6313c2f9a970013dac42bec3ff905f7074a4cafc4896a92b3"
+      },
+      {
+        "path": "scripts/run-proof-ci.sh",
+        "sha256": "74b9240388c75e2683fdbe3d117a473be09e6020bd065ff374964e63adb33acd"
+      },
+      {
+        "path": "scripts/test-proof-ci.mjs",
+        "sha256": "13d832941126334952262d337a096b72fcc72abfe311ea9e4bf95c0e71cc4867"
       }
     ],
-    "sourceRootSha256": "415eb600a6627464cd8b29c4dbfd62fdfbf654c03f10e0bae75ec85a9a554823",
-    "startedAt": "2026-09-23T14:01:35.1784746Z"
+    "sourceRootSha256": "0cd4ca1233facd8ec0b609eb7e6f8db7e690db193e6d098c855ff7947da97487",
+    "startedAt": "2026-09-23T14:41:30.1264715Z"
   },
   "schema": "erc-trust-isabelle-results-v3",
   "sessions": [
@@ -512,7 +536,7 @@
       "status": "PASS"
     }
   ],
-  "sourceCommit": "45c5e36972c9d8318b2874d2b48deea14015fcf0",
+  "sourceCommit": "d94404901e1bd7d437daa9ec409913e1c8306321",
   "status": "PASS",
   "toolchain": {
     "foundationCommit": "db8e0802e55f0229cf7bc9e5e6cfbf40681adbba",
