@@ -44,7 +44,7 @@ try {
   const added = await sourceIdentity(source);
   check(() => assert.notEqual(added, after));
 
-  check(() => assert.deepEqual(checkCatalog(root), ["ERC_TRUST"]));
+  check(() => assert.deepEqual(checkCatalog(root), ["ERC_TRUST", "TRUST12_Accounting_Obstruction"]));
   const extra = join(temp, "extra");
   put(join(extra, "formal/isabelle/ROOT"), "session Uncovered = HOL +\n");
   reject(() => checkCatalog(extra));
@@ -59,8 +59,10 @@ try {
 
   const exportRoot = join(temp, "export");
   const reportPath = join(exportRoot, "model-proof-trust.txt");
+  const obstructionReportPath = join(exportRoot, "trust12-obstruction-proof-trust.txt");
   const report = "status=PASS\nexplicit_root_count=1\nqualified_fact_count=2\noracle_dependency_count=0\n";
   put(reportPath, report);
+  put(obstructionReportPath, report);
   check(() => assert.equal(auditExport(exportRoot).status, "PASS"));
   for (const bad of [report.replace("PASS", "FAIL"), report.replace("root_count=1", "root_count=0"), report.replace("dependency_count=0", "dependency_count=1"), report + "status=PASS\n", "status=PASS\noracle_dependency_count=0\n"]) {
     put(reportPath, bad);
@@ -77,6 +79,8 @@ try {
   const heaps = join(temp, "heaps");
   put(join(heaps, "polyml-linux/ERC_TRUST"), "heap-bytes");
   put(join(heaps, "polyml-linux/log/ERC_TRUST.db"), "database-bytes");
+  put(join(heaps, "polyml-linux/TRUST12_Accounting_Obstruction"), "obstruction-heap-bytes");
+  put(join(heaps, "polyml-linux/log/TRUST12_Accounting_Obstruction.db"), "obstruction-database-bytes");
   const state = join(temp, "state");
   await seal(state, heaps, identity, writer);
   await validateState(state, identity, repository); checks++;
@@ -171,7 +175,7 @@ try {
   const runtime = join(temp, "runtime");
   put(join(runtime, "formal-foundation-overlay/Model.thy"), "theory Model imports Main begin end");
   const fake = join(runtime, "Isabelle2025-2/bin/isabelle");
-  put(fake, '#!/usr/bin/env bash\nset -euo pipefail\nprintf "%s\\n" "$*" >> "$RUNNER_TEMP/calls"\nif [ "$1" = build ]; then exit "${FAKE_BUILD_EXIT:-0}"; fi\nwhile [ "$1" != -O ]; do shift; done\nshift\nmkdir -p "$1"\nprintf "status=PASS\\nexplicit_root_count=1\\nqualified_fact_count=2\\noracle_dependency_count=0\\n" > "$1/model-proof-trust.txt"\n');
+  put(fake, '#!/usr/bin/env bash\nset -euo pipefail\nprintf "%s\\n" "$*" >> "$RUNNER_TEMP/calls"\nif [ "$1" = build ]; then exit "${FAKE_BUILD_EXIT:-0}"; fi\nargs="$*"\nwhile [ "$1" != -O ]; do shift; done\nshift\nmkdir -p "$1"\nreport=model-proof-trust.txt\nif [[ "$args" == *TRUST12_Accounting_Obstruction* ]]; then report=trust12-obstruction-proof-trust.txt; fi\nprintf "status=PASS\\nexplicit_root_count=1\\nqualified_fact_count=2\\noracle_dependency_count=0\\n" > "$1/$report"\n');
   const bash = process.platform === "win32" ? "C:/Program Files/Git/bin/bash.exe" : "bash";
   if (process.platform !== "win32") execFileSync("chmod", ["+x", fake]);
   for (const clean of ["false", "true"]) {

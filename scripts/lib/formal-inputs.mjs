@@ -6,6 +6,7 @@ export function formalInputPaths(root) {
     (path.endsWith('.thy') || path.endsWith('.ML') || ['ROOT', 'ROOTS'].includes(basename(path)))),
     'formal-dependencies.lock.json', 'formal-dependencies-public-v1.lock.json',
     'evidence/public-release/formal-foundation-supersession-v1.json', '.github/workflows/proofs.yml',
+    'scripts/proof-ci.mjs', 'scripts/run-proof-ci.sh', 'scripts/test-proof-ci.mjs',
     'scripts/generate-trust12-proof-audit.py', 'scripts/capture-isabelle-local-inputs.mjs',
     'scripts/lib/formal-inputs.mjs',
     'formal/isabelle/ERC_TRUST/evidence/model-verification/run-trust-closure.ps1'].sort();

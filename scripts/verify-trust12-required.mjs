@@ -25,6 +25,7 @@ export const requiredTrust12Paths = [
   'evidence/trust12/evidence-reuse-audit.md','evidence/trust12/functional-evidence-reuse.json',
   ...mutationIds.map(id => `evidence/trust12/mutation-${id}.json`),
   'scripts/capture-isabelle-local-inputs.mjs','scripts/lib/runtime-bundles.mjs','scripts/generate-trust12-proof-audit.py',
+  'scripts/proof-ci.mjs','scripts/run-proof-ci.sh','scripts/test-proof-ci.mjs',
   'scripts/test-trust12-required.mjs',
   'scripts/verify-trust12-required.mjs','scripts/lib/local-evidence.mjs','scripts/lib/formal-inputs.mjs',
   'scripts/record-foundry-results-v3.mjs','scripts/record-isabelle-results-v3.mjs',

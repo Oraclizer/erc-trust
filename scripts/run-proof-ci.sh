@@ -19,4 +19,6 @@ node scripts/proof-ci.mjs scan formal/isabelle "$foundation"
 export_root="$(mktemp -d "$RUNNER_TEMP/isabelle-export.XXXXXX")"
 "$isabelle" export -d "$afp" -d "$foundation" -d formal/isabelle \
   -x '*:erc-trust/model-proof-trust.txt' -O "$export_root" ERC_TRUST
+"$isabelle" export -d "$afp" -d "$foundation" -d formal/isabelle \
+  -x '*:erc-trust/trust12-obstruction-proof-trust.txt' -O "$export_root" TRUST12_Accounting_Obstruction
 node scripts/proof-ci.mjs audit "$export_root"
