@@ -5,11 +5,15 @@ import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { createReadStream, existsSync, readFileSync, readdirSync, lstatSync,
   mkdirSync, cpSync, writeFileSync, appendFileSync } from "node:fs";
-import { join, resolve, relative } from "node:path";
+import { basename, join, resolve, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
 export const buildOptions = ["-b", "-v", "-o", "record_proofs=1"];
-export const auditSessions = ["ERC_TRUST"];
+export const auditReports = {
+  ERC_TRUST: "model-proof-trust.txt",
+  TRUST12_Accounting_Obstruction: "trust12-obstruction-proof-trust.txt",
+};
+export const auditSessions = Object.keys(auditReports);
 const sha = (value) => createHash("sha256").update(value).digest("hex");
 const json = (path) => JSON.parse(readFileSync(path, "utf8"));
 const output = (key, value) => appendFileSync(process.env.GITHUB_OUTPUT, `${key}=${value}\n`);
@@ -63,17 +67,24 @@ export function scanSources(roots) {
 }
 
 export function auditExport(root) {
-  const reports = files(root).filter((path) => /[/\\]model-proof-trust\.txt$/.test(path));
-  assert.equal(reports.length, 1, "Expected exactly one current proof audit export");
-  const entries = readFileSync(reports[0], "utf8").trim().split(/\r?\n/).map((line) => line.split("="));
-  assert(entries.every((pair) => pair.length === 2), "Malformed audit report");
-  const report = Object.fromEntries(entries);
-  assert.equal(entries.length, 4, "Duplicate or unexpected audit fields");
-  assert.deepEqual(Object.keys(report).sort(), ["explicit_root_count", "oracle_dependency_count", "qualified_fact_count", "status"]);
-  assert.equal(report.status, "PASS");
-  assert.equal(report.oracle_dependency_count, "0");
-  for (const key of ["explicit_root_count", "qualified_fact_count"]) assert(/^[1-9][0-9]*$/.test(report[key]), `Empty audit: ${key}`);
-  return report;
+  const all = files(root);
+  const sessions = {};
+  for (const [session, reportName] of Object.entries(auditReports)) {
+    const reports = all.filter((path) => basename(path) === reportName);
+    assert.equal(reports.length, 1, `Expected exactly one current proof audit export for ${session}`);
+    const entries = readFileSync(reports[0], "utf8").trim().split(/\r?\n/).map((line) => line.split("="));
+    assert(entries.every((pair) => pair.length === 2), `Malformed audit report for ${session}`);
+    const report = Object.fromEntries(entries);
+    assert.equal(entries.length, 4, `Duplicate or unexpected audit fields for ${session}`);
+    assert.deepEqual(Object.keys(report).sort(), ["explicit_root_count", "oracle_dependency_count", "qualified_fact_count", "status"]);
+    assert.equal(report.status, "PASS");
+    assert.equal(report.oracle_dependency_count, "0");
+    for (const key of ["explicit_root_count", "qualified_fact_count"]) {
+      assert(/^[1-9][0-9]*$/.test(report[key]), `Empty audit for ${session}: ${key}`);
+    }
+    sessions[session] = report;
+  }
+  return { status: "PASS", sessions };
 }
 
 export function requireSuccess(gate, formal) {
@@ -85,8 +96,10 @@ export async function seal(state, heaps, identity, env) {
   mkdirSync(state, { recursive: true });
   cpSync(heaps, join(state, "heaps"), { recursive: true });
   const inventory = await Promise.all(files(join(state, "heaps")).map(async (path) => [relative(state, path).replaceAll("\\", "/"), await digest(path)]));
-  assert(inventory.some(([name]) => name.endsWith("/ERC_TRUST")), "Missing target heap");
-  assert(inventory.some(([name]) => name.endsWith("/log/ERC_TRUST.db")), "Missing target session database");
+  for (const session of auditSessions) {
+    assert(inventory.some(([name]) => name.endsWith(`/${session}`)), `Missing target heap: ${session}`);
+    assert(inventory.some(([name]) => name.endsWith(`/log/${session}.db`)), `Missing target session database: ${session}`);
+  }
   const receipt = { schema: 1, ...identity, repository: env.GITHUB_REPOSITORY,
     run: env.GITHUB_RUN_ID, attempt: env.GITHUB_RUN_ATTEMPT, event: env.GITHUB_EVENT_NAME,
     ref: env.GITHUB_REF, commit: env.GITHUB_SHA, inventory };
@@ -111,8 +124,10 @@ export async function validateState(state, identity, repository, origin = "main"
   }
   const actual = await Promise.all(files(join(state, "heaps")).map(async (path) => [relative(state, path).replaceAll("\\", "/"), await digest(path)]));
   assert.deepEqual(receipt.inventory, actual, "State inventory or integrity mismatch");
-  assert(actual.some(([name]) => name.endsWith("/ERC_TRUST")), "Missing target heap");
-  assert(actual.some(([name]) => name.endsWith("/log/ERC_TRUST.db")), "Missing target session database");
+  for (const session of auditSessions) {
+    assert(actual.some(([name]) => name.endsWith(`/${session}`)), `Missing target heap: ${session}`);
+    assert(actual.some(([name]) => name.endsWith(`/log/${session}.db`)), `Missing target session database: ${session}`);
+  }
   return receipt;
 }
 
