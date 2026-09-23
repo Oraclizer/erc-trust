@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Repair the TRUST 1.2 required-control mutation harness so compiler-bundle
+  removals exercise the exact bundle verifier and false mandatory closure
+  targets the currently open Native symbolic obligation. Rebind the input seal
+  and successor public-tree accounting to the corrected controls.
+
 - Reset TRUST 1.2 release scope to the verified abstract model plus explicitly
   graded profile implementation evidence under declared external tools. Preserve
   general runtime-to-model correspondence as unproved research residuals. Keep

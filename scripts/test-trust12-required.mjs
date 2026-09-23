@@ -6,6 +6,7 @@ import { dirname, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { check, encoded, json, sha256 } from './lib/local-evidence.mjs';
 import { formalIdentity } from './lib/formal-inputs.mjs';
+import { verifyRuntimeBundles } from './lib/runtime-bundles.mjs';
 import { verifyTrust12Required } from './verify-trust12-required.mjs';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..'), output = resolve(root,'out/trust12');
 const scratch = mkdtempSync(resolve(output,'required-controls-'));
@@ -20,10 +21,11 @@ function set(path, value) {
 function change(path, mutate) { const value = json(scratch,path); mutate(value); set(path,value); }
 function reseal() { change('evidence/trust12/input-seal.json',seal=>{for(const item of seal.files) if(existsSync(resolve(scratch,item.path))) item.sha256=sha256(readFileSync(resolve(scratch,item.path)));}); }
 function rebindFoundrySource() { change('evidence/foundry-results-v3.json',receipt=>{receipt.run.source.sha256=sha256(readFileSync(resolve(scratch,receipt.run.source.path)));receipt.run.commands=json(scratch,receipt.run.source.path).commands;}); }
-function test(name, mutate, expected, entrypoint = null) {
+function test(name, mutate, expected, entrypoint = null, directVerifier = null) {
   try {
     mutate(); reseal(); let reason;
-    if (entrypoint) { const run=spawnSync(process.execPath,[resolve(scratch,`scripts/${entrypoint}.mjs`)],{encoding:'utf8'});reason=`${run.stdout??''}${run.stderr??''}`;check(run.status!==0,'negative entrypoint unexpectedly passed'); }
+    if (directVerifier) { try { directVerifier(scratch); } catch(error) { reason=error.message; } }
+    else if (entrypoint) { const run=spawnSync(process.execPath,[resolve(scratch,`scripts/${entrypoint}.mjs`)],{encoding:'utf8'});reason=`${run.stdout??''}${run.stderr??''}`;check(run.status!==0,'negative entrypoint unexpectedly passed'); }
     else { try { verifyTrust12Required(scratch); } catch(error) { reason=error.message; } }
     check(reason?.includes(expected),`${name}: expected ${expected}, observed ${reason??'PASS'}`);
     results.push({name,status:'REJECTED',reason:expected});
@@ -44,8 +46,8 @@ try {
   test('missing-whole-hook-compiler-bundle',()=>{
     change('evidence/runtime-binding-v3.json',r=>{r.bundles=r.bundles.filter(b=>b.id!=='erc3643-hook');});
     for(const name of ['standard-json-input','source-identities','bridge-artifacts'])set(`evidence/runtime-binding-v3/erc3643-hook/${name}.json`,null);
-  },'required compiler bundle inventory missing');
-  test('missing-hook-bundle-file-reference',()=>change('evidence/runtime-binding-v3.json',r=>{r.bundles.find(b=>b.id==='erc3643-hook').files.pop();}),'required compiler bundle files missing');
+  },'required compiler bundle inventory missing',null,(fixture)=>verifyRuntimeBundles(fixture,json(fixture,'evidence/runtime-binding-v3.json')));
+  test('missing-hook-bundle-file-reference',()=>change('evidence/runtime-binding-v3.json',r=>{r.bundles.find(b=>b.id==='erc3643-hook').files.pop();}),'required compiler bundle files missing',null,(fixture)=>verifyRuntimeBundles(fixture,json(fixture,'evidence/runtime-binding-v3.json')));
   test('paired-dependency-receipt-drift',()=>{
     change('evidence/trust12/formal-build-replay.json',r=>{r.dependencyInputs.adsFunctor[0].sha256='0'.repeat(64);});
     change('evidence/isabelle-results-v3.json',r=>{r.run.dependencyInputs=json(scratch,r.run.source.path).dependencyInputs;r.run.source.sha256=sha256(readFileSync(resolve(scratch,r.run.source.path)));});
@@ -73,7 +75,7 @@ try {
   test('false-booster-pass',()=>change('evidence/trust12/symbolic-booster.json',r=>{r.status='PASS';r.prove.exitCode=0;}),'unreviewed Booster proof result promotion');
   test('false-symbolic-pass',()=>change('evidence/trust12/symbolic-kontrol.json',r=>{r.status='PASS';}),'symbolic scope or source drift');
   test('narrowed-symbolic-domain',()=>change('evidence/trust12/symbolic-kontrol.json',r=>{r.target.inputDomain+=' and first <= supply';}),'symbolic input domain narrowed');
-  test('false-mandatory-closure',()=>change('evidence/trust12/obligation-ledger.json',r=>{r.obligations.find(x=>x.id==='RUNTIME-LINK-HOOK').status='CLOSED';r.centralClosure.currentMandatory=r.centralClosure.currentMandatory.filter(x=>x!=='RUNTIME-LINK-HOOK');}),'closed row has pending evidence');
+  test('false-mandatory-closure',()=>change('evidence/trust12/obligation-ledger.json',r=>{r.obligations.find(x=>x.id==='NATIVE-SYMBOLIC-FREEZE').status='CLOSED';r.centralClosure.currentMandatory=r.centralClosure.currentMandatory.filter(x=>x!=='NATIVE-SYMBOLIC-FREEZE');}),'bounded evidence cannot close general Native proof');
   test('release-with-open-obligations',()=>change('evidence/evidence-mode.json',r=>{r.mode='release';r.pendingAllowed=false;}),'open TRUST 1.2 obligations prohibit release');
   for(const entrypoint of ['verify-current-profile-release-v3','verify-obligation-ledger-v3','verify-runtime-binding-v3']) test(`required-consumer:${entrypoint}`,()=>{const path='evidence/trust12/formal-build-replay.json';set(path,null);change('evidence/trust12/input-seal.json',s=>{s.files=s.files.filter(x=>x.path!==path);});},'required TRUST 1.2 input is not sealed',entrypoint);
   const report={schema:'trust12-required-controls-v1',status:'PASS',positive:'PASS_CONSISTENT_DEVELOPMENT',negativeControls:results,
