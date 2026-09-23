@@ -409,7 +409,7 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "e1cb428643a9e89208a9b30114743d479ea9aa1ecfd10e8111828904982d640b"
+        "sha256": "6ab318f160eef8c7519c975541976290a73cfd02194300d92ec84453540ba1a1"
       }
     },
     "runtime": {
@@ -563,7 +563,7 @@
         },
         {
           "path": "evidence/trust12/input-seal.json",
-          "sha256": "a76cdecdb96231ba3a711f347d48bf2f29361cead1fe998504693b7843d10a07"
+          "sha256": "40a3801b1fcff79ccbc5ebdfc5ca05c62a27904353fc7459c8e5ad58dcb59643"
         }
       ],
       "fullRefinementComplete": false,
@@ -792,7 +792,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "a76cdecdb96231ba3a711f347d48bf2f29361cead1fe998504693b7843d10a07"
+        "sha256": "40a3801b1fcff79ccbc5ebdfc5ca05c62a27904353fc7459c8e5ad58dcb59643"
       }
     ],
     "fullRefinementComplete": false,
