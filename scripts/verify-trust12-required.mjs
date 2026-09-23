@@ -7,7 +7,7 @@ import { check, checkLocalReceiptProvenance, encoded, fileRef, inputInventory, i
 import { formalAdmissionDigest, validateFormalIdentity } from './lib/formal-inputs.mjs';
 import { verifyTrust12Policy, mandatoryIds, researchIds } from './lib/trust12-policy.mjs';
 const repository = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const functionalRoot = '7f5104e0adbbefb9cb01f48294d72017dc2529f8fb68b38b4cbb56621398bd91';
+const functionalRoot = '8d228ae9224b34e8e05eddc308d5ce77f0595ef0e02bc408fff31d1b5df467e2';
 const testsRoot = '23f88d74a162d19792b51bdbd976d111c65e731b96ba5aac495b51be33125d7d';
 const mutationIds = ['callback-auth','factory-pin','hidden-agent','inbound','initial','receipt'];
 export const requiredTrust12Paths = [

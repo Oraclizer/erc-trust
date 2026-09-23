@@ -3,6 +3,7 @@
 from pathlib import Path
 import hashlib, json, re, subprocess, sys
 root=Path(__file__).resolve().parents[1]
+legacy_source_baseline="43354ca55ba417a50f971bc346c91716a3546dea"
 expected={
  "TrustToken":"b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1",
  "ERC3643TrustAdapter":"7a2dfa433911dd37e389498129356db30693e8ee8e128f8da63a5d3044a56349",
@@ -26,7 +27,7 @@ legacy_sources=[
  "implementation/src/profiles/ProfileGovernor.sol"]
 for path in legacy_sources:
     baseline=subprocess.check_output(
-        ["git","show","2545efa64289ad82fe3ad8a99e5dfad01ff92c10:"+path],cwd=root)
+        ["git","show",legacy_source_baseline+":"+path],cwd=root)
     if baseline != (root/path).read_bytes():
         raise RuntimeError("legacy source changed: "+path)
 
@@ -79,7 +80,7 @@ if not match or match.group(1)!=creation_keccak:
 paths=sorted([root/"foundry.toml",*root.glob("implementation/src/**/*.sol")],key=lambda p:p.relative_to(root).as_posix())
 inputs=[{"path":p.relative_to(root).as_posix(),"sha256":hashlib.sha256(p.read_bytes()).hexdigest()} for p in paths]
 report={"schema":"trust12-runtime-identity-v1","status":"PASS",
-    "baselineCommit":"2545efa64289ad82fe3ad8a99e5dfad01ff92c10",
+    "baselineCommit":legacy_source_baseline,
     "legacySourcePreserved":legacy_sources,"legacyRuntimePreserved":list(expected),"runtimes":runtimes,
     "sharedKernel":{"commonFunctionBodies":len(set(partial_bodies)&set(hook_bodies)),
       "allowedBodyDifferences":sorted(allowed_body_differences),
