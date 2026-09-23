@@ -5,7 +5,7 @@
   "files": [
     {
       "path": ".github/workflows/ci.yml",
-      "sha256": "41bb4fa69e470e78eacc4dc64f1d603f5707fc6147c6533d78b27c8c62f814f7"
+      "sha256": "fc887a28954ab671b6874e56b64a0ec2490d5b12eb640a0a59650469735d5e63"
     },
     {
       "path": ".github/workflows/proofs.yml",
@@ -13,7 +13,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "333ce675ccf56c52441d407c6ff597afcc882dbd2c2ba0c10a7b6cc70903af56"
+      "sha256": "eec08a328c4cf6eb2c9c743d1d95dd4610f9c9ea731cb147348fa47c4650eacb"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
