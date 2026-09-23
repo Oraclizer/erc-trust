@@ -35,6 +35,7 @@ and operations require separate evidence.
 | Role | Canonical location |
 | --- | --- |
 | Abstract model | `formal/isabelle/ERC_TRUST/` |
+| Incremental proof CI and cache validation | `.github/workflows/proofs.yml`; `scripts/run-proof-ci.sh`; `scripts/proof-ci.mjs`; `scripts/test-proof-ci.mjs` |
 | Model replay and claim matrix | `formal/isabelle/ERC_TRUST/evidence/model-verification/` |
 | Native reference implementation | `implementation/src/TrustToken.sol` |
 | ERC-3643 Partial reference profile | `implementation/src/profiles/` |
@@ -85,6 +86,33 @@ foundation-commit drift, any mapped-file drift, a missing registration, a
 wrong import, and a wrong overlay commit. The temporary session is removed
 when a stable public foundation commit directly provides the same qualified
 theory and the same succession verification passes.
+
+### Continuous proof verification
+
+Every pull request and main push runs Isabelle over the complete session
+catalog with `record_proofs=1`. The native build checks source, options, and
+transitive heap/database freshness and recalculates invalidated sessions.
+Every run exports and validates the current nonempty proof audit, including
+zero oracle dependencies. Cache hits and skipped jobs cannot satisfy `Proofs`.
+Topic pushes retain the implementation, package, and repository checks without
+starting a duplicate Isabelle build.
+
+Only successful main builds write shared heap/database caches. Reuse verifies
+the pinned tools and dependencies, OS/architecture, build driver, source
+inventory, and each state file's digest. Main can also consume the exact
+matching artifact from its merged same-repository PR, after checking the
+successful Proofs run and a writer with current repository write permission.
+Fork artifacts are excluded. Missing, expired, corrupt, or incompatible state
+and unavailable GitHub lookups fall back to a normal native build; export
+auditing still runs. An I/O failure that leaves a partially copied heap
+directory stops the job before building, so partial state cannot be consumed.
+
+The Monday schedule, release validation calls, and manual `clean: true` runs
+perform a full replay without restoring saved archives or project state. The
+Proofs workflow has a 120-minute limit; maintainers inspect failures and can
+use the explicit clean run to investigate reuse defects. The first compatible
+run pays the initial build cost. Build logs report actual rebuilt/current
+sessions; no speedup is assumed before a warm run is observed.
 
 ## Successor refinement closure (kernel version 2)
 

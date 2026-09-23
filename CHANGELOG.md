@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Reuse validated Isabelle heaps and session databases while selecting the
+  complete proof catalog on every PR and main push. Always consume every
+  current proof audit export; remove duplicate topic-push proof builds;
+  preserve weekly, manual clean, and release full replays. Main accepts
+  matching state only from its own successful builds or an eligible successful
+  merged PR.
+
 - Repair the TRUST 1.2 required-control mutation harness so compiler-bundle
   removals exercise the exact bundle verifier and false mandatory closure
   targets the currently open Native symbolic obligation. Rebind the input seal

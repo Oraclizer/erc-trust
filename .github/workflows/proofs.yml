@@ -3,14 +3,23 @@ name: Proofs
 on:
   pull_request:
   workflow_call:
+    inputs:
+      clean:
+        type: boolean
+        default: true
   push:
-    branches: [main]
+    branches: ["main"]
   schedule:
     - cron: "17 4 * * 1"
   workflow_dispatch:
+    inputs:
+      clean:
+        description: Replay all project sessions without saved heaps or databases
+        type: boolean
+        default: false
 
 concurrency:
-  group: proofs-${{ github.event.pull_request.number || github.ref }}
+  group: proofs-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 permissions:
@@ -18,92 +27,67 @@ permissions:
 
 jobs:
   gate:
-    # Decides whether this event can change the proof result. Anything that
-    # is not a pull request always gets the full clean build; a pull request
-    # gets it only when a proof input differs from the base snapshot. The
-    # aggregate job below fails closed if this decision cannot be made, and
-    # the weekly unconditional run backstops the decision.
-    name: Decide whether proof inputs changed
+    name: Validate proof reuse policy
     runs-on: ubuntu-24.04
     timeout-minutes: 5
-    outputs:
-      run_formal: ${{ steps.decide.outputs.run_formal }}
     steps:
       - name: Check out source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          # Depth 2 keeps both parents of the pull-request merge commit, so
-          # the base snapshot is present without a later authenticated
-          # fetch (credentials are deliberately not persisted).
-          fetch-depth: 2
           persist-credentials: false
-      - name: Compare proof inputs against the base snapshot
-        id: decide
-        shell: bash
-        run: |
-          set -euo pipefail
-          if [ "${{ github.event_name }}" != "pull_request" ]; then
-            echo "run_formal=true" >> "$GITHUB_OUTPUT"
-            echo "not a pull request: the full proof build always runs"
-            exit 0
-          fi
-          base="${{ github.event.pull_request.base.sha }}"
-          changed="$(git diff --name-only "$base" HEAD)"
-          printf 'changed files:\n%s\n' "$changed"
-          if printf '%s\n' "$changed" | grep -E -q \
-            '^(formal/|formal-dependencies(-public-v1)?\.lock\.json$|scripts/verify-formal-foundation-supersession\.mjs$|scripts/generate-trust12-proof-audit\.py$|scripts/capture-isabelle-local-inputs\.mjs$|scripts/lib/formal-inputs\.mjs$|evidence/public-release/formal-foundation-supersession-v1\.json$|\.github/workflows/proofs\.yml$)'; then
-            echo "run_formal=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "run_formal=false" >> "$GITHUB_OUTPUT"
-          fi
+      - name: Exercise invalidation, provenance, audit and aggregate negatives
+        run: node scripts/test-proof-ci.mjs
 
   formal:
-    name: Isabelle2025-2 / ERC_TRUST
+    name: Isabelle2025-2 / full session catalog
     needs: [gate]
-    if: ${{ needs.gate.outputs.run_formal == 'true' }}
     runs-on: ubuntu-24.04
     timeout-minutes: 120
+    permissions:
+      contents: read
+      actions: read
+      pull-requests: read
     env:
       ISABELLE_SHA256: a20a507bc7c1270d8be96a9f3fbec06345387789d2dc2c4d3df6260d47bfb33c
       ISABELLE_URL: https://www.cl.cam.ac.uk/research/hvg/Isabelle/dist/Isabelle2025-2_linux.tar.gz
       AFP_ADS_FUNCTOR_SHA256: 10d6fa8671c461022ae5e71859a07610d616681fed79e2f1c81029a124203c85
       AFP_ADS_FUNCTOR_URL: https://isa-afp.org/release/afp-ADS_Functor-2026-02-06.tar.gz
       FORMAL_FOUNDATION_COMMIT: db8e0802e55f0229cf7bc9e5e6cfbf40681adbba
+      # Called release validation defaults to clean=true. Weekly and explicit
+      # clean jobs restore no archive, project heap, database or PR artifact.
+      CLEAN_REPLAY: ${{ github.event_name == 'schedule' || inputs.clean == true }}
     steps:
       - name: Check out source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - name: Restore cached Isabelle archive
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+      - name: Restore pinned Isabelle archive
+        if: ${{ env.CLEAN_REPLAY == 'false' }}
+        continue-on-error: true
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ runner.temp }}/Isabelle2025-2_linux.tar.gz
           key: isabelle-${{ env.ISABELLE_SHA256 }}
-      - name: Restore cached AFP entry
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+      - name: Restore pinned AFP archive
+        if: ${{ env.CLEAN_REPLAY == 'false' }}
+        continue-on-error: true
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ runner.temp }}/afp-ADS_Functor.tar.gz
           key: afp-ads-functor-${{ env.AFP_ADS_FUNCTOR_SHA256 }}
-      - name: Restore cached parent heaps
-        # The target session is still cleaned with -c on every run; this
-        # cache only spares rebuilding the unchanged parent sessions.
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
-        with:
-          path: ~/.isabelle/Isabelle2025-2/heaps
-          key: heaps-${{ env.ISABELLE_SHA256 }}-${{ env.AFP_ADS_FUNCTOR_SHA256 }}-${{ env.FORMAL_FOUNDATION_COMMIT }}-v1
       - name: Install pinned Isabelle and AFP entry
         shell: bash
         run: |
           set -euo pipefail
           isabelle_archive="$RUNNER_TEMP/Isabelle2025-2_linux.tar.gz"
           afp_archive="$RUNNER_TEMP/afp-ADS_Functor.tar.gz"
-          if [ ! -f "$isabelle_archive" ]; then
+          if [ ! -f "$isabelle_archive" ] || ! echo "$ISABELLE_SHA256  $isabelle_archive" | sha256sum --check --status; then
             curl --fail --location --connect-timeout 30 --max-time 1800 --retry 5 --retry-all-errors --output "$isabelle_archive" "$ISABELLE_URL"
           fi
           echo "$ISABELLE_SHA256  $isabelle_archive" | sha256sum --check --strict
           tar -xzf "$isabelle_archive" -C "$RUNNER_TEMP"
           test "$("$RUNNER_TEMP/Isabelle2025-2/bin/isabelle" version)" = "Isabelle2025-2"
-          if [ ! -f "$afp_archive" ]; then
+          if [ ! -f "$afp_archive" ] || ! echo "$AFP_ADS_FUNCTOR_SHA256  $afp_archive" | sha256sum --check --status; then
             curl --fail --location --connect-timeout 30 --max-time 600 --retry 5 --retry-all-errors --output "$afp_archive" "$AFP_ADS_FUNCTOR_URL"
           fi
           echo "$AFP_ADS_FUNCTOR_SHA256  $afp_archive" | sha256sum --check --strict
@@ -132,53 +116,99 @@ jobs:
             --prepare-overlay "$overlay"
           test -f "$overlay/Regulatory_Action_Composition.thy"
           test "$(cat "$overlay/.erc-trust-foundation-commit")" = "$FORMAL_FOUNDATION_COMMIT"
-      - name: Reject untrusted proof source forms
+      - name: Bind the build profile and complete source tree
+        id: identity
         shell: bash
         run: |
           set -euo pipefail
-          if grep -R -n -E '^\s*(sorry|oops|axiomatization|oracle)\b|\bby\s+eval\b|\bnative_decide\b|\bskip_proof\b|\bsledgehammer\b|\bsmt_oracle\b' \
-            formal/isabelle/ERC_TRUST formal/isabelle/TRUST12_OBSTRUCTIONS \
-            "$RUNNER_TEMP/formal-foundation-overlay" --include='*.thy'; then
-            exit 1
-          fi
-      - name: Clean-build and audit ERC_TRUST sessions
-        shell: bash
+          export ML_SYSTEM="$("$RUNNER_TEMP/Isabelle2025-2/bin/isabelle" getenv -b ML_SYSTEM)"
+          export ISABELLE_PLATFORM64="$("$RUNNER_TEMP/Isabelle2025-2/bin/isabelle" getenv -b ISABELLE_PLATFORM64)"
+          node scripts/proof-ci.mjs identity "$RUNNER_TEMP/proof-identity.json"
+      - name: Restore state written by main
+        id: cache
+        if: ${{ env.CLEAN_REPLAY == 'false' }}
+        continue-on-error: true
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/proof-main-state
+          key: proof-state-${{ steps.identity.outputs.profile }}-${{ steps.identity.outputs.source }}
+          restore-keys: |
+            proof-state-${{ steps.identity.outputs.profile }}-
+      - name: Find the successful trusted PR run for this merged source
+        id: pr
+        if: ${{ env.CLEAN_REPLAY == 'false' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/proof-ci.mjs select-pr "$RUNNER_TEMP/proof-identity.json"
+      - name: Restore the exact merged-PR artifact
+        id: pr-download
+        if: ${{ steps.pr.outputs.artifact != '' }}
+        continue-on-error: true
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          artifact-ids: ${{ steps.pr.outputs.artifact }}
+          run-id: ${{ steps.pr.outputs.run }}
+          github-token: ${{ github.token }}
+          path: ${{ runner.temp }}/proof-pr-state
+          merge-multiple: true
+      - name: Check restored state integrity and provenance
+        if: ${{ env.CLEAN_REPLAY == 'false' }}
+        env:
+          PR_RUN: ${{ steps.pr.outputs.run }}
         run: |
-          set -euo pipefail
-          isabelle="$RUNNER_TEMP/Isabelle2025-2/bin/isabelle"
-          afp="$RUNNER_TEMP/afp/ADS_Functor"
-          foundation="$RUNNER_TEMP/formal-foundation-overlay"
-          python3 scripts/generate-trust12-proof-audit.py
-          "$isabelle" build -c -o record_proofs=1 -o threads=2 -o parallel_proofs=0 -d "$afp" -d "$foundation" -d formal/isabelle \
-            ERC_TRUST TRUST12_Accounting_Obstruction
-          export_root="$RUNNER_TEMP/isabelle-export"
-          "$isabelle" export -d "$afp" -d "$foundation" -d formal/isabelle -x '*:erc-trust/model-proof-trust.txt' -O "$export_root" ERC_TRUST
-          "$isabelle" export -d "$afp" -d "$foundation" -d formal/isabelle -x '*:erc-trust/trust12-obstruction-proof-trust.txt' -O "$export_root" TRUST12_Accounting_Obstruction
-          grep -R -q '^status=PASS$' "$export_root"
-          grep -R -q '^oracle_dependency_count=0$' "$export_root"
-          test "$(grep -R -l '^status=PASS$' "$export_root" | wc -l)" -eq 2
+          node scripts/proof-ci.mjs restore "$RUNNER_TEMP/proof-pr-state" \
+            "$RUNNER_TEMP/proof-main-state" "$HOME/.isabelle/Isabelle2025-2/heaps" \
+            "$RUNNER_TEMP/proof-identity.json" "$PR_RUN"
+      - name: Build every session and consume the current proof audit export
+        run: bash scripts/run-proof-ci.sh
+      - name: Seal successful reusable state
+        if: ${{ env.CLEAN_REPLAY == 'false' && ((github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository)) }}
+        run: node scripts/proof-ci.mjs seal "$RUNNER_TEMP/proof-state-output" "$HOME/.isabelle/Isabelle2025-2/heaps" "$RUNNER_TEMP/proof-identity.json"
+      - name: Publish state for the trusted merge consumer
+        if: ${{ env.CLEAN_REPLAY == 'false' && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: isabelle-state-${{ steps.identity.outputs.profile }}-${{ steps.identity.outputs.source }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/proof-state-output
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 7
+      - name: Prepare main cache update
+        if: ${{ env.CLEAN_REPLAY == 'false' && github.event_name == 'push' && github.ref == 'refs/heads/main' && steps.cache.outputs.cache-hit != 'true' }}
+        run: |
+          rm -rf "$RUNNER_TEMP/proof-main-state"
+          mv "$RUNNER_TEMP/proof-state-output" "$RUNNER_TEMP/proof-main-state"
+      - name: Save state from successful main build and export audit
+        if: ${{ env.CLEAN_REPLAY == 'false' && github.event_name == 'push' && github.ref == 'refs/heads/main' && steps.cache.outputs.cache-hit != 'true' }}
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/proof-main-state
+          key: proof-state-${{ steps.identity.outputs.profile }}-${{ steps.identity.outputs.source }}
+      - name: Save checked Isabelle archive from main
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/Isabelle2025-2_linux.tar.gz
+          key: isabelle-${{ env.ISABELLE_SHA256 }}
+      - name: Save checked AFP archive from main
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ runner.temp }}/afp-ADS_Functor.tar.gz
+          key: afp-ads-functor-${{ env.AFP_ADS_FUNCTOR_SHA256 }}
 
   Proofs:
-    # Single aggregate check for the proof lane; branch protection
-    # requires this job together with the CI aggregate. It always reports:
-    # a skipped build is accepted only when the gate positively decided
-    # that no proof input changed, and any gate failure fails the lane.
     name: Proofs
     if: ${{ always() }}
     needs: [gate, formal]
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
-      - name: Require the proof lane
+      - name: Require every proof job
         env:
           GATE_RESULT: ${{ needs.gate.result }}
-          RUN_FORMAL: ${{ needs.gate.outputs.run_formal }}
           FORMAL_RESULT: ${{ needs.formal.result }}
         run: |
           set -euo pipefail
           test "$GATE_RESULT" = success
-          if [ "$RUN_FORMAL" = "true" ]; then
-            test "$FORMAL_RESULT" = success
-          else
-            test "$FORMAL_RESULT" = skipped
-          fi
+          test "$FORMAL_RESULT" = success
