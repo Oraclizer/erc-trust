@@ -1,7 +1,7 @@
 {
   "schema": "trust12-runtime-identity-v1",
   "status": "PASS",
-  "baselineCommit": "2545efa64289ad82fe3ad8a99e5dfad01ff92c10",
+  "baselineCommit": "43354ca55ba417a50f971bc346c91716a3546dea",
   "legacySourcePreserved": [
     "implementation/src/profiles/ERC3643TrustAdapter.sol",
     "implementation/src/profiles/ProfileGovernor.sol"

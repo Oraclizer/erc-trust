@@ -373,7 +373,7 @@
       {
         "contract": "ERC3643TrustAdapter",
         "path": "out/ERC3643TrustAdapter.sol/ERC3643TrustAdapter.json",
-        "sha256": "5e953200177aa15553024365f4dd5e401fc1e34d3564c0ecd56ae17521543f4a",
+        "sha256": "2853176a51a5dd9c1d84efb2b729b8ef9b03ebc9c430a39140a1a40361570067",
         "source": "implementation/src/profiles/ERC3643TrustAdapter.sol",
         "subject": "profileAdapter"
       },
@@ -1062,7 +1062,7 @@
           "offset": 0,
           "projectionId": "profile.adapter.bindings",
           "slot": 6,
-          "typeId": "t_mapping(t_enum(BindingKind)5529,t_struct(DependencyBinding)6231_storage)",
+          "typeId": "t_mapping(t_enum(BindingKind)5529,t_struct(DependencyBinding)12344_storage)",
           "typeLabel": "mapping(enum TrustKernelTypes.BindingKind => struct ERC3643ProfileTypes.DependencyBinding)"
         },
         {
@@ -1078,7 +1078,7 @@
           "offset": 0,
           "projectionId": "profile.adapter.effects",
           "slot": 8,
-          "typeId": "t_mapping(t_bytes32,t_struct(EffectRecord)6251_storage)",
+          "typeId": "t_mapping(t_bytes32,t_struct(EffectRecord)12364_storage)",
           "typeLabel": "mapping(bytes32 => struct ERC3643ProfileTypes.EffectRecord)"
         },
         {
@@ -1102,7 +1102,7 @@
           "offset": 0,
           "projectionId": "profile.adapter.custody",
           "slot": 11,
-          "typeId": "t_mapping(t_bytes32,t_struct(CustodyRecord)6263_storage)",
+          "typeId": "t_mapping(t_bytes32,t_struct(CustodyRecord)12376_storage)",
           "typeLabel": "mapping(bytes32 => struct ERC3643ProfileTypes.CustodyRecord)"
         },
         {
@@ -1126,7 +1126,7 @@
           "offset": 0,
           "projectionId": "profile.adapter.owned",
           "slot": 14,
-          "typeId": "t_mapping(t_address,t_struct(OwnedState)6239_storage)",
+          "typeId": "t_mapping(t_address,t_struct(OwnedState)12352_storage)",
           "typeLabel": "mapping(address => struct ERC3643ProfileTypes.OwnedState)"
         },
         {
@@ -1134,7 +1134,7 @@
           "offset": 0,
           "projectionId": "profile.adapter.freezeHeads",
           "slot": 15,
-          "typeId": "t_mapping(t_address,t_struct(EffectHead)6245_storage)",
+          "typeId": "t_mapping(t_address,t_struct(EffectHead)12358_storage)",
           "typeLabel": "mapping(address => struct ERC3643ProfileTypes.EffectHead)"
         },
         {
@@ -1142,7 +1142,7 @@
           "offset": 0,
           "projectionId": "profile.adapter.restrictionHeads",
           "slot": 16,
-          "typeId": "t_mapping(t_address,t_struct(EffectHead)6245_storage)",
+          "typeId": "t_mapping(t_address,t_struct(EffectHead)12358_storage)",
           "typeLabel": "mapping(address => struct ERC3643ProfileTypes.EffectHead)"
         },
         {

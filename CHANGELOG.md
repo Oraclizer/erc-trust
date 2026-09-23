@@ -5,7 +5,10 @@
 - Repair the TRUST 1.2 required-control mutation harness so compiler-bundle
   removals exercise the exact bundle verifier and false mandatory closure
   targets the currently open Native symbolic obligation. Rebind the input seal
-  and successor public-tree accounting to the corrected controls.
+  and successor public-tree accounting to the corrected controls. Use the
+  actual last-change commit for legacy profile-source preservation, regenerate
+  runtime bridge artifacts, and add a theory-only bootstrap that breaks the
+  generated-ledger/proof-receipt refresh cycle without promoting a new proof.
 
 - Reset TRUST 1.2 release scope to the verified abstract model plus explicitly
   graded profile implementation evidence under declared external tools. Preserve
