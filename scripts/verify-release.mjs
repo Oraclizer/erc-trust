@@ -6,10 +6,15 @@ import { existsSync, readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { validateMutationDefinitionBinding } from "./lib/mutation-campaign.mjs";
+import { mutationInputMatches } from "./verify-trust12-evidence-reuse.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const manifestPath = resolve(root, "evidence", "release-manifest.json");
 const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
+const evidenceModePath = resolve(root, "evidence", "evidence-mode.json");
+const evidenceMode = existsSync(evidenceModePath)
+  ? JSON.parse(readFileSync(evidenceModePath, "utf8"))
+  : null;
 const failures = [];
 const modeArgument = process.argv.find((argument) => argument.startsWith("--mode="));
 const mode = modeArgument?.slice("--mode=".length) ?? "full";
@@ -25,6 +30,9 @@ if (!new Set(["pr", "full"]).has(mode)) {
 }
 if (manifest.candidate !== "0.2.0-candidate.1") {
   failures.push(`unexpected candidate: ${manifest.candidate}`);
+}
+if (evidenceMode?.schema !== "erc-trust-evidence-mode-v1") {
+  failures.push("evidence mode identity drift");
 }
 if (manifest.sourceTree.scope !== "protected-release-inputs-v1") {
   failures.push(`unsupported source-tree scope: ${manifest.sourceTree.scope}`);
@@ -126,12 +134,28 @@ if (mutation === null) {
     resolve(root, "evidence", "mutation-definition-rebind-v1.json"),
     (condition, message) => { if (!condition) failures.push(message); },
   );
-  if (mode === "full" && mutation.candidateInput?.sourceRootSha256 !== mutationSourceRoot) {
-    failures.push(
-      `mutation source root mismatch: ${mutation.candidateInput?.sourceRootSha256} != ${mutationSourceRoot}`,
-    );
-  } else if (mode === "pr" && mutation.candidateInput?.sourceRootSha256 !== mutationSourceRoot) {
-    console.log("historical mutation source differs: successor mutation eligibility is checked by the lane index");
+  const receiptRoot = mutation.candidateInput?.sourceRootSha256;
+  if (receiptRoot !== mutationSourceRoot) {
+    const mismatch = `mutation source root mismatch: ${receiptRoot} != ${mutationSourceRoot}`;
+    if (mode === "pr") {
+      console.log("historical mutation source differs: successor mutation eligibility is checked by the lane index");
+    } else if (evidenceMode?.mode !== "successor-development") {
+      failures.push(mismatch);
+    } else {
+      // Successor development keeps the historical campaign receipt without rerunning it. The
+      // receipt is admitted only when the evidence-reuse contract reconstructs its source root from
+      // the preserved inputs and binds the current tree, the rule the lane and ledger verifiers
+      // apply. Any other evidence mode requires the exact comparison.
+      try {
+        if (mutationInputMatches(root, receiptRoot, mutationSourceRoot)) {
+          console.log("historical mutation receipt admitted by the successor evidence-reuse contract");
+        } else {
+          failures.push(mismatch);
+        }
+      } catch (error) {
+        failures.push(`${mismatch}; evidence reuse rejected: ${error.message}`);
+      }
+    }
   }
   const receiptIds = (mutation.results ?? []).map((result) => result.id);
   if (
