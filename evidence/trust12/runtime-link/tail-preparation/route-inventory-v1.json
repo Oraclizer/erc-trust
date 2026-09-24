@@ -5,12 +5,12 @@
     {
       "path": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy",
       "bytes": 16170,
-      "sha256": "0146d61bf4fdb0808805db475eb63c434c950496262f84d05fdf48e2860f17ad"
+      "sha256": "0066aca8046e7129d007bfc527e4c7552d17b891406adfdb4720197664eb84fb"
     },
     {
       "path": "evidence/trust12/runtime-link/tail-preparation/malformed-inputs-v1.json",
-      "bytes": 131795,
-      "sha256": "ab19717e4e5bf0c740e3cab39b25cd23d28fac1fe25cfb2dbf399ec9242f088a"
+      "bytes": 131575,
+      "sha256": "678f7ae2ce8b1182c400170f432a6aea7be745723f2719026cd3655b085e6b41"
     },
     {
       "path": "evidence/runtime-binding-v3/native/bridge-artifacts.json",

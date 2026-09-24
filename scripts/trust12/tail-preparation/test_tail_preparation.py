@@ -265,7 +265,7 @@ class RegistryTest(unittest.TestCase):
 
 class ObligationsTest(unittest.TestCase):
     def test_tracked_list_is_valid(self) -> None:
-        self.assertEqual(prepare_tail.validate_obligations(), {"conditions": 11, "findings": 6})
+        self.assertEqual(prepare_tail.validate_obligations(), {"conditions": 11, "findings": 4})
 
     def test_unknown_finding_and_missing_artifact_fail(self) -> None:
         document = load_json(prepare_tail.OBLIGATIONS)
@@ -292,10 +292,15 @@ class ProbeEvaluationTest(unittest.TestCase):
         typed = {**self.quiet, "outcome": "typed-failure", "selector": "0xed623c13", "secondWord": 1, "returnBytes": 68}
         self.assertEqual(evaluate({"class": "length"}, empty)["verdict"], "CONFORMS")
         self.assertEqual(evaluate({"class": "length"}, {**empty, "externalAccesses": 1})["verdict"], "DEVIATES")
-        self.assertEqual(evaluate({"class": "dirty-address-word"}, typed)["verdict"], "DEVIATES")
+        self.assertEqual(evaluate({"class": "length"}, {**empty, "logs": 1})["verdict"], "DEVIATES")
+        self.assertEqual(evaluate({"class": "length"}, {**empty, "committedWrites": 1})["verdict"], "DEVIATES")
+        self.assertEqual(evaluate({"class": "dirty-address-word"}, typed)["verdict"], "CONFORMS")
+        self.assertEqual(evaluate({"class": "nonzero-call-value"}, empty)["verdict"], "CONFORMS")
+        self.assertEqual(evaluate({"class": "dirty-enum-word"}, {**empty, "outcome": "success"})["verdict"], "DEVIATES")
+        self.assertEqual(evaluate({"class": "unlisted"}, empty)["verdict"], "UNKNOWN_CLASS")
         verdict = evaluate({"class": "ordering-probe"}, typed)
         self.assertEqual((verdict["verdict"], verdict["typedFailure"], verdict["reason"]),
-                         ("TYPED_BEFORE_CANONICAL_CHECK", "TrustInvalidCommand", 1))
+                         ("CONFORMS", "TrustInvalidCommand", 1))
         control = {"outcome": "success", "selector": None, "secondWord": 0, "returnBytes": 32,
                    "externalAccesses": 3, "logs": 2, "committedWrites": 5}
         self.assertEqual(evaluate({"class": "well-formed-control"}, control)["verdict"], "CONTROL_DETECTED")
@@ -320,7 +325,7 @@ class ProbeEvaluationTest(unittest.TestCase):
 class GeneratedDocumentsTest(unittest.TestCase):
     def test_every_generated_document_is_current(self) -> None:
         result = prepare_tail.generate(check=True, artifacts=None)
-        self.assertEqual(result["obligations"], {"conditions": 11, "findings": 6})
+        self.assertEqual(result["obligations"], {"conditions": 11, "findings": 4})
         for name, digest in result.items():
             if name != "obligations":
                 self.assertRegex(digest, "^[0-9a-f]{64}$")
