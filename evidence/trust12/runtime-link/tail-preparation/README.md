@@ -72,14 +72,13 @@ python3 scripts/trust12/tail-preparation/run_malformed_probe.py --product . --tr
 ## Findings of the preparation
 
 1. The typed entrypoints evaluate the domain and identifier rules, and by source order further
-   kernel rules, before they validate every bounded word. Calldata that the formal decoder
-   classifies as malformed can therefore end in a typed failure. The concrete probe observed this
-   for every ordering recipe on all three profiles, without any external call, log or committed
-   write. The closure has to choose between validating every bounded word first, which changes
-   every runtime identity, and modeling the actual check order in the decoder.
-2. Canonical calldata with a nonzero call value reverts with an empty payload, while the decoder
-   yields a command for it. The accepted set has to exclude such calls or the model has to classify
-   them.
+   kernel rules, before they validate every bounded word, so a request outside canonical form can
+   end in a typed failure. The concrete probe observed this for every ordering recipe on all three
+   profiles, without any external call, log or committed write. Decision 12 resolves it: the
+   revert data of such a request and the order in which its defects are detected are not
+   specified, and the formal relation classifies it as a full-state stutter.
+2. Canonical calldata with a nonzero call value reverts with an empty payload. Decision 12
+   resolves it: canonical form includes a zero call value.
 3. Every other malformed recipe (short, long and trailing calldata, unknown selectors and every
    dirty bounded word) ended in an empty revert with no external call, log or committed write, and
    the well-formed controls confirmed that the probe observes those effects.

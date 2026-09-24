@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- Measure requests outside canonical form on the three reference endpoints
+  with two probes. The malformed-input probe accepts any revert data and
+  requires that the call fails without an external account access, a log,
+  or a committed storage write, and the new derived-identifier probe feeds
+  each endpoint's own `deriveActionId` or `deriveReversalId` output into the
+  typed command functions. The remaining runtime-link conditions follow the
+  same rule, and the two preparation findings that this change resolves are
+  recorded as resolved.
+
 - Specify requests to the typed command functions that are outside canonical
   form: a wrong calldata length, dirty high bits, an enum out of range, or a
   nonzero call value. Such a request reverts as a full-state stutter that

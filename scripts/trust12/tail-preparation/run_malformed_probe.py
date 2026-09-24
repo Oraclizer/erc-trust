@@ -3,8 +3,10 @@
 
 The probe compiles the product sources with the probe harness in a copy of the product tree, runs
 the three profile probes with Foundry, decodes the events that record each recipe and compares
-every observation with the expected behavior of the malformed input catalog. It measures; it does
-not close a malformed branch. Run it on Linux or WSL with the pinned Foundry and the pinned
+every observation with the expected behavior of the malformed input catalog. A request outside
+canonical form conforms when the call fails without an external account access, a log or a
+committed storage write, whatever its revert data (decision 12). It measures; it does not close a
+malformed branch. Run it on Linux or WSL with the pinned Foundry and the pinned
 upstream token artifacts that scripts/prepare-trex-integration.py produces.
 
 Usage:
@@ -30,7 +32,7 @@ RESULT_EVENT = "MalformedProbeResult(uint16,uint8,bytes4,uint256,uint256,uint256
 BASE_EVENT = "MalformedProbeBase(uint8,bool,uint256)"
 OUTCOMES = {1: "untyped-empty-revert", 2: "typed-failure", 3: "other-revert", 4: "success"}
 MALFORMED_CLASSES = {"no-selector", "unknown-selector", "length", "dirty-enum-word", "dirty-address-word",
-                     "dirty-uint64-word", "dirty-uint48-word"}
+                     "dirty-uint64-word", "dirty-uint48-word", "nonzero-call-value"}
 TYPED_FAILURE_NAMES = {
     "0x386ecc58": "TrustOperationalFailure", "0x72841b29": "TrustReplay", "0x8cf60b6f": "TrustRejected",
     "0x996b6134": "TrustUnauthorized", "0xa6e257c3": "TrustTerminal", "0xed623c13": "TrustInvalidCommand",
@@ -112,16 +114,14 @@ def evaluate(recipe: dict[str, Any], observed: dict[str, Any] | None) -> dict[st
     if observed is None:
         return {"verdict": "NOT_OBSERVED"}
     quiet = observed["externalAccesses"] == 0 and observed["logs"] == 0 and observed["committedWrites"] == 0
-    if recipe["class"] in MALFORMED_CLASSES:
-        verdict = "CONFORMS" if observed["outcome"] == "untyped-empty-revert" and quiet else "DEVIATES"
-    elif recipe["class"] == "ordering-probe":
-        verdict = ("CONFORMS" if observed["outcome"] == "untyped-empty-revert" and quiet else
-                   "TYPED_BEFORE_CANONICAL_CHECK" if observed["outcome"] == "typed-failure" and quiet else "DEVIATES")
+    failed_quietly = observed["outcome"] != "success" and quiet
+    if recipe["class"] in MALFORMED_CLASSES or recipe["class"] == "ordering-probe":
+        verdict = "CONFORMS" if failed_quietly else "DEVIATES"
     elif recipe["class"] == "well-formed-control":
         detected = observed["outcome"] == "success" and observed["logs"] > 0 and observed["committedWrites"] > 0
         verdict = "CONTROL_DETECTED" if detected else "CONTROL_FAILED"
     else:
-        verdict = "RECORDED_PARTITION_DOMAIN" if observed["outcome"] == "untyped-empty-revert" and quiet else "DEVIATES"
+        verdict = "UNKNOWN_CLASS"
     name = TYPED_FAILURE_NAMES.get(observed["selector"] or "")
     return {"verdict": verdict, "typedFailure": name,
             "reason": observed["secondWord"] if name in {"TrustInvalidCommand", "TrustRejected", "TrustOperationalFailure"} else None}

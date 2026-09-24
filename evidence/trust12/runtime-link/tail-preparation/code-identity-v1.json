@@ -10,7 +10,7 @@
     {
       "path": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy",
       "bytes": 16170,
-      "sha256": "0146d61bf4fdb0808805db475eb63c434c950496262f84d05fdf48e2860f17ad"
+      "sha256": "0066aca8046e7129d007bfc527e4c7552d17b891406adfdb4720197664eb84fb"
     },
     {
       "path": "spec/generated/kernel-v2-abi.json",

@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Build the malformed input catalog of the three TRUST 1.2 runtime profiles.
 
-The model decodes a typed command only when the selector is a typed command selector and every
-bounded word of the fixed-length tuple is canonical: the calldata length is exact, the enum word
-is below its bound, and every address, uint64 and uint48 word fits its width. Any other calldata
-sent to a profile endpoint has no typed command, so an accepted execution of it belongs to the
-malformed branch: it must return without an external call, without a log, without a net state
-change and with a payload that is not a typed failure.
+A request to a typed command function is in canonical form only when the selector is a typed
+command selector, every bounded word of the fixed-length tuple is canonical (the calldata length
+is exact, the enum word is below its bound, and every address, uint64 and uint48 word fits its
+width) and the call carries zero value. Any other request sent to a profile endpoint has no typed
+command, so an execution of it belongs to the out-of-specification branch (decision 12): it must
+fail without an external call, without a log and without a net state change. Its revert data is
+not specified; it can be empty, a typed failure or any other data.
 
 The catalog is derived from three sources that must agree: the kernel schema, the generated
 kernel ABI and the generated runtime bridge constants that the formal model imports. It lists
@@ -15,8 +16,10 @@ mutation of a well-formed request that the probe harness builds in its own deplo
 the command identifier binds the endpoint address and the chain.
 
 Ordering probes combine one non-canonical word with a defect that a kernel rule would report as a
-typed failure (a foreign domain or a stale identifier). The model still classifies such calldata
-as malformed, so a typed failure there would be a runtime and model disagreement.
+typed failure (a foreign domain or a stale identifier). The model still classifies such a request
+as outside canonical form. Decision 12 leaves open which defect is detected first, so a typed
+failure there conforms as long as the call fails without an external call, a log or a state change;
+the probe records which check ran first.
 """
 from __future__ import annotations
 
@@ -238,10 +241,11 @@ def build() -> tuple[dict[str, Any], str]:
         },
         "shapes": shapes,
         "decoderRule": (
-            "A calldata decodes to a typed command exactly when its selector is a typed entrypoint of the endpoint, "
-            "its length equals the calldata length of that selector's shape, every enum word is below its bound "
-            "and every address, uint64 and uint48 word fits its width. Identifier, domain, authority and time "
-            "are kernel rules over a decoded command and never make calldata malformed."
+            "A request to a typed entrypoint is in canonical form exactly when its selector is a typed entrypoint of "
+            "the endpoint, its length equals the calldata length of that selector's shape, every enum word is below "
+            "its bound, every address, uint64 and uint48 word fits its width, and the call carries zero value "
+            "(decision 12). Identifier, domain, authority and time are kernel rules over a canonical request and "
+            "never take it out of canonical form."
         ),
         "symbolicClasses": [
             {"class": "no-selector", "definition": "calldata shorter than four bytes"},
@@ -251,18 +255,7 @@ def build() -> tuple[dict[str, Any], str]:
             {"class": "dirty-address-word", "definition": "canonical length and an address word at or above 2^160"},
             {"class": "dirty-uint64-word", "definition": "canonical length and a uint64 word at or above 2^64"},
             {"class": "dirty-uint48-word", "definition": "canonical length and a uint48 word at or above 2^48"},
-        ],
-        "partitionDomainProbes": [
-            {
-                "class": "nonzero-call-value",
-                "definition": "canonical calldata of a typed entrypoint sent with a nonzero call value",
-                "whyItIsProbed": (
-                    "The decoder yields a typed command for this calldata, while the typed entrypoints are not payable "
-                    "and revert with an empty payload before any kernel rule. Such an execution has neither a typed "
-                    "failure nor an undecoded command, so the accepted set has to exclude nonzero call values or the "
-                    "model has to classify them. The probe records the runtime behavior; it is not a malformed class."
-                ),
-            }
+            {"class": "nonzero-call-value", "definition": "canonical calldata of a typed entrypoint sent with a nonzero call value"},
         ],
         "probeControls": [
             {
@@ -276,8 +269,9 @@ def build() -> tuple[dict[str, Any], str]:
             }
         ],
         "expectedBehavior": {
-            "outcome": "malformed",
-            "returnedPayload": "empty; in particular its first four bytes are not one of the typed failure selectors",
+            "outcome": "the call fails; it never succeeds",
+            "returnedPayload": ("not specified (decision 12): empty data, one of the typed failures, or other data; "
+                                "the probe records which one it observes"),
             "typedFailureSelectors": [f"0x{value:08x}" for value in typed_failure_selectors],
             "externalCalls": 0,
             "logs": 0,
@@ -285,9 +279,10 @@ def build() -> tuple[dict[str, Any], str]:
         },
         "orderingProbeRationale": (
             "An ordering probe keeps one non-canonical word and adds a defect that a kernel rule reports as a typed "
-            "failure. The decoder rule classifies the calldata as malformed regardless, so the runtime must reject it "
-            "with an untyped payload. A typed failure here means that a kernel rule reads the request before every "
-            "bounded word is validated."
+            "failure. The request is outside canonical form regardless, and decision 12 leaves open which defect is "
+            "detected first, so a typed failure conforms as long as the call fails without an external call, a log or "
+            "a state change. A typed failure here records that a kernel rule reads the request before every bounded "
+            "word is validated."
         ),
         "recipePolicies": {
             "identifier": {

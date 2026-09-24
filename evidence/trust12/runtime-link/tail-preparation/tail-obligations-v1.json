@@ -12,7 +12,7 @@
     {
       "id": "typed-failure-report-binding",
       "group": "gate",
-      "condition": "Every accepted rejection or operational failure returns a typed failure whose report, read by the fixed ABI reading of its selector, is bound to the decoded command and to the sender; a malformed or dependency revert carries no typed payload.",
+      "condition": "Every accepted rejection or operational failure returns a typed failure whose report, read by the fixed ABI reading of its selector, is bound to the decoded command and to the sender; a dependency revert carries no typed payload, and the revert data of a request outside canonical form is not specified (decision 12).",
       "preparedSupport": [
         {"artifact": "evidence/trust12/runtime-link/tail-preparation/code-identity-v1.json", "role": "the six typed failures with their argument layouts and report bindings, and the selector loads of each endpoint runtime"},
         {"artifact": "scripts/trust12/tail-preparation/code_identity.py", "role": "recomputes the selector loads from a fresh build"}
@@ -37,7 +37,7 @@
         "A kernel run instantiates the gate with the accepted set defined as the image of the registered certificates.",
         "Removing any registered certificate breaks that instantiation."
       ],
-      "blockingFindings": ["check-order-before-canonical-validation", "nonzero-call-value-domain"]
+      "blockingFindings": []
     },
     {
       "id": "enforced-cell-witnesses",
@@ -57,7 +57,7 @@
       "id": "malformed-native",
       "group": "malformed",
       "profile": "Native",
-      "condition": "The Native endpoint has an accepted malformed execution, and every accepted malformed execution returns without an external call, a log or a net state change and with a payload that is not a typed failure.",
+      "condition": "The Native endpoint has an accepted execution of a request outside canonical form, and every such accepted execution fails without an external call, a log or a net state change; its revert data is not specified (decision 12).",
       "preparedSupport": [
         {"artifact": "evidence/trust12/runtime-link/tail-preparation/malformed-inputs-v1.json", "role": "symbolic classes and concrete recipes of the Native endpoint"},
         {"artifact": "scripts/trust12/tail-preparation/foundry/NativeMalformedProbe.t.sol", "role": "concrete probe of every recipe on the Native fixture"},
@@ -66,16 +66,16 @@
       "closureAcceptance": [
         "Certificates of the malformed classes of the endpoint are registered.",
         "A kernel run proves the malformed branch over them.",
-        "Disabling the exact length guard or a bounded word check turns a malformed witness into a typed or accepted execution.",
+        "Disabling the exact length guard or a bounded word check turns a witness outside canonical form into an execution that is accepted or that emits a log, makes an external call or changes state.",
         "The probe is rerun on the frozen build with every control detected."
       ],
-      "blockingFindings": ["check-order-before-canonical-validation"]
+      "blockingFindings": []
     },
     {
       "id": "malformed-partial",
       "group": "malformed",
       "profile": "Partial",
-      "condition": "The Partial endpoint has an accepted malformed execution, and every accepted malformed execution returns without an external call, a log or a net state change and with a payload that is not a typed failure.",
+      "condition": "The Partial endpoint has an accepted execution of a request outside canonical form, and every such accepted execution fails without an external call, a log or a net state change; its revert data is not specified (decision 12).",
       "preparedSupport": [
         {"artifact": "evidence/trust12/runtime-link/tail-preparation/malformed-inputs-v1.json", "role": "symbolic classes and concrete recipes of the Partial endpoint"},
         {"artifact": "scripts/trust12/tail-preparation/foundry/PartialMalformedProbe.t.sol", "role": "concrete probe of every recipe on the sealed clean-room Partial deployment"},
@@ -84,16 +84,16 @@
       "closureAcceptance": [
         "Certificates of the malformed classes of the endpoint are registered.",
         "A kernel run proves the malformed branch over them.",
-        "Disabling the exact length guard or a bounded word check turns a malformed witness into a typed or accepted execution.",
+        "Disabling the exact length guard or a bounded word check turns a witness outside canonical form into an execution that is accepted or that emits a log, makes an external call or changes state.",
         "The probe is rerun on the frozen build with every control detected."
       ],
-      "blockingFindings": ["check-order-before-canonical-validation"]
+      "blockingFindings": []
     },
     {
       "id": "malformed-hook",
       "group": "malformed",
       "profile": "Hook",
-      "condition": "The Hook endpoint has an accepted malformed execution, and every accepted malformed execution returns without an external call, a log or a net state change and with a payload that is not a typed failure.",
+      "condition": "The Hook endpoint has an accepted execution of a request outside canonical form, and every such accepted execution fails without an external call, a log or a net state change; its revert data is not specified (decision 12).",
       "preparedSupport": [
         {"artifact": "evidence/trust12/runtime-link/tail-preparation/malformed-inputs-v1.json", "role": "symbolic classes and concrete recipes of the Hook endpoint"},
         {"artifact": "scripts/trust12/tail-preparation/foundry/HookMalformedProbe.t.sol", "role": "concrete probe of every recipe on the factory deployment against the pinned upstream token"},
@@ -102,10 +102,10 @@
       "closureAcceptance": [
         "Certificates of the malformed classes of the endpoint are registered.",
         "A kernel run proves the malformed branch over them.",
-        "Disabling the exact length guard or a bounded word check turns a malformed witness into a typed or accepted execution.",
+        "Disabling the exact length guard or a bounded word check turns a witness outside canonical form into an execution that is accepted or that emits a log, makes an external call or changes state.",
         "The probe is rerun on the frozen build with every control detected."
       ],
-      "blockingFindings": ["check-order-before-canonical-validation"]
+      "blockingFindings": []
     },
     {
       "id": "preservation-and-reflection",
@@ -164,7 +164,7 @@
         "The registry covers every cell and every malformed branch and binds every certificate to its program identity.",
         "The partition theorem is proved over the whole registry."
       ],
-      "blockingFindings": ["check-order-before-canonical-validation", "nonzero-call-value-domain", "per-certificate-program-identity"]
+      "blockingFindings": ["per-certificate-program-identity"]
     },
     {
       "id": "independent-assurance",
@@ -185,16 +185,6 @@
   ],
   "findings": [
     {
-      "id": "check-order-before-canonical-validation",
-      "summary": "The runtime evaluates the domain and identifier rules, and by source order further kernel rules, before it validates every bounded word. Calldata that the formal decoder classifies as malformed can therefore end in a typed failure. The concrete probe observed a typed failure for every ordering recipe on all three profiles: a foreign domain returns the invalid-command failure with the domain reason, a stale identifier returns it with the identifier reason. No external call, log or committed write occurred. Under the current decoder no abstraction satisfies the bound relation for such an execution.",
-      "decisionNeeded": "Before malformed certificates are built, the closure has to choose between validating every bounded word before the first kernel rule, which changes every runtime identity and the evidence bound to it, and modeling the actual check order in the decoder and in the malformed branch."
-    },
-    {
-      "id": "nonzero-call-value-domain",
-      "summary": "Canonical calldata sent with a nonzero call value reverts with an empty payload on every typed entrypoint, while the decoder yields a typed command for it.",
-      "decisionNeeded": "The accepted set has to exclude nonzero call values, or the model has to classify them."
-    },
-    {
       "id": "per-certificate-program-identity",
       "summary": "The executed code is recorded for one certificate per profile at most; most certificate records name no program identity.",
       "decisionNeeded": "Each certificate needs the code it executed, bound to the profile template by the exact matching rule."
@@ -213,6 +203,16 @@
       "id": "no-formal-storage-reader",
       "summary": "The formal model reads storage through runtime manifest projections that are locale parameters; no per-profile manifest instance exists.",
       "decisionNeeded": "A formal reader per profile manifest, checked against the crosswalk."
+    }
+  ],
+  "resolvedFindings": [
+    {
+      "id": "check-order-before-canonical-validation",
+      "resolution": "Resolved by decision 12 (spec/decisions/12-requests-outside-canonical-form.md): the kernel specifies neither the revert data of a request outside canonical form nor which of its defects is detected first, and alpha_transaction_spec relates every such execution to the full-state stutter with unspecified revert data. A typed failure before the bounded-word checks is therefore conformant, and no runtime identity changes."
+    },
+    {
+      "id": "nonzero-call-value-domain",
+      "resolution": "Resolved by decision 12: canonical form includes a zero call value, so the model classifies a call with a nonzero value as outside canonical form and relates it to the full-state stutter."
     }
   ],
   "nonclaim": "Preparation only. This document describes inputs, checks and acceptance criteria for conditions that remain open. It does not discharge a runtime-link cell, the malformed branch, the acceptance partition, the central refinement closure or the independent Assurance, and it does not authorize a merge, a release or a deployment."

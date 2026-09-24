@@ -4,8 +4,8 @@
   "sources": [
     {
       "path": "spec/erc-trust-kernel-v2.json",
-      "bytes": 52448,
-      "sha256": "cafe969e6cb5e9e03710c36829f7bebe62b03525e5fee9c51a80d55a93d0abd1"
+      "bytes": 55562,
+      "sha256": "dc06a9ed395e55c5c8b075ffef3c1142fabf09ad7e02ba705f8ff7626dcb7221"
     },
     {
       "path": "spec/generated/kernel-v2-abi.json",
@@ -15,7 +15,7 @@
     {
       "path": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy",
       "bytes": 16170,
-      "sha256": "0146d61bf4fdb0808805db475eb63c434c950496262f84d05fdf48e2860f17ad"
+      "sha256": "0066aca8046e7129d007bfc527e4c7552d17b891406adfdb4720197664eb84fb"
     },
     {
       "path": "implementation/src/generated/IERCTrustKernel.sol",
@@ -373,7 +373,7 @@
       }
     }
   },
-  "decoderRule": "A calldata decodes to a typed command exactly when its selector is a typed entrypoint of the endpoint, its length equals the calldata length of that selector's shape, every enum word is below its bound and every address, uint64 and uint48 word fits its width. Identifier, domain, authority and time are kernel rules over a decoded command and never make calldata malformed.",
+  "decoderRule": "A request to a typed entrypoint is in canonical form exactly when its selector is a typed entrypoint of the endpoint, its length equals the calldata length of that selector's shape, every enum word is below its bound, every address, uint64 and uint48 word fits its width, and the call carries zero value (decision 12). Identifier, domain, authority and time are kernel rules over a canonical request and never take it out of canonical form.",
   "symbolicClasses": [
     {
       "class": "no-selector",
@@ -402,13 +402,10 @@
     {
       "class": "dirty-uint48-word",
       "definition": "canonical length and a uint48 word at or above 2^48"
-    }
-  ],
-  "partitionDomainProbes": [
+    },
     {
       "class": "nonzero-call-value",
-      "definition": "canonical calldata of a typed entrypoint sent with a nonzero call value",
-      "whyItIsProbed": "The decoder yields a typed command for this calldata, while the typed entrypoints are not payable and revert with an empty payload before any kernel rule. Such an execution has neither a typed failure nor an undecoded command, so the accepted set has to exclude nonzero call values or the model has to classify them. The probe records the runtime behavior; it is not a malformed class."
+      "definition": "canonical calldata of a typed entrypoint sent with a nonzero call value"
     }
   ],
   "probeControls": [
@@ -419,8 +416,8 @@
     }
   ],
   "expectedBehavior": {
-    "outcome": "malformed",
-    "returnedPayload": "empty; in particular its first four bytes are not one of the typed failure selectors",
+    "outcome": "the call fails; it never succeeds",
+    "returnedPayload": "not specified (decision 12): empty data, one of the typed failures, or other data; the probe records which one it observes",
     "typedFailureSelectors": [
       "0x386ecc58",
       "0x72841b29",
@@ -433,7 +430,7 @@
     "logs": 0,
     "netStateChange": "none; storage writes made before the revert, such as the reentrancy guard, are reverted"
   },
-  "orderingProbeRationale": "An ordering probe keeps one non-canonical word and adds a defect that a kernel rule reports as a typed failure. The decoder rule classifies the calldata as malformed regardless, so the runtime must reject it with an untyped payload. A typed failure here means that a kernel rule reads the request before every bounded word is validated.",
+  "orderingProbeRationale": "An ordering probe keeps one non-canonical word and adds a defect that a kernel rule reports as a typed failure. The request is outside canonical form regardless, and decision 12 leaves open which defect is detected first, so a typed failure conforms as long as the call fails without an external call, a log or a state change. A typed failure here records that a kernel rule reads the request before every bounded word is validated.",
   "recipePolicies": {
     "identifier": {
       "recomputed": "the identifier word is recomputed over the mutated words, so only the malformed defect remains",
