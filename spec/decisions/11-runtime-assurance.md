@@ -48,7 +48,8 @@ claim follows.
    `RECOVER` entitlement commitment is a field rule (reason 6) and reason 9 is reserved for a
    commitment already consumed, which is what the endpoints do; and the shape rules state
    their check order (common rules in the listed order, then the field rules; the earliest
-   failing rule names the reason), which is why the `domain` row of the field-binding
+   failing rule names the reason; decision 08 item 10 amended that order on 2026-09-24 to the
+   one every reference endpoint follows), which is why the `domain` row of the field-binding
    vectors reports reason 1. The independent program was aligned to the corrected text after
    its original run; both the original run (against the text before the correction) and the
    aligned run reproduce every vector.

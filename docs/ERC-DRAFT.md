@@ -284,11 +284,32 @@ interface ITrustBoundDependency {
 Their identifiers are computed by the same rule: `0x5cd8d207` for
 `IERCTrustNativeRoute` and `0xb2306fd2` for `ITrustBoundDependency`.
 
-Every typed command function MUST accept only calldata of the exact canonical
-length (644 bytes for an action, 388 bytes for a reversal) and MUST reject a
-request whose enum, address, `uint64`, or `uint48` fields carry bits outside
-their declared width. A rejected shell of this kind reverts without a typed
-error and without any state change.
+The *typed command functions* are `executeRegulatoryAction` and
+`executeRegulatoryReversal` and, on an endpoint that implements
+`IERCTrustNativeRoute`, `executeERC7943Action` and `executeERC7943Reversal`.
+A request to a typed command function is in *canonical form* when its calldata
+is the function selector followed by the canonical encoding of the request
+(644 bytes in total for an action, 388 bytes for a reversal), none of its
+address, `uint64`, or `uint48` fields carries bits outside its declared width,
+every enum field holds a value declared by its enum, and the call carries zero
+value. A typed command function MUST reject every request that is not in
+canonical form. The rejection MUST be a full-state stutter (defined below),
+consumes nothing, and MUST NOT make an external call, that is, a `CALL`,
+`CALLCODE`, `DELEGATECALL`, or `STATICCALL` to an account other than the
+endpoint; for a proxy-fronted endpoint, the `DELEGATECALL` by which the proxy
+runs its implementation is not an external call. This proposal specifies
+neither the revert data of that rejection nor which defect is detected first
+when a request has several; the revert data can be empty, one of the errors
+defined here, or any other data, so a caller cannot rely on it to identify the
+defect. A *reentrant call* is a call
+to a typed command function made while an earlier call to the same endpoint
+has not yet returned; an endpoint MAY reject a reentrant call before any other
+check, with any revert data, and that rejection is also a full-state stutter.
+Where another rule of this proposal that names an error or a reason code,
+including the validation order below, governs a call to a typed command
+function, it applies only when the request is in canonical form and the call
+is not rejected as a reentrant call, and an error returned by either rejection
+carries none of the meanings given to it here.
 
 ### Domain and identifiers
 
@@ -317,10 +338,15 @@ EIP-155 chain identifier of the chain the endpoint is deployed on
 
 The `actionId` field of a request MUST equal the derived value; the same
 holds for `reversalId`. `deriveActionId` and `deriveReversalId` MUST return
-exactly these derivations for any well-formed request, so a caller can
-complete a request offchain and confirm it against the endpoint. Because the
-endpoint address and the chain id are part of every preimage, a request
-built for one endpoint is invalid on every other endpoint.
+exactly these derivations when they are called with zero value and their
+calldata is their selector followed by the canonical encoding of the request,
+so a caller can complete a request offchain and confirm it against the
+endpoint. Their result for any other call is not specified, and an identifier
+they return does not relax the canonical-form requirement: a typed command
+function rejects a request that is not in canonical form whatever its
+identifier field holds. Because the endpoint address and the chain id are part
+of every preimage, a request built for one endpoint is invalid on every other
+endpoint.
 
 `commandHash` and `reversalHash` are the digests an endpoint passes to its
 bound dependencies and stores in the action record. They differ from the
@@ -351,9 +377,11 @@ timestamp (reason 3).
 
 ### Validation order and shape rules
 
-An endpoint MUST validate a request in the following order and MUST report
-the first failure it meets, so a request with several defects reports the
-earliest one.
+For a request in canonical form, an endpoint MUST validate the request in the
+following order and MUST report the first failure it meets, so a request with
+several defects reports the earliest one. A request that is not in canonical
+form, and a reentrant call rejected as stated above, are outside this order,
+whatever their revert data.
 
 1. `domain == DOMAIN` (`TrustInvalidCommand`, reason 1).
 2. The identifier equals its derivation (reason 2).
@@ -364,19 +392,28 @@ earliest one.
 6. `dependencyRoot` and `dependencyEpoch` equal the endpoint's current pair
    (reason 5).
 7. The nonce tuple was not already consumed (`TrustReplay`).
-8. The field rules of the command (reason 6 unless a rule names its own
-   code).
-9. The state-dependent rules. A `TERMINAL` case is reported first, as
-   `TrustTerminal`; for a reversal the referenced action's lifecycle and live
-   head (reason 11) are checked before the pairing (reason 7). The remaining
-   rules (custody, reason 8; entitlement consumption, reason 9; case
-   conflict, reason 10; freeze direction, reason 12; no state change, reason
-   13) are checked in an implementation-defined order.
+8. The common rule on `provenanceCommitment`, `subject`, and `caseId`
+   (reason 6).
+9. A `TERMINAL` case (`TrustTerminal`); for a reversal, the case of the
+   referenced action.
+10. For an action, the field rules of the command (reason 6 unless a rule
+    names its own code) and the state-dependent rules (custody, reason 8;
+    entitlement consumption, reason 9; case conflict, reason 10; freeze
+    direction, reason 12; no state change, reason 13) in an
+    implementation-defined order. For a reversal, the lifecycle of the
+    referenced action (reason 11), then the pairing (reason 7), then the
+    current effect: the subject's live head or, for `RELEASE`, the case's
+    active custody (reason 11, or reason 8 when the custody record does not
+    match).
+11. A restriction of the route that carries the request, such as the
+    reason 6 and reason 7 rejections of the exact-use ERC-7943 route.
 
 A replayed or stale command is therefore reported before any rule that
 depends on case or effect state. The ordered list above is also stated by
 the machine-readable definition. Assessment of the bound dependencies happens
-after validation and before any state is consumed.
+after these checks and before any state is consumed, except that the reason 8
+checks of the unencumbered balance of a source and of a custody record that
+an action consumes may follow the assessment.
 
 The field rules are (an *overlay family* is `FREEZE` or `RESTRICT`: a live
 effect on a subject that a later reversal removes, defined with the case
@@ -409,9 +446,10 @@ Assessment of a validated command has exactly one of three outcomes:
   with `TrustOperationalFailure` and a reason in class 200, 300, or 400.
 
 Every revert defined by this proposal, including validation failures,
-`TrustTerminal`, and `TrustReplay`, is a *full-state stutter*: the call
-leaves every observable state of the endpoint exactly as it was before the
-call. No command identifier or nonce is consumed, no case, action, or
+`TrustTerminal`, `TrustReplay`, the rejection of a request that is not in
+canonical form, and the rejection of a reentrant call, is a *full-state
+stutter*: the call leaves every observable state of the endpoint exactly as it
+was before the call. No command identifier or nonce is consumed, no case, action, or
 receipt record is written, no token balance, frozen amount, or restriction
 flag changes, and no log is emitted. A reader who observes an applied event
 therefore knows that every earlier check of that command passed.
@@ -545,7 +583,8 @@ holder. `externalCommitment` is zero for every reversal.
 
 `assessmentEvidence`, `preState`, and `postState` are opaque in the kernel.
 Each profile MUST document their preimages together with its runtime
-identity; the two reference profiles do so in their decision records.
+identity; the native and partial reference profiles do so in their
+decision records.
 `preState` and `postState` are taken from the same observation function
 immediately before and after the effects of the command.
 
@@ -669,9 +708,11 @@ Partial limitation, not a condition permitted by Verified Full.
 
 #### ERC-3643 Verified Full
 
-The identifier `keccak256("ERC-TRUST/v2/erc3643-verified-full")` is reserved
-for a TRUST 1.2 profile. No current reference implementation reports it. A
-deployment MUST NOT report this profile unless it has an atomic fresh
+The identifier `keccak256("ERC-TRUST/v2/erc3643-verified-full")` names a
+TRUST 1.2 profile. The ERC-3643 hook adapter of the reference implementation
+reports it; whether an endpoint that reports it conforms is established only
+by the evidence bound to that endpoint. A deployment MUST NOT report this
+profile unless it has an atomic fresh
 deployment, a complete initial-state gate, a token or Compliance hook that
 enforces the TRUST frozen target on every ordinary transfer in the same
 transaction, actual upstream balance, frozen amount, and restriction
@@ -755,9 +796,9 @@ consumable state for an unapplied command; the validity window and the
 exactly-once keys already bound a prepared command's life.
 
 **Reason classes.** Distinguishing a completed denial from an unavailable
-dependency is the difference between a policy decision and an outage. The
-classes make that distinction machine-readable without fixing an
-implementation's full code list.
+dependency is the difference between a policy decision and an outage. For a
+request in canonical form, the classes make that distinction machine-readable
+without fixing an implementation's full code list.
 
 **Exact-use route rather than a standing role.** A sensitive ERC-7943
 selector reachable through a role can be reused outside a typed command.
@@ -774,8 +815,9 @@ the seal.
 kernel interface, the wire format, and the observable behaviour above. It
 does not mandate a proxy, a governance product, an identity registry, a
 policy language, or a storage layout. An immutable token with read-only
-bound dependencies and a sealed adapter over an existing token are two
-reference architectures, not requirements for every profile.
+bound dependencies, a sealed adapter over an existing token, and a
+hook-enabled adapter deployed with its token are reference architectures, not
+requirements for every profile.
 
 **Related work.** [ERC-1450](./eip-1450.md) specifies an operational token
 controlled by a registered transfer agent, including regulated transfers,
@@ -799,7 +841,7 @@ The proposal is additive with respect to ERC-20 and ERC-7943: it changes no
 selector, event, storage, or transfer semantics of either, and a native
 conforming token implements the kernel interface alongside them. ERC-3643
 compatibility is profile-specific and does not claim that any existing
-ERC-3643 deployment satisfies the future Verified Full requirements.
+ERC-3643 deployment satisfies the Verified Full requirements.
 
 An existing ERC-20, ERC-7943, ERC-1450, or ERC-3643 deployment does not
 become conformant because it exposes similar privileged operations. It can
@@ -821,16 +863,18 @@ candidate remains available as a historical baseline.
 The conformance vectors accompany the machine-readable kernel definition.
 They fix the identifiers, command hashes, binding hash, dependency root,
 receipt hashes of both kinds, interface identifiers, and calldata lengths of
-one fixture for all six actions and three reversals, and the following
-negative cases. An implementation following the Specification section must
-produce the listed result.
+one fixture for all six actions and three reversals, and seven of the
+negative cases below: wrong domain, field binding, stale dependency, case
+conflict, terminal case, replay, and receipt kind. An implementation following
+the Specification section must produce the listed result for every case.
 
 | Case | Input or mutation | Expected result |
 | --- | --- | --- |
 | Domain binding | change only the chain id or the endpoint address | a different identifier |
-| Field binding | change one request field after deriving `actionId` | `TrustInvalidCommand` reason 2, except the `domain` field, which reason 1 rejects first; every mutation yields a different derived identifier |
+| Field binding | change one request field to another value inside its declared type after deriving `actionId` | `TrustInvalidCommand` reason 2, except the `domain` field, which reason 1 rejects first; every mutation yields a different derived identifier |
 | Wrong domain | any value other than `DOMAIN` | `TrustInvalidCommand` reason 1 |
-| Non-canonical calldata | wrong length, dirty high bits, or an enum out of range | plain revert without a typed error and with no state change |
+| Non-canonical request | wrong length, dirty high bits, an enum out of range, or a nonzero call value | revert and full-state stutter without an event or an external call; the revert data is not specified |
+| Derived identifier of a non-canonical request | call `deriveActionId` or `deriveReversalId` with the words of a non-canonical request and zero value and, when that call returns, place the returned value in the identifier field of that request | revert and full-state stutter without an event or an external call |
 | Stale dependency | any dependency rebound after the request was built | `TrustInvalidCommand` reason 5 |
 | Replay | submit an applied command again, or reuse its nonce under the same authority epoch | `TrustReplay` and full-state stutter |
 | Freeze direction | a target not greater than the current one | `TrustInvalidCommand` reason 12; a decrease needs an `UNFREEZE` of the head |
@@ -846,14 +890,20 @@ produce the listed result.
 
 An independent program written from the kernel definition and the vectors
 alone reproduces every identifier, hash, calldata, and receipt hash of the
-vectors; the behavioural rows above are exercised by the reference test
-suite, not by that program. The program and its receipt accompany the
-reference implementation.
+vectors; it does not exercise the behavioural rows. The reference test suite
+exercises the other behavioural rows. The two rows on requests outside
+canonical form are exercised by two probes that accompany the reference
+implementation, a malformed-input probe and a derived-identifier probe, which
+record for every rejected call the emitted logs, every committed storage
+write, and every access to another account; the derived-identifier probe
+places in the identifier field the value the endpoint's own `deriveActionId`
+or `deriveReversalId` returns for the same request words. The program and its
+receipt accompany the reference implementation.
 
 ## Reference Implementation
 
-A native token, an ERC-3643 adapter with its governor, and a TypeScript SDK
-accompany this proposal together with the machine-readable kernel definition
+A native token, an ERC-3643 partial adapter with its governor, an ERC-3643
+hook adapter, and a TypeScript SDK accompany this proposal together with the machine-readable kernel definition
 from which the Solidity interface, the ABI, the SDK types, and the vectors are
 generated. Those materials are non-normative; passing their tests or proof
 harnesses does not establish conformance of another implementation or of any
@@ -868,9 +918,10 @@ be removed; otherwise it is a bounded behavioral negative whose scope the
 ledger states. The ledger enumerates the conditions the review identified;
 the completeness of that enumeration is not proved.
 That connection is mapped implementation evidence; it is not an end-to-end
-refinement proof, and the assumption under which the compiled runtime is
-abstracted to the model is stated as an unproved locale assumption. The three
-runtime templates are byte-for-byte reproducible and agree with a
+refinement proof, and the assumptions under which the compiled runtime is
+abstracted to the model are stated as unproved locale assumptions. The
+runtime templates of the native token, the partial adapter, and its governor
+are byte-for-byte reproducible and agree with a
 pinned-compiler replay in six semantic projections. The reference is
 unaudited and not for production; it contains no verified deployment, proxy,
 migration, address, chain, signer, or key-management claim, and no external
@@ -942,11 +993,12 @@ custody record; a disposition of custody consumes the whole record.
 
 ### Frozen targets over an adapted token
 
-Under the ERC-3643 profile the token holds a frozen amount while the kernel
-holds a frozen target, so tokens received between two touches of an account
-are transferable until the next touch or a resynchronisation. A deployment
-that cannot accept that window needs a transfer hook inside the token or its
-Compliance, which the profile does not use. The seal binds a declared token
+Under the ERC-3643 partial profile the token holds a frozen amount while the
+kernel holds a frozen target, so tokens received between two touches of an
+account are transferable until the next touch or a resynchronisation. A
+deployment that cannot accept that window needs a transfer hook inside the
+token or its Compliance, which the partial profile does not use and the
+Verified Full profile requires. The seal binds a declared token
 code identifier to the live code; it does not audit the code, and an
 ERC-3643 Full designation is invalid if another Agent, an owner call, an
 upgrade, a batch path, or a mutable code path can bypass the adapter.

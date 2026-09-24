@@ -129,7 +129,7 @@ states. The verifier checks every anchor against the current tree
 and renders the ledger into the Isabelle session, so a cited fact cannot
 disappear without failing the build.
 
-The current ERC-3643 runtime is classified `PARTIAL/full=false`. Its onboarding
+The ERC-3643 partial adapter runtime is classified `PARTIAL/full=false`. Its onboarding
 theory proves declared-entry behavior, not manifest completeness or a fresh
 zero state. The runtime adds actual source and destination restriction
 post-state checks and actual restriction values in receipt observations, while
@@ -139,7 +139,11 @@ hook remain explicit reasons that no Verified Full claim is made.
 The claim this establishes is "mapped implementation evidence; end-to-end
 refinement incomplete". The locale assumption `runtime_link` in
 `TRUST_End_To_End_Composition.thy` is not discharged: no theorem states that
-the compiled runtime implements the model. The four Kontrol proofs rerun on the
+the compiled runtime implements the model. The conformance relation that also
+covers requests outside canonical form, `alpha_transaction_spec` in
+`TRUST_Out_Of_Spec_Refinement.thy`, rests on a second locale assumption,
+`runtime_link_spec`, which is not discharged either; that assumption yields
+`runtime_link` only for executions in canonical form that the bridge decodes. The four Kontrol proofs rerun on the
 successor native runtime and the Foundry executions are bounded instances of
 that link, and the adapter has no symbolic lane. The two ledger rows that name
 the link are open, the closure record is conditional, and no Full or

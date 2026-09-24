@@ -2,7 +2,8 @@
 
 Status: frozen in kernel version 2 machine source (`structs.ProfileDescriptor`,
 `profiles`, `interface`). Native endpoint wired (`implementation/src/TrustToken.sol`, see
-`08-native-wiring.md`); ERC-3643 profile adapter wired (`09-erc3643-profile-wiring.md`).
+`08-native-wiring.md`); ERC-3643 profile adapter wired (`09-erc3643-profile-wiring.md`); the
+ERC-3643 hook adapter reports the Verified Full identifier (item 4).
 
 ## Decision
 
@@ -15,13 +16,15 @@ Status: frozen in kernel version 2 machine source (`structs.ProfileDescriptor`,
    `underlyingToken`, `manifestHash`, `full`, `proxySupported`.
 3. A Full profile computes `full` from all live conformance conditions and
    never stores a stale success bit. A Partial or Unsupported profile reports
-   `full = false`. The current ERC-3643 reference exposes its narrower
+   `full = false`. The ERC-3643 partial adapter exposes its narrower
    `sealedTopologyLive()` predicate separately and never maps it to `full`.
-4. Current profile identifiers are `keccak256("ERC-TRUST/v2/native-full")` and
-   `keccak256("ERC-TRUST/v2/erc3643-partial")`. The identifier
-   `keccak256("ERC-TRUST/v2/erc3643-verified-full")` is reserved for the future
-   TRUST 1.2 class and is not reported by the current adapter. The strings name
-   profile meaning, not a repository.
+4. The profile identifiers are `keccak256("ERC-TRUST/v2/native-full")`,
+   `keccak256("ERC-TRUST/v2/erc3643-partial")`, and
+   `keccak256("ERC-TRUST/v2/erc3643-verified-full")`. The last names the
+   TRUST 1.2 class for a hook-enabled fresh deployment: the ERC-3643 partial
+   adapter never reports it, and the ERC-3643 hook adapter under
+   `implementation/` does. The strings name profile meaning, not a
+   repository.
 5. Views that only one profile needs (custody, settlement, and entitlement
    records; the exact-use ERC-7943 route) live in profile interfaces with
    their own identifiers and are not part of the kernel identifier.

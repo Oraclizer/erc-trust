@@ -22,6 +22,8 @@ runtime bridge (`TRUST_Runtime_Bridge_Generated.thy`, written by
 decoder guard word theorems, the bound dependency assume/guarantee theory, the
 retrieve relation, the transaction refinement, the reusable summaries, the
 end-to-end composition with its undischarged `runtime_link` locale assumption,
+the out-of-specification refinement (`TRUST_Out_Of_Spec_Refinement.thy`) with
+its undischarged `runtime_link_spec` locale assumption,
 the ERC-3643 Partial declared-entry onboarding theory, the rendered obligation ledger
 (`TRUST_Obligation_Ledger_Generated.thy`, written by
 `scripts/verify-obligation-ledger-v3.mjs`), and the proof-bound row corollaries.

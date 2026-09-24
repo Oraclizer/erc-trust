@@ -11,6 +11,7 @@ theory Proof_Audit
   imports
     TRUST_Obligation_Ledger_Generated
     TRUST_M4_Action_Reversal_Row_Corollaries
+    TRUST_Out_Of_Spec_Refinement
 begin
 
 ML \<open>
@@ -33,6 +34,7 @@ ML \<open>
      "TRUST_Transaction_Refinement",
      "TRUST_Reusable_Summaries",
      "TRUST_End_To_End_Composition",
+     "TRUST_Out_Of_Spec_Refinement",
      "TRUST_Verified_Profile_Onboarding",
      "TRUST_Obligation_Ledger_Generated",
      "TRUST_M4_Action_Reversal_Row_Corollaries"];

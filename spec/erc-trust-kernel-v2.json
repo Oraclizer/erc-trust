@@ -3,15 +3,15 @@
   "schema": "erc-trust-normative-kernel",
   "kernelVersion": 2,
   "status": {
-    "stage": "normative kernel frozen for the successor candidate; native endpoint and ERC-3643 profile adapter wired; abstract model and obligation ledger connected to both endpoints (decision 10); runtime identity of the three endpoints bound by the deterministic build, the release manifest, and the two-layer runtime binding (decision 11); all twelve current evidence lanes recorded in successor-development mode",
+    "stage": "normative kernel frozen for the successor candidate, with the canonical-form text amended by decision 12 and the validation order amended by decision 08; the native endpoint, the ERC-3643 partial adapter, and the ERC-3643 hook adapter under implementation/ consume the generated copy of this kernel; the verification status of each endpoint is recorded only by the evidence bound to that endpoint, not by this file",
     "assurance": "unaudited-not-for-production",
-    "note": "This file defines the common wire format that the native token and the ERC-3643 adapter profile both implement. Both endpoints under implementation/ consume the generated copy of this kernel (decisions 08 and 09) and are connected to the abstract model by the obligation ledger (decision 10). Conformance of either endpoint is established only by the evidence lanes, never by this file."
+    "note": "This file defines the common wire format that every endpoint under implementation/ implements: the native token, the ERC-3643 partial adapter, and the ERC-3643 hook adapter. Each endpoint consumes the generated copy of this kernel. Conformance of an endpoint is established only by the evidence bound to its exact source, compiler, and runtime, never by this file."
   },
   "domain": {
     "string": "ERC-TRUST/v2",
     "keccak256": "0xb5303e4083d2781d6c7d6a68d30b6354ebda11f0a2a037b946d87b3eec40b74e",
     "standardVersion": 2,
-    "description": "Every command, binding, root, and receipt preimage starts with this domain constant. A request whose domain field differs MUST revert with TrustInvalidCommand reason 1."
+    "description": "Every command, binding, root, and receipt preimage starts with this domain constant. A request in canonical form whose domain field differs MUST revert with TrustInvalidCommand reason 1, unless the call is rejected as a reentrant call under hashes.encoding.canonicality."
   },
   "tags": {
     "DEPENDENCY_ROOT": {
@@ -505,7 +505,7 @@
   "hashes": {
     "encoding": {
       "rule": "abi.encode of the listed items in order; a struct encodes as the static tuple of its fields in the order listed in its fields array; every item occupies one 32-byte word (addresses and narrow integers are left-padded with zero bytes; enums are their uint8 value)",
-      "canonicality": "The preimage is the canonical ABI encoding. An endpoint MUST reject calldata that is not the canonical encoding of the declared static tuple (wrong length, dirty high bits in narrow integer or address words, enum values outside the declared range). Therefore the canonical encoding and the received calldata bytes coincide for every accepted command. That rejection is a plain revert with no typed error and no reason code: it is a decoding failure of the wire format, not a kernel outcome, and it consumes nothing.",
+      "canonicality": "The preimage is the canonical ABI encoding. The typed command functions are executeRegulatoryAction and executeRegulatoryReversal and, on an endpoint that implements IERCTrustNativeRoute, executeERC7943Action and executeERC7943Reversal. A request to a typed command function is in canonical form when its calldata is the function selector followed by the canonical encoding of the declared static tuple (exact length, no dirty high bits in narrow integer or address words, enum values inside the declared range) and the call carries zero value. A typed command function MUST reject every request that is not in canonical form, so the canonical encoding and the received calldata bytes coincide for every accepted command. That rejection is a full-state stutter as defined in interface.eventOrder, consumes nothing, and in addition makes no external call (a message call to an account other than the endpoint; for a proxy-fronted endpoint, the DELEGATECALL by which the proxy runs its implementation is not an external call). This kernel specifies neither the revert data of that rejection nor which defect is detected first when a request has several; the revert data can be empty, one of the errors defined here, or any other data, so a caller cannot rely on it to identify the defect. A reentrant call is a call to a typed command function made while an earlier call to the same endpoint has not yet returned; an endpoint MAY reject a reentrant call before any other check, with any revert data, and that rejection is also a full-state stutter. Where a rule of this kernel that names an error or a reason, including the validation order, governs a call to a typed command function, it applies only when the request is in canonical form and the call is not rejected as a reentrant call, and an error returned by either rejection carries none of the meanings given to it here. deriveActionId and deriveReversalId MUST return hashes.actionId and hashes.reversalId of the request when they are called with zero value and their calldata is their selector followed by the canonical encoding of the declared static tuple; their result for any other call is not specified, and an identifier they return does not relax the canonical-form requirement, because a typed command function rejects a request that is not in canonical form whatever its identifier field holds.",
       "endpoint": "endpoint(address) is the address of the conformance endpoint that executes the command: the token for the native profile, the adapter for a profile endpoint. It is the address a caller invokes, so for a proxy-fronted endpoint it is the proxy address, never the implementation address. In Solidity it is address(this) of the executing contract.",
       "chainId": "chainId(uint256) is the EIP-155 chain identifier of the chain the endpoint is deployed on (block.chainid in Solidity).",
       "signatures": "A canonical function signature is the function name followed by the parenthesized comma-separated canonical parameter types with no spaces. A struct parameter is written as the parenthesized comma-separated list of its field types in fields order; enum fields are uint8. Return types, parameter names, and mutability do not participate. The selector is the first four bytes of keccak256 of the signature."
@@ -936,7 +936,7 @@
         "meaning": "the case is TERMINAL; no action or reversal is accepted"
       }
     ],
-    "eventOrder": "Required ERC-20 and ERC-7943 effect events precede the applied event. The applied event is the final log the endpoint emits for the command. A reverted command leaves no persistent log. Every revert this kernel defines, including a validation failure, TrustTerminal, TrustReplay, TrustRejected, and TrustOperationalFailure, is a full-state stutter: the call leaves every observable state of the endpoint (balances, allowances, frozen targets, restriction flags, cases, action records, receipts, replay keys, nonces, authorities, bindings) exactly as it was before the call and emits no log."
+    "eventOrder": "Required ERC-20 and ERC-7943 effect events precede the applied event. The applied event is the final log the endpoint emits for the command. A reverted command leaves no persistent log. Every revert this kernel defines, including a validation failure, TrustTerminal, TrustReplay, TrustRejected, TrustOperationalFailure, the rejection of a request that is not in canonical form, and the rejection of a reentrant call to a typed command function, is a full-state stutter: the call leaves every observable state of the endpoint (balances, allowances, frozen targets, restriction flags, cases, action records, receipts, replay keys, nonces, authorities, bindings) exactly as it was before the call and emits no log."
   },
   "profileInterfaces": {
     "IERCTrustNativeRoute": {
@@ -1067,7 +1067,7 @@
       "dependencyRoot == current root and dependencyEpoch == current epoch (reason 5)",
       "provenanceCommitment != 0, and for action requests subject != 0 and caseId != 0 (reason 6)"
     ],
-    "order": "an endpoint validates a request in this order and reports the first failure: 1 domain (reason 1); 2 identifier (reason 2); 3 command identifier not already applied (TrustReplay); 4 validity window (reason 3); 5 authority epoch (reason 4) and registered account (TrustUnauthorized); 6 dependency root and epoch (reason 5); 7 nonce tuple not already consumed (TrustReplay); 8 the common rules are checked in the listed order, then the per-action field rules; the first failing rule names the reason, so a request with several defects reports the earliest one; 9 the state-dependent rules, where a TERMINAL case is reported first (TrustTerminal) and, for a reversal, the referenced action's lifecycle and live head (reason 11) are checked before the pairing (reason 7), the remaining rules (8, 9, 10, 12, 13) in implementation-defined order; assessment of the bound dependencies follows validation, so a replayed or stale command is reported before any state-dependent rule",
+    "order": "for a request in canonical form, an endpoint validates in this order and reports the first failure: 1 domain (reason 1); 2 identifier (reason 2); 3 command identifier not already applied (TrustReplay); 4 validity window (reason 3); 5 authority epoch (reason 4) and registered account (TrustUnauthorized); 6 dependency root and epoch (reason 5); 7 nonce tuple not already consumed (TrustReplay); 8 the common rule on provenanceCommitment, subject, and caseId (reason 6); 9 a TERMINAL case, which for a reversal is the case of the referenced action (TrustTerminal); 10 for an action, the per-action field rules and the state-dependent rules (reasons 6, 8, 9, 10, 12, 13) in implementation-defined order; for a reversal, the lifecycle of the referenced action (reason 11), then the pairing (reason 7), then the current effect, which is the subject's live head or, for RELEASE, the case's active custody (reason 11; reason 8 when the custody record does not match); 11 a restriction of the route that carries the request, such as the reason 6 and reason 7 rejections of the exact-use ERC-7943 route; a replayed or stale command is therefore reported before any state-dependent rule; assessment of the bound dependencies follows these checks, except that the reason 8 checks of the unencumbered balance of a source and of a custody record that an action consumes may follow assessment; a request that is not in canonical form and a reentrant call rejected under hashes.encoding.canonicality are outside this order, whatever their revert data",
     "FREEZE": {
       "source": "== subject",
       "destination": "== 0",
@@ -1129,8 +1129,8 @@
       "3": "validity window",
       "4": "authority epoch mismatch",
       "5": "dependency root or epoch mismatch",
-      "6": "any per-action field rule below that is not given its own code",
-      "7": "reversal kind does not pair with the original action",
+      "6": "any per-action field rule below that is not given its own code, and an action that the route carrying the request does not carry (RESTRICT on the exact-use ERC-7943 route)",
+      "7": "reversal kind does not pair with the original action, or the route carrying the request does not carry that reversal kind (any reversal other than UNFREEZE on the exact-use ERC-7943 route)",
       "8": "custody record missing, active when it must not be, or not matching",
       "9": "entitlement commitment already consumed (a missing commitment is reason 6, the field rule)",
       "10": "case conflict (CT-3, CT-7, CT-14, CT-16)",
@@ -1138,7 +1138,7 @@
       "12": "FREEZE target not strictly greater than the current target",
       "13": "no state change (second RESTRICT in its own case)"
     },
-    "appliesTo": "common rules apply to every request; a rule that names a field applies only to requests that have that field; `same: X` means the field rules of action X apply first and the entries that follow override them field by field"
+    "appliesTo": "common rules apply to every request in canonical form that is not rejected as a reentrant call under hashes.encoding.canonicality; a rule that names a field applies only to requests that have that field; `same: X` means the field rules of action X apply first and the entries that follow override them field by field"
   },
   "caseTransitions": {
     "description": "Machine-readable case state table. Each case is opened by its first applied command and is bound to that command's family. A subject has at most one live head per overlay family across all cases.",
@@ -1430,8 +1430,8 @@
         "keccak256": "0xad56e54f83cc255e391dd3838f7dc4befa1b0306b42d8ed7974588f27fec41ad"
       },
       "profileKind": "VERIFIED_FULL",
-      "status": "reserved TRUST 1.2 candidate class; no current reference implementation reports this profile",
-      "endpoint": "a future hook-enabled adapter or token endpoint",
+      "status": "TRUST 1.2 profile class for a hook-enabled fresh deployment; the ERC-3643 hook adapter under implementation/ reports this profile, and conformance of an endpoint that reports it is established only by the evidence bound to that endpoint, never by this file",
+      "endpoint": "a hook-enabled adapter or token endpoint",
       "underlyingToken": "an ERC-3643 token deployed atomically with the endpoint",
       "actionMask": "0x3f",
       "reversalMask": "0x07",
@@ -1441,7 +1441,7 @@
       "observation": "receipt pre-state and post-state bind the actual upstream restriction flags of the subject, source, and destination",
       "upgradeBoundary": "proxy and upgrade paths are rejected or bind implementation, admin, and epoch",
       "full": "computed only when every TRUST 1.2 requirement above is live",
-      "manifestHash": "future profile-defined complete deployment and state commitment"
+      "manifestHash": "profile-defined complete deployment and state commitment"
     }
   },
   "nonclaims": [

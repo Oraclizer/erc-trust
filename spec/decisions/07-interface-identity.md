@@ -14,9 +14,12 @@ Status: frozen in kernel version 2 machine source (`domain`, `hashes.encoding`,
    in the schema and in `generated/kernel-v2-abi.json`; the generator refuses
    to run if the literal and the recomputation disagree.
 3. Every hash preimage is the canonical ABI encoding of the listed items.
-   An endpoint MUST reject calldata that is not the canonical encoding of the
-   declared static tuple: wrong length, dirty high bits in narrow integer or
-   address words, or enum values outside the declared range. For every
+   A typed command function MUST reject a request whose calldata is not the
+   canonical encoding of the declared static tuple: wrong length, dirty high
+   bits in narrow integer or address words, or enum values outside the
+   declared range. Decision 12 (2026-09-24) adds the zero call value to
+   canonical form, names the typed command functions, and fixes what the
+   rejection may and may not do. For every
    accepted command the received calldata bytes and the canonical encoding
    therefore coincide, which is what lets an implementation hash the raw
    calldata while an indexer hashes an ABI encoding and both agree.
