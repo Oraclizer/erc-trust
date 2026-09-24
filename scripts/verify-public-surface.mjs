@@ -96,7 +96,7 @@ const lifecycleTextExtensions = new Set([
   ".yaml",
   ".yml",
 ]);
-const internalLifecyclePattern = /\b(?:M[1-9]\d*|G[1-9]\d*|FV\d+)\b/;
+const internalLifecyclePattern = /\b(?:M[1-9]\d*|G[1-9]\d*|FV\d+|RL-?\d+)\b/;
 const internalSchemaPattern = /changedByM\d|g\d+Regression|fv\d+Rows/i;
 const privateBranchPattern = /\b(?:sourceBranch|formerBranch|branch)\s*[:=]\s*["'](?:codex|claude)\//i;
 const lifecycleScannerFiles = new Set([

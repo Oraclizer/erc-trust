@@ -72,7 +72,7 @@ separately confirmed that the execution record merely carries supplied fields,
 manifest projections are supplied functions, and the native word decoder does
 not implement bytes-to-typed-command decoding. A source-bound HOL execution
 inhabitant, correspondence positive/negative pair and semantic mutation were
-therefore not produced. Formal correspondence Building was not opened.
+therefore not produced. Formal correspondence work was not opened.
 
 The disposition is PARTIAL / SOURCE_BLOCKED, not an impossibility theorem.
 A reliable complete-implementation estimate is unavailable until a checked EVM

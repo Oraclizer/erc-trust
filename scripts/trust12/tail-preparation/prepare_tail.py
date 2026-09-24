@@ -183,8 +183,8 @@ def manifest(baseline: Path, evidence: Path, prefix: str, checks: Path) -> dict[
     require(check_record.get("status") == "PASS", "the recorded preparation checks did not pass")
     document = {
         "schema": "trust12-runtime-link-process-result-v1",
-        "processId": "RL-20-TAIL-PREP",
-        "status": "PASS_RL20_TAIL_PREP_READY_FOR_INTEGRATION",
+        "processId": "runtime-link-tail-preparation",
+        "status": "PASS_TAIL_PREPARATION_READY_FOR_INTEGRATION",
         "baselineManifestSha256": sha256_file(baseline),
         "gitActions": ["commit", "push", "draft-pr"],
         "preparedConditions": [condition["id"] for condition in load_json(OBLIGATIONS)["conditions"]],
