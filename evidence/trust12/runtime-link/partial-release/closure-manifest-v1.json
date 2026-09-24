@@ -1,7 +1,7 @@
 {
   "schema": "trust12-runtime-link-process-result-v1",
-  "processId": "RL-10-PARTIAL-CLOSE",
-  "status": "PASS_RL10_PARTIAL_CLOSE_READY_FOR_INTEGRATION",
+  "processId": "partial-release-runtime-link-closure",
+  "status": "PASS_PARTIAL_RELEASE_CLOSURE_READY_FOR_INTEGRATION",
   "baselineManifestSha256": "ab2bf7dad24b105d82ac3c4d66b21d2a3c222d932cff73fea494ab6ce051078f",
   "gitActions": [
     "commit",
@@ -2185,7 +2185,7 @@
   "outputsRootAlgorithm": "sha256 over the sorted inventory lines '<sha256>  <root>/<path>', each terminated by one line feed",
   "outputsExclusion": "Heap images and session databases of the isolated store are bound through the chain rebuild verification receipt instead of being listed one by one.",
   "ledgerPromotionProposal": {
-    "owner": "RL-90-COORD",
+    "owner": "integration",
     "applied": false,
     "row": "cell/Partial/RELEASE",
     "stage": "E",
@@ -2283,7 +2283,7 @@
     "integrationDecisionRequired": "How the ledger records one cell on a different product baseline than the other closed cells, and whether the other cells are rebuilt on the isolated chain before any profile-level promotion."
   },
   "backupCandidate": {
-    "owner": "RL-90-COORD",
+    "owner": "integration",
     "applied": false,
     "evidenceDirectories": [
       "profile-partial-release-external-trace-g70-v1",

@@ -1,7 +1,7 @@
 {
   "schema": "trust12-runtime-link-process-result-v1",
-  "processId": "RL-20-TAIL-PREP",
-  "status": "PASS_RL20_TAIL_PREP_READY_FOR_INTEGRATION",
+  "processId": "runtime-link-tail-preparation",
+  "status": "PASS_TAIL_PREPARATION_READY_FOR_INTEGRATION",
   "baselineManifestSha256": "ab2bf7dad24b105d82ac3c4d66b21d2a3c222d932cff73fea494ab6ce051078f",
   "gitActions": [
     "commit",

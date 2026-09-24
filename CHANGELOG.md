@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Replace internal process identifiers in two tracked process-result records
+  and the tail preparation tool with descriptive names, and let the
+  public-surface scan refuse identifiers of the shape `RL-<n>`.
+
 - Measure requests outside canonical form on the three reference endpoints
   with two probes. The malformed-input probe accepts any revert data and
   requires that the call fails without an external account access, a log,

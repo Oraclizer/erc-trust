@@ -109,8 +109,8 @@ protected lock file therefore needs a maintainer regeneration commit before
 merge; the bot branch is not granted a manifest bypass.
 
 The repository scanners also refuse project-internal lifecycle identifiers
-(milestone identifiers of the shape `M<n>`, `G<n>`, or `FV<n>`) in tracked
-text and file names, and report the exact file, line, and token when they
+(milestone identifiers of the shape `M<n>`, `G<n>`, or `FV<n>`, and process
+identifiers of the shape `RL-<n>`) in tracked text and file names, and report the exact file, line, and token when they
 match. Note that this pattern currently collides with common legitimate
 terms, most notably the standard one-letter-one-digit short names of the
 two BLS12-381 pairing source groups and of Apple silicon chips: if your
