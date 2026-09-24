@@ -2,6 +2,52 @@
 
 ## Unreleased
 
+- Specify requests to the typed command functions that are outside canonical
+  form: a wrong calldata length, dirty high bits, an enum out of range, or a
+  nonzero call value. Such a request reverts as a full-state stutter that
+  changes no state, emits no event, and makes no external call. The proposal
+  specifies neither the revert data of that rejection nor which defect of such
+  a request is detected first. A reentrant call, made while an earlier call to
+  the same endpoint has not returned, may be rejected before any other check.
+  Every rule that names an error or a reason, including the validation order,
+  applies to a typed command only when the request is in canonical form and the
+  call is not rejected as reentrant. `deriveActionId` and `deriveReversalId` are
+  specified only for a zero-value call with canonical calldata, and an
+  identifier they return does not relax the canonical-form requirement. The
+  formal model adds the conformance relation `alpha_transaction_spec`. It
+  defines canonical form from the canonical decoders of the kernel, whatever
+  the bridge decoder accepts, keeps `alpha_transaction` for a canonical request
+  that the bridge decodes, and relates every other request to a full-state
+  stutter with unspecified revert data; both kinds of the out-of-specification
+  branch are inhabited. The runtime bridge is regenerated for the new kernel
+  schema text. No contract source, selector, or identifier changes.
+
+- Name the three endpoints under `implementation/` in the kernel status text,
+  in the Verified Full profile entry, and in the proposal, the integration
+  guide, the architecture overview, the README, the SDK README, decision 06,
+  and the known limitations: the ERC-3643 hook adapter reports Verified Full
+  as a constructor-sealed development reference, and the profile is no longer
+  described as a future class. The
+  kernel file states no verification status; the conformance of each endpoint
+  is established only by the evidence bound to it.
+
+- Align the validation order of the kernel, the proposal, and decision 08
+  with the order that every reference endpoint follows. After the seven common
+  checks come the rule on `provenanceCommitment`, `subject`, and `caseId` and
+  then a `TERMINAL` case; the field and state rules of an action follow in an
+  implementation-defined order; a reversal checks the lifecycle of the
+  referenced action, the pairing, and then the current effect; a restriction
+  of the route comes last; and the checks of the unencumbered balance of a
+  source and of a custody record that an action consumes may follow the
+  dependency assessment. The previous text placed the field rules before the
+  `TERMINAL` check and the current effect before the pairing, which no
+  reference endpoint did. A replayed or stale command is still reported before
+  any state-dependent rule.
+
+- Let reasons 6 and 7 of the kernel also name the rejections of the exact-use
+  ERC-7943 route (an action or a reversal kind that the route does not carry),
+  which the native route text already assigned to them.
+
 - Reuse validated Isabelle heaps and session databases while selecting the
   complete proof catalog on every PR and main push. Always consume every
   current proof audit export; remove duplicate topic-push proof builds;

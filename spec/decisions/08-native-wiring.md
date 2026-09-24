@@ -72,10 +72,17 @@ The ERC-3643 profile adapter consumes the same generated copy; see
    custodian account must use `canTransfer`, not `balance - getFrozenTokens`.
 10. Validation order for actions and reversals alike: domain, identifier,
     replay of the command identifier, validity window, authority epoch and
-    account, dependency root and epoch, nonce freshness, then the shape rules
-    and the state-dependent rules (case phase, lifecycle, pairing, live head).
-    A replayed or stale command is therefore reported before any
-    state-dependent rule.
+    account, dependency root and epoch, nonce freshness, the common rule on
+    the provenance commitment, subject, and case, and then a `TERMINAL` case.
+    An action then checks its field rules and state-dependent rules in an
+    implementation-defined order; a reversal checks the lifecycle of the
+    referenced action, the pairing, and then the current effect (the live
+    head, or the custody record for `RELEASE`); a restriction of the route
+    comes last. A replayed or stale command is therefore reported before any
+    state-dependent rule. The unencumbered balance of a source and a custody
+    record that an action consumes are checked when the action is applied,
+    after the dependency assessment. Amended 2026-09-24: `shapeRules.order` and
+    the proposal state this sequence, which every reference endpoint follows.
 
 ## Why
 

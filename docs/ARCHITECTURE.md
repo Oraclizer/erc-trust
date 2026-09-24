@@ -22,7 +22,8 @@ A typed command commits to its authority and authority epoch, its case, the
 endpoint's current dependency root and epoch, its validity window and nonce,
 its provenance, and its action-specific commitments. The endpoint validates
 the command in a fixed order (domain, identifier, replay, window, authority,
-dependency pair, nonce, field rules, state-dependent rules), assesses its
+dependency pair, nonce, the common shape rule, a terminal case, then the rules
+of the action or reversal), assesses its
 bound dependencies, applies the transition, and only then stores and emits
 the receipt as the final log. Every failure reverts and leaves the endpoint
 exactly as it was, so no identifier or nonce is consumed by a failed command.
@@ -150,9 +151,11 @@ They are not ERC-3643 implementations, and compatibility with them is not
 evidence that an external token satisfies this Partial reference, much less a
 Verified Full profile.
 
-A future TRUST 1.2 Verified Full profile additionally requires atomic fresh
+The TRUST 1.2 Verified Full profile additionally requires atomic fresh
 deployment, a complete initial-state gate, and a same-transaction token or
-Compliance hook for every ordinary transfer. It is not implemented here.
+Compliance hook for every ordinary transfer. The ERC-3643 hook adapter under
+`implementation/` reports it as a constructor-sealed development reference,
+and `evidence/trust12/` records what has been verified for it.
 
 ## Receipt and observation boundary
 
@@ -179,7 +182,7 @@ Those truths remain outside the software boundary.
 ## Deployment boundary
 
 This repository includes no deployment manifest, address, chain claim, proxy,
-migration procedure, or key-management design. Both reference profiles report
+migration procedure, or key-management design. Every reference endpoint reports
 `proxySupported = false`, and proxy or migration profiles are unsupported.
 
 A deployment claim needs a separate manifest that binds the exact source tree,

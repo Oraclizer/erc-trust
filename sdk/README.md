@@ -52,11 +52,11 @@ const calldata = encodeAction(request);
 The package root is kernel version 2. Historical kernel version 1 helpers are
 available from the explicit `@oraclizer/erc-trust-sdk/v1` subpath:
 
-`PROFILE_IDS["erc3643-partial"]` is the identifier reported by the current
-ERC-3643 reference, whose descriptor is `PARTIAL` with `full = false`.
-`PROFILE_IDS["erc3643-verified-full"]` is reserved for the future TRUST 1.2
-hook-enabled class; exporting the constant does not assert that an implementation
-or deployment satisfies it.
+`PROFILE_IDS["erc3643-partial"]` is the identifier reported by the ERC-3643
+partial adapter, whose descriptor is `PARTIAL` with `full = false`.
+`PROFILE_IDS["erc3643-verified-full"]` names the TRUST 1.2 hook-enabled class;
+exporting the constant does not assert that an implementation or deployment
+satisfies it.
 
 ```ts
 import {

@@ -259,6 +259,11 @@
       "statement": "pinned_runtime_refinement.runtime_link: every accepted execution of the pinned runtime template corresponds to a concrete transaction whose abstraction is admitted by the model and reaches the expected success state or stutters. This is a locale assumption. Nothing in this ledger discharges it; the Kontrol proofs and the Foundry executions are bounded instances of it, not a proof of it."
     },
     {
+      "id": "A-RUNTIME-LINK-SPEC",
+      "status": "UNDISCHARGED",
+      "statement": "pinned_runtime_refinement_spec.runtime_link_spec (formal/isabelle/ERC_TRUST/TRUST_Out_Of_Spec_Refinement.thy): every execution of a typed command function of the pinned runtime template that starts from an idle configuration satisfies alpha_transaction_spec; the treatment of a reentrant call is not formalized. A request in canonical form that the bridge decodes is related by alpha_transaction; every other request is a full-state stutter without a log or an external call, whatever its revert data. The assumption yields runtime_link only for executions in canonical form that the bridge decodes. This is a locale assumption. Nothing in this ledger discharges it; the malformed-input probe and the derived-identifier probe measure it concretely on one deployment of each reference endpoint (evidence/trust12/runtime-link/out-of-spec-probes-v1.json), not a proof of it."
+    },
+    {
       "id": "A-COMPILER",
       "status": "NONCLAIM",
       "statement": "solc 0.8.36 compiles the final source to the runtime templates named in the generated bridge correctly (compiler_correctness_remains_a_nonclaim). The deterministic build receipt establishes reproducibility, not correctness."
@@ -3239,7 +3244,7 @@
     {
       "id": "ADP-SHAPE-01",
       "endpoint": "profileAdapter",
-      "title": "Domain, identifier, validity window, and per-action field rules are checked before any state-dependent rule",
+      "title": "Domain, identifier, and validity window are checked before any state-dependent rule, and the per-action field rules are checked before the command is applied",
       "abstractCondition": {
         "theory": "TRUST_Transaction_Refinement",
         "facts": [

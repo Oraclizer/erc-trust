@@ -109,7 +109,7 @@ synchronization, and receipt observations bind actual restriction flags for
 subject, source, and destination. The ordinary inbound-growth window remains a
 documented Partial limitation.
 
-Proxy and migration support are `false` for both endpoints. The native
+Proxy and migration support are `false` for every reference endpoint. The native
 runtime is 20,043 bytes under the pinned compiler settings (4,533 bytes below
 the EIP-170 limit), the ERC-3643 profile adapter 19,480, and the profile
 governor 2,787, as bound by `evidence/release-manifest.json` and
@@ -144,7 +144,7 @@ ownership, action flow, failure behavior, and deployment boundaries.
 | --- | --- | --- |
 | Native Full | New immutable ERC-20 deployment | Exact source, compiler settings, and four bound read-only dependencies |
 | ERC-3643 Partial reference | Existing ERC-3643 interoperability with declared-entry checks and fail-closed adapter touch points | Always `full = false`; limitations include manifest incompleteness and the ordinary inbound-growth window |
-| ERC-3643 Verified Full | Reserved TRUST 1.2 hook-enabled fresh deployment class | Atomic deployment, complete initial-state gate, same-transaction transfer/Compliance hook, actual upstream post-state and receipt equality |
+| ERC-3643 Verified Full | TRUST 1.2 hook-enabled fresh deployment class; the hook adapter is its constructor-sealed development reference | Atomic deployment, complete initial-state gate, same-transaction transfer/Compliance hook, actual upstream post-state and receipt equality |
 | Unsupported | Missing or contradictory evidence | No reliable conformance declaration |
 
 No deployment manifest is included because this repository claims no

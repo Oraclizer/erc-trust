@@ -59,12 +59,15 @@ Do not infer a profile from a token name or an interface probe. Read
 
 - Native Full requires the exact immutable implementation and its four bound
   read-only dependencies.
-- The current ERC-3643 reference reports the exact Partial profile identifier,
+- The ERC-3643 partial adapter reports the exact Partial profile identifier,
   `profileKind = PARTIAL`, and `full = false`. Its `sealedTopologyLive()` view
   reports only the narrower operational seal and dependency-code condition.
-- ERC-3643 Verified Full is a future TRUST 1.2 class requiring atomic fresh
+- ERC-3643 Verified Full is the TRUST 1.2 class requiring atomic fresh
   deployment, a complete initial-state gate, and same-transaction transfer or
-  Compliance-hook enforcement. Existing T-REX imports are Partial.
+  Compliance-hook enforcement. The ERC-3643 hook adapter reports it as a
+  constructor-sealed development reference; confirm the evidence bound to a
+  deployment before relying on the declaration. Existing T-REX imports are
+  Partial.
 
 This repository provides no deployable address or deployment manifest. An
 integrator evaluating a deployment must create a separate manifest and bind
@@ -92,8 +95,10 @@ dependency pair, the provenance commitment, the authority, the nonce, and the
 validity window. Start from a vector in
 [`vectors/conformance-v2.json`](../vectors/conformance-v2.json), not from a
 partially populated object: the field rules require some fields to be zero
-and others to be nonzero, and the request is rejected as a decoding failure
-if any field carries bits outside its declared width.
+and others to be nonzero, and a request that is not in canonical form (a
+wrong calldata length, a field with bits outside its declared width, an enum
+value out of range, or a nonzero call value) is rejected, and the revert data
+of that rejection is not specified.
 
 The generated TypeScript helpers in `sdk/src/kernel-v2.ts` derive
 identifiers, hashes, and calldata for kernel version 2:
@@ -143,6 +148,8 @@ exact-use, same-transaction ticket.
 
 Before submission, independently confirm:
 
+- that the calldata is the canonical encoding produced from the kernel types
+  and that the call sends zero value;
 - the chain ID and endpoint address used to derive the command identifier;
 - the account currently registered for the authority and its epoch;
 - the current `dependencyState()` pair, which every command must carry;
@@ -155,6 +162,11 @@ Before submission, independently confirm:
 
 ## 5. Interpret failures
 
+The meanings below hold for a request in canonical form that is not rejected
+as a reentrant call. A request that is not in canonical form can revert with
+empty data, with any error below, or with other data, so confirm the encoding
+and a zero call value before interpreting an error.
+
 | Failure | Meaning | Operator response |
 | --- | --- | --- |
 | `TrustInvalidCommand` (reason class 1) | Domain, identifier, window, authority epoch, dependency pair, field rule, or a case, custody, entitlement, pairing, live-head, freeze-direction, or no-change rule failed; the reason names the earliest failing check | Rebuild from the current state; do not retry unchanged |
@@ -163,10 +175,11 @@ Before submission, independently confirm:
 | `TrustOperationalFailure` (classes 200, 300, 400) | A bound dependency, the sealed topology, or an upstream call was unavailable, malformed, stale, or inconsistent | Stop and repair the dependency or topology |
 | `TrustRouteMismatch` | A sensitive ERC-7943 selector lacked the exact ticket | Use the canonical typed wrapper |
 | `TrustTerminal` | The case is terminal | Do not attempt another command in that case |
-| plain revert | Non-canonical calldata (wrong length, dirty bits, enum out of range) | Re-encode from the canonical types |
+| any revert of a non-canonical request | Wrong calldata length, dirty bits, an enum out of range, or a nonzero call value; the revert data is not specified and can be empty, any error above, or other data | Re-encode from the canonical types, send zero value, and only then interpret an error |
 
 Every one of these paths is a full-state stutter: the call leaves the
-endpoint exactly as it was and consumes nothing. A failed command must not
+endpoint exactly as it was and consumes nothing. The rejection of a request
+that is not in canonical form also makes no external call. A failed command must not
 be treated as authorization to continue through another administrative
 mechanism.
 
@@ -197,8 +210,8 @@ It does not prove off-chain legal authority or factual truth.
 Before an integration may describe itself as evaluation-ready, it should have:
 
 - a reproducible source and bytecode binding;
-- an explicit Native Full, ERC-3643 Partial, future ERC-3643 Verified Full, or
-  Unsupported declaration, with the current reference kept Partial;
+- an explicit Native Full, ERC-3643 Partial, ERC-3643 Verified Full, or
+  Unsupported declaration, with the ERC-3643 partial adapter kept Partial;
 - independent identifier, calldata, vector, and receipt reproduction;
 - negative tests for replay, stale dependency pairs, dependency failure,
   topology drift, direct ERC-7943 calls, terminal cases, and action-specific

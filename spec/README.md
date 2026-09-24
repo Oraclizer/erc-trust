@@ -6,11 +6,12 @@ preimages, the kernel interface and its ERC-165 identifier, shape rules, the
 case transition table, reason classes, and profile descriptors.
 
 > **Unaudited. Not for production.** The kernel described here is version 2 of
-> the wire format. The native token and the ERC-3643 profile adapter under
-> `implementation/` both consume the generated copy of this kernel
-> (`decisions/08-native-wiring.md`, `decisions/09-erc3643-profile-wiring.md`);
-> the abstract model and the obligation ledger connect both endpoints
-> (`decisions/10-refinement-closure.md`); the runtime identity of the successor code is
+> the wire format. The native token, the ERC-3643 partial adapter, and the
+> ERC-3643 hook adapter under `implementation/` consume the generated copy of
+> this kernel (`decisions/08-native-wiring.md` and
+> `decisions/09-erc3643-profile-wiring.md` for the first two); the abstract
+> model and the obligation ledger connect the native token and the partial
+> adapter (`decisions/10-refinement-closure.md`); the runtime identity of the successor code is
 > bound by the runtime assurance change (`decisions/11-runtime-assurance.md`). Conformance of an endpoint is established only by the evidence lanes
 > in `../evidence/current-profile-release-index-v3.json`, never by this
 > directory.

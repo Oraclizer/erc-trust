@@ -12,13 +12,13 @@ conformance conditions; a Partial or Unsupported profile always returns
 | --- | --- | --- | --- | --- | --- |
 | Native Full | `keccak256("ERC-TRUST/v2/native-full")` | Yes | Fungible `0x3edbb4c4` and the exact-use route `0x5cd8d207` | Token | Exact immutable source, pinned compiler, and four bound read-only dependencies |
 | ERC-3643 Partial reference | `keccak256("ERC-TRUST/v2/erc3643-partial")` | Yes, within the documented adapter boundary | Not claimed | Adapter, over a sealed token | Current reference; `profileKind = PARTIAL`, `full = false` |
-| ERC-3643 Verified Full | `keccak256("ERC-TRUST/v2/erc3643-verified-full")` | TRUST 1.2 development reference | Not claimed | Fresh hook-enabled endpoint | Constructor-sealed candidate; independent conformance review pending |
+| ERC-3643 Verified Full | `keccak256("ERC-TRUST/v2/erc3643-verified-full")` | TRUST 1.2 development reference | Not claimed | Fresh hook-enabled endpoint | Constructor-sealed development reference; its functional conformance passed an independent audit for the exact T-REX 4.1.3 source, while its runtime link and the final independent assurance are pending |
 | Unsupported | none | No reliable declaration | No | Unknown | Missing, stale, or contradictory evidence |
 
 The published Native and Partial references implement the kernel interface `0x2b020308` from the
 same generated copy of the kernel machine source (`spec/erc-trust-kernel-v2.json`)
 and report `standardVersion = 2`, `actionMask = 0x3f`, `reversalMask = 0x07`,
-and `proxySupported = false`. The ERC-3643 reference also reports
+and `proxySupported = false`. The ERC-3643 partial reference also reports
 `PROFILE_ERC3643_PARTIAL`, `profileKind = PARTIAL`, and `full = false` even
 while its narrower sealed topology is live.
 
