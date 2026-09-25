@@ -1,0 +1,3302 @@
+{
+  "schema": "trust12-runtime-link-process-result-v1",
+  "processId": "hook-runtime-link-closure",
+  "status": "PASS_HOOK_RUNTIME_LINK_CLOSURE_READY_FOR_INTEGRATION",
+  "createdAt": "2026-09-25T17:44:07.221580+00:00",
+  "purpose": "Kernel-check the runtime-link cell of every action and reversal of the ERC-3643 hook adapter at the end of the final linear proof chain and return one reviewable manifest.",
+  "cells": [
+    "Hook/FREEZE",
+    "Hook/RESTRICT",
+    "Hook/SEIZE",
+    "Hook/CONFISCATE",
+    "Hook/LIQUIDATE",
+    "Hook/RECOVER",
+    "Hook/UNFREEZE",
+    "Hook/UNRESTRICT",
+    "Hook/RELEASE"
+  ],
+  "productBaseline": {
+    "commit": "67740e58880078e0b8c5f6a46375d9f3c6db9c8d",
+    "pinnedFormalInputs": {
+      "root": "EVIDENCE",
+      "path": "final-chain-v2/pinned-inputs/product-outofspec-v2.json",
+      "bytes": 12023,
+      "sha256": "132551e3a5f759927a585d351c2cfe589ac64cf058563b6b921b5e23ae803605"
+    },
+    "pinnedFiles": 40,
+    "pinnedFilesConsumedByChain": 14,
+    "note": "The chain reads a pinned copy of the product formal sources, not a working clone."
+  },
+  "finalChain": {
+    "stages": [
+      {
+        "root": "EVIDENCE",
+        "path": "final-chain-v2/runs/a-native-source-lexer/result.json",
+        "bytes": 12860,
+        "sha256": "8f98d55045a1adcd0091d50133986a2d2f9db1256f7381a18ec641a9c700073e",
+        "status": "PASS_FINAL_CHAIN_STAGE_BUILT_TRUST12_NATIVE_SOURCE_STORAGE_LEXER_G4",
+        "builtSessions": 7
+      },
+      {
+        "root": "EVIDENCE",
+        "path": "final-chain-v2/runs/b-chain-to-partial-release/result.json",
+        "bytes": 101490,
+        "sha256": "912c634bd648d54b47ea0898097096da75f0d79137692de766e50aa83b6cf228",
+        "status": "PASS_FINAL_CHAIN_STAGE_BUILT_TRUST12_PARTIAL_RELEASE_REVERSAL_RUNTIME_CELL_G72",
+        "builtSessions": 118
+      },
+      {
+        "root": "EVIDENCE",
+        "path": "final-chain-v2/runs/c-rebind-linear/result.json",
+        "bytes": 57708,
+        "sha256": "d439c2581bf0ad92a12ae493d772ebc5ac81f259c19de3d0504404e35fa76e83",
+        "status": "PASS_FINAL_CHAIN_STAGE_BUILT_TRUST12_PARTIAL_UNRESTRICT_REVERSAL_RUNTIME_CELL_G72",
+        "builtSessions": 62
+      }
+    ],
+    "tip": {
+      "root": "EVIDENCE",
+      "path": "final-chain-v2/attestations/TRUST12_PARTIAL_UNRESTRICT_REVERSAL_RUNTIME_CELL_G72.json",
+      "bytes": 1401,
+      "sha256": "ef0f1f1c8038040282cc8760b27fc8318a84024a6e161763b91b253d38cad540"
+    },
+    "tipSession": "TRUST12_PARTIAL_UNRESTRICT_REVERSAL_RUNTIME_CELL_G72",
+    "heapStore": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows"
+  },
+  "batches": [
+    {
+      "root": "EVIDENCE",
+      "path": "final-chain-v2/runs/hook-freeze-trial-v1/result.json",
+      "bytes": 7852,
+      "sha256": "f3a9c67ed970b641e130baa90d53dc88e5c4434186ef5be727996dfd5d94d8e3",
+      "status": "PASS_HOOK_BATCH_BUILT",
+      "operations": [
+        "FREEZE"
+      ],
+      "builtSessions": 7,
+      "elapsedSeconds": 3751.159615,
+      "maxReportedCommandSeconds": 212.803,
+      "proofCommandCeilingSeconds": 600
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "final-chain-v2/runs/hook-remaining-a-v1/result.json",
+      "bytes": 26368,
+      "sha256": "bc7302579bd6be14d6f92d284b599e1780dfc160f53796062c7bb65e93c7ce8a",
+      "status": "PASS_HOOK_BATCH_BUILT",
+      "operations": [
+        "RESTRICT",
+        "SEIZE",
+        "CONFISCATE",
+        "LIQUIDATE"
+      ],
+      "builtSessions": 28,
+      "elapsedSeconds": 16898.7843611,
+      "maxReportedCommandSeconds": 257.309,
+      "proofCommandCeilingSeconds": 600
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "final-chain-v2/runs/hook-remaining-b-v4/result.json",
+      "bytes": 18984,
+      "sha256": "0a15e0349b1f7d7f129cde84a305cfae296caf79e66c8d6e925dbf53e4bfcc7a",
+      "status": "PASS_HOOK_BATCH_BUILT",
+      "operations": [
+        "RECOVER",
+        "UNFREEZE",
+        "UNRESTRICT",
+        "RELEASE"
+      ],
+      "builtSessions": 19,
+      "reusedSessions": 9,
+      "newlyBuiltSessions": 19,
+      "sourcePrefix": {
+        "root": "EVIDENCE",
+        "path": "final-chain-v2/runs/hook-remaining-b-v2/result.json",
+        "bytes": 8233,
+        "sha256": "2a4da0c414efdf43b684241953ae04b2e6d0e060a8856b58f0cc1bc902964df4"
+      },
+      "failedRetry": {
+        "root": "EVIDENCE",
+        "path": "final-chain-v2/runs/hook-remaining-b-v3/result.json",
+        "bytes": 9730,
+        "sha256": "aee8d0d85259001fe830e99fc61b5f121042f21347f7d5c6b2acd28b1163f66f"
+      },
+      "elapsedSeconds": 13251.8742765,
+      "maxReportedCommandSeconds": 240.857,
+      "proofCommandCeilingSeconds": 900.0
+    }
+  ],
+  "regeneration": {
+    "log": {
+      "root": "EVIDENCE",
+      "path": "hook-cells-v1-regen/generation-log.jsonl",
+      "bytes": 23621,
+      "sha256": "c223467d78f9edb2a1457116827cc06fdfd9616527935647b301c3bcbd75e6cc"
+    },
+    "comparedRoots": 63,
+    "rule": "every theory and ROOT that was built equals the bytes the generators write in normal mode from the real parent attestations"
+  },
+  "parents": [
+    {
+      "root": "EVIDENCE",
+      "path": "profile-hook-kevm-aggregate-v1/result.json",
+      "bytes": 24891,
+      "sha256": "342fa8094019c259d3a8c3759aa40773e9ba02328eb087fac1c082ef5f3b55aa",
+      "status": "PASS_ERC3643_HOOK_18_KEVM_CERTIFICATES",
+      "meaning": "eighteen Hook KEVM certificates (one applied and one rejected per operation)"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-hook-kore-aggregate-v1/result.json",
+      "bytes": 43148,
+      "sha256": "5e188b127315261010f7ce73120216657fcf0273cd24f8600de229e5ebc2f223",
+      "status": "PASS_ERC3643_HOOK_18_BOUNDARIES_KORE",
+      "meaning": "the eighteen certificate boundaries materialized as KORE configurations"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-hook-kore-aggregate-v1/account-inventory.json",
+      "bytes": 13527,
+      "sha256": "75ddfdc4f2d92febd671a9a5f22a29e71bc2f98a99dcfad71e257035637e2419",
+      "status": null,
+      "meaning": "the five Hook account roles"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-hook-kore-aggregate-v1/storage-layouts.json",
+      "bytes": 46629,
+      "sha256": "66cf5450eff1ee2e1224ace2ed25b49da4870d95d5078af27409f1811f91d068",
+      "status": null,
+      "meaning": "adapter and token storage layouts"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "profile-hook-kore-aggregate-v1/storage-classification/result.json",
+      "bytes": 11360,
+      "sha256": "0d74954e9510a9e6444dca9b4709c6d026698137909a11c5d14e342568e81dc1",
+      "status": null,
+      "meaning": "classification of every adapter and token storage key the certificates touch"
+    }
+  ],
+  "hookCells": [
+    {
+      "id": "Hook/FREEZE",
+      "profile": "Runtime_Hook",
+      "operation": "Runtime_Forward FREEZE",
+      "sessions": [
+        {
+          "stage": "accounts",
+          "session": "TRUST12_HOOK_FREEZE_ACCOUNTS_CELLS_EVAL_G66",
+          "theory": "TRUST_Native_HOOK_FREEZE_REJECTED_RESTORED_ACCOUNTS_Eval_G66",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_FREEZE_ACCOUNTS_G66",
+          "generatedFiles": 26,
+          "sourceFilesCompared": 26,
+          "parentSession": "TRUST12_PARTIAL_UNRESTRICT_REVERSAL_RUNTIME_CELL_G72",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-freeze-accounts-g66-v1/BatchRun01/result.json",
+            "bytes": 1790,
+            "sha256": "fd70ba0a6baf10d18cbb4c452ed7df4678a301cc09a82a3208a5bbd6ab23915a"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-freeze-accounts-g66-v1/input-binding.json",
+            "bytes": 15119,
+            "sha256": "dad02f96da0368db1529db1dd718341fdfbfe7d25ff6511fbb94d9be2666b496"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-freeze-accounts-g66-v1/TRUST_Native_HOOK_FREEZE_REJECTED_RESTORED_ACCOUNTS_Eval_G66.thy",
+            "bytes": 304487,
+            "sha256": "107dc2222898c0ba723c3cdcdecec9215518c99e7c7c2f900faf8bccf7c046db"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-freeze-accounts-g66-v1/ROOT",
+            "bytes": 306,
+            "sha256": "f2e23e0ecc0c9f50eb8e7d889922930f37bbfaff16e6d5dab93d43b8bd720444"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_FREEZE_ACCOUNTS_CELLS_EVAL_G66",
+            "bytes": 101741925,
+            "sha256": "49573cadf4e1c84d99a541e97fbbe0e8427fe780d67d55062fe673e3093f007f"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_FREEZE_ACCOUNTS_CELLS_EVAL_G66.db",
+            "bytes": 5935104,
+            "sha256": "182f64fed4cc2114e64fb5323f0dfb6bab904ad2f69b0881493b204c2cd94af6"
+          }
+        },
+        {
+          "stage": "worldCanary",
+          "session": "TRUST12_HOOK_FREEZE_WORLD_CANARY_G67",
+          "theory": "TRUST_Hook_Freeze_World_Canary_G67",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_FREEZE_WORLD_CANARY_G67",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_FREEZE_ACCOUNTS_CELLS_EVAL_G66",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-freeze-world-canary-g67-v1/BatchRun01/result.json",
+            "bytes": 1716,
+            "sha256": "164974f2174ec56f17728a3b8a176486f70a29fff2188dcd321771d477930f79"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-freeze-world-canary-g67-v1/input-binding.json",
+            "bytes": 2410,
+            "sha256": "351fa57309f59f9a8a36966c9c95051d7949fe681f6e74c9fb15050856ce5ae2"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-freeze-world-canary-g67-v1/TRUST_Hook_Freeze_World_Canary_G67.thy",
+            "bytes": 27056,
+            "sha256": "0e98568d603a5a74d0cde563adc3641365dc8e199413a2d9737aafc02c21a893"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-freeze-world-canary-g67-v1/ROOT",
+            "bytes": 263,
+            "sha256": "7bf1c9e56187351787c97533043ccff76563e08ac3f59fbc30c38a9852a951cd"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_FREEZE_WORLD_CANARY_G67",
+            "bytes": 12114155,
+            "sha256": "58d01f743e89c22d0f7cec0da566ba6140f92a36284db949902309ae01734e61"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_FREEZE_WORLD_CANARY_G67.db",
+            "bytes": 552960,
+            "sha256": "c9d374bb50a634e60ef4e82fc4a035d1775ca34404a1658615d15fee172e28a5"
+          }
+        },
+        {
+          "stage": "transactionCells",
+          "session": "TRUST12_HOOK_FREEZE_TRANSACTION_CELLS_EVAL_G68_V2",
+          "theory": "TRUST_Native_HOOK_FREEZE_REJECTED_RESTORED_LOG_Eval_G68_V2",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_FREEZE_TRANSACTION_CELLS_G68_V2",
+          "generatedFiles": 52,
+          "sourceFilesCompared": 52,
+          "parentSession": "TRUST12_HOOK_FREEZE_WORLD_CANARY_G67",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-freeze-transaction-cells-g68-v2/BatchRun01/result.json",
+            "bytes": 1829,
+            "sha256": "807d1fa1c9deb96a4478f2914723891c1398a5cbadd300ec0fdacb0de3e9c40f"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-freeze-transaction-cells-g68-v2/input-binding.json",
+            "bytes": 38876,
+            "sha256": "47558d604ea6617a3ad84e95a6d65706149c6957457bdc14984318c834336301"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-freeze-transaction-cells-g68-v2/TRUST_Native_HOOK_FREEZE_REJECTED_RESTORED_LOG_Eval_G68_V2.thy",
+            "bytes": 236821,
+            "sha256": "d81911c60447a25522cac90c0f48237d83d496ebf66539ec883048c7a6751fd6"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-freeze-transaction-cells-g68-v2/ROOT",
+            "bytes": 294,
+            "sha256": "1a85a45520ee02a6ac79e87c2dbb818490da24f22500cf763e5d190efb2221e3"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_FREEZE_TRANSACTION_CELLS_EVAL_G68_V2",
+            "bytes": 28678713,
+            "sha256": "1e05e6b22fc70e29444fa608920d5382ae111151809b36d6e5cbf58baf14e0e8"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_FREEZE_TRANSACTION_CELLS_EVAL_G68_V2.db",
+            "bytes": 1892352,
+            "sha256": "8f7b4102ef2e70fc8029ebfbd4d97a5d4fd46f0f70acc856d76fe19f7b06db01"
+          }
+        },
+        {
+          "stage": "semanticDecode",
+          "session": "TRUST12_HOOK_FREEZE_SEMANTIC_DECODE_G69_V1",
+          "theory": "TRUST_Hook_Freeze_Semantic_Decode_G69_V1",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_FREEZE_SEMANTIC_DECODE_G69_V1",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_FREEZE_TRANSACTION_CELLS_EVAL_G68_V2",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-freeze-semantic-decode-g69-v1/BatchRun01/result.json",
+            "bytes": 1783,
+            "sha256": "be5d100f9d4b2150c76b4ae8031babee2df6e601fba14f272d33eefeee99757a"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-freeze-semantic-decode-g69-v1/input-binding.json",
+            "bytes": 3342,
+            "sha256": "4511ec07f177fb9d47d00d588dd6f639b5192854e2f0b8e2316aec58e4f4bb61"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-freeze-semantic-decode-g69-v1/TRUST_Hook_Freeze_Semantic_Decode_G69_V1.thy",
+            "bytes": 7624,
+            "sha256": "8f85941c8e9bc9a7c63b8c2c33fd605e8889daeb7f4ca4c6ca3729891d609e34"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-freeze-semantic-decode-g69-v1/ROOT",
+            "bytes": 281,
+            "sha256": "2913c4ec953b44973de057625ce7922c8bcd0f1236f51b4a788fb05897d935a2"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_FREEZE_SEMANTIC_DECODE_G69_V1",
+            "bytes": 12099551,
+            "sha256": "208b8f557b74114c24f8559194c8246ceceb4e8ccd2efa6dafc06595cb3fe86f"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_FREEZE_SEMANTIC_DECODE_G69_V1.db",
+            "bytes": 380928,
+            "sha256": "123f50a443a34b46094bf25c78d86c6b61b8f4584d75554a58273e99c4848c50"
+          }
+        },
+        {
+          "stage": "externalTrace",
+          "session": "TRUST12_HOOK_FREEZE_EXTERNAL_TRACE_G70",
+          "theory": "TRUST_Hook_Freeze_External_Trace_G70",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_FREEZE_EXTERNAL_TRACE_G70",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_FREEZE_SEMANTIC_DECODE_G69_V1",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-freeze-external-trace-g70-v1/BatchRun01/result.json",
+            "bytes": 1815,
+            "sha256": "bf977203e325995ce0f460dd04e2372283f62a4686e221b0d920e8f85d7cbbe0"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-freeze-external-trace-g70-v1/input-binding.json",
+            "bytes": 2124,
+            "sha256": "752c1cac4da313762d7ac706b5a88e78d6e12dacb0813f2f4b1f03a77fbfb87f"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-freeze-external-trace-g70-v1/TRUST_Hook_Freeze_External_Trace_G70.thy",
+            "bytes": 11354,
+            "sha256": "2f580c2c257d8d0581ea761ecb3c86c77f66d194234d58a68feeeba1dbc47711"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-freeze-external-trace-g70-v1/ROOT",
+            "bytes": 266,
+            "sha256": "f4a4923119b8e90ae013d431e9a2cc9a1c1ae74c75417fa74bffe8fae76ae6ed"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_FREEZE_EXTERNAL_TRACE_G70",
+            "bytes": 12070225,
+            "sha256": "c4a584a27566115581757c9bed9b973818850087663d5e7b6ceded04588bfd9a"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_FREEZE_EXTERNAL_TRACE_G70.db",
+            "bytes": 376832,
+            "sha256": "12c4a93f3ce7d40f8cd6e5a99cfba84f5f7215a72a4b38dc129031cee54510eb"
+          },
+          "directCallTrace": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-freeze-direct-call-trace-g70-v1/result.json",
+            "bytes": 19017,
+            "sha256": "0c32414f973f1c57871060ac528c60434f74e1d832e07f409c12e763b3a8acc4"
+          }
+        },
+        {
+          "stage": "retrieve",
+          "session": "TRUST12_HOOK_FREEZE_RETRIEVE_G71_V2",
+          "theory": "TRUST_Hook_Freeze_Retrieve_G71_V2",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_FREEZE_RETRIEVE_G71_V2",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_FREEZE_EXTERNAL_TRACE_G70",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-freeze-retrieve-g71-v2/BatchRun01/result.json",
+            "bytes": 1794,
+            "sha256": "166e23315fdc743633f06ca80263914abeaea3663952ad28afe2a652438e5053"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-freeze-retrieve-g71-v2/input-binding.json",
+            "bytes": 2082,
+            "sha256": "ccce4e31c65861946fca5835680d3d33ff5871319209c8fe1775554dfc2440ae"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-freeze-retrieve-g71-v2/TRUST_Hook_Freeze_Retrieve_G71_V2.thy",
+            "bytes": 30765,
+            "sha256": "337fc89f09c3cb65d6a23607dbe8ba3acd334b8ebda756868fe53c3591c124e2"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-freeze-retrieve-g71-v2/ROOT",
+            "bytes": 256,
+            "sha256": "cfbd65d93f1e1c9a96899438001bd51de5299dc7657a1be190dad8f3beb50a4a"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_FREEZE_RETRIEVE_G71_V2",
+            "bytes": 12197085,
+            "sha256": "4c6b0b3f18ddf9e430a2d63f2a2fb9e05d58d6fb165fec0ac801ff0d2f530994"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_FREEZE_RETRIEVE_G71_V2.db",
+            "bytes": 421888,
+            "sha256": "81e262e7b05565e3d954db5ab87f9a41d3751f350dec48c59796c5c7f993db2b"
+          }
+        },
+        {
+          "stage": "runtimeCell",
+          "session": "TRUST12_HOOK_FREEZE_RUNTIME_CELL_G72_V7",
+          "theory": "TRUST_Hook_Freeze_Runtime_Cell_G72_V7",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_FREEZE_RUNTIME_CELL_G72_V7",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_FREEZE_RETRIEVE_G71_V2",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-freeze-runtime-cell-g72-v7/BatchRun01/result.json",
+            "bytes": 1769,
+            "sha256": "922b599ab776eea91579017075d9aa2be479bbecba79ef234e6244e734507f8e"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-freeze-runtime-cell-g72-v7/input-binding.json",
+            "bytes": 1437,
+            "sha256": "b61f1a1b845c187375faffc8a84a27c6522068119bf2732a85562f4dd735bc28"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-freeze-runtime-cell-g72-v7/TRUST_Hook_Freeze_Runtime_Cell_G72_V7.thy",
+            "bytes": 12746,
+            "sha256": "f6c249d945d19dcef4e3a444d6f28677b33d456892567f38b31ed66eaf5291b5"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-freeze-runtime-cell-g72-v7/ROOT",
+            "bytes": 261,
+            "sha256": "83ec8c955e81507f40c894bb287ab9880a13f921a538fbff436565df416b749f"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_FREEZE_RUNTIME_CELL_G72_V7",
+            "bytes": 12941943,
+            "sha256": "37df8ab9da3fdda5be30745dcd939f474c60c0c9f09df4ae95e8bcfc59c57e42"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_FREEZE_RUNTIME_CELL_G72_V7.db",
+            "bytes": 401408,
+            "sha256": "0540611ba946f5877dcb452f435eb33369462ca54e4795f8f220a9b4c74ae213"
+          },
+          "checkedFacts": [
+            "ppf_applied_alpha_transaction",
+            "ppf_rejected_alpha_transaction",
+            "ppf_applied_alpha_transaction_enforced",
+            "ppf_rejected_alpha_transaction_enforced",
+            "ppf_accepts_iff",
+            "hook_freeze_certificate_cell_enforced",
+            "hook_freeze_certificate_cell_bound",
+            "hook_freeze_cell_needs_applied_certificate",
+            "hook_freeze_cell_needs_rejected_certificate"
+          ],
+          "certificateCount": 2,
+          "timeBoundsRequired": [
+            "pev_0000 <= 281474976710655",
+            "pmv_0000 <= 281474976710655"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Hook/RESTRICT",
+      "profile": "Runtime_Hook",
+      "operation": "Runtime_Forward RESTRICT",
+      "sessions": [
+        {
+          "stage": "accounts",
+          "session": "TRUST12_HOOK_RESTRICT_ACCOUNTS_CELLS_EVAL_G66",
+          "theory": "TRUST_Native_HOOK_RESTRICT_REJECTED_RESTORED_ACCOUNTS_Eval_G66",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_RESTRICT_ACCOUNTS_G66",
+          "generatedFiles": 26,
+          "sourceFilesCompared": 26,
+          "parentSession": "TRUST12_HOOK_FREEZE_RUNTIME_CELL_G72_V7",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-restrict-accounts-g66-v1/BatchRun01/result.json",
+            "bytes": 1800,
+            "sha256": "eb286fdfdf7270f4cf8e53ec3229e61060edb19d7cc2b5cc56cf950cb0f3b23a"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-restrict-accounts-g66-v1/input-binding.json",
+            "bytes": 15260,
+            "sha256": "c32113510c023bf244ebb8e5bdd17feafc142bbd8451c4a61b103a4b04f5d7cf"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-restrict-accounts-g66-v1/TRUST_Native_HOOK_RESTRICT_REJECTED_RESTORED_ACCOUNTS_Eval_G66.thy",
+            "bytes": 304492,
+            "sha256": "48d584f9f6eea0c03c9a9302ef1ffa8422136d024e281953bd1745924e7f430c"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-restrict-accounts-g66-v1/ROOT",
+            "bytes": 297,
+            "sha256": "58b0368c8d36f1f881e1e2bf4373b8803010509732c41f9e73bf6de5f79f70af"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_RESTRICT_ACCOUNTS_CELLS_EVAL_G66",
+            "bytes": 110644651,
+            "sha256": "49cfeb74ee965745118d251b25814b02d8a0a107543238eccd2b0054af81ff77"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_RESTRICT_ACCOUNTS_CELLS_EVAL_G66.db",
+            "bytes": 6438912,
+            "sha256": "29c653042b599a45c372413839ee8f286f1e0e78b23c3d1918b4fd2ca533ed09"
+          }
+        },
+        {
+          "stage": "worldCanary",
+          "session": "TRUST12_HOOK_RESTRICT_WORLD_CANARY_G67",
+          "theory": "TRUST_Hook_Restrict_World_Canary_G67",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_RESTRICT_WORLD_CANARY_G67",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_RESTRICT_ACCOUNTS_CELLS_EVAL_G66",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-restrict-world-canary-g67-v1/BatchRun01/result.json",
+            "bytes": 1726,
+            "sha256": "5a7cc86da9626dd67e745bd2f4a01cc91cdda2d83714d9f13748d673b6a10259"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-restrict-world-canary-g67-v1/input-binding.json",
+            "bytes": 2428,
+            "sha256": "e7c6add2387a41751cbb7941fccfc5874bddecb335c2367fc45c1a412fb85580"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-restrict-world-canary-g67-v1/TRUST_Hook_Restrict_World_Canary_G67.thy",
+            "bytes": 26713,
+            "sha256": "15d01adf22782a7e54b96333b9dc3756cd864893c084331a57de2b411de969ec"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-restrict-world-canary-g67-v1/ROOT",
+            "bytes": 269,
+            "sha256": "4bd9e878ec1e93153baae6724c161e8de393843b76b3a7ce0cafe06d36665053"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_RESTRICT_WORLD_CANARY_G67",
+            "bytes": 12562775,
+            "sha256": "c023edcb2e801be535c5d47562d31333621d3a17ec0946c3d0788a057b1f1790"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_RESTRICT_WORLD_CANARY_G67.db",
+            "bytes": 593920,
+            "sha256": "e37699629ca696c2a635fb1c89a03cabd6b3dd0698cfda2cfac9da8a6a1b8341"
+          }
+        },
+        {
+          "stage": "transactionCells",
+          "session": "TRUST12_HOOK_RESTRICT_TRANSACTION_CELLS_EVAL_G68_V2",
+          "theory": "TRUST_Native_HOOK_RESTRICT_REJECTED_RESTORED_LOG_Eval_G68_V2",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_RESTRICT_TRANSACTION_CELLS_G68_V2",
+          "generatedFiles": 52,
+          "sourceFilesCompared": 52,
+          "parentSession": "TRUST12_HOOK_RESTRICT_WORLD_CANARY_G67",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-restrict-transaction-cells-g68-v2/BatchRun01/result.json",
+            "bytes": 1839,
+            "sha256": "8475665d4baca87d39dae0ac83964d59908fad8758ed05300cc25cb35e369a94"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-restrict-transaction-cells-g68-v2/input-binding.json",
+            "bytes": 39257,
+            "sha256": "d24e023d000f2204dcff21f728af3aeab3fd57aa01c56772e2074c0425403f32"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-restrict-transaction-cells-g68-v2/TRUST_Native_HOOK_RESTRICT_REJECTED_RESTORED_LOG_Eval_G68_V2.thy",
+            "bytes": 236825,
+            "sha256": "65f74713cfa3a74ae1a35f42ec49b4768073532b82169c055b8f732a644d53e4"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-restrict-transaction-cells-g68-v2/ROOT",
+            "bytes": 300,
+            "sha256": "565478ec58cbef207abaea57d4fda0543758607df8f1611a25122abb571449fa"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_RESTRICT_TRANSACTION_CELLS_EVAL_G68_V2",
+            "bytes": 29230133,
+            "sha256": "b6a2f77d41b726fac6dbd24983e80a9184d69e54b3aa0cc9c623d0b08fed5e6f"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_RESTRICT_TRANSACTION_CELLS_EVAL_G68_V2.db",
+            "bytes": 1908736,
+            "sha256": "f51fb975777c229e3fce7a8c98b282d9133aa53b15466c9bf633daa80fd2dbee"
+          }
+        },
+        {
+          "stage": "semanticDecode",
+          "session": "TRUST12_HOOK_RESTRICT_SEMANTIC_DECODE_G69_V1",
+          "theory": "TRUST_Hook_Restrict_Semantic_Decode_G69_V1",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_RESTRICT_SEMANTIC_DECODE_G69_V1",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_RESTRICT_TRANSACTION_CELLS_EVAL_G68_V2",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-restrict-semantic-decode-g69-v1/BatchRun01/result.json",
+            "bytes": 1793,
+            "sha256": "1b3a6976654ece176223127a64c2a6f1fbfa839cd2cf683d8a0b15bae8965cd4"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-restrict-semantic-decode-g69-v1/input-binding.json",
+            "bytes": 3362,
+            "sha256": "221383423e75f6172c51398e59cf19faa4bb849b3ed7edf8cfdf59836b3262c4"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-restrict-semantic-decode-g69-v1/TRUST_Hook_Restrict_Semantic_Decode_G69_V1.thy",
+            "bytes": 7501,
+            "sha256": "9ff2d504eb3c7633bb89263f946c14ffd83e5c83a765b93098823726b17188ff"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-restrict-semantic-decode-g69-v1/ROOT",
+            "bytes": 287,
+            "sha256": "23350ba1c59e3d593f3f1a1fb0aba2c9b00809c64ba905d612a2537dde4e266f"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_RESTRICT_SEMANTIC_DECODE_G69_V1",
+            "bytes": 12547943,
+            "sha256": "2cf53be60654e32e48a4e0b0b3861d41cd901c5da0b1ed384e50967edb3cd8f9"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_RESTRICT_SEMANTIC_DECODE_G69_V1.db",
+            "bytes": 397312,
+            "sha256": "1dd79989427fcdeaaa3931cf94f090b1f7bf35bc75b676d89df5c2ee34426493"
+          }
+        },
+        {
+          "stage": "externalTrace",
+          "session": "TRUST12_HOOK_RESTRICT_EXTERNAL_TRACE_G70",
+          "theory": "TRUST_Hook_Restrict_External_Trace_G70",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_RESTRICT_EXTERNAL_TRACE_G70",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_RESTRICT_SEMANTIC_DECODE_G69_V1",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-restrict-external-trace-g70-v1/BatchRun01/result.json",
+            "bytes": 1825,
+            "sha256": "490c5340c1ff301218b7f473f3d8dc0dab9e69bd5533dc231ece5b11be6f3ddf"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-restrict-external-trace-g70-v1/input-binding.json",
+            "bytes": 2142,
+            "sha256": "fc18f7782ea8a75f38bdf0dda6916930de0f00edbcdd13f32d5d6a84451cbff9"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-restrict-external-trace-g70-v1/TRUST_Hook_Restrict_External_Trace_G70.thy",
+            "bytes": 10301,
+            "sha256": "d28cce39e7279b50abe1d025dc887156431cf738265420660d9fd04ef10e3580"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-restrict-external-trace-g70-v1/ROOT",
+            "bytes": 272,
+            "sha256": "cba24a0b131bf0ac9199aa4b75789a8dacd98716388e3b1e3b9d22cb6d077a93"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_RESTRICT_EXTERNAL_TRACE_G70",
+            "bytes": 12521101,
+            "sha256": "061bc837b48e019d317961378d4a61ebc31e61f1fff3b18817aecbfb355cc8f2"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_RESTRICT_EXTERNAL_TRACE_G70.db",
+            "bytes": 393216,
+            "sha256": "1433362d049b7bbfe1adf8e98b962d906c76bfd952e20fff1b94f47331ac6e90"
+          },
+          "directCallTrace": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-restrict-direct-call-trace-g70-v1/result.json",
+            "bytes": 17449,
+            "sha256": "b521f1bb74bf39567282c4161f6623566a298a025a96866ccf1d23bd757efe1c"
+          }
+        },
+        {
+          "stage": "retrieve",
+          "session": "TRUST12_HOOK_RESTRICT_RETRIEVE_G71_V2",
+          "theory": "TRUST_Hook_Restrict_Retrieve_G71_V2",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_RESTRICT_RETRIEVE_G71_V2",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_RESTRICT_EXTERNAL_TRACE_G70",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-restrict-retrieve-g71-v2/BatchRun01/result.json",
+            "bytes": 1804,
+            "sha256": "f63b418eba7c603963e9033956e4655898b66cc22286291b83c29cb20217493c"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-restrict-retrieve-g71-v2/input-binding.json",
+            "bytes": 2100,
+            "sha256": "43aa0ba81cff5fdbb720ada11d714f0ede142de2d95172ae9f4ed38620770d78"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-restrict-retrieve-g71-v2/TRUST_Hook_Restrict_Retrieve_G71_V2.thy",
+            "bytes": 30506,
+            "sha256": "041390a9702182f44936a8df0860a458f15e493019ba7bd906f9c5cdbfb4bddd"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-restrict-retrieve-g71-v2/ROOT",
+            "bytes": 262,
+            "sha256": "57eea2379d820b9d5c40f65cb7a28d85fdfa7ccca53b82c5caf46735f7f8e6ca"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_RESTRICT_RETRIEVE_G71_V2",
+            "bytes": 12647369,
+            "sha256": "6b1c84d8cc8ea74f324f692c6d223e8c138496c384066a3378f89c84c13bb1cc"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_RESTRICT_RETRIEVE_G71_V2.db",
+            "bytes": 446464,
+            "sha256": "a296b12bdc7508ecde97abf59a9e6b594fb0edafcd63e31cad92d27e68084411"
+          }
+        },
+        {
+          "stage": "runtimeCell",
+          "session": "TRUST12_HOOK_RESTRICT_RUNTIME_CELL_G72_V7",
+          "theory": "TRUST_Hook_Restrict_Runtime_Cell_G72_V7",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_RESTRICT_RUNTIME_CELL_G72_V7",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_RESTRICT_RETRIEVE_G71_V2",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-restrict-runtime-cell-g72-v7/BatchRun01/result.json",
+            "bytes": 1779,
+            "sha256": "ba7b6f7c7dd139c97ae4335fe22850c8ad1c57ac5380066d6b28c9303b327268"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-restrict-runtime-cell-g72-v7/input-binding.json",
+            "bytes": 1455,
+            "sha256": "1ff392262456d19a87f1680ecf50537922ded007c42c1fcc9e9198eb36391fdd"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-restrict-runtime-cell-g72-v7/TRUST_Hook_Restrict_Runtime_Cell_G72_V7.thy",
+            "bytes": 12778,
+            "sha256": "74896497a9fff9951ae804ba9cb54c713b8885c8dbf0fd20c5f887df4e49f187"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-restrict-runtime-cell-g72-v7/ROOT",
+            "bytes": 267,
+            "sha256": "4d22952fdf447e868c6b8f81eb13e52034255c7ab5abff79e1048d8f2b587367"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_RESTRICT_RUNTIME_CELL_G72_V7",
+            "bytes": 13395615,
+            "sha256": "3242e0eb70e3f338f0db6555ba0af4bc63888de4995f6c8b246f7f455c68a005"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_RESTRICT_RUNTIME_CELL_G72_V7.db",
+            "bytes": 417792,
+            "sha256": "66f8a3883dbd24f66669f727867a8d9f699b1a5d8f33090691fec6ee330ba005"
+          },
+          "checkedFacts": [
+            "ppf_applied_alpha_transaction",
+            "ppf_rejected_alpha_transaction",
+            "ppf_applied_alpha_transaction_enforced",
+            "ppf_rejected_alpha_transaction_enforced",
+            "ppf_accepts_iff",
+            "hook_restrict_certificate_cell_enforced",
+            "hook_restrict_certificate_cell_bound",
+            "hook_restrict_cell_needs_applied_certificate",
+            "hook_restrict_cell_needs_rejected_certificate"
+          ],
+          "certificateCount": 2,
+          "timeBoundsRequired": [
+            "pev_0000 <= 281474976710655",
+            "pmv_0000 <= 281474976710655"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Hook/SEIZE",
+      "profile": "Runtime_Hook",
+      "operation": "Runtime_Forward SEIZE",
+      "sessions": [
+        {
+          "stage": "accounts",
+          "session": "TRUST12_HOOK_SEIZE_ACCOUNTS_CELLS_EVAL_G66",
+          "theory": "TRUST_Native_HOOK_SEIZE_REJECTED_RESTORED_ACCOUNTS_Eval_G66",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_SEIZE_ACCOUNTS_G66",
+          "generatedFiles": 26,
+          "sourceFilesCompared": 26,
+          "parentSession": "TRUST12_HOOK_RESTRICT_RUNTIME_CELL_G72_V7",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-seize-accounts-g66-v1/BatchRun01/result.json",
+            "bytes": 1782,
+            "sha256": "3d768656f92e37666338d7542b084f16d8144343bbc9b163fcc01453425cf0f6"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-seize-accounts-g66-v1/input-binding.json",
+            "bytes": 15024,
+            "sha256": "67ea01d7d9f6be90983f8616a5c14338a24971973d94cc47096a7b64c7c39db2"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-seize-accounts-g66-v1/TRUST_Native_HOOK_SEIZE_REJECTED_RESTORED_ACCOUNTS_Eval_G66.thy",
+            "bytes": 304485,
+            "sha256": "39e1f2e5285840ba51806faf85c015df205b8849c5b3865fb3a60eba88f7ae22"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-seize-accounts-g66-v1/ROOT",
+            "bytes": 293,
+            "sha256": "d29bc3ae2f45634f64437d931da82f1fe9b3d7427b059e94a3a02b887b142cba"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_SEIZE_ACCOUNTS_CELLS_EVAL_G66",
+            "bytes": 101549159,
+            "sha256": "24327464c63d86620f30833938c08275971b899f528203bcc1b707397b2cc359"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_SEIZE_ACCOUNTS_CELLS_EVAL_G66.db",
+            "bytes": 5988352,
+            "sha256": "fb4407b996fe4454c0804128ffcdaac9a032d178d2535633a363beb2b16c517d"
+          }
+        },
+        {
+          "stage": "worldCanary",
+          "session": "TRUST12_HOOK_SEIZE_WORLD_CANARY_G67",
+          "theory": "TRUST_Hook_Seize_World_Canary_G67",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_SEIZE_WORLD_CANARY_G67",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_SEIZE_ACCOUNTS_CELLS_EVAL_G66",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-seize-world-canary-g67-v1/BatchRun01/result.json",
+            "bytes": 1708,
+            "sha256": "bd9a2b9e3d8d265de27f19a326e1609d6d11b25cf083591d8e89884f6ff339e7"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-seize-world-canary-g67-v1/input-binding.json",
+            "bytes": 2401,
+            "sha256": "5a1aa8f62b1f13656e6317c1cb003e759f53f0ef613476a20c0d16e4716e0612"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-seize-world-canary-g67-v1/TRUST_Hook_Seize_World_Canary_G67.thy",
+            "bytes": 28418,
+            "sha256": "65ad29fe6d69b073ab6d2a0ae8e52790c9d77b1f932ee3be3418af85fbc8403a"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-seize-world-canary-g67-v1/ROOT",
+            "bytes": 260,
+            "sha256": "ffb9b4a655d0bf84471e8a65f48b63dc3cfe0c8d06e88e64b8b7b35e92596f7b"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_SEIZE_WORLD_CANARY_G67",
+            "bytes": 12989229,
+            "sha256": "a141a0d76d45ce9662be4c5a8166cf70dfcdd18f401b62e7296a46f70b79806c"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_SEIZE_WORLD_CANARY_G67.db",
+            "bytes": 610304,
+            "sha256": "f920ac8fab5ce9366dcf3b087df5a1bc93ee5ea48e7f7e7d6a986ed4801582da"
+          }
+        },
+        {
+          "stage": "transactionCells",
+          "session": "TRUST12_HOOK_SEIZE_TRANSACTION_CELLS_EVAL_G68_V2",
+          "theory": "TRUST_Native_HOOK_SEIZE_REJECTED_RESTORED_LOG_Eval_G68_V2",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_SEIZE_TRANSACTION_CELLS_G68_V2",
+          "generatedFiles": 52,
+          "sourceFilesCompared": 52,
+          "parentSession": "TRUST12_HOOK_SEIZE_WORLD_CANARY_G67",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-seize-transaction-cells-g68-v2/BatchRun01/result.json",
+            "bytes": 1821,
+            "sha256": "1b20893087f6791d3807bb29b5d99fa8b2991dcd4c32a90704e654ccb3f9afe6"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-seize-transaction-cells-g68-v2/input-binding.json",
+            "bytes": 38667,
+            "sha256": "c6e2dd89464147395001537d85503c3f6d505ff163ea3843ae75916c0a884447"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-seize-transaction-cells-g68-v2/TRUST_Native_HOOK_SEIZE_REJECTED_RESTORED_LOG_Eval_G68_V2.thy",
+            "bytes": 236819,
+            "sha256": "653d555c9d3d5e0a735b2872dd54e343f18e3910324d4dac92730cec69661b13"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-seize-transaction-cells-g68-v2/ROOT",
+            "bytes": 291,
+            "sha256": "641c91b403891c10da28660b96ea5360fef4035975276385f099c6140963d638"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_SEIZE_TRANSACTION_CELLS_EVAL_G68_V2",
+            "bytes": 29895875,
+            "sha256": "6529b19044a58b861defedfd95685f5abf3567ef94f8e18b7a4d89413efcaf58"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_SEIZE_TRANSACTION_CELLS_EVAL_G68_V2.db",
+            "bytes": 1908736,
+            "sha256": "3bf5810a1e0df3fad4ad29f1d56e4783637e0b4e0dba40b12f12440f9e770c29"
+          }
+        },
+        {
+          "stage": "semanticDecode",
+          "session": "TRUST12_HOOK_SEIZE_SEMANTIC_DECODE_G69_V1",
+          "theory": "TRUST_Hook_Seize_Semantic_Decode_G69_V1",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_SEIZE_SEMANTIC_DECODE_G69_V1",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_SEIZE_TRANSACTION_CELLS_EVAL_G68_V2",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-seize-semantic-decode-g69-v1/BatchRun01/result.json",
+            "bytes": 1775,
+            "sha256": "1f8c6d98046865499e8403d56e2a60762ddf6ab48f7f19a5bb1e5e2c076a6b28"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-seize-semantic-decode-g69-v1/input-binding.json",
+            "bytes": 3334,
+            "sha256": "3bd469ca01a01bb56579f3a89708ac3ac477d270f78bae07b3047a3a8e50b2ee"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-seize-semantic-decode-g69-v1/TRUST_Hook_Seize_Semantic_Decode_G69_V1.thy",
+            "bytes": 7764,
+            "sha256": "c3ec06d3b8aee980bc5352048d8679564feb869fe15b5d3ef61348ecab44d3bf"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-seize-semantic-decode-g69-v1/ROOT",
+            "bytes": 278,
+            "sha256": "169d5523f9b66ad773f0243af60af857ee9590020b5deeb7bc0058dafd6a97f9"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_SEIZE_SEMANTIC_DECODE_G69_V1",
+            "bytes": 12963789,
+            "sha256": "19fc6bb320046f7edc2d873bd305c17e32b4dff2859c68ab6b21c7abae01bfb2"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_SEIZE_SEMANTIC_DECODE_G69_V1.db",
+            "bytes": 413696,
+            "sha256": "6e843e35e8856dc7d0f4a486028105e34574dcdb4bd3962b4977e2e8b35146a6"
+          }
+        },
+        {
+          "stage": "externalTrace",
+          "session": "TRUST12_HOOK_SEIZE_EXTERNAL_TRACE_G70",
+          "theory": "TRUST_Hook_Seize_External_Trace_G70",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_SEIZE_EXTERNAL_TRACE_G70",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_SEIZE_SEMANTIC_DECODE_G69_V1",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-seize-external-trace-g70-v1/BatchRun01/result.json",
+            "bytes": 1807,
+            "sha256": "57fd355399127bba4b4b0a9191f6a0baf8efb227ae5789132322386f758fd7e6"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-seize-external-trace-g70-v1/input-binding.json",
+            "bytes": 2234,
+            "sha256": "359c5e5405f43ebeb2f707ab10622aded2c699b4e7358b330fe43685331053e3"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-seize-external-trace-g70-v1/TRUST_Hook_Seize_External_Trace_G70.thy",
+            "bytes": 20938,
+            "sha256": "4018963eed53d66bed4f695be5c272a5d39433f7a9b00a553aa63d19c57d0dba"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-seize-external-trace-g70-v1/ROOT",
+            "bytes": 263,
+            "sha256": "882dbdc82a8e5de9fccfa1e8e0f522057a361140560db1988a8ac01a8a169983"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_SEIZE_EXTERNAL_TRACE_G70",
+            "bytes": 12937243,
+            "sha256": "eae5c27d084a181d5bff9a7f00afe74e68a577835e4467eb7a58ecff395802f6"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_SEIZE_EXTERNAL_TRACE_G70.db",
+            "bytes": 409600,
+            "sha256": "e874dd62bf73836b70994cde087c80534ca6f2d4e5ff89192461c7227ab284a6"
+          },
+          "directCallTrace": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-seize-direct-call-trace-g70-v1/result.json",
+            "bytes": 35129,
+            "sha256": "ab991a341231527cb688961ae588f7556fc3342efb46242ac72f0e820cd5dd73"
+          }
+        },
+        {
+          "stage": "retrieve",
+          "session": "TRUST12_HOOK_SEIZE_RETRIEVE_G71_V2",
+          "theory": "TRUST_Hook_Seize_Retrieve_G71_V2",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_SEIZE_RETRIEVE_G71_V2",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_SEIZE_EXTERNAL_TRACE_G70",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-seize-retrieve-g71-v2/BatchRun01/result.json",
+            "bytes": 1786,
+            "sha256": "9d598d1f03f6591fe06dc6c270eecd4edf56233478e5b878c0713e84b8c25e97"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-seize-retrieve-g71-v2/input-binding.json",
+            "bytes": 2073,
+            "sha256": "86b269edf200bd90c2d088d7a0899dd75623e3c83a00e107f1d8b2f2cd934327"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-seize-retrieve-g71-v2/TRUST_Hook_Seize_Retrieve_G71_V2.thy",
+            "bytes": 31344,
+            "sha256": "452b08b177a6cefb7f1a982ded14feeb245c4d2214efb7592711a6a1164f678a"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-seize-retrieve-g71-v2/ROOT",
+            "bytes": 253,
+            "sha256": "8f61f58b457f309a925c387677f374001e4ba16c7100b4be07cafa31054a63dc"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_SEIZE_RETRIEVE_G71_V2",
+            "bytes": 13058239,
+            "sha256": "1d5e78f33615533049104ebd9cb5bf409e6da110ea9506b190119f4ad8fd0ea9"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_SEIZE_RETRIEVE_G71_V2.db",
+            "bytes": 454656,
+            "sha256": "ae7473db5bb82ed96ee47815b5ea3ed0d935a34ad32a4c04978289d48a04f626"
+          }
+        },
+        {
+          "stage": "runtimeCell",
+          "session": "TRUST12_HOOK_SEIZE_RUNTIME_CELL_G72_V7",
+          "theory": "TRUST_Hook_Seize_Runtime_Cell_G72_V7",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_SEIZE_RUNTIME_CELL_G72_V7",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_SEIZE_RETRIEVE_G71_V2",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-seize-runtime-cell-g72-v7/BatchRun01/result.json",
+            "bytes": 1761,
+            "sha256": "871d03c21671dc2adcbc63e52129d4f6e4dbe65e56af55203b3d354448f23485"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-seize-runtime-cell-g72-v7/input-binding.json",
+            "bytes": 1428,
+            "sha256": "db6c1c218776daf31d1e028ad34e44063b5d171a7159df94331c1359ac7a197a"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-seize-runtime-cell-g72-v7/TRUST_Hook_Seize_Runtime_Cell_G72_V7.thy",
+            "bytes": 12730,
+            "sha256": "6db159d4f6b5d6afffea6d52e686aa8079749981a6e56308b4d8cf07c1513f41"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-seize-runtime-cell-g72-v7/ROOT",
+            "bytes": 258,
+            "sha256": "ca53a5d4a93faab362315e972cbab7813dfd9d2d744db2d2a01fe2eae4871d8b"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_SEIZE_RUNTIME_CELL_G72_V7",
+            "bytes": 13797861,
+            "sha256": "e001dfd07390f2f670ea31b3870a9da4d4d9d8b533edbba8b00f575571aaae03"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_SEIZE_RUNTIME_CELL_G72_V7.db",
+            "bytes": 434176,
+            "sha256": "95c5c2abbe13b5cc15eb85b9345d1cedec480a2c05de866c3190116893371c62"
+          },
+          "checkedFacts": [
+            "ppf_applied_alpha_transaction",
+            "ppf_rejected_alpha_transaction",
+            "ppf_applied_alpha_transaction_enforced",
+            "ppf_rejected_alpha_transaction_enforced",
+            "ppf_accepts_iff",
+            "hook_seize_certificate_cell_enforced",
+            "hook_seize_certificate_cell_bound",
+            "hook_seize_cell_needs_applied_certificate",
+            "hook_seize_cell_needs_rejected_certificate"
+          ],
+          "certificateCount": 2,
+          "timeBoundsRequired": [
+            "pev_0000 <= 281474976710655",
+            "pmv_0000 <= 281474976710655"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Hook/CONFISCATE",
+      "profile": "Runtime_Hook",
+      "operation": "Runtime_Forward CONFISCATE",
+      "sessions": [
+        {
+          "stage": "accounts",
+          "session": "TRUST12_HOOK_CONFISCATE_ACCOUNTS_CELLS_EVAL_G66",
+          "theory": "TRUST_Native_HOOK_CONFISCATE_REJECTED_RESTORED_ACCOUNTS_Eval_G66",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_CONFISCATE_ACCOUNTS_G66",
+          "generatedFiles": 26,
+          "sourceFilesCompared": 26,
+          "parentSession": "TRUST12_HOOK_SEIZE_RUNTIME_CELL_G72_V7",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-confiscate-accounts-g66-v1/BatchRun01/result.json",
+            "bytes": 1812,
+            "sha256": "7a886350b210164bfa0e94058754bf1045f3c30e326b2662dd05ba15632ac875"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-confiscate-accounts-g66-v1/input-binding.json",
+            "bytes": 15384,
+            "sha256": "c2d076604e9c67e71c1c8e2cce5db45615f3cc61a9cc75e50ba5d448c3f7f439"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-confiscate-accounts-g66-v1/TRUST_Native_HOOK_CONFISCATE_REJECTED_RESTORED_ACCOUNTS_Eval_G66.thy",
+            "bytes": 304496,
+            "sha256": "17249eddbd053f6d7dbb99fdcdf611bdb8c58f349c2d728d0e23ca0d864282f6"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-confiscate-accounts-g66-v1/ROOT",
+            "bytes": 300,
+            "sha256": "51c383dd99458457fe93775227c82013d03aad7c99e7504124d19d068bf1742e"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_CONFISCATE_ACCOUNTS_CELLS_EVAL_G66",
+            "bytes": 109615565,
+            "sha256": "72054a13d9e13f37fba5553bcc6961411889ed22cb678462beb232449206ec7e"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_CONFISCATE_ACCOUNTS_CELLS_EVAL_G66.db",
+            "bytes": 6496256,
+            "sha256": "d00f45f41984c2a6bbd4fa27e972e7c5c86df596e17e9a49ab981de6cba9050c"
+          }
+        },
+        {
+          "stage": "worldCanary",
+          "session": "TRUST12_HOOK_CONFISCATE_WORLD_CANARY_G67",
+          "theory": "TRUST_Hook_Confiscate_World_Canary_G67",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_CONFISCATE_WORLD_CANARY_G67",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_CONFISCATE_ACCOUNTS_CELLS_EVAL_G66",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-confiscate-world-canary-g67-v1/BatchRun01/result.json",
+            "bytes": 1738,
+            "sha256": "e8958f5b41094d56e8294976a7327ef6c41757a713715bad258ce353f00c5775"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-confiscate-world-canary-g67-v1/input-binding.json",
+            "bytes": 2446,
+            "sha256": "80ab62fcc460a52c784dd59300c9542702443831355e36dab4f9b8b6965bde4d"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-confiscate-world-canary-g67-v1/TRUST_Hook_Confiscate_World_Canary_G67.thy",
+            "bytes": 26036,
+            "sha256": "4636870aaf6c65b076408c51733c65a429c3078825a1994d5acbff326300dba9"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-confiscate-world-canary-g67-v1/ROOT",
+            "bytes": 275,
+            "sha256": "b5cfb7f6ff90fa64f17f5e06668f8451cd01d28dd435daf31c7c46b6cb004335"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_CONFISCATE_WORLD_CANARY_G67",
+            "bytes": 13421847,
+            "sha256": "980dcfd6893b1a90d9642bf84e3ee58dd3574c9a1f98894f9a00675b515efbee"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_CONFISCATE_WORLD_CANARY_G67.db",
+            "bytes": 651264,
+            "sha256": "09f8f94e5e0bc45b88f56b02690417403bd8056bb55a3c2eaf54ce8c9b88a340"
+          }
+        },
+        {
+          "stage": "transactionCells",
+          "session": "TRUST12_HOOK_CONFISCATE_TRANSACTION_CELLS_EVAL_G68_V2",
+          "theory": "TRUST_Native_HOOK_CONFISCATE_REJECTED_RESTORED_LOG_Eval_G68_V2",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_CONFISCATE_TRANSACTION_CELLS_G68_V2",
+          "generatedFiles": 52,
+          "sourceFilesCompared": 52,
+          "parentSession": "TRUST12_HOOK_CONFISCATE_WORLD_CANARY_G67",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-confiscate-transaction-cells-g68-v2/BatchRun01/result.json",
+            "bytes": 1851,
+            "sha256": "0658333a1d0be2cd26ef1fab46c1c3ba141643bd020e8fd18c1e183141490082"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-confiscate-transaction-cells-g68-v2/input-binding.json",
+            "bytes": 39539,
+            "sha256": "c190ce639ee161a37320267a87c029c52c7e5c95e1e833f56c2428ee442c99bf"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-confiscate-transaction-cells-g68-v2/TRUST_Native_HOOK_CONFISCATE_REJECTED_RESTORED_LOG_Eval_G68_V2.thy",
+            "bytes": 236829,
+            "sha256": "7add1c765ad71703df4194421301a77d6a1e1d789b4319ac309caf58c3f5125f"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-confiscate-transaction-cells-g68-v2/ROOT",
+            "bytes": 306,
+            "sha256": "46acef0705213958032a465700d19b48ccc3bafd9944a5b32f105e3e40e2d0fc"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_CONFISCATE_TRANSACTION_CELLS_EVAL_G68_V2",
+            "bytes": 30105873,
+            "sha256": "37b7688ab61f89d3c1721f9a1a9e4359ec2f80ae2336b729752d870f6c092110"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_CONFISCATE_TRANSACTION_CELLS_EVAL_G68_V2.db",
+            "bytes": 1953792,
+            "sha256": "934ad6f16fb1fa773669097f720504eff6ec07cbf461d88c74907bf6d5973ed5"
+          }
+        },
+        {
+          "stage": "semanticDecode",
+          "session": "TRUST12_HOOK_CONFISCATE_SEMANTIC_DECODE_G69_V1",
+          "theory": "TRUST_Hook_Confiscate_Semantic_Decode_G69_V1",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_CONFISCATE_SEMANTIC_DECODE_G69_V1",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_CONFISCATE_TRANSACTION_CELLS_EVAL_G68_V2",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-confiscate-semantic-decode-g69-v1/BatchRun01/result.json",
+            "bytes": 1805,
+            "sha256": "d0ca165a7cc77b8c034ea5a44ffb015010b6237d26632fc33995ac4fee50c575"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-confiscate-semantic-decode-g69-v1/input-binding.json",
+            "bytes": 3382,
+            "sha256": "4a250ad032b3df7ba94ac8b24b3f236d6b23ebebd88210a72c5c48fc10d46a5b"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-confiscate-semantic-decode-g69-v1/TRUST_Hook_Confiscate_Semantic_Decode_G69_V1.thy",
+            "bytes": 7578,
+            "sha256": "7c0bdf85953edd55b2fc68862c0eb3e7f8818197bb3ed31d7568bf24b8654bc6"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-confiscate-semantic-decode-g69-v1/ROOT",
+            "bytes": 293,
+            "sha256": "74e7550422189cebed63164d9dbac7613b2a8356ab14c915ca40c2590bb9b673"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_CONFISCATE_SEMANTIC_DECODE_G69_V1",
+            "bytes": 13415623,
+            "sha256": "c60b03dd3ad794b1ede7f461a7dc39ac4cd182dc58307edf9104ed44c8a0d0bc"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_CONFISCATE_SEMANTIC_DECODE_G69_V1.db",
+            "bytes": 430080,
+            "sha256": "2ee8549906d26f17d447ebe72769573f844b82f2f36227c6c2d7bebc3e68e3bb"
+          }
+        },
+        {
+          "stage": "externalTrace",
+          "session": "TRUST12_HOOK_CONFISCATE_EXTERNAL_TRACE_G70",
+          "theory": "TRUST_Hook_Confiscate_External_Trace_G70",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_CONFISCATE_EXTERNAL_TRACE_G70",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_CONFISCATE_SEMANTIC_DECODE_G69_V1",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-confiscate-external-trace-g70-v1/BatchRun01/result.json",
+            "bytes": 1837,
+            "sha256": "a026b6240c918b55c394f0eebbb140936a9a59036add11969993b8f16bf3cc71"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-confiscate-external-trace-g70-v1/input-binding.json",
+            "bytes": 2279,
+            "sha256": "8b0aa22f3d33c521f8397feca0a13f3db12f642f46845fb64a5ce38993259cbd"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-confiscate-external-trace-g70-v1/TRUST_Hook_Confiscate_External_Trace_G70.thy",
+            "bytes": 20586,
+            "sha256": "6c3a6683b67ecd733f0ab7e45a53cf84660322dc4441447a621b871d14024fc9"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-confiscate-external-trace-g70-v1/ROOT",
+            "bytes": 278,
+            "sha256": "06549842f6741d6a1f7ad427f43079d9cf9a01240e1b49acc62ea08f3c7087c7"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_CONFISCATE_EXTERNAL_TRACE_G70",
+            "bytes": 13388489,
+            "sha256": "123827c2ee5bf5bf914d6bc2f62edfc6e19c1ee4c3af3393ed6a437f060721f4"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_CONFISCATE_EXTERNAL_TRACE_G70.db",
+            "bytes": 425984,
+            "sha256": "ebd9fb22b0901a5cb8536127c9e8e9f4e9000f775148597567ab82c655aacb22"
+          },
+          "directCallTrace": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-confiscate-direct-call-trace-g70-v1/result.json",
+            "bytes": 35463,
+            "sha256": "4f9552d326f48701433c35c170e04fed622c6aed617ae7fa90e89ddb65359925"
+          }
+        },
+        {
+          "stage": "retrieve",
+          "session": "TRUST12_HOOK_CONFISCATE_RETRIEVE_G71_V2",
+          "theory": "TRUST_Hook_Confiscate_Retrieve_G71_V2",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_CONFISCATE_RETRIEVE_G71_V2",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_CONFISCATE_EXTERNAL_TRACE_G70",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-confiscate-retrieve-g71-v2/BatchRun01/result.json",
+            "bytes": 1816,
+            "sha256": "3dda0941de8e20e777bb352ea42d9f777aef5bcf34ca270d29b3daac1f4ca611"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-confiscate-retrieve-g71-v2/input-binding.json",
+            "bytes": 2118,
+            "sha256": "d84c5895e7286be8fb16c65c5b046464b2ba09c15a4e17b5557b492a9f33d89a"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-confiscate-retrieve-g71-v2/TRUST_Hook_Confiscate_Retrieve_G71_V2.thy",
+            "bytes": 29898,
+            "sha256": "bbfb7f3165b088d44b607d53546c0c98a4c89844dfaefa66e6fec4bd49d74ba5"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-confiscate-retrieve-g71-v2/ROOT",
+            "bytes": 268,
+            "sha256": "49d416094d8739aa2f7789ee50efa121000c889af0c75f971aacaa1319e57f22"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_CONFISCATE_RETRIEVE_G71_V2",
+            "bytes": 13515489,
+            "sha256": "c636714386695dfed3e095d24a710772c67064d1164ad7688d66f84c79142eaa"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_CONFISCATE_RETRIEVE_G71_V2.db",
+            "bytes": 483328,
+            "sha256": "5943ae9ab455c93ac9ef044d05b09b7ef3eb9ec2f45fe36e1b701f9671618945"
+          }
+        },
+        {
+          "stage": "runtimeCell",
+          "session": "TRUST12_HOOK_CONFISCATE_RUNTIME_CELL_G72_V7",
+          "theory": "TRUST_Hook_Confiscate_Runtime_Cell_G72_V7",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_CONFISCATE_RUNTIME_CELL_G72_V7",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_CONFISCATE_RETRIEVE_G71_V2",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-confiscate-runtime-cell-g72-v7/BatchRun01/result.json",
+            "bytes": 1791,
+            "sha256": "c11c0fac36dee379389b30aa1de70d0847c19689abe02592c91c06f5d2acec00"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-confiscate-runtime-cell-g72-v7/input-binding.json",
+            "bytes": 1473,
+            "sha256": "ee23b6b67f4492d04050dd42e47e3eca8af9afb646a81ca67da6ca79e097b485"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-confiscate-runtime-cell-g72-v7/TRUST_Hook_Confiscate_Runtime_Cell_G72_V7.thy",
+            "bytes": 12810,
+            "sha256": "1543484d9cfdd08b4bfcbb698b68f9dfbcdbbc2c94d9d143c85103cef8a63dc9"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-confiscate-runtime-cell-g72-v7/ROOT",
+            "bytes": 273,
+            "sha256": "d5900ee41927ec0d6c7742313acb9eb8df54f0ee09bb2245041ccb5935d01bfa"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_CONFISCATE_RUNTIME_CELL_G72_V7",
+            "bytes": 14274659,
+            "sha256": "085e64304b722c654963526f60ed78dc04ffd22009b32e45a784daadb2843e24"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_CONFISCATE_RUNTIME_CELL_G72_V7.db",
+            "bytes": 450560,
+            "sha256": "72f1080bad21c6cb09454072b9e930f6836bbe0571baec60b4730c38c55b86e4"
+          },
+          "checkedFacts": [
+            "ppf_applied_alpha_transaction",
+            "ppf_rejected_alpha_transaction",
+            "ppf_applied_alpha_transaction_enforced",
+            "ppf_rejected_alpha_transaction_enforced",
+            "ppf_accepts_iff",
+            "hook_confiscate_certificate_cell_enforced",
+            "hook_confiscate_certificate_cell_bound",
+            "hook_confiscate_cell_needs_applied_certificate",
+            "hook_confiscate_cell_needs_rejected_certificate"
+          ],
+          "certificateCount": 2,
+          "timeBoundsRequired": [
+            "pev_0000 <= 281474976710655",
+            "pmv_0000 <= 281474976710655"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Hook/LIQUIDATE",
+      "profile": "Runtime_Hook",
+      "operation": "Runtime_Forward LIQUIDATE",
+      "sessions": [
+        {
+          "stage": "accounts",
+          "session": "TRUST12_HOOK_LIQUIDATE_ACCOUNTS_CELLS_EVAL_G66",
+          "theory": "TRUST_Native_HOOK_LIQUIDATE_REJECTED_RESTORED_ACCOUNTS_Eval_G66",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_LIQUIDATE_ACCOUNTS_G66",
+          "generatedFiles": 26,
+          "sourceFilesCompared": 26,
+          "parentSession": "TRUST12_HOOK_CONFISCATE_RUNTIME_CELL_G72_V7",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-liquidate-accounts-g66-v1/BatchRun01/result.json",
+            "bytes": 1806,
+            "sha256": "e17e02f82610db2ad8d37dad9e4cf0ea75e5c680a2a4cea29774ee899cc2020f"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-liquidate-accounts-g66-v1/input-binding.json",
+            "bytes": 15311,
+            "sha256": "bf5ac4a510c4367a2df85c30a0f89024927e4af3d09a404f873865f8dc6bbc25"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-liquidate-accounts-g66-v1/TRUST_Native_HOOK_LIQUIDATE_REJECTED_RESTORED_ACCOUNTS_Eval_G66.thy",
+            "bytes": 304494,
+            "sha256": "43e03bb17db4b479b980ecab6d52054a5960be739ae639f39619e9b83dc5a38d"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-liquidate-accounts-g66-v1/ROOT",
+            "bytes": 303,
+            "sha256": "cdb191d91d1b11b8e3cb9dc9f43b9be964b34fdd8d4cf056320661c5dc0efd2b"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_LIQUIDATE_ACCOUNTS_CELLS_EVAL_G66",
+            "bytes": 110917259,
+            "sha256": "35f6143ab86c322dea33343214d931d39b98e86695f2927ec189465773aaeea1"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_LIQUIDATE_ACCOUNTS_CELLS_EVAL_G66.db",
+            "bytes": 6524928,
+            "sha256": "1baf5e0b9836abe814bb5492692087e54ab58a61f63620f8768bfd1ffa462dad"
+          }
+        },
+        {
+          "stage": "worldCanary",
+          "session": "TRUST12_HOOK_LIQUIDATE_WORLD_CANARY_G67",
+          "theory": "TRUST_Hook_Liquidate_World_Canary_G67",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_LIQUIDATE_WORLD_CANARY_G67",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_LIQUIDATE_ACCOUNTS_CELLS_EVAL_G66",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-liquidate-world-canary-g67-v1/BatchRun01/result.json",
+            "bytes": 1732,
+            "sha256": "10531c02a1df09030b468e9662a52e5687479b9fdba2604a16f3b3c0ffaafdca"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-liquidate-world-canary-g67-v1/input-binding.json",
+            "bytes": 2437,
+            "sha256": "e8dd272d85a695e2e5c883251de4563db9d54435bb19da590e8aae19ac7cb024"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-liquidate-world-canary-g67-v1/TRUST_Hook_Liquidate_World_Canary_G67.thy",
+            "bytes": 26030,
+            "sha256": "daed8c6a2a6aa17e9efbb0c9df93e887c357a0505922cc49cd771a6d726b56a3"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-liquidate-world-canary-g67-v1/ROOT",
+            "bytes": 272,
+            "sha256": "a7393ed9aa0960f735f147c32a6b9341f08095e62a5aec5793ca78a4378ed5bd"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_LIQUIDATE_WORLD_CANARY_G67",
+            "bytes": 13878841,
+            "sha256": "231a4f35754291a500aa24ca97b9ea5a47bf03313367492090ef9425991b250f"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_LIQUIDATE_WORLD_CANARY_G67.db",
+            "bytes": 720896,
+            "sha256": "9c9816a20f8db5791a4fc70bd422b517e149ed8854daf80ba9bbf82508f9e40d"
+          }
+        },
+        {
+          "stage": "transactionCells",
+          "session": "TRUST12_HOOK_LIQUIDATE_TRANSACTION_CELLS_EVAL_G68_V2",
+          "theory": "TRUST_Native_HOOK_LIQUIDATE_REJECTED_RESTORED_LOG_Eval_G68_V2",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_LIQUIDATE_TRANSACTION_CELLS_G68_V2",
+          "generatedFiles": 52,
+          "sourceFilesCompared": 52,
+          "parentSession": "TRUST12_HOOK_LIQUIDATE_WORLD_CANARY_G67",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-liquidate-transaction-cells-g68-v2/BatchRun01/result.json",
+            "bytes": 1845,
+            "sha256": "3085ad1f765686b91573d9e7e59fa2f85012eb13f90c543525568d86a4ccaa01"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-liquidate-transaction-cells-g68-v2/input-binding.json",
+            "bytes": 39330,
+            "sha256": "a2682392be00787f3befd49c85c8fd675211dfedaae55138d756f2be5822f7b3"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-liquidate-transaction-cells-g68-v2/TRUST_Native_HOOK_LIQUIDATE_REJECTED_RESTORED_LOG_Eval_G68_V2.thy",
+            "bytes": 236827,
+            "sha256": "92b3486a0a82c4d686f7829bf8d44988d081f065cefd4196fb5a492d76a4740a"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-liquidate-transaction-cells-g68-v2/ROOT",
+            "bytes": 303,
+            "sha256": "1d6ed535a50f278ba3f0afc801127428d7a818b7993912cd4a92fe0f95efda74"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_LIQUIDATE_TRANSACTION_CELLS_EVAL_G68_V2",
+            "bytes": 30714007,
+            "sha256": "7607fc318e8656200a19c038be6580b85fda2b74425aff047a3b3b3778623333"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_LIQUIDATE_TRANSACTION_CELLS_EVAL_G68_V2.db",
+            "bytes": 1986560,
+            "sha256": "30d34abb9181d9c4fb12ac831298dd2834eaadfd89c6b5405e720fc8f9a4d51b"
+          }
+        },
+        {
+          "stage": "semanticDecode",
+          "session": "TRUST12_HOOK_LIQUIDATE_SEMANTIC_DECODE_G69_V1",
+          "theory": "TRUST_Hook_Liquidate_Semantic_Decode_G69_V1",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_LIQUIDATE_SEMANTIC_DECODE_G69_V1",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_LIQUIDATE_TRANSACTION_CELLS_EVAL_G68_V2",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-liquidate-semantic-decode-g69-v1/BatchRun01/result.json",
+            "bytes": 1799,
+            "sha256": "b7258c7cbad620c7bc547e4d90782e8aaba461e5d282c866cf79b6d642a4da10"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-liquidate-semantic-decode-g69-v1/input-binding.json",
+            "bytes": 4113,
+            "sha256": "2e9494df89e0b83549b7674023f57847372df4a5b6c9982325da17fe655e1584"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-liquidate-semantic-decode-g69-v1/TRUST_Hook_Liquidate_Semantic_Decode_G69_V1.thy",
+            "bytes": 10058,
+            "sha256": "f4aac1559e7004e2b992466b52f91a25ed6d2bbdf956d711ad1b6efcd8e52960"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-liquidate-semantic-decode-g69-v1/ROOT",
+            "bytes": 290,
+            "sha256": "b8fa73ba503d744a5ea8c9e4689f4561902da8363e010d9e47116815ca8fb1ce"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_LIQUIDATE_SEMANTIC_DECODE_G69_V1",
+            "bytes": 13907385,
+            "sha256": "41a486e8e3f949e9e123d0af52491de12612eb7dbbc633f278960958ea57c3cb"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_LIQUIDATE_SEMANTIC_DECODE_G69_V1.db",
+            "bytes": 454656,
+            "sha256": "9c96a0aa93dc68b70827b15f1ce83dcd73bbf5870b5c6ae3167b907d79c7cf06"
+          }
+        },
+        {
+          "stage": "externalTrace",
+          "session": "TRUST12_HOOK_LIQUIDATE_EXTERNAL_TRACE_G70",
+          "theory": "TRUST_Hook_Liquidate_External_Trace_G70",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_LIQUIDATE_EXTERNAL_TRACE_G70",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_LIQUIDATE_SEMANTIC_DECODE_G69_V1",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-liquidate-external-trace-g70-v1/BatchRun01/result.json",
+            "bytes": 1831,
+            "sha256": "c72014dc923c1b56f83b41c2208441387b222229c4b26fbf23d7f144cfa51131"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-liquidate-external-trace-g70-v1/input-binding.json",
+            "bytes": 2270,
+            "sha256": "fecd293bbc205e8a9b6eb1b80491d65da790b779d0848a18da7d5896e9577858"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-liquidate-external-trace-g70-v1/TRUST_Hook_Liquidate_External_Trace_G70.thy",
+            "bytes": 20583,
+            "sha256": "ee337aa4e188f3492f0018a56123e7979d52fa7f59c284f19be7f4de1fe75616"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-liquidate-external-trace-g70-v1/ROOT",
+            "bytes": 275,
+            "sha256": "508ececd1bb7977f0c52561f7dd14b59914f5dfe163bd135e051f2cdce1a1b10"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_LIQUIDATE_EXTERNAL_TRACE_G70",
+            "bytes": 13840479,
+            "sha256": "320cf7e23580c9eb983fbac6ae64e33fba2662918ad2c1db0b07e03d941d522d"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_LIQUIDATE_EXTERNAL_TRACE_G70.db",
+            "bytes": 446464,
+            "sha256": "82ffbb57c88037db212c0c79619f96abc4494ce7d3de1292c5ab8cd8638dc1b5"
+          },
+          "directCallTrace": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-liquidate-direct-call-trace-g70-v1/result.json",
+            "bytes": 35375,
+            "sha256": "ad99955127296a65655f99875439adf697eb2fb9db483a8c2dc61e9f5d7f7699"
+          }
+        },
+        {
+          "stage": "retrieve",
+          "session": "TRUST12_HOOK_LIQUIDATE_RETRIEVE_G71_V2",
+          "theory": "TRUST_Hook_Liquidate_Retrieve_G71_V2",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_LIQUIDATE_RETRIEVE_G71_V2",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_LIQUIDATE_EXTERNAL_TRACE_G70",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-liquidate-retrieve-g71-v2/BatchRun01/result.json",
+            "bytes": 1810,
+            "sha256": "70d1613405ffe917d0cd627408e02887e476bed8f1c56ab9d4e60b3c48cb1d48"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-liquidate-retrieve-g71-v2/input-binding.json",
+            "bytes": 2110,
+            "sha256": "04cf5c8db73ec1ffb0149036cec5b861183bdbdf017748862b9d96f62505bfa8"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-liquidate-retrieve-g71-v2/TRUST_Hook_Liquidate_Retrieve_G71_V2.thy",
+            "bytes": 29963,
+            "sha256": "413186139b8e7e95dd1d2871774cfde1f3ec7983c29dd0714bbcbd248896c0ad"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-liquidate-retrieve-g71-v2/ROOT",
+            "bytes": 265,
+            "sha256": "e33a6d93e8e90163871af7ac4ead0c40f8a3558af590c0e5200d32305b133631"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_LIQUIDATE_RETRIEVE_G71_V2",
+            "bytes": 13969419,
+            "sha256": "5e84218df33c6e687b834426402630a2e92df2fe89e3d9c6c91dc02989f9658f"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_LIQUIDATE_RETRIEVE_G71_V2.db",
+            "bytes": 503808,
+            "sha256": "ffac6f2ea85ec67b40f77099cb239c7fe19914a2d1ece28a99e5ebbba6443b78"
+          }
+        },
+        {
+          "stage": "runtimeCell",
+          "session": "TRUST12_HOOK_LIQUIDATE_RUNTIME_CELL_G72_V7",
+          "theory": "TRUST_Hook_Liquidate_Runtime_Cell_G72_V7",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_LIQUIDATE_RUNTIME_CELL_G72_V7",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_LIQUIDATE_RETRIEVE_G71_V2",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-liquidate-runtime-cell-g72-v7/BatchRun01/result.json",
+            "bytes": 1785,
+            "sha256": "76b5a08e32f76f3bcbb0821450675e72d909ae2c50da80fef0d283012f82e7b1"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-liquidate-runtime-cell-g72-v7/input-binding.json",
+            "bytes": 1978,
+            "sha256": "c265ef7f01d48154d75fc051b1f006719679c0f3595097ec97b772b1d5d530a1"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-liquidate-runtime-cell-g72-v7/TRUST_Hook_Liquidate_Runtime_Cell_G72_V7.thy",
+            "bytes": 13725,
+            "sha256": "0fba0e4b4cd935e0a146645a071a08a44f264ad8c19f651104b8015e2fc0b553"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-liquidate-runtime-cell-g72-v7/ROOT",
+            "bytes": 270,
+            "sha256": "f4672e68bdb287685f4ec142903c006aa66faf41798c4e92c796385e3b921ed5"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_LIQUIDATE_RUNTIME_CELL_G72_V7",
+            "bytes": 14731085,
+            "sha256": "e69c5d32eca4c4053d4864abd05bd4c9d1616ccb5a29d36da5f011d88c332947"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_LIQUIDATE_RUNTIME_CELL_G72_V7.db",
+            "bytes": 471040,
+            "sha256": "ec577c828c62ac7af45de7e6fd1b33c5be27abf9df5b7b701ec99d66a7ed8874"
+          },
+          "checkedFacts": [
+            "ppf_applied_alpha_transaction",
+            "ppf_rejected_alpha_transaction",
+            "ppf_applied_alpha_transaction_enforced",
+            "ppf_rejected_alpha_transaction_enforced",
+            "ppf_accepts_iff",
+            "hook_liquidate_certificate_cell_enforced",
+            "hook_liquidate_certificate_cell_bound",
+            "hook_liquidate_cell_needs_applied_certificate",
+            "hook_liquidate_cell_needs_rejected_certificate"
+          ],
+          "certificateCount": 2,
+          "timeBoundsRequired": [
+            "pev_0000 <= 281474976710655",
+            "pmv_0000 <= 281474976710655"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Hook/RECOVER",
+      "profile": "Runtime_Hook",
+      "operation": "Runtime_Forward RECOVER",
+      "sessions": [
+        {
+          "stage": "accounts",
+          "session": "TRUST12_HOOK_RECOVER_ACCOUNTS_CELLS_EVAL_G66",
+          "theory": "TRUST_Native_HOOK_RECOVER_REJECTED_RESTORED_ACCOUNTS_Eval_G66",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_RECOVER_ACCOUNTS_G66",
+          "generatedFiles": 26,
+          "sourceFilesCompared": 26,
+          "parentSession": "TRUST12_HOOK_LIQUIDATE_RUNTIME_CELL_G72_V7",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-recover-accounts-g66-v1/BatchRun01/result.json",
+            "bytes": 1553,
+            "sha256": "c90bdd89978dd3e2cfa71fcaa33c2f614d70b4a3d68947f0d9b2abce4a47803e"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-recover-accounts-g66-v1/input-binding.json",
+            "bytes": 15143,
+            "sha256": "8aaf1b1a77f04200b7ca18f9756f52ff4eaaafaf4cd3bce53aaa523b609ca1ea"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-recover-accounts-g66-v1/TRUST_Native_HOOK_RECOVER_REJECTED_RESTORED_ACCOUNTS_Eval_G66.thy",
+            "bytes": 304490,
+            "sha256": "90c5a4465824ed40992d7dece591b76370c63c0ff10c971adafdf63b9f453104"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-recover-accounts-g66-v1/ROOT",
+            "bytes": 298,
+            "sha256": "51d24d79a7d5c4456386d4bc9935b0d354dfb44639be4e87edd70e90b331c55d"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_RECOVER_ACCOUNTS_CELLS_EVAL_G66",
+            "bytes": 111786657,
+            "sha256": "d72447717921a736726fa6cc374109a4df5f1903535e4792f7ba5179ab13e26d"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_RECOVER_ACCOUNTS_CELLS_EVAL_G66.db",
+            "bytes": 6529024,
+            "sha256": "d89bad169e50a3295cc215e17ff12f6fd34ff487a7f6d4a77d84152d50688193"
+          }
+        },
+        {
+          "stage": "worldCanary",
+          "session": "TRUST12_HOOK_RECOVER_WORLD_CANARY_G67",
+          "theory": "TRUST_Hook_Recover_World_Canary_G67",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_RECOVER_WORLD_CANARY_G67",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_RECOVER_ACCOUNTS_CELLS_EVAL_G66",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-recover-world-canary-g67-v1/BatchRun01/result.json",
+            "bytes": 1485,
+            "sha256": "3912278a45d99a61d7bbb435e875ee7d3d998927044879c18dc0a7872956da12"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-recover-world-canary-g67-v1/input-binding.json",
+            "bytes": 2419,
+            "sha256": "01537be162313cbcf0bb241c601207970bd875a3459b03042a606bb97148d853"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-recover-world-canary-g67-v1/TRUST_Hook_Recover_World_Canary_G67.thy",
+            "bytes": 26307,
+            "sha256": "60c1f9619ef96ad1ebef64d50d5bfe0ff3364681f1b72be0f4cfab6273f80f95"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-recover-world-canary-g67-v1/ROOT",
+            "bytes": 266,
+            "sha256": "feb9e8f1ceb3e1de7dbdf124e88c24a7492e0a7537b60f88814231520757a4d9"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_RECOVER_WORLD_CANARY_G67",
+            "bytes": 14335089,
+            "sha256": "61ac4e827781b67effe11ed85914f43bc5706660ebbf6ab3a37fc7d58ce67419"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_RECOVER_WORLD_CANARY_G67.db",
+            "bytes": 647168,
+            "sha256": "d5b2ed93636d46e545efaef1f7b19fb90c27698b4c511d89b63903023b4c393d"
+          }
+        },
+        {
+          "stage": "transactionCells",
+          "session": "TRUST12_HOOK_RECOVER_TRANSACTION_CELLS_EVAL_G68_V2",
+          "theory": "TRUST_Native_HOOK_RECOVER_REJECTED_RESTORED_LOG_Eval_G68_V2",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_RECOVER_TRANSACTION_CELLS_G68_V2",
+          "generatedFiles": 52,
+          "sourceFilesCompared": 52,
+          "parentSession": "TRUST12_HOOK_RECOVER_WORLD_CANARY_G67",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-recover-transaction-cells-g68-v2/BatchRun01/result.json",
+            "bytes": 1592,
+            "sha256": "afbe4af5f22eba7a2b69c8f7922f8fa4d36d5a1fcc2d6006e79a6b1635cf5e38"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-recover-transaction-cells-g68-v2/input-binding.json",
+            "bytes": 38912,
+            "sha256": "bb64755d7cfd79a354c6a3ff69939111317e88c33c55f2839440d80b763cf551"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-recover-transaction-cells-g68-v2/TRUST_Native_HOOK_RECOVER_REJECTED_RESTORED_LOG_Eval_G68_V2.thy",
+            "bytes": 236823,
+            "sha256": "91d34e6a6f3b7cae8bef5ddc10130435c0c738ffa0e10cb0fbeec4953c4b0249"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-recover-transaction-cells-g68-v2/ROOT",
+            "bytes": 297,
+            "sha256": "ffb628190f71f0eefbfb910d957de49e45c9832ef1d48b098d61ec7f536e8985"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_RECOVER_TRANSACTION_CELLS_EVAL_G68_V2",
+            "bytes": 31057491,
+            "sha256": "1f511e37ecd8928dc4e23355cc09c9aa148b8af1751076befc447279408a1bde"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_RECOVER_TRANSACTION_CELLS_EVAL_G68_V2.db",
+            "bytes": 1974272,
+            "sha256": "377f6331b0246b1ddd0595c58d04248385eb00bf16fa61878f83f3f13bd53ffb"
+          }
+        },
+        {
+          "stage": "semanticDecode",
+          "session": "TRUST12_HOOK_RECOVER_SEMANTIC_DECODE_G69_V1",
+          "theory": "TRUST_Hook_Recover_Semantic_Decode_G69_V1",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_RECOVER_SEMANTIC_DECODE_G69_V1",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_RECOVER_TRANSACTION_CELLS_EVAL_G68_V2",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-recover-semantic-decode-g69-v1/BatchRun01/result.json",
+            "bytes": 1549,
+            "sha256": "1d5760d90047ae5c6411c9d660bec524c93a3502c8e120e712fe4ad07b053890"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-recover-semantic-decode-g69-v1/input-binding.json",
+            "bytes": 3354,
+            "sha256": "004a2a9639777e9d36d5e034c0d30f2a61956aecf13a9fe7d1a79cf214f015e1"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-recover-semantic-decode-g69-v1/TRUST_Hook_Recover_Semantic_Decode_G69_V1.thy",
+            "bytes": 7796,
+            "sha256": "8e8462a4d197327ddad2dc2d3dab1be171e9c043305b7427fa9ae6d40730bfab"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-recover-semantic-decode-g69-v1/ROOT",
+            "bytes": 284,
+            "sha256": "6f58a90ea47b053233fa96ee83ad82732e97760bbdca846229192dea5233520e"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_RECOVER_SEMANTIC_DECODE_G69_V1",
+            "bytes": 14322869,
+            "sha256": "5f99753d32e16c09800dd5ec30c55df7c63c743caa78a39922344b6882d8c8f8"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_RECOVER_SEMANTIC_DECODE_G69_V1.db",
+            "bytes": 466944,
+            "sha256": "79669276a2e2a923ac0c6f86952deed5cd5bcbb0a013940c43b507627d63186a"
+          }
+        },
+        {
+          "stage": "externalTrace",
+          "session": "TRUST12_HOOK_RECOVER_EXTERNAL_TRACE_G70",
+          "theory": "TRUST_Hook_Recover_External_Trace_G70",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_RECOVER_EXTERNAL_TRACE_G70",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_RECOVER_SEMANTIC_DECODE_G69_V1",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-recover-external-trace-g70-v1/BatchRun01/result.json",
+            "bytes": 1578,
+            "sha256": "3fc8352584a3610d8d0164c9d67ab4ed39e464e73d4d3a25176d809f921c9d51"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-recover-external-trace-g70-v1/input-binding.json",
+            "bytes": 2252,
+            "sha256": "2220b9cc1e6b14f28c257534ef8a24f376b3d4cd520b8dbb7baebf522d2d627d"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-recover-external-trace-g70-v1/TRUST_Hook_Recover_External_Trace_G70.thy",
+            "bytes": 20592,
+            "sha256": "aefd6f075917cb7ccc42bafd2bf32fdeea0471698d1c308c03bac83572db0837"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-recover-external-trace-g70-v1/ROOT",
+            "bytes": 269,
+            "sha256": "330be3d7cb6a79bc11d5301e6089ac9b54183b6efea7f6227486d7c2340e9fe5"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_RECOVER_EXTERNAL_TRACE_G70",
+            "bytes": 14292571,
+            "sha256": "b4789051dca93165e2b93aa798c95ca6b5721b9c738260f78574ab92c5141aac"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_RECOVER_EXTERNAL_TRACE_G70.db",
+            "bytes": 462848,
+            "sha256": "08afbdc72201d4c7a7fc71c469c7f2f4a3aa651c003b27f200e5f63fda5fcf6d"
+          },
+          "directCallTrace": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-recover-direct-call-trace-g70-v1/result.json",
+            "bytes": 35199,
+            "sha256": "8e62b157b13bf5d9aa8c444555895b1f3c9337ac3e7ac27898a4ad56ad54ba34"
+          }
+        },
+        {
+          "stage": "retrieve",
+          "session": "TRUST12_HOOK_RECOVER_RETRIEVE_G71_V2",
+          "theory": "TRUST_Hook_Recover_Retrieve_G71_V2",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_RECOVER_RETRIEVE_G71_V2",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_RECOVER_EXTERNAL_TRACE_G70",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-recover-retrieve-g71-v2/BatchRun01/result.json",
+            "bytes": 1557,
+            "sha256": "29c51ca481f08b1ea54bdc7676cbfc64fd64b3834d4849c8c6fa116cf2c34ac6"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-recover-retrieve-g71-v2/input-binding.json",
+            "bytes": 2092,
+            "sha256": "d656b850737822bb370a387df7b1edbb7ab84078d1e56a0b08792f1db057ce79"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-recover-retrieve-g71-v2/TRUST_Hook_Recover_Retrieve_G71_V2.thy",
+            "bytes": 30144,
+            "sha256": "709e6f1a83b8d45fd241b714e382a74bfdf858813a41dbad2b03635deefde8ad"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-recover-retrieve-g71-v2/ROOT",
+            "bytes": 259,
+            "sha256": "65a076b1d3df354894018609a8da19775cad3dabac30cb11923cd9204aad04c8"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_RECOVER_RETRIEVE_G71_V2",
+            "bytes": 14419427,
+            "sha256": "df10d76dcf543721bbeaa976eb26adbe960ca0a486e5ee63b73be4c8e82d0d2a"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_RECOVER_RETRIEVE_G71_V2.db",
+            "bytes": 516096,
+            "sha256": "7968e589adc8ee1d3291bf6142735e7d06e427a4edaff1c31a05383d8ec8fcdf"
+          }
+        },
+        {
+          "stage": "runtimeCell",
+          "session": "TRUST12_HOOK_RECOVER_RUNTIME_CELL_G72_V7",
+          "theory": "TRUST_Hook_Recover_Runtime_Cell_G72_V7",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_RECOVER_RUNTIME_CELL_G72_V7",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_RECOVER_RETRIEVE_G71_V2",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-recover-runtime-cell-g72-v7/BatchRun01/result.json",
+            "bytes": 1535,
+            "sha256": "09d878cf4c8c56c5faf298c5f856d2c063775ea34d114d5610fd68db7b43a4c6"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-recover-runtime-cell-g72-v7/input-binding.json",
+            "bytes": 1446,
+            "sha256": "015bac389bd9b90ce43bb76659698a8392f9696fd52bfbefb1be9cfc98d08b52"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-recover-runtime-cell-g72-v7/TRUST_Hook_Recover_Runtime_Cell_G72_V7.thy",
+            "bytes": 12762,
+            "sha256": "44ba05f9372a175b91622f139adc4fd5b0d86711fe7f11498124f282e81cfe17"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-recover-runtime-cell-g72-v7/ROOT",
+            "bytes": 264,
+            "sha256": "eda6669f774c158a1da7d0ea6394e3edc4e0ae1b861e3e2bf79f830ff070f3a9"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_RECOVER_RUNTIME_CELL_G72_V7",
+            "bytes": 15177977,
+            "sha256": "bc9d1a9ccdb486d9ce6705fb1f2127fd012435765c997b85befea31135b9dab9"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_RECOVER_RUNTIME_CELL_G72_V7.db",
+            "bytes": 487424,
+            "sha256": "38b768e9be051e1835e92fefe507007bd37eb17b0417faf3a4e2d0bccf9c359c"
+          },
+          "checkedFacts": [
+            "ppf_applied_alpha_transaction",
+            "ppf_rejected_alpha_transaction",
+            "ppf_applied_alpha_transaction_enforced",
+            "ppf_rejected_alpha_transaction_enforced",
+            "ppf_accepts_iff",
+            "hook_recover_certificate_cell_enforced",
+            "hook_recover_certificate_cell_bound",
+            "hook_recover_cell_needs_applied_certificate",
+            "hook_recover_cell_needs_rejected_certificate"
+          ],
+          "certificateCount": 2,
+          "timeBoundsRequired": [
+            "pev_0000 <= 281474976710655",
+            "pmv_0000 <= 281474976710655"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Hook/UNFREEZE",
+      "profile": "Runtime_Hook",
+      "operation": "Runtime_Reverse UNFREEZE",
+      "sessions": [
+        {
+          "stage": "accounts",
+          "session": "TRUST12_HOOK_UNFREEZE_ACCOUNTS_CELLS_EVAL_G66",
+          "theory": "TRUST_Native_HOOK_UNFREEZE_REJECTED_SETUP_POST_ACCOUNTS_Eval_G66",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_UNFREEZE_ACCOUNTS_G66",
+          "generatedFiles": 46,
+          "sourceFilesCompared": 46,
+          "parentSession": "TRUST12_HOOK_RECOVER_RUNTIME_CELL_G72_V7",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unfreeze-accounts-g66-v1/BatchRun01/result.json",
+            "bytes": 1560,
+            "sha256": "1dd5cb6b35e1862ecddae588e640bb9ff12890ab8e15c90e81452171292ed7c1"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-unfreeze-accounts-g66-v1/input-binding.json",
+            "bytes": 26825,
+            "sha256": "094a07943cbaadf73c42fca8d37e302b2a1013912937ce2e8a5297724be3cbf9"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unfreeze-accounts-g66-v1/TRUST_Native_HOOK_UNFREEZE_REJECTED_SETUP_POST_ACCOUNTS_Eval_G66.thy",
+            "bytes": 650622,
+            "sha256": "0d659d00b80deacd882ea71748a5af492aff596d91141aa7183ec1172cba536e"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unfreeze-accounts-g66-v1/ROOT",
+            "bytes": 300,
+            "sha256": "83f83a571b39a2535bf281af94cb009d27477324548e951edecf10ed5a04b0d0"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_UNFREEZE_ACCOUNTS_CELLS_EVAL_G66",
+            "bytes": 213529081,
+            "sha256": "5a1e93740b1d506e30b0f536c11dedfd4997496f32c1c7c7077c5af6e1073efd"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_UNFREEZE_ACCOUNTS_CELLS_EVAL_G66.db",
+            "bytes": 12701696,
+            "sha256": "9da748c17adf2333a83e72da5363ae43c628bee3922a47b17eb60fa9d2e8254a"
+          }
+        },
+        {
+          "stage": "worldCanary",
+          "session": "TRUST12_HOOK_UNFREEZE_WORLD_CANARY_G67",
+          "theory": "TRUST_Hook_Unfreeze_World_Canary_G67",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_UNFREEZE_WORLD_CANARY_G67",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_UNFREEZE_ACCOUNTS_CELLS_EVAL_G66",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unfreeze-world-canary-g67-v1/BatchRun01/result.json",
+            "bytes": 1491,
+            "sha256": "0e4cb500b872df52a3f0a9cda7ba02e1eeb6a6b41579bcebab5077ce41b91818"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-unfreeze-world-canary-g67-v1/input-binding.json",
+            "bytes": 2432,
+            "sha256": "e0e821ade47c3ad630a2379797c94f80bbf88c988af8e792f1347574921cb6c7"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unfreeze-world-canary-g67-v1/TRUST_Hook_Unfreeze_World_Canary_G67.thy",
+            "bytes": 40139,
+            "sha256": "2f4da7af90ed0396db33e75016b52c579c92a3ab8a2e140e9006fdd1a4feb32d"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unfreeze-world-canary-g67-v1/ROOT",
+            "bytes": 269,
+            "sha256": "70e62d77d7f72db35c79fe3b8ed6fb27b0aa4d815aa9cbce471444f3b26180fa"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_UNFREEZE_WORLD_CANARY_G67",
+            "bytes": 15203119,
+            "sha256": "b6543334e3f9f3785ec90cdb94bd8800861c64106e4c25cb33cbc41ecbf5cd58"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_UNFREEZE_WORLD_CANARY_G67.db",
+            "bytes": 765952,
+            "sha256": "5cd3f7f4739cc0a5d81dedc0267dbc643ee896bf69595f99e9773e39ffd40350"
+          }
+        },
+        {
+          "stage": "transactionCells",
+          "session": "TRUST12_HOOK_UNFREEZE_TRANSACTION_CELLS_EVAL_G68_V2",
+          "theory": "TRUST_Native_HOOK_UNFREEZE_REJECTED_RESTORED_LOG_Eval_G68_V2",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_UNFREEZE_TRANSACTION_CELLS_G68_V2",
+          "generatedFiles": 52,
+          "sourceFilesCompared": 52,
+          "parentSession": "TRUST12_HOOK_UNFREEZE_WORLD_CANARY_G67",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unfreeze-transaction-cells-g68-v2/BatchRun01/result.json",
+            "bytes": 1598,
+            "sha256": "cfcd15b95ddf8282acab25c101bea9b6891e16fff831f2cdae31896e66f5e4a5"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-unfreeze-transaction-cells-g68-v2/input-binding.json",
+            "bytes": 39206,
+            "sha256": "32d304e1207cfa9a8bf37b9a1a123c583cc0f69db7d9c2222c5eb8048e4527f2"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unfreeze-transaction-cells-g68-v2/TRUST_Native_HOOK_UNFREEZE_REJECTED_RESTORED_LOG_Eval_G68_V2.thy",
+            "bytes": 269401,
+            "sha256": "6447002c71d8eb11fd33b06e7ee381900b77df536301964aa9f17fd1cdb639b1"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unfreeze-transaction-cells-g68-v2/ROOT",
+            "bytes": 300,
+            "sha256": "383ac8ea1156e0e1b44ed92f50afeee1d126ac544c79e7caaf748ea9da342eb6"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_UNFREEZE_TRANSACTION_CELLS_EVAL_G68_V2",
+            "bytes": 33664029,
+            "sha256": "3ef93cc20a96e295de3c6ead9063753e871a5c2dfcbf3e42b26121a8d4ce744a"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_UNFREEZE_TRANSACTION_CELLS_EVAL_G68_V2.db",
+            "bytes": 2125824,
+            "sha256": "d59c9c86d691d9cf14e567f50e306253bd260a53bbb0a9db46387e2596f21cb8"
+          }
+        },
+        {
+          "stage": "semanticDecode",
+          "session": "TRUST12_HOOK_UNFREEZE_REVERSAL_SEMANTIC_DECODE_G69_V1",
+          "theory": "TRUST_Hook_Unfreeze_Reversal_Semantic_Decode_G69_V1",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_UNFREEZE_REVERSAL_SEMANTIC_DECODE_G69_V1",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_UNFREEZE_TRANSACTION_CELLS_EVAL_G68_V2",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unfreeze-reversal-semantic-decode-g69-v1/BatchRun01/result.json",
+            "bytes": 1600,
+            "sha256": "8075ee90f0461fbec0b0fd82a78953f4286d2dfb41eb46f82ee275b468d7cb55"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-unfreeze-reversal-semantic-decode-g69-v1/input-binding.json",
+            "bytes": 3599,
+            "sha256": "fac3d8bbd3d0180ea1dcbebec9cea8438e0462fd4d5846c16bfa8d487b1fcd4a"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unfreeze-reversal-semantic-decode-g69-v1/TRUST_Hook_Unfreeze_Reversal_Semantic_Decode_G69_V1.thy",
+            "bytes": 7897,
+            "sha256": "7c8b6987d066ad3e04d3dd5611edee34daa8e713d262699b1cf2cbe67e972608"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unfreeze-reversal-semantic-decode-g69-v1/ROOT",
+            "bytes": 305,
+            "sha256": "baaad0546c76181634222803d079f69692a915816ecbf5fb617f8c07ebafd2ca"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_UNFREEZE_REVERSAL_SEMANTIC_DECODE_G69_V1",
+            "bytes": 15131391,
+            "sha256": "c4fe6d31900a9378f4c5afdec797638298871052acec82857711089e415734ef"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_UNFREEZE_REVERSAL_SEMANTIC_DECODE_G69_V1.db",
+            "bytes": 487424,
+            "sha256": "7eb395835b36ae5abada291fb97aefc00802e6b7d0cbda7faf99eed941da1655"
+          }
+        },
+        {
+          "stage": "externalTrace",
+          "session": "TRUST12_HOOK_UNFREEZE_EXTERNAL_TRACE_G70",
+          "theory": "TRUST_Hook_Unfreeze_External_Trace_G70",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_UNFREEZE_EXTERNAL_TRACE_G70",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_UNFREEZE_REVERSAL_SEMANTIC_DECODE_G69_V1",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unfreeze-external-trace-g70-v1/BatchRun01/result.json",
+            "bytes": 1584,
+            "sha256": "e8c78766de9829a5cdb28b9828deb2394581a5482e44bd85f929a1b8200e8bc3"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-unfreeze-external-trace-g70-v1/input-binding.json",
+            "bytes": 2178,
+            "sha256": "0cbe594ebb338019d5839697959d030c8013da07f806e0a9f3218650403195fb"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unfreeze-external-trace-g70-v1/TRUST_Hook_Unfreeze_External_Trace_G70.thy",
+            "bytes": 11396,
+            "sha256": "584173bd7377f90ea8808ca34fb1f5e047d30478834aad23b29965a4bb07fb2d"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unfreeze-external-trace-g70-v1/ROOT",
+            "bytes": 281,
+            "sha256": "343e466464dd863aa1f7cb7c4b40b9a394a2af4df7118b3b6175cae3f17f75b7"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_UNFREEZE_EXTERNAL_TRACE_G70",
+            "bytes": 15098459,
+            "sha256": "b870118aa85c703f1a862aa1b7ff9f974f2df47ca27097f41b6503a5aaa2ed89"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_UNFREEZE_EXTERNAL_TRACE_G70.db",
+            "bytes": 483328,
+            "sha256": "215bcde4abef953b7a576d9c91884687c802f233ea7ac0aacbc1652f17888032"
+          },
+          "directCallTrace": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-unfreeze-direct-call-trace-g70-v1/result.json",
+            "bytes": 19162,
+            "sha256": "a759da075fcd8b73a5e51aa695afe33a13e93b512f4838431e000954b9149315"
+          }
+        },
+        {
+          "stage": "retrieve",
+          "session": "TRUST12_HOOK_UNFREEZE_REVERSAL_RETRIEVE_G71_V3",
+          "theory": "TRUST_Hook_Unfreeze_Reversal_Retrieve_G71_V3",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_UNFREEZE_REVERSAL_RETRIEVE_G71_V3",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_UNFREEZE_EXTERNAL_TRACE_G70",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unfreeze-reversal-retrieve-g71-v3/BatchRun01/result.json",
+            "bytes": 1609,
+            "sha256": "5eecbc31a61cbe954f0d095ea530c7d4e8697395a39bde232a97eecdfdea6795"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-unfreeze-reversal-retrieve-g71-v3/input-binding.json",
+            "bytes": 2742,
+            "sha256": "3268ade15e76a33c49b22b0b009f69bfe1189c5bd1e19c80326a03f78879da26"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unfreeze-reversal-retrieve-g71-v3/TRUST_Hook_Unfreeze_Reversal_Retrieve_G71_V3.thy",
+            "bytes": 60582,
+            "sha256": "3472fa878f6fb46312f4c568581f365db2fa135f26296820b91d4c5502658428"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unfreeze-reversal-retrieve-g71-v3/ROOT",
+            "bytes": 280,
+            "sha256": "9b39fde82c665d3de6d1bb710f699d6b1672deddba2849eb2cf9acb31bfd2275"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_UNFREEZE_REVERSAL_RETRIEVE_G71_V3",
+            "bytes": 15264213,
+            "sha256": "ef89d290934008283508d7ab4e8ea8c77a6a0eddbb0ff06b69e13f8330929bc3"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_UNFREEZE_REVERSAL_RETRIEVE_G71_V3.db",
+            "bytes": 532480,
+            "sha256": "12b87bb7ace09d24e497e3fefa295780e20cc7e98dd41caae3e3ea260f696a90"
+          }
+        },
+        {
+          "stage": "runtimeCell",
+          "session": "TRUST12_HOOK_UNFREEZE_REVERSAL_RUNTIME_CELL_G72",
+          "theory": "TRUST_Hook_Unfreeze_Reversal_Runtime_Cell_G72",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_UNFREEZE_REVERSAL_RUNTIME_CELL_G72",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_UNFREEZE_REVERSAL_RETRIEVE_G71_V3",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unfreeze-reversal-runtime-cell-g72-v1/BatchRun01/result.json",
+            "bytes": 1574,
+            "sha256": "5a58f5987c44d470aa4a1cf8ef0d7b925b200738cedbcaf3f5747ec4e0c04e62"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-unfreeze-reversal-runtime-cell-g72-v1/input-binding.json",
+            "bytes": 1748,
+            "sha256": "5511d0c72b7c079ea965a1af1f669e48dd71f7ef8467d63f919a0e601855584b"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unfreeze-reversal-runtime-cell-g72-v1/TRUST_Hook_Unfreeze_Reversal_Runtime_Cell_G72.thy",
+            "bytes": 12679,
+            "sha256": "e300c47c0e30d2bbd98a4505009e501d9e5a8a9c13e2a4ad2ba5c862cbd3f7e9"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unfreeze-reversal-runtime-cell-g72-v1/ROOT",
+            "bytes": 288,
+            "sha256": "9473de646f34530d7f189b027b75c7defab9f5251ca06686ed44b3199753fe5c"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_UNFREEZE_REVERSAL_RUNTIME_CELL_G72",
+            "bytes": 15976317,
+            "sha256": "3d6ec224e9b2b224aa70aa28c445494afcb7a1ec81af1488ef77b461afbcdebb"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_UNFREEZE_REVERSAL_RUNTIME_CELL_G72.db",
+            "bytes": 507904,
+            "sha256": "b342cfe4641090cfeba50fa698123a965f467311959d598b3e834f1f440529a1"
+          },
+          "checkedFacts": [
+            "ppr_applied_alpha_transaction",
+            "ppr_rejected_alpha_transaction",
+            "ppr_applied_alpha_transaction_enforced",
+            "ppr_rejected_alpha_transaction_enforced",
+            "ppr_accepts_iff",
+            "hook_unfreeze_certificate_cell_enforced",
+            "hook_unfreeze_certificate_cell_bound",
+            "hook_unfreeze_cell_needs_applied_certificate",
+            "hook_unfreeze_cell_needs_rejected_certificate"
+          ],
+          "certificateCount": 2,
+          "timeBoundsRequired": [
+            "pev_0000 <= 281474976710655",
+            "pmv_0000 <= 281474976710655"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Hook/UNRESTRICT",
+      "profile": "Runtime_Hook",
+      "operation": "Runtime_Reverse UNRESTRICT",
+      "sessions": [
+        {
+          "stage": "accounts",
+          "session": "TRUST12_HOOK_UNRESTRICT_ACCOUNTS_CELLS_EVAL_G66",
+          "theory": "TRUST_Native_HOOK_UNRESTRICT_REJECTED_SETUP_POST_ACCOUNTS_Eval_G66",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_UNRESTRICT_ACCOUNTS_G66",
+          "generatedFiles": 46,
+          "sourceFilesCompared": 46,
+          "parentSession": "TRUST12_HOOK_UNFREEZE_REVERSAL_RUNTIME_CELL_G72",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unrestrict-accounts-g66-v1/BatchRun01/result.json",
+            "bytes": 1572,
+            "sha256": "16521b6379fe832c6a7748dde2301b56c2b28b6000063919e7d5017bac369efd"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-unrestrict-accounts-g66-v1/input-binding.json",
+            "bytes": 27163,
+            "sha256": "54c8cd966c4a0c063adf26e22b5005360b0c186193aad074ce7a3bd538f7a659"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unrestrict-accounts-g66-v1/TRUST_Native_HOOK_UNRESTRICT_REJECTED_SETUP_POST_ACCOUNTS_Eval_G66.thy",
+            "bytes": 640611,
+            "sha256": "4c03dd826bee16e03f335eafc5bfbfa5cc78e50e40829b58b6d9a6ee8470c673"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unrestrict-accounts-g66-v1/ROOT",
+            "bytes": 311,
+            "sha256": "8e43ad7a85dcb34902df0ae907fbf1b7d9e89177b906b152704aee84913b2ca3"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_UNRESTRICT_ACCOUNTS_CELLS_EVAL_G66",
+            "bytes": 211451171,
+            "sha256": "94071b1663d97d04a9ce34ab5f9da5d8de006bf3669a6adef5c4318fdbe7de3e"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_UNRESTRICT_ACCOUNTS_CELLS_EVAL_G66.db",
+            "bytes": 12685312,
+            "sha256": "b51361ea4f4c5cf1ab737e587127f88ddcf0db2de7add11dab55ceba3d724fa6"
+          }
+        },
+        {
+          "stage": "worldCanary",
+          "session": "TRUST12_HOOK_UNRESTRICT_WORLD_CANARY_G67",
+          "theory": "TRUST_Hook_Unrestrict_World_Canary_G67",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_UNRESTRICT_WORLD_CANARY_G67",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_UNRESTRICT_ACCOUNTS_CELLS_EVAL_G66",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unrestrict-world-canary-g67-v1/BatchRun01/result.json",
+            "bytes": 1503,
+            "sha256": "8e5ec6296ad94a572963078c02c177260488df6dfffbe7ac9039e2585333ded5"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-unrestrict-world-canary-g67-v1/input-binding.json",
+            "bytes": 2450,
+            "sha256": "a5e1f036131d43f73722fafb2fe176aa955841cda5d3fa29eb96b08680a9ef16"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unrestrict-world-canary-g67-v1/TRUST_Hook_Unrestrict_World_Canary_G67.thy",
+            "bytes": 39270,
+            "sha256": "b8624116d671d6a64e843dc1546828845c647a6734634fd9168c364d7988e3d8"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unrestrict-world-canary-g67-v1/ROOT",
+            "bytes": 275,
+            "sha256": "9c081c2692b5f9af43507ff995ee098880c6b9530ce007b3326ae281508a0f2e"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_UNRESTRICT_WORLD_CANARY_G67",
+            "bytes": 16007787,
+            "sha256": "24b81c8e4ec06858a7042aa08c13ce20cd294193312e6e69e0f58c7ffcccb06d"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_UNRESTRICT_WORLD_CANARY_G67.db",
+            "bytes": 823296,
+            "sha256": "d833505e1f9d217a9279447259dc3dc6552183b294a99eec6c41c6efa7c93f25"
+          }
+        },
+        {
+          "stage": "transactionCells",
+          "session": "TRUST12_HOOK_UNRESTRICT_TRANSACTION_CELLS_EVAL_G68_V2",
+          "theory": "TRUST_Native_HOOK_UNRESTRICT_REJECTED_RESTORED_LOG_Eval_G68_V2",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_UNRESTRICT_TRANSACTION_CELLS_G68_V2",
+          "generatedFiles": 52,
+          "sourceFilesCompared": 52,
+          "parentSession": "TRUST12_HOOK_UNRESTRICT_WORLD_CANARY_G67",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unrestrict-transaction-cells-g68-v2/BatchRun01/result.json",
+            "bytes": 1610,
+            "sha256": "464e23b2d4666f7a344c46e3cfc3d9b9300aa25a531c4c930a9ccaea88bbd978"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-unrestrict-transaction-cells-g68-v2/input-binding.json",
+            "bytes": 39674,
+            "sha256": "4bc7046392f756032f2b9a2b7056ba8140129f71448c739d70a3de664d71e065"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unrestrict-transaction-cells-g68-v2/TRUST_Native_HOOK_UNRESTRICT_REJECTED_RESTORED_LOG_Eval_G68_V2.thy",
+            "bytes": 274691,
+            "sha256": "c4010e1d57d90819d248e32469adfdf920883c1aa52b236294dadfa19819b937"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unrestrict-transaction-cells-g68-v2/ROOT",
+            "bytes": 306,
+            "sha256": "b553eda38740d0a6eb56897936c48c21593c0d5a02864dfb0f8a711906ccf5fb"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_UNRESTRICT_TRANSACTION_CELLS_EVAL_G68_V2",
+            "bytes": 35164277,
+            "sha256": "c5450bb425eef4cbec7cd70498aabe61eda186bb85f6940f5003e6066dfd76ff"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_UNRESTRICT_TRANSACTION_CELLS_EVAL_G68_V2.db",
+            "bytes": 2158592,
+            "sha256": "a87670b453fab1a68fa3f8b303c53807533edc42e721cb943a005a5f51a1df7b"
+          }
+        },
+        {
+          "stage": "semanticDecode",
+          "session": "TRUST12_HOOK_UNRESTRICT_REVERSAL_SEMANTIC_DECODE_G69_V1",
+          "theory": "TRUST_Hook_Unrestrict_Reversal_Semantic_Decode_G69_V1",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_UNRESTRICT_REVERSAL_SEMANTIC_DECODE_G69_V1",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_UNRESTRICT_TRANSACTION_CELLS_EVAL_G68_V2",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unrestrict-reversal-semantic-decode-g69-v1/BatchRun01/result.json",
+            "bytes": 1612,
+            "sha256": "f6bab3b57a807485a97dcb3a73d902f30f2c22a5ac9fc1e022a101ef4ab2df5e"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-unrestrict-reversal-semantic-decode-g69-v1/input-binding.json",
+            "bytes": 3619,
+            "sha256": "1f286e2171ae73f276ba761b49662c8b814e12c5130a104defe5dcc556c950c9"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unrestrict-reversal-semantic-decode-g69-v1/TRUST_Hook_Unrestrict_Reversal_Semantic_Decode_G69_V1.thy",
+            "bytes": 7867,
+            "sha256": "16acb93b63693df6bc4efc35ac2f6b61cadc25dcfb0f0e0f25d4c91e126bc33f"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unrestrict-reversal-semantic-decode-g69-v1/ROOT",
+            "bytes": 311,
+            "sha256": "a8b4108d467ee68e625ade99d0153441e1ab776aea9bac4ee4dbbf21d08d4bb1"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_UNRESTRICT_REVERSAL_SEMANTIC_DECODE_G69_V1",
+            "bytes": 15936171,
+            "sha256": "84676c0c3fe66b5c690ecb02cb31499f99eede53abca9f3a645b52110c70d61c"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_UNRESTRICT_REVERSAL_SEMANTIC_DECODE_G69_V1.db",
+            "bytes": 507904,
+            "sha256": "0ccb10c83c4db6f32023e59e8415b347ff479456e76764192f677fbe61df7cdb"
+          }
+        },
+        {
+          "stage": "externalTrace",
+          "session": "TRUST12_HOOK_UNRESTRICT_EXTERNAL_TRACE_G70",
+          "theory": "TRUST_Hook_Unrestrict_External_Trace_G70",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_UNRESTRICT_EXTERNAL_TRACE_G70",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_UNRESTRICT_REVERSAL_SEMANTIC_DECODE_G69_V1",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unrestrict-external-trace-g70-v1/BatchRun01/result.json",
+            "bytes": 1596,
+            "sha256": "ab898ec3167754908dd9bf449b0b5c6f3e0d975fa73703bb10f68dd53ef1f4c1"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-unrestrict-external-trace-g70-v1/input-binding.json",
+            "bytes": 2196,
+            "sha256": "04327b004afeb514795fc869377c5bc6a1039fd383c42c11ce7d4e31d8658310"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unrestrict-external-trace-g70-v1/TRUST_Hook_Unrestrict_External_Trace_G70.thy",
+            "bytes": 10327,
+            "sha256": "2d674239da9e15771fa18942ff36ad58976bf7a759f8efff204fb6b4c3fea4a2"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unrestrict-external-trace-g70-v1/ROOT",
+            "bytes": 287,
+            "sha256": "ff0fe3118ed36404ea65a5a2324fb1df901aeff3eb0213c39df7f29e592cda34"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_UNRESTRICT_EXTERNAL_TRACE_G70",
+            "bytes": 15901419,
+            "sha256": "95b2de205224c3445da5ecf683fefb82eef1414df1e8596c12981406e1974311"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_UNRESTRICT_EXTERNAL_TRACE_G70.db",
+            "bytes": 503808,
+            "sha256": "e05fd0cbf4e61a42da901eeb1d159d369855ace844b946447e06ac43a6d04898"
+          },
+          "directCallTrace": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-unrestrict-direct-call-trace-g70-v1/result.json",
+            "bytes": 17545,
+            "sha256": "b1afadecc7689036ab642b0173bd203b0ff6fc86932a42b2b0b63516d45b3d0a"
+          }
+        },
+        {
+          "stage": "retrieve",
+          "session": "TRUST12_HOOK_UNRESTRICT_REVERSAL_RETRIEVE_G71_V3",
+          "theory": "TRUST_Hook_Unrestrict_Reversal_Retrieve_G71_V3",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_UNRESTRICT_REVERSAL_RETRIEVE_G71_V3",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_UNRESTRICT_EXTERNAL_TRACE_G70",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unrestrict-reversal-retrieve-g71-v3/BatchRun01/result.json",
+            "bytes": 1621,
+            "sha256": "88e3a882a9c6d01b614ff0044fe8ab11433bfbce388bafe6b5bc0b8daa5601b6"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-unrestrict-reversal-retrieve-g71-v3/input-binding.json",
+            "bytes": 2761,
+            "sha256": "ba543cedd2fd58d183111ef986cfef40cf3fd492d99f9d4b4cbd03d045daa13c"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unrestrict-reversal-retrieve-g71-v3/TRUST_Hook_Unrestrict_Reversal_Retrieve_G71_V3.thy",
+            "bytes": 59695,
+            "sha256": "e5f489a47861d2e1e90e3f0698c1c43e84b0ef165c6c98e347dfed9fdfd90f4a"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unrestrict-reversal-retrieve-g71-v3/ROOT",
+            "bytes": 286,
+            "sha256": "cbd70014d9ef80d241b02370f7bc70d28bd05b732559755d0d9990031326677f"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_UNRESTRICT_REVERSAL_RETRIEVE_G71_V3",
+            "bytes": 16068497,
+            "sha256": "d2d68d5ab58c1c77369f73bffd9dda63625c2855d192d9c5f73a8ddd78e144ad"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_UNRESTRICT_REVERSAL_RETRIEVE_G71_V3.db",
+            "bytes": 561152,
+            "sha256": "36c0dcc1c21eb7f8d238770c1c512cf2ab060ecac85be64bb1aebc9e9487682f"
+          }
+        },
+        {
+          "stage": "runtimeCell",
+          "session": "TRUST12_HOOK_UNRESTRICT_REVERSAL_RUNTIME_CELL_G72",
+          "theory": "TRUST_Hook_Unrestrict_Reversal_Runtime_Cell_G72",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_UNRESTRICT_REVERSAL_RUNTIME_CELL_G72",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_UNRESTRICT_REVERSAL_RETRIEVE_G71_V3",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unrestrict-reversal-runtime-cell-g72-v1/BatchRun01/result.json",
+            "bytes": 1586,
+            "sha256": "dfc4a9c0e613bd33642cbfcf9e5c5e413573fb0f8f12c87f8ef53cb411d8774c"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-unrestrict-reversal-runtime-cell-g72-v1/input-binding.json",
+            "bytes": 1768,
+            "sha256": "a63f83c11d13c4453746806f355831f3c86a062de9f2722cf30b79a9c77c3c19"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unrestrict-reversal-runtime-cell-g72-v1/TRUST_Hook_Unrestrict_Reversal_Runtime_Cell_G72.thy",
+            "bytes": 12711,
+            "sha256": "d853a492d5c84a079c8c337545fd7f1c6d5b6c9502ee51d994b894ec0626f569"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-unrestrict-reversal-runtime-cell-g72-v1/ROOT",
+            "bytes": 294,
+            "sha256": "fe99b12c78429f0c73660c92b7a29b913fa6b282d26fbaf3381af04e73990adf"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_UNRESTRICT_REVERSAL_RUNTIME_CELL_G72",
+            "bytes": 16781681,
+            "sha256": "bbc47a89868140aaab0fcfa63d6aed93fe05d922c51e3872926c6aa0d8c8ad87"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_UNRESTRICT_REVERSAL_RUNTIME_CELL_G72.db",
+            "bytes": 528384,
+            "sha256": "18738e7a69a750541825bce7a229800610eb20c88771b310f461f7615cd44795"
+          },
+          "checkedFacts": [
+            "ppr_applied_alpha_transaction",
+            "ppr_rejected_alpha_transaction",
+            "ppr_applied_alpha_transaction_enforced",
+            "ppr_rejected_alpha_transaction_enforced",
+            "ppr_accepts_iff",
+            "hook_unrestrict_certificate_cell_enforced",
+            "hook_unrestrict_certificate_cell_bound",
+            "hook_unrestrict_cell_needs_applied_certificate",
+            "hook_unrestrict_cell_needs_rejected_certificate"
+          ],
+          "certificateCount": 2,
+          "timeBoundsRequired": [
+            "pev_0000 <= 281474976710655",
+            "pmv_0000 <= 281474976710655"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Hook/RELEASE",
+      "profile": "Runtime_Hook",
+      "operation": "Runtime_Reverse RELEASE",
+      "sessions": [
+        {
+          "stage": "accounts",
+          "session": "TRUST12_HOOK_RELEASE_ACCOUNTS_CELLS_EVAL_G66",
+          "theory": "TRUST_Native_HOOK_RELEASE_REJECTED_SETUP_POST_ACCOUNTS_Eval_G66",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_RELEASE_ACCOUNTS_G66",
+          "generatedFiles": 46,
+          "sourceFilesCompared": 46,
+          "parentSession": "TRUST12_HOOK_UNRESTRICT_REVERSAL_RUNTIME_CELL_G72",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-release-accounts-g66-v1/BatchRun01/result.json",
+            "bytes": 1554,
+            "sha256": "24aae7938f26b72aab2b71167597b1fb05c3aafa6f414fcd21654958fcb9affe"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-release-accounts-g66-v1/input-binding.json",
+            "bytes": 26699,
+            "sha256": "af9887c8ff67aee12dddd0ee2708672d379b75586b1dfef186d00712472843fe"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-release-accounts-g66-v1/TRUST_Native_HOOK_RELEASE_REJECTED_SETUP_POST_ACCOUNTS_Eval_G66.thy",
+            "bytes": 668126,
+            "sha256": "8d482a74bae7ae5e05e293d64d3aecf48b1ab983fea58b1004b6cd6b0c8b8a7e"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-release-accounts-g66-v1/ROOT",
+            "bytes": 307,
+            "sha256": "42892c67c91bedec7809e2c7c29ac15a61d39d940cfa7b6cd3d9919a841a2ef8"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_RELEASE_ACCOUNTS_CELLS_EVAL_G66",
+            "bytes": 215437487,
+            "sha256": "1f99ba78bee478989112dbe5d29d8f7521a2a2707a66c859463409d8b30633df"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_RELEASE_ACCOUNTS_CELLS_EVAL_G66.db",
+            "bytes": 12808192,
+            "sha256": "2b36a9bb50d57073178969eb707a783ff738bcc86324d5bad5de3eb21830d58b"
+          }
+        },
+        {
+          "stage": "worldCanary",
+          "session": "TRUST12_HOOK_RELEASE_WORLD_CANARY_G67",
+          "theory": "TRUST_Hook_Release_World_Canary_G67",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_RELEASE_WORLD_CANARY_G67",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_RELEASE_ACCOUNTS_CELLS_EVAL_G66",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-release-world-canary-g67-v1/BatchRun01/result.json",
+            "bytes": 1485,
+            "sha256": "106f1165f63a451a7608a672cf879a13f364c763b28335048acfa5b1f2d09822"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-release-world-canary-g67-v1/input-binding.json",
+            "bytes": 2423,
+            "sha256": "ef6580290cbb01c89367da86412903f44f824cc42ad89b9da63c49d02ef82a30"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-release-world-canary-g67-v1/TRUST_Hook_Release_World_Canary_G67.thy",
+            "bytes": 41279,
+            "sha256": "8928ee51b8792286b764bb740831c26c0daaeb2b00ce316e77609c634dead49f"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-release-world-canary-g67-v1/ROOT",
+            "bytes": 266,
+            "sha256": "d74076223e06cc6f13f91579cac9b0248a298d9c51b190bed945ff8813092a0b"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_RELEASE_WORLD_CANARY_G67",
+            "bytes": 16827905,
+            "sha256": "167853a5f29630144cebd91714cc6f23bb20af0dad048198aa3949f088621f7e"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_RELEASE_WORLD_CANARY_G67.db",
+            "bytes": 860160,
+            "sha256": "506271fc9a6de1c1706f2f3552f44f187c757389ff216c6882fd35f53b6e87a6"
+          }
+        },
+        {
+          "stage": "transactionCells",
+          "session": "TRUST12_HOOK_RELEASE_TRANSACTION_CELLS_EVAL_G68_V2",
+          "theory": "TRUST_Native_HOOK_RELEASE_REJECTED_RESTORED_LOG_Eval_G68_V2",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_RELEASE_TRANSACTION_CELLS_G68_V2",
+          "generatedFiles": 52,
+          "sourceFilesCompared": 52,
+          "parentSession": "TRUST12_HOOK_RELEASE_WORLD_CANARY_G67",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-release-transaction-cells-g68-v2/BatchRun01/result.json",
+            "bytes": 1592,
+            "sha256": "ed8753c8c1f2c071721258cab50a28c6bd57d0686c9514d35c5ab5374fddc4cb"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-release-transaction-cells-g68-v2/input-binding.json",
+            "bytes": 38997,
+            "sha256": "710a40690ddfe9e37733fd61bd816d7df7e1d8b01924b0a889796aa171ca2be7"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-release-transaction-cells-g68-v2/TRUST_Native_HOOK_RELEASE_REJECTED_RESTORED_LOG_Eval_G68_V2.thy",
+            "bytes": 266634,
+            "sha256": "d43c906a5c48a20f3eadad10a96dacf46745587063f061b1d1a8167dee57c10b"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-release-transaction-cells-g68-v2/ROOT",
+            "bytes": 297,
+            "sha256": "b4bea4c7d02f3a52af1f0c4d95fa46fb7ae13a178e64a7d2a2efd66a0b657244"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_RELEASE_TRANSACTION_CELLS_EVAL_G68_V2",
+            "bytes": 35549523,
+            "sha256": "2eec1ed7688d4612eddc11735e04efc239c1b80c3742b3753087474a13266496"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_RELEASE_TRANSACTION_CELLS_EVAL_G68_V2.db",
+            "bytes": 2154496,
+            "sha256": "a0634bca96ec4e87e876734761f08b3715398da286e1f322963cfcd14ef29d20"
+          }
+        },
+        {
+          "stage": "semanticDecode",
+          "session": "TRUST12_HOOK_RELEASE_REVERSAL_SEMANTIC_DECODE_G69_V1",
+          "theory": "TRUST_Hook_Release_Reversal_Semantic_Decode_G69_V1",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_RELEASE_REVERSAL_SEMANTIC_DECODE_G69_V1",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_RELEASE_TRANSACTION_CELLS_EVAL_G68_V2",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-release-reversal-semantic-decode-g69-v1/BatchRun01/result.json",
+            "bytes": 1594,
+            "sha256": "d07799676049be9139054336bd69e5cdecc464305d8c3b6bd3679682dd00256d"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-release-reversal-semantic-decode-g69-v1/input-binding.json",
+            "bytes": 3587,
+            "sha256": "329efcc8d2bca13c6fdf6db1417367732d3a88b47d463229fe7f25dbcce2d6cc"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-release-reversal-semantic-decode-g69-v1/TRUST_Hook_Release_Reversal_Semantic_Decode_G69_V1.thy",
+            "bytes": 7981,
+            "sha256": "bd7eefb0b5fb2d539c98e662b514b31ad82d8703f70cf38c159a2310dd691888"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-release-reversal-semantic-decode-g69-v1/ROOT",
+            "bytes": 302,
+            "sha256": "c09ccbdb99610d0c015f5d411e4daf1a7eb334043a72481f5b18d11f3224d8c3"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_RELEASE_REVERSAL_SEMANTIC_DECODE_G69_V1",
+            "bytes": 16749085,
+            "sha256": "3e975627def484f4905e69e93740c69c6b0eecc09882a67f20ec73fe23707577"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_RELEASE_REVERSAL_SEMANTIC_DECODE_G69_V1.db",
+            "bytes": 528384,
+            "sha256": "797810e0b0d32753ad4d6a0df413be5c671d618bf7c99bb75073aa6522dc1654"
+          }
+        },
+        {
+          "stage": "externalTrace",
+          "session": "TRUST12_HOOK_RELEASE_EXTERNAL_TRACE_G70",
+          "theory": "TRUST_Hook_Release_External_Trace_G70",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_RELEASE_EXTERNAL_TRACE_G70",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_RELEASE_REVERSAL_SEMANTIC_DECODE_G69_V1",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-release-external-trace-g70-v1/BatchRun01/result.json",
+            "bytes": 1578,
+            "sha256": "976957513c0378c01c26ecaf578ae1749e71254ba25f65d7c9455a3e5ea118eb"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-release-external-trace-g70-v1/input-binding.json",
+            "bytes": 2288,
+            "sha256": "428b1b789f3d8ed1ee71947f53554890c58f7a8140f1ffc5fe97d0c1758b423b"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-release-external-trace-g70-v1/TRUST_Hook_Release_External_Trace_G70.thy",
+            "bytes": 20461,
+            "sha256": "764626bffe63cce4782547c6c653f4e69e0d46df6c5e9ce203c96b141626aa5b"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-release-external-trace-g70-v1/ROOT",
+            "bytes": 278,
+            "sha256": "002aaec5079f796878386ebcc1d76e6bf59fbfd5ed7e09c9db836f5bafea6a80"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_RELEASE_EXTERNAL_TRACE_G70",
+            "bytes": 16716253,
+            "sha256": "8cc3be27e36d3b3191f0c1bf8fcaf52c5edc4cc24b8639a552f258ca52df06b1"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_RELEASE_EXTERNAL_TRACE_G70.db",
+            "bytes": 524288,
+            "sha256": "87bb7eef6fc7e80bc47faeed9fabe2210effd694bfb47bf56c701e2d9f257d09"
+          },
+          "directCallTrace": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-release-direct-call-trace-g70-v1/result.json",
+            "bytes": 34575,
+            "sha256": "29b3da83c03fc6b8e08514f7fbae820cd30753623f07f79be660c0c89dc25d41"
+          }
+        },
+        {
+          "stage": "retrieve",
+          "session": "TRUST12_HOOK_RELEASE_REVERSAL_RETRIEVE_G71_V3",
+          "theory": "TRUST_Hook_Release_Reversal_Retrieve_G71_V3",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_RELEASE_REVERSAL_RETRIEVE_G71_V3",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_RELEASE_EXTERNAL_TRACE_G70",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-release-reversal-retrieve-g71-v3/BatchRun01/result.json",
+            "bytes": 1603,
+            "sha256": "f87dde3cb17acc9b3203f8cce545148788a2be1fe8db6e91896f8f5298ca6cc7"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-release-reversal-retrieve-g71-v3/input-binding.json",
+            "bytes": 2734,
+            "sha256": "0997777d21e61de500e6cc4f5a2fc8a3f4ebdb1ee2de7eacd2a06b0561b99d9c"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-release-reversal-retrieve-g71-v3/TRUST_Hook_Release_Reversal_Retrieve_G71_V3.thy",
+            "bytes": 63175,
+            "sha256": "11baf34edbac45c12938cc45a9071f71d19ef593356288c875027ecd27287d89"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-release-reversal-retrieve-g71-v3/ROOT",
+            "bytes": 277,
+            "sha256": "13a3bf821fe87e4693a318eedd114ee4608643933da656b536b4292a6f35f479"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_RELEASE_REVERSAL_RETRIEVE_G71_V3",
+            "bytes": 16884455,
+            "sha256": "a25552c18ee0fcb7ff32cdf17db420ff70797b5dcd356f5055f08ab4008c3751"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_RELEASE_REVERSAL_RETRIEVE_G71_V3.db",
+            "bytes": 577536,
+            "sha256": "9dcf935d9344714221f303ea8476d2dce1d18a51d9d207bfda9094702095308d"
+          }
+        },
+        {
+          "stage": "runtimeCell",
+          "session": "TRUST12_HOOK_RELEASE_REVERSAL_RUNTIME_CELL_G72",
+          "theory": "TRUST_Hook_Release_Reversal_Runtime_Cell_G72",
+          "status": "PASS_KERNEL_CHECKED_TRUST12_HOOK_RELEASE_REVERSAL_RUNTIME_CELL_G72",
+          "generatedFiles": 2,
+          "sourceFilesCompared": 2,
+          "parentSession": "TRUST12_HOOK_RELEASE_REVERSAL_RETRIEVE_G71_V3",
+          "attestation": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-release-reversal-runtime-cell-g72-v1/BatchRun01/result.json",
+            "bytes": 1568,
+            "sha256": "9f90893c3efea270105285728ab011d351efdf1255c79937298fbd6f31e07269"
+          },
+          "normalModeBinding": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1-regen/profile-hook-release-reversal-runtime-cell-g72-v1/input-binding.json",
+            "bytes": 1738,
+            "sha256": "ce0e38117daf5f7f691b5f594038ba06d372d659d9626be70c266ece9dc2cbe8"
+          },
+          "theorySource": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-release-reversal-runtime-cell-g72-v1/TRUST_Hook_Release_Reversal_Runtime_Cell_G72.thy",
+            "bytes": 12663,
+            "sha256": "8e803ec04a2a02ba33a64aa288b35272b04a68f20a842a26c0244867e498f456"
+          },
+          "sessionRoot": {
+            "root": "EVIDENCE",
+            "path": "hook-cells-v1/profile-hook-release-reversal-runtime-cell-g72-v1/ROOT",
+            "bytes": 285,
+            "sha256": "16f1fb253f3c9e3ca17db91f002daa9fd4d762aa9969380e057751a31dabaec3"
+          },
+          "heap": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_HOOK_RELEASE_REVERSAL_RUNTIME_CELL_G72",
+            "bytes": 17595859,
+            "sha256": "19552ff9fb55c4854875b1b10f2ab702c5963d20e623d047b8a5d2c5c8fcbf23"
+          },
+          "database": {
+            "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_HOOK_RELEASE_REVERSAL_RUNTIME_CELL_G72.db",
+            "bytes": 548864,
+            "sha256": "77a6ad25a48f9194c6072b3008c1f756f3a02da52aeadb20c5bfb3dbf447e5f8"
+          },
+          "checkedFacts": [
+            "ppr_applied_alpha_transaction",
+            "ppr_rejected_alpha_transaction",
+            "ppr_applied_alpha_transaction_enforced",
+            "ppr_rejected_alpha_transaction_enforced",
+            "ppr_accepts_iff",
+            "hook_release_certificate_cell_enforced",
+            "hook_release_certificate_cell_bound",
+            "hook_release_cell_needs_applied_certificate",
+            "hook_release_cell_needs_rejected_certificate"
+          ],
+          "certificateCount": 2,
+          "timeBoundsRequired": [
+            "pev_0000 <= 281474976710655",
+            "pmv_0000 <= 281474976710655"
+          ]
+        }
+      ]
+    }
+  ],
+  "sessionsChecked": 63,
+  "tools": [
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/prepare_hook_operation_accounts_bundle.py",
+      "bytes": 6598,
+      "sha256": "68228035ed05da033179f74835a349b6170f8276c9cf85dbe9867f13339f7bd9"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/prepare_cell_bundle_v2.py",
+      "bytes": 12195,
+      "sha256": "7156a219bf9f22e71c6f197a2554a32637a1430e4a1c399defcf1521eec62eec"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/prepare_hook_operation_world_canary.py",
+      "bytes": 11139,
+      "sha256": "8ff7cb9ff5dee15937d4b78350747a266fe820fa4adb6ecaf7fac38d13f14ca0"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/prepare_hook_operation_transaction_bundle.py",
+      "bytes": 7491,
+      "sha256": "9b747ebad36a5f8a5fb00239b9ddeb332d30be961d6e13bb9ffc1dc35b2e112a"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/prepare_hook_forward_semantic_decode.py",
+      "bytes": 21310,
+      "sha256": "ffc88c59cabcd07c5c55d128a3222695ced8c82e4d4ddb4d8a8c67ecb93b9880"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/prepare_hook_reversal_semantic_decode.py",
+      "bytes": 17484,
+      "sha256": "8dd27068efa00c9d67fbe16d7f2b2051a9a5d4f77170d81d2788eed9fc8a74ea"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/extract_hook_operation_direct_call_trace.py",
+      "bytes": 3829,
+      "sha256": "be7fa9b72baa13a9f98b961a8693d3c1322eb9a24022767071827c22174748c1"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/prepare_hook_operation_external_trace.py",
+      "bytes": 10100,
+      "sha256": "9e8d903f99e06eb5298c73f9da234a402db9e09cd2aae47aa9da0dc3e7c84ff0"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/prepare_hook_forward_retrieve.py",
+      "bytes": 20427,
+      "sha256": "d9d8fddccde6ad2ddea4cae30f59b24a9b688010e9d90a2f9a023231cd223c3a"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/prepare_hook_reversal_retrieve.py",
+      "bytes": 24637,
+      "sha256": "4e6a53a6ecde55a301256c315fb33dc5a10b7ad1df829668430ac673b896f12e"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/prepare_hook_forward_runtime_cell.py",
+      "bytes": 21778,
+      "sha256": "907627ddf81733015839d3f84d45b850eed3952a04cfb4781bbd859d463a0020"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/prepare_hook_reversal_runtime_cell.py",
+      "bytes": 17442,
+      "sha256": "a9b5399e1a34cc2669c8797b01d8b9130ea662060befcea009b680fd3dd63e20"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/poly_compact_hierarchy_policy.sh",
+      "bytes": 3752,
+      "sha256": "2af07155f43148ac571064ad03b3ed8d59c4682317ee8fd29bf7f8890399cada"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/poly_compact_hierarchy_policy_v2.sh",
+      "bytes": 4072,
+      "sha256": "29c2320f027980c6f1917d13dee4b515116da1692cb562f91ca751f1b79be5f0"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/poly_compact_hierarchy_policy_v3.sh",
+      "bytes": 5047,
+      "sha256": "add1ef625e904035a5e7e8f3ed31a99f464c76c7dff44991573c8aeafced7a71"
+    },
+    {
+      "root": "ORACLIZER",
+      "path": "tools/trust12/check_hook_pregenerated.py",
+      "bytes": 9772,
+      "sha256": "48bf7281f3bda58d7ec256cd93baae28cbb548dfc70c2dcf4986ae940dbe50d5"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "final-chain-v2/run_hook_batch.ps1",
+      "bytes": 16777,
+      "sha256": "6ba3219b2661ef1086997724636d685ace9105457888a2ef6c4efb63f39eae3e"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "final-chain-v2/run_hook_batch_v3.ps1",
+      "bytes": 21595,
+      "sha256": "821add86e5ae0dc78227ed7fedd0819f9f426be4fcb8fb7bb877504e70d862f9"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "final-chain-v2/run_hook_batch_v4.ps1",
+      "bytes": 23043,
+      "sha256": "1873250e3df9318b2d5cf8c018cb9a314296058388f53238e61c710cb15af7c0"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "final-chain-v2/generate_hook_chain.ps1",
+      "bytes": 12263,
+      "sha256": "9f32fcd3d8dbfed59c201db8db0a3ad6cbdfdc39b757427581811a89731be83b"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "final-chain-v2/attest_chain_session.py",
+      "bytes": 3139,
+      "sha256": "4cdf94d1e60caab883eca57d4fffec7b35be0f22a25dbc67fd3717a93ae2077c"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "final-chain-v2/write_hook_closure_manifest.py",
+      "bytes": 20672,
+      "sha256": "0026645fe98baf76bca9dc03b66c7cd3b7dc82bbf7d4acda00cef4f48564dca1"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "final-chain-v2/write_hook_closure_manifest_v2.py",
+      "bytes": 20817,
+      "sha256": "34ab919db108f8da40c0f0183e1585e73da5b59470bdcdf876dd45f4b6d4b9c5"
+    },
+    {
+      "root": "EVIDENCE",
+      "path": "final-chain-v2/write_hook_closure_manifest_v3.py",
+      "bytes": 23031,
+      "sha256": "0d74a56fc53bef0ae7bef9bc96cb292d1e6edf44899b4db302305dc03127309d"
+    }
+  ],
+  "nonclaim": "This returns the exact two-certificate runtime-link cells of the ERC-3643 hook adapter on the pinned product formal inputs and their evidence chain. It does not discharge the profile-wide acceptance partition, the malformed branch, the central bidirectional closure or an independent assurance review, and it does not authorize a release, deployment or publication."
+}
