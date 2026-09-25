@@ -1,10 +1,10 @@
 # Runtime correspondence: current source blockers
 
-> 2026-09-13 release-scope reset: the general correspondence obligations described
-> below remain open as RESEARCH-RESIDUAL rows. They are not current TRUST 1.2 release
-> requirements. The three RUNTIME-LINK release rows now own profile implementation
-> evidence under `release-policy.json`; this preserves the historical research
-> diagnosis without claiming its missing producer was proved.
+> The 2026-09-13 release-scope reset is historical. Under the 2026-09-25
+> completion direction, the general correspondence obligations below are current
+> mandatory TRUST 1.2 rows. The three RUNTIME-LINK rows retain scoped profile
+> implementation evidence under `release-policy.json`. None proves the missing
+> general producer.
 
 Status: SOURCE_BLOCKED for general compiled-runtime correspondence. This is a
 source and tool-interface inspection, not a machine-checked impossibility result.

@@ -562,7 +562,10 @@ if (!exists(receiptPaths.runtimeBinding)) {
 // Aggregate
 // ---------------------------------------------------------------------------
 
-lanes.trust12Required = { status: "PASS", ...trust12Required, status: "PASS", scope: "Evidence consistency; refinement remains incomplete" };
+lanes.trust12Required = { status: "PASS", ...trust12Required, status: "PASS",
+  scope: trust12Required.fullRefinementComplete ?
+    "Declared-profile refinement with independent assurance; no deployment approval" :
+    "Development evidence consistency; refinement remains incomplete" };
 const requiredLanes = ["trust12Required", "runtime", "foundry", "mutation", "isabelleBuild", "isabelleRuntimeBinding", "obligationLedger", "kontrol", "kontrolInputs", "certora", "certoraInputs", "independentReproduction", "runtimeBinding"];
 for (const name of requiredLanes) check(lanes[name] !== undefined, `lane ${name} was not evaluated`);
 check(Object.keys(lanes).every((name) => requiredLanes.includes(name)), "an unlisted lane was evaluated");

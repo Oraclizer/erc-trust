@@ -1,13 +1,15 @@
 // SPDX-License-Identifier: BSD-3-Clause
 // Evidence accounting and approval-record consistency, not a proof checker.
-import { check, encoded, json, read, sha256 } from './local-evidence.mjs';
+import { check, checkLocalReceiptProvenance, encoded, json, read, sha256 } from './local-evidence.mjs';
+import { formalAdmissionDigest, validateFormalIdentity } from './formal-inputs.mjs';
 
 export const profiles = ['NATIVE', 'PARTIAL', 'HOOK'];
 export const components = ['constructor-storage', 'calldata-dispatch', 'authorization-replay',
   'dependency-calls', 'effects-frame', 'revert', 'receipt-logs'];
 export const grades = ['UNVERIFIED', 'EXECUTION_TESTS', 'LIMITED_SCOPE_PROOF', 'FULL_SCOPE_PROOF'];
 export const mandatoryIds = ['NATIVE-SYMBOLIC-FREEZE', ...profiles.map(p => `RUNTIME-LINK-${p}`)].sort();
-export const researchIds = profiles.map(p => `RESEARCH-RUNTIME-LINK-${p}`).sort();
+// The stable RESEARCH-* identifiers predate the current completion direction; their status is mandatory.
+export const generalIds = profiles.map(p => `RESEARCH-RUNTIME-LINK-${p}`).sort();
 const nativeClaim = 'For every positive first and second target with second <= first, including first above supply, the second FREEZE stutters the named Native projection.';
 const legacyClosedIds = ['HOOK-FRESH-INITIAL','HOOK-FACTORY-CREATION','HOOK-SOLE-AGENT',
   'HOOK-INBOUND-FLOOR','HOOK-CALLER-AUTH','HOOK-CALLBACK-ROLLBACK','HOOK-ACTUAL-RECEIPT',
@@ -16,9 +18,31 @@ const legacyClosedIds = ['HOOK-FRESH-INITIAL','HOOK-FACTORY-CREATION','HOOK-SOLE
 export const disclosures = ['evidence/claim-matrix.md', 'evidence/known-limitations.md',
   'evidence/trust12/release-notes.md'];
 export const implementationDisclosures = [...disclosures, 'evidence/trust12/README.md'];
+const generalRuntimeContracts = {
+  NATIVE: ['TrustToken'],
+  PARTIAL: ['ERC3643TrustAdapter', 'ProfileGovernor'],
+  HOOK: ['ERC3643HookAdapter', 'ERC3643HookGovernor', 'ERC3643HookCompliance', 'ERC3643HookFactory'],
+};
+const approvedScopeHashes = {
+  NATIVE: 'b85536029cce8a0dd4cf7e41ee9960c6401c7e27ed15f95063d1960fbc9eed28',
+  PARTIAL: 'f23dff48dac5a56ae92a1058c22bd264d752c285540b69d9188d82cdc57b9476',
+  HOOK: '1811e1c8d30167502cbc8cc8ffa9c54eea02875b50d83d502ba8c8364a7a01d7',
+};
 const nonempty = value => typeof value === 'string' && value.trim().length > 0;
 const sameSet = (a, b) => Array.isArray(a) && new Set(a).size === a.length
   && encoded([...a].sort()) === encoded([...b].sort());
+
+export function withoutIsabelleComments(source) {
+  let depth = 0, code = '';
+  for (let i = 0; i < source.length; i++) {
+    const pair = source.slice(i, i + 2);
+    if (pair === '(*') { depth++; i++; continue; }
+    if (pair === '*)' && depth > 0) { depth--; i++; continue; }
+    if (depth === 0) code += source[i];
+  }
+  check(depth === 0, 'unclosed Isabelle proof audit comment');
+  return code;
+}
 
 function reference(root, ref, label) {
   check(ref && nonempty(ref.path) && /^[a-f0-9]{64}$/.test(ref.sha256), `missing ${label} reference`);
@@ -82,15 +106,111 @@ function exception(root, row) {
   for (const path of disclosures) check(read(root, path).toString('utf8').includes(e.disclosure), `missing exception disclosure: ${path}`);
 }
 
+function verifiedGeneralLink(root, row, profile, policy) {
+  const proof = row.generalProofEvidence;
+  check(proof?.status === 'PASS_GENERAL_RUNTIME_LINK' && proof.profile === profile
+    && nonempty(proof.theoremName) && nonempty(proof.formalSession)
+    && proof.theoremName.startsWith(`${profile.toLowerCase()}_general_runtime_link`)
+    && sameSet(Object.keys(proof.references ?? {}),
+      ['execution','formalProof','positive','negative','compiledConsumer']),
+  `general runtime link lacks a verified proof contract: ${row.id}`);
+  const refs = proof.references;
+  check(new Set(Object.values(refs).map(ref => ref.path)).size === 5
+    && refs.formalProof.path === 'evidence/isabelle-results-v3.json',
+  `general runtime link evidence roles or formal receipt drift: ${row.id}`);
+  for (const ref of Object.values(refs)) reference(root, ref, 'general runtime link');
+  const runtimeIdentity = json(root, 'evidence/trust12/runtime-identity.json');
+  for (const input of runtimeIdentity.sourceInputs) reference(root, input, 'general runtime source');
+  const expectedRuntimes = Object.fromEntries(generalRuntimeContracts[profile].map(name =>
+    [name, runtimeIdentity.runtimes[name]?.runtimeSha256]));
+  check(Object.values(expectedRuntimes).every(hash => /^[a-f0-9]{64}$/.test(hash))
+    && encoded(proof.runtimeSha256ByContract) === encoded(expectedRuntimes)
+    && proof.sourceInventorySha256 === sha256(encoded(runtimeIdentity.sourceInputs))
+    && proof.abiSha256 === sha256(read(root, 'spec/generated/kernel-v2-abi.json'))
+    && proof.scopeSha256 === sha256(policy.profileScopes[profile])
+    && proof.conditionSha256 === sha256(row.abstractCondition),
+  `general runtime link final input or declared domain drift: ${row.id}`);
+  const formal = json(root, refs.formalProof.path);
+  checkLocalReceiptProvenance(root, formal, 'local-windows-isabelle');
+  validateFormalIdentity(root, formal.formalSource);
+  const replay = json(root, 'evidence/trust12/formal-build-replay.json');
+  const generalAdmission = sha256(encoded({baseAdmissionDigest:replay.admissionDigest,
+    generalRuntimeLinks:replay.generalRuntimeLinks}));
+  check(replay.status === 'PASS' && replay.processExit === 0
+    && replay.admissionDigest === formalAdmissionDigest(replay)
+    && formal.admissionDigest === replay.admissionDigest
+    && encoded(replay.formalSource) === encoded(formal.formalSource)
+    && encoded(replay.sessions) === encoded(formal.sessions)
+    && encoded(replay.generalRuntimeLinks) === encoded(formal.generalRuntimeLinks)
+    && replay.generalRuntimeLinkAdmissionDigest === generalAdmission
+    && formal.generalRuntimeLinkAdmissionDigest === generalAdmission
+    && proof.generalRuntimeLinkAdmissionDigest === generalAdmission,
+  `general runtime link has no admitted current formal execution: ${row.id}`);
+  const session = formal.sessions?.find(item => item.name === proof.formalSession);
+  const admitted = formal.generalRuntimeLinks?.[profile];
+  check(formal.status === 'PASS' && formal.checks?.oracleDependencyCount === 0
+    && formal.formalSource.sessions?.includes(proof.formalSession)
+    && session?.status === 'PASS' && session.proofExport === 'PASS' && session.oracleDependencies === 0
+    && admitted?.status === 'PASS_KERNEL_CHECKED_GENERAL_RUNTIME_LINK'
+    && admitted.theoremName === proof.theoremName && admitted.formalSession === proof.formalSession
+    && admitted.exportSha256 === session.exportSha256 && admitted.oracleDependencies === 0
+    && admitted.scopeSha256 === proof.scopeSha256
+    && Array.isArray(admitted.auditTheorems) && admitted.auditTheorems.includes(proof.theoremName)
+    && encoded(admitted.runtimeSha256ByContract) === encoded(expectedRuntimes),
+  `general runtime link has no admitted Isabelle export: ${row.id}`);
+  for (const path of [admitted.sourcePath, admitted.auditPath]) {
+    check(typeof path === 'string' && path.startsWith('formal/isabelle/') && !path.includes('..')
+      && formal.formalSource.inputs.some(item => item.path === path && item.sha256 === sha256(read(root, path))),
+    `general runtime link formal source is not in the admitted build: ${row.id}`);
+  }
+  check(withoutIsabelleComments(read(root, admitted.auditPath).toString('utf8'))
+    .includes(`@{thm ${proof.theoremName}}`),
+    `general runtime link theorem is outside the proof audit: ${row.id}`);
+  for (const role of ['execution','positive','negative','compiledConsumer']) {
+    const record = json(root, refs[role].path);
+    check(record.schema === 'trust12-general-runtime-link-evidence-v1' && record.role === role
+      && record.profile === profile && record.sourceInventorySha256 === proof.sourceInventorySha256
+      && record.abiSha256 === proof.abiSha256 && record.scopeSha256 === proof.scopeSha256
+      && encoded(record.runtimeSha256ByContract) === encoded(expectedRuntimes)
+      && record.proofExportSha256 === session.exportSha256
+      && record.status === (role === 'negative' ? 'KILLED' : 'PASS'),
+    `general runtime link ${role} is not bound to the admitted execution: ${row.id}`);
+    if (role === 'execution') check(record.machineChecked === true && record.acceptedRuns > 0,
+      `general runtime link has no checked execution: ${row.id}`);
+    if (role === 'positive') check(record.activated === true,
+      `general runtime link positive branch did not activate: ${row.id}`);
+    if (role === 'negative') check(record.sameDomain === true && record.consumerRemovalKilled === true,
+      `general runtime link has no same-domain consumer-removal negative: ${row.id}`);
+    if (role === 'compiledConsumer') check(record.compiledConsumption === true,
+      `general runtime link has no compiled consumer: ${row.id}`);
+  }
+}
+
+export function verifiedCentralCompletion(endToEnd) {
+  const centralRows = new Map(endToEnd.rows?.map(row => [row.id, row]) ?? []);
+  const centralAssumptions = new Map(endToEnd.assumptions?.map(item => [item.id, item]) ?? []);
+  return endToEnd.closure?.status === 'COMPLETE'
+    && sameSet(endToEnd.closure?.profileCoverage, profiles)
+    && ['NAT-E2E-01','ADP-E2E-01'].every(id => centralRows.get(id)?.status === 'CLOSED')
+    && ['A-RUNTIME-LINK','A-RUNTIME-LINK-SPEC'].every(id => centralAssumptions.get(id)?.status === 'DISCHARGED')
+    && endToEnd.rows?.every(row => !['CURRENT-MANDATORY','SUCCESSOR-MANDATORY'].includes(row.status));
+}
+
 export function verifyTrust12Policy(root) {
   const policy = json(root, 'evidence/trust12/release-policy.json');
   const ledger = json(root, 'evidence/trust12/obligation-ledger.json');
-  check(policy.schema === 'trust12-release-policy-v1' && ledger.schema === 'trust12-obligation-ledger-v2', 'release policy schema');
+  check(policy.schema === 'trust12-release-policy-v2' && ledger.schema === 'trust12-obligation-ledger-v2', 'release policy schema');
   check(policy.approval?.kind === 'RELEASE_SCOPE_RESET' && policy.approval.approvedBy === 'Jay Kim'
     && policy.approval.date === '2026-09-13' && nonempty(policy.approval.userInstruction), 'missing scope-reset approval');
-  check(policy.generalRuntimeLinkRequiredForRelease === false && policy.parserDevelopment === 'PRESERVE_ONLY'
+  check(policy.completionDirection?.kind === 'TRUST12_COMPLETION_DIRECTION'
+    && policy.completionDirection.approvedBy === 'Jay Kim' && policy.completionDirection.date === '2026-09-25'
+    && nonempty(policy.completionDirection.userInstruction), 'current TRUST 1.2 completion direction missing');
+  check(policy.generalRuntimeLinkRequiredForRelease === true && policy.parserDevelopment === 'ACTIVE_FOR_TRUST12'
     && policy.nativeProbe?.automaticBoundedClosure === false
     && policy.nativeProbe?.decisionAuthority === 'Jay Kim', 'release policy boundary drift');
+  check(profiles.every(profile => nonempty(policy.profileScopes?.[profile])
+    && sha256(policy.profileScopes[profile]) === approvedScopeHashes[profile]),
+  'general profile scope missing or narrowed');
   for (const name of ['isabelle', 'kevmCommit', 'kCommit', 'koreCommit', 'z3', 'solc', 'kontrol', 'foundry', 'schedule', 'certora'])
     check(nonempty(policy.toolchain?.[name]), `missing pinned tool ${name}`);
   reference(root, policy.toolchainSource, 'TCB source');
@@ -111,9 +231,9 @@ export function verifyTrust12Policy(root) {
     && nonempty(policy.certoraVersionPolicy), 'Certora tool version differs from current receipt');
   const rows = new Map(ledger.obligations.map(row => [row.id, row]));
   check(rows.size === ledger.obligations.length, 'duplicate obligation id');
-  check(sameSet([...rows.keys()], [...legacyClosedIds, ...mandatoryIds, ...researchIds])
+  check(sameSet([...rows.keys()], [...legacyClosedIds, ...mandatoryIds, ...generalIds])
     && legacyClosedIds.every(id => rows.get(id)?.status === 'CLOSED'), 'named obligation inventory drift');
-  const allowed = ['CLOSED', 'CURRENT-MANDATORY', 'RESEARCH-RESIDUAL', 'OPEN-SHIPPING-EXCEPTION'];
+  const allowed = ['CLOSED', 'CURRENT-MANDATORY', 'OPEN-SHIPPING-EXCEPTION'];
   for (const row of rows.values()) {
     check(allowed.includes(row.status), `unknown status: ${row.id}`);
     if (row.status !== 'OPEN-SHIPPING-EXCEPTION') check(row.shippingException == null, 'shipping approval attached to non-exception row');
@@ -121,12 +241,23 @@ export function verifyTrust12Policy(root) {
       check(!/pending/i.test(row.positiveActivation) && !/pending/i.test(row.consumerRemovalNegative), `closed row has pending evidence: ${row.id}`);
     }
   }
-  check(researchIds.every(id => rows.get(id)?.status === 'RESEARCH-RESIDUAL'), 'runtime research residual removed or promoted');
-  for (const id of researchIds) {
+  for (const id of generalIds) {
     const row = rows.get(id);
-    check(row.requiredForRelease === false && nonempty(row.abstractCondition) && row.proofCompleted === false, 'research boundary drift');
+    check(['CURRENT-MANDATORY', 'CLOSED'].includes(row.status)
+      && row.requiredForRelease === true && row.requiredForTrust12Completion === true
+      && nonempty(row.abstractCondition), `general runtime link removed: ${id}`);
     for (const key of ['receivingProcess', 'responsibleArtifact', 'closureEvidence', 'reopenCondition'])
-      check(nonempty(row[key]), `research residual missing ${key}: ${id}`);
+      check(nonempty(row[key]), `general runtime link missing ${key}: ${id}`);
+    if (row.status === 'CURRENT-MANDATORY') {
+      check(row.proofCompleted === false && row.generalProofEvidence == null,
+        `unproved general runtime link claims completion: ${id}`);
+    } else {
+      check(row.proofCompleted === true, `general runtime link proof flag missing: ${id}`);
+      verifiedGeneralLink(root, row, id.slice('RESEARCH-RUNTIME-LINK-'.length), policy);
+      for (const key of ['positiveActivation','consumerRemovalNegative','compiledConsumer'])
+        check(nonempty(row[key]) && !/pending|bounded instances only/i.test(row[key]),
+          `general runtime link has no completed ${key}: ${id}`);
+    }
   }
   for (const p of profiles) {
     const row = rows.get(`RUNTIME-LINK-${p}`);
@@ -155,18 +286,55 @@ export function verifyTrust12Policy(root) {
   }
   const pending = [...rows.values()].filter(r => r.status === 'CURRENT-MANDATORY').map(r => r.id).sort();
   const exceptions = [...rows.values()].filter(r => r.status === 'OPEN-SHIPPING-EXCEPTION');
-  check(pending.every(id => mandatoryIds.includes(id)) && exceptions.every(r => mandatoryIds.includes(r.id)), 'unexpected release obligation');
+  check(pending.every(id => [...mandatoryIds, ...generalIds].includes(id))
+    && exceptions.every(r => mandatoryIds.includes(r.id)), 'unexpected release obligation');
   check(sameSet(ledger.centralClosure.currentMandatory, pending), 'central mandatory list differs from obligation statuses');
-  check(sameSet(ledger.centralClosure.researchResiduals, researchIds), 'central research list drift');
+  check(sameSet(ledger.centralClosure.researchResiduals, []), 'general runtime link mislabeled as research residual');
   check(sameSet(ledger.centralClosure.shippingExceptions, exceptions.map(r => r.id)), 'central exception list drift');
-  check(ledger.centralClosure.status === 'INCOMPLETE', 'research residual is not end-to-end completion');
+  const assurance = ledger.centralClosure.independentAssurance;
+  const audited = assurance?.status === 'PASS_FRESH_ASSURANCE' && assurance?.report &&
+    (() => {
+      check(assurance.report.path.startsWith('evidence/trust12/assurance/'),
+        'fresh assurance report is outside its declared evidence area');
+      reference(root, assurance.report, 'fresh assurance');
+      const report = json(root, assurance.report.path);
+      const generalDigests = Object.fromEntries(profiles.map(profile => {
+        const proof = rows.get(`RESEARCH-RUNTIME-LINK-${profile}`).generalProofEvidence;
+        return [profile, proof ? sha256(encoded(proof)) : null];
+      }));
+      const finalIdentities = {
+        formalRootSha256: json(root, 'evidence/isabelle-results-v3.json').formalSource.rootSha256,
+        runtimeIdentitySha256: sha256(read(root, 'evidence/trust12/runtime-identity.json')),
+        abiSha256: sha256(read(root, 'spec/generated/kernel-v2-abi.json')),
+        endToEndLedgerSha256: sha256(read(root, 'evidence/end-to-end-refinement/obligation-ledger-v3.json')),
+        generalProofDigests: generalDigests,
+      };
+      check(report.schema === 'trust12-final-assurance-v1' && report.status === 'PASS_FRESH_ASSURANCE'
+        && report.independentOfBuilding === true && nonempty(report.reviewer)
+        && report.reproduction?.status === 'PASS' && report.consumerRemoval?.status === 'PASS'
+        && Object.values(generalDigests).every(nonempty)
+        && encoded(report.finalIdentities) === encoded(finalIdentities),
+      'fresh assurance report is not independently reproduced on the final inputs');
+      return true;
+    })();
+  const endToEnd = json(root, 'evidence/end-to-end-refinement/obligation-ledger-v3.json');
+  const endToEndClosed = verifiedCentralCompletion(endToEnd);
+  const complete = pending.length === 0 && exceptions.length === 0
+    && mandatoryIds.every(id => rows.get(id).status === 'CLOSED')
+    && generalIds.every(id => rows.get(id).status === 'CLOSED')
+    && endToEndClosed === true && audited === true;
+  check(ledger.centralClosure.status === (complete ? 'COMPLETE' : 'INCOMPLETE'), 'central completion status drift');
   for (const row of exceptions) exception(root, row);
   const readiness = pending.length ? 'PENDING' : exceptions.length ? 'READY_WITH_EXCEPTIONS' : 'EVIDENCE_READY';
-  check(ledger.releaseAssessment?.status === readiness && ledger.releaseAssessment.fullRefinementComplete === false, 'release readiness drift');
+  check(ledger.releaseAssessment?.status === readiness
+    && ledger.releaseAssessment.fullRefinementComplete === complete, 'release readiness drift');
   check(ledger.status === (pending.length ? 'IN_PROGRESS' : exceptions.length ? 'EVIDENCE_COMPLETE_WITH_EXCEPTIONS' : 'EVIDENCE_COMPLETE'), 'ledger status drift');
   for (const path of disclosures) {
     const text = read(root, path).toString('utf8');
-    check(text.includes('mapped implementation evidence; end-to-end refinement incomplete'), `missing limited claim: ${path}`);
+    const incompletePhrase = text.includes('mapped implementation evidence; end-to-end refinement incomplete');
+    const completePhrase = text.includes('end-to-end refinement complete within the declared profiles');
+    check(complete ? completePhrase && !incompletePhrase : incompletePhrase && !completePhrase,
+      `claim boundary drift: ${path}`);
     check(text.includes('TRUST 1.2 shipping exceptions: none.') === (exceptions.length === 0), `exception summary drift: ${path}`);
   }
   const profileRows = profiles.map(profile => rows.get(`RUNTIME-LINK-${profile}`));
@@ -176,5 +344,6 @@ export function verifyTrust12Policy(root) {
   for (const path of implementationDisclosures)
     check(read(root, path).toString('utf8').includes(gradeDisclosure), `profile grade disclosure drift: ${path}`);
   return { status: 'PASS_POLICY_CONSISTENCY', releaseReadiness: readiness, currentMandatory: pending,
-    researchResiduals: researchIds, shippingExceptions: exceptions.map(r => r.id), fullRefinementComplete: false };
+    generalRuntimeLinkMandatory: generalIds.filter(id => rows.get(id).status !== 'CLOSED'),
+    researchResiduals: [], shippingExceptions: exceptions.map(r => r.id), fullRefinementComplete: complete };
 }

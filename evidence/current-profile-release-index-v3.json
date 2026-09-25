@@ -425,7 +425,7 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "2539ea9b9cd736cb398dec59e0f626c2806d50a2151141b0b4bd7926d3181fbf"
+        "sha256": "b0803f0568840ab4c8d2cb6206ea2a5eda13c314cc2e21a9c9fe62853a1941f1"
       }
     },
     "runtime": {
@@ -458,28 +458,31 @@
     "trust12Required": {
       "centralClosure": "INCOMPLETE",
       "currentMandatory": [
-        "NATIVE-SYMBOLIC-FREEZE"
+        "NATIVE-SYMBOLIC-FREEZE",
+        "RESEARCH-RUNTIME-LINK-HOOK",
+        "RESEARCH-RUNTIME-LINK-NATIVE",
+        "RESEARCH-RUNTIME-LINK-PARTIAL"
       ],
       "evidence": [
         {
           "path": "evidence/trust12/release-policy.json",
-          "sha256": "56379b8d6057d7bcb4dbc6160e9745e1fb6989a2efa15430eb8f0afaf5d4b090"
+          "sha256": "5bc93c643afdac4e2faeb3fca12e75ca90ac26f272304c0a6f661a35d5e5a8e4"
         },
         {
           "path": "evidence/trust12/release-notes.md",
-          "sha256": "d42e4e8c81d79cdca512fe1fd50909c6c4fb244abd1b2a896576d70545a4b3e8"
+          "sha256": "3762d1a46c0cdea532d09e900028db372bc7dea0f46042c6c9bf1084e1e1fa50"
         },
         {
           "path": "evidence/claim-matrix.md",
-          "sha256": "1c4a8fbafcd3dd222215834694ce30225430d04ee94fc95fade6c0a5e7298462"
+          "sha256": "286d541e291b0bf09043f554158cd27c653d3dc2db9e668668ec6cd87962ec88"
         },
         {
           "path": "evidence/known-limitations.md",
-          "sha256": "e21c553ac17274b72b1cea4d65bbd1584dc6e79d1decd7727d05140db91fa4e7"
+          "sha256": "7b0858b896cce614d93137b633524f0203bd77109fa03e2cbde94fcfab7a9ea6"
         },
         {
           "path": "evidence/trust12/obligation-ledger.json",
-          "sha256": "f15aab2aef586b2b42defbd1d346cbbde11f903a8261f63b96954980012444b2"
+          "sha256": "236ab5db35dcf9bea406a6a64f4d63c77021a453806869799c1fbaab8648bbd3"
         },
         {
           "path": "evidence/trust12/runtime-identity.json",
@@ -487,7 +490,7 @@
         },
         {
           "path": "evidence/trust12/runtime-link-source-blockers.md",
-          "sha256": "cb9037c046e9bf495f4f32def9eb056d97434202c36e99ddb5631a67c1baba0f"
+          "sha256": "817b2d51a312cd2cd0d829f2a889f2327ecca8570546838fc8dcd8fb03eb265d"
         },
         {
           "path": "evidence/trust12/independent-audit.md",
@@ -579,16 +582,21 @@
         },
         {
           "path": "evidence/trust12/input-seal.json",
-          "sha256": "0a122730c192000e968fe2d24b5a68e07c5ea80c2c249d5c960c10771280b423"
+          "sha256": "f85ceafabb167695fdeac55dda9623f08cac9721b57bdf3b662dc18449288e1f"
         }
       ],
       "fullRefinementComplete": false,
+      "generalRuntimeLinkMandatory": [
+        "RESEARCH-RUNTIME-LINK-HOOK",
+        "RESEARCH-RUNTIME-LINK-NATIVE",
+        "RESEARCH-RUNTIME-LINK-PARTIAL"
+      ],
       "models": {
         "linkedRun": "PASS_ABSTRACT_MODEL",
         "preservation": "PASS_ABSTRACT_MODEL",
         "runtimeConnection": "CONDITIONAL"
       },
-      "nonclaim": "Required evidence is present and bound to the current inputs. Policy consistency is not proof completion or shipping approval; the general runtime link remains a research residual.",
+      "nonclaim": "Required development evidence is bound to current inputs. General runtime-to-model correspondence remains mandatory and unproved; policy consistency is not proof completion or shipping approval.",
       "profiles": {
         "hook": {
           "functionalConformance": "PASS_PINNED_FRESH_TREX",
@@ -607,12 +615,8 @@
         }
       },
       "releaseReadiness": "PENDING",
-      "researchResiduals": [
-        "RESEARCH-RUNTIME-LINK-HOOK",
-        "RESEARCH-RUNTIME-LINK-NATIVE",
-        "RESEARCH-RUNTIME-LINK-PARTIAL"
-      ],
-      "scope": "Evidence consistency; refinement remains incomplete",
+      "researchResiduals": [],
+      "scope": "Development evidence consistency; refinement remains incomplete",
       "shippingExceptions": [],
       "status": "PASS",
       "symbolicBackendComparison": {
@@ -687,28 +691,31 @@
   "trust12Required": {
     "centralClosure": "INCOMPLETE",
     "currentMandatory": [
-      "NATIVE-SYMBOLIC-FREEZE"
+      "NATIVE-SYMBOLIC-FREEZE",
+      "RESEARCH-RUNTIME-LINK-HOOK",
+      "RESEARCH-RUNTIME-LINK-NATIVE",
+      "RESEARCH-RUNTIME-LINK-PARTIAL"
     ],
     "evidence": [
       {
         "path": "evidence/trust12/release-policy.json",
-        "sha256": "56379b8d6057d7bcb4dbc6160e9745e1fb6989a2efa15430eb8f0afaf5d4b090"
+        "sha256": "5bc93c643afdac4e2faeb3fca12e75ca90ac26f272304c0a6f661a35d5e5a8e4"
       },
       {
         "path": "evidence/trust12/release-notes.md",
-        "sha256": "d42e4e8c81d79cdca512fe1fd50909c6c4fb244abd1b2a896576d70545a4b3e8"
+        "sha256": "3762d1a46c0cdea532d09e900028db372bc7dea0f46042c6c9bf1084e1e1fa50"
       },
       {
         "path": "evidence/claim-matrix.md",
-        "sha256": "1c4a8fbafcd3dd222215834694ce30225430d04ee94fc95fade6c0a5e7298462"
+        "sha256": "286d541e291b0bf09043f554158cd27c653d3dc2db9e668668ec6cd87962ec88"
       },
       {
         "path": "evidence/known-limitations.md",
-        "sha256": "e21c553ac17274b72b1cea4d65bbd1584dc6e79d1decd7727d05140db91fa4e7"
+        "sha256": "7b0858b896cce614d93137b633524f0203bd77109fa03e2cbde94fcfab7a9ea6"
       },
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "f15aab2aef586b2b42defbd1d346cbbde11f903a8261f63b96954980012444b2"
+        "sha256": "236ab5db35dcf9bea406a6a64f4d63c77021a453806869799c1fbaab8648bbd3"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -716,7 +723,7 @@
       },
       {
         "path": "evidence/trust12/runtime-link-source-blockers.md",
-        "sha256": "cb9037c046e9bf495f4f32def9eb056d97434202c36e99ddb5631a67c1baba0f"
+        "sha256": "817b2d51a312cd2cd0d829f2a889f2327ecca8570546838fc8dcd8fb03eb265d"
       },
       {
         "path": "evidence/trust12/independent-audit.md",
@@ -808,16 +815,21 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "0a122730c192000e968fe2d24b5a68e07c5ea80c2c249d5c960c10771280b423"
+        "sha256": "f85ceafabb167695fdeac55dda9623f08cac9721b57bdf3b662dc18449288e1f"
       }
     ],
     "fullRefinementComplete": false,
+    "generalRuntimeLinkMandatory": [
+      "RESEARCH-RUNTIME-LINK-HOOK",
+      "RESEARCH-RUNTIME-LINK-NATIVE",
+      "RESEARCH-RUNTIME-LINK-PARTIAL"
+    ],
     "models": {
       "linkedRun": "PASS_ABSTRACT_MODEL",
       "preservation": "PASS_ABSTRACT_MODEL",
       "runtimeConnection": "CONDITIONAL"
     },
-    "nonclaim": "Required evidence is present and bound to the current inputs. Policy consistency is not proof completion or shipping approval; the general runtime link remains a research residual.",
+    "nonclaim": "Required development evidence is bound to current inputs. General runtime-to-model correspondence remains mandatory and unproved; policy consistency is not proof completion or shipping approval.",
     "profiles": {
       "hook": {
         "functionalConformance": "PASS_PINNED_FRESH_TREX",
@@ -836,11 +848,7 @@
       }
     },
     "releaseReadiness": "PENDING",
-    "researchResiduals": [
-      "RESEARCH-RUNTIME-LINK-HOOK",
-      "RESEARCH-RUNTIME-LINK-NATIVE",
-      "RESEARCH-RUNTIME-LINK-PARTIAL"
-    ],
+    "researchResiduals": [],
     "shippingExceptions": [],
     "status": "PASS_CONSISTENT_DEVELOPMENT",
     "symbolicBackendComparison": {
