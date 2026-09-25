@@ -31,8 +31,11 @@
   defines canonical form from the canonical decoders of the kernel, whatever
   the bridge decoder accepts, keeps `alpha_transaction` for a canonical request
   that the bridge decodes, and relates every other request to a full-state
-  stutter with unspecified revert data; both kinds of the out-of-specification
-  branch are inhabited. The runtime bridge is regenerated for the new kernel
+  stutter with unspecified revert data. Both branches are inhabited: the
+  out-of-specification branch by a call with a typed command selector and a
+  nonzero call value and by a zero-value call whose calldata is only that
+  selector, and the decoded branch by a rejected request in canonical form
+  under a witness bridge. The runtime bridge is regenerated for the new kernel
   schema text. No contract source, selector, or identifier changes.
 
 - Name the three endpoints under `implementation/` in the kernel status text,
