@@ -9,7 +9,7 @@ theory TRUST_Obligation_Ledger_Generated
 begin
 
 definition obligation_ledger_sha256 :: string where
-  "obligation_ledger_sha256 = ''a6533acb831dca51eb6fc29114da7ddced094d2fa062cde41e4a64938262e6b1''"
+  "obligation_ledger_sha256 = ''8b620ada0d8a297be0a5dd4771e288995dc1189bf67098792648dd792745c399''"
 
 definition obligation_ledger_bridge_schema_sha256 :: string where
   "obligation_ledger_bridge_schema_sha256 = ''8232fcb2d01c4261c9cf145c60cc0b081d26ec2a1e8d13290f74314a7fbe7dd6''"

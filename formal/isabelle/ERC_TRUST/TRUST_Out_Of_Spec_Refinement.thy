@@ -34,8 +34,10 @@ text \<open>
   executeERC7943Reversal is not a call to a typed command function and is outside runtime_execution.
   A request in canonical form that the bridge decoder does not decode is also related only to the
   out-of-specification branch, so a runtime linked by this relation executes a command only when the
-  kernel and the bridge agree that the request is one; a discharge of runtime_link_spec therefore
-  also needs a bridge decoder that decodes every request in canonical form.  The theorems
+  kernel and the bridge agree that the request is one.  By out_of_spec_request_is_a_full_state_stutter
+  the relation holds for such a request only as a full-state stutter, so a discharge of
+  runtime_link_spec also needs the bridge decoder to decode every request in canonical form that the
+  runtime commits, or on which it makes an external call or emits a log.  The theorems
   action_request_witness_is_canonical and reversal_request_witness_is_canonical below show that
   canonical form is satisfiable for both shapes.
 
@@ -48,10 +50,11 @@ text \<open>
 
   transaction_post_world is read as the world after the frame of the endpoint call has returned, and a
   discharge of runtime_link_spec must record executions at that level.  At that level a reverted call
-  restores the whole world, so the world equation of the out-of-specification branch implies the
-  full-state stutter of the proposal, which constrains only the observable state of the endpoint.  It
-  is not a statement about the enclosing transaction, whose sender nonce and gas accounting change
-  even when the call reverts.
+  restores the whole world.  The full-state stutter of the proposal constrains only the endpoint: its
+  observable state does not change and it emits no event.  The world equation of the
+  out-of-specification branch gives the first part and its empty log list gives the second.  The
+  world equation is not a statement about the enclosing transaction, whose sender nonce and gas
+  accounting change even when the call reverts.
 
   runtime_execution ranges over calls to the typed command functions.  A call to another function of
   the endpoint is outside this relation, and the result of deriveActionId and deriveReversalId for a
@@ -301,7 +304,9 @@ section \<open>Canonical form is satisfiable\<close>
 
 text \<open>
   Positive controls: a request built from a typed entrypoint selector and zero words is in canonical
-  form, so the canonical branch of alpha_transaction_spec is not empty by construction.
+  form, so canonical form is satisfiable for both shapes.  Canonical form alone does not inhabit the
+  decoded branch of alpha_transaction_spec, which also needs the bridge to decode the request;
+  decoded_branch_is_inhabited below exhibits an execution of that branch for a witness bridge.
 \<close>
 
 lemma calldata_bytes_nat_replicate_zero:
@@ -372,7 +377,7 @@ proof -
     using BYTES LEN SEL DECODE by (simp add: kernel_canonical_calldata_def)
 qed
 
-theorem canonical_request_is_inhabited:
+theorem request_in_canonical_form_is_inhabited:
   "\<exists>execution. request_in_canonical_form execution"
 proof -
   define execution where "execution =
@@ -477,7 +482,69 @@ theorem out_of_spec_request_never_succeeds:
   using assms
   by (simp add: alpha_transaction_spec_def out_of_spec_stutter_def transaction_committed_def)
 
+section \<open>The decoded branch is inhabited\<close>
+
+text \<open>
+  The decoded branch is alpha_transaction.  decoded_branch_is_inhabited exhibits one execution of it:
+  the action witness request with a zero call value, under a witness bridge that decodes only that
+  request and satisfies typed_decoder_sound, rejected without a state change or a log.  The witness
+  bridge is not the bridge of a deployed runtime, so the theorem shows that a request in canonical
+  form can satisfy the decoded branch, not that a deployed runtime decodes or rejects that request.
+\<close>
+
+theorem decoded_branch_is_inhabited:
+  "\<exists>manifest bridge execution abstraction command.
+     typed_decoder_sound bridge \<and>
+     request_in_canonical_form execution \<and>
+     transaction_command bridge execution = Some command \<and>
+     alpha_transaction_spec manifest bridge execution abstraction"
+proof -
+  obtain manifest configuration state where
+    ALPHA: "alpha_current manifest configuration = Some state"
+    using current_configuration_wf_is_inhabited by blast
+  define command :: trust_typed_command where "command = TRUST_Forward undefined"
+  define bridge :: trust_transaction_bridge where "bridge =
+    \<lparr>bridge_decode_calldata =
+       (\<lambda>calldata. if calldata = action_request_witness then Some command else None),
+     bridge_receipt_log = undefined, bridge_return_receipt_hash = undefined,
+     bridge_external_trace_ok = undefined, bridge_committed_receipt = undefined\<rparr>"
+  define execution where "execution =
+    \<lparr>transaction_pre = configuration, transaction_sender = 0, transaction_value = 0,
+     transaction_time = 0, transaction_chain = 0, transaction_gas_limit = 0,
+     transaction_calldata = action_request_witness, transaction_external_calls = [],
+     transaction_phase = TRUST_Idle, transaction_result = TRUST_Return_Rejection [],
+     transaction_post_world = current_world configuration, transaction_raw_logs = []\<rparr>"
+  define abstraction where "abstraction =
+    \<lparr>abstraction_pre_state = state, abstraction_post_state = state,
+     abstraction_sender = 0, abstraction_time = 0,
+     abstraction_command = Some command, abstraction_outcome = TRUST_Abstract_Rejected,
+     abstraction_forward_witness = None, abstraction_reversal_witness = None,
+     abstraction_effect_logs = []\<rparr>"
+  have LENGTH: "length action_request_witness = action_calldata_length"
+    by (simp add: action_request_witness_def action_calldata_length_def action_word_count_def)
+  have SOUND: "typed_decoder_sound bridge"
+    using LENGTH by (auto simp: typed_decoder_sound_def bridge_def command_def split: if_splits)
+  have CANONICAL: "request_in_canonical_form execution"
+    using action_request_witness_is_canonical
+    by (simp add: request_in_canonical_form_def execution_def)
+  have COMMAND: "transaction_command bridge execution = Some command"
+    using CANONICAL by (simp add: transaction_command_def bridge_def execution_def)
+  have POST: "transaction_post_configuration execution = transaction_pre execution"
+    by (rule unchanged_world_keeps_the_configuration) (simp add: execution_def)
+  have DECODED: "alpha_transaction manifest bridge execution abstraction"
+    using ALPHA POST by (simp add: alpha_transaction_def execution_def abstraction_def bridge_def)
+  have SPEC: "alpha_transaction_spec manifest bridge execution abstraction"
+    using COMMAND DECODED by (simp add: alpha_transaction_spec_def)
+  show ?thesis using SOUND CANONICAL COMMAND SPEC by blast
+qed
+
 section \<open>The out-of-specification branch is inhabited\<close>
+
+text \<open>
+  Both witnesses call a typed command function: the first carries the action witness request with a
+  nonzero call value, the second a zero call value and calldata that is only the action entrypoint
+  selector.
+\<close>
 
 definition out_of_spec_witness_execution ::
   "current_trust_configuration \<Rightarrow> trust_transaction_execution"
@@ -485,18 +552,21 @@ where
   "out_of_spec_witness_execution configuration =
      \<lparr>transaction_pre = configuration, transaction_sender = 0, transaction_value = 1,
       transaction_time = 0, transaction_chain = 0, transaction_gas_limit = 0,
-      transaction_calldata = [], transaction_external_calls = [], transaction_phase = TRUST_Idle,
-      transaction_result = TRUST_Return_Malformed [],
+      transaction_calldata = action_request_witness, transaction_external_calls = [],
+      transaction_phase = TRUST_Idle, transaction_result = TRUST_Return_Malformed [],
       transaction_post_world = current_world configuration, transaction_raw_logs = []\<rparr>"
 
 definition out_of_spec_zero_value_witness_execution ::
   "current_trust_configuration \<Rightarrow> trust_transaction_execution"
 where
   "out_of_spec_zero_value_witness_execution configuration =
-     (out_of_spec_witness_execution configuration)\<lparr>transaction_value := 0\<rparr>"
+     (out_of_spec_witness_execution configuration)
+       \<lparr>transaction_value := 0, transaction_calldata := [47, 78, 7, 115]\<rparr>"
 
 theorem out_of_spec_branch_is_inhabited:
   "\<exists>manifest bridge execution abstraction.
+     transaction_value execution \<noteq> 0 \<and>
+     calldata_selector (transaction_calldata execution) \<in> action_selectors \<and>
      transaction_command bridge execution = None \<and>
      alpha_transaction_spec manifest bridge execution abstraction"
 proof -
@@ -510,6 +580,11 @@ proof -
      abstraction_command = None, abstraction_outcome = TRUST_Abstract_Malformed,
      abstraction_forward_witness = None, abstraction_reversal_witness = None,
      abstraction_effect_logs = []\<rparr>"
+  have VALUE: "transaction_value execution \<noteq> 0"
+    by (simp add: execution_def out_of_spec_witness_execution_def)
+  have SELECTOR: "calldata_selector (transaction_calldata execution) \<in> action_selectors"
+    using action_request_witness_is_canonical
+    by (simp add: execution_def out_of_spec_witness_execution_def action_selectors_def)
   have NONE: "transaction_command undefined execution = None"
     by (simp add: transaction_command_def request_in_canonical_form_def execution_def
         out_of_spec_witness_execution_def)
@@ -519,12 +594,13 @@ proof -
         out_of_spec_witness_execution_def transaction_committed_def)
   have SPEC: "alpha_transaction_spec manifest undefined execution abstraction"
     using STUTTER NONE by (simp add: alpha_transaction_spec_def)
-  show ?thesis using NONE SPEC by blast
+  show ?thesis using VALUE SELECTOR NONE SPEC by blast
 qed
 
 theorem zero_value_out_of_spec_branch_is_inhabited:
   "\<exists>manifest bridge execution abstraction.
      transaction_value execution = 0 \<and>
+     calldata_selector (transaction_calldata execution) \<in> action_selectors \<and>
      \<not> kernel_canonical_calldata (transaction_calldata execution) \<and>
      transaction_command bridge execution = None \<and>
      alpha_transaction_spec manifest bridge execution abstraction"
@@ -541,9 +617,20 @@ proof -
      abstraction_effect_logs = []\<rparr>"
   have VALUE: "transaction_value execution = 0"
     by (simp add: execution_def out_of_spec_zero_value_witness_execution_def)
+  have SELECTOR: "calldata_selector (transaction_calldata execution) \<in> action_selectors"
+    by (simp add: execution_def out_of_spec_zero_value_witness_execution_def
+        out_of_spec_witness_execution_def calldata_selector_def calldata_bytes_nat_def
+        action_selectors_def action_entrypoint_selector_def)
   have NOT_CANONICAL: "\<not> kernel_canonical_calldata (transaction_calldata execution)"
-    by (simp add: kernel_canonical_calldata_def execution_def out_of_spec_zero_value_witness_execution_def
-        out_of_spec_witness_execution_def)
+  proof
+    assume "kernel_canonical_calldata (transaction_calldata execution)"
+    then have "length (transaction_calldata execution) = action_calldata_length \<or>
+        length (transaction_calldata execution) = reversal_calldata_length"
+      by (rule canonical_calldata_has_a_kernel_length)
+    then show False
+      by (simp add: execution_def out_of_spec_zero_value_witness_execution_def
+          out_of_spec_witness_execution_def action_calldata_length_def reversal_calldata_length_def)
+  qed
   have NONE: "transaction_command undefined execution = None"
     using NOT_CANONICAL by (rule noncanonical_calldata_is_out_of_spec)
   have STUTTER: "out_of_spec_stutter manifest execution abstraction"
@@ -553,7 +640,7 @@ proof -
         transaction_committed_def)
   have SPEC: "alpha_transaction_spec manifest undefined execution abstraction"
     using STUTTER NONE by (simp add: alpha_transaction_spec_def)
-  show ?thesis using VALUE NOT_CANONICAL NONE SPEC by blast
+  show ?thesis using VALUE SELECTOR NOT_CANONICAL NONE SPEC by blast
 qed
 
 section \<open>The revert data of an out-of-specification request is not fixed\<close>
@@ -590,6 +677,12 @@ proof -
   show ?thesis
     using out_of_spec_payload_is_unspecified[OF NONE FAILED OTHER_FAILED] SPEC by blast
 qed
+
+text \<open>
+  Besides a malformed alpha_transaction, the next theorem needs the world equation and the empty call
+  list of the out-of-specification branch, which alpha_transaction does not state for a malformed
+  outcome.
+\<close>
 
 theorem strict_malformed_branch_implies_the_out_of_spec_branch:
   assumes ALPHA: "alpha_transaction manifest bridge execution abstraction"
@@ -724,7 +817,8 @@ text \<open>
   proposal leaves unspecified for a call that is not a zero-value call with canonical calldata.
   transaction_external_calls lists the message calls to accounts other than the endpoint; a
   proxy-fronted endpoint, whose proxy runs its implementation by a DELEGATECALL, is outside this
-  theory.  No execution of the decoded branch is exhibited here; that branch is alpha_transaction.
+  theory.  The execution of the decoded branch in decoded_branch_is_inhabited uses a witness bridge;
+  it does not show that a deployed runtime decodes that request or reaches that branch.
 \<close>
 
 end

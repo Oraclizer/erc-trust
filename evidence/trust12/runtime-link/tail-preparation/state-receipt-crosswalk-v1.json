@@ -9,8 +9,8 @@
     },
     {
       "path": "evidence/end-to-end-refinement/obligation-ledger-v3.json",
-      "bytes": 166929,
-      "sha256": "a6533acb831dca51eb6fc29114da7ddced094d2fa062cde41e4a64938262e6b1"
+      "bytes": 167036,
+      "sha256": "8b620ada0d8a297be0a5dd4771e288995dc1189bf67098792648dd792745c399"
     },
     {
       "path": "evidence/end-to-end-refinement/central-closure-v3.json",
