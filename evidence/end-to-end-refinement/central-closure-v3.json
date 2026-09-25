@@ -6,6 +6,11 @@
       "status": "UNDISCHARGED"
     },
     {
+      "id": "A-RUNTIME-LINK-SPEC",
+      "statement": "pinned_runtime_refinement_spec.runtime_link_spec (formal/isabelle/ERC_TRUST/TRUST_Out_Of_Spec_Refinement.thy): every execution of a typed command function of the pinned runtime template that starts from an idle configuration satisfies alpha_transaction_spec; the treatment of a reentrant call is not formalized, and an endpoint fronted by a proxy that runs the implementation by a DELEGATECALL is outside the relation. A request in canonical form that the bridge decodes is related by alpha_transaction; every other request is a full-state stutter without a log or an external call, whatever its revert data. The assumption yields runtime_link only for executions in canonical form that the bridge decodes. This is a locale assumption. Nothing in this ledger discharges it; the malformed-input probe and the derived-identifier probe measure it concretely on one deployment of each reference endpoint (evidence/trust12/runtime-link/out-of-spec-probes-v1.json), not a proof of it.",
+      "status": "UNDISCHARGED"
+    },
+    {
       "id": "A-COMPILER",
       "statement": "solc 0.8.36 compiles the final source to the runtime templates named in the generated bridge correctly (compiler_correctness_remains_a_nonclaim). The deterministic build receipt establishes reproducibility, not correctness.",
       "status": "NONCLAIM"
@@ -66,9 +71,9 @@
   },
   "identity": {
     "bridgeBindsRuntime": true,
-    "bridgeSchemaSha256": "0dbf8a8aeac69f52d181c6d6216dce92d20a47623afba94bcc6b5d28b1f0f347",
+    "bridgeSchemaSha256": "8232fcb2d01c4261c9cf145c60cc0b081d26ec2a1e8d13290f74314a7fbe7dd6",
     "deterministicBuildRuntimeSha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1",
-    "ledgerSha256": "79592a27f332b84cac51d6387c2214f0d1612e68e396ea214c6da4a58dff36b6",
+    "ledgerSha256": "8b620ada0d8a297be0a5dd4771e288995dc1189bf67098792648dd792745c399",
     "runtimes": {
       "native": {
         "bytes": 20043,
@@ -785,11 +790,11 @@
       },
       {
         "path": "evidence/known-limitations.md",
-        "sha256": "693891bdaec7f8a6f18a27b6bb047618c30e5f9435172a139c95bb4baa840bd5"
+        "sha256": "e21c553ac17274b72b1cea4d65bbd1584dc6e79d1decd7727d05140db91fa4e7"
       },
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "5dfc7a7ebab32735a481dbfc464d45604d10c650028914b37808fde4052510cb"
+        "sha256": "f15aab2aef586b2b42defbd1d346cbbde11f903a8261f63b96954980012444b2"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -797,7 +802,7 @@
       },
       {
         "path": "evidence/trust12/runtime-link-source-blockers.md",
-        "sha256": "1c73b46de7efb1f7561bb0414ef341557c2d3a27c3d4236d0e8038fe7bf0ca15"
+        "sha256": "cb9037c046e9bf495f4f32def9eb056d97434202c36e99ddb5631a67c1baba0f"
       },
       {
         "path": "evidence/trust12/independent-audit.md",
@@ -821,11 +826,11 @@
       },
       {
         "path": "evidence/trust12/formal-build-replay.json",
-        "sha256": "ffb8dfa22df26344aa59b5361c1df667087d92b6909afe9632f463a3c1d5455f"
+        "sha256": "9a251a006272029664ddb50d8398c2dc011065151195c3dde5ef6317c54b7078"
       },
       {
         "path": "evidence/trust12/model-results.json",
-        "sha256": "702d4598d64764535bbcffb5780840fd2f24b267f3467f2a29e8f0489733c9bf"
+        "sha256": "9dd096aed9fb49c59fc11ba3b2c341f31ce2c06a29c58c20e8b21587572e5414"
       },
       {
         "path": "evidence/trust12/model-preservation-audit.md",
@@ -889,7 +894,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "5ee19d888f06f65c8eba0e8a7396aa452e59c76cdf066450f5226430827f0362"
+        "sha256": "0a122730c192000e968fe2d24b5a68e07c5ea80c2c249d5c960c10771280b423"
       }
     ],
     "fullRefinementComplete": false,

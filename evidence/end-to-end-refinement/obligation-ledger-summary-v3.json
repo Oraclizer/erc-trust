@@ -2,14 +2,14 @@
   "bridgeBindsRuntime": true,
   "bridgeSchema": {
     "path": "evidence/end-to-end-refinement/runtime-bridge-v2/schema.json",
-    "sha256": "0dbf8a8aeac69f52d181c6d6216dce92d20a47623afba94bcc6b5d28b1f0f347"
+    "sha256": "8232fcb2d01c4261c9cf145c60cc0b081d26ec2a1e8d13290f74314a7fbe7dd6"
   },
   "candidate": "0.2.0-candidate.1",
   "claim": "mapped implementation evidence; end-to-end refinement incomplete",
   "closure": "CONDITIONAL",
   "closureRecord": {
     "path": "evidence/end-to-end-refinement/central-closure-v3.json",
-    "sha256": "760215cb1c1edb92f5f729e3509e3be0e830d56587d602af33bdb5ca15374473"
+    "sha256": "01cae9d73a2b5dacafed44a50844110bb64af0af45e2c000767059d18c4554f4"
   },
   "counts": {
     "closed": 70,
@@ -22,11 +22,11 @@
   },
   "generatedTheory": {
     "path": "formal/isabelle/ERC_TRUST/TRUST_Obligation_Ledger_Generated.thy",
-    "sha256": "22d3b1c8fa15f9503fe66a932dba89b016e5372844670982868f399fde148698"
+    "sha256": "00e099e0011b99f5c7de746ed54ca26cb5a36200df62ef77896b624e14f70ad9"
   },
   "ledger": {
     "path": "evidence/end-to-end-refinement/obligation-ledger-v3.json",
-    "sha256": "79592a27f332b84cac51d6387c2214f0d1612e68e396ea214c6da4a58dff36b6"
+    "sha256": "8b620ada0d8a297be0a5dd4771e288995dc1189bf67098792648dd792745c399"
   },
   "receiptCurrency": {
     "foundry": true,
@@ -593,11 +593,11 @@
       },
       {
         "path": "evidence/known-limitations.md",
-        "sha256": "693891bdaec7f8a6f18a27b6bb047618c30e5f9435172a139c95bb4baa840bd5"
+        "sha256": "e21c553ac17274b72b1cea4d65bbd1584dc6e79d1decd7727d05140db91fa4e7"
       },
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "5dfc7a7ebab32735a481dbfc464d45604d10c650028914b37808fde4052510cb"
+        "sha256": "f15aab2aef586b2b42defbd1d346cbbde11f903a8261f63b96954980012444b2"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -605,7 +605,7 @@
       },
       {
         "path": "evidence/trust12/runtime-link-source-blockers.md",
-        "sha256": "1c73b46de7efb1f7561bb0414ef341557c2d3a27c3d4236d0e8038fe7bf0ca15"
+        "sha256": "cb9037c046e9bf495f4f32def9eb056d97434202c36e99ddb5631a67c1baba0f"
       },
       {
         "path": "evidence/trust12/independent-audit.md",
@@ -629,11 +629,11 @@
       },
       {
         "path": "evidence/trust12/formal-build-replay.json",
-        "sha256": "ffb8dfa22df26344aa59b5361c1df667087d92b6909afe9632f463a3c1d5455f"
+        "sha256": "9a251a006272029664ddb50d8398c2dc011065151195c3dde5ef6317c54b7078"
       },
       {
         "path": "evidence/trust12/model-results.json",
-        "sha256": "702d4598d64764535bbcffb5780840fd2f24b267f3467f2a29e8f0489733c9bf"
+        "sha256": "9dd096aed9fb49c59fc11ba3b2c341f31ce2c06a29c58c20e8b21587572e5414"
       },
       {
         "path": "evidence/trust12/model-preservation-audit.md",
@@ -697,7 +697,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "5ee19d888f06f65c8eba0e8a7396aa452e59c76cdf066450f5226430827f0362"
+        "sha256": "0a122730c192000e968fe2d24b5a68e07c5ea80c2c249d5c960c10771280b423"
       }
     ],
     "fullRefinementComplete": false,

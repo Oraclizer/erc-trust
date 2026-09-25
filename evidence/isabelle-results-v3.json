@@ -1,13 +1,13 @@
 {
-  "admissionDigest": "31a406de7a6e6dacaf2da6bff6af85521a7e37ed2557a82ec9bc0bd93063b923",
+  "admissionDigest": "b938a742ef50ccbfa3453462412057c6a59790e315373b4a7a1ded8062052bc4",
   "candidate": "0.2.0-candidate.1",
   "checks": {
     "bannedSourceForms": 0,
     "cleanBuild": "PASS",
-    "explicitRootCount": 631,
+    "explicitRootCount": 675,
     "oracleDependencyCount": 0,
     "proofExport": "PASS",
-    "qualifiedFactCount": 649
+    "qualifiedFactCount": 693
   },
   "claimBoundary": "Clean model build and recursive proof audit of every named TRUST session, including child theories, ROOT/ROOTS and declared foundation inputs. The compiled-runtime link remains an assumption.",
   "formalSource": {
@@ -44,7 +44,7 @@
       },
       {
         "path": "formal/isabelle/ERC_TRUST/Proof_Audit.thy",
-        "sha256": "2d79454f39a5c241809c60a33bb276918aa8b59bc889ede95dd15c58452d2b1b"
+        "sha256": "0f2860b07ceff3217c6c175e296f3ac325dad91bb043e4838e4c92e8f7084de4"
       },
       {
         "path": "formal/isabelle/ERC_TRUST/RCP_Action_Mapping.thy",
@@ -52,7 +52,7 @@
       },
       {
         "path": "formal/isabelle/ERC_TRUST/ROOT",
-        "sha256": "234bc1ea085b9b2fc4bfe5bd4f534e6160c6bf429e60f93f956f6978e22a9b48"
+        "sha256": "2b45689839bfc6a21c823b52382ab15f8702cf8a00817081090fc20e67d45e85"
       },
       {
         "path": "formal/isabelle/ERC_TRUST/Regulatory_Execution_Semantics.thy",
@@ -92,7 +92,11 @@
       },
       {
         "path": "formal/isabelle/ERC_TRUST/TRUST_Obligation_Ledger_Generated.thy",
-        "sha256": "22d3b1c8fa15f9503fe66a932dba89b016e5372844670982868f399fde148698"
+        "sha256": "00e099e0011b99f5c7de746ed54ca26cb5a36200df62ef77896b624e14f70ad9"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_Out_Of_Spec_Refinement.thy",
+        "sha256": "6c159584f9f88ce9cf37b6d40bf03aca6b41b9ca678e52176ed57febbacd13a0"
       },
       {
         "path": "formal/isabelle/ERC_TRUST/TRUST_Retrieve_Relation.thy",
@@ -104,7 +108,7 @@
       },
       {
         "path": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy",
-        "sha256": "0146d61bf4fdb0808805db475eb63c434c950496262f84d05fdf48e2860f17ad"
+        "sha256": "0066aca8046e7129d007bfc527e4c7552d17b891406adfdb4720197664eb84fb"
       },
       {
         "path": "formal/isabelle/ERC_TRUST/TRUST_State_Abi_Normal_Form.thy",
@@ -204,12 +208,12 @@
       }
     ],
     "path": "formal/isabelle",
-    "rootSha256": "0cd4ca1233facd8ec0b609eb7e6f8db7e690db193e6d098c855ff7947da97487",
+    "rootSha256": "7c6d08d4cca6ca035959f46d2cd5e4ae26595ad5005abaf9dd2da5e9c908954a",
     "sessions": [
       "ERC_TRUST",
       "TRUST12_Accounting_Obstruction"
     ],
-    "theoryFiles": 33
+    "theoryFiles": 34
   },
   "provider": "local-windows-isabelle",
   "run": {
@@ -292,17 +296,17 @@
         }
       ]
     },
-    "finishedAt": "2026-09-23T14:45:17.3246047Z",
+    "finishedAt": "2026-09-25T00:04:35.5665717Z",
     "provider": "local-windows-isabelle",
     "sessions": [
       {
         "cleanBuild": "PASS",
-        "explicitRoots": 412,
-        "exportSha256": "5dfe1d4a6ec7e0ffa459a08eadf98b9b26f4d8ae2246269e30b7d54f62ade5d4",
+        "explicitRoots": 456,
+        "exportSha256": "82bc1aa9ca879d083f17b3e17fb1e76be23f67efaedb6341999a73da5c66063e",
         "name": "ERC_TRUST",
         "oracleDependencies": 0,
         "proofExport": "PASS",
-        "qualifiedFacts": 413,
+        "qualifiedFacts": 457,
         "status": "PASS"
       },
       {
@@ -318,7 +322,7 @@
     ],
     "source": {
       "path": "evidence/trust12/formal-build-replay.json",
-      "sha256": "ffb8dfa22df26344aa59b5361c1df667087d92b6909afe9632f463a3c1d5455f"
+      "sha256": "9a251a006272029664ddb50d8398c2dc011065151195c3dde5ef6317c54b7078"
     },
     "sourceInputs": [
       {
@@ -351,7 +355,7 @@
       },
       {
         "path": "formal/isabelle/ERC_TRUST/Proof_Audit.thy",
-        "sha256": "2d79454f39a5c241809c60a33bb276918aa8b59bc889ede95dd15c58452d2b1b"
+        "sha256": "0f2860b07ceff3217c6c175e296f3ac325dad91bb043e4838e4c92e8f7084de4"
       },
       {
         "path": "formal/isabelle/ERC_TRUST/RCP_Action_Mapping.thy",
@@ -359,7 +363,7 @@
       },
       {
         "path": "formal/isabelle/ERC_TRUST/ROOT",
-        "sha256": "234bc1ea085b9b2fc4bfe5bd4f534e6160c6bf429e60f93f956f6978e22a9b48"
+        "sha256": "2b45689839bfc6a21c823b52382ab15f8702cf8a00817081090fc20e67d45e85"
       },
       {
         "path": "formal/isabelle/ERC_TRUST/Regulatory_Execution_Semantics.thy",
@@ -399,7 +403,11 @@
       },
       {
         "path": "formal/isabelle/ERC_TRUST/TRUST_Obligation_Ledger_Generated.thy",
-        "sha256": "22d3b1c8fa15f9503fe66a932dba89b016e5372844670982868f399fde148698"
+        "sha256": "00e099e0011b99f5c7de746ed54ca26cb5a36200df62ef77896b624e14f70ad9"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_Out_Of_Spec_Refinement.thy",
+        "sha256": "6c159584f9f88ce9cf37b6d40bf03aca6b41b9ca678e52176ed57febbacd13a0"
       },
       {
         "path": "formal/isabelle/ERC_TRUST/TRUST_Retrieve_Relation.thy",
@@ -411,7 +419,7 @@
       },
       {
         "path": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy",
-        "sha256": "0146d61bf4fdb0808805db475eb63c434c950496262f84d05fdf48e2860f17ad"
+        "sha256": "0066aca8046e7129d007bfc527e4c7552d17b891406adfdb4720197664eb84fb"
       },
       {
         "path": "formal/isabelle/ERC_TRUST/TRUST_State_Abi_Normal_Form.thy",
@@ -510,19 +518,19 @@
         "sha256": "13d832941126334952262d337a096b72fcc72abfe311ea9e4bf95c0e71cc4867"
       }
     ],
-    "sourceRootSha256": "0cd4ca1233facd8ec0b609eb7e6f8db7e690db193e6d098c855ff7947da97487",
-    "startedAt": "2026-09-23T14:41:30.1264715Z"
+    "sourceRootSha256": "7c6d08d4cca6ca035959f46d2cd5e4ae26595ad5005abaf9dd2da5e9c908954a",
+    "startedAt": "2026-09-25T00:01:01.8869252Z"
   },
   "schema": "erc-trust-isabelle-results-v3",
   "sessions": [
     {
       "cleanBuild": "PASS",
-      "explicitRoots": 412,
-      "exportSha256": "5dfe1d4a6ec7e0ffa459a08eadf98b9b26f4d8ae2246269e30b7d54f62ade5d4",
+      "explicitRoots": 456,
+      "exportSha256": "82bc1aa9ca879d083f17b3e17fb1e76be23f67efaedb6341999a73da5c66063e",
       "name": "ERC_TRUST",
       "oracleDependencies": 0,
       "proofExport": "PASS",
-      "qualifiedFacts": 413,
+      "qualifiedFacts": 457,
       "status": "PASS"
     },
     {
@@ -536,7 +544,7 @@
       "status": "PASS"
     }
   ],
-  "sourceCommit": "d94404901e1bd7d437daa9ec409913e1c8306321",
+  "sourceCommit": "be132e515a8a30d18b6ae20c588850ca68ae01ea",
   "status": "PASS",
   "toolchain": {
     "foundationCommit": "db8e0802e55f0229cf7bc9e5e6cfbf40681adbba",

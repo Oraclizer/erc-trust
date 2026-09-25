@@ -1,0 +1,226 @@
+{
+  "schema": "trust12-out-of-spec-probe-summary-v1",
+  "status": "PASS_OUT_OF_SPEC_REQUESTS_FAIL_WITHOUT_TRACE",
+  "probeCommit": "921b222480bb8fd2cbcd9d34b5669ed07e5dda9f",
+  "probeInputs": {
+    "paths": [
+      "implementation/src",
+      "implementation/test",
+      "vectors",
+      "foundry.toml",
+      "scripts/trust12/tail-preparation/foundry",
+      "scripts/trust12/derived-identifier-probe"
+    ],
+    "files": 46,
+    "rootSha256": "9c9b3e3f0602423502dcf1ee5b08f3a4af06af98ea749bc09846530c150b73ad",
+    "rootAlgorithm": "sha256 over sorted lines 'path<TAB>sha256<LF>' of every tracked file under paths",
+    "identicalAtCommit": "be132e515a8a30d18b6ae20c588850ca68ae01ea"
+  },
+  "toolchain": {
+    "foundry": "forge 1.7.1",
+    "python": "3.14.4",
+    "platform": "Linux on WSL"
+  },
+  "upstreamTokenArtifact": {
+    "path": "out/trust12/trex/out/Token.sol/Token.json",
+    "producedBy": "scripts/prepare-trex-integration.py",
+    "sha256": "12af1b3c5701cc3c919c6accb0404f14dd230be0c97e6507d481bb944d25c126"
+  },
+  "acceptance": {
+    "malformedInput": "A request outside canonical form conforms when the call fails without an external account access, a log or a committed storage write, whatever its revert data (decision 12). A well-formed control must be accepted.",
+    "derivedIdentifier": "Feeding the identifier that deriveActionId or deriveReversalId returns for a malformed request into the typed command functions must not make a malformed request succeed or leave a trace, and a canonical request that carries an identifier derived from malformed calldata must be rejected."
+  },
+  "malformedInput": {
+    "runner": {
+      "path": "scripts/trust12/tail-preparation/run_malformed_probe.py",
+      "sha256": "7f02dc93af7105ffc2b97f1d8a4e5ac41b3b534240a43348c8d3290325b5f243"
+    },
+    "catalog": {
+      "path": "evidence/trust12/runtime-link/tail-preparation/malformed-inputs-v1.json",
+      "sha256": "678f7ae2ce8b1182c400170f432a6aea7be745723f2719026cd3655b085e6b41"
+    },
+    "sources": [
+      {
+        "path": "scripts/trust12/tail-preparation/foundry/HookMalformedProbe.t.sol",
+        "sha256": "329b5fbfbbdaf5125a04f07003bbba91ca280e29ea0b5f9daaac3dbb00854dcb"
+      },
+      {
+        "path": "scripts/trust12/tail-preparation/foundry/MalformedProbeCore.sol",
+        "sha256": "a8a65230c2c290a232de0b7d9126ba4acad4209b5c12314135b2fdd18ac0e27c"
+      },
+      {
+        "path": "scripts/trust12/tail-preparation/foundry/MalformedProbeRecipes.sol",
+        "sha256": "6f8cf3f642ba9deecc4f14b2ed4e3964f291f22d72b230f96f59fec06efc106d"
+      },
+      {
+        "path": "scripts/trust12/tail-preparation/foundry/NativeMalformedProbe.t.sol",
+        "sha256": "0ae50b62942cfda940a5778080ecb49413d4c2d0ff72124f6791e5dc163450f0"
+      },
+      {
+        "path": "scripts/trust12/tail-preparation/foundry/PartialMalformedProbe.t.sol",
+        "sha256": "26b67a3b060ab1ccc7078d4dc14039a5ebca0d4f3d9e8fc086501378d422424a"
+      }
+    ],
+    "command": "forge test -vv --json --match-path scripts/trust12/tail-preparation/foundry/*MalformedProbe.t.sol",
+    "environment": {
+      "FOUNDRY_TEST": "scripts/trust12/tail-preparation/foundry",
+      "FOUNDRY_DISABLE_CODE_SIZE_LIMIT": "true"
+    },
+    "exitCode": 0,
+    "suites": {
+      "HookMalformedProbe.testHookMalformedProbe()": "Success",
+      "NativeMalformedProbe.testNativeMalformedProbe()": "Success",
+      "PartialMalformedProbe.testPartialMalformedProbe()": "Success"
+    },
+    "recipes": {
+      "declared": 305,
+      "observed": 305,
+      "conforms": 297,
+      "controlsDetected": 8,
+      "violations": 0
+    },
+    "byProfileClassAndVerdict": {
+      "Hook/dirty-address-word/CONFORMS": 8,
+      "Hook/dirty-enum-word/CONFORMS": 6,
+      "Hook/dirty-uint48-word/CONFORMS": 8,
+      "Hook/dirty-uint64-word/CONFORMS": 8,
+      "Hook/length/CONFORMS": 12,
+      "Hook/no-selector/CONFORMS": 2,
+      "Hook/nonzero-call-value/CONFORMS": 2,
+      "Hook/ordering-probe/CONFORMS": 28,
+      "Hook/unknown-selector/CONFORMS": 1,
+      "Hook/well-formed-control/CONTROL_DETECTED": 2,
+      "Native/dirty-address-word/CONFORMS": 16,
+      "Native/dirty-enum-word/CONFORMS": 12,
+      "Native/dirty-uint48-word/CONFORMS": 16,
+      "Native/dirty-uint64-word/CONFORMS": 16,
+      "Native/length/CONFORMS": 24,
+      "Native/no-selector/CONFORMS": 2,
+      "Native/nonzero-call-value/CONFORMS": 4,
+      "Native/ordering-probe/CONFORMS": 56,
+      "Native/unknown-selector/CONFORMS": 1,
+      "Native/well-formed-control/CONTROL_DETECTED": 4,
+      "Partial/dirty-address-word/CONFORMS": 8,
+      "Partial/dirty-enum-word/CONFORMS": 6,
+      "Partial/dirty-uint48-word/CONFORMS": 8,
+      "Partial/dirty-uint64-word/CONFORMS": 8,
+      "Partial/length/CONFORMS": 12,
+      "Partial/no-selector/CONFORMS": 2,
+      "Partial/nonzero-call-value/CONFORMS": 2,
+      "Partial/ordering-probe/CONFORMS": 28,
+      "Partial/unknown-selector/CONFORMS": 1,
+      "Partial/well-formed-control/CONTROL_DETECTED": 2
+    },
+    "receiptSha256": "2d36fcb550417555c5091209ed512f837b336bc1473e945613febd3aa07dfd9e"
+  },
+  "derivedIdentifier": {
+    "runner": {
+      "path": "scripts/trust12/derived-identifier-probe/run_derived_identifier_probe.py",
+      "sha256": "d5890eeeacf333183d3d1c335fd5e50a4edff60d948d22bf11170fe590adbe3d"
+    },
+    "sources": [
+      {
+        "path": "scripts/trust12/derived-identifier-probe/DerivedIdentifierProbeCore.sol",
+        "sha256": "c2322eadf36d457ed2a0a7a17e312f65e3910163bc03981ba8bbcb1907a1503d"
+      },
+      {
+        "path": "scripts/trust12/derived-identifier-probe/HookDerivedIdentifierProbe.t.sol",
+        "sha256": "8f33a48cb145a0a29afc37899365b29576f87b233a59f9ed5611c81bc6b4a290"
+      },
+      {
+        "path": "scripts/trust12/derived-identifier-probe/NativeDerivedIdentifierProbe.t.sol",
+        "sha256": "e02073305c894799fb3fefbac5da8c9cd0ad16d36a2fe8cf2f5fe313fd363086"
+      },
+      {
+        "path": "scripts/trust12/derived-identifier-probe/PartialDerivedIdentifierProbe.t.sol",
+        "sha256": "9ec28f4f4cf664f36add16b9bd4cc94c37407decd2ea9cbb00fe7da6dfb936c3"
+      }
+    ],
+    "command": "forge test -vv --json --match-path scripts/trust12/derived-identifier-probe/*DerivedIdentifierProbe.t.sol",
+    "environment": {
+      "FOUNDRY_TEST": "scripts/trust12/derived-identifier-probe",
+      "FOUNDRY_DISABLE_CODE_SIZE_LIMIT": "true"
+    },
+    "exitCode": 0,
+    "tests": {
+      "HookDerivedIdentifierProbe.testHookActionsRejectDerivedIdentifiers()": "Success",
+      "HookDerivedIdentifierProbe.testHookReversalsRejectDerivedIdentifiers()": "Success",
+      "NativeDerivedIdentifierProbe.testNativeActionsRejectDerivedIdentifiers()": "Success",
+      "NativeDerivedIdentifierProbe.testNativeReversalsRejectDerivedIdentifiers()": "Success",
+      "NativeDerivedIdentifierProbe.testNativeRouteActionsRejectDerivedIdentifiers()": "Success",
+      "PartialDerivedIdentifierProbe.testPartialActionsRejectDerivedIdentifiers()": "Success",
+      "PartialDerivedIdentifierProbe.testPartialReversalsRejectDerivedIdentifiers()": "Success"
+    },
+    "counts": {
+      "controlsAccepted": 33,
+      "malformedCalls": 1160,
+      "malformedAccepted": 0,
+      "malformedWithTrace": 0,
+      "derivationsReturnedForMalformedCalldata": 1160,
+      "byCase": {
+        "canonical-control": 33,
+        "malformed-with-its-derived-identifier": 547,
+        "canonical-with-a-malformed-derived-identifier": 547,
+        "trailing-bytes-with-derived-identifier": 66
+      }
+    },
+    "byTest": [
+      {
+        "test": "HookDerivedIdentifierProbe.testHookActionsRejectDerivedIdentifiers()",
+        "controls": 6,
+        "malformedCalls": 240,
+        "derivationsReturned": 126,
+        "violations": 0
+      },
+      {
+        "test": "HookDerivedIdentifierProbe.testHookReversalsRejectDerivedIdentifiers()",
+        "controls": 3,
+        "malformedCalls": 72,
+        "derivationsReturned": 39,
+        "violations": 0
+      },
+      {
+        "test": "NativeDerivedIdentifierProbe.testNativeActionsRejectDerivedIdentifiers()",
+        "controls": 6,
+        "malformedCalls": 240,
+        "derivationsReturned": 126,
+        "violations": 0
+      },
+      {
+        "test": "NativeDerivedIdentifierProbe.testNativeReversalsRejectDerivedIdentifiers()",
+        "controls": 4,
+        "malformedCalls": 96,
+        "derivationsReturned": 52,
+        "violations": 0
+      },
+      {
+        "test": "NativeDerivedIdentifierProbe.testNativeRouteActionsRejectDerivedIdentifiers()",
+        "controls": 5,
+        "malformedCalls": 200,
+        "derivationsReturned": 105,
+        "violations": 0
+      },
+      {
+        "test": "PartialDerivedIdentifierProbe.testPartialActionsRejectDerivedIdentifiers()",
+        "controls": 6,
+        "malformedCalls": 240,
+        "derivationsReturned": 126,
+        "violations": 0
+      },
+      {
+        "test": "PartialDerivedIdentifierProbe.testPartialReversalsRejectDerivedIdentifiers()",
+        "controls": 3,
+        "malformedCalls": 72,
+        "derivationsReturned": 39,
+        "violations": 0
+      }
+    ],
+    "receiptSha256": "97a983dbf4c43cedb33f3b8acd8f322dfad7aa0831693a158200bf7ae61896a1"
+  },
+  "replay": [
+    "python3 scripts/prepare-trex-integration.py",
+    "python3 scripts/trust12/tail-preparation/run_malformed_probe.py --product . --trex-artifacts out/trust12/trex/out --workdir <empty directory> --output <receipt directory>",
+    "python3 scripts/trust12/derived-identifier-probe/run_derived_identifier_probe.py --product . --trex-artifacts out/trust12/trex/out --workdir <empty directory> --output <receipt directory>"
+  ],
+  "nonclaim": "Concrete executions on one test deployment of each of the three reference endpoints, over the listed malformed variants and derived identifiers. It measures the runtime_link_spec assumption of TRUST_Out_Of_Spec_Refinement; it does not prove it for all requests or states, and it does not discharge a runtime-link cell or the central refinement closure."
+}

@@ -13,15 +13,15 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "9a6b2be40ddf8ad05851cb3cb97760dde735f4bd1e762ffe72f809b85a0810c3"
+      "sha256": "89a7eb5f25fa546441a134c783899c81fa1b2daa519ad2503904ccab130bc4a9"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
-      "sha256": "c9c520aac7fcb85769b0be943216ff0ad3cb14862d542e0ad84c8dec3c1dd6b4"
+      "sha256": "a9900f39e5e5ca356375fe0da086fa18e519307bc0b394716d79537953d812ab"
     },
     {
       "path": "docs/PROFILES.md",
-      "sha256": "6f0223df8f523b27ce078c2a1768b4cf8a85972b9632478820c2d286e684f7b0"
+      "sha256": "add303f317f4d9fdb64752b437a092b18ee588fcfa511b6464ae59600378a321"
     },
     {
       "path": "evidence/claim-matrix.md",
@@ -29,7 +29,7 @@
     },
     {
       "path": "evidence/known-limitations.md",
-      "sha256": "693891bdaec7f8a6f18a27b6bb047618c30e5f9435172a139c95bb4baa840bd5"
+      "sha256": "e21c553ac17274b72b1cea4d65bbd1584dc6e79d1decd7727d05140db91fa4e7"
     },
     {
       "path": "evidence/trust12/README.md",
@@ -57,7 +57,7 @@
     },
     {
       "path": "evidence/trust12/formal-build-replay.json",
-      "sha256": "ffb8dfa22df26344aa59b5361c1df667087d92b6909afe9632f463a3c1d5455f"
+      "sha256": "9a251a006272029664ddb50d8398c2dc011065151195c3dde5ef6317c54b7078"
     },
     {
       "path": "evidence/trust12/formal-build.json",
@@ -85,7 +85,7 @@
     },
     {
       "path": "evidence/trust12/model-results.json",
-      "sha256": "702d4598d64764535bbcffb5780840fd2f24b267f3467f2a29e8f0489733c9bf"
+      "sha256": "9dd096aed9fb49c59fc11ba3b2c341f31ce2c06a29c58c20e8b21587572e5414"
     },
     {
       "path": "evidence/trust12/model-source-normalization.json",
@@ -129,7 +129,7 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "5dfc7a7ebab32735a481dbfc464d45604d10c650028914b37808fde4052510cb"
+      "sha256": "f15aab2aef586b2b42defbd1d346cbbde11f903a8261f63b96954980012444b2"
     },
     {
       "path": "evidence/trust12/profile-implementation-evidence-review.json",
@@ -153,7 +153,7 @@
     },
     {
       "path": "evidence/trust12/runtime-link-source-blockers.md",
-      "sha256": "1c73b46de7efb1f7561bb0414ef341557c2d3a27c3d4236d0e8038fe7bf0ca15"
+      "sha256": "cb9037c046e9bf495f4f32def9eb056d97434202c36e99ddb5631a67c1baba0f"
     },
     {
       "path": "evidence/trust12/runtime-producer-feasibility.json",
@@ -189,11 +189,11 @@
     },
     {
       "path": "formal/isabelle/ERC_TRUST/Proof_Audit.thy",
-      "sha256": "2d79454f39a5c241809c60a33bb276918aa8b59bc889ede95dd15c58452d2b1b"
+      "sha256": "0f2860b07ceff3217c6c175e296f3ac325dad91bb043e4838e4c92e8f7084de4"
     },
     {
       "path": "formal/isabelle/ERC_TRUST/ROOT",
-      "sha256": "234bc1ea085b9b2fc4bfe5bd4f534e6160c6bf429e60f93f956f6978e22a9b48"
+      "sha256": "2b45689839bfc6a21c823b52382ab15f8702cf8a00817081090fc20e67d45e85"
     },
     {
       "path": "formal/isabelle/ERC_TRUST/TRUST_Transaction_Refinement.thy",
@@ -453,7 +453,7 @@
     },
     {
       "path": "scripts/verify-trust12-required.mjs",
-      "sha256": "7f7fe86ccbfce2629a2b6ea2024214416eb6ec1cd4fdfaa731cf71831d85d12e"
+      "sha256": "fb864224aae4bf189e168c81eb54b62da133d588933ba19dadd60fa8ff6849ad"
     }
   ],
   "nonclaim": "This seals one local development tranche. It is not a deployment, release, conformance approval, or end-to-end refinement result."
