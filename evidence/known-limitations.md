@@ -13,7 +13,7 @@ forbidden by `claim-matrix.md`.
 
 | Limitation | Owner |
 | --- | --- |
-| No theorem states that the compiled runtime implements the abstract model. The locale assumption `runtime_link` in `formal/isabelle/ERC_TRUST/TRUST_End_To_End_Composition.thy` is not discharged, and neither is `runtime_link_spec` in `formal/isabelle/ERC_TRUST/TRUST_Out_Of_Spec_Refinement.thy`, the locale assumption stated over `alpha_transaction_spec`, the conformance relation that also covers requests outside canonical form; the three research-residual obligation ledger rows that name `runtime_link` stay open, and the closure record is conditional. The permitted wording is "mapped implementation evidence; end-to-end refinement incomplete". | `spec/decisions/10-refinement-closure.md`; `evidence/end-to-end-refinement/central-closure-v3.json` |
+| No theorem states that the compiled runtime implements the abstract model. The locale assumption `runtime_link` in `formal/isabelle/ERC_TRUST/TRUST_End_To_End_Composition.thy` is not discharged, and neither is `runtime_link_spec` in `formal/isabelle/ERC_TRUST/TRUST_Out_Of_Spec_Refinement.thy`, the locale assumption stated over `alpha_transaction_spec`, the conformance relation that also covers requests outside canonical form. The three general runtime-link obligation rows are mandatory for TRUST 1.2 and remain open; the closure record is conditional. The permitted wording is "mapped implementation evidence; end-to-end refinement incomplete". | `spec/decisions/10-refinement-closure.md`; `evidence/end-to-end-refinement/central-closure-v3.json` |
 | The four Kontrol proofs rerun on the successor native runtime and the Foundry executions are bounded instances of that link, not a proof of it. The ERC-3643 adapter has no symbolic lane. | `evidence/kontrol-results-v3.json`; `FORMAL_VERIFICATION.md` |
 | The KEVM program has not been restarted for kernel version 2: `formal/kevm/` holds the regenerated bridge, the compile script, and the dependency lock only, and the KEVM claim specifications preserved under `evidence/candidate-2/formal/kevm/` describe the candidate 2 runtime. | `spec/decisions/10-refinement-closure.md`; `formal/kevm/README.md` |
 | The successor Certora receipt proves four named rules on the exact current ERC-3643 Partial adapter runtime and nine-file input root. It does not prove manifest completeness, the ordinary inbound hook, the runtime link to the abstract model, a deployment, or external truth. Candidate 2 Certora results remain historical evidence about different bytes. | `evidence/certora-results-v3.json`; `evidence/current-profile-release-index-v3.json` |
@@ -24,9 +24,9 @@ forbidden by `claim-matrix.md`.
 
 ## TRUST 1.2 release evidence (unreleased)
 
-The 2026-09-13 release-scope reset uses the verified abstract model plus explicitly
-scoped external-prover and execution evidence. General `runtime_link` discharge
-remains unproven research, separate from release-evidence readiness. The required
+The 2026-09-13 release-scope reset is historical. The current completion direction
+requires general `runtime_link` discharge in each declared profile; this remains
+unproved. Scoped model and external-prover evidence retain their recorded validity. The required
 label remains "mapped implementation evidence; end-to-end refinement incomplete".
 The 21 component entries have been scope-reviewed. Native, Partial and Hook each have
 seven execution-test components. The weakest component makes all three profile rows

@@ -5,7 +5,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { check, checkLocalReceiptProvenance, encoded, fileRef, inputInventory, inventoryRoot, json, read, sha256, walk } from './lib/local-evidence.mjs';
 import { formalAdmissionDigest, validateFormalIdentity } from './lib/formal-inputs.mjs';
-import { verifyTrust12Policy, mandatoryIds, researchIds } from './lib/trust12-policy.mjs';
+import { verifyTrust12Policy, mandatoryIds, generalIds } from './lib/trust12-policy.mjs';
 const repository = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const functionalRoot = '8d228ae9224b34e8e05eddc308d5ce77f0595ef0e02bc408fff31d1b5df467e2';
 const testsRoot = '23f88d74a162d19792b51bdbd976d111c65e731b96ba5aac495b51be33125d7d';
@@ -139,7 +139,7 @@ export function verifyTrust12Required(root = repository) {
   const policy = verifyTrust12Policy(root);
   const mandatory = policy.currentMandatory;
   const expectedRows = ['HOOK-FRESH-INITIAL','HOOK-FACTORY-CREATION','HOOK-SOLE-AGENT','HOOK-INBOUND-FLOOR','HOOK-CALLER-AUTH','HOOK-CALLBACK-ROLLBACK','HOOK-ACTUAL-RECEIPT','HOOK-INDEPENDENT-FINAL','MODEL-INITIAL-WF','MODEL-ORDINARY-PRESERVATION','MODEL-REGULATORY-PRESERVATION','MODEL-LINKED-RUN'];
-  check(rows.size === expectedRows.length + mandatoryIds.length + researchIds.length && expectedRows.every(id=>rows.get(id)?.status==='CLOSED'), 'named feature/model obligation inventory drift');
+  check(rows.size === expectedRows.length + mandatoryIds.length + generalIds.length && expectedRows.every(id=>rows.get(id)?.status==='CLOSED'), 'named feature/model obligation inventory drift');
   const binding = json(root,'evidence/runtime-binding-v3.json');
   verifyRuntimeBundles(root,binding);
   for (const name of ['ERC3643HookAdapter','ERC3643HookGovernor','ERC3643HookCompliance','ERC3643HookFactory']) {
@@ -148,15 +148,20 @@ export function verifyTrust12Required(root = repository) {
       && ['abi','storageLayout','creationBytecode','runtimeTemplate','methodIdentifiers','immutableReferences'].every(key=>subject.semanticChecks[key]===true), `Hook pinned compiler identity missing: ${name}`);
   }
   check(json(root,'evidence/evidence-mode.json').mode === 'successor-development', 'open TRUST 1.2 obligations prohibit release promotion');
-  return { status: 'PASS_CONSISTENT_DEVELOPMENT', centralClosure: 'INCOMPLETE', currentMandatory: mandatory,
+  const generalStatus = profile => rows.get(`RESEARCH-RUNTIME-LINK-${profile}`)?.status === 'CLOSED' ? 'CLOSED' : 'INCOMPLETE';
+  return { status: policy.fullRefinementComplete ? 'PASS_TRUST12_COMPLETION' : 'PASS_CONSISTENT_DEVELOPMENT',
+    centralClosure: ledger.centralClosure.status, currentMandatory: mandatory,
+    generalRuntimeLinkMandatory: policy.generalRuntimeLinkMandatory,
     releaseReadiness: policy.releaseReadiness, researchResiduals: policy.researchResiduals,
-    shippingExceptions: policy.shippingExceptions, fullRefinementComplete: false,
-    profiles: { native: { existingEvidence: 'PRESERVED', runtimeRefinement: 'INCOMPLETE' },
-      partial: { existingEvidence: 'PRESERVED', full: false, runtimeRefinement: 'INCOMPLETE' },
-      hook: { functionalConformance: 'PASS_PINNED_FRESH_TREX', integrationTests: hookTests.length, semanticMutations: mutationIds.length, runtimeRefinement: 'INCOMPLETE' } },
-    models: { preservation:'PASS_ABSTRACT_MODEL',linkedRun:'PASS_ABSTRACT_MODEL',runtimeConnection:'CONDITIONAL' },
+    shippingExceptions: policy.shippingExceptions, fullRefinementComplete: policy.fullRefinementComplete,
+    profiles: { native: { existingEvidence: 'PRESERVED', runtimeRefinement: generalStatus('NATIVE') },
+      partial: { existingEvidence: 'PRESERVED', full: false, runtimeRefinement: generalStatus('PARTIAL') },
+      hook: { functionalConformance: 'PASS_PINNED_FRESH_TREX', integrationTests: hookTests.length, semanticMutations: mutationIds.length, runtimeRefinement: generalStatus('HOOK') } },
+    models: { preservation:'PASS_ABSTRACT_MODEL',linkedRun:'PASS_ABSTRACT_MODEL',runtimeConnection:policy.fullRefinementComplete ? 'CLOSED' : 'CONDITIONAL' },
     symbolicBackendComparison: { status: booster.status, proofExit: booster.prove.exitCode, guardRemoval: booster.scope.guardRemoval },
     evidence: [...requiredTrust12Paths.filter(p=>p.startsWith('evidence/')), 'evidence/trust12/input-seal.json'].map(p=>fileRef(root,p)),
-    nonclaim: 'Required evidence is present and bound to the current inputs. Policy consistency is not proof completion or shipping approval; the general runtime link remains a research residual.' };
+    nonclaim: policy.fullRefinementComplete ?
+      'Completion is limited to the declared final source, runtime and profiles; policy consistency is not deployment approval.' :
+      'Required development evidence is bound to current inputs. General runtime-to-model correspondence remains mandatory and unproved; policy consistency is not proof completion or shipping approval.' };
 }
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) console.log(JSON.stringify(verifyTrust12Required(),null,2));

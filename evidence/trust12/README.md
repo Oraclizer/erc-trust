@@ -4,17 +4,29 @@ The implementation adds a fresh T-REX hook profile. This directory records devel
 evidence separately from the published kernel version 2 baseline. It does not declare
 all TRUST 1.2 work complete or discharge the general runtime link.
 
-## Current release policy (2026-09-13)
+## Current completion policy (2026-09-25)
 
-`release-policy.json` records the approved release-scope reset. The three profile
+`release-policy.json` preserves the historical release-scope reset and records the
+current completion direction. The three profile
 rows in `obligation-ledger.json` now track seven components of scoped implementation
 evidence each. All 21 components have been mapped and scope-reviewed. Native, Partial
 and Hook each have seven execution-test components. The weakest component makes all three row
 grades EXECUTION_TESTS. The profile implementation-evidence rows are closed within
-those scopes. The original general `runtime_link` goals remain unproved research
-residuals. Native symbolic FREEZE remains mandatory after the alternative probe
+those scopes. The original general `runtime_link` goals remain unproved and are
+mandatory for TRUST 1.2 completion in each declared profile. Native symbolic FREEZE remains mandatory after the alternative probe
 stopped on its second standard single-step timeout. Its same-domain guard-removal
 negative was not run. No shipping exception is currently approved.
+
+The local proof-run inventory, this TRUST 1.2 product obligation ledger, and the
+end-to-end product obligation ledger count different obligations. A completed
+certificate inventory or a zero-current-mandatory count for a narrower published
+claim does not close the general TRUST 1.2 connections.
+Closing a general connection requires a new audited Isabelle theorem in the
+current proof catalog, plus separate checked execution, normal-branch,
+same-domain consumer-removal, and
+compiled-consumer records bound to the final source, ABI, runtimes and profile
+scope. Final completion additionally requires the central ledger and fresh
+independent reproduction on those same inputs.
 
 Existing Kontrol PASS records remain supplemental bounded evidence because their
 receipt does not record the proof metadata required for proof-grade credit.
@@ -27,7 +39,8 @@ TRUST 1.2 profile row grades: Native EXECUTION_TESTS; Partial EXECUTION_TESTS; H
 `scripts/verify-trust12-policy.mjs` is shared by both evidence entrypoints;
 `scripts/test-trust12-policy.mjs` exercises grading and exception rejection controls.
 This metadata check is not a proof run or release authorization. Veri Formal/Kore
-and its local receiver candidates are preservation-only research assets.
+and its local receiver candidates remain available for the mandatory connection work;
+their current results do not discharge that connection.
 
 ## Implemented profile
 
@@ -238,7 +251,7 @@ Duplicate-map and wrong-value controls are local helper checks. They do not
 replace the pending same-domain FREEZE guard-removal proof. The Native general
 symbolic obligation remains current-mandatory. The three profile implementation-
 evidence obligations are closed at EXECUTION_TESTS, and the three general runtime-
-link obligations remain research residuals. The existing aggregate gate checks
+link obligations remain mandatory and unproved. The existing aggregate gate checks
 sealed development-evidence consistency; it does not replay these K proofs or
 supply an Isabelle runtime receiver. Raw files remain under ignored out/trust12.
 

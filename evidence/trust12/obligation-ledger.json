@@ -222,7 +222,7 @@
       "positiveActivation": "All seven NATIVE components were scope-reviewed at EXECUTION_TESTS. Existing Kontrol PASS records remain supplemental bounded evidence and are not promoted to proof grade without explicit unresolved-goal, admitted-goal and vacuity metadata.",
       "consumerRemovalNegative": "Every graded component has either a killed consumer-removal mutation or an explicitly bounded behavioral negative with a bound receipt.",
       "compiledConsumer": "Published Native runtime remains byte-exact.",
-      "assumptionsNonclaims": "Release implementation evidence only. The general runtime_link discharge is a separate RESEARCH-RESIDUAL. The alternative probe exactly instantiated the checked node148 frame summary and EVM.pc.inc step to PC 7619, but it produced no checker-returned actual-node148 CSubst, no standard JUMP decode, no complete Native FREEZE proof and no same-domain guard-removal negative.",
+      "assumptionsNonclaims": "Scoped implementation evidence only. The general runtime_link discharge is a separate CURRENT-MANDATORY obligation. The alternative probe exactly instantiated the checked node148 frame summary and EVM.pc.inc step to PC 7619, but it produced no checker-returned actual-node148 CSubst, no standard JUMP decode, no complete Native FREEZE proof and no same-domain guard-removal negative.",
       "status": "CLOSED",
       "supplementalEvidence": [
         "evidence/trust12/veri-observation-results.json",
@@ -774,7 +774,7 @@
       "positiveActivation": "All seven PARTIAL components were scope-reviewed and graded; the row grade is EXECUTION_TESTS because it is the weakest component grade.",
       "consumerRemovalNegative": "Every graded component has either a killed consumer-removal mutation or an explicitly bounded behavioral negative with a bound receipt.",
       "compiledConsumer": "Published Partial adapter and governor source and runtime remain byte-exact.",
-      "assumptionsNonclaims": "Release implementation evidence only. The general runtime_link discharge is a separate RESEARCH-RESIDUAL; source tests are not promoted to full-scope proofs.",
+      "assumptionsNonclaims": "Scoped implementation evidence only. The general runtime_link discharge is a separate CURRENT-MANDATORY obligation; source tests are not promoted to full-scope proofs.",
       "status": "CLOSED",
       "supplementalEvidence": [
         "evidence/trust12/veri-observation-results.json",
@@ -1302,7 +1302,7 @@
       "positiveActivation": "All seven HOOK components were scope-reviewed and graded; the row grade is EXECUTION_TESTS because it is the weakest component grade.",
       "consumerRemovalNegative": "Every graded component has either a killed consumer-removal mutation or an explicitly bounded behavioral negative with a bound receipt.",
       "compiledConsumer": "HookAdapter, governor, Compliance, factory and actual T-REX runtime identities are recorded.",
-      "assumptionsNonclaims": "Release implementation evidence only. The general runtime_link discharge is a separate RESEARCH-RESIDUAL; source tests are not promoted to full-scope proofs.",
+      "assumptionsNonclaims": "Scoped implementation evidence only. The general runtime_link discharge is a separate CURRENT-MANDATORY obligation; source tests are not promoted to full-scope proofs.",
       "status": "CLOSED",
       "supplementalEvidence": [
         "evidence/trust12/veri-observation-results.json",
@@ -1865,20 +1865,21 @@
       "consumerRemovalNegative": "Pending",
       "compiledConsumer": "Published Native runtime remains byte-exact.",
       "assumptionsNonclaims": "pinned_runtime_refinement.runtime_link remains an Isabelle locale assumption.",
-      "status": "RESEARCH-RESIDUAL",
+      "status": "CURRENT-MANDATORY",
       "supplementalEvidence": [
         "evidence/trust12/veri-observation-results.json",
         "evidence/trust12/veri-symbolic-results.json",
         "evidence/trust12/veri-integration-audit.md",
         "evidence/trust12/native-storage-progress.json"
       ],
-      "requiredForRelease": false,
+      "requiredForRelease": true,
+      "requiredForTrust12Completion": true,
       "proofCompleted": false,
-      "disposition": "Preserved general machine-checked runtime-to-Isabelle correspondence research obligation. Not proved or deleted by the release-scope reset.",
-      "receivingProcess": "Undecided; Jay decides at TRUST 1.2 internal completion (separate research track or a later TRUST version).",
-      "responsibleArtifact": "This ledger row and the preserved Veri Formal/Kore assets identified by source-freeze50 SHA-256 763cbe1d98ac7b904dd53fb2a8b6b7400e756aaa7624d556ed697b89b98a9488.",
+      "disposition": "Mandatory general runtime-to-model correspondence for TRUST 1.2; currently unproved. The prior scope reset is historical.",
+      "receivingProcess": "TRUST 1.2 general runtime-to-model closure for the declared Native scope.",
+      "responsibleArtifact": "This ledger row and the preserved Veri Formal/Kore assets with SHA-256 763cbe1d98ac7b904dd53fb2a8b6b7400e756aaa7624d556ed697b89b98a9488.",
       "closureEvidence": "Kernel-checked discharge of this profile's runtime_link with positive and negative consumers.",
-      "reopenCondition": "When Jay designates the receiving process."
+      "reopenCondition": "Any final source, ABI, runtime, profile or proof-input change reopens the affected connection."
     },
     {
       "id": "RESEARCH-RUNTIME-LINK-PARTIAL",
@@ -1889,19 +1890,20 @@
       "consumerRemovalNegative": "Pending",
       "compiledConsumer": "Published Partial adapter and governor source and runtime remain byte-exact.",
       "assumptionsNonclaims": "Native evidence is not transferred to this profile.",
-      "status": "RESEARCH-RESIDUAL",
+      "status": "CURRENT-MANDATORY",
       "supplementalEvidence": [
         "evidence/trust12/veri-observation-results.json",
         "evidence/trust12/veri-symbolic-results.json",
         "evidence/trust12/veri-integration-audit.md"
       ],
-      "requiredForRelease": false,
+      "requiredForRelease": true,
+      "requiredForTrust12Completion": true,
       "proofCompleted": false,
-      "disposition": "Preserved general machine-checked runtime-to-Isabelle correspondence research obligation. Not proved or deleted by the release-scope reset.",
-      "receivingProcess": "Undecided; Jay decides at TRUST 1.2 internal completion (separate research track or a later TRUST version).",
-      "responsibleArtifact": "This ledger row and the preserved Veri Formal/Kore assets identified by source-freeze50 SHA-256 763cbe1d98ac7b904dd53fb2a8b6b7400e756aaa7624d556ed697b89b98a9488.",
+      "disposition": "Mandatory general runtime-to-model correspondence for TRUST 1.2 within the declared Partial product scope; currently unproved. The prior scope reset is historical.",
+      "receivingProcess": "TRUST 1.2 general runtime-to-model closure for the declared Partial scope.",
+      "responsibleArtifact": "This ledger row and the preserved Veri Formal/Kore assets with SHA-256 763cbe1d98ac7b904dd53fb2a8b6b7400e756aaa7624d556ed697b89b98a9488.",
       "closureEvidence": "Kernel-checked discharge of this profile's runtime_link with positive and negative consumers.",
-      "reopenCondition": "When Jay designates the receiving process."
+      "reopenCondition": "Any final source, ABI, runtime, profile or proof-input change reopens the affected connection."
     },
     {
       "id": "RESEARCH-RUNTIME-LINK-HOOK",
@@ -1912,19 +1914,20 @@
       "consumerRemovalNegative": "The current mutations cover named feature consumers but do not construct a general correspondence.",
       "compiledConsumer": "HookAdapter, governor, Compliance, factory and actual T-REX runtime identities are recorded.",
       "assumptionsNonclaims": "The hook functional result does not imply end-to-end runtime refinement.",
-      "status": "RESEARCH-RESIDUAL",
+      "status": "CURRENT-MANDATORY",
       "supplementalEvidence": [
         "evidence/trust12/veri-observation-results.json",
         "evidence/trust12/veri-symbolic-results.json",
         "evidence/trust12/veri-integration-audit.md"
       ],
-      "requiredForRelease": false,
+      "requiredForRelease": true,
+      "requiredForTrust12Completion": true,
       "proofCompleted": false,
-      "disposition": "Preserved general machine-checked runtime-to-Isabelle correspondence research obligation. Not proved or deleted by the release-scope reset.",
-      "receivingProcess": "Undecided; Jay decides at TRUST 1.2 internal completion (separate research track or a later TRUST version).",
-      "responsibleArtifact": "This ledger row and the preserved Veri Formal/Kore assets identified by source-freeze50 SHA-256 763cbe1d98ac7b904dd53fb2a8b6b7400e756aaa7624d556ed697b89b98a9488.",
+      "disposition": "Mandatory general runtime-to-model correspondence for TRUST 1.2 within the declared Hook product scope; currently unproved. The prior scope reset is historical.",
+      "receivingProcess": "TRUST 1.2 general runtime-to-model closure for the declared Hook scope.",
+      "responsibleArtifact": "This ledger row and the preserved Veri Formal/Kore assets with SHA-256 763cbe1d98ac7b904dd53fb2a8b6b7400e756aaa7624d556ed697b89b98a9488.",
       "closureEvidence": "Kernel-checked discharge of this profile's runtime_link with positive and negative consumers.",
-      "reopenCondition": "When Jay designates the receiving process."
+      "reopenCondition": "Any final source, ABI, runtime, profile or proof-input change reopens the affected connection."
     }
   ],
   "centralClosure": {
@@ -1934,20 +1937,19 @@
     "routeExhaustiveness": "PASS_SCOPED_INVENTORY: factory, direct deployment, adapter, governor, compliance and executed callback routes were reverse-enumerated. Permissionless resynchroniseFrozen and fresh-lifecycle-unreachable activateSeal are present but unexecuted. batchForcedTransfer, recovery and post-activation mint/burn callbacks remain outside the graded Hook scope.",
     "stateReceiptIdentity": "All 21 profile components have scope-reviewed implementation evidence and compiled artifact bindings. General runtime-to-model correspondence and the Native general symbolic FREEZE proof remain open.",
     "currentMandatory": [
-      "NATIVE-SYMBOLIC-FREEZE"
-    ],
-    "researchResiduals": [
+      "NATIVE-SYMBOLIC-FREEZE",
       "RESEARCH-RUNTIME-LINK-HOOK",
       "RESEARCH-RUNTIME-LINK-NATIVE",
       "RESEARCH-RUNTIME-LINK-PARTIAL"
     ],
+    "researchResiduals": [],
     "shippingExceptions": [],
-    "releaseScopeReset": "Jay Kim, 2026-09-13; three release implementation-evidence criteria replace the previous general correspondence release requirement; original proof obligations preserved as research residuals."
+    "releaseScopeReset": "The 2026-09-13 release-scope reset is historical. Jay Kim's 2026-09-25 completion direction makes general correspondence mandatory for TRUST 1.2 while preserving scoped implementation-evidence rows."
   },
   "releasePolicy": "evidence/trust12/release-policy.json",
   "releaseAssessment": {
     "status": "PENDING",
     "fullRefinementComplete": false,
-    "meaning": "Three profile implementation-evidence rows are CLOSED at row grade EXECUTION_TESTS. Native general symbolic FREEZE remains open; no shipping exception or public release is authorized."
+    "meaning": "Three scoped profile implementation-evidence rows are CLOSED at row grade EXECUTION_TESTS. Native general symbolic FREEZE and all three general runtime-to-model connections remain mandatory and unproved. No shipping exception or public release is authorized."
   }
 }

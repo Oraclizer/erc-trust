@@ -32,13 +32,13 @@ complete", "Native Full complete", "Verified Full complete", "implementation con
 to the model", and any wording that presents the four Kontrol proofs as a proof of the
 runtime link rather than bounded instances of it.
 
-## TRUST 1.2 release-scope reset (unreleased)
+## TRUST 1.2 completion scope (unreleased)
 
-The release scope was explicitly reset by Jay Kim on 2026-09-13. It combines
-the verified Isabelle abstract model with profile-specific compiled-code evidence
-under the declared external provers and execution semantics. The general
-`runtime_link` discharge is an open research residual, not a TRUST 1.2 release
-requirement or a proved theorem. The current label remains
+The 2026-09-13 release-scope reset is historical. The current 2026-09-25
+completion direction requires general runtime-to-model correspondence for each
+declared profile. The verified Isabelle abstract model and profile-specific
+compiled-code evidence remain valid only within their recorded scopes. The general
+`runtime_link` discharge is mandatory and unproved. The current label remains
 "mapped implementation evidence; end-to-end refinement incomplete".
 
 Each of seven components in each profile records its exact input/state scope,
@@ -49,7 +49,7 @@ proof by aggregation. The 21 components have been scope-reviewed. Native, Partia
 Hook each contain seven execution-test components. The weakest component makes every
 profile row EXECUTION_TESTS. No test or bounded proof was upgraded beyond its
 original scope. The three profile implementation-evidence rows are closed within
-those declared scopes, while all three general `runtime_link` research residuals
+those declared scopes, while all three general `runtime_link` mandatory obligations
 remain unproved. Existing Kontrol PASS records remain supplemental bounded evidence
 because their receipt does not record the proof metadata required for proof-grade credit.
 

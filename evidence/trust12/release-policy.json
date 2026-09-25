@@ -1,5 +1,5 @@
 {
-  "schema": "trust12-release-policy-v1",
+  "schema": "trust12-release-policy-v2",
   "approval": {
     "kind": "RELEASE_SCOPE_RESET",
     "approvedBy": "Jay Kim",
@@ -7,13 +7,25 @@
     "userInstruction": "Adopt the reconciled release-evidence policy, apply it to the product evidence, and prepare the next session.",
     "scope": "Adopt the reconciled release-evidence policy, grading, explicit shipping-exception mechanism and probe decision. This is not approval of any individual shipping exception or public release."
   },
-  "generalRuntimeLinkRequiredForRelease": false,
-  "parserDevelopment": "PRESERVE_ONLY",
+  "completionDirection": {
+    "kind": "TRUST12_COMPLETION_DIRECTION",
+    "approvedBy": "Jay Kim",
+    "date": "2026-09-25",
+    "userInstruction": "Continue through TRUST 1.2 completion with the current evidence-preserving method and execution repairs.",
+    "scope": "General runtime-to-model correspondence in each declared profile is mandatory for TRUST 1.2 completion. Development checkpoints may remain incomplete; no release or deployment is authorized."
+  },
+  "generalRuntimeLinkRequiredForRelease": true,
+  "parserDevelopment": "ACTIVE_FOR_TRUST12",
+  "profileScopes": {
+    "NATIVE": "The exact pinned Native TrustToken runtime under the declared direct, non-proxy execution and environment assumptions: six actions, three reversals, success, rejection and malformed-call behavior with state, calls, return, logs and receipts.",
+    "PARTIAL": "The exact published ERC-3643 Partial adapter and governor runtimes under their declared custody, owner and token assumptions, with full=false: six actions, three reversals, success, rejection and malformed-call behavior within that product scope.",
+    "HOOK": "The exact constructor-sealed T-REX 4.1.3 Hook adapter, governor, Compliance and factory runtimes under the declared fixed-membership and callback scope: six actions, three reversals, success, rejection and malformed-call behavior on supported routes."
+  },
   "nativeProbe": {
     "budget": "One day of bounded alternative/decomposition work; record actual elapsed work and attempt costs before reassessment.",
     "automaticBoundedClosure": false,
     "decisionAuthority": "Jay Kim",
-    "ifIncomplete": "Report proven scope, unverified scope, measured continuation cost; keep general proof open pending Jay decision."
+    "ifIncomplete": "Report the proven scope, unverified scope and measured continuation cost; keep the general proof mandatory and open. This historical bounded probe is not a stop line for the current completion effort."
   },
   "toolchain": {
     "isabelle": "Isabelle2025-2",

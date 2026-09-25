@@ -3,11 +3,12 @@
 Unaudited. Not for production. No deployment, proxy, migration, or external
 legal/factual truth is verified. This file does not announce a release.
 
-Jay Kim approved an explicit release-scope reset on 2026-09-13: verified Isabelle
-model evidence plus profile-specific compiled-code evidence under declared
-Kontrol/KEVM, Certora and Foundry execution assumptions. The general machine-checked
-`runtime_link` discharge is preserved as research, outside the 1.2 release requirement.
-The permitted claim remains "mapped implementation evidence; end-to-end refinement incomplete".
+The 2026-09-13 release-scope reset is historical. Jay Kim's 2026-09-25 completion
+direction requires general machine-checked runtime-to-model correspondence for
+Native, Partial and Hook within each declared product scope. The current evidence
+does not discharge those obligations. Verified Isabelle model evidence and scoped
+compiled-code checks remain valid at their stated levels. The permitted claim is
+"mapped implementation evidence; end-to-end refinement incomplete".
 
 The ledger has seven components for each of Native, Partial and Hook. Each records
 full declared-scope proof, limited-scope proof, execution tests/fuzz, or unverified;
@@ -33,15 +34,17 @@ once on a smaller typed JUMP-decode frame, so the probe stopped under its approv
 failure rule. The same-domain guard-removal negative was not run. Time spent cannot
 close the proof. A shipping exception requires a separate Jay decision and leaves
 the proof explicitly unproven, with a receiving process, responsible artifact,
-closure evidence and resume condition. Parser/symbolic-receiver research is preserved
-without new extension as a release prerequisite.
+closure evidence and resume condition. Existing parser and symbolic receiver work
+is available for the mandatory general connection; no unproved producer is promoted.
 
 TRUST 1.2 shipping exceptions: none.
 
-`release-policy.json` records the scope decision. `obligation-ledger.json` records
-the 21 graded components, the open Native symbolic proof and the three research
-residuals separately from end-to-end proof completeness and public-release
+`release-policy.json` records the historical and current decisions. `obligation-ledger.json` records
+the 21 graded components, the open Native symbolic proof and the three mandatory
+general connections separately from end-to-end proof completeness and public-release
 authorization. `profile-implementation-evidence-review.json` records the scope
 inventory, and `native-alternative-probe.json` records the bounded probe result.
+The local proof-run inventory and the end-to-end product ledger have different
+denominators and cannot substitute for these open TRUST 1.2 product obligations.
 The verifier checks consistency of approval records; it does not authenticate human
 authority or replace independent semantic review.
