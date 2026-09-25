@@ -40,7 +40,7 @@
         },
         {
           "path": "formal/isabelle/ERC_TRUST/Proof_Audit.thy",
-          "sha256": "2d79454f39a5c241809c60a33bb276918aa8b59bc889ede95dd15c58452d2b1b"
+          "sha256": "0f2860b07ceff3217c6c175e296f3ac325dad91bb043e4838e4c92e8f7084de4"
         },
         {
           "path": "formal/isabelle/ERC_TRUST/RCP_Action_Mapping.thy",
@@ -48,7 +48,7 @@
         },
         {
           "path": "formal/isabelle/ERC_TRUST/ROOT",
-          "sha256": "234bc1ea085b9b2fc4bfe5bd4f534e6160c6bf429e60f93f956f6978e22a9b48"
+          "sha256": "2b45689839bfc6a21c823b52382ab15f8702cf8a00817081090fc20e67d45e85"
         },
         {
           "path": "formal/isabelle/ERC_TRUST/Regulatory_Execution_Semantics.thy",
@@ -88,7 +88,11 @@
         },
         {
           "path": "formal/isabelle/ERC_TRUST/TRUST_Obligation_Ledger_Generated.thy",
-          "sha256": "22d3b1c8fa15f9503fe66a932dba89b016e5372844670982868f399fde148698"
+          "sha256": "00e099e0011b99f5c7de746ed54ca26cb5a36200df62ef77896b624e14f70ad9"
+        },
+        {
+          "path": "formal/isabelle/ERC_TRUST/TRUST_Out_Of_Spec_Refinement.thy",
+          "sha256": "6c159584f9f88ce9cf37b6d40bf03aca6b41b9ca678e52176ed57febbacd13a0"
         },
         {
           "path": "formal/isabelle/ERC_TRUST/TRUST_Retrieve_Relation.thy",
@@ -100,7 +104,7 @@
         },
         {
           "path": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy",
-          "sha256": "0146d61bf4fdb0808805db475eb63c434c950496262f84d05fdf48e2860f17ad"
+          "sha256": "0066aca8046e7129d007bfc527e4c7552d17b891406adfdb4720197664eb84fb"
         },
         {
           "path": "formal/isabelle/ERC_TRUST/TRUST_State_Abi_Normal_Form.thy",
@@ -200,12 +204,12 @@
         }
       ],
       "path": "formal/isabelle",
-      "rootSha256": "0cd4ca1233facd8ec0b609eb7e6f8db7e690db193e6d098c855ff7947da97487",
+      "rootSha256": "7c6d08d4cca6ca035959f46d2cd5e4ae26595ad5005abaf9dd2da5e9c908954a",
       "sessions": [
         "ERC_TRUST",
         "TRUST12_Accounting_Obstruction"
       ],
-      "theoryFiles": 33
+      "theoryFiles": 34
     },
     "kontrolInputsSha256": "a9ae8bd47997bccda566d9a3d002fc8b21c11bed717f5332beae7b4ef9d56294",
     "sourceRootAlgorithm": "sha256-raw-files-case-sensitive-path-order-v1",
@@ -243,14 +247,14 @@
       "notEvaluable": 4,
       "receipt": {
         "path": "evidence/independent-reproduction-v3.json",
-        "sha256": "0ce97451c1b67b3ff0a26c6c73f00699dec3af6e3b4297c17d83336af70169b4"
+        "sha256": "1340bd79b6d042a1ee3cd510a1a2d846a8f0d26b88a7fd862a8f1a4ea225f3ac"
       },
       "status": "PASS"
     },
     "isabelleBuild": {
       "receipt": {
         "path": "evidence/isabelle-results-v3.json",
-        "sha256": "5178a9ec4b5eecab40c28ef25485cfd6d5023b654e91611e76042cabf462ad1f"
+        "sha256": "33ed63dd96257f8862da41b72361ed6cfa6bba2331e37688ec56cecec7e909f5"
       },
       "status": "PASS"
     },
@@ -421,7 +425,7 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "a374a235a755b562c9f5b3a130a81106e3f930f1718db3710123f4eacce4fa3f"
+        "sha256": "2539ea9b9cd736cb398dec59e0f626c2806d50a2151141b0b4bd7926d3181fbf"
       }
     },
     "runtime": {
@@ -438,7 +442,7 @@
       "basis": "this index checks the receipt against the deterministic build; layer 2 (pinned-compiler replay and the six semantic projections) is re-executed by scripts/generate-runtime-binding-v3.mjs --check and scripts/verify-runtime-binding-v3.mjs --replay in the sdk-and-package job",
       "receipt": {
         "path": "evidence/runtime-binding-v3.json",
-        "sha256": "8414030dfbade4e3e9b4f2518da88d2202a22e16cdfc5ebb0b347391deff030f"
+        "sha256": "74fc9b7da70fbceedc0fb9e7abecdc9fd13c31b97b31c287e260e2d7f48dda93"
       },
       "status": "PASS",
       "subjects": [
@@ -471,11 +475,11 @@
         },
         {
           "path": "evidence/known-limitations.md",
-          "sha256": "693891bdaec7f8a6f18a27b6bb047618c30e5f9435172a139c95bb4baa840bd5"
+          "sha256": "e21c553ac17274b72b1cea4d65bbd1584dc6e79d1decd7727d05140db91fa4e7"
         },
         {
           "path": "evidence/trust12/obligation-ledger.json",
-          "sha256": "5dfc7a7ebab32735a481dbfc464d45604d10c650028914b37808fde4052510cb"
+          "sha256": "f15aab2aef586b2b42defbd1d346cbbde11f903a8261f63b96954980012444b2"
         },
         {
           "path": "evidence/trust12/runtime-identity.json",
@@ -483,7 +487,7 @@
         },
         {
           "path": "evidence/trust12/runtime-link-source-blockers.md",
-          "sha256": "1c73b46de7efb1f7561bb0414ef341557c2d3a27c3d4236d0e8038fe7bf0ca15"
+          "sha256": "cb9037c046e9bf495f4f32def9eb056d97434202c36e99ddb5631a67c1baba0f"
         },
         {
           "path": "evidence/trust12/independent-audit.md",
@@ -507,11 +511,11 @@
         },
         {
           "path": "evidence/trust12/formal-build-replay.json",
-          "sha256": "ffb8dfa22df26344aa59b5361c1df667087d92b6909afe9632f463a3c1d5455f"
+          "sha256": "9a251a006272029664ddb50d8398c2dc011065151195c3dde5ef6317c54b7078"
         },
         {
           "path": "evidence/trust12/model-results.json",
-          "sha256": "702d4598d64764535bbcffb5780840fd2f24b267f3467f2a29e8f0489733c9bf"
+          "sha256": "9dd096aed9fb49c59fc11ba3b2c341f31ce2c06a29c58c20e8b21587572e5414"
         },
         {
           "path": "evidence/trust12/model-preservation-audit.md",
@@ -575,7 +579,7 @@
         },
         {
           "path": "evidence/trust12/input-seal.json",
-          "sha256": "5ee19d888f06f65c8eba0e8a7396aa452e59c76cdf066450f5226430827f0362"
+          "sha256": "0a122730c192000e968fe2d24b5a68e07c5ea80c2c249d5c960c10771280b423"
         }
       ],
       "fullRefinementComplete": false,
@@ -700,11 +704,11 @@
       },
       {
         "path": "evidence/known-limitations.md",
-        "sha256": "693891bdaec7f8a6f18a27b6bb047618c30e5f9435172a139c95bb4baa840bd5"
+        "sha256": "e21c553ac17274b72b1cea4d65bbd1584dc6e79d1decd7727d05140db91fa4e7"
       },
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "5dfc7a7ebab32735a481dbfc464d45604d10c650028914b37808fde4052510cb"
+        "sha256": "f15aab2aef586b2b42defbd1d346cbbde11f903a8261f63b96954980012444b2"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -712,7 +716,7 @@
       },
       {
         "path": "evidence/trust12/runtime-link-source-blockers.md",
-        "sha256": "1c73b46de7efb1f7561bb0414ef341557c2d3a27c3d4236d0e8038fe7bf0ca15"
+        "sha256": "cb9037c046e9bf495f4f32def9eb056d97434202c36e99ddb5631a67c1baba0f"
       },
       {
         "path": "evidence/trust12/independent-audit.md",
@@ -736,11 +740,11 @@
       },
       {
         "path": "evidence/trust12/formal-build-replay.json",
-        "sha256": "ffb8dfa22df26344aa59b5361c1df667087d92b6909afe9632f463a3c1d5455f"
+        "sha256": "9a251a006272029664ddb50d8398c2dc011065151195c3dde5ef6317c54b7078"
       },
       {
         "path": "evidence/trust12/model-results.json",
-        "sha256": "702d4598d64764535bbcffb5780840fd2f24b267f3467f2a29e8f0489733c9bf"
+        "sha256": "9dd096aed9fb49c59fc11ba3b2c341f31ce2c06a29c58c20e8b21587572e5414"
       },
       {
         "path": "evidence/trust12/model-preservation-audit.md",
@@ -804,7 +808,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "5ee19d888f06f65c8eba0e8a7396aa452e59c76cdf066450f5226430827f0362"
+        "sha256": "0a122730c192000e968fe2d24b5a68e07c5ea80c2c249d5c960c10771280b423"
       }
     ],
     "fullRefinementComplete": false,
