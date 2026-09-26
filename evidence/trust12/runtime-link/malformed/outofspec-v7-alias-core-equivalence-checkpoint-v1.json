@@ -1,0 +1,143 @@
+{
+  "schema": "trust12-outofspec-v7-alias-core-equivalence-checkpoint-v1",
+  "status": "PASS_KERNEL_CHECKED_OUTOFSPEC_V5_V7_CORE_EQUIV_G76_V2",
+  "scope": "The current product v7 out-of-specification theory was rebuilt with only its theory header renamed, and eight core v5/v7 definitions were proved equivalent in a separate session with an oracle-dependency guard.",
+  "predecessor": {
+    "root": "PRODUCT",
+    "path": "evidence/trust12/runtime-link/malformed/ast-eval-checkpoint-v1.json",
+    "bytes": 3319,
+    "sha256": "3a63bec64e786070fefb8a2202c452f2f575f9ac5424d7cfc27c03d830f41398"
+  },
+  "coverage": {
+    "aliasSessions": 2,
+    "coreEquivalences": 8,
+    "ancestorSessionsRebuilt": 0
+  },
+  "source": {
+    "productV7Theory": {
+      "root": "PRODUCT",
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Out_Of_Spec_Refinement.thy",
+      "bytes": 45977,
+      "sha256": "6c159584f9f88ce9cf37b6d40bf03aca6b41b9ca678e52176ed57febbacd13a0"
+    },
+    "immutableV5Pin": {
+      "root": "EVIDENCE",
+      "path": "final-chain-v2/pinned-inputs/product-outofspec-v2/formal/isabelle/ERC_TRUST/TRUST_Out_Of_Spec_Refinement.thy",
+      "bytes": 34374,
+      "sha256": "3e51be34f4d3bf1b4528309f2bfcacb0848c11a6f632487bf960ad19c82f8471"
+    },
+    "aliasBinding": {
+      "root": "EVIDENCE",
+      "path": "outofspec-v7-alias-g75-v1/input-binding.json",
+      "bytes": 1303,
+      "sha256": "f7f7f849176c972fc78f17426df453b75cb2366eb2b9f338b82d46eb9c50e30c"
+    },
+    "aliasRoot": {
+      "root": "EVIDENCE",
+      "path": "outofspec-v7-alias-g75-v1/ROOT",
+      "bytes": 223,
+      "sha256": "0d1256b6e8b9108baa61da9d867b071e3ddce7ec45eae18f7fc9a089ef0bd584"
+    },
+    "aliasTheory": {
+      "root": "EVIDENCE",
+      "path": "outofspec-v7-alias-g75-v1/TRUST_Out_Of_Spec_Refinement_V7_Alias.thy",
+      "bytes": 45986,
+      "sha256": "ba37d79478c49f7adc8f41df9640ce0bbc54d01b4b5be027eb4bf7f1fbdfb6cc"
+    },
+    "bridgeBinding": {
+      "root": "EVIDENCE",
+      "path": "outofspec-v7-bridge-g76-v2/input-binding.json",
+      "bytes": 1148,
+      "sha256": "c11babbe497f3198ef3c17e6524cdeafbffcbf3f484645abf8ffff84a8cbd39b"
+    },
+    "bridgeRoot": {
+      "root": "EVIDENCE",
+      "path": "outofspec-v7-bridge-g76-v2/ROOT",
+      "bytes": 244,
+      "sha256": "9cfd3a1828491ad0fb89bc866c98877de5db6ab139898d156a0d56301bdc1f50"
+    },
+    "bridgeTheory": {
+      "root": "EVIDENCE",
+      "path": "outofspec-v7-bridge-g76-v2/TRUST_Out_Of_Spec_V5_V7_Bridge.thy",
+      "bytes": 3285,
+      "sha256": "8e17942454cd378125826eeab7f70e13eaab32be52d5702c41571b5824194a7e"
+    }
+  },
+  "kernelBuild": {
+    "aliasCompletedInFirstRun": {
+      "root": "EVIDENCE",
+      "path": "final-chain-v2/runs/outofspec-v7-alias-bridge-g76-build-v1/result.json",
+      "bytes": 11076,
+      "sha256": "ef09efeb28e42328cb6e8cbf90204f20a1f26faa4c5882b2aea9084004753ba0"
+    },
+    "caseMethodCanary": {
+      "root": "EVIDENCE",
+      "path": "outofspec-case-method-canary-runs/CaseRun01/result.json",
+      "bytes": 1512,
+      "sha256": "8315b1508ad8699c249dd90f0e40cd0406dbe78c90ab410c2d73e287ddde2076"
+    },
+    "dryRun": {
+      "root": "EVIDENCE",
+      "path": "final-chain-v2/runs/outofspec-v7-bridge-g76-v2-dryrun/result.json",
+      "bytes": 10498,
+      "sha256": "a3004d1f52bc1dc7c7ebbaf7df0f01c2535055aecaf5ebe96e9ebb15bb63865c"
+    },
+    "result": {
+      "root": "EVIDENCE",
+      "path": "final-chain-v2/runs/outofspec-v7-bridge-g76-v2-build/result.json",
+      "bytes": 11138,
+      "sha256": "de6ed8ca0caad357401912f70dea53084cbcbd6a0e57343131361213498ab92a"
+    },
+    "sessions": [
+      {
+        "session": "TRUST12_OUTOFSPEC_V7_ALIAS_G75",
+        "heap": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_OUTOFSPEC_V7_ALIAS_G75",
+          "bytes": 17401513,
+          "sha256": "7a1e8bf799236bb58d9e590adfc544d56509564d1070671deab22be8ce7222c7"
+        },
+        "database": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_OUTOFSPEC_V7_ALIAS_G75.db",
+          "bytes": 217088,
+          "sha256": "12f1def4191b7d69fb46aafb87368b4299fe86a879468990ad77f1439b82faed"
+        }
+      },
+      {
+        "session": "TRUST12_OUTOFSPEC_V5_V7_EQUIV_G76_V2",
+        "heap": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_OUTOFSPEC_V5_V7_EQUIV_G76_V2",
+          "bytes": 17376597,
+          "sha256": "e9825eba0da58bf6a7109f07b29ff8648329850e25c5e15a09d80da52cfbc756"
+        },
+        "database": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_OUTOFSPEC_V5_V7_EQUIV_G76_V2.db",
+          "bytes": 208896,
+          "sha256": "081e26d74940974895205053a0190dc40d8a6c8819c672bcfafca476421df551"
+        }
+      }
+    ],
+    "inputsUnchanged": true,
+    "failedSessions": 0
+  },
+  "hostAudit": {
+    "status": "PASS_OUTOFSPEC_V5_V7_CORE_EQUIV_REHASHED",
+    "report": {
+      "root": "EVIDENCE",
+      "path": "outofspec-v7-alias-equivalence-host-audit-v1.json",
+      "bytes": 832,
+      "sha256": "95733bea12c767af76b0c905a4376901195b763fdaa7bcf6bf87d457c02aa936"
+    },
+    "verifier": {
+      "root": "PRODUCT",
+      "path": "scripts/trust12/verify_outofspec_v7_alias_equiv_v1.py",
+      "bytes": 8076,
+      "sha256": "7170b60abdc95e98eefdf6782a14ea9128020a38851940032dc92d65a473617c"
+    },
+    "command": "python3 scripts/trust12/verify_outofspec_v7_alias_equiv_v1.py --base <evidence-root> --product-root <product-root>"
+  },
+  "nonclaim": "This proves the alias source build and eight core definition equivalences only. It does not establish a K-to-Isabelle operational receiver, the malformed S2 branches, any general runtime link, the central bidirectional closure or independent Assurance. No release or deployment is authorized."
+}
