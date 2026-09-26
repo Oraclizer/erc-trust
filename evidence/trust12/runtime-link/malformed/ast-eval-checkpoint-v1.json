@@ -1,0 +1,82 @@
+{
+  "schema": "trust12-malformed-ast-eval-checkpoint-v1",
+  "status": "PASS_KERNEL_CHECKED_MALFORMED_AST_EVAL_G73",
+  "scope": "The 42 registered malformed-request certificates supply 420 KORE cell roles; 70 unique cells were decoded into 218 Isabelle AST/EVAL theories in one completed kernel session.",
+  "predecessor": {
+    "root": "PRODUCT",
+    "path": "evidence/trust12/runtime-link/malformed/kevm-kore-checkpoint-v1.json",
+    "bytes": 6853,
+    "sha256": "ed39a6dbc7f10fac348c022b3a1e5007f2194bdf46064b1adf1e81a80c75b657"
+  },
+  "coverage": {
+    "certificates": 42,
+    "native": 16,
+    "partial": 13,
+    "hook": 13,
+    "roleUses": 420,
+    "uniqueKoreCells": 70,
+    "generatedTheories": 218,
+    "generatedFiles": 219,
+    "subset": false
+  },
+  "source": {
+    "bundleSpec": {
+      "root": "EVIDENCE",
+      "path": "malformed-cells-full42-v1/bundle-spec.json",
+      "bytes": 21874,
+      "sha256": "b8a942861eaa98227b8476a6e7ae07c60085c3806e6bec990c8b80c24ef2cbda"
+    },
+    "specBinding": {
+      "root": "EVIDENCE",
+      "path": "malformed-cells-full42-v1/spec-binding.json",
+      "bytes": 224211,
+      "sha256": "fe01d41ecd94e49770a23b81954193de358a553115d897ad4d2d16aaca2081ef"
+    },
+    "generatedBinding": {
+      "root": "EVIDENCE",
+      "path": "malformed-cells-g73-v1/input-binding.json",
+      "bytes": 169067,
+      "sha256": "5d9a6ddb7b4a15cbacdf5bf916415d8db34f05a12529a47d5888993fb5cb2adb"
+    }
+  },
+  "kernelBuild": {
+    "session": "TRUST12_MALFORMED_CELLS_EVAL_G73",
+    "result": {
+      "root": "EVIDENCE",
+      "path": "final-chain-v2/runs/malformed-cells-g73-build-v1/result.json",
+      "bytes": 11045,
+      "sha256": "a617d70522a4c7f667f3803bc02551acedb4d56e05c98bce41819aec18f3ddc8"
+    },
+    "heap": {
+      "root": "EVIDENCE",
+      "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_MALFORMED_CELLS_EVAL_G73",
+      "bytes": 124263281,
+      "sha256": "dc7eb599f05c184fb895a9395b9361669e2f3ece62e4322bc24cb66187c3ba8f"
+    },
+    "database": {
+      "root": "EVIDENCE",
+      "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_MALFORMED_CELLS_EVAL_G73.db",
+      "bytes": 8486912,
+      "sha256": "d705e566152a2be08de12c7c170410728dce3220aa6be9d55f485638f85cda03"
+    },
+    "inputsUnchanged": true,
+    "failedSessions": 0
+  },
+  "hostAudit": {
+    "status": "PASS_MALFORMED_AST_EVAL_G73_REHASHED",
+    "report": {
+      "root": "EVIDENCE",
+      "path": "malformed-ast-eval-g73-host-audit-v1.json",
+      "bytes": 406,
+      "sha256": "cf1b78cf925f1c96c065e6e80707f359b0324741ea3d9249d71b727961fbe2bf"
+    },
+    "verifier": {
+      "root": "PRODUCT",
+      "path": "scripts/trust12/verify_malformed_ast_eval_v1.py",
+      "bytes": 6258,
+      "sha256": "abe76b0cb06708fdc2af231b75e6dff199f6534f06f38b341a3280e2e794f720"
+    },
+    "command": "python3 scripts/trust12/verify_malformed_ast_eval_v1.py --base <evidence-root>"
+  },
+  "nonclaim": "This proves exact AST/EVAL facts for the recorded KORE cells. It does not prove the out-of-specification transaction branch, the accepted-set partition, any general runtime link, the central bidirectional closure, or independent Assurance. No release or deployment is authorized."
+}
