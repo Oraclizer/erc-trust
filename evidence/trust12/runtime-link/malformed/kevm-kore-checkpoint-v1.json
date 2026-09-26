@@ -1,0 +1,189 @@
+{
+  "schema": "trust12-malformed-kevm-kore-checkpoint-v1",
+  "status": "PASS_MALFORMED_KEVM_KORE_FULL42",
+  "scope": "The 42 registered malformed-request KEVM certificates and their pre-call/reverted-state KORE materializations for Native, Partial and Hook.",
+  "sourceArchive": {
+    "root": "EVIDENCE",
+    "path": "native-liquidate-kevm-01/source-19b69121.tar",
+    "bytes": 624640,
+    "sha256": "e3678e900c8373554a11c46052ae75b41b4af79888e95877cdbf621cdfcbdf0d"
+  },
+  "profiles": [
+    {
+      "profile": "native",
+      "registeredCertificates": 16,
+      "distinctProofIds": 16,
+      "malformedClasses": {
+        "dirty-address-word": 1,
+        "dirty-enum-word": 3,
+        "dirty-uint48-word": 1,
+        "dirty-uint64-word": 1,
+        "length": 5,
+        "no-selector": 2,
+        "nonzero-call-value": 1,
+        "ordering-probe": 1,
+        "unknown-selector": 1
+      },
+      "slugs": [
+        "action-dirty-address",
+        "action-dirty-uint48",
+        "action-dirty-uint64",
+        "action-enum-out-of-range",
+        "action-nonzero-value",
+        "action-one-byte-long",
+        "action-one-byte-short",
+        "action-ordering-foreign-domain",
+        "empty-calldata",
+        "reversal-enum-out-of-range",
+        "reversal-one-byte-short",
+        "route-action-enum-out-of-range",
+        "route-action-one-byte-short",
+        "route-reversal-one-byte-short",
+        "three-byte-calldata",
+        "unknown-selector"
+      ],
+      "nonzeroValuePreEntryTransfers": 1,
+      "kevmStatus": "PASS_NATIVE_MALFORMED_KEVM_V1",
+      "materializationStatus": "PASS_MALFORMED_KEVM_BOUNDARIES_AND_KORE",
+      "catalog": {
+        "root": "EVIDENCE",
+        "path": "native-malformed-kevm-full-v1/inputs/certificates.json",
+        "bytes": 6763,
+        "sha256": "738d3b6d8ed4c03978a22da3361852aadebdac2e322ce83fb57699688bcbc92b"
+      },
+      "kevmResult": {
+        "root": "EVIDENCE",
+        "path": "native-malformed-kevm-full-v1/result.json",
+        "bytes": 29022,
+        "sha256": "26f7f63d341511b55f40cf5aa15c7571ab3a7ecfb9773ef1368ea668654f9d5c"
+      },
+      "materialization": {
+        "root": "EVIDENCE",
+        "path": "native-malformed-kevm-full-v1/materialization-v2-result.json",
+        "bytes": 31877,
+        "sha256": "6a08bb3b4a2be95b9d15f6be66e3c0f5ba7e19471c840ef195e686d2aaff98c9"
+      }
+    },
+    {
+      "profile": "partial",
+      "registeredCertificates": 13,
+      "distinctProofIds": 13,
+      "malformedClasses": {
+        "dirty-address-word": 1,
+        "dirty-enum-word": 2,
+        "dirty-uint48-word": 1,
+        "dirty-uint64-word": 1,
+        "length": 3,
+        "no-selector": 2,
+        "nonzero-call-value": 1,
+        "ordering-probe": 1,
+        "unknown-selector": 1
+      },
+      "slugs": [
+        "action-dirty-address",
+        "action-dirty-uint48",
+        "action-dirty-uint64",
+        "action-enum-out-of-range",
+        "action-nonzero-value",
+        "action-one-byte-long",
+        "action-one-byte-short",
+        "action-ordering-foreign-domain",
+        "empty-calldata",
+        "reversal-enum-out-of-range",
+        "reversal-one-byte-short",
+        "three-byte-calldata",
+        "unknown-selector"
+      ],
+      "nonzeroValuePreEntryTransfers": 1,
+      "kevmStatus": "PASS_PARTIAL_MALFORMED_KEVM_V1",
+      "materializationStatus": "PASS_MALFORMED_KEVM_BOUNDARIES_AND_KORE",
+      "catalog": {
+        "root": "EVIDENCE",
+        "path": "profile-partial-malformed-kevm-full-v1/inputs/certificates.json",
+        "bytes": 5538,
+        "sha256": "ea7608aa9da862be831e6a0c3f82b4ef6b93ae403ce137608818aaa74f9dddb6"
+      },
+      "kevmResult": {
+        "root": "EVIDENCE",
+        "path": "profile-partial-malformed-kevm-full-v1/result.json",
+        "bytes": 24538,
+        "sha256": "ab99f733c9f7bc86ba473ec2f9d75de45b816f6ef7f7276813f2f7a1a23f4ad5"
+      },
+      "materialization": {
+        "root": "EVIDENCE",
+        "path": "profile-partial-malformed-kevm-full-v1/materialization-v2-result.json",
+        "bytes": 26633,
+        "sha256": "f6fab273a7d54ec9f356b10292de9b99d52f419884deb4603bd3c276c5f5e76a"
+      }
+    },
+    {
+      "profile": "hook",
+      "registeredCertificates": 13,
+      "distinctProofIds": 13,
+      "malformedClasses": {
+        "dirty-address-word": 1,
+        "dirty-enum-word": 2,
+        "dirty-uint48-word": 1,
+        "dirty-uint64-word": 1,
+        "length": 3,
+        "no-selector": 2,
+        "nonzero-call-value": 1,
+        "ordering-probe": 1,
+        "unknown-selector": 1
+      },
+      "slugs": [
+        "action-dirty-address",
+        "action-dirty-uint48",
+        "action-dirty-uint64",
+        "action-enum-out-of-range",
+        "action-nonzero-value",
+        "action-one-byte-long",
+        "action-one-byte-short",
+        "action-ordering-foreign-domain",
+        "empty-calldata",
+        "reversal-enum-out-of-range",
+        "reversal-one-byte-short",
+        "three-byte-calldata",
+        "unknown-selector"
+      ],
+      "nonzeroValuePreEntryTransfers": 1,
+      "kevmStatus": "PASS_HOOK_MALFORMED_KEVM_V1",
+      "materializationStatus": "PASS_MALFORMED_KEVM_BOUNDARIES_AND_KORE",
+      "catalog": {
+        "root": "EVIDENCE",
+        "path": "profile-hook-malformed-kevm-full-v1/inputs/certificates.json",
+        "bytes": 5490,
+        "sha256": "8321c4acc9d34855540b0e0d2e08f76a81009d93c913717a7007e922772e96ef"
+      },
+      "kevmResult": {
+        "root": "EVIDENCE",
+        "path": "profile-hook-malformed-kevm-full-v1/result.json",
+        "bytes": 24820,
+        "sha256": "3d98921bf1b9325ab7bbf35b827541392e35f923d240b1af550f53868e935900"
+      },
+      "materialization": {
+        "root": "EVIDENCE",
+        "path": "profile-hook-malformed-kevm-full-v1/materialization-v2-result.json",
+        "bytes": 26424,
+        "sha256": "4dd37fd99bc439ae308da9f2dccb1a5ff22c5dc4c6b14db5262d3d1bc56ed75f"
+      }
+    }
+  ],
+  "hostAudit": {
+    "status": "PASS_HOST_REHASH_MALFORMED_FULL42",
+    "report": {
+      "root": "EVIDENCE",
+      "path": "malformed-full42-host-audit-v1.json",
+      "bytes": 546,
+      "sha256": "cfb02b54702c74fe7ff7ba4e1aab9d038ffbaac7e950a7d40b600bb75f1837ca"
+    },
+    "verifier": {
+      "root": "PRODUCT",
+      "path": "scripts/trust12/verify_malformed_full_v1.py",
+      "bytes": 7012,
+      "sha256": "95be31e9d6cb033e80698057c03ed3760a1aeaca1d4da410aeb722f486950c60"
+    },
+    "command": "python3 scripts/trust12/verify_malformed_full_v1.py --base <evidence-root>"
+  },
+  "nonclaim": "The frozen KEVM/KORE tool evidence is complete for the registered malformed requests. This checkpoint does not kernel-check the KORE AST/EVAL cells, prove the out-of-specification refinement branch, discharge any general runtime link, close the central bidirectional theorem, or constitute independent Assurance, release or deployment authority."
+}
