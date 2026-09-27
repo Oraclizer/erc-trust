@@ -1,0 +1,739 @@
+{
+  "schema": "trust12-partial-recorded-code-root-checkpoint-v1",
+  "status": "PASS_KERNEL_CHECKED_PARTIAL_RECORDED_CODE_ROOT_V1",
+  "scope": "The constructed Partial adapter compiler template with 23 immutable fills equals the 19,480-byte account-code observation in the first Partial FREEZE entry AST.",
+  "coverage": {
+    "recordedRuntimeBytes": 19480,
+    "recordedLeaves": 203,
+    "binaryNodes": 202,
+    "immutableFills": 23,
+    "kernelSessions": 16,
+    "ancestorSessionsRebuiltInFinalStage": 0
+  },
+  "source": {
+    "leafPlan": {
+      "root": "EVIDENCE",
+      "path": "partial-code-leaf-plan-v1.json",
+      "bytes": 74820,
+      "sha256": "786ea91c6e934f90c39f92fd81d09e20393747594d5f59e59b85a9e71443c42a"
+    },
+    "rootBinding": {
+      "root": "EVIDENCE",
+      "path": "partial-code-root-g91-v1/input-binding.json",
+      "bytes": 3602,
+      "sha256": "3dd42baad5acfd1d75e060783661d94e7d759a4438adc5a9e49f842012c604be"
+    },
+    "proofStages": [
+      {
+        "session": "TRUST12_PARTIAL_FIRST_IMMUTABLE_WORD_G76_V1",
+        "binding": {
+          "root": "EVIDENCE",
+          "path": "partial-first-immutable-word-g76-v1/input-binding.json",
+          "bytes": 986,
+          "sha256": "346d8720cd012baf4a61f096cdec9653df588dc7fdaa636d8f6f467723e9d5da"
+        },
+        "sessionRoot": {
+          "root": "EVIDENCE",
+          "path": "partial-first-immutable-word-g76-v1/ROOT",
+          "bytes": 253,
+          "sha256": "9b4654728358fdb0c421f731f464b23e61e7af47b8b2c807d970859f09f11a9f"
+        },
+        "theory": {
+          "root": "EVIDENCE",
+          "path": "partial-first-immutable-word-g76-v1/TRUST_Partial_First_Immutable_Word_G76_V1.thy",
+          "bytes": 9082,
+          "sha256": "b592a381fee2e9e2a78d5de9832990af60c430e17a4e77f45c7add7927951743"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_FIRST_FILL_SEGMENT_G77_V1",
+        "binding": {
+          "root": "EVIDENCE",
+          "path": "partial-fill-segment-method-g77-v1/input-binding.json",
+          "bytes": 624,
+          "sha256": "e4218882cfc74d2e1c4c9d1262036080db569452837e12a7dd210df54d8d18c1"
+        },
+        "sessionRoot": {
+          "root": "EVIDENCE",
+          "path": "partial-fill-segment-method-g77-v1/ROOT",
+          "bytes": 246,
+          "sha256": "48da43ebaa80140fff276fe126fbf839d2ff1899e62e1ea89388f75ac45ff0f2"
+        },
+        "theory": {
+          "root": "EVIDENCE",
+          "path": "partial-fill-segment-method-g77-v1/TRUST_Partial_First_Fill_Segment_G77_V1.thy",
+          "bytes": 2526,
+          "sha256": "cb1f83aea546c8881f6173dbb80f6528a0de74b3b97124b17e026355644c02ae"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_FILLED_WORD32_G78_V1",
+        "binding": {
+          "root": "EVIDENCE",
+          "path": "partial-filled-word32-g78-v1/input-binding.json",
+          "bytes": 1002,
+          "sha256": "29ad4a8aa5cb1bfc18695addb89ce2f9b86eaa1bd608a41a5c5806e8e0915977"
+        },
+        "sessionRoot": {
+          "root": "EVIDENCE",
+          "path": "partial-filled-word32-g78-v1/ROOT",
+          "bytes": 235,
+          "sha256": "5192a6cb77030180015c00a7a42131eb35aa4d0efd942b8bafa0382f984b9e69"
+        },
+        "theory": {
+          "root": "EVIDENCE",
+          "path": "partial-filled-word32-g78-v1/TRUST_Partial_Filled_Word32_G78_V1.thy",
+          "bytes": 24507,
+          "sha256": "d076c7ae6d5173ec71f4340dd694035812259c42046a0d3d9f5aa7364702c5b7"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_LEAF_UNFILLED_METHOD_G79_V1",
+        "binding": {
+          "root": "EVIDENCE",
+          "path": "partial-leaf-unfilled-method-g79-v1/input-binding.json",
+          "bytes": 624,
+          "sha256": "f8473e98c9ce412d12aa1e55e498ba3feca9bf206b1c16c237d4c625580f0af4"
+        },
+        "sessionRoot": {
+          "root": "EVIDENCE",
+          "path": "partial-leaf-unfilled-method-g79-v1/ROOT",
+          "bytes": 243,
+          "sha256": "bf43f5645747191b7b338d77c22d0bef29be55f48d35d3feddf53c71dce3f39e"
+        },
+        "theory": {
+          "root": "EVIDENCE",
+          "path": "partial-leaf-unfilled-method-g79-v1/TRUST_Partial_Leaf_Unfilled_Method_G79_V1.thy",
+          "bytes": 3789,
+          "sha256": "74bceeaf566c4e1ca3331dbac302ad3f7a9c84e7bed9926a97b06e3415583329"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_CODE_LEAF96_G80_V1",
+        "binding": {
+          "root": "EVIDENCE",
+          "path": "partial-code-leaf96-g80-v1/input-binding.json",
+          "bytes": 883,
+          "sha256": "ac544648ecdbcbd9a356acb1f76042cf558a0b0b149419b3460e57757b952ae0"
+        },
+        "sessionRoot": {
+          "root": "EVIDENCE",
+          "path": "partial-code-leaf96-g80-v1/ROOT",
+          "bytes": 233,
+          "sha256": "65b027d90b0ad3e0316b7255b976bb82e6534013a3ed75d5600d459c022edee0"
+        },
+        "theory": {
+          "root": "EVIDENCE",
+          "path": "partial-code-leaf96-g80-v1/TRUST_Partial_Code_Leaf96_G80_V1.thy",
+          "bytes": 121608,
+          "sha256": "93d361cc7ec0c590832d9b72075bac967cc7f06f39d897e5fb995df796d858b9"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_UNAFFECTED_LEAF_G81_V1",
+        "binding": {
+          "root": "EVIDENCE",
+          "path": "partial-unaffected-leaf-g81-v1/input-binding.json",
+          "bytes": 855,
+          "sha256": "69c8a2bb5465fb135b026c6218aa55e7061a81178a01f3b41ddbafefe6022561"
+        },
+        "sessionRoot": {
+          "root": "EVIDENCE",
+          "path": "partial-unaffected-leaf-g81-v1/ROOT",
+          "bytes": 231,
+          "sha256": "d542b88cf5c00c3839a8501c90ce6323ffa5f1eb42e70b6f7f682c46f3d3b65b"
+        },
+        "theory": {
+          "root": "EVIDENCE",
+          "path": "partial-unaffected-leaf-g81-v1/TRUST_Partial_Unaffected_Leaf_G81_V1.thy",
+          "bytes": 4345,
+          "sha256": "7514f8afc1a9fb06558ad00e2f4b83e490371022fda886ff800c4ff1808d3ac2"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_UNAFFECTED_BATCH01_G82_V1",
+        "binding": {
+          "root": "EVIDENCE",
+          "path": "partial-unaffected-batch01-g82-v1/input-binding.json",
+          "bytes": 1070,
+          "sha256": "59ee6ed08e8b769d689467e9f71c2a2d5e964c6e9496c8417dc9563626d44d57"
+        },
+        "sessionRoot": {
+          "root": "EVIDENCE",
+          "path": "partial-unaffected-batch01-g82-v1/ROOT",
+          "bytes": 242,
+          "sha256": "ecd63a6d9cacb6d25d4939e41e7c4c29c21f25ab7ab5f517edce3c6450c49907"
+        },
+        "theory": {
+          "root": "EVIDENCE",
+          "path": "partial-unaffected-batch01-g82-v1/TRUST_Partial_Unaffected_Batch01_G82_V1.thy",
+          "bytes": 46188,
+          "sha256": "10b54196cebaf593f61e1c47027e7780dbe48d24fb82c306f9b83508a9199e23"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_UNAFFECTED_BATCH02_G83_V1",
+        "binding": {
+          "root": "EVIDENCE",
+          "path": "partial-unaffected-batch02-g83-v1/input-binding.json",
+          "bytes": 1865,
+          "sha256": "711c3b3164cd59afcf58496465d64854a82623b7dfff0e1429ddaf38abb352e3"
+        },
+        "sessionRoot": {
+          "root": "EVIDENCE",
+          "path": "partial-unaffected-batch02-g83-v1/ROOT",
+          "bytes": 245,
+          "sha256": "5456978781c451b977bc32fe1d6a5de54d50512a954064b8fec218d2f832d610"
+        },
+        "theory": {
+          "root": "EVIDENCE",
+          "path": "partial-unaffected-batch02-g83-v1/TRUST_Partial_Unaffected_Batch02_G83_V1.thy",
+          "bytes": 171471,
+          "sha256": "0c01d322dd5b3cecd9759870746e833ee55121e8d7e5bddbf31e2d32d49322e2"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_CROSSCHUNK_METHOD_G84_V1",
+        "binding": {
+          "root": "EVIDENCE",
+          "path": "partial-crosschunk-method-g84-v1/input-binding.json",
+          "bytes": 737,
+          "sha256": "229fdd3fc2e26e375776e332f80e30291a7f3c46f8f9f3803862fdb995c5708a"
+        },
+        "sessionRoot": {
+          "root": "EVIDENCE",
+          "path": "partial-crosschunk-method-g84-v1/ROOT",
+          "bytes": 242,
+          "sha256": "1b498d26cb9f7d9cdc88f55f03a4c4ed997a298ffeb85dfb7c29d64390b12581"
+        },
+        "theory": {
+          "root": "EVIDENCE",
+          "path": "partial-crosschunk-method-g84-v1/TRUST_Partial_Crosschunk_Method_G84_V1.thy",
+          "bytes": 1528,
+          "sha256": "0cdc26b41fca8b508534dc208fc17a4386da51464d15ac7fd12420bea32f8ce7"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_CROSSCHUNK_BATCH_G85_V1",
+        "binding": {
+          "root": "EVIDENCE",
+          "path": "partial-crosschunk-batch-g85-v1/input-binding.json",
+          "bytes": 795,
+          "sha256": "901da4723f92724d1237f80b0dec53c33db6690f9e2f5fa6a0e98cb415a79ad9"
+        },
+        "sessionRoot": {
+          "root": "EVIDENCE",
+          "path": "partial-crosschunk-batch-g85-v1/ROOT",
+          "bytes": 240,
+          "sha256": "542a14022a848d8dfc89f275c595daa5cfecc408651df29abf81400729d3673c"
+        },
+        "theory": {
+          "root": "EVIDENCE",
+          "path": "partial-crosschunk-batch-g85-v1/TRUST_Partial_Crosschunk_Batch_G85_V1.thy",
+          "bytes": 12997,
+          "sha256": "946f73e6e617afd2f56cb43540379f9889de5f288ef96cc40c34b0bf7bff8742"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_TWOFILL_LEAF_G86_V1",
+        "binding": {
+          "root": "EVIDENCE",
+          "path": "partial-twofill-leaf-g86-v1/input-binding.json",
+          "bytes": 837,
+          "sha256": "946409d290c01145b9b0d51fed24bdd02bc490f0378c110c0e27ecdc20370d83"
+        },
+        "sessionRoot": {
+          "root": "EVIDENCE",
+          "path": "partial-twofill-leaf-g86-v1/ROOT",
+          "bytes": 231,
+          "sha256": "e24663f7e7bb7dc9e3a5a70911ad9c0d071aae61f0331cf90e9bb4951e218abe"
+        },
+        "theory": {
+          "root": "EVIDENCE",
+          "path": "partial-twofill-leaf-g86-v1/TRUST_Partial_Twofill_Leaf_G86_V1.thy",
+          "bytes": 124199,
+          "sha256": "94b62dc90b7d7b29252cdae5ab4ddd560678d48f3f2dcde8005d8b8503f35001"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_TOUCHED_BATCH01_G87_V1",
+        "binding": {
+          "root": "EVIDENCE",
+          "path": "partial-touched-batch01-g87-v1/input-binding.json",
+          "bytes": 817,
+          "sha256": "b8b3a5ddc90a5eedbb43b1d4ab2bfe387d05c27f4d90639133ff540c4c282038"
+        },
+        "sessionRoot": {
+          "root": "EVIDENCE",
+          "path": "partial-touched-batch01-g87-v1/ROOT",
+          "bytes": 233,
+          "sha256": "9d6e51fedaadfe2207489d469e0692e2b05f2af1ec48be1663d03e13617f3b30"
+        },
+        "theory": {
+          "root": "EVIDENCE",
+          "path": "partial-touched-batch01-g87-v1/TRUST_Partial_Touched_Batch01_G87_V1.thy",
+          "bytes": 680124,
+          "sha256": "08d7e02130e32ba7da921adf8315a5a84abc18204dcd6ff91b5b577a14763c63"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_TOUCHED_BATCH02_G88_V2",
+        "binding": {
+          "root": "EVIDENCE",
+          "path": "partial-touched-batch02-g88-v2/input-binding.json",
+          "bytes": 945,
+          "sha256": "9baf006514c27516c522b47a9a6aecd4e27a25f7b21658551f41eb0cb6cbcd70"
+        },
+        "sessionRoot": {
+          "root": "EVIDENCE",
+          "path": "partial-touched-batch02-g88-v2/ROOT",
+          "bytes": 236,
+          "sha256": "7bb60756bc35fb45858f13dde1c2ad05c7669deda164ae72a3c69c0bcfc70def"
+        },
+        "theory": {
+          "root": "EVIDENCE",
+          "path": "partial-touched-batch02-g88-v2/TRUST_Partial_Touched_Batch02_G88_V2.thy",
+          "bytes": 997810,
+          "sha256": "705848040094bb57314fbbc0a51a79cb778933ee08a739b889e425cc9cbe7fdc"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_TOUCHED_BATCH03_G89_V2",
+        "binding": {
+          "root": "EVIDENCE",
+          "path": "partial-touched-batch03-g89-v2/input-binding.json",
+          "bytes": 955,
+          "sha256": "de5fc338c60c4a8c04ccba6b9c6bb89658781b12cb73d22366f7fcf330be4f82"
+        },
+        "sessionRoot": {
+          "root": "EVIDENCE",
+          "path": "partial-touched-batch03-g89-v2/ROOT",
+          "bytes": 236,
+          "sha256": "cc3ca6d1618fd93375befb8267d3269bd24b39efa23acf28c21434ec338ff9cf"
+        },
+        "theory": {
+          "root": "EVIDENCE",
+          "path": "partial-touched-batch03-g89-v2/TRUST_Partial_Touched_Batch03_G89_V2.thy",
+          "bytes": 1127386,
+          "sha256": "a0a305decf68bddb231874d0a3547e11e9baba68716066de0402c507e944c237"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_TOUCHED_CROSSCHUNK_G90_V2",
+        "binding": {
+          "root": "EVIDENCE",
+          "path": "partial-touched-crosschunk-g90-v2/input-binding.json",
+          "bytes": 895,
+          "sha256": "f01dce9ca15733d5caa936d5fcdca7f0514b9f24172b77a49cd7c11cdfa2a9dc"
+        },
+        "sessionRoot": {
+          "root": "EVIDENCE",
+          "path": "partial-touched-crosschunk-g90-v2/ROOT",
+          "bytes": 242,
+          "sha256": "806581fe523a7394b3026376148c27c6da0904d522db5535e85a675506d5fd97"
+        },
+        "theory": {
+          "root": "EVIDENCE",
+          "path": "partial-touched-crosschunk-g90-v2/TRUST_Partial_Touched_Crosschunk_G90_V2.thy",
+          "bytes": 375615,
+          "sha256": "dd85b889cb0801635c03cbf74177374ffaf94dd954b335396f5ee9433430a12d"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_CODE_ROOT_G91_V1",
+        "binding": {
+          "root": "EVIDENCE",
+          "path": "partial-code-root-g91-v1/input-binding.json",
+          "bytes": 3602,
+          "sha256": "3dd42baad5acfd1d75e060783661d94e7d759a4438adc5a9e49f842012c604be"
+        },
+        "sessionRoot": {
+          "root": "EVIDENCE",
+          "path": "partial-code-root-g91-v1/ROOT",
+          "bytes": 227,
+          "sha256": "f7728c36c1f47c96e66de24768e2ca9d805a2aa101d93c31745493963cc37772"
+        },
+        "theory": {
+          "root": "EVIDENCE",
+          "path": "partial-code-root-g91-v1/TRUST_Partial_Code_Root_G91_V1.thy",
+          "bytes": 306641,
+          "sha256": "90b0baba88b08621adf374fc454960f6f9b96908c3827957ab4f5c088fe98542"
+        }
+      }
+    ],
+    "recordedRuntimeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6",
+    "compilerTemplateSha256": "7a2dfa433911dd37e389498129356db30693e8ee8e128f8da63a5d3044a56349"
+  },
+  "kernelBuild": {
+    "binaryJoinMethodCanary": {
+      "root": "EVIDENCE",
+      "path": "partial-slice-join-method-v8-canary-runs/JoinRun08/result.json",
+      "bytes": 1566,
+      "sha256": "ddce5bcf163b1710f03da1c099aef1b3b8840e26a012006624610c72a028e434"
+    },
+    "rootDryRun": {
+      "root": "EVIDENCE",
+      "path": "final-chain-v2/runs/partial-code-root-g91-dryrun/result.json",
+      "bytes": 11171,
+      "sha256": "096383a38329aeae5e32064e722b1bec23703597cb9c74c09bd9c0cdba17d9f3"
+    },
+    "sessions": [
+      {
+        "session": "TRUST12_PARTIAL_FIRST_IMMUTABLE_WORD_G76_V1",
+        "result": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/runs/partial-first-immutable-word-g76-build/result.json",
+          "bytes": 11260,
+          "sha256": "5b37416eea34bcda9113038e079a3b8df2535bb84f3a34bc3b7c041bf2f5c7e0"
+        },
+        "heap": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_PARTIAL_FIRST_IMMUTABLE_WORD_G76_V1",
+          "bytes": 16788833,
+          "sha256": "bb913838495c209afec141c1e0411798fe6a9611efe3d53f64311b255feb1a7d"
+        },
+        "database": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_PARTIAL_FIRST_IMMUTABLE_WORD_G76_V1.db",
+          "bytes": 372736,
+          "sha256": "5ac56daec10fc5450d42aa04ddf5d55e4e36c3486bea63a0294191a8d32e644c"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_FIRST_FILL_SEGMENT_G77_V1",
+        "result": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/runs/partial-fill-segment-method-g77-build/result.json",
+          "bytes": 11290,
+          "sha256": "970470fa96369bd53b950d3efbca0501d55b6672f715e87996f2b7886eb34c7d"
+        },
+        "heap": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_PARTIAL_FIRST_FILL_SEGMENT_G77_V1",
+          "bytes": 16688447,
+          "sha256": "1676e6e48f648440013d01bc56711b27de0081afc667e88e7be02c8c9af3b418"
+        },
+        "database": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_PARTIAL_FIRST_FILL_SEGMENT_G77_V1.db",
+          "bytes": 360448,
+          "sha256": "38a5fe689672a41ef3b740a2107481379f7899bbd1b99c7432605caae4c50148"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_FILLED_WORD32_G78_V1",
+        "result": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/runs/partial-filled-word32-g78-build/result.json",
+          "bytes": 11291,
+          "sha256": "510db32c2133e80141f6ea48230ba058864aed0da40ac741f76f932a49df06f8"
+        },
+        "heap": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_PARTIAL_FILLED_WORD32_G78_V1",
+          "bytes": 16857363,
+          "sha256": "d8134a5c275526f400f6e58f4d9145b260d2e9d59c867c5c12750cf99c6c9b08"
+        },
+        "database": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_PARTIAL_FILLED_WORD32_G78_V1.db",
+          "bytes": 380928,
+          "sha256": "23c6dda9ac56cdcc8613d734e6db1d07b4c93fcfddc5953ed722d55ce23829d2"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_LEAF_UNFILLED_METHOD_G79_V1",
+        "result": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/runs/partial-leaf-unfilled-method-g79-build/result.json",
+          "bytes": 11384,
+          "sha256": "5b1645af031a5a79b19decea5b82eddbad32294d1576f4f9b31d8a919775c4e5"
+        },
+        "heap": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_PARTIAL_LEAF_UNFILLED_METHOD_G79_V1",
+          "bytes": 16694613,
+          "sha256": "cdabd0755a3ce31c5ccadd494d8679508ed3da420b9a4692ed5ae9599f39ec5b"
+        },
+        "database": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_PARTIAL_LEAF_UNFILLED_METHOD_G79_V1.db",
+          "bytes": 360448,
+          "sha256": "f4ecd3502bc937936ec935fe8713075b2ec7cb8b5dafee6d3cf1832b94c5ff97"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_CODE_LEAF96_G80_V1",
+        "result": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/runs/partial-code-leaf96-g80-build/result.json",
+          "bytes": 11356,
+          "sha256": "3bc91415ca49992e9d3b2c31223b345d6a14fa4599f0c206737ee74c5d739c4d"
+        },
+        "heap": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_PARTIAL_CODE_LEAF96_G80_V1",
+          "bytes": 17240955,
+          "sha256": "85aa6b1c49aab3485fdac10a3787481a6e72325148b7557a7522c56bf23cff93"
+        },
+        "database": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_PARTIAL_CODE_LEAF96_G80_V1.db",
+          "bytes": 450560,
+          "sha256": "56e293d94d67744a4d2ee193a570a830008cfcd37434f2bfe694a1963a481f45"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_UNAFFECTED_LEAF_G81_V1",
+        "result": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/runs/partial-unaffected-leaf-g81-build/result.json",
+          "bytes": 11423,
+          "sha256": "d58c78ab3449c7da96f2214f132ab1f6cd379a7ae4326cc7561c0190bb3101e1"
+        },
+        "heap": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_PARTIAL_UNAFFECTED_LEAF_G81_V1",
+          "bytes": 16757681,
+          "sha256": "253855901c9c0ada852944c4729895023709f7b9d87f5e3f1852110ae3d98b22"
+        },
+        "database": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_PARTIAL_UNAFFECTED_LEAF_G81_V1.db",
+          "bytes": 372736,
+          "sha256": "ece9235b5174d2ff5c6395cc17502df899d68a27b29bc108dc30f75e8ebb0f58"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_UNAFFECTED_BATCH01_G82_V1",
+        "result": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/runs/partial-unaffected-batch01-g82-build/result.json",
+          "bytes": 11486,
+          "sha256": "c456921ed02f713f5e423e412115a2b9c093fa9d12b5b5fcaed17d4ed335c920"
+        },
+        "heap": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_PARTIAL_UNAFFECTED_BATCH01_G82_V1",
+          "bytes": 17728753,
+          "sha256": "0c44c453b68e0de38de8abc197aa659b31823a70d81e7bdab9856f12d8135b41"
+        },
+        "database": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_PARTIAL_UNAFFECTED_BATCH01_G82_V1.db",
+          "bytes": 393216,
+          "sha256": "582b6e3b4a5fa3d0a7d23deda6f1f1694e87332399c290e663e32ec1aed42008"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_UNAFFECTED_BATCH02_G83_V1",
+        "result": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/runs/partial-unaffected-batch02-g83-build/result.json",
+          "bytes": 11527,
+          "sha256": "5d2a8c331eb6490c0e9509a0b217dcf18eeb21db6373d94b64cf64cfa0eeed0a"
+        },
+        "heap": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_PARTIAL_UNAFFECTED_BATCH02_G83_V1",
+          "bytes": 19655035,
+          "sha256": "7ef46c86ba2abc7af5bee9042ebba9396e23370c8d0b06e5e8dc0e18fe4e3356"
+        },
+        "database": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_PARTIAL_UNAFFECTED_BATCH02_G83_V1.db",
+          "bytes": 471040,
+          "sha256": "bc02bfd7ab2efc648bfdee7515ee2847c2b75a637a0a1c4c37d447c40ce41389"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_CROSSCHUNK_METHOD_G84_V1",
+        "result": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/runs/partial-crosschunk-method-g84-build/result.json",
+          "bytes": 11561,
+          "sha256": "5502d7b66a73c47b80d62b6b6d7c426fccfab9b5b20166fdbb04ca7c8d52f25d"
+        },
+        "heap": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_PARTIAL_CROSSCHUNK_METHOD_G84_V1",
+          "bytes": 16761355,
+          "sha256": "069007fccb22ded2dea2fc5058aa357a7cdd1a605cfd4bbbd71e47b23757f875"
+        },
+        "database": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_PARTIAL_CROSSCHUNK_METHOD_G84_V1.db",
+          "bytes": 360448,
+          "sha256": "81e69dff4917b6f322f80138575bd644378589724de4dd48600711e4767b8d84"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_CROSSCHUNK_BATCH_G85_V1",
+        "result": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/runs/partial-crosschunk-batch-g85-build/result.json",
+          "bytes": 11593,
+          "sha256": "9f9cdf1d89c16088de0e28e48687f217801162acd4042538de730ef9ea0ff82d"
+        },
+        "heap": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_PARTIAL_CROSSCHUNK_BATCH_G85_V1",
+          "bytes": 16949421,
+          "sha256": "d4b5ba840d2b06a608156d0ba08c0ffb9c725d6f7c0e48f6777947fac4f61011"
+        },
+        "database": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_PARTIAL_CROSSCHUNK_BATCH_G85_V1.db",
+          "bytes": 364544,
+          "sha256": "282cbf2ba9a91445b30e28e718abe1b6f7d1855504ce53296474a7e421881617"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_TWOFILL_LEAF_G86_V1",
+        "result": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/runs/partial-twofill-leaf-g86-memory-build/result.json",
+          "bytes": 11632,
+          "sha256": "747891b798b751722222ead2be3a478a6582fc93ac8f08be21a1cb9d2a9ef16a"
+        },
+        "heap": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_PARTIAL_TWOFILL_LEAF_G86_V1",
+          "bytes": 17264267,
+          "sha256": "e09452f367002033f00572190f4953891da4fa987dade881ed058f9e233605ea"
+        },
+        "database": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_PARTIAL_TWOFILL_LEAF_G86_V1.db",
+          "bytes": 471040,
+          "sha256": "7a7b3617f5552b77ff7f78cce25bb05e1b9e0622ea4160abe51e3cf0bbf6fa56"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_TOUCHED_BATCH01_G87_V1",
+        "result": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/runs/partial-touched-batch01-g87-build/result.json",
+          "bytes": 11686,
+          "sha256": "ffefa51bb05c36389f00ab2640f8ca83537537ea14a6c0f3196067c19508a473"
+        },
+        "heap": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_PARTIAL_TOUCHED_BATCH01_G87_V1",
+          "bytes": 19108583,
+          "sha256": "82b57707167062ede69afe5c2d239fd0afc41c4db9f400c6faccf0ce941d1f52"
+        },
+        "database": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_PARTIAL_TOUCHED_BATCH01_G87_V1.db",
+          "bytes": 958464,
+          "sha256": "ad51f8a902ff2256ebf213a06f538798562f0c63d7249dd24baca45350863d05"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_TOUCHED_BATCH02_G88_V2",
+        "result": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/runs/partial-touched-batch02-g88-v2-build/result.json",
+          "bytes": 11729,
+          "sha256": "f05d7456904dd363aba4454d8be7eab71cb00c09f1ad99d1ad9f5cf1ce28a6bb"
+        },
+        "heap": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_PARTIAL_TOUCHED_BATCH02_G88_V2",
+          "bytes": 21281749,
+          "sha256": "3846de861e1d9aab6910760ef007028c4932f77bdce622fa4c67c3abcf24fe47"
+        },
+        "database": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_PARTIAL_TOUCHED_BATCH02_G88_V2.db",
+          "bytes": 1372160,
+          "sha256": "7b2245a95e7374e9b7b10377cf6bf829cdebc18a2399012611c659e7fec5a758"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_TOUCHED_BATCH03_G89_V2",
+        "result": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/runs/partial-touched-batch03-g89-v2-build/result.json",
+          "bytes": 11768,
+          "sha256": "87bf4a10d8d68eedd04f06ab9427792a8c6bb21cb68ee87a4628191f6791452e"
+        },
+        "heap": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_PARTIAL_TOUCHED_BATCH03_G89_V2",
+          "bytes": 21764229,
+          "sha256": "506740b04d42a4382734125eaa22e40644f1f64b052a2be38c8370f4d975db72"
+        },
+        "database": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_PARTIAL_TOUCHED_BATCH03_G89_V2.db",
+          "bytes": 1507328,
+          "sha256": "c608ba5368859729ae9534ee945020f949ae52934607b3d6a8bea4e366f584b9"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_TOUCHED_CROSSCHUNK_G90_V2",
+        "result": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/runs/partial-touched-crosschunk-g90-v2-build/result.json",
+          "bytes": 11830,
+          "sha256": "99e21f18652d0b10377927b6a16873a3054217b5cb8fd6a58a9965963ccdfcc4"
+        },
+        "heap": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_PARTIAL_TOUCHED_CROSSCHUNK_G90_V2",
+          "bytes": 18541933,
+          "sha256": "1ad00e0dfc1065fc4c454bdd86dd44ba03400507ec41d4b8e004a21d9cb7f34e"
+        },
+        "database": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_PARTIAL_TOUCHED_CROSSCHUNK_G90_V2.db",
+          "bytes": 745472,
+          "sha256": "2446530f4d664e9f103033a91f73d210afff6b77e3708981c2161f4e2106a58a"
+        }
+      },
+      {
+        "session": "TRUST12_PARTIAL_CODE_ROOT_G91_V1",
+        "result": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/runs/partial-code-root-g91-build/result.json",
+          "bytes": 11797,
+          "sha256": "09fb71dd78046c79a12ba6c247a5901909306b339d96c666855deeb684fbc7db"
+        },
+        "heap": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/TRUST12_PARTIAL_CODE_ROOT_G91_V1",
+          "bytes": 17712435,
+          "sha256": "b375cf4796444383b90821d72a6254c20a3792c31d366afd370cebb527e53d0e"
+        },
+        "database": {
+          "root": "EVIDENCE",
+          "path": "final-chain-v2/store/heaps/polyml-5.9.2_x86_64_32-windows/log/TRUST12_PARTIAL_CODE_ROOT_G91_V1.db",
+          "bytes": 638976,
+          "sha256": "7290955615596ffc46565d4df2ab803cb2520c9343990ab6bbe42065b92348fa"
+        }
+      }
+    ],
+    "rootTheorem": "partial_recorded_code_identity",
+    "rootOracleDependencies": 0,
+    "inputsUnchanged": true
+  },
+  "hostAudit": {
+    "status": "PASS_PARTIAL_RECORDED_CODE_ROOT_REHASHED",
+    "report": {
+      "root": "EVIDENCE",
+      "path": "partial-code-root-host-audit-v1.json",
+      "bytes": 943,
+      "sha256": "6d839d7f347f6404f136d0fbc2e7f5074c78591acddbdc349880581f5b39b9d8"
+    },
+    "verifier": {
+      "root": "PRODUCT",
+      "path": "scripts/trust12/verify_partial_code_root_v1.py",
+      "bytes": 15270,
+      "sha256": "09752fe85bbc7f1fface249487ab36bbcba48e240abe2bd3774f1826edd33e01"
+    },
+    "command": "python3 scripts/trust12/verify_partial_code_root_v1.py --base <evidence-root> --product-root <product-root>"
+  },
+  "nonclaim": "This is one recorded Partial code observation and its constructed compiler-template/immutable-fill equality. It does not establish the malformed S2 operational receiver, any general runtime-to-model link, Hook code identity, central closure, independent Assurance, release or deployment."
+}
