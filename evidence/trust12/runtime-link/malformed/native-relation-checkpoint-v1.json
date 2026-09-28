@@ -1,0 +1,209 @@
+{
+  "schema": "trust12-native-malformed-relation-checkpoint-v1",
+  "status": "PASS_KERNEL_CHECKED_REGISTERED_NATIVE_MALFORMED_RELATION",
+  "scope": "Under the pinned abstraction model and existing Native assumptions, each of sixteen supplied malformed-request execution records has a Malformed abstraction. The two recorded worlds and requests are fixed; block time remains symbolic.",
+  "coverage": {
+    "registeredRequests": 16,
+    "recordedPreWorlds": 2,
+    "kernelStages": 2,
+    "requestClassifications": {
+      "wrongLength": 7,
+      "unknownSelector": 1,
+      "dirtyWord": 7,
+      "nonzeroValue": 1
+    },
+    "blockTime": "symbolic",
+    "finalEvaluationOracleDependencies": 0
+  },
+  "modelBoundary": "Evaluation-oracle-free describes the final theorem's evaluation dependencies. Existing keccak, storage layout, Native profile and environment assumptions are retained. Product model identity uses the existing eight-core-definition alias checkpoint only; equivalence of the entire model is not claimed.",
+  "productIdentity": {
+    "malformedModel": {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Out_Of_Spec_Refinement.thy",
+      "bytes": 45977,
+      "sha256": "6c159584f9f88ce9cf37b6d40bf03aca6b41b9ca678e52176ed57febbacd13a0"
+    },
+    "coreAliasCheckpoint": {
+      "path": "evidence/trust12/runtime-link/malformed/outofspec-v7-alias-core-equivalence-checkpoint-v1.json",
+      "bytes": 5933,
+      "sha256": "90a968df9942346c3edf830eb71258fffe84d8348483cd83c3106bcb1fee8e21"
+    },
+    "coreAliasVerifier": {
+      "path": "scripts/trust12/verify_outofspec_v7_alias_equiv_v1.py",
+      "bytes": 8076,
+      "sha256": "7170b60abdc95e98eefdf6782a14ea9128020a38851940032dc92d65a473617c"
+    },
+    "messageReader": {
+      "path": "scripts/trust12/verify_partial_malformed_relation_v1.py",
+      "bytes": 10375,
+      "sha256": "34f473b8a72a9d3b4547d82f9c407ed797bc1b63f6c4d8608d552ccac4abf6cb"
+    }
+  },
+  "artifacts": [
+    {
+      "id": "prior-recorded-relation-build",
+      "kind": "kernel-build-result",
+      "bytes": 12399,
+      "sha256": "8430df5c13481a250008f638e1d02979ee1d0a4a219b99b430b537a6c712a06e"
+    },
+    {
+      "id": "endpoint-identity-source",
+      "kind": "isabelle-source",
+      "bytes": 413735,
+      "sha256": "31158b2b863d594b0fa864d1da6d19cbe375bd0babaa49b9320b62b443c0cb28"
+    },
+    {
+      "id": "endpoint-identity-root",
+      "kind": "isabelle-session-root",
+      "bytes": 270,
+      "sha256": "d97260ea4c6b472d96847bdf84a56c10334b97cdf0fdf8450bd076205690db71"
+    },
+    {
+      "id": "endpoint-identity-binding",
+      "kind": "proof-input-binding",
+      "bytes": 5715,
+      "sha256": "aab37033602c40a9f1385260dbbe0ca4bb13a8e5a582f4398d20742306e5503c"
+    },
+    {
+      "id": "endpoint-identity-build",
+      "kind": "kernel-build-result",
+      "bytes": 12420,
+      "sha256": "97debe401630dad63ca2a3b6f0c2f9e098a6cb235cf529a3f6bdf5c855e6c62d"
+    },
+    {
+      "id": "endpoint-identity-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 18946921,
+      "sha256": "c39ab5bc7b2fd877796fd2ea4a19fcc2f63f89492f20a87282ff4b6c5b3b6f2f"
+    },
+    {
+      "id": "endpoint-identity-database",
+      "kind": "isabelle-database",
+      "bytes": 884736,
+      "sha256": "ff756bb25e21f35a99afe6bf1a69297f08dc08511aac6a239be1c64e1e9b3285"
+    },
+    {
+      "id": "endpoint-identity-inputs-before",
+      "kind": "proof-input-snapshot",
+      "bytes": 1109344,
+      "sha256": "5419d10b8dc9384484c2e6e99375a5faf6ab1a2199fc187aeb1819d7823c6f83"
+    },
+    {
+      "id": "endpoint-identity-inputs-after",
+      "kind": "proof-input-snapshot",
+      "bytes": 1109344,
+      "sha256": "5419d10b8dc9384484c2e6e99375a5faf6ab1a2199fc187aeb1819d7823c6f83"
+    },
+    {
+      "id": "recorded-request-relation-source",
+      "kind": "isabelle-source",
+      "bytes": 90630,
+      "sha256": "41ca3be9cdc7fda28a7ff9961d866b70e001173965b91ac4443be1c2e752ebd8"
+    },
+    {
+      "id": "recorded-request-relation-root",
+      "kind": "isabelle-session-root",
+      "bytes": 247,
+      "sha256": "3ddb582ae57424bb3d359dca8b2c3f79f7b5ec621ccce22b88fb844e40f8658e"
+    },
+    {
+      "id": "recorded-request-relation-binding",
+      "kind": "proof-input-binding",
+      "bytes": 18070,
+      "sha256": "c3b03a5e3a96425932d65aee21dcd209b900f62386ede2b8e45e1a92ad385455"
+    },
+    {
+      "id": "recorded-request-relation-build",
+      "kind": "kernel-build-result",
+      "bytes": 12397,
+      "sha256": "43aa1a1bd3aa3ce074b07086655332b5e836e444cdc7495ca3668dd2d1ec052b"
+    },
+    {
+      "id": "recorded-request-relation-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 18025301,
+      "sha256": "48e597f4b6c0f6aaa1a8cd4797a2f2c3449cc6f335c6e729082259aae43f8362"
+    },
+    {
+      "id": "recorded-request-relation-database",
+      "kind": "isabelle-database",
+      "bytes": 659456,
+      "sha256": "5c7f9673583c0cd01c89acad468ad1d590e5d28073c88429e135c65b48e71eff"
+    },
+    {
+      "id": "recorded-request-relation-inputs-before",
+      "kind": "proof-input-snapshot",
+      "bytes": 1110016,
+      "sha256": "fc066339368933e25e4ab8aaa7a86d13dea122e8ce2fb539cbe66572b330386e"
+    },
+    {
+      "id": "recorded-request-relation-inputs-after",
+      "kind": "proof-input-snapshot",
+      "bytes": 1110016,
+      "sha256": "fc066339368933e25e4ab8aaa7a86d13dea122e8ce2fb539cbe66572b330386e"
+    },
+    {
+      "id": "pinned-malformed-abstraction-model",
+      "kind": "isabelle-model-source",
+      "bytes": 34374,
+      "sha256": "3e51be34f4d3bf1b4528309f2bfcacb0848c11a6f632487bf960ad19c82f8471"
+    }
+  ],
+  "kernelStages": [
+    {
+      "id": "endpoint-identity",
+      "source": "endpoint-identity-source",
+      "sessionRoot": "endpoint-identity-root",
+      "binding": "endpoint-identity-binding",
+      "result": "endpoint-identity-build",
+      "heap": "endpoint-identity-heap",
+      "database": "endpoint-identity-database",
+      "inputsBefore": "endpoint-identity-inputs-before",
+      "inputsAfter": "endpoint-identity-inputs-after",
+      "parentResult": "prior-recorded-relation-build"
+    },
+    {
+      "id": "recorded-request-relation",
+      "source": "recorded-request-relation-source",
+      "sessionRoot": "recorded-request-relation-root",
+      "binding": "recorded-request-relation-binding",
+      "result": "recorded-request-relation-build",
+      "heap": "recorded-request-relation-heap",
+      "database": "recorded-request-relation-database",
+      "inputsBefore": "recorded-request-relation-inputs-before",
+      "inputsAfter": "recorded-request-relation-inputs-after",
+      "parentResult": "endpoint-identity-build"
+    }
+  ],
+  "oracleAudits": [
+    {
+      "id": "endpoint-identity",
+      "database": "endpoint-identity-database",
+      "countMarker": "NATIVE_MALFORMED_ENDPOINT_ALPHA_ORACLE_COUNT=",
+      "dependencies": 0,
+      "passMarker": "PASS_NATIVE_MALFORMED_ENDPOINT_STRUCTURE_ORACLE_ZERO"
+    },
+    {
+      "id": "recorded-request-relation",
+      "database": "recorded-request-relation-database",
+      "countMarker": "NATIVE_RECORDED_MALFORMED_BRANCH_ORACLE_COUNT=",
+      "dependencies": 0,
+      "passMarker": "PASS_NATIVE_MALFORMED_COMMAND_PROJECTIONS_ORACLE_ZERO"
+    }
+  ],
+  "rehashVerifier": {
+    "path": "scripts/trust12/verify_native_malformed_relation_v1.py",
+    "bytes": 23151,
+    "sha256": "d8cf8ced36ce8ed62e33271991295fa3fdf3e2cf401735b2d18f96a494b705ac",
+    "command": "python3 scripts/trust12/verify_native_malformed_relation_v1.py --base <evidence-root> --product-root <product-root> --checkpoint evidence/trust12/runtime-link/malformed/native-relation-checkpoint-v1.json --artifact-index <local-artifact-index.json> --zstd <zstd-executable>"
+  },
+  "nonclaims": {
+    "centralRefinementClosure": true,
+    "generalRuntimeLinks": true,
+    "independentAssurance": true,
+    "operationalExecutionReceiver": true,
+    "otherProfiles": true,
+    "otherRequests": true,
+    "releaseOrDeployment": true
+  },
+  "reproductionBoundary": "The public verifier rehashes a supplied evidence bundle and reads its Isabelle message exports. The local navigation index maps stable artifact IDs to bundle paths and is not proof authority. This checkpoint is not a fresh replay or a product completion statement."
+}
