@@ -1,0 +1,501 @@
+{
+  "schema": "trust12-partial-malformed-relation-checkpoint-v1",
+  "status": "PASS_KERNEL_CHECKED_REGISTERED_PARTIAL_MALFORMED_RELATION",
+  "scope": "Under the pinned abstraction model and existing Partial profile assumptions, each of thirteen supplied malformed-request execution records has a Malformed abstraction. The recorded worlds and requests are fixed; block time remains symbolic.",
+  "coverage": {
+    "registeredRequests": 13,
+    "recordedPreWorlds": 2,
+    "kernelStages": 9,
+    "commandRejectionProjections": {
+      "wrongLength": 5,
+      "unknownSelector": 1,
+      "dirtyWord": 6
+    },
+    "finalOracleDependencies": 0
+  },
+  "modelBoundary": "Oracle-free is a statement about the final theorem's evaluation dependencies. Existing keccak, storage layout, profile and environment assumptions are retained.",
+  "priorCodeIdentityCheckpoint": {
+    "path": "evidence/trust12/runtime-link/partial/code-root-checkpoint-v1.json",
+    "bytes": 30956,
+    "sha256": "3bc21d7392a1d8b5a86450d66fc24d97b2c67824244aefd5267eecaf501b1686"
+  },
+  "artifacts": [
+    {
+      "id": "prior-code-root-build",
+      "kind": "kernel-build-result",
+      "bytes": 11797,
+      "sha256": "09fb71dd78046c79a12ba6c247a5901909306b339d96c666855deeb684fbc7db"
+    },
+    {
+      "id": "historical-oracle-diagnostic",
+      "kind": "diagnostic-database",
+      "bytes": 540672,
+      "sha256": "1d2c2ff86833a461761d89c9e872e00340d5473e1f9a5d0e84b3735a96b2167c"
+    },
+    {
+      "id": "adapter-recorded-code-source",
+      "kind": "isabelle-source",
+      "bytes": 366795,
+      "sha256": "1c5616abc5b631b3de09884e3917550223094f94f80b4e0cdc2a93f53618f6d5"
+    },
+    {
+      "id": "adapter-recorded-code-root",
+      "kind": "isabelle-session-root",
+      "bytes": 290,
+      "sha256": "1799153e181d401cee50582cd8f461d9750d7362911c382ac1e705f035c9b328"
+    },
+    {
+      "id": "adapter-recorded-code-binding",
+      "kind": "proof-input-binding",
+      "bytes": 4044,
+      "sha256": "483c985fbdbe6f133ef1fbc5cf640ed1f05b5d45586e7bf94980ac7e3596786c"
+    },
+    {
+      "id": "adapter-recorded-code-build",
+      "kind": "kernel-build-result",
+      "bytes": 11963,
+      "sha256": "7b236cbe38ad07f4f226d9c3c685d96a33fb0fdd08520eca0ba08e3c5d5fca27"
+    },
+    {
+      "id": "adapter-recorded-code-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 138859621,
+      "sha256": "59a036d6d93b6168709bc465b1c2f9f07f067ba8697187f822445f20356d7555"
+    },
+    {
+      "id": "adapter-recorded-code-database",
+      "kind": "isabelle-database",
+      "bytes": 5615616,
+      "sha256": "72b1839ebb3ea2cf0583924cae48e91ff36eb9de519df188818038147eace677"
+    },
+    {
+      "id": "token-code-identity-source",
+      "kind": "isabelle-source",
+      "bytes": 79933,
+      "sha256": "5361efda6849b307a1321030baa11d9f10783e816be50a01e49bee5c625eaf10"
+    },
+    {
+      "id": "token-code-identity-root",
+      "kind": "isabelle-session-root",
+      "bytes": 242,
+      "sha256": "4a2754b6c0861971b083f35e4e3411570da6634b92c80609bcb9d060aac3496e"
+    },
+    {
+      "id": "token-code-identity-binding",
+      "kind": "proof-input-binding",
+      "bytes": 838,
+      "sha256": "b942125878540ba5b3ade21a607ca03c757f650efddb6211a4282f419b547f88"
+    },
+    {
+      "id": "token-code-identity-build",
+      "kind": "kernel-build-result",
+      "bytes": 11954,
+      "sha256": "1604953752d7c3ae382f58ca86d36853574af6cad41530aae5b001311b5dde49"
+    },
+    {
+      "id": "token-code-identity-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 17377477,
+      "sha256": "8cb5b4195a26a3f2f2958a34abc2bed6541c643821bf505087f9a6a372fe7b7c"
+    },
+    {
+      "id": "token-code-identity-database",
+      "kind": "isabelle-database",
+      "bytes": 647168,
+      "sha256": "805858a17c28a00c8b7f1337ca26b6686da77c896ae50687c7d67038ae28031b"
+    },
+    {
+      "id": "token-recorded-code-source",
+      "kind": "isabelle-source",
+      "bytes": 106689,
+      "sha256": "d8fd1c6cee8ba2076c63c464534010afb0e9e45d907a60cb03927508d4c5dd62"
+    },
+    {
+      "id": "token-recorded-code-root",
+      "kind": "isabelle-session-root",
+      "bytes": 308,
+      "sha256": "d1fcf57624c0c3da8c9a98a06e4e5bd0a2218a83f12fe9977310c703dce22138"
+    },
+    {
+      "id": "token-recorded-code-binding",
+      "kind": "proof-input-binding",
+      "bytes": 4044,
+      "sha256": "b784fa3535ea5db3d9180c8963bd5ecd83b5998c059af92478d0bdecc9725a87"
+    },
+    {
+      "id": "token-recorded-code-build",
+      "kind": "kernel-build-result",
+      "bytes": 12089,
+      "sha256": "b868085aa1df6ed73373cc9fe299e9910d11c7de0d27fde18eb5831b252cf5da"
+    },
+    {
+      "id": "token-recorded-code-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 17507381,
+      "sha256": "82c1e2dcb476ee004b38843246de4da02ebeaf75ea4eba28dd40c72eae8dc179"
+    },
+    {
+      "id": "token-recorded-code-database",
+      "kind": "isabelle-database",
+      "bytes": 634880,
+      "sha256": "f2f8551640408608ccbd20377297c3b061f721fd635369c6837c35b6988f6f7a"
+    },
+    {
+      "id": "code-field-consumer-source",
+      "kind": "isabelle-source",
+      "bytes": 132645,
+      "sha256": "b01d18ca574d2088df422c337dc3c8e037ab4bbd0bc6e3e31cb34337500b2e72"
+    },
+    {
+      "id": "code-field-consumer-root",
+      "kind": "isabelle-session-root",
+      "bytes": 260,
+      "sha256": "1ac8ebed4a9c44f2a730f3e38bb3f147f0ce06710bf1c38751abcd1146a8a2e4"
+    },
+    {
+      "id": "code-field-consumer-binding",
+      "kind": "proof-input-binding",
+      "bytes": 1729,
+      "sha256": "8dc549e421bfa091d09a497a7c3dc8635e4b1003cf5dbb7c322c0f9f5eb8a0f2"
+    },
+    {
+      "id": "code-field-consumer-build",
+      "kind": "kernel-build-result",
+      "bytes": 12135,
+      "sha256": "e77558053c52f244eed06d2bd64dd1edc8a5656a1dac5bd6aceacd149ef30d56"
+    },
+    {
+      "id": "code-field-consumer-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 19276501,
+      "sha256": "25cc7bf6a1f8fa727e4f43ef1a13b60f0fa06cb5d8ca38fa3908de15f279e2c4"
+    },
+    {
+      "id": "code-field-consumer-database",
+      "kind": "isabelle-database",
+      "bytes": 958464,
+      "sha256": "2db2e65f65b653840f164a4adb4b0c42e6eb73aed17dc47924e1ca20f41188aa"
+    },
+    {
+      "id": "storage-entry-identities-source",
+      "kind": "isabelle-source",
+      "bytes": 16702,
+      "sha256": "e78976bec12cc5743b531930df95ead291bbcd076bc666867cf96e3125a0bb43"
+    },
+    {
+      "id": "storage-entry-identities-root",
+      "kind": "isabelle-session-root",
+      "bytes": 259,
+      "sha256": "c1e9719f22287032b50778facf0ab326ebb10c7b41bea91d74072209ef737849"
+    },
+    {
+      "id": "storage-entry-identities-binding",
+      "kind": "proof-input-binding",
+      "bytes": 3076,
+      "sha256": "092555aaea200b9c60df4beab7ce06f610f64c640774483c7b124ea50e3a9cba"
+    },
+    {
+      "id": "storage-entry-identities-build",
+      "kind": "kernel-build-result",
+      "bytes": 12145,
+      "sha256": "d4565259dbc6854384e7364f78fd5ddf1753c54205a7bc2d6db5c32d05f946db"
+    },
+    {
+      "id": "storage-entry-identities-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 17145235,
+      "sha256": "6b62c6044b759b32031d4fb766c0a5eaa1f583c66d200e1670a8d48d22cd1512"
+    },
+    {
+      "id": "storage-entry-identities-database",
+      "kind": "isabelle-database",
+      "bytes": 577536,
+      "sha256": "ee280b39dbc0a460e3feeae83514b0510cc3124f77f33ae25f578fccaf6b1cd0"
+    },
+    {
+      "id": "storage-entry-consumer-source",
+      "kind": "isabelle-source",
+      "bytes": 25090,
+      "sha256": "4a58c5cb297e2ee8dfae9dcfd17f223a70279b22374185a14aa905dc101190d3"
+    },
+    {
+      "id": "storage-entry-consumer-root",
+      "kind": "isabelle-session-root",
+      "bytes": 266,
+      "sha256": "1f61b67650664fea36819e55c0060318df24c1081dc7841f997731a299015232"
+    },
+    {
+      "id": "storage-entry-consumer-binding",
+      "kind": "proof-input-binding",
+      "bytes": 3857,
+      "sha256": "8bf932f49aae83f94322d526dcef399125e601ccb83e0bedaeb50924c7c45e37"
+    },
+    {
+      "id": "storage-entry-consumer-build",
+      "kind": "kernel-build-result",
+      "bytes": 12238,
+      "sha256": "8d68f82d4016f8c37a5a8470f78d73ab27cabacb60789fdc9925cac826fbe519"
+    },
+    {
+      "id": "storage-entry-consumer-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 17315717,
+      "sha256": "682ad962cd36202f587b533d29af722ed8f36c2e350779ed1b5fd83f14ef255c"
+    },
+    {
+      "id": "storage-entry-consumer-database",
+      "kind": "isabelle-database",
+      "bytes": 598016,
+      "sha256": "7f3994ade8f3e1da3e9000f2dafefc1fe2903855be851ec7a78612370c7f4076"
+    },
+    {
+      "id": "abi-projection-canary-source",
+      "kind": "isabelle-source",
+      "bytes": 6795,
+      "sha256": "83564b2250701c064ee6325c931a4635f04f61f2372d4dcf3173424e8dfa6ba3"
+    },
+    {
+      "id": "abi-projection-canary-root",
+      "kind": "isabelle-session-root",
+      "bytes": 269,
+      "sha256": "8a1eb588263a74e21ea55bd8b86da4b1eb0580c4436617b41cc1189d9f9d2806"
+    },
+    {
+      "id": "abi-projection-canary-binding",
+      "kind": "proof-input-binding",
+      "bytes": 2027,
+      "sha256": "6d17b7d5d0f442460182bce1131f93922074a0b6ef9c89a6c667f7985ddcb95f"
+    },
+    {
+      "id": "abi-projection-canary-build",
+      "kind": "kernel-build-result",
+      "bytes": 12280,
+      "sha256": "44bcfe9ee8ffaa28590205801a169185eae145ef2792dc27eea1ce4cbf85ee7a"
+    },
+    {
+      "id": "abi-projection-canary-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 17231049,
+      "sha256": "8fe9e5f294351ca23993676df85da6ed5d77b19ad406d39468d69601f9a66620"
+    },
+    {
+      "id": "abi-projection-canary-database",
+      "kind": "isabelle-database",
+      "bytes": 581632,
+      "sha256": "78bc7fac36c321a11d5938178429ea2f85651af03b45be9bd66cc5670dbb6fcc"
+    },
+    {
+      "id": "request-rejection-projections-source",
+      "kind": "isabelle-source",
+      "bytes": 28047,
+      "sha256": "030b16da955da1521dbdf6fc3f0036d51408964f0dfb0ee5c74662ba58d10573"
+    },
+    {
+      "id": "request-rejection-projections-root",
+      "kind": "isabelle-session-root",
+      "bytes": 256,
+      "sha256": "3790c203b148e3f412020f6481f5f3529617967f265a330e6970db7521ed5ba8"
+    },
+    {
+      "id": "request-rejection-projections-binding",
+      "kind": "proof-input-binding",
+      "bytes": 12113,
+      "sha256": "0b95cf914f1856651fa5f16ccc6cc1f0bff6cbe2b8c9f7d429df52eeb992e46b"
+    },
+    {
+      "id": "request-rejection-projections-build",
+      "kind": "kernel-build-result",
+      "bytes": 12283,
+      "sha256": "82168a03c04da202d1e71c463ec205a772fc5fbd6ed6590221443eeac9403373"
+    },
+    {
+      "id": "request-rejection-projections-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 17376679,
+      "sha256": "e183fd68d71263734bd5f0c68632efce7eb4a47379123e809c6725c7cb6444cc"
+    },
+    {
+      "id": "request-rejection-projections-database",
+      "kind": "isabelle-database",
+      "bytes": 602112,
+      "sha256": "a61f04be569478b78409ef5da4ad03647a8509ad50533f85e90c78250aaeeb89"
+    },
+    {
+      "id": "final-recorded-relation-source",
+      "kind": "isabelle-source",
+      "bytes": 17367,
+      "sha256": "2678d3fbd43e306af8f1a56778604573a3dc24772ba7d21447fc1effb07f0335"
+    },
+    {
+      "id": "final-recorded-relation-root",
+      "kind": "isabelle-session-root",
+      "bytes": 268,
+      "sha256": "3ca329db1e02cec67fea41b33bbc791073cabd858d0cfa5aa99fc1eb17386fdc"
+    },
+    {
+      "id": "final-recorded-relation-binding",
+      "kind": "proof-input-binding",
+      "bytes": 4364,
+      "sha256": "d861029ab4f1ee4f2e22f8180f3ebae1d8061c7d3e05bc62ec8ff27eaf9f62ac"
+    },
+    {
+      "id": "final-recorded-relation-build",
+      "kind": "kernel-build-result",
+      "bytes": 12399,
+      "sha256": "8430df5c13481a250008f638e1d02979ee1d0a4a219b99b430b537a6c712a06e"
+    },
+    {
+      "id": "final-recorded-relation-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 17289751,
+      "sha256": "0ef06a7ae4d91827fdf82bbbb39f1fa17934fb469e7b8047e56cd50240ddfd62"
+    },
+    {
+      "id": "final-recorded-relation-database",
+      "kind": "isabelle-database",
+      "bytes": 589824,
+      "sha256": "d900865033e26ad99ea014ed2ec1b13805dd9026d41f75afb9068f8ee85708e6"
+    },
+    {
+      "id": "pinned-malformed-abstraction-model",
+      "kind": "isabelle-model-source",
+      "bytes": 34374,
+      "sha256": "3e51be34f4d3bf1b4528309f2bfcacb0848c11a6f632487bf960ad19c82f8471"
+    }
+  ],
+  "kernelStages": [
+    {
+      "id": "adapter-recorded-code",
+      "source": "adapter-recorded-code-source",
+      "sessionRoot": "adapter-recorded-code-root",
+      "binding": "adapter-recorded-code-binding",
+      "result": "adapter-recorded-code-build",
+      "heap": "adapter-recorded-code-heap",
+      "database": "adapter-recorded-code-database",
+      "parentResult": "prior-code-root-build"
+    },
+    {
+      "id": "token-code-identity",
+      "source": "token-code-identity-source",
+      "sessionRoot": "token-code-identity-root",
+      "binding": "token-code-identity-binding",
+      "result": "token-code-identity-build",
+      "heap": "token-code-identity-heap",
+      "database": "token-code-identity-database",
+      "parentResult": "adapter-recorded-code-build"
+    },
+    {
+      "id": "token-recorded-code",
+      "source": "token-recorded-code-source",
+      "sessionRoot": "token-recorded-code-root",
+      "binding": "token-recorded-code-binding",
+      "result": "token-recorded-code-build",
+      "heap": "token-recorded-code-heap",
+      "database": "token-recorded-code-database",
+      "parentResult": "token-code-identity-build"
+    },
+    {
+      "id": "code-field-consumer",
+      "source": "code-field-consumer-source",
+      "sessionRoot": "code-field-consumer-root",
+      "binding": "code-field-consumer-binding",
+      "result": "code-field-consumer-build",
+      "heap": "code-field-consumer-heap",
+      "database": "code-field-consumer-database",
+      "parentResult": "token-recorded-code-build"
+    },
+    {
+      "id": "storage-entry-identities",
+      "source": "storage-entry-identities-source",
+      "sessionRoot": "storage-entry-identities-root",
+      "binding": "storage-entry-identities-binding",
+      "result": "storage-entry-identities-build",
+      "heap": "storage-entry-identities-heap",
+      "database": "storage-entry-identities-database",
+      "parentResult": "code-field-consumer-build"
+    },
+    {
+      "id": "storage-entry-consumer",
+      "source": "storage-entry-consumer-source",
+      "sessionRoot": "storage-entry-consumer-root",
+      "binding": "storage-entry-consumer-binding",
+      "result": "storage-entry-consumer-build",
+      "heap": "storage-entry-consumer-heap",
+      "database": "storage-entry-consumer-database",
+      "parentResult": "storage-entry-identities-build"
+    },
+    {
+      "id": "abi-projection-canary",
+      "source": "abi-projection-canary-source",
+      "sessionRoot": "abi-projection-canary-root",
+      "binding": "abi-projection-canary-binding",
+      "result": "abi-projection-canary-build",
+      "heap": "abi-projection-canary-heap",
+      "database": "abi-projection-canary-database",
+      "parentResult": "storage-entry-consumer-build"
+    },
+    {
+      "id": "request-rejection-projections",
+      "source": "request-rejection-projections-source",
+      "sessionRoot": "request-rejection-projections-root",
+      "binding": "request-rejection-projections-binding",
+      "result": "request-rejection-projections-build",
+      "heap": "request-rejection-projections-heap",
+      "database": "request-rejection-projections-database",
+      "parentResult": "abi-projection-canary-build"
+    },
+    {
+      "id": "final-recorded-relation",
+      "source": "final-recorded-relation-source",
+      "sessionRoot": "final-recorded-relation-root",
+      "binding": "final-recorded-relation-binding",
+      "result": "final-recorded-relation-build",
+      "heap": "final-recorded-relation-heap",
+      "database": "final-recorded-relation-database",
+      "parentResult": "request-rejection-projections-build"
+    }
+  ],
+  "oracleAudits": [
+    {
+      "id": "historical-baseline",
+      "database": "historical-oracle-diagnostic",
+      "countMarker": "PARTIAL_MALFORMED_ORACLE_COUNT=",
+      "dependencies": 32
+    },
+    {
+      "id": "code-field-consumer",
+      "database": "code-field-consumer-database",
+      "countMarker": "PARTIAL_MALFORMED_BRANCH_CODEBOUND_ORACLE_COUNT=",
+      "dependencies": 28
+    },
+    {
+      "id": "storage-entry-consumer",
+      "database": "storage-entry-consumer-database",
+      "countMarker": "PARTIAL_MALFORMED_ENTRYBOUND_BRANCH_ORACLE_COUNT=",
+      "dependencies": 24
+    },
+    {
+      "id": "final-recorded-relation",
+      "database": "final-recorded-relation-database",
+      "countMarker": "PARTIAL_MALFORMED_FINAL_BRANCH_ORACLE_COUNT=",
+      "dependencies": 0,
+      "passMarker": "PASS_PARTIAL_MALFORMED_FINAL_BRANCH_ORACLE_ZERO"
+    }
+  ],
+  "rehashVerifier": {
+    "path": "scripts/trust12/verify_partial_malformed_relation_v1.py",
+    "bytes": 10375,
+    "sha256": "34f473b8a72a9d3b4547d82f9c407ed797bc1b63f6c4d8608d552ccac4abf6cb",
+    "command": "python3 scripts/trust12/verify_partial_malformed_relation_v1.py --base <evidence-root> --product-root <product-root> --checkpoint evidence/trust12/runtime-link/malformed/partial-relation-checkpoint-v1.json --artifact-index <local-artifact-index.json> --zstd <zstd-executable>"
+  },
+  "nonclaims": {
+    "operationalExecutionReceiver": true,
+    "generalRuntimeLinks": true,
+    "otherProfiles": true,
+    "otherRequests": true,
+    "centralRefinementClosure": true,
+    "independentAssurance": true,
+    "releaseOrDeployment": true
+  },
+  "reproductionBoundary": "The public verifier rehashes a supplied evidence bundle and reads its Isabelle message exports. The local navigation index maps stable artifact IDs to bundle paths and is not proof authority. This checkpoint is not a fresh replay or a product completion statement."
+}
