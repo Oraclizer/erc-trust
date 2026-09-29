@@ -1,0 +1,528 @@
+{
+  "schema": "trust12-hook-malformed-relation-checkpoint-v1",
+  "status": "PASS_KERNEL_CHECKED_REGISTERED_HOOK_MALFORMED_RELATION",
+  "scope": "The thirteen supplied Hook execution records satisfy the recorded malformed relation under the pinned abstraction model and conditional reader assumptions. The two supplied worlds and request records are fixed.",
+  "coverage": {
+    "registeredRequests": 13,
+    "recordedPreWorlds": 2,
+    "kernelStages": 6,
+    "requestClassifications": {
+      "no-selector": 2,
+      "unknown-selector": 1,
+      "length": 3,
+      "dirty-address-word": 1,
+      "dirty-enum-word": 2,
+      "dirty-uint64-word": 1,
+      "dirty-uint48-word": 1,
+      "nonzero-call-value": 1,
+      "ordering-probe": 1
+    },
+    "commandConsumers": 13,
+    "conditionalReaderFacts": 5,
+    "finalEvaluationOracleDependencies": 0,
+    "canonicalControl": {
+      "bytes": 644,
+      "mutationIndex": 99,
+      "from": 6,
+      "to": 5,
+      "canonicalGuardOnly": true
+    }
+  },
+  "modelBoundary": "Existing keccak, storage layout, profile and environment assumptions are retained. Conditional reader facts are audited; an unconditional concrete-table witness is not claimed. Product model identity uses the existing eight-core-definition alias checkpoint only; equivalence of the entire model is not claimed.",
+  "productIdentity": {
+    "malformedModel": {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Out_Of_Spec_Refinement.thy",
+      "bytes": 45977,
+      "sha256": "6c159584f9f88ce9cf37b6d40bf03aca6b41b9ca678e52176ed57febbacd13a0"
+    },
+    "coreAliasCheckpoint": {
+      "path": "evidence/trust12/runtime-link/malformed/outofspec-v7-alias-core-equivalence-checkpoint-v1.json",
+      "bytes": 5933,
+      "sha256": "90a968df9942346c3edf830eb71258fffe84d8348483cd83c3106bcb1fee8e21"
+    },
+    "coreAliasVerifier": {
+      "path": "scripts/trust12/verify_outofspec_v7_alias_equiv_v1.py",
+      "bytes": 8076,
+      "sha256": "7170b60abdc95e98eefdf6782a14ea9128020a38851940032dc92d65a473617c"
+    },
+    "messageReader": {
+      "path": "scripts/trust12/verify_partial_malformed_relation_v1.py",
+      "bytes": 10375,
+      "sha256": "34f473b8a72a9d3b4547d82f9c407ed797bc1b63f6c4d8608d552ccac4abf6cb"
+    }
+  },
+  "artifacts": [
+    {
+      "id": "prior-reader-build",
+      "kind": "kernel-build-result",
+      "bytes": 12623,
+      "sha256": "ec452f00cf97f0de072d2b29f481e8a0494af4af2258968e3ab2370ff61776ef"
+    },
+    {
+      "id": "code-canary-source",
+      "kind": "isabelle-source",
+      "bytes": 404836,
+      "sha256": "a30d7cd1c14a1845c30587f230a52c6b20c96be8127d62bfb5c492ef6b03859c"
+    },
+    {
+      "id": "code-canary-root",
+      "kind": "isabelle-session-root",
+      "bytes": 232,
+      "sha256": "10b0a0cabb2a3ced55a7cf9bc79db1e9bad9616be5d92f88339f0d0b5ee0185f"
+    },
+    {
+      "id": "code-canary-binding",
+      "kind": "proof-input-binding",
+      "bytes": 17797,
+      "sha256": "ed6c61e6a0c26d7fa230ac5078d43a3ce26f50ce85122f6efe258f8337f9b4b3"
+    },
+    {
+      "id": "code-canary-build",
+      "kind": "kernel-build-result",
+      "bytes": 12574,
+      "sha256": "1859b65aaf35edee922cce2b951d63756694909ee9f62a57edafce77825fdd4b"
+    },
+    {
+      "id": "code-canary-inputs-before",
+      "kind": "proof-input-snapshot",
+      "bytes": 1111581,
+      "sha256": "0f065e5934e02040a8ce314f207bff4e62322a46411bb11ef8c09ef30ff675d0"
+    },
+    {
+      "id": "code-canary-inputs-after",
+      "kind": "proof-input-snapshot",
+      "bytes": 1111581,
+      "sha256": "0f065e5934e02040a8ce314f207bff4e62322a46411bb11ef8c09ef30ff675d0"
+    },
+    {
+      "id": "code-canary-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 28725785,
+      "sha256": "6893f7ffece600ca9c4d74906c38d82967bbf7e991d5439e631a2d476959f97b"
+    },
+    {
+      "id": "code-canary-database",
+      "kind": "isabelle-database",
+      "bytes": 806912,
+      "sha256": "57e313e7244f8ea683de03a9864e5bbd7ceb8df406a4d700b4e0fcf0493395fb"
+    },
+    {
+      "id": "adapter-identity-source",
+      "kind": "isabelle-source",
+      "bytes": 3475934,
+      "sha256": "f9d597d7292f2f9962383bb1efa5964b3a85a1bd1900bcd0098fb454ac90eb58"
+    },
+    {
+      "id": "adapter-identity-root",
+      "kind": "isabelle-session-root",
+      "bytes": 232,
+      "sha256": "0321ee70f2b372242e16ac0ee0656e067e31a632d426eec90d6c3a9c12c40077"
+    },
+    {
+      "id": "adapter-identity-binding",
+      "kind": "proof-input-binding",
+      "bytes": 15917,
+      "sha256": "bcef53563537ad6ed6959557e9416ff80d060f001abb31c9e5b7801f869750a8"
+    },
+    {
+      "id": "adapter-identity-build",
+      "kind": "kernel-build-result",
+      "bytes": 12622,
+      "sha256": "0936ac07d9fa0210ad76bdc390fb2f9a679de36c8d609f40f44aca30e23c4cb5"
+    },
+    {
+      "id": "adapter-identity-inputs-before",
+      "kind": "proof-input-snapshot",
+      "bytes": 1112255,
+      "sha256": "da6ac33a5f5ea3ec80ad8f83ff723dbafc6f24f6e8512f7f543237045d75dccf"
+    },
+    {
+      "id": "adapter-identity-inputs-after",
+      "kind": "proof-input-snapshot",
+      "bytes": 1112255,
+      "sha256": "da6ac33a5f5ea3ec80ad8f83ff723dbafc6f24f6e8512f7f543237045d75dccf"
+    },
+    {
+      "id": "adapter-identity-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 32489157,
+      "sha256": "cfd37555a726231537dc16f59efacada4dd5171b10ea0e5510095d233dd7cdc7"
+    },
+    {
+      "id": "adapter-identity-database",
+      "kind": "isabelle-database",
+      "bytes": 3772416,
+      "sha256": "cb14c422228e13da0417e6cf7b43a049c31dd2ce05048941c6fbe864a0817700"
+    },
+    {
+      "id": "token-identity-source",
+      "kind": "isabelle-source",
+      "bytes": 204020,
+      "sha256": "fa1e1e88421ba241f1443463f7c489c2abe73760f0b6cf4d0517c4bc78832ad3"
+    },
+    {
+      "id": "token-identity-root",
+      "kind": "isabelle-session-root",
+      "bytes": 229,
+      "sha256": "18942485923497c2fd8ca8c975b82ddb54fd0744cf116c9ae2a9f84d6df4b80e"
+    },
+    {
+      "id": "token-identity-binding",
+      "kind": "proof-input-binding",
+      "bytes": 15291,
+      "sha256": "e6ca44ef1d6447bfbafae07eeb97776ddb24e84f5916707dcce08deae63f4e2c"
+    },
+    {
+      "id": "token-identity-build",
+      "kind": "kernel-build-result",
+      "bytes": 12641,
+      "sha256": "20bb4daf2b2727ee2ed5dbe1d5618b41cf599897a9bd5d682d77022bbda2f3ba"
+    },
+    {
+      "id": "token-identity-inputs-before",
+      "kind": "proof-input-snapshot",
+      "bytes": 1112918,
+      "sha256": "3b86e1cfbfbe18e49b8e39d2faad3acabf3e938c66acd1cb51b79398847f6d3f"
+    },
+    {
+      "id": "token-identity-inputs-after",
+      "kind": "proof-input-snapshot",
+      "bytes": 1112918,
+      "sha256": "3b86e1cfbfbe18e49b8e39d2faad3acabf3e938c66acd1cb51b79398847f6d3f"
+    },
+    {
+      "id": "token-identity-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 17819495,
+      "sha256": "7c01b54d460b3c5455ac35b5626aedf7754fe7dc14e29d64883da53ca9129ac6"
+    },
+    {
+      "id": "token-identity-database",
+      "kind": "isabelle-database",
+      "bytes": 581632,
+      "sha256": "4bd59f80a73ea067592369547e17950a66ed1ab2c1477f2bbdd18287bbe304d7"
+    },
+    {
+      "id": "world-observations-source",
+      "kind": "isabelle-source",
+      "bytes": 622351,
+      "sha256": "56f680a29ccc75338edd8762ecfd2e2db154709bcdf2231d07b0c8065a7b3d2b"
+    },
+    {
+      "id": "world-observations-root",
+      "kind": "isabelle-session-root",
+      "bytes": 290,
+      "sha256": "cdc6e853526f4b35980c57e1844b87cd0f9cffc675b3a1da43ea1f84083f83f2"
+    },
+    {
+      "id": "world-observations-binding",
+      "kind": "proof-input-binding",
+      "bytes": 18076,
+      "sha256": "b42823675c69859e16b0e1e1b358ae7f6beee396498c3592fb1af05378d7a4d7"
+    },
+    {
+      "id": "world-observations-build",
+      "kind": "kernel-build-result",
+      "bytes": 12580,
+      "sha256": "2118bec0b86de3a18569058195efbbd3c18053b65ddcca688c13d2bc2267813e"
+    },
+    {
+      "id": "world-observations-inputs-before",
+      "kind": "proof-input-snapshot",
+      "bytes": 1113598,
+      "sha256": "d035ee8a7ccec7aa2aae97e43b73c1a57a32a72ee1d754c4dea74989216fc1f7"
+    },
+    {
+      "id": "world-observations-inputs-after",
+      "kind": "proof-input-snapshot",
+      "bytes": 1113598,
+      "sha256": "d035ee8a7ccec7aa2aae97e43b73c1a57a32a72ee1d754c4dea74989216fc1f7"
+    },
+    {
+      "id": "world-observations-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 91820183,
+      "sha256": "71b6d96b4abd7a687c0293d9590dd2ef9d3aaddd71a90efbe022603883020284"
+    },
+    {
+      "id": "world-observations-database",
+      "kind": "isabelle-database",
+      "bytes": 3932160,
+      "sha256": "99f51fab112317e21fe4be91f1decb1446a812e74fc3975ac8d01ecffef12f4b"
+    },
+    {
+      "id": "canonical-control-source",
+      "kind": "isabelle-source",
+      "bytes": 10434,
+      "sha256": "8ee2b0b5f009bed5ddce762f02b403b0405542b84e32b41af5cb573dbf0b24dc"
+    },
+    {
+      "id": "canonical-control-root",
+      "kind": "isabelle-session-root",
+      "bytes": 299,
+      "sha256": "364e45ff94f561d7c77d348690e13116c83c3a41537206bf64814ff680ab980d"
+    },
+    {
+      "id": "canonical-control-binding",
+      "kind": "proof-input-binding",
+      "bytes": 1233112,
+      "sha256": "018e47bc1000d1fa29d90462dd784363528e539cf578f5fb7518384290a04d0a"
+    },
+    {
+      "id": "canonical-control-build",
+      "kind": "kernel-build-result",
+      "bytes": 12644,
+      "sha256": "378b3d8553978a9d519c5d1345cde219e60241ada55dabb597cb6a8d02748059"
+    },
+    {
+      "id": "canonical-control-inputs-before",
+      "kind": "proof-input-snapshot",
+      "bytes": 1114290,
+      "sha256": "94719a07a243fa406c262476003f55b1078e8a186861f2a3aa0b90b6e41af6f3"
+    },
+    {
+      "id": "canonical-control-inputs-after",
+      "kind": "proof-input-snapshot",
+      "bytes": 1114290,
+      "sha256": "94719a07a243fa406c262476003f55b1078e8a186861f2a3aa0b90b6e41af6f3"
+    },
+    {
+      "id": "canonical-control-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 17585273,
+      "sha256": "6a1f2db60d34d1dce05011167815e2ee595c2e290e96f56d0589ecd7630128a9"
+    },
+    {
+      "id": "canonical-control-database",
+      "kind": "isabelle-database",
+      "bytes": 589824,
+      "sha256": "4e6c7bbfd25656c859943c7158c620432fad2d7e22e73239d3e81cc4bea5af60"
+    },
+    {
+      "id": "recorded-relation-source",
+      "kind": "isabelle-source",
+      "bytes": 147702,
+      "sha256": "46d664faa4fea715c9effa8e2405db0a77663b084b0e07cff0fefa47771e804f"
+    },
+    {
+      "id": "recorded-relation-root",
+      "kind": "isabelle-session-root",
+      "bytes": 302,
+      "sha256": "61793e5944a64e4fab86305c1cf9e9757ffaacddc0ec01ba2e9ad457c01daa54"
+    },
+    {
+      "id": "recorded-relation-binding",
+      "kind": "proof-input-binding",
+      "bytes": 1245571,
+      "sha256": "eefd2e230a388d80638149d236588f72b1c3c1d366e6eb693d2972b50f9b235a"
+    },
+    {
+      "id": "recorded-relation-build",
+      "kind": "kernel-build-result",
+      "bytes": 12686,
+      "sha256": "0e766198fe690d92505beaa40196bde7a665db7a0b23eba34d4b52814bc946a8"
+    },
+    {
+      "id": "recorded-relation-inputs-before",
+      "kind": "proof-input-snapshot",
+      "bytes": 1114979,
+      "sha256": "ebef996d1d5e0ab912b0ca7290b08a43bf745b54d4e40702cb713e84616ddf8d"
+    },
+    {
+      "id": "recorded-relation-inputs-after",
+      "kind": "proof-input-snapshot",
+      "bytes": 1114979,
+      "sha256": "ebef996d1d5e0ab912b0ca7290b08a43bf745b54d4e40702cb713e84616ddf8d"
+    },
+    {
+      "id": "recorded-relation-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 19050607,
+      "sha256": "fae71118a1b0103c9af19b3b9ee78b1d775a71565b771a0f34a7f139328ef051"
+    },
+    {
+      "id": "recorded-relation-database",
+      "kind": "isabelle-database",
+      "bytes": 917504,
+      "sha256": "e565f4bc678fbd56480f46c6be80a709033fc5ebdff20ec17ce869ba67ba80c8"
+    },
+    {
+      "id": "pinned-malformed-model",
+      "kind": "isabelle-source",
+      "bytes": 34374,
+      "sha256": "3e51be34f4d3bf1b4528309f2bfcacb0848c11a6f632487bf960ad19c82f8471"
+    },
+    {
+      "id": "original-fixed-relation",
+      "kind": "isabelle-source",
+      "bytes": 134111,
+      "sha256": "24a2f69a8d521ba7af44fbc0cb7fdf492f283aed5fba035d46f174603a49f0c3"
+    },
+    {
+      "id": "fixed-record-inventory",
+      "kind": "record-inventory",
+      "bytes": 224211,
+      "sha256": "fe01d41ecd94e49770a23b81954193de358a553115d897ad4d2d16aaca2081ef"
+    },
+    {
+      "id": "conditional-common-reader",
+      "kind": "isabelle-source",
+      "bytes": 28603,
+      "sha256": "62f80d0cacf6f49a0243ed5b35f1e579cefa4d6c8143381aceadb45282b8733b"
+    },
+    {
+      "id": "conditional-profile-reader",
+      "kind": "isabelle-source",
+      "bytes": 577347,
+      "sha256": "10c78feb1bd77c097c7701a6777a39fbe913bf250ad86f874fda1e513f71a5de"
+    },
+    {
+      "id": "conditional-world-reader",
+      "kind": "isabelle-source",
+      "bytes": 57655,
+      "sha256": "69350217421c416668ed45a13975e5d1462eea312489918f3c551cf476bd7821"
+    }
+  ],
+  "kernelStages": [
+    {
+      "id": "code-canary",
+      "source": "code-canary-source",
+      "sessionRoot": "code-canary-root",
+      "binding": "code-canary-binding",
+      "result": "code-canary-build",
+      "inputsBefore": "code-canary-inputs-before",
+      "inputsAfter": "code-canary-inputs-after",
+      "heap": "code-canary-heap",
+      "database": "code-canary-database",
+      "parentResult": "prior-reader-build"
+    },
+    {
+      "id": "adapter-identity",
+      "source": "adapter-identity-source",
+      "sessionRoot": "adapter-identity-root",
+      "binding": "adapter-identity-binding",
+      "result": "adapter-identity-build",
+      "inputsBefore": "adapter-identity-inputs-before",
+      "inputsAfter": "adapter-identity-inputs-after",
+      "heap": "adapter-identity-heap",
+      "database": "adapter-identity-database",
+      "parentResult": "code-canary-build"
+    },
+    {
+      "id": "token-identity",
+      "source": "token-identity-source",
+      "sessionRoot": "token-identity-root",
+      "binding": "token-identity-binding",
+      "result": "token-identity-build",
+      "inputsBefore": "token-identity-inputs-before",
+      "inputsAfter": "token-identity-inputs-after",
+      "heap": "token-identity-heap",
+      "database": "token-identity-database",
+      "parentResult": "adapter-identity-build"
+    },
+    {
+      "id": "world-observations",
+      "source": "world-observations-source",
+      "sessionRoot": "world-observations-root",
+      "binding": "world-observations-binding",
+      "result": "world-observations-build",
+      "inputsBefore": "world-observations-inputs-before",
+      "inputsAfter": "world-observations-inputs-after",
+      "heap": "world-observations-heap",
+      "database": "world-observations-database",
+      "parentResult": "token-identity-build"
+    },
+    {
+      "id": "canonical-control",
+      "source": "canonical-control-source",
+      "sessionRoot": "canonical-control-root",
+      "binding": "canonical-control-binding",
+      "result": "canonical-control-build",
+      "inputsBefore": "canonical-control-inputs-before",
+      "inputsAfter": "canonical-control-inputs-after",
+      "heap": "canonical-control-heap",
+      "database": "canonical-control-database",
+      "parentResult": "world-observations-build"
+    },
+    {
+      "id": "recorded-relation",
+      "source": "recorded-relation-source",
+      "sessionRoot": "recorded-relation-root",
+      "binding": "recorded-relation-binding",
+      "result": "recorded-relation-build",
+      "inputsBefore": "recorded-relation-inputs-before",
+      "inputsAfter": "recorded-relation-inputs-after",
+      "heap": "recorded-relation-heap",
+      "database": "recorded-relation-database",
+      "parentResult": "canonical-control-build"
+    }
+  ],
+  "oracleAudits": [
+    {
+      "id": "code-canary",
+      "database": "code-canary-database",
+      "countMarker": "HOOK_CODE_IDENTITY_CANARY_ORACLE_COUNT=",
+      "dependencies": 0,
+      "passMarker": "PASS_HOOK_CODE_IDENTITY_CANARY_ORACLE_ZERO"
+    },
+    {
+      "id": "adapter-identity",
+      "database": "adapter-identity-database",
+      "countMarker": "HOOK_CODE_IDENTITY_ADAPTER_ORACLE_COUNT=",
+      "dependencies": 0,
+      "passMarker": "PASS_HOOK_CODE_IDENTITY_ADAPTER_ORACLE_ZERO"
+    },
+    {
+      "id": "token-identity",
+      "database": "token-identity-database",
+      "countMarker": "HOOK_CODE_IDENTITY_TOKEN_ORACLE_COUNT=",
+      "dependencies": 0,
+      "passMarker": "PASS_HOOK_CODE_IDENTITY_TOKEN_ORACLE_ZERO"
+    },
+    {
+      "id": "world-observations",
+      "database": "world-observations-database",
+      "countMarker": "HOOK_MALFORMED_WORLD_BRIDGE_ORACLE_COUNT=",
+      "dependencies": 0,
+      "passMarker": "PASS_HOOK_MALFORMED_WORLD_BRIDGE_ORACLE_ZERO"
+    },
+    {
+      "id": "canonical-control",
+      "database": "canonical-control-database",
+      "countMarker": "HOOK_MALFORMED_RELATION_CANARY_ORACLE_COUNT=",
+      "dependencies": 0,
+      "passMarker": "PASS_HOOK_MALFORMED_RELATION_CANARY_ORACLE_ZERO"
+    },
+    {
+      "id": "recorded-relation",
+      "database": "recorded-relation-database",
+      "countMarker": "HOOK_MALFORMED_RELATION_BRANCH_ORACLE_COUNT=",
+      "dependencies": 0,
+      "passMarker": "PASS_HOOK_MALFORMED_RELATION_BRANCH_ORACLE_ZERO"
+    },
+    {
+      "id": "conditional-reader",
+      "database": "code-canary-database",
+      "countMarker": "HOOK_READER_CONDITIONAL_ORACLE_COUNT=",
+      "dependencies": 0,
+      "passMarker": "PASS_HOOK_READER_CONDITIONAL_ORACLE_ZERO"
+    }
+  ],
+  "rehashVerifier": {
+    "path": "scripts/trust12/verify_hook_malformed_relation_v1.py",
+    "bytes": 39190,
+    "sha256": "6602fb22f4507662ae766274bfe69de0c3e72f5a188f87921c6903567e91272b",
+    "command": "python3 scripts/trust12/verify_hook_malformed_relation_v1.py --base <evidence-root> --product-root <product-root> --checkpoint evidence/trust12/runtime-link/malformed/hook-relation-checkpoint-v1.json --artifact-index <local-artifact-index.json> --zstd <zstd-executable>"
+  },
+  "nonclaims": {
+    "centralRefinementClosure": true,
+    "fullTrustCompletion": true,
+    "generalRuntimeLinks": true,
+    "independentAssurance": true,
+    "operationalExecutionReceiver": true,
+    "otherProfiles": true,
+    "otherRequests": true,
+    "releaseOrDeployment": true
+  },
+  "reproductionBoundary": "This verifier rehashes saved artifacts, native database source bytes and message exports, and requires current bound source identities. The private navigation index is not proof authority. This is neither a fresh kernel replay nor a product completion statement."
+}
