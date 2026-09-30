@@ -1,0 +1,292 @@
+{
+  "schema": "trust12-native-received-valuation-checkpoint-v1",
+  "status": "PASS_SAVED_CONDITIONAL_RECEIVED_VALUATION_CURRENT_CHECKPOINT",
+  "scope": "The supplied checked substitution of two Int variables is decoded to amount 1 and timestamp 1700000000, with zero for other names, and consumed by the existing supplied Native FREEZE transaction bound under its original twenty-three premises and the same explicit natural-number gas parameter. Missing bindings, wrong sorts and a typed invalid decimal are rejected; removing the time consumer violates that transaction bound.",
+  "coverage": {
+    "suppliedVariables": 2,
+    "amount": "1",
+    "timestamp": "1700000000",
+    "otherNamesDefault": "0",
+    "originalPremises": 23,
+    "observationCongruences": 333,
+    "guardedRootCounts": [
+      12,
+      17,
+      26
+    ],
+    "explicitGasSignatures": 3,
+    "sameGasUses": 16,
+    "kernelStages": 3,
+    "controls": [
+      "normal-received",
+      "missing-binding",
+      "wrong-sort",
+      "typed-invalid-decimal",
+      "time-consumer-removal"
+    ],
+    "evaluationOracleDependencies": 0
+  },
+  "identityBoundary": "The two current product formal source files have the same byte identities as the recorded consumer inputs. This checkpoint establishes no new Solidity, ABI, compiled runtime or whole-model equivalence. Existing model, profile, hash and environment assumptions remain conditional.",
+  "reproductionBoundary": "This checker rehashes saved native artifacts, exact database source bytes, guarded message exports, heap lineage and the union of current input bindings and unchanged run snapshots. The private artifact index only locates files. This is not a fresh kernel replay, independent Assurance, full TRUST completion or release evidence.",
+  "productIdentity": {
+    "retrieveModel": {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Retrieve_Relation.thy",
+      "bytes": 15893,
+      "sha256": "5fe73a17b58d636ca2f489a02e42a442309f8f42f99cb99e72de678090475587"
+    },
+    "transactionModel": {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Transaction_Refinement.thy",
+      "bytes": 78470,
+      "sha256": "b49b9d7a71455e547bf5185fcd66195597b185bbb5d50441b281e37eabf60149"
+    }
+  },
+  "artifacts": [
+    {
+      "id": "status-gate-source",
+      "kind": "isabelle-source",
+      "bytes": 23744,
+      "sha256": "dfc4615d92367d2ec066445fa8da94f5fcd26eeca22822f3f7f16dd94d4e7d0b"
+    },
+    {
+      "id": "status-gate-root",
+      "kind": "isabelle-session-root",
+      "bytes": 254,
+      "sha256": "94427bb54c6dd89213785d51a2bed1efdf450b9cf5d300aaaa5e30558647b79c"
+    },
+    {
+      "id": "status-gate-binding",
+      "kind": "proof-input-binding",
+      "bytes": 38911,
+      "sha256": "8f919a2a7c9e467c55267c83b23066d408b1886e3be90b2bd371ec1489a1bb15"
+    },
+    {
+      "id": "status-gate-result",
+      "kind": "kernel-build-result",
+      "bytes": 12662,
+      "sha256": "0a21ad0f35aef009e37cd5ba820fb19f02a10265663717ef46c3d50a19457c23"
+    },
+    {
+      "id": "status-gate-inputs-before",
+      "kind": "proof-input-snapshot",
+      "bytes": 1112286,
+      "sha256": "69b9ddbd133bac613028e99217385cb77a21f6c4e709d219d32c8a46d502e73b"
+    },
+    {
+      "id": "status-gate-inputs-after",
+      "kind": "proof-input-snapshot",
+      "bytes": 1112286,
+      "sha256": "69b9ddbd133bac613028e99217385cb77a21f6c4e709d219d32c8a46d502e73b"
+    },
+    {
+      "id": "status-gate-audit",
+      "kind": "saved-kernel-audit",
+      "bytes": 2189,
+      "sha256": "a252bda82289e2c17fbc86079f26e7416a86d23df3760959e0f443e031862411"
+    },
+    {
+      "id": "status-gate-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 17453341,
+      "sha256": "1e7309e8bb93d6a871071254256c09219ab145836ba196d89f1a5f60e7bf5761"
+    },
+    {
+      "id": "status-gate-database",
+      "kind": "isabelle-database",
+      "bytes": 385024,
+      "sha256": "869da6e66253520ee98b4cd1f871d417abb1564657781a58b0a7636514cb234a"
+    },
+    {
+      "id": "received-method-source",
+      "kind": "isabelle-source",
+      "bytes": 8064,
+      "sha256": "f0149873936adb21714260b4fe132c3a410fddec77d2ec197d57143785c12f69"
+    },
+    {
+      "id": "received-method-root",
+      "kind": "isabelle-session-root",
+      "bytes": 279,
+      "sha256": "28949b5740dcdf32ffca426b5dc755d4e5d26cad88cd7f9681a353dc1722a909"
+    },
+    {
+      "id": "received-method-binding",
+      "kind": "proof-input-binding",
+      "bytes": 14650,
+      "sha256": "6a2e0f4bdc0de34c546c31b6ead8c7750f1cba0bc10d19972ff2a2f13cfa80ae"
+    },
+    {
+      "id": "received-method-result",
+      "kind": "kernel-build-result",
+      "bytes": 3644,
+      "sha256": "bea4051dd1ab41254c1ed461b744a42ce64d4e13c7f0f733bb6e656866df35c8"
+    },
+    {
+      "id": "received-method-inputs-before",
+      "kind": "proof-input-snapshot",
+      "bytes": 29091,
+      "sha256": "2f0daba760b872d6cfd42fb28e7590393095a9ab2e698d0deb76d0e2497ab427"
+    },
+    {
+      "id": "received-method-inputs-after",
+      "kind": "proof-input-snapshot",
+      "bytes": 29091,
+      "sha256": "2f0daba760b872d6cfd42fb28e7590393095a9ab2e698d0deb76d0e2497ab427"
+    },
+    {
+      "id": "received-method-audit",
+      "kind": "saved-kernel-audit",
+      "bytes": 1091,
+      "sha256": "e3613128bee597938f0a5069022f2152787acb9531b52acdac5e242d32ce1f99"
+    },
+    {
+      "id": "received-method-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 2727089,
+      "sha256": "e00eabb2db4a1e64546b819e85d95e60fbc874187a0c61a7a4bb45286cd96277"
+    },
+    {
+      "id": "received-method-database",
+      "kind": "isabelle-database",
+      "bytes": 143360,
+      "sha256": "4bfe24834992424570676255b05e69d35ad2e37d9ecb85c65ff85816227e70a6"
+    },
+    {
+      "id": "current-consumer-source",
+      "kind": "isabelle-source",
+      "bytes": 137450,
+      "sha256": "5992a4b2e4e8a787a5af654228251099350ca4e8cb9982741bdc7fb782a3f963"
+    },
+    {
+      "id": "current-consumer-root",
+      "kind": "isabelle-session-root",
+      "bytes": 285,
+      "sha256": "d8d1a39019952864f2e808a21d038dfa64c617a40deba11b65916358f2ef24b6"
+    },
+    {
+      "id": "current-consumer-binding",
+      "kind": "proof-input-binding",
+      "bytes": 123084,
+      "sha256": "b08266d91567d994f8c6b112e8792a5fd90e61ece3a016cea5f69652d71c35d6"
+    },
+    {
+      "id": "current-consumer-result",
+      "kind": "kernel-build-result",
+      "bytes": 13113,
+      "sha256": "8231b6037c9de5d8a5eca32c51f40ba124dbf952429cd3a032b1ac8e3734a1b0"
+    },
+    {
+      "id": "current-consumer-inputs-before",
+      "kind": "proof-input-snapshot",
+      "bytes": 1182463,
+      "sha256": "3f69944aa7828ab319d2ef786aa8c4699ed66211d52e230941ee12e0e0898c41"
+    },
+    {
+      "id": "current-consumer-inputs-after",
+      "kind": "proof-input-snapshot",
+      "bytes": 1182463,
+      "sha256": "3f69944aa7828ab319d2ef786aa8c4699ed66211d52e230941ee12e0e0898c41"
+    },
+    {
+      "id": "current-consumer-audit",
+      "kind": "saved-kernel-audit",
+      "bytes": 5112,
+      "sha256": "e7366fab81a512080c9f8272241c424d184a778af6fa0f517057e9ca097e15af"
+    },
+    {
+      "id": "current-consumer-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 18408185,
+      "sha256": "c4b9060f2badfe97a22e428e9ae322263169244245312a48fbb91adb037418be"
+    },
+    {
+      "id": "current-consumer-database",
+      "kind": "isabelle-database",
+      "bytes": 786432,
+      "sha256": "646a2caa667faea65e730457c5954fa2e060c5d120dd3e4b0387046d52672cbe"
+    }
+  ],
+  "kernelStages": [
+    {
+      "id": "status-gate",
+      "guardedRoots": 12,
+      "oracleDependencies": 0,
+      "skipProofs": false,
+      "storedSourceByteExact": true,
+      "outputHeapIdentity": "3dfcd4f00e8873a49846d6eb7684a5679a586b14",
+      "primaryParentHeapIdentity": "43bf5b717c7f8d40a332055b8197cccf41cdfe04",
+      "primaryParentHeapSha256": "0f6e7bc3a297e2f1bf52148c360e70ded837172ab6f6cfd62bad7ed75d86d5c6",
+      "primaryParentDatabaseSha256": "d005d38f374daf73fe385f4584faf44ed068e8ea68ae4ad0f1a664e2be80d26b",
+      "primaryParentRole": "saved-ancestor",
+      "role": "native-consumer-lineage"
+    },
+    {
+      "id": "received-method",
+      "guardedRoots": 17,
+      "oracleDependencies": 0,
+      "skipProofs": false,
+      "storedSourceByteExact": true,
+      "outputHeapIdentity": "2cdc17701edf9cfe4bd7ecce49df92ad97b8c52b",
+      "primaryParentHeapIdentity": "b4b006754d6d70d07bd88b83d20714cf85e0de49",
+      "primaryParentHeapSha256": "dd0ecd909ac66586111e46de2a12c64a8976fcc28966ae8ae13cdb717a3b395a",
+      "primaryParentDatabaseSha256": "465988e407fa515ed824fee8e0c5696d5708f1eedc66a134014d762300495c8f",
+      "primaryParentRole": "saved-ancestor",
+      "role": "independent-method-evidence"
+    },
+    {
+      "id": "current-consumer",
+      "guardedRoots": 26,
+      "oracleDependencies": 0,
+      "skipProofs": false,
+      "storedSourceByteExact": true,
+      "outputHeapIdentity": "2a008130a57de9457b84d20d1d8137716641744f",
+      "primaryParentHeapIdentity": "3dfcd4f00e8873a49846d6eb7684a5679a586b14",
+      "primaryParentHeapSha256": "1e7309e8bb93d6a871071254256c09219ab145836ba196d89f1a5f60e7bf5761",
+      "primaryParentDatabaseSha256": "869da6e66253520ee98b4cd1f871d417abb1564657781a58b0a7636514cb234a",
+      "primaryParentRole": "status-gate",
+      "role": "native-consumer-lineage"
+    }
+  ],
+  "claims": {
+    "originalSource": false,
+    "fullNamespaceSubstitution": false,
+    "originalConditions": false,
+    "fullGroundness": false,
+    "definedness": false,
+    "functionalness": false,
+    "producerImage": false,
+    "originalExecutionLaw": false,
+    "generalRuntimeLinks": false,
+    "otherProfiles": false,
+    "centralRefinementClosure": false,
+    "independentAssurance": false,
+    "fullTrustCompletion": false,
+    "releaseOrDeployment": false
+  },
+  "retryProvenance": {
+    "v7ResultSha256": "caaf5898bd6950d34fa8b97820847ceefb07b87d234fd8ca481d7d138192cf6f",
+    "v7DatabaseSha256": "bd6546b630b8a018c26e74735dd51e20a5068f9498eed752e447889c406ce66b",
+    "v7SnapshotSha256": "248e20d36d01f050a3e18ac1c7126b62f6c6f12364b4f6f0068649b7326a8925",
+    "v7LoadExpressionSha256": "3d1bad24db44d00560bbff2da3152494eac36d650872e88f81c6fd2e012810e6",
+    "v7FirstAttemptKernelCredit": false,
+    "firstAttemptStatus": "INCOMPLETE_NATIVE_ATTEMPT",
+    "reportedError": "Timeout",
+    "resourceObservation": "low-free-memory-observed",
+    "sourceChanged": false,
+    "firstAttemptKernelCredit": false,
+    "resultSha256": "c599d723e2415dbb4222d5cd156afd2e2416113288de9b773546f869a8c8ae44",
+    "databaseSha256": "18764da4ba32e4ac986cd9e5530bcb91021c3d48df9352bbbe17f3c35c7af8cd",
+    "errorsSha256": "70594d932950a164e0d820060410af4ea1d127b7221f577d2dcfc22c2d8ff1df",
+    "retry1AttemptStatus": "INCOMPLETE_NATIVE_ATTEMPT",
+    "retry1ReportedError": "Timeout",
+    "retry1SourceChanged": false,
+    "retry1KernelCredit": false,
+    "retry1ResultSha256": "ec30015c1797ef44fedfce9c08d02968ff7ed4086f4c79899ec835186c5b8272",
+    "retry1DatabaseSha256": "c30e08ac97e7372c193002fb193d69faa53601fd11e8a94dac3088d8ffe17807",
+    "retry1ErrorsSha256": "70594d932950a164e0d820060410af4ea1d127b7221f577d2dcfc22c2d8ff1df"
+  },
+  "rehashVerifier": {
+    "path": "scripts/trust12/verify_received_valuation_current_v1.py",
+    "bytes": 69287,
+    "sha256": "937f66b9f3bcfc134562f240706fa1fda57c143aabedc255e3df9775c538c8c5",
+    "command": "python3 scripts/trust12/verify_received_valuation_current_v1.py --base <evidence-root> --product-root <product-root> --checkpoint evidence/trust12/runtime-link/native-received-valuation-checkpoint-v1.json --artifact-index <evidence-root>/native-received-valuation-artifact-index-v1.json --zstd <zstd-executable>"
+  }
+}
