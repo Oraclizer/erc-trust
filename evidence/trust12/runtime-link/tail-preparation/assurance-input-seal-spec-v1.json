@@ -1,6 +1,6 @@
 {
   "schema": "trust12-tail-preparation-assurance-seal-spec-v1",
-  "description": "Selectors, toolchain pins, reproduction commands and independent checks from which the seal tool builds the frozen input list of the independent Assurance. The product root is enumerated from Git; the runtime-link evidence root is enumerated only under the paths its obligation ledger cites.",
+  "description": "Selectors, toolchain pins, reproduction commands and independent checks from which the seal tool builds the frozen input list of the independent Assurance. The product root is enumerated from Git; the runtime-link evidence root is enumerated only under the paths its obligation ledger cites. This template describes current-completion Assurance. Final frozen-source clean Assurance requires a separately frozen specification and seal whose runtime-link-kernel-replay entry has coldReplay true and executes every sealed kernel command without recorded heaps.",
   "rootInventory": {
     "PRODUCT": "git-tracked",
     "EVIDENCE": "walk"
@@ -163,11 +163,11 @@
     },
     {
       "id": "runtime-link-kernel-replay",
-      "purpose": "Replay every sealed runtime-link kernel run from its sealed command with the pinned Isabelle, without restoring the recorded heaps.",
+      "purpose": "For current-completion Assurance, verify all sealed runtime-link results and native freshness, replay changed units and their affected consumers, and replay gate checks and selected top-level kernel consumers.",
       "workingRoot": "EVIDENCE",
-      "command": "For each sealed run directory, execute the sealed command file in a fresh heap directory and compare the new result with the sealed result.json.",
-      "passCriterion": "Every replay exits 0, reports the sealed status string, and loads theory files whose hashes equal the sealed ones.",
-      "coldReplay": true
+      "command": "Verify hashes, source bytes, tool pins, parent lineage, oracle and skip status, and native freshness of every sealed runtime-link result. Replay each changed unit and its affected consumers, all gate checks, and the explicitly selected top-level kernel consumers. Record the selection and all five reuse conditions for every reused unit.",
+      "passCriterion": "Every required unit is covered by either a successful replay or a valid reused kernel result under all five reuse conditions; all declared positive, negative, consumer and export checks pass. Each replay exits 0 with the expected status and exact theory identities.",
+      "coldReplay": false
     },
     {
       "id": "seal-verify",
@@ -238,8 +238,8 @@
       "Current consumption: the native checker confirms freshness against the sealed sources and the final consumer reads the reused result."
     ],
     "coldReplayRequiredFor": [
-      "the first independent Assurance of the complete runtime link",
-      "any release or public completion statement",
+      "an explicitly selected final frozen-source clean runtime-link replay",
+      "any release or final frozen-source clean Assurance claim",
       "any toolchain or dependency pin change"
     ]
   },

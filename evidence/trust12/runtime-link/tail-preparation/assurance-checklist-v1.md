@@ -30,9 +30,16 @@ frozen inputs, reproduction commands and reuse conditions are defined by
    seal ends the Assurance with the result "not started".
 3. Install the toolchain exactly as pinned by the seal. Record the observed versions next to the
    pinned ones.
-4. Decide, per unit, between a cold replay and a validated reuse. Every reuse must satisfy the
-   five reuse conditions of the seal. The first Assurance of the complete runtime link is a cold
-   replay.
+4. Select the declared replay scope before sealing and running the checks. This specification
+   describes current-completion Assurance: verify every sealed result and native freshness,
+   replay changed units and their affected consumers, and replay gate checks and selected
+   top-level kernel consumers. The public product proof sessions still receive a clean replay.
+   Each reused unit must satisfy all five reuse conditions of the seal. For a final frozen-source
+   clean Assurance, prepare a separate specification and seal with `coldReplay: true` for
+   `runtime-link-kernel-replay` and a command that executes every sealed kernel run without
+   recorded heaps. Do not relabel or edit a current-completion seal as a final clean seal.
+   Both scopes reuse the proof sources and tools; neither requires rebuilding the proof method
+   from scratch.
 
 ## Check 1: reconstruction from the frozen specification
 
