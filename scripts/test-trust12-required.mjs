@@ -79,6 +79,9 @@ try {
   test('false-mandatory-closure',()=>change('evidence/trust12/obligation-ledger.json',r=>{r.obligations.find(x=>x.id==='NATIVE-SYMBOLIC-FREEZE').status='CLOSED';r.centralClosure.currentMandatory=r.centralClosure.currentMandatory.filter(x=>x!=='NATIVE-SYMBOLIC-FREEZE');}),'bounded evidence cannot close general Native proof');
   test('release-with-open-obligations',()=>change('evidence/evidence-mode.json',r=>{r.mode='release';r.pendingAllowed=false;}),'open TRUST 1.2 obligations prohibit release');
   for(const entrypoint of ['verify-current-profile-release-v3','verify-obligation-ledger-v3','verify-runtime-binding-v3']) test(`required-consumer:${entrypoint}`,()=>{const path='evidence/trust12/formal-build-replay.json';set(path,null);change('evidence/trust12/input-seal.json',s=>{s.files=s.files.filter(x=>x.path!==path);});},'required TRUST 1.2 input is not sealed',entrypoint);
+  const checkpointControls = spawnSync(process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3'),
+    ['-B', resolve(root, 'scripts/test-full-source-admission.py')], { cwd: root, encoding: 'utf8' });
+  check(!checkpointControls.error && checkpointControls.status === 0, 'captured-source metadata controls failed');
   const report={schema:'trust12-required-controls-v1',status:'PASS',positive:'PASS_CONSISTENT_DEVELOPMENT',negativeControls:results,
     source:{verifierSha256:sha256(readFileSync(resolve(root,'scripts/verify-trust12-required.mjs'))),testSha256:sha256(readFileSync(fileURLToPath(import.meta.url)))},
     nonclaim:'Admission and required-consumer controls. No new implementation mutation campaign, symbolic theorem or runtime refinement is claimed.'};

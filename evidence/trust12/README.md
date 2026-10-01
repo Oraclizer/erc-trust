@@ -264,3 +264,41 @@ Its structural frame substitution reconstructs node148 and the one-head-removed
 target, but the substitution is not a checker-returned CSubst and no original
 Native graph edge is recorded. Direct and proxy full-node executions both timed
 out. The phase-three control takes `EVM.jumpi.true`.
+
+## Captured full-source admission checkpoint
+
+The [saved checkpoint](runtime-link/native-full-source-admission-checkpoint-v1.json)
+records raw EOF for the captured 802,053-byte Native source, the complete
+56-variable replacement contract, the checked 324-declaration environment, and
+the ground syntax supplied to three strict native queries. The normal source
+has `Ceil=Top`; setting NUMBER to zero gives `Ceil=Bottom`; removing only its
+lower-bound condition under that same zero assignment gives `Ceil=Top`.
+The full-source receiver checks raw EOF, environment and substitution before
+returning the checked pattern, amount 1 and timestamp 1700000000. A trailing
+comma and missing, duplicate, wrong-declared-sort and wrong-value-sort bindings
+are rejected by that receiver.
+
+The [checker](../../scripts/trust12/verify_full_source_admission_v1.py) distinguishes
+public metadata integrity from rehashing the retained saved kernel/native
+artifacts. [Its controls](../../scripts/test-full-source-admission.py) reject
+scope narrowing, changed evidence, missing roots and stronger completion claims.
+The artifact bundle and private locator are required for saved-artifact mode;
+they remain outside the tracked public tree. Neither mode performs fresh kernel
+replay or independent Assurance. This checkpoint supplies no K-to-HOL semantic
+correspondence, producer-image theorem, original execution law, general runtime
+link, central closure, full TRUST completion or release approval.
+
+```sh
+python3 scripts/trust12/verify_full_source_admission_v1.py --metadata-only
+python3 scripts/test-full-source-admission.py
+python3 scripts/trust12/verify_full_source_admission_v1.py \
+  --base <evidence-root> \
+  --artifact-index <evidence-root>/native-full-source-admission-artifact-index-v1.json \
+  --zstd <zstd-executable>
+```
+
+Saved-artifact mode verifies the current files at the retained kernel input
+coordinates. It is not a portable reconstruction of the original execution
+environment. The existing supplied two-observation transaction checkpoint and
+this full-source admission checkpoint remain separate until the actual producer
+and transaction consumer are connected.
