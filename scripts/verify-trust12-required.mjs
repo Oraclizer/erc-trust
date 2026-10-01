@@ -2,6 +2,7 @@
 // Required consistency gate, separate from proof completeness and release approval.
 import { verifyRuntimeBundles } from './lib/runtime-bundles.mjs';
 import { dirname, resolve } from 'node:path';
+import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { check, checkLocalReceiptProvenance, encoded, fileRef, inputInventory, inventoryRoot, json, read, sha256, walk } from './lib/local-evidence.mjs';
 import { formalAdmissionDigest, validateFormalIdentity } from './lib/formal-inputs.mjs';
@@ -27,6 +28,10 @@ export const requiredTrust12Paths = [
   'scripts/capture-isabelle-local-inputs.mjs','scripts/lib/runtime-bundles.mjs','scripts/generate-trust12-proof-audit.py',
   'scripts/proof-ci.mjs','scripts/run-proof-ci.sh','scripts/test-proof-ci.mjs',
   'scripts/test-trust12-required.mjs',
+  'scripts/test-full-source-admission.py',
+  'scripts/trust12/verify_full_source_admission_v1.py',
+  'scripts/trust12/verify_received_valuation_current_v1.py',
+  'evidence/trust12/runtime-link/native-full-source-admission-checkpoint-v1.json',
   'scripts/verify-trust12-required.mjs','scripts/lib/local-evidence.mjs','scripts/lib/formal-inputs.mjs',
   'scripts/record-foundry-results-v3.mjs','scripts/record-isabelle-results-v3.mjs',
   'scripts/record-trust12-deterministic.mjs','scripts/record-trust12-model-results.mjs','scripts/generate-runtime-binding-v3.mjs',
@@ -149,6 +154,10 @@ export function verifyTrust12Required(root = repository) {
   }
   check(json(root,'evidence/evidence-mode.json').mode === 'successor-development', 'open TRUST 1.2 obligations prohibit release promotion');
   const generalStatus = profile => rows.get(`RESEARCH-RUNTIME-LINK-${profile}`)?.status === 'CLOSED' ? 'CLOSED' : 'INCOMPLETE';
+  const checkpointCheck = spawnSync(process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3'),
+    ['-B', resolve(root, 'scripts/trust12/verify_full_source_admission_v1.py'), '--product-root', root, '--metadata-only'],
+    { cwd: root, encoding: 'utf8' });
+  check(!checkpointCheck.error && checkpointCheck.status === 0, 'captured-source public metadata check failed');
   return { status: policy.fullRefinementComplete ? 'PASS_TRUST12_COMPLETION' : 'PASS_CONSISTENT_DEVELOPMENT',
     centralClosure: ledger.centralClosure.status, currentMandatory: mandatory,
     generalRuntimeLinkMandatory: policy.generalRuntimeLinkMandatory,

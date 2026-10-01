@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Record the captured full-source admission checkpoint: raw EOF, complete
+  typed substitution, checked declarations, ground query identities and the
+  receiver's two decoded observations. Preserve strict native normal,
+  number-zero and same-assignment condition-removal results. Add a saved-
+  artifact checker and public metadata controls without promoting general
+  runtime refinement, independent Assurance or release readiness.
+
 - Replace internal process identifiers in two tracked process-result records
   and the tail preparation tool with descriptive names, and let the
   public-surface scan refuse identifiers of the shape `RL-<n>`.

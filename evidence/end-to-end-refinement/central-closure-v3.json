@@ -896,8 +896,12 @@
         "sha256": "eabc940d87c0a8cc9e03c592c5fa2f96ba7595284b174e30624d570d610337bd"
       },
       {
+        "path": "evidence/trust12/runtime-link/native-full-source-admission-checkpoint-v1.json",
+        "sha256": "517d9741907f6993d52063db9928604804ef7133d20940a18086a0eb9e21909a"
+      },
+      {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "f85ceafabb167695fdeac55dda9623f08cac9721b57bdf3b662dc18449288e1f"
+        "sha256": "4984d2b119e6d3a281bb15c49c903860b000a026a369185a9751d528df4ff997"
       }
     ],
     "fullRefinementComplete": false,
