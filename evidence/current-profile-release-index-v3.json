@@ -425,7 +425,7 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "49cc04fc17f593ae50b4f9e9921169f089bf1b87a8ea404fa318e82d223e2e11"
+        "sha256": "750192665c64ab4583b5ca3696f5c24be8aef4d3a662b6df06acee8fc70ce9a0"
       }
     },
     "runtime": {
@@ -582,11 +582,11 @@
         },
         {
           "path": "evidence/trust12/runtime-link/native-full-source-admission-checkpoint-v1.json",
-          "sha256": "517d9741907f6993d52063db9928604804ef7133d20940a18086a0eb9e21909a"
+          "sha256": "24868eb3bbe884f3fd298658bc8c465517c3a1bf7ece7201b16a4cc2e31cc848"
         },
         {
           "path": "evidence/trust12/input-seal.json",
-          "sha256": "4984d2b119e6d3a281bb15c49c903860b000a026a369185a9751d528df4ff997"
+          "sha256": "37cd6361a6496061c78a912090828b4e093353556806f616686cda02e45ede2d"
         }
       ],
       "fullRefinementComplete": false,
@@ -819,11 +819,11 @@
       },
       {
         "path": "evidence/trust12/runtime-link/native-full-source-admission-checkpoint-v1.json",
-        "sha256": "517d9741907f6993d52063db9928604804ef7133d20940a18086a0eb9e21909a"
+        "sha256": "24868eb3bbe884f3fd298658bc8c465517c3a1bf7ece7201b16a4cc2e31cc848"
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "4984d2b119e6d3a281bb15c49c903860b000a026a369185a9751d528df4ff997"
+        "sha256": "37cd6361a6496061c78a912090828b4e093353556806f616686cda02e45ede2d"
       }
     ],
     "fullRefinementComplete": false,
