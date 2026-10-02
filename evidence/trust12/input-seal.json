@@ -13,7 +13,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "d515ca9cdbb660ef82c546ec72991eaaaa0dcc645d26635246c756dff4f73417"
+      "sha256": "f60e64668d02b24ff8a5b3a4607346deaf94ee7720dcbdf3821a7f08a599d10b"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
@@ -33,7 +33,7 @@
     },
     {
       "path": "evidence/trust12/README.md",
-      "sha256": "8af6fa83f2815be01259da3ae458074c00dba03c3675d471d26a338dc34ecab4"
+      "sha256": "f7115a0721ff9d945e34abbbb68e0d1bcd0638bafc06b9d06461c8bbe0d93f37"
     },
     {
       "path": "evidence/trust12/aggregate-evidence-audit.md",
@@ -154,6 +154,10 @@
     {
       "path": "evidence/trust12/runtime-link-source-blockers.md",
       "sha256": "817b2d51a312cd2cd0d829f2a889f2327ecca8570546838fc8dcd8fb03eb265d"
+    },
+    {
+      "path": "evidence/trust12/runtime-link/model-source-reception-checkpoint-v1.json",
+      "sha256": "be9452ff4aa7fa41443bc3c6adde268ac83a82d5ccd0417cc76380136f0545e3"
     },
     {
       "path": "evidence/trust12/runtime-link/native-full-source-admission-checkpoint-v1.json",
@@ -321,7 +325,7 @@
     },
     {
       "path": "scripts/generate-trust12-input-seal.py",
-      "sha256": "babbfa2221b1c30026b93bd41f4757225c2052a225bb536b539ee6a63e79a65b"
+      "sha256": "e4425763e075cffe5a8b1de932d4feacc19b049e3774f074ba53826f151f8a1d"
     },
     {
       "path": "scripts/generate-trust12-proof-audit.py",
@@ -412,6 +416,10 @@
       "sha256": "a00ce492232b4656455a27df7d980818c03c92332aa29e343c62c7c75ac210c8"
     },
     {
+      "path": "scripts/test-model-source-reception.py",
+      "sha256": "938671463613efecdf13eaf172f958f0171be1e974a8940878d15e7b8f1eece4"
+    },
+    {
       "path": "scripts/test-proof-ci.mjs",
       "sha256": "13d832941126334952262d337a096b72fcc72abfe311ea9e4bf95c0e71cc4867"
     },
@@ -425,7 +433,7 @@
     },
     {
       "path": "scripts/test-trust12-required.mjs",
-      "sha256": "578ce7ec45ba4adf6bc3733f1bc7310765b3238ff1fea59d978a171fedadf3de"
+      "sha256": "adbe96339cd5488314db0ae7953619dd7f08e2f0500648f0c55fbe106832842c"
     },
     {
       "path": "scripts/test-veri-dependency.py",
@@ -434,6 +442,10 @@
     {
       "path": "scripts/trust12/verify_full_source_admission_v1.py",
       "sha256": "fd36d6705e0a48a5ef47a78125e6b47b92f898ae574ccfe44656f2bc926edd65"
+    },
+    {
+      "path": "scripts/trust12/verify_model_source_reception_v1.py",
+      "sha256": "eb0bf1e7daf06ad16ff885434a82a0faf2318b4ad3845019152df9c4e6c82cc0"
     },
     {
       "path": "scripts/trust12/verify_received_valuation_current_v1.py",
@@ -469,7 +481,7 @@
     },
     {
       "path": "scripts/verify-trust12-required.mjs",
-      "sha256": "c6802bb0f23914995528e68a69792d2e0e6c5686ee786ad4bdbf19d7c81a01c2"
+      "sha256": "b2d391b96b2921f0340d6c0a01a60fdbec2ff725144d61403828e516832eb87d"
     }
   ],
   "nonclaim": "This seals one local development tranche. It is not a deployment, release, conformance approval, or end-to-end refinement result."

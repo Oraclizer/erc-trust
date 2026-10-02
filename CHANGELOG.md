@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Record reception of the fourteen current product model theories and all
+  353 explicitly named model roots in one saved captured-source lineage.
+  Add source-specific database, namespace, heap and current-input verification
+  with public integrity controls. Preserve model declarations and conditional
+  runtime-link assumptions; general refinement and final Assurance remain open.
+
 - Record the captured full-source admission checkpoint: raw EOF, complete
   typed substitution, checked declarations, ground query identities and the
   receiver's two decoded observations. Preserve strict native normal,
