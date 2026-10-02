@@ -302,3 +302,34 @@ coordinates. It is not a portable reconstruction of the original execution
 environment. The existing supplied two-observation transaction checkpoint and
 this full-source admission checkpoint remain separate until the actual producer
 and transaction consumer are connected.
+
+
+## Model source reception checkpoint
+
+The [saved checkpoint](runtime-link/model-source-reception-checkpoint-v1.json)
+binds the fourteen current product model theories to one retained captured-source
+parent lineage. All 353 explicitly named model roots have zero transitive oracle
+dependencies with `skip_proofs=false`. The declarations, locales, assumptions and
+source bytes are preserved. The end-to-end model still assumes `runtime_link`.
+
+The [checker](../../scripts/trust12/verify_model_source_reception_v1.py) verifies
+source-specific database exports, exact namespaces, heap lineage and current
+input hashes in saved-artifact mode. Public metadata mode checks the immutable
+record and current model files. [Its controls](../../scripts/test-model-source-reception.py)
+reject changed sources, roots, stages, guards, parent identity and stronger claims.
+The retained artifact bundle and locator are required for full mode; neither mode
+performs a fresh proof replay or independent Assurance.
+
+```sh
+python3 scripts/trust12/verify_model_source_reception_v1.py --metadata-only
+python3 scripts/test-model-source-reception.py
+python3 scripts/trust12/verify_model_source_reception_v1.py \
+  --base <evidence-root> \
+  --artifact-index <evidence-root>/model-source-reception-artifact-index-v1.json \
+  --zstd <zstd-executable>
+```
+
+This is model source reception. Original symbolic operational execution,
+runtime-to-model correspondence, the three general profile links, central
+closure, final Assurance and full TRUST completion remain open. Existing
+implementation, ABI and compiled runtime identities are preserved.

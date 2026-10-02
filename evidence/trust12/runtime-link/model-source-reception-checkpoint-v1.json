@@ -1,0 +1,2332 @@
+{
+  "schema": "trust12-model-source-reception-checkpoint-v1",
+  "status": "PASS_SAVED_MODEL_SOURCE_RECEPTION",
+  "scope": "The current fourteen product model theories are received from their unchanged source bytes in one retained captured-source parent lineage. All 353 explicitly named model roots are checked for transitive oracle dependencies with skip_proofs=false. The runtime_link assumptions in the end-to-end model remain assumptions.",
+  "confirmed": {
+    "currentProductModelSourcesReceived": true,
+    "explicitExportedRootsOracleZero": true,
+    "sourceBytesAndNamespacesPreserved": true,
+    "capturedSourceReceiverParentReused": true
+  },
+  "claims": {
+    "allAuxiliaryGeneratedFactsAudited": false,
+    "modelToRuntimeCorrespondence": false,
+    "originalSymbolicOperationalExecution": false,
+    "generalRuntimeLinks": false,
+    "centralRefinementClosure": false,
+    "independentAssurance": false,
+    "fullTrustCompletion": false,
+    "releaseOrDeployment": false
+  },
+  "coverage": {
+    "productTheories": 14,
+    "productSourceBytes": 381907,
+    "explicitModelRoots": 353,
+    "kernelStages": 12
+  },
+  "identityBoundary": "Existing implementation, ABI, compiled runtime, model declarations, locales and assumptions are preserved. Model-source reception does not establish runtime-to-model correspondence.",
+  "reproductionBoundary": "Full mode rehashes retained source, database, heap lineage, source-specific oracle guards and current input snapshots. Metadata-only mode checks the immutable public record and current model bindings. Neither mode is a fresh kernel replay or independent Assurance. The retained artifact bundle and locator are required for full mode.",
+  "rootAuditBoundary": "The admitted inventory is the complete explicitly named model-root set. Generated auxiliary prover facts are not admitted by a blanket name exemption and are not claimed as an all-global-fact audit.",
+  "productModels": [
+    {
+      "theory": "Claim_Boundary",
+      "path": "formal/isabelle/ERC_TRUST/Claim_Boundary.thy",
+      "bytes": 4005,
+      "sha256": "313549026c3645fbd9bb7eb7da4b32a47c4eb6257d625342de5f0927fd1da7eb",
+      "explicitRoots": [
+        "Claim_Boundary.same_core_input_cannot_distinguish_external_legal_truth",
+        "Claim_Boundary.external_worlds_really_disagree",
+        "Claim_Boundary.ce02_guarantee_is_declared_custody_not_legal_title",
+        "Claim_Boundary.ce11_guarantee_is_binding_not_sale_or_debt_truth",
+        "Claim_Boundary.ce12_guarantee_is_binding_not_rightful_owner_truth",
+        "Claim_Boundary.allowed_claim_inventory_is_exact"
+      ]
+    },
+    {
+      "theory": "Executable_Regulatory_Kernel",
+      "path": "formal/isabelle/ERC_TRUST/Executable_Regulatory_Kernel.thy",
+      "bytes": 17553,
+      "sha256": "72f531eadbe62f39849248bbf1d1de61182abc85d8d865bc8138ebd4aaf27bb8",
+      "explicitRoots": [
+        "Executable_Regulatory_Kernel.trust_manifest_domain_is_exactly_six_by_three",
+        "Executable_Regulatory_Kernel.trust_manifest_kernel_preserves_input",
+        "Executable_Regulatory_Kernel.trust_manifest_kernel_is_actual_execution_evaluation",
+        "Executable_Regulatory_Kernel.every_manifest_fixture_scenario_is_reachable",
+        "Executable_Regulatory_Kernel.every_trust_manifest_row_matches_its_reachable_scenario",
+        "Executable_Regulatory_Kernel.foundation_manifest_domain_is_exactly_five_by_seven",
+        "Executable_Regulatory_Kernel.six_by_three_and_five_by_seven_are_not_conflated"
+      ]
+    },
+    {
+      "theory": "Privileged_Governance",
+      "path": "formal/isabelle/ERC_TRUST/Privileged_Governance.thy",
+      "bytes": 16734,
+      "sha256": "bca0c163d55f69a35350c8d79a990d6174c5ce3478682f80a285dfa53d0d614c",
+      "explicitRoots": [
+        "Privileged_Governance.rejected_governance_is_full_state_stutter",
+        "Privileged_Governance.successful_governance_receipt_has_exact_write_set",
+        "Privileged_Governance.successful_governance_has_exact_balance_supply_nonce_effects",
+        "Privileged_Governance.successful_governance_requires_clear_touched_accounts",
+        "Privileged_Governance.confiscated_governance_account_is_terminal",
+        "Privileged_Governance.successful_governance_complete_frame",
+        "Privileged_Governance.all_privileged_governance_classes_have_reachable_witnesses",
+        "Privileged_Governance.privileged_governance_is_typed_replay_safe_and_fail_closed"
+      ]
+    },
+    {
+      "theory": "RCP_Action_Mapping",
+      "path": "formal/isabelle/ERC_TRUST/RCP_Action_Mapping.thy",
+      "bytes": 5026,
+      "sha256": "e628178a9b09f3dab7759503db1a9a47141e932f591d4f3f19cceac359e900a4",
+      "explicitRoots": [
+        "RCP_Action_Mapping.transition_label_inventory",
+        "RCP_Action_Mapping.rcp_action_inventory",
+        "RCP_Action_Mapping.six_actions_are_not_seven_transition_labels",
+        "RCP_Action_Mapping.four_rcp_actions_have_state_transition_labels",
+        "RCP_Action_Mapping.recover_and_liquidate_are_transfer_layer_actions",
+        "RCP_Action_Mapping.deescalation_labels_are_not_rcp_actions",
+        "RCP_Action_Mapping.forward_mapping_roundtrip",
+        "RCP_Action_Mapping.rcp_descriptor_alignment",
+        "RCP_Action_Mapping.seizure_retains_ownership_descriptor",
+        "RCP_Action_Mapping.liquidation_does_not_prove_debt_discharge",
+        "RCP_Action_Mapping.recovery_is_restorative_but_externally_conditioned",
+        "RCP_Action_Mapping.ordinary_transfer_never_uses_an_rcp_operation",
+        "RCP_Action_Mapping.typed_enforcement_uses_separate_gate"
+      ]
+    },
+    {
+      "theory": "Regulatory_Execution_Semantics",
+      "path": "formal/isabelle/ERC_TRUST/Regulatory_Execution_Semantics.thy",
+      "bytes": 70924,
+      "sha256": "6b621b3b36342c0d432f1d7971a6153faaa87f9c9f3c97a80593f28fb3c295c1",
+      "explicitRoots": [
+        "Regulatory_Execution_Semantics.canonical_precheck_never_stops_with_applied",
+        "Regulatory_Execution_Semantics.canonical_precheck_pass_has_stored_authorization",
+        "Regulatory_Execution_Semantics.canonical_precheck_pass_has_transfer_shape",
+        "Regulatory_Execution_Semantics.rejected_authorization_command_is_full_state_stutter",
+        "Regulatory_Execution_Semantics.successful_authorization_command_complete_frame",
+        "Regulatory_Execution_Semantics.every_entrypoint_converges_on_canonical_execution",
+        "Regulatory_Execution_Semantics.untyped_entrypoint_is_fail_closed",
+        "Regulatory_Execution_Semantics.privileged_governance_is_explicitly_in_model_execution_taxonomy",
+        "Regulatory_Execution_Semantics.contextual_operation_target_from_confiscated_is_none",
+        "Regulatory_Execution_Semantics.confiscated_canonical_execution_cannot_apply",
+        "Regulatory_Execution_Semantics.confiscated_entrypoint_execution_cannot_apply",
+        "Regulatory_Execution_Semantics.confiscated_ordinary_source_is_terminal",
+        "Regulatory_Execution_Semantics.all_reversal_write_sets_cover_their_actual_state_classes",
+        "Regulatory_Execution_Semantics.successful_ordinary_transfer_writes_only_two_balance_accounts",
+        "Regulatory_Execution_Semantics.rejected_ordinary_transfer_is_full_state_stutter",
+        "Regulatory_Execution_Semantics.module_failure_has_no_state_effect",
+        "Regulatory_Execution_Semantics.canonical_rejection_is_full_state_stutter",
+        "Regulatory_Execution_Semantics.canonical_operational_failure_is_full_state_stutter",
+        "Regulatory_Execution_Semantics.entrypoint_rejection_is_full_state_stutter",
+        "Regulatory_Execution_Semantics.entrypoint_rejection_pair_from_outcome",
+        "Regulatory_Execution_Semantics.entrypoint_operational_failure_is_full_state_stutter",
+        "Regulatory_Execution_Semantics.successful_execution_preserves_policy_epoch",
+        "Regulatory_Execution_Semantics.successful_execution_preserves_auxiliary_state",
+        "Regulatory_Execution_Semantics.execute_canonical_applied_precheck",
+        "Regulatory_Execution_Semantics.execute_canonical_applied_structure",
+        "Regulatory_Execution_Semantics.successful_execution_complete_frame",
+        "Regulatory_Execution_Semantics.successful_state_observation_is_expected",
+        "Regulatory_Execution_Semantics.successful_execution_exact_core_effects",
+        "Regulatory_Execution_Semantics.successful_execution_writes_applied_receipt_last"
+      ]
+    },
+    {
+      "theory": "Regulatory_Execution_Simulation",
+      "path": "formal/isabelle/ERC_TRUST/Regulatory_Execution_Simulation.thy",
+      "bytes": 93979,
+      "sha256": "68a477f4335d4572cfa01490947b2c5a6a7729d7ce1fc635bb3e6bebc318428d",
+      "explicitRoots": [
+        "Regulatory_Execution_Simulation.all_legal_action_kinds_are_listed",
+        "Regulatory_Execution_Simulation.witness_precheck_freeze",
+        "Regulatory_Execution_Simulation.witness_precheck_seize",
+        "Regulatory_Execution_Simulation.witness_precheck_confiscate",
+        "Regulatory_Execution_Simulation.witness_precheck_restrict",
+        "Regulatory_Execution_Simulation.witness_precheck_recover",
+        "Regulatory_Execution_Simulation.witness_precheck_liquidate",
+        "Regulatory_Execution_Simulation.witness_canonical_precheck_table",
+        "Regulatory_Execution_Simulation.witness_canonical_precheck_passes",
+        "Regulatory_Execution_Simulation.witness_recover_denied_precheck",
+        "Regulatory_Execution_Simulation.witness_liquidate_denied_precheck",
+        "Regulatory_Execution_Simulation.witness_liquidate_unsupported_precheck",
+        "Regulatory_Execution_Simulation.witness_authorization_trace_reaches_approved_state",
+        "Regulatory_Execution_Simulation.witness_prepared_state_is_reached_by_authorization_trace",
+        "Regulatory_Execution_Simulation.untrusted_self_issued_authorization_is_fail_closed",
+        "Regulatory_Execution_Simulation.witness_freeze_is_applied",
+        "Regulatory_Execution_Simulation.witness_seize_is_applied",
+        "Regulatory_Execution_Simulation.witness_confiscate_is_applied",
+        "Regulatory_Execution_Simulation.witness_restrict_is_applied",
+        "Regulatory_Execution_Simulation.witness_recover_is_applied",
+        "Regulatory_Execution_Simulation.witness_liquidate_is_applied",
+        "Regulatory_Execution_Simulation.all_six_actions_have_reachable_applied_witnesses",
+        "Regulatory_Execution_Simulation.witness_canonical_outcome_is_applied",
+        "Regulatory_Execution_Simulation.unauthorized_witness_precheck_stops",
+        "Regulatory_Execution_Simulation.all_six_actions_have_reachable_denial_witnesses",
+        "Regulatory_Execution_Simulation.recover_negative_entitlement_is_rejected_not_operational_failure",
+        "Regulatory_Execution_Simulation.liquidate_negative_settlement_is_rejected_not_operational_failure",
+        "Regulatory_Execution_Simulation.liquidate_unsupported_capability_is_rejected",
+        "Regulatory_Execution_Simulation.all_six_actions_have_reachable_operational_failure_witnesses",
+        "Regulatory_Execution_Simulation.reversal_prepared_state_is_reached_by_authorization_trace",
+        "Regulatory_Execution_Simulation.reversal_unfreeze_precheck_passes",
+        "Regulatory_Execution_Simulation.reversal_unfreeze_is_applied",
+        "Regulatory_Execution_Simulation.reversal_unfreeze_canonical_execution",
+        "Regulatory_Execution_Simulation.reversal_unfreeze_effects",
+        "Regulatory_Execution_Simulation.reversal_unfreeze_has_reachable_applied_witness",
+        "Regulatory_Execution_Simulation.reversal_unrestrict_precheck_passes",
+        "Regulatory_Execution_Simulation.reversal_unrestrict_is_applied",
+        "Regulatory_Execution_Simulation.reversal_unrestrict_canonical_execution",
+        "Regulatory_Execution_Simulation.reversal_unrestrict_effects",
+        "Regulatory_Execution_Simulation.reversal_unrestrict_has_reachable_applied_witness",
+        "Regulatory_Execution_Simulation.reversal_release_precheck_passes",
+        "Regulatory_Execution_Simulation.reversal_release_is_applied",
+        "Regulatory_Execution_Simulation.reversal_release_canonical_execution",
+        "Regulatory_Execution_Simulation.reversal_release_effects",
+        "Regulatory_Execution_Simulation.reversal_release_has_reachable_applied_witness",
+        "Regulatory_Execution_Simulation.all_three_reversal_transitions_have_reachable_applied_witnesses",
+        "Regulatory_Execution_Simulation.ordinary_transfer_has_reachable_success_and_denial_witnesses",
+        "Regulatory_Execution_Simulation.partially_frozen_transfer_at_available_balance_applies",
+        "Regulatory_Execution_Simulation.partially_frozen_transfer_above_available_balance_is_rejected",
+        "Regulatory_Execution_Simulation.partially_seized_transfer_at_available_balance_applies",
+        "Regulatory_Execution_Simulation.uncleared_destination_transfer_is_rejected",
+        "Regulatory_Execution_Simulation.ordinary_transfer_uses_unencumbered_available_balance",
+        "Regulatory_Execution_Simulation.alternate_freeze_from_restricted_is_applied",
+        "Regulatory_Execution_Simulation.alternate_seize_from_frozen_is_applied",
+        "Regulatory_Execution_Simulation.alternate_confiscate_from_frozen_is_applied",
+        "Regulatory_Execution_Simulation.alternate_confiscate_from_seized_is_applied",
+        "Regulatory_Execution_Simulation.alternate_confiscate_from_restricted_is_applied",
+        "Regulatory_Execution_Simulation.alternate_overlay_paths_are_reachable",
+        "Regulatory_Execution_Simulation.erc7943_absolute_increase_is_applied",
+        "Regulatory_Execution_Simulation.erc7943_absolute_partial_decrease_is_rejected",
+        "Regulatory_Execution_Simulation.erc7943_absolute_zero_requires_explicit_unfreeze",
+        "Regulatory_Execution_Simulation.erc7943_absolute_amount_context_mismatch_is_denied",
+        "Regulatory_Execution_Simulation.erc7943_absolute_direction_paths_are_reachable",
+        "Regulatory_Execution_Simulation.erc3643_freeze_address_profile_is_applied",
+        "Regulatory_Execution_Simulation.erc3643_unfreeze_address_profile_is_applied",
+        "Regulatory_Execution_Simulation.erc3643_recovery_profile_is_applied",
+        "Regulatory_Execution_Simulation.supported_erc3643_profile_paths_are_reachable",
+        "Regulatory_Execution_Simulation.current_case_mismatch_is_rejected_before_effects",
+        "Regulatory_Execution_Simulation.preloaded_untrusted_issuer_cannot_execute",
+        "Regulatory_Execution_Simulation.delegated_seize_keeps_authorized_destination_as_custodian",
+        "Regulatory_Execution_Simulation.applied_action_nonce_property_table",
+        "Regulatory_Execution_Simulation.applied_action_and_nonce_are_consumed_once",
+        "Regulatory_Execution_Simulation.replay_property_table",
+        "Regulatory_Execution_Simulation.replay_is_rejected",
+        "Regulatory_Execution_Simulation.stale_policy_property_table",
+        "Regulatory_Execution_Simulation.stale_policy_authorization_is_rejected",
+        "Regulatory_Execution_Simulation.cancellation_property_table",
+        "Regulatory_Execution_Simulation.cancellation_lifecycle_is_reachable_and_prevents_execution",
+        "Regulatory_Execution_Simulation.delegation_property_table",
+        "Regulatory_Execution_Simulation.delegation_lifecycle_is_reachable",
+        "Regulatory_Execution_Simulation.policy_rebind_property_table",
+        "Regulatory_Execution_Simulation.policy_rebind_is_monotonic_observable_and_invalidates_old_authorization",
+        "Regulatory_Execution_Simulation.authority_rotation_property_table",
+        "Regulatory_Execution_Simulation.authority_epoch_rotation_is_monotonic_and_invalidates_old_authorization",
+        "Regulatory_Execution_Simulation.rejected_and_operational_failure_are_full_state_stutters",
+        "Regulatory_Execution_Simulation.applied_receipt_property_table",
+        "Regulatory_Execution_Simulation.applied_receipt_is_the_last_persistent_receipt",
+        "Regulatory_Execution_Simulation.ce02_seize_preserves_declared_holder_and_records_custody",
+        "Regulatory_Execution_Simulation.ce02_foundation_to_trust_retrieve_relation_is_nonvacuous",
+        "Regulatory_Execution_Simulation.ce11_liquidate_assume_guarantee",
+        "Regulatory_Execution_Simulation.ce11_liquidate_binds_settlement_without_asserting_external_truth",
+        "Regulatory_Execution_Simulation.ce12_recover_assume_guarantee",
+        "Regulatory_Execution_Simulation.recover_and_liquidate_consume_seized_custody_encumbrance",
+        "Regulatory_Execution_Simulation.ce12_recover_binds_entitlement_destination_and_consumption"
+      ]
+    },
+    {
+      "theory": "TRUST_Compositional_State",
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Compositional_State.thy",
+      "bytes": 15157,
+      "sha256": "ecb28da66b0ea1d1e1e4d05255a00246294d5ec9b5aafd320866af92c3ac880a",
+      "explicitRoots": [
+        "TRUST_Compositional_State.settlement_pair_commitment_is_injective",
+        "TRUST_Compositional_State.custody_backing_equals_active_custody_sum",
+        "TRUST_Compositional_State.physical_balance_covers_custody_backing",
+        "TRUST_Compositional_State.required_floor_is_additive_without_double_counting",
+        "TRUST_Compositional_State.ordinary_available_plus_required_floor",
+        "TRUST_Compositional_State.unbounded_freeze_target_saturates_only_at_observation",
+        "TRUST_Compositional_State.ordinary_available_never_spends_custody_backing",
+        "TRUST_Compositional_State.ordinary_available_never_spends_own_frozen_floor",
+        "TRUST_Compositional_State.foundation_projection_is_explicitly_partial",
+        "TRUST_Compositional_State.composite_overlay_has_no_foundation_projection",
+        "TRUST_Compositional_State.compositional_state_does_not_generalize_foundation"
+      ]
+    },
+    {
+      "theory": "TRUST_Concrete_Configuration",
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Concrete_Configuration.thy",
+      "bytes": 5896,
+      "sha256": "642daa38742595bb7a00700b08b0a24d74e18d1239eb848f45e197c78ba5ce56",
+      "explicitRoots": [
+        "TRUST_Concrete_Configuration.current_configuration_extensional",
+        "TRUST_Concrete_Configuration.current_configuration_does_not_contain_transaction_context",
+        "TRUST_Concrete_Configuration.reverted_transaction_has_no_committed_logs",
+        "TRUST_Concrete_Configuration.malformed_transaction_has_no_committed_logs",
+        "TRUST_Concrete_Configuration.successful_transaction_preserves_log_order",
+        "TRUST_Concrete_Configuration.history_is_an_explicit_witness"
+      ]
+    },
+    {
+      "theory": "TRUST_End_To_End_Composition",
+      "path": "formal/isabelle/ERC_TRUST/TRUST_End_To_End_Composition.thy",
+      "bytes": 20873,
+      "sha256": "dde2f9c95d702cf4f394dc3bde7e0e000203ba95698cfd7a8ba6569e59f8ccc5",
+      "explicitRoots": [
+        "TRUST_End_To_End_Composition.compiler_correctness_remains_a_nonclaim",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.runtime_execution_implements_concrete_transaction",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.forward_runtime_state",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.reversal_runtime_state",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.freeze_success_refines",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.seize_success_refines",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.confiscate_success_refines",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.liquidate_success_refines",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.restrict_success_refines",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.recover_success_refines",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.unfreeze_success_refines",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.release_success_refines",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.unrestrict_success_refines",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.successful_reversal_never_targets_a_terminal_case",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.runtime_rejection_stutters",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.runtime_operational_failure_stutters",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.runtime_malformed_input_stutters",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.runtime_dependency_revert_stutters",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.end_to_end_refinement_under_runtime_link",
+        "TRUST_End_To_End_Composition.heterogeneous_composition_is_conditional_until_certificate"
+      ]
+    },
+    {
+      "theory": "TRUST_Retrieve_Relation",
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Retrieve_Relation.thy",
+      "bytes": 15893,
+      "sha256": "5fe73a17b58d636ca2f489a02e42a442309f8f42f99cb99e72de678090475587",
+      "explicitRoots": [
+        "TRUST_Retrieve_Relation.finite_storage_keys_nonalias",
+        "TRUST_Retrieve_Relation.current_state_abstraction_well_defined",
+        "TRUST_Retrieve_Relation.alpha_current_is_functional",
+        "TRUST_Retrieve_Relation.alpha_current_requires_exact_runtime",
+        "TRUST_Retrieve_Relation.alpha_current_rejects_runtime_substitution",
+        "TRUST_Retrieve_Relation.alpha_current_binds_the_generated_bridge_schema",
+        "TRUST_Retrieve_Relation.nonce_projection_is_exact",
+        "TRUST_Retrieve_Relation.freeze_and_restriction_projections_are_independent",
+        "TRUST_Retrieve_Relation.custody_backing_projection_is_exact",
+        "TRUST_Retrieve_Relation.case_record_projection_is_exact",
+        "TRUST_Retrieve_Relation.dependency_state_projection_is_exact",
+        "TRUST_Retrieve_Relation.authority_projection_is_exact",
+        "TRUST_Retrieve_Relation.receipt_projection_is_exact",
+        "TRUST_Retrieve_Relation.pinned_runtime_pins_every_footprint_address",
+        "TRUST_Retrieve_Relation.inhabitant_configuration_is_well_formed",
+        "TRUST_Retrieve_Relation.current_configuration_wf_is_inhabited",
+        "TRUST_Retrieve_Relation.inhabitant_pins_the_endpoint_code",
+        "TRUST_Retrieve_Relation.current_state_does_not_assume_history"
+      ]
+    },
+    {
+      "theory": "TRUST_Runtime_Bridge_Generated",
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy",
+      "bytes": 16170,
+      "sha256": "0066aca8046e7129d007bfc527e4c7552d17b891406adfdb4720197664eb84fb",
+      "explicitRoots": [
+        "TRUST_Runtime_Bridge_Generated.action_code_is_exact",
+        "TRUST_Runtime_Bridge_Generated.reversal_code_is_exact",
+        "TRUST_Runtime_Bridge_Generated.generated_calldata_lengths_are_exact",
+        "TRUST_Runtime_Bridge_Generated.runtimes_are_within_the_eip170_limit",
+        "TRUST_Runtime_Bridge_Generated.native_routes_are_exhaustive",
+        "TRUST_Runtime_Bridge_Generated.profile_adapter_routes_are_exhaustive",
+        "TRUST_Runtime_Bridge_Generated.profile_governor_routes_are_exhaustive",
+        "TRUST_Runtime_Bridge_Generated.typed_command_selectors_are_classified_as_kernel_commands",
+        "TRUST_Runtime_Bridge_Generated.generic_dispatcher_selector_is_unclassified",
+        "TRUST_Runtime_Bridge_Generated.typed_command_selectors_are_not_failure_selectors",
+        "TRUST_Runtime_Bridge_Generated.reason_codes_are_distinct",
+        "TRUST_Runtime_Bridge_Generated.case_transition_rule_ids_are_distinct"
+      ]
+    },
+    {
+      "theory": "TRUST_State_Abi_Normal_Form",
+      "path": "formal/isabelle/ERC_TRUST/TRUST_State_Abi_Normal_Form.thy",
+      "bytes": 7113,
+      "sha256": "b645ce637c97ee3ca7a91c889d6b05efbb233404fe056b22d21816fe3abf710f",
+      "explicitRoots": [
+        "TRUST_State_Abi_Normal_Form.owned_sparse_projection_reassembles",
+        "TRUST_State_Abi_Normal_Form.shared_frame_is_preserved",
+        "TRUST_State_Abi_Normal_Form.finite_declared_preimages_yield_nonalias_slots",
+        "TRUST_State_Abi_Normal_Form.compiler_layout_labels_are_distinct",
+        "TRUST_State_Abi_Normal_Form.native_action_decodes_iff_canonical",
+        "TRUST_State_Abi_Normal_Form.native_reversal_decodes_iff_canonical",
+        "TRUST_State_Abi_Normal_Form.native_calldata_lengths_are_exact",
+        "TRUST_State_Abi_Normal_Form.noncanonical_action_length_is_rejected",
+        "TRUST_State_Abi_Normal_Form.noncanonical_reversal_length_is_rejected",
+        "TRUST_State_Abi_Normal_Form.dirty_action_enum_high_bits_are_rejected",
+        "TRUST_State_Abi_Normal_Form.dirty_reversal_enum_high_bits_are_rejected",
+        "TRUST_State_Abi_Normal_Form.dirty_action_address_high_bits_are_rejected",
+        "TRUST_State_Abi_Normal_Form.dirty_action_uint48_high_bits_are_rejected",
+        "TRUST_State_Abi_Normal_Form.dirty_action_uint64_high_bits_are_rejected",
+        "TRUST_State_Abi_Normal_Form.unknown_selector_is_rejected"
+      ]
+    },
+    {
+      "theory": "TRUST_Transaction_Refinement",
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Transaction_Refinement.thy",
+      "bytes": 78470,
+      "sha256": "b49b9d7a71455e547bf5185fcd66195597b185bbb5d50441b281e37eabf60149",
+      "explicitRoots": [
+        "TRUST_Transaction_Refinement.generic_dispatcher_revert_is_not_typed_failure",
+        "TRUST_Transaction_Refinement.forward_and_reversal_receipts_are_distinguished_by_kind",
+        "TRUST_Transaction_Refinement.freeze_success_sets_absolute_target",
+        "TRUST_Transaction_Refinement.freeze_success_requires_strict_increase",
+        "TRUST_Transaction_Refinement.freeze_success_pushes_the_live_head",
+        "TRUST_Transaction_Refinement.freeze_success_records_prior_target",
+        "TRUST_Transaction_Refinement.freeze_success_opens_or_amends_the_freeze_case",
+        "TRUST_Transaction_Refinement.restrict_success_sets_flag",
+        "TRUST_Transaction_Refinement.restrict_success_records_prior_flag",
+        "TRUST_Transaction_Refinement.seize_success_opens_custody",
+        "TRUST_Transaction_Refinement.seize_success_moves_exact_amount_to_custodian",
+        "TRUST_Transaction_Refinement.disposition_success_state",
+        "TRUST_Transaction_Refinement.confiscate_success_is_terminal",
+        "TRUST_Transaction_Refinement.liquidate_success_is_terminal",
+        "TRUST_Transaction_Refinement.recover_success_is_terminal",
+        "TRUST_Transaction_Refinement.disposition_success_moves_exact_amount",
+        "TRUST_Transaction_Refinement.confiscate_does_not_burn",
+        "TRUST_Transaction_Refinement.liquidate_success_binds_settlement_in_receipt",
+        "TRUST_Transaction_Refinement.recover_success_consumes_entitlement",
+        "TRUST_Transaction_Refinement.consumed_entitlement_is_rejected",
+        "TRUST_Transaction_Refinement.custody_disposition_consumes_the_custody_record",
+        "TRUST_Transaction_Refinement.forward_success_consumes_nonce_and_command_id",
+        "TRUST_Transaction_Refinement.forward_success_preserves_total_supply",
+        "TRUST_Transaction_Refinement.forward_success_preserves_dependency_state",
+        "TRUST_Transaction_Refinement.terminal_case_rejects_action",
+        "TRUST_Transaction_Refinement.disposition_on_open_overlay_case_is_rejected",
+        "TRUST_Transaction_Refinement.overlay_on_open_case_without_head_is_rejected",
+        "TRUST_Transaction_Refinement.cross_case_overlay_head_is_rejected",
+        "TRUST_Transaction_Refinement.cross_case_restriction_head_is_rejected",
+        "TRUST_Transaction_Refinement.second_restrict_in_own_case_is_rejected",
+        "TRUST_Transaction_Refinement.second_seize_in_open_case_is_rejected",
+        "TRUST_Transaction_Refinement.direct_disposition_requires_source_to_be_the_subject",
+        "TRUST_Transaction_Refinement.custody_disposition_requires_the_exact_custody_record",
+        "TRUST_Transaction_Refinement.direct_disposition_cannot_spend_custody_backing",
+        "TRUST_Transaction_Refinement.seize_cannot_spend_custody_backing",
+        "TRUST_Transaction_Refinement.freeze_preserves_restriction_overlay",
+        "TRUST_Transaction_Refinement.restrict_preserves_freeze_overlay",
+        "TRUST_Transaction_Refinement.freeze_and_restriction_are_independent",
+        "TRUST_Transaction_Refinement.case_terminality_is_scoped",
+        "TRUST_Transaction_Refinement.disposition_in_one_case_does_not_clear_another_overlay",
+        "TRUST_Transaction_Refinement.unfreeze_success_restores_prior_target",
+        "TRUST_Transaction_Refinement.unfreeze_reopens_the_case_when_a_parent_remains",
+        "TRUST_Transaction_Refinement.unfreeze_closes_the_case_when_the_chain_is_empty",
+        "TRUST_Transaction_Refinement.unrestrict_success_restores_prior_flag_and_closes_case",
+        "TRUST_Transaction_Refinement.release_success_returns_custody_and_closes_case",
+        "TRUST_Transaction_Refinement.reversal_success_marks_the_original_reversed",
+        "TRUST_Transaction_Refinement.reversal_success_preserves_total_supply",
+        "TRUST_Transaction_Refinement.terminal_case_rejects_reversal",
+        "TRUST_Transaction_Refinement.unknown_original_is_not_admissible",
+        "TRUST_Transaction_Refinement.reversed_action_cannot_be_reversed_again",
+        "TRUST_Transaction_Refinement.mispaired_reversal_is_not_admissible",
+        "TRUST_Transaction_Refinement.stale_freeze_reversal_is_not_admissible",
+        "TRUST_Transaction_Refinement.stale_restriction_reversal_is_not_admissible",
+        "TRUST_Transaction_Refinement.release_requires_the_exact_active_custody",
+        "TRUST_Transaction_Refinement.unfreeze_requires_the_target_of_the_original",
+        "TRUST_Transaction_Refinement.missing_reversal_provenance_is_not_admissible",
+        "TRUST_Transaction_Refinement.replayed_action_is_not_fresh",
+        "TRUST_Transaction_Refinement.reused_nonce_is_not_fresh",
+        "TRUST_Transaction_Refinement.replayed_reversal_is_not_fresh",
+        "TRUST_Transaction_Refinement.successful_action_is_not_fresh_afterwards",
+        "TRUST_Transaction_Refinement.stale_dependency_root_is_not_current",
+        "TRUST_Transaction_Refinement.stale_dependency_epoch_is_not_current",
+        "TRUST_Transaction_Refinement.rebind_makes_prior_commands_stale",
+        "TRUST_Transaction_Refinement.rebind_makes_prior_reversals_stale",
+        "TRUST_Transaction_Refinement.rebind_advances_the_global_epoch_by_one",
+        "TRUST_Transaction_Refinement.unauthorized_sender_is_rejected",
+        "TRUST_Transaction_Refinement.stale_authority_epoch_is_rejected",
+        "TRUST_Transaction_Refinement.unknown_authority_is_rejected",
+        "TRUST_Transaction_Refinement.authority_rotation_makes_prior_commands_stale",
+        "TRUST_Transaction_Refinement.expired_window_is_rejected",
+        "TRUST_Transaction_Refinement.ordinary_transfer_respects_restriction_flags",
+        "TRUST_Transaction_Refinement.ordinary_transfer_cannot_spend_the_frozen_floor_or_custody_backing",
+        "TRUST_Transaction_Refinement.ordinary_transfer_preserves_regulatory_state",
+        "TRUST_Transaction_Refinement.rejection_is_persistent_stutter",
+        "TRUST_Transaction_Refinement.operational_failure_is_persistent_stutter",
+        "TRUST_Transaction_Refinement.malformed_input_is_persistent_stutter",
+        "TRUST_Transaction_Refinement.dependency_failure_is_persistent_stutter",
+        "TRUST_Transaction_Refinement.malformed_length_has_no_typed_command",
+        "TRUST_Transaction_Refinement.successful_transaction_uses_abstract_success_state",
+        "TRUST_Transaction_Refinement.successful_forward_transaction_is_admitted",
+        "TRUST_Transaction_Refinement.successful_reversal_transaction_is_admitted",
+        "TRUST_Transaction_Refinement.successful_transaction_was_authorized_by_its_sender",
+        "TRUST_Transaction_Refinement.rejected_transaction_is_abstract_stutter",
+        "TRUST_Transaction_Refinement.operational_transaction_is_abstract_stutter",
+        "TRUST_Transaction_Refinement.malformed_transaction_is_abstract_stutter",
+        "TRUST_Transaction_Refinement.dependency_revert_is_abstract_stutter",
+        "TRUST_Transaction_Refinement.success_has_final_canonical_receipt_event",
+        "TRUST_Transaction_Refinement.success_returns_the_stored_receipt_hash",
+        "TRUST_Transaction_Refinement.committed_history_excludes_failure_receipts"
+      ]
+    },
+    {
+      "theory": "Token_Compatibility",
+      "path": "formal/isabelle/ERC_TRUST/Token_Compatibility.thy",
+      "bytes": 14114,
+      "sha256": "07e1c6cc1ad470bdd9fc3bebaa8acac31998c18a6b8e7cd2221f8fd1dc01ef96",
+      "explicitRoots": [
+        "Token_Compatibility.erc7943_frozen_amount_increase_converges_to_freeze",
+        "Token_Compatibility.erc7943_frozen_amount_decrease_requires_explicit_unfreeze",
+        "Token_Compatibility.erc7943_unchanged_frozen_amount_has_no_typed_state_change",
+        "Token_Compatibility.erc7943_forced_transfer_requires_typed_binding",
+        "Token_Compatibility.erc7943_forced_transfer_fails_closed_without_binding",
+        "Token_Compatibility.erc7943_nontransfer_binding_is_not_reinterpreted",
+        "Token_Compatibility.native_forward_transition_labels_are_not_executable",
+        "Token_Compatibility.native_forward_transition_attempt_is_full_state_stutter",
+        "Token_Compatibility.dependency_failure_is_false_for_erc7943_and_detailed_for_trust",
+        "Token_Compatibility.erc7943_frozen_amount_is_absolute_not_balance_bounded",
+        "Token_Compatibility.erc7943_permission_view_does_not_replace_base_balance_check",
+        "Token_Compatibility.erc3643_profile_is_an_explicit_subset",
+        "Token_Compatibility.erc3643_generic_forced_transfer_is_not_assigned_legal_meaning",
+        "Token_Compatibility.declared_erc3643_profile_entrypoint_converges",
+        "Token_Compatibility.unsupported_erc3643_profile_entrypoint_fails_closed",
+        "Token_Compatibility.external_module_contract_fails_closed",
+        "Token_Compatibility.entitlement_provider_result_binding_is_exact",
+        "Token_Compatibility.settlement_provider_result_binding_is_exact",
+        "Token_Compatibility.entitlement_provider_denial_is_semantic_denial",
+        "Token_Compatibility.settlement_provider_denial_and_unsupported_are_distinct",
+        "Token_Compatibility.entitlement_provider_failure_is_full_state_stutter",
+        "Token_Compatibility.settlement_provider_failure_is_full_state_stutter",
+        "Token_Compatibility.entitlement_provider_commitment_mismatch_breaks_authorization_payload",
+        "Token_Compatibility.settlement_provider_binding_mismatch_breaks_authorization_payload",
+        "Token_Compatibility.compatibility_does_not_expand_the_claim_boundary"
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "execution-source-source",
+      "kind": "source",
+      "bytes": 2024,
+      "sha256": "ae93d4a4ddee65e3340d4484912c464d3625294a8dcab29d421cd05ae0e9ae11"
+    },
+    {
+      "id": "execution-source-root",
+      "kind": "root",
+      "bytes": 260,
+      "sha256": "fbd23716eea28661f4d04e23c78fbbfbb71209d2bc4a75afb023461c943d568a"
+    },
+    {
+      "id": "execution-source-binding",
+      "kind": "binding",
+      "bytes": 1425,
+      "sha256": "f6b76f71473de42a4e6b564a77109a15446c70ab904f5ed691cc236aa5703e7d"
+    },
+    {
+      "id": "execution-source-audit",
+      "kind": "audit",
+      "bytes": 2037,
+      "sha256": "7a6c7bc3c174dca6d8be1b9f6a0346d253c7e5f986bc3233813f9fdde30c405a"
+    },
+    {
+      "id": "execution-source-inputs-before",
+      "kind": "inputs-before",
+      "bytes": 404560,
+      "sha256": "3274e539447eae32ecda6a375c9848d413659a9170350c25da194bbbec77b933"
+    },
+    {
+      "id": "execution-source-inputs-after",
+      "kind": "inputs-after",
+      "bytes": 404560,
+      "sha256": "3274e539447eae32ecda6a375c9848d413659a9170350c25da194bbbec77b933"
+    },
+    {
+      "id": "execution-source-heap",
+      "kind": "heap",
+      "bytes": 61196475,
+      "sha256": "ffc92fc3808b045b710de236810a904a39bcaf73617ab4ebbd675c00ac117e94"
+    },
+    {
+      "id": "execution-source-database",
+      "kind": "database",
+      "bytes": 487424,
+      "sha256": "2ff5802b4f2ab511394736195d8d70dbe8ff33f702445bc419c43c50267e4df9"
+    },
+    {
+      "id": "execution-source-parent-heap",
+      "kind": "parent-heap",
+      "bytes": 18310791,
+      "sha256": "3cd012f2316a396630b448577c843a1131411b47489649421daa0014207ff380"
+    },
+    {
+      "id": "execution-source-parent-database",
+      "kind": "parent-database",
+      "bytes": 368640,
+      "sha256": "7566244ac4b9c539a8b3840ab9805a3120096662112146ab320675cc206951c6"
+    },
+    {
+      "id": "execution-source-model-source-00",
+      "kind": "imported-model-source",
+      "bytes": 70924,
+      "sha256": "6b621b3b36342c0d432f1d7971a6153faaa87f9c9f3c97a80593f28fb3c295c1"
+    },
+    {
+      "id": "execution-root-audit-source",
+      "kind": "source",
+      "bytes": 5761,
+      "sha256": "c0973ace7deaea2466815695bfa4d76acd01f00bf6dd8d8f8d4d9976e7631cf9"
+    },
+    {
+      "id": "execution-root-audit-root",
+      "kind": "root",
+      "bytes": 239,
+      "sha256": "e63bd0ad1bfc1c694fe3358d4bb820a4a2b150a06d81ae3809c1392ca588513a"
+    },
+    {
+      "id": "execution-root-audit-binding",
+      "kind": "binding",
+      "bytes": 4490,
+      "sha256": "4303bd8b47b7770030c28b6aeda3b36783c15eb3c2c91b3306a873edc4141a8b"
+    },
+    {
+      "id": "execution-root-audit-audit",
+      "kind": "audit",
+      "bytes": 5098,
+      "sha256": "b417f7f4b8511561e2eff0bcf84466379f9694d6d76aa0a9f61bd59a05eef1ec"
+    },
+    {
+      "id": "execution-root-audit-inputs-before",
+      "kind": "inputs-before",
+      "bytes": 408380,
+      "sha256": "7ead96f3367402581d8920b2512bf95317ed3c7bca4aa48656eca9ed1e0ccf2d"
+    },
+    {
+      "id": "execution-root-audit-inputs-after",
+      "kind": "inputs-after",
+      "bytes": 408380,
+      "sha256": "7ead96f3367402581d8920b2512bf95317ed3c7bca4aa48656eca9ed1e0ccf2d"
+    },
+    {
+      "id": "execution-root-audit-heap",
+      "kind": "heap",
+      "bytes": 6846847,
+      "sha256": "58fb8df4c8c9188b4da8360d94ade1d35a426b001758ca4e0da83030160125e9"
+    },
+    {
+      "id": "execution-root-audit-database",
+      "kind": "database",
+      "bytes": 159744,
+      "sha256": "bd3454ec90f93a3d794d5bc2335f468e9711456a11c947fef370fd12246b1c94"
+    },
+    {
+      "id": "execution-root-audit-parent-heap",
+      "kind": "parent-heap",
+      "bytes": 61196475,
+      "sha256": "ffc92fc3808b045b710de236810a904a39bcaf73617ab4ebbd675c00ac117e94"
+    },
+    {
+      "id": "execution-root-audit-parent-database",
+      "kind": "parent-database",
+      "bytes": 487424,
+      "sha256": "2ff5802b4f2ab511394736195d8d70dbe8ff33f702445bc419c43c50267e4df9"
+    },
+    {
+      "id": "action-compatibility-source",
+      "kind": "source",
+      "bytes": 6625,
+      "sha256": "9e59263f8ccfa3baf711cb9f31b621c08895d3dfc3a18250b47ec55fac511947"
+    },
+    {
+      "id": "action-compatibility-root",
+      "kind": "root",
+      "bytes": 249,
+      "sha256": "aaf1c1cafb029f2e407330cf207c4be4ba59efb63cc549c916d3aa4905c4a556"
+    },
+    {
+      "id": "action-compatibility-binding",
+      "kind": "binding",
+      "bytes": 5791,
+      "sha256": "f14d35e7cfa8e24874a33da18d5892f7ee23988dc32740c265316594713736cb"
+    },
+    {
+      "id": "action-compatibility-audit",
+      "kind": "audit",
+      "bytes": 6399,
+      "sha256": "fcfdcfd9c12b452bcc31b3849599f102981cb196a41fe01048b87373a3b35bc6"
+    },
+    {
+      "id": "action-compatibility-inputs-before",
+      "kind": "inputs-before",
+      "bytes": 411901,
+      "sha256": "02ae2100a190225b50c5c325ca84bf60a6e636eaf0034e84ea3f9ce58f78a96f"
+    },
+    {
+      "id": "action-compatibility-inputs-after",
+      "kind": "inputs-after",
+      "bytes": 411901,
+      "sha256": "02ae2100a190225b50c5c325ca84bf60a6e636eaf0034e84ea3f9ce58f78a96f"
+    },
+    {
+      "id": "action-compatibility-heap",
+      "kind": "heap",
+      "bytes": 10984529,
+      "sha256": "3288f3dfe96bfc6d197371ce6ac9bc2b6a8cdff300eaef7e9491d15f61d1ce16"
+    },
+    {
+      "id": "action-compatibility-database",
+      "kind": "database",
+      "bytes": 262144,
+      "sha256": "ba0b6199fa0988adf3f186a2aee589fd01f6da1fb6e02db04c55c7b1140166bf"
+    },
+    {
+      "id": "action-compatibility-parent-heap",
+      "kind": "parent-heap",
+      "bytes": 6846847,
+      "sha256": "58fb8df4c8c9188b4da8360d94ade1d35a426b001758ca4e0da83030160125e9"
+    },
+    {
+      "id": "action-compatibility-parent-database",
+      "kind": "parent-database",
+      "bytes": 159744,
+      "sha256": "bd3454ec90f93a3d794d5bc2335f468e9711456a11c947fef370fd12246b1c94"
+    },
+    {
+      "id": "action-compatibility-model-source-00",
+      "kind": "imported-model-source",
+      "bytes": 5026,
+      "sha256": "e628178a9b09f3dab7759503db1a9a47141e932f591d4f3f19cceac359e900a4"
+    },
+    {
+      "id": "action-compatibility-model-source-01",
+      "kind": "imported-model-source",
+      "bytes": 14114,
+      "sha256": "07e1c6cc1ad470bdd9fc3bebaa8acac31998c18a6b8e7cd2221f8fd1dc01ef96"
+    },
+    {
+      "id": "execution-simulation-source",
+      "kind": "source",
+      "bytes": 15216,
+      "sha256": "5304c465aee8e9e65399fcbaaa38e48581eb30a0bb348a63e3170b6861052250"
+    },
+    {
+      "id": "execution-simulation-root",
+      "kind": "root",
+      "bytes": 249,
+      "sha256": "5601d41752c121f1c165f36ef1aa3594862bc73319b374336a587bf5af639ff8"
+    },
+    {
+      "id": "execution-simulation-binding",
+      "kind": "binding",
+      "bytes": 11790,
+      "sha256": "4d877a4cbb080632daa4a2a1b911ebe2aff2363886161acca4bb61531fe83436"
+    },
+    {
+      "id": "execution-simulation-audit",
+      "kind": "audit",
+      "bytes": 12400,
+      "sha256": "077e00457224f1c4f4229327619a916a0384b7888fa878787247dea605539729"
+    },
+    {
+      "id": "execution-simulation-inputs-before",
+      "kind": "inputs-before",
+      "bytes": 414755,
+      "sha256": "b1d1974be2918af9b266a771437572a410daba16c759579f82049eb543f32ad8"
+    },
+    {
+      "id": "execution-simulation-inputs-after",
+      "kind": "inputs-after",
+      "bytes": 414755,
+      "sha256": "b1d1974be2918af9b266a771437572a410daba16c759579f82049eb543f32ad8"
+    },
+    {
+      "id": "execution-simulation-heap",
+      "kind": "heap",
+      "bytes": 9340905,
+      "sha256": "6353fd9931695ee4b197fe81a6e78ff5369dc547e2a3ef48a9e9afbf19c9fcbf"
+    },
+    {
+      "id": "execution-simulation-database",
+      "kind": "database",
+      "bytes": 376832,
+      "sha256": "c4322367ed4f20ed2c80a4db1d2cc32681caba38f619e572d08b82eceafcc058"
+    },
+    {
+      "id": "execution-simulation-parent-heap",
+      "kind": "parent-heap",
+      "bytes": 10984529,
+      "sha256": "3288f3dfe96bfc6d197371ce6ac9bc2b6a8cdff300eaef7e9491d15f61d1ce16"
+    },
+    {
+      "id": "execution-simulation-parent-database",
+      "kind": "parent-database",
+      "bytes": 262144,
+      "sha256": "ba0b6199fa0988adf3f186a2aee589fd01f6da1fb6e02db04c55c7b1140166bf"
+    },
+    {
+      "id": "execution-simulation-model-source-00",
+      "kind": "imported-model-source",
+      "bytes": 93979,
+      "sha256": "68a477f4335d4572cfa01490947b2c5a6a7729d7ce1fc635bb3e6bebc318428d"
+    },
+    {
+      "id": "governance-source",
+      "kind": "source",
+      "bytes": 2334,
+      "sha256": "192a27150a738b4d7faf9b7657427f80547444181fb2bd54e0709a9a1456c135"
+    },
+    {
+      "id": "governance-root",
+      "kind": "root",
+      "bytes": 249,
+      "sha256": "64b671c5ff229097303b42ac445ce24012618d2a1fcc227421dfeafae55be058"
+    },
+    {
+      "id": "governance-binding",
+      "kind": "binding",
+      "bytes": 2413,
+      "sha256": "2b9592a15310217eabfd16f357466830789f69d67c8858a112e58c3e7c378557"
+    },
+    {
+      "id": "governance-audit",
+      "kind": "audit",
+      "bytes": 3023,
+      "sha256": "ed2a707b672fe5f3238f846c5aa55d80030a23a446db4034d13b96824e4d1b92"
+    },
+    {
+      "id": "governance-inputs-before",
+      "kind": "inputs-before",
+      "bytes": 417589,
+      "sha256": "3c0b32344bda16992f4da37ade00b9f2f60b78596f512e3348915183ffcd8f90"
+    },
+    {
+      "id": "governance-inputs-after",
+      "kind": "inputs-after",
+      "bytes": 417589,
+      "sha256": "3c0b32344bda16992f4da37ade00b9f2f60b78596f512e3348915183ffcd8f90"
+    },
+    {
+      "id": "governance-heap",
+      "kind": "heap",
+      "bytes": 8100157,
+      "sha256": "bc4a26825205c87bf710b8c5d13dd10d61a2b1ab85cb0ffe8d2efdd92e56f411"
+    },
+    {
+      "id": "governance-database",
+      "kind": "database",
+      "bytes": 217088,
+      "sha256": "61f1e4aa1f13518f967ca1b98d7b92fedf8982b509d831f66ee9ef48e0074d46"
+    },
+    {
+      "id": "governance-parent-heap",
+      "kind": "parent-heap",
+      "bytes": 9340905,
+      "sha256": "6353fd9931695ee4b197fe81a6e78ff5369dc547e2a3ef48a9e9afbf19c9fcbf"
+    },
+    {
+      "id": "governance-parent-database",
+      "kind": "parent-database",
+      "bytes": 376832,
+      "sha256": "c4322367ed4f20ed2c80a4db1d2cc32681caba38f619e572d08b82eceafcc058"
+    },
+    {
+      "id": "governance-model-source-00",
+      "kind": "imported-model-source",
+      "bytes": 16734,
+      "sha256": "bca0c163d55f69a35350c8d79a990d6174c5ce3478682f80a285dfa53d0d614c"
+    },
+    {
+      "id": "regulatory-kernel-source",
+      "kind": "source",
+      "bytes": 2226,
+      "sha256": "aecd3517318b19724183c639f06f9d579872ef41a40d2dd468a999ccec9e5473"
+    },
+    {
+      "id": "regulatory-kernel-root",
+      "kind": "root",
+      "bytes": 249,
+      "sha256": "c0a654dbb7e92c6aca832143521ea09ce4b13dc071c57bd6e1ec825e31c55cc0"
+    },
+    {
+      "id": "regulatory-kernel-binding",
+      "kind": "binding",
+      "bytes": 2360,
+      "sha256": "8eccd574e82bfa0f4188eacb917f9118e327083fefbf3edffd654e0ce5eaa084"
+    },
+    {
+      "id": "regulatory-kernel-audit",
+      "kind": "audit",
+      "bytes": 2969,
+      "sha256": "9e06aa1b57500ce2f895ac9990b14658812b83d938f0b73d01cb5dd504d9753e"
+    },
+    {
+      "id": "regulatory-kernel-inputs-before",
+      "kind": "inputs-before",
+      "bytes": 420437,
+      "sha256": "96440635b1fe79dae283556beb17a243e2d1739328528d190442a3507f9f74b8"
+    },
+    {
+      "id": "regulatory-kernel-inputs-after",
+      "kind": "inputs-after",
+      "bytes": 420437,
+      "sha256": "96440635b1fe79dae283556beb17a243e2d1739328528d190442a3507f9f74b8"
+    },
+    {
+      "id": "regulatory-kernel-heap",
+      "kind": "heap",
+      "bytes": 15429973,
+      "sha256": "519a43db723b30db92b6799194fe43da04a1d8e6651e4bbcafa405fa36f0544b"
+    },
+    {
+      "id": "regulatory-kernel-database",
+      "kind": "database",
+      "bytes": 274432,
+      "sha256": "363d6ac75185dcf5234afdb7f32feede7155f8678ee7c69b16ee80260592ec0e"
+    },
+    {
+      "id": "regulatory-kernel-parent-heap",
+      "kind": "parent-heap",
+      "bytes": 8100157,
+      "sha256": "bc4a26825205c87bf710b8c5d13dd10d61a2b1ab85cb0ffe8d2efdd92e56f411"
+    },
+    {
+      "id": "regulatory-kernel-parent-database",
+      "kind": "parent-database",
+      "bytes": 217088,
+      "sha256": "61f1e4aa1f13518f967ca1b98d7b92fedf8982b509d831f66ee9ef48e0074d46"
+    },
+    {
+      "id": "regulatory-kernel-model-source-00",
+      "kind": "imported-model-source",
+      "bytes": 17553,
+      "sha256": "72f531eadbe62f39849248bbf1d1de61182abc85d8d865bc8138ebd4aaf27bb8"
+    },
+    {
+      "id": "claim-boundary-source",
+      "kind": "source",
+      "bytes": 1956,
+      "sha256": "88ff245e9239770a3beae32cd62d2c9dcaf7ccdfecde377a55d141d0af3cf540"
+    },
+    {
+      "id": "claim-boundary-root",
+      "kind": "root",
+      "bytes": 249,
+      "sha256": "b216d7b982b8825403bad12ac80f1ca21aac4155a8cbdf52466a9f1c73d9c57d"
+    },
+    {
+      "id": "claim-boundary-binding",
+      "kind": "binding",
+      "bytes": 2103,
+      "sha256": "25b91009affcdfb07eee5553432cec01d94c5f5ad7281e34370a60f9081346ce"
+    },
+    {
+      "id": "claim-boundary-audit",
+      "kind": "audit",
+      "bytes": 2711,
+      "sha256": "98219b41d4d34adbbf3cac5f05ac14bab89c5ba9b3189341338ca9d2ea8dc9e1"
+    },
+    {
+      "id": "claim-boundary-inputs-before",
+      "kind": "inputs-before",
+      "bytes": 423257,
+      "sha256": "43113b184b016f0054e91bbc2f95840f47d1237eb1b5ccefee836adf58742c0c"
+    },
+    {
+      "id": "claim-boundary-inputs-after",
+      "kind": "inputs-after",
+      "bytes": 423257,
+      "sha256": "43113b184b016f0054e91bbc2f95840f47d1237eb1b5ccefee836adf58742c0c"
+    },
+    {
+      "id": "claim-boundary-heap",
+      "kind": "heap",
+      "bytes": 8623061,
+      "sha256": "eb3975e08017b3da1f678754c1ac9c672b90d77327a7e67d8d109b77072dabb3"
+    },
+    {
+      "id": "claim-boundary-database",
+      "kind": "database",
+      "bytes": 188416,
+      "sha256": "f6bce6328259d2cf395ba97f2febb9b31304d2b88d451d5f4a8d001366654182"
+    },
+    {
+      "id": "claim-boundary-parent-heap",
+      "kind": "parent-heap",
+      "bytes": 15429973,
+      "sha256": "519a43db723b30db92b6799194fe43da04a1d8e6651e4bbcafa405fa36f0544b"
+    },
+    {
+      "id": "claim-boundary-parent-database",
+      "kind": "parent-database",
+      "bytes": 274432,
+      "sha256": "363d6ac75185dcf5234afdb7f32feede7155f8678ee7c69b16ee80260592ec0e"
+    },
+    {
+      "id": "claim-boundary-model-source-00",
+      "kind": "imported-model-source",
+      "bytes": 4005,
+      "sha256": "313549026c3645fbd9bb7eb7da4b32a47c4eb6257d625342de5f0927fd1da7eb"
+    },
+    {
+      "id": "compositional-state-source",
+      "kind": "source",
+      "bytes": 2806,
+      "sha256": "9c1f641bd9fd12031d24da41ea399e01df51dadb4fd29fddd49be99c85295f02"
+    },
+    {
+      "id": "compositional-state-root",
+      "kind": "root",
+      "bytes": 265,
+      "sha256": "21e9682b5115f1146741d7f6fee6613c2663a09e7300b40b1c3808039f3d931b"
+    },
+    {
+      "id": "compositional-state-binding",
+      "kind": "binding",
+      "bytes": 2959,
+      "sha256": "2a250d9c0a552243862183a2c4c620d838d49c9267557a3430516555fdb0589b"
+    },
+    {
+      "id": "compositional-state-audit",
+      "kind": "audit",
+      "bytes": 3567,
+      "sha256": "d01b3e14fedfaae8a1d275370741975882ebba861bc151e8d66cdbdcaf6cd9fe"
+    },
+    {
+      "id": "compositional-state-inputs-before",
+      "kind": "inputs-before",
+      "bytes": 426671,
+      "sha256": "56b5da5a8676051dddffd455a73d3d7f4e18001b030463b0b427f563f6a83c13"
+    },
+    {
+      "id": "compositional-state-inputs-after",
+      "kind": "inputs-after",
+      "bytes": 426671,
+      "sha256": "56b5da5a8676051dddffd455a73d3d7f4e18001b030463b0b427f563f6a83c13"
+    },
+    {
+      "id": "compositional-state-heap",
+      "kind": "heap",
+      "bytes": 22175041,
+      "sha256": "f5585db1c46f1f8477cddf2fffd2c86f5854aae9138057c49484fa07939cecf4"
+    },
+    {
+      "id": "compositional-state-database",
+      "kind": "database",
+      "bytes": 376832,
+      "sha256": "525f90b260acf0aac9ad37e272d73c9aef02c1ec80d29aeeebfeb097090b3ab0"
+    },
+    {
+      "id": "compositional-state-parent-heap",
+      "kind": "parent-heap",
+      "bytes": 8623061,
+      "sha256": "eb3975e08017b3da1f678754c1ac9c672b90d77327a7e67d8d109b77072dabb3"
+    },
+    {
+      "id": "compositional-state-parent-database",
+      "kind": "parent-database",
+      "bytes": 188416,
+      "sha256": "f6bce6328259d2cf395ba97f2febb9b31304d2b88d451d5f4a8d001366654182"
+    },
+    {
+      "id": "compositional-state-model-source-00",
+      "kind": "imported-model-source",
+      "bytes": 15157,
+      "sha256": "ecb28da66b0ea1d1e1e4d05255a00246294d5ec9b5aafd320866af92c3ac880a"
+    },
+    {
+      "id": "compositional-state-model-source-01",
+      "kind": "imported-model-source",
+      "bytes": 13161,
+      "sha256": "20f330222e5c09bcdb92d7fa2e4ebbd7da76345933d95bbc93be6158ddf282a3"
+    },
+    {
+      "id": "configuration-bridge-source",
+      "kind": "source",
+      "bytes": 3805,
+      "sha256": "45b4bf71a2b233dd1939ebd312159aa67638d1b14efc26c6938736de08fc60ee"
+    },
+    {
+      "id": "configuration-bridge-root",
+      "kind": "root",
+      "bytes": 251,
+      "sha256": "9dba179ce452d3114d5cb715eea6920097c77c114ad8e5bf5b2eefa920a24ea8"
+    },
+    {
+      "id": "configuration-bridge-binding",
+      "kind": "binding",
+      "bytes": 3841,
+      "sha256": "fbca68799b7bf9249a9767a965b0bada5b463b2d747c99208dfcbe0a6988c8be"
+    },
+    {
+      "id": "configuration-bridge-audit",
+      "kind": "audit",
+      "bytes": 4450,
+      "sha256": "2ab1ed8080352f17eeb3193c8e0a2bc1a78dc81dd60a71caa28d0f9cf3238a05"
+    },
+    {
+      "id": "configuration-bridge-inputs-before",
+      "kind": "inputs-before",
+      "bytes": 430030,
+      "sha256": "749052799a495b38628cb71c8fe577078b2b73ac582bc71ffac895f5c40abc84"
+    },
+    {
+      "id": "configuration-bridge-inputs-after",
+      "kind": "inputs-after",
+      "bytes": 430030,
+      "sha256": "749052799a495b38628cb71c8fe577078b2b73ac582bc71ffac895f5c40abc84"
+    },
+    {
+      "id": "configuration-bridge-heap",
+      "kind": "heap",
+      "bytes": 17520801,
+      "sha256": "ed1439bf5136d977c792fd2d7a68f50b0091c48728e6ebdefc245ba2c2ba0ba6"
+    },
+    {
+      "id": "configuration-bridge-database",
+      "kind": "database",
+      "bytes": 299008,
+      "sha256": "69b7aa607bd9f9c31cd64b9fb49289dfdbc5a91a63721bc35a427503f77902b9"
+    },
+    {
+      "id": "configuration-bridge-parent-heap",
+      "kind": "parent-heap",
+      "bytes": 22175041,
+      "sha256": "f5585db1c46f1f8477cddf2fffd2c86f5854aae9138057c49484fa07939cecf4"
+    },
+    {
+      "id": "configuration-bridge-parent-database",
+      "kind": "parent-database",
+      "bytes": 376832,
+      "sha256": "525f90b260acf0aac9ad37e272d73c9aef02c1ec80d29aeeebfeb097090b3ab0"
+    },
+    {
+      "id": "configuration-bridge-model-source-00",
+      "kind": "imported-model-source",
+      "bytes": 5896,
+      "sha256": "642daa38742595bb7a00700b08b0a24d74e18d1239eb848f45e197c78ba5ce56"
+    },
+    {
+      "id": "configuration-bridge-model-source-01",
+      "kind": "imported-model-source",
+      "bytes": 16170,
+      "sha256": "0066aca8046e7129d007bfc527e4c7552d17b891406adfdb4720197664eb84fb"
+    },
+    {
+      "id": "retrieve-relation-source",
+      "kind": "source",
+      "bytes": 5783,
+      "sha256": "76a89128b080bc2ce42e131c95891695f9e281f52c76d67f32ffbce79cb7c262"
+    },
+    {
+      "id": "retrieve-relation-root",
+      "kind": "root",
+      "bytes": 251,
+      "sha256": "75e51962841513b6eb397334c84b12fc834a8e6fcbc0b3d28a1089e474588736"
+    },
+    {
+      "id": "retrieve-relation-binding",
+      "kind": "binding",
+      "bytes": 5188,
+      "sha256": "97dd0719cb0a9e5fd33dec5d151975e85c7a868cb66a6bd87e632843a9c18a22"
+    },
+    {
+      "id": "retrieve-relation-audit",
+      "kind": "audit",
+      "bytes": 5797,
+      "sha256": "a22e44a0270d19ae1ea55ddeb4498d81d4a35fbb939ca9483318a77061328f82"
+    },
+    {
+      "id": "retrieve-relation-inputs-before",
+      "kind": "inputs-before",
+      "bytes": 433373,
+      "sha256": "c577f76abfd2d2f9ce51251ac29269f2d54c222136b61a4ad5e9da1caa5e1c08"
+    },
+    {
+      "id": "retrieve-relation-inputs-after",
+      "kind": "inputs-after",
+      "bytes": 433373,
+      "sha256": "c577f76abfd2d2f9ce51251ac29269f2d54c222136b61a4ad5e9da1caa5e1c08"
+    },
+    {
+      "id": "retrieve-relation-heap",
+      "kind": "heap",
+      "bytes": 9485089,
+      "sha256": "39e31a7767542ea938bbaf2c1f211402d62457c8826aaa42f057c1af30032ca4"
+    },
+    {
+      "id": "retrieve-relation-database",
+      "kind": "database",
+      "bytes": 262144,
+      "sha256": "2ed983537a69f20831d3896fd21480067d18e2270ac4c042a84cad51ca87fd3a"
+    },
+    {
+      "id": "retrieve-relation-parent-heap",
+      "kind": "parent-heap",
+      "bytes": 17520801,
+      "sha256": "ed1439bf5136d977c792fd2d7a68f50b0091c48728e6ebdefc245ba2c2ba0ba6"
+    },
+    {
+      "id": "retrieve-relation-parent-database",
+      "kind": "parent-database",
+      "bytes": 299008,
+      "sha256": "69b7aa607bd9f9c31cd64b9fb49289dfdbc5a91a63721bc35a427503f77902b9"
+    },
+    {
+      "id": "retrieve-relation-model-source-00",
+      "kind": "imported-model-source",
+      "bytes": 7113,
+      "sha256": "b645ce637c97ee3ca7a91c889d6b05efbb233404fe056b22d21816fe3abf710f"
+    },
+    {
+      "id": "retrieve-relation-model-source-01",
+      "kind": "imported-model-source",
+      "bytes": 15893,
+      "sha256": "5fe73a17b58d636ca2f489a02e42a442309f8f42f99cb99e72de678090475587"
+    },
+    {
+      "id": "transaction-refinement-source",
+      "kind": "source",
+      "bytes": 14055,
+      "sha256": "a34394b176f030da490a64e684db8524e2f92ec368888ea35e2c0f758b0ffda5"
+    },
+    {
+      "id": "transaction-refinement-root",
+      "kind": "root",
+      "bytes": 251,
+      "sha256": "95c7c2935cb7ed6c39cc4a8cd457536f7b29c0188e6e5396ab4d5421904751c6"
+    },
+    {
+      "id": "transaction-refinement-binding",
+      "kind": "binding",
+      "bytes": 10828,
+      "sha256": "70fcf1333e489d70dea14dc99251d737a865472cd6e2c90f3437f94948c55f89"
+    },
+    {
+      "id": "transaction-refinement-audit",
+      "kind": "audit",
+      "bytes": 11437,
+      "sha256": "c6a2669acbc116edb013a109fa88e56c7ecf3e904975d360cf06b8fd8f5f1b74"
+    },
+    {
+      "id": "transaction-refinement-inputs-before",
+      "kind": "inputs-before",
+      "bytes": 436221,
+      "sha256": "7528705e42f2d130c39850cc0cd59e724911df74d2ee21beb3b732464c620ca7"
+    },
+    {
+      "id": "transaction-refinement-inputs-after",
+      "kind": "inputs-after",
+      "bytes": 436221,
+      "sha256": "7528705e42f2d130c39850cc0cd59e724911df74d2ee21beb3b732464c620ca7"
+    },
+    {
+      "id": "transaction-refinement-heap",
+      "kind": "heap",
+      "bytes": 13271453,
+      "sha256": "55c1dda09fe910cf8af5d582474815cec5b0acf2138dd73b8bfc5d89ac44e3c2"
+    },
+    {
+      "id": "transaction-refinement-database",
+      "kind": "database",
+      "bytes": 401408,
+      "sha256": "e0cb46cf4177efb9ab2e7a96cc91d3243d682eecdc559bb1566a3310ef898676"
+    },
+    {
+      "id": "transaction-refinement-parent-heap",
+      "kind": "parent-heap",
+      "bytes": 9485089,
+      "sha256": "39e31a7767542ea938bbaf2c1f211402d62457c8826aaa42f057c1af30032ca4"
+    },
+    {
+      "id": "transaction-refinement-parent-database",
+      "kind": "parent-database",
+      "bytes": 262144,
+      "sha256": "2ed983537a69f20831d3896fd21480067d18e2270ac4c042a84cad51ca87fd3a"
+    },
+    {
+      "id": "transaction-refinement-model-source-00",
+      "kind": "imported-model-source",
+      "bytes": 78470,
+      "sha256": "b49b9d7a71455e547bf5185fcd66195597b185bbb5d50441b281e37eabf60149"
+    },
+    {
+      "id": "end-to-end-model-source",
+      "kind": "source",
+      "bytes": 4360,
+      "sha256": "407c20a8da4166b39efb467c328c75ea97c4f9f27721a5cb940c8fdf9287d743"
+    },
+    {
+      "id": "end-to-end-model-root",
+      "kind": "root",
+      "bytes": 251,
+      "sha256": "7b312834e93c4542279ea58a94211fdd7fcfe5dca8fd8f1e6c44f0647c5ab16d"
+    },
+    {
+      "id": "end-to-end-model-binding",
+      "kind": "binding",
+      "bytes": 3962,
+      "sha256": "2fcac310d97dc5e1fe29a735496ca6febc2237ed5bfe078bfb423676cce50d2d"
+    },
+    {
+      "id": "end-to-end-model-audit",
+      "kind": "audit",
+      "bytes": 4571,
+      "sha256": "678dce7b9fe3fe9b0ee8685e743f3d2ffa6dd8a13c07df8d89338c6ed6e09010"
+    },
+    {
+      "id": "end-to-end-model-inputs-before",
+      "kind": "inputs-before",
+      "bytes": 439069,
+      "sha256": "f5ceb68e7b3a7480b05fb0d88110eeb233e837a0360748604e2c4ec0743231b1"
+    },
+    {
+      "id": "end-to-end-model-inputs-after",
+      "kind": "inputs-after",
+      "bytes": 439069,
+      "sha256": "f5ceb68e7b3a7480b05fb0d88110eeb233e837a0360748604e2c4ec0743231b1"
+    },
+    {
+      "id": "end-to-end-model-heap",
+      "kind": "heap",
+      "bytes": 9941377,
+      "sha256": "eb052d52a631541fd7f9f6984937725ab21a11e4f4ed79c192f3c3137d8c658b"
+    },
+    {
+      "id": "end-to-end-model-database",
+      "kind": "database",
+      "bytes": 241664,
+      "sha256": "6e4e6bfc0b3a7fd09fa1a669e79128a773d24859eaea1fb6461e57e2b75de7d5"
+    },
+    {
+      "id": "end-to-end-model-parent-heap",
+      "kind": "parent-heap",
+      "bytes": 13271453,
+      "sha256": "55c1dda09fe910cf8af5d582474815cec5b0acf2138dd73b8bfc5d89ac44e3c2"
+    },
+    {
+      "id": "end-to-end-model-parent-database",
+      "kind": "parent-database",
+      "bytes": 401408,
+      "sha256": "e0cb46cf4177efb9ab2e7a96cc91d3243d682eecdc559bb1566a3310ef898676"
+    },
+    {
+      "id": "end-to-end-model-model-source-00",
+      "kind": "imported-model-source",
+      "bytes": 20873,
+      "sha256": "dde2f9c95d702cf4f394dc3bde7e0e000203ba95698cfd7a8ba6569e59f8ccc5"
+    }
+  ],
+  "kernelStages": [
+    {
+      "id": "execution-source",
+      "session": "TRUST12_MPROD_DIAG_V1",
+      "parent": "TRUST12_MRAC_V3",
+      "theory": "TRUST_Product_Model_Oracle_Diagnostic_V1",
+      "roots": [
+        "mpr_received"
+      ],
+      "markers": [
+        "PASS_PRODUCT_MODEL_ORACLE_DIAGNOSTIC_ONLY"
+      ],
+      "importedSources": [
+        {
+          "artifactId": "execution-source-model-source-00",
+          "logicalName": "ERC_TRUST.Regulatory_Execution_Semantics",
+          "sha256": "6b621b3b36342c0d432f1d7971a6153faaa87f9c9f3c97a80593f28fb3c295c1"
+        }
+      ],
+      "explicitModelRoots": [],
+      "diagnosticSourceLoaderOnly": true
+    },
+    {
+      "id": "execution-root-audit",
+      "session": "TRUST12_MPROD01_V2",
+      "parent": "TRUST12_MPROD_DIAG_V1",
+      "theory": "TRUST_Product_Model_Explicit_Roots_V2",
+      "roots": [
+        "mpe_original_00",
+        "mpe_original_01",
+        "mpe_original_02",
+        "mpe_original_03",
+        "mpe_original_04",
+        "mpe_original_05",
+        "mpe_original_06",
+        "mpe_original_07",
+        "mpe_original_08",
+        "mpe_original_09",
+        "mpe_original_10",
+        "mpe_original_11",
+        "mpe_original_12",
+        "mpe_original_13",
+        "mpe_original_14",
+        "mpe_original_15",
+        "mpe_original_16",
+        "mpe_original_17",
+        "mpe_original_18",
+        "mpe_original_19",
+        "mpe_original_20",
+        "mpe_original_21",
+        "mpe_original_22",
+        "mpe_original_23",
+        "mpe_original_24",
+        "mpe_original_25",
+        "mpe_original_26",
+        "mpe_original_27",
+        "mpe_original_28",
+        "mpe_received",
+        "mpe_raw_rejection",
+        "mpe_typed_positive",
+        "mpe_removal_control"
+      ],
+      "markers": [
+        "PASS_ALL_29_ORIGINAL_EXPLICIT_MODEL_ROOTS_ORACLE_ZERO_SKIP_FALSE"
+      ],
+      "importedSources": [],
+      "explicitModelRoots": [
+        "Regulatory_Execution_Semantics.canonical_precheck_never_stops_with_applied",
+        "Regulatory_Execution_Semantics.canonical_precheck_pass_has_stored_authorization",
+        "Regulatory_Execution_Semantics.canonical_precheck_pass_has_transfer_shape",
+        "Regulatory_Execution_Semantics.rejected_authorization_command_is_full_state_stutter",
+        "Regulatory_Execution_Semantics.successful_authorization_command_complete_frame",
+        "Regulatory_Execution_Semantics.every_entrypoint_converges_on_canonical_execution",
+        "Regulatory_Execution_Semantics.untyped_entrypoint_is_fail_closed",
+        "Regulatory_Execution_Semantics.privileged_governance_is_explicitly_in_model_execution_taxonomy",
+        "Regulatory_Execution_Semantics.contextual_operation_target_from_confiscated_is_none",
+        "Regulatory_Execution_Semantics.confiscated_canonical_execution_cannot_apply",
+        "Regulatory_Execution_Semantics.confiscated_entrypoint_execution_cannot_apply",
+        "Regulatory_Execution_Semantics.confiscated_ordinary_source_is_terminal",
+        "Regulatory_Execution_Semantics.all_reversal_write_sets_cover_their_actual_state_classes",
+        "Regulatory_Execution_Semantics.successful_ordinary_transfer_writes_only_two_balance_accounts",
+        "Regulatory_Execution_Semantics.rejected_ordinary_transfer_is_full_state_stutter",
+        "Regulatory_Execution_Semantics.module_failure_has_no_state_effect",
+        "Regulatory_Execution_Semantics.canonical_rejection_is_full_state_stutter",
+        "Regulatory_Execution_Semantics.canonical_operational_failure_is_full_state_stutter",
+        "Regulatory_Execution_Semantics.entrypoint_rejection_is_full_state_stutter",
+        "Regulatory_Execution_Semantics.entrypoint_rejection_pair_from_outcome",
+        "Regulatory_Execution_Semantics.entrypoint_operational_failure_is_full_state_stutter",
+        "Regulatory_Execution_Semantics.successful_execution_preserves_policy_epoch",
+        "Regulatory_Execution_Semantics.successful_execution_preserves_auxiliary_state",
+        "Regulatory_Execution_Semantics.execute_canonical_applied_precheck",
+        "Regulatory_Execution_Semantics.execute_canonical_applied_structure",
+        "Regulatory_Execution_Semantics.successful_execution_complete_frame",
+        "Regulatory_Execution_Semantics.successful_state_observation_is_expected",
+        "Regulatory_Execution_Semantics.successful_execution_exact_core_effects",
+        "Regulatory_Execution_Semantics.successful_execution_writes_applied_receipt_last"
+      ],
+      "diagnosticSourceLoaderOnly": false
+    },
+    {
+      "id": "action-compatibility",
+      "session": "TRUST12_MPROD02_V1",
+      "parent": "TRUST12_MPROD01_V2",
+      "theory": "TRUST_Product_Model_Part02_V1",
+      "roots": [
+        "mpp_original_000",
+        "mpp_original_001",
+        "mpp_original_002",
+        "mpp_original_003",
+        "mpp_original_004",
+        "mpp_original_005",
+        "mpp_original_006",
+        "mpp_original_007",
+        "mpp_original_008",
+        "mpp_original_009",
+        "mpp_original_010",
+        "mpp_original_011",
+        "mpp_original_012",
+        "mpp_original_013",
+        "mpp_original_014",
+        "mpp_original_015",
+        "mpp_original_016",
+        "mpp_original_017",
+        "mpp_original_018",
+        "mpp_original_019",
+        "mpp_original_020",
+        "mpp_original_021",
+        "mpp_original_022",
+        "mpp_original_023",
+        "mpp_original_024",
+        "mpp_original_025",
+        "mpp_original_026",
+        "mpp_original_027",
+        "mpp_original_028",
+        "mpp_original_029",
+        "mpp_original_030",
+        "mpp_original_031",
+        "mpp_original_032",
+        "mpp_original_033",
+        "mpp_original_034",
+        "mpp_original_035",
+        "mpp_original_036",
+        "mpp_original_037",
+        "mpp_received",
+        "mpp_raw_rejection",
+        "mpp_typed_positive",
+        "mpp_removal_control"
+      ],
+      "markers": [
+        "PASS_ORIGINAL_PRODUCT_MODEL_PART02_EXPLICIT_ROOTS_ORACLE_ZERO_SKIP_FALSE"
+      ],
+      "importedSources": [
+        {
+          "artifactId": "action-compatibility-model-source-00",
+          "logicalName": "ERC_TRUST.RCP_Action_Mapping",
+          "sha256": "e628178a9b09f3dab7759503db1a9a47141e932f591d4f3f19cceac359e900a4"
+        },
+        {
+          "artifactId": "action-compatibility-model-source-01",
+          "logicalName": "ERC_TRUST.Token_Compatibility",
+          "sha256": "07e1c6cc1ad470bdd9fc3bebaa8acac31998c18a6b8e7cd2221f8fd1dc01ef96"
+        }
+      ],
+      "explicitModelRoots": [
+        "RCP_Action_Mapping.transition_label_inventory",
+        "RCP_Action_Mapping.rcp_action_inventory",
+        "RCP_Action_Mapping.six_actions_are_not_seven_transition_labels",
+        "RCP_Action_Mapping.four_rcp_actions_have_state_transition_labels",
+        "RCP_Action_Mapping.recover_and_liquidate_are_transfer_layer_actions",
+        "RCP_Action_Mapping.deescalation_labels_are_not_rcp_actions",
+        "RCP_Action_Mapping.forward_mapping_roundtrip",
+        "RCP_Action_Mapping.rcp_descriptor_alignment",
+        "RCP_Action_Mapping.seizure_retains_ownership_descriptor",
+        "RCP_Action_Mapping.liquidation_does_not_prove_debt_discharge",
+        "RCP_Action_Mapping.recovery_is_restorative_but_externally_conditioned",
+        "RCP_Action_Mapping.ordinary_transfer_never_uses_an_rcp_operation",
+        "RCP_Action_Mapping.typed_enforcement_uses_separate_gate",
+        "Token_Compatibility.erc7943_frozen_amount_increase_converges_to_freeze",
+        "Token_Compatibility.erc7943_frozen_amount_decrease_requires_explicit_unfreeze",
+        "Token_Compatibility.erc7943_unchanged_frozen_amount_has_no_typed_state_change",
+        "Token_Compatibility.erc7943_forced_transfer_requires_typed_binding",
+        "Token_Compatibility.erc7943_forced_transfer_fails_closed_without_binding",
+        "Token_Compatibility.erc7943_nontransfer_binding_is_not_reinterpreted",
+        "Token_Compatibility.native_forward_transition_labels_are_not_executable",
+        "Token_Compatibility.native_forward_transition_attempt_is_full_state_stutter",
+        "Token_Compatibility.dependency_failure_is_false_for_erc7943_and_detailed_for_trust",
+        "Token_Compatibility.erc7943_frozen_amount_is_absolute_not_balance_bounded",
+        "Token_Compatibility.erc7943_permission_view_does_not_replace_base_balance_check",
+        "Token_Compatibility.erc3643_profile_is_an_explicit_subset",
+        "Token_Compatibility.erc3643_generic_forced_transfer_is_not_assigned_legal_meaning",
+        "Token_Compatibility.declared_erc3643_profile_entrypoint_converges",
+        "Token_Compatibility.unsupported_erc3643_profile_entrypoint_fails_closed",
+        "Token_Compatibility.external_module_contract_fails_closed",
+        "Token_Compatibility.entitlement_provider_result_binding_is_exact",
+        "Token_Compatibility.settlement_provider_result_binding_is_exact",
+        "Token_Compatibility.entitlement_provider_denial_is_semantic_denial",
+        "Token_Compatibility.settlement_provider_denial_and_unsupported_are_distinct",
+        "Token_Compatibility.entitlement_provider_failure_is_full_state_stutter",
+        "Token_Compatibility.settlement_provider_failure_is_full_state_stutter",
+        "Token_Compatibility.entitlement_provider_commitment_mismatch_breaks_authorization_payload",
+        "Token_Compatibility.settlement_provider_binding_mismatch_breaks_authorization_payload",
+        "Token_Compatibility.compatibility_does_not_expand_the_claim_boundary"
+      ],
+      "diagnosticSourceLoaderOnly": false
+    },
+    {
+      "id": "execution-simulation",
+      "session": "TRUST12_MPROD03_V1",
+      "parent": "TRUST12_MPROD02_V1",
+      "theory": "TRUST_Product_Model_Part03_V1",
+      "roots": [
+        "mpp_original_000",
+        "mpp_original_001",
+        "mpp_original_002",
+        "mpp_original_003",
+        "mpp_original_004",
+        "mpp_original_005",
+        "mpp_original_006",
+        "mpp_original_007",
+        "mpp_original_008",
+        "mpp_original_009",
+        "mpp_original_010",
+        "mpp_original_011",
+        "mpp_original_012",
+        "mpp_original_013",
+        "mpp_original_014",
+        "mpp_original_015",
+        "mpp_original_016",
+        "mpp_original_017",
+        "mpp_original_018",
+        "mpp_original_019",
+        "mpp_original_020",
+        "mpp_original_021",
+        "mpp_original_022",
+        "mpp_original_023",
+        "mpp_original_024",
+        "mpp_original_025",
+        "mpp_original_026",
+        "mpp_original_027",
+        "mpp_original_028",
+        "mpp_original_029",
+        "mpp_original_030",
+        "mpp_original_031",
+        "mpp_original_032",
+        "mpp_original_033",
+        "mpp_original_034",
+        "mpp_original_035",
+        "mpp_original_036",
+        "mpp_original_037",
+        "mpp_original_038",
+        "mpp_original_039",
+        "mpp_original_040",
+        "mpp_original_041",
+        "mpp_original_042",
+        "mpp_original_043",
+        "mpp_original_044",
+        "mpp_original_045",
+        "mpp_original_046",
+        "mpp_original_047",
+        "mpp_original_048",
+        "mpp_original_049",
+        "mpp_original_050",
+        "mpp_original_051",
+        "mpp_original_052",
+        "mpp_original_053",
+        "mpp_original_054",
+        "mpp_original_055",
+        "mpp_original_056",
+        "mpp_original_057",
+        "mpp_original_058",
+        "mpp_original_059",
+        "mpp_original_060",
+        "mpp_original_061",
+        "mpp_original_062",
+        "mpp_original_063",
+        "mpp_original_064",
+        "mpp_original_065",
+        "mpp_original_066",
+        "mpp_original_067",
+        "mpp_original_068",
+        "mpp_original_069",
+        "mpp_original_070",
+        "mpp_original_071",
+        "mpp_original_072",
+        "mpp_original_073",
+        "mpp_original_074",
+        "mpp_original_075",
+        "mpp_original_076",
+        "mpp_original_077",
+        "mpp_original_078",
+        "mpp_original_079",
+        "mpp_original_080",
+        "mpp_original_081",
+        "mpp_original_082",
+        "mpp_original_083",
+        "mpp_original_084",
+        "mpp_original_085",
+        "mpp_original_086",
+        "mpp_original_087",
+        "mpp_original_088",
+        "mpp_original_089",
+        "mpp_original_090",
+        "mpp_original_091",
+        "mpp_original_092",
+        "mpp_original_093",
+        "mpp_received",
+        "mpp_raw_rejection",
+        "mpp_typed_positive",
+        "mpp_removal_control"
+      ],
+      "markers": [
+        "PASS_ORIGINAL_PRODUCT_MODEL_PART03_EXPLICIT_ROOTS_ORACLE_ZERO_SKIP_FALSE"
+      ],
+      "importedSources": [
+        {
+          "artifactId": "execution-simulation-model-source-00",
+          "logicalName": "ERC_TRUST.Regulatory_Execution_Simulation",
+          "sha256": "68a477f4335d4572cfa01490947b2c5a6a7729d7ce1fc635bb3e6bebc318428d"
+        }
+      ],
+      "explicitModelRoots": [
+        "Regulatory_Execution_Simulation.all_legal_action_kinds_are_listed",
+        "Regulatory_Execution_Simulation.witness_precheck_freeze",
+        "Regulatory_Execution_Simulation.witness_precheck_seize",
+        "Regulatory_Execution_Simulation.witness_precheck_confiscate",
+        "Regulatory_Execution_Simulation.witness_precheck_restrict",
+        "Regulatory_Execution_Simulation.witness_precheck_recover",
+        "Regulatory_Execution_Simulation.witness_precheck_liquidate",
+        "Regulatory_Execution_Simulation.witness_canonical_precheck_table",
+        "Regulatory_Execution_Simulation.witness_canonical_precheck_passes",
+        "Regulatory_Execution_Simulation.witness_recover_denied_precheck",
+        "Regulatory_Execution_Simulation.witness_liquidate_denied_precheck",
+        "Regulatory_Execution_Simulation.witness_liquidate_unsupported_precheck",
+        "Regulatory_Execution_Simulation.witness_authorization_trace_reaches_approved_state",
+        "Regulatory_Execution_Simulation.witness_prepared_state_is_reached_by_authorization_trace",
+        "Regulatory_Execution_Simulation.untrusted_self_issued_authorization_is_fail_closed",
+        "Regulatory_Execution_Simulation.witness_freeze_is_applied",
+        "Regulatory_Execution_Simulation.witness_seize_is_applied",
+        "Regulatory_Execution_Simulation.witness_confiscate_is_applied",
+        "Regulatory_Execution_Simulation.witness_restrict_is_applied",
+        "Regulatory_Execution_Simulation.witness_recover_is_applied",
+        "Regulatory_Execution_Simulation.witness_liquidate_is_applied",
+        "Regulatory_Execution_Simulation.all_six_actions_have_reachable_applied_witnesses",
+        "Regulatory_Execution_Simulation.witness_canonical_outcome_is_applied",
+        "Regulatory_Execution_Simulation.unauthorized_witness_precheck_stops",
+        "Regulatory_Execution_Simulation.all_six_actions_have_reachable_denial_witnesses",
+        "Regulatory_Execution_Simulation.recover_negative_entitlement_is_rejected_not_operational_failure",
+        "Regulatory_Execution_Simulation.liquidate_negative_settlement_is_rejected_not_operational_failure",
+        "Regulatory_Execution_Simulation.liquidate_unsupported_capability_is_rejected",
+        "Regulatory_Execution_Simulation.all_six_actions_have_reachable_operational_failure_witnesses",
+        "Regulatory_Execution_Simulation.reversal_prepared_state_is_reached_by_authorization_trace",
+        "Regulatory_Execution_Simulation.reversal_unfreeze_precheck_passes",
+        "Regulatory_Execution_Simulation.reversal_unfreeze_is_applied",
+        "Regulatory_Execution_Simulation.reversal_unfreeze_canonical_execution",
+        "Regulatory_Execution_Simulation.reversal_unfreeze_effects",
+        "Regulatory_Execution_Simulation.reversal_unfreeze_has_reachable_applied_witness",
+        "Regulatory_Execution_Simulation.reversal_unrestrict_precheck_passes",
+        "Regulatory_Execution_Simulation.reversal_unrestrict_is_applied",
+        "Regulatory_Execution_Simulation.reversal_unrestrict_canonical_execution",
+        "Regulatory_Execution_Simulation.reversal_unrestrict_effects",
+        "Regulatory_Execution_Simulation.reversal_unrestrict_has_reachable_applied_witness",
+        "Regulatory_Execution_Simulation.reversal_release_precheck_passes",
+        "Regulatory_Execution_Simulation.reversal_release_is_applied",
+        "Regulatory_Execution_Simulation.reversal_release_canonical_execution",
+        "Regulatory_Execution_Simulation.reversal_release_effects",
+        "Regulatory_Execution_Simulation.reversal_release_has_reachable_applied_witness",
+        "Regulatory_Execution_Simulation.all_three_reversal_transitions_have_reachable_applied_witnesses",
+        "Regulatory_Execution_Simulation.ordinary_transfer_has_reachable_success_and_denial_witnesses",
+        "Regulatory_Execution_Simulation.partially_frozen_transfer_at_available_balance_applies",
+        "Regulatory_Execution_Simulation.partially_frozen_transfer_above_available_balance_is_rejected",
+        "Regulatory_Execution_Simulation.partially_seized_transfer_at_available_balance_applies",
+        "Regulatory_Execution_Simulation.uncleared_destination_transfer_is_rejected",
+        "Regulatory_Execution_Simulation.ordinary_transfer_uses_unencumbered_available_balance",
+        "Regulatory_Execution_Simulation.alternate_freeze_from_restricted_is_applied",
+        "Regulatory_Execution_Simulation.alternate_seize_from_frozen_is_applied",
+        "Regulatory_Execution_Simulation.alternate_confiscate_from_frozen_is_applied",
+        "Regulatory_Execution_Simulation.alternate_confiscate_from_seized_is_applied",
+        "Regulatory_Execution_Simulation.alternate_confiscate_from_restricted_is_applied",
+        "Regulatory_Execution_Simulation.alternate_overlay_paths_are_reachable",
+        "Regulatory_Execution_Simulation.erc7943_absolute_increase_is_applied",
+        "Regulatory_Execution_Simulation.erc7943_absolute_partial_decrease_is_rejected",
+        "Regulatory_Execution_Simulation.erc7943_absolute_zero_requires_explicit_unfreeze",
+        "Regulatory_Execution_Simulation.erc7943_absolute_amount_context_mismatch_is_denied",
+        "Regulatory_Execution_Simulation.erc7943_absolute_direction_paths_are_reachable",
+        "Regulatory_Execution_Simulation.erc3643_freeze_address_profile_is_applied",
+        "Regulatory_Execution_Simulation.erc3643_unfreeze_address_profile_is_applied",
+        "Regulatory_Execution_Simulation.erc3643_recovery_profile_is_applied",
+        "Regulatory_Execution_Simulation.supported_erc3643_profile_paths_are_reachable",
+        "Regulatory_Execution_Simulation.current_case_mismatch_is_rejected_before_effects",
+        "Regulatory_Execution_Simulation.preloaded_untrusted_issuer_cannot_execute",
+        "Regulatory_Execution_Simulation.delegated_seize_keeps_authorized_destination_as_custodian",
+        "Regulatory_Execution_Simulation.applied_action_nonce_property_table",
+        "Regulatory_Execution_Simulation.applied_action_and_nonce_are_consumed_once",
+        "Regulatory_Execution_Simulation.replay_property_table",
+        "Regulatory_Execution_Simulation.replay_is_rejected",
+        "Regulatory_Execution_Simulation.stale_policy_property_table",
+        "Regulatory_Execution_Simulation.stale_policy_authorization_is_rejected",
+        "Regulatory_Execution_Simulation.cancellation_property_table",
+        "Regulatory_Execution_Simulation.cancellation_lifecycle_is_reachable_and_prevents_execution",
+        "Regulatory_Execution_Simulation.delegation_property_table",
+        "Regulatory_Execution_Simulation.delegation_lifecycle_is_reachable",
+        "Regulatory_Execution_Simulation.policy_rebind_property_table",
+        "Regulatory_Execution_Simulation.policy_rebind_is_monotonic_observable_and_invalidates_old_authorization",
+        "Regulatory_Execution_Simulation.authority_rotation_property_table",
+        "Regulatory_Execution_Simulation.authority_epoch_rotation_is_monotonic_and_invalidates_old_authorization",
+        "Regulatory_Execution_Simulation.rejected_and_operational_failure_are_full_state_stutters",
+        "Regulatory_Execution_Simulation.applied_receipt_property_table",
+        "Regulatory_Execution_Simulation.applied_receipt_is_the_last_persistent_receipt",
+        "Regulatory_Execution_Simulation.ce02_seize_preserves_declared_holder_and_records_custody",
+        "Regulatory_Execution_Simulation.ce02_foundation_to_trust_retrieve_relation_is_nonvacuous",
+        "Regulatory_Execution_Simulation.ce11_liquidate_assume_guarantee",
+        "Regulatory_Execution_Simulation.ce11_liquidate_binds_settlement_without_asserting_external_truth",
+        "Regulatory_Execution_Simulation.ce12_recover_assume_guarantee",
+        "Regulatory_Execution_Simulation.recover_and_liquidate_consume_seized_custody_encumbrance",
+        "Regulatory_Execution_Simulation.ce12_recover_binds_entitlement_destination_and_consumption"
+      ],
+      "diagnosticSourceLoaderOnly": false
+    },
+    {
+      "id": "governance",
+      "session": "TRUST12_MPROD04_V1",
+      "parent": "TRUST12_MPROD03_V1",
+      "theory": "TRUST_Product_Model_Part04_V1",
+      "roots": [
+        "mpp_original_000",
+        "mpp_original_001",
+        "mpp_original_002",
+        "mpp_original_003",
+        "mpp_original_004",
+        "mpp_original_005",
+        "mpp_original_006",
+        "mpp_original_007",
+        "mpp_received",
+        "mpp_raw_rejection",
+        "mpp_typed_positive",
+        "mpp_removal_control"
+      ],
+      "markers": [
+        "PASS_ORIGINAL_PRODUCT_MODEL_PART04_EXPLICIT_ROOTS_ORACLE_ZERO_SKIP_FALSE"
+      ],
+      "importedSources": [
+        {
+          "artifactId": "governance-model-source-00",
+          "logicalName": "ERC_TRUST.Privileged_Governance",
+          "sha256": "bca0c163d55f69a35350c8d79a990d6174c5ce3478682f80a285dfa53d0d614c"
+        }
+      ],
+      "explicitModelRoots": [
+        "Privileged_Governance.rejected_governance_is_full_state_stutter",
+        "Privileged_Governance.successful_governance_receipt_has_exact_write_set",
+        "Privileged_Governance.successful_governance_has_exact_balance_supply_nonce_effects",
+        "Privileged_Governance.successful_governance_requires_clear_touched_accounts",
+        "Privileged_Governance.confiscated_governance_account_is_terminal",
+        "Privileged_Governance.successful_governance_complete_frame",
+        "Privileged_Governance.all_privileged_governance_classes_have_reachable_witnesses",
+        "Privileged_Governance.privileged_governance_is_typed_replay_safe_and_fail_closed"
+      ],
+      "diagnosticSourceLoaderOnly": false
+    },
+    {
+      "id": "regulatory-kernel",
+      "session": "TRUST12_MPROD05_V1",
+      "parent": "TRUST12_MPROD04_V1",
+      "theory": "TRUST_Product_Model_Part05_V1",
+      "roots": [
+        "mpp_original_000",
+        "mpp_original_001",
+        "mpp_original_002",
+        "mpp_original_003",
+        "mpp_original_004",
+        "mpp_original_005",
+        "mpp_original_006",
+        "mpp_received",
+        "mpp_raw_rejection",
+        "mpp_typed_positive",
+        "mpp_removal_control"
+      ],
+      "markers": [
+        "PASS_ORIGINAL_PRODUCT_MODEL_PART05_EXPLICIT_ROOTS_ORACLE_ZERO_SKIP_FALSE"
+      ],
+      "importedSources": [
+        {
+          "artifactId": "regulatory-kernel-model-source-00",
+          "logicalName": "ERC_TRUST.Executable_Regulatory_Kernel",
+          "sha256": "72f531eadbe62f39849248bbf1d1de61182abc85d8d865bc8138ebd4aaf27bb8"
+        }
+      ],
+      "explicitModelRoots": [
+        "Executable_Regulatory_Kernel.trust_manifest_domain_is_exactly_six_by_three",
+        "Executable_Regulatory_Kernel.trust_manifest_kernel_preserves_input",
+        "Executable_Regulatory_Kernel.trust_manifest_kernel_is_actual_execution_evaluation",
+        "Executable_Regulatory_Kernel.every_manifest_fixture_scenario_is_reachable",
+        "Executable_Regulatory_Kernel.every_trust_manifest_row_matches_its_reachable_scenario",
+        "Executable_Regulatory_Kernel.foundation_manifest_domain_is_exactly_five_by_seven",
+        "Executable_Regulatory_Kernel.six_by_three_and_five_by_seven_are_not_conflated"
+      ],
+      "diagnosticSourceLoaderOnly": false
+    },
+    {
+      "id": "claim-boundary",
+      "session": "TRUST12_MPROD06_V1",
+      "parent": "TRUST12_MPROD05_V1",
+      "theory": "TRUST_Product_Model_Part06_V1",
+      "roots": [
+        "mpp_original_000",
+        "mpp_original_001",
+        "mpp_original_002",
+        "mpp_original_003",
+        "mpp_original_004",
+        "mpp_original_005",
+        "mpp_received",
+        "mpp_raw_rejection",
+        "mpp_typed_positive",
+        "mpp_removal_control"
+      ],
+      "markers": [
+        "PASS_ORIGINAL_PRODUCT_MODEL_PART06_EXPLICIT_ROOTS_ORACLE_ZERO_SKIP_FALSE"
+      ],
+      "importedSources": [
+        {
+          "artifactId": "claim-boundary-model-source-00",
+          "logicalName": "ERC_TRUST.Claim_Boundary",
+          "sha256": "313549026c3645fbd9bb7eb7da4b32a47c4eb6257d625342de5f0927fd1da7eb"
+        }
+      ],
+      "explicitModelRoots": [
+        "Claim_Boundary.same_core_input_cannot_distinguish_external_legal_truth",
+        "Claim_Boundary.external_worlds_really_disagree",
+        "Claim_Boundary.ce02_guarantee_is_declared_custody_not_legal_title",
+        "Claim_Boundary.ce11_guarantee_is_binding_not_sale_or_debt_truth",
+        "Claim_Boundary.ce12_guarantee_is_binding_not_rightful_owner_truth",
+        "Claim_Boundary.allowed_claim_inventory_is_exact"
+      ],
+      "diagnosticSourceLoaderOnly": false
+    },
+    {
+      "id": "compositional-state",
+      "session": "TRUST12_MPROD07_V2",
+      "parent": "TRUST12_MPROD06_V1",
+      "theory": "TRUST_Product_Model_Part07_V2",
+      "roots": [
+        "mpp_original_000",
+        "mpp_original_001",
+        "mpp_original_002",
+        "mpp_original_003",
+        "mpp_original_004",
+        "mpp_original_005",
+        "mpp_original_006",
+        "mpp_original_007",
+        "mpp_original_008",
+        "mpp_original_009",
+        "mpp_original_010",
+        "mpp_received",
+        "mpp_raw_rejection",
+        "mpp_typed_positive",
+        "mpp_removal_control"
+      ],
+      "markers": [
+        "PASS_ORIGINAL_PRODUCT_MODEL_PART07_EXPLICIT_ROOTS_ORACLE_ZERO_SKIP_FALSE"
+      ],
+      "importedSources": [
+        {
+          "artifactId": "compositional-state-model-source-00",
+          "logicalName": "ERC_TRUST.TRUST_Compositional_State",
+          "sha256": "ecb28da66b0ea1d1e1e4d05255a00246294d5ec9b5aafd320866af92c3ac880a"
+        },
+        {
+          "artifactId": "compositional-state-model-source-01",
+          "logicalName": "HOL-Library.Nat_Bijection",
+          "sha256": "20f330222e5c09bcdb92d7fa2e4ebbd7da76345933d95bbc93be6158ddf282a3"
+        }
+      ],
+      "explicitModelRoots": [
+        "TRUST_Compositional_State.settlement_pair_commitment_is_injective",
+        "TRUST_Compositional_State.custody_backing_equals_active_custody_sum",
+        "TRUST_Compositional_State.physical_balance_covers_custody_backing",
+        "TRUST_Compositional_State.required_floor_is_additive_without_double_counting",
+        "TRUST_Compositional_State.ordinary_available_plus_required_floor",
+        "TRUST_Compositional_State.unbounded_freeze_target_saturates_only_at_observation",
+        "TRUST_Compositional_State.ordinary_available_never_spends_custody_backing",
+        "TRUST_Compositional_State.ordinary_available_never_spends_own_frozen_floor",
+        "TRUST_Compositional_State.foundation_projection_is_explicitly_partial",
+        "TRUST_Compositional_State.composite_overlay_has_no_foundation_projection",
+        "TRUST_Compositional_State.compositional_state_does_not_generalize_foundation"
+      ],
+      "diagnosticSourceLoaderOnly": false
+    },
+    {
+      "id": "configuration-bridge",
+      "session": "TRUST12_MPROD08_V2",
+      "parent": "TRUST12_MPROD07_V2",
+      "theory": "TRUST_Product_Model_Part08_V2",
+      "roots": [
+        "mpp_original_000",
+        "mpp_original_001",
+        "mpp_original_002",
+        "mpp_original_003",
+        "mpp_original_004",
+        "mpp_original_005",
+        "mpp_original_006",
+        "mpp_original_007",
+        "mpp_original_008",
+        "mpp_original_009",
+        "mpp_original_010",
+        "mpp_original_011",
+        "mpp_original_012",
+        "mpp_original_013",
+        "mpp_original_014",
+        "mpp_original_015",
+        "mpp_original_016",
+        "mpp_original_017",
+        "mpp_received",
+        "mpp_raw_rejection",
+        "mpp_typed_positive",
+        "mpp_removal_control"
+      ],
+      "markers": [
+        "PASS_ORIGINAL_PRODUCT_MODEL_PART08_EXPLICIT_ROOTS_ORACLE_ZERO_SKIP_FALSE"
+      ],
+      "importedSources": [
+        {
+          "artifactId": "configuration-bridge-model-source-00",
+          "logicalName": "ERC_TRUST.TRUST_Concrete_Configuration",
+          "sha256": "642daa38742595bb7a00700b08b0a24d74e18d1239eb848f45e197c78ba5ce56"
+        },
+        {
+          "artifactId": "configuration-bridge-model-source-01",
+          "logicalName": "ERC_TRUST.TRUST_Runtime_Bridge_Generated",
+          "sha256": "0066aca8046e7129d007bfc527e4c7552d17b891406adfdb4720197664eb84fb"
+        }
+      ],
+      "explicitModelRoots": [
+        "TRUST_Concrete_Configuration.current_configuration_extensional",
+        "TRUST_Concrete_Configuration.current_configuration_does_not_contain_transaction_context",
+        "TRUST_Concrete_Configuration.reverted_transaction_has_no_committed_logs",
+        "TRUST_Concrete_Configuration.malformed_transaction_has_no_committed_logs",
+        "TRUST_Concrete_Configuration.successful_transaction_preserves_log_order",
+        "TRUST_Concrete_Configuration.history_is_an_explicit_witness",
+        "TRUST_Runtime_Bridge_Generated.action_code_is_exact",
+        "TRUST_Runtime_Bridge_Generated.reversal_code_is_exact",
+        "TRUST_Runtime_Bridge_Generated.generated_calldata_lengths_are_exact",
+        "TRUST_Runtime_Bridge_Generated.runtimes_are_within_the_eip170_limit",
+        "TRUST_Runtime_Bridge_Generated.native_routes_are_exhaustive",
+        "TRUST_Runtime_Bridge_Generated.profile_adapter_routes_are_exhaustive",
+        "TRUST_Runtime_Bridge_Generated.profile_governor_routes_are_exhaustive",
+        "TRUST_Runtime_Bridge_Generated.typed_command_selectors_are_classified_as_kernel_commands",
+        "TRUST_Runtime_Bridge_Generated.generic_dispatcher_selector_is_unclassified",
+        "TRUST_Runtime_Bridge_Generated.typed_command_selectors_are_not_failure_selectors",
+        "TRUST_Runtime_Bridge_Generated.reason_codes_are_distinct",
+        "TRUST_Runtime_Bridge_Generated.case_transition_rule_ids_are_distinct"
+      ],
+      "diagnosticSourceLoaderOnly": false
+    },
+    {
+      "id": "retrieve-relation",
+      "session": "TRUST12_MPROD09_V2",
+      "parent": "TRUST12_MPROD08_V2",
+      "theory": "TRUST_Product_Model_Part09_V2",
+      "roots": [
+        "mpp_original_000",
+        "mpp_original_001",
+        "mpp_original_002",
+        "mpp_original_003",
+        "mpp_original_004",
+        "mpp_original_005",
+        "mpp_original_006",
+        "mpp_original_007",
+        "mpp_original_008",
+        "mpp_original_009",
+        "mpp_original_010",
+        "mpp_original_011",
+        "mpp_original_012",
+        "mpp_original_013",
+        "mpp_original_014",
+        "mpp_original_015",
+        "mpp_original_016",
+        "mpp_original_017",
+        "mpp_original_018",
+        "mpp_original_019",
+        "mpp_original_020",
+        "mpp_original_021",
+        "mpp_original_022",
+        "mpp_original_023",
+        "mpp_original_024",
+        "mpp_original_025",
+        "mpp_original_026",
+        "mpp_original_027",
+        "mpp_original_028",
+        "mpp_original_029",
+        "mpp_original_030",
+        "mpp_original_031",
+        "mpp_original_032",
+        "mpp_received",
+        "mpp_raw_rejection",
+        "mpp_typed_positive",
+        "mpp_removal_control"
+      ],
+      "markers": [
+        "PASS_ORIGINAL_PRODUCT_MODEL_PART09_EXPLICIT_ROOTS_ORACLE_ZERO_SKIP_FALSE"
+      ],
+      "importedSources": [
+        {
+          "artifactId": "retrieve-relation-model-source-00",
+          "logicalName": "ERC_TRUST.TRUST_State_Abi_Normal_Form",
+          "sha256": "b645ce637c97ee3ca7a91c889d6b05efbb233404fe056b22d21816fe3abf710f"
+        },
+        {
+          "artifactId": "retrieve-relation-model-source-01",
+          "logicalName": "ERC_TRUST.TRUST_Retrieve_Relation",
+          "sha256": "5fe73a17b58d636ca2f489a02e42a442309f8f42f99cb99e72de678090475587"
+        }
+      ],
+      "explicitModelRoots": [
+        "TRUST_State_Abi_Normal_Form.owned_sparse_projection_reassembles",
+        "TRUST_State_Abi_Normal_Form.shared_frame_is_preserved",
+        "TRUST_State_Abi_Normal_Form.finite_declared_preimages_yield_nonalias_slots",
+        "TRUST_State_Abi_Normal_Form.compiler_layout_labels_are_distinct",
+        "TRUST_State_Abi_Normal_Form.native_action_decodes_iff_canonical",
+        "TRUST_State_Abi_Normal_Form.native_reversal_decodes_iff_canonical",
+        "TRUST_State_Abi_Normal_Form.native_calldata_lengths_are_exact",
+        "TRUST_State_Abi_Normal_Form.noncanonical_action_length_is_rejected",
+        "TRUST_State_Abi_Normal_Form.noncanonical_reversal_length_is_rejected",
+        "TRUST_State_Abi_Normal_Form.dirty_action_enum_high_bits_are_rejected",
+        "TRUST_State_Abi_Normal_Form.dirty_reversal_enum_high_bits_are_rejected",
+        "TRUST_State_Abi_Normal_Form.dirty_action_address_high_bits_are_rejected",
+        "TRUST_State_Abi_Normal_Form.dirty_action_uint48_high_bits_are_rejected",
+        "TRUST_State_Abi_Normal_Form.dirty_action_uint64_high_bits_are_rejected",
+        "TRUST_State_Abi_Normal_Form.unknown_selector_is_rejected",
+        "TRUST_Retrieve_Relation.finite_storage_keys_nonalias",
+        "TRUST_Retrieve_Relation.current_state_abstraction_well_defined",
+        "TRUST_Retrieve_Relation.alpha_current_is_functional",
+        "TRUST_Retrieve_Relation.alpha_current_requires_exact_runtime",
+        "TRUST_Retrieve_Relation.alpha_current_rejects_runtime_substitution",
+        "TRUST_Retrieve_Relation.alpha_current_binds_the_generated_bridge_schema",
+        "TRUST_Retrieve_Relation.nonce_projection_is_exact",
+        "TRUST_Retrieve_Relation.freeze_and_restriction_projections_are_independent",
+        "TRUST_Retrieve_Relation.custody_backing_projection_is_exact",
+        "TRUST_Retrieve_Relation.case_record_projection_is_exact",
+        "TRUST_Retrieve_Relation.dependency_state_projection_is_exact",
+        "TRUST_Retrieve_Relation.authority_projection_is_exact",
+        "TRUST_Retrieve_Relation.receipt_projection_is_exact",
+        "TRUST_Retrieve_Relation.pinned_runtime_pins_every_footprint_address",
+        "TRUST_Retrieve_Relation.inhabitant_configuration_is_well_formed",
+        "TRUST_Retrieve_Relation.current_configuration_wf_is_inhabited",
+        "TRUST_Retrieve_Relation.inhabitant_pins_the_endpoint_code",
+        "TRUST_Retrieve_Relation.current_state_does_not_assume_history"
+      ],
+      "diagnosticSourceLoaderOnly": false
+    },
+    {
+      "id": "transaction-refinement",
+      "session": "TRUST12_MPROD10_V2",
+      "parent": "TRUST12_MPROD09_V2",
+      "theory": "TRUST_Product_Model_Part10_V2",
+      "roots": [
+        "mpp_original_000",
+        "mpp_original_001",
+        "mpp_original_002",
+        "mpp_original_003",
+        "mpp_original_004",
+        "mpp_original_005",
+        "mpp_original_006",
+        "mpp_original_007",
+        "mpp_original_008",
+        "mpp_original_009",
+        "mpp_original_010",
+        "mpp_original_011",
+        "mpp_original_012",
+        "mpp_original_013",
+        "mpp_original_014",
+        "mpp_original_015",
+        "mpp_original_016",
+        "mpp_original_017",
+        "mpp_original_018",
+        "mpp_original_019",
+        "mpp_original_020",
+        "mpp_original_021",
+        "mpp_original_022",
+        "mpp_original_023",
+        "mpp_original_024",
+        "mpp_original_025",
+        "mpp_original_026",
+        "mpp_original_027",
+        "mpp_original_028",
+        "mpp_original_029",
+        "mpp_original_030",
+        "mpp_original_031",
+        "mpp_original_032",
+        "mpp_original_033",
+        "mpp_original_034",
+        "mpp_original_035",
+        "mpp_original_036",
+        "mpp_original_037",
+        "mpp_original_038",
+        "mpp_original_039",
+        "mpp_original_040",
+        "mpp_original_041",
+        "mpp_original_042",
+        "mpp_original_043",
+        "mpp_original_044",
+        "mpp_original_045",
+        "mpp_original_046",
+        "mpp_original_047",
+        "mpp_original_048",
+        "mpp_original_049",
+        "mpp_original_050",
+        "mpp_original_051",
+        "mpp_original_052",
+        "mpp_original_053",
+        "mpp_original_054",
+        "mpp_original_055",
+        "mpp_original_056",
+        "mpp_original_057",
+        "mpp_original_058",
+        "mpp_original_059",
+        "mpp_original_060",
+        "mpp_original_061",
+        "mpp_original_062",
+        "mpp_original_063",
+        "mpp_original_064",
+        "mpp_original_065",
+        "mpp_original_066",
+        "mpp_original_067",
+        "mpp_original_068",
+        "mpp_original_069",
+        "mpp_original_070",
+        "mpp_original_071",
+        "mpp_original_072",
+        "mpp_original_073",
+        "mpp_original_074",
+        "mpp_original_075",
+        "mpp_original_076",
+        "mpp_original_077",
+        "mpp_original_078",
+        "mpp_original_079",
+        "mpp_original_080",
+        "mpp_original_081",
+        "mpp_original_082",
+        "mpp_original_083",
+        "mpp_original_084",
+        "mpp_original_085",
+        "mpp_original_086",
+        "mpp_original_087",
+        "mpp_original_088",
+        "mpp_received",
+        "mpp_raw_rejection",
+        "mpp_typed_positive",
+        "mpp_removal_control"
+      ],
+      "markers": [
+        "PASS_ORIGINAL_PRODUCT_MODEL_PART10_EXPLICIT_ROOTS_ORACLE_ZERO_SKIP_FALSE"
+      ],
+      "importedSources": [
+        {
+          "artifactId": "transaction-refinement-model-source-00",
+          "logicalName": "ERC_TRUST.TRUST_Transaction_Refinement",
+          "sha256": "b49b9d7a71455e547bf5185fcd66195597b185bbb5d50441b281e37eabf60149"
+        }
+      ],
+      "explicitModelRoots": [
+        "TRUST_Transaction_Refinement.generic_dispatcher_revert_is_not_typed_failure",
+        "TRUST_Transaction_Refinement.forward_and_reversal_receipts_are_distinguished_by_kind",
+        "TRUST_Transaction_Refinement.freeze_success_sets_absolute_target",
+        "TRUST_Transaction_Refinement.freeze_success_requires_strict_increase",
+        "TRUST_Transaction_Refinement.freeze_success_pushes_the_live_head",
+        "TRUST_Transaction_Refinement.freeze_success_records_prior_target",
+        "TRUST_Transaction_Refinement.freeze_success_opens_or_amends_the_freeze_case",
+        "TRUST_Transaction_Refinement.restrict_success_sets_flag",
+        "TRUST_Transaction_Refinement.restrict_success_records_prior_flag",
+        "TRUST_Transaction_Refinement.seize_success_opens_custody",
+        "TRUST_Transaction_Refinement.seize_success_moves_exact_amount_to_custodian",
+        "TRUST_Transaction_Refinement.disposition_success_state",
+        "TRUST_Transaction_Refinement.confiscate_success_is_terminal",
+        "TRUST_Transaction_Refinement.liquidate_success_is_terminal",
+        "TRUST_Transaction_Refinement.recover_success_is_terminal",
+        "TRUST_Transaction_Refinement.disposition_success_moves_exact_amount",
+        "TRUST_Transaction_Refinement.confiscate_does_not_burn",
+        "TRUST_Transaction_Refinement.liquidate_success_binds_settlement_in_receipt",
+        "TRUST_Transaction_Refinement.recover_success_consumes_entitlement",
+        "TRUST_Transaction_Refinement.consumed_entitlement_is_rejected",
+        "TRUST_Transaction_Refinement.custody_disposition_consumes_the_custody_record",
+        "TRUST_Transaction_Refinement.forward_success_consumes_nonce_and_command_id",
+        "TRUST_Transaction_Refinement.forward_success_preserves_total_supply",
+        "TRUST_Transaction_Refinement.forward_success_preserves_dependency_state",
+        "TRUST_Transaction_Refinement.terminal_case_rejects_action",
+        "TRUST_Transaction_Refinement.disposition_on_open_overlay_case_is_rejected",
+        "TRUST_Transaction_Refinement.overlay_on_open_case_without_head_is_rejected",
+        "TRUST_Transaction_Refinement.cross_case_overlay_head_is_rejected",
+        "TRUST_Transaction_Refinement.cross_case_restriction_head_is_rejected",
+        "TRUST_Transaction_Refinement.second_restrict_in_own_case_is_rejected",
+        "TRUST_Transaction_Refinement.second_seize_in_open_case_is_rejected",
+        "TRUST_Transaction_Refinement.direct_disposition_requires_source_to_be_the_subject",
+        "TRUST_Transaction_Refinement.custody_disposition_requires_the_exact_custody_record",
+        "TRUST_Transaction_Refinement.direct_disposition_cannot_spend_custody_backing",
+        "TRUST_Transaction_Refinement.seize_cannot_spend_custody_backing",
+        "TRUST_Transaction_Refinement.freeze_preserves_restriction_overlay",
+        "TRUST_Transaction_Refinement.restrict_preserves_freeze_overlay",
+        "TRUST_Transaction_Refinement.freeze_and_restriction_are_independent",
+        "TRUST_Transaction_Refinement.case_terminality_is_scoped",
+        "TRUST_Transaction_Refinement.disposition_in_one_case_does_not_clear_another_overlay",
+        "TRUST_Transaction_Refinement.unfreeze_success_restores_prior_target",
+        "TRUST_Transaction_Refinement.unfreeze_reopens_the_case_when_a_parent_remains",
+        "TRUST_Transaction_Refinement.unfreeze_closes_the_case_when_the_chain_is_empty",
+        "TRUST_Transaction_Refinement.unrestrict_success_restores_prior_flag_and_closes_case",
+        "TRUST_Transaction_Refinement.release_success_returns_custody_and_closes_case",
+        "TRUST_Transaction_Refinement.reversal_success_marks_the_original_reversed",
+        "TRUST_Transaction_Refinement.reversal_success_preserves_total_supply",
+        "TRUST_Transaction_Refinement.terminal_case_rejects_reversal",
+        "TRUST_Transaction_Refinement.unknown_original_is_not_admissible",
+        "TRUST_Transaction_Refinement.reversed_action_cannot_be_reversed_again",
+        "TRUST_Transaction_Refinement.mispaired_reversal_is_not_admissible",
+        "TRUST_Transaction_Refinement.stale_freeze_reversal_is_not_admissible",
+        "TRUST_Transaction_Refinement.stale_restriction_reversal_is_not_admissible",
+        "TRUST_Transaction_Refinement.release_requires_the_exact_active_custody",
+        "TRUST_Transaction_Refinement.unfreeze_requires_the_target_of_the_original",
+        "TRUST_Transaction_Refinement.missing_reversal_provenance_is_not_admissible",
+        "TRUST_Transaction_Refinement.replayed_action_is_not_fresh",
+        "TRUST_Transaction_Refinement.reused_nonce_is_not_fresh",
+        "TRUST_Transaction_Refinement.replayed_reversal_is_not_fresh",
+        "TRUST_Transaction_Refinement.successful_action_is_not_fresh_afterwards",
+        "TRUST_Transaction_Refinement.stale_dependency_root_is_not_current",
+        "TRUST_Transaction_Refinement.stale_dependency_epoch_is_not_current",
+        "TRUST_Transaction_Refinement.rebind_makes_prior_commands_stale",
+        "TRUST_Transaction_Refinement.rebind_makes_prior_reversals_stale",
+        "TRUST_Transaction_Refinement.rebind_advances_the_global_epoch_by_one",
+        "TRUST_Transaction_Refinement.unauthorized_sender_is_rejected",
+        "TRUST_Transaction_Refinement.stale_authority_epoch_is_rejected",
+        "TRUST_Transaction_Refinement.unknown_authority_is_rejected",
+        "TRUST_Transaction_Refinement.authority_rotation_makes_prior_commands_stale",
+        "TRUST_Transaction_Refinement.expired_window_is_rejected",
+        "TRUST_Transaction_Refinement.ordinary_transfer_respects_restriction_flags",
+        "TRUST_Transaction_Refinement.ordinary_transfer_cannot_spend_the_frozen_floor_or_custody_backing",
+        "TRUST_Transaction_Refinement.ordinary_transfer_preserves_regulatory_state",
+        "TRUST_Transaction_Refinement.rejection_is_persistent_stutter",
+        "TRUST_Transaction_Refinement.operational_failure_is_persistent_stutter",
+        "TRUST_Transaction_Refinement.malformed_input_is_persistent_stutter",
+        "TRUST_Transaction_Refinement.dependency_failure_is_persistent_stutter",
+        "TRUST_Transaction_Refinement.malformed_length_has_no_typed_command",
+        "TRUST_Transaction_Refinement.successful_transaction_uses_abstract_success_state",
+        "TRUST_Transaction_Refinement.successful_forward_transaction_is_admitted",
+        "TRUST_Transaction_Refinement.successful_reversal_transaction_is_admitted",
+        "TRUST_Transaction_Refinement.successful_transaction_was_authorized_by_its_sender",
+        "TRUST_Transaction_Refinement.rejected_transaction_is_abstract_stutter",
+        "TRUST_Transaction_Refinement.operational_transaction_is_abstract_stutter",
+        "TRUST_Transaction_Refinement.malformed_transaction_is_abstract_stutter",
+        "TRUST_Transaction_Refinement.dependency_revert_is_abstract_stutter",
+        "TRUST_Transaction_Refinement.success_has_final_canonical_receipt_event",
+        "TRUST_Transaction_Refinement.success_returns_the_stored_receipt_hash",
+        "TRUST_Transaction_Refinement.committed_history_excludes_failure_receipts"
+      ],
+      "diagnosticSourceLoaderOnly": false
+    },
+    {
+      "id": "end-to-end-model",
+      "session": "TRUST12_MPROD11_V2",
+      "parent": "TRUST12_MPROD10_V2",
+      "theory": "TRUST_Product_Model_Part11_V2",
+      "roots": [
+        "mpp_original_000",
+        "mpp_original_001",
+        "mpp_original_002",
+        "mpp_original_003",
+        "mpp_original_004",
+        "mpp_original_005",
+        "mpp_original_006",
+        "mpp_original_007",
+        "mpp_original_008",
+        "mpp_original_009",
+        "mpp_original_010",
+        "mpp_original_011",
+        "mpp_original_012",
+        "mpp_original_013",
+        "mpp_original_014",
+        "mpp_original_015",
+        "mpp_original_016",
+        "mpp_original_017",
+        "mpp_original_018",
+        "mpp_original_019",
+        "mpp_received",
+        "mpp_raw_rejection",
+        "mpp_typed_positive",
+        "mpp_removal_control"
+      ],
+      "markers": [
+        "PASS_ORIGINAL_PRODUCT_MODEL_PART11_EXPLICIT_ROOTS_ORACLE_ZERO_SKIP_FALSE"
+      ],
+      "importedSources": [
+        {
+          "artifactId": "end-to-end-model-model-source-00",
+          "logicalName": "ERC_TRUST.TRUST_End_To_End_Composition",
+          "sha256": "dde2f9c95d702cf4f394dc3bde7e0e000203ba95698cfd7a8ba6569e59f8ccc5"
+        }
+      ],
+      "explicitModelRoots": [
+        "TRUST_End_To_End_Composition.compiler_correctness_remains_a_nonclaim",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.runtime_execution_implements_concrete_transaction",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.forward_runtime_state",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.reversal_runtime_state",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.freeze_success_refines",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.seize_success_refines",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.confiscate_success_refines",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.liquidate_success_refines",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.restrict_success_refines",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.recover_success_refines",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.unfreeze_success_refines",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.release_success_refines",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.unrestrict_success_refines",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.successful_reversal_never_targets_a_terminal_case",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.runtime_rejection_stutters",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.runtime_operational_failure_stutters",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.runtime_malformed_input_stutters",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.runtime_dependency_revert_stutters",
+        "TRUST_End_To_End_Composition.pinned_runtime_refinement.end_to_end_refinement_under_runtime_link",
+        "TRUST_End_To_End_Composition.heterogeneous_composition_is_conditional_until_certificate"
+      ],
+      "diagnosticSourceLoaderOnly": false
+    }
+  ],
+  "rehashVerifier": {
+    "path": "scripts/trust12/verify_model_source_reception_v1.py",
+    "bytes": 13361,
+    "sha256": "eb0bf1e7daf06ad16ff885434a82a0faf2318b4ad3845019152df9c4e6c82cc0"
+  }
+}

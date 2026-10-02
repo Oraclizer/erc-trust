@@ -896,12 +896,16 @@
         "sha256": "eabc940d87c0a8cc9e03c592c5fa2f96ba7595284b174e30624d570d610337bd"
       },
       {
+        "path": "evidence/trust12/runtime-link/model-source-reception-checkpoint-v1.json",
+        "sha256": "be9452ff4aa7fa41443bc3c6adde268ac83a82d5ccd0417cc76380136f0545e3"
+      },
+      {
         "path": "evidence/trust12/runtime-link/native-full-source-admission-checkpoint-v1.json",
         "sha256": "24868eb3bbe884f3fd298658bc8c465517c3a1bf7ece7201b16a4cc2e31cc848"
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "37cd6361a6496061c78a912090828b4e093353556806f616686cda02e45ede2d"
+        "sha256": "be274ab2250dc5db3bd87e01b69a07b9521920825630175d4c8076cf968877e6"
       }
     ],
     "fullRefinementComplete": false,

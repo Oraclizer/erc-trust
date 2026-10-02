@@ -29,6 +29,9 @@ export const requiredTrust12Paths = [
   'scripts/proof-ci.mjs','scripts/run-proof-ci.sh','scripts/test-proof-ci.mjs',
   'scripts/test-trust12-required.mjs',
   'scripts/test-full-source-admission.py',
+  'scripts/test-model-source-reception.py',
+  'scripts/trust12/verify_model_source_reception_v1.py',
+  'evidence/trust12/runtime-link/model-source-reception-checkpoint-v1.json',
   'scripts/trust12/verify_full_source_admission_v1.py',
   'scripts/trust12/verify_received_valuation_current_v1.py',
   'evidence/trust12/runtime-link/native-full-source-admission-checkpoint-v1.json',
@@ -158,6 +161,10 @@ export function verifyTrust12Required(root = repository) {
     ['-B', resolve(root, 'scripts/trust12/verify_full_source_admission_v1.py'), '--product-root', root, '--metadata-only'],
     { cwd: root, encoding: 'utf8' });
   check(!checkpointCheck.error && checkpointCheck.status === 0, 'captured-source public metadata check failed');
+  const modelCheckpointCheck = spawnSync(process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3'),
+    ['-B', resolve(root, 'scripts/trust12/verify_model_source_reception_v1.py'), '--product-root', root, '--metadata-only'],
+    { cwd: root, encoding: 'utf8' });
+  check(!modelCheckpointCheck.error && modelCheckpointCheck.status === 0, 'model-source public metadata check failed');
   return { status: policy.fullRefinementComplete ? 'PASS_TRUST12_COMPLETION' : 'PASS_CONSISTENT_DEVELOPMENT',
     centralClosure: ledger.centralClosure.status, currentMandatory: mandatory,
     generalRuntimeLinkMandatory: policy.generalRuntimeLinkMandatory,
