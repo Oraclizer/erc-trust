@@ -1,0 +1,1083 @@
+{
+  "schema": "trust12-received-transaction-controls-checkpoint-v1",
+  "status": "PASS_SAVED_RECEIVED_TRANSACTION_CONTROLS",
+  "scope": "Retained captured-source transaction consumers, checked five-value observation, original condition composition and substitution, and isolated same-input condition and summary-evaluation removals. The summary controls retain both raw parsers, the checked replacement, valuation and existing hooks.",
+  "confirmed": {
+    "actualReceivedTransactionConsumers": true,
+    "checkedFiveObservationReceiver": true,
+    "typedSummaryReturnedValueConsumption": true,
+    "originalConditionComposition": true,
+    "checkedFiveKeyConditionSubstitution": true,
+    "sameInputConditionRemoval": true,
+    "sameInputSummaryEvaluationRemoval": true
+  },
+  "claims": {
+    "standardEngineSemanticEquivalence": false,
+    "wholeConfigurationMeaningAndProducerImage": false,
+    "originalSymbolicOperationalExecution": false,
+    "generalRuntimeLinks": false,
+    "centralRefinementClosure": false,
+    "independentAssurance": false,
+    "fullTrustCompletion": false,
+    "releaseOrDeployment": false
+  },
+  "coverage": {
+    "kernelStages": 8,
+    "explicitRoots": 211
+  },
+  "identityBoundary": "Implementation, ABI, runtime, original NSX, checked environment, original fifty-six bindings and thirteen source constraints are preserved.",
+  "reproductionBoundary": "Full mode checks retained saved sources, databases, heap lineage, exact hierarchy transport, complete guarded roots and current input snapshots. Metadata-only mode checks the public record and current product bindings. Neither mode is fresh kernel replay or final independent Assurance.",
+  "conditionBoundary": "The nonnegative condition companion is a partial interpreter. NUMBER0 and single lower-condition removal are condition-fragment controls. Whole configuration meaning, original engine equivalence and producer image remain unproved.",
+  "summaryBoundary": "The storage input changes exactly one byte. The isolated removal substitutes only the returned-AST evaluation result. This is a typed summary fragment, not a general compiled-runtime same-domain negative.",
+  "productIdentity": {
+    "retrieveModel": {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Retrieve_Relation.thy",
+      "bytes": 15893,
+      "sha256": "5fe73a17b58d636ca2f489a02e42a442309f8f42f99cb99e72de678090475587"
+    },
+    "transactionModel": {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Transaction_Refinement.thy",
+      "bytes": 78470,
+      "sha256": "b49b9d7a71455e547bf5185fcd66195597b185bbb5d50441b281e37eabf60149"
+    },
+    "savedArtifactReader": {
+      "path": "scripts/trust12/verify_received_valuation_current_v1.py",
+      "bytes": 69287,
+      "sha256": "937f66b9f3bcfc134562f240706fa1fda57c143aabedc255e3df9775c538c8c5"
+    },
+    "sourceAwareReader": {
+      "path": "scripts/trust12/verify_model_source_reception_v1.py",
+      "bytes": 13361,
+      "sha256": "eb0bf1e7daf06ad16ff885434a82a0faf2318b4ad3845019152df9c4e6c82cc0"
+    }
+  },
+  "artifacts": [
+    {
+      "id": "transaction-consumers-source",
+      "kind": "source",
+      "bytes": 49801,
+      "sha256": "56794f9a5133cbaa98872731773f73b2ecbfb9d65e9407f08667671aa5160b74"
+    },
+    {
+      "id": "transaction-consumers-root",
+      "kind": "root",
+      "bytes": 267,
+      "sha256": "3e1d1e350202c809ba5b51788c6b846bf926a5c709d012fb987c6dc65252728e"
+    },
+    {
+      "id": "transaction-consumers-binding",
+      "kind": "binding",
+      "bytes": 3775,
+      "sha256": "9a3e3c68df8c7d3043c99f967201e8c23ad144884c4a0fdb2e48f775914d8e62"
+    },
+    {
+      "id": "transaction-consumers-audit",
+      "kind": "audit",
+      "bytes": 5169,
+      "sha256": "1753a462f6d4fcfbe05c7dc4047daa3159d095d91e14e2e312492f469a0ae0c0"
+    },
+    {
+      "id": "transaction-consumers-inputs-before",
+      "kind": "inputs-before",
+      "bytes": 668270,
+      "sha256": "588aa16c0b35318b68907cf4312fb88dafe9aa34d2229ed7bf23c849c125fbaa"
+    },
+    {
+      "id": "transaction-consumers-inputs-after",
+      "kind": "inputs-after",
+      "bytes": 668270,
+      "sha256": "588aa16c0b35318b68907cf4312fb88dafe9aa34d2229ed7bf23c849c125fbaa"
+    },
+    {
+      "id": "transaction-consumers-heap",
+      "kind": "heap",
+      "bytes": 7952111,
+      "sha256": "4bb0db87e7a5e6720f58a9caaade9c698ff77b2d166be086c7ec398221743835"
+    },
+    {
+      "id": "transaction-consumers-database",
+      "kind": "database",
+      "bytes": 274432,
+      "sha256": "4151cd5d7a5e2782b9dbe6ea97685583926e619a499ab2dfd40ab758973f86b6"
+    },
+    {
+      "id": "transaction-consumers-parent-heap",
+      "kind": "parent-heap",
+      "bytes": 8466559,
+      "sha256": "b836c2b3a201cf5ccff381555d4f070f983a6eb69f8f69bdb3dec3aa0e526613"
+    },
+    {
+      "id": "transaction-consumers-parent-database",
+      "kind": "parent-database",
+      "bytes": 229376,
+      "sha256": "504607fe73bb4b96931d5a31e0f4ba2c9e0d19d8529ebc695ff4a9afe7d3f0e1"
+    },
+    {
+      "id": "transaction-consumers-build-command",
+      "kind": "build-command",
+      "bytes": 1237,
+      "sha256": "edea34f71eaa86ce579a99fa665873917741ae596943feeee65178187687da0c"
+    },
+    {
+      "id": "transaction-consumers-dryrun-command",
+      "kind": "dryrun-command",
+      "bytes": 1240,
+      "sha256": "6b0f3da89df530066c1e25d88c534eb692ed4d27caf2bef3f393746ff6b86c9a"
+    },
+    {
+      "id": "transaction-consumers-hierarchy-receipt",
+      "kind": "hierarchy-receipt",
+      "bytes": 645,
+      "sha256": "5ec584be7a5d2a3eff22bec906a2aaa24af8afe525dd42bcb5ba337b79dd1d10"
+    },
+    {
+      "id": "five-observations-source",
+      "kind": "source",
+      "bytes": 10992,
+      "sha256": "e70fde813225f2cf70a92b88ed2fa491db3c3a56eed07764ea74d6a5a6c40892"
+    },
+    {
+      "id": "five-observations-root",
+      "kind": "root",
+      "bytes": 265,
+      "sha256": "ae7ea75d60a73f853e0105e9a20f558e79e290757d13419b0ce2434ca1e30ff7"
+    },
+    {
+      "id": "five-observations-binding",
+      "kind": "binding",
+      "bytes": 2333,
+      "sha256": "7fc76d37a6da65034948e1a6b2a336399f50f34d2ba24842e2db57f477feef5c"
+    },
+    {
+      "id": "five-observations-audit",
+      "kind": "audit",
+      "bytes": 3717,
+      "sha256": "4513355d04bf8872cc9e4f590af18cde6b637a8d117723f81c827e9650c9fcce"
+    },
+    {
+      "id": "five-observations-inputs-before",
+      "kind": "inputs-before",
+      "bytes": 678345,
+      "sha256": "a15400a630828cddb6284051d0e2534c24ea9aae0dd396b77bb21b31fd37aff8"
+    },
+    {
+      "id": "five-observations-inputs-after",
+      "kind": "inputs-after",
+      "bytes": 678345,
+      "sha256": "a15400a630828cddb6284051d0e2534c24ea9aae0dd396b77bb21b31fd37aff8"
+    },
+    {
+      "id": "five-observations-heap",
+      "kind": "heap",
+      "bytes": 8286987,
+      "sha256": "ab95336c3a513cf1115d2d290bdbd84b6f35c4a573262a2b5a9ba8ec9ef6601b"
+    },
+    {
+      "id": "five-observations-database",
+      "kind": "database",
+      "bytes": 225280,
+      "sha256": "96088b667aa2a4959d39c668f947b2630db6096024b6074a5d9f8797f348ec5e"
+    },
+    {
+      "id": "five-observations-parent-heap",
+      "kind": "parent-heap",
+      "bytes": 8114539,
+      "sha256": "d909e261c0a75fb0ca000dd69499f6e615a9fd731ba9d92d3ab3ed80b05ac335"
+    },
+    {
+      "id": "five-observations-parent-database",
+      "kind": "parent-database",
+      "bytes": 315392,
+      "sha256": "58f1a8336e203cca1d9e880c917ddb94d2b8225045f26292bbeeed40a5c3eb0b"
+    },
+    {
+      "id": "five-observations-build-command",
+      "kind": "build-command",
+      "bytes": 1219,
+      "sha256": "d6151c43c62a42be67144a266c44e48999a1932a1b05b15670d1bad51688b192"
+    },
+    {
+      "id": "five-observations-dryrun-command",
+      "kind": "dryrun-command",
+      "bytes": 1222,
+      "sha256": "d694be8cd934cf195c2063edf7a58f4d3dd4146dc1dc47e303ad4d2cd047711d"
+    },
+    {
+      "id": "five-observations-hierarchy-receipt",
+      "kind": "hierarchy-receipt",
+      "bytes": 645,
+      "sha256": "4da2ec80d42c595cd20d140082fff787c1d07791444162299b1e5bdf84bf061d"
+    },
+    {
+      "id": "typed-summary-source",
+      "kind": "source",
+      "bytes": 9793,
+      "sha256": "6f7d56b935e57e2957073a921ddba68b13f1ebb8c228f64ab74563cda90d57bf"
+    },
+    {
+      "id": "typed-summary-root",
+      "kind": "root",
+      "bytes": 246,
+      "sha256": "671258a6f348d1955696b0cddc3a78734aaa0dbccd63ddab914a2a81c8254a51"
+    },
+    {
+      "id": "typed-summary-binding",
+      "kind": "binding",
+      "bytes": 2040,
+      "sha256": "d2cb3f0e34d461e507929453778cde529cda5ad17eb267a834bd62d9b7df6d5d"
+    },
+    {
+      "id": "typed-summary-audit",
+      "kind": "audit",
+      "bytes": 3409,
+      "sha256": "3fe63217ce641a1defdd86bc3d4ffc49cc885771d7c3ffbce479e20732d13e5a"
+    },
+    {
+      "id": "typed-summary-inputs-before",
+      "kind": "inputs-before",
+      "bytes": 696660,
+      "sha256": "64de903217c1b808cd2f664f70cdc26672b95ae7787ec8b129638d11af9c7975"
+    },
+    {
+      "id": "typed-summary-inputs-after",
+      "kind": "inputs-after",
+      "bytes": 696660,
+      "sha256": "64de903217c1b808cd2f664f70cdc26672b95ae7787ec8b129638d11af9c7975"
+    },
+    {
+      "id": "typed-summary-heap",
+      "kind": "heap",
+      "bytes": 7776417,
+      "sha256": "cbe30e1353e896b7c466f84810da0a0e36de2ffc1ae6d08883fe1030cebad889"
+    },
+    {
+      "id": "typed-summary-database",
+      "kind": "database",
+      "bytes": 212992,
+      "sha256": "c5c45be3bee4b9118eff095b2ca8387b4fcf1a76d12e7e528cfafcd5c4bea2f9"
+    },
+    {
+      "id": "typed-summary-parent-heap",
+      "kind": "parent-heap",
+      "bytes": 7701475,
+      "sha256": "407610a0cf1b3a1aaf83233b5ee7acf9f2979044caa95f3d0664628725b7e591"
+    },
+    {
+      "id": "typed-summary-parent-database",
+      "kind": "parent-database",
+      "bytes": 241664,
+      "sha256": "8dab8e381ecabd9e77093b32d64a7c921567e00520dc068bc850b430e651fa2b"
+    },
+    {
+      "id": "typed-summary-build-command",
+      "kind": "build-command",
+      "bytes": 1198,
+      "sha256": "f7a1a7b92d535c4d0f28abcd73a8847e48263173533572682cc60a8c3ad6e2a9"
+    },
+    {
+      "id": "typed-summary-dryrun-command",
+      "kind": "dryrun-command",
+      "bytes": 1201,
+      "sha256": "fdfaa0f089f01e7035914489536bf64c98293ebd3f1f6b8a8cb14fd678f2c465"
+    },
+    {
+      "id": "typed-summary-hierarchy-receipt",
+      "kind": "hierarchy-receipt",
+      "bytes": 645,
+      "sha256": "611b5b6cef270e01f05aa7f6d7a6a3226782c34cbe25ed71a809f16d190724a9"
+    },
+    {
+      "id": "condition-comparisons-source",
+      "kind": "source",
+      "bytes": 8624,
+      "sha256": "572d1be3ddbd0fe3aa6f598e9c32a10579e5908acb48c0909ec0ef79610ea9e0"
+    },
+    {
+      "id": "condition-comparisons-root",
+      "kind": "root",
+      "bytes": 251,
+      "sha256": "6a83b86e406663496bb6edd4ecfd534dfc0b89951a28b529cbaa94fccb414cb2"
+    },
+    {
+      "id": "condition-comparisons-binding",
+      "kind": "binding",
+      "bytes": 1973,
+      "sha256": "506288ad52cbbd8552c9dd1f6ba490e3fff6f4b985dec4de242e52a78466f207"
+    },
+    {
+      "id": "condition-comparisons-audit",
+      "kind": "audit",
+      "bytes": 3346,
+      "sha256": "5d178d12fb363da6c34fc3aca2f911a7ad473e0e55cde5a6b41fba97ac3961f5"
+    },
+    {
+      "id": "condition-comparisons-inputs-before",
+      "kind": "inputs-before",
+      "bytes": 700693,
+      "sha256": "62c739a8e0b4e9e9758c70423b61b8fd3384581b656889801f2520918fc705b5"
+    },
+    {
+      "id": "condition-comparisons-inputs-after",
+      "kind": "inputs-after",
+      "bytes": 700693,
+      "sha256": "62c739a8e0b4e9e9758c70423b61b8fd3384581b656889801f2520918fc705b5"
+    },
+    {
+      "id": "condition-comparisons-heap",
+      "kind": "heap",
+      "bytes": 7803833,
+      "sha256": "44568d12a8af5e8441317e6d72b1c9d8932519b778cd729377f1b96fc7889a49"
+    },
+    {
+      "id": "condition-comparisons-database",
+      "kind": "database",
+      "bytes": 237568,
+      "sha256": "143365eb7ccdc7de4929f260beb11df191099bebb8118245af36d1097e9248d9"
+    },
+    {
+      "id": "condition-comparisons-parent-heap",
+      "kind": "parent-heap",
+      "bytes": 7776417,
+      "sha256": "cbe30e1353e896b7c466f84810da0a0e36de2ffc1ae6d08883fe1030cebad889"
+    },
+    {
+      "id": "condition-comparisons-parent-database",
+      "kind": "parent-database",
+      "bytes": 212992,
+      "sha256": "c5c45be3bee4b9118eff095b2ca8387b4fcf1a76d12e7e528cfafcd5c4bea2f9"
+    },
+    {
+      "id": "condition-comparisons-build-command",
+      "kind": "build-command",
+      "bytes": 1205,
+      "sha256": "ca57e65ff5399db18d1e9af149fa1ed30100209d82963ba299f9c86da7c9dc4b"
+    },
+    {
+      "id": "condition-comparisons-dryrun-command",
+      "kind": "dryrun-command",
+      "bytes": 1208,
+      "sha256": "19142c3ce1cc1319582348d268c2564f1f82eb8e4a22088d41b523864bad4ef9"
+    },
+    {
+      "id": "condition-comparisons-hierarchy-receipt",
+      "kind": "hierarchy-receipt",
+      "bytes": 645,
+      "sha256": "f145e609526b63b0e30e4313b75395cc5a753a0559f8ef6069cabaa2864fbc8d"
+    },
+    {
+      "id": "condition-composition-source",
+      "kind": "source",
+      "bytes": 9560,
+      "sha256": "b518fa485ebc4597c5120e9205044fbf05f0142a67a71ebf6ac7df37d27293f5"
+    },
+    {
+      "id": "condition-composition-root",
+      "kind": "root",
+      "bytes": 248,
+      "sha256": "be3860d7318af43f52f52deb1f901eaa80d824693390420fcc2adeb6e03ade81"
+    },
+    {
+      "id": "condition-composition-binding",
+      "kind": "binding",
+      "bytes": 2020,
+      "sha256": "6ff945975f60db100eb12008552799bb56b64ef67ea1270e67afb3af05bc0f2a"
+    },
+    {
+      "id": "condition-composition-audit",
+      "kind": "audit",
+      "bytes": 3393,
+      "sha256": "c08af5afc5784145473150bec853e7cef42fbbe0407e895a46dbe96229413aec"
+    },
+    {
+      "id": "condition-composition-inputs-before",
+      "kind": "inputs-before",
+      "bytes": 703958,
+      "sha256": "544a46f0325a54a676b1d728002c3ecc7ea607acf7f45eb3910beeddbc847050"
+    },
+    {
+      "id": "condition-composition-inputs-after",
+      "kind": "inputs-after",
+      "bytes": 703958,
+      "sha256": "544a46f0325a54a676b1d728002c3ecc7ea607acf7f45eb3910beeddbc847050"
+    },
+    {
+      "id": "condition-composition-heap",
+      "kind": "heap",
+      "bytes": 7684967,
+      "sha256": "68fa2673c42e622817696f2abf4f39cece15d08af9ca5e7d21f84cbb11d0c576"
+    },
+    {
+      "id": "condition-composition-database",
+      "kind": "database",
+      "bytes": 204800,
+      "sha256": "76d370bb57ba420d7004a60b19d0fd4bfbcf97b72452da926a713364c591590a"
+    },
+    {
+      "id": "condition-composition-parent-heap",
+      "kind": "parent-heap",
+      "bytes": 7803833,
+      "sha256": "44568d12a8af5e8441317e6d72b1c9d8932519b778cd729377f1b96fc7889a49"
+    },
+    {
+      "id": "condition-composition-parent-database",
+      "kind": "parent-database",
+      "bytes": 237568,
+      "sha256": "143365eb7ccdc7de4929f260beb11df191099bebb8118245af36d1097e9248d9"
+    },
+    {
+      "id": "condition-composition-build-command",
+      "kind": "build-command",
+      "bytes": 1207,
+      "sha256": "e5231359a4238e4600667e749cd7e22a737abfe9981b051d7a4063d755140769"
+    },
+    {
+      "id": "condition-composition-dryrun-command",
+      "kind": "dryrun-command",
+      "bytes": 1210,
+      "sha256": "73dd3de77e7346116f90f793962ecef0124d15bdb6dc15a604263ceb2cfe9f56"
+    },
+    {
+      "id": "condition-composition-hierarchy-receipt",
+      "kind": "hierarchy-receipt",
+      "bytes": 645,
+      "sha256": "2fe3c7fc6409e02915a7cbb763bac6e4889f09cb8bf1fe05cf8c06ce989766fd"
+    },
+    {
+      "id": "condition-substitution-source",
+      "kind": "source",
+      "bytes": 18294,
+      "sha256": "aba92405bff0517be125f67daa0b785b211d581cc2fd823e9610cba720323f40"
+    },
+    {
+      "id": "condition-substitution-root",
+      "kind": "root",
+      "bytes": 248,
+      "sha256": "6bd0a2766f70ac51b65fb14fcc1fe2267fed611b1b3238c674244cec93310aca"
+    },
+    {
+      "id": "condition-substitution-binding",
+      "kind": "binding",
+      "bytes": 2060,
+      "sha256": "b45d357f751d91b339def357fdb43b5da70b307c82110135bce2725180fea9c1"
+    },
+    {
+      "id": "condition-substitution-audit",
+      "kind": "audit",
+      "bytes": 3434,
+      "sha256": "6a846c876856af90bc2e27e3ae2efbf4eb1b60d58aa0b994d6b5b25428676d5d"
+    },
+    {
+      "id": "condition-substitution-inputs-before",
+      "kind": "inputs-before",
+      "bytes": 706707,
+      "sha256": "0aff53da6fdada5105d82aee691963735667928276f940060b2113c9573e2d9c"
+    },
+    {
+      "id": "condition-substitution-inputs-after",
+      "kind": "inputs-after",
+      "bytes": 706707,
+      "sha256": "0aff53da6fdada5105d82aee691963735667928276f940060b2113c9573e2d9c"
+    },
+    {
+      "id": "condition-substitution-heap",
+      "kind": "heap",
+      "bytes": 7763103,
+      "sha256": "6663f3c9d79f4724a1f90b47dfbcaaac27fe8d5c605147977f251ff9a18b078f"
+    },
+    {
+      "id": "condition-substitution-database",
+      "kind": "database",
+      "bytes": 237568,
+      "sha256": "d758245fc2cfc254f08cfd0d8b16efc88b2c48591e088de02111b53e77b4aef9"
+    },
+    {
+      "id": "condition-substitution-parent-heap",
+      "kind": "parent-heap",
+      "bytes": 7684967,
+      "sha256": "68fa2673c42e622817696f2abf4f39cece15d08af9ca5e7d21f84cbb11d0c576"
+    },
+    {
+      "id": "condition-substitution-parent-database",
+      "kind": "parent-database",
+      "bytes": 204800,
+      "sha256": "76d370bb57ba420d7004a60b19d0fd4bfbcf97b72452da926a713364c591590a"
+    },
+    {
+      "id": "condition-substitution-build-command",
+      "kind": "build-command",
+      "bytes": 1206,
+      "sha256": "ce155c76a680479b8d59790f972e6871630d94abcde4c0c1696224100c0766a8"
+    },
+    {
+      "id": "condition-substitution-dryrun-command",
+      "kind": "dryrun-command",
+      "bytes": 1209,
+      "sha256": "be164d7180d25fa343ebcd4f426716b4587eb2df5d9cb8f048febb539acce357"
+    },
+    {
+      "id": "condition-substitution-hierarchy-receipt",
+      "kind": "hierarchy-receipt",
+      "bytes": 645,
+      "sha256": "c1c52f8b01ce25c0abe8d377375f3fb5304dda6aaec111d60de08b4e981fa6c0"
+    },
+    {
+      "id": "condition-removal-source",
+      "kind": "source",
+      "bytes": 18349,
+      "sha256": "98e5eda68b44b318cf0d36e02c0a7691933e606e2c86236120333cf2635f569e"
+    },
+    {
+      "id": "condition-removal-root",
+      "kind": "root",
+      "bytes": 249,
+      "sha256": "76e63f69a9166d40722a657aecf87e3d9e977bcfb47dd3f4cc9fd58df8d6c891"
+    },
+    {
+      "id": "condition-removal-binding",
+      "kind": "binding",
+      "bytes": 2559,
+      "sha256": "582077a372a3f80bff5326762abc5684c3750e21d153d48bc4ae3ad948ed5965"
+    },
+    {
+      "id": "condition-removal-audit",
+      "kind": "audit",
+      "bytes": 3932,
+      "sha256": "3eec24794b05dbd320522441229b1a586d634958e5e923fa13a1501aabc203e6"
+    },
+    {
+      "id": "condition-removal-inputs-before",
+      "kind": "inputs-before",
+      "bytes": 709251,
+      "sha256": "f178eea0d76496b6bcd1b7ba3e110601aca6ae326aceb6b44515aed9831330c3"
+    },
+    {
+      "id": "condition-removal-inputs-after",
+      "kind": "inputs-after",
+      "bytes": 709251,
+      "sha256": "f178eea0d76496b6bcd1b7ba3e110601aca6ae326aceb6b44515aed9831330c3"
+    },
+    {
+      "id": "condition-removal-heap",
+      "kind": "heap",
+      "bytes": 7809689,
+      "sha256": "6852262ff934b9b4bf5995a833efc3273119c62397746290bbdb7ab9454abc1c"
+    },
+    {
+      "id": "condition-removal-database",
+      "kind": "database",
+      "bytes": 233472,
+      "sha256": "ef1d4930ea08307ee9e230e1a6e380572ff840da9ab617e11870a8731727f6ba"
+    },
+    {
+      "id": "condition-removal-parent-heap",
+      "kind": "parent-heap",
+      "bytes": 7763103,
+      "sha256": "6663f3c9d79f4724a1f90b47dfbcaaac27fe8d5c605147977f251ff9a18b078f"
+    },
+    {
+      "id": "condition-removal-parent-database",
+      "kind": "parent-database",
+      "bytes": 237568,
+      "sha256": "d758245fc2cfc254f08cfd0d8b16efc88b2c48591e088de02111b53e77b4aef9"
+    },
+    {
+      "id": "condition-removal-build-command",
+      "kind": "build-command",
+      "bytes": 1205,
+      "sha256": "2eb9f1525473e684f98162babc57d7077906eb70af30245444493b7fc35cdbe9"
+    },
+    {
+      "id": "condition-removal-dryrun-command",
+      "kind": "dryrun-command",
+      "bytes": 1208,
+      "sha256": "8e701ee845b0588dde8fb1cfd3337a9ea816e485050b68a69a807ca5743db1d6"
+    },
+    {
+      "id": "condition-removal-hierarchy-receipt",
+      "kind": "hierarchy-receipt",
+      "bytes": 645,
+      "sha256": "9354f926556214efa464cc3ddeed0484b6f821600ad1245f2309b1e132024afb"
+    },
+    {
+      "id": "summary-evaluation-removal-source",
+      "kind": "source",
+      "bytes": 15404,
+      "sha256": "d1faeb7495032465a63ca46358c7e09ddfaee6938a8a274f1a0e75b367f9da82"
+    },
+    {
+      "id": "summary-evaluation-removal-root",
+      "kind": "root",
+      "bytes": 244,
+      "sha256": "bfd576b598db7b1e4965189d791d663b5c3bcfc93cb69ce8a4c9a07f78f2159b"
+    },
+    {
+      "id": "summary-evaluation-removal-binding",
+      "kind": "binding",
+      "bytes": 2238,
+      "sha256": "dcae792a479c8a8fa1ce9d5eb0aa397ae9bb96b12a2181733955e2147f16f1ec"
+    },
+    {
+      "id": "summary-evaluation-removal-audit",
+      "kind": "audit",
+      "bytes": 3606,
+      "sha256": "02ecaca68c632ade6985d919ac43eace2b9504b189e6930119f8c9285424dd8b"
+    },
+    {
+      "id": "summary-evaluation-removal-inputs-before",
+      "kind": "inputs-before",
+      "bytes": 714343,
+      "sha256": "a4450a14e6fcea9487d3ef33d7bc3819b7710e49e9a62b86acace3a184c0eadb"
+    },
+    {
+      "id": "summary-evaluation-removal-inputs-after",
+      "kind": "inputs-after",
+      "bytes": 714343,
+      "sha256": "a4450a14e6fcea9487d3ef33d7bc3819b7710e49e9a62b86acace3a184c0eadb"
+    },
+    {
+      "id": "summary-evaluation-removal-heap",
+      "kind": "heap",
+      "bytes": 7849027,
+      "sha256": "7f50f0e9f2272361378c8259d96b5949c05e735f46dc5d49f628ea3ac2859c9e"
+    },
+    {
+      "id": "summary-evaluation-removal-database",
+      "kind": "database",
+      "bytes": 241664,
+      "sha256": "436bb625f3161d61926fc33b06e755440e1ff5bbd201708be250e8b2b975fca5"
+    },
+    {
+      "id": "summary-evaluation-removal-parent-heap",
+      "kind": "parent-heap",
+      "bytes": 7809689,
+      "sha256": "6852262ff934b9b4bf5995a833efc3273119c62397746290bbdb7ab9454abc1c"
+    },
+    {
+      "id": "summary-evaluation-removal-parent-database",
+      "kind": "parent-database",
+      "bytes": 233472,
+      "sha256": "ef1d4930ea08307ee9e230e1a6e380572ff840da9ab617e11870a8731727f6ba"
+    },
+    {
+      "id": "summary-evaluation-removal-build-command",
+      "kind": "build-command",
+      "bytes": 1197,
+      "sha256": "538b4a9333fd64dff13dc1ebc5a3a11e760e52257a8939051105935730ca3534"
+    },
+    {
+      "id": "summary-evaluation-removal-dryrun-command",
+      "kind": "dryrun-command",
+      "bytes": 1200,
+      "sha256": "e84185f5ecf2f9a0f2bb33d2d0f95cf278abae1c406506bed79935dba93119ea"
+    },
+    {
+      "id": "summary-evaluation-removal-hierarchy-receipt",
+      "kind": "hierarchy-receipt",
+      "bytes": 645,
+      "sha256": "e5fb9fae435d059570bf1fc275e3d84dcac530e2c9e6c669f1ab18aafcfa3127"
+    }
+  ],
+  "kernelStages": [
+    {
+      "id": "transaction-consumers",
+      "session": "TRUST12_RAW_TRANSACTION_CONSUMERS_V4",
+      "parent": "TRUST12_RAW_TRANSACTION_ADAPTER_V1",
+      "theory": "TRUST_Raw_Transaction_Consumers_V4",
+      "roots": [
+        "rtcn_no_pre_means_no_transaction",
+        "rtcn_no_post_means_no_transaction",
+        "rtcn_no_calldata_means_no_transaction",
+        "rtcn_no_entry_log_means_no_transaction",
+        "rtcn_no_post_log_means_no_transaction",
+        "rtcn_no_output_means_no_transaction",
+        "rtcn_no_status_means_no_transaction",
+        "rtcn_bad_full_raw_has_no_transaction",
+        "rtcn_missing_binding_has_no_transaction",
+        "rtcn_duplicate_binding_has_no_transaction",
+        "rtcn_wrong_declared_binding_has_no_transaction",
+        "rtcn_wrong_value_binding_has_no_transaction",
+        "rtcn_actual_bad_pre_has_no_transaction",
+        "rtcn_actual_bad_post_has_no_transaction",
+        "rtcn_actual_bad_calldata_has_no_transaction",
+        "rtcn_actual_bad_entry_log_has_no_transaction",
+        "rtcn_actual_bad_post_log_has_no_transaction",
+        "rtcn_actual_bad_output_has_no_transaction",
+        "rtcn_actual_bad_status_has_no_transaction",
+        "rtcn_actual_bad_status_sort_has_no_transaction",
+        "rtcn_some_requires_full_checked_source",
+        "rtcn_full_field_unused_by_build",
+        "rtcn_actual_abstraction_time",
+        "rtcn_actual_received_first_bound",
+        "rtcn_actual_removed_time_received",
+        "rtcn_time_consumer_removal_breaks_bound",
+        "rtcn_removed_typegate_actual_wrong_sort_received",
+        "rtcn_removed_typegate_breaks_actual_status_admission",
+        "rtcn_removed_full_consumer_breaks_admission",
+        "rtcn_removed_pre_consumer_actual_received",
+        "rtcn_removed_pre_consumer_breaks_final_admission",
+        "rtcn_removed_post_consumer_actual_received",
+        "rtcn_removed_post_consumer_breaks_final_admission",
+        "rtcn_removed_calldata_consumer_actual_received",
+        "rtcn_removed_calldata_consumer_breaks_final_admission",
+        "rtcn_removed_entry_log_consumer_actual_received",
+        "rtcn_removed_entry_log_consumer_breaks_final_admission",
+        "rtcn_removed_post_log_consumer_actual_received",
+        "rtcn_removed_post_log_consumer_breaks_final_admission",
+        "rtcn_removed_output_consumer_actual_received",
+        "rtcn_removed_output_consumer_breaks_final_admission",
+        "rtcn_removed_status_consumer_actual_received",
+        "rtcn_removed_status_consumer_breaks_final_admission"
+      ],
+      "marker": "PASS_ACTUAL_RAW_TRANSACTION_FIRST_BOUND_FINAL_NONE_AND_SAME_TIME_TYPEGATE_REMOVALS_ORACLE_ZERO_SKIP_FALSE",
+      "scope": {
+        "actualRawReceiverConsumedByOriginalFirstBound": true,
+        "original23HookContextByteExact": true,
+        "sevenProviderNonePropagationsAndEightActualBadCellFinalRejections": true,
+        "fourActualBadBindingsFinalRejections": true,
+        "genericSomeRequiresWholeCheckedSource": true,
+        "actualTimeRemovalBreaksAlphaBound": true,
+        "actualRawStatusTypegateRemovalBreaksAdmission": true,
+        "isolatedFullSourceConsumerRemovalPreservesAllSevenProviders": true,
+        "isolatedRawProviderConsumerRemovals": 7,
+        "fullSymbolicOperationalClosure": false,
+        "compiledCodeRuntimeCredit": false,
+        "generalCredit": false
+      },
+      "hierarchyTransportRequired": true
+    },
+    {
+      "id": "five-observations",
+      "session": "TRUST12_FIVE_OBSERVATION_RECEIVER_V3",
+      "parent": "TRUST12_CURRENT_OOS_RECEPTION_V2",
+      "theory": "TRUST_Five_Observation_Receiver_V3",
+      "roots": [
+        "frg_actual_second_decoded",
+        "frg_actual_number_decoded",
+        "frg_actual_mixhash_decoded",
+        "frg_five_names_distinct",
+        "frg_some_retains_actual_checked_bindings",
+        "frg_some_requires_whole_source_check",
+        "frg_valuation_other_names_preserves_base",
+        "frg_second_observation",
+        "frg_bad_full_raw_rejected",
+        "frg_missing_binding_rejected",
+        "frg_duplicate_binding_rejected",
+        "frg_wrong_declared_binding_rejected",
+        "frg_wrong_value_binding_rejected",
+        "frg_actual_full_receiver",
+        "frg_actual_word_value",
+        "frg_actual_time_value",
+        "frg_actual_second_value",
+        "frg_actual_number_value",
+        "frg_actual_mixhash_value",
+        "frg_actual_decoded_arithmetic_domain",
+        "frg_original_domain_includes_above_supply"
+      ],
+      "marker": "PASS_ACTUAL_FIVE_NAMES_RETAINED_CHECKED_BINDINGS_AND_DECODE_GATE_ORACLE_ZERO_SKIP_FALSE",
+      "scope": {
+        "actualWholeCheckedBindingsRetained": true,
+        "WORDAndWORD0AndTIMEAndNUMBERAndMIXHASH": true,
+        "extraThreeNatDecodeOptionsLoadBearing": true,
+        "genericSomeRequiresAllFiveDecoders": true,
+        "actualGroundValues": [
+          1,
+          1,
+          1700000000,
+          16777217,
+          0
+        ],
+        "originalFRXReceiverModified": false,
+        "originalFiveInputArithmeticDomain": true,
+        "aboveSupplyDomainWitness": true,
+        "arbitraryTwoFreezeGeneralConsumerPending": true,
+        "K13TruthClaimed": false,
+        "compiledCodeRuntimeCredit": false,
+        "generalCredit": false
+      },
+      "hierarchyTransportRequired": true
+    },
+    {
+      "id": "typed-summary",
+      "session": "TRUST12_C3_CHECKED_SUMMARY_V2",
+      "parent": "TRUST12_C3_SUMMARY_TYPES_V2",
+      "theory": "TRUST_C3_Checked_Summary_V2",
+      "roots": [
+        "c3n_actual_ground_checks",
+        "c3n_apply_actual",
+        "c3n_replacements_checked_actual",
+        "c3n_check_actual",
+        "c3n_some_requires_all_consumers",
+        "c3n_width_evaluation",
+        "c3n_zero_original",
+        "c3n_zero_evaluation",
+        "c3n_h_chop",
+        "c3n_lookup_evaluation",
+        "c3n_normalized_evaluation",
+        "c3n_actual_raw_summary",
+        "c3n_actual_received_summary",
+        "c3n_removed_coverage_false",
+        "c3n_binding_removed_none",
+        "c3n_int_declared_coverage_false",
+        "c3n_declared_int_none",
+        "c3n_unbound_map_evaluation_none",
+        "c3n_wrong_replacement_type_none",
+        "c3n_checked_some_requires_types"
+      ],
+      "marker": "PASS_ACTUAL_PARSED_MAP_TYPED_CHECK_RETURNED_AST_EVALUATION_AND_REJECTIONS_ORACLE_ZERO_SKIP_FALSE",
+      "scope": {
+        "actualParsedMapReplacement": true,
+        "originalCheckerReturnedASTEvaluated": true,
+        "sameReceivedValuationUsed": true,
+        "threeTypedAdmissionNegatives": true,
+        "environmentRecomputed": false,
+        "savedLookupResultReusedBeforeRecursiveIntExpansion": true,
+        "hPlusOneRemovalStillPending": true,
+        "sourceNode15To16OperationalClosure": false,
+        "compiledCodeRuntimeCredit": false,
+        "generalCredit": false
+      },
+      "hierarchyTransportRequired": true
+    },
+    {
+      "id": "condition-comparisons",
+      "session": "TRUST12_K13_ATOM_PREFIX_V2",
+      "parent": "TRUST12_C3_CHECKED_SUMMARY_V2",
+      "theory": "TRUST_K13_Original_Atom_Prefix_V2",
+      "roots": [
+        "fk13_nat_int_le",
+        "fk13_nat_int_lt",
+        "fk13_nat_int_eq",
+        "fk13_int_2p24",
+        "fk13_int_2p32",
+        "fk13_int_2p30",
+        "fk13_int_2p35",
+        "fk13_int_2p256",
+        "fk13_generic_atom01",
+        "fk13_generic_atom02",
+        "fk13_generic_atom03",
+        "fk13_generic_atom04",
+        "fk13_generic_atom05",
+        "fk13_generic_atom06",
+        "fk13_generic_atom07",
+        "fk13_generic_atom08",
+        "fk13_generic_atom09",
+        "fk13_generic_atom10",
+        "fk13_generic_atom11",
+        "fk13_generic_atom12",
+        "fk13_generic_domain_atoms",
+        "fk13_five_names_original",
+        "fk13_actual_received_atoms"
+      ],
+      "marker": "PASS_K13_UNCHANGED_23_ROOT_PREFIX_ORACLE_ZERO_SKIP_FALSE",
+      "scope": {
+        "originalNSXChanged": false,
+        "conditionFragmentOnly": true,
+        "unchangedOriginalPrefixRoots": 23,
+        "failedRunSuccessCredit": false,
+        "originalConjunctionPartialInterpreterEvaluated": false,
+        "standardEngineSemanticEquivalence": false,
+        "wholeConfigurationDefinednessFunctionalnessProducerImage": false,
+        "compiledCodeRuntimeCredit": false,
+        "generalCredit": false
+      },
+      "hierarchyTransportRequired": true
+    },
+    {
+      "id": "condition-composition",
+      "session": "TRUST12_K13_CONJUNCTION_V3",
+      "parent": "TRUST12_K13_ATOM_PREFIX_V2",
+      "theory": "TRUST_K13_Original_Conjunction_V3",
+      "roots": [
+        "fk13_and_from_saved_results",
+        "fk13_conjunction_step_3890",
+        "fk13_conjunction_step_3891",
+        "fk13_conjunction_step_3892",
+        "fk13_conjunction_step_3893",
+        "fk13_conjunction_step_3894",
+        "fk13_conjunction_step_3895",
+        "fk13_conjunction_step_3896",
+        "fk13_conjunction_step_3897",
+        "fk13_conjunction_step_3898",
+        "fk13_conjunction_step_3899",
+        "fk13_conjunction_step_3900",
+        "fk13_conjunction_step_3901",
+        "fk13_generic_conjunction_domain_exact",
+        "fk13_generic_domain_conjunction",
+        "fk13_actual_received_source_condition_truth"
+      ],
+      "marker": "PASS_K13_ORIGINAL_CONJUNCTION_SAVED_ATOMS_ORACLE_ZERO_SKIP_FALSE",
+      "scope": {
+        "originalNSXChanged": false,
+        "conditionFragmentOnly": true,
+        "originalConjunctionStatementsPreserved": 3,
+        "explicitAndJoins": 12,
+        "cachedAtomResultsConsumed": true,
+        "failedRunSuccessCredit": false,
+        "originalConjunctionPartialInterpreterEvaluated": true,
+        "standardEngineSemanticEquivalence": false,
+        "wholeConfigurationDefinednessFunctionalnessProducerImage": false,
+        "compiledCodeRuntimeCredit": false,
+        "generalCredit": false
+      },
+      "hierarchyTransportRequired": true
+    },
+    {
+      "id": "condition-substitution",
+      "session": "TRUST12_K13_SUBSTITUTION_V2",
+      "parent": "TRUST12_K13_CONJUNCTION_V3",
+      "theory": "TRUST_K13_Substitution_Bridge_V2",
+      "roots": [
+        "fk13_binding_nat_shape",
+        "fk13_int_sort_same",
+        "fk13_source_int_sort_same",
+        "fk13_decoded_ns_shape",
+        "fk13_decoded_int_leaf_substitution",
+        "fk13_int_literal_substitution",
+        "fk13_bool_literal_substitution",
+        "fk13_bool_comparison_substitution",
+        "fk13_bool_not_substitution",
+        "fk13_ml_equals_substitution",
+        "fk13_ml_and_substitution",
+        "fk13_received_five_decoders",
+        "fk13_five_decoders_atoms_commute",
+        "fk13_received_atoms_commute",
+        "fk13_received_conjunction_commutes",
+        "fk13_received_condition_substitution_truth",
+        "fk13_actual_ground_received_condition_truth",
+        "fk13_actual_fsg_condition_truth"
+      ],
+      "marker": "PASS_K13_CHECKED_FIVE_KEY_SUBSTITUTION_GROUND_CONDITION_ORACLE_ZERO_SKIP_FALSE",
+      "scope": {
+        "conditionFragmentOnly": true,
+        "fiveActualDecodersConsumed": true,
+        "capturedSourceOnly": true,
+        "structuralSubstitutionTransport": true,
+        "wholeValuationEqualityClaimed": false,
+        "originalNSXChanged": false,
+        "standardEngineSemanticEquivalence": false,
+        "wholeConfigurationDefinednessFunctionalnessProducerImage": false,
+        "compiledCodeRuntimeCredit": false,
+        "generalCredit": false
+      },
+      "hierarchyTransportRequired": true
+    },
+    {
+      "id": "condition-removal",
+      "session": "TRUST12_K13_NUMBER_ZERO_V1",
+      "parent": "TRUST12_K13_SUBSTITUTION_V2",
+      "theory": "TRUST_K13_Number_Zero_Controls_V1",
+      "roots": [
+        "fk13_zero_name_separation",
+        "fk13_zero_five_values",
+        "fk13_binding_lookup_congruence",
+        "fk13_zero_decoder_00",
+        "fk13_zero_decoder_01",
+        "fk13_zero_decoder_30",
+        "fk13_zero_decoder_46",
+        "fk13_zero_decoder_33",
+        "fk13_zero_atoms_commute",
+        "fk13_zero_atom_00",
+        "fk13_zero_guard_00",
+        "fk13_zero_atom_01",
+        "fk13_zero_guard_01",
+        "fk13_zero_atom_02",
+        "fk13_zero_guard_02",
+        "fk13_zero_atom_03",
+        "fk13_zero_guard_03",
+        "fk13_zero_atom_04",
+        "fk13_zero_guard_04",
+        "fk13_zero_atom_05",
+        "fk13_zero_guard_05",
+        "fk13_zero_atom_06",
+        "fk13_zero_guard_06",
+        "fk13_zero_atom_07",
+        "fk13_zero_guard_07",
+        "fk13_zero_atom_08",
+        "fk13_zero_guard_08",
+        "fk13_zero_atom_09",
+        "fk13_zero_guard_09",
+        "fk13_zero_atom_10",
+        "fk13_zero_guard_10",
+        "fk13_zero_atom_11",
+        "fk13_zero_guard_11",
+        "fk13_zero_atom_12",
+        "fk13_zero_guard_12",
+        "fk13_all_zero_conditions_false",
+        "fk13_zero_lower_guard_removed_true",
+        "fk13_zero_captured_condition_false",
+        "fk13_zero_fsg_condition_false",
+        "fk13_zero_original_removed_true",
+        "fk13_same_zero_guard_removal_sensitivity"
+      ],
+      "marker": "PASS_K13_PRESERVED_NUMBER_ZERO_GUARD_ONLY_REMOVAL_ORACLE_ZERO_SKIP_FALSE",
+      "scope": {
+        "conditionFragmentOnly": true,
+        "sameNumberZeroBindings": true,
+        "onlyOriginalLowerGuard04Removed": true,
+        "originalNSXChanged": false,
+        "standardEngineSemanticEquivalence": false,
+        "wholeConfigurationDefinednessFunctionalnessProducerImage": false,
+        "wholeRuntimeSameDomainNegative": false,
+        "compiledCodeRuntimeCredit": false,
+        "generalCredit": false
+      },
+      "hierarchyTransportRequired": true
+    },
+    {
+      "id": "summary-evaluation-removal",
+      "session": "TRUST12_C3_H_PLUS_ONE_V5",
+      "parent": "TRUST12_K13_NUMBER_ZERO_V1",
+      "theory": "TRUST_C3_H_Plus_One_Controls_V5",
+      "roots": [
+        "c3h_decimal_byte_bound",
+        "c3h_value_type_family",
+        "c3h_inj_type_family",
+        "c3h_kitem_sort_original",
+        "c3h_storage_type_family",
+        "c3h_storage_type",
+        "c3h_instantiated_type",
+        "c3h_raw_eof",
+        "c3h_actual_ground_checks",
+        "c3h_apply_actual",
+        "c3h_replacements_checked_actual",
+        "c3h_check_actual",
+        "c3h_decimal_evaluation",
+        "c3h_storage_original_form",
+        "c3h_value_evaluation",
+        "c3h_injected_evaluation",
+        "c3h_zero_injected_original",
+        "c3h_zero_injected_evaluation",
+        "c3h_entries_evaluation",
+        "c3h_map_evaluation",
+        "c3h_h_plus_one_chop",
+        "c3h_lookup_evaluation",
+        "c3h_normalized_evaluation",
+        "c3h_actual_raw_result",
+        "c3h_actual_received_result",
+        "c3h_be_ne",
+        "c3h_expected_result_mismatch",
+        "c3h_literal_removed_same_raw",
+        "c3h_isolated_sensitivity"
+      ],
+      "marker": "PASS_C3_TYPED_SAME_RAW_ISOLATED_EVALUATOR_REMOVAL_ORACLE_ZERO_SKIP_FALSE",
+      "scope": {
+        "typedSummaryFragmentOnly": true,
+        "sameRawPairAndValuation": true,
+        "singleRawStorageByteChanged": true,
+        "isolatedEvaluationConsumerRemoval": true,
+        "original56BindingsChanged": false,
+        "original13ConstraintsChanged": false,
+        "originalNSXChanged": false,
+        "compiledCodeRuntimeCredit": false,
+        "wholeRuntimeSameDomainNegative": false,
+        "generalCredit": false
+      },
+      "hierarchyTransportRequired": true
+    }
+  ],
+  "rehashVerifier": {
+    "path": "scripts/trust12/verify_received_transaction_controls_v1.py",
+    "bytes": 11168,
+    "sha256": "f2f5a5206bd854fb165ea281519b09f341833df14b66df280bebe02d42a9134d"
+  }
+}
