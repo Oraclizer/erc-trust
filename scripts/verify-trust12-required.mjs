@@ -30,6 +30,9 @@ export const requiredTrust12Paths = [
   'scripts/test-trust12-required.mjs',
   'scripts/test-full-source-admission.py',
   'scripts/test-model-source-reception.py',
+  'scripts/test-received-transaction-controls.py',
+  'scripts/trust12/verify_received_transaction_controls_v1.py',
+  'evidence/trust12/runtime-link/received-transaction-controls-checkpoint-v1.json',
   'scripts/trust12/verify_model_source_reception_v1.py',
   'evidence/trust12/runtime-link/model-source-reception-checkpoint-v1.json',
   'scripts/trust12/verify_full_source_admission_v1.py',
@@ -165,6 +168,10 @@ export function verifyTrust12Required(root = repository) {
     ['-B', resolve(root, 'scripts/trust12/verify_model_source_reception_v1.py'), '--product-root', root, '--metadata-only'],
     { cwd: root, encoding: 'utf8' });
   check(!modelCheckpointCheck.error && modelCheckpointCheck.status === 0, 'model-source public metadata check failed');
+  const transactionControlsCheck = spawnSync(process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3'),
+    ['-B', resolve(root, 'scripts/trust12/verify_received_transaction_controls_v1.py'), '--product-root', root, '--metadata-only'],
+    { cwd: root, encoding: 'utf8' });
+  check(!transactionControlsCheck.error && transactionControlsCheck.status === 0, 'transaction-controls public metadata check failed');
   return { status: policy.fullRefinementComplete ? 'PASS_TRUST12_COMPLETION' : 'PASS_CONSISTENT_DEVELOPMENT',
     centralClosure: ledger.centralClosure.status, currentMandatory: mandatory,
     generalRuntimeLinkMandatory: policy.generalRuntimeLinkMandatory,
