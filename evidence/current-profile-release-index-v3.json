@@ -425,7 +425,7 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "be995cbdf884860cc887d4447179daa102a49897315e1c513988c15ffca8b22b"
+        "sha256": "3543e0184e33764f73461c535261bb6607bf1fed345ef49e6d83dfe795600c0f"
       }
     },
     "runtime": {
@@ -581,6 +581,10 @@
           "sha256": "eabc940d87c0a8cc9e03c592c5fa2f96ba7595284b174e30624d570d610337bd"
         },
         {
+          "path": "evidence/trust12/runtime-link/primitive-source-controls-checkpoint-v1.json",
+          "sha256": "fb9e988a785733f3427159c29798bba1faf6faa34addb9354486adf89eee5c2b"
+        },
+        {
           "path": "evidence/trust12/runtime-link/received-transaction-controls-checkpoint-v1.json",
           "sha256": "b166e89c66fbcdff751274d9713edfb44cb6418ca3b48f1912093e81696a9fc4"
         },
@@ -594,7 +598,7 @@
         },
         {
           "path": "evidence/trust12/input-seal.json",
-          "sha256": "3baf6a3b599058d1f3e86d51f5e6d077c49c50106bf9d82493d17f4c022863d9"
+          "sha256": "4dd4c78e392c3ab7f8190fa65d15a0415b11c50100d0b61288cefcb827df5169"
         }
       ],
       "fullRefinementComplete": false,
@@ -826,6 +830,10 @@
         "sha256": "eabc940d87c0a8cc9e03c592c5fa2f96ba7595284b174e30624d570d610337bd"
       },
       {
+        "path": "evidence/trust12/runtime-link/primitive-source-controls-checkpoint-v1.json",
+        "sha256": "fb9e988a785733f3427159c29798bba1faf6faa34addb9354486adf89eee5c2b"
+      },
+      {
         "path": "evidence/trust12/runtime-link/received-transaction-controls-checkpoint-v1.json",
         "sha256": "b166e89c66fbcdff751274d9713edfb44cb6418ca3b48f1912093e81696a9fc4"
       },
@@ -839,7 +847,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "3baf6a3b599058d1f3e86d51f5e6d077c49c50106bf9d82493d17f4c022863d9"
+        "sha256": "4dd4c78e392c3ab7f8190fa65d15a0415b11c50100d0b61288cefcb827df5169"
       }
     ],
     "fullRefinementComplete": false,
