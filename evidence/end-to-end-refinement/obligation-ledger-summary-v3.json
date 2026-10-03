@@ -9,7 +9,7 @@
   "closure": "CONDITIONAL",
   "closureRecord": {
     "path": "evidence/end-to-end-refinement/central-closure-v3.json",
-    "sha256": "a135b564f10139c77fed788b8da75777464cbdf8948f65b0ff4ab8b8b58431ac"
+    "sha256": "f73d6013f8a7925eb0d374ff32d14f07d13cfd7c9cfbf7c505da0a07ff6e2b32"
   },
   "counts": {
     "closed": 70,
@@ -699,6 +699,10 @@
         "sha256": "eabc940d87c0a8cc9e03c592c5fa2f96ba7595284b174e30624d570d610337bd"
       },
       {
+        "path": "evidence/trust12/runtime-link/original-binding-meaning-checkpoint-v1.json",
+        "sha256": "5c153e2fa9d455862c1667df4b6e020f43a96dcd8dea95a52558f4c741a604ac"
+      },
+      {
         "path": "evidence/trust12/runtime-link/primitive-source-controls-checkpoint-v1.json",
         "sha256": "fb9e988a785733f3427159c29798bba1faf6faa34addb9354486adf89eee5c2b"
       },
@@ -716,7 +720,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "1eb854ede61f9326f3ddcc022c87715ce6b6451a9833aa3072f5f4a08c6a64bc"
+        "sha256": "a59f08009a9d0b627ebb10e72d8d853febffc6d5be996017f011639d31df5ecd"
       }
     ],
     "fullRefinementComplete": false,
