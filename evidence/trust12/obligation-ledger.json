@@ -249,7 +249,7 @@
         },
         "review": {
           "path": "evidence/trust12/veri-integration-audit.md",
-          "sha256": "31c08c7c7ba3ae68fc1aed8611a9d82d6ad2b2e4b311cf96f612dd6e98a505c9"
+          "sha256": "aa15490b7af8ab184e23505587ac4a85c3a8d6859df56ceef9f7c29dab799f25"
         }
       },
       "probeDisposition": "Completed general positive and both complementary same-domain removal controls received. No shipping exception.",
@@ -1922,7 +1922,10 @@
         "evidence/trust12/runtime-link/native-full-source-admission-checkpoint-v1.json",
         "evidence/trust12/runtime-link/native-received-valuation-checkpoint-v1.json",
         "evidence/trust12/runtime-link/primitive-source-controls-checkpoint-v1.json",
-        "evidence/trust12/runtime-link/received-transaction-controls-checkpoint-v1.json"
+        "evidence/trust12/runtime-link/received-transaction-controls-checkpoint-v1.json",
+        "evidence/trust12/runtime-link/original-binding-meaning-checkpoint-v1.json",
+        "evidence/trust12/runtime-link/assess-call-reception-checkpoint-v1.json",
+        "evidence/trust12/runtime-link/dependency-call-provenance-checkpoint-v1.json"
       ],
       "requiredForRelease": true,
       "requiredForTrust12Completion": true,
@@ -1977,6 +1980,21 @@
           {
             "path": "evidence/trust12/runtime-link/received-transaction-controls-checkpoint-v1.json",
             "sha256": "b166e89c66fbcdff751274d9713edfb44cb6418ca3b48f1912093e81696a9fc4",
+            "countsTowardGeneralClosure": false
+          },
+          {
+            "path": "evidence/trust12/runtime-link/original-binding-meaning-checkpoint-v1.json",
+            "sha256": "5c153e2fa9d455862c1667df4b6e020f43a96dcd8dea95a52558f4c741a604ac",
+            "countsTowardGeneralClosure": false
+          },
+          {
+            "path": "evidence/trust12/runtime-link/assess-call-reception-checkpoint-v1.json",
+            "sha256": "61b5bb0342b9bf7ecf351d25f3cbc3e7e6303357a053b6959f155b942b2ed50f",
+            "countsTowardGeneralClosure": false
+          },
+          {
+            "path": "evidence/trust12/runtime-link/dependency-call-provenance-checkpoint-v1.json",
+            "sha256": "99aa314878c367c4d0602f07b233f046454d69d1ad9c66b301ca07a2e3d2656a",
             "countsTowardGeneralClosure": false
           }
         ],

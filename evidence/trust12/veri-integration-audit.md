@@ -142,3 +142,32 @@ This qualifies the existing whole-domain removal requirement of the Native symbo
 obligation. It is not a proof of the complete mutant transaction, of compiler
 correctness or of the general runtime links, and it is a Building review rather
 than fresh final Assurance.
+
+
+## Dependency-call provenance (2026-10-04)
+
+Six further saved stages, with 834 explicitly named roots, receive the fields of the
+two dependency calls of the first Native FREEZE. The assess target is read from its
+raw frame identity and the selector is derived from the received input. The thirteen
+original path conditions receive a partial-set meaning in which the Int comparison
+and Bool negation symbols are interpreted only under the exact received hook
+declarations; the actual valuation denotes the whole top-cell carrier, a zero block
+number and a negative mix hash denote the empty set, and each is admitted once only
+its lower bound is removed. The configuration call data is received from its raw
+text. A bounded booster replay of the 5146 recorded steps before the configuration
+summary rule, from the recorded source node of that edge, logs exactly the recorded
+rule prefix and reaches the configuration call frame; its target, static flag,
+caller and call data texts are byte-identical to the received raw texts. The 6625-byte
+assess input calldata text is lexed, parsed through end of input and typed as Bytes.
+Both calls are then produced with every field taken from received raw texts, equal
+the recorded calls for any template record and feed the existing trace checker.
+Changing one raw byte, digit or flag, the last input byte or only the selector field
+gives calls the original checker rejects and a checker without that comparison accepts.
+
+dependency-call-provenance-checkpoint-v1.json binds the stages; its full mode
+rehashes 96 retained artifacts and 3163 current inputs, including the replay
+receipts. The summary rule application and the remaining edge steps are not replayed,
+the thirteen-condition meaning is a hook-gated model rather than the engine
+interpretation, and the shape and order of the operational call list are not derived.
+This is a Building review, not fresh final Assurance; the three general runtime
+links remain mandatory.

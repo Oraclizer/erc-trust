@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- Record dependency-call provenance for the first Native FREEZE. Receive the
+  assess target and selector, the configuration call data and, from an exact
+  replay of the recorded caller-side prefix, the configuration target and
+  static flag. Lex, parse and type the original assess input text, and produce
+  both calls with every field taken from received raw texts. Give the thirteen
+  original path conditions a hook-gated partial-set meaning with zero-block,
+  negative mix hash and bound-removal controls. Engine equivalence, the general
+  runtime links and final Assurance remain open.
+
 - Close the Native symbolic FREEZE obligation. Bind same-domain
   direction-guard removal controls on both supply branches of the declared
   two-target domain, the exact rejoin of each original branch and a compiled
