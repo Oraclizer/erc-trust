@@ -30,6 +30,9 @@ export const requiredTrust12Paths = [
   'scripts/test-trust12-required.mjs',
   'scripts/test-full-source-admission.py',
   'scripts/test-model-source-reception.py',
+  'scripts/test-original-binding-meaning.py',
+  'scripts/trust12/verify_original_binding_meaning_v1.py',
+  'evidence/trust12/runtime-link/original-binding-meaning-checkpoint-v1.json',
   'scripts/test-primitive-source-controls.py',
   'scripts/trust12/verify_primitive_source_controls_v1.py',
   'evidence/trust12/runtime-link/primitive-source-controls-checkpoint-v1.json',
@@ -171,6 +174,10 @@ export function verifyTrust12Required(root = repository) {
     ['-B', resolve(root, 'scripts/trust12/verify_model_source_reception_v1.py'), '--product-root', root, '--metadata-only'],
     { cwd: root, encoding: 'utf8' });
   check(!modelCheckpointCheck.error && modelCheckpointCheck.status === 0, 'model-source public metadata check failed');
+  const bindingMeaningCheck = spawnSync(process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3'),
+    ['-B', resolve(root, 'scripts/trust12/verify_original_binding_meaning_v1.py'), '--product-root', root, '--metadata-only'],
+    { cwd: root, encoding: 'utf8' });
+  check(!bindingMeaningCheck.error && bindingMeaningCheck.status === 0, 'original-binding-meaning public metadata check failed');
   const primitiveControlsCheck = spawnSync(process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3'),
     ['-B', resolve(root, 'scripts/trust12/verify_primitive_source_controls_v1.py'), '--product-root', root, '--metadata-only'],
     { cwd: root, encoding: 'utf8' });
