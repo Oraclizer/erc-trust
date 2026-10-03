@@ -15,7 +15,8 @@ grades EXECUTION_TESTS. The profile implementation-evidence rows are closed with
 those scopes. The original general `runtime_link` goals remain unproved and are
 mandatory for TRUST 1.2 completion in each declared profile. Native symbolic FREEZE is closed: its assembled
 positive and same-domain guard-removal negatives on both supply branches are
-received. No shipping exception is currently approved.
+received, and the complete mutant transaction is not claimed. No shipping exception
+is currently approved.
 
 The local proof-run inventory, this TRUST 1.2 product obligation ledger, and the
 end-to-end product obligation ledger count different obligations. A completed
@@ -188,9 +189,9 @@ actual proof export before recording the model theorem and control groups.
 `linked-controls-audit.md` records the separate linked-run and control review.
 `model-source-normalization.json` reconstructs the reviewed bytes across the
 small line-ending edits. The required gate binds the exact model result and
-rejects model, review, input and release-promotion drift. Its current controls
-contain 49 rejected negative fixtures. The symbolic FREEZE and three runtime
-producer obligations remain open; the legacy Partial profile remains full=false.
+rejects model, review, input and release-promotion drift; each of its negative
+fixtures must be rejected. The three runtime producer obligations remain open;
+the legacy Partial profile remains full=false.
 
 `runtime-producer-feasibility.json` records the completed 21-minute local
 source/interface window. It parsed the saved KCFG without changing its 22 files,
@@ -218,7 +219,7 @@ python3 scripts/run-veri-observation-controls.py --veri-root /path/to/oraclizer-
 Each output directory must be new. Prepare the existing T-REX artifacts first.
 The [symbolic development record](veri-symbolic-results.json) distinguishes completed
 CSE dependency summaries, the checked instance and partial consumer execution from
-the unfinished full-domain Native target. Do not repeat the old whole-run timeout.
+the later assembled full-domain Native derivation. Do not repeat the old whole-run timeout.
 The optional Veri summary utilities use the Kontrol-provided Python environment.
 
 The [storage diagnostic record](veri-symbolic-storage-diagnostics.json) preserves

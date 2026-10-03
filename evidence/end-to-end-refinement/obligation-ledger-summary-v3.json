@@ -9,7 +9,7 @@
   "closure": "CONDITIONAL",
   "closureRecord": {
     "path": "evidence/end-to-end-refinement/central-closure-v3.json",
-    "sha256": "548d2f2faf43b5829940d9e7018d21967c372d287096167a60955a033b2b7607"
+    "sha256": "45cd8a8f514f529f7fc110121e9d5a445dcb83ca0b5326082225a0579bbf77bb"
   },
   "counts": {
     "closed": 70,
@@ -587,7 +587,7 @@
       },
       {
         "path": "evidence/trust12/release-notes.md",
-        "sha256": "d8e6d4a9610908380297993907974e8dfe3b72d183a21b23f4446de4ace72d13"
+        "sha256": "f4de6747568d5517a55666267813fcb9403d90e1b61c3dd7dfe7233ffd003c25"
       },
       {
         "path": "evidence/claim-matrix.md",
@@ -599,7 +599,7 @@
       },
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "dde9d561e90189e91cd43ae4e24cb5f7069a475c3aca39e314478051b175cf9b"
+        "sha256": "8ad9cbd3d29c5058804b21d1ed2e3b571cf805039249eeda0e259b8610d3adb8"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -707,7 +707,7 @@
       },
       {
         "path": "evidence/trust12/runtime-link/native-supply-direction-negative-checkpoint-v1.json",
-        "sha256": "feaee9086425a6b88e5a54ea82f2cc4bc6baa48cdadf806a2eb9aaee3bb95efc"
+        "sha256": "cc11da812fb101da946ec8e3bf3cb6b2c1dd6ecab44d5a95fc322d54cfdfeea4"
       },
       {
         "path": "evidence/trust12/runtime-link/primitive-source-controls-checkpoint-v1.json",
@@ -727,7 +727,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "87ac686aebbe80f572905af68f4547c94481adad6364172ea0f787d29fc3a7f2"
+        "sha256": "7c825ccfb072021822de886881dfc46f7561bf45be9780f929534ec52f06c74d"
       }
     ],
     "fullRefinementComplete": false,

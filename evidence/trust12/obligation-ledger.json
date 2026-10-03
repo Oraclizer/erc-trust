@@ -146,8 +146,8 @@
       "normativeReceiver": "Wave 4 symbolic input expansion",
       "finalSourceConsumer": "implementation/kontrol/trust12/TrustTokenSymbolicKontrolTest.t.sol and its deferred continuation in TrustTokenDeferredSymbolicKontrolTest.t.sol",
       "positiveActivation": "Completed source-bound assembled general positive under declared A-KECCAK/A-LAYOUT, including both complementary supply branches.",
-      "consumerRemovalNegative": "The source-bound same-domain guard-removal controls cover both complementary symbolic supply branches with unchanged constraints and frame outside PC/K and exact original rejoins; the matching historical source mutation is killed and a compiled guard-only mutant is killed by the original rejection consumer above supply.",
-      "compiledConsumer": "Current Native runtime and unchanged deferred-symbolic test source are bound to the preserved complete positive and branch control.",
+      "consumerRemovalNegative": "The source-bound same-domain guard-removal controls cover both complementary symbolic supply branches with unchanged constraints and frame outside PC/K and exact original rejoins; the matching historical source mutation is killed and a compiled guard-only mutant fails the replayed rejection assertions at one input above supply.",
+      "compiledConsumer": "Current Native runtime and unchanged deferred-symbolic test source are bound to the preserved complete positive and both branch controls.",
       "assumptionsNonclaims": "Historical incomplete solver attempts are retained. The current assembled positive covers the declared two-target input domain under A-KECCAK/A-LAYOUT. The same-domain guard-removal negatives cover both complementary supply branches at the direction guard; they are not a proof of the complete mutant transaction. No runtime_link, alpha_transaction, arbitrary world, Partial, Hook or final Assurance is discharged.",
       "status": "CLOSED",
       "supplementalEvidence": [
@@ -184,7 +184,7 @@
         "evidence": [
           {
             "path": "evidence/trust12/veri-symbolic-results.json",
-            "sha256": "d3aedffeb29fb8039674046292693bd3c122664af65b6ed6cfd4df4cccab2987"
+            "sha256": "4cfbf9114e4b83f5226d4e9b46fdbb814b36a9a1c88498bab9056c2262c798bb"
           }
         ],
         "artifactBindings": [
@@ -199,7 +199,7 @@
         ],
         "negative": {
           "kind": "KILLED_CONSUMER_REMOVAL",
-          "scope": "Same fourteen-condition symbolic branches first <= SUPPLY and SUPPLY < first, unchanged PC/K-neutral frame, exact original rejoins, matching killed compiled source mutation and a compiled guard-only mutant killed above supply; no whole mutant suffix.",
+          "scope": "Same fourteen-condition symbolic branches first <= SUPPLY and SUPPLY < first, unchanged PC/K-neutral frame, exact original rejoins, matching killed compiled source mutation and a compiled guard-only mutant that fails the replayed rejection assertions above supply; no whole mutant suffix.",
           "inputScope": "first > 0 and second > 0 and second <= first",
           "notAssumed": "first <= total supply",
           "coversDeclaredScope": true,
@@ -208,11 +208,11 @@
           "evidence": [
             {
               "path": "evidence/trust12/veri-symbolic-results.json",
-              "sha256": "d3aedffeb29fb8039674046292693bd3c122664af65b6ed6cfd4df4cccab2987"
+              "sha256": "4cfbf9114e4b83f5226d4e9b46fdbb814b36a9a1c88498bab9056c2262c798bb"
             },
             {
               "path": "evidence/trust12/runtime-link/native-supply-direction-negative-checkpoint-v1.json",
-              "sha256": "feaee9086425a6b88e5a54ea82f2cc4bc6baa48cdadf806a2eb9aaee3bb95efc"
+              "sha256": "cc11da812fb101da946ec8e3bf3cb6b2c1dd6ecab44d5a95fc322d54cfdfeea4"
             }
           ],
           "testedBranchPredicates": [
@@ -244,12 +244,12 @@
           "coversDeclaredScope": true,
           "receipt": {
             "path": "evidence/trust12/veri-symbolic-results.json",
-            "sha256": "d3aedffeb29fb8039674046292693bd3c122664af65b6ed6cfd4df4cccab2987"
+            "sha256": "4cfbf9114e4b83f5226d4e9b46fdbb814b36a9a1c88498bab9056c2262c798bb"
           }
         },
         "review": {
           "path": "evidence/trust12/veri-integration-audit.md",
-          "sha256": "61b5e13a826ef5f0c0dcb1a3d72df1f284b97720b7a486a2e0b28f1c1b87c94d"
+          "sha256": "31c08c7c7ba3ae68fc1aed8611a9d82d6ad2b2e4b311cf96f612dd6e98a505c9"
         }
       },
       "probeDisposition": "Completed general positive and both complementary same-domain removal controls received. No shipping exception.",

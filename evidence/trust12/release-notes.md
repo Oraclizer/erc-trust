@@ -31,9 +31,9 @@ targets above supply. The assembled positive is complete under the declared
 A-KECCAK/A-LAYOUT assumptions. At the direction guard, changing only the resolved
 guard condition leaves the rejection path on both complementary supply branches with
 the same constraints and frame, and the original branches rejoin established exact
-states. A compiled copy that removes only this guard is killed by the original
-rejection consumer at a first target above supply. The complete mutant transaction
-is not claimed. The earlier bounded alternative probe, which timed out twice, is
+states. A compiled copy that removes only this guard fails the deferred symbolic
+test's rejection assertions when they are replayed concretely at one input above
+supply. The complete mutant transaction is not claimed. The earlier bounded alternative probe, which timed out twice, is
 retained as history. A shipping exception requires a separate Jay decision and leaves
 the proof explicitly unproven, with a receiving process, responsible artifact,
 closure evidence and resume condition. Existing parser and symbolic receiver work

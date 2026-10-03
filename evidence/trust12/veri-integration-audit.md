@@ -1,7 +1,7 @@
 # Veri integration review
 
 Status: PASS for the named bounded observations and the checked summary instance.
-The assembled general symbolic FREEZE positive is complete under the declared TCB. Whole-domain removal coverage and EVM-to-Isabelle correspondence remain incomplete.
+The assembled general symbolic FREEZE positive is complete under the declared TCB, and same-domain removal controls cover both supply branches. EVM-to-Isabelle correspondence remains incomplete.
 
 Separate source and raw-evidence reviews found two false-acceptance gaps in the first
 Native detector: balance loss during FREEZE and a changed receipt source field could
@@ -39,7 +39,7 @@ counterexample. The unchanged original graph and diagnostic copies are retained 
 Curated entrypoints: [observations](veri-observation-results.json),
 [symbolic development](veri-symbolic-results.json), and [library pin](veri-dependency.json).
 The original abstract model, source-bound legacy evidence and existing runtime blockers
-retain their separate validity. The four current mandatory obligations remain open.
+retain their separate validity. The three current mandatory general runtime-link obligations remain open.
 
 ## Native storage and operational CSE review (2026-09-09)
 
@@ -118,15 +118,23 @@ the prefix of the established 256-rewrite segment. Changing only the resolved
 guard condition from one to zero keeps every other cell, the constraints and the
 continuation. The original and removed controls diverge to PC11739 and PC11515
 with the same frame outside PC/K, and the original branch rejoins the established
-segment's exact final state after nine further rewrites. The two branch sources
-share thirteen conditions and differ only in ?WORD <= 10^24 versus 10^24 < ?WORD,
-so together they cover the declared positive two-target domain at this guard.
+segment's exact final state after nine further rewrites. The path conditions of
+the two branch sources share thirteen constraints, namely the declared input domain
+and the Kontrol environment ranges for block number, timestamp and mix hash, and
+differ only in ?WORD <= 10^24 versus 10^24 < ?WORD, so together they cover the
+declared positive two-target domain at this guard. Outside the path condition the
+two branch states differ only inside the saved caller frame, where the test's
+expected floor min(first, SUPPLY) is stored as the concrete supply value above
+supply and as ?WORD otherwise. Every exact step registers the same module as the
+established positive chain: thirteen proven storage definedness simplification
+rules and no rewrite rule.
 
-A compiled copy that removes only this guard was run against the original
-rejection consumer at first = SUPPLY + 2 and second = SUPPLY + 1. The original
-source passes; the mutant accepts the action, writes lifecycle APPLIED and a
-nonzero receipt, keeps the same saturated visible floor and fails the original
-consumer with "rejection wrote action". Both the symbolic chain and the compiled
+A compiled copy that removes only this guard was run with an isolated probe that
+replays the rejection assertions of the deferred symbolic test at
+first = SUPPLY + 2 and second = SUPPLY + 1. The original source passes; the
+mutant accepts the action, writes lifecycle APPLIED and a nonzero receipt, keeps
+the same saturated visible floor and fails the replayed assertions with
+"rejection wrote action". Both the symbolic chain and the compiled
 pair are bound by native-supply-direction-negative-checkpoint-v1.json, whose full
 mode rehashes the retained artifacts.
 
