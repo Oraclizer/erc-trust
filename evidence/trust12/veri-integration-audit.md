@@ -1,7 +1,7 @@
 # Veri integration review
 
 Status: PASS for the named bounded observations and the checked summary instance.
-General symbolic FREEZE completion and EVM-to-Isabelle correspondence remain incomplete.
+The assembled general symbolic FREEZE positive is complete under the declared TCB. Whole-domain removal coverage and EVM-to-Isabelle correspondence remain incomplete.
 
 Separate source and raw-evidence reviews found two false-acceptance gaps in the first
 Native detector: balance loss during FREEZE and a changed receipt source field could
@@ -79,3 +79,31 @@ general-frame rule has no local CHECK premise, Ceil, admission, circularity or
 trust attribute. Its dynamic rewrite log reports an unknown rule identifier. The
 structural substitution was not returned by a checker and was not used as a cover.
 Accordingly this review does not claim actual node148 consumption.
+
+
+## Current general symbolic FREEZE reception (2026-10-03)
+
+The sealed assembled derivation covers both complementary supply branches for
+positive uint256 first and second targets with second <= first. The test assumes
+no first <= supply bound. Its state scope is the fixed constructor/dependency
+mode and the seven named observations listed in veri-symbolic-results.json.
+This is the assembled chain of original APR prefixes, checked summary
+instantiations, native continuations and target subsumption under the existing
+A-KECCAK/A-LAYOUT assumptions. It does not mark the original APR as a whole PASS.
+The 512 selected results and five manifest commitments were rehashed on the
+current saved files; the unchanged Native test source and runtime identity are
+retained. The public receipt is a sanitized projection, not a byte-exact copy
+of a private result or a replacement for its replay inputs.
+
+The exact removal comparison retains the fourteen conditions of the symbolic
+first <= SUPPLY branch. The original and removed controls have the same frame
+except PC/K and diverge to PC11739 and PC11515. The matching compiled source
+mutation is killed. This establishes consumer sensitivity in that branch; it
+does not prove the supply-exceeding negative or the entire mutant transaction.
+The ledger therefore retains its current completion requirement rather than
+relabelling this branch as whole-domain negative coverage.
+
+This review concerns saved source/result identity, declared scope and receipt
+reception. It is a Building review, not fresh final Assurance or independent
+full solver replay. General Native, Partial and Hook runtime correspondence
+remain required.

@@ -29,7 +29,7 @@ that every compiled dispatch and call implements those guards.
 ## Obligations owned by each profile
 
 Every row below remains open for Native, legacy Partial and the fresh Hook.
-The responsible artifact is the corresponding `RUNTIME-LINK-*` row of
+The responsible artifact is the corresponding `RESEARCH-RUNTIME-LINK-*` row of
 `evidence/trust12/obligation-ledger.json`, with the named model/source consumer.
 
 | Part | Existing consumer and evidence | Required checked result |
@@ -42,8 +42,10 @@ The responsible artifact is the corresponding `RUNTIME-LINK-*` row of
 | Revert | `abstract_failure_transition`; Foundry rollback observations | EVM failure and call-frame rollback entail persistent state stutter, while preserving the actual observed failure outcome. |
 | Receipt and logs | `receipt_matches_forward`, `receipt_matches_reversal`, `alpha_transaction`; stored/returned/emitted receipt tests | Actual event order, data, return bytes and receipt preimages decode to the same model result. Hash/selector equality alone is insufficient. |
 
-Native has preserved bounded compiled-code evidence and an incomplete expanded
-symbolic attempt. Partial retains its narrower profile and four historical
+Native has preserved bounded compiled-code evidence and a completed assembled
+general symbolic FREEZE positive under A-KECCAK/A-LAYOUT. Its saved direction
+control covers the first <= SUPPLY symbolic branch; whole-domain negative
+qualification and general runtime correspondence remain open. Partial retains its narrower profile and four historical
 Certora rules. Hook has its own nine actual T-REX integration tests, six feature
 mutations and compiler identity. None supplies the missing general producer for
 another profile.
@@ -95,3 +97,28 @@ replay evidence for each named profile. If the typed source witness or checked
 receiver is unavailable, preserve this blocker and prepare the specific new
 semantics/translation scope before changing the trust model. Model preservation,
 linked model runs and bounded implementation work can continue independently.
+
+
+## Current evidence reception (2026-10-03)
+
+The current ledger receives the committed source, AST/EVAL, model-alias,
+code-root, supplied malformed-relation and transaction/primitive consumer
+checkpoints through the primitive-source-controls checkpoint. These are progress
+within the seven obligations above; no registered count closes general coverage.
+The complete general FREEZE positive and its exact branch sensitivity are
+received in veri-symbolic-results.json with their distinct scopes.
+
+The supplied malformed relations prove alpha_transaction_spec with a Malformed
+outcome. The earlier bound admission gate requires alpha_transaction_bound and a
+TRUST_Returned phase, while the recorded Native malformed execution is
+TRUST_Reverted. This exact relation/phase mismatch must be repaired and consumed;
+no ledger target is silently changed to make it pass. The OOS requirement of
+whole persistent world equality, no logs or external calls, and no commitment
+remains in force.
+
+The actual source meaning and producer experiment belongs to the common Native
+operational reception prerequisite. The assess output EOF/status work is one
+dependency-call consumer and is not a prerequisite for starting that experiment.
+A source-bound WORD literal singleton is its first small instance; full
+fifty-six-binding meaning, whole execution and the profile-wide producer remain
+separate obligations.

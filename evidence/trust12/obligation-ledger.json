@@ -145,10 +145,10 @@
       "abstractCondition": "For every positive first and second target with second <= first, including first above supply, the second FREEZE stutters the named Native projection.",
       "normativeReceiver": "Wave 4 symbolic input expansion",
       "finalSourceConsumer": "implementation/kontrol/trust12/TrustTokenSymbolicKontrolTest.t.sol and its deferred continuation in TrustTokenDeferredSymbolicKontrolTest.t.sol",
-      "positiveActivation": "The alternative probe exactly consumed the checked case20 frame summary and advanced the standard EVM.pc.inc step from PC 7618 to 7619. The next standard opcode 0x56 decode timed out twice across whole-state and typed-frame decompositions.",
-      "consumerRemovalNegative": "Not run because the same-domain positive proof remains incomplete.",
-      "compiledConsumer": "symbolic-kontrol.json and symbolic-booster.json preserve historical incomplete runs. native-storage-progress.json binds the unchanged original proof, checked finite-map helpers, actual EVM.sload/push/pc.inc edges and the pending Native continuation.",
-      "assumptionsNonclaims": "Existing K/KEVM and Keccak idealizations remain explicit. The first SLOAD is a bounded Booster execution. The prior direct kore-rpc attempt returned no checker-produced actual-node148 substitution or graph edge. The alternative probe later instantiated the checked frame summary exactly and advanced EVM.pc.inc to PC 7619, but the standard JUMP decode, Full Native proof and same-domain guard-removal proof remain incomplete.",
+      "positiveActivation": "Completed source-bound assembled general positive under declared A-KECCAK/A-LAYOUT, including both complementary supply branches.",
+      "consumerRemovalNegative": "The source-bound same-domain guard-removal control and killed source mutant cover the symbolic first <= SUPPLY branch; supply-exceeding negative coverage remains open.",
+      "compiledConsumer": "Current Native runtime and unchanged deferred-symbolic test source are bound to the preserved complete positive and branch control.",
+      "assumptionsNonclaims": "Historical incomplete solver attempts are retained. The current assembled positive covers the declared two-target input domain under A-KECCAK/A-LAYOUT. The negative is one symbolic branch, not the complete mutant transaction or whole-domain negative. No runtime_link, alpha_transaction, arbitrary world, Partial, Hook or final Assurance is discharged.",
       "status": "CURRENT-MANDATORY",
       "supplementalEvidence": [
         "evidence/trust12/veri-observation-results.json",
@@ -161,9 +161,9 @@
       "notAssumed": "first <= total supply",
       "symbolicEvidence": {
         "property": "For every positive first and second target with second <= first, including first above supply, the second FREEZE stutters the named Native projection.",
-        "evidenceGrade": "UNVERIFIED",
+        "evidenceGrade": "FULL_SCOPE_PROOF",
         "inputScope": "first > 0 and second > 0 and second <= first",
-        "stateScope": "Original source node148 with 13 constraints; checked summary instantiation reached PC 7619, where standard opcode 0x56 decode remained incomplete.",
+        "stateScope": "Fixed constructor and APPLICABLE dependency mode; the seven named Native observations in the deferred symbolic test.",
         "toolPins": {
           "isabelle": "Isabelle2025-2",
           "kevmCommit": "d4bf484a5dfe1e38d729a30434cd6f41e3590fb2",
@@ -177,29 +177,40 @@
           "certora": "8.19.1"
         },
         "assumptions": [
-          "The unchanged pinned K/KEVM semantics and existing Keccak idealization remain the basis.",
-          "The reused general-frame summary and program-counter step are limited to their exact recorded state and do not complete the general proof."
+          "Existing pinned K/KEVM semantics; declared A-KECCAK/A-LAYOUT.",
+          "Fixed constructor and APPLICABLE dependency mode; the named projection only."
         ],
         "evidence": [
           {
-            "path": "evidence/trust12/native-alternative-probe.json",
-            "sha256": "d4a59954d075ec9b8000672f27df14edb32f2ee816bddb1c89bb1e74ccb315be"
+            "path": "evidence/trust12/veri-symbolic-results.json",
+            "sha256": "6c8e95d66eb108e088e270c3dfeb18ceae4cff474639918501041a5444035699"
           }
         ],
         "artifactBindings": [
           {
-            "path": "evidence/trust12/native-storage-progress.json",
-            "sha256": "f477b1b50af4a377e19eb68bb51e6277d650144403a84cd3c4d78e8503eaa4de"
+            "path": "evidence/trust12/runtime-identity.json",
+            "sha256": "7b2251faffe33990edf9326b7a6883d75e9402c36f5a25e4e28cb29075f0a348"
           },
           {
-            "path": "evidence/trust12/native-alternative-probe.json",
-            "sha256": "d4a59954d075ec9b8000672f27df14edb32f2ee816bddb1c89bb1e74ccb315be"
+            "path": "implementation/kontrol/trust12/TrustTokenDeferredSymbolicKontrolTest.t.sol",
+            "sha256": "b5504889dc679943b7ffeb3994c9b4c3c97239a8f3b804f835012056811be946"
           }
         ],
         "negative": {
-          "kind": "UNVERIFIED",
-          "scope": "The same-domain guard-removal negative was not run because the positive proof did not complete.",
-          "evidence": []
+          "kind": "KILLED_CONSUMER_REMOVAL",
+          "scope": "Same fourteen-condition symbolic branch first <= SUPPLY, unchanged PC/K-neutral frame and matching killed compiled source mutation; no whole mutant suffix.",
+          "inputScope": "first > 0 and second > 0 and second <= first",
+          "notAssumed": "first <= total supply",
+          "coversDeclaredScope": false,
+          "testedBranchPredicate": "first <= SUPPLY",
+          "fullInputDomainNegative": false,
+          "wholeMutantTransactionProved": false,
+          "evidence": [
+            {
+              "path": "evidence/trust12/veri-symbolic-results.json",
+              "sha256": "6c8e95d66eb108e088e270c3dfeb18ceae4cff474639918501041a5444035699"
+            }
+          ]
         },
         "reuseCandidates": [
           {
@@ -210,9 +221,33 @@
             "path": "evidence/trust12/native-storage-progress.json",
             "sha256": "f477b1b50af4a377e19eb68bb51e6277d650144403a84cd3c4d78e8503eaa4de"
           }
-        ]
+        ],
+        "notAssumed": "first <= total supply",
+        "result": {
+          "tool": "Kontrol/KEVM",
+          "kind": "PROOF",
+          "status": "PASS",
+          "unresolvedGoals": 0,
+          "admittedGoals": 0,
+          "vacuous": false,
+          "claimIds": [
+            "TrustTokenDeferredSymbolicKontrolTest.testKontrol_DeferredSymbolicNonincreasingFreeze()"
+          ],
+          "coversDeclaredScope": true,
+          "receipt": {
+            "path": "evidence/trust12/veri-symbolic-results.json",
+            "sha256": "6c8e95d66eb108e088e270c3dfeb18ceae4cff474639918501041a5444035699"
+          }
+        },
+        "review": {
+          "path": "evidence/trust12/veri-integration-audit.md",
+          "sha256": "d061e0fad11a0263d8abc20b1ce3e24f53e0bbc2c243d560664a0ab33975a283"
+        }
       },
-      "probeDisposition": "Stopped after the second STANDARD_SINGLE_STEP_TIMEOUT. General proof remains CURRENT-MANDATORY pending Jay's continue or row-specific shipping-exception decision."
+      "probeDisposition": "Completed general positive received. Current whole-domain negative completion requirement is retained; no shipping exception.",
+      "positiveProofCompleted": true,
+      "sameBranchConsumerSensitivityReceived": true,
+      "fullDomainNegativeReceived": false
     },
     {
       "id": "RUNTIME-LINK-NATIVE",
@@ -1870,7 +1905,16 @@
         "evidence/trust12/veri-observation-results.json",
         "evidence/trust12/veri-symbolic-results.json",
         "evidence/trust12/veri-integration-audit.md",
-        "evidence/trust12/native-storage-progress.json"
+        "evidence/trust12/native-storage-progress.json",
+        "evidence/trust12/runtime-link/malformed/ast-eval-checkpoint-v1.json",
+        "evidence/trust12/runtime-link/malformed/kevm-kore-checkpoint-v1.json",
+        "evidence/trust12/runtime-link/malformed/native-relation-checkpoint-v1.json",
+        "evidence/trust12/runtime-link/malformed/outofspec-v7-alias-core-equivalence-checkpoint-v1.json",
+        "evidence/trust12/runtime-link/model-source-reception-checkpoint-v1.json",
+        "evidence/trust12/runtime-link/native-full-source-admission-checkpoint-v1.json",
+        "evidence/trust12/runtime-link/native-received-valuation-checkpoint-v1.json",
+        "evidence/trust12/runtime-link/primitive-source-controls-checkpoint-v1.json",
+        "evidence/trust12/runtime-link/received-transaction-controls-checkpoint-v1.json"
       ],
       "requiredForRelease": true,
       "requiredForTrust12Completion": true,
@@ -1879,7 +1923,59 @@
       "receivingProcess": "TRUST 1.2 general runtime-to-model closure for the declared Native scope.",
       "responsibleArtifact": "This ledger row and the preserved Veri Formal/Kore assets with SHA-256 763cbe1d98ac7b904dd53fb2a8b6b7400e756aaa7624d556ed697b89b98a9488.",
       "closureEvidence": "Kernel-checked discharge of this profile's runtime_link with positive and negative consumers.",
-      "reopenCondition": "Any final source, ABI, runtime, profile or proof-input change reopens the affected connection."
+      "reopenCondition": "Any final source, ABI, runtime, profile or proof-input change reopens the affected connection.",
+      "currentEvidenceReception": {
+        "currentCheckpoints": [
+          {
+            "path": "evidence/trust12/runtime-link/malformed/ast-eval-checkpoint-v1.json",
+            "sha256": "3216413f7b479e15f8b72b1b6abe6310bbc4fe3778f32c98e683aeb1f1e9d84a",
+            "countsTowardGeneralClosure": false
+          },
+          {
+            "path": "evidence/trust12/runtime-link/malformed/kevm-kore-checkpoint-v1.json",
+            "sha256": "ed39a6dbc7f10fac348c022b3a1e5007f2194bdf46064b1adf1e81a80c75b657",
+            "countsTowardGeneralClosure": false
+          },
+          {
+            "path": "evidence/trust12/runtime-link/malformed/native-relation-checkpoint-v1.json",
+            "sha256": "4b2e808bf1adad2181cbb436f613e068bb34e5f3a3c916ede3b2d5c64c57d3e3",
+            "countsTowardGeneralClosure": false
+          },
+          {
+            "path": "evidence/trust12/runtime-link/malformed/outofspec-v7-alias-core-equivalence-checkpoint-v1.json",
+            "sha256": "90a968df9942346c3edf830eb71258fffe84d8348483cd83c3106bcb1fee8e21",
+            "countsTowardGeneralClosure": false
+          },
+          {
+            "path": "evidence/trust12/runtime-link/model-source-reception-checkpoint-v1.json",
+            "sha256": "be9452ff4aa7fa41443bc3c6adde268ac83a82d5ccd0417cc76380136f0545e3",
+            "countsTowardGeneralClosure": false
+          },
+          {
+            "path": "evidence/trust12/runtime-link/native-full-source-admission-checkpoint-v1.json",
+            "sha256": "24868eb3bbe884f3fd298658bc8c465517c3a1bf7ece7201b16a4cc2e31cc848",
+            "countsTowardGeneralClosure": false
+          },
+          {
+            "path": "evidence/trust12/runtime-link/native-received-valuation-checkpoint-v1.json",
+            "sha256": "8df34dc03dca4dc03669663de1a90c9b9f356b9b0427fd9cc0554865d52b9d89",
+            "countsTowardGeneralClosure": false
+          },
+          {
+            "path": "evidence/trust12/runtime-link/primitive-source-controls-checkpoint-v1.json",
+            "sha256": "fb9e988a785733f3427159c29798bba1faf6faa34addb9354486adf89eee5c2b",
+            "countsTowardGeneralClosure": false
+          },
+          {
+            "path": "evidence/trust12/runtime-link/received-transaction-controls-checkpoint-v1.json",
+            "sha256": "b166e89c66fbcdff751274d9713edfb44cb6418ca3b48f1912093e81696a9fc4",
+            "countsTowardGeneralClosure": false
+          }
+        ],
+        "generalRuntimeLinkDischarged": false,
+        "registeredCountsAreNotGeneralCoverage": true,
+        "malformedTargetMismatch": "The supplied OOS alpha_transaction_spec relation is not the original bound admission relation alpha_transaction_bound/TRUST_Returned target."
+      }
     },
     {
       "id": "RESEARCH-RUNTIME-LINK-PARTIAL",
@@ -1894,7 +1990,13 @@
       "supplementalEvidence": [
         "evidence/trust12/veri-observation-results.json",
         "evidence/trust12/veri-symbolic-results.json",
-        "evidence/trust12/veri-integration-audit.md"
+        "evidence/trust12/veri-integration-audit.md",
+        "evidence/trust12/runtime-link/malformed/outofspec-v7-alias-core-equivalence-checkpoint-v1.json",
+        "evidence/trust12/runtime-link/malformed/partial-relation-checkpoint-v1.json",
+        "evidence/trust12/runtime-link/model-source-reception-checkpoint-v1.json",
+        "evidence/trust12/runtime-link/partial/code-root-checkpoint-v1.json",
+        "evidence/trust12/runtime-link/malformed/kevm-kore-checkpoint-v1.json",
+        "evidence/trust12/runtime-link/malformed/ast-eval-checkpoint-v1.json"
       ],
       "requiredForRelease": true,
       "requiredForTrust12Completion": true,
@@ -1903,7 +2005,44 @@
       "receivingProcess": "TRUST 1.2 general runtime-to-model closure for the declared Partial scope.",
       "responsibleArtifact": "This ledger row and the preserved Veri Formal/Kore assets with SHA-256 763cbe1d98ac7b904dd53fb2a8b6b7400e756aaa7624d556ed697b89b98a9488.",
       "closureEvidence": "Kernel-checked discharge of this profile's runtime_link with positive and negative consumers.",
-      "reopenCondition": "Any final source, ABI, runtime, profile or proof-input change reopens the affected connection."
+      "reopenCondition": "Any final source, ABI, runtime, profile or proof-input change reopens the affected connection.",
+      "currentEvidenceReception": {
+        "currentCheckpoints": [
+          {
+            "path": "evidence/trust12/runtime-link/malformed/ast-eval-checkpoint-v1.json",
+            "sha256": "3216413f7b479e15f8b72b1b6abe6310bbc4fe3778f32c98e683aeb1f1e9d84a",
+            "countsTowardGeneralClosure": false
+          },
+          {
+            "path": "evidence/trust12/runtime-link/malformed/kevm-kore-checkpoint-v1.json",
+            "sha256": "ed39a6dbc7f10fac348c022b3a1e5007f2194bdf46064b1adf1e81a80c75b657",
+            "countsTowardGeneralClosure": false
+          },
+          {
+            "path": "evidence/trust12/runtime-link/malformed/outofspec-v7-alias-core-equivalence-checkpoint-v1.json",
+            "sha256": "90a968df9942346c3edf830eb71258fffe84d8348483cd83c3106bcb1fee8e21",
+            "countsTowardGeneralClosure": false
+          },
+          {
+            "path": "evidence/trust12/runtime-link/malformed/partial-relation-checkpoint-v1.json",
+            "sha256": "1bfb70398af95f8863aae5ad2589240d8f2d3a5fecf8c10f967b1a03e1b4bec6",
+            "countsTowardGeneralClosure": false
+          },
+          {
+            "path": "evidence/trust12/runtime-link/model-source-reception-checkpoint-v1.json",
+            "sha256": "be9452ff4aa7fa41443bc3c6adde268ac83a82d5ccd0417cc76380136f0545e3",
+            "countsTowardGeneralClosure": false
+          },
+          {
+            "path": "evidence/trust12/runtime-link/partial/code-root-checkpoint-v1.json",
+            "sha256": "3bc21d7392a1d8b5a86450d66fc24d97b2c67824244aefd5267eecaf501b1686",
+            "countsTowardGeneralClosure": false
+          }
+        ],
+        "generalRuntimeLinkDischarged": false,
+        "registeredCountsAreNotGeneralCoverage": true,
+        "malformedTargetMismatch": "The supplied OOS alpha_transaction_spec relation is not the original bound admission relation alpha_transaction_bound/TRUST_Returned target."
+      }
     },
     {
       "id": "RESEARCH-RUNTIME-LINK-HOOK",
@@ -1918,7 +2057,12 @@
       "supplementalEvidence": [
         "evidence/trust12/veri-observation-results.json",
         "evidence/trust12/veri-symbolic-results.json",
-        "evidence/trust12/veri-integration-audit.md"
+        "evidence/trust12/veri-integration-audit.md",
+        "evidence/trust12/runtime-link/malformed/hook-relation-checkpoint-v1.json",
+        "evidence/trust12/runtime-link/malformed/outofspec-v7-alias-core-equivalence-checkpoint-v1.json",
+        "evidence/trust12/runtime-link/model-source-reception-checkpoint-v1.json",
+        "evidence/trust12/runtime-link/malformed/kevm-kore-checkpoint-v1.json",
+        "evidence/trust12/runtime-link/malformed/ast-eval-checkpoint-v1.json"
       ],
       "requiredForRelease": true,
       "requiredForTrust12Completion": true,
@@ -1927,7 +2071,39 @@
       "receivingProcess": "TRUST 1.2 general runtime-to-model closure for the declared Hook scope.",
       "responsibleArtifact": "This ledger row and the preserved Veri Formal/Kore assets with SHA-256 763cbe1d98ac7b904dd53fb2a8b6b7400e756aaa7624d556ed697b89b98a9488.",
       "closureEvidence": "Kernel-checked discharge of this profile's runtime_link with positive and negative consumers.",
-      "reopenCondition": "Any final source, ABI, runtime, profile or proof-input change reopens the affected connection."
+      "reopenCondition": "Any final source, ABI, runtime, profile or proof-input change reopens the affected connection.",
+      "currentEvidenceReception": {
+        "currentCheckpoints": [
+          {
+            "path": "evidence/trust12/runtime-link/malformed/ast-eval-checkpoint-v1.json",
+            "sha256": "3216413f7b479e15f8b72b1b6abe6310bbc4fe3778f32c98e683aeb1f1e9d84a",
+            "countsTowardGeneralClosure": false
+          },
+          {
+            "path": "evidence/trust12/runtime-link/malformed/hook-relation-checkpoint-v1.json",
+            "sha256": "d8e25c8ede6a53abac2f9651781153f6c8934b12d0c5990e1727ba4ad124f0c5",
+            "countsTowardGeneralClosure": false
+          },
+          {
+            "path": "evidence/trust12/runtime-link/malformed/kevm-kore-checkpoint-v1.json",
+            "sha256": "ed39a6dbc7f10fac348c022b3a1e5007f2194bdf46064b1adf1e81a80c75b657",
+            "countsTowardGeneralClosure": false
+          },
+          {
+            "path": "evidence/trust12/runtime-link/malformed/outofspec-v7-alias-core-equivalence-checkpoint-v1.json",
+            "sha256": "90a968df9942346c3edf830eb71258fffe84d8348483cd83c3106bcb1fee8e21",
+            "countsTowardGeneralClosure": false
+          },
+          {
+            "path": "evidence/trust12/runtime-link/model-source-reception-checkpoint-v1.json",
+            "sha256": "be9452ff4aa7fa41443bc3c6adde268ac83a82d5ccd0417cc76380136f0545e3",
+            "countsTowardGeneralClosure": false
+          }
+        ],
+        "generalRuntimeLinkDischarged": false,
+        "registeredCountsAreNotGeneralCoverage": true,
+        "malformedTargetMismatch": "The supplied OOS alpha_transaction_spec relation is not the original bound admission relation alpha_transaction_bound/TRUST_Returned target."
+      }
     }
   ],
   "centralClosure": {
@@ -1935,7 +2111,7 @@
     "preservation": "PASS_ABSTRACT_MODEL: initial, ordinary, governance, failure and all nine regulatory state_wf preservation, linked-run induction and outcome-sensitive controls. Actual committed-source clean build and bounded independent source reviews are recorded in model-results.json and its references.",
     "reflection": "No general compiled-runtime reflection theorem.",
     "routeExhaustiveness": "PASS_SCOPED_INVENTORY: factory, direct deployment, adapter, governor, compliance and executed callback routes were reverse-enumerated. Permissionless resynchroniseFrozen and fresh-lifecycle-unreachable activateSeal are present but unexecuted. batchForcedTransfer, recovery and post-activation mint/burn callbacks remain outside the graded Hook scope.",
-    "stateReceiptIdentity": "All 21 profile components have scope-reviewed implementation evidence and compiled artifact bindings. General runtime-to-model correspondence and the Native general symbolic FREEZE proof remain open.",
+    "stateReceiptIdentity": "Scoped component evidence and current PR50-63 checkpoint consumers are received. The general FREEZE positive is complete; whole-domain removal qualification, the three general runtime links and central closure remain open.",
     "currentMandatory": [
       "NATIVE-SYMBOLIC-FREEZE",
       "RESEARCH-RUNTIME-LINK-HOOK",
@@ -1950,6 +2126,6 @@
   "releaseAssessment": {
     "status": "PENDING",
     "fullRefinementComplete": false,
-    "meaning": "Three scoped profile implementation-evidence rows are CLOSED at row grade EXECUTION_TESTS. Native general symbolic FREEZE and all three general runtime-to-model connections remain mandatory and unproved. No shipping exception or public release is authorized."
+    "meaning": "Three scoped profile implementation rows are CLOSED. The complete general symbolic FREEZE positive is received under declared TCB, while its existing whole-domain negative completion test remains open. All three general runtime links remain mandatory. No shipping exception, final Assurance or release is asserted."
   }
 }
