@@ -146,16 +146,17 @@
       "normativeReceiver": "Wave 4 symbolic input expansion",
       "finalSourceConsumer": "implementation/kontrol/trust12/TrustTokenSymbolicKontrolTest.t.sol and its deferred continuation in TrustTokenDeferredSymbolicKontrolTest.t.sol",
       "positiveActivation": "Completed source-bound assembled general positive under declared A-KECCAK/A-LAYOUT, including both complementary supply branches.",
-      "consumerRemovalNegative": "The source-bound same-domain guard-removal control and killed source mutant cover the symbolic first <= SUPPLY branch; supply-exceeding negative coverage remains open.",
+      "consumerRemovalNegative": "The source-bound same-domain guard-removal controls cover both complementary symbolic supply branches with unchanged constraints and frame outside PC/K and exact original rejoins; the matching historical source mutation is killed and a compiled guard-only mutant is killed by the original rejection consumer above supply.",
       "compiledConsumer": "Current Native runtime and unchanged deferred-symbolic test source are bound to the preserved complete positive and branch control.",
-      "assumptionsNonclaims": "Historical incomplete solver attempts are retained. The current assembled positive covers the declared two-target input domain under A-KECCAK/A-LAYOUT. The negative is one symbolic branch, not the complete mutant transaction or whole-domain negative. No runtime_link, alpha_transaction, arbitrary world, Partial, Hook or final Assurance is discharged.",
-      "status": "CURRENT-MANDATORY",
+      "assumptionsNonclaims": "Historical incomplete solver attempts are retained. The current assembled positive covers the declared two-target input domain under A-KECCAK/A-LAYOUT. The same-domain guard-removal negatives cover both complementary supply branches at the direction guard; they are not a proof of the complete mutant transaction. No runtime_link, alpha_transaction, arbitrary world, Partial, Hook or final Assurance is discharged.",
+      "status": "CLOSED",
       "supplementalEvidence": [
         "evidence/trust12/veri-observation-results.json",
         "evidence/trust12/veri-symbolic-results.json",
         "evidence/trust12/veri-integration-audit.md",
         "evidence/trust12/native-storage-progress.json",
-        "evidence/trust12/native-alternative-probe.json"
+        "evidence/trust12/native-alternative-probe.json",
+        "evidence/trust12/runtime-link/native-supply-direction-negative-checkpoint-v1.json"
       ],
       "inputDomain": "first > 0 and second > 0 and second <= first",
       "notAssumed": "first <= total supply",
@@ -183,7 +184,7 @@
         "evidence": [
           {
             "path": "evidence/trust12/veri-symbolic-results.json",
-            "sha256": "6c8e95d66eb108e088e270c3dfeb18ceae4cff474639918501041a5444035699"
+            "sha256": "d3aedffeb29fb8039674046292693bd3c122664af65b6ed6cfd4df4cccab2987"
           }
         ],
         "artifactBindings": [
@@ -198,18 +199,25 @@
         ],
         "negative": {
           "kind": "KILLED_CONSUMER_REMOVAL",
-          "scope": "Same fourteen-condition symbolic branch first <= SUPPLY, unchanged PC/K-neutral frame and matching killed compiled source mutation; no whole mutant suffix.",
+          "scope": "Same fourteen-condition symbolic branches first <= SUPPLY and SUPPLY < first, unchanged PC/K-neutral frame, exact original rejoins, matching killed compiled source mutation and a compiled guard-only mutant killed above supply; no whole mutant suffix.",
           "inputScope": "first > 0 and second > 0 and second <= first",
           "notAssumed": "first <= total supply",
-          "coversDeclaredScope": false,
-          "testedBranchPredicate": "first <= SUPPLY",
-          "fullInputDomainNegative": false,
+          "coversDeclaredScope": true,
+          "fullInputDomainNegative": true,
           "wholeMutantTransactionProved": false,
           "evidence": [
             {
               "path": "evidence/trust12/veri-symbolic-results.json",
-              "sha256": "6c8e95d66eb108e088e270c3dfeb18ceae4cff474639918501041a5444035699"
+              "sha256": "d3aedffeb29fb8039674046292693bd3c122664af65b6ed6cfd4df4cccab2987"
+            },
+            {
+              "path": "evidence/trust12/runtime-link/native-supply-direction-negative-checkpoint-v1.json",
+              "sha256": "feaee9086425a6b88e5a54ea82f2cc4bc6baa48cdadf806a2eb9aaee3bb95efc"
             }
+          ],
+          "testedBranchPredicates": [
+            "first <= SUPPLY",
+            "SUPPLY < first"
           ]
         },
         "reuseCandidates": [
@@ -236,18 +244,18 @@
           "coversDeclaredScope": true,
           "receipt": {
             "path": "evidence/trust12/veri-symbolic-results.json",
-            "sha256": "6c8e95d66eb108e088e270c3dfeb18ceae4cff474639918501041a5444035699"
+            "sha256": "d3aedffeb29fb8039674046292693bd3c122664af65b6ed6cfd4df4cccab2987"
           }
         },
         "review": {
           "path": "evidence/trust12/veri-integration-audit.md",
-          "sha256": "d061e0fad11a0263d8abc20b1ce3e24f53e0bbc2c243d560664a0ab33975a283"
+          "sha256": "61b5e13a826ef5f0c0dcb1a3d72df1f284b97720b7a486a2e0b28f1c1b87c94d"
         }
       },
-      "probeDisposition": "Completed general positive received. Current whole-domain negative completion requirement is retained; no shipping exception.",
+      "probeDisposition": "Completed general positive and both complementary same-domain removal controls received. No shipping exception.",
       "positiveProofCompleted": true,
       "sameBranchConsumerSensitivityReceived": true,
-      "fullDomainNegativeReceived": false
+      "fullDomainNegativeReceived": true
     },
     {
       "id": "RUNTIME-LINK-NATIVE",
@@ -2111,9 +2119,8 @@
     "preservation": "PASS_ABSTRACT_MODEL: initial, ordinary, governance, failure and all nine regulatory state_wf preservation, linked-run induction and outcome-sensitive controls. Actual committed-source clean build and bounded independent source reviews are recorded in model-results.json and its references.",
     "reflection": "No general compiled-runtime reflection theorem.",
     "routeExhaustiveness": "PASS_SCOPED_INVENTORY: factory, direct deployment, adapter, governor, compliance and executed callback routes were reverse-enumerated. Permissionless resynchroniseFrozen and fresh-lifecycle-unreachable activateSeal are present but unexecuted. batchForcedTransfer, recovery and post-activation mint/burn callbacks remain outside the graded Hook scope.",
-    "stateReceiptIdentity": "Scoped component evidence and current PR50-63 checkpoint consumers are received. The general FREEZE positive is complete; whole-domain removal qualification, the three general runtime links and central closure remain open.",
+    "stateReceiptIdentity": "Scoped component evidence and the current checkpoint consumers are received. The general FREEZE positive and its same-domain removal controls on both supply branches are complete; the three general runtime links and central closure remain open.",
     "currentMandatory": [
-      "NATIVE-SYMBOLIC-FREEZE",
       "RESEARCH-RUNTIME-LINK-HOOK",
       "RESEARCH-RUNTIME-LINK-NATIVE",
       "RESEARCH-RUNTIME-LINK-PARTIAL"
@@ -2126,6 +2133,6 @@
   "releaseAssessment": {
     "status": "PENDING",
     "fullRefinementComplete": false,
-    "meaning": "Three scoped profile implementation rows are CLOSED. The complete general symbolic FREEZE positive is received under declared TCB, while its existing whole-domain negative completion test remains open. All three general runtime links remain mandatory. No shipping exception, final Assurance or release is asserted."
+    "meaning": "Three scoped profile implementation rows and the general symbolic FREEZE obligation are CLOSED. All three general runtime links remain mandatory. No shipping exception, final Assurance or release is asserted."
   }
 }

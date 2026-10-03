@@ -55,10 +55,12 @@ because their receipt does not record the proof metadata required for proof-grad
 
 TRUST 1.2 profile row grades: Native EXECUTION_TESTS; Partial EXECUTION_TESTS; Hook EXECUTION_TESTS.
 
-Native symbolic FREEZE retains its original general input domain. The bounded
-alternative-decomposition probe advanced an exact checked-summary instance through
-the program-counter step, then stopped after the second standard single-step timeout.
-The general proof and same-domain guard-removal negative remain incomplete. Any
+Native symbolic FREEZE retains its original general input domain, including first
+targets above supply. Its assembled general positive is complete under the declared
+A-KECCAK/A-LAYOUT assumptions, and same-domain guard-removal negatives cover both
+complementary supply branches, so this obligation is closed. The complete mutant
+transaction is not claimed. The earlier bounded alternative-decomposition probe that
+stopped after two standard single-step timeouts is retained as history. Any
 shipping exception requires a separate row-specific Jay approval, retained unproven
 scope, carryover duties and matching disclosures. No public release is authorized here.
 

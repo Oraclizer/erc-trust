@@ -25,15 +25,15 @@
     },
     {
       "path": "evidence/claim-matrix.md",
-      "sha256": "286d541e291b0bf09043f554158cd27c653d3dc2db9e668668ec6cd87962ec88"
+      "sha256": "81fc908900bbe64d91c5e34128cb1e4ad58173f623867bea84a0010e554a041c"
     },
     {
       "path": "evidence/known-limitations.md",
-      "sha256": "7b0858b896cce614d93137b633524f0203bd77109fa03e2cbde94fcfab7a9ea6"
+      "sha256": "26c49738dd9b7bee57e40e0fb95bd026b4f57f1bacf41b73369009d12e8ce81e"
     },
     {
       "path": "evidence/trust12/README.md",
-      "sha256": "f7115a0721ff9d945e34abbbb68e0d1bcd0638bafc06b9d06461c8bbe0d93f37"
+      "sha256": "275eef7641498380cf7407ee2c436c0234a20ab9b19911da676ffd05ced090e5"
     },
     {
       "path": "evidence/trust12/aggregate-evidence-audit.md",
@@ -129,7 +129,7 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "0df2d8c58100ad9c7258fafd319b58572a3fad262b9ff09f96414fb2c2b772c7"
+      "sha256": "dde9d561e90189e91cd43ae4e24cb5f7069a475c3aca39e314478051b175cf9b"
     },
     {
       "path": "evidence/trust12/profile-implementation-evidence-review.json",
@@ -137,7 +137,7 @@
     },
     {
       "path": "evidence/trust12/release-notes.md",
-      "sha256": "3762d1a46c0cdea532d09e900028db372bc7dea0f46042c6c9bf1084e1e1fa50"
+      "sha256": "d8e6d4a9610908380297993907974e8dfe3b72d183a21b23f4446de4ace72d13"
     },
     {
       "path": "evidence/trust12/release-policy.json",
@@ -153,7 +153,11 @@
     },
     {
       "path": "evidence/trust12/runtime-link-source-blockers.md",
-      "sha256": "a0461370e2199b051a063655549ae2ef09ac060300bb2ede1ca33f2df0769a43"
+      "sha256": "03089325891aab236e4d8099e22d6779b83651a7224beed7f4b3659127a4aedb"
+    },
+    {
+      "path": "evidence/trust12/runtime-link/assess-call-reception-checkpoint-v1.json",
+      "sha256": "61b5bb0342b9bf7ecf351d25f3cbc3e7e6303357a053b6959f155b942b2ed50f"
     },
     {
       "path": "evidence/trust12/runtime-link/model-source-reception-checkpoint-v1.json",
@@ -162,6 +166,10 @@
     {
       "path": "evidence/trust12/runtime-link/native-full-source-admission-checkpoint-v1.json",
       "sha256": "24868eb3bbe884f3fd298658bc8c465517c3a1bf7ece7201b16a4cc2e31cc848"
+    },
+    {
+      "path": "evidence/trust12/runtime-link/native-supply-direction-negative-checkpoint-v1.json",
+      "sha256": "feaee9086425a6b88e5a54ea82f2cc4bc6baa48cdadf806a2eb9aaee3bb95efc"
     },
     {
       "path": "evidence/trust12/runtime-link/original-binding-meaning-checkpoint-v1.json",
@@ -193,7 +201,7 @@
     },
     {
       "path": "evidence/trust12/veri-integration-audit.md",
-      "sha256": "d061e0fad11a0263d8abc20b1ce3e24f53e0bbc2c243d560664a0ab33975a283"
+      "sha256": "61b5e13a826ef5f0c0dcb1a3d72df1f284b97720b7a486a2e0b28f1c1b87c94d"
     },
     {
       "path": "evidence/trust12/veri-observation-results.json",
@@ -201,7 +209,7 @@
     },
     {
       "path": "evidence/trust12/veri-symbolic-results.json",
-      "sha256": "6c8e95d66eb108e088e270c3dfeb18ceae4cff474639918501041a5444035699"
+      "sha256": "d3aedffeb29fb8039674046292693bd3c122664af65b6ed6cfd4df4cccab2987"
     },
     {
       "path": "evidence/trust12/veri-symbolic-storage-diagnostics.json",
@@ -337,7 +345,7 @@
     },
     {
       "path": "scripts/generate-trust12-input-seal.py",
-      "sha256": "875122a0a39c0dcbde3cb3344a214c44951d081de0f5bc918965db03a97a67b7"
+      "sha256": "55417e4cbe55466acc23b419738afe4479ccff0edb7d24131b6e67bfa818368c"
     },
     {
       "path": "scripts/generate-trust12-proof-audit.py",
@@ -424,12 +432,20 @@
       "sha256": "96295b1f19f1f694d8084845b2fd4238241c7fbfb419c0f81fe3bedc5420c620"
     },
     {
+      "path": "scripts/test-assess-call-reception.py",
+      "sha256": "b1ead5dcc63b035fe2cef405b03e525d5924f844273b001fe3eb8a8b8a83d181"
+    },
+    {
       "path": "scripts/test-full-source-admission.py",
       "sha256": "a00ce492232b4656455a27df7d980818c03c92332aa29e343c62c7c75ac210c8"
     },
     {
       "path": "scripts/test-model-source-reception.py",
       "sha256": "938671463613efecdf13eaf172f958f0171be1e974a8940878d15e7b8f1eece4"
+    },
+    {
+      "path": "scripts/test-native-supply-direction-negative.py",
+      "sha256": "d7a06f06d7df6b0e3a62070c0b05e2746d8a956fa0b5f2f74964b8f45fbacdf1"
     },
     {
       "path": "scripts/test-original-binding-meaning.py",
@@ -457,11 +473,15 @@
     },
     {
       "path": "scripts/test-trust12-required.mjs",
-      "sha256": "904d1fd963270d0509ff627388abbfd8d9966403b7eaad0a514f4b1ca0ba50de"
+      "sha256": "ea9628b3ae8ade5ffaecacb115867ad1a3dc1ffa8fcb097b1ba0f7b8dc351206"
     },
     {
       "path": "scripts/test-veri-dependency.py",
       "sha256": "e81be3d18e158a735625264af0274d1cfc61b67a39e20d7af5914bc1f58e6dae"
+    },
+    {
+      "path": "scripts/trust12/verify_assess_call_reception_v1.py",
+      "sha256": "dfee62be4e7a012103ffa1ccc44b0dbed9fd9f56ce3705702e8f3e1aa3764c46"
     },
     {
       "path": "scripts/trust12/verify_full_source_admission_v1.py",
@@ -470,6 +490,10 @@
     {
       "path": "scripts/trust12/verify_model_source_reception_v1.py",
       "sha256": "eb0bf1e7daf06ad16ff885434a82a0faf2318b4ad3845019152df9c4e6c82cc0"
+    },
+    {
+      "path": "scripts/trust12/verify_native_supply_direction_negative_v1.py",
+      "sha256": "5c969fe703e4fcbffa078fbbc2f12cd34758c3b6890d804ccd4767c24c95cb71"
     },
     {
       "path": "scripts/trust12/verify_original_binding_meaning_v1.py",
@@ -517,7 +541,7 @@
     },
     {
       "path": "scripts/verify-trust12-required.mjs",
-      "sha256": "5083cd3b6efb71c259e68414d2da072169f3966d8a1906a060ed5e639936a8f7"
+      "sha256": "0ab09bdfee487c96ca2216f6618f7f127375b0217ec6f5f43d966ac82754329a"
     }
   ],
   "nonclaim": "This seals one local development tranche. It is not a deployment, release, conformance approval, or end-to-end refinement result."

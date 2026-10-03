@@ -32,9 +32,11 @@ The 21 component entries have been scope-reviewed. Native, Partial and Hook each
 seven execution-test components. The weakest component makes all three profile rows
 EXECUTION_TESTS. Existing tests and proofs retain only their original inputs, states
 and claims. The exact Certora CLI and server version 8.19.1 came from the existing
-receipt; no new run occurred. Native general symbolic FREEZE remains open after the
-alternative probe stopped on its second standard single-step timeout. Its same-domain
-guard-removal negative was not run. Timeout is not proof, and a separately approved
+receipt; no new run occurred. Native general symbolic FREEZE is closed within its
+declared two-target domain: the assembled positive holds under the declared
+A-KECCAK/A-LAYOUT assumptions and same-domain guard-removal negatives cover both
+supply branches. The complete mutant transaction, compiler correctness and the
+general runtime links are not claimed. Timeout is not proof, and a separately approved
 shipping exception cannot be described as proof completion.
 
 Existing Kontrol PASS records remain supplemental bounded evidence because their
