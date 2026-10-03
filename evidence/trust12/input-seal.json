@@ -129,7 +129,7 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "236ab5db35dcf9bea406a6a64f4d63c77021a453806869799c1fbaab8648bbd3"
+      "sha256": "0df2d8c58100ad9c7258fafd319b58572a3fad262b9ff09f96414fb2c2b772c7"
     },
     {
       "path": "evidence/trust12/profile-implementation-evidence-review.json",
@@ -153,7 +153,7 @@
     },
     {
       "path": "evidence/trust12/runtime-link-source-blockers.md",
-      "sha256": "817b2d51a312cd2cd0d829f2a889f2327ecca8570546838fc8dcd8fb03eb265d"
+      "sha256": "a0461370e2199b051a063655549ae2ef09ac060300bb2ede1ca33f2df0769a43"
     },
     {
       "path": "evidence/trust12/runtime-link/model-source-reception-checkpoint-v1.json",
@@ -189,7 +189,7 @@
     },
     {
       "path": "evidence/trust12/veri-integration-audit.md",
-      "sha256": "04970fe84b5fac9c1f402904eb577d4ef065889bf9ce17527da8816500aac74d"
+      "sha256": "d061e0fad11a0263d8abc20b1ce3e24f53e0bbc2c243d560664a0ab33975a283"
     },
     {
       "path": "evidence/trust12/veri-observation-results.json",
@@ -197,7 +197,7 @@
     },
     {
       "path": "evidence/trust12/veri-symbolic-results.json",
-      "sha256": "73612f98adeec10fe3f1e2c0e4cb32df84cd0152d346e8969da70ef2c189314f"
+      "sha256": "6c8e95d66eb108e088e270c3dfeb18ceae4cff474639918501041a5444035699"
     },
     {
       "path": "evidence/trust12/veri-symbolic-storage-diagnostics.json",
@@ -449,7 +449,7 @@
     },
     {
       "path": "scripts/test-trust12-required.mjs",
-      "sha256": "dd08991ae3d1992bb35f1dcbd2d812353d9e6f47a1db96e8bb11b18ea4e144ab"
+      "sha256": "2039b50e09605566b73415bce663ef5f923dd035c48657e07ecd77cbb387071d"
     },
     {
       "path": "scripts/test-veri-dependency.py",

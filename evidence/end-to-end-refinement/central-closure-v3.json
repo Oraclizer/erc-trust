@@ -797,7 +797,7 @@
       },
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "236ab5db35dcf9bea406a6a64f4d63c77021a453806869799c1fbaab8648bbd3"
+        "sha256": "0df2d8c58100ad9c7258fafd319b58572a3fad262b9ff09f96414fb2c2b772c7"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -805,7 +805,7 @@
       },
       {
         "path": "evidence/trust12/runtime-link-source-blockers.md",
-        "sha256": "817b2d51a312cd2cd0d829f2a889f2327ecca8570546838fc8dcd8fb03eb265d"
+        "sha256": "a0461370e2199b051a063655549ae2ef09ac060300bb2ede1ca33f2df0769a43"
       },
       {
         "path": "evidence/trust12/independent-audit.md",
@@ -913,7 +913,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "4dd4c78e392c3ab7f8190fa65d15a0415b11c50100d0b61288cefcb827df5169"
+        "sha256": "1eb854ede61f9326f3ddcc022c87715ce6b6451a9833aa3072f5f4a08c6a64bc"
       }
     ],
     "fullRefinementComplete": false,
