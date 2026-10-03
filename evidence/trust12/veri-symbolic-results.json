@@ -275,10 +275,10 @@
         "first": "1000000000000000000000002",
         "second": "1000000000000000000000001"
       },
-      "mutantKilledByOriginalConsumer": true,
       "failureReason": "rejection wrote action",
       "sameVisibleFloor": true,
-      "normalSourceIsProductSource": true
+      "normalSourceIsProductSource": true,
+      "mutantFailsReplayedRejectionAssertions": true
     },
     "wholeMutantTransactionProved": false,
     "coverageMode": "SAME_DOMAIN_SYMBOLIC_BRANCH_CONSUMER_SENSITIVITY",
@@ -296,7 +296,9 @@
     "wholeMutantTransactionProved": false,
     "checkpoint": {
       "path": "evidence/trust12/runtime-link/native-supply-direction-negative-checkpoint-v1.json",
-      "sha256": "feaee9086425a6b88e5a54ea82f2cc4bc6baa48cdadf806a2eb9aaee3bb95efc"
-    }
-  }
+      "sha256": "cc11da812fb101da946ec8e3bf3cb6b2c1dd6ecab44d5a95fc322d54cfdfeea4"
+    },
+    "branchStatesOutsidePathCondition": "Outside the path condition the two branch states differ only inside the saved caller frame, which stores the test expected floor min(first, SUPPLY) as the concrete supply value above supply and as the symbolic first target otherwise."
+  },
+  "statusScope": "Development record status. INCOMPLETE refers to runtime_link and the general EVM-to-model obligations; the Native symbolic obligation itself is closed, see currentState."
 }

@@ -11,6 +11,8 @@ export const mandatoryIds = ['NATIVE-SYMBOLIC-FREEZE', ...profiles.map(p => `RUN
 // The stable RESEARCH-* identifiers predate the current completion direction; their status is mandatory.
 export const generalIds = profiles.map(p => `RESEARCH-RUNTIME-LINK-${p}`).sort();
 const nativeClaim = 'For every positive first and second target with second <= first, including first above supply, the second FREEZE stutters the named Native projection.';
+const nativeBranchPredicates = ['first <= SUPPLY', 'SUPPLY < first'];
+const nativeSupplyNegative = 'evidence/trust12/runtime-link/native-supply-direction-negative-checkpoint-v1.json';
 const legacyClosedIds = ['HOOK-FRESH-INITIAL','HOOK-FACTORY-CREATION','HOOK-SOLE-AGENT',
   'HOOK-INBOUND-FLOOR','HOOK-CALLER-AUTH','HOOK-CALLBACK-ROLLBACK','HOOK-ACTUAL-RECEIPT',
   'HOOK-INDEPENDENT-FINAL','MODEL-INITIAL-WF','MODEL-ORDINARY-PRESERVATION',
@@ -283,6 +285,11 @@ export function verifyTrust12Policy(root) {
     check(e.negative.kind === 'KILLED_CONSUMER_REMOVAL'
       && e.negative.inputScope === native.inputDomain && e.negative.notAssumed === native.notAssumed
       && e.negative.coversDeclaredScope === true, 'Native negative does not cover original input domain');
+    check(sameSet(e.negative.testedBranchPredicates, nativeBranchPredicates)
+      && e.negative.fullInputDomainNegative === true && e.negative.wholeMutantTransactionProved === false
+      && native.fullDomainNegativeReceived === true, 'Native negative branch coverage is not recorded');
+    check(e.negative.evidence.some(ref => ref.path === nativeSupplyNegative),
+      'Native negative lacks the supply-direction checkpoint');
   }
   const pending = [...rows.values()].filter(r => r.status === 'CURRENT-MANDATORY').map(r => r.id).sort();
   const exceptions = [...rows.values()].filter(r => r.status === 'OPEN-SHIPPING-EXCEPTION');

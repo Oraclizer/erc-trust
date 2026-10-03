@@ -1,7 +1,7 @@
 {
   "schema": "trust12-native-supply-direction-negative-checkpoint-v1",
   "status": "PASS_SAVED_NATIVE_SUPPLY_DIRECTION_NEGATIVE",
-  "scope": "At the second FREEZE direction guard, both complementary symbolic branches of the declared two-target domain keep their fourteen constraints when only the resolved guard condition is changed from one to zero. The original branch jumps to the rejection path and rejoins an established exact state; the guard-removed branch falls through with the same frame outside program counter and control. The branches share thirteen constraints and differ only in first <= SUPPLY versus SUPPLY < first. A compiled mutant that removes only this guard is killed by the original rejection consumer at a first target above supply.",
+  "scope": "At the second FREEZE direction guard, both complementary symbolic branches of the declared two-target domain keep their fourteen constraints when only the resolved guard condition is changed from one to zero. The original branch jumps to the rejection path and rejoins an established exact state; the guard-removed branch falls through with the same frame outside program counter and control. The branch path conditions share thirteen constraints, namely the declared input domain and the Kontrol environment ranges for block number, timestamp and mix hash, and differ only in first <= SUPPLY versus SUPPLY < first. Outside the path condition the two branch states differ only inside the saved caller frame, which stores the test expected floor as the concrete supply value above supply and as the symbolic first target otherwise. A compiled mutant that removes only this guard fails the rejection assertions of the deferred symbolic test when they are replayed concretely in an isolated probe at one input above supply.",
   "property": "For every positive first and second target with second <= first, including first above supply, the second FREEZE stutters the named Native projection.",
   "inputDomain": "first > 0 and second > 0 and second <= first",
   "notAssumed": "first <= total supply",
@@ -204,6 +204,14 @@
       "cutDepth": 245
     }
   ],
+  "branchStates": {
+    "configurationOutsideCallStackSha256": "e7d5bd84b2f1f5d911dd9689ab80c78a5fdefbf5cdbc66c072bcbb965d851929",
+    "savedCallerExpectedFloor": {
+      "first-at-most-supply": "?WORD",
+      "first-above-supply": "1000000000000000000000000"
+    },
+    "differenceScope": "path condition and saved caller frame only"
+  },
   "compiledGuardOnlyPair": {
     "inputs": {
       "supply": "1000000000000000000000000",
@@ -256,8 +264,8 @@
     "fullInputDomainNegative": true,
     "wholeMutantTransactionProved": false
   },
-  "identityBoundary": "Implementation, ABI and runtime are unchanged. The symbolic chain uses the pinned historical source checkout whose four Native inputs are byte-identical to the current product files; the compiled pair uses the current product source and removes only the direction guard in an isolated copy.",
-  "reproductionBoundary": "Full mode rehashes every retained state, step result, checked rule, binding, validation and compiled-pair artifact and cross-checks the step chain, rule sequences, branch constraints, exact rejoin and guard-only source difference. Metadata mode checks the reviewed payload and current product inputs only. Neither mode re-executes K, Kontrol or the compiler.",
+  "identityBoundary": "Implementation, ABI and runtime are unchanged. The symbolic chain uses the pinned historical source checkout whose four Native inputs are byte-identical to the current product files; the compiled pair uses the current product source and removes only the direction guard in an isolated copy. Every exact step registers the same module as the established positive chain: thirteen proven storage definedness simplification rules and no rewrite rule.",
+  "reproductionBoundary": "Full mode rehashes every retained state, step result, checked rule, binding, validation and compiled-pair artifact; follows each branch source back along the established segment; reads the fourteen constraints and the configuration outside the saved caller frame from both branch states; and checks the step chain, rule sequences, exact rejoin, record cross-references, raw compiled test outcomes and the guard-only source difference. It relies on the retained records for the bounded steps themselves. Metadata mode checks the reviewed payload and current product inputs only. Neither mode re-executes K, Kontrol or the compiler.",
   "productIdentity": {
     "nativeSource": {
       "path": "implementation/src/TrustToken.sol",
@@ -283,9 +291,32 @@
       "path": "scripts/mutation-campaign-v1.json",
       "bytes": 66589,
       "sha256": "17a5c7d2b96ce3c9c3e3af54cf39e1426f53b3c16acd14172c026177c82d36a8"
+    },
+    "savedArtifactReader": {
+      "path": "scripts/trust12/verify_received_valuation_current_v1.py",
+      "bytes": 69287,
+      "sha256": "937f66b9f3bcfc134562f240706fa1fda57c143aabedc255e3df9775c538c8c5"
     }
   },
   "artifacts": [
+    {
+      "id": "first-at-most-supply-prefix-01-result",
+      "kind": "prefix-01-result",
+      "bytes": 8089,
+      "sha256": "ad23ef86ff7533a0d228d1584c6379a3d363ee858127403d92153aa59780d56a"
+    },
+    {
+      "id": "first-at-most-supply-prefix-02-result",
+      "kind": "prefix-02-result",
+      "bytes": 4924,
+      "sha256": "ba02375de1306d445fb413eb2a367547bf4ee9c781424cbfdb21b20e5e93ffec"
+    },
+    {
+      "id": "first-at-most-supply-prefix-03-result",
+      "kind": "prefix-03-result",
+      "bytes": 2589,
+      "sha256": "10f506214a8ba27cd8e3d4ce2acd44ea4ad02dbedb51f0ec3ff000b8b863310c"
+    },
     {
       "id": "first-at-most-supply-source-result",
       "kind": "source-result",
@@ -571,7 +602,7 @@
   ],
   "rehashVerifier": {
     "path": "scripts/trust12/verify_native_supply_direction_negative_v1.py",
-    "bytes": 20491,
-    "sha256": "5c969fe703e4fcbffa078fbbc2f12cd34758c3b6890d804ccd4767c24c95cb71"
+    "bytes": 27995,
+    "sha256": "186d9b59a32475962d6230deb3de0fd946819fcef8e261b75dd63461aee63d1d"
   }
 }

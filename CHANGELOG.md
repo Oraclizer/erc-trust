@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- Close the Native symbolic FREEZE obligation. Bind same-domain
+  direction-guard removal controls on both supply branches of the declared
+  two-target domain, the exact rejoin of each original branch and a compiled
+  copy without the guard that fails the replayed rejection assertions above
+  supply. Receive seven saved Isabelle stages for actual observations, status
+  and assess-output typing and call consumption. The complete mutant
+  transaction, operational call provenance, the three general runtime links
+  and final Assurance remain open.
+
 - Record reception of the fourteen current product model theories and all
   353 explicitly named model roots in one saved captured-source lineage.
   Add source-specific database, namespace, heap and current-input verification

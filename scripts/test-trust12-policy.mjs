@@ -81,7 +81,10 @@ function nativeProofFixture(ledger) {
   Object.assign(e,{evidenceGrade:'FULL_SCOPE_PROOF',property:r.abstractCondition,inputScope:r.inputDomain,notAssumed:r.notAssumed,
     result:{tool:'Kontrol/KEVM',kind:'PROOF',status:'PASS',unresolvedGoals:0,admittedGoals:0,vacuous:false,
       claimIds:['test-only-general-claim'],coversDeclaredScope:true,receipt:fileRef(scratch,proofPath)}});
-  Object.assign(e.negative,{kind:'KILLED_CONSUMER_REMOVAL',inputScope:r.inputDomain,notAssumed:r.notAssumed,coversDeclaredScope:true});
+  Object.assign(e.negative,{kind:'KILLED_CONSUMER_REMOVAL',inputScope:r.inputDomain,notAssumed:r.notAssumed,coversDeclaredScope:true,
+    testedBranchPredicates:['first <= SUPPLY','SUPPLY < first'],fullInputDomainNegative:true,wholeMutantTransactionProved:false,
+    evidence:[...e.negative.evidence,fileRef(scratch,'evidence/trust12/runtime-link/native-supply-direction-negative-checkpoint-v1.json')]});
+  r.fullDomainNegativeReceived=true;
   r.status='CLOSED';r.positiveActivation='Test-only full scope';r.consumerRemovalNegative='Test-only same-domain removal';
   ledger.centralClosure.currentMandatory=ledger.centralClosure.currentMandatory.filter(id=>id!==r.id);
   ledger.releaseAssessment.status='PENDING'; ledger.status='IN_PROGRESS';
@@ -167,6 +170,11 @@ try {
   test('native-hidden-supply-assumption', l => { nativeProofFixture(l).notAssumed=''; }, 'Native proof scope');
   test('native-narrow-negative', l => { nativeProofFixture(l).negative.inputScope='first = second = 1'; }, 'Native negative');
   test('native-bounded-behavior-negative', l => { nativeProofFixture(l).negative.kind='BOUNDED_BEHAVIORAL'; }, 'Native negative');
+  test('native-one-branch-negative', l => { row(l,'NATIVE-SYMBOLIC-FREEZE').symbolicEvidence.negative.testedBranchPredicates=['first <= SUPPLY']; }, 'Native negative branch coverage');
+  test('native-mutant-transaction-promoted', l => { row(l,'NATIVE-SYMBOLIC-FREEZE').symbolicEvidence.negative.wholeMutantTransactionProved=true; }, 'Native negative branch coverage');
+  test('native-domain-flag-dropped', l => { row(l,'NATIVE-SYMBOLIC-FREEZE').fullDomainNegativeReceived=false; }, 'Native negative branch coverage');
+  test('native-supply-checkpoint-unbound', l => { const n=row(l,'NATIVE-SYMBOLIC-FREEZE').symbolicEvidence.negative;
+    n.evidence=n.evidence.filter(ref=>ref.path!=='evidence/trust12/runtime-link/native-supply-direction-negative-checkpoint-v1.json'); }, 'supply-direction checkpoint');
   test('short-tool-pin', (l,p) => { p.toolchain.kevmCommit=p.toolchain.kevmCommit.slice(0,7); }, 'tool pin differs from formal TCB');
   test('swapped-tool-pin', (l,p) => { p.toolchain.kevmCommit=p.toolchain.kCommit; }, 'tool pin differs from formal TCB');
   test('stale-certora-version', (l,p) => { p.toolchain.certora='UNRECORDED'; }, 'Certora tool version');
