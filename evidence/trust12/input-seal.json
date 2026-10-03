@@ -164,6 +164,10 @@
       "sha256": "24868eb3bbe884f3fd298658bc8c465517c3a1bf7ece7201b16a4cc2e31cc848"
     },
     {
+      "path": "evidence/trust12/runtime-link/primitive-source-controls-checkpoint-v1.json",
+      "sha256": "fb9e988a785733f3427159c29798bba1faf6faa34addb9354486adf89eee5c2b"
+    },
+    {
       "path": "evidence/trust12/runtime-link/received-transaction-controls-checkpoint-v1.json",
       "sha256": "b166e89c66fbcdff751274d9713edfb44cb6418ca3b48f1912093e81696a9fc4"
     },
@@ -329,7 +333,7 @@
     },
     {
       "path": "scripts/generate-trust12-input-seal.py",
-      "sha256": "8c1e0b641f626810121efaf309a5d17a02ff0970aa84adfd5c1937e61f796b23"
+      "sha256": "8fa171dba1423a86cdfaf3bc432e284bb0416218948565727df15e05a581a2f8"
     },
     {
       "path": "scripts/generate-trust12-proof-audit.py",
@@ -424,6 +428,10 @@
       "sha256": "938671463613efecdf13eaf172f958f0171be1e974a8940878d15e7b8f1eece4"
     },
     {
+      "path": "scripts/test-primitive-source-controls.py",
+      "sha256": "3ba23e7add2f776eaab2adbe72f7cd592948d0838d36e9ac2d6ec780d37677b2"
+    },
+    {
       "path": "scripts/test-proof-ci.mjs",
       "sha256": "13d832941126334952262d337a096b72fcc72abfe311ea9e4bf95c0e71cc4867"
     },
@@ -441,7 +449,7 @@
     },
     {
       "path": "scripts/test-trust12-required.mjs",
-      "sha256": "809b145a93a97d25166b5ba40505eae1a9d8539854137f86ab841d1035765648"
+      "sha256": "dd08991ae3d1992bb35f1dcbd2d812353d9e6f47a1db96e8bb11b18ea4e144ab"
     },
     {
       "path": "scripts/test-veri-dependency.py",
@@ -454,6 +462,10 @@
     {
       "path": "scripts/trust12/verify_model_source_reception_v1.py",
       "sha256": "eb0bf1e7daf06ad16ff885434a82a0faf2318b4ad3845019152df9c4e6c82cc0"
+    },
+    {
+      "path": "scripts/trust12/verify_primitive_source_controls_v1.py",
+      "sha256": "6320c7ff50dfe8cbb69469d6ceef035c32fa980b91ba39d7414b41ff73592288"
     },
     {
       "path": "scripts/trust12/verify_received_transaction_controls_v1.py",
@@ -493,7 +505,7 @@
     },
     {
       "path": "scripts/verify-trust12-required.mjs",
-      "sha256": "65ab9a43b64505c14e03bbcb173932b9cac6e2b1d7f5db3a7bec6afda0fcf1f4"
+      "sha256": "349f0ad47bedccbb6b747855e8b6c5d6c6bb1dbacb086f5f566fc42a8fc68478"
     }
   ],
   "nonclaim": "This seals one local development tranche. It is not a deployment, release, conformance approval, or end-to-end refinement result."

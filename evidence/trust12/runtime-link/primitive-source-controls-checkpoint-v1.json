@@ -1,0 +1,574 @@
+{
+  "schema": "trust12-primitive-source-controls-checkpoint-v1",
+  "status": "PASS_SAVED_PRIMITIVE_SOURCE_CONTROLS",
+  "scope": "Exact raw Int/Bool and comparison declarations with retained attributes and EOF, their consumption by a conservative condition-admission gate and same-raw gate-only removal, and the checked configuration-return value consumed by the existing call-record returndata field.",
+  "confirmed": {
+    "checkedConfigurationReturnRecordConsumption": true,
+    "exactPrimitiveDeclarationEOFAndAttributes": true,
+    "declarationAttributesConsumedByConditionAdmission": true,
+    "sameRawDeclarationGateRemoval": true
+  },
+  "claims": {
+    "standardEngineSemanticEquivalence": false,
+    "wholeConfigurationMeaningAndProducerImage": false,
+    "originalSymbolicOperationalExecution": false,
+    "generalRuntimeLinks": false,
+    "centralRefinementClosure": false,
+    "independentAssurance": false,
+    "fullTrustCompletion": false,
+    "releaseOrDeployment": false
+  },
+  "coverage": {
+    "kernelStages": 5,
+    "explicitRoots": 26
+  },
+  "identityBoundary": "Implementation, ABI, runtime, original NSX, checked environment, original fifty-six bindings and thirteen source constraints are preserved.",
+  "reproductionBoundary": "Full mode checks retained saved sources, databases, heap lineage, exact hierarchy transport, complete guarded roots and current input snapshots. Metadata-only mode checks the public record and current product bindings. Neither mode is fresh kernel replay or final independent Assurance.",
+  "conditionBoundary": "Parsed source declarations and their attributes are actually consumed by the condition-admission gate. This is source-interface evidence; hook implementation semantics, general engine equivalence and producer image remain unproved.",
+  "summaryBoundary": "The existing checked normal and single-byte H-plus-one summary returns are consumed by the original configuration-call returndata field. Proof-only witnesses discharge exported guards of closed constants and are never substituted into runtime evaluators, valuations or call lists.",
+  "productIdentity": {
+    "retrieveModel": {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Retrieve_Relation.thy",
+      "bytes": 15893,
+      "sha256": "5fe73a17b58d636ca2f489a02e42a442309f8f42f99cb99e72de678090475587"
+    },
+    "transactionModel": {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Transaction_Refinement.thy",
+      "bytes": 78470,
+      "sha256": "b49b9d7a71455e547bf5185fcd66195597b185bbb5d50441b281e37eabf60149"
+    },
+    "savedArtifactReader": {
+      "path": "scripts/trust12/verify_received_valuation_current_v1.py",
+      "bytes": 69287,
+      "sha256": "937f66b9f3bcfc134562f240706fa1fda57c143aabedc255e3df9775c538c8c5"
+    },
+    "sourceAwareReader": {
+      "path": "scripts/trust12/verify_model_source_reception_v1.py",
+      "bytes": 13361,
+      "sha256": "eb0bf1e7daf06ad16ff885434a82a0faf2318b4ad3845019152df9c4e6c82cc0"
+    }
+  },
+  "artifacts": [
+    {
+      "id": "configuration-record-consumer-source",
+      "kind": "source",
+      "bytes": 4892,
+      "sha256": "03988833ce207cc31038426fac1a631f3b875dd9fcec28e9f2ee977d92be5273"
+    },
+    {
+      "id": "configuration-record-consumer-root",
+      "kind": "root",
+      "bytes": 243,
+      "sha256": "ea7cd318e764bd8203860c2681decceb1e37ada9ab858901b1671e932a6924f0"
+    },
+    {
+      "id": "configuration-record-consumer-binding",
+      "kind": "binding",
+      "bytes": 1518,
+      "sha256": "e13d64d21a838d6dccc73bf2ac383128d162c5a76e8b5bdbfc58cc60624d32ba"
+    },
+    {
+      "id": "configuration-record-consumer-audit",
+      "kind": "audit",
+      "bytes": 2888,
+      "sha256": "2423e1797a56f7f9d7e7ad7193c918a03effddc7767e9b3e7d8cf612f8a01261"
+    },
+    {
+      "id": "configuration-record-consumer-inputs-before",
+      "kind": "inputs-before",
+      "bytes": 717941,
+      "sha256": "3e6bab6ad8659ad7a6b5e90504c11f521513193ea0ab238e8b82ad831ff8a7e7"
+    },
+    {
+      "id": "configuration-record-consumer-inputs-after",
+      "kind": "inputs-after",
+      "bytes": 717941,
+      "sha256": "3e6bab6ad8659ad7a6b5e90504c11f521513193ea0ab238e8b82ad831ff8a7e7"
+    },
+    {
+      "id": "configuration-record-consumer-heap",
+      "kind": "heap",
+      "bytes": 7681863,
+      "sha256": "96e9d037d2da3c4a4c8c507c3f8ee479c824211123f08c3ad17e7e85e07b78b2"
+    },
+    {
+      "id": "configuration-record-consumer-database",
+      "kind": "database",
+      "bytes": 208896,
+      "sha256": "8bc956d7525cee90e3ba4dc32d65c22e115b4b98e297d777dea286b4a68a44f8"
+    },
+    {
+      "id": "configuration-record-consumer-parent-heap",
+      "kind": "parent-heap",
+      "bytes": 7849027,
+      "sha256": "7f50f0e9f2272361378c8259d96b5949c05e735f46dc5d49f628ea3ac2859c9e"
+    },
+    {
+      "id": "configuration-record-consumer-parent-database",
+      "kind": "parent-database",
+      "bytes": 241664,
+      "sha256": "436bb625f3161d61926fc33b06e755440e1ff5bbd201708be250e8b2b975fca5"
+    },
+    {
+      "id": "configuration-record-consumer-build-command",
+      "kind": "build-command",
+      "bytes": 1198,
+      "sha256": "60a2289e0112a45b878b6d3caa57b6ad1d0e7a9822bfa8df0cfcc6645da02572"
+    },
+    {
+      "id": "configuration-record-consumer-dryrun-command",
+      "kind": "dryrun-command",
+      "bytes": 1201,
+      "sha256": "9b8a9b697fcea25c235447075ee4270432a8fe61e771e07618bcb648f53065bf"
+    },
+    {
+      "id": "configuration-record-consumer-hierarchy-receipt",
+      "kind": "hierarchy-receipt",
+      "bytes": 645,
+      "sha256": "34b3ce31092b0b1d0c684e9efbbbf0e47d7bd0b3c07062452b206c80666d2c23"
+    },
+    {
+      "id": "primitive-declarations-first-source",
+      "kind": "source",
+      "bytes": 14008,
+      "sha256": "13cab764903ed06eb7910509715bf9c951a4f26e5b6a76cf349c96fb38f5bf61"
+    },
+    {
+      "id": "primitive-declarations-first-root",
+      "kind": "root",
+      "bytes": 258,
+      "sha256": "5752afc45441a9537bd131344e36ac3766da92c9153cf25a8143986b1e59dd35"
+    },
+    {
+      "id": "primitive-declarations-first-binding",
+      "kind": "binding",
+      "bytes": 1348,
+      "sha256": "a1d0df6f42e1d5d7ed018e21db03e67c29e25d4f1cb2a829cdc0fea1119c1771"
+    },
+    {
+      "id": "primitive-declarations-first-audit",
+      "kind": "audit",
+      "bytes": 2731,
+      "sha256": "6334f1a4cbd19cd95042e755aa0cc985e01a0b7bc688ba04176248ea0e8a213d"
+    },
+    {
+      "id": "primitive-declarations-first-inputs-before",
+      "kind": "inputs-before",
+      "bytes": 721989,
+      "sha256": "61b1c759fbbabe9b4ccb299a3159c816dc57ff71979bb2cd70a6ac8a48526483"
+    },
+    {
+      "id": "primitive-declarations-first-inputs-after",
+      "kind": "inputs-after",
+      "bytes": 721989,
+      "sha256": "61b1c759fbbabe9b4ccb299a3159c816dc57ff71979bb2cd70a6ac8a48526483"
+    },
+    {
+      "id": "primitive-declarations-first-heap",
+      "kind": "heap",
+      "bytes": 8002473,
+      "sha256": "cc0a637034f63de8cf9ce704e9c13d7feea096e22e3c7b4bbcafd4abccfc547a"
+    },
+    {
+      "id": "primitive-declarations-first-database",
+      "kind": "database",
+      "bytes": 212992,
+      "sha256": "53fd623cfbf2b3611590f18c818a0f061b5d09cf3981682c76b6b8774bb2ade3"
+    },
+    {
+      "id": "primitive-declarations-first-parent-heap",
+      "kind": "parent-heap",
+      "bytes": 7681863,
+      "sha256": "96e9d037d2da3c4a4c8c507c3f8ee479c824211123f08c3ad17e7e85e07b78b2"
+    },
+    {
+      "id": "primitive-declarations-first-parent-database",
+      "kind": "parent-database",
+      "bytes": 208896,
+      "sha256": "8bc956d7525cee90e3ba4dc32d65c22e115b4b98e297d777dea286b4a68a44f8"
+    },
+    {
+      "id": "primitive-declarations-first-build-command",
+      "kind": "build-command",
+      "bytes": 1220,
+      "sha256": "591649e88f70bba9b4c9c75a127ae0cc66eb5f5b1620be4fa06226521d496e28"
+    },
+    {
+      "id": "primitive-declarations-first-dryrun-command",
+      "kind": "dryrun-command",
+      "bytes": 1223,
+      "sha256": "b95352c0a3c2889518c27fe7090f0c11f743bf922b969f5d533194cc17dd67e8"
+    },
+    {
+      "id": "primitive-declarations-first-hierarchy-receipt",
+      "kind": "hierarchy-receipt",
+      "bytes": 645,
+      "sha256": "0e5c027a0bdddf334b609cad96c63d17d76fb9e6dfe18a8f3e3ac9aeba710283"
+    },
+    {
+      "id": "primitive-declarations-comparisons-source",
+      "kind": "source",
+      "bytes": 891,
+      "sha256": "32b689ef844e3986b5cdf8bf9ff348ad5616aa9992fcd5556d7e1b56092b3d12"
+    },
+    {
+      "id": "primitive-declarations-comparisons-root",
+      "kind": "root",
+      "bytes": 258,
+      "sha256": "9c3090333b17cbc35b7006bc150da186ec8899c9f2369f4870ad6b69eeae1c95"
+    },
+    {
+      "id": "primitive-declarations-comparisons-binding",
+      "kind": "binding",
+      "bytes": 1300,
+      "sha256": "8765598707ffb4b4619c14fcf15881ec9649ccf82b7b954ca2f02541aa6fd881"
+    },
+    {
+      "id": "primitive-declarations-comparisons-audit",
+      "kind": "audit",
+      "bytes": 2682,
+      "sha256": "9e46705901ec5d3412f50deddd47cdb4be734bd3b3a8d6d00e3ef654fcb8966a"
+    },
+    {
+      "id": "primitive-declarations-comparisons-inputs-before",
+      "kind": "inputs-before",
+      "bytes": 724374,
+      "sha256": "28a112027ba251fd50d1794512a9b2350fee571c88c10c5d506bf2adea3b2ac2"
+    },
+    {
+      "id": "primitive-declarations-comparisons-inputs-after",
+      "kind": "inputs-after",
+      "bytes": 724374,
+      "sha256": "28a112027ba251fd50d1794512a9b2350fee571c88c10c5d506bf2adea3b2ac2"
+    },
+    {
+      "id": "primitive-declarations-comparisons-heap",
+      "kind": "heap",
+      "bytes": 7809453,
+      "sha256": "3a75f3c066cf0b0656e69295c4cf5bbe6478f385307ce4f9a3178b23126c8304"
+    },
+    {
+      "id": "primitive-declarations-comparisons-database",
+      "kind": "database",
+      "bytes": 196608,
+      "sha256": "acfd0ddffb4b1a9c66e434e9b7ed96bad548e55953544457a7c7c7a5769c6544"
+    },
+    {
+      "id": "primitive-declarations-comparisons-parent-heap",
+      "kind": "parent-heap",
+      "bytes": 8002473,
+      "sha256": "cc0a637034f63de8cf9ce704e9c13d7feea096e22e3c7b4bbcafd4abccfc547a"
+    },
+    {
+      "id": "primitive-declarations-comparisons-parent-database",
+      "kind": "parent-database",
+      "bytes": 212992,
+      "sha256": "53fd623cfbf2b3611590f18c818a0f061b5d09cf3981682c76b6b8774bb2ade3"
+    },
+    {
+      "id": "primitive-declarations-comparisons-build-command",
+      "kind": "build-command",
+      "bytes": 1220,
+      "sha256": "83efcc5d8049816de514240156c8dfc62a85376427232d0c0e7279e4e5aa1503"
+    },
+    {
+      "id": "primitive-declarations-comparisons-dryrun-command",
+      "kind": "dryrun-command",
+      "bytes": 1223,
+      "sha256": "788db590e3f10092e2ba405b9356617d7d273e05a076dfbb9f1ab8ac0e0d6b83"
+    },
+    {
+      "id": "primitive-declarations-comparisons-hierarchy-receipt",
+      "kind": "hierarchy-receipt",
+      "bytes": 645,
+      "sha256": "92725aaf128fdb97f305ea79d622f59452f588487f3cebad963882c1ef505aed"
+    },
+    {
+      "id": "primitive-declarations-last-source",
+      "kind": "source",
+      "bytes": 908,
+      "sha256": "73903b49e572362bcdf475e4fa12cb729aa040442733468e950376d0b1d87501"
+    },
+    {
+      "id": "primitive-declarations-last-root",
+      "kind": "root",
+      "bytes": 258,
+      "sha256": "c2042c932b60a6bf7e40809add5ac4989703dfdbc37ba30d3bbcd3b5692a876a"
+    },
+    {
+      "id": "primitive-declarations-last-binding",
+      "kind": "binding",
+      "bytes": 1308,
+      "sha256": "d1fbf7e85002c8d68a54d9abf54ba08a2bb23585eec196ba973b3c57a7c53fdb"
+    },
+    {
+      "id": "primitive-declarations-last-audit",
+      "kind": "audit",
+      "bytes": 2691,
+      "sha256": "2ebd1304da48182c138d2513a8746a0f7bb6c0fabb10d32563be305d1f85bc9c"
+    },
+    {
+      "id": "primitive-declarations-last-inputs-before",
+      "kind": "inputs-before",
+      "bytes": 726759,
+      "sha256": "c5a0885842b6e7eba0fa6a79535890373e4fb7d12c3e521d9b85b6fe2281f413"
+    },
+    {
+      "id": "primitive-declarations-last-inputs-after",
+      "kind": "inputs-after",
+      "bytes": 726759,
+      "sha256": "c5a0885842b6e7eba0fa6a79535890373e4fb7d12c3e521d9b85b6fe2281f413"
+    },
+    {
+      "id": "primitive-declarations-last-heap",
+      "kind": "heap",
+      "bytes": 7759469,
+      "sha256": "a866ab762e72e3e8fa270125410c350d525a88e3de652b399e67a5577eda47c3"
+    },
+    {
+      "id": "primitive-declarations-last-database",
+      "kind": "database",
+      "bytes": 196608,
+      "sha256": "318958363b6eae4b837e24933c59fb87839ac48f910cd150bb444975b6eca7c2"
+    },
+    {
+      "id": "primitive-declarations-last-parent-heap",
+      "kind": "parent-heap",
+      "bytes": 7809453,
+      "sha256": "3a75f3c066cf0b0656e69295c4cf5bbe6478f385307ce4f9a3178b23126c8304"
+    },
+    {
+      "id": "primitive-declarations-last-parent-database",
+      "kind": "parent-database",
+      "bytes": 196608,
+      "sha256": "acfd0ddffb4b1a9c66e434e9b7ed96bad548e55953544457a7c7c7a5769c6544"
+    },
+    {
+      "id": "primitive-declarations-last-build-command",
+      "kind": "build-command",
+      "bytes": 1220,
+      "sha256": "a26c6af3a83f4ee56ae436045f692c434b44ac21b664c9f773707f7c5376786b"
+    },
+    {
+      "id": "primitive-declarations-last-dryrun-command",
+      "kind": "dryrun-command",
+      "bytes": 1223,
+      "sha256": "a3f54e1033db203120830bc59734b2c97aa790896e29a4195a833cf7cf1577db"
+    },
+    {
+      "id": "primitive-declarations-last-hierarchy-receipt",
+      "kind": "hierarchy-receipt",
+      "bytes": 645,
+      "sha256": "3aabc9133f342d8ead98af7cbf46c06b8f10d1bc3b7066473579c65e0ea2d10f"
+    },
+    {
+      "id": "primitive-hook-consumers-source",
+      "kind": "source",
+      "bytes": 9166,
+      "sha256": "0e454bbd742ab939dee14697d840259b3565289c8ff0fcdd4a9a141308f4c855"
+    },
+    {
+      "id": "primitive-hook-consumers-root",
+      "kind": "root",
+      "bytes": 260,
+      "sha256": "f6c8f7f9404ca7b3779b8e338bb032a4057acd551f62404583905794c6d6c18c"
+    },
+    {
+      "id": "primitive-hook-consumers-binding",
+      "kind": "binding",
+      "bytes": 1786,
+      "sha256": "1715370ce7b3903b52f3533c0cbcf255a50465c35a6f9dec684fdcc54374dfa5"
+    },
+    {
+      "id": "primitive-hook-consumers-audit",
+      "kind": "audit",
+      "bytes": 3168,
+      "sha256": "42fa6e6cbc81da7fb04231950e2d5eae0d408733082256d6b3d6ff1f38955e69"
+    },
+    {
+      "id": "primitive-hook-consumers-inputs-before",
+      "kind": "inputs-before",
+      "bytes": 729319,
+      "sha256": "59ea5c6d5fbb4c0bb003949963f4c8fc2ac4c2fe8fbc177fc747a013a15ec572"
+    },
+    {
+      "id": "primitive-hook-consumers-inputs-after",
+      "kind": "inputs-after",
+      "bytes": 729319,
+      "sha256": "59ea5c6d5fbb4c0bb003949963f4c8fc2ac4c2fe8fbc177fc747a013a15ec572"
+    },
+    {
+      "id": "primitive-hook-consumers-heap",
+      "kind": "heap",
+      "bytes": 7988729,
+      "sha256": "d4e267ff5407887a607a027c207d5f161f20e34656494efcab93622aaad75a82"
+    },
+    {
+      "id": "primitive-hook-consumers-database",
+      "kind": "database",
+      "bytes": 217088,
+      "sha256": "94ecbaa88871f8f096800258f4e78427ccfc765d8cf55a565b6cd533b750f27c"
+    },
+    {
+      "id": "primitive-hook-consumers-parent-heap",
+      "kind": "parent-heap",
+      "bytes": 7759469,
+      "sha256": "a866ab762e72e3e8fa270125410c350d525a88e3de652b399e67a5577eda47c3"
+    },
+    {
+      "id": "primitive-hook-consumers-parent-database",
+      "kind": "parent-database",
+      "bytes": 196608,
+      "sha256": "318958363b6eae4b837e24933c59fb87839ac48f910cd150bb444975b6eca7c2"
+    },
+    {
+      "id": "primitive-hook-consumers-build-command",
+      "kind": "build-command",
+      "bytes": 1216,
+      "sha256": "124a1c22f9f992debf6073363619aa92cefdcfa666ddde7f338d0bea04dd169b"
+    },
+    {
+      "id": "primitive-hook-consumers-dryrun-command",
+      "kind": "dryrun-command",
+      "bytes": 1219,
+      "sha256": "b9a872ac9370978831af827bae5eab3b53eec2f65152586539d630ed55b40efb"
+    },
+    {
+      "id": "primitive-hook-consumers-hierarchy-receipt",
+      "kind": "hierarchy-receipt",
+      "bytes": 645,
+      "sha256": "9d32ef1fe2a64639a950c673c1b650cbe0f9112cc5aa8442349e87f3d01d2094"
+    }
+  ],
+  "kernelStages": [
+    {
+      "id": "configuration-record-consumer",
+      "session": "TRUST12_C3_RECORD_CONSUMER_V4",
+      "parent": "TRUST12_C3_H_PLUS_ONE_V5",
+      "theory": "TRUST_C3_Record_Consumer_V4",
+      "roots": [
+        "c3c_configuration_value",
+        "c3c_configuration_output",
+        "c3c_normal_checked_return_is_recorded_output",
+        "c3c_changed_checked_return_is_not_recorded_output",
+        "c3c_normal_return_preserves_configuration_call",
+        "c3c_changed_return_changes_configuration_call"
+      ],
+      "marker": "PASS_CHECKED_CONFIG_RETURN_CONSUMED_BY_ORIGINAL_CALL_RECORD_ORACLE_ZERO_SKIP_FALSE",
+      "scope": {
+        "checkedSummaryConsumedByExistingConfigurationCallRecord": true,
+        "sameTypedRawSummaryControls": true,
+        "runtimeCallListProduced": false,
+        "engineSemanticEquivalence": false,
+        "generalCredit": false,
+        "originalNSXChanged": false,
+        "productionChanged": false
+      },
+      "hierarchyTransportRequired": true
+    },
+    {
+      "id": "primitive-declarations-first",
+      "session": "TRUST12_PRIMITIVE_DECL_P00_V3",
+      "parent": "TRUST12_C3_RECORD_CONSUMER_V4",
+      "theory": "TRUST_Primitive_Declaration_Part00_V3",
+      "roots": [
+        "fkh_int_sort_raw_declaration_eof",
+        "fkh_bool_sort_raw_declaration_eof",
+        "fkh_le_raw_declaration_eof"
+      ],
+      "marker": "PASS_EXACT_PRIMITIVE_DECLARATION_PART_ORACLE_ZERO_SKIP_FALSE",
+      "scope": {
+        "exactPrimitiveDeclarationRoots": 3,
+        "part": 0,
+        "allOriginalStatementsRetained": true,
+        "attributePayloadPreserved": true,
+        "primitiveMeaningDischarged": false,
+        "generalCredit": false,
+        "originalNSXChanged": false,
+        "productionChanged": false
+      },
+      "hierarchyTransportRequired": true
+    },
+    {
+      "id": "primitive-declarations-comparisons",
+      "session": "TRUST12_PRIMITIVE_DECL_P01_V3",
+      "parent": "TRUST12_PRIMITIVE_DECL_P00_V3",
+      "theory": "TRUST_Primitive_Declaration_Part01_V3",
+      "roots": [
+        "fkh_lt_raw_declaration_eof",
+        "fkh_eq_raw_declaration_eof"
+      ],
+      "marker": "PASS_EXACT_PRIMITIVE_DECLARATION_PART_ORACLE_ZERO_SKIP_FALSE",
+      "scope": {
+        "exactPrimitiveDeclarationRoots": 2,
+        "part": 1,
+        "allOriginalStatementsRetained": true,
+        "attributePayloadPreserved": true,
+        "primitiveMeaningDischarged": false,
+        "generalCredit": false,
+        "originalNSXChanged": false,
+        "productionChanged": false
+      },
+      "hierarchyTransportRequired": true
+    },
+    {
+      "id": "primitive-declarations-last",
+      "session": "TRUST12_PRIMITIVE_DECL_P02_V3",
+      "parent": "TRUST12_PRIMITIVE_DECL_P01_V3",
+      "theory": "TRUST_Primitive_Declaration_Part02_V3",
+      "roots": [
+        "fkh_not_raw_declaration_eof",
+        "fkh_le_comma_declaration_rejected"
+      ],
+      "marker": "PASS_EXACT_PRIMITIVE_DECLARATION_PART_ORACLE_ZERO_SKIP_FALSE",
+      "scope": {
+        "exactPrimitiveDeclarationRoots": 2,
+        "part": 2,
+        "allOriginalStatementsRetained": true,
+        "attributePayloadPreserved": true,
+        "primitiveMeaningDischarged": false,
+        "generalCredit": false,
+        "originalNSXChanged": false,
+        "productionChanged": false
+      },
+      "hierarchyTransportRequired": true
+    },
+    {
+      "id": "primitive-hook-consumers",
+      "session": "TRUST12_PRIMITIVE_HOOK_CONSUMERS_V1",
+      "parent": "TRUST12_PRIMITIVE_DECL_P02_V3",
+      "theory": "TRUST_Primitive_Hook_Consumers_V1",
+      "roots": [
+        "fkh_actual_hook_contract",
+        "fkh_actual_declarations_are_consumed",
+        "fkh_actual_ground_condition_admitted",
+        "fkh_invalid_declarations_are_rejected",
+        "fkh_none_is_not_admitted",
+        "fkh_missing_declarations_rejected",
+        "fkh_missing_declarations_not_admitted",
+        "fkh_isolated_declaration_gate_removal",
+        "fkh_actual_raw_registry_received",
+        "fkh_actual_raw_declarations_consumed",
+        "fkh_actual_raw_source_condition_received",
+        "fkh_missing_raw_declarations_rejected",
+        "fkh_isolated_raw_declaration_gate_removal"
+      ],
+      "marker": "PASS_DECLARATION_HOOK_ATTRIBUTES_CONSUMED_AND_SAME_INPUT_GATE_REMOVAL_ORACLE_ZERO_SKIP_FALSE",
+      "scope": {
+        "declarationAttributesConsumed": true,
+        "sameInputDeclarationGateRemoval": true,
+        "primitiveMeaningDischarged": false,
+        "engineSemanticEquivalence": false,
+        "generalCredit": false,
+        "originalNSXChanged": false,
+        "productionChanged": false
+      },
+      "hierarchyTransportRequired": true
+    }
+  ],
+  "rehashVerifier": {
+    "path": "scripts/trust12/verify_primitive_source_controls_v1.py",
+    "bytes": 11034,
+    "sha256": "6320c7ff50dfe8cbb69469d6ceef035c32fa980b91ba39d7414b41ff73592288"
+  }
+}

@@ -30,6 +30,9 @@ export const requiredTrust12Paths = [
   'scripts/test-trust12-required.mjs',
   'scripts/test-full-source-admission.py',
   'scripts/test-model-source-reception.py',
+  'scripts/test-primitive-source-controls.py',
+  'scripts/trust12/verify_primitive_source_controls_v1.py',
+  'evidence/trust12/runtime-link/primitive-source-controls-checkpoint-v1.json',
   'scripts/test-received-transaction-controls.py',
   'scripts/trust12/verify_received_transaction_controls_v1.py',
   'evidence/trust12/runtime-link/received-transaction-controls-checkpoint-v1.json',
@@ -168,6 +171,10 @@ export function verifyTrust12Required(root = repository) {
     ['-B', resolve(root, 'scripts/trust12/verify_model_source_reception_v1.py'), '--product-root', root, '--metadata-only'],
     { cwd: root, encoding: 'utf8' });
   check(!modelCheckpointCheck.error && modelCheckpointCheck.status === 0, 'model-source public metadata check failed');
+  const primitiveControlsCheck = spawnSync(process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3'),
+    ['-B', resolve(root, 'scripts/trust12/verify_primitive_source_controls_v1.py'), '--product-root', root, '--metadata-only'],
+    { cwd: root, encoding: 'utf8' });
+  check(!primitiveControlsCheck.error && primitiveControlsCheck.status === 0, 'primitive-source-controls public metadata check failed');
   const transactionControlsCheck = spawnSync(process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3'),
     ['-B', resolve(root, 'scripts/trust12/verify_received_transaction_controls_v1.py'), '--product-root', root, '--metadata-only'],
     { cwd: root, encoding: 'utf8' });
