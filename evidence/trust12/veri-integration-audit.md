@@ -107,3 +107,30 @@ This review concerns saved source/result identity, declared scope and receipt
 reception. It is a Building review, not fresh final Assurance or independent
 full solver replay. General Native, Partial and Hook runtime correspondence
 remain required.
+
+
+## Supply-exceeding direction-guard negative (2026-10-04)
+
+The complementary symbolic branch SUPPLY < first now has the same exact removal
+comparison. A bounded standard step from the established branch state reaches the
+same direction-guard jump with the same fourteen conditions; its 245 rewrites are
+the prefix of the established 256-rewrite segment. Changing only the resolved
+guard condition from one to zero keeps every other cell, the constraints and the
+continuation. The original and removed controls diverge to PC11739 and PC11515
+with the same frame outside PC/K, and the original branch rejoins the established
+segment's exact final state after nine further rewrites. The two branch sources
+share thirteen conditions and differ only in ?WORD <= 10^24 versus 10^24 < ?WORD,
+so together they cover the declared positive two-target domain at this guard.
+
+A compiled copy that removes only this guard was run against the original
+rejection consumer at first = SUPPLY + 2 and second = SUPPLY + 1. The original
+source passes; the mutant accepts the action, writes lifecycle APPLIED and a
+nonzero receipt, keeps the same saturated visible floor and fails the original
+consumer with "rejection wrote action". Both the symbolic chain and the compiled
+pair are bound by native-supply-direction-negative-checkpoint-v1.json, whose full
+mode rehashes the retained artifacts.
+
+This qualifies the existing whole-domain removal requirement of the Native symbolic
+obligation. It is not a proof of the complete mutant transaction, of compiler
+correctness or of the general runtime links, and it is a Building review rather
+than fresh final Assurance.

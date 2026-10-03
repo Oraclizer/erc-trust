@@ -132,8 +132,8 @@
     "transport": "KRule JSON -> KFlatModule -> standard Kore converter; module name explicitly selected",
     "scope": "One source-bound callsite; no new kernel correspondence"
   },
-  "nextConsumer": "Receive the completed general positive and exact branch sensitivity into the current ledger; retain the missing whole-domain negative qualification and the general EVM-to-model obligations.",
-  "nonclaim": "Historical incomplete solver attempts are retained. The current assembled positive covers the declared two-target input domain under A-KECCAK/A-LAYOUT. The negative is one symbolic branch, not the complete mutant transaction or whole-domain negative. No runtime_link, alpha_transaction, arbitrary world, Partial, Hook or final Assurance is discharged.",
+  "nextConsumer": "Receive the general EVM-to-model obligations; the complete mutant transaction remains outside the claim.",
+  "nonclaim": "Historical incomplete solver attempts are retained. The current assembled positive covers the declared two-target input domain under A-KECCAK/A-LAYOUT. The same-domain guard-removal negatives cover both complementary supply branches at the direction guard; they are not a proof of the complete mutant transaction. No runtime_link, alpha_transaction, arbitrary world, Partial, Hook or final Assurance is discharged.",
   "summaryToolPin": {
     "revision": "b65e569a7562a92f2d9e0a0796f0d9cff6236fc6",
     "tree": "5580a0e89dbc126c3aa50e71db374c6c813890a1",
@@ -247,10 +247,56 @@
   },
   "currentState": {
     "generalPositiveCompleteUnderDeclaredTCB": true,
-    "fullDomainNegativeReceived": false,
-    "nativeSymbolicObligationClosed": false,
+    "fullDomainNegativeReceived": true,
+    "nativeSymbolicObligationClosed": true,
     "runtimeLinkDischarged": false,
     "freshFinalAssurance": false,
-    "meaning": "The whole positive input domain has a completed source-bound derivation. The saved removal control tests the first <= SUPPLY branch only; the existing ledger completion test is retained."
+    "meaning": "The whole positive input domain has a completed source-bound derivation, and the saved same-domain removal controls cover both complementary supply branches at the direction guard."
+  },
+  "directionGuardSensitivityAboveSupply": {
+    "status": "PASS_SAME_DOMAIN_SYMBOLIC_BRANCH_CONSUMER_SENSITIVITY",
+    "sourceResultSha256": "b2afe9cfddd634f883889c27a66e190bd63ee19669d7aca8445bf091e6cc4954",
+    "declaredInputScope": "first > 0 and second > 0 and second <= first",
+    "notAssumed": "first <= total supply",
+    "testedBranchPredicate": "SUPPLY < first",
+    "sourceConstraintCount": 14,
+    "mutantConstraintCount": 14,
+    "sameConstraintDomain": true,
+    "constraintsAstSha256": "e4e75e3afc21c5a75f3129d5ec43a182a58d9e109911baf40ebf97e0049d7bf0",
+    "samePostFrameExceptPcAndKControl": true,
+    "originalDestinationPc": 11739,
+    "guardRemovedFallthroughPc": 11515,
+    "boundedCutDepth": 245,
+    "establishedSegmentPrefixReproduced": true,
+    "establishedFinalStateRejoined": true,
+    "compiledGuardOnlyPair": {
+      "inputs": {
+        "supply": "1000000000000000000000000",
+        "first": "1000000000000000000000002",
+        "second": "1000000000000000000000001"
+      },
+      "mutantKilledByOriginalConsumer": true,
+      "failureReason": "rejection wrote action",
+      "sameVisibleFloor": true,
+      "normalSourceIsProductSource": true
+    },
+    "wholeMutantTransactionProved": false,
+    "coverageMode": "SAME_DOMAIN_SYMBOLIC_BRANCH_CONSUMER_SENSITIVITY",
+    "freshFinalAssurance": false
+  },
+  "directionGuardCoverage": {
+    "status": "PASS_BOTH_COMPLEMENTARY_SUPPLY_BRANCHES",
+    "testedBranchPredicates": [
+      "first <= SUPPLY",
+      "SUPPLY < first"
+    ],
+    "sharedConstraintCount": 13,
+    "coversDeclaredScope": true,
+    "fullInputDomainNegative": true,
+    "wholeMutantTransactionProved": false,
+    "checkpoint": {
+      "path": "evidence/trust12/runtime-link/native-supply-direction-negative-checkpoint-v1.json",
+      "sha256": "feaee9086425a6b88e5a54ea82f2cc4bc6baa48cdadf806a2eb9aaee3bb95efc"
+    }
   }
 }

@@ -44,8 +44,8 @@ The responsible artifact is the corresponding `RESEARCH-RUNTIME-LINK-*` row of
 
 Native has preserved bounded compiled-code evidence and a completed assembled
 general symbolic FREEZE positive under A-KECCAK/A-LAYOUT. Its saved direction
-control covers the first <= SUPPLY symbolic branch; whole-domain negative
-qualification and general runtime correspondence remain open. Partial retains its narrower profile and four historical
+controls cover both complementary symbolic supply branches; general runtime
+correspondence remains open. Partial retains its narrower profile and four historical
 Certora rules. Hook has its own nine actual T-REX integration tests, six feature
 mutations and compiler identity. None supplies the missing general producer for
 another profile.

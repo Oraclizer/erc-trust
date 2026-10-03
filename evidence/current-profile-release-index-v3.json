@@ -425,7 +425,7 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "4fba3710ce9979ddae9c186192a9b9ec80ef6843f1e551a73d776f4e1df5b059"
+        "sha256": "9b24ed1df00689329432df4cb65df4dc868401f3630310349a324413c4428c18"
       }
     },
     "runtime": {
@@ -458,7 +458,6 @@
     "trust12Required": {
       "centralClosure": "INCOMPLETE",
       "currentMandatory": [
-        "NATIVE-SYMBOLIC-FREEZE",
         "RESEARCH-RUNTIME-LINK-HOOK",
         "RESEARCH-RUNTIME-LINK-NATIVE",
         "RESEARCH-RUNTIME-LINK-PARTIAL"
@@ -470,19 +469,19 @@
         },
         {
           "path": "evidence/trust12/release-notes.md",
-          "sha256": "3762d1a46c0cdea532d09e900028db372bc7dea0f46042c6c9bf1084e1e1fa50"
+          "sha256": "d8e6d4a9610908380297993907974e8dfe3b72d183a21b23f4446de4ace72d13"
         },
         {
           "path": "evidence/claim-matrix.md",
-          "sha256": "286d541e291b0bf09043f554158cd27c653d3dc2db9e668668ec6cd87962ec88"
+          "sha256": "81fc908900bbe64d91c5e34128cb1e4ad58173f623867bea84a0010e554a041c"
         },
         {
           "path": "evidence/known-limitations.md",
-          "sha256": "7b0858b896cce614d93137b633524f0203bd77109fa03e2cbde94fcfab7a9ea6"
+          "sha256": "26c49738dd9b7bee57e40e0fb95bd026b4f57f1bacf41b73369009d12e8ce81e"
         },
         {
           "path": "evidence/trust12/obligation-ledger.json",
-          "sha256": "0df2d8c58100ad9c7258fafd319b58572a3fad262b9ff09f96414fb2c2b772c7"
+          "sha256": "dde9d561e90189e91cd43ae4e24cb5f7069a475c3aca39e314478051b175cf9b"
         },
         {
           "path": "evidence/trust12/runtime-identity.json",
@@ -490,7 +489,7 @@
         },
         {
           "path": "evidence/trust12/runtime-link-source-blockers.md",
-          "sha256": "a0461370e2199b051a063655549ae2ef09ac060300bb2ede1ca33f2df0769a43"
+          "sha256": "03089325891aab236e4d8099e22d6779b83651a7224beed7f4b3659127a4aedb"
         },
         {
           "path": "evidence/trust12/independent-audit.md",
@@ -585,6 +584,14 @@
           "sha256": "5c153e2fa9d455862c1667df4b6e020f43a96dcd8dea95a52558f4c741a604ac"
         },
         {
+          "path": "evidence/trust12/runtime-link/assess-call-reception-checkpoint-v1.json",
+          "sha256": "61b5bb0342b9bf7ecf351d25f3cbc3e7e6303357a053b6959f155b942b2ed50f"
+        },
+        {
+          "path": "evidence/trust12/runtime-link/native-supply-direction-negative-checkpoint-v1.json",
+          "sha256": "feaee9086425a6b88e5a54ea82f2cc4bc6baa48cdadf806a2eb9aaee3bb95efc"
+        },
+        {
           "path": "evidence/trust12/runtime-link/primitive-source-controls-checkpoint-v1.json",
           "sha256": "fb9e988a785733f3427159c29798bba1faf6faa34addb9354486adf89eee5c2b"
         },
@@ -602,7 +609,7 @@
         },
         {
           "path": "evidence/trust12/input-seal.json",
-          "sha256": "a59f08009a9d0b627ebb10e72d8d853febffc6d5be996017f011639d31df5ecd"
+          "sha256": "87ac686aebbe80f572905af68f4547c94481adad6364172ea0f787d29fc3a7f2"
         }
       ],
       "fullRefinementComplete": false,
@@ -711,7 +718,6 @@
   "trust12Required": {
     "centralClosure": "INCOMPLETE",
     "currentMandatory": [
-      "NATIVE-SYMBOLIC-FREEZE",
       "RESEARCH-RUNTIME-LINK-HOOK",
       "RESEARCH-RUNTIME-LINK-NATIVE",
       "RESEARCH-RUNTIME-LINK-PARTIAL"
@@ -723,19 +729,19 @@
       },
       {
         "path": "evidence/trust12/release-notes.md",
-        "sha256": "3762d1a46c0cdea532d09e900028db372bc7dea0f46042c6c9bf1084e1e1fa50"
+        "sha256": "d8e6d4a9610908380297993907974e8dfe3b72d183a21b23f4446de4ace72d13"
       },
       {
         "path": "evidence/claim-matrix.md",
-        "sha256": "286d541e291b0bf09043f554158cd27c653d3dc2db9e668668ec6cd87962ec88"
+        "sha256": "81fc908900bbe64d91c5e34128cb1e4ad58173f623867bea84a0010e554a041c"
       },
       {
         "path": "evidence/known-limitations.md",
-        "sha256": "7b0858b896cce614d93137b633524f0203bd77109fa03e2cbde94fcfab7a9ea6"
+        "sha256": "26c49738dd9b7bee57e40e0fb95bd026b4f57f1bacf41b73369009d12e8ce81e"
       },
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "0df2d8c58100ad9c7258fafd319b58572a3fad262b9ff09f96414fb2c2b772c7"
+        "sha256": "dde9d561e90189e91cd43ae4e24cb5f7069a475c3aca39e314478051b175cf9b"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -743,7 +749,7 @@
       },
       {
         "path": "evidence/trust12/runtime-link-source-blockers.md",
-        "sha256": "a0461370e2199b051a063655549ae2ef09ac060300bb2ede1ca33f2df0769a43"
+        "sha256": "03089325891aab236e4d8099e22d6779b83651a7224beed7f4b3659127a4aedb"
       },
       {
         "path": "evidence/trust12/independent-audit.md",
@@ -838,6 +844,14 @@
         "sha256": "5c153e2fa9d455862c1667df4b6e020f43a96dcd8dea95a52558f4c741a604ac"
       },
       {
+        "path": "evidence/trust12/runtime-link/assess-call-reception-checkpoint-v1.json",
+        "sha256": "61b5bb0342b9bf7ecf351d25f3cbc3e7e6303357a053b6959f155b942b2ed50f"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/native-supply-direction-negative-checkpoint-v1.json",
+        "sha256": "feaee9086425a6b88e5a54ea82f2cc4bc6baa48cdadf806a2eb9aaee3bb95efc"
+      },
+      {
         "path": "evidence/trust12/runtime-link/primitive-source-controls-checkpoint-v1.json",
         "sha256": "fb9e988a785733f3427159c29798bba1faf6faa34addb9354486adf89eee5c2b"
       },
@@ -855,7 +869,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "a59f08009a9d0b627ebb10e72d8d853febffc6d5be996017f011639d31df5ecd"
+        "sha256": "87ac686aebbe80f572905af68f4547c94481adad6364172ea0f787d29fc3a7f2"
       }
     ],
     "fullRefinementComplete": false,

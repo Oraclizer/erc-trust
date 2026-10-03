@@ -26,13 +26,15 @@ receipt does not record the proof metadata required for a proof-grade classifica
 
 TRUST 1.2 profile row grades: Native EXECUTION_TESTS; Partial EXECUTION_TESTS; Hook EXECUTION_TESTS.
 
-Native symbolic FREEZE is still open in its original general domain, including
-first targets above supply. The bounded alternative probe reused checked summaries
-and advanced the exact state from program counter 7618 to 7619. Standard K/KEVM
-single-step execution then timed out twice, once on the whole summarized state and
-once on a smaller typed JUMP-decode frame, so the probe stopped under its approved
-failure rule. The same-domain guard-removal negative was not run. Time spent cannot
-close the proof. A shipping exception requires a separate Jay decision and leaves
+Native symbolic FREEZE is closed in its original general domain, including first
+targets above supply. The assembled positive is complete under the declared
+A-KECCAK/A-LAYOUT assumptions. At the direction guard, changing only the resolved
+guard condition leaves the rejection path on both complementary supply branches with
+the same constraints and frame, and the original branches rejoin established exact
+states. A compiled copy that removes only this guard is killed by the original
+rejection consumer at a first target above supply. The complete mutant transaction
+is not claimed. The earlier bounded alternative probe, which timed out twice, is
+retained as history. A shipping exception requires a separate Jay decision and leaves
 the proof explicitly unproven, with a receiving process, responsible artifact,
 closure evidence and resume condition. Existing parser and symbolic receiver work
 is available for the mandatory general connection; no unproved producer is promoted.

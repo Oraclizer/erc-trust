@@ -33,6 +33,12 @@ export const requiredTrust12Paths = [
   'scripts/test-original-binding-meaning.py',
   'scripts/trust12/verify_original_binding_meaning_v1.py',
   'evidence/trust12/runtime-link/original-binding-meaning-checkpoint-v1.json',
+  'scripts/test-assess-call-reception.py',
+  'scripts/trust12/verify_assess_call_reception_v1.py',
+  'evidence/trust12/runtime-link/assess-call-reception-checkpoint-v1.json',
+  'scripts/test-native-supply-direction-negative.py',
+  'scripts/trust12/verify_native_supply_direction_negative_v1.py',
+  'evidence/trust12/runtime-link/native-supply-direction-negative-checkpoint-v1.json',
   'scripts/test-primitive-source-controls.py',
   'scripts/trust12/verify_primitive_source_controls_v1.py',
   'evidence/trust12/runtime-link/primitive-source-controls-checkpoint-v1.json',
@@ -178,6 +184,14 @@ export function verifyTrust12Required(root = repository) {
     ['-B', resolve(root, 'scripts/trust12/verify_original_binding_meaning_v1.py'), '--product-root', root, '--metadata-only'],
     { cwd: root, encoding: 'utf8' });
   check(!bindingMeaningCheck.error && bindingMeaningCheck.status === 0, 'original-binding-meaning public metadata check failed');
+  const assessCallCheck = spawnSync(process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3'),
+    ['-B', resolve(root, 'scripts/trust12/verify_assess_call_reception_v1.py'), '--product-root', root, '--metadata-only'],
+    { cwd: root, encoding: 'utf8' });
+  check(!assessCallCheck.error && assessCallCheck.status === 0, 'assess-call-reception public metadata check failed');
+  const supplyNegativeCheck = spawnSync(process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3'),
+    ['-B', resolve(root, 'scripts/trust12/verify_native_supply_direction_negative_v1.py'), '--product-root', root, '--metadata-only'],
+    { cwd: root, encoding: 'utf8' });
+  check(!supplyNegativeCheck.error && supplyNegativeCheck.status === 0, 'native-supply-direction-negative public metadata check failed');
   const primitiveControlsCheck = spawnSync(process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3'),
     ['-B', resolve(root, 'scripts/trust12/verify_primitive_source_controls_v1.py'), '--product-root', root, '--metadata-only'],
     { cwd: root, encoding: 'utf8' });

@@ -13,9 +13,9 @@ evidence each. All 21 components have been mapped and scope-reviewed. Native, Pa
 and Hook each have seven execution-test components. The weakest component makes all three row
 grades EXECUTION_TESTS. The profile implementation-evidence rows are closed within
 those scopes. The original general `runtime_link` goals remain unproved and are
-mandatory for TRUST 1.2 completion in each declared profile. Native symbolic FREEZE remains mandatory after the alternative probe
-stopped on its second standard single-step timeout. Its same-domain guard-removal
-negative was not run. No shipping exception is currently approved.
+mandatory for TRUST 1.2 completion in each declared profile. Native symbolic FREEZE is closed: its assembled
+positive and same-domain guard-removal negatives on both supply branches are
+received. No shipping exception is currently approved.
 
 The local proof-run inventory, this TRUST 1.2 product obligation ledger, and the
 end-to-end product obligation ledger count different obligations. A completed
@@ -247,9 +247,9 @@ Its first actual Native consumer stopped during module registration before
 execute. No preserves-definedness attribute or new initial premise was supplied
 by the TRUST driver.
 
-Duplicate-map and wrong-value controls are local helper checks. They do not
-replace the pending same-domain FREEZE guard-removal proof. The Native general
-symbolic obligation remains current-mandatory. The three profile implementation-
+Duplicate-map and wrong-value controls are local helper checks. They are not the
+same-domain FREEZE guard-removal evidence, which is recorded separately. The Native
+general symbolic obligation is closed. The three profile implementation-
 evidence obligations are closed at EXECUTION_TESTS, and the three general runtime-
 link obligations remain mandatory and unproved. The existing aggregate gate checks
 sealed development-evidence consistency; it does not replay these K proofs or
