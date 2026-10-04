@@ -5,7 +5,7 @@
   "pathBoundary": "The scan follows internal calls, library calls and modifiers from the typed command entrypoints. The entrypoints that a typed command reaches through a call back into the endpoint are declared in the scan tool, not discovered by it: the two exact-use route handlers of the Native endpoint and the balance callback of the Hook adapter. A state write is an assignment, an increment or decrement, a delete, a push or a pop, followed through local storage pointers and storage parameters to the state variable; no implementation source holds an inline assembly storage write. A guard is a revert statement, a require or assert call, or an inline assembly block that reverts; checks that the compiler generates, such as calldata decoding and checked arithmetic, are not source guards and are not listed.",
   "classificationBoundary": "The scan reads syntax trees and layouts; it does not execute the code. A classification records which obligation or reason a write or guard is matched with: a guard matches a consumer snippet when one text contains the other or when the snippet calls the function that holds the guard, and a Hook adapter guard in a function whose source text equals the Partial adapter function of the same name takes the classification of that Partial guard. A classification does not prove that a guard is sound, that a listed reason is true or that a named ledger row covers the guard. The fifteen Hook adapter columns that the crosswalk derives from the Partial layout are compared writer by writer with the Partial adapter, and the two Hook writers with their own source text have reviewed dispositions that pin both texts by hash. The syntax trees and layouts come from a stored build of the exact sources with the compiler settings that the product declares. The record binds that build by hash and does not rerun the compiler: that the stored syntax trees and layouts are what the pinned compiler produces for these sources is not rechecked, and the correctness of the compiler remains the assumption A-COMPILER.",
   "reversalCheckBoundary": "Four of the reviewed guard dispositions classify the domain check and the derived identifier check of a reversal request on the Native endpoint and on the Partial adapter, and the Hook adapter takes both through its identical function text. The ledger rows they name receive or state the rule that the check enforces: the kernel domain value with its DOMAIN reason code, the IDENTIFIER reason code, the reversal identifier hash, the common shape rules and the single use of reversal identifiers. The final source consumers and the removal negatives of those rows name other statements, among them the matching checks of an action request and the replay checks, and no removal negative targets a domain or identifier check of a reversal request.",
-  "conditionBoundary": "This record is evidence for the two closure acceptance criteria of the preservation and reflection condition that it quotes, and for the finding on runtime-only storage: it gives the reason that the finding asks for each storage variable that no abstract field reads and that the earlier central closure left without a runtime-only reason. The condition also states that abstract allowed behavior is preserved by the final code; this record does not address that part. The scan also checks the dispositions of the open items of the crosswalk, but the record is not evidence for the state and receipt identity condition: the open item that waits for a formal reader of storage into abstract fields stays open, and so does the finding that no such reader exists.",
+  "conditionBoundary": "This record is evidence for the two closure acceptance criteria of the preservation and reflection condition that it quotes, and for the finding on runtime-only storage: it gives the reason that the finding asks for each storage variable that no abstract field reads and that the earlier central closure left without a runtime-only reason. The condition also states that abstract allowed behavior is preserved by the final code; this record does not address that part. The scan also checks the dispositions of the open items of the crosswalk, but the record is not evidence for the state and receipt identity condition or for the formal reader of storage into abstract fields.",
   "reproductionBoundary": "Metadata mode reads tracked files only. It checks that this record is the reviewed one, that the scan tool, the dispositions and the crosswalk are the current files, that the implementation sources, the ledger members that the scan reads, the compiler declarations and the quoted condition are the current ones, that no implementation source holds an inline assembly storage write, and that every classification, disposition and count of this record follows from the current crosswalk, dispositions and ledgers. Saved mode additionally rehashes the stored build information and the stored scan report named through a private index, runs the current scan tool on the stored build information and requires the result to equal the stored report byte for byte and this record to follow from it. Neither mode runs the compiler or a prover, and the record states no completion of the preservation and reflection condition, the registered-scope central closure, any general runtime link, the independent Assurance or TRUST 1.2.",
   "evidenceFor": {
     "condition": "preservation-and-reflection",
@@ -100,13 +100,13 @@
   "productIdentity": {
     "scanTool": {
       "path": "scripts/trust12/tail-preparation/reflection_scan.py",
-      "bytes": 46395,
-      "sha256": "3a8d013709d1c4555b9e1dfdd043691843bbbd814a6749b6d4d52c5c44a69ba6"
+      "bytes": 46450,
+      "sha256": "16d54721d29b45978a68677be50d57a6d0924c7c20230e5ae3080c8d09cbe7e6"
     },
     "dispositions": {
       "path": "evidence/trust12/runtime-link/tail-preparation/reflection-dispositions-v1.json",
-      "bytes": 30676,
-      "sha256": "a829e2ef536c7470132a989b1ea4986b5690c06a674481217d2ea9fb80a97f74"
+      "bytes": 30567,
+      "sha256": "74cddd383392121f488c588b4393571a8d767fedfb187164918bf6a77a5ceb94"
     },
     "crosswalk": {
       "path": "evidence/trust12/runtime-link/tail-preparation/state-receipt-crosswalk-v1.json",
@@ -241,13 +241,13 @@
       "id": "reflection-scan-report",
       "kind": "report",
       "bytes": 161442,
-      "sha256": "c52eadd60f4ed6aac88195621da3c8f2f2a27fa45e3c1ce34179854ff057ada1"
+      "sha256": "c51106c6da1026afc8d855ded789ce4c6ecd4ef676289ce0576a13edfe536179"
     }
   ],
   "rehashVerifier": {
     "path": "scripts/trust12/verify_reflection_scan_v1.py",
-    "bytes": 41892,
-    "sha256": "527cae0f4617b71301d0a6bf152130400f1a65b5c955b520038ee34bf64f7531",
+    "bytes": 41783,
+    "sha256": "9b4b50ec8ed2e0e05602ed0640398328cf31d387d8da3ddaa833406b90756a8b",
     "command": "python3 scripts/trust12/verify_reflection_scan_v1.py --product-root <product-root> --artifact-index <private-artifact-index.json>"
   },
   "nonclaims": {
@@ -486,7 +486,7 @@
   "openItems": [
     {
       "index": 0,
-      "disposition": "AWAITS_FORMAL_READER"
+      "disposition": "RESOLVED_BY_FORMAL_READER"
     },
     {
       "index": 1,

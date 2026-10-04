@@ -59,6 +59,11 @@ export const requiredTrust12Paths = [
   'scripts/trust12/tail-preparation/test_reflection_scan.py',
   'evidence/trust12/runtime-link/tail-preparation/reflection-dispositions-v1.json',
   'evidence/trust12/runtime-link/tail-preparation/reflection-scan-checkpoint-v1.json',
+  'scripts/trust12/verify_storage_reader_v1.py',
+  'scripts/test-storage-reader.py',
+  'scripts/trust12/tail-preparation/storage_reader.py',
+  'scripts/trust12/tail-preparation/test_storage_reader.py',
+  'evidence/trust12/runtime-link/tail-preparation/storage-reader-checkpoint-v1.json',
   'scripts/trust12/verify_malformed_guard_mutants_v1.py',
   'scripts/test-malformed-guard-mutants.py',
   'scripts/trust12/tail-preparation/run_malformed_probe_v2.py',
@@ -308,6 +313,10 @@ export function verifyTrust12Required(root = repository) {
     ['-B', resolve(root, 'scripts/trust12/verify_reflection_scan_v1.py'), '--product-root', root, '--metadata-only'],
     { cwd: root, encoding: 'utf8' });
   check(!reflectionScanCheck.error && reflectionScanCheck.status === 0, 'reflection-scan public metadata check failed');
+  const storageReaderCheck = spawnSync(process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3'),
+    ['-B', resolve(root, 'scripts/trust12/verify_storage_reader_v1.py'), '--product-root', root, '--metadata-only'],
+    { cwd: root, encoding: 'utf8' });
+  check(!storageReaderCheck.error && storageReaderCheck.status === 0, 'storage-reader public metadata check failed');
   return { status: policy.fullRefinementComplete ? 'PASS_TRUST12_FULL_REFINEMENT' :
       policy.trust12Complete ? 'PASS_TRUST12_REGISTERED_COMPLETION' : 'PASS_CONSISTENT_DEVELOPMENT',
     centralClosure: ledger.centralClosure.status, currentMandatory: mandatory,

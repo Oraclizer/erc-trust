@@ -1,0 +1,4318 @@
+{
+  "schema": "trust12-storage-reader-checkpoint-v1",
+  "status": "PASS_STORAGE_READER_AGREES_WITH_CROSSWALK",
+  "scope": "The runtime manifests that the Native cell theorems and the restated Partial and Hook cell theorems of the registered executions use define every abstract field by a reading of storage or by a profile constant, and this record compares those definitions with the state and receipt crosswalk. The Native manifests read the endpoint storage; the reader shared by the Partial and Hook profiles reads the adapter storage and the upstream token storage. For each of the nineteen abstract state fields and each crosswalk runtime, the account, base slot, mapping depth, key, word and value decoding of the reader agree with the crosswalk column: 49 storage columns agree slot for slot, among them the fifteen Hook adapter columns that the crosswalk derives from the Partial layout, no reader reads the 38 governor columns, five adapter columns are constants of the profile and three adapter columns are read from the upstream token. Every storage variable that the crosswalk binds for the endpoint or an adapter is read into exactly the abstract field that it names, no variable that the crosswalk lists without an abstract field is read into one, the struct readers read the members of the three crosswalk sub-records in the crosswalk order, and the slots agree with the generated slot tables.",
+  "readerBoundary": "The readers are definitions in Isabelle theories that completed kernel sessions stored: the Native manifest and its two later generations, which replace only the layout predicate and then the receipt projection, the manifest names that the Native cell theorems use, and the reader shared by the two adapter profiles with the Partial and Hook profile constants and manifests. Selector lemmas of the same theories state each projection one field at a time. A helper definition is interpreted only when its text equals the text pinned in the reader tool. Mapping locations are computed by a hash function that is a parameter of the reader, constrained by the recorded preimage equations of each theorem context; that this function is Keccak-256 on those inputs is the retained assumption A-KECCAK. The Native reader reads a mapping key only when the configuration footprint names the key or its preimage, except the binding kinds, which it always reads; the adapter reader reads only the holders, identifiers, nonce keys and entitlements of the registered certificates and every binding kind. Any other key reads as the absent value.",
+  "representationBoundary": "Some readings are representation choices, not storage facts. The adapter profiles give zero allowances and the single profile authority as constants, and the Partial profile gives the minted supply of its test token as a constant. Balances, and for the Hook profile the total supply, are read from the upstream token storage, which the crosswalk layouts do not cover and whose behavior is the retained assumption A-EXTERNAL. The adapter binding reports zero configuration, schema and epoch, which the adapter does not store. In the third Native generation and in the adapter reader, a LIQUIDATE receipt is read only with a matching pair certificate of the profile and then carries the pair commitment of the model; the second Native generation, which the FREEZE cell theorems use, reads receipts without that translation. The Native reader gives an absent custody record, authority or binding exactly when the words that it names are zero or the key lies outside its scope; the adapter reader does the same for custody records and bindings and gives an authority only at the profile authority reference.",
+  "conditionBoundary": "This record is evidence for the three closure acceptance criteria of the state and receipt identity condition that it quotes and for the finding that no formal storage reader exists: a reader of each profile manifest maps slots and mapping keys to abstract fields and agrees with the crosswalk; the reader of the Hook manifest reads every derived Hook column, and kernel theorems state the reader values of all nineteen fields for each of the sixteen recorded worlds of the Partial and the Hook profile; and the open item of the crosswalk that waited for a formal reader is closed by this record, while the other eight open items keep their reviewed dispositions. The agreement is between definitions. It does not show that a deployed runtime holds these values in a general execution; the cell theorems state the correspondence for the registered executions only. The Native cell theorems use three generations of the Native manifest whose field projections agree except for the receipt translation, and the Partial and Hook cell theorems over the reader manifests restate the registered cells; naming them in the certificate registry, instantiating the Native cells over one common manifest and the gate over the twenty-seven cells are not part of this record.",
+  "reproductionBoundary": "Metadata mode reads tracked files only. It checks that this record is the reviewed one, that the reader tool, the crosswalk, the quoted members of the public formal sources and the quoted condition are the current ones, recomputes every read form from the reader clauses that this record quotes and every comparison row, both directions of the slot check, the sub-record order, the slot tables, the layout widths and the absent values from those forms and the current crosswalk, and checks the open item dispositions against the reviewed dispositions. Saved mode additionally rehashes the completed kernel session databases and the stored build information named through a private index, reads each reader source from the database that stored it, recomputes the whole record from those sources and requires it to equal this record, including the recorded-world theorems, the cell theorem statements and the struct member locations of the compiled layouts. Neither mode runs a prover or the compiler, and the record states no completion of the registered-scope central closure, any general runtime link, the independent Assurance or TRUST 1.2.",
+  "evidenceFor": {
+    "condition": "state-and-receipt-identity",
+    "closureAcceptance": [
+      "A formal reader of each profile manifest maps slots and mapping keys to abstract fields and agrees with the crosswalk.",
+      "Every derived Hook column is reviewed or replaced by that reader.",
+      "Every open item of the crosswalk is resolved or turned into an exact non-claim."
+    ],
+    "finding": {
+      "id": "no-formal-storage-reader",
+      "decisionNeeded": "A formal reader per profile manifest, checked against the crosswalk."
+    }
+  },
+  "coverage": {
+    "profiles": 3,
+    "stateFields": 19,
+    "comparisonRows": 95,
+    "verdicts": {
+      "AGREES": 49,
+      "AGREES_CONSTANT": 5,
+      "AGREES_NOT_READ": 38,
+      "AGREES_UPSTREAM_TOKEN": 3
+    },
+    "derivedHookColumns": {
+      "total": 15,
+      "agreeing": 15
+    },
+    "reverseRuntimes": 5,
+    "subRecords": 3,
+    "generatedTableRows": 34,
+    "layoutWidthRows": 42,
+    "structReaders": 9,
+    "readerClauses": 49,
+    "readerSources": 43,
+    "sessionDatabases": 23,
+    "recordedWorlds": {
+      "partial": {
+        "worlds": 16,
+        "fieldFacts": 304
+      },
+      "hook": {
+        "worlds": 16,
+        "fieldFacts": 304
+      }
+    },
+    "cellTheorems": {
+      "partial": 9,
+      "hook": 9,
+      "native": 10
+    },
+    "memberLayoutRows": 24,
+    "openItems": {
+      "closedByThisRecord": 1,
+      "reviewedDispositions": 8
+    },
+    "mismatches": 0
+  },
+  "productIdentity": {
+    "tool": {
+      "path": "scripts/trust12/tail-preparation/storage_reader.py",
+      "bytes": 63487,
+      "sha256": "60c9ce2056e923be11ab1058ca2f20f93ec5c478ff486632e3c1e7a9655e5352"
+    },
+    "crosswalk": {
+      "path": "evidence/trust12/runtime-link/tail-preparation/state-receipt-crosswalk-v1.json",
+      "bytes": 41449,
+      "sha256": "7570f37e22101ed1ceaba835b13978e8aab060e0da6c40a17f2b3ab6d3d8d6ae"
+    }
+  },
+  "formalMembers": {
+    "paths": {
+      "state": "formal/isabelle/ERC_TRUST/TRUST_Compositional_State.thy",
+      "manifest": "formal/isabelle/ERC_TRUST/TRUST_Retrieve_Relation.thy",
+      "bridge": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy"
+    },
+    "reads": [
+      "stateFields",
+      "subRecords",
+      "projection",
+      "tables"
+    ],
+    "sha256": "8abc83bc1135e3e3536e1a8c8213fcda2825e1cd4635875959828f17cff381d7"
+  },
+  "readerSources": {
+    "shared-reader": {
+      "database": "session-shared-reader",
+      "sha256": "62f80d0cacf6f49a0243ed5b35f1e579cefa4d6c8143381aceadb45282b8733b",
+      "bytes": 28603
+    },
+    "partial-profile": {
+      "database": "session-shared-reader",
+      "sha256": "8f1eef6ab1b6e9f72f12834c4d03b9acb7805176222c27e3c8d6133f651f5448",
+      "bytes": 538310
+    },
+    "partial-worlds-0": {
+      "database": "session-shared-reader",
+      "sha256": "0943d9dd8792d72a0964086801fb2f94575f86e0c3cef20f02223bf5c7525de1",
+      "bytes": 58730
+    },
+    "hook-profile": {
+      "database": "session-hook-reader",
+      "sha256": "10c78feb1bd77c097c7701a6777a39fbe913bf250ad86f874fda1e513f71a5de",
+      "bytes": 577347
+    },
+    "hook-worlds-0": {
+      "database": "session-hook-reader",
+      "sha256": "69350217421c416668ed45a13975e5d1462eea312489918f3c551cf476bd7821",
+      "bytes": 57655
+    },
+    "partial-worlds-1": {
+      "database": "session-partial-worlds-1",
+      "sha256": "269a64a83aafa1ab240da10aad21b92a2a77dd801f18bdba7583d6e0154353f2",
+      "bytes": 394888
+    },
+    "partial-worlds-2": {
+      "database": "session-partial-worlds-2",
+      "sha256": "5d0918e279f21875bbfb66c739433a16c8669ef522bde65549841c1e67b83599",
+      "bytes": 159376
+    },
+    "partial-worlds-3": {
+      "database": "session-partial-worlds-3",
+      "sha256": "6c9f2ccdce3207236fa38467a5a8494c1b47db0710c7c7f9742dcb13440ae150",
+      "bytes": 121079
+    },
+    "partial-worlds-4": {
+      "database": "session-partial-worlds-4",
+      "sha256": "402f95f2beb8a2257242ff4c41aac96faa4a8d939e0cac8dbb33d44601c31835",
+      "bytes": 123966
+    },
+    "hook-worlds-1": {
+      "database": "session-hook-worlds-1",
+      "sha256": "da54977f817f4b52f37ead9fe6e5d729294a7b139a883f2801e0d8d18877aa30",
+      "bytes": 387464
+    },
+    "hook-worlds-2": {
+      "database": "session-hook-worlds-2",
+      "sha256": "751f5052d8c64a9709ad96a748968758c03068e04eb88395f3e98e8ea81dfba5",
+      "bytes": 156148
+    },
+    "hook-worlds-3": {
+      "database": "session-hook-worlds-3",
+      "sha256": "851f9513f13fd34e2d04caacb60a895a8a3d5575e7b44e8ddc203b942f1e3086",
+      "bytes": 118565
+    },
+    "hook-worlds-4": {
+      "database": "session-hook-worlds-4",
+      "sha256": "c0a5c4c95b24127ca8a6512adfb86faef2453c8867ed36ed97da82bb15f418cc",
+      "bytes": 121551
+    },
+    "partial-cell-freeze": {
+      "database": "session-reader-cells",
+      "sha256": "caf207d7a97783d5a4f56ef517c6e70e812184bdff40a96ea313e0bf2ee09768",
+      "bytes": 364279
+    },
+    "partial-cell-seize": {
+      "database": "session-reader-cells",
+      "sha256": "ca59fd454fb5d13eb7a5f7cdc30bc82c5226f00a7fc7b8b5689e302947398ac5",
+      "bytes": 405179
+    },
+    "partial-cell-confiscate": {
+      "database": "session-reader-cells",
+      "sha256": "c3983a2ba382566511c90a4df82ce8fc539cac018d8a0c59f188a1476a7c9970",
+      "bytes": 430883
+    },
+    "partial-cell-liquidate": {
+      "database": "session-reader-cells",
+      "sha256": "3c6d9d671e61fa0aa9ffbb067a7863660ff2b422ee1e68ec5a12ae68580164e8",
+      "bytes": 425547
+    },
+    "partial-cell-restrict": {
+      "database": "session-reader-cells",
+      "sha256": "a0f49ade88562817fc750ac48f74f20dda282bce6f4cece97ab031ad1272ef03",
+      "bytes": 420145
+    },
+    "partial-cell-recover": {
+      "database": "session-reader-cells",
+      "sha256": "13af2d89d2542b43ba5507ecba0337fbee387457cf383a795fe1189034abc5c5",
+      "bytes": 414140
+    },
+    "partial-cell-unfreeze": {
+      "database": "session-reader-cells",
+      "sha256": "2f7830d840046c8ed4e7258e9dfe6b127ef0d8e360b84f6c2dad30747a566a3c",
+      "bytes": 484971
+    },
+    "partial-cell-release": {
+      "database": "session-reader-cells",
+      "sha256": "17da56dcdcd1e11c9fbfc923a468a6bc9ea8778b565cd11f4362f406c2bc40b5",
+      "bytes": 483725
+    },
+    "partial-cell-unrestrict": {
+      "database": "session-reader-cells",
+      "sha256": "18d0ed9830541b95de11c412dff108c0ebd46f4c4fc920d699e9ae6a6c47082c",
+      "bytes": 494647
+    },
+    "hook-cell-freeze": {
+      "database": "session-reader-cells",
+      "sha256": "b5d6e98e18ed52b11ae5997775cbb31b8031dd14764a01e3c5a0c86bbc3c7f43",
+      "bytes": 428933
+    },
+    "hook-cell-seize": {
+      "database": "session-reader-cells",
+      "sha256": "d0c83ec3e847bf8bd4314d9fe65139071a0cd684f09d827db6522f54bdc4a2c5",
+      "bytes": 483455
+    },
+    "hook-cell-confiscate": {
+      "database": "session-reader-cells",
+      "sha256": "261f640e4481495ee8dfcc99859094a4af2f8a6c8cd0a926b93883606aefcfc2",
+      "bytes": 516009
+    },
+    "hook-cell-liquidate": {
+      "database": "session-reader-cells",
+      "sha256": "bdc7bb956969901b08695175ffc58aa3c685aa3bc60a56464564a11f311f8d33",
+      "bytes": 510644
+    },
+    "hook-cell-restrict": {
+      "database": "session-reader-cells",
+      "sha256": "4fe725c6f0fa8d2ed2f84e94c185f618f26b5aad74c08f12094e9d01f93f61ef",
+      "bytes": 501749
+    },
+    "hook-cell-recover": {
+      "database": "session-reader-cells",
+      "sha256": "02acc59bc026f7191158115ef4707225307247cbf927959bbf87ccaf1e1acd0d",
+      "bytes": 497066
+    },
+    "hook-cell-unfreeze": {
+      "database": "session-reader-cells",
+      "sha256": "8bd008d25d4b0bac7a68ea148fa30853adfa71b6dce98a11dee5ac92b5438f4c",
+      "bytes": 567068
+    },
+    "hook-cell-release": {
+      "database": "session-reader-cells",
+      "sha256": "95062fbe9493f11017d62a7dff5d9b2b4c69462333aa7d8fc13399cb30478d27",
+      "bytes": 565728
+    },
+    "hook-cell-unrestrict": {
+      "database": "session-reader-cells",
+      "sha256": "b9ddd1131ba4752cde24593892cf7bbfb772c35a675caaf9f9a07ae13de06220",
+      "bytes": 581574
+    },
+    "native-reader": {
+      "database": "session-native-reader",
+      "sha256": "8a6cb88520f90e3f36eb043c874558adc35d0a5484f30928a1aef519b42954c3",
+      "bytes": 221202
+    },
+    "native-layout": {
+      "database": "session-native-layout",
+      "sha256": "d683f4eb12de22bf7eaee50a383da3e0270c535a6b9825fb21a7a9ec028dd864",
+      "bytes": 44365
+    },
+    "native-receipts": {
+      "database": "session-native-receipts",
+      "sha256": "c76e229c1307dfe30e4ad09d2ad7ddb7757380485f420d12320dd2b43eb32227",
+      "bytes": 7692
+    },
+    "native-alias-restrict": {
+      "database": "session-native-alias-restrict",
+      "sha256": "7f667136473e872786aef82a3e831ac85794ac38b3a1474d0199aa2528cfe155",
+      "bytes": 45036
+    },
+    "native-alias-remaining": {
+      "database": "session-native-alias-remaining",
+      "sha256": "0a3a7f0be22277fec66ef297a8568faa7e9fde644efdb6aa2ea376d7c79c1f55",
+      "bytes": 36046
+    },
+    "native-cell-freeze-bridge": {
+      "database": "session-native-freeze-bridge",
+      "sha256": "ef2e8c6460636a5c96bdb3ce0bc0152b55974fd10fd1a15c629182f14e07a555",
+      "bytes": 19001
+    },
+    "native-cell-freeze-post": {
+      "database": "session-native-freeze-post",
+      "sha256": "240c8e931b126045029370395b4fd4e0dfa3270b7bedd01968bdda4566faa1b7",
+      "bytes": 198906
+    },
+    "native-cell-forward": {
+      "database": "session-native-forward",
+      "sha256": "084bdb248451f218a08dbd49e6413d344e237aaa3e34cc94fcdd53b57dd98b2c",
+      "bytes": 79802
+    },
+    "native-cell-liquidate": {
+      "database": "session-native-liquidate",
+      "sha256": "115cd9755da7487d95a27f8eb14a83af57d3e077b88b1845d31132fc1125bea4",
+      "bytes": 12168
+    },
+    "native-cell-restrict": {
+      "database": "session-native-restrict",
+      "sha256": "d0cfda9fc8d5c4a994dfd481adddc7850fd1701cd53c2439a27aa51efb16c037",
+      "bytes": 12477
+    },
+    "native-cell-unfreeze": {
+      "database": "session-native-unfreeze",
+      "sha256": "f0cfb2c14dd0f6a6be730929ba47b3e57ed4bf83523f26d4023c745c4a68a2df",
+      "bytes": 6121
+    },
+    "native-cell-release": {
+      "database": "session-native-release",
+      "sha256": "5e4ea2801842e783f78c03e5ed0b601589b756990dd4ef8d2e14bbd5cb6d3df8",
+      "bytes": 6104
+    }
+  },
+  "readerClauses": {
+    "helper:pw_mapping_preimage": "pw_mapping_preimage key slot = pw_pad32 key @ pw_pad32 slot",
+    "helper:pw_nested_preimage": "pw_nested_preimage key inner_hash = pw_pad32 key @ pw_pad32 inner_hash",
+    "helper:pw_pad32": "pw_pad32 wv = pw_be 32 wv",
+    "helper:pw_bits": "pw_bits low width wv = (wv div 2 ^ low) mod 2 ^ width",
+    "helper:pw_bool_of": "pw_bool_of wv <longleftrightarrow> wv <noteq> 0",
+    "helper:pw_option_hash": "pw_option_hash wv = (if wv = 0 then None else Some wv)",
+    "helper:pw_endpoint_storage": "pw_endpoint_storage cfg = (case current_world cfg (current_endpoint cfg) of None <Rightarrow> (<lambda>_. 0) | Some acct <Rightarrow> evm_account_storage acct)",
+    "helper:pw_scoped": "pw_scoped cfg key slot <longleftrightarrow> key < pw_word_bound <and> pw_mapping_preimage key slot <in> footprint_mapping_inputs (current_footprint cfg)",
+    "helper:pw_map_read": "pw_map_read cfg key slot = (if pw_scoped cfg key slot then pw_endpoint_storage cfg (keccak (pw_mapping_preimage key slot)) else 0)",
+    "helper:pw_struct_read": "pw_struct_read cfg key slot reader absent = (if pw_scoped cfg key slot then reader (pw_endpoint_storage cfg) (keccak (pw_mapping_preimage key slot)) else absent)",
+    "helper:pw_id_read": "pw_id_read cfg scope ident slot reader absent = (if ident <in> scope <and> ident < pw_word_bound then reader (pw_endpoint_storage cfg) (keccak (pw_mapping_preimage ident slot)) else absent)",
+    "helper:pw_allowance_read": "pw_allowance_read cfg owner spender = (if pw_scoped cfg owner 4 <and> spender < pw_word_bound <and> pw_nested_preimage spender (keccak (pw_mapping_preimage owner 4)) <in> footprint_mapping_inputs (current_footprint cfg) then pw_endpoint_storage cfg (keccak (pw_nested_preimage spender (keccak (pw_mapping_preimage owner 4)))) else 0)",
+    "helper:pw_nonce_key_storage": "pw_nonce_key_storage cfg nk = pw_endpoint_storage cfg (keccak (pw_nested_preimage (snd (snd nk)) (keccak (pw_nested_preimage (fst (snd nk)) (keccak (pw_mapping_preimage (fst nk) 11))))))",
+    "helper:pw2_manifest": "pw2_manifest keccak = (pw_manifest keccak)<lparr>manifest_layout_matches := pw2_layout_matches keccak<rparr>",
+    "helper:pw3_manifest": "pw3_manifest keccak certificates = (pw2_manifest keccak)<lparr>manifest_receipts := represented_receipts keccak certificates (pw2_manifest keccak)<rparr>",
+    "helper:represented_receipts": "represented_receipts keccak certificates manifest cfg command_id = (case manifest_receipts manifest cfg command_id of None <Rightarrow> None | Some receipt <Rightarrow> translate_receipt keccak certificates command_id receipt)",
+    "helper:translate_receipt": "translate_receipt keccak certificates command_id receipt = (if compositional_command_kind receipt = 3 then (case certificates command_id of None <Rightarrow> None | Some (settlement, proceeds) <Rightarrow> (if compositional_command_id receipt = command_id <and> compositional_external_commitment receipt = keccak (pw_be 32 settlement @ pw_be 32 proceeds) then Some (receipt<lparr>compositional_external_commitment := settlement_pair_commitment settlement proceeds<rparr>) else None)) else Some receipt)",
+    "helper:ru_manifest": "ru_manifest keccak = pw3_manifest keccak lq_pair_certificates",
+    "helper:nr_manifest": "nr_manifest keccak = pw3_manifest keccak lq_pair_certificates",
+    "helper:psr_slot": "psr_slot keccak key slot = keccak (pw_mapping_preimage key slot)",
+    "helper:psr_nonce_preimage": "psr_nonce_preimage domain nk = pw_pad32 domain @ pw_pad32 (fst nk) @ pw_pad32 (fst (snd nk)) @ pw_pad32 (snd (snd nk))",
+    "helper:psr_balance_slot": "psr_balance_slot kind = (case kind of PSR_Token_Mock <Rightarrow> 4 | PSR_Token_TREX <Rightarrow> 102)",
+    "helper:psr_total_supply": "psr_total_supply P T = (case psr_token_kind P of PSR_Token_Mock <Rightarrow> psr_minted_supply P | PSR_Token_TREX <Rightarrow> T 104)",
+    "helper:psr_read_receipt": "psr_read_receipt keccak P A h = (case pw_read_receipt A (psr_slot keccak h 9) of None <Rightarrow> None | Some receipt <Rightarrow> translate_receipt keccak (psr_pair_certificates P) h receipt)",
+    "helper:psr_storage": "psr_storage cfg address = (case current_world cfg address of None <Rightarrow> (<lambda>_. 0) | Some account <Rightarrow> evm_account_storage account)",
+    "helper:psr_config_state": "psr_config_state keccak P cfg = psr_state keccak P (psr_storage cfg (psr_adapter P)) (psr_storage cfg (psr_token P))",
+    "struct:pw_read_effect_head": "pw_read_effect_head st base = <lparr>head_action = pw_option_hash (st base), head_generation = pw_bits 0 64 (st (base + 1))<rparr>",
+    "struct:pw_read_effect_link": "pw_read_effect_link st base = (if st base = 0 <and> st (base + 1) = 0 then None else Some <lparr>effect_parent = pw_option_hash (st base), effect_generation = pw_bits 0 64 (st (base + 1))<rparr>)",
+    "struct:pw_read_authority": "pw_read_authority st base = (if st base = 0 then None else Some <lparr>authority_account = pw_bits 0 160 (st base), authority_epoch = pw_bits 160 64 (st base), authority_active = pw_bool_of (pw_bits 224 8 (st base))<rparr>)",
+    "struct:pw_read_binding": "pw_read_binding st base = (if st base = 0 then None else Some <lparr>binding_endpoint = pw_bits 0 160 (st base), binding_code_id = st (base + 1), binding_configuration = st (base + 2), binding_schema = st (base + 3), binding_epoch = pw_bits 0 64 (st (base + 4)), binding_hash = st (base + 5)<rparr>)",
+    "struct:pw_read_case": "pw_read_case st base = <lparr>case_phase = pw_case_phase_of_code (pw_bits 0 8 (st base)), case_family = pw_case_family_of_code (pw_bits 8 8 (st base)), case_head = pw_option_hash (st (base + 1)), case_generation = pw_bits 0 64 (st (base + 2))<rparr>",
+    "struct:pw_read_action": "pw_read_action st base = (if pw_bits 8 8 (st base) = 0 then None else Some <lparr>abstract_action = pw_action_of_code (pw_bits 0 8 (st base)), abstract_lifecycle = pw_lifecycle_of_code (pw_bits 8 8 (st base)), abstract_subject = pw_bits 16 160 (st base), abstract_source = pw_bits 0 160 (st (base + 1)), abstract_destination = pw_bits 0 160 (st (base + 2)), abstract_custodian = pw_bits 0 160 (st (base + 3)), abstract_amount = st (base + 4), abstract_prior_amount = st (base + 5), abstract_prior_flag = pw_bool_of (st (base + 6)), abstract_case = st (base + 7), abstract_authority_ref = st (base + 8), abstract_authority_epoch = pw_bits 0 64 (st (base + 9)), abstract_dependency_epoch = pw_bits 64 64 (st (base + 9)), abstract_command_hash = st (base + 10), abstract_evidence_hash = st (base + 11), abstract_receipt_hash = st (base + 12)<rparr>)",
+    "struct:pw_read_custody": "pw_read_custody st base = (if st base = 0 <and> st (base + 1) = 0 <and> st (base + 2) = 0 <and> st (base + 3) = 0 <and> st (base + 4) = 0 then None else Some <lparr>custody_custodian = pw_bits 0 160 (st base), custody_prior_holder = pw_bits 0 160 (st (base + 1)), custody_amount = st (base + 2), custody_action = pw_option_hash (st (base + 3)), custody_active = pw_bool_of (st (base + 4))<rparr>)",
+    "struct:pw_read_receipt": "pw_read_receipt st base = (if pw_bits 0 8 (st base) = 0 then None else Some <lparr>compositional_receipt_kind = pw_receipt_kind_of_code (pw_bits 0 8 (st base)), compositional_command_id = st (base + 1), compositional_command_kind = pw_bits 0 8 (st (base + 2)), compositional_parent_command_id = st (base + 3), compositional_subject = pw_bits 0 160 (st (base + 4)), compositional_source = pw_bits 0 160 (st (base + 5)), compositional_destination = pw_bits 0 160 (st (base + 6)), compositional_amount = st (base + 7), compositional_case = st (base + 8), compositional_authority_ref = st (base + 9), compositional_dependency_root = st (base + 10), compositional_provenance_commitment = st (base + 11), compositional_assessment_evidence = st (base + 12), compositional_pre_observation = st (base + 13), compositional_post_observation = st (base + 14), compositional_external_commitment = st (base + 15), compositional_receipt_hash = st (base + 16)<rparr>)",
+    "struct:psr_read_binding": "psr_read_binding st base = (if st base = 0 <and> st (base + 1) = 0 <and> st (base + 2) = 0 then None else Some <lparr>binding_endpoint = pw_bits 0 160 (st base), binding_code_id = st (base + 1), binding_configuration = 0, binding_schema = 0, binding_epoch = 0, binding_hash = st (base + 2)<rparr>)",
+    "shared:psr_state": "psr_state keccak P A T = <lparr>physical_balances = (<lambda>a. if a <in> psr_holders P then T (psr_slot keccak a (psr_balance_slot (psr_token_kind P))) else 0), compositional_allowances = (<lambda>_ _. 0), compositional_total_supply = psr_total_supply P T, frozen_targets = (<lambda>a. if a <in> psr_holders P then A (psr_slot keccak a 14) else 0), restriction_flags = (<lambda>a. a <in> psr_holders P <and> pw_bool_of (A (psr_slot keccak a 14 + 2))), custody_backing = (<lambda>a. if a <in> psr_holders P then A (psr_slot keccak a 17) else 0), freeze_heads = (<lambda>a. if a <in> psr_holders P then pw_read_effect_head A (psr_slot keccak a 15) else empty_head), restriction_heads = (<lambda>a. if a <in> psr_holders P then pw_read_effect_head A (psr_slot keccak a 16) else empty_head), effect_links = (<lambda>i. if i <in> psr_actions P then pw_read_effect_link A (psr_slot keccak i 8) else None), action_records = (<lambda>i. if i <in> psr_actions P then pw_read_action A (psr_slot keccak i 7) else None), custody_records = (<lambda>c. if c <in> psr_cases P then pw_read_custody A (psr_slot keccak c 11) else None), case_records = (<lambda>c. if c <in> psr_cases P then pw_read_case A (psr_slot keccak c 10) else empty_case), consumed_entitlements = {h <in> psr_entitlements P. A (psr_slot keccak h 13) <noteq> 0}, authorities = (<lambda>ref. if ref = psr_authority_ref P then Some (psr_authority P) else None), compositional_consumed_nonces = {nk <in> psr_nonce_keys P. A (psr_slot keccak (keccak (psr_nonce_preimage (psr_domain P) nk)) 12) <noteq> 0}, compositional_bindings = (<lambda>kind. psr_read_binding A (psr_slot keccak (pw_binding_kind_index kind) 6)), dependency_root = A 4, dependency_epoch = pw_bits 0 64 (A 5), compositional_receipts = (<lambda>h. if h <in> psr_receipt_ids P then psr_read_receipt keccak P A h else None)<rparr>",
+    "shared:psr_state_fields": [
+      "physical_balances (psr_state keccak P A T) = (<lambda>a. if a <in> psr_holders P then T (psr_slot keccak a (psr_balance_slot (psr_token_kind P))) else 0)",
+      "compositional_allowances (psr_state keccak P A T) = (<lambda>_ _. 0)",
+      "compositional_total_supply (psr_state keccak P A T) = psr_total_supply P T",
+      "frozen_targets (psr_state keccak P A T) = (<lambda>a. if a <in> psr_holders P then A (psr_slot keccak a 14) else 0)",
+      "restriction_flags (psr_state keccak P A T) = (<lambda>a. a <in> psr_holders P <and> pw_bool_of (A (psr_slot keccak a 14 + 2)))",
+      "custody_backing (psr_state keccak P A T) = (<lambda>a. if a <in> psr_holders P then A (psr_slot keccak a 17) else 0)",
+      "freeze_heads (psr_state keccak P A T) = (<lambda>a. if a <in> psr_holders P then pw_read_effect_head A (psr_slot keccak a 15) else empty_head)",
+      "restriction_heads (psr_state keccak P A T) = (<lambda>a. if a <in> psr_holders P then pw_read_effect_head A (psr_slot keccak a 16) else empty_head)",
+      "effect_links (psr_state keccak P A T) = (<lambda>i. if i <in> psr_actions P then pw_read_effect_link A (psr_slot keccak i 8) else None)",
+      "action_records (psr_state keccak P A T) = (<lambda>i. if i <in> psr_actions P then pw_read_action A (psr_slot keccak i 7) else None)",
+      "custody_records (psr_state keccak P A T) = (<lambda>c. if c <in> psr_cases P then pw_read_custody A (psr_slot keccak c 11) else None)",
+      "case_records (psr_state keccak P A T) = (<lambda>c. if c <in> psr_cases P then pw_read_case A (psr_slot keccak c 10) else empty_case)",
+      "consumed_entitlements (psr_state keccak P A T) = {h <in> psr_entitlements P. A (psr_slot keccak h 13) <noteq> 0}",
+      "authorities (psr_state keccak P A T) = (<lambda>ref. if ref = psr_authority_ref P then Some (psr_authority P) else None)",
+      "compositional_consumed_nonces (psr_state keccak P A T) = {nk <in> psr_nonce_keys P. A (psr_slot keccak (keccak (psr_nonce_preimage (psr_domain P) nk)) 12) <noteq> 0}",
+      "compositional_bindings (psr_state keccak P A T) = (<lambda>kind. psr_read_binding A (psr_slot keccak (pw_binding_kind_index kind) 6))",
+      "dependency_root (psr_state keccak P A T) = A 4",
+      "dependency_epoch (psr_state keccak P A T) = pw_bits 0 64 (A 5)",
+      "compositional_receipts (psr_state keccak P A T) = (<lambda>h. if h <in> psr_receipt_ids P then psr_read_receipt keccak P A h else None)"
+    ],
+    "shared:psr_manifest": "psr_manifest keccak P expected_code preimages = <lparr>manifest_numeric_id = 1, manifest_schema_sha256 = runtime_bridge_schema_sha256, manifest_expected_code = expected_code, manifest_mapping_preimages = (<lambda>_. preimages), manifest_keccak256 = keccak, manifest_physical_balances = (<lambda>cfg. physical_balances (psr_config_state keccak P cfg)), manifest_allowances = (<lambda>cfg. compositional_allowances (psr_config_state keccak P cfg)), manifest_total_supply = (<lambda>cfg. compositional_total_supply (psr_config_state keccak P cfg)), manifest_frozen_targets = (<lambda>cfg. frozen_targets (psr_config_state keccak P cfg)), manifest_restriction_flags = (<lambda>cfg. restriction_flags (psr_config_state keccak P cfg)), manifest_custody_backing = (<lambda>cfg. custody_backing (psr_config_state keccak P cfg)), manifest_freeze_heads = (<lambda>cfg. freeze_heads (psr_config_state keccak P cfg)), manifest_restriction_heads = (<lambda>cfg. restriction_heads (psr_config_state keccak P cfg)), manifest_effect_links = (<lambda>cfg. effect_links (psr_config_state keccak P cfg)), manifest_action_records = (<lambda>cfg. action_records (psr_config_state keccak P cfg)), manifest_custody_records = (<lambda>cfg. custody_records (psr_config_state keccak P cfg)), manifest_case_records = (<lambda>cfg. case_records (psr_config_state keccak P cfg)), manifest_consumed_entitlements = (<lambda>cfg. consumed_entitlements (psr_config_state keccak P cfg)), manifest_authorities = (<lambda>cfg. authorities (psr_config_state keccak P cfg)), manifest_consumed_nonces = (<lambda>cfg. compositional_consumed_nonces (psr_config_state keccak P cfg)), manifest_bindings = (<lambda>cfg. compositional_bindings (psr_config_state keccak P cfg)), manifest_dependency_root = (<lambda>cfg. dependency_root (psr_config_state keccak P cfg)), manifest_dependency_epoch = (<lambda>cfg. dependency_epoch (psr_config_state keccak P cfg)), manifest_receipts = (<lambda>cfg. compositional_receipts (psr_config_state keccak P cfg)), manifest_layout_matches = psr_layout_matches keccak P, manifest_footprint_complete = psr_layout_matches keccak P, manifest_topology_well_formed = psr_topology_well_formed P, manifest_canonical_words = psr_canonical_words P, manifest_idle_auxiliary_state = psr_idle_auxiliary_state keccak P<rparr>",
+    "shared:psr_projected": [
+      "projected_compositional_state (psr_manifest keccak P code preimages) cfg = psr_config_state keccak P cfg"
+    ],
+    "native:pw_manifest": "pw_manifest = <lparr>manifest_numeric_id = pw_manifest_id, manifest_schema_sha256 = runtime_bridge_schema_sha256, manifest_expected_code = (<lambda>topology address. case topology of TRUST_Native endpoint <Rightarrow> (if address = endpoint then Some pw_expected_runtime_code else None) | _ <Rightarrow> None), manifest_mapping_preimages = (<lambda>fp. pw_enumerate (pw_footprint_preimages fp)), manifest_keccak256 = keccak, manifest_physical_balances = (<lambda>cfg a. pw_map_read cfg a 3), manifest_allowances = pw_allowance_read, manifest_total_supply = (<lambda>cfg. pw_endpoint_storage cfg 2), manifest_frozen_targets = (<lambda>cfg a. pw_map_read cfg a 5), manifest_restriction_flags = (<lambda>cfg a. pw_bool_of (pw_map_read cfg a 6)), manifest_custody_backing = (<lambda>cfg a. pw_map_read cfg a 7), manifest_freeze_heads = (<lambda>cfg a. pw_struct_read cfg a 8 pw_read_effect_head empty_head), manifest_restriction_heads = (<lambda>cfg a. pw_struct_read cfg a 9 pw_read_effect_head empty_head), manifest_effect_links = (<lambda>cfg action. pw_id_read cfg (footprint_actions (current_footprint cfg)) action 14 pw_read_effect_link None), manifest_action_records = (<lambda>cfg action. pw_id_read cfg (footprint_actions (current_footprint cfg)) action 13 pw_read_action None), manifest_custody_records = (<lambda>cfg case_id. pw_id_read cfg (footprint_cases (current_footprint cfg)) case_id 17 pw_read_custody None), manifest_case_records = (<lambda>cfg case_id. pw_id_read cfg (footprint_cases (current_footprint cfg)) case_id 16 pw_read_case empty_case), manifest_consumed_entitlements = (<lambda>cfg. {h. pw_scoped cfg h 18 <and> pw_endpoint_storage cfg (keccak (pw_mapping_preimage h 18)) <noteq> 0}), manifest_authorities = (<lambda>cfg ref. pw_id_read cfg (footprint_authorities (current_footprint cfg)) ref 10 pw_read_authority None), manifest_consumed_nonces = (<lambda>cfg. {nk <in> footprint_nonce_keys (current_footprint cfg). fst nk < pw_word_bound <and> fst (snd nk) < pw_word_bound <and> snd (snd nk) < pw_word_bound <and> pw_nonce_key_storage cfg nk <noteq> 0}), manifest_bindings = (<lambda>cfg kind. pw_read_binding (pw_endpoint_storage cfg) (keccak (pw_mapping_preimage (pw_binding_kind_index kind) 21))), manifest_dependency_root = (<lambda>cfg. pw_endpoint_storage cfg 22), manifest_dependency_epoch = (<lambda>cfg. pw_bits 0 64 (pw_endpoint_storage cfg 23)), manifest_receipts = (<lambda>cfg h. pw_id_read cfg (footprint_receipts (current_footprint cfg)) h 15 pw_read_receipt None), manifest_layout_matches = pw_layout_matches, manifest_footprint_complete = pw_footprint_complete, manifest_topology_well_formed = pw_topology_well_formed, manifest_canonical_words = pw_canonical_words, manifest_idle_auxiliary_state = pw_idle_auxiliary_state<rparr>",
+    "native:pw_manifest_selectors": [
+      "manifest_numeric_id pw_manifest = pw_manifest_id",
+      "manifest_schema_sha256 pw_manifest = runtime_bridge_schema_sha256",
+      "manifest_keccak256 pw_manifest = keccak",
+      "manifest_mapping_preimages pw_manifest = (<lambda>fp. pw_enumerate (pw_footprint_preimages fp))",
+      "manifest_physical_balances pw_manifest = (<lambda>cfg a. pw_map_read cfg a 3)",
+      "manifest_allowances pw_manifest = pw_allowance_read",
+      "manifest_total_supply pw_manifest = (<lambda>cfg. pw_endpoint_storage cfg 2)",
+      "manifest_frozen_targets pw_manifest = (<lambda>cfg a. pw_map_read cfg a 5)",
+      "manifest_restriction_flags pw_manifest = (<lambda>cfg a. pw_bool_of (pw_map_read cfg a 6))",
+      "manifest_custody_backing pw_manifest = (<lambda>cfg a. pw_map_read cfg a 7)",
+      "manifest_freeze_heads pw_manifest = (<lambda>cfg a. pw_struct_read cfg a 8 pw_read_effect_head empty_head)",
+      "manifest_restriction_heads pw_manifest = (<lambda>cfg a. pw_struct_read cfg a 9 pw_read_effect_head empty_head)",
+      "manifest_effect_links pw_manifest = (<lambda>cfg action. pw_id_read cfg (footprint_actions (current_footprint cfg)) action 14 pw_read_effect_link None)",
+      "manifest_action_records pw_manifest = (<lambda>cfg action. pw_id_read cfg (footprint_actions (current_footprint cfg)) action 13 pw_read_action None)",
+      "manifest_custody_records pw_manifest = (<lambda>cfg case_id. pw_id_read cfg (footprint_cases (current_footprint cfg)) case_id 17 pw_read_custody None)",
+      "manifest_case_records pw_manifest = (<lambda>cfg case_id. pw_id_read cfg (footprint_cases (current_footprint cfg)) case_id 16 pw_read_case empty_case)",
+      "manifest_consumed_entitlements pw_manifest = (<lambda>cfg. {h. pw_scoped cfg h 18 <and> pw_endpoint_storage cfg (keccak (pw_mapping_preimage h 18)) <noteq> 0})",
+      "manifest_authorities pw_manifest = (<lambda>cfg ref. pw_id_read cfg (footprint_authorities (current_footprint cfg)) ref 10 pw_read_authority None)",
+      "manifest_consumed_nonces pw_manifest = (<lambda>cfg. {nk <in> footprint_nonce_keys (current_footprint cfg). fst nk < pw_word_bound <and> fst (snd nk) < pw_word_bound <and> snd (snd nk) < pw_word_bound <and> pw_nonce_key_storage cfg nk <noteq> 0})",
+      "manifest_bindings pw_manifest = (<lambda>cfg kind. pw_read_binding (pw_endpoint_storage cfg) (keccak (pw_mapping_preimage (pw_binding_kind_index kind) 21)))",
+      "manifest_dependency_root pw_manifest = (<lambda>cfg. pw_endpoint_storage cfg 22)",
+      "manifest_dependency_epoch pw_manifest = (<lambda>cfg. pw_bits 0 64 (pw_endpoint_storage cfg 23))",
+      "manifest_receipts pw_manifest = (<lambda>cfg h. pw_id_read cfg (footprint_receipts (current_footprint cfg)) h 15 pw_read_receipt None)",
+      "manifest_layout_matches pw_manifest = pw_layout_matches",
+      "manifest_footprint_complete pw_manifest = pw_footprint_complete",
+      "manifest_topology_well_formed pw_manifest = pw_topology_well_formed",
+      "manifest_canonical_words pw_manifest = pw_canonical_words",
+      "manifest_idle_auxiliary_state pw_manifest = pw_idle_auxiliary_state"
+    ],
+    "native:pw_layout_slots_agree_with_generated_bridge": [
+      "map_of native_storage_slots ''native.totalSupply'' = Some 2",
+      "map_of native_storage_slots ''native.balances'' = Some 3",
+      "map_of native_storage_slots ''native.allowances'' = Some 4",
+      "map_of native_storage_slots ''native.frozen'' = Some 5",
+      "map_of native_storage_slots ''native.restricted'' = Some 6",
+      "map_of native_storage_slots ''native.custodyBacking'' = Some 7",
+      "map_of native_storage_slots ''native.freezeHeads'' = Some 8",
+      "map_of native_storage_slots ''native.restrictionHeads'' = Some 9",
+      "map_of native_storage_slots ''native.authorities'' = Some 10",
+      "map_of native_storage_slots ''native.usedNonces'' = Some 11",
+      "map_of native_storage_slots ''native.usedGovernanceIds'' = Some 12",
+      "map_of native_storage_slots ''native.actions'' = Some 13",
+      "map_of native_storage_slots ''native.effects'' = Some 14",
+      "map_of native_storage_slots ''native.receipts'' = Some 15",
+      "map_of native_storage_slots ''native.cases'' = Some 16",
+      "map_of native_storage_slots ''native.custody'' = Some 17",
+      "map_of native_storage_slots ''native.consumedEntitlements'' = Some 18",
+      "map_of native_storage_slots ''native.pendingCommitments'' = Some 19",
+      "map_of native_storage_slots ''native.pendingReversals'' = Some 20",
+      "map_of native_storage_slots ''native.bindings'' = Some 21",
+      "map_of native_storage_slots ''native.dependencyRoot'' = Some 22",
+      "map_of native_storage_slots ''native.dependencyEpoch'' = Some 23",
+      "map_of native_storage_slots ''native.routeTicket'' = Some 24",
+      "map_of native_storage_slots ''native.entered'' = Some 28"
+    ],
+    "native:pw2_mapping_layout": "pw2_mapping_layout = [(3, 1, 1), (4, 2, 1), (5, 1, 1), (6, 1, 1), (7, 1, 1), (8, 1, 2), (9, 1, 2), (10, 1, 1), (11, 3, 1), (12, 1, 1), (13, 1, 13), (14, 1, 2), (15, 1, 17), (16, 1, 3), (17, 1, 5), (18, 1, 1), (19, 1, 4), (20, 1, 5), (21, 1, 6)]",
+    "native:pw2_projection_is_the_recorded_projection": [
+      "projected_compositional_state (pw2_manifest keccak) cfg = projected_compositional_state (pw_manifest keccak) cfg"
+    ],
+    "native:pw3_non_receipt_fields_agree": [
+      "(projected_compositional_state (pw3_manifest keccak certificates) cfg) <lparr>compositional_receipts := compositional_receipts state<rparr> = (projected_compositional_state (pw2_manifest keccak) cfg) <lparr>compositional_receipts := compositional_receipts state<rparr>"
+    ],
+    "partial:manifest": "psr_partial_manifest <equiv> psr_manifest kc psr_partial_profile psr_partial_expected_code psr_partial_preimages",
+    "hook:manifest": "psr_hook_manifest <equiv> psr_manifest kc psr_hook_profile psr_hook_expected_code psr_hook_preimages",
+    "partial:constants": [
+      "psr_token_kind psr_partial_profile = PSR_Token_Mock",
+      "psr_minted_supply psr_partial_profile = 1000000000000000000000000"
+    ],
+    "hook:constants": [
+      "psr_token_kind psr_hook_profile = PSR_Token_TREX",
+      "psr_minted_supply psr_hook_profile = 0"
+    ]
+  },
+  "readerForms": {
+    "profiles": {
+      "native": {
+        "physical_balances": {
+          "kind": "storage",
+          "account": "endpoint",
+          "layout": "mapping",
+          "slot": 3,
+          "key": "argument",
+          "keyScope": "footprint mapping inputs",
+          "word": 0,
+          "value": "word",
+          "absent": "0"
+        },
+        "compositional_allowances": {
+          "kind": "storage",
+          "account": "endpoint",
+          "layout": "nested2",
+          "slot": 4,
+          "key": "components",
+          "keyScope": "footprint mapping inputs",
+          "word": 0,
+          "value": "word",
+          "absent": "0"
+        },
+        "compositional_total_supply": {
+          "kind": "storage",
+          "account": "endpoint",
+          "layout": "direct",
+          "slot": 2,
+          "key": null,
+          "keyScope": null,
+          "word": 0,
+          "value": "word",
+          "absent": null
+        },
+        "frozen_targets": {
+          "kind": "storage",
+          "account": "endpoint",
+          "layout": "mapping",
+          "slot": 5,
+          "key": "argument",
+          "keyScope": "footprint mapping inputs",
+          "word": 0,
+          "value": "word",
+          "absent": "0"
+        },
+        "restriction_flags": {
+          "kind": "storage",
+          "account": "endpoint",
+          "layout": "mapping",
+          "slot": 6,
+          "key": "argument",
+          "keyScope": "footprint mapping inputs",
+          "word": 0,
+          "value": "bool",
+          "absent": "False"
+        },
+        "custody_backing": {
+          "kind": "storage",
+          "account": "endpoint",
+          "layout": "mapping",
+          "slot": 7,
+          "key": "argument",
+          "keyScope": "footprint mapping inputs",
+          "word": 0,
+          "value": "word",
+          "absent": "0"
+        },
+        "freeze_heads": {
+          "kind": "storage",
+          "account": "endpoint",
+          "layout": "mapping",
+          "slot": 8,
+          "key": "argument",
+          "keyScope": "footprint mapping inputs",
+          "word": null,
+          "value": "struct:pw_read_effect_head",
+          "absent": "empty_head"
+        },
+        "restriction_heads": {
+          "kind": "storage",
+          "account": "endpoint",
+          "layout": "mapping",
+          "slot": 9,
+          "key": "argument",
+          "keyScope": "footprint mapping inputs",
+          "word": null,
+          "value": "struct:pw_read_effect_head",
+          "absent": "empty_head"
+        },
+        "effect_links": {
+          "kind": "storage",
+          "account": "endpoint",
+          "layout": "mapping",
+          "slot": 14,
+          "key": "argument",
+          "keyScope": "footprint actions",
+          "word": null,
+          "value": "struct:pw_read_effect_link",
+          "absent": "None"
+        },
+        "action_records": {
+          "kind": "storage",
+          "account": "endpoint",
+          "layout": "mapping",
+          "slot": 13,
+          "key": "argument",
+          "keyScope": "footprint actions",
+          "word": null,
+          "value": "struct:pw_read_action",
+          "absent": "None"
+        },
+        "custody_records": {
+          "kind": "storage",
+          "account": "endpoint",
+          "layout": "mapping",
+          "slot": 17,
+          "key": "argument",
+          "keyScope": "footprint cases",
+          "word": null,
+          "value": "struct:pw_read_custody",
+          "absent": "None"
+        },
+        "case_records": {
+          "kind": "storage",
+          "account": "endpoint",
+          "layout": "mapping",
+          "slot": 16,
+          "key": "argument",
+          "keyScope": "footprint cases",
+          "word": null,
+          "value": "struct:pw_read_case",
+          "absent": "empty_case"
+        },
+        "consumed_entitlements": {
+          "kind": "storage",
+          "account": "endpoint",
+          "layout": "mapping",
+          "slot": 18,
+          "key": "argument",
+          "keyScope": "footprint mapping inputs",
+          "word": 0,
+          "value": "bool",
+          "absent": "not a member"
+        },
+        "authorities": {
+          "kind": "storage",
+          "account": "endpoint",
+          "layout": "mapping",
+          "slot": 10,
+          "key": "argument",
+          "keyScope": "footprint authorities",
+          "word": null,
+          "value": "struct:pw_read_authority",
+          "absent": "None"
+        },
+        "compositional_consumed_nonces": {
+          "kind": "storage",
+          "account": "endpoint",
+          "layout": "nested3",
+          "slot": 11,
+          "key": "components",
+          "keyScope": "footprint nonce_keys",
+          "word": 0,
+          "value": "bool",
+          "absent": "not a member"
+        },
+        "compositional_bindings": {
+          "kind": "storage",
+          "account": "endpoint",
+          "layout": "mapping",
+          "slot": 21,
+          "key": "enumIndex",
+          "keyScope": "every binding kind",
+          "word": null,
+          "value": "struct:pw_read_binding",
+          "absent": "None"
+        },
+        "dependency_root": {
+          "kind": "storage",
+          "account": "endpoint",
+          "layout": "direct",
+          "slot": 22,
+          "key": null,
+          "keyScope": null,
+          "word": 0,
+          "value": "word",
+          "absent": null
+        },
+        "dependency_epoch": {
+          "kind": "storage",
+          "account": "endpoint",
+          "layout": "direct",
+          "slot": 23,
+          "key": null,
+          "keyScope": null,
+          "word": 0,
+          "value": "bits0-64",
+          "absent": null
+        },
+        "compositional_receipts": {
+          "kind": "storage",
+          "account": "endpoint",
+          "layout": "mapping",
+          "slot": 15,
+          "key": "argument",
+          "keyScope": "footprint receipts",
+          "word": null,
+          "value": "struct:pw_read_receipt",
+          "absent": "None",
+          "receipts": "translated with the pair certificates in the third generation"
+        }
+      },
+      "partial": {
+        "physical_balances": {
+          "kind": "storage",
+          "account": "token",
+          "layout": "mapping",
+          "slot": 4,
+          "key": "argument",
+          "keyScope": "psr_holders",
+          "word": 0,
+          "value": "word",
+          "absent": "0"
+        },
+        "compositional_allowances": {
+          "kind": "constant",
+          "account": null,
+          "layout": null,
+          "slot": null,
+          "key": null,
+          "keyScope": null,
+          "word": null,
+          "value": null,
+          "absent": null,
+          "constant": "zero for every owner and spender"
+        },
+        "compositional_total_supply": {
+          "kind": "constant",
+          "account": null,
+          "layout": null,
+          "slot": null,
+          "key": null,
+          "keyScope": null,
+          "word": null,
+          "value": null,
+          "absent": null,
+          "constant": "the minted supply of the profile constants"
+        },
+        "frozen_targets": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "mapping",
+          "slot": 14,
+          "key": "argument",
+          "keyScope": "psr_holders",
+          "word": 0,
+          "value": "word",
+          "absent": "0"
+        },
+        "restriction_flags": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "mapping",
+          "slot": 14,
+          "key": "argument",
+          "keyScope": "psr_holders",
+          "word": 2,
+          "value": "bool",
+          "absent": "False"
+        },
+        "custody_backing": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "mapping",
+          "slot": 17,
+          "key": "argument",
+          "keyScope": "psr_holders",
+          "word": 0,
+          "value": "word",
+          "absent": "0"
+        },
+        "freeze_heads": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "mapping",
+          "slot": 15,
+          "key": "argument",
+          "keyScope": "psr_holders",
+          "word": null,
+          "value": "struct:pw_read_effect_head",
+          "absent": "empty_head"
+        },
+        "restriction_heads": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "mapping",
+          "slot": 16,
+          "key": "argument",
+          "keyScope": "psr_holders",
+          "word": null,
+          "value": "struct:pw_read_effect_head",
+          "absent": "empty_head"
+        },
+        "effect_links": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "mapping",
+          "slot": 8,
+          "key": "argument",
+          "keyScope": "psr_actions",
+          "word": null,
+          "value": "struct:pw_read_effect_link",
+          "absent": "None"
+        },
+        "action_records": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "mapping",
+          "slot": 7,
+          "key": "argument",
+          "keyScope": "psr_actions",
+          "word": null,
+          "value": "struct:pw_read_action",
+          "absent": "None"
+        },
+        "custody_records": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "mapping",
+          "slot": 11,
+          "key": "argument",
+          "keyScope": "psr_cases",
+          "word": null,
+          "value": "struct:pw_read_custody",
+          "absent": "None"
+        },
+        "case_records": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "mapping",
+          "slot": 10,
+          "key": "argument",
+          "keyScope": "psr_cases",
+          "word": null,
+          "value": "struct:pw_read_case",
+          "absent": "empty_case"
+        },
+        "consumed_entitlements": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "mapping",
+          "slot": 13,
+          "key": "argument",
+          "keyScope": "psr_entitlements",
+          "word": 0,
+          "value": "bool",
+          "absent": "not a member"
+        },
+        "authorities": {
+          "kind": "constant",
+          "account": null,
+          "layout": null,
+          "slot": null,
+          "key": null,
+          "keyScope": null,
+          "word": null,
+          "value": null,
+          "absent": null,
+          "constant": "the profile authority at the profile authority reference, None elsewhere"
+        },
+        "compositional_consumed_nonces": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "mapping",
+          "slot": 12,
+          "key": "hashOfNonceKey",
+          "keyScope": "psr_nonce_keys",
+          "word": 0,
+          "value": "bool",
+          "absent": "not a member"
+        },
+        "compositional_bindings": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "mapping",
+          "slot": 6,
+          "key": "enumIndex",
+          "keyScope": "every binding kind",
+          "word": null,
+          "value": "struct:psr_read_binding",
+          "absent": "None"
+        },
+        "dependency_root": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "direct",
+          "slot": 4,
+          "key": null,
+          "keyScope": null,
+          "word": 0,
+          "value": "word",
+          "absent": null
+        },
+        "dependency_epoch": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "direct",
+          "slot": 5,
+          "key": null,
+          "keyScope": null,
+          "word": 0,
+          "value": "bits0-64",
+          "absent": null
+        },
+        "compositional_receipts": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "mapping",
+          "slot": 9,
+          "key": "argument",
+          "keyScope": "psr_receipt_ids",
+          "word": null,
+          "value": "struct:pw_read_receipt",
+          "absent": "None",
+          "receipts": "translated with the pair certificates"
+        }
+      },
+      "hook": {
+        "physical_balances": {
+          "kind": "storage",
+          "account": "token",
+          "layout": "mapping",
+          "slot": 102,
+          "key": "argument",
+          "keyScope": "psr_holders",
+          "word": 0,
+          "value": "word",
+          "absent": "0"
+        },
+        "compositional_allowances": {
+          "kind": "constant",
+          "account": null,
+          "layout": null,
+          "slot": null,
+          "key": null,
+          "keyScope": null,
+          "word": null,
+          "value": null,
+          "absent": null,
+          "constant": "zero for every owner and spender"
+        },
+        "compositional_total_supply": {
+          "kind": "storage",
+          "account": "token",
+          "layout": "direct",
+          "slot": 104,
+          "key": null,
+          "keyScope": null,
+          "word": 0,
+          "value": "word",
+          "absent": null
+        },
+        "frozen_targets": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "mapping",
+          "slot": 14,
+          "key": "argument",
+          "keyScope": "psr_holders",
+          "word": 0,
+          "value": "word",
+          "absent": "0"
+        },
+        "restriction_flags": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "mapping",
+          "slot": 14,
+          "key": "argument",
+          "keyScope": "psr_holders",
+          "word": 2,
+          "value": "bool",
+          "absent": "False"
+        },
+        "custody_backing": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "mapping",
+          "slot": 17,
+          "key": "argument",
+          "keyScope": "psr_holders",
+          "word": 0,
+          "value": "word",
+          "absent": "0"
+        },
+        "freeze_heads": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "mapping",
+          "slot": 15,
+          "key": "argument",
+          "keyScope": "psr_holders",
+          "word": null,
+          "value": "struct:pw_read_effect_head",
+          "absent": "empty_head"
+        },
+        "restriction_heads": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "mapping",
+          "slot": 16,
+          "key": "argument",
+          "keyScope": "psr_holders",
+          "word": null,
+          "value": "struct:pw_read_effect_head",
+          "absent": "empty_head"
+        },
+        "effect_links": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "mapping",
+          "slot": 8,
+          "key": "argument",
+          "keyScope": "psr_actions",
+          "word": null,
+          "value": "struct:pw_read_effect_link",
+          "absent": "None"
+        },
+        "action_records": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "mapping",
+          "slot": 7,
+          "key": "argument",
+          "keyScope": "psr_actions",
+          "word": null,
+          "value": "struct:pw_read_action",
+          "absent": "None"
+        },
+        "custody_records": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "mapping",
+          "slot": 11,
+          "key": "argument",
+          "keyScope": "psr_cases",
+          "word": null,
+          "value": "struct:pw_read_custody",
+          "absent": "None"
+        },
+        "case_records": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "mapping",
+          "slot": 10,
+          "key": "argument",
+          "keyScope": "psr_cases",
+          "word": null,
+          "value": "struct:pw_read_case",
+          "absent": "empty_case"
+        },
+        "consumed_entitlements": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "mapping",
+          "slot": 13,
+          "key": "argument",
+          "keyScope": "psr_entitlements",
+          "word": 0,
+          "value": "bool",
+          "absent": "not a member"
+        },
+        "authorities": {
+          "kind": "constant",
+          "account": null,
+          "layout": null,
+          "slot": null,
+          "key": null,
+          "keyScope": null,
+          "word": null,
+          "value": null,
+          "absent": null,
+          "constant": "the profile authority at the profile authority reference, None elsewhere"
+        },
+        "compositional_consumed_nonces": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "mapping",
+          "slot": 12,
+          "key": "hashOfNonceKey",
+          "keyScope": "psr_nonce_keys",
+          "word": 0,
+          "value": "bool",
+          "absent": "not a member"
+        },
+        "compositional_bindings": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "mapping",
+          "slot": 6,
+          "key": "enumIndex",
+          "keyScope": "every binding kind",
+          "word": null,
+          "value": "struct:psr_read_binding",
+          "absent": "None"
+        },
+        "dependency_root": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "direct",
+          "slot": 4,
+          "key": null,
+          "keyScope": null,
+          "word": 0,
+          "value": "word",
+          "absent": null
+        },
+        "dependency_epoch": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "direct",
+          "slot": 5,
+          "key": null,
+          "keyScope": null,
+          "word": 0,
+          "value": "bits0-64",
+          "absent": null
+        },
+        "compositional_receipts": {
+          "kind": "storage",
+          "account": "adapter",
+          "layout": "mapping",
+          "slot": 9,
+          "key": "argument",
+          "keyScope": "psr_receipt_ids",
+          "word": null,
+          "value": "struct:pw_read_receipt",
+          "absent": "None",
+          "receipts": "translated with the pair certificates"
+        }
+      }
+    },
+    "structs": {
+      "pw_read_effect_head": {
+        "members": {
+          "head_action": {
+            "stored": true,
+            "word": 0,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": [
+              "pw_option_hash"
+            ]
+          },
+          "head_generation": {
+            "stored": true,
+            "word": 1,
+            "bits": [
+              0,
+              64
+            ],
+            "decoders": []
+          }
+        },
+        "words": [
+          0,
+          1
+        ],
+        "width": 2,
+        "noneWhen": null
+      },
+      "pw_read_effect_link": {
+        "members": {
+          "effect_parent": {
+            "stored": true,
+            "word": 0,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": [
+              "pw_option_hash"
+            ]
+          },
+          "effect_generation": {
+            "stored": true,
+            "word": 1,
+            "bits": [
+              0,
+              64
+            ],
+            "decoders": []
+          }
+        },
+        "words": [
+          0,
+          1
+        ],
+        "width": 2,
+        "noneWhen": "st base = 0 <and> st (base + 1) = 0"
+      },
+      "pw_read_authority": {
+        "members": {
+          "authority_account": {
+            "stored": true,
+            "word": 0,
+            "bits": [
+              0,
+              160
+            ],
+            "decoders": []
+          },
+          "authority_epoch": {
+            "stored": true,
+            "word": 0,
+            "bits": [
+              160,
+              64
+            ],
+            "decoders": []
+          },
+          "authority_active": {
+            "stored": true,
+            "word": 0,
+            "bits": [
+              224,
+              8
+            ],
+            "decoders": [
+              "pw_bool_of"
+            ]
+          }
+        },
+        "words": [
+          0
+        ],
+        "width": 1,
+        "noneWhen": "st base = 0"
+      },
+      "pw_read_binding": {
+        "members": {
+          "binding_endpoint": {
+            "stored": true,
+            "word": 0,
+            "bits": [
+              0,
+              160
+            ],
+            "decoders": []
+          },
+          "binding_code_id": {
+            "stored": true,
+            "word": 1,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": []
+          },
+          "binding_configuration": {
+            "stored": true,
+            "word": 2,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": []
+          },
+          "binding_schema": {
+            "stored": true,
+            "word": 3,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": []
+          },
+          "binding_epoch": {
+            "stored": true,
+            "word": 4,
+            "bits": [
+              0,
+              64
+            ],
+            "decoders": []
+          },
+          "binding_hash": {
+            "stored": true,
+            "word": 5,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": []
+          }
+        },
+        "words": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "width": 6,
+        "noneWhen": "st base = 0"
+      },
+      "pw_read_case": {
+        "members": {
+          "case_phase": {
+            "stored": true,
+            "word": 0,
+            "bits": [
+              0,
+              8
+            ],
+            "decoders": [
+              "pw_case_phase_of_code"
+            ]
+          },
+          "case_family": {
+            "stored": true,
+            "word": 0,
+            "bits": [
+              8,
+              8
+            ],
+            "decoders": [
+              "pw_case_family_of_code"
+            ]
+          },
+          "case_head": {
+            "stored": true,
+            "word": 1,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": [
+              "pw_option_hash"
+            ]
+          },
+          "case_generation": {
+            "stored": true,
+            "word": 2,
+            "bits": [
+              0,
+              64
+            ],
+            "decoders": []
+          }
+        },
+        "words": [
+          0,
+          1,
+          2
+        ],
+        "width": 3,
+        "noneWhen": null
+      },
+      "pw_read_action": {
+        "members": {
+          "abstract_action": {
+            "stored": true,
+            "word": 0,
+            "bits": [
+              0,
+              8
+            ],
+            "decoders": [
+              "pw_action_of_code"
+            ]
+          },
+          "abstract_lifecycle": {
+            "stored": true,
+            "word": 0,
+            "bits": [
+              8,
+              8
+            ],
+            "decoders": [
+              "pw_lifecycle_of_code"
+            ]
+          },
+          "abstract_subject": {
+            "stored": true,
+            "word": 0,
+            "bits": [
+              16,
+              160
+            ],
+            "decoders": []
+          },
+          "abstract_source": {
+            "stored": true,
+            "word": 1,
+            "bits": [
+              0,
+              160
+            ],
+            "decoders": []
+          },
+          "abstract_destination": {
+            "stored": true,
+            "word": 2,
+            "bits": [
+              0,
+              160
+            ],
+            "decoders": []
+          },
+          "abstract_custodian": {
+            "stored": true,
+            "word": 3,
+            "bits": [
+              0,
+              160
+            ],
+            "decoders": []
+          },
+          "abstract_amount": {
+            "stored": true,
+            "word": 4,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": []
+          },
+          "abstract_prior_amount": {
+            "stored": true,
+            "word": 5,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": []
+          },
+          "abstract_prior_flag": {
+            "stored": true,
+            "word": 6,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": [
+              "pw_bool_of"
+            ]
+          },
+          "abstract_case": {
+            "stored": true,
+            "word": 7,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": []
+          },
+          "abstract_authority_ref": {
+            "stored": true,
+            "word": 8,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": []
+          },
+          "abstract_authority_epoch": {
+            "stored": true,
+            "word": 9,
+            "bits": [
+              0,
+              64
+            ],
+            "decoders": []
+          },
+          "abstract_dependency_epoch": {
+            "stored": true,
+            "word": 9,
+            "bits": [
+              64,
+              64
+            ],
+            "decoders": []
+          },
+          "abstract_command_hash": {
+            "stored": true,
+            "word": 10,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": []
+          },
+          "abstract_evidence_hash": {
+            "stored": true,
+            "word": 11,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": []
+          },
+          "abstract_receipt_hash": {
+            "stored": true,
+            "word": 12,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": []
+          }
+        },
+        "words": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "width": 13,
+        "noneWhen": "pw_bits 8 8 (st base) = 0"
+      },
+      "pw_read_custody": {
+        "members": {
+          "custody_custodian": {
+            "stored": true,
+            "word": 0,
+            "bits": [
+              0,
+              160
+            ],
+            "decoders": []
+          },
+          "custody_prior_holder": {
+            "stored": true,
+            "word": 1,
+            "bits": [
+              0,
+              160
+            ],
+            "decoders": []
+          },
+          "custody_amount": {
+            "stored": true,
+            "word": 2,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": []
+          },
+          "custody_action": {
+            "stored": true,
+            "word": 3,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": [
+              "pw_option_hash"
+            ]
+          },
+          "custody_active": {
+            "stored": true,
+            "word": 4,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": [
+              "pw_bool_of"
+            ]
+          }
+        },
+        "words": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "width": 5,
+        "noneWhen": "st base = 0 <and> st (base + 1) = 0 <and> st (base + 2) = 0 <and> st (base + 3) = 0 <and> st (base + 4) = 0"
+      },
+      "pw_read_receipt": {
+        "members": {
+          "compositional_receipt_kind": {
+            "stored": true,
+            "word": 0,
+            "bits": [
+              0,
+              8
+            ],
+            "decoders": [
+              "pw_receipt_kind_of_code"
+            ]
+          },
+          "compositional_command_id": {
+            "stored": true,
+            "word": 1,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": []
+          },
+          "compositional_command_kind": {
+            "stored": true,
+            "word": 2,
+            "bits": [
+              0,
+              8
+            ],
+            "decoders": []
+          },
+          "compositional_parent_command_id": {
+            "stored": true,
+            "word": 3,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": []
+          },
+          "compositional_subject": {
+            "stored": true,
+            "word": 4,
+            "bits": [
+              0,
+              160
+            ],
+            "decoders": []
+          },
+          "compositional_source": {
+            "stored": true,
+            "word": 5,
+            "bits": [
+              0,
+              160
+            ],
+            "decoders": []
+          },
+          "compositional_destination": {
+            "stored": true,
+            "word": 6,
+            "bits": [
+              0,
+              160
+            ],
+            "decoders": []
+          },
+          "compositional_amount": {
+            "stored": true,
+            "word": 7,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": []
+          },
+          "compositional_case": {
+            "stored": true,
+            "word": 8,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": []
+          },
+          "compositional_authority_ref": {
+            "stored": true,
+            "word": 9,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": []
+          },
+          "compositional_dependency_root": {
+            "stored": true,
+            "word": 10,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": []
+          },
+          "compositional_provenance_commitment": {
+            "stored": true,
+            "word": 11,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": []
+          },
+          "compositional_assessment_evidence": {
+            "stored": true,
+            "word": 12,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": []
+          },
+          "compositional_pre_observation": {
+            "stored": true,
+            "word": 13,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": []
+          },
+          "compositional_post_observation": {
+            "stored": true,
+            "word": 14,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": []
+          },
+          "compositional_external_commitment": {
+            "stored": true,
+            "word": 15,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": []
+          },
+          "compositional_receipt_hash": {
+            "stored": true,
+            "word": 16,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": []
+          }
+        },
+        "words": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "width": 17,
+        "noneWhen": "pw_bits 0 8 (st base) = 0"
+      },
+      "psr_read_binding": {
+        "members": {
+          "binding_endpoint": {
+            "stored": true,
+            "word": 0,
+            "bits": [
+              0,
+              160
+            ],
+            "decoders": []
+          },
+          "binding_code_id": {
+            "stored": true,
+            "word": 1,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": []
+          },
+          "binding_configuration": {
+            "stored": false
+          },
+          "binding_schema": {
+            "stored": false
+          },
+          "binding_epoch": {
+            "stored": false
+          },
+          "binding_hash": {
+            "stored": true,
+            "word": 2,
+            "bits": [
+              0,
+              256
+            ],
+            "decoders": []
+          }
+        },
+        "words": [
+          0,
+          1,
+          2
+        ],
+        "width": 3,
+        "noneWhen": "st base = 0 <and> st (base + 1) = 0 <and> st (base + 2) = 0"
+      }
+    },
+    "constants": {
+      "partial": {
+        "psr_token_kind": "PSR_Token_Mock",
+        "psr_minted_supply": "1000000000000000000000000"
+      },
+      "hook": {
+        "psr_token_kind": "PSR_Token_TREX",
+        "psr_minted_supply": "0"
+      }
+    },
+    "nativeLayout": {
+      "3": {
+        "depth": 1,
+        "width": 1
+      },
+      "4": {
+        "depth": 2,
+        "width": 1
+      },
+      "5": {
+        "depth": 1,
+        "width": 1
+      },
+      "6": {
+        "depth": 1,
+        "width": 1
+      },
+      "7": {
+        "depth": 1,
+        "width": 1
+      },
+      "8": {
+        "depth": 1,
+        "width": 2
+      },
+      "9": {
+        "depth": 1,
+        "width": 2
+      },
+      "10": {
+        "depth": 1,
+        "width": 1
+      },
+      "11": {
+        "depth": 3,
+        "width": 1
+      },
+      "12": {
+        "depth": 1,
+        "width": 1
+      },
+      "13": {
+        "depth": 1,
+        "width": 13
+      },
+      "14": {
+        "depth": 1,
+        "width": 2
+      },
+      "15": {
+        "depth": 1,
+        "width": 17
+      },
+      "16": {
+        "depth": 1,
+        "width": 3
+      },
+      "17": {
+        "depth": 1,
+        "width": 5
+      },
+      "18": {
+        "depth": 1,
+        "width": 1
+      },
+      "19": {
+        "depth": 1,
+        "width": 4
+      },
+      "20": {
+        "depth": 1,
+        "width": 5
+      },
+      "21": {
+        "depth": 1,
+        "width": 6
+      }
+    },
+    "nativeBridgeSlots": {
+      "native.totalSupply": 2,
+      "native.balances": 3,
+      "native.allowances": 4,
+      "native.frozen": 5,
+      "native.restricted": 6,
+      "native.custodyBacking": 7,
+      "native.freezeHeads": 8,
+      "native.restrictionHeads": 9,
+      "native.authorities": 10,
+      "native.usedNonces": 11,
+      "native.usedGovernanceIds": 12,
+      "native.actions": 13,
+      "native.effects": 14,
+      "native.receipts": 15,
+      "native.cases": 16,
+      "native.custody": 17,
+      "native.consumedEntitlements": 18,
+      "native.pendingCommitments": 19,
+      "native.pendingReversals": 20,
+      "native.bindings": 21,
+      "native.dependencyRoot": 22,
+      "native.dependencyEpoch": 23,
+      "native.routeTicket": 24,
+      "native.entered": 28
+    }
+  },
+  "comparison": {
+    "rows": [
+      {
+        "field": "physical_balances",
+        "runtime": "TrustToken",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 3,
+        "type": "mapping(address => uint256)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "physical_balances",
+        "runtime": "ERC3643TrustAdapter",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_UPSTREAM_TOKEN"
+      },
+      {
+        "field": "physical_balances",
+        "runtime": "ProfileGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "physical_balances",
+        "runtime": "ERC3643HookAdapter",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_UPSTREAM_TOKEN"
+      },
+      {
+        "field": "physical_balances",
+        "runtime": "ERC3643HookGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "compositional_allowances",
+        "runtime": "TrustToken",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 4,
+        "type": "mapping(address => mapping(address => uint256))",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "compositional_allowances",
+        "runtime": "ERC3643TrustAdapter",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_CONSTANT"
+      },
+      {
+        "field": "compositional_allowances",
+        "runtime": "ProfileGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "compositional_allowances",
+        "runtime": "ERC3643HookAdapter",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_CONSTANT"
+      },
+      {
+        "field": "compositional_allowances",
+        "runtime": "ERC3643HookGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "compositional_total_supply",
+        "runtime": "TrustToken",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 2,
+        "type": "uint256",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "compositional_total_supply",
+        "runtime": "ERC3643TrustAdapter",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_CONSTANT"
+      },
+      {
+        "field": "compositional_total_supply",
+        "runtime": "ProfileGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "compositional_total_supply",
+        "runtime": "ERC3643HookAdapter",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_UPSTREAM_TOKEN"
+      },
+      {
+        "field": "compositional_total_supply",
+        "runtime": "ERC3643HookGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "frozen_targets",
+        "runtime": "TrustToken",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 5,
+        "type": "mapping(address => uint256)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "frozen_targets",
+        "runtime": "ERC3643TrustAdapter",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 14,
+        "type": "mapping(address => struct ERC3643ProfileTypes.OwnedState)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "frozen_targets",
+        "runtime": "ProfileGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "frozen_targets",
+        "runtime": "ERC3643HookAdapter",
+        "status": "DERIVED_BY_LAYOUT_IDENTITY",
+        "slot": 14,
+        "type": "mapping(address => struct ERC3643ProfileTypes.OwnedState)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "frozen_targets",
+        "runtime": "ERC3643HookGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "restriction_flags",
+        "runtime": "TrustToken",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 6,
+        "type": "mapping(address => bool)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "restriction_flags",
+        "runtime": "ERC3643TrustAdapter",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 14,
+        "type": "mapping(address => struct ERC3643ProfileTypes.OwnedState)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "restriction_flags",
+        "runtime": "ProfileGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "restriction_flags",
+        "runtime": "ERC3643HookAdapter",
+        "status": "DERIVED_BY_LAYOUT_IDENTITY",
+        "slot": 14,
+        "type": "mapping(address => struct ERC3643ProfileTypes.OwnedState)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "restriction_flags",
+        "runtime": "ERC3643HookGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "custody_backing",
+        "runtime": "TrustToken",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 7,
+        "type": "mapping(address => uint256)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "custody_backing",
+        "runtime": "ERC3643TrustAdapter",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 17,
+        "type": "mapping(address => uint256)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "custody_backing",
+        "runtime": "ProfileGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "custody_backing",
+        "runtime": "ERC3643HookAdapter",
+        "status": "DERIVED_BY_LAYOUT_IDENTITY",
+        "slot": 17,
+        "type": "mapping(address => uint256)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "custody_backing",
+        "runtime": "ERC3643HookGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "freeze_heads",
+        "runtime": "TrustToken",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 8,
+        "type": "mapping(address => struct TrustNativeTypes.EffectHead)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "freeze_heads",
+        "runtime": "ERC3643TrustAdapter",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 15,
+        "type": "mapping(address => struct ERC3643ProfileTypes.EffectHead)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "freeze_heads",
+        "runtime": "ProfileGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "freeze_heads",
+        "runtime": "ERC3643HookAdapter",
+        "status": "DERIVED_BY_LAYOUT_IDENTITY",
+        "slot": 15,
+        "type": "mapping(address => struct ERC3643ProfileTypes.EffectHead)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "freeze_heads",
+        "runtime": "ERC3643HookGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "restriction_heads",
+        "runtime": "TrustToken",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 9,
+        "type": "mapping(address => struct TrustNativeTypes.EffectHead)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "restriction_heads",
+        "runtime": "ERC3643TrustAdapter",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 16,
+        "type": "mapping(address => struct ERC3643ProfileTypes.EffectHead)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "restriction_heads",
+        "runtime": "ProfileGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "restriction_heads",
+        "runtime": "ERC3643HookAdapter",
+        "status": "DERIVED_BY_LAYOUT_IDENTITY",
+        "slot": 16,
+        "type": "mapping(address => struct ERC3643ProfileTypes.EffectHead)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "restriction_heads",
+        "runtime": "ERC3643HookGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "effect_links",
+        "runtime": "TrustToken",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 14,
+        "type": "mapping(bytes32 => struct TrustNativeTypes.EffectRecord)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "effect_links",
+        "runtime": "ERC3643TrustAdapter",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 8,
+        "type": "mapping(bytes32 => struct ERC3643ProfileTypes.EffectRecord)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "effect_links",
+        "runtime": "ProfileGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "effect_links",
+        "runtime": "ERC3643HookAdapter",
+        "status": "DERIVED_BY_LAYOUT_IDENTITY",
+        "slot": 8,
+        "type": "mapping(bytes32 => struct ERC3643ProfileTypes.EffectRecord)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "effect_links",
+        "runtime": "ERC3643HookGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "action_records",
+        "runtime": "TrustToken",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 13,
+        "type": "mapping(bytes32 => struct TrustKernelTypes.ActionRecord)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "action_records",
+        "runtime": "ERC3643TrustAdapter",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 7,
+        "type": "mapping(bytes32 => struct TrustKernelTypes.ActionRecord)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "action_records",
+        "runtime": "ProfileGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "action_records",
+        "runtime": "ERC3643HookAdapter",
+        "status": "DERIVED_BY_LAYOUT_IDENTITY",
+        "slot": 7,
+        "type": "mapping(bytes32 => struct TrustKernelTypes.ActionRecord)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "action_records",
+        "runtime": "ERC3643HookGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "custody_records",
+        "runtime": "TrustToken",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 17,
+        "type": "mapping(bytes32 => struct TrustNativeTypes.CustodyRecord)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "custody_records",
+        "runtime": "ERC3643TrustAdapter",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 11,
+        "type": "mapping(bytes32 => struct ERC3643ProfileTypes.CustodyRecord)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "custody_records",
+        "runtime": "ProfileGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "custody_records",
+        "runtime": "ERC3643HookAdapter",
+        "status": "DERIVED_BY_LAYOUT_IDENTITY",
+        "slot": 11,
+        "type": "mapping(bytes32 => struct ERC3643ProfileTypes.CustodyRecord)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "custody_records",
+        "runtime": "ERC3643HookGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "case_records",
+        "runtime": "TrustToken",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 16,
+        "type": "mapping(bytes32 => struct TrustKernelTypes.CaseRecord)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "case_records",
+        "runtime": "ERC3643TrustAdapter",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 10,
+        "type": "mapping(bytes32 => struct TrustKernelTypes.CaseRecord)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "case_records",
+        "runtime": "ProfileGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "case_records",
+        "runtime": "ERC3643HookAdapter",
+        "status": "DERIVED_BY_LAYOUT_IDENTITY",
+        "slot": 10,
+        "type": "mapping(bytes32 => struct TrustKernelTypes.CaseRecord)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "case_records",
+        "runtime": "ERC3643HookGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "consumed_entitlements",
+        "runtime": "TrustToken",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 18,
+        "type": "mapping(bytes32 => bool)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "consumed_entitlements",
+        "runtime": "ERC3643TrustAdapter",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 13,
+        "type": "mapping(bytes32 => bool)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "consumed_entitlements",
+        "runtime": "ProfileGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "consumed_entitlements",
+        "runtime": "ERC3643HookAdapter",
+        "status": "DERIVED_BY_LAYOUT_IDENTITY",
+        "slot": 13,
+        "type": "mapping(bytes32 => bool)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "consumed_entitlements",
+        "runtime": "ERC3643HookGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "authorities",
+        "runtime": "TrustToken",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 10,
+        "type": "mapping(bytes32 => struct TrustNativeTypes.Authority)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "authorities",
+        "runtime": "ERC3643TrustAdapter",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_CONSTANT"
+      },
+      {
+        "field": "authorities",
+        "runtime": "ProfileGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "authorities",
+        "runtime": "ERC3643HookAdapter",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_CONSTANT"
+      },
+      {
+        "field": "authorities",
+        "runtime": "ERC3643HookGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "compositional_consumed_nonces",
+        "runtime": "TrustToken",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 11,
+        "type": "mapping(bytes32 => mapping(uint64 => mapping(uint256 => bool)))",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "compositional_consumed_nonces",
+        "runtime": "ERC3643TrustAdapter",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 12,
+        "type": "mapping(bytes32 => bool)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "compositional_consumed_nonces",
+        "runtime": "ProfileGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "compositional_consumed_nonces",
+        "runtime": "ERC3643HookAdapter",
+        "status": "DERIVED_BY_LAYOUT_IDENTITY",
+        "slot": 12,
+        "type": "mapping(bytes32 => bool)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "compositional_consumed_nonces",
+        "runtime": "ERC3643HookGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "compositional_bindings",
+        "runtime": "TrustToken",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 21,
+        "type": "mapping(enum TrustKernelTypes.BindingKind => struct TrustNativeTypes.Binding)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "compositional_bindings",
+        "runtime": "ERC3643TrustAdapter",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 6,
+        "type": "mapping(enum TrustKernelTypes.BindingKind => struct ERC3643ProfileTypes.DependencyBinding)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "compositional_bindings",
+        "runtime": "ProfileGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "compositional_bindings",
+        "runtime": "ERC3643HookAdapter",
+        "status": "DERIVED_BY_LAYOUT_IDENTITY",
+        "slot": 6,
+        "type": "mapping(enum TrustKernelTypes.BindingKind => struct ERC3643ProfileTypes.DependencyBinding)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "compositional_bindings",
+        "runtime": "ERC3643HookGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "dependency_root",
+        "runtime": "TrustToken",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 22,
+        "type": "bytes32",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "dependency_root",
+        "runtime": "ERC3643TrustAdapter",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 4,
+        "type": "bytes32",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "dependency_root",
+        "runtime": "ProfileGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "dependency_root",
+        "runtime": "ERC3643HookAdapter",
+        "status": "DERIVED_BY_LAYOUT_IDENTITY",
+        "slot": 4,
+        "type": "bytes32",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "dependency_root",
+        "runtime": "ERC3643HookGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "dependency_epoch",
+        "runtime": "TrustToken",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 23,
+        "type": "uint64",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "dependency_epoch",
+        "runtime": "ERC3643TrustAdapter",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 5,
+        "type": "uint64",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "dependency_epoch",
+        "runtime": "ProfileGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "dependency_epoch",
+        "runtime": "ERC3643HookAdapter",
+        "status": "DERIVED_BY_LAYOUT_IDENTITY",
+        "slot": 5,
+        "type": "uint64",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "dependency_epoch",
+        "runtime": "ERC3643HookGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "compositional_receipts",
+        "runtime": "TrustToken",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 15,
+        "type": "mapping(bytes32 => struct TrustKernelTypes.Receipt)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "compositional_receipts",
+        "runtime": "ERC3643TrustAdapter",
+        "status": "BOUND_BY_CENTRAL_LEDGER",
+        "slot": 9,
+        "type": "mapping(bytes32 => struct TrustKernelTypes.Receipt)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "compositional_receipts",
+        "runtime": "ProfileGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      },
+      {
+        "field": "compositional_receipts",
+        "runtime": "ERC3643HookAdapter",
+        "status": "DERIVED_BY_LAYOUT_IDENTITY",
+        "slot": 9,
+        "type": "mapping(bytes32 => struct TrustKernelTypes.Receipt)",
+        "verdict": "AGREES"
+      },
+      {
+        "field": "compositional_receipts",
+        "runtime": "ERC3643HookGovernor",
+        "status": "NO_STORAGE",
+        "slot": null,
+        "type": null,
+        "verdict": "AGREES_NOT_READ"
+      }
+    ],
+    "reverse": [
+      {
+        "runtime": "TrustToken",
+        "fieldSlots": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          21,
+          22,
+          23
+        ],
+        "slotsWithoutAbstractField": [
+          0,
+          1,
+          12,
+          19,
+          20,
+          24,
+          28
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "runtime": "ERC3643TrustAdapter",
+        "fieldSlots": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17
+        ],
+        "slotsWithoutAbstractField": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "runtime": "ProfileGovernor",
+        "fieldSlots": [],
+        "slotsWithoutAbstractField": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "runtime": "ERC3643HookAdapter",
+        "fieldSlots": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17
+        ],
+        "slotsWithoutAbstractField": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "runtime": "ERC3643HookGovernor",
+        "fieldSlots": [],
+        "slotsWithoutAbstractField": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "verdict": "AGREES"
+      }
+    ],
+    "subRecords": [
+      {
+        "kernelStruct": "Receipt",
+        "members": 17,
+        "locations": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            9,
+            0
+          ],
+          [
+            10,
+            0
+          ],
+          [
+            11,
+            0
+          ],
+          [
+            12,
+            0
+          ],
+          [
+            13,
+            0
+          ],
+          [
+            14,
+            0
+          ],
+          [
+            15,
+            0
+          ],
+          [
+            16,
+            0
+          ]
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "kernelStruct": "ActionRecord",
+        "members": 16,
+        "locations": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            16
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            4,
+            0
+          ],
+          [
+            5,
+            0
+          ],
+          [
+            6,
+            0
+          ],
+          [
+            7,
+            0
+          ],
+          [
+            8,
+            0
+          ],
+          [
+            9,
+            0
+          ],
+          [
+            9,
+            64
+          ],
+          [
+            10,
+            0
+          ],
+          [
+            11,
+            0
+          ],
+          [
+            12,
+            0
+          ]
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "kernelStruct": "CaseRecord",
+        "members": 4,
+        "locations": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "verdict": "AGREES"
+      }
+    ],
+    "generatedTables": [
+      {
+        "field": "physical_balances",
+        "runtime": "TrustToken",
+        "projection": "native.balances",
+        "slot": 3,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "compositional_allowances",
+        "runtime": "TrustToken",
+        "projection": "native.allowances",
+        "slot": 4,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "compositional_total_supply",
+        "runtime": "TrustToken",
+        "projection": "native.totalSupply",
+        "slot": 2,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "frozen_targets",
+        "runtime": "TrustToken",
+        "projection": "native.frozen",
+        "slot": 5,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "frozen_targets",
+        "runtime": "ERC3643TrustAdapter",
+        "projection": "profile.adapter.owned",
+        "slot": 14,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "restriction_flags",
+        "runtime": "TrustToken",
+        "projection": "native.restricted",
+        "slot": 6,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "restriction_flags",
+        "runtime": "ERC3643TrustAdapter",
+        "projection": "profile.adapter.owned",
+        "slot": 14,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "custody_backing",
+        "runtime": "TrustToken",
+        "projection": "native.custodyBacking",
+        "slot": 7,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "custody_backing",
+        "runtime": "ERC3643TrustAdapter",
+        "projection": "profile.adapter.custodyBacking",
+        "slot": 17,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "freeze_heads",
+        "runtime": "TrustToken",
+        "projection": "native.freezeHeads",
+        "slot": 8,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "freeze_heads",
+        "runtime": "ERC3643TrustAdapter",
+        "projection": "profile.adapter.freezeHeads",
+        "slot": 15,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "restriction_heads",
+        "runtime": "TrustToken",
+        "projection": "native.restrictionHeads",
+        "slot": 9,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "restriction_heads",
+        "runtime": "ERC3643TrustAdapter",
+        "projection": "profile.adapter.restrictionHeads",
+        "slot": 16,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "effect_links",
+        "runtime": "TrustToken",
+        "projection": "native.effects",
+        "slot": 14,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "effect_links",
+        "runtime": "ERC3643TrustAdapter",
+        "projection": "profile.adapter.effects",
+        "slot": 8,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "action_records",
+        "runtime": "TrustToken",
+        "projection": "native.actions",
+        "slot": 13,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "action_records",
+        "runtime": "ERC3643TrustAdapter",
+        "projection": "profile.adapter.actions",
+        "slot": 7,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "custody_records",
+        "runtime": "TrustToken",
+        "projection": "native.custody",
+        "slot": 17,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "custody_records",
+        "runtime": "ERC3643TrustAdapter",
+        "projection": "profile.adapter.custody",
+        "slot": 11,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "case_records",
+        "runtime": "TrustToken",
+        "projection": "native.cases",
+        "slot": 16,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "case_records",
+        "runtime": "ERC3643TrustAdapter",
+        "projection": "profile.adapter.cases",
+        "slot": 10,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "consumed_entitlements",
+        "runtime": "TrustToken",
+        "projection": "native.consumedEntitlements",
+        "slot": 18,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "consumed_entitlements",
+        "runtime": "ERC3643TrustAdapter",
+        "projection": "profile.adapter.consumedEntitlements",
+        "slot": 13,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "authorities",
+        "runtime": "TrustToken",
+        "projection": "native.authorities",
+        "slot": 10,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "compositional_consumed_nonces",
+        "runtime": "TrustToken",
+        "projection": "native.usedNonces",
+        "slot": 11,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "compositional_consumed_nonces",
+        "runtime": "ERC3643TrustAdapter",
+        "projection": "profile.adapter.usedNonces",
+        "slot": 12,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "compositional_bindings",
+        "runtime": "TrustToken",
+        "projection": "native.bindings",
+        "slot": 21,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "compositional_bindings",
+        "runtime": "ERC3643TrustAdapter",
+        "projection": "profile.adapter.bindings",
+        "slot": 6,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "dependency_root",
+        "runtime": "TrustToken",
+        "projection": "native.dependencyRoot",
+        "slot": 22,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "dependency_root",
+        "runtime": "ERC3643TrustAdapter",
+        "projection": "profile.adapter.dependencyRoot",
+        "slot": 4,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "dependency_epoch",
+        "runtime": "TrustToken",
+        "projection": "native.dependencyEpoch",
+        "slot": 23,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "dependency_epoch",
+        "runtime": "ERC3643TrustAdapter",
+        "projection": "profile.adapter.dependencyEpoch",
+        "slot": 5,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "compositional_receipts",
+        "runtime": "TrustToken",
+        "projection": "native.receipts",
+        "slot": 15,
+        "verdict": "AGREES"
+      },
+      {
+        "field": "compositional_receipts",
+        "runtime": "ERC3643TrustAdapter",
+        "projection": "profile.adapter.receipts",
+        "slot": 9,
+        "verdict": "AGREES"
+      }
+    ],
+    "layoutWidths": [
+      {
+        "profile": "native",
+        "field": "physical_balances",
+        "slot": 3,
+        "words": [
+          0
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "native",
+        "field": "compositional_allowances",
+        "slot": 4,
+        "words": [
+          0
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "native",
+        "field": "frozen_targets",
+        "slot": 5,
+        "words": [
+          0
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "native",
+        "field": "restriction_flags",
+        "slot": 6,
+        "words": [
+          0
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "native",
+        "field": "custody_backing",
+        "slot": 7,
+        "words": [
+          0
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "native",
+        "field": "freeze_heads",
+        "slot": 8,
+        "words": [
+          0,
+          1
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "native",
+        "field": "restriction_heads",
+        "slot": 9,
+        "words": [
+          0,
+          1
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "native",
+        "field": "effect_links",
+        "slot": 14,
+        "words": [
+          0,
+          1
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "native",
+        "field": "action_records",
+        "slot": 13,
+        "words": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "native",
+        "field": "custody_records",
+        "slot": 17,
+        "words": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "native",
+        "field": "case_records",
+        "slot": 16,
+        "words": [
+          0,
+          1,
+          2
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "native",
+        "field": "consumed_entitlements",
+        "slot": 18,
+        "words": [
+          0
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "native",
+        "field": "authorities",
+        "slot": 10,
+        "words": [
+          0
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "native",
+        "field": "compositional_consumed_nonces",
+        "slot": 11,
+        "words": [
+          0
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "native",
+        "field": "compositional_bindings",
+        "slot": 21,
+        "words": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "native",
+        "field": "compositional_receipts",
+        "slot": 15,
+        "words": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "partial",
+        "field": "frozen_targets",
+        "slot": 14,
+        "words": [
+          0
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "partial",
+        "field": "restriction_flags",
+        "slot": 14,
+        "words": [
+          2
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "partial",
+        "field": "custody_backing",
+        "slot": 17,
+        "words": [
+          0
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "partial",
+        "field": "freeze_heads",
+        "slot": 15,
+        "words": [
+          0,
+          1
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "partial",
+        "field": "restriction_heads",
+        "slot": 16,
+        "words": [
+          0,
+          1
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "partial",
+        "field": "effect_links",
+        "slot": 8,
+        "words": [
+          0,
+          1
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "partial",
+        "field": "action_records",
+        "slot": 7,
+        "words": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "partial",
+        "field": "custody_records",
+        "slot": 11,
+        "words": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "partial",
+        "field": "case_records",
+        "slot": 10,
+        "words": [
+          0,
+          1,
+          2
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "partial",
+        "field": "consumed_entitlements",
+        "slot": 13,
+        "words": [
+          0
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "partial",
+        "field": "compositional_consumed_nonces",
+        "slot": 12,
+        "words": [
+          0
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "partial",
+        "field": "compositional_bindings",
+        "slot": 6,
+        "words": [
+          0,
+          1,
+          2
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "partial",
+        "field": "compositional_receipts",
+        "slot": 9,
+        "words": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "hook",
+        "field": "frozen_targets",
+        "slot": 14,
+        "words": [
+          0
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "hook",
+        "field": "restriction_flags",
+        "slot": 14,
+        "words": [
+          2
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "hook",
+        "field": "custody_backing",
+        "slot": 17,
+        "words": [
+          0
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "hook",
+        "field": "freeze_heads",
+        "slot": 15,
+        "words": [
+          0,
+          1
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "hook",
+        "field": "restriction_heads",
+        "slot": 16,
+        "words": [
+          0,
+          1
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "hook",
+        "field": "effect_links",
+        "slot": 8,
+        "words": [
+          0,
+          1
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "hook",
+        "field": "action_records",
+        "slot": 7,
+        "words": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "hook",
+        "field": "custody_records",
+        "slot": 11,
+        "words": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "hook",
+        "field": "case_records",
+        "slot": 10,
+        "words": [
+          0,
+          1,
+          2
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "hook",
+        "field": "consumed_entitlements",
+        "slot": 13,
+        "words": [
+          0
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "hook",
+        "field": "compositional_consumed_nonces",
+        "slot": 12,
+        "words": [
+          0
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "hook",
+        "field": "compositional_bindings",
+        "slot": 6,
+        "words": [
+          0,
+          1,
+          2
+        ],
+        "verdict": "AGREES"
+      },
+      {
+        "profile": "hook",
+        "field": "compositional_receipts",
+        "slot": 9,
+        "words": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "verdict": "AGREES"
+      }
+    ],
+    "verdicts": {
+      "AGREES": 49,
+      "AGREES_CONSTANT": 5,
+      "AGREES_NOT_READ": 38,
+      "AGREES_UPSTREAM_TOKEN": 3
+    },
+    "derivedHookColumns": {
+      "total": 15,
+      "agreeing": 15
+    }
+  },
+  "absentValues": {
+    "custodyRecords": {
+      "native": {
+        "outsideScope": "None",
+        "noneWhen": "st base = 0 <and> st (base + 1) = 0 <and> st (base + 2) = 0 <and> st (base + 3) = 0 <and> st (base + 4) = 0"
+      },
+      "adapters": {
+        "outsideScope": "None",
+        "noneWhen": "st base = 0 <and> st (base + 1) = 0 <and> st (base + 2) = 0 <and> st (base + 3) = 0 <and> st (base + 4) = 0"
+      }
+    },
+    "authorities": {
+      "native": {
+        "outsideScope": "None",
+        "noneWhen": "st base = 0"
+      },
+      "adapters": "the profile authority at the profile authority reference, None elsewhere"
+    },
+    "bindings": {
+      "native": {
+        "noneWhen": "st base = 0"
+      },
+      "adapters": {
+        "noneWhen": "st base = 0 <and> st (base + 1) = 0 <and> st (base + 2) = 0",
+        "notStored": [
+          "binding_configuration",
+          "binding_epoch",
+          "binding_schema"
+        ]
+      }
+    }
+  },
+  "openItems": [
+    {
+      "index": 0,
+      "disposition": "CLOSED_BY_THIS_RECORD"
+    },
+    {
+      "index": 1,
+      "disposition": "RESOLVED_BY_SCAN"
+    },
+    {
+      "index": 2,
+      "disposition": "NONCLAIM"
+    },
+    {
+      "index": 3,
+      "disposition": "RESOLVED_BY_SOURCE"
+    },
+    {
+      "index": 4,
+      "disposition": "ASSUMPTION"
+    },
+    {
+      "index": 5,
+      "disposition": "RESOLVED_BY_SOURCE"
+    },
+    {
+      "index": 6,
+      "disposition": "RUNTIME_ONLY"
+    },
+    {
+      "index": 7,
+      "disposition": "ASSUMPTION"
+    },
+    {
+      "index": 8,
+      "disposition": "RESOLVED_BY_SOURCE"
+    }
+  ],
+  "layoutWords": {
+    "partial": {
+      "6": [
+        0,
+        1,
+        2
+      ],
+      "7": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "8": [
+        0,
+        1
+      ],
+      "9": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "10": [
+        0,
+        1,
+        2
+      ],
+      "11": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "12": [
+        0
+      ],
+      "13": [
+        0
+      ],
+      "14": [
+        0,
+        1,
+        2
+      ],
+      "15": [
+        0,
+        1
+      ],
+      "16": [
+        0,
+        1
+      ],
+      "17": [
+        0
+      ]
+    },
+    "hook": {
+      "6": [
+        0,
+        1,
+        2
+      ],
+      "7": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "8": [
+        0,
+        1
+      ],
+      "9": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "10": [
+        0,
+        1,
+        2
+      ],
+      "11": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "12": [
+        0
+      ],
+      "13": [
+        0
+      ],
+      "14": [
+        0,
+        1,
+        2
+      ],
+      "15": [
+        0,
+        1
+      ],
+      "16": [
+        0,
+        1
+      ],
+      "17": [
+        0
+      ]
+    }
+  },
+  "recordedWorlds": {
+    "partial": {
+      "worlds": 16,
+      "fieldFacts": 304
+    },
+    "hook": {
+      "worlds": 16,
+      "fieldFacts": 304
+    }
+  },
+  "cellStatements": {
+    "partial": {
+      "FREEZE": "psr_partial_manifest",
+      "SEIZE": "psr_partial_manifest",
+      "CONFISCATE": "psr_partial_manifest",
+      "LIQUIDATE": "psr_partial_manifest",
+      "RESTRICT": "psr_partial_manifest",
+      "RECOVER": "psr_partial_manifest",
+      "UNFREEZE": "psr_partial_manifest",
+      "RELEASE": "psr_partial_manifest",
+      "UNRESTRICT": "psr_partial_manifest"
+    },
+    "hook": {
+      "FREEZE": "psr_hook_manifest",
+      "SEIZE": "psr_hook_manifest",
+      "CONFISCATE": "psr_hook_manifest",
+      "LIQUIDATE": "psr_hook_manifest",
+      "RESTRICT": "psr_hook_manifest",
+      "RECOVER": "psr_hook_manifest",
+      "UNFREEZE": "psr_hook_manifest",
+      "RELEASE": "psr_hook_manifest",
+      "UNRESTRICT": "psr_hook_manifest"
+    },
+    "native": {
+      "FREEZE": [
+        {
+          "theorem": "b2_native_freeze_cell_enforced",
+          "manifest": "pw2_manifest keccak"
+        },
+        {
+          "theorem": "qb_native_freeze_cell_enforced",
+          "manifest": "pw2_manifest keccak"
+        }
+      ],
+      "SEIZE": [
+        {
+          "theorem": "native_seize_certificate_cell_enforced",
+          "manifest": "nr_manifest keccak"
+        }
+      ],
+      "CONFISCATE": [
+        {
+          "theorem": "native_confiscate_certificate_cell_enforced",
+          "manifest": "nr_manifest keccak"
+        }
+      ],
+      "LIQUIDATE": [
+        {
+          "theorem": "lqt_success_alpha_transaction_enforced",
+          "manifest": "pw3_manifest keccak lq_pair_certificates"
+        }
+      ],
+      "RESTRICT": [
+        {
+          "theorem": "native_restrict_certificate_cell_enforced",
+          "manifest": "ru_manifest keccak"
+        }
+      ],
+      "RECOVER": [
+        {
+          "theorem": "native_recover_certificate_cell_enforced",
+          "manifest": "nr_manifest keccak"
+        }
+      ],
+      "UNFREEZE": [
+        {
+          "theorem": "native_unfreeze_certificate_cell_enforced",
+          "manifest": "nr_manifest keccak"
+        }
+      ],
+      "RELEASE": [
+        {
+          "theorem": "native_release_certificate_cell_enforced",
+          "manifest": "nr_manifest keccak"
+        }
+      ],
+      "UNRESTRICT": [
+        {
+          "theorem": "native_unrestrict_certificate_cell_enforced",
+          "manifest": "ru_manifest keccak"
+        }
+      ]
+    }
+  },
+  "memberLayouts": [
+    {
+      "contract": "TrustToken",
+      "struct": "EffectHead",
+      "members": 2,
+      "verdict": "AGREES"
+    },
+    {
+      "contract": "TrustToken",
+      "struct": "EffectRecord",
+      "members": 2,
+      "verdict": "AGREES"
+    },
+    {
+      "contract": "TrustToken",
+      "struct": "Authority",
+      "members": 3,
+      "verdict": "AGREES"
+    },
+    {
+      "contract": "TrustToken",
+      "struct": "Binding",
+      "members": 6,
+      "verdict": "AGREES"
+    },
+    {
+      "contract": "TrustToken",
+      "struct": "CaseRecord",
+      "members": 4,
+      "verdict": "AGREES"
+    },
+    {
+      "contract": "TrustToken",
+      "struct": "ActionRecord",
+      "members": 16,
+      "verdict": "AGREES"
+    },
+    {
+      "contract": "TrustToken",
+      "struct": "CustodyRecord",
+      "members": 5,
+      "verdict": "AGREES"
+    },
+    {
+      "contract": "TrustToken",
+      "struct": "Receipt",
+      "members": 17,
+      "verdict": "AGREES"
+    },
+    {
+      "contract": "ERC3643TrustAdapter",
+      "struct": "EffectHead",
+      "members": 2,
+      "verdict": "AGREES"
+    },
+    {
+      "contract": "ERC3643TrustAdapter",
+      "struct": "EffectRecord",
+      "members": 2,
+      "verdict": "AGREES"
+    },
+    {
+      "contract": "ERC3643TrustAdapter",
+      "struct": "DependencyBinding",
+      "members": 3,
+      "verdict": "AGREES"
+    },
+    {
+      "contract": "ERC3643TrustAdapter",
+      "struct": "CaseRecord",
+      "members": 4,
+      "verdict": "AGREES"
+    },
+    {
+      "contract": "ERC3643TrustAdapter",
+      "struct": "ActionRecord",
+      "members": 16,
+      "verdict": "AGREES"
+    },
+    {
+      "contract": "ERC3643TrustAdapter",
+      "struct": "CustodyRecord",
+      "members": 5,
+      "verdict": "AGREES"
+    },
+    {
+      "contract": "ERC3643TrustAdapter",
+      "struct": "Receipt",
+      "members": 17,
+      "verdict": "AGREES"
+    },
+    {
+      "contract": "ERC3643TrustAdapter",
+      "struct": "OwnedState",
+      "members": 3,
+      "verdict": "AGREES"
+    },
+    {
+      "contract": "ERC3643HookAdapter",
+      "struct": "EffectHead",
+      "members": 2,
+      "verdict": "AGREES"
+    },
+    {
+      "contract": "ERC3643HookAdapter",
+      "struct": "EffectRecord",
+      "members": 2,
+      "verdict": "AGREES"
+    },
+    {
+      "contract": "ERC3643HookAdapter",
+      "struct": "DependencyBinding",
+      "members": 3,
+      "verdict": "AGREES"
+    },
+    {
+      "contract": "ERC3643HookAdapter",
+      "struct": "CaseRecord",
+      "members": 4,
+      "verdict": "AGREES"
+    },
+    {
+      "contract": "ERC3643HookAdapter",
+      "struct": "ActionRecord",
+      "members": 16,
+      "verdict": "AGREES"
+    },
+    {
+      "contract": "ERC3643HookAdapter",
+      "struct": "CustodyRecord",
+      "members": 5,
+      "verdict": "AGREES"
+    },
+    {
+      "contract": "ERC3643HookAdapter",
+      "struct": "Receipt",
+      "members": 17,
+      "verdict": "AGREES"
+    },
+    {
+      "contract": "ERC3643HookAdapter",
+      "struct": "OwnedState",
+      "members": 3,
+      "verdict": "AGREES"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "session-shared-reader",
+      "kind": "session-database",
+      "bytes": 806912,
+      "sha256": "aa4e1560df4656f6badb657cacf3030eb9caa326949a90d1bbd0f417d406fd7e"
+    },
+    {
+      "id": "session-hook-reader",
+      "kind": "session-database",
+      "bytes": 761856,
+      "sha256": "252dfa86376f3b122a45e45720eb7c7e1aeedbaf6544c90fc4dc83e7e787d1f3"
+    },
+    {
+      "id": "session-native-reader",
+      "kind": "session-database",
+      "bytes": 491520,
+      "sha256": "f3fc7227ef933321ce53c28eadee8834b88143d6bd06444165e1450603b5f432"
+    },
+    {
+      "id": "session-native-layout",
+      "kind": "session-database",
+      "bytes": 266240,
+      "sha256": "7bcc4dd33eb132d449370efb66ebb545c6aac41571ecaea1d371e4b7a9e8fc6c"
+    },
+    {
+      "id": "session-native-receipts",
+      "kind": "session-database",
+      "bytes": 229376,
+      "sha256": "9b41f1689d579b261dca2ab8be3436e55a28ec5a468f4c70fee5ab6fa065b2c7"
+    },
+    {
+      "id": "session-native-alias-restrict",
+      "kind": "session-database",
+      "bytes": 303104,
+      "sha256": "8d1a3c503307acfb60ec5e6d8b58c9e62aea2d46e1cfa6b3e9d84ae72ae0706b"
+    },
+    {
+      "id": "session-native-alias-remaining",
+      "kind": "session-database",
+      "bytes": 344064,
+      "sha256": "1d1f9e5ee3db943eae775a1808e6cbc8b51b13106ce31b79a4bd1f596d9246b6"
+    },
+    {
+      "id": "session-native-freeze-bridge",
+      "kind": "session-database",
+      "bytes": 241664,
+      "sha256": "12cf1bfa2340917bb01a0257ff6f6bd0b3cd7ffe2a80cccdc89242ee43a98fe2"
+    },
+    {
+      "id": "session-native-freeze-post",
+      "kind": "session-database",
+      "bytes": 536576,
+      "sha256": "2bf09ee656143280634ccd92a15beb1bc60d7ce784eaef8ebeca1913252108f9"
+    },
+    {
+      "id": "session-native-forward",
+      "kind": "session-database",
+      "bytes": 450560,
+      "sha256": "f8e4c76e5a48a378ce16ae482740e2190dae90f05b293f24b025aa0ec448d766"
+    },
+    {
+      "id": "session-native-liquidate",
+      "kind": "session-database",
+      "bytes": 544768,
+      "sha256": "1a0170aca6ab42d3a0d01967a811d26ae362f9fbf672e8230103fc5be39d8133"
+    },
+    {
+      "id": "session-native-restrict",
+      "kind": "session-database",
+      "bytes": 278528,
+      "sha256": "7e0edb78e14f4a0f5b6f4f704bc3e449eeb5b342fe236a4c4cb4197d901c2bfa"
+    },
+    {
+      "id": "session-native-unfreeze",
+      "kind": "session-database",
+      "bytes": 348160,
+      "sha256": "a82f605da8da562d01e3e85ff048b88c881b6fa6f9781b3a6abcc527dc7a3d7b"
+    },
+    {
+      "id": "session-native-release",
+      "kind": "session-database",
+      "bytes": 344064,
+      "sha256": "1b8db2dd8f688ff34cc4b7c9b3cfe3aafc18306103a370aaf74c0decbb4a4a26"
+    },
+    {
+      "id": "session-partial-worlds-1",
+      "kind": "session-database",
+      "bytes": 626688,
+      "sha256": "d4fc41f3b0e358c53e3831e4cc6eef0896edb39c20980f3def84c885d75db56f"
+    },
+    {
+      "id": "session-partial-worlds-2",
+      "kind": "session-database",
+      "bytes": 569344,
+      "sha256": "a5426a49dfd503e4316a150f6b9e93fd466fff372f45b48dea7be11d3809ab4d"
+    },
+    {
+      "id": "session-partial-worlds-3",
+      "kind": "session-database",
+      "bytes": 512000,
+      "sha256": "6f4b01362d16c37e7b32c29dd7614f328843f6de952245c0d052ab879670fb5f"
+    },
+    {
+      "id": "session-partial-worlds-4",
+      "kind": "session-database",
+      "bytes": 520192,
+      "sha256": "1443f8f5596d30ff52aa46bbfe2d84ca7e10e3c9d00c8de5fa607b0ccd6a74c9"
+    },
+    {
+      "id": "session-hook-worlds-1",
+      "kind": "session-database",
+      "bytes": 630784,
+      "sha256": "91b9c45691c6e1e4025ed6b1d2b6aa6a1b7692709ece66b99414a51357de1d55"
+    },
+    {
+      "id": "session-hook-worlds-2",
+      "kind": "session-database",
+      "bytes": 536576,
+      "sha256": "8e15c0cd9295651d3853c0b074f07de149cfa3e24b9c4ef10c90c0eb968f713d"
+    },
+    {
+      "id": "session-hook-worlds-3",
+      "kind": "session-database",
+      "bytes": 499712,
+      "sha256": "733204ffcbf5ae1307344a506a318421d8381ec785a8b0ba7c4225e22304e3f5"
+    },
+    {
+      "id": "session-hook-worlds-4",
+      "kind": "session-database",
+      "bytes": 528384,
+      "sha256": "8d8fd7fc04016c82b31450bf54b16cd04978005e36866f3e65318642a6722ecb"
+    },
+    {
+      "id": "session-reader-cells",
+      "kind": "session-database",
+      "bytes": 5427200,
+      "sha256": "d0f9733fc9eb4a8dd10da870e0ba13d7806adc4585d720d16d97c4c0b2377ff9"
+    },
+    {
+      "id": "build-info",
+      "kind": "build-info",
+      "bytes": 5538608,
+      "sha256": "405d18414534fb9a63620ce6234851b96d6ef58c9f6bd20e359c06c6113de609"
+    }
+  ],
+  "rehashVerifier": {
+    "path": "scripts/trust12/verify_storage_reader_v1.py",
+    "bytes": 33205,
+    "sha256": "a90e0003176b857933a9c2123db0e0ccde9ac17135a7acc22c59c490edbf2bc1",
+    "command": "python3 scripts/trust12/verify_storage_reader_v1.py --product-root <product-root> --artifact-index <private-artifact-index.json>"
+  },
+  "nonclaims": {
+    "generalExecutionValues": true,
+    "keccakInversion": true,
+    "keysOutsideScope": true,
+    "upstreamTokenBehavior": true,
+    "registryConsumers": true,
+    "nativeCommonManifest": true,
+    "twentySevenCellGate": true,
+    "proverRerun": true,
+    "compilerRerun": true,
+    "registeredCentralClosure": true,
+    "generalRuntimeLinks": true,
+    "independentAssurance": true,
+    "fullTrustCompletion": true,
+    "releaseOrDeployment": true
+  }
+}

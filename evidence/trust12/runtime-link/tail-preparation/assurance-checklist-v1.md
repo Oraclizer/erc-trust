@@ -77,6 +77,7 @@ frozen inputs, reproduction commands and reuse conditions are defined by
 | 4.6 | Recompute the call frame record of the requests outside canonical form with its saved-mode verifier from the sealed proof graphs and stage sources | The rebuilt report equals the sealed report byte for byte, no command segment enters a call frame, and every stage record supplies the empty external call list |
 | 4.7 | Recompute the reflection scan with its saved-mode verifier from the sealed build information and the sealed scan report | The rerun scan equals the sealed report byte for byte, no state write or guard on the typed command paths is unclassified, the compiled layouts agree with the crosswalk, and every storage variable that the crosswalk leaves open has a reviewed reason whose writers equal the scanned writers |
 | 4.8 | Rehash the bounded word guard mutant receipts with the saved-mode verifier of their record | Every receipt matches the public record, every witness of a detected mutant deviates, every witness of the equivalent mutant fails with the declared typed failure, and every other witness fails quietly |
+| 4.9 | Recompute the storage reader record with its saved-mode verifier from the sealed session databases and build information | Every reader source equals the source its completed session database stored, every quoted clause, read form and comparison row follows from those sources and the crosswalk, and the struct member locations equal the compiled layouts |
 
 ## Result record
 

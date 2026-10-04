@@ -560,14 +560,9 @@
     {
       "index": 0,
       "text": "The formal model reads storage through runtime manifest projections that are locale parameters; no formal rule reads a slot or a mapping key into an abstract field, and no per-profile manifest instance exists. This crosswalk is input to such a reader, not a proof of it.",
-      "disposition": "AWAITS_FORMAL_READER",
-      "detail": "No formal rule reads a slot or a mapping key into an abstract field yet; the crosswalk is input to that reader and the condition stays open until it exists.",
-      "carryOver": {
-        "receivingGate": "the formal storage reader of the kernel integration, before the registered closure record",
-        "owner": "integration owner",
-        "closureEvidence": "a kernel-checked reader per profile manifest that maps slots and mapping keys to abstract fields, compared column by column with this crosswalk",
-        "reopen": "if no reader per profile can be built, the finding on the missing formal storage reader stays blocking and the state and receipt identity condition is reported as open"
-      }
+      "disposition": "RESOLVED_BY_FORMAL_READER",
+      "detail": "Resolved by the storage reader record storage-reader-checkpoint-v1.json: the runtime manifests that the Native cell theorems and the restated Partial and Hook cell theorems of the registered executions use define every abstract field by a reading of storage or by a profile constant, and the record compares those definitions with this crosswalk column by column, in both directions. The comparison is between definitions, and the mapping locations rest on the retained assumption A-KECCAK.",
+      "record": "evidence/trust12/runtime-link/tail-preparation/storage-reader-checkpoint-v1.json"
     },
     {
       "index": 1,
