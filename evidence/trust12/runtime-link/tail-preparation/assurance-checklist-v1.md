@@ -74,6 +74,7 @@ frozen inputs, reproduction commands and reuse conditions are defined by
 | 4.3 | Recompute the central closure counts | No row is closed by a human-written table alone, and current mandatory rows are zero only if the recomputation says so |
 | 4.4 | Recompute the route inventory with its saved-mode verifier from the sealed run records | The rebuilt inventory equals the sealed inventory byte for byte, and every state-changing route outside the typed commands has a disposition that a closed row or an accepted decision record justifies and a passed test executes |
 | 4.5 | Recompute the typed failure records with their saved-mode verifier from the sealed run records and compiled artifacts | Every probe and mutant receipt and the load scan recompute byte for byte, every case is bound and every declared mutant unbinds its named cases |
+| 4.6 | Recompute the call frame record of the requests outside canonical form with its saved-mode verifier from the sealed proof graphs and stage sources | The rebuilt report equals the sealed report byte for byte, no command segment enters a call frame, and every stage record supplies the empty external call list |
 
 ## Result record
 

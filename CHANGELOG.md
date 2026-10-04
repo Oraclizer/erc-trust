@@ -2,6 +2,24 @@
 
 ## Unreleased
 
+- Record the call frames of the registered requests outside canonical form
+  in call-trace-checkpoint-v1.json. For each of the 42 registered requests
+  (Native 16, Partial 13, Hook 13), the stored KEVM proof graph of its
+  certificate enters no call frame between the command entry and the return to
+  the calling frame, and the kernel stages supply an empty external call list
+  for each of them, so the supplied list equals the list read from the graph.
+  The kernel still takes the call list as a supplied field; reading the graph
+  relies on the pinned K, KEVM and Kontrol tools recording every call as a
+  graph node. The public verifier runs in the required gate, and its saved
+  mode rebuilds the private report from the stored graphs and stage sources.
+
+- Bind the state and receipt crosswalk to the central ledger and the earlier
+  central closure by the members it reads (the state and receipt identity
+  lists and the runtime-only reflection list) instead of by the hash of each
+  whole file, so that a regenerated row elsewhere in those files no longer
+  makes the crosswalk stale. A test checks that unread members leave the
+  binding unchanged and that every read member changes it.
+
 - Add the typed failure probe of the runtime link and its public record
   typed-failure-checkpoint-v1.json. The probe drives all six typed failures
   through an action and a reversal entrypoint of each profile endpoint, 52

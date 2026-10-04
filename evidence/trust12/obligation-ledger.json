@@ -249,7 +249,7 @@
         },
         "review": {
           "path": "evidence/trust12/veri-integration-audit.md",
-          "sha256": "8c52876a449ba44e8f2754a2fdc27c3a50ffb5a57039f26c7735c7d41576806f"
+          "sha256": "6c10fb4dffa4608119d4bed6ea8657b323e07a55966ab59c39b0fb13f69889d2"
         }
       },
       "probeDisposition": "Completed general positive and both complementary same-domain removal controls received. No shipping exception.",
@@ -1916,7 +1916,8 @@
         "evidence/trust12/runtime-link/tail-preparation/malformed-guard-mutants-checkpoint-v1.json",
         "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
         "evidence/trust12/runtime-link/tail-preparation/route-inventory-checkpoint-v1.json",
-        "evidence/trust12/runtime-link/tail-preparation/typed-failure-checkpoint-v1.json"
+        "evidence/trust12/runtime-link/tail-preparation/typed-failure-checkpoint-v1.json",
+        "evidence/trust12/runtime-link/malformed/call-trace-checkpoint-v1.json"
       ],
       "requiredForRelease": true,
       "requiredForTrust12Completion": true,

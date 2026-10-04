@@ -1,0 +1,488 @@
+{
+  "schema": "trust12-malformed-call-trace-checkpoint-v1",
+  "status": "PASS_MALFORMED_SUPPLIED_CALL_LISTS_MATCH_PROOF_GRAPHS",
+  "scope": "For each of the 42 registered requests outside canonical form (Native 16, Partial 13, Hook 13), the stored KEVM proof graph of its certificate enters no call frame between the command entry and the return to the calling frame: that segment is one chain of rewrite edges with no branch and no cover, every node of it before the return executes the endpoint at the call depth of the entry node, and the return node executes the caller one call depth higher up. The kernel stages that relate these requests to the model supply an empty external call list for each of them, and every external call list that those stage sources write is empty, so the supplied list equals the list read from the graph.",
+  "graphBoundary": "The proof graphs record call frames as graph nodes. In every one of these graphs the calls that the endpoint makes outside the command segment appear in the node inventory as nodes one call depth deeper (24 in each Native graph, 6 in each Partial graph and 146 in each Hook graph); a call inside the segment would appear in the same way. That the pinned K, KEVM and Kontrol tools build each graph with a node at every call is part of the assumption A-KEVM-TOOLCHAIN. For every segment node and for one call frame node of each graph, the call depth, the executing account and the caller are read from the rehashed stored node file and compared with the node inventory, which the boundary record of the certificate binds by hash; the graph is not re-executed.",
+  "stageBoundary": "The kernel stages still take the external call list as a supplied field, and they define the post world and logs of each record as its recorded pre-call world and logs. This record checks the supplied call list against the proof graph with a tool outside the kernel; the kernel derives neither the call list nor the post world from an execution trace.",
+  "reproductionBoundary": "Metadata mode reads tracked files only and checks this record against the current product files. Saved mode rehashes the private call trace report, rebuilds it with the current trace tool from the stored proof graphs, node files, boundary records, node inventories and stage sources, and requires the rebuilt report to equal the stored one byte for byte and this record to follow from it. Neither mode runs a prover, a symbolic execution or a kernel session, and the record states no completion of the malformed branch, the registered-scope central closure, any general runtime link, the independent Assurance or TRUST 1.2.",
+  "coverage": {
+    "certificates": {
+      "Native": 16,
+      "Partial": 13,
+      "Hook": 13
+    },
+    "segmentNodes": {
+      "Native": 96,
+      "Partial": 78,
+      "Hook": 78
+    },
+    "framesEnteredInSegments": 0,
+    "framesEnteredByEndpointOutsideSegments": {
+      "Native": [
+        24
+      ],
+      "Partial": [
+        6
+      ],
+      "Hook": [
+        146
+      ]
+    },
+    "suppliedEmptyCallLists": {
+      "Native": 16,
+      "Partial": 13,
+      "Hook": 13
+    },
+    "stageExternalCallListsWritten": {
+      "Native": 25,
+      "Partial": 21,
+      "Hook": 21
+    }
+  },
+  "stageSources": {
+    "Native": {
+      "role": "native-aligned-source",
+      "bytes": 212576,
+      "sha256": "a54ecae17b3625925c0ab78e708e768053709f3194ea27a486212a9324fd6e7b"
+    },
+    "Partial": {
+      "role": "partial-aligned-source",
+      "bytes": 165635,
+      "sha256": "d4923ecded208734720995e49e8e1514a806ef817d730807d1f2ba7516649a02"
+    },
+    "Hook": {
+      "role": "hook-aligned-source",
+      "bytes": 180298,
+      "sha256": "fdb4de2e15e893e91fc53885f65b1019b0722f9b87df28e17dfce5f4c3eaf092"
+    }
+  },
+  "productIdentity": {
+    "traceTool": {
+      "path": "scripts/trust12/tail-preparation/malformed_call_trace.py",
+      "bytes": 18815,
+      "sha256": "0a0dfa96332db9f5ac260052c31d234a00a39a55fb1970e70b3f08c4b0e6d808"
+    },
+    "malformedKevmKoreCheckpoint": {
+      "path": "evidence/trust12/runtime-link/malformed/kevm-kore-checkpoint-v1.json",
+      "bytes": 6853,
+      "sha256": "ed39a6dbc7f10fac348c022b3a1e5007f2194bdf46064b1adf1e81a80c75b657"
+    },
+    "alignedGateCheckpoint": {
+      "path": "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
+      "bytes": 17581,
+      "sha256": "e52ede796d01f59f879aa8371059fbe98b1d8ce96992400779facf1c99153caa"
+    },
+    "canonicalFormDecision": {
+      "path": "spec/decisions/12-requests-outside-canonical-form.md",
+      "bytes": 4620,
+      "sha256": "2c4f98b8323d0a1c0a17beb01713bd4ede29740e8fd330946569446dc41d776b"
+    }
+  },
+  "artifacts": [
+    {
+      "id": "call-trace-report",
+      "kind": "report",
+      "bytes": 129603,
+      "sha256": "e35a3f0d2842ae990a8e08b8e80d016ccb7762ab3e528b63824cc82a5e4bb3e1"
+    }
+  ],
+  "rehashVerifier": {
+    "path": "scripts/trust12/verify_malformed_call_trace_v1.py",
+    "bytes": 21215,
+    "sha256": "5cfd53a8fa6ead7205b6fc74939c14002a37e70360b4e74a08dd34f0533c07eb",
+    "command": "python3 scripts/trust12/verify_malformed_call_trace_v1.py --product-root <product-root> --evidence <evidence-root> --stage-index <aligned-gate-artifact-index.json> --artifact-index <private-artifact-index.json>"
+  },
+  "nonclaims": {
+    "kernelDerivedCallList": true,
+    "kernelDerivedPostWorld": true,
+    "unregisteredRequests": true,
+    "proverRerun": true,
+    "kernelSessionReplay": true,
+    "malformedBranchClosure": true,
+    "registeredCentralClosure": true,
+    "generalRuntimeLinks": true,
+    "independentAssurance": true,
+    "fullTrustCompletion": true,
+    "releaseOrDeployment": true
+  },
+  "certificates": [
+    {
+      "key": "Hook/MALFORMED/action-dirty-address",
+      "kcfgSha256": "ba04de5b9d9e8f5c3f036261747981964f3d5e7a83ef5951237c81da852ecb4a",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 146,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Hook/MALFORMED/action-dirty-uint48",
+      "kcfgSha256": "184801f7f5a96910c199b0504d2ba0effd7e044a32daf8b129a4f39506be5144",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 146,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Hook/MALFORMED/action-dirty-uint64",
+      "kcfgSha256": "3bac9bbcece0b046058ece8756d56d8c6830255b99f9162963a1afc9bb27e33b",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 146,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Hook/MALFORMED/action-enum-out-of-range",
+      "kcfgSha256": "0ad5635d44ed3ed6b077d0063016315340be29c0118e58ba7431b0a6c1f6fc9d",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 146,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Hook/MALFORMED/action-nonzero-value",
+      "kcfgSha256": "2aedb456f16f25c0badc1864137270c0164c8f4de48cb3b878262cb8b16a76a4",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 146,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Hook/MALFORMED/action-one-byte-long",
+      "kcfgSha256": "dc6e99d41b10aa7c1998c9b36fbdb945fa16f06d41a4ff708e6feb58cd41bc59",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 146,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Hook/MALFORMED/action-one-byte-short",
+      "kcfgSha256": "fd56651818877f1d4541b4264d6fa99dc604d8a63b6cafea9b222e983534663b",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 146,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Hook/MALFORMED/action-ordering-foreign-domain",
+      "kcfgSha256": "129e1f2da2408620a4ee75f841829861b67e9e0cc48e54b41e8f295ead9dd452",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 146,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Hook/MALFORMED/empty-calldata",
+      "kcfgSha256": "14029642640d0fb097cafe241c70785b371b1057147b5baccb4e73848cc3da37",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 146,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Hook/MALFORMED/reversal-enum-out-of-range",
+      "kcfgSha256": "cdb0207c77cbbc0645bf09b4f923a07a3b95bcf144f6ad528a56bd812daaa77c",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 146,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Hook/MALFORMED/reversal-one-byte-short",
+      "kcfgSha256": "e3b3c4a0b82a474d50b9c8b8a82d620aeacc1a1b062b4dfb12d37512d35d75e3",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 146,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Hook/MALFORMED/three-byte-calldata",
+      "kcfgSha256": "d63f91417971aa190a68f6e0a486d01cfb4d6bdd382a69e54c289adc68d32589",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 146,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Hook/MALFORMED/unknown-selector",
+      "kcfgSha256": "b46755c53e829e0933156ffad77ffa9b333f1d69779a6afa44e238e1b959952a",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 146,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Native/MALFORMED/action-dirty-address",
+      "kcfgSha256": "954a474649478c712f3b9d4ff1f4ceb9c0973073579bd23c535a6870dec31723",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 24,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Native/MALFORMED/action-dirty-uint48",
+      "kcfgSha256": "d6609dfba0991bcd037e75abaa601e52901c2cae037e91d77d2b6873f43791e6",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 24,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Native/MALFORMED/action-dirty-uint64",
+      "kcfgSha256": "ab1630ec1f4deeb7b4e88aac3582d4eefefe5ccfff98a5f143f56558347dfae2",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 24,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Native/MALFORMED/action-enum-out-of-range",
+      "kcfgSha256": "434766f0a9555e7944d41f07de929e5b852feaf6d7a59fbe8a5e790c9949639d",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 24,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Native/MALFORMED/action-nonzero-value",
+      "kcfgSha256": "2c6b9bd3bcbf4b0c924b760b669c2a69e478178f64ca97d02174000d5acb7f5d",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 24,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Native/MALFORMED/action-one-byte-long",
+      "kcfgSha256": "88168b9b910b6ef1d34796b545146a5118365841fcce381ff68813081fa0ebe1",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 24,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Native/MALFORMED/action-one-byte-short",
+      "kcfgSha256": "6b26dbda4cc9735ef7f444bd051195c17d2340ad43ecf3b86198169380357f3c",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 24,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Native/MALFORMED/action-ordering-foreign-domain",
+      "kcfgSha256": "2c7b11addc67caabd518e69dacc7772d05064eee3cfa2ad52714652ec1b4e556",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 24,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Native/MALFORMED/empty-calldata",
+      "kcfgSha256": "caf7730d66b04801966f73554259d4a33cc4900eface491ccde5b5e2f5c5cbc5",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 24,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Native/MALFORMED/reversal-enum-out-of-range",
+      "kcfgSha256": "790eeb4418cd579b8724fe7fdea67b3d35c062372d8d559e7cee2a3d50e19553",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 24,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Native/MALFORMED/reversal-one-byte-short",
+      "kcfgSha256": "56e5b7630880ebb7ded47a6996eaebda70be6ee5405056404935dac817c0af7c",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 24,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Native/MALFORMED/route-action-enum-out-of-range",
+      "kcfgSha256": "2b8db75e950cfe7e6199acb1a31f42916d4abe84b881c5bbe64028c787749ba3",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 24,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Native/MALFORMED/route-action-one-byte-short",
+      "kcfgSha256": "7086dc7209aca922b2653969ec3419c6b38c7aed386820e570a6d8eef9bff08f",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 24,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Native/MALFORMED/route-reversal-one-byte-short",
+      "kcfgSha256": "0361022579da720d1bd139b5e7d070c91d8defdd093e4efac9c2e5accb3c8f2e",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 24,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Native/MALFORMED/three-byte-calldata",
+      "kcfgSha256": "4e3836cdacd2d52c9b18d5477c13f6c472d7ce8728624a69e91ed3283bc4f891",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 24,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Native/MALFORMED/unknown-selector",
+      "kcfgSha256": "abcc0c358b7580ca172cad4bf25d9a0163505843cad0684fd2e19f8fcb39f297",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 24,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Partial/MALFORMED/action-dirty-address",
+      "kcfgSha256": "c213eaf4a42973503420fd252137d156b1f6906d37cd580323e75fb325e1f4ec",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 6,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Partial/MALFORMED/action-dirty-uint48",
+      "kcfgSha256": "503268845b311e12bd892323808afb344eb08ffe3d32ec32fd5b3e0e627b9a11",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 6,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Partial/MALFORMED/action-dirty-uint64",
+      "kcfgSha256": "84dd21a2809cf4a7ab13a119a2acfa6a1ad1846ad931d348e0f61d9742d68b64",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 6,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Partial/MALFORMED/action-enum-out-of-range",
+      "kcfgSha256": "d3d22f20e7ce8159d8b34e4a82135bba0048eb1ad05c402b06f8d0c7c66d1f25",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 6,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Partial/MALFORMED/action-nonzero-value",
+      "kcfgSha256": "c4b7c8f10829dd481659c988451c9d7ccab53655c9e053e92bc6813aa8de55c8",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 6,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Partial/MALFORMED/action-one-byte-long",
+      "kcfgSha256": "75916ae4b01edf645de8f32d64b8815430c9bd3f928cfe846a7d4a9b1f90875c",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 6,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Partial/MALFORMED/action-one-byte-short",
+      "kcfgSha256": "fc024d2f9e610041d0c1fda6b8aa1d71d1a6458f0e095fb155dd566c8e620e23",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 6,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Partial/MALFORMED/action-ordering-foreign-domain",
+      "kcfgSha256": "926002f1965b35c4a723f34df0c576a75ee33afff2aa86d907d9b73c9a3220e8",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 6,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Partial/MALFORMED/empty-calldata",
+      "kcfgSha256": "b6eab27fa359af8c35f0b111696ce1fd50f422409d7ad98c401e921ebbae40ed",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 6,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Partial/MALFORMED/reversal-enum-out-of-range",
+      "kcfgSha256": "381f466c9409846c461145d05599bb23a83bc98d9359d9ca722969fd065604d3",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 6,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Partial/MALFORMED/reversal-one-byte-short",
+      "kcfgSha256": "d9011c1b4d1d7b1bc9c9aa7437bcc6348088de2f8bbb77c3f8c87ae7a4afdcdb",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 6,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Partial/MALFORMED/three-byte-calldata",
+      "kcfgSha256": "cbc4450e7ee078a938dd8304d1f78425331d04e47af10e2acda14ec8d6d5e1a4",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 6,
+      "suppliedCallList": "EMPTY"
+    },
+    {
+      "key": "Partial/MALFORMED/unknown-selector",
+      "kcfgSha256": "1bfe9f116e4bb018828d54972415513d7da55839caa838714712f7ea91f97c56",
+      "endpointCallDepth": 1,
+      "segmentNodes": 6,
+      "framesEnteredInSegment": 0,
+      "framesEnteredByEndpointOutsideSegment": 6,
+      "suppliedCallList": "EMPTY"
+    }
+  ]
+}

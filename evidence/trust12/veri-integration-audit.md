@@ -281,3 +281,20 @@ creation code and refuses a mutated adapter, so the isolated copy also pins the
 mutated adapter there; the published factory and its pin are unchanged. The
 probe does not cover the bounded word guards and is not a proof over all
 accepted executions.
+
+## Call frames of the registered requests outside canonical form (2026-10-05)
+
+The aligned gate stages take the external call list of each registered request
+outside canonical form as a supplied field, and each stage record supplies the
+empty list. The record call-trace-checkpoint-v1.json checks that value against
+the stored KEVM proof graph of each request's certificate: the segment from the
+command entry to the return to the calling frame is one chain of rewrite
+edges, and every node of it before the return executes the endpoint at the
+call depth of the entry node, so no call frame is entered. The same graphs
+record the calls that the endpoint makes outside the segment as nodes one call
+depth deeper, which is how a call inside the segment would appear. The call
+depth, executing account and caller are read from the rehashed node files. The
+kernel still takes the call list as a supplied field and derives neither the
+call list nor the post world from an execution trace; reading the graph relies
+on the K, KEVM and Kontrol tools recording every call as a node
+(A-KEVM-TOOLCHAIN).

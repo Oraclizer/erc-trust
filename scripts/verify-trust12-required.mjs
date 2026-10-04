@@ -48,6 +48,11 @@ export const requiredTrust12Paths = [
   'scripts/test-malformed-aligned-gate.py',
   'scripts/trust12/verify_malformed_aligned_gate_v1.py',
   'evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json',
+  'scripts/trust12/verify_malformed_call_trace_v1.py',
+  'scripts/test-malformed-call-trace.py',
+  'scripts/trust12/tail-preparation/malformed_call_trace.py',
+  'scripts/trust12/tail-preparation/test_malformed_call_trace.py',
+  'evidence/trust12/runtime-link/malformed/call-trace-checkpoint-v1.json',
   'scripts/trust12/verify_malformed_guard_mutants_v1.py',
   'scripts/test-malformed-guard-mutants.py',
   'scripts/trust12/tail-preparation/run_malformed_probe_v2.py',
@@ -254,6 +259,10 @@ export function verifyTrust12Required(root = repository) {
     ['-B', resolve(root, 'scripts/trust12/verify_malformed_guard_mutants_v1.py'), '--product-root', root, '--metadata-only'],
     { cwd: root, encoding: 'utf8' });
   check(!guardMutantsCheck.error && guardMutantsCheck.status === 0, 'malformed-guard-mutants public metadata check failed');
+  const callTraceCheck = spawnSync(process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3'),
+    ['-B', resolve(root, 'scripts/trust12/verify_malformed_call_trace_v1.py'), '--product-root', root, '--metadata-only'],
+    { cwd: root, encoding: 'utf8' });
+  check(!callTraceCheck.error && callTraceCheck.status === 0, 'malformed-call-trace public metadata check failed');
   const certificateRegistryCheck = spawnSync(process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3'),
     ['-B', resolve(root, 'scripts/trust12/verify_certificate_registry_v1.py'), '--product-root', root, '--metadata-only'],
     { cwd: root, encoding: 'utf8' });

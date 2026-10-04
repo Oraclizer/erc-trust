@@ -13,7 +13,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "90af1521fa967d30b783ba70736ac89d8213c3e916d52bd4c4f8016f9bc1a32f"
+      "sha256": "bc3609c5cede1b2d64970d69e3ae4e47bded337a59b20a3c0680ff974274f391"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
@@ -129,7 +129,7 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "c470017dc4ffd6fd2b7d633255f6becb30574a8e596fe63dbe44f581e634331a"
+      "sha256": "5817e47e30d852bc15b8962fd0ac9f86d024a9b59ff2c1156a53b43195df2449"
     },
     {
       "path": "evidence/trust12/profile-implementation-evidence-review.json",
@@ -166,6 +166,10 @@
     {
       "path": "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
       "sha256": "e52ede796d01f59f879aa8371059fbe98b1d8ce96992400779facf1c99153caa"
+    },
+    {
+      "path": "evidence/trust12/runtime-link/malformed/call-trace-checkpoint-v1.json",
+      "sha256": "bded0634c3104c59553f96a27a806007fbd86c87a6930197e1729f9e00cdbb8a"
     },
     {
       "path": "evidence/trust12/runtime-link/model-source-reception-checkpoint-v1.json",
@@ -249,7 +253,7 @@
     },
     {
       "path": "evidence/trust12/veri-integration-audit.md",
-      "sha256": "8c52876a449ba44e8f2754a2fdc27c3a50ffb5a57039f26c7735c7d41576806f"
+      "sha256": "6c10fb4dffa4608119d4bed6ea8657b323e07a55966ab59c39b0fb13f69889d2"
     },
     {
       "path": "evidence/trust12/veri-observation-results.json",
@@ -393,7 +397,7 @@
     },
     {
       "path": "scripts/generate-trust12-input-seal.py",
-      "sha256": "10c92b534694798977dc38b4b0fb981422769eb63bba8725065f2f218a3480fc"
+      "sha256": "1d481160cdf5f1ebaa05550b79a71526545d971c3aabd3a0c668a5ce250191a9"
     },
     {
       "path": "scripts/generate-trust12-proof-audit.py",
@@ -500,6 +504,10 @@
       "sha256": "ebaa24d081136f86320610361307ed31b63ab1d26895ef34706dbbb3c8bd6251"
     },
     {
+      "path": "scripts/test-malformed-call-trace.py",
+      "sha256": "f02ddb63c0b346355b74d2ac51eee40174eb76fca0c59c44f727c514b5fcda65"
+    },
+    {
       "path": "scripts/test-malformed-guard-mutants.py",
       "sha256": "ed0d1cdd9b291165730fe8da0fecc8ba2d478cabe974ad27191d1e41d3ca06dd"
     },
@@ -545,7 +553,7 @@
     },
     {
       "path": "scripts/test-trust12-required.mjs",
-      "sha256": "dd6d330387ce48ed6fcd20c3027539e4c88546ae38ee2076444c4aa0c20749da"
+      "sha256": "79fc52afaea9003e3af5845a1d38e70f795964da03cb1e66c81e1ddffcd50bf1"
     },
     {
       "path": "scripts/test-typed-failure-binding.py",
@@ -566,6 +574,10 @@
     {
       "path": "scripts/trust12/tail-preparation/kore_accounts.py",
       "sha256": "7bd2691f6f6a8c574614a17f8b73f925e445100d1254f19710fe83b04f7bb731"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/malformed_call_trace.py",
+      "sha256": "0a0dfa96332db9f5ac260052c31d234a00a39a55fb1970e70b3f08c4b0e6d808"
     },
     {
       "path": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol",
@@ -594,6 +606,10 @@
     {
       "path": "scripts/trust12/tail-preparation/test_certificate_registry_v2.py",
       "sha256": "2f3abe3ebba139d0f5edfd90f27d7bc69ab5855eaef8a00bd97187cb6b55d370"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/test_malformed_call_trace.py",
+      "sha256": "5d5c6e29e65eeffd4e7cf7dfb55481f85dd67ba7d0c217f8bdce8d56579d366e"
     },
     {
       "path": "scripts/trust12/tail-preparation/test_route_inventory_v2.py",
@@ -642,6 +658,10 @@
     {
       "path": "scripts/trust12/verify_malformed_aligned_gate_v1.py",
       "sha256": "5cf0fc8981ffaf239e553f843077732fc56e8641f3aa4908f056a857795ddf2c"
+    },
+    {
+      "path": "scripts/trust12/verify_malformed_call_trace_v1.py",
+      "sha256": "5cfd53a8fa6ead7205b6fc74939c14002a37e70360b4e74a08dd34f0533c07eb"
     },
     {
       "path": "scripts/trust12/verify_malformed_guard_mutants_v1.py",
@@ -713,7 +733,7 @@
     },
     {
       "path": "scripts/verify-trust12-required.mjs",
-      "sha256": "58430b7d1c39235537fc422add050bd295881b505c0f8fa2af8ae5cdc844bd1c"
+      "sha256": "71346f6866d122d6a795807eedd65fb4dcb3b0c4f272668c18762294507cd0d2"
     },
     {
       "path": "spec/decisions/14-hook-route-classes.md",
