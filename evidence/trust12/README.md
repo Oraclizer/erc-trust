@@ -8,8 +8,8 @@ all TRUST 1.2 work complete or discharge the general runtime link.
 
 `release-policy.json` preserves the historical release-scope reset and the
 superseded 2026-09-25 direction, and records the current completion direction:
-TRUST 1.2 completes at the registered-execution scope through one registered-scope
-central closure and fresh independent assurance, and general runtime-to-model
+TRUST 1.2 completion is defined at the registered-execution scope, through one
+registered-scope central closure and fresh independent assurance, and general runtime-to-model
 correspondence is deferred research that TRUST 1.2 completion does not require.
 The three profile
 rows in `obligation-ledger.json` now track seven components of scoped implementation

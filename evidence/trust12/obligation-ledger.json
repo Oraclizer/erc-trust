@@ -265,7 +265,7 @@
       "positiveActivation": "All seven NATIVE components were scope-reviewed at EXECUTION_TESTS. Existing Kontrol PASS records remain supplemental bounded evidence and are not promoted to proof grade without explicit unresolved-goal, admitted-goal and vacuity metadata.",
       "consumerRemovalNegative": "Every graded component has either a killed consumer-removal mutation or an explicitly bounded behavioral negative with a bound receipt.",
       "compiledConsumer": "Published Native runtime remains byte-exact.",
-      "assumptionsNonclaims": "Scoped implementation evidence only. The general runtime_link discharge is a separate CURRENT-MANDATORY obligation. The alternative probe exactly instantiated the checked node148 frame summary and EVM.pc.inc step to PC 7619, but it produced no checker-returned actual-node148 CSubst, no standard JUMP decode, no complete Native FREEZE proof and no same-domain guard-removal negative.",
+      "assumptionsNonclaims": "Scoped implementation evidence only. The general runtime_link discharge is a separate deferred research obligation. The alternative probe exactly instantiated the checked node148 frame summary and EVM.pc.inc step to PC 7619, but it produced no checker-returned actual-node148 CSubst, no standard JUMP decode, no complete Native FREEZE proof and no same-domain guard-removal negative.",
       "status": "CLOSED",
       "supplementalEvidence": [
         "evidence/trust12/veri-observation-results.json",
@@ -817,7 +817,7 @@
       "positiveActivation": "All seven PARTIAL components were scope-reviewed and graded; the row grade is EXECUTION_TESTS because it is the weakest component grade.",
       "consumerRemovalNegative": "Every graded component has either a killed consumer-removal mutation or an explicitly bounded behavioral negative with a bound receipt.",
       "compiledConsumer": "Published Partial adapter and governor source and runtime remain byte-exact.",
-      "assumptionsNonclaims": "Scoped implementation evidence only. The general runtime_link discharge is a separate CURRENT-MANDATORY obligation; source tests are not promoted to full-scope proofs.",
+      "assumptionsNonclaims": "Scoped implementation evidence only. The general runtime_link discharge is a separate deferred research obligation; source tests are not promoted to full-scope proofs.",
       "status": "CLOSED",
       "supplementalEvidence": [
         "evidence/trust12/veri-observation-results.json",
@@ -1345,7 +1345,7 @@
       "positiveActivation": "All seven HOOK components were scope-reviewed and graded; the row grade is EXECUTION_TESTS because it is the weakest component grade.",
       "consumerRemovalNegative": "Every graded component has either a killed consumer-removal mutation or an explicitly bounded behavioral negative with a bound receipt.",
       "compiledConsumer": "HookAdapter, governor, Compliance, factory and actual T-REX runtime identities are recorded.",
-      "assumptionsNonclaims": "Scoped implementation evidence only. The general runtime_link discharge is a separate CURRENT-MANDATORY obligation; source tests are not promoted to full-scope proofs.",
+      "assumptionsNonclaims": "Scoped implementation evidence only. The general runtime_link discharge is a separate deferred research obligation; source tests are not promoted to full-scope proofs.",
       "status": "CLOSED",
       "supplementalEvidence": [
         "evidence/trust12/veri-observation-results.json",

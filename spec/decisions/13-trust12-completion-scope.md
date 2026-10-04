@@ -6,8 +6,8 @@ Status: recorded as the 2026-10-04 completion direction in
 
 ## Decision
 
-1. TRUST 1.2 completes at the registered-execution scope. Completion needs all
-   of the following:
+1. TRUST 1.2 completion is defined at the registered-execution scope.
+   Completion needs all of the following:
    - the verified Isabelle abstract model (sessions `ERC_TRUST` and
      `TRUST12_Accounting_Obstruction`);
    - the registered executions of the three declared profiles, that is the
@@ -17,10 +17,11 @@ Status: recorded as the 2026-10-04 completion direction in
      positive, same-scope negative and compiled-consumer evidence;
    - one registered-scope central closure that discharges every condition in
      `evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json`
-     other than the independent assurance, disposes every finding recorded
-     there and names every assumption that remains (ledger row
-     `REGISTERED-CENTRAL-CLOSURE`);
-   - fresh independent assurance on the final inputs, which binds that closure.
+     other than the independent assurance, resolves every finding that blocks a
+     discharged condition, disposes the other recorded findings and names every
+     assumption that remains (ledger row `REGISTERED-CENTRAL-CLOSURE`);
+   - fresh independent assurance on inputs frozen by a final input seal, which
+     binds that closure.
 2. General runtime-to-model correspondence in each declared profile, that is a
    discharge of the `runtime_link` and `runtime_link_spec` locale assumptions
    for every declared execution, is deferred research. TRUST 1.2 completion
@@ -35,27 +36,32 @@ Status: recorded as the 2026-10-04 completion direction in
 4. The 2026-09-25 completion direction, which made the general correspondence
    mandatory for TRUST 1.2, is kept in `supersededCompletionDirections` as
    history.
-5. `scripts/lib/trust12-policy.mjs` enforces the accounting of this decision.
-   A closed registered closure must be a non-fixture record bound to the final
+5. `scripts/lib/trust12-policy.mjs` checks the accounting of this decision. A
+   closed registered closure must be a non-fixture record bound to the final
    profile runtimes, source inventory, ABI, admitted formal root, the closure
-   row's condition and the pinned conditions list, with passing evidence files
-   for every discharged condition. The policy check does not replay the
-   kernel-checked evidence; the saved-mode verifier of each checkpoint and the
-   fresh independent assurance do that.
+   row's condition and the pinned conditions list. It may cite as evidence only
+   passing checkpoint records whose public rehash verifier the required gate
+   runs, and it must name the pinned assumptions: the open assumptions of the
+   central end-to-end ledger and `A-KEVM-TOOLCHAIN`, under which K, KEVM and
+   Kontrol with its backend are trusted to produce the registered
+   certificates. The fresh assurance report must cite a final input seal. The
+   policy check does not replay kernel evidence: the saved-mode verifier of
+   each checkpoint and the fresh independent assurance do, and a committed
+   record is trusted only after review.
 
 ## Why
 
-Registered certificates exist for every profile and operation, and the
-remaining registered-scope conditions are recorded in
+The remaining registered-scope conditions are recorded in
 `tail-obligations-v1.json` as concrete inputs, checks and acceptance criteria.
 A general proof for every declared execution additionally needs a checked
-receiver of arbitrary EVM executions in Isabelle, which does not exist
+receiver of arbitrary EVM executions in Isabelle, which the source and tool
+interface inspection did not find
 (`evidence/trust12/runtime-link-source-blockers.md`), and a proof replay that
 fits the public proof job. Neither is available, so the cost of the general
 proof has no measured bound, and every change to the source, ABI or runtime
-would reopen it. Closing TRUST 1.2 at the registered scope keeps every claim
-exact and keeps the general proof open as research instead of as an unbounded
-release prerequisite.
+would reopen it. Defining TRUST 1.2 completion at the registered scope keeps
+every claim exact and keeps the general proof open as research instead of as
+an unbounded release prerequisite.
 
 ## Alternatives considered
 
@@ -75,8 +81,9 @@ false and a deferral that names this decision. A new mandatory row
 `REGISTERED-CENTRAL-CLOSURE` tracks the registered-scope central closure. The
 policy check separates TRUST 1.2 completion from full end-to-end refinement,
 reports `ASSURANCE_PENDING` while closed evidence waits for the fresh
-independent assurance, and requires the three disclosures to state the
-deferral while any general row is deferred.
+independent assurance, requires the three disclosures to state the deferral
+while any general row is deferred, and rejects completion wording in the
+public documents while TRUST 1.2 is open.
 
 ## Reopen when
 

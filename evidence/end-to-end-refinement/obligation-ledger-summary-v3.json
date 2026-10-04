@@ -9,7 +9,7 @@
   "closure": "CONDITIONAL",
   "closureRecord": {
     "path": "evidence/end-to-end-refinement/central-closure-v3.json",
-    "sha256": "24bb9e3114214905a58b1250613fb0d02743916c7e824ef0e962953f5c061c4c"
+    "sha256": "bbf59d72b419d749089e79d68ea39529096643d0cb60a400f71b1de7c05c2adc"
   },
   "counts": {
     "closed": 70,
@@ -589,7 +589,7 @@
       },
       {
         "path": "evidence/claim-matrix.md",
-        "sha256": "41f431fb257f7b0f6132f1dde001a4e7c6d53c9cac3c5fd6eb3b569c017fc260"
+        "sha256": "1cdaac08f1d15f1cb621a12c1cb75d31243fc6613aa5b3f7f058d2eee23b85b6"
       },
       {
         "path": "evidence/known-limitations.md",
@@ -597,7 +597,7 @@
       },
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "698f0d2537d7e9ba615713690f25e4bc9e7921bb77b648ed473036752fc4b919"
+        "sha256": "14d9b38323354308f4c1a1bbe6f72e45b9d473c040bae0049f148cc176106e26"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -737,7 +737,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "48ecc4a837053c972cac3c232527558dcd055f5e9996bc956eb1ee1be67dc32f"
+        "sha256": "6133ff49d6c10bff19d806c5a841dbdff997705a87d456acbe4b66d883606b8a"
       }
     ],
     "fullRefinementComplete": false,
