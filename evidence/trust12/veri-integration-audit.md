@@ -298,3 +298,28 @@ kernel still takes the call list as a supplied field and derives neither the
 call list nor the post world from an execution trace; reading the graph relies
 on the K, KEVM and Kontrol tools recording every call as a node
 (A-KEVM-TOOLCHAIN).
+
+## Reflection scan of the typed command paths (2026-10-05)
+
+The record reflection-scan-checkpoint-v1.json is a machine scan of the stored
+solc build information of the exact product sources. It lists every state
+write and every guard that the typed command entrypoints of the three
+endpoints reach without an external call, including the exact-use route
+handlers of the Native endpoint and the balance callback of the Hook adapter:
+59, 60 and 61 guards and 17, 12 and 12 written state variables. Each one is
+classified by the state and receipt crosswalk, by a final source consumer
+snippet of the central ledger or by a reviewed disposition, and none is left
+unclassified; the compiled layouts of the seven profile runtimes agree with
+the crosswalk. Each of the twelve storage variables that the crosswalk left
+open has a reviewed reason and named ledger rows, and its writers are exactly
+the functions that the scan finds. The callbacks into the endpoint are
+declared in the scan tool rather than discovered, and checks that the compiler
+generates, such as calldata decoding, are not source guards and are not
+listed. A classification is a match, not a proof: it does not show that a
+guard is sound, that a reason is true or that a named row covers the guard.
+The dispositions link the domain and identifier checks of a reversal request
+to rows through the rules those rows receive, and no removal negative targets
+those checks. The record does not address the preservation of abstract
+allowed behavior by the final code, and the formal reader of storage into
+abstract fields is still missing. The saved mode reruns the scan on the stored
+build information; the compiler is not rerun (A-COMPILER).

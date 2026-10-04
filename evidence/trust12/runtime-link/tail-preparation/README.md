@@ -28,6 +28,8 @@ needs, the prepared inputs, the acceptance criteria and the findings that block 
 | [route-inventory-checkpoint-v1.json](route-inventory-checkpoint-v1.json) | Public record of the route inventory built in closure mode: every selector with its class and disposition, the evidence of every disposition, the recorded test results and probe rows, and the private run records by hash |
 | [typed-failure-probe-mutants-v1.json](typed-failure-probe-mutants-v1.json) | Revert sites whose changed argument layout or selector must turn the named typed failure probe cases from bound into not bound |
 | [typed-failure-checkpoint-v1.json](typed-failure-checkpoint-v1.json) | Public record of the typed failure probe, its mutants and the selector loads of a recorded isolated build: every recorded payload with its verdict, every mutant with the cases it unbinds, the loads of every runtime, and the private run records by hash |
+| [reflection-dispositions-v1.json](reflection-dispositions-v1.json) | Reviewed dispositions: the reason and ledger rows of every storage variable that the crosswalk leaves open, the guards that no consumer snippet names, the Hook adapter writers with their own source text and the open items of the crosswalk |
+| [reflection-scan-checkpoint-v1.json](reflection-scan-checkpoint-v1.json) | Public record of the reflection scan: every state write and guard on the typed command paths with its classification, the compiled layout counts, the storage dispositions, and the stored build information and scan report by hash |
 | [assurance-input-seal-schema-v1.json](assurance-input-seal-schema-v1.json) | Format of the frozen Assurance inputs |
 | [assurance-input-seal-spec-v1.json](assurance-input-seal-spec-v1.json) | Bundles, toolchain pins, reproduction commands and independent checks of the seal |
 | [assurance-checklist-v1.md](assurance-checklist-v1.md) | Procedure of the independent assessor |
@@ -50,6 +52,7 @@ All tools are in `scripts/trust12/tail-preparation`. They never run a prover and
 | `certificate_registry.py` | Builds and verifies the certificate registry and its partition coverage from an evidence-side locator file |
 | `certificate_registry_v2.py` | Builds and verifies registry version 2 from an evidence-side locator file: the executed code and runtime set read from each recorded world, the kind of each record that consumed the world, and the acceptance verdict, recorded or recomputed from a stored proof graph |
 | `malformed_call_trace.py` | Reads the call frames of each registered request outside canonical form from its stored proof graph and checks them against the call list the kernel stages supply |
+| `reflection_scan.py` | Lists every state write and guard on the typed command paths from the solc build information of the exact tree, compares the compiled layouts with the crosswalk and checks every disposition against the build |
 | `kore_accounts.py` | Reads the accounts and the executing frame identifier of a KEVM configuration in KORE text form and fails closed on anything it does not recognise |
 | `assurance_seal.py` | Seals and verifies the frozen inputs of the independent Assurance |
 | `run_malformed_probe.py` | Runs the concrete malformed probe of the three endpoints in an isolated build directory |
@@ -132,6 +135,24 @@ python3 scripts/test-typed-failure-binding.py
 python3 scripts/trust12/verify_typed_failure_binding_v1.py --artifact-index ARTIFACT_INDEX
 ```
 
+The reflection scan reads the solc build information of a build of the exact tree and reports every write, guard and
+disposition it cannot match:
+
+```
+python3 scripts/trust12/tail-preparation/reflection_scan.py --build-info out/build-info/*.json --out REPORT
+```
+
+The public record of the reflection scan is checked against the tracked files alone, and its negative controls run
+without private files. With the private index of the stored build information and the stored scan report, the
+verifier rehashes both, reruns the scan on the stored build information and requires the result to equal the stored
+report:
+
+```
+python3 scripts/trust12/verify_reflection_scan_v1.py --metadata-only
+python3 scripts/test-reflection-scan.py
+python3 scripts/trust12/verify_reflection_scan_v1.py --artifact-index ARTIFACT_INDEX
+```
+
 ## Findings of the preparation
 
 1. The typed entrypoints evaluate the domain and identifier rules, and by source order further
@@ -146,8 +167,9 @@ python3 scripts/trust12/verify_typed_failure_binding_v1.py --artifact-index ARTI
    dirty bounded word) ended in an empty revert with no external call, log or committed write, and
    the well-formed controls confirmed that the probe observes those effects.
 4. The Hook runtimes had no normative route classes; decision 14 classifies them, and the route
-   inventory record shows every state-changing route outside the typed commands disposed. Several storage
-   variables have no recorded runtime-only reason, and the formal model has no per-profile storage reader yet.
+   inventory record shows every state-changing route outside the typed commands disposed. The reflection
+   scan record gives a reviewed reason and ledger rows for every storage variable that the crosswalk
+   leaves open; the formal model has no per-profile storage reader yet.
 
 ## Integration accounting
 

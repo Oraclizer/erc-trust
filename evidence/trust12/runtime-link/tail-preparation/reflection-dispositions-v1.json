@@ -1,0 +1,624 @@
+{
+  "schema": "trust12-tail-preparation-reflection-dispositions-v1",
+  "status": "REVIEWED",
+  "purpose": "Dispositions of the storage variables that the state and receipt crosswalk leaves open, of the guards on the typed command paths that no final source consumer snippet of the central ledger names, of the Hook adapter writers of derived columns whose source text differs from the Partial adapter, and of the open items of the crosswalk. The reflection scan checks every entry against the build.",
+  "storage": [
+    {
+      "runtime": "TrustToken",
+      "label": "_pendingCommitments",
+      "slot": 19,
+      "reason": "Carrier of the four commitments of an ERC-7943 action across the exact-use self call: executeERC7943Action assigns it before the call, the route handler reads it to rebuild the request, and the applied action deletes it in the same call, so a completed command leaves it empty; the abstract model has one typed entrypoint per command and no ERC-7943 route.",
+      "assignedBy": [
+        "executeERC7943Action"
+      ],
+      "clearedBy": [
+        "_applyActionPrepared"
+      ],
+      "rows": [
+        "NAT-ROUTE-01"
+      ],
+      "ledger": "central"
+    },
+    {
+      "runtime": "TrustToken",
+      "label": "_pendingReversals",
+      "slot": 20,
+      "reason": "Carrier of a prepared reversal across the exact-use self call: executeERC7943Reversal assigns it before the call and the route handler reads and deletes it before it applies the reversal in the same call, so a completed command leaves it empty; the abstract model has one typed entrypoint per command and no ERC-7943 route.",
+      "assignedBy": [
+        "executeERC7943Reversal"
+      ],
+      "clearedBy": [
+        "setFrozenTokens"
+      ],
+      "rows": [
+        "NAT-ROUTE-01"
+      ],
+      "ledger": "central"
+    },
+    {
+      "runtime": "ProfileGovernor",
+      "label": "exclusiveAdapter",
+      "slot": 0,
+      "reason": "Sealed topology of the Partial governor, written only by the one-way seal; the earlier central closure gives the seal state and the governor topology fields as carried by ADP-SEAL-01 and GOV-SEAL-01, because the abstract onboarding theory starts from the sealed state.",
+      "assignedBy": [
+        "seal"
+      ],
+      "clearedBy": [],
+      "rows": [
+        "GOV-SEAL-01",
+        "ADP-SEAL-01"
+      ],
+      "ledger": "central"
+    },
+    {
+      "runtime": "ProfileGovernor",
+      "label": "sealedBinding",
+      "slot": 1,
+      "reason": "Sealed topology of the Partial governor, written only by the one-way seal; the earlier central closure gives the seal state and the governor topology fields as carried by ADP-SEAL-01 and GOV-SEAL-01, because the abstract onboarding theory starts from the sealed state.",
+      "assignedBy": [
+        "seal"
+      ],
+      "clearedBy": [],
+      "rows": [
+        "GOV-SEAL-01",
+        "ADP-SEAL-01"
+      ],
+      "ledger": "central"
+    },
+    {
+      "runtime": "ProfileGovernor",
+      "label": "importManifestHash",
+      "slot": 2,
+      "reason": "Sealed topology of the Partial governor, written only by the one-way seal; the earlier central closure gives the seal state and the governor topology fields as carried by ADP-SEAL-01 and GOV-SEAL-01, because the abstract onboarding theory starts from the sealed state.",
+      "assignedBy": [
+        "seal"
+      ],
+      "clearedBy": [],
+      "rows": [
+        "GOV-SEAL-01",
+        "ADP-SEAL-01"
+      ],
+      "ledger": "central"
+    },
+    {
+      "runtime": "ProfileGovernor",
+      "label": "topologySealed",
+      "slot": 3,
+      "reason": "Sealed topology of the Partial governor, written only by the one-way seal; the earlier central closure gives the seal state and the governor topology fields as carried by ADP-SEAL-01 and GOV-SEAL-01, because the abstract onboarding theory starts from the sealed state.",
+      "assignedBy": [
+        "seal"
+      ],
+      "clearedBy": [],
+      "rows": [
+        "GOV-SEAL-01",
+        "ADP-SEAL-01"
+      ],
+      "ledger": "central"
+    },
+    {
+      "runtime": "ERC3643HookGovernor",
+      "label": "exclusiveAdapter",
+      "slot": 0,
+      "reason": "Sealed topology of the Hook governor, written only by sealFresh, which only the constructing endpoint may call and only once; the Hook profile starts from the sealed fresh state.",
+      "assignedBy": [
+        "sealFresh"
+      ],
+      "clearedBy": [],
+      "rows": [
+        "HOOK-FRESH-INITIAL"
+      ],
+      "ledger": "trust12"
+    },
+    {
+      "runtime": "ERC3643HookGovernor",
+      "label": "sealedBinding",
+      "slot": 1,
+      "reason": "Sealed topology of the Hook governor, written only by sealFresh, which only the constructing endpoint may call and only once; the Hook profile starts from the sealed fresh state.",
+      "assignedBy": [
+        "sealFresh"
+      ],
+      "clearedBy": [],
+      "rows": [
+        "HOOK-FRESH-INITIAL"
+      ],
+      "ledger": "trust12"
+    },
+    {
+      "runtime": "ERC3643HookGovernor",
+      "label": "importManifestHash",
+      "slot": 2,
+      "reason": "Sealed topology of the Hook governor, written only by sealFresh, which only the constructing endpoint may call and only once; the Hook profile starts from the sealed fresh state.",
+      "assignedBy": [
+        "sealFresh"
+      ],
+      "clearedBy": [],
+      "rows": [
+        "HOOK-FRESH-INITIAL"
+      ],
+      "ledger": "trust12"
+    },
+    {
+      "runtime": "ERC3643HookGovernor",
+      "label": "topologySealed",
+      "slot": 3,
+      "reason": "Sealed topology of the Hook governor, written only by sealFresh, which only the constructing endpoint may call and only once; the Hook profile starts from the sealed fresh state.",
+      "assignedBy": [
+        "sealFresh"
+      ],
+      "clearedBy": [],
+      "rows": [
+        "HOOK-FRESH-INITIAL"
+      ],
+      "ledger": "trust12"
+    },
+    {
+      "runtime": "ERC3643HookCompliance",
+      "label": "endpoint",
+      "slot": 0,
+      "reason": "The endpoint to which the Compliance module forwards balance callbacks. activate sets it once, only while it is zero and only from the deploying endpoint (decision 15, item 4); the module forwards a callback only when the token calls it, the module is bound and the endpoint is set. The module holds no regulatory state.",
+      "assignedBy": [
+        "activate"
+      ],
+      "clearedBy": [],
+      "rows": [
+        "HOOK-CALLER-AUTH"
+      ],
+      "ledger": "trust12"
+    },
+    {
+      "runtime": "ERC3643HookCompliance",
+      "label": "bound",
+      "slot": 0,
+      "reason": "The one-time binding flag of the Compliance module to its immutable token. bindToken sets it once, only when the token itself calls with its own address (decision 15, item 4); the balance callbacks and the bootstrap mint require it.",
+      "assignedBy": [
+        "bindToken"
+      ],
+      "clearedBy": [],
+      "rows": [
+        "HOOK-CALLER-AUTH"
+      ],
+      "ledger": "trust12"
+    }
+  ],
+  "guards": [
+    {
+      "runtime": "TrustToken",
+      "function": "nonReentrant",
+      "statement": "if (_entered != 0) revert TrustReentrancy()",
+      "runtimeOnly": "Reentrancy guard. The abstract transition system is sequential and the guard keeps the runtime sequential; decision 12 lets an endpoint reject a reentrant call to a typed command before any other check, as a full-state stutter (the earlier central closure lists the guard variable as runtime-only)."
+    },
+    {
+      "runtime": "TrustToken",
+      "function": "executeERC7943Action",
+      "statement": "if (request.action == TrustKernelTypes.ActionKind.RESTRICT) { revert TrustInvalidCommand(request.actionId, REASON_SHAPE); }",
+      "rows": [
+        "NAT-ROUTE-01"
+      ],
+      "ledger": "central",
+      "note": "The ERC-7943 action route carries only the actions that setFrozenTokens and forcedTransfer express; RESTRICT has no ERC-7943 function."
+    },
+    {
+      "runtime": "TrustToken",
+      "function": "executeERC7943Reversal",
+      "statement": "if (request.reversal != TrustKernelTypes.ReversalKind.UNFREEZE) { revert TrustInvalidCommand(request.reversalId, REASON_REVERSAL_PAIRING); }",
+      "rows": [
+        "NAT-ROUTE-01",
+        "NAT-REV-01"
+      ],
+      "ledger": "central",
+      "note": "The ERC-7943 reversal route carries only UNFREEZE, the reversal that setFrozenTokens expresses."
+    },
+    {
+      "runtime": "TrustToken",
+      "function": "setFrozenTokens",
+      "statement": "if ( record.action != TrustKernelTypes.ActionKind.FREEZE || record.subject != account || record.amount != amount ) { revert TrustRouteMismatch(_routeId()); }",
+      "rows": [
+        "NAT-ROUTE-01"
+      ],
+      "ledger": "central",
+      "note": "The route handler applies only the prepared FREEZE that its ticket names, with the same account and amount."
+    },
+    {
+      "runtime": "TrustToken",
+      "function": "setFrozenTokens",
+      "statement": "if (original.subject != account || original.priorAmount != amount) { revert TrustRouteMismatch(_routeId()); }",
+      "rows": [
+        "NAT-ROUTE-01"
+      ],
+      "ledger": "central",
+      "note": "The route handler applies only the prepared UNFREEZE that its ticket names, with the same account and amount."
+    },
+    {
+      "runtime": "TrustToken",
+      "function": "setFrozenTokens",
+      "statement": "revert TrustRouteMismatch(_routeId())",
+      "rows": [
+        "NAT-ROUTE-01"
+      ],
+      "ledger": "central",
+      "note": "A ticket of neither kind cannot reach a state change."
+    },
+    {
+      "runtime": "TrustToken",
+      "function": "forcedTransfer",
+      "statement": "if (ticket.routeKind != TrustNativeTypes.RouteKind.ACTION) revert TrustRouteMismatch(_routeId())",
+      "rows": [
+        "NAT-ROUTE-01"
+      ],
+      "ledger": "central",
+      "note": "The forced transfer handler accepts only an action ticket."
+    },
+    {
+      "runtime": "TrustToken",
+      "function": "forcedTransfer",
+      "statement": "if ( !TrustNativeDecision.isForcedTransferAction(record.action) || record.source != from || record.destination != to || record.amount != amount ) { revert TrustRouteMismatch(_routeId()); }",
+      "rows": [
+        "NAT-ROUTE-01"
+      ],
+      "ledger": "central",
+      "note": "The route handler applies only the prepared forced transfer that its ticket names, with the same accounts and amount."
+    },
+    {
+      "runtime": "TrustToken",
+      "function": "_validateAndAuthorizeReversal",
+      "statement": "if (request.domain != TrustKernelTypes.DOMAIN) { revert TrustInvalidCommand(request.reversalId, REASON_DOMAIN); }",
+      "rows": [
+        "NAT-SHAPE-01"
+      ],
+      "ledger": "central",
+      "note": "The kernel domain rule for a reversal request (reason DOMAIN). The row receives the kernel domain value and the DOMAIN reason code, which this statement checks and emits; its consumer snippet and its removal negative name the action statement, and no removal negative targets this reversal statement."
+    },
+    {
+      "runtime": "TrustToken",
+      "function": "_validateAndAuthorizeReversal",
+      "statement": "if (request.reversalId == bytes32(0) || request.reversalId != _reversalHash(request, true)) { revert TrustInvalidCommand(request.reversalId, REASON_IDENTIFIER); }",
+      "rows": [
+        "NAT-SHAPE-02",
+        "NAT-NONCE-03"
+      ],
+      "ledger": "central",
+      "note": "The derived reversal identifier rule (reason IDENTIFIER). NAT-NONCE-03 receives the reversal identifier hash of the kernel specification and NAT-SHAPE-02 the IDENTIFIER reason code that this statement emits; their consumer snippets and removal negatives name the replay check and the action identifier statement, and no removal negative targets this reversal statement."
+    },
+    {
+      "runtime": "TrustToken",
+      "function": "_validateAndAuthorizeReversal",
+      "statement": "if (original.lifecycle != TrustKernelTypes.Lifecycle.APPLIED) { revert TrustInvalidCommand(request.reversalId, REASON_CURRENT_EFFECT); }",
+      "rows": [
+        "NAT-REV-02"
+      ],
+      "ledger": "central",
+      "note": "A reversal needs an applied original: a reversed action cannot be reversed again."
+    },
+    {
+      "runtime": "TrustToken",
+      "function": "_assessBinding",
+      "statement": "if (outcome == TrustKernelTypes.AssessmentOutcome.REJECTED) revert TrustRejected(commandId, reason)",
+      "rows": [
+        "NAT-DEP-01"
+      ],
+      "ledger": "central",
+      "note": "A dependency denial is a typed rejection."
+    },
+    {
+      "runtime": "TrustToken",
+      "function": "_applyActionPrepared",
+      "statement": "if (record.lifecycle != TrustKernelTypes.Lifecycle.PREPARED) revert TrustReplay(request.actionId)",
+      "rows": [
+        "NAT-NONCE-02"
+      ],
+      "ledger": "central",
+      "note": "An action applies once: only the action that its own command prepared is applied, and the applied record is never applied again."
+    },
+    {
+      "runtime": "TrustToken",
+      "function": "_applyReversalPrepared",
+      "statement": "if (original.lifecycle != TrustKernelTypes.Lifecycle.APPLIED) revert TrustReplay(reversalId)",
+      "rows": [
+        "NAT-REV-02"
+      ],
+      "ledger": "central",
+      "note": "The prepared reversal applies only while its original is still applied."
+    },
+    {
+      "runtime": "TrustToken",
+      "function": "_move",
+      "statement": "if (from == address(0) || to == address(0)) revert TrustZeroAddress()",
+      "rows": [
+        "NAT-DISP-01"
+      ],
+      "ledger": "central",
+      "note": "A disposition moves value between two accounts; on the typed paths the shape rules already exclude a zero source or destination."
+    },
+    {
+      "runtime": "TrustToken",
+      "function": "_move",
+      "statement": "if (balance < amount) revert TrustInsufficientBalance(from, balance, amount)",
+      "rows": [
+        "NAT-DISP-01",
+        "NAT-CUST-02"
+      ],
+      "ledger": "central",
+      "note": "A move never exceeds the balance; on the typed paths the backing check runs first."
+    },
+    {
+      "runtime": "TrustToken",
+      "function": "_consumeRoute",
+      "statement": "if ( msg.sender != address(this) || !ticket.live || ticket.selector != selector || ticket.calldataHash != calldataHash || ticket.dependencyRoot != _dependencyRoot || ticket.dependencyEpoch != _dependencyEpoch ) { revert TrustRouteMismatch(_routeId()); }",
+      "rows": [
+        "NAT-ROUTE-01"
+      ],
+      "ledger": "central",
+      "note": "A route ticket is consumed only by the endpoint itself, once, for the exact selector, calldata, dependency root and epoch it names."
+    },
+    {
+      "runtime": "TrustToken",
+      "function": "_validateCurrentEffect",
+      "statement": "if ( !custody.active || custody.actionId != actionId || custody.custodian != original.custodian || custody.declaredPriorHolder != original.source || custody.encumberedAmount != original.amount || _custodyBacking[custody.custodian] < custody.encumberedAmount ) { revert TrustInvalidCommand(reversalId, REASON_CUSTODY); }",
+      "rows": [
+        "NAT-REV-06",
+        "NAT-CUST-03"
+      ],
+      "ledger": "central",
+      "note": "RELEASE needs the exact active custody record of the original SEIZE."
+    },
+    {
+      "runtime": "TrustToken",
+      "function": "_bubble",
+      "statement": "if (result.length == 0) revert TrustUnsupported(msg.sig)",
+      "rows": [
+        "NAT-FAIL-01",
+        "NAT-ROUTE-01"
+      ],
+      "ledger": "central",
+      "note": "A failed exact-use self call that returns no data ends the command as a revert."
+    },
+    {
+      "runtime": "TrustToken",
+      "function": "_bubble",
+      "statement": "assembly (\"memory-safe\") { revert(add(result, 32), mload(result)) }",
+      "rows": [
+        "NAT-FAIL-01",
+        "NAT-ROUTE-01"
+      ],
+      "ledger": "central",
+      "note": "A failed exact-use self call ends the command with the revert data of the inner call."
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "function": "nonReentrant",
+      "statement": "if (_entered != 0) revert TrustReentrancy()",
+      "runtimeOnly": "Reentrancy guard. The abstract transition system is sequential and the guard keeps the runtime sequential; decision 12 lets an endpoint reject a reentrant call to a typed command before any other check, as a full-state stutter (the earlier central closure lists the guard variable as runtime-only)."
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "function": "_validateAndAuthorizeReversal",
+      "statement": "if (request.domain != TrustKernelTypes.DOMAIN) { revert TrustInvalidCommand(request.reversalId, REASON_DOMAIN); }",
+      "rows": [
+        "ADP-SHAPE-01"
+      ],
+      "ledger": "central",
+      "note": "The kernel domain rule for a reversal request (reason DOMAIN). The row states that domain, identifier and validity window are checked before any state-dependent rule for every command; its consumer snippets and removal negatives name the action statements and the validity window of both requests, and no removal negative targets this reversal statement."
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "function": "_validateAndAuthorizeReversal",
+      "statement": "if (request.reversalId == bytes32(0) || request.reversalId != _reversalHash(request, true)) { revert TrustInvalidCommand(request.reversalId, REASON_IDENTIFIER); }",
+      "rows": [
+        "ADP-SHAPE-01",
+        "ADP-NONCE-01"
+      ],
+      "ledger": "central",
+      "note": "The derived reversal identifier rule (reason IDENTIFIER). ADP-SHAPE-01 states that the identifier is checked before any state-dependent rule for every command and ADP-NONCE-01 that reversal identifiers are fresh and consumed once; their consumer snippets and removal negatives name the action identifier statement and the replay checks, and no removal negative targets this reversal statement."
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "function": "_validateAndAuthorizeReversal",
+      "statement": "if (original.lifecycle != TrustKernelTypes.Lifecycle.APPLIED) { revert TrustInvalidCommand(request.reversalId, REASON_CURRENT_EFFECT); }",
+      "rows": [
+        "ADP-REV-01"
+      ],
+      "ledger": "central",
+      "note": "A reversal needs an applied original: a reversed action cannot be reversed again."
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "function": "_validateCurrentEffect",
+      "statement": "if ( !custody.active || custody.actionId != actionId || custody.custodian != original.custodian || custody.declaredPriorHolder != original.source || custody.encumberedAmount != original.amount || _custodyBacking[custody.custodian] < custody.encumberedAmount ) { revert TrustInvalidCommand(reversalId, REASON_CUSTODY); }",
+      "rows": [
+        "ADP-REV-01",
+        "ADP-CUST-01"
+      ],
+      "ledger": "central",
+      "note": "RELEASE needs the exact active custody record of the original SEIZE."
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "function": "_requireLiveTopology",
+      "statement": "if (!_bindingLive(TrustKernelTypes.BindingKind.IDENTITY)) { revert TrustOperationalFailure( commandId, REASON_DEPENDENCY_CODE_MISMATCH, _bindings[TrustKernelTypes.BindingKind.IDENTITY].bindingHash ); }",
+      "rows": [
+        "ADP-DEP-01"
+      ],
+      "ledger": "central",
+      "note": "Identity Registry code drift is an operational failure (reason 200)."
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "function": "_applyActionPrepared",
+      "statement": "if (record.lifecycle != TrustKernelTypes.Lifecycle.PREPARED) revert TrustReplay(request.actionId)",
+      "rows": [
+        "ADP-NONCE-01"
+      ],
+      "ledger": "central",
+      "note": "An action applies once: only the action that its own command prepared is applied."
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "function": "_consumeMatchingCustody",
+      "statement": "if ( custody.custodian != request.source || custody.encumberedAmount != request.amount || custody.declaredPriorHolder != request.subject || _custodyBacking[custody.custodian] < custody.encumberedAmount ) { revert TrustInvalidCommand(request.actionId, REASON_CUSTODY); }",
+      "rows": [
+        "ADP-CUST-01"
+      ],
+      "ledger": "central",
+      "note": "A custody disposition names the exact custody record that the adapter holds."
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "function": "_forcedTransfer",
+      "statement": "if (!ok || result.length != 32 || abi.decode(result, (uint256)) != 1) { revert TrustOperationalFailure(commandId, REASON_UPSTREAM_CALL_FAILED, _tokenRef()); }",
+      "rows": [
+        "ADP-DEP-01"
+      ],
+      "ledger": "central",
+      "note": "A failed upstream forced transfer is an operational failure."
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "function": "_forcedTransfer",
+      "statement": "if ( beforeFrom < amount || _upstreamBalance(commandId, from) != beforeFrom - amount || _upstreamBalance(commandId, to) != beforeTo + amount ) { revert TrustOperationalFailure(commandId, REASON_UPSTREAM_POSTSTATE_MISMATCH, _tokenRef()); }",
+      "rows": [
+        "ADP-DEP-01"
+      ],
+      "ledger": "central",
+      "note": "An upstream post-state that differs from the exact move is an operational failure; the earlier central closure lists these post-state checks (reasons 401 to 403) as carried by ADP-DEP-01."
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "function": "_setRestricted",
+      "statement": "if (_upstreamRestricted(commandId, account) != flag) { revert TrustOperationalFailure(commandId, REASON_UPSTREAM_POSTSTATE_MISMATCH, _tokenRef()); }",
+      "rows": [
+        "ADP-DEP-01"
+      ],
+      "ledger": "central",
+      "note": "An upstream restriction flag that differs from the applied flag is an operational failure."
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "function": "_callVoid",
+      "statement": "if (!ok || result.length != 0) { revert TrustOperationalFailure(commandId, REASON_UPSTREAM_CALL_FAILED, _tokenRef()); }",
+      "rows": [
+        "ADP-DEP-01"
+      ],
+      "ledger": "central",
+      "note": "An upstream call that fails or returns data is an operational failure."
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "function": "_upstreamWord",
+      "statement": "if (!ok || value > maxValue) { revert TrustOperationalFailure(commandId, REASON_UPSTREAM_CALL_FAILED, _tokenRef()); }",
+      "rows": [
+        "ADP-DEP-01"
+      ],
+      "ledger": "central",
+      "note": "An upstream read that fails or returns a word out of range is an operational failure."
+    },
+    {
+      "runtime": "ERC3643HookAdapter",
+      "function": "onTokenBalanceChanged",
+      "statement": "if (msg.sender != profileGovernor.compliance()) revert TrustUnauthorized(msg.sender, bytes32(0))",
+      "rows": [
+        "HOOK-CALLER-AUTH"
+      ],
+      "ledger": "trust12",
+      "note": "Only the Compliance module bound to the token may invoke the balance callback."
+    }
+  ],
+  "hookColumnWriters": [
+    {
+      "runtime": "ERC3643HookAdapter",
+      "function": "_bind",
+      "labels": [
+        "_bindings"
+      ],
+      "textSha256": "6a0180f404144a2306500d6f5dfd77c149b0db49e0214e4d15d7ef0bc0d26f85",
+      "partialFunction": "_bind",
+      "partialTextSha256": "f2f3de217c76867a595d6326476b6936314445340dbec273b25de8ff458e262a",
+      "difference": "The binding hash takes the profile schema word from _profileSchema(), which returns the verified-full profile identifier, where the Partial function encodes the Partial profile identifier; every other statement is the same.",
+      "reason": "The stored binding record has the same fields and the same writes as in the Partial adapter; only the profile schema word inside its hash differs, and that word is the identifier of open item 8.",
+      "relatedOpenItems": [
+        8
+      ]
+    },
+    {
+      "runtime": "ERC3643HookAdapter",
+      "function": "_activateEmptySeal",
+      "labels": [
+        "_dependencyEpoch",
+        "_dependencyRoot"
+      ],
+      "textSha256": "8b388787a43c93e3768a094eb6bfcec4c962dc095f08190c166730add0d423ef",
+      "partialFunction": "activateSeal",
+      "partialTextSha256": "ff5e163dfb26bb6c26cf409642565797025a729c07c3e2014af19b091f21faf3",
+      "difference": "Called only by the constructor of the Hook adapter. Its statements are those of the Partial activateSeal for an empty import manifest, without the check that the caller is the governor and without the import loop.",
+      "reason": "It sets the dependency epoch to the seal epoch and the dependency root from the bound dependencies, as activateSeal sets them, so the derived columns keep the Partial meaning; the Hook profile starts from the sealed fresh state.",
+      "rows": [
+        "HOOK-FRESH-INITIAL"
+      ],
+      "ledger": "trust12"
+    }
+  ],
+  "openItems": [
+    {
+      "index": 0,
+      "text": "The formal model reads storage through runtime manifest projections that are locale parameters; no formal rule reads a slot or a mapping key into an abstract field, and no per-profile manifest instance exists. This crosswalk is input to such a reader, not a proof of it.",
+      "disposition": "AWAITS_FORMAL_READER",
+      "detail": "No formal rule reads a slot or a mapping key into an abstract field yet; the crosswalk is input to that reader and the condition stays open until it exists.",
+      "carryOver": {
+        "receivingGate": "the formal storage reader of the kernel integration, before the registered closure record",
+        "owner": "integration owner",
+        "closureEvidence": "a kernel-checked reader per profile manifest that maps slots and mapping keys to abstract fields, compared column by column with this crosswalk",
+        "reopen": "if no reader per profile can be built, the finding on the missing formal storage reader stays blocking and the state and receipt identity condition is reported as open"
+      }
+    },
+    {
+      "index": 1,
+      "text": "Hook columns are derived by storage layout identity with the Partial runtimes and are not reviewed.",
+      "disposition": "RESOLVED_BY_SCAN",
+      "detail": "The reflection scan compares, for each of the fifteen derived Hook columns, the Hook adapter functions whose bodies write the column with the Partial adapter functions of the same name. Two Hook writers have their own text: _bind, whose binding hash takes the profile schema word of the Hook profile, and _activateEmptySeal, the constructor activation of the empty import manifest. Their dispositions pin both texts by hash, so any later change reopens the review."
+    },
+    {
+      "index": 2,
+      "text": "The representation of absent values is not fixed by the model for custody records, for authorities outside the profile reference and for bindings a profile does not store.",
+      "disposition": "NONCLAIM",
+      "detail": "This crosswalk relates present values only. It makes no claim about the abstract representation of absent custody records, of authorities outside the profile reference or of bindings a profile does not store; the formal storage reader of open item 0 fixes it."
+    },
+    {
+      "index": 3,
+      "text": "Enum cardinalities differ where the implementation encodes absence as a NONE member: the receipt kind has two abstract and three concrete values, the record lifecycle three and four.",
+      "disposition": "RESOLVED_BY_SOURCE",
+      "detail": "The abstract record lifecycle has the members Record_Prepared, Record_Applied and Record_Reversed and the abstract receipt kind the members Receipt_Action and Receipt_Reversal; the kernel schema adds NONE (zero) to both. The schema reserves the receipt kind NONE for an absent receipt, and the adapters read the lifecycle NONE as an action identifier without a record (the fresh identifier check that ADP-NONCE-01 names). The other members correspond one to one by name."
+    },
+    {
+      "index": 4,
+      "text": "The model pairs values injectively where the implementation hashes them, for the settlement pair commitment and the import identifiers.",
+      "disposition": "ASSUMPTION",
+      "detail": "The model pairs the settlement commitments and the import identifiers injectively where the implementation hashes them; the correspondence relies on the retained assumption A-KECCAK.",
+      "assumption": "A-KECCAK"
+    },
+    {
+      "index": 5,
+      "text": "Profile binding configuration, schema and epoch are not storage fields; they come from the sealed binding and from constants.",
+      "disposition": "RESOLVED_BY_SOURCE",
+      "detail": "The profile schema word and the seal epoch are constants of each runtime (SEAL_EPOCH is 1 in both adapters; the Hook adapter takes its schema word from _profileSchema()), and the binding configuration is the sealed binding of the governor. None of them is a storage field, so no storage column is claimed for them."
+    },
+    {
+      "index": 6,
+      "text": "The applied frozen amount of the owned state has no abstract field.",
+      "disposition": "RUNTIME_ONLY",
+      "detail": "The applied frozen amount of the owned state records the upstream frozen amount that the adapter declared at the seal or applied itself. The ownership precondition (reason 304) compares it with the upstream token and the frozen synchronisation updates it; it has no abstract field."
+    },
+    {
+      "index": 7,
+      "text": "The upstream token storage of the Hook profile is outside these layouts.",
+      "disposition": "ASSUMPTION",
+      "detail": "The upstream token storage of the Hook profile is outside these layouts; its behavior is the retained assumption A-EXTERNAL.",
+      "assumption": "A-EXTERNAL"
+    },
+    {
+      "index": 8,
+      "text": "The kernel schema describes the verified-full profile as reported by no current implementation, while the Hook adapter reports that profile identifier and kind.",
+      "disposition": "RESOLVED_BY_SOURCE",
+      "detail": "The kernel specification states that the ERC-3643 hook adapter under implementation/ reports the verified-full profile, and that conformance of an endpoint that reports it is established only by the evidence bound to that endpoint (spec/erc-trust-kernel-v2.json, profile erc3643-verified-full, status); decision 06 says the same. The Hook adapter reports that profile identifier and kind, so the specification and the adapter agree."
+    }
+  ],
+  "nonclaim": "A disposition records a reason, a ledger row or a reviewed difference; it proves nothing, and the reflection scan checks only that each one matches the build and names existing rows and assumptions."
+}
