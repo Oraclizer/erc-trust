@@ -13,7 +13,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "1642d9b7a8e1b595d2eafab54b1acf620836961a0300e040e2375a28a9dc85e6"
+      "sha256": "3d09ae3f25f4a8d9a009da6a073c2c251382b16e43c85b93db7d61a6ce974bce"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
@@ -129,7 +129,7 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "14d9b38323354308f4c1a1bbe6f72e45b9d473c040bae0049f148cc176106e26"
+      "sha256": "c798c730fa52f1386f95615740825360e6ebb90ca4f42f781c0124fb35f2b32a"
     },
     {
       "path": "evidence/trust12/profile-implementation-evidence-review.json",
@@ -153,7 +153,7 @@
     },
     {
       "path": "evidence/trust12/runtime-link-source-blockers.md",
-      "sha256": "f5b023f3d1ee580c5635707ca9a80aba7b5e28c1cd327c386ebe4634aca06ff6"
+      "sha256": "1ba4b6ae141d8c957d5aa096d333762c5598d88d22e4f675020862b9033a5589"
     },
     {
       "path": "evidence/trust12/runtime-link/assess-call-reception-checkpoint-v1.json",
@@ -162,6 +162,10 @@
     {
       "path": "evidence/trust12/runtime-link/dependency-call-provenance-checkpoint-v1.json",
       "sha256": "da5f9a9e6506cadb033261d1206d0b558cc38875840465e8704c0e6ffc691240"
+    },
+    {
+      "path": "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
+      "sha256": "e52ede796d01f59f879aa8371059fbe98b1d8ce96992400779facf1c99153caa"
     },
     {
       "path": "evidence/trust12/runtime-link/model-source-reception-checkpoint-v1.json",
@@ -192,6 +196,14 @@
       "sha256": "d4e892982dcfa29fc9591f697e93ca10186306893ad5841306b12fd3ada9ee2c"
     },
     {
+      "path": "evidence/trust12/runtime-link/tail-preparation/malformed-guard-mutants-checkpoint-v1.json",
+      "sha256": "0fced074b648ed1d852da97792ff41032eb5d6f5990965dddb72340fefb6f6ea"
+    },
+    {
+      "path": "evidence/trust12/runtime-link/tail-preparation/malformed-probe-mutants-v1.json",
+      "sha256": "a20f3a334a7d0d413ab7d3ad699e815dfea4d6779e30e03f9f54d9263fa82fe6"
+    },
+    {
       "path": "evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json",
       "sha256": "3e6524fc20a951dab02e916f41980b8281a84338ec94b2dcf14f5a0e8a73a087"
     },
@@ -213,7 +225,7 @@
     },
     {
       "path": "evidence/trust12/veri-integration-audit.md",
-      "sha256": "b0f00854e0581eecc079bc0fafa455ae099df855bb2bfc7869d2a0b0009033fc"
+      "sha256": "8c52876a449ba44e8f2754a2fdc27c3a50ffb5a57039f26c7735c7d41576806f"
     },
     {
       "path": "evidence/trust12/veri-observation-results.json",
@@ -357,7 +369,7 @@
     },
     {
       "path": "scripts/generate-trust12-input-seal.py",
-      "sha256": "48924cdf279de0355afb4fe55ab08533f0932cf582547755348413c7aa66176a"
+      "sha256": "eb01a6805e9c6b67cbe5ca45171faea696353c9a5b0455cd4168fa88a01a0b95"
     },
     {
       "path": "scripts/generate-trust12-proof-audit.py",
@@ -456,6 +468,14 @@
       "sha256": "a00ce492232b4656455a27df7d980818c03c92332aa29e343c62c7c75ac210c8"
     },
     {
+      "path": "scripts/test-malformed-aligned-gate.py",
+      "sha256": "ebaa24d081136f86320610361307ed31b63ab1d26895ef34706dbbb3c8bd6251"
+    },
+    {
+      "path": "scripts/test-malformed-guard-mutants.py",
+      "sha256": "ed0d1cdd9b291165730fe8da0fecc8ba2d478cabe974ad27191d1e41d3ca06dd"
+    },
+    {
       "path": "scripts/test-model-source-reception.py",
       "sha256": "938671463613efecdf13eaf172f958f0171be1e974a8940878d15e7b8f1eece4"
     },
@@ -493,11 +513,15 @@
     },
     {
       "path": "scripts/test-trust12-required.mjs",
-      "sha256": "74b85ed679e67620c1198b2cbeb164bb9260af75b8485134feb56b8cb5d1ce3b"
+      "sha256": "80c6e629f0633681b4301202726122a25d9a0c705c43447faf1ee8c40b252613"
     },
     {
       "path": "scripts/test-veri-dependency.py",
       "sha256": "e81be3d18e158a735625264af0274d1cfc61b67a39e20d7af5914bc1f58e6dae"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/run_malformed_probe_v2.py",
+      "sha256": "7dd62c268d698df798b09f78ac5f25f58b79d0a04a7958e38b78fc4bcf2800a5"
     },
     {
       "path": "scripts/trust12/verify_assess_call_reception_v1.py",
@@ -510,6 +534,14 @@
     {
       "path": "scripts/trust12/verify_full_source_admission_v1.py",
       "sha256": "fd36d6705e0a48a5ef47a78125e6b47b92f898ae574ccfe44656f2bc926edd65"
+    },
+    {
+      "path": "scripts/trust12/verify_malformed_aligned_gate_v1.py",
+      "sha256": "5cf0fc8981ffaf239e553f843077732fc56e8641f3aa4908f056a857795ddf2c"
+    },
+    {
+      "path": "scripts/trust12/verify_malformed_guard_mutants_v1.py",
+      "sha256": "00656bd32cd88c4ba8140ede66b05fa742dd99a76a8d4aa3ac04c7d25e13d849"
     },
     {
       "path": "scripts/trust12/verify_model_source_reception_v1.py",
@@ -569,7 +601,7 @@
     },
     {
       "path": "scripts/verify-trust12-required.mjs",
-      "sha256": "3f3483a7d848acdd802408ee42a629bcf387d82f6f466f7269abab661e249fc3"
+      "sha256": "dec244f40ab8f802176317de74ada069fd9cd0e45c61ea340f1a05aba7a47c3e"
     }
   ],
   "nonclaim": "This seals one local development tranche. It is not a deployment, release, conformance approval, or end-to-end refinement result."

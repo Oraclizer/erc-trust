@@ -45,6 +45,14 @@ export const requiredTrust12Paths = [
   'scripts/test-second-freeze-rejection.py',
   'scripts/trust12/verify_second_freeze_rejection_v1.py',
   'evidence/trust12/runtime-link/second-freeze-rejection-checkpoint-v1.json',
+  'scripts/test-malformed-aligned-gate.py',
+  'scripts/trust12/verify_malformed_aligned_gate_v1.py',
+  'evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json',
+  'scripts/trust12/verify_malformed_guard_mutants_v1.py',
+  'scripts/test-malformed-guard-mutants.py',
+  'scripts/trust12/tail-preparation/run_malformed_probe_v2.py',
+  'evidence/trust12/runtime-link/tail-preparation/malformed-probe-mutants-v1.json',
+  'evidence/trust12/runtime-link/tail-preparation/malformed-guard-mutants-checkpoint-v1.json',
   'evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json',
   'scripts/test-primitive-source-controls.py',
   'scripts/trust12/verify_primitive_source_controls_v1.py',
@@ -207,6 +215,14 @@ export function verifyTrust12Required(root = repository) {
     ['-B', resolve(root, 'scripts/trust12/verify_second_freeze_rejection_v1.py'), '--product-root', root, '--metadata-only'],
     { cwd: root, encoding: 'utf8' });
   check(!secondFreezeCheck.error && secondFreezeCheck.status === 0, 'second-freeze-rejection public metadata check failed');
+  const alignedGateCheck = spawnSync(process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3'),
+    ['-B', resolve(root, 'scripts/trust12/verify_malformed_aligned_gate_v1.py'), '--product-root', root, '--metadata-only'],
+    { cwd: root, encoding: 'utf8' });
+  check(!alignedGateCheck.error && alignedGateCheck.status === 0, 'malformed-aligned-gate public metadata check failed');
+  const guardMutantsCheck = spawnSync(process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3'),
+    ['-B', resolve(root, 'scripts/trust12/verify_malformed_guard_mutants_v1.py'), '--product-root', root, '--metadata-only'],
+    { cwd: root, encoding: 'utf8' });
+  check(!guardMutantsCheck.error && guardMutantsCheck.status === 0, 'malformed-guard-mutants public metadata check failed');
   const primitiveControlsCheck = spawnSync(process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3'),
     ['-B', resolve(root, 'scripts/trust12/verify_primitive_source_controls_v1.py'), '--product-root', root, '--metadata-only'],
     { cwd: root, encoding: 'utf8' });

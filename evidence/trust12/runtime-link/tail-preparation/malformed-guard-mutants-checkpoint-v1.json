@@ -1,0 +1,401 @@
+{
+  "schema": "trust12-malformed-guard-mutants-checkpoint-v1",
+  "status": "PASS_MALFORMED_GUARD_MUTANTS_DETECTED",
+  "scope": "Removing one exact calldata length guard, in an isolated copy of the product, turns the probe's requests longer than canonical form into executions that succeed with logs, committed storage writes and external accesses on the malformed probe deployment, for every mutated endpoint of the three profiles; each Native mutant removes the guard of one operation on both of its routes. The unmodified product fails the same probe requests quietly, as the baseline probe record states. The probe requests are catalogued recipes on a Foundry deployment, not the registered certificates. For the Hook profile the isolated copy also pins the mutated adapter creation code in the factory, which otherwise refuses to deploy a changed adapter; the published factory and its pin are unchanged.",
+  "product": {
+    "catalog": {
+      "path": "evidence/trust12/runtime-link/tail-preparation/malformed-inputs-v1.json",
+      "sha256": "678f7ae2ce8b1182c400170f432a6aea7be745723f2719026cd3655b085e6b41"
+    },
+    "mutantList": {
+      "path": "evidence/trust12/runtime-link/tail-preparation/malformed-probe-mutants-v1.json",
+      "sha256": "a20f3a334a7d0d413ab7d3ad699e815dfea4d6779e30e03f9f54d9263fa82fe6"
+    },
+    "baselineProbe": {
+      "path": "evidence/trust12/runtime-link/out-of-spec-probes-v1.json",
+      "sha256": "bc92161ea6f8acd50cd6b02ee7091726b33ef0e50a62abeec1b68bc75112ae0d"
+    },
+    "runners": [
+      {
+        "path": "scripts/trust12/tail-preparation/run_malformed_probe.py",
+        "sha256": "7f02dc93af7105ffc2b97f1d8a4e5ac41b3b534240a43348c8d3290325b5f243"
+      },
+      {
+        "path": "scripts/trust12/tail-preparation/run_malformed_probe_v2.py",
+        "sha256": "7dd62c268d698df798b09f78ac5f25f58b79d0a04a7958e38b78fc4bcf2800a5"
+      }
+    ],
+    "probeSources": [
+      {
+        "path": "scripts/trust12/tail-preparation/foundry/HookMalformedProbe.t.sol",
+        "sha256": "329b5fbfbbdaf5125a04f07003bbba91ca280e29ea0b5f9daaac3dbb00854dcb"
+      },
+      {
+        "path": "scripts/trust12/tail-preparation/foundry/MalformedProbeCore.sol",
+        "sha256": "a8a65230c2c290a232de0b7d9126ba4acad4209b5c12314135b2fdd18ac0e27c"
+      },
+      {
+        "path": "scripts/trust12/tail-preparation/foundry/MalformedProbeRecipes.sol",
+        "sha256": "6f8cf3f642ba9deecc4f14b2ed4e3964f291f22d72b230f96f59fec06efc106d"
+      },
+      {
+        "path": "scripts/trust12/tail-preparation/foundry/NativeMalformedProbe.t.sol",
+        "sha256": "0ae50b62942cfda940a5778080ecb49413d4c2d0ff72124f6791e5dc163450f0"
+      },
+      {
+        "path": "scripts/trust12/tail-preparation/foundry/PartialMalformedProbe.t.sol",
+        "sha256": "26b67a3b060ab1ccc7078d4dc14039a5ebca0d4f3d9e8fc086501378d422424a"
+      }
+    ]
+  },
+  "mutants": [
+    {
+      "id": "NATIVE-ACTION-LENGTH",
+      "status": "MUTANT_DETECTED",
+      "profile": "Native",
+      "entrypoints": [
+        "executeRegulatoryAction",
+        "executeERC7943Action"
+      ],
+      "fault": "Accept action calldata of any length on both action entrypoints",
+      "mutation": {
+        "file": "implementation/src/TrustToken.sol",
+        "occurrences": 2,
+        "beforeSha256": "deeedf231b461035ac4496b36438d6ea28298ed2935b920bf9c01cb31f94ef1b",
+        "afterSha256": "7d5063926450dbbaba9137466165dcee04a722f9095facf3838fb57604e22b77"
+      },
+      "deviatingLengthRecipes": {
+        "executeRegulatoryAction": [
+          "native-006",
+          "native-007"
+        ],
+        "executeERC7943Action": [
+          "native-080",
+          "native-081"
+        ]
+      },
+      "effects": [
+        {
+          "recipe": "native-006",
+          "variant": "one-byte-long",
+          "outcome": "success",
+          "logs": 2,
+          "committedWrites": 50,
+          "externalAccesses": 3
+        },
+        {
+          "recipe": "native-007",
+          "variant": "one-word-long",
+          "outcome": "success",
+          "logs": 2,
+          "committedWrites": 50,
+          "externalAccesses": 3
+        },
+        {
+          "recipe": "native-080",
+          "variant": "one-byte-long",
+          "outcome": "success",
+          "logs": 2,
+          "committedWrites": 62,
+          "externalAccesses": 3
+        },
+        {
+          "recipe": "native-081",
+          "variant": "one-word-long",
+          "outcome": "success",
+          "logs": 2,
+          "committedWrites": 62,
+          "externalAccesses": 3
+        }
+      ],
+      "forgeElapsedSeconds": 13.0,
+      "receiptSha256": "b0efa121b2d67cfed1b8470a99d0dabfe5418368e7b4dcfad87318a0e734e4ea"
+    },
+    {
+      "id": "NATIVE-REVERSAL-LENGTH",
+      "status": "MUTANT_DETECTED",
+      "profile": "Native",
+      "entrypoints": [
+        "executeRegulatoryReversal",
+        "executeERC7943Reversal"
+      ],
+      "fault": "Accept reversal calldata of any length on both reversal entrypoints",
+      "mutation": {
+        "file": "implementation/src/TrustToken.sol",
+        "occurrences": 2,
+        "beforeSha256": "deeedf231b461035ac4496b36438d6ea28298ed2935b920bf9c01cb31f94ef1b",
+        "afterSha256": "639ebe22281c2cd52aed5fab66ad29b93c3cda729f911491dee6a4065f53f82b"
+      },
+      "deviatingLengthRecipes": {
+        "executeRegulatoryReversal": [
+          "native-051",
+          "native-052",
+          "native-053"
+        ],
+        "executeERC7943Reversal": [
+          "native-125",
+          "native-126",
+          "native-127"
+        ]
+      },
+      "effects": [
+        {
+          "recipe": "native-051",
+          "variant": "one-byte-long",
+          "outcome": "success",
+          "logs": 2,
+          "committedWrites": 27,
+          "externalAccesses": 3
+        },
+        {
+          "recipe": "native-052",
+          "variant": "one-word-long",
+          "outcome": "success",
+          "logs": 2,
+          "committedWrites": 27,
+          "externalAccesses": 3
+        },
+        {
+          "recipe": "native-053",
+          "variant": "other-shape-length",
+          "outcome": "success",
+          "logs": 2,
+          "committedWrites": 27,
+          "externalAccesses": 3
+        },
+        {
+          "recipe": "native-125",
+          "variant": "one-byte-long",
+          "outcome": "success",
+          "logs": 2,
+          "committedWrites": 45,
+          "externalAccesses": 3
+        },
+        {
+          "recipe": "native-126",
+          "variant": "one-word-long",
+          "outcome": "success",
+          "logs": 2,
+          "committedWrites": 45,
+          "externalAccesses": 3
+        },
+        {
+          "recipe": "native-127",
+          "variant": "other-shape-length",
+          "outcome": "success",
+          "logs": 2,
+          "committedWrites": 45,
+          "externalAccesses": 3
+        }
+      ],
+      "forgeElapsedSeconds": 12.9,
+      "receiptSha256": "eecfc0bf20ee23f2ebd564f38b522c0f247acfab95c7a2e8697d57c55e2c7067"
+    },
+    {
+      "id": "PARTIAL-ACTION-LENGTH",
+      "status": "MUTANT_DETECTED",
+      "profile": "Partial",
+      "entrypoints": [
+        "executeRegulatoryAction"
+      ],
+      "fault": "Accept action calldata of any length",
+      "mutation": {
+        "file": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+        "occurrences": 1,
+        "beforeSha256": "f2806571c8c39984ee6c50f5e8dd0aa94aac5e273564012afcb4ebb55e43320f",
+        "afterSha256": "3bddd24a9d047230f2bfa2c891e40d728548ce28048a041af858c064c05b371d"
+      },
+      "deviatingLengthRecipes": {
+        "executeRegulatoryAction": [
+          "partial-157",
+          "partial-158"
+        ]
+      },
+      "effects": [
+        {
+          "recipe": "partial-157",
+          "variant": "one-byte-long",
+          "outcome": "success",
+          "logs": 2,
+          "committedWrites": 49,
+          "externalAccesses": 26
+        },
+        {
+          "recipe": "partial-158",
+          "variant": "one-word-long",
+          "outcome": "success",
+          "logs": 2,
+          "committedWrites": 49,
+          "externalAccesses": 26
+        }
+      ],
+      "forgeElapsedSeconds": 13.2,
+      "receiptSha256": "6f4025dea0ed80a92345ddea98913c34add30f96b18e69eaa20a34110be50e59"
+    },
+    {
+      "id": "PARTIAL-REVERSAL-LENGTH",
+      "status": "MUTANT_DETECTED",
+      "profile": "Partial",
+      "entrypoints": [
+        "executeRegulatoryReversal"
+      ],
+      "fault": "Accept reversal calldata of any length",
+      "mutation": {
+        "file": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+        "occurrences": 1,
+        "beforeSha256": "f2806571c8c39984ee6c50f5e8dd0aa94aac5e273564012afcb4ebb55e43320f",
+        "afterSha256": "e14b2d530011ea8e5a1587ea78fbef8c36c31a09def1e6556fdf7c2d7116baf2"
+      },
+      "deviatingLengthRecipes": {
+        "executeRegulatoryReversal": [
+          "partial-202",
+          "partial-203",
+          "partial-204"
+        ]
+      },
+      "effects": [
+        {
+          "recipe": "partial-202",
+          "variant": "one-byte-long",
+          "outcome": "success",
+          "logs": 2,
+          "committedWrites": 29,
+          "externalAccesses": 26
+        },
+        {
+          "recipe": "partial-203",
+          "variant": "one-word-long",
+          "outcome": "success",
+          "logs": 2,
+          "committedWrites": 29,
+          "externalAccesses": 26
+        },
+        {
+          "recipe": "partial-204",
+          "variant": "other-shape-length",
+          "outcome": "success",
+          "logs": 2,
+          "committedWrites": 29,
+          "externalAccesses": 26
+        }
+      ],
+      "forgeElapsedSeconds": 13.2,
+      "receiptSha256": "2b5ebada408bc2c4e997d6936bb7abd8ea99970c8b6856427389760ccdf88665"
+    },
+    {
+      "id": "HOOK-ACTION-LENGTH",
+      "status": "MUTANT_DETECTED",
+      "profile": "Hook",
+      "entrypoints": [
+        "executeRegulatoryAction"
+      ],
+      "fault": "Accept action calldata of any length",
+      "mutation": {
+        "file": "implementation/src/profiles/ERC3643HookAdapter.sol",
+        "occurrences": 1,
+        "beforeSha256": "61056cd3aa34900820cb08592c55803a5add1ab36c493ec36a5e3ee72add9533",
+        "afterSha256": "afe2ecbb153d8f74c5f4539a2257e65bdbb4e207e0520662c2fa118d692ddbc3"
+      },
+      "deviatingLengthRecipes": {
+        "executeRegulatoryAction": [
+          "hook-234",
+          "hook-235"
+        ]
+      },
+      "effects": [
+        {
+          "recipe": "hook-234",
+          "variant": "one-byte-long",
+          "outcome": "success",
+          "logs": 2,
+          "committedWrites": 49,
+          "externalAccesses": 32
+        },
+        {
+          "recipe": "hook-235",
+          "variant": "one-word-long",
+          "outcome": "success",
+          "logs": 2,
+          "committedWrites": 49,
+          "externalAccesses": 32
+        }
+      ],
+      "forgeElapsedSeconds": 3.9,
+      "receiptSha256": "8915111c96943cf2a9d1be3fda40576ed4247dde1aec0e21a30d46a82ec080b1",
+      "repin": {
+        "file": "implementation/src/profiles/ERC3643HookFactory.sol",
+        "beforePin": "0x7e196e99993b30b186c3a1cbeb24e89d926dbd990941fc83b3269a0d39b147b2",
+        "afterPin": "0x386c7ff3129fe4bf4f41d083ac797d13f668f78d71eddd5041bf9e13069a932a",
+        "reason": "pin the mutated adapter creation code in the isolated copy only"
+      }
+    },
+    {
+      "id": "HOOK-REVERSAL-LENGTH",
+      "status": "MUTANT_DETECTED",
+      "profile": "Hook",
+      "entrypoints": [
+        "executeRegulatoryReversal"
+      ],
+      "fault": "Accept reversal calldata of any length",
+      "mutation": {
+        "file": "implementation/src/profiles/ERC3643HookAdapter.sol",
+        "occurrences": 1,
+        "beforeSha256": "61056cd3aa34900820cb08592c55803a5add1ab36c493ec36a5e3ee72add9533",
+        "afterSha256": "b78932549bf9e47a26463a60f1192e116d5ae5077dae16ce33c602d072ba64bf"
+      },
+      "deviatingLengthRecipes": {
+        "executeRegulatoryReversal": [
+          "hook-279",
+          "hook-280",
+          "hook-281"
+        ]
+      },
+      "effects": [
+        {
+          "recipe": "hook-279",
+          "variant": "one-byte-long",
+          "outcome": "success",
+          "logs": 2,
+          "committedWrites": 29,
+          "externalAccesses": 32
+        },
+        {
+          "recipe": "hook-280",
+          "variant": "one-word-long",
+          "outcome": "success",
+          "logs": 2,
+          "committedWrites": 29,
+          "externalAccesses": 32
+        },
+        {
+          "recipe": "hook-281",
+          "variant": "other-shape-length",
+          "outcome": "success",
+          "logs": 2,
+          "committedWrites": 29,
+          "externalAccesses": 32
+        }
+      ],
+      "forgeElapsedSeconds": 3.9,
+      "receiptSha256": "e51dbdc8f4385da612bfda8f680b3a05109d0b100a9eb122480b40bbca266625",
+      "repin": {
+        "file": "implementation/src/profiles/ERC3643HookFactory.sol",
+        "beforePin": "0x7e196e99993b30b186c3a1cbeb24e89d926dbd990941fc83b3269a0d39b147b2",
+        "afterPin": "0x2c91881624e04749e192545d1a33bb45ae238c87c0a48d21df539e616d761070",
+        "reason": "pin the mutated adapter creation code in the isolated copy only"
+      }
+    }
+  ],
+  "rehashVerifier": {
+    "path": "scripts/trust12/verify_malformed_guard_mutants_v1.py",
+    "sha256": "00656bd32cd88c4ba8140ede66b05fa742dd99a76a8d4aa3ac04c7d25e13d849"
+  },
+  "nonclaims": {
+    "proofOverAllAcceptedExecutions": true,
+    "boundedWordGuards": true,
+    "publishedRuntimeChange": true,
+    "registeredCentralClosure": true,
+    "generalRuntimeLinks": true,
+    "independentAssurance": true
+  }
+}

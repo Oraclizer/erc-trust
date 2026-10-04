@@ -249,7 +249,7 @@
         },
         "review": {
           "path": "evidence/trust12/veri-integration-audit.md",
-          "sha256": "b0f00854e0581eecc079bc0fafa455ae099df855bb2bfc7869d2a0b0009033fc"
+          "sha256": "8c52876a449ba44e8f2754a2fdc27c3a50ffb5a57039f26c7735c7d41576806f"
         }
       },
       "probeDisposition": "Completed general positive and both complementary same-domain removal controls received. No shipping exception.",
@@ -1911,7 +1911,9 @@
       "assumptionsNonclaims": "The runtime_link and runtime_link_spec locale assumptions remain assumptions for executions outside the registered set; registered executions are not every declared execution.",
       "status": "CURRENT-MANDATORY",
       "supplementalEvidence": [
-        "evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json"
+        "evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json",
+        "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
+        "evidence/trust12/runtime-link/tail-preparation/malformed-guard-mutants-checkpoint-v1.json"
       ],
       "requiredForRelease": true,
       "requiredForTrust12Completion": true,

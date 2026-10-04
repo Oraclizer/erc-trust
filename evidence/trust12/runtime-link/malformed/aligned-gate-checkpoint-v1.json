@@ -1,0 +1,485 @@
+{
+  "schema": "trust12-malformed-aligned-gate-checkpoint-v1",
+  "status": "PASS_KERNEL_CHECKED_REGISTERED_MALFORMED_ALIGNED_GATE",
+  "scope": "The registered requests outside canonical form of the three profiles (Native 16, Partial 13, Hook 13) satisfy the aligned gate relation and the product relation alpha_transaction_spec. In the aligned gate relation a request whose value-reading product command does not decode is a full-state stutter with a returned malformed result whatever its revert data, as decision 12 specifies; a request that decodes keeps the original gate relation. The original gate relation, which requires an untyped malformed result, holds only for the requests with empty revert output that the bridge does not decode (Native 8, Partial 6, Hook 6). It admits no abstraction for the requests with a typed revert output (Native 7, Partial 6, Hook 6) or for the nonzero-value request of each profile, which the bridge decodes.",
+  "controlBoundary": "Controls: a classifier that reads a typed output before the decoded command, and the recorded reverted phase label, break the aligned gate relation and keep the product relation; a success flag, one external call or one log breaks both relations.",
+  "modelBoundary": "Status, revert output and calldata are received values bound to the registered records. Each record's post world and logs are defined as its recorded pre-call world and logs, as the recorded call reverts; the stages do not derive them from an execution trace. The gas limit and the external call list are supplied. The theorems hold for every bridge and checker where stated and otherwise under the existing keccak, storage layout and profile assumptions; the Hook stages retain five conditional reader facts. The Hook stages carry byte copies of the aligned definitions and general theorems of the Native stage, whose identity is shown by hashes only. Product model identity uses the existing eight-core-definition alias checkpoint.",
+  "coverage": {
+    "registeredRequests": {
+      "native": 16,
+      "partial": 13,
+      "hook": 13
+    },
+    "kernelSessions": 6,
+    "kernelRuns": 3,
+    "alignedGateHolds": {
+      "native": 16,
+      "partial": 13,
+      "hook": 13
+    },
+    "originalGateHolds": {
+      "native": 8,
+      "partial": 6,
+      "hook": 6
+    },
+    "originalGateImpossibleTypedOutput": {
+      "native": 7,
+      "partial": 6,
+      "hook": 6
+    },
+    "originalGateImpossibleDecodedNonzeroValue": {
+      "native": 1,
+      "partial": 1,
+      "hook": 1
+    },
+    "explicitRoots": {
+      "native-aligned": 354,
+      "native-value": 7,
+      "partial-aligned": 276,
+      "partial-value": 8,
+      "hook-aligned": 303,
+      "hook-value": 8
+    }
+  },
+  "productIdentity": {
+    "malformedModel": {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Out_Of_Spec_Refinement.thy",
+      "bytes": 45977,
+      "sha256": "6c159584f9f88ce9cf37b6d40bf03aca6b41b9ca678e52176ed57febbacd13a0"
+    },
+    "coreAliasCheckpoint": {
+      "path": "evidence/trust12/runtime-link/malformed/outofspec-v7-alias-core-equivalence-checkpoint-v1.json",
+      "bytes": 5933,
+      "sha256": "90a968df9942346c3edf830eb71258fffe84d8348483cd83c3106bcb1fee8e21"
+    },
+    "coreAliasVerifier": {
+      "path": "scripts/trust12/verify_outofspec_v7_alias_equiv_v1.py",
+      "bytes": 8076,
+      "sha256": "7170b60abdc95e98eefdf6782a14ea9128020a38851940032dc92d65a473617c"
+    },
+    "messageReader": {
+      "path": "scripts/trust12/verify_partial_malformed_relation_v1.py",
+      "bytes": 10375,
+      "sha256": "34f473b8a72a9d3b4547d82f9c407ed797bc1b63f6c4d8608d552ccac4abf6cb"
+    },
+    "verifierHelpers": {
+      "path": "scripts/trust12/verify_hook_malformed_relation_v1.py",
+      "bytes": 39190,
+      "sha256": "6602fb22f4507662ae766274bfe69de0c3e72f5a188f87921c6903567e91272b"
+    },
+    "decision": {
+      "path": "spec/decisions/12-requests-outside-canonical-form.md",
+      "bytes": 4620,
+      "sha256": "2c4f98b8323d0a1c0a17beb01713bd4ede29740e8fd330946569446dc41d776b"
+    },
+    "nativeRecords": {
+      "path": "evidence/trust12/runtime-link/malformed/native-relation-checkpoint-v1.json",
+      "bytes": 8227,
+      "sha256": "4b2e808bf1adad2181cbb436f613e068bb34e5f3a3c916ede3b2d5c64c57d3e3"
+    },
+    "partialRecords": {
+      "path": "evidence/trust12/runtime-link/malformed/partial-relation-checkpoint-v1.json",
+      "bytes": 17948,
+      "sha256": "1bfb70398af95f8863aae5ad2589240d8f2d3a5fecf8c10f967b1a03e1b4bec6"
+    },
+    "hookRecords": {
+      "path": "evidence/trust12/runtime-link/malformed/hook-relation-checkpoint-v1.json",
+      "bytes": 18568,
+      "sha256": "d8e25c8ede6a53abac2f9651781153f6c8934b12d0c5990e1727ba4ad124f0c5"
+    }
+  },
+  "artifacts": [
+    {
+      "id": "native-prior-build",
+      "kind": "kernel-build-result",
+      "bytes": 12397,
+      "sha256": "43aa1a1bd3aa3ce074b07086655332b5e836e444cdc7495ca3668dd2d1ec052b"
+    },
+    {
+      "id": "native-parent-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 18025301,
+      "sha256": "48e597f4b6c0f6aaa1a8cd4797a2f2c3449cc6f335c6e729082259aae43f8362"
+    },
+    {
+      "id": "native-parent-database",
+      "kind": "isabelle-database",
+      "bytes": 659456,
+      "sha256": "5c7f9673583c0cd01c89acad468ad1d590e5d28073c88429e135c65b48e71eff"
+    },
+    {
+      "id": "hook-prior-build",
+      "kind": "kernel-build-result",
+      "bytes": 12686,
+      "sha256": "0e766198fe690d92505beaa40196bde7a665db7a0b23eba34d4b52814bc946a8"
+    },
+    {
+      "id": "hook-parent-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 19050607,
+      "sha256": "fae71118a1b0103c9af19b3b9ee78b1d775a71565b771a0f34a7f139328ef051"
+    },
+    {
+      "id": "hook-parent-database",
+      "kind": "isabelle-database",
+      "bytes": 917504,
+      "sha256": "e565f4bc678fbd56480f46c6be80a709033fc5ebdff20ec17ce869ba67ba80c8"
+    },
+    {
+      "id": "native-preparation-check",
+      "kind": "generator-static-check",
+      "bytes": 10893,
+      "sha256": "7556ba026927953261e900270eacb4afa42cc69bc928fdde6572616627779318"
+    },
+    {
+      "id": "profile-preparation-check",
+      "kind": "generator-static-check",
+      "bytes": 14870,
+      "sha256": "e1da2b5f6e0380898415b94bf46a3ee583d516594d473c4e18b1aab4556c301c"
+    },
+    {
+      "id": "partial-aligned-prepared-root",
+      "kind": "isabelle-session-root",
+      "bytes": 296,
+      "sha256": "d5565921587898a8f2741369ac3357e0a13311343766833d91a192f4d6bfe70d"
+    },
+    {
+      "id": "pinned-malformed-model",
+      "kind": "isabelle-source",
+      "bytes": 34374,
+      "sha256": "3e51be34f4d3bf1b4528309f2bfcacb0848c11a6f632487bf960ad19c82f8471"
+    },
+    {
+      "id": "hook-prior-root",
+      "kind": "isabelle-session-root",
+      "bytes": 302,
+      "sha256": "61793e5944a64e4fab86305c1cf9e9757ffaacddc0ec01ba2e9ad457c01daa54"
+    },
+    {
+      "id": "native-aligned-run-result",
+      "kind": "kernel-build-result",
+      "bytes": 12461,
+      "sha256": "69415ac80a7c58bf61c9f017ea93c14a4806213f39bcadfc4916987944cc0951"
+    },
+    {
+      "id": "native-aligned-run-inputs-before",
+      "kind": "proof-input-snapshot",
+      "bytes": 1110490,
+      "sha256": "5702bba5ccf4e36d4341077ac9ec2f7cbd742855a6683df15d154030e182e674"
+    },
+    {
+      "id": "native-aligned-run-inputs-after",
+      "kind": "proof-input-snapshot",
+      "bytes": 1110490,
+      "sha256": "5702bba5ccf4e36d4341077ac9ec2f7cbd742855a6683df15d154030e182e674"
+    },
+    {
+      "id": "native-aligned-run-build-log",
+      "kind": "kernel-build-log",
+      "bytes": 34546,
+      "sha256": "f0f5f471c6ddd2ee0e5d9064b27fc2e375dd4d0d0a8015f1603da520b6143a42"
+    },
+    {
+      "id": "native-aligned-source",
+      "kind": "isabelle-source",
+      "bytes": 212576,
+      "sha256": "a54ecae17b3625925c0ab78e708e768053709f3194ea27a486212a9324fd6e7b"
+    },
+    {
+      "id": "native-aligned-root",
+      "kind": "isabelle-session-root",
+      "bytes": 288,
+      "sha256": "2530a70fff53fc729f9b23c0222632697207c0489bb76b90726ef7ab74bf58d0"
+    },
+    {
+      "id": "native-aligned-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 19037159,
+      "sha256": "8200c7bb90c90d438dc5ea94ff7150edc561d19d7e29f6a07fd106f766ca4de3"
+    },
+    {
+      "id": "native-aligned-database",
+      "kind": "isabelle-database",
+      "bytes": 741376,
+      "sha256": "921625841c8969175455569687a354eefca70c197b064a576bcbb80677d92437"
+    },
+    {
+      "id": "native-value-partial-run-result",
+      "kind": "kernel-build-result",
+      "bytes": 13657,
+      "sha256": "cef0e6554aa6f218ab9a38ec5d9146620989b37a7e9b6c86c903aa1fab88fb77"
+    },
+    {
+      "id": "native-value-partial-run-inputs-before",
+      "kind": "proof-input-snapshot",
+      "bytes": 1111913,
+      "sha256": "a4277badfadafdce08e796c4878403f0fabb9473315e8b7af63422c016f23f8e"
+    },
+    {
+      "id": "native-value-partial-run-inputs-after",
+      "kind": "proof-input-snapshot",
+      "bytes": 1111913,
+      "sha256": "a4277badfadafdce08e796c4878403f0fabb9473315e8b7af63422c016f23f8e"
+    },
+    {
+      "id": "native-value-partial-run-build-log",
+      "kind": "kernel-build-log",
+      "bytes": 35887,
+      "sha256": "0380b7fa237bdc19817ea9a33a4de3f9a0a6dfbc59ddd4ad97d3637afad7df21"
+    },
+    {
+      "id": "native-value-source",
+      "kind": "isabelle-source",
+      "bytes": 5588,
+      "sha256": "ab3a72648542ea557a9e6c495e9164c9abad1655148227a861a158b8ccb964e0"
+    },
+    {
+      "id": "native-value-root",
+      "kind": "isabelle-session-root",
+      "bytes": 290,
+      "sha256": "c8bd342e68901f815801865e9339718d357d67e39bf57a421fcfcec8a5d9970f"
+    },
+    {
+      "id": "native-value-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 17232755,
+      "sha256": "9906958d7b29b5a1291e2d85c3680971e1db4f395c57d8d02c26059e22cc5f27"
+    },
+    {
+      "id": "native-value-database",
+      "kind": "isabelle-database",
+      "bytes": 573440,
+      "sha256": "312236c20960f67dc410fa6043b68a0673907d1b0d3f32b561f6665217ec22ae"
+    },
+    {
+      "id": "partial-aligned-source",
+      "kind": "isabelle-source",
+      "bytes": 165635,
+      "sha256": "d4923ecded208734720995e49e8e1514a806ef817d730807d1f2ba7516649a02"
+    },
+    {
+      "id": "partial-aligned-root",
+      "kind": "isabelle-session-root",
+      "bytes": 294,
+      "sha256": "51809bc46ece15c9086912e6b83ac2d87b77259b5a82e58e4e69c0b48414fb56"
+    },
+    {
+      "id": "partial-aligned-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 19160891,
+      "sha256": "bdb86e74a75d5c8a33e69747b885b343e8c24205d790582ecf03bde20560f1b5"
+    },
+    {
+      "id": "partial-aligned-database",
+      "kind": "isabelle-database",
+      "bytes": 708608,
+      "sha256": "0b091c40e8608d06d51bc0d328250726052a637429630fd532379e69a224c56f"
+    },
+    {
+      "id": "partial-value-source",
+      "kind": "isabelle-source",
+      "bytes": 6126,
+      "sha256": "b97a3b21969728388f81020363d9c48fe61ca17f2c5e7f2481bd6c7508e2868d"
+    },
+    {
+      "id": "partial-value-root",
+      "kind": "isabelle-session-root",
+      "bytes": 293,
+      "sha256": "88fcee5fae970ece58923b7fe17bca0e95203917b9f6fec6a3b37ef6bd6ef6c6"
+    },
+    {
+      "id": "partial-value-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 17254017,
+      "sha256": "0dacece006e53701d695da34bd57ae478716971cde625c91081d9faf7d038620"
+    },
+    {
+      "id": "partial-value-database",
+      "kind": "isabelle-database",
+      "bytes": 581632,
+      "sha256": "735b9e8b6497d571807b5e8538cc6bb038236c8e749e165a0e9984fb935c75e0"
+    },
+    {
+      "id": "hook-run-result",
+      "kind": "kernel-build-result",
+      "bytes": 13214,
+      "sha256": "bb49fe5cec2c799e163ae6b4ce3d361212160a301e8c3a78263650946040e9bd"
+    },
+    {
+      "id": "hook-run-inputs-before",
+      "kind": "proof-input-snapshot",
+      "bytes": 1115871,
+      "sha256": "9b3f73eca9f0ea6cd9e58300395b68da4b6d94b28123d2f758d4e38a2239cafa"
+    },
+    {
+      "id": "hook-run-inputs-after",
+      "kind": "proof-input-snapshot",
+      "bytes": 1115871,
+      "sha256": "9b3f73eca9f0ea6cd9e58300395b68da4b6d94b28123d2f758d4e38a2239cafa"
+    },
+    {
+      "id": "hook-run-build-log",
+      "kind": "kernel-build-log",
+      "bytes": 35427,
+      "sha256": "74fba069822a029d165606f69571f046f886530e1b83e5dbdc086fc619beaa3c"
+    },
+    {
+      "id": "hook-aligned-source",
+      "kind": "isabelle-source",
+      "bytes": 180298,
+      "sha256": "fdb4de2e15e893e91fc53885f65b1019b0722f9b87df28e17dfce5f4c3eaf092"
+    },
+    {
+      "id": "hook-aligned-root",
+      "kind": "isabelle-session-root",
+      "bytes": 321,
+      "sha256": "61c07a3f062a1d7a4722612c48f3ef20ca92d07aeb525376b134ec55c2b87d82"
+    },
+    {
+      "id": "hook-aligned-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 19522959,
+      "sha256": "c227e4cc55bcf4ca204dd374e64e95e11420e4ff404c2ceb165ab2655ffc5ac4"
+    },
+    {
+      "id": "hook-aligned-database",
+      "kind": "isabelle-database",
+      "bytes": 749568,
+      "sha256": "8019415274ff25ee5e56fb3958be0631ca2020c12d3a8729c133b256a91c2155"
+    },
+    {
+      "id": "hook-value-source",
+      "kind": "isabelle-source",
+      "bytes": 5982,
+      "sha256": "b6dade72d0d9eaa64a8d0ee0016aa72ff76b921ab270aad440bdd88cb440c1e6"
+    },
+    {
+      "id": "hook-value-root",
+      "kind": "isabelle-session-root",
+      "bytes": 314,
+      "sha256": "6a003692c79800a404e774cc469f7db878bd6ea7b3833928da4303215d2af033"
+    },
+    {
+      "id": "hook-value-heap",
+      "kind": "saved-kernel-heap",
+      "bytes": 17463257,
+      "sha256": "6e316a4fc6fc54214163742261c2b397ae2978b4edec5689ebaa3bb41a65da80"
+    },
+    {
+      "id": "hook-value-database",
+      "kind": "isabelle-database",
+      "bytes": 593920,
+      "sha256": "4456be37140c89b00321b664828d438ed2ba28573eb7fe3a4bfde1dbb34bc7f8"
+    }
+  ],
+  "kernelRuns": [
+    {
+      "id": "native-aligned-run",
+      "result": "native-aligned-run-result",
+      "inputsBefore": "native-aligned-run-inputs-before",
+      "inputsAfter": "native-aligned-run-inputs-after",
+      "buildLog": "native-aligned-run-build-log",
+      "priorResult": "native-prior-build",
+      "sessions": [
+        "native-aligned"
+      ]
+    },
+    {
+      "id": "native-value-partial-run",
+      "result": "native-value-partial-run-result",
+      "inputsBefore": "native-value-partial-run-inputs-before",
+      "inputsAfter": "native-value-partial-run-inputs-after",
+      "buildLog": "native-value-partial-run-build-log",
+      "priorResult": null,
+      "sessions": [
+        "native-value",
+        "partial-aligned",
+        "partial-value"
+      ]
+    },
+    {
+      "id": "hook-run",
+      "result": "hook-run-result",
+      "inputsBefore": "hook-run-inputs-before",
+      "inputsAfter": "hook-run-inputs-after",
+      "buildLog": "hook-run-build-log",
+      "priorResult": "hook-prior-build",
+      "sessions": [
+        "hook-aligned",
+        "hook-value"
+      ]
+    }
+  ],
+  "kernelSessions": [
+    {
+      "id": "native-aligned",
+      "run": "native-aligned-run",
+      "source": "native-aligned-source",
+      "root": "native-aligned-root",
+      "heap": "native-aligned-heap",
+      "database": "native-aligned-database",
+      "explicitRoots": 354
+    },
+    {
+      "id": "native-value",
+      "run": "native-value-partial-run",
+      "source": "native-value-source",
+      "root": "native-value-root",
+      "heap": "native-value-heap",
+      "database": "native-value-database",
+      "explicitRoots": 7
+    },
+    {
+      "id": "partial-aligned",
+      "run": "native-value-partial-run",
+      "source": "partial-aligned-source",
+      "root": "partial-aligned-root",
+      "heap": "partial-aligned-heap",
+      "database": "partial-aligned-database",
+      "explicitRoots": 276
+    },
+    {
+      "id": "partial-value",
+      "run": "native-value-partial-run",
+      "source": "partial-value-source",
+      "root": "partial-value-root",
+      "heap": "partial-value-heap",
+      "database": "partial-value-database",
+      "explicitRoots": 8
+    },
+    {
+      "id": "hook-aligned",
+      "run": "hook-run",
+      "source": "hook-aligned-source",
+      "root": "hook-aligned-root",
+      "heap": "hook-aligned-heap",
+      "database": "hook-aligned-database",
+      "explicitRoots": 303
+    },
+    {
+      "id": "hook-value",
+      "run": "hook-run",
+      "source": "hook-value-source",
+      "root": "hook-value-root",
+      "heap": "hook-value-heap",
+      "database": "hook-value-database",
+      "explicitRoots": 8
+    }
+  ],
+  "rehashVerifier": {
+    "path": "scripts/trust12/verify_malformed_aligned_gate_v1.py",
+    "bytes": 24553,
+    "sha256": "5cf0fc8981ffaf239e553f843077732fc56e8641f3aa4908f056a857795ddf2c",
+    "command": "python3 scripts/trust12/verify_malformed_aligned_gate_v1.py --base <evidence-root> --product-root <product-root> --checkpoint evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json --artifact-index <local-artifact-index.json> --zstd <zstd-executable>"
+  },
+  "nonclaims": {
+    "fullTrustCompletion": true,
+    "generalRuntimeLinks": true,
+    "independentAssurance": true,
+    "registeredCentralClosure": true,
+    "releaseOrDeployment": true,
+    "twentySevenCellGateInstantiation": true,
+    "unregisteredRequests": true
+  },
+  "reproductionBoundary": "This verifier rehashes saved artifacts, native database source bytes and message exports and requires the current bound inputs and product identities. The private navigation index is not proof authority. This is not a fresh kernel replay and states no completion of the registered-scope central closure, any general runtime link or TRUST 1.2."
+}
