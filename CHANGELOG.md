@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Disclose in the known limitations that the registered cell theorems of the
+  Partial and Hook profiles rest on Isabelle code evaluation (the eval method)
+  for concrete computations and depend on the oracle
+  Code_Generator.holds_by_evaluation, while the Native cell stages use no
+  evaluation step.
+
 - Add the version 2 certificate registry of the runtime link and its public
   record certificate-registry-checkpoint-v1.json. The registry names one
   applied and one not-applied checked certificate for each of the twenty-seven

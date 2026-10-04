@@ -13,7 +13,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "772f7b0b3487dcc436a8987292f3af02d56c653bfab326a0323197a2594f65f9"
+      "sha256": "a0ed68fe8e4f034218aadf295b78ff76418957af739dc5c02b076f33d7a09f42"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
@@ -29,7 +29,7 @@
     },
     {
       "path": "evidence/known-limitations.md",
-      "sha256": "fca8db10e7ca65932f378394823238f35a062b5a583f93917f79ffda300e3dcc"
+      "sha256": "c7b083482f15e68771e02bbee49e5c8efa40645b50931f0d3923966ca70d8ffe"
     },
     {
       "path": "evidence/trust12/README.md",
