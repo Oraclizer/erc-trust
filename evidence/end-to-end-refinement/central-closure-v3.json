@@ -790,7 +790,7 @@
       },
       {
         "path": "evidence/known-limitations.md",
-        "sha256": "fca8db10e7ca65932f378394823238f35a062b5a583f93917f79ffda300e3dcc"
+        "sha256": "c7b083482f15e68771e02bbee49e5c8efa40645b50931f0d3923966ca70d8ffe"
       },
       {
         "path": "evidence/trust12/obligation-ledger.json",
@@ -954,7 +954,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "a482d7b157bed174102112f545b0e552fa6088ad0ff308a2f05d123ef4fcc844"
+        "sha256": "8ee794baa8c643572fd5e5c0b5f67ad7c4daee4c293fd27426d881612beeaac1"
       }
     ],
     "fullRefinementComplete": false,

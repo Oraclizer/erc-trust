@@ -46,6 +46,17 @@ shipping exception cannot be described as proof completion.
 Existing Kontrol PASS records remain supplemental bounded evidence because their
 receipt does not record the proof metadata required for proof-grade credit.
 
+The registered cell theorems of the Partial and Hook profiles rest on code
+evaluation for concrete computations: in their recorded-world, decoding and
+retrieval stages about 1,600 concrete steps are proved with Isabelle's `eval`
+method, and each of the eighteen cell theorems depends on the oracle
+`Code_Generator.holds_by_evaluation`. Such a step is checked by running code that
+Isabelle generates, not by the kernel inference rules. The Native cell stages use
+no evaluation step, and kernel audits found no oracle in the Native SEIZE cell
+theorem and in the aligned malformed-gate theorems. The registered-scope
+central closure either replaces these steps with kernel proofs or names this
+trust as a retained assumption.
+
 TRUST 1.2 profile row grades: Native EXECUTION_TESTS; Partial EXECUTION_TESTS; Hook EXECUTION_TESTS.
 
 TRUST 1.2 shipping exceptions: none.
