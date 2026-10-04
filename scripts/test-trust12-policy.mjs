@@ -4,7 +4,7 @@ import { mkdirSync, mkdtempSync, readFileSync, writeFileSync, rmSync } from 'nod
 import { dirname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { check, encoded, fileRef, json, sha256 } from './lib/local-evidence.mjs';
-import { components, deferralDisclosure, disclosures, implementationDisclosures, profiles, registeredClosureId, registeredCompletionDisclosure, registeredFinalInputs, verifiedCentralCompletion, verifyTrust12Policy, withoutIsabelleComments } from './lib/trust12-policy.mjs';
+import { completionWordingDocuments, components, deferralDisclosure, disclosures, hasFixture, implementationDisclosures, profiles, registeredClosureId, registeredCompletionDisclosure, registeredFinalInputs, verifiedCentralCompletion, verifyTrust12Policy, withoutIsabelleComments } from './lib/trust12-policy.mjs';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const out = resolve(root, 'out/trust12');
 mkdirSync(out, { recursive: true });
@@ -17,6 +17,7 @@ function put(path, value) {
   mkdirSync(dirname(resolve(scratch, path)), { recursive: true });
   writeFileSync(resolve(scratch, path), typeof value === 'string' || Buffer.isBuffer(value) ? value : encoded(value));
 }
+const checkpointVerifier = 'scripts/trust12/verify_second_freeze_rejection_v1.py';
 const refs = new Map();
 function collect(value) {
   if (!value || typeof value !== 'object') return;
@@ -28,9 +29,11 @@ for (const path of new Set([...refs.keys(), 'evidence/trust12/symbolic-kontrol.j
   'evidence/end-to-end-refinement/obligation-ledger-v3.json',
   'evidence/isabelle-results-v3.json', 'evidence/trust12/runtime-identity.json',
   'spec/generated/kernel-v2-abi.json', 'evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json',
-  'evidence/certora-results-v3.json', ...implementationDisclosures]))
+  'scripts/verify-trust12-required.mjs', checkpointVerifier,
+  'evidence/certora-results-v3.json', ...implementationDisclosures, ...completionWordingDocuments]))
   put(path, readFileSync(resolve(root, path)));
-const documents = Object.fromEntries(implementationDisclosures.map(path => [path, readFileSync(resolve(root, path), 'utf8')]));
+const documents = Object.fromEntries([...new Set([...implementationDisclosures, ...completionWordingDocuments])]
+  .map(path => [path, readFileSync(resolve(root, path), 'utf8')]));
 const tailConditionsPath = 'evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json';
 function reset() {
   put(policyPath, policy); put(ledgerPath, baseline);
@@ -98,14 +101,14 @@ function registeredClosureFixture(ledger) {
   const tailPath='evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json', tail=json(scratch,tailPath);
   const discharged=tail.conditions.map(c=>c.id).filter(id=>id!=='independent-assurance');
   const evidencePath='evidence/trust12/fixture-registered-condition.json';
-  put(evidencePath,{status:'PASS_FIXTURE_ONLY',fixtureOnly:true});
+  put(evidencePath,{status:'PASS_FIXTURE_ONLY',fixtureOnly:true,rehashVerifier:fileRef(scratch,checkpointVerifier)});
   const evidence=fileRef(scratch,evidencePath);
   const closurePath='evidence/trust12/fixture-registered-closure.json';
   put(closurePath,{schema:'trust12-registered-central-closure-v1',status:'PASS',fixtureOnly:true,
     finalInputs:registeredFinalInputs(scratch,r),dischargedConditions:discharged,
     conditionEvidence:Object.fromEntries(discharged.map(id=>[id,[evidence]])),
-    findingDispositions:Object.fromEntries(tail.findings.map(f=>[f.id,'Fixture-only disposition'])),
-    retainedAssumptions:json(scratch,endToEndPath).assumptions.filter(a=>a.status!=='DISCHARGED').map(a=>a.id),
+    findingDispositions:Object.fromEntries(tail.findings.map(f=>[f.id,{kind:'RESOLVED',detail:'Fixture-only disposition',evidence:[evidence]}])),
+    retainedAssumptions:[...json(scratch,endToEndPath).assumptions.map(a=>a.id),'A-KEVM-TOOLCHAIN'],
     generalRuntimeLinkDischarged:false});
   const closure=fileRef(scratch,closurePath);
   const references={closure};
@@ -130,9 +133,14 @@ function registeredCompletionFixture(ledger, closureDigest) {
     endToEndLedgerSha256:fileRef(scratch,endToEndPath).sha256,
     registeredClosureSha256:closureDigest ?? sha256(encoded(r.registeredClosureEvidence)),
     generalProofDigests:Object.fromEntries(profiles.map(profile=>[profile,null]))};
+  const sealPath='evidence/trust12/assurance/fixture-registered-seal.json';
+  put(sealPath,{schema:'trust12-tail-preparation-assurance-input-seal-v1',status:'SEALED_FOR_INDEPENDENT_ASSURANCE',
+    fixtureOnly:true,product:{cleanWorktree:true},sealRootSha256:'a'.repeat(64)});
+  const seal=fileRef(scratch,sealPath);
+  finalIdentities.assuranceSealSha256=seal.sha256;
   const path='evidence/trust12/assurance/fixture-registered-final.json';
   put(path,{schema:'trust12-final-assurance-v1',status:'PASS_FRESH_ASSURANCE',fixtureOnly:true,independentOfBuilding:true,
-    reviewer:'Fixture reviewer, not a real assurance',reproduction:{status:'PASS'},consumerRemoval:{status:'PASS'},finalIdentities});
+    reviewer:'Fixture reviewer, not a real assurance',reproduction:{status:'PASS'},consumerRemoval:{status:'PASS'},seal,finalIdentities});
   ledger.centralClosure.independentAssurance={status:'PASS_FRESH_ASSURANCE',report:fileRef(scratch,path)};
   ledger.centralClosure.status='COMPLETE_REGISTERED_SCOPE'; ledger.releaseAssessment.trust12Complete=true;
   ledger.releaseAssessment.status='EVIDENCE_READY';
@@ -223,6 +231,73 @@ try {
     l.centralClosure.currentMandatory=[]; l.releaseAssessment.status='EVIDENCE_READY'; l.status='EVIDENCE_COMPLETE'; },
     'registered central closure lacks a verified evidence contract');
   test('fixture-closure-rejected-in-production', l => { registeredClosureFixture(l); }, 'uses fixture records');
+  check(hasFixture({a:[{b:{fixtureOnly:true}}]}) && !hasFixture({a:[{b:1}]}), 'fixture marker detection failed');
+  results.push({name:'nested-fixture-marker-detected',status:'PASS'});
+  let reservedError;
+  try { verifyTrust12Policy(root, fixtures); } catch (e) { reservedError = e.message; }
+  check(reservedError?.includes('fixture mode is reserved'), 'fixture mode accepted on the product root');
+  results.push({name:'fixture-mode-reserved-for-isolated-controls',status:'REJECTED',reason:reservedError});
+  test('registered-closure-evidence-must-be-a-json-checkpoint', l => {
+    rewriteClosure(registeredClosureFixture(l), c => { for (const id of Object.keys(c.conditionEvidence))
+      c.conditionEvidence[id]=[fileRef(scratch,'evidence/known-limitations.md')]; }); },
+    'not a checkpoint record in the evidence tree', fixtures);
+  test('registered-closure-evidence-outside-evidence-tree', l => {
+    rewriteClosure(registeredClosureFixture(l), c => { for (const id of Object.keys(c.conditionEvidence))
+      c.conditionEvidence[id]=[fileRef(scratch,'spec/generated/kernel-v2-abi.json')]; }); },
+    'not a checkpoint record in the evidence tree', fixtures);
+  test('registered-closure-evidence-needs-gate-verifier', l => { registeredClosureFixture(l);
+    put('evidence/trust12/fixture-registered-condition.json',{status:'PASS_FIXTURE_ONLY',fixtureOnly:true});
+    rewriteClosure(row(l,registeredClosureId), c => { for (const id of Object.keys(c.conditionEvidence))
+      c.conditionEvidence[id]=[fileRef(scratch,'evidence/trust12/fixture-registered-condition.json')]; }); },
+    'not a checkpoint verified by the required gate', fixtures);
+  test('registered-closure-evidence-verifier-must-be-gated', l => { registeredClosureFixture(l);
+    put('scripts/trust12/fixture_unlisted_verifier.py','# fixture only\n');
+    put('evidence/trust12/fixture-registered-condition.json',{status:'PASS_FIXTURE_ONLY',fixtureOnly:true,
+      rehashVerifier:fileRef(scratch,'scripts/trust12/fixture_unlisted_verifier.py')});
+    rewriteClosure(row(l,registeredClosureId), c => { for (const id of Object.keys(c.conditionEvidence))
+      c.conditionEvidence[id]=[fileRef(scratch,'evidence/trust12/fixture-registered-condition.json')]; }); },
+    'not a checkpoint verified by the required gate', fixtures);
+  test('registered-closure-condition-evidence-key-missing', l => {
+    rewriteClosure(registeredClosureFixture(l), c => { delete c.conditionEvidence[c.dischargedConditions[0]]; }); },
+    'does not discharge every recorded condition', fixtures);
+  test('blocking-finding-cannot-be-a-nonclaim', l => {
+    rewriteClosure(registeredClosureFixture(l), c => {
+      c.findingDispositions['per-certificate-program-identity']={kind:'NONCLAIM',detail:'Fixture-only'}; }); },
+    'while its blocking finding is not resolved', fixtures);
+  test('finding-disposition-must-be-structured', l => {
+    rewriteClosure(registeredClosureFixture(l), c => { c.findingDispositions['no-formal-storage-reader']='Free text'; }); },
+    'finding disposition is incomplete', fixtures);
+  test('resolved-finding-needs-evidence', l => {
+    rewriteClosure(registeredClosureFixture(l), c => { c.findingDispositions['no-formal-storage-reader'].evidence=[]; }); },
+    'resolved registered closure finding has no evidence', fixtures);
+  test('toolchain-assumption-required', l => {
+    rewriteClosure(registeredClosureFixture(l), c => { c.retainedAssumptions=c.retainedAssumptions.filter(a=>a!=='A-KEVM-TOOLCHAIN'); }); },
+    'does not discharge every recorded condition', fixtures);
+  test('pinned-assumption-survives-ledger-discharge', l => { registeredClosureFixture(l);
+    const e=json(scratch,endToEndPath); e.assumptions.find(a=>a.id==='A-MUTATION').status='DISCHARGED'; put(endToEndPath,e);
+    rewriteClosure(row(l,registeredClosureId), c => { c.retainedAssumptions=c.retainedAssumptions.filter(a=>a!=='A-MUTATION'); }); },
+    'does not discharge every recorded condition', fixtures);
+  test('closed-registered-row-needs-proof-flag', l => { registeredClosureFixture(l).proofCompleted=false; },
+    'closed registered central closure has pending evidence', fixtures);
+  test('assurance-needs-an-input-seal', l => { registeredCompletionFixture(l);
+    const ref=l.centralClosure.independentAssurance.report, report=json(scratch,ref.path); delete report.seal; put(ref.path,report);
+    l.centralClosure.independentAssurance.report=fileRef(scratch,ref.path); }, 'names no input seal', fixtures);
+  test('assurance-seal-must-be-final', l => { registeredCompletionFixture(l);
+    put('evidence/trust12/assurance/fixture-registered-seal.json',{schema:'trust12-tail-preparation-assurance-input-seal-v1',
+      status:'TEMPLATE_DRY_RUN',fixtureOnly:true,product:{cleanWorktree:true},sealRootSha256:'a'.repeat(64)});
+    const ref=l.centralClosure.independentAssurance.report, report=json(scratch,ref.path);
+    report.seal=fileRef(scratch,'evidence/trust12/assurance/fixture-registered-seal.json');
+    report.finalIdentities.assuranceSealSha256=report.seal.sha256; put(ref.path,report);
+    l.centralClosure.independentAssurance.report=fileRef(scratch,ref.path); }, 'not a final seal', fixtures);
+  for (const [name, path, wording] of [
+    ['completion-wording-has-been-completed', 'evidence/claim-matrix.md', 'TRUST 1.2 has been completed within the registered-execution scope.'],
+    ['completion-wording-fully-complete', 'evidence/trust12/release-notes.md', 'TRUST 1.2 is fully complete.'],
+    ['completion-wording-across-lines', 'evidence/known-limitations.md', 'TRUST 1.2 is\ncomplete within the\nregistered-execution scope'],
+    ['completion-wording-in-formal-verification', 'FORMAL_VERIFICATION.md', 'TRUST 1.2 completed at the registered-execution scope.'],
+    ['completion-wording-in-changelog', 'CHANGELOG.md', '- TRUST 1.2 is complete.'],
+  ]) test(name, () => { put(path, documents[path] + '\n' + wording + '\n'); }, 'registered completion disclosure drift');
+  test('open-state-wording-is-allowed', () => { const path='evidence/known-limitations.md';
+    put(path, documents[path] + '\nTRUST 1.2 is not yet complete within the registered-execution scope.\n'); });
   const registeredOnly = test('registered-closure-fixture-without-assurance', l => { registeredClosureFixture(l); }, null, fixtures);
   check(registeredOnly.trust12Complete===false && registeredOnly.fullRefinementComplete===false
     && registeredOnly.releaseReadiness==='ASSURANCE_PENDING', 'registered closure without fresh assurance promoted to completion');
@@ -327,7 +402,7 @@ try {
     const path='evidence/trust12/assurance/fixture-audit.json';
     put(path,{schema:'trust12-final-assurance-v1',status:'PASS_FRESH_ASSURANCE',independentOfBuilding:true});
     l.centralClosure.independentAssurance={status:'PASS_FRESH_ASSURANCE',report:fileRef(scratch,path)};
-  }, 'fresh assurance report is not independently reproduced on the final inputs');
+  }, 'fresh assurance report names no input seal');
   test('contradictory-public-completion-rejected', () => {
     const path='evidence/known-limitations.md';
     put(path,documents[path]+'\nend-to-end refinement complete within the declared profiles\n');

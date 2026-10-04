@@ -17,7 +17,7 @@
     },
     {
       "path": "FORMAL_VERIFICATION.md",
-      "sha256": "9fe2c07f4e14ab1faeffbe8056157dce5deb7f6e1885c21340502f6478b399bb"
+      "sha256": "fecdc508dd67ed9983424ec4d272daac73a18085cf5004d8bcf8780ae134fd7c"
     },
     {
       "path": "docs/PROFILES.md",
@@ -25,7 +25,7 @@
     },
     {
       "path": "evidence/claim-matrix.md",
-      "sha256": "41f431fb257f7b0f6132f1dde001a4e7c6d53c9cac3c5fd6eb3b569c017fc260"
+      "sha256": "1cdaac08f1d15f1cb621a12c1cb75d31243fc6613aa5b3f7f058d2eee23b85b6"
     },
     {
       "path": "evidence/known-limitations.md",
@@ -33,7 +33,7 @@
     },
     {
       "path": "evidence/trust12/README.md",
-      "sha256": "359376b14b960439578f1ee4b405441371e2411d37e213a282b7ead58dcdae75"
+      "sha256": "5dabdaf440659a7a7f37557ac17d0c0560bb6181ba490c2bc8588388567c7905"
     },
     {
       "path": "evidence/trust12/aggregate-evidence-audit.md",
@@ -129,7 +129,7 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "698f0d2537d7e9ba615713690f25e4bc9e7921bb77b648ed473036752fc4b919"
+      "sha256": "14d9b38323354308f4c1a1bbe6f72e45b9d473c040bae0049f148cc176106e26"
     },
     {
       "path": "evidence/trust12/profile-implementation-evidence-review.json",
@@ -377,7 +377,7 @@
     },
     {
       "path": "scripts/lib/trust12-policy.mjs",
-      "sha256": "68ace60f7852cd4859627648a7fdf6a0905905aefb2c7cd254e3634abbdd9e16"
+      "sha256": "bf6747546ac96e9737641e5e9c419167d5e56cdfe801f7407ecdbe5b7c6a2534"
     },
     {
       "path": "scripts/prepare-native-storage-predicates.py",
@@ -489,7 +489,7 @@
     },
     {
       "path": "scripts/test-trust12-policy.mjs",
-      "sha256": "f12183aae484d0cde3520ff3b3e6142fa5fba15e262cba03cac0c9956fa40b35"
+      "sha256": "dd3828c637d05dba93f0b45e43b9e80b63c394a4f2d80ed81d0d804730aeff6b"
     },
     {
       "path": "scripts/test-trust12-required.mjs",
