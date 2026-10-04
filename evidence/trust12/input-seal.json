@@ -13,7 +13,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "79f386a0323a8603a28f65e12adae866b588fd106dfc9e586689924307aad3f7"
+      "sha256": "fa8184e026df2e11e3418af7b6c77189dde32f382762192a0a481d9d332c71ba"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
@@ -129,7 +129,7 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "4508de0c3bb941aaa473bd14989218f4d20362028b23410f5b6beab749a9f1d6"
+      "sha256": "e3c850eb1a1ffca16be161cb8870e5ea5c4888cc453b1d6227cc17efd29f6255"
     },
     {
       "path": "evidence/trust12/profile-implementation-evidence-review.json",
@@ -153,7 +153,7 @@
     },
     {
       "path": "evidence/trust12/runtime-link-source-blockers.md",
-      "sha256": "e3c62648e593859c67cbc60400aa16b642500e9ddd5ff55174c04b95ac6683a7"
+      "sha256": "1737e31ab96215ca916f860faaa5f199d6c61107419ec6a33934c50314b2e919"
     },
     {
       "path": "evidence/trust12/runtime-link/assess-call-reception-checkpoint-v1.json",
@@ -189,7 +189,7 @@
     },
     {
       "path": "evidence/trust12/runtime-link/second-freeze-rejection-checkpoint-v1.json",
-      "sha256": "6c83f21cbe1b752d0601bd23e20182d0014989918c406587889e1c089512dbf4"
+      "sha256": "d4e892982dcfa29fc9591f697e93ca10186306893ad5841306b12fd3ada9ee2c"
     },
     {
       "path": "evidence/trust12/runtime-producer-feasibility.json",
@@ -209,7 +209,7 @@
     },
     {
       "path": "evidence/trust12/veri-integration-audit.md",
-      "sha256": "5db0797e4f74c1609ed962f026d697e80e73c1781cafb947ba4a1f18915cf3c6"
+      "sha256": "83d06cb533e3ca3c8c33351bd75dd12ebac45e1f03f8fa0afd072cb83cac4a3e"
     },
     {
       "path": "evidence/trust12/veri-observation-results.json",
@@ -533,7 +533,7 @@
     },
     {
       "path": "scripts/trust12/verify_second_freeze_rejection_v1.py",
-      "sha256": "7b52f45b279ce09b26c5e9b4ba350197775e1f4eedad35ab05100147f83e7966"
+      "sha256": "963fd5731718245c483ae1cf59addf5fa0e40dc4a0de750b3d8297b79c0b1219"
     },
     {
       "path": "scripts/veri_dependency.py",

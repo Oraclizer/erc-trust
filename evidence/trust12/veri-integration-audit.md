@@ -182,14 +182,20 @@ runtime links remain mandatory.
 Five further saved stages, with 566 explicitly named roots, assemble the second
 FREEZE of the deferred symbolic Native test as a transaction execution. The
 endpoint rejects this call with TrustInvalidCommand reason 12 (FREEZE_DIRECTION).
-The four small entry frame cells, the second amount binding, the revert status
-and the world before the call and after the revert are received from raw texts;
-the exported world, log and frame cell texts of this call are byte-identical to
-the received texts of the first FREEZE. The 5275-byte calldata and the 3119-byte
-revert output are lexed and parsed through end of input and then evaluated: the
-calldata decodes to the second FREEZE command and the output is the selector,
-the command identifier and reason 12. One classifier maps the raw status, the
-output and the decoded calldata to the gate phase and result.
+The four small entry frame cells, the second amount binding and the revert status
+are received from raw texts. The record uses the received post-call world of the
+first FREEZE for the world before the call and after the revert: the post-revert
+world export of this call is byte-identical to that world text, as are its entry
+and post log texts and its frame cell texts. The entry world export of this call
+is a snapshot inside the call that differs from that world only in endpoint
+storage slot 28, the reentrancy flag set to 1, which the revert undoes; that a
+reverted call restores its starting world is an EVM rule that is not checked
+here. The 5275-byte raw calldata text and the 3119-byte raw revert output text
+are lexed and parsed through end of input and then evaluated: the calldata
+decodes to the second FREEZE command and the 68-byte output is the selector, the
+command identifier and reason 12. One classifier maps the raw status, the output
+and the decoded calldata to the gate phase and result. The gas limit is a free
+parameter and the external call list is set empty by the assembler.
 
 The record satisfies the product transaction relation with a rejected outcome:
 the abstract state before and after the call is the state the first FREEZE
@@ -199,15 +205,17 @@ to the decoded command identifier; the report reason is FREEZE_DIRECTION, and
 the abstract model does not admit the same command because the second amount
 does not exceed the frozen target. The rejected transaction starts from the
 configuration the first FREEZE left. Changing the command identifier in the
-report, a success result, a reverted phase, the earlier two-way classifier or
-one committed log each breaks the relation. TRUST_Returned is the gate label for
-a kernel-delivered outcome, not the EVM RETURN instruction; the raw status is an
-EVM revert. The external call list is set empty by the assembler and is not read
-by the rejection relation.
+report, the phase or the classifier (to the earlier two-way one) breaks the gate
+bound relation; a success result or one committed log breaks the product
+relation. TRUST_Returned is the gate label for a kernel-delivered outcome, not
+the EVM RETURN instruction; the raw status is an EVM revert. The external call
+list is not read by the rejection relation. The gate bound relation and the
+classifier are defined in the retained theories that the checkpoint binds.
 
-The theorems hold for every keccak function with values below 2^256 that has the
-recorded values at the storage slots the first FREEZE reads, with the big-endian
-word encoding, at the received valuation point. The checkpoint
+The theorems hold for every keccak function with values below 2^256 that takes
+the recorded values at the twenty storage-slot preimages the first FREEZE reads
+and at the first FREEZE command identifier preimage, with the big-endian word
+encoding, at the received valuation point. The checkpoint
 second-freeze-rejection-checkpoint-v1.json binds the stages; its full mode
 rehashes 80 retained artifacts and 3263 current inputs and checks that each
 stage guard names exactly its declared roots. The symbolic family beyond the
