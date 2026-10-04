@@ -18,7 +18,7 @@ CHECKPOINT = 'evidence/trust12/runtime-link/dependency-call-provenance-checkpoin
 VERIFIER = 'scripts/trust12/verify_dependency_call_provenance_v1.py'
 INDEX = 'dependency-call-provenance-artifact-index-v1.json'
 SCHEMA = 'trust12-dependency-call-provenance-checkpoint-v1'
-EXPECTED_EVIDENCE_DIGEST = 'cfdc38a730c09d30387fc28d837ff2d94fd18c5e604c9454a1e7041c460f9035'
+EXPECTED_EVIDENCE_DIGEST = '1b5450534e59704831532a8b1c5786088ef0a0dfc673d398989404ca3a546127'
 CONFIRMED = ('assessCallTargetAndSelectorReceived','originalThirteenConditionsHookGatedMeaning',
              'configurationCalldataRawAndPayloadControls','configurationFrameFromExactPrefixReplay',
              'assessInputRawLexedParsedTypedAndEndOfInput','allDependencyCallFieldsFromRawTexts')
@@ -136,6 +136,11 @@ def verify_saved(checkpoint,index,base,product,zstd):
         saved.require(messages.count(row['marker'])==1,'complete oracle guard absent or ambiguous')
         actual_roots=re.findall(r'(?m)^(?:lemma|theorem|corollary)\s+(\w+)',roles['source'].read_text(encoding='utf-8-sig'))
         saved.require(actual_roots==row['roots'],'source declaration inventory differs')
+        guarded=re.findall(r'val names = \[([^\]]*)\];',roles['source'].read_text(encoding='utf-8-sig'))
+        guarded_names=re.findall(r'"([^"]+)"',guarded[0]) if len(guarded)==1 else []
+        saved.require(len(guarded)==1 and [name.split('.',1)[-1] for name in guarded_names]==row['roots']
+                      and all(name.split('.',1)[0]==theory for name in guarded_names),
+                      'guarded root inventory differs')
         saved.require(row['hierarchyTransportRequired'] is True,'exact hierarchy transport is required')
         hierarchy_receipt(roles['hierarchy-receipt'],audit)
         before=saved.read_json(roles['inputs-before'],False)

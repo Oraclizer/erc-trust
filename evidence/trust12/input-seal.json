@@ -13,7 +13,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "17bb58967afd0b55e83e2f3ae2ee2516e4b3ea23190bc5b56607b19ac78bae76"
+      "sha256": "f2f98ff3f57c5fa8b533fdea1d35756a08981bb2bbdec4e613795aed05f85d2f"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
@@ -129,7 +129,7 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "1d1eab812e677132215063c1a025ad22fc0bad68c064d990f67a2154e99ab3bd"
+      "sha256": "1657f85eb64ef0357a73f5763d7544da1c158696572b9d0d99edf4885aeff78b"
     },
     {
       "path": "evidence/trust12/profile-implementation-evidence-review.json",
@@ -153,7 +153,7 @@
     },
     {
       "path": "evidence/trust12/runtime-link-source-blockers.md",
-      "sha256": "c0c48f925aa020c415275edcc1f1fac8d49a52a7f286d3fe5ac2abf51f74cd0d"
+      "sha256": "2b86788da9a7346a4738f01a9d51992b01cf883701b9b5e3bd1c8be37fc8a477"
     },
     {
       "path": "evidence/trust12/runtime-link/assess-call-reception-checkpoint-v1.json",
@@ -161,7 +161,7 @@
     },
     {
       "path": "evidence/trust12/runtime-link/dependency-call-provenance-checkpoint-v1.json",
-      "sha256": "99aa314878c367c4d0602f07b233f046454d69d1ad9c66b301ca07a2e3d2656a"
+      "sha256": "da5f9a9e6506cadb033261d1206d0b558cc38875840465e8704c0e6ffc691240"
     },
     {
       "path": "evidence/trust12/runtime-link/model-source-reception-checkpoint-v1.json",
@@ -205,7 +205,7 @@
     },
     {
       "path": "evidence/trust12/veri-integration-audit.md",
-      "sha256": "aa15490b7af8ab184e23505587ac4a85c3a8d6859df56ceef9f7c29dab799f25"
+      "sha256": "079e6c18aad51c85becbbb67e2bd68ca5c11a0421cd71198ffafab1f681c4c0b"
     },
     {
       "path": "evidence/trust12/veri-observation-results.json",
@@ -493,7 +493,7 @@
     },
     {
       "path": "scripts/trust12/verify_dependency_call_provenance_v1.py",
-      "sha256": "96fa006bbccc59e32ec497aedd4f05aa95090ad9410a3638f63d0414567234e8"
+      "sha256": "978238757a3a09161b370d0377229479bdd4ca0ed5f00fd62f85bd7af099ff80"
     },
     {
       "path": "scripts/trust12/verify_full_source_admission_v1.py",
