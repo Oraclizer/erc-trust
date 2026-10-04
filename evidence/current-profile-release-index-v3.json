@@ -425,7 +425,7 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "3545cf4e45d4003d38374db855480f6345cb762894580f2b6c2cf89b72ab9de0"
+        "sha256": "41ec58cff95ac6a5a13e6a4c0aca5750ec76fa1e9e458f970d6e563ef3e9183b"
       }
     },
     "runtime": {
@@ -481,7 +481,7 @@
         },
         {
           "path": "evidence/trust12/obligation-ledger.json",
-          "sha256": "1d1eab812e677132215063c1a025ad22fc0bad68c064d990f67a2154e99ab3bd"
+          "sha256": "1657f85eb64ef0357a73f5763d7544da1c158696572b9d0d99edf4885aeff78b"
         },
         {
           "path": "evidence/trust12/runtime-identity.json",
@@ -489,7 +489,7 @@
         },
         {
           "path": "evidence/trust12/runtime-link-source-blockers.md",
-          "sha256": "c0c48f925aa020c415275edcc1f1fac8d49a52a7f286d3fe5ac2abf51f74cd0d"
+          "sha256": "2b86788da9a7346a4738f01a9d51992b01cf883701b9b5e3bd1c8be37fc8a477"
         },
         {
           "path": "evidence/trust12/independent-audit.md",
@@ -593,7 +593,7 @@
         },
         {
           "path": "evidence/trust12/runtime-link/dependency-call-provenance-checkpoint-v1.json",
-          "sha256": "99aa314878c367c4d0602f07b233f046454d69d1ad9c66b301ca07a2e3d2656a"
+          "sha256": "da5f9a9e6506cadb033261d1206d0b558cc38875840465e8704c0e6ffc691240"
         },
         {
           "path": "evidence/trust12/runtime-link/primitive-source-controls-checkpoint-v1.json",
@@ -613,7 +613,7 @@
         },
         {
           "path": "evidence/trust12/input-seal.json",
-          "sha256": "e6994d38ba4c670164a6a31e93fa6a97dcf974d5b01f515a11aaa7328049721d"
+          "sha256": "f4786a7b6f121ba16f6466d61cc923dbbc59a88d1eac2d1387df8192130a1e06"
         }
       ],
       "fullRefinementComplete": false,
@@ -745,7 +745,7 @@
       },
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "1d1eab812e677132215063c1a025ad22fc0bad68c064d990f67a2154e99ab3bd"
+        "sha256": "1657f85eb64ef0357a73f5763d7544da1c158696572b9d0d99edf4885aeff78b"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -753,7 +753,7 @@
       },
       {
         "path": "evidence/trust12/runtime-link-source-blockers.md",
-        "sha256": "c0c48f925aa020c415275edcc1f1fac8d49a52a7f286d3fe5ac2abf51f74cd0d"
+        "sha256": "2b86788da9a7346a4738f01a9d51992b01cf883701b9b5e3bd1c8be37fc8a477"
       },
       {
         "path": "evidence/trust12/independent-audit.md",
@@ -857,7 +857,7 @@
       },
       {
         "path": "evidence/trust12/runtime-link/dependency-call-provenance-checkpoint-v1.json",
-        "sha256": "99aa314878c367c4d0602f07b233f046454d69d1ad9c66b301ca07a2e3d2656a"
+        "sha256": "da5f9a9e6506cadb033261d1206d0b558cc38875840465e8704c0e6ffc691240"
       },
       {
         "path": "evidence/trust12/runtime-link/primitive-source-controls-checkpoint-v1.json",
@@ -877,7 +877,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "e6994d38ba4c670164a6a31e93fa6a97dcf974d5b01f515a11aaa7328049721d"
+        "sha256": "f4786a7b6f121ba16f6466d61cc923dbbc59a88d1eac2d1387df8192130a1e06"
       }
     ],
     "fullRefinementComplete": false,

@@ -143,7 +143,6 @@ obligation. It is not a proof of the complete mutant transaction, of compiler
 correctness or of the general runtime links, and it is a Building review rather
 than fresh final Assurance.
 
-
 ## Dependency-call provenance (2026-10-04)
 
 Six further saved stages, with 834 explicitly named roots, receive the fields of the
@@ -156,18 +155,24 @@ number and a negative mix hash denote the empty set, and each is admitted once o
 its lower bound is removed. The configuration call data is received from its raw
 text. A bounded booster replay of the 5146 recorded steps before the configuration
 summary rule, from the recorded source node of that edge, logs exactly the recorded
-rule prefix and reaches the configuration call frame; its target, static flag,
-caller and call data texts are byte-identical to the received raw texts. The 6625-byte
-assess input calldata text is lexed, parsed through end of input and typed as Bytes.
-Both calls are then produced with every field taken from received raw texts, equal
-the recorded calls for any template record and feed the existing trace checker.
-Changing one raw byte, digit or flag, the last input byte or only the selector field
-gives calls the original checker rejects and a checker without that comparison accepts.
+rule prefix and reaches the configuration call frame; its target, static flag and
+call data texts are byte-identical to the received raw texts, and its caller text
+evaluates to the token endpoint. The configuration status reuses the received
+success-status text. The 6625-byte assess input calldata text is lexed, parsed
+through end of input and typed as Bytes. Both calls are then produced with every
+field taken from received raw texts, equal the recorded calls for any template
+record and feed the existing trace checker. In the stage-level producers, changing
+one raw byte, digit or flag, the last byte of the call input field or only the
+selector field gives calls the original checker rejects and a checker without that
+comparison accepts; the final producer carries the end-of-input control.
 
+The theorems hold for every keccak function with values below 2^256 and the
+big-endian word encoding; the amount bound is discharged for the actual valuation.
 dependency-call-provenance-checkpoint-v1.json binds the stages; its full mode
 rehashes 96 retained artifacts and 3163 current inputs, including the replay
-receipts. The summary rule application and the remaining edge steps are not replayed,
-the thirteen-condition meaning is a hook-gated model rather than the engine
-interpretation, and the shape and order of the operational call list are not derived.
-This is a Building review, not fresh final Assurance; the three general runtime
-links remain mandatory.
+receipts, and checks that each stage guard names exactly its declared roots. The
+summary rule application and the remaining edge steps are not replayed, the
+thirteen-condition meaning is a hook-gated model rather than the engine
+interpretation, and the shape and order of the operational call list are not
+derived. This is a Building review, not fresh final Assurance; the three general
+runtime links remain mandatory.

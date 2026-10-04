@@ -8,8 +8,10 @@
   static flag. Lex, parse and type the original assess input text, and produce
   both calls with every field taken from received raw texts. Give the thirteen
   original path conditions a hook-gated partial-set meaning with zero-block,
-  negative mix hash and bound-removal controls. Engine equivalence, the general
-  runtime links and final Assurance remain open.
+  negative mix hash and bound-removal controls. Record this checkpoint and the
+  previously published original-binding-meaning and assess-call-reception
+  checkpoints under the Native runtime-link obligation. Engine equivalence, the
+  general runtime links and final Assurance remain open.
 
 - Close the Native symbolic FREEZE obligation. Bind same-domain
   direction-guard removal controls on both supply branches of the declared

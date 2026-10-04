@@ -249,7 +249,7 @@
         },
         "review": {
           "path": "evidence/trust12/veri-integration-audit.md",
-          "sha256": "aa15490b7af8ab184e23505587ac4a85c3a8d6859df56ceef9f7c29dab799f25"
+          "sha256": "079e6c18aad51c85becbbb67e2bd68ca5c11a0421cd71198ffafab1f681c4c0b"
         }
       },
       "probeDisposition": "Completed general positive and both complementary same-domain removal controls received. No shipping exception.",
@@ -1994,7 +1994,7 @@
           },
           {
             "path": "evidence/trust12/runtime-link/dependency-call-provenance-checkpoint-v1.json",
-            "sha256": "99aa314878c367c4d0602f07b233f046454d69d1ad9c66b301ca07a2e3d2656a",
+            "sha256": "da5f9a9e6506cadb033261d1206d0b558cc38875840465e8704c0e6ffc691240",
             "countsTowardGeneralClosure": false
           }
         ],

@@ -1,7 +1,7 @@
 {
   "schema": "trust12-dependency-call-provenance-checkpoint-v1",
   "status": "PASS_SAVED_DEPENDENCY_CALL_PROVENANCE",
-  "scope": "The assess call target is received from its raw frame identity and its selector is derived from the received input. The thirteen original path conditions receive a partial-set meaning in which the Int comparison and Bool negation symbols are interpreted only under the exact received hook declarations. The configuration call data is received from its raw text, and the configuration target, static flag, caller and call data come from an exact booster replay of the recorded caller-side prefix of the main edge that applies the configuration summary. The original assess input calldata text is lexed, parsed through end of input and typed as Bytes. Both dependency calls are then produced with every field taken from received raw texts and equal the recorded calls for any template record.",
+  "scope": "The assess call target is received from its raw frame identity and its selector is derived from the received input. The thirteen original path conditions receive a partial-set meaning in which the Int comparison and Bool negation symbols are interpreted only under the exact received hook declarations. The configuration call data is received from its raw text, and the configuration target, static flag, and call data come from an exact booster replay of the recorded caller-side prefix of the main edge that applies the configuration summary, whose caller text evaluates to the token endpoint. The configuration status reuses the received success-status text. The original assess input calldata text is lexed, parsed through end of input and typed as Bytes. Both dependency calls are then produced with every field taken from received raw texts and equal the recorded calls for any template record.",
   "confirmed": {
     "assessCallTargetAndSelectorReceived": true,
     "originalThirteenConditionsHookGatedMeaning": true,
@@ -25,9 +25,9 @@
     "kernelStages": 6,
     "explicitRoots": 834
   },
-  "identityBoundary": "Implementation, ABI, runtime, original NSX, checked environment, original bindings, original call and return texts, and source constraints are preserved. The replayed frame texts are byte-identical to the received raw texts.",
+  "identityBoundary": "Implementation, ABI, runtime, original NSX, checked environment, original bindings, original call and return texts, and source constraints are preserved. The replayed target, static flag and call data texts are byte-identical to the received raw texts.",
   "reproductionBoundary": "Full mode rehashes retained source, databases, heap lineage, complete guarded roots, unchanged current inputs including the replay receipts, and exact single-analysis launch receipts. Metadata mode does not replay proofs. Both modes leave whole engine semantics and final independent Assurance unclaimed.",
-  "conditionBoundary": "The thirteen-condition meaning is a hook-gated partial-set model, not the engine interpretation. Negative controls change one raw byte, digit or flag or remove one comparison on the same input. The configuration summary rule application and the remaining edge steps are not replayed.",
+  "conditionBoundary": "The thirteen-condition meaning is a hook-gated partial-set model, not the engine interpretation. The theorems hold for every keccak function with values below 2^256 and the big-endian word encoding; the amount bound is discharged for the actual valuation. In the stage-level producers, negative controls change one raw byte, digit or flag, the last byte of the call input field or only the selector field, and a checker without that comparison accepts; the final producer that takes every field from raw texts carries the end-of-input control. The configuration summary rule application and the remaining edge steps are not replayed.",
   "summaryBoundary": "Whole-configuration meaning, engine equivalence, the shape and order of the operational call list, general runtime links, central integration and final Assurance remain incomplete.",
   "productIdentity": {
     "retrieveModel": {
@@ -1614,7 +1614,7 @@
   ],
   "rehashVerifier": {
     "path": "scripts/trust12/verify_dependency_call_provenance_v1.py",
-    "bytes": 12199,
-    "sha256": "96fa006bbccc59e32ec497aedd4f05aa95090ad9410a3638f63d0414567234e8"
+    "bytes": 12638,
+    "sha256": "978238757a3a09161b370d0377229479bdd4ca0ed5f00fd62f85bd7af099ff80"
   }
 }

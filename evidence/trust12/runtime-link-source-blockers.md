@@ -51,10 +51,11 @@ received raw texts: the assess target, input, output and status, and the
 configuration target, static flag and call data from an exact booster replay of
 the recorded caller-side prefix, with the return data from the checked storage
 summary. This is bound by dependency-call-provenance-checkpoint-v1.json; the
-summary application step, engine equivalence and the general producer remain open. Partial retains its narrower profile and four historical
-Certora rules. Hook has its own nine actual T-REX integration tests, six feature
-mutations and compiler identity. None supplies the missing general producer for
-another profile.
+summary application step, engine equivalence and the general producer remain
+open. Partial retains its narrower profile and four historical Certora rules.
+Hook has its own nine actual T-REX integration tests, six feature mutations and
+compiler identity. None supplies the missing general producer for another
+profile.
 
 ## Minimum next experiment and trust boundary
 
