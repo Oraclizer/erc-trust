@@ -1,0 +1,57 @@
+{
+  "schema": "trust12-malformed-probe-mutants-v1",
+  "purpose": "Exact calldata length guards of each profile endpoint whose removal must be observable on the malformed probe deployment.",
+  "mutants": [
+    {
+      "id": "NATIVE-ACTION-LENGTH",
+      "campaignId": "MUT-23-CALLDATA-LENGTH",
+      "profile": "Native",
+      "entrypoints": ["executeRegulatoryAction", "executeERC7943Action"],
+      "fault": "Accept action calldata of any length on both action entrypoints"
+    },
+    {
+      "id": "NATIVE-REVERSAL-LENGTH",
+      "campaignId": "MUT-26-REVERSAL-CALLDATA-LENGTH",
+      "profile": "Native",
+      "entrypoints": ["executeRegulatoryReversal", "executeERC7943Reversal"],
+      "fault": "Accept reversal calldata of any length on both reversal entrypoints"
+    },
+    {
+      "id": "PARTIAL-ACTION-LENGTH",
+      "campaignId": "MUT-41-ERC3643-CALLDATA-LENGTH",
+      "profile": "Partial",
+      "entrypoints": ["executeRegulatoryAction"],
+      "fault": "Accept action calldata of any length"
+    },
+    {
+      "id": "PARTIAL-REVERSAL-LENGTH",
+      "campaignId": "MUT-42-ERC3643-REVERSAL-CALLDATA-LENGTH",
+      "profile": "Partial",
+      "entrypoints": ["executeRegulatoryReversal"],
+      "fault": "Accept reversal calldata of any length"
+    },
+    {
+      "id": "HOOK-ACTION-LENGTH",
+      "profile": "Hook",
+      "entrypoints": ["executeRegulatoryAction"],
+      "fault": "Accept action calldata of any length",
+      "file": "implementation/src/profiles/ERC3643HookAdapter.sol",
+      "old": "_requireCalldataLength(ACTION_CALLDATA_LENGTH);",
+      "new": "",
+      "expectedOccurrences": 1,
+      "repinAdapterCreationHash": true
+    },
+    {
+      "id": "HOOK-REVERSAL-LENGTH",
+      "profile": "Hook",
+      "entrypoints": ["executeRegulatoryReversal"],
+      "fault": "Accept reversal calldata of any length",
+      "file": "implementation/src/profiles/ERC3643HookAdapter.sol",
+      "old": "_requireCalldataLength(REVERSAL_CALLDATA_LENGTH);",
+      "new": "",
+      "expectedOccurrences": 1,
+      "repinAdapterCreationHash": true
+    }
+  ],
+  "nonclaim": "Each mutant removes one guard in an isolated copy of the product only; the published runtimes are unchanged."
+}

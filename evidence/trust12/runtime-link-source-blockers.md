@@ -124,12 +124,19 @@ The complete general FREEZE positive and its exact branch sensitivity are
 received in veri-symbolic-results.json with their distinct scopes.
 
 The supplied malformed relations prove alpha_transaction_spec with a Malformed
-outcome. The earlier bound admission gate requires alpha_transaction_bound and a
-TRUST_Returned phase, while the recorded Native malformed execution is
-TRUST_Reverted. This exact relation/phase mismatch must be repaired and consumed;
-no ledger target is silently changed to make it pass. The OOS requirement of
-whole persistent world equality, no logs or external calls, and no commitment
-remains in force.
+outcome. The earlier bound admission gate requires alpha_transaction_bound with an
+untyped malformed result, which decision 12 does not specify, and the recorded
+executions carry the EVM revert status. The aligned gate checkpoint
+(aligned-gate-checkpoint-v1.json) repairs this mismatch without silently changing
+a target: one classifier maps the raw status, the revert output and the
+value-reading product command to the gate label, the aligned gate relation holds
+for every registered request of the three profiles, and the earlier relation is
+proved to hold for the requests with empty revert output that the bridge does
+not decode and to admit no abstraction for every other registered request.
+The twenty-seven-cell gate instantiation must still consume the aligned relation.
+TRUST_Returned is a gate label for a kernel-delivered outcome, not the EVM RETURN
+instruction. The OOS requirement of whole persistent world equality, no logs or
+external calls, and no commitment remains in force.
 
 The actual source meaning and producer experiment belongs to the common Native
 operational reception prerequisite. The assess output EOF/status work is one

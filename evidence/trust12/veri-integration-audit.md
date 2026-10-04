@@ -229,3 +229,55 @@ The sections above that call the three general runtime links mandatory predate
 it: those links are now deferred research rows, unproved, and not required for
 TRUST 1.2 completion. The registered-scope central closure and the fresh
 independent assurance remain open.
+
+## Aligned malformed gate (2026-10-04)
+
+Six saved stages relate the registered requests outside canonical form of the
+three profiles (Native 16, Partial 13, Hook 13) to an aligned gate relation. One
+classifier maps the raw status, the revert output and the value-reading product
+command to the gate label: a request whose command does not decode becomes a
+returned malformed result, and a decoded request keeps the earlier classifier.
+In the aligned gate relation such a request is a full-state stutter with that
+result whatever its revert data, as decision 12 specifies; the aligned relation
+implies the product relation alpha_transaction_spec. Every registered request
+satisfies both. TRUST_Returned is the gate label for a kernel-delivered
+outcome, not the EVM RETURN instruction; the raw status is an EVM revert.
+
+The earlier gate relation requires an untyped malformed result. It holds for
+the requests with empty revert output that the bridge does not decode (Native 8,
+Partial 6, Hook 6). For a typed revert output (Native 7, Partial 6, Hook 6) it
+admits no abstraction, and for the nonzero-value request of each profile, whose
+canonical calldata the bridge decodes, it admits no abstraction either. These
+are kernel theorems, so the gate target changes for a stated reason rather than
+silently. A classifier that reads a typed output before the decoded command and
+the recorded reverted phase label break the aligned relation and keep the
+product relation; a success flag, one external call or one log breaks both.
+
+Status, revert output and calldata are received values bound to the registered
+records. Each record's post world and logs are defined as its recorded pre-call
+world and logs, as the recorded call reverts; the stages do not derive them from
+an execution trace. The gas limit and the external call list are supplied. The
+twenty-seven-cell gate instantiation must still consume the aligned relation.
+The Hook stages
+retain five conditional reader facts and carry byte copies of the aligned
+definitions and general theorems of the Native stage, shown equal by hashes
+only. The checkpoint aligned-gate-checkpoint-v1.json binds the six stages; its
+saved mode rehashes the artifacts, the native database sources and message
+exports and every current input. The twenty-seven-cell gate instantiation, the
+registered-scope central closure, the general runtime links and final
+Assurance remain open. This is a Building review, not fresh final Assurance.
+
+A second record, malformed-guard-mutants-checkpoint-v1.json, measures the
+compiled length guards of the three profiles with the malformed probe, whose
+requests are catalogued recipes on a Foundry deployment rather than the
+registered certificates. In an isolated copy of the product, removing one exact
+calldata length guard turns the probe's requests longer than canonical form
+into executions that succeed with logs, committed storage writes and external
+accesses, for every mutated endpoint of the three profiles (each Native mutant
+removes the guard of one operation on both routes; Partial and Hook action and
+reversal), while the unmodified product fails the same probe requests quietly,
+as out-of-spec-probes-v1.json records. The Hook factory pins the adapter
+creation code and refuses a mutated adapter, so the isolated copy also pins the
+mutated adapter there; the published factory and its pin are unchanged. The
+probe does not cover the bounded word guards and is not a proof over all
+accepted executions.

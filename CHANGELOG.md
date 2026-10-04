@@ -2,6 +2,24 @@
 
 ## Unreleased
 
+- Record the aligned gate relation for the registered requests outside
+  canonical form. For the 16 Native, 13 Partial and 13 Hook registered requests,
+  prove the gate relation that follows decision 12 (a request whose
+  value-reading command does not decode is a full-state stutter with a returned
+  malformed result, a model phase label for a call that reverts, whatever its
+  revert data) together with the product relation.
+  Prove that the earlier gate relation holds only for the requests with empty
+  revert output that the bridge does not decode and admits no abstraction for a
+  typed revert output or for the nonzero-value request, which the bridge
+  decodes. Bind the six saved stages in aligned-gate-checkpoint-v1.json.
+  Record the length-guard mutants of the malformed probe in
+  malformed-guard-mutants-checkpoint-v1.json: removing one exact calldata
+  length guard of each profile endpoint, in an isolated copy, turns the probe's
+  requests longer than canonical form into executions with logs, storage writes
+  and external accesses. The twenty-seven-cell gate instantiation, the
+  registered-scope central closure, the general runtime links and final
+  Assurance remain open; the Hook stages retain five conditional reader facts.
+
 - Set the TRUST 1.2 completion scope to registered executions (decision 13).
   Record the 2026-10-04 completion direction and keep the 2026-09-25
   direction as history, move the three general runtime links to deferred

@@ -425,7 +425,7 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "088233c092010eb1fcd9c9ef380ad8cc4d73084b801e023c8bc207a18220d254"
+        "sha256": "37bd1c406342b6bd4bec107a6bf8bf09eda9e87e461386ca3fb63598af6fe860"
       }
     },
     "runtime": {
@@ -479,7 +479,7 @@
         },
         {
           "path": "evidence/trust12/obligation-ledger.json",
-          "sha256": "14d9b38323354308f4c1a1bbe6f72e45b9d473c040bae0049f148cc176106e26"
+          "sha256": "c798c730fa52f1386f95615740825360e6ebb90ca4f42f781c0124fb35f2b32a"
         },
         {
           "path": "evidence/trust12/runtime-identity.json",
@@ -487,7 +487,7 @@
         },
         {
           "path": "evidence/trust12/runtime-link-source-blockers.md",
-          "sha256": "f5b023f3d1ee580c5635707ca9a80aba7b5e28c1cd327c386ebe4634aca06ff6"
+          "sha256": "1ba4b6ae141d8c957d5aa096d333762c5598d88d22e4f675020862b9033a5589"
         },
         {
           "path": "evidence/trust12/independent-audit.md",
@@ -598,6 +598,18 @@
           "sha256": "d4e892982dcfa29fc9591f697e93ca10186306893ad5841306b12fd3ada9ee2c"
         },
         {
+          "path": "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
+          "sha256": "e52ede796d01f59f879aa8371059fbe98b1d8ce96992400779facf1c99153caa"
+        },
+        {
+          "path": "evidence/trust12/runtime-link/tail-preparation/malformed-probe-mutants-v1.json",
+          "sha256": "a20f3a334a7d0d413ab7d3ad699e815dfea4d6779e30e03f9f54d9263fa82fe6"
+        },
+        {
+          "path": "evidence/trust12/runtime-link/tail-preparation/malformed-guard-mutants-checkpoint-v1.json",
+          "sha256": "0fced074b648ed1d852da97792ff41032eb5d6f5990965dddb72340fefb6f6ea"
+        },
+        {
           "path": "evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json",
           "sha256": "3e6524fc20a951dab02e916f41980b8281a84338ec94b2dcf14f5a0e8a73a087"
         },
@@ -619,7 +631,7 @@
         },
         {
           "path": "evidence/trust12/input-seal.json",
-          "sha256": "6133ff49d6c10bff19d806c5a841dbdff997705a87d456acbe4b66d883606b8a"
+          "sha256": "084e5d0d88eea8b363f9308e80e6a503e7dd4602c63d5cfae470c888d3696408"
         }
       ],
       "fullRefinementComplete": false,
@@ -755,7 +767,7 @@
       },
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "14d9b38323354308f4c1a1bbe6f72e45b9d473c040bae0049f148cc176106e26"
+        "sha256": "c798c730fa52f1386f95615740825360e6ebb90ca4f42f781c0124fb35f2b32a"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -763,7 +775,7 @@
       },
       {
         "path": "evidence/trust12/runtime-link-source-blockers.md",
-        "sha256": "f5b023f3d1ee580c5635707ca9a80aba7b5e28c1cd327c386ebe4634aca06ff6"
+        "sha256": "1ba4b6ae141d8c957d5aa096d333762c5598d88d22e4f675020862b9033a5589"
       },
       {
         "path": "evidence/trust12/independent-audit.md",
@@ -874,6 +886,18 @@
         "sha256": "d4e892982dcfa29fc9591f697e93ca10186306893ad5841306b12fd3ada9ee2c"
       },
       {
+        "path": "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
+        "sha256": "e52ede796d01f59f879aa8371059fbe98b1d8ce96992400779facf1c99153caa"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/malformed-probe-mutants-v1.json",
+        "sha256": "a20f3a334a7d0d413ab7d3ad699e815dfea4d6779e30e03f9f54d9263fa82fe6"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/malformed-guard-mutants-checkpoint-v1.json",
+        "sha256": "0fced074b648ed1d852da97792ff41032eb5d6f5990965dddb72340fefb6f6ea"
+      },
+      {
         "path": "evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json",
         "sha256": "3e6524fc20a951dab02e916f41980b8281a84338ec94b2dcf14f5a0e8a73a087"
       },
@@ -895,7 +919,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "6133ff49d6c10bff19d806c5a841dbdff997705a87d456acbe4b66d883606b8a"
+        "sha256": "084e5d0d88eea8b363f9308e80e6a503e7dd4602c63d5cfae470c888d3696408"
       }
     ],
     "fullRefinementComplete": false,
