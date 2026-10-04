@@ -1,0 +1,49 @@
+{
+  "schema": "trust12-typed-failure-probe-mutants-v1",
+  "purpose": "Revert sites of each profile endpoint whose changed argument layout or selector must turn the named typed failure probe cases from bound into not bound. Each mutant is applied to an isolated copy only; a mutated Hook adapter has the factory pin of its own creation code in that copy.",
+  "mutants": [
+    {
+      "id": "HOOK-UNAUTHORIZED-AUTHORITY-WORD",
+      "profile": "Hook",
+      "cases": [109, 110],
+      "fault": "TrustUnauthorized carries a zero authority reference instead of the requested one",
+      "file": "implementation/src/profiles/ERC3643HookAdapter.sol",
+      "old": "revert TrustUnauthorized(caller, requestedRef);",
+      "new": "revert TrustUnauthorized(caller, bytes32(0));",
+      "expectedOccurrences": 1,
+      "repinAdapterCreationHash": true
+    },
+    {
+      "id": "HOOK-TERMINAL-CASE-WORD",
+      "profile": "Hook",
+      "cases": [114],
+      "fault": "TrustTerminal of an action carries a zero case instead of the case of the command",
+      "file": "implementation/src/profiles/ERC3643HookAdapter.sol",
+      "old": "revert TrustTerminal(request.caseId);",
+      "new": "revert TrustTerminal(bytes32(0));",
+      "expectedOccurrences": 1,
+      "repinAdapterCreationHash": true
+    },
+    {
+      "id": "PARTIAL-INVALID-COMMAND-ID-WORD",
+      "profile": "Partial",
+      "cases": [101],
+      "fault": "TrustInvalidCommand of the validity window carries a zero command identifier",
+      "file": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+      "old": "revert TrustInvalidCommand(request.actionId, REASON_TIME);",
+      "new": "revert TrustInvalidCommand(bytes32(0), REASON_TIME);",
+      "expectedOccurrences": 1
+    },
+    {
+      "id": "NATIVE-OPERATIONAL-SELECTOR",
+      "profile": "Native",
+      "cases": [105, 108, 205, 208],
+      "fault": "A dependency operational failure is reported with the rejection selector",
+      "file": "implementation/src/TrustToken.sol",
+      "old": "revert TrustOperationalFailure(commandId, reason, binding.bindingHash);",
+      "new": "revert TrustRejected(commandId, reason);",
+      "expectedOccurrences": 1
+    }
+  ],
+  "nonclaim": "A detected mutant shows that the typed failure probe observes the changed revert site; the mutated copy has another runtime and is never a run of the frozen build."
+}

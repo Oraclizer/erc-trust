@@ -13,7 +13,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "73f278f531bf85544ec8dd34d98293e90abeaccde19f795a53d8333edae655fa"
+      "sha256": "90af1521fa967d30b783ba70736ac89d8213c3e916d52bd4c4f8016f9bc1a32f"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
@@ -129,7 +129,7 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "72750efd8835e3948131c4a79bcd7a6e0da429c04a9e52f76d1be6534a759425"
+      "sha256": "c470017dc4ffd6fd2b7d633255f6becb30574a8e596fe63dbe44f581e634331a"
     },
     {
       "path": "evidence/trust12/profile-implementation-evidence-review.json",
@@ -222,6 +222,14 @@
     {
       "path": "evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json",
       "sha256": "3e6524fc20a951dab02e916f41980b8281a84338ec94b2dcf14f5a0e8a73a087"
+    },
+    {
+      "path": "evidence/trust12/runtime-link/tail-preparation/typed-failure-checkpoint-v1.json",
+      "sha256": "6aa21dac6ee60676fb962aa91b04eb838f54c36a27525f7fef4e5d1a47abcec6"
+    },
+    {
+      "path": "evidence/trust12/runtime-link/tail-preparation/typed-failure-probe-mutants-v1.json",
+      "sha256": "c98f5e30c7b7f40fbf9738919ab482922d0eed956b0c258a9e5b12002845f422"
     },
     {
       "path": "evidence/trust12/runtime-producer-feasibility.json",
@@ -385,7 +393,7 @@
     },
     {
       "path": "scripts/generate-trust12-input-seal.py",
-      "sha256": "8e04ae6e933fdeef0904aedf62f44842368b9cffc5ba454d0bf7fea00db481ff"
+      "sha256": "10c92b534694798977dc38b4b0fb981422769eb63bba8725065f2f218a3480fc"
     },
     {
       "path": "scripts/generate-trust12-proof-audit.py",
@@ -537,7 +545,11 @@
     },
     {
       "path": "scripts/test-trust12-required.mjs",
-      "sha256": "956b90daff47b3d0849cff34cb98d64c0c0b7b978a8bc5239be684b7ab95424a"
+      "sha256": "dd6d330387ce48ed6fcd20c3027539e4c88546ae38ee2076444c4aa0c20749da"
+    },
+    {
+      "path": "scripts/test-typed-failure-binding.py",
+      "sha256": "c685f2a2c2335b1cea8b5d8fae282c6f83a22cd9ca5611b048881368f14503fe"
     },
     {
       "path": "scripts/test-veri-dependency.py",
@@ -546,6 +558,10 @@
     {
       "path": "scripts/trust12/tail-preparation/certificate_registry_v2.py",
       "sha256": "f8bb5f5055eb2fe99e70ff10abdf9af9a7f9be8bd64686ae6e9243e35c698914"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/code_identity_v2.py",
+      "sha256": "2e9adf4efa4f402dcdfec1ec6f124934375b06a13e654730654c990ed707f9ed"
     },
     {
       "path": "scripts/trust12/tail-preparation/kore_accounts.py",
@@ -572,12 +588,40 @@
       "sha256": "cb414ead30ba4528eecbfbf2549d81c2cb8a6a0a18b20d5a1f2cff5215b3f1df"
     },
     {
+      "path": "scripts/trust12/tail-preparation/run_typed_failure_probe.py",
+      "sha256": "fcf72946657a9499bd4cb41e366a4cec82ae3e90adad7164777af2c4f52c40fd"
+    },
+    {
       "path": "scripts/trust12/tail-preparation/test_certificate_registry_v2.py",
       "sha256": "2f3abe3ebba139d0f5edfd90f27d7bc69ab5855eaef8a00bd97187cb6b55d370"
     },
     {
       "path": "scripts/trust12/tail-preparation/test_route_inventory_v2.py",
       "sha256": "1fdbc2859354fe21a85725fcfea6c21bfc2606f99b4b96ec8c735dec572b814c"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/test_typed_failure_binding.py",
+      "sha256": "7d5fc252f2bd7846ebb96ed5698c993e549749e732217fe6abc1e3efa1f87643"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/typed-failure-probe/HookTypedFailureProbe.t.sol",
+      "sha256": "fb2045ed069d233dbda7954ad7bfec6c00b0470510023ed411da56af714badaa"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/typed-failure-probe/NativeTypedFailureProbe.t.sol",
+      "sha256": "c1f15fc4c7e96b56acdaa498dc05cb268f07a9132a0b009ce50ac76677381ee3"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/typed-failure-probe/PartialTypedFailureProbe.t.sol",
+      "sha256": "2134004e14f8921ab28d0b7a11e66d4cc2c16898a1b9e53a275de882335b4e98"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/typed-failure-probe/TypedFailureProbeCore.sol",
+      "sha256": "a1e9881879597cec041082a051069a54e0524fde7fa58396d02b54b6f62e6d30"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/typed_failure_report.py",
+      "sha256": "e881aee50dbd7488fe62f2bda8a54da4937348c30c492a32526b385c185d7c0b"
     },
     {
       "path": "scripts/trust12/verify_assess_call_reception_v1.py",
@@ -636,6 +680,10 @@
       "sha256": "963fd5731718245c483ae1cf59addf5fa0e40dc4a0de750b3d8297b79c0b1219"
     },
     {
+      "path": "scripts/trust12/verify_typed_failure_binding_v1.py",
+      "sha256": "1e4802999de7937af063e4b057a3197ce5d0fc56354d716373cc52ec5af7eeeb"
+    },
+    {
       "path": "scripts/veri_dependency.py",
       "sha256": "39b7e7352f77ab26ee98d23fb71c6491286003c057df23d8ea9e5f005e9adf9c"
     },
@@ -665,7 +713,7 @@
     },
     {
       "path": "scripts/verify-trust12-required.mjs",
-      "sha256": "d83c058f1d37b18de3a10635092f5bd2b17325c28bfe05f47f1fe9c14cc14a1c"
+      "sha256": "58430b7d1c39235537fc422add050bd295881b505c0f8fa2af8ae5cdc844bd1c"
     },
     {
       "path": "spec/decisions/14-hook-route-classes.md",

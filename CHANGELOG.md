@@ -2,6 +2,20 @@
 
 ## Unreleased
 
+- Add the typed failure probe of the runtime link and its public record
+  typed-failure-checkpoint-v1.json. The probe drives all six typed failures
+  through an action and a reversal entrypoint of each profile endpoint, 52
+  typed failure cases and 8 accepted controls; every case reverts with the
+  expected selector and a payload of the exact length that the fixed ABI
+  reading of the gate accepts, and its report binds to the request and the
+  sender as the gate defines. Four declared mutants each change one revert
+  site and unbind the named cases. A build of the frozen sources in an
+  isolated copy produces every profile runtime equal to its template, and the
+  selector loads of each endpoint runtime are recomputed from that build. The
+  public verifier pins the reviewed record and runs in the required gate; its
+  saved mode recomputes every receipt and the load scan from the private run
+  records and compiled artifacts. Neither mode reruns Foundry or the compiler.
+
 - Add the version 2 route inventory of the runtime link and its public record
   route-inventory-checkpoint-v1.json. Decision 14 classifies the 48 selectors
   of the four Hook runtimes, and decision 15 states the behavior of the eight

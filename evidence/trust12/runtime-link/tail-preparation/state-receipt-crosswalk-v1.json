@@ -14,8 +14,8 @@
     },
     {
       "path": "evidence/end-to-end-refinement/central-closure-v3.json",
-      "bytes": 36719,
-      "sha256": "68ffa1c909e49510fd5786ffdb3a30094d78713a47519aebc58df52a1d73687d"
+      "bytes": 37124,
+      "sha256": "1645774e23e18c1339f8e64658b445fcf186d0fcf200349a4e8aac8ccf048eda"
     },
     {
       "path": "spec/erc-trust-kernel-v2.json",
