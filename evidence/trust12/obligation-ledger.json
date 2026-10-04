@@ -249,7 +249,7 @@
         },
         "review": {
           "path": "evidence/trust12/veri-integration-audit.md",
-          "sha256": "5db0797e4f74c1609ed962f026d697e80e73c1781cafb947ba4a1f18915cf3c6"
+          "sha256": "83d06cb533e3ca3c8c33351bd75dd12ebac45e1f03f8fa0afd072cb83cac4a3e"
         }
       },
       "probeDisposition": "Completed general positive and both complementary same-domain removal controls received. No shipping exception.",
@@ -2000,7 +2000,7 @@
           },
           {
             "path": "evidence/trust12/runtime-link/second-freeze-rejection-checkpoint-v1.json",
-            "sha256": "6c83f21cbe1b752d0601bd23e20182d0014989918c406587889e1c089512dbf4",
+            "sha256": "d4e892982dcfa29fc9591f697e93ca10186306893ad5841306b12fd3ada9ee2c",
             "countsTowardGeneralClosure": false
           }
         ],

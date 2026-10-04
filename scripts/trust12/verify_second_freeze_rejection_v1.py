@@ -18,7 +18,7 @@ CHECKPOINT = 'evidence/trust12/runtime-link/second-freeze-rejection-checkpoint-v
 VERIFIER = 'scripts/trust12/verify_second_freeze_rejection_v1.py'
 INDEX = 'second-freeze-rejection-artifact-index-v1.json'
 SCHEMA = 'trust12-second-freeze-rejection-checkpoint-v1'
-EXPECTED_EVIDENCE_DIGEST = '57dd010943c138c64de161128d32095265e8419e6b9a851d66a1b9c01d6aa91d'
+EXPECTED_EVIDENCE_DIGEST = 'c227f40e557fa8bed9fd8a6c99e2872a700e52840aa407447aae38e9a9b30131'
 CONFIRMED = ('entryFrameCellsAndSecondAmountFromRaw','revertStatusAndWorldFromReceivedRawTexts',
              'calldataAndRevertOutputRawEndOfInput','calldataDecodedAndOutputEvaluated',
              'secondFreezeTransactionFromRawProviders','productRejectedRelation',

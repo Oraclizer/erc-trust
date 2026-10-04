@@ -3,14 +3,15 @@
 ## Unreleased
 
 - Record the rejected second FREEZE of the Native symbolic test as a
-  transaction received from raw texts. Receive the entry frame cells, the
-  second amount binding, the revert status, the world before and after the call,
-  and the calldata and revert output through end of input; decode the calldata
-  and evaluate the output to the typed rejection with reason 12. Prove the
-  product rejected relation and the gate bound relation with the report bound to
-  the decoded command, the reason pinned to FREEZE_DIRECTION and the abstract
-  model's own rejection of the command. Engine equivalence, the general runtime
-  links and final Assurance remain open.
+  transaction received from raw texts at the received valuation point. Receive
+  the entry frame cells, the second amount binding, the revert status and the
+  calldata and revert output through end of input, use the received post-call
+  world of the first FREEZE before and after the call, and set the external call
+  list empty; decode the calldata and evaluate the output to the typed rejection
+  with reason 12. Prove the product rejected relation and the gate bound
+  relation with the report bound to the decoded command, the reason pinned to
+  FREEZE_DIRECTION and the abstract model's own rejection of the command. Engine
+  equivalence, the general runtime links and final Assurance remain open.
 
 - Record dependency-call provenance for the first Native FREEZE. Receive the
   assess target and selector, the configuration call data and, from an exact
