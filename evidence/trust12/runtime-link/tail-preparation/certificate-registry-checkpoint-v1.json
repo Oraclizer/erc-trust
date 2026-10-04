@@ -1,0 +1,1139 @@
+{
+  "schema": "trust12-certificate-registry-checkpoint-v1",
+  "status": "PASS_CERTIFICATE_REGISTRY_COVERAGE_AND_EXECUTED_CODE",
+  "scope": "The certificate registry of the TRUST 1.2 runtime link names one applied and one not-applied checked certificate for each of the twenty-seven profile and operation cells, and one checked certificate for each catalogued request outside canonical form of the three profiles (Native 16, Partial 13, Hook 13), 96 certificates in all. Every cell pair agrees with the closed status of its cell in the runtime-link obligation ledger and with the passing kernel results that the ledger cites for the cell, and the requests outside canonical form of each profile are exactly the catalogued ones. In every world recorded before the call of a certificate, the account that the recorded frame executes is the endpoint that the certificate's own records name and has the code of the endpoint template outside the immutable ranges, and the world holds exactly one account for each runtime of the executed runtime set of the profile.",
+  "identityBoundary": "The executed runtime set is the Native token; the Partial adapter and governor; and the Hook adapter, governor and compliance module. A match means the same length and equal bytes outside the merged immutable ranges, so immutable values are not compared with any deployment. The Hook factory appears in no recorded world: every recorded world is a state after the unit was created, and the certificate harness creates each unit by running the adapter creation code directly, so the factory, which in a product deployment hash-checks and runs that creation code, is neither deployed nor called. The factory is identified only by its template in the code identity; which instance is deployed and whether it was created through the factory remain the assumption A-DEPLOYMENT. The other accounts of a recorded world, the calling test harness and dependency contracts such as the upstream ERC-3643 token and the identity registry and compliance contracts that are not profile runtimes, are not identified by code, and the behavior of the dependencies remains the assumption A-EXTERNAL.",
+  "consumerBoundary": "Each recorded world is named, with the same SHA-256, by the records that consumed it, and every certificate has a world that the input binding of a kernel session names: 108 of the 109 worlds, across 25 kernel sessions. The remaining world, the entry world of the second FREEZE that the Native endpoint rejects, is named only by its KORE export record: the kernel record of that call takes the post-call world of the first FREEZE as the world before the call, and the export is a snapshot inside the call, as the public second FREEZE rejection record states. That world yields the same executed code as the consumed world of the same certificate. The registry compares the hashes that these records hold; it does not replay the kernel sessions and does not check that a consuming session precedes the kernel runs that the ledger cites.",
+  "acceptanceBoundary": "Acceptance of a certificate is read, not reproved. For 92 certificates it is the verdict that their KEVM batch run recorded: passed, not failed, not admitted, not a circularity, with no pending and no failing node, and the proof and graph hashes of the batch agree with the certificate's boundary selection record. For the Native FREEZE pair it is the passing compound certificate record. The two Native LIQUIDATE certificates have no batch verdict, so the registry rehashes their stored proof and graph files against the proof and graph hashes of their extraction records and evaluates the stored graph with the APRProof status rule: both pass, with the target as the only leaf and no pending or failing node, and neither proof is admitted or a circularity.",
+  "reproductionBoundary": "Metadata mode reads tracked files only and checks this record against the current product files. Saved mode rehashes the private registry and locator file, rebuilds the registry in closure mode from the private evidence with the current tool, and requires the rebuilt registry to equal the stored one byte for byte and this record to follow from it. Neither mode reruns a prover or a kernel session. The registry is the finite data of the acceptance partition, not the partition theorem, which a kernel run over the whole registry must still prove, and it states no completion of the twenty-seven-cell gate, the registered-scope central closure, any general runtime link, the independent Assurance or TRUST 1.2.",
+  "coverage": {
+    "declaredCells": 27,
+    "boundCells": 27,
+    "certificates": {
+      "Native": 34,
+      "Partial": 31,
+      "Hook": 31
+    },
+    "requestsOutsideCanonicalForm": {
+      "Native": 16,
+      "Partial": 13,
+      "Hook": 13
+    },
+    "executedCodeMatches": 96,
+    "recordedWorlds": 109,
+    "worldsNamedByKernelStageInputs": 108,
+    "worldsNamedOnlyByKoreExports": 1,
+    "kernelSessionsNamingWorlds": 25,
+    "acceptanceMethods": {
+      "RECORDED_FIELDS": 94,
+      "STORED_PROOF_GRAPH": 2
+    },
+    "checks": {
+      "certificate-keys-unique": "PASS",
+      "certificates-distinct": "PASS",
+      "certificate-records-consistent": "PASS",
+      "cells-agree-with-ledger-and-kernels": "PASS",
+      "malformed-registered-as-catalogued": "PASS",
+      "executed-code-identity": "PASS",
+      "recorded-worlds-consumed": "PASS"
+    }
+  },
+  "runtimeIdentity": {
+    "Native": {
+      "profileIndex": "Runtime_Native",
+      "endpoint": "TrustToken",
+      "codeIdentityRootSha256": "f19a8bef73333c7608984c530427b69598a5919e8624d80404c89983f896c488",
+      "executed": {
+        "TrustToken": {
+          "templateSha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1",
+          "bytes": 20043
+        }
+      },
+      "deploymentOnly": {}
+    },
+    "Partial": {
+      "profileIndex": "Runtime_Partial",
+      "endpoint": "ERC3643TrustAdapter",
+      "codeIdentityRootSha256": "dd5a0bb0c6b930fc2bb8d967095cc955bde0c2d363121c85413abc2facdd9c3b",
+      "executed": {
+        "ERC3643TrustAdapter": {
+          "templateSha256": "7a2dfa433911dd37e389498129356db30693e8ee8e128f8da63a5d3044a56349",
+          "bytes": 19480
+        },
+        "ProfileGovernor": {
+          "templateSha256": "78c08fbe4be793482e44a8cdf32fcc1af3276277c8cc78f48761fdcbc4bf9399",
+          "bytes": 2787
+        }
+      },
+      "deploymentOnly": {}
+    },
+    "Hook": {
+      "profileIndex": "Runtime_Hook",
+      "endpoint": "ERC3643HookAdapter",
+      "codeIdentityRootSha256": "45bfbc13128ba737f349a468827bfd81b0c42bf15b165e8de5f92ba155840879",
+      "executed": {
+        "ERC3643HookAdapter": {
+          "templateSha256": "f84c886b203dacd380c29b2aa3afd2ed401e487ed79f95e14b4d24edb24c1b85",
+          "bytes": 19824
+        },
+        "ERC3643HookGovernor": {
+          "templateSha256": "0978059dea47b1286326902332f41079029836cf257691fb13c99bc2b5064012",
+          "bytes": 3026
+        },
+        "ERC3643HookCompliance": {
+          "templateSha256": "ebcf0ea744e5e505fb1bd5bd02a9ab0b4c0a112c628ee37cb8916ea7ce3f8881",
+          "bytes": 2078
+        }
+      },
+      "deploymentOnly": {
+        "ERC3643HookFactory": {
+          "templateSha256": "9636463d4fba1eebc1690648aad3439b30f53156927161bc93c899df1056d680",
+          "bytes": 1812,
+          "accountsInRecordedWorlds": 0,
+          "reason": "Every recorded world is a state after the unit was created, and the certificate harness creates each unit by running the adapter creation code directly, so the factory, which in a product deployment hash-checks and runs that creation code, is neither deployed nor called in a recorded world."
+        }
+      }
+    }
+  },
+  "retainedAssumptions": {
+    "A-DEPLOYMENT": "No deployed instance is bound. The registry identifies the code that the certificates executed, not the code of a deployment, and not whether a deployed unit was created through the factory or directly.",
+    "A-EXTERNAL": "Only the profile runtimes are identified by code. The other accounts of a recorded world, the calling test harness and the dependency contracts such as the upstream ERC-3643 token and the identity registry and compliance contracts that are not profile runtimes, are not identified, and the behavior of the dependencies remains assumed."
+  },
+  "productIdentity": {
+    "registryTool": {
+      "path": "scripts/trust12/tail-preparation/certificate_registry_v2.py",
+      "bytes": 51888,
+      "sha256": "f8bb5f5055eb2fe99e70ff10abdf9af9a7f9be8bd64686ae6e9243e35c698914"
+    },
+    "worldReader": {
+      "path": "scripts/trust12/tail-preparation/kore_accounts.py",
+      "bytes": 9789,
+      "sha256": "7bd2691f6f6a8c574614a17f8b73f925e445100d1254f19710fe83b04f7bb731"
+    },
+    "registryHelpers": {
+      "path": "scripts/trust12/tail-preparation/certificate_registry.py",
+      "bytes": 19919,
+      "sha256": "7cb0c0cbabcef1b48612bbe525b52281162aec67ab3048f405ac593845c2aaea"
+    },
+    "preparationCommon": {
+      "path": "scripts/trust12/tail-preparation/tail_common.py",
+      "bytes": 12799,
+      "sha256": "b9ee4b6809e7a8f306d8157b149fb672e3c2cdd15197df1ebf67f1ece34b473f"
+    },
+    "registrySchema": {
+      "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-schema-v2.json",
+      "bytes": 26328,
+      "sha256": "bd3778323b6f3d97049fa385ccd2a36a1a8812d268350539594a44568a09a461"
+    },
+    "codeIdentity": {
+      "path": "evidence/trust12/runtime-link/tail-preparation/code-identity-v1.json",
+      "bytes": 34712,
+      "sha256": "7cfcfe7ba17ef9d8a8d05593e80d58b416902673b903bbc9e593bcfd6c2efc74"
+    },
+    "malformedCatalog": {
+      "path": "evidence/trust12/runtime-link/malformed/kevm-kore-checkpoint-v1.json",
+      "bytes": 6853,
+      "sha256": "ed39a6dbc7f10fac348c022b3a1e5007f2194bdf46064b1adf1e81a80c75b657"
+    },
+    "exportReasonSource": {
+      "path": "evidence/trust12/runtime-link/second-freeze-rejection-checkpoint-v1.json",
+      "bytes": 43626,
+      "sha256": "d4e892982dcfa29fc9591f697e93ca10186306893ad5841306b12fd3ada9ee2c"
+    }
+  },
+  "artifacts": [
+    {
+      "id": "certificate-registry",
+      "kind": "registry",
+      "bytes": 548950,
+      "sha256": "53f54df8469d968c5d82dd630fae888a2f347ae3af935773cac41bfd3711eade"
+    },
+    {
+      "id": "certificate-locators",
+      "kind": "locators",
+      "bytes": 261048,
+      "sha256": "9369641db76f59a5fea88061f03eaf4b0a81d220e38717f5891372cddf1646ea"
+    }
+  ],
+  "rehashVerifier": {
+    "path": "scripts/trust12/verify_certificate_registry_v1.py",
+    "bytes": 27812,
+    "sha256": "659327cd4ced6bf040d77276073796812b479eac75555e6bd446ecf2f17aecc9",
+    "command": "python3 scripts/trust12/verify_certificate_registry_v1.py --product-root <product-root> --evidence <evidence-root> --artifact-index <private-artifact-index.json>"
+  },
+  "nonclaims": {
+    "partitionTheorem": true,
+    "twentySevenCellGateInstantiation": true,
+    "registeredCentralClosure": true,
+    "generalRuntimeLinks": true,
+    "independentAssurance": true,
+    "deploymentIdentity": true,
+    "dependencyCode": true,
+    "proverRerun": true,
+    "kernelSessionReplay": true,
+    "fullTrustCompletion": true,
+    "releaseOrDeployment": true
+  },
+  "certificates": [
+    {
+      "key": "Hook/CONFISCATE/applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/CONFISCATE/not-applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/FREEZE/applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/FREEZE/not-applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/LIQUIDATE/applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/LIQUIDATE/not-applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/MALFORMED/action-dirty-address",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/MALFORMED/action-dirty-uint48",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/MALFORMED/action-dirty-uint64",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/MALFORMED/action-enum-out-of-range",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/MALFORMED/action-nonzero-value",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/MALFORMED/action-one-byte-long",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/MALFORMED/action-one-byte-short",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/MALFORMED/action-ordering-foreign-domain",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/MALFORMED/empty-calldata",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/MALFORMED/reversal-enum-out-of-range",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/MALFORMED/reversal-one-byte-short",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/MALFORMED/three-byte-calldata",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/MALFORMED/unknown-selector",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/RECOVER/applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/RECOVER/not-applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/RELEASE/applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 2,
+      "kernelStageInputs": 2,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/RELEASE/not-applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 2,
+      "kernelStageInputs": 2,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/RESTRICT/applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/RESTRICT/not-applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/SEIZE/applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/SEIZE/not-applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/UNFREEZE/applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 2,
+      "kernelStageInputs": 2,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/UNFREEZE/not-applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 2,
+      "kernelStageInputs": 2,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/UNRESTRICT/applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 2,
+      "kernelStageInputs": 2,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Hook/UNRESTRICT/not-applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 2,
+      "kernelStageInputs": 2,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "f92671b5bb9d4a5dc5882780dc3c6d0b84d4d304805362560411727feae16ba6"
+    },
+    {
+      "key": "Native/CONFISCATE/applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/CONFISCATE/not-applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/FREEZE/applied",
+      "form": "COMPOUND_BOUNDARY",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/FREEZE/not-applied",
+      "form": "COMPOUND_BOUNDARY",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 2,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 1,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/LIQUIDATE/applied",
+      "form": "APR_PROOF",
+      "acceptance": "STORED_PROOF_GRAPH",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/LIQUIDATE/not-applied",
+      "form": "APR_PROOF",
+      "acceptance": "STORED_PROOF_GRAPH",
+      "worlds": 1,
+      "kernelStageInputs": 2,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/MALFORMED/action-dirty-address",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/MALFORMED/action-dirty-uint48",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/MALFORMED/action-dirty-uint64",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/MALFORMED/action-enum-out-of-range",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/MALFORMED/action-nonzero-value",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/MALFORMED/action-one-byte-long",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/MALFORMED/action-one-byte-short",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/MALFORMED/action-ordering-foreign-domain",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/MALFORMED/empty-calldata",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/MALFORMED/reversal-enum-out-of-range",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/MALFORMED/reversal-one-byte-short",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/MALFORMED/route-action-enum-out-of-range",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/MALFORMED/route-action-one-byte-short",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/MALFORMED/route-reversal-one-byte-short",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/MALFORMED/three-byte-calldata",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/MALFORMED/unknown-selector",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/RECOVER/applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/RECOVER/not-applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/RELEASE/applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/RELEASE/not-applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/RESTRICT/applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/RESTRICT/not-applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/SEIZE/applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/SEIZE/not-applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/UNFREEZE/applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/UNFREEZE/not-applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/UNRESTRICT/applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Native/UNRESTRICT/not-applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "2d67fbfe91c90436eeab70f43b33a9bdcc6490b9f5eea642f4c1caa3978c61f0"
+    },
+    {
+      "key": "Partial/CONFISCATE/applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/CONFISCATE/not-applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/FREEZE/applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/FREEZE/not-applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/LIQUIDATE/applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/LIQUIDATE/not-applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/MALFORMED/action-dirty-address",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/MALFORMED/action-dirty-uint48",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/MALFORMED/action-dirty-uint64",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/MALFORMED/action-enum-out-of-range",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/MALFORMED/action-nonzero-value",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/MALFORMED/action-one-byte-long",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/MALFORMED/action-one-byte-short",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/MALFORMED/action-ordering-foreign-domain",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/MALFORMED/empty-calldata",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/MALFORMED/reversal-enum-out-of-range",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/MALFORMED/reversal-one-byte-short",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/MALFORMED/three-byte-calldata",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/MALFORMED/unknown-selector",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/RECOVER/applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/RECOVER/not-applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/RELEASE/applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 2,
+      "kernelStageInputs": 2,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/RELEASE/not-applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 2,
+      "kernelStageInputs": 2,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/RESTRICT/applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/RESTRICT/not-applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/SEIZE/applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/SEIZE/not-applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 1,
+      "kernelStageInputs": 1,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/UNFREEZE/applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 2,
+      "kernelStageInputs": 2,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/UNFREEZE/not-applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 2,
+      "kernelStageInputs": 2,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/UNRESTRICT/applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 2,
+      "kernelStageInputs": 2,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    },
+    {
+      "key": "Partial/UNRESTRICT/not-applied",
+      "form": "APR_PROOF",
+      "acceptance": "RECORDED_FIELDS",
+      "worlds": 2,
+      "kernelStageInputs": 2,
+      "exportOnlyWorlds": 0,
+      "executedCode": "MATCH",
+      "executedCodeSha256": "6490065222416299548aae744a7f52904523d3c3dd4bbf379296b6f25d45a1b6"
+    }
+  ]
+}

@@ -13,7 +13,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "ee3869c8fadd79a5a0ef1604711304f3b8fd186a3201f2a79f454f137657a6bb"
+      "sha256": "772f7b0b3487dcc436a8987292f3af02d56c653bfab326a0323197a2594f65f9"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
@@ -129,7 +129,7 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "c798c730fa52f1386f95615740825360e6ebb90ca4f42f781c0124fb35f2b32a"
+      "sha256": "b0605b22fbbf5b5297dc7d68949de968f5559d5023bedc298c642f3912322e8b"
     },
     {
       "path": "evidence/trust12/profile-implementation-evidence-review.json",
@@ -194,6 +194,14 @@
     {
       "path": "evidence/trust12/runtime-link/second-freeze-rejection-checkpoint-v1.json",
       "sha256": "d4e892982dcfa29fc9591f697e93ca10186306893ad5841306b12fd3ada9ee2c"
+    },
+    {
+      "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+      "sha256": "1ea2d88b595fcb2c0782c1204234b2666862b2c36eeddd172c2fca875acb3a10"
+    },
+    {
+      "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-schema-v2.json",
+      "sha256": "bd3778323b6f3d97049fa385ccd2a36a1a8812d268350539594a44568a09a461"
     },
     {
       "path": "evidence/trust12/runtime-link/tail-preparation/malformed-guard-mutants-checkpoint-v1.json",
@@ -369,7 +377,7 @@
     },
     {
       "path": "scripts/generate-trust12-input-seal.py",
-      "sha256": "eb01a6805e9c6b67cbe5ca45171faea696353c9a5b0455cd4168fa88a01a0b95"
+      "sha256": "d10a33a0aef5608623f21ed15e8941e5900df6c57e5558f9e8ccac288eea6fb6"
     },
     {
       "path": "scripts/generate-trust12-proof-audit.py",
@@ -460,6 +468,10 @@
       "sha256": "b1ead5dcc63b035fe2cef405b03e525d5924f844273b001fe3eb8a8b8a83d181"
     },
     {
+      "path": "scripts/test-certificate-registry.py",
+      "sha256": "8877e69221c1388af0b7cae6d93aa2d893d566908f3023168e4c85ab3e5c0623"
+    },
+    {
       "path": "scripts/test-dependency-call-provenance.py",
       "sha256": "4d4a2d2b8af327d3b5eeb9247d73adff304045c4e20e6a246d3899ed3fc8b255"
     },
@@ -513,19 +525,35 @@
     },
     {
       "path": "scripts/test-trust12-required.mjs",
-      "sha256": "80c6e629f0633681b4301202726122a25d9a0c705c43447faf1ee8c40b252613"
+      "sha256": "6c1e8e9c897b73802c34051586c8b7d8d6853485acc0837316d07de8b71debc9"
     },
     {
       "path": "scripts/test-veri-dependency.py",
       "sha256": "e81be3d18e158a735625264af0274d1cfc61b67a39e20d7af5914bc1f58e6dae"
     },
     {
+      "path": "scripts/trust12/tail-preparation/certificate_registry_v2.py",
+      "sha256": "f8bb5f5055eb2fe99e70ff10abdf9af9a7f9be8bd64686ae6e9243e35c698914"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/kore_accounts.py",
+      "sha256": "7bd2691f6f6a8c574614a17f8b73f925e445100d1254f19710fe83b04f7bb731"
+    },
+    {
       "path": "scripts/trust12/tail-preparation/run_malformed_probe_v2.py",
       "sha256": "7dd62c268d698df798b09f78ac5f25f58b79d0a04a7958e38b78fc4bcf2800a5"
     },
     {
+      "path": "scripts/trust12/tail-preparation/test_certificate_registry_v2.py",
+      "sha256": "2f3abe3ebba139d0f5edfd90f27d7bc69ab5855eaef8a00bd97187cb6b55d370"
+    },
+    {
       "path": "scripts/trust12/verify_assess_call_reception_v1.py",
       "sha256": "dfee62be4e7a012103ffa1ccc44b0dbed9fd9f56ce3705702e8f3e1aa3764c46"
+    },
+    {
+      "path": "scripts/trust12/verify_certificate_registry_v1.py",
+      "sha256": "659327cd4ced6bf040d77276073796812b479eac75555e6bd446ecf2f17aecc9"
     },
     {
       "path": "scripts/trust12/verify_dependency_call_provenance_v1.py",
@@ -601,7 +629,7 @@
     },
     {
       "path": "scripts/verify-trust12-required.mjs",
-      "sha256": "dec244f40ab8f802176317de74ada069fd9cd0e45c61ea340f1a05aba7a47c3e"
+      "sha256": "7c65df77b3e75f3df8797f8aef1689364a7f48353a5c43f7f8aa156cbd26e022"
     }
   ],
   "nonclaim": "This seals one local development tranche. It is not a deployment, release, conformance approval, or end-to-end refinement result."

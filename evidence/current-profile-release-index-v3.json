@@ -425,7 +425,7 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "de9dd5e93687ef4630f7227ea9330b48925e6e05c94eec4e4c1978a90fabfd97"
+        "sha256": "979955d6742e2cce2b4d13c16d855d9f6b0aca60314ce850ff816ffffc32fb5f"
       }
     },
     "runtime": {
@@ -479,7 +479,7 @@
         },
         {
           "path": "evidence/trust12/obligation-ledger.json",
-          "sha256": "c798c730fa52f1386f95615740825360e6ebb90ca4f42f781c0124fb35f2b32a"
+          "sha256": "b0605b22fbbf5b5297dc7d68949de968f5559d5023bedc298c642f3912322e8b"
         },
         {
           "path": "evidence/trust12/runtime-identity.json",
@@ -610,6 +610,14 @@
           "sha256": "0fced074b648ed1d852da97792ff41032eb5d6f5990965dddb72340fefb6f6ea"
         },
         {
+          "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-schema-v2.json",
+          "sha256": "bd3778323b6f3d97049fa385ccd2a36a1a8812d268350539594a44568a09a461"
+        },
+        {
+          "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+          "sha256": "1ea2d88b595fcb2c0782c1204234b2666862b2c36eeddd172c2fca875acb3a10"
+        },
+        {
           "path": "evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json",
           "sha256": "3e6524fc20a951dab02e916f41980b8281a84338ec94b2dcf14f5a0e8a73a087"
         },
@@ -631,7 +639,7 @@
         },
         {
           "path": "evidence/trust12/input-seal.json",
-          "sha256": "e65552746274d16997586b83252ff0383ea08ebf4ec2ebf76eed9b5c98484a81"
+          "sha256": "a482d7b157bed174102112f545b0e552fa6088ad0ff308a2f05d123ef4fcc844"
         }
       ],
       "fullRefinementComplete": false,
@@ -767,7 +775,7 @@
       },
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "c798c730fa52f1386f95615740825360e6ebb90ca4f42f781c0124fb35f2b32a"
+        "sha256": "b0605b22fbbf5b5297dc7d68949de968f5559d5023bedc298c642f3912322e8b"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -898,6 +906,14 @@
         "sha256": "0fced074b648ed1d852da97792ff41032eb5d6f5990965dddb72340fefb6f6ea"
       },
       {
+        "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-schema-v2.json",
+        "sha256": "bd3778323b6f3d97049fa385ccd2a36a1a8812d268350539594a44568a09a461"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+        "sha256": "1ea2d88b595fcb2c0782c1204234b2666862b2c36eeddd172c2fca875acb3a10"
+      },
+      {
         "path": "evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json",
         "sha256": "3e6524fc20a951dab02e916f41980b8281a84338ec94b2dcf14f5a0e8a73a087"
       },
@@ -919,7 +935,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "e65552746274d16997586b83252ff0383ea08ebf4ec2ebf76eed9b5c98484a81"
+        "sha256": "a482d7b157bed174102112f545b0e552fa6088ad0ff308a2f05d123ef4fcc844"
       }
     ],
     "fullRefinementComplete": false,

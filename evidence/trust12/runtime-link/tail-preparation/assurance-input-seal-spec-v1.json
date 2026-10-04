@@ -154,6 +154,14 @@
       "coldReplay": false
     },
     {
+      "id": "certificate-registry-recompute",
+      "purpose": "Rehash the private certificate registry and its locator file, rebuild the registry in closure mode from the sealed evidence with the sealed tool, and compare it with the sealed registry and its public record. No prover or kernel session is rerun.",
+      "workingRoot": "PRODUCT",
+      "command": "python3 scripts/trust12/verify_certificate_registry_v1.py --product-root PRODUCT_CHECKOUT --evidence EVIDENCE_ROOT --artifact-index REGISTRY_ARTIFACT_INDEX",
+      "passCriterion": "Status PASS_CERTIFICATE_REGISTRY_RECOMPUTED.",
+      "coldReplay": false
+    },
+    {
       "id": "proof-sessions-cold",
       "purpose": "Replay the product proof sessions without saved heaps or databases, after installing the pinned Isabelle archive, AFP entry and formal foundation as the proof workflow does.",
       "workingRoot": "PRODUCT",
@@ -221,7 +229,7 @@
       "inputs": ["product-consumer", "runtime-link-evidence", "compiled-target"],
       "procedure": [
         "Rebuild the obligation ledger from the sealed evidence and compare every row status, count and hash.",
-        "Recompute the certificate registry and the acceptance partition coverage from the sealed kernel results.",
+        "Recompute the certificate registry from the sealed locator file and evidence, require it to equal the sealed registry byte for byte, and confirm that the public registry record, including the executed code of every certificate and the records that consumed every recorded world, follows from it.",
         "Recompute the central closure counts and confirm that no row is closed by a human-written table alone."
       ],
       "passCriterion": "Every recomputed number, hash and status equals the sealed artifact, and current mandatory rows are zero only if the recomputation says so.",

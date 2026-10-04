@@ -1,0 +1,605 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "trust12-tail-preparation-certificate-registry-v2",
+  "title": "Certificate registry, acceptance partition coverage and executed code of the TRUST 1.2 runtime link",
+  "description": "For every profile, operation and outcome branch, and for every registered request outside canonical form, the checked certificate whose execution belongs to the accepted set. Each certificate is bound to the kernel runs the obligation ledger cites, to the recorded worlds before the call, to the records that consumed those worlds, and to the code it executed: the code of the executing account and the executed runtime set of its profile, read from those worlds and compared with the runtime templates of the code identity under the exact matching rule. Acceptance is the recorded prover verdict or the verdict of the APRProof status rule on the stored proof graph. Coverage and identity are the finite data of the acceptance partition; the partition theorem itself is proved by a kernel run over the whole registry. The locator file format is defined under $defs.locators.",
+  "type": "object",
+  "required": ["schema", "status", "mode", "inputs", "matchRule", "runtimeSetRule", "consumerRule", "graphRule", "profiles",
+               "certificates", "cells", "malformed", "partition", "checks", "retainedAssumptions", "nonclaim"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "trust12-tail-preparation-certificate-registry-v2"},
+    "status": {"enum": ["DRY_RUN_INCOMPLETE", "REGISTRY_COMPLETE_CANDIDATE", "FAIL_REGISTRY_INCONSISTENT"]},
+    "mode": {"enum": ["dry-run", "closure"]},
+    "inputs": {
+      "type": "object",
+      "required": ["ledger", "codeIdentity", "malformedCatalog", "locators"],
+      "additionalProperties": false,
+      "properties": {
+        "ledger": {"$ref": "#/$defs/rootedFile"},
+        "codeIdentity": {"$ref": "#/$defs/rootedFile"},
+        "malformedCatalog": {"$ref": "#/$defs/rootedFile"},
+        "locators": {"oneOf": [{"$ref": "#/$defs/contentIdentity"}, {"type": "null"}]}
+      }
+    },
+    "matchRule": {"type": "string", "minLength": 1},
+    "runtimeSetRule": {"type": "string", "minLength": 1},
+    "consumerRule": {"type": "string", "minLength": 1},
+    "graphRule": {"type": "string", "minLength": 1},
+    "profiles": {
+      "type": "object",
+      "required": ["Native", "Partial", "Hook"],
+      "additionalProperties": false,
+      "properties": {
+        "Native": {"$ref": "#/$defs/profileSummary"},
+        "Partial": {"$ref": "#/$defs/profileSummary"},
+        "Hook": {"$ref": "#/$defs/profileSummary"}
+      }
+    },
+    "certificates": {"type": "array", "items": {"$ref": "#/$defs/certificate"}},
+    "cells": {"type": "array", "minItems": 27, "maxItems": 27, "items": {"$ref": "#/$defs/cell"}},
+    "malformed": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"$ref": "#/$defs/malformedBranch"}},
+    "partition": {
+      "type": "object",
+      "required": ["declaredCells", "boundCells", "openCells", "malformedBranches", "registeredCertificates",
+                   "executedCodeMatches", "recordedWorlds", "worldsNamedByKernelStageInputs",
+                   "worldsNamedOnlyByKoreExports", "acceptanceMethods", "coverageComplete", "meaning"],
+      "additionalProperties": false,
+      "properties": {
+        "declaredCells": {"const": 27},
+        "boundCells": {"type": "integer", "minimum": 0, "maximum": 27},
+        "openCells": {"type": "array", "items": {"type": "string", "pattern": "^(Native|Partial|Hook)/[A-Z]+$"}},
+        "malformedBranches": {
+          "type": "object",
+          "required": ["Native", "Partial", "Hook"],
+          "additionalProperties": false,
+          "properties": {
+            "Native": {"$ref": "#/$defs/branchCoverage"},
+            "Partial": {"$ref": "#/$defs/branchCoverage"},
+            "Hook": {"$ref": "#/$defs/branchCoverage"}
+          }
+        },
+        "registeredCertificates": {"type": "integer", "minimum": 0},
+        "executedCodeMatches": {"type": "integer", "minimum": 0},
+        "recordedWorlds": {"type": "integer", "minimum": 0},
+        "worldsNamedByKernelStageInputs": {"type": "integer", "minimum": 0},
+        "worldsNamedOnlyByKoreExports": {"type": "integer", "minimum": 0},
+        "acceptanceMethods": {
+          "type": "object",
+          "required": ["RECORDED_FIELDS", "STORED_PROOF_GRAPH"],
+          "additionalProperties": false,
+          "properties": {
+            "RECORDED_FIELDS": {"type": "integer", "minimum": 0},
+            "STORED_PROOF_GRAPH": {"type": "integer", "minimum": 0}
+          }
+        },
+        "coverageComplete": {"type": "boolean"},
+        "meaning": {"type": "string", "minLength": 1}
+      }
+    },
+    "checks": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "required": ["id", "status"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "enum": [
+              "certificate-keys-unique",
+              "certificates-distinct",
+              "certificate-records-consistent",
+              "cells-agree-with-ledger-and-kernels",
+              "malformed-registered-as-catalogued",
+              "executed-code-identity",
+              "recorded-worlds-consumed"
+            ]
+          },
+          "status": {"enum": ["PASS", "FAIL", "INCOMPLETE"]},
+          "detail": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "retainedAssumptions": {
+      "type": "object",
+      "required": ["A-DEPLOYMENT", "A-EXTERNAL"],
+      "additionalProperties": {"type": "string", "minLength": 1}
+    },
+    "nonclaim": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "profile": {"enum": ["Native", "Partial", "Hook"]},
+    "operation": {"enum": ["FREEZE", "SEIZE", "CONFISCATE", "LIQUIDATE", "RESTRICT", "RECOVER", "UNFREEZE", "RELEASE", "UNRESTRICT"]},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "optionalSha256": {"oneOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]},
+    "account": {"type": "string", "pattern": "^[0-9]+$"},
+    "accounts": {"type": "array", "items": {"$ref": "#/$defs/account"}},
+    "slug": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
+    "relativePath": {"type": "string", "pattern": "^(?![/\\\\])(?![A-Za-z]:)(?!.*\\.\\.)[^\\\\]+$"},
+    "jsonPointer": {"type": "string", "pattern": "^(/[^/]*)*$"},
+    "dottedField": {"type": "string", "pattern": "^[^.]+(\\.[^.]+)*$"},
+    "nodes": {"type": "array", "items": {"type": "integer", "minimum": 0}},
+    "codeStatus": {"enum": ["MATCH", "MISMATCH", "UNAVAILABLE"]},
+    "branchCoverage": {"enum": ["OPEN", "COVERED"]},
+    "ranges": {
+      "type": "array",
+      "items": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer", "minimum": 0}}
+    },
+    "template": {
+      "type": "object",
+      "required": ["sha256", "bytes"],
+      "additionalProperties": false,
+      "properties": {"sha256": {"$ref": "#/$defs/sha256"}, "bytes": {"type": "integer", "minimum": 1}}
+    },
+    "contentIdentity": {
+      "type": "object",
+      "required": ["sha256", "bytes"],
+      "additionalProperties": false,
+      "properties": {"sha256": {"$ref": "#/$defs/sha256"}, "bytes": {"type": "integer", "minimum": 1}}
+    },
+    "rootedFile": {
+      "type": "object",
+      "required": ["root", "path", "sha256"],
+      "additionalProperties": false,
+      "properties": {
+        "root": {"enum": ["PRODUCT", "EVIDENCE"]},
+        "path": {"$ref": "#/$defs/relativePath"},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "file": {
+      "type": "object",
+      "required": ["path", "sha256"],
+      "additionalProperties": false,
+      "properties": {
+        "path": {"$ref": "#/$defs/relativePath"},
+        "sha256": {"$ref": "#/$defs/optionalSha256"}
+      }
+    },
+    "sourceRecord": {
+      "type": "object",
+      "required": ["path", "pointer", "sha256"],
+      "additionalProperties": false,
+      "properties": {
+        "path": {"$ref": "#/$defs/relativePath"},
+        "pointer": {"$ref": "#/$defs/jsonPointer"},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "profileSummary": {
+      "type": "object",
+      "required": ["profileIndex", "endpoint", "codeIdentityRootSha256", "endpointTemplate", "executedRuntimes",
+                   "deploymentOnlyRuntimes", "certificates", "executedCodeMatches", "recordedWorlds",
+                   "distinctExecutedCode", "distinctImmutableValueSets", "unboundAccountCounts"],
+      "additionalProperties": false,
+      "properties": {
+        "profileIndex": {"type": "string", "minLength": 1},
+        "endpoint": {"type": "string", "minLength": 1},
+        "codeIdentityRootSha256": {"$ref": "#/$defs/sha256"},
+        "endpointTemplate": {
+          "type": "object",
+          "required": ["sha256", "bytes", "immutableRanges"],
+          "additionalProperties": false,
+          "properties": {
+            "sha256": {"$ref": "#/$defs/sha256"},
+            "bytes": {"type": "integer", "minimum": 1},
+            "immutableRanges": {"$ref": "#/$defs/ranges"}
+          }
+        },
+        "executedRuntimes": {"type": "object", "additionalProperties": {"$ref": "#/$defs/template"}},
+        "deploymentOnlyRuntimes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["sha256", "bytes", "accountsInRecordedWorlds", "reason", "assumption"],
+            "additionalProperties": false,
+            "properties": {
+              "sha256": {"$ref": "#/$defs/sha256"},
+              "bytes": {"type": "integer", "minimum": 1},
+              "accountsInRecordedWorlds": {"type": "integer", "minimum": 0},
+              "reason": {"type": "string", "minLength": 1},
+              "assumption": {"type": "string", "minLength": 1}
+            }
+          }
+        },
+        "certificates": {"type": "integer", "minimum": 0},
+        "executedCodeMatches": {"type": "integer", "minimum": 0},
+        "recordedWorlds": {"type": "integer", "minimum": 0},
+        "distinctExecutedCode": {"type": "integer", "minimum": 0},
+        "distinctImmutableValueSets": {"type": "integer", "minimum": 0},
+        "unboundAccountCounts": {"type": "array", "items": {"type": "integer", "minimum": 0}}
+      }
+    },
+    "consumer": {
+      "type": "object",
+      "required": ["kind", "source", "agrees", "kindAgrees"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {"enum": ["KERNEL_STAGE_INPUT", "KORE_EXPORT"]},
+        "source": {"$ref": "#/$defs/sourceRecord"},
+        "agrees": {"type": "boolean"},
+        "kindAgrees": {"type": "boolean"},
+        "session": {"type": ["string", "null"]},
+        "documentSchema": {"type": ["string", "null"]}
+      }
+    },
+    "runtimeSet": {
+      "type": "object",
+      "required": ["executed", "deploymentOnly", "unboundAccounts", "symbolicAccounts"],
+      "additionalProperties": false,
+      "properties": {
+        "executed": {"type": "object", "additionalProperties": {"$ref": "#/$defs/accounts"}},
+        "deploymentOnly": {"type": "object", "additionalProperties": {"$ref": "#/$defs/accounts"}},
+        "unboundAccounts": {"type": "integer", "minimum": 0},
+        "symbolicAccounts": {"type": "integer", "minimum": 0}
+      }
+    },
+    "exportOnly": {
+      "type": "object",
+      "required": ["reason", "quote", "source", "applies", "quoteFound", "sameExecutedCodeAsConsumedWorld"],
+      "additionalProperties": false,
+      "properties": {
+        "reason": {"type": "string", "minLength": 1},
+        "quote": {"type": "string", "minLength": 1},
+        "source": {
+          "type": "object",
+          "required": ["root", "path", "pointer", "sha256"],
+          "additionalProperties": false,
+          "properties": {
+            "root": {"const": "PRODUCT"},
+            "path": {"$ref": "#/$defs/relativePath"},
+            "pointer": {"$ref": "#/$defs/jsonPointer"},
+            "sha256": {"$ref": "#/$defs/optionalSha256"}
+          }
+        },
+        "applies": {"type": "boolean"},
+        "quoteFound": {"type": "boolean"},
+        "sameExecutedCodeAsConsumedWorld": {"type": "boolean"}
+      }
+    },
+    "preWorld": {
+      "type": "object",
+      "required": ["role", "accounts", "frame", "account", "status", "consumers", "links", "kernelStageInputs",
+                   "runtimeSet", "endpointRecordAgrees", "codeProblems", "problems"],
+      "additionalProperties": false,
+      "properties": {
+        "role": {"type": "string", "minLength": 1},
+        "accounts": {"$ref": "#/$defs/file"},
+        "frame": {"$ref": "#/$defs/file"},
+        "account": {"oneOf": [{"$ref": "#/$defs/account"}, {"type": "null"}]},
+        "status": {"$ref": "#/$defs/codeStatus"},
+        "executedCodeSha256": {"$ref": "#/$defs/sha256"},
+        "executedCodeBytes": {"type": "integer", "minimum": 0},
+        "maskedCodeSha256": {"$ref": "#/$defs/sha256"},
+        "immutableValuesSha256": {"$ref": "#/$defs/sha256"},
+        "consumers": {"type": "array", "items": {"$ref": "#/$defs/consumer"}},
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["left", "right", "agrees"],
+            "additionalProperties": false,
+            "properties": {
+              "left": {"$ref": "#/$defs/sourceRecord"},
+              "right": {"$ref": "#/$defs/sourceRecord"},
+              "agrees": {"type": "boolean"}
+            }
+          }
+        },
+        "kernelStageInputs": {"type": "integer", "minimum": 0},
+        "runtimeSet": {"oneOf": [{"$ref": "#/$defs/runtimeSet"}, {"type": "null"}]},
+        "endpointRecordAgrees": {"type": ["boolean", "null"]},
+        "exportOnly": {"$ref": "#/$defs/exportOnly"},
+        "codeProblems": {"type": "array", "items": {"type": "string"}},
+        "problems": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "execution": {
+      "type": "object",
+      "required": ["endpointContract", "templateSha256", "templateBytes", "immutableRanges", "status",
+                   "executedCodeSha256", "kernelStageInputs", "preWorlds"],
+      "additionalProperties": false,
+      "properties": {
+        "endpointContract": {"type": "string", "minLength": 1},
+        "templateSha256": {"$ref": "#/$defs/sha256"},
+        "templateBytes": {"type": "integer", "minimum": 1},
+        "immutableRanges": {"$ref": "#/$defs/ranges"},
+        "status": {"$ref": "#/$defs/codeStatus"},
+        "executedCodeSha256": {"$ref": "#/$defs/optionalSha256"},
+        "kernelStageInputs": {"type": "integer", "minimum": 0},
+        "preWorlds": {"type": "array", "items": {"$ref": "#/$defs/preWorld"}}
+      }
+    },
+    "graph": {
+      "type": "object",
+      "required": ["proof", "kcfg"],
+      "additionalProperties": false,
+      "properties": {
+        "proof": {"$ref": "#/$defs/file"},
+        "kcfg": {"$ref": "#/$defs/file"},
+        "verdict": {"enum": ["PASSED", "FAILED", "PENDING"]},
+        "nodes": {"type": "integer", "minimum": 0},
+        "edges": {"type": "integer", "minimum": 0},
+        "covers": {"type": "integer", "minimum": 0},
+        "leaves": {"$ref": "#/$defs/nodes"},
+        "terminal": {"$ref": "#/$defs/nodes"},
+        "target": {"type": "integer", "minimum": 0},
+        "pendingNodes": {"$ref": "#/$defs/nodes"},
+        "failingNodes": {"$ref": "#/$defs/nodes"},
+        "fields": {"type": "object"}
+      }
+    },
+    "acceptance": {
+      "type": "object",
+      "required": ["status", "method", "fields"],
+      "additionalProperties": false,
+      "properties": {
+        "status": {"enum": ["CHECKED", "NOT_RECORDED", "FAILED", "UNAVAILABLE"]},
+        "method": {"enum": ["RECORDED_FIELDS", "STORED_PROOF_GRAPH"]},
+        "source": {"$ref": "#/$defs/sourceRecord"},
+        "fields": {"type": "array", "items": {"type": "string"}},
+        "graph": {"$ref": "#/$defs/graph"},
+        "unavailable": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "certificate": {
+      "type": "object",
+      "required": ["key", "profile", "operation", "outcome", "form", "source", "acceptance", "execution", "problems"],
+      "additionalProperties": false,
+      "properties": {
+        "key": {"type": "string", "pattern": "^(Native|Partial|Hook)/(([A-Z]+/(applied|not-applied))|(MALFORMED/[a-z0-9]+(-[a-z0-9]+)*))$"},
+        "profile": {"$ref": "#/$defs/profile"},
+        "operation": {"type": "string", "pattern": "^[A-Z]+$"},
+        "outcome": {"enum": ["applied", "not-applied", "malformed"]},
+        "slug": {"$ref": "#/$defs/slug"},
+        "form": {"enum": ["APR_PROOF", "COMPOUND_BOUNDARY"]},
+        "source": {"$ref": "#/$defs/sourceRecord"},
+        "acceptance": {"$ref": "#/$defs/acceptance"},
+        "proofId": {"type": "string", "minLength": 1},
+        "proofSha256": {"$ref": "#/$defs/sha256"},
+        "kcfgSha256": {"$ref": "#/$defs/sha256"},
+        "boundary": {"type": "string", "minLength": 1},
+        "compoundIdentity": {"type": "object"},
+        "execution": {"$ref": "#/$defs/execution"},
+        "problems": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "kernel": {
+      "type": "object",
+      "required": ["root", "run", "theory", "ledgerResultSha256", "problems"],
+      "additionalProperties": false,
+      "properties": {
+        "root": {"type": "string", "minLength": 1},
+        "run": {"type": "string", "minLength": 1},
+        "theory": {"type": "string", "minLength": 1},
+        "ledgerResultSha256": {"$ref": "#/$defs/optionalSha256"},
+        "resultSha256": {"$ref": "#/$defs/sha256"},
+        "status": {"type": "string"},
+        "problems": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "cell": {
+      "type": "object",
+      "required": ["profile", "operation", "profileIndex", "codeIdentityRootSha256", "ledgerStatus", "applied",
+                   "notApplied", "kernels", "executedCode", "coverage", "problems"],
+      "additionalProperties": false,
+      "properties": {
+        "profile": {"$ref": "#/$defs/profile"},
+        "operation": {"$ref": "#/$defs/operation"},
+        "profileIndex": {"type": "string", "minLength": 1},
+        "codeIdentityRootSha256": {"$ref": "#/$defs/sha256"},
+        "ledgerStatus": {"enum": ["CLOSED", "CURRENT-MANDATORY", "SEPARATE-PROFILE", "NOT-APPLICABLE"]},
+        "applied": {"type": ["string", "null"]},
+        "notApplied": {"type": ["string", "null"]},
+        "kernels": {"type": "array", "items": {"$ref": "#/$defs/kernel"}},
+        "executedCode": {"enum": ["MATCH", "MISMATCH", "UNAVAILABLE", "OPEN"]},
+        "coverage": {"enum": ["BOUND", "OPEN"]},
+        "problems": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "malformedBranch": {
+      "type": "object",
+      "required": ["profile", "profileIndex", "catalogued", "certificates", "missing", "unexpected", "executedCode", "coverage"],
+      "additionalProperties": false,
+      "properties": {
+        "profile": {"$ref": "#/$defs/profile"},
+        "profileIndex": {"type": "string", "minLength": 1},
+        "catalogued": {"type": "integer", "minimum": 0},
+        "certificates": {"type": "array", "items": {"type": "string"}},
+        "missing": {"type": "array", "items": {"$ref": "#/$defs/slug"}},
+        "unexpected": {"type": "array", "items": {"type": "string"}},
+        "executedCode": {"enum": ["MATCH", "MISMATCH", "UNAVAILABLE", "OPEN"]},
+        "coverage": {"$ref": "#/$defs/branchCoverage"}
+      }
+    },
+    "reference": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["path", "pointer"],
+          "additionalProperties": false,
+          "properties": {
+            "path": {"$ref": "#/$defs/relativePath"},
+            "pointer": {"$ref": "#/$defs/jsonPointer"},
+            "field": {"$ref": "#/$defs/dottedField"}
+          }
+        },
+        {
+          "type": "object",
+          "required": ["path", "array", "match"],
+          "additionalProperties": false,
+          "properties": {
+            "path": {"$ref": "#/$defs/relativePath"},
+            "array": {"$ref": "#/$defs/jsonPointer"},
+            "match": {"type": "object"},
+            "field": {"$ref": "#/$defs/dottedField"}
+          }
+        }
+      ]
+    },
+    "consumerKind": {"enum": ["KERNEL_STAGE_INPUT", "KORE_EXPORT"]},
+    "consumerReference": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["kind", "path", "pointer"],
+          "additionalProperties": false,
+          "properties": {
+            "kind": {"$ref": "#/$defs/consumerKind"},
+            "path": {"$ref": "#/$defs/relativePath"},
+            "pointer": {"$ref": "#/$defs/jsonPointer"},
+            "field": {"$ref": "#/$defs/dottedField"}
+          }
+        },
+        {
+          "type": "object",
+          "required": ["kind", "path", "array", "match"],
+          "additionalProperties": false,
+          "properties": {
+            "kind": {"$ref": "#/$defs/consumerKind"},
+            "path": {"$ref": "#/$defs/relativePath"},
+            "array": {"$ref": "#/$defs/jsonPointer"},
+            "match": {"type": "object"},
+            "field": {"$ref": "#/$defs/dottedField"}
+          }
+        }
+      ]
+    },
+    "preWorldSpec": {
+      "type": "object",
+      "required": ["role", "accounts", "frame", "consumers"],
+      "additionalProperties": false,
+      "properties": {
+        "role": {"type": "string", "minLength": 1},
+        "accounts": {"$ref": "#/$defs/relativePath"},
+        "frame": {"$ref": "#/$defs/relativePath"},
+        "endpointRecord": {"$ref": "#/$defs/reference"},
+        "consumers": {"type": "array", "items": {"$ref": "#/$defs/consumerReference"}},
+        "links": {
+          "type": "array",
+          "items": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"$ref": "#/$defs/reference"}}
+        },
+        "exportOnly": {
+          "type": "object",
+          "required": ["reason", "quote", "source"],
+          "additionalProperties": false,
+          "properties": {
+            "reason": {"type": "string", "minLength": 1},
+            "quote": {"type": "string", "minLength": 1},
+            "source": {
+              "type": "object",
+              "required": ["path", "pointer"],
+              "additionalProperties": false,
+              "properties": {"path": {"$ref": "#/$defs/relativePath"}, "pointer": {"$ref": "#/$defs/jsonPointer"}}
+            }
+          }
+        }
+      }
+    },
+    "acceptanceSpec": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["fields"],
+          "additionalProperties": false,
+          "properties": {"fields": {"type": "object"}, "source": {"$ref": "#/$defs/reference"}}
+        },
+        {
+          "type": "object",
+          "required": ["fields", "storedProof"],
+          "additionalProperties": false,
+          "properties": {
+            "fields": {"type": "object"},
+            "storedProof": {
+              "type": "object",
+              "required": ["proof", "kcfg"],
+              "additionalProperties": false,
+              "properties": {"proof": {"$ref": "#/$defs/relativePath"}, "kcfg": {"$ref": "#/$defs/relativePath"}}
+            }
+          }
+        }
+      ]
+    },
+    "certificateSpec": {
+      "type": "object",
+      "required": ["outcome", "form", "source", "fields", "execution"],
+      "additionalProperties": false,
+      "properties": {
+        "outcome": {"enum": ["applied", "not-applied", "malformed"]},
+        "slug": {"$ref": "#/$defs/slug"},
+        "form": {"enum": ["APR_PROOF", "COMPOUND_BOUNDARY"]},
+        "source": {"$ref": "#/$defs/reference"},
+        "fields": {"type": "object", "additionalProperties": {"$ref": "#/$defs/dottedField"}},
+        "acceptance": {"$ref": "#/$defs/acceptanceSpec"},
+        "identity": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["path", "pointer", "fields"],
+            "additionalProperties": false,
+            "properties": {
+              "path": {"$ref": "#/$defs/relativePath"},
+              "pointer": {"$ref": "#/$defs/jsonPointer"},
+              "fields": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+            }
+          }
+        },
+        "corroborate": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["reference", "fields"],
+            "additionalProperties": false,
+            "properties": {
+              "reference": {"$ref": "#/$defs/reference"},
+              "fields": {"type": "object", "additionalProperties": {"$ref": "#/$defs/dottedField"}}
+            }
+          }
+        },
+        "execution": {
+          "type": "object",
+          "required": ["preWorlds"],
+          "additionalProperties": false,
+          "properties": {"preWorlds": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/preWorldSpec"}}}
+        }
+      }
+    },
+    "locators": {
+      "type": "object",
+      "required": ["schema", "ledger", "cells", "malformed"],
+      "additionalProperties": false,
+      "properties": {
+        "schema": {"const": "trust12-tail-preparation-certificate-locators-v2"},
+        "description": {"type": "string"},
+        "ledger": {"$ref": "#/$defs/relativePath"},
+        "cells": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["profile", "operation", "certificates"],
+            "additionalProperties": false,
+            "properties": {
+              "profile": {"$ref": "#/$defs/profile"},
+              "operation": {"$ref": "#/$defs/operation"},
+              "certificates": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/certificateSpec"}}
+            }
+          }
+        },
+        "malformed": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["profile", "certificates"],
+            "additionalProperties": false,
+            "properties": {
+              "profile": {"$ref": "#/$defs/profile"},
+              "certificates": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/certificateSpec"}}
+            }
+          }
+        }
+      }
+    }
+  }
+}

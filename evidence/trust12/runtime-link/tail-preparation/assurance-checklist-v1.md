@@ -70,7 +70,7 @@ frozen inputs, reproduction commands and reuse conditions are defined by
 | Step | Action | Pass when |
 | --- | --- | --- |
 | 4.1 | Rebuild the obligation ledger from the sealed evidence | Every row status, count and hash equals the sealed ledger |
-| 4.2 | Recompute the certificate registry and the acceptance partition coverage | Coverage, distinctness and program identity checks pass on the sealed kernel results |
+| 4.2 | Recompute the certificate registry with its saved-mode verifier from the sealed locator file and evidence | The rebuilt registry equals the sealed registry byte for byte; the coverage, distinctness, executed code identity, consumed world and acceptance checks pass; and the public registry record follows from the rebuilt registry |
 | 4.3 | Recompute the central closure counts | No row is closed by a human-written table alone, and current mandatory rows are zero only if the recomputation says so |
 
 ## Result record
