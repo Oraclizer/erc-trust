@@ -490,6 +490,10 @@ Historical raw runs and generated directories are not canonical source.
 The fresh T-REX hook reference and additional model invariants are tracked in
 [evidence/trust12](evidence/trust12/README.md). The published baseline runtimes remain
 byte-exact; the new profile and new formal source have separate validation.
+Under the 2026-10-04 completion direction
+([decision 13](spec/decisions/13-trust12-completion-scope.md)), TRUST 1.2
+completes at the registered-execution scope; general runtime-to-model
+correspondence is deferred research and is not a completion requirement.
 The child session `TRUST12_Accounting_Obstruction` preserves the accounting-only
 obstruction and now defines the stronger `state_wf`. Canonical source contains
 initial, ordinary-transfer, authority/dependency-change and failure preservation,

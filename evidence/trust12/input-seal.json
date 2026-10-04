@@ -13,11 +13,11 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "fa8184e026df2e11e3418af7b6c77189dde32f382762192a0a481d9d332c71ba"
+      "sha256": "dc8f0dd582337c62ea02b30ad1e5eba383c6ff9ab9bfb160d9915b6cc51d7ed8"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
-      "sha256": "a9900f39e5e5ca356375fe0da086fa18e519307bc0b394716d79537953d812ab"
+      "sha256": "88619fe1024f37811cd5b51d912112fbad2f9e387f0d1367fc1b8eacab532c50"
     },
     {
       "path": "docs/PROFILES.md",
@@ -25,15 +25,15 @@
     },
     {
       "path": "evidence/claim-matrix.md",
-      "sha256": "81fc908900bbe64d91c5e34128cb1e4ad58173f623867bea84a0010e554a041c"
+      "sha256": "dfc4c186f07bb466cd10991ce84c4d9ec2a93de29d8bb0826bb658bd6c88d0e1"
     },
     {
       "path": "evidence/known-limitations.md",
-      "sha256": "26c49738dd9b7bee57e40e0fb95bd026b4f57f1bacf41b73369009d12e8ce81e"
+      "sha256": "82431f20dbdc4f983d3dea52a7ec6df82462baa2ed7adc655339829a90ac0c36"
     },
     {
       "path": "evidence/trust12/README.md",
-      "sha256": "7ecdb7e38a05129f4b0d3e0b050b34dedfbdeedb02618e5dd5584790f98193e9"
+      "sha256": "359376b14b960439578f1ee4b405441371e2411d37e213a282b7ead58dcdae75"
     },
     {
       "path": "evidence/trust12/aggregate-evidence-audit.md",
@@ -129,7 +129,7 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "e3c850eb1a1ffca16be161cb8870e5ea5c4888cc453b1d6227cc17efd29f6255"
+      "sha256": "12df4b5a0eac13b95753990cc6724dfc01c3271cdf6f4676a019ae58418ce8eb"
     },
     {
       "path": "evidence/trust12/profile-implementation-evidence-review.json",
@@ -137,11 +137,11 @@
     },
     {
       "path": "evidence/trust12/release-notes.md",
-      "sha256": "f4de6747568d5517a55666267813fcb9403d90e1b61c3dd7dfe7233ffd003c25"
+      "sha256": "be0e5d9745f1b52972754878ad8a0bf2fa3aa7aba0280b8fafa457ce465c1f56"
     },
     {
       "path": "evidence/trust12/release-policy.json",
-      "sha256": "5bc93c643afdac4e2faeb3fca12e75ca90ac26f272304c0a6f661a35d5e5a8e4"
+      "sha256": "3a6e301698d6ea72130b21880be4fa9e13fc821bf805a4f1d95dc84256bcc46d"
     },
     {
       "path": "evidence/trust12/required-controls.json",
@@ -153,7 +153,7 @@
     },
     {
       "path": "evidence/trust12/runtime-link-source-blockers.md",
-      "sha256": "1737e31ab96215ca916f860faaa5f199d6c61107419ec6a33934c50314b2e919"
+      "sha256": "f5b023f3d1ee580c5635707ca9a80aba7b5e28c1cd327c386ebe4634aca06ff6"
     },
     {
       "path": "evidence/trust12/runtime-link/assess-call-reception-checkpoint-v1.json",
@@ -373,7 +373,7 @@
     },
     {
       "path": "scripts/lib/trust12-policy.mjs",
-      "sha256": "c0cbf4f12f631bf7565d1cd0c6756e34856f19532f61e4433efabaf9b6afa561"
+      "sha256": "1afa2bd51e22d411bc5293969f734b02fbf773264e840cd0b195a5b490d4eef1"
     },
     {
       "path": "scripts/prepare-native-storage-predicates.py",
@@ -485,7 +485,7 @@
     },
     {
       "path": "scripts/test-trust12-policy.mjs",
-      "sha256": "8378744fabe3064eaaec9c218a08c9f284ce7bd171ec5bd72c7b632d4451cb64"
+      "sha256": "5e12e61830c5197fc888358bef0ba63981eb5d2ea145fb2579e152cdaef26678"
     },
     {
       "path": "scripts/test-trust12-required.mjs",
@@ -557,7 +557,7 @@
     },
     {
       "path": "scripts/verify-trust12-evidence.py",
-      "sha256": "38364a473e92f8513ecad0f7fe5a9345cfb3b5524d5fc6f955f96b5135631e73"
+      "sha256": "67f6674bdbd51996ce520377ece4719aa9b812f0f0215f038b2f41f86e5970ad"
     },
     {
       "path": "scripts/verify-trust12-policy.mjs",
@@ -565,7 +565,7 @@
     },
     {
       "path": "scripts/verify-trust12-required.mjs",
-      "sha256": "16fc7a2987dea1989b19f141a7bb2005206c8d4f0418229f7d9068782319827e"
+      "sha256": "70a4e0404fec223cd6104c6e8af297fe3b5df5ca8ee1e5672b1f3ccdc146977e"
     }
   ],
   "nonclaim": "This seals one local development tranche. It is not a deployment, release, conformance approval, or end-to-end refinement result."

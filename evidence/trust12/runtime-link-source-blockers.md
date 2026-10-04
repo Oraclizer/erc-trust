@@ -1,8 +1,9 @@
 # Runtime correspondence: current source blockers
 
-> The 2026-09-13 release-scope reset is historical. Under the 2026-09-25
-> completion direction, the general correspondence obligations below are current
-> mandatory TRUST 1.2 rows. The three RUNTIME-LINK rows retain scoped profile
+> The 2026-09-13 release-scope reset and the 2026-09-25 completion direction are
+> historical. Under the 2026-10-04 completion direction (decision 13), the general
+> correspondence obligations below are deferred research rows that TRUST 1.2
+> completion does not require. The three RUNTIME-LINK rows retain scoped profile
 > implementation evidence under `release-policy.json`. None proves the missing
 > general producer.
 

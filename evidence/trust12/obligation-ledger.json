@@ -1900,6 +1900,29 @@
       "status": "CLOSED"
     },
     {
+      "id": "REGISTERED-CENTRAL-CLOSURE",
+      "abstractCondition": "Every condition recorded in the conditions source holds for the registered certificates and the registered requests outside canonical form of the three declared profiles on their exact compiled runtimes, and one central closure consumes them and names every remaining assumption.",
+      "conditionsSource": "evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json",
+      "normativeReceiver": "Central refinement closure, registered-execution scope",
+      "finalSourceConsumer": "Per condition, as recorded in the conditions source.",
+      "positiveActivation": "Pending",
+      "consumerRemovalNegative": "Pending",
+      "compiledConsumer": "Pending",
+      "assumptionsNonclaims": "The runtime_link and runtime_link_spec locale assumptions remain assumptions for executions outside the registered set; registered executions are not every declared execution.",
+      "status": "CURRENT-MANDATORY",
+      "supplementalEvidence": [
+        "evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json"
+      ],
+      "requiredForRelease": true,
+      "requiredForTrust12Completion": true,
+      "proofCompleted": false,
+      "disposition": "Mandatory for TRUST 1.2 completion under the 2026-10-04 completion direction; currently open.",
+      "receivingProcess": "TRUST 1.2 registered-scope central closure.",
+      "responsibleArtifact": "This ledger row and the conditions source.",
+      "closureEvidence": "A registered central closure record that discharges every recorded condition with positive, same-scope negative and compiled-consumer evidence, disposes every recorded finding and names the retained assumptions.",
+      "reopenCondition": "Any final source, ABI, runtime, profile, registered certificate or proof-input change reopens the affected conditions."
+    },
+    {
       "id": "RESEARCH-RUNTIME-LINK-NATIVE",
       "abstractCondition": "Accepted compiled Native executions produce alpha_transaction without assuming runtime_link.",
       "normativeReceiver": "Wave 5 Native runtime connection",
@@ -1908,7 +1931,7 @@
       "consumerRemovalNegative": "Pending",
       "compiledConsumer": "Published Native runtime remains byte-exact.",
       "assumptionsNonclaims": "pinned_runtime_refinement.runtime_link remains an Isabelle locale assumption.",
-      "status": "CURRENT-MANDATORY",
+      "status": "RESEARCH-RESIDUAL",
       "supplementalEvidence": [
         "evidence/trust12/veri-observation-results.json",
         "evidence/trust12/veri-symbolic-results.json",
@@ -1928,14 +1951,14 @@
         "evidence/trust12/runtime-link/dependency-call-provenance-checkpoint-v1.json",
         "evidence/trust12/runtime-link/second-freeze-rejection-checkpoint-v1.json"
       ],
-      "requiredForRelease": true,
-      "requiredForTrust12Completion": true,
+      "requiredForRelease": false,
+      "requiredForTrust12Completion": false,
       "proofCompleted": false,
-      "disposition": "Mandatory general runtime-to-model correspondence for TRUST 1.2; currently unproved. The prior scope reset is historical.",
-      "receivingProcess": "TRUST 1.2 general runtime-to-model closure for the declared Native scope.",
+      "disposition": "Deferred research under the 2026-10-04 completion direction: general runtime-to-model correspondence for the declared Native scope is not required for TRUST 1.2 completion and remains unproved. The 2026-09-25 direction is historical.",
+      "receivingProcess": "Deferred general runtime-to-model research for the declared Native scope; resumed only by a separate decision.",
       "responsibleArtifact": "This ledger row and the preserved Veri Formal/Kore assets with SHA-256 763cbe1d98ac7b904dd53fb2a8b6b7400e756aaa7624d556ed697b89b98a9488.",
       "closureEvidence": "Kernel-checked discharge of this profile's runtime_link with positive and negative consumers.",
-      "reopenCondition": "Any final source, ABI, runtime, profile or proof-input change reopens the affected connection.",
+      "reopenCondition": "A separate decision resumes this research. Any final source, ABI, runtime, profile or proof-input change reopens the affected connection.",
       "currentEvidenceReception": {
         "currentCheckpoints": [
           {
@@ -2007,6 +2030,10 @@
         "generalRuntimeLinkDischarged": false,
         "registeredCountsAreNotGeneralCoverage": true,
         "malformedTargetMismatch": "The supplied OOS alpha_transaction_spec relation is not the original bound admission relation alpha_transaction_bound/TRUST_Returned target."
+      },
+      "deferral": {
+        "decision": "evidence/trust12/release-policy.json#completionDirection",
+        "date": "2026-10-04"
       }
     },
     {
@@ -2018,7 +2045,7 @@
       "consumerRemovalNegative": "Pending",
       "compiledConsumer": "Published Partial adapter and governor source and runtime remain byte-exact.",
       "assumptionsNonclaims": "Native evidence is not transferred to this profile.",
-      "status": "CURRENT-MANDATORY",
+      "status": "RESEARCH-RESIDUAL",
       "supplementalEvidence": [
         "evidence/trust12/veri-observation-results.json",
         "evidence/trust12/veri-symbolic-results.json",
@@ -2030,14 +2057,14 @@
         "evidence/trust12/runtime-link/malformed/kevm-kore-checkpoint-v1.json",
         "evidence/trust12/runtime-link/malformed/ast-eval-checkpoint-v1.json"
       ],
-      "requiredForRelease": true,
-      "requiredForTrust12Completion": true,
+      "requiredForRelease": false,
+      "requiredForTrust12Completion": false,
       "proofCompleted": false,
-      "disposition": "Mandatory general runtime-to-model correspondence for TRUST 1.2 within the declared Partial product scope; currently unproved. The prior scope reset is historical.",
-      "receivingProcess": "TRUST 1.2 general runtime-to-model closure for the declared Partial scope.",
+      "disposition": "Deferred research under the 2026-10-04 completion direction: general runtime-to-model correspondence for the declared Partial scope is not required for TRUST 1.2 completion and remains unproved. The 2026-09-25 direction is historical.",
+      "receivingProcess": "Deferred general runtime-to-model research for the declared Partial scope; resumed only by a separate decision.",
       "responsibleArtifact": "This ledger row and the preserved Veri Formal/Kore assets with SHA-256 763cbe1d98ac7b904dd53fb2a8b6b7400e756aaa7624d556ed697b89b98a9488.",
       "closureEvidence": "Kernel-checked discharge of this profile's runtime_link with positive and negative consumers.",
-      "reopenCondition": "Any final source, ABI, runtime, profile or proof-input change reopens the affected connection.",
+      "reopenCondition": "A separate decision resumes this research. Any final source, ABI, runtime, profile or proof-input change reopens the affected connection.",
       "currentEvidenceReception": {
         "currentCheckpoints": [
           {
@@ -2074,6 +2101,10 @@
         "generalRuntimeLinkDischarged": false,
         "registeredCountsAreNotGeneralCoverage": true,
         "malformedTargetMismatch": "The supplied OOS alpha_transaction_spec relation is not the original bound admission relation alpha_transaction_bound/TRUST_Returned target."
+      },
+      "deferral": {
+        "decision": "evidence/trust12/release-policy.json#completionDirection",
+        "date": "2026-10-04"
       }
     },
     {
@@ -2085,7 +2116,7 @@
       "consumerRemovalNegative": "The current mutations cover named feature consumers but do not construct a general correspondence.",
       "compiledConsumer": "HookAdapter, governor, Compliance, factory and actual T-REX runtime identities are recorded.",
       "assumptionsNonclaims": "The hook functional result does not imply end-to-end runtime refinement.",
-      "status": "CURRENT-MANDATORY",
+      "status": "RESEARCH-RESIDUAL",
       "supplementalEvidence": [
         "evidence/trust12/veri-observation-results.json",
         "evidence/trust12/veri-symbolic-results.json",
@@ -2096,14 +2127,14 @@
         "evidence/trust12/runtime-link/malformed/kevm-kore-checkpoint-v1.json",
         "evidence/trust12/runtime-link/malformed/ast-eval-checkpoint-v1.json"
       ],
-      "requiredForRelease": true,
-      "requiredForTrust12Completion": true,
+      "requiredForRelease": false,
+      "requiredForTrust12Completion": false,
       "proofCompleted": false,
-      "disposition": "Mandatory general runtime-to-model correspondence for TRUST 1.2 within the declared Hook product scope; currently unproved. The prior scope reset is historical.",
-      "receivingProcess": "TRUST 1.2 general runtime-to-model closure for the declared Hook scope.",
+      "disposition": "Deferred research under the 2026-10-04 completion direction: general runtime-to-model correspondence for the declared Hook scope is not required for TRUST 1.2 completion and remains unproved. The 2026-09-25 direction is historical.",
+      "receivingProcess": "Deferred general runtime-to-model research for the declared Hook scope; resumed only by a separate decision.",
       "responsibleArtifact": "This ledger row and the preserved Veri Formal/Kore assets with SHA-256 763cbe1d98ac7b904dd53fb2a8b6b7400e756aaa7624d556ed697b89b98a9488.",
       "closureEvidence": "Kernel-checked discharge of this profile's runtime_link with positive and negative consumers.",
-      "reopenCondition": "Any final source, ABI, runtime, profile or proof-input change reopens the affected connection.",
+      "reopenCondition": "A separate decision resumes this research. Any final source, ABI, runtime, profile or proof-input change reopens the affected connection.",
       "currentEvidenceReception": {
         "currentCheckpoints": [
           {
@@ -2135,6 +2166,10 @@
         "generalRuntimeLinkDischarged": false,
         "registeredCountsAreNotGeneralCoverage": true,
         "malformedTargetMismatch": "The supplied OOS alpha_transaction_spec relation is not the original bound admission relation alpha_transaction_bound/TRUST_Returned target."
+      },
+      "deferral": {
+        "decision": "evidence/trust12/release-policy.json#completionDirection",
+        "date": "2026-10-04"
       }
     }
   ],
@@ -2143,20 +2178,23 @@
     "preservation": "PASS_ABSTRACT_MODEL: initial, ordinary, governance, failure and all nine regulatory state_wf preservation, linked-run induction and outcome-sensitive controls. Actual committed-source clean build and bounded independent source reviews are recorded in model-results.json and its references.",
     "reflection": "No general compiled-runtime reflection theorem.",
     "routeExhaustiveness": "PASS_SCOPED_INVENTORY: factory, direct deployment, adapter, governor, compliance and executed callback routes were reverse-enumerated. Permissionless resynchroniseFrozen and fresh-lifecycle-unreachable activateSeal are present but unexecuted. batchForcedTransfer, recovery and post-activation mint/burn callbacks remain outside the graded Hook scope.",
-    "stateReceiptIdentity": "Scoped component evidence and the current checkpoint consumers are received. The general FREEZE positive and its same-domain removal controls on both supply branches are complete; the three general runtime links and central closure remain open.",
+    "stateReceiptIdentity": "Scoped component evidence and the current checkpoint consumers are received. The general FREEZE positive and its same-domain removal controls on both supply branches are complete; the registered-scope central closure remains open and the three general runtime links are deferred research.",
     "currentMandatory": [
+      "REGISTERED-CENTRAL-CLOSURE"
+    ],
+    "researchResiduals": [
       "RESEARCH-RUNTIME-LINK-HOOK",
       "RESEARCH-RUNTIME-LINK-NATIVE",
       "RESEARCH-RUNTIME-LINK-PARTIAL"
     ],
-    "researchResiduals": [],
     "shippingExceptions": [],
-    "releaseScopeReset": "The 2026-09-13 release-scope reset is historical. Jay Kim's 2026-09-25 completion direction makes general correspondence mandatory for TRUST 1.2 while preserving scoped implementation-evidence rows."
+    "releaseScopeReset": "The 2026-09-13 release-scope reset and the 2026-09-25 completion direction are historical. Jay Kim's 2026-10-04 completion direction closes TRUST 1.2 at the registered-execution scope and defers general correspondence as research while preserving scoped implementation-evidence rows."
   },
   "releasePolicy": "evidence/trust12/release-policy.json",
   "releaseAssessment": {
     "status": "PENDING",
+    "trust12Complete": false,
     "fullRefinementComplete": false,
-    "meaning": "Three scoped profile implementation rows and the general symbolic FREEZE obligation are CLOSED. All three general runtime links remain mandatory. No shipping exception, final Assurance or release is asserted."
+    "meaning": "Three scoped profile implementation rows and the general symbolic FREEZE obligation are CLOSED. The registered-scope central closure is open. The three general runtime links are deferred research and unproved. No shipping exception, final Assurance or release is asserted."
   }
 }

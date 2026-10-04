@@ -8,8 +8,15 @@ export const components = ['constructor-storage', 'calldata-dispatch', 'authoriz
   'dependency-calls', 'effects-frame', 'revert', 'receipt-logs'];
 export const grades = ['UNVERIFIED', 'EXECUTION_TESTS', 'LIMITED_SCOPE_PROOF', 'FULL_SCOPE_PROOF'];
 export const mandatoryIds = ['NATIVE-SYMBOLIC-FREEZE', ...profiles.map(p => `RUNTIME-LINK-${p}`)].sort();
-// The stable RESEARCH-* identifiers predate the current completion direction; their status is mandatory.
+// The stable RESEARCH-* identifiers name the general runtime links. Under the current completion direction they are
+// deferred research that TRUST 1.2 completion does not require; a verified general proof can still close one.
 export const generalIds = profiles.map(p => `RESEARCH-RUNTIME-LINK-${p}`).sort();
+// TRUST 1.2 completes at the registered-execution scope through this central closure and fresh assurance.
+export const registeredClosureId = 'REGISTERED-CENTRAL-CLOSURE';
+const tailObligations = 'evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json';
+const completionDirectionRef = 'evidence/trust12/release-policy.json#completionDirection';
+export const deferralDisclosure = 'General runtime-to-model correspondence in each declared profile is deferred research and is not required for TRUST 1.2 completion.';
+export const registeredCompletionDisclosure = 'TRUST 1.2 is complete within the registered-execution scope.';
 const nativeClaim = 'For every positive first and second target with second <= first, including first above supply, the second FREEZE stutters the named Native projection.';
 const nativeBranchPredicates = ['first <= SUPPLY', 'SUPPLY < first'];
 const nativeSupplyNegative = 'evidence/trust12/runtime-link/native-supply-direction-negative-checkpoint-v1.json';
@@ -188,6 +195,35 @@ function verifiedGeneralLink(root, row, profile, policy) {
   }
 }
 
+function verifiedRegisteredClosure(root, row) {
+  const proof = row.registeredClosureEvidence;
+  check(proof?.status === 'PASS_REGISTERED_CENTRAL_CLOSURE'
+    && sameSet(Object.keys(proof.references ?? {}), ['closure','positive','negative','compiledConsumer']),
+  'registered central closure lacks a verified evidence contract');
+  const refs = proof.references;
+  check(new Set(Object.values(refs).map(ref => ref.path)).size === 4,
+    'registered central closure evidence roles drift');
+  for (const ref of Object.values(refs)) reference(root, ref, 'registered central closure');
+  const tail = json(root, tailObligations);
+  const closure = json(root, refs.closure.path);
+  check(closure.schema === 'trust12-registered-central-closure-v1' && closure.status === 'PASS'
+    && closure.conditionsSha256 === sha256(read(root, tailObligations))
+    && sameSet(closure.dischargedConditions, tail.conditions.map(item => item.id))
+    && sameSet(Object.keys(closure.findingDispositions ?? {}), tail.findings.map(item => item.id))
+    && Object.values(closure.findingDispositions).every(nonempty)
+    && Array.isArray(closure.retainedAssumptions) && closure.retainedAssumptions.every(nonempty)
+    && ['A-RUNTIME-LINK', 'A-RUNTIME-LINK-SPEC'].every(id => closure.retainedAssumptions.includes(id))
+    && closure.generalRuntimeLinkDischarged === false,
+  'registered central closure does not discharge every recorded condition with named assumptions');
+  for (const role of ['positive', 'negative', 'compiledConsumer']) {
+    const record = json(root, refs[role].path);
+    check(record.schema === 'trust12-registered-closure-evidence-v1' && record.role === role
+      && record.closureSha256 === refs.closure.sha256
+      && record.status === (role === 'negative' ? 'KILLED' : 'PASS'),
+    `registered central closure ${role} is not bound to the closure record`);
+  }
+}
+
 export function verifiedCentralCompletion(endToEnd) {
   const centralRows = new Map(endToEnd.rows?.map(row => [row.id, row]) ?? []);
   const centralAssumptions = new Map(endToEnd.assumptions?.map(item => [item.id, item]) ?? []);
@@ -201,13 +237,18 @@ export function verifiedCentralCompletion(endToEnd) {
 export function verifyTrust12Policy(root) {
   const policy = json(root, 'evidence/trust12/release-policy.json');
   const ledger = json(root, 'evidence/trust12/obligation-ledger.json');
-  check(policy.schema === 'trust12-release-policy-v2' && ledger.schema === 'trust12-obligation-ledger-v2', 'release policy schema');
+  check(policy.schema === 'trust12-release-policy-v3' && ledger.schema === 'trust12-obligation-ledger-v2', 'release policy schema');
   check(policy.approval?.kind === 'RELEASE_SCOPE_RESET' && policy.approval.approvedBy === 'Jay Kim'
     && policy.approval.date === '2026-09-13' && nonempty(policy.approval.userInstruction), 'missing scope-reset approval');
   check(policy.completionDirection?.kind === 'TRUST12_COMPLETION_DIRECTION'
-    && policy.completionDirection.approvedBy === 'Jay Kim' && policy.completionDirection.date === '2026-09-25'
-    && nonempty(policy.completionDirection.userInstruction), 'current TRUST 1.2 completion direction missing');
-  check(policy.generalRuntimeLinkRequiredForRelease === true && policy.parserDevelopment === 'ACTIVE_FOR_TRUST12'
+    && policy.completionDirection.approvedBy === 'Jay Kim' && policy.completionDirection.date === '2026-10-04'
+    && nonempty(policy.completionDirection.userInstruction) && nonempty(policy.completionDirection.scope),
+  'current TRUST 1.2 completion direction missing');
+  const history = policy.supersededCompletionDirections;
+  check(Array.isArray(history) && history.length === 1 && history[0].kind === 'TRUST12_COMPLETION_DIRECTION'
+    && history[0].approvedBy === 'Jay Kim' && history[0].date === '2026-09-25'
+    && nonempty(history[0].userInstruction) && nonempty(history[0].scope), 'completion direction history missing');
+  check(policy.generalRuntimeLinkRequiredForRelease === false && policy.parserDevelopment === 'PRESERVE_ONLY'
     && policy.nativeProbe?.automaticBoundedClosure === false
     && policy.nativeProbe?.decisionAuthority === 'Jay Kim', 'release policy boundary drift');
   check(profiles.every(profile => nonempty(policy.profileScopes?.[profile])
@@ -233,11 +274,12 @@ export function verifyTrust12Policy(root) {
     && nonempty(policy.certoraVersionPolicy), 'Certora tool version differs from current receipt');
   const rows = new Map(ledger.obligations.map(row => [row.id, row]));
   check(rows.size === ledger.obligations.length, 'duplicate obligation id');
-  check(sameSet([...rows.keys()], [...legacyClosedIds, ...mandatoryIds, ...generalIds])
+  check(sameSet([...rows.keys()], [...legacyClosedIds, ...mandatoryIds, ...generalIds, registeredClosureId])
     && legacyClosedIds.every(id => rows.get(id)?.status === 'CLOSED'), 'named obligation inventory drift');
-  const allowed = ['CLOSED', 'CURRENT-MANDATORY', 'OPEN-SHIPPING-EXCEPTION'];
+  const allowed = ['CLOSED', 'CURRENT-MANDATORY', 'OPEN-SHIPPING-EXCEPTION', 'RESEARCH-RESIDUAL'];
   for (const row of rows.values()) {
     check(allowed.includes(row.status), `unknown status: ${row.id}`);
+    if (row.status === 'RESEARCH-RESIDUAL') check(generalIds.includes(row.id), `research residual is limited to general runtime links: ${row.id}`);
     if (row.status !== 'OPEN-SHIPPING-EXCEPTION') check(row.shippingException == null, 'shipping approval attached to non-exception row');
     if (row.status === 'CLOSED') {
       check(!/pending/i.test(row.positiveActivation) && !/pending/i.test(row.consumerRemovalNegative), `closed row has pending evidence: ${row.id}`);
@@ -245,14 +287,16 @@ export function verifyTrust12Policy(root) {
   }
   for (const id of generalIds) {
     const row = rows.get(id);
-    check(['CURRENT-MANDATORY', 'CLOSED'].includes(row.status)
-      && row.requiredForRelease === true && row.requiredForTrust12Completion === true
-      && nonempty(row.abstractCondition), `general runtime link removed: ${id}`);
+    check(['RESEARCH-RESIDUAL', 'CLOSED'].includes(row.status)
+      && row.requiredForRelease === false && row.requiredForTrust12Completion === false
+      && nonempty(row.abstractCondition), `general runtime link status or completion role drift: ${id}`);
     for (const key of ['receivingProcess', 'responsibleArtifact', 'closureEvidence', 'reopenCondition'])
       check(nonempty(row[key]), `general runtime link missing ${key}: ${id}`);
-    if (row.status === 'CURRENT-MANDATORY') {
+    if (row.status === 'RESEARCH-RESIDUAL') {
       check(row.proofCompleted === false && row.generalProofEvidence == null,
         `unproved general runtime link claims completion: ${id}`);
+      check(row.deferral?.decision === completionDirectionRef && row.deferral.date === policy.completionDirection.date,
+        `general runtime link deferral is not the recorded decision: ${id}`);
     } else {
       check(row.proofCompleted === true, `general runtime link proof flag missing: ${id}`);
       verifiedGeneralLink(root, row, id.slice('RESEARCH-RUNTIME-LINK-'.length), policy);
@@ -261,6 +305,16 @@ export function verifyTrust12Policy(root) {
           `general runtime link has no completed ${key}: ${id}`);
     }
   }
+  const registered = rows.get(registeredClosureId);
+  check(['CURRENT-MANDATORY', 'CLOSED'].includes(registered.status)
+    && registered.requiredForRelease === true && registered.requiredForTrust12Completion === true
+    && registered.conditionsSource === tailObligations && nonempty(registered.abstractCondition),
+  'registered central closure row drift');
+  for (const key of ['receivingProcess', 'responsibleArtifact', 'closureEvidence', 'reopenCondition'])
+    check(nonempty(registered[key]), `registered central closure missing ${key}`);
+  if (registered.status === 'CLOSED') verifiedRegisteredClosure(root, registered);
+  else check(registered.proofCompleted === false && registered.registeredClosureEvidence == null,
+    'open registered central closure claims completion');
   for (const p of profiles) {
     const row = rows.get(`RUNTIME-LINK-${p}`);
     check(row && ['CURRENT-MANDATORY', 'CLOSED', 'OPEN-SHIPPING-EXCEPTION'].includes(row.status), 'implementation obligation removed');
@@ -293,10 +347,11 @@ export function verifyTrust12Policy(root) {
   }
   const pending = [...rows.values()].filter(r => r.status === 'CURRENT-MANDATORY').map(r => r.id).sort();
   const exceptions = [...rows.values()].filter(r => r.status === 'OPEN-SHIPPING-EXCEPTION');
-  check(pending.every(id => [...mandatoryIds, ...generalIds].includes(id))
+  const deferred = generalIds.filter(id => rows.get(id).status === 'RESEARCH-RESIDUAL');
+  check(pending.every(id => [...mandatoryIds, registeredClosureId].includes(id))
     && exceptions.every(r => mandatoryIds.includes(r.id)), 'unexpected release obligation');
   check(sameSet(ledger.centralClosure.currentMandatory, pending), 'central mandatory list differs from obligation statuses');
-  check(sameSet(ledger.centralClosure.researchResiduals, []), 'general runtime link mislabeled as research residual');
+  check(sameSet(ledger.centralClosure.researchResiduals, deferred), 'research residual list differs from obligation statuses');
   check(sameSet(ledger.centralClosure.shippingExceptions, exceptions.map(r => r.id)), 'central exception list drift');
   const assurance = ledger.centralClosure.independentAssurance;
   const audited = assurance?.status === 'PASS_FRESH_ASSURANCE' && assurance?.report &&
@@ -314,27 +369,32 @@ export function verifyTrust12Policy(root) {
         runtimeIdentitySha256: sha256(read(root, 'evidence/trust12/runtime-identity.json')),
         abiSha256: sha256(read(root, 'spec/generated/kernel-v2-abi.json')),
         endToEndLedgerSha256: sha256(read(root, 'evidence/end-to-end-refinement/obligation-ledger-v3.json')),
+        registeredClosureSha256: registered.registeredClosureEvidence ? sha256(encoded(registered.registeredClosureEvidence)) : null,
         generalProofDigests: generalDigests,
       };
       check(report.schema === 'trust12-final-assurance-v1' && report.status === 'PASS_FRESH_ASSURANCE'
         && report.independentOfBuilding === true && nonempty(report.reviewer)
         && report.reproduction?.status === 'PASS' && report.consumerRemoval?.status === 'PASS'
-        && Object.values(generalDigests).every(nonempty)
+        && nonempty(finalIdentities.registeredClosureSha256)
         && encoded(report.finalIdentities) === encoded(finalIdentities),
       'fresh assurance report is not independently reproduced on the final inputs');
       return true;
     })();
   const endToEnd = json(root, 'evidence/end-to-end-refinement/obligation-ledger-v3.json');
   const endToEndClosed = verifiedCentralCompletion(endToEnd);
-  const complete = pending.length === 0 && exceptions.length === 0
+  // TRUST 1.2 completion is the registered-execution scope; full refinement additionally needs every general link.
+  const trust12Complete = pending.length === 0 && exceptions.length === 0
     && mandatoryIds.every(id => rows.get(id).status === 'CLOSED')
-    && generalIds.every(id => rows.get(id).status === 'CLOSED')
-    && endToEndClosed === true && audited === true;
-  check(ledger.centralClosure.status === (complete ? 'COMPLETE' : 'INCOMPLETE'), 'central completion status drift');
+    && registered.status === 'CLOSED' && audited === true;
+  const complete = trust12Complete && generalIds.every(id => rows.get(id).status === 'CLOSED')
+    && endToEndClosed === true;
+  check(ledger.centralClosure.status === (complete ? 'COMPLETE' : trust12Complete ? 'COMPLETE_REGISTERED_SCOPE' : 'INCOMPLETE'),
+    'central completion status drift');
   for (const row of exceptions) exception(root, row);
   const readiness = pending.length ? 'PENDING' : exceptions.length ? 'READY_WITH_EXCEPTIONS' : 'EVIDENCE_READY';
   check(ledger.releaseAssessment?.status === readiness
-    && ledger.releaseAssessment.fullRefinementComplete === complete, 'release readiness drift');
+    && ledger.releaseAssessment.fullRefinementComplete === complete
+    && ledger.releaseAssessment.trust12Complete === trust12Complete, 'release readiness drift');
   check(ledger.status === (pending.length ? 'IN_PROGRESS' : exceptions.length ? 'EVIDENCE_COMPLETE_WITH_EXCEPTIONS' : 'EVIDENCE_COMPLETE'), 'ledger status drift');
   for (const path of disclosures) {
     const text = read(root, path).toString('utf8');
@@ -342,6 +402,8 @@ export function verifyTrust12Policy(root) {
     const completePhrase = text.includes('end-to-end refinement complete within the declared profiles');
     check(complete ? completePhrase && !incompletePhrase : incompletePhrase && !completePhrase,
       `claim boundary drift: ${path}`);
+    check(text.includes(deferralDisclosure) === (deferred.length > 0), `general runtime link deferral disclosure drift: ${path}`);
+    check(text.includes(registeredCompletionDisclosure) === trust12Complete, `registered completion disclosure drift: ${path}`);
     check(text.includes('TRUST 1.2 shipping exceptions: none.') === (exceptions.length === 0), `exception summary drift: ${path}`);
   }
   const profileRows = profiles.map(profile => rows.get(`RUNTIME-LINK-${profile}`));
@@ -351,6 +413,6 @@ export function verifyTrust12Policy(root) {
   for (const path of implementationDisclosures)
     check(read(root, path).toString('utf8').includes(gradeDisclosure), `profile grade disclosure drift: ${path}`);
   return { status: 'PASS_POLICY_CONSISTENCY', releaseReadiness: readiness, currentMandatory: pending,
-    generalRuntimeLinkMandatory: generalIds.filter(id => rows.get(id).status !== 'CLOSED'),
-    researchResiduals: [], shippingExceptions: exceptions.map(r => r.id), fullRefinementComplete: complete };
+    generalRuntimeLinkDeferred: deferred, researchResiduals: deferred, shippingExceptions: exceptions.map(r => r.id),
+    trust12Complete, fullRefinementComplete: complete };
 }

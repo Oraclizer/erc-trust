@@ -24,9 +24,12 @@ forbidden by `claim-matrix.md`.
 
 ## TRUST 1.2 release evidence (unreleased)
 
-The 2026-09-13 release-scope reset is historical. The current completion direction
-requires general `runtime_link` discharge in each declared profile; this remains
-unproved. Scoped model and external-prover evidence retain their recorded validity. The required
+The 2026-09-13 release-scope reset and the 2026-09-25 completion direction are
+historical. The current completion direction closes TRUST 1.2 at the
+registered-execution scope; its central closure and fresh assurance are open.
+General runtime-to-model correspondence in each declared profile is deferred research and is not required for TRUST 1.2 completion.
+General `runtime_link` discharge remains unproved. Scoped model and external-prover
+evidence retain their recorded validity. The required
 label remains "mapped implementation evidence; end-to-end refinement incomplete".
 The 21 component entries have been scope-reviewed. Native, Partial and Hook each have
 seven execution-test components. The weakest component makes all three profile rows

@@ -34,11 +34,17 @@ runtime link rather than bounded instances of it.
 
 ## TRUST 1.2 completion scope (unreleased)
 
-The 2026-09-13 release-scope reset is historical. The current 2026-09-25
-completion direction requires general runtime-to-model correspondence for each
-declared profile. The verified Isabelle abstract model and profile-specific
-compiled-code evidence remain valid only within their recorded scopes. The general
-`runtime_link` discharge is mandatory and unproved. The current label remains
+The 2026-09-13 release-scope reset and the 2026-09-25 completion direction are
+historical. The current 2026-10-04 completion direction closes TRUST 1.2 at the
+registered-execution scope: the verified Isabelle abstract model, kernel-checked
+registered executions of the three declared profiles bound to their exact compiled
+runtimes, one registered-scope central closure that names its remaining
+assumptions, and fresh independent assurance. The central closure and the
+assurance are open.
+General runtime-to-model correspondence in each declared profile is deferred research and is not required for TRUST 1.2 completion.
+The verified Isabelle abstract model and profile-specific compiled-code evidence
+remain valid only within their recorded scopes. The general `runtime_link`
+discharge remains unproved. The current label remains
 "mapped implementation evidence; end-to-end refinement incomplete".
 
 Each of seven components in each profile records its exact input/state scope,
@@ -49,7 +55,7 @@ proof by aggregation. The 21 components have been scope-reviewed. Native, Partia
 Hook each contain seven execution-test components. The weakest component makes every
 profile row EXECUTION_TESTS. No test or bounded proof was upgraded beyond its
 original scope. The three profile implementation-evidence rows are closed within
-those declared scopes, while all three general `runtime_link` mandatory obligations
+those declared scopes, while all three general `runtime_link` research obligations
 remain unproved. Existing Kontrol PASS records remain supplemental bounded evidence
 because their receipt does not record the proof metadata required for proof-grade credit.
 
