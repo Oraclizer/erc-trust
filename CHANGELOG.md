@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+- Add the version 2 certificate registry of the runtime link and its public
+  record certificate-registry-checkpoint-v1.json. The registry names one
+  applied and one not-applied checked certificate for each of the twenty-seven
+  profile and operation cells and one checked certificate for each catalogued
+  request outside canonical form (Native 16, Partial 13, Hook 13), 96 in all,
+  keys the requests outside canonical form by request, and binds each
+  certificate to the endpoint code that its recorded world holds outside the
+  immutable ranges. The public verifier pins the reviewed record and runs in
+  the required gate; its saved mode rebuilds the registry in closure mode from
+  the private evidence. The registry reads recorded acceptance; it does not
+  rerun the prover or replay kernel sessions.
+
 - Alias private process folder names and omit private maintainer tool paths in
   the Partial RELEASE and Hook closure manifests and the tail preparation
   manifest. Every recorded hash and byte count is unchanged; a private alias

@@ -1913,7 +1913,8 @@
       "supplementalEvidence": [
         "evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json",
         "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
-        "evidence/trust12/runtime-link/tail-preparation/malformed-guard-mutants-checkpoint-v1.json"
+        "evidence/trust12/runtime-link/tail-preparation/malformed-guard-mutants-checkpoint-v1.json",
+        "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json"
       ],
       "requiredForRelease": true,
       "requiredForTrust12Completion": true,

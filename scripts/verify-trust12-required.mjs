@@ -53,6 +53,13 @@ export const requiredTrust12Paths = [
   'scripts/trust12/tail-preparation/run_malformed_probe_v2.py',
   'evidence/trust12/runtime-link/tail-preparation/malformed-probe-mutants-v1.json',
   'evidence/trust12/runtime-link/tail-preparation/malformed-guard-mutants-checkpoint-v1.json',
+  'scripts/test-certificate-registry.py',
+  'scripts/trust12/verify_certificate_registry_v1.py',
+  'scripts/trust12/tail-preparation/certificate_registry_v2.py',
+  'scripts/trust12/tail-preparation/kore_accounts.py',
+  'scripts/trust12/tail-preparation/test_certificate_registry_v2.py',
+  'evidence/trust12/runtime-link/tail-preparation/certificate-registry-schema-v2.json',
+  'evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json',
   'evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json',
   'scripts/test-primitive-source-controls.py',
   'scripts/trust12/verify_primitive_source_controls_v1.py',
@@ -223,6 +230,10 @@ export function verifyTrust12Required(root = repository) {
     ['-B', resolve(root, 'scripts/trust12/verify_malformed_guard_mutants_v1.py'), '--product-root', root, '--metadata-only'],
     { cwd: root, encoding: 'utf8' });
   check(!guardMutantsCheck.error && guardMutantsCheck.status === 0, 'malformed-guard-mutants public metadata check failed');
+  const certificateRegistryCheck = spawnSync(process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3'),
+    ['-B', resolve(root, 'scripts/trust12/verify_certificate_registry_v1.py'), '--product-root', root, '--metadata-only'],
+    { cwd: root, encoding: 'utf8' });
+  check(!certificateRegistryCheck.error && certificateRegistryCheck.status === 0, 'certificate-registry public metadata check failed');
   const primitiveControlsCheck = spawnSync(process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3'),
     ['-B', resolve(root, 'scripts/trust12/verify_primitive_source_controls_v1.py'), '--product-root', root, '--metadata-only'],
     { cwd: root, encoding: 'utf8' });

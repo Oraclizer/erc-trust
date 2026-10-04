@@ -22,6 +22,8 @@ needs, the prepared inputs, the acceptance criteria and the findings that block 
 | [route-inventory-v1.json](route-inventory-v1.json) | Every selector of the seven profile runtimes with its class and disposition |
 | [state-receipt-crosswalk-v1.json](state-receipt-crosswalk-v1.json) | Abstract state and receipt fields traced to storage, ABI and events |
 | [certificate-registry-schema-v1.json](certificate-registry-schema-v1.json) | Registry, partition coverage and certificate locator formats |
+| [certificate-registry-schema-v2.json](certificate-registry-schema-v2.json) | Registry version 2: the executed code and runtime set of every certificate, the records that consumed each recorded world, the acceptance verdict and the locator format |
+| [certificate-registry-checkpoint-v1.json](certificate-registry-checkpoint-v1.json) | Public record of the registry built from the private evidence: coverage, executed code, retained assumptions and the private registry and locator file by hash |
 | [assurance-input-seal-schema-v1.json](assurance-input-seal-schema-v1.json) | Format of the frozen Assurance inputs |
 | [assurance-input-seal-spec-v1.json](assurance-input-seal-spec-v1.json) | Bundles, toolchain pins, reproduction commands and independent checks of the seal |
 | [assurance-checklist-v1.md](assurance-checklist-v1.md) | Procedure of the independent assessor |
@@ -42,6 +44,8 @@ All tools are in `scripts/trust12/tail-preparation`. They never run a prover and
 | `route_inventory.py` | Enumerates and classifies every selector and checks the Native and Partial sets against the formal route tables |
 | `state_receipt_crosswalk.py` | Traces the abstract fields to the storage of every runtime and the receipt to the ABI and events |
 | `certificate_registry.py` | Builds and verifies the certificate registry and its partition coverage from an evidence-side locator file |
+| `certificate_registry_v2.py` | Builds and verifies registry version 2 from an evidence-side locator file: the executed code and runtime set read from each recorded world, the kind of each record that consumed the world, and the acceptance verdict, recorded or recomputed from a stored proof graph |
+| `kore_accounts.py` | Reads the accounts and the executing frame identifier of a KEVM configuration in KORE text form and fails closed on anything it does not recognise |
 | `assurance_seal.py` | Seals and verifies the frozen inputs of the independent Assurance |
 | `run_malformed_probe.py` | Runs the concrete malformed probe of the three endpoints in an isolated build directory |
 
@@ -67,6 +71,21 @@ directory, runs the three profile probes there and writes a receipt:
 
 ```
 python3 scripts/trust12/tail-preparation/run_malformed_probe.py --product . --trex-artifacts out/trust12/trex/out --workdir WORKDIR --output RECEIPT_DIRECTORY
+```
+
+The public record of the certificate registry is checked against the tracked files alone, and its
+negative controls run without private files:
+
+```
+python3 scripts/trust12/verify_certificate_registry_v1.py --metadata-only
+python3 scripts/test-certificate-registry.py
+```
+
+With the private evidence root and the private index of the registry and its locator file, the
+verifier rehashes both, rebuilds the registry in closure mode and requires it to equal the stored one:
+
+```
+python3 scripts/trust12/verify_certificate_registry_v1.py --evidence EVIDENCE_ROOT --artifact-index ARTIFACT_INDEX
 ```
 
 ## Findings of the preparation
