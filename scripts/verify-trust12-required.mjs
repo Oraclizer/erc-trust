@@ -45,6 +45,7 @@ export const requiredTrust12Paths = [
   'scripts/test-second-freeze-rejection.py',
   'scripts/trust12/verify_second_freeze_rejection_v1.py',
   'evidence/trust12/runtime-link/second-freeze-rejection-checkpoint-v1.json',
+  'evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json',
   'scripts/test-primitive-source-controls.py',
   'scripts/trust12/verify_primitive_source_controls_v1.py',
   'evidence/trust12/runtime-link/primitive-source-controls-checkpoint-v1.json',

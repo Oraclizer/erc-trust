@@ -11,7 +11,7 @@
     "kind": "TRUST12_COMPLETION_DIRECTION",
     "approvedBy": "Jay Kim",
     "date": "2026-10-04",
-    "userInstruction": "Close TRUST 1.2 at the registered-execution scope and update every canonical record; pursue the general runtime link only after research on better agents and approaches.",
+    "userInstruction": "Define TRUST 1.2 completion at the registered-execution scope and update every canonical record; keep the general runtime link as deferred research that a separate decision may resume or drop.",
     "scope": "TRUST 1.2 completes with the verified abstract model, kernel-checked registered executions of the three declared profiles bound to their exact compiled runtimes, one registered-scope central closure that names its remaining assumptions, and fresh independent assurance. General runtime-to-model correspondence in each declared profile is deferred research and is not required for TRUST 1.2 completion. No release or deployment is authorized."
   },
   "supersededCompletionDirections": [

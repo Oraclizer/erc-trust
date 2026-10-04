@@ -249,7 +249,7 @@
         },
         "review": {
           "path": "evidence/trust12/veri-integration-audit.md",
-          "sha256": "83d06cb533e3ca3c8c33351bd75dd12ebac45e1f03f8fa0afd072cb83cac4a3e"
+          "sha256": "b0f00854e0581eecc079bc0fafa455ae099df855bb2bfc7869d2a0b0009033fc"
         }
       },
       "probeDisposition": "Completed general positive and both complementary same-domain removal controls received. No shipping exception.",
@@ -2188,7 +2188,7 @@
       "RESEARCH-RUNTIME-LINK-PARTIAL"
     ],
     "shippingExceptions": [],
-    "releaseScopeReset": "The 2026-09-13 release-scope reset and the 2026-09-25 completion direction are historical. Jay Kim's 2026-10-04 completion direction closes TRUST 1.2 at the registered-execution scope and defers general correspondence as research while preserving scoped implementation-evidence rows."
+    "releaseScopeReset": "The 2026-09-13 release-scope reset and the 2026-09-25 completion direction are historical. Jay Kim's 2026-10-04 completion direction defines TRUST 1.2 completion at the registered-execution scope and defers general correspondence as research while preserving scoped implementation-evidence rows."
   },
   "releasePolicy": "evidence/trust12/release-policy.json",
   "releaseAssessment": {

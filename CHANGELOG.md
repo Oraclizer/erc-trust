@@ -2,13 +2,15 @@
 
 ## Unreleased
 
-- Close TRUST 1.2 at the registered-execution scope (decision 13). Record the
-  2026-10-04 completion direction and keep the 2026-09-25 direction as
-  history, move the three general runtime links to deferred research rows that
-  keep their declared scopes and closure contracts, and add the mandatory
-  registered-scope central closure row. The policy check now separates TRUST
-  1.2 completion from full end-to-end refinement and requires the deferral
-  disclosure. No proof, runtime or claim label changes.
+- Set the TRUST 1.2 completion scope to registered executions (decision 13).
+  Record the 2026-10-04 completion direction and keep the 2026-09-25
+  direction as history, move the three general runtime links to deferred
+  research rows that keep their declared scopes and closure contracts, and add
+  the mandatory registered-scope central closure row. The policy check now
+  separates TRUST 1.2 completion from full end-to-end refinement, binds a
+  registered closure to the final runtimes, sources, ABI, formal root and
+  per-condition evidence, and requires the deferral disclosure. No proof,
+  runtime or claim label changes.
 
 - Record the rejected second FREEZE of the Native symbolic test as a
   transaction received from raw texts at the received valuation point. Receive

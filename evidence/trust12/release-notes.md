@@ -4,12 +4,14 @@ Unaudited. Not for production. No deployment, proxy, migration, or external
 legal/factual truth is verified. This file does not announce a release.
 
 The 2026-09-13 release-scope reset and Jay Kim's 2026-09-25 completion direction
-are historical. Jay Kim's 2026-10-04 completion direction closes TRUST 1.2 at the
-registered-execution scope: the verified Isabelle abstract model, kernel-checked
+are historical. Jay Kim's 2026-10-04 completion direction defines TRUST 1.2
+completion at the registered-execution scope: the verified Isabelle abstract model, kernel-checked
 registered executions of Native, Partial and Hook bound to their exact compiled
 runtimes, one registered-scope central closure that names its remaining
-assumptions, and fresh independent assurance. The central closure and the
-assurance are open.
+assumptions, and fresh independent assurance.
+Of these, only the abstract model is complete. The gate, malformed-branch and central conditions
+recorded in `runtime-link/tail-preparation/tail-obligations-v1.json`, the registered-scope
+central closure and the assurance are open.
 General runtime-to-model correspondence in each declared profile is deferred research and is not required for TRUST 1.2 completion.
 The current evidence does not discharge the general runtime links. Verified Isabelle model evidence and scoped
 compiled-code checks remain valid at their stated levels. The permitted claim is

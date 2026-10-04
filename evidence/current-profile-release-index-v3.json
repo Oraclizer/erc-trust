@@ -425,7 +425,7 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "140638cc4ba38fcb242f121adab2353af1eddbdf8a1be3ecc741eae9b5a0ecb6"
+        "sha256": "46a80098562343299b5ca3020c259394c28675c8088af79e96cc05ee41d23bac"
       }
     },
     "runtime": {
@@ -463,23 +463,23 @@
       "evidence": [
         {
           "path": "evidence/trust12/release-policy.json",
-          "sha256": "3a6e301698d6ea72130b21880be4fa9e13fc821bf805a4f1d95dc84256bcc46d"
+          "sha256": "ffda8c2ece66df8d16cc3adced3b7bd910e23abdc77b3ccf7f39cc863b8597d6"
         },
         {
           "path": "evidence/trust12/release-notes.md",
-          "sha256": "be0e5d9745f1b52972754878ad8a0bf2fa3aa7aba0280b8fafa457ce465c1f56"
+          "sha256": "67f3c093ac6a6be29665ec3965cef154f9212b41ca06f2271632b318e0622800"
         },
         {
           "path": "evidence/claim-matrix.md",
-          "sha256": "dfc4c186f07bb466cd10991ce84c4d9ec2a93de29d8bb0826bb658bd6c88d0e1"
+          "sha256": "41f431fb257f7b0f6132f1dde001a4e7c6d53c9cac3c5fd6eb3b569c017fc260"
         },
         {
           "path": "evidence/known-limitations.md",
-          "sha256": "82431f20dbdc4f983d3dea52a7ec6df82462baa2ed7adc655339829a90ac0c36"
+          "sha256": "fca8db10e7ca65932f378394823238f35a062b5a583f93917f79ffda300e3dcc"
         },
         {
           "path": "evidence/trust12/obligation-ledger.json",
-          "sha256": "12df4b5a0eac13b95753990cc6724dfc01c3271cdf6f4676a019ae58418ce8eb"
+          "sha256": "698f0d2537d7e9ba615713690f25e4bc9e7921bb77b648ed473036752fc4b919"
         },
         {
           "path": "evidence/trust12/runtime-identity.json",
@@ -598,6 +598,10 @@
           "sha256": "d4e892982dcfa29fc9591f697e93ca10186306893ad5841306b12fd3ada9ee2c"
         },
         {
+          "path": "evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json",
+          "sha256": "3e6524fc20a951dab02e916f41980b8281a84338ec94b2dcf14f5a0e8a73a087"
+        },
+        {
           "path": "evidence/trust12/runtime-link/primitive-source-controls-checkpoint-v1.json",
           "sha256": "fb9e988a785733f3427159c29798bba1faf6faa34addb9354486adf89eee5c2b"
         },
@@ -615,7 +619,7 @@
         },
         {
           "path": "evidence/trust12/input-seal.json",
-          "sha256": "abd46e7ff2fd7bea83a4bcdba060d7e5b30c0d8e8ee1d175ad496ce3ab61d564"
+          "sha256": "48ecc4a837053c972cac3c232527558dcd055f5e9996bc956eb1ee1be67dc32f"
         }
       ],
       "fullRefinementComplete": false,
@@ -735,23 +739,23 @@
     "evidence": [
       {
         "path": "evidence/trust12/release-policy.json",
-        "sha256": "3a6e301698d6ea72130b21880be4fa9e13fc821bf805a4f1d95dc84256bcc46d"
+        "sha256": "ffda8c2ece66df8d16cc3adced3b7bd910e23abdc77b3ccf7f39cc863b8597d6"
       },
       {
         "path": "evidence/trust12/release-notes.md",
-        "sha256": "be0e5d9745f1b52972754878ad8a0bf2fa3aa7aba0280b8fafa457ce465c1f56"
+        "sha256": "67f3c093ac6a6be29665ec3965cef154f9212b41ca06f2271632b318e0622800"
       },
       {
         "path": "evidence/claim-matrix.md",
-        "sha256": "dfc4c186f07bb466cd10991ce84c4d9ec2a93de29d8bb0826bb658bd6c88d0e1"
+        "sha256": "41f431fb257f7b0f6132f1dde001a4e7c6d53c9cac3c5fd6eb3b569c017fc260"
       },
       {
         "path": "evidence/known-limitations.md",
-        "sha256": "82431f20dbdc4f983d3dea52a7ec6df82462baa2ed7adc655339829a90ac0c36"
+        "sha256": "fca8db10e7ca65932f378394823238f35a062b5a583f93917f79ffda300e3dcc"
       },
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "12df4b5a0eac13b95753990cc6724dfc01c3271cdf6f4676a019ae58418ce8eb"
+        "sha256": "698f0d2537d7e9ba615713690f25e4bc9e7921bb77b648ed473036752fc4b919"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -870,6 +874,10 @@
         "sha256": "d4e892982dcfa29fc9591f697e93ca10186306893ad5841306b12fd3ada9ee2c"
       },
       {
+        "path": "evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json",
+        "sha256": "3e6524fc20a951dab02e916f41980b8281a84338ec94b2dcf14f5a0e8a73a087"
+      },
+      {
         "path": "evidence/trust12/runtime-link/primitive-source-controls-checkpoint-v1.json",
         "sha256": "fb9e988a785733f3427159c29798bba1faf6faa34addb9354486adf89eee5c2b"
       },
@@ -887,7 +895,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "abd46e7ff2fd7bea83a4bcdba060d7e5b30c0d8e8ee1d175ad496ce3ab61d564"
+        "sha256": "48ecc4a837053c972cac3c232527558dcd055f5e9996bc956eb1ee1be67dc32f"
       }
     ],
     "fullRefinementComplete": false,

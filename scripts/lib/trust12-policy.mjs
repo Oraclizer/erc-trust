@@ -14,6 +14,9 @@ export const generalIds = profiles.map(p => `RESEARCH-RUNTIME-LINK-${p}`).sort()
 // TRUST 1.2 completes at the registered-execution scope through this central closure and fresh assurance.
 export const registeredClosureId = 'REGISTERED-CENTRAL-CLOSURE';
 const tailObligations = 'evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json';
+// Reviewed conditions list of the registered closure; changing the list requires changing this pin.
+const approvedTailSha256 = '3e6524fc20a951dab02e916f41980b8281a84338ec94b2dcf14f5a0e8a73a087';
+const assuranceCondition = 'independent-assurance';
 const completionDirectionRef = 'evidence/trust12/release-policy.json#completionDirection';
 export const deferralDisclosure = 'General runtime-to-model correspondence in each declared profile is deferred research and is not required for TRUST 1.2 completion.';
 export const registeredCompletionDisclosure = 'TRUST 1.2 is complete within the registered-execution scope.';
@@ -195,7 +198,28 @@ function verifiedGeneralLink(root, row, profile, policy) {
   }
 }
 
-function verifiedRegisteredClosure(root, row) {
+// Fixture records carry `fixtureOnly`; only the isolated policy controls may accept them.
+function hasFixture(value) {
+  return value !== null && typeof value === 'object'
+    && (Object.hasOwn(value, 'fixtureOnly') || Object.values(value).some(hasFixture));
+}
+
+// The final inputs a registered closure is bound to: every profile runtime, the source inventory, the ABI,
+// the admitted formal root, the closure row's condition and the reviewed conditions list.
+export function registeredFinalInputs(root, row) {
+  const runtimeIdentity = json(root, 'evidence/trust12/runtime-identity.json');
+  for (const input of runtimeIdentity.sourceInputs) reference(root, input, 'registered closure source');
+  const runtimeSha256ByContract = Object.fromEntries(profiles.flatMap(profile => generalRuntimeContracts[profile])
+    .map(name => [name, runtimeIdentity.runtimes[name]?.runtimeSha256]));
+  check(Object.values(runtimeSha256ByContract).every(hash => /^[a-f0-9]{64}$/.test(hash)),
+    'registered closure runtime identity missing');
+  return { runtimeSha256ByContract, sourceInventorySha256: sha256(encoded(runtimeIdentity.sourceInputs)),
+    abiSha256: sha256(read(root, 'spec/generated/kernel-v2-abi.json')),
+    formalRootSha256: json(root, 'evidence/isabelle-results-v3.json').formalSource.rootSha256,
+    conditionSha256: sha256(row.abstractCondition), conditionsSha256: approvedTailSha256 };
+}
+
+function verifiedRegisteredClosure(root, row, endToEnd, generalClosed, fixtureMode) {
   const proof = row.registeredClosureEvidence;
   check(proof?.status === 'PASS_REGISTERED_CENTRAL_CLOSURE'
     && sameSet(Object.keys(proof.references ?? {}), ['closure','positive','negative','compiledConsumer']),
@@ -204,19 +228,44 @@ function verifiedRegisteredClosure(root, row) {
   check(new Set(Object.values(refs).map(ref => ref.path)).size === 4,
     'registered central closure evidence roles drift');
   for (const ref of Object.values(refs)) reference(root, ref, 'registered central closure');
+  check(sha256(read(root, tailObligations)) === approvedTailSha256,
+    'registered closure conditions differ from the reviewed list');
   const tail = json(root, tailObligations);
+  const conditions = tail.conditions.map(item => item.id);
+  check(conditions.includes(assuranceCondition), 'registered closure conditions omit the independent assurance');
   const closure = json(root, refs.closure.path);
+  const records = Object.fromEntries(['positive', 'negative', 'compiledConsumer']
+    .map(role => [role, json(root, refs[role].path)]));
+  check(fixtureMode || ![closure, ...Object.values(records)].some(hasFixture),
+    'registered central closure uses fixture records');
+  // The fresh independent assurance binds this closure, so the closure discharges every condition except it.
+  const discharged = conditions.filter(id => id !== assuranceCondition);
+  const remaining = endToEnd.assumptions.filter(item => item.status !== 'DISCHARGED').map(item => item.id);
+  const evidence = closure.conditionEvidence ?? {};
   check(closure.schema === 'trust12-registered-central-closure-v1' && closure.status === 'PASS'
-    && closure.conditionsSha256 === sha256(read(root, tailObligations))
-    && sameSet(closure.dischargedConditions, tail.conditions.map(item => item.id))
+    && encoded(closure.finalInputs) === encoded(registeredFinalInputs(root, row))
+    && sameSet(closure.dischargedConditions, discharged)
+    && sameSet(Object.keys(evidence), discharged)
     && sameSet(Object.keys(closure.findingDispositions ?? {}), tail.findings.map(item => item.id))
     && Object.values(closure.findingDispositions).every(nonempty)
     && Array.isArray(closure.retainedAssumptions) && closure.retainedAssumptions.every(nonempty)
-    && ['A-RUNTIME-LINK', 'A-RUNTIME-LINK-SPEC'].every(id => closure.retainedAssumptions.includes(id))
-    && closure.generalRuntimeLinkDischarged === false,
+    && remaining.length > 0 && remaining.every(id => closure.retainedAssumptions.includes(id))
+    && closure.generalRuntimeLinkDischarged === generalClosed,
   'registered central closure does not discharge every recorded condition with named assumptions');
-  for (const role of ['positive', 'negative', 'compiledConsumer']) {
-    const record = json(root, refs[role].path);
+  for (const [id, items] of Object.entries(evidence)) {
+    check(Array.isArray(items) && items.length > 0, `registered closure condition has no evidence: ${id}`);
+    for (const item of items) {
+      check(typeof item?.path === 'string' && item.path.startsWith('evidence/') && !item.path.includes('..'),
+        `registered closure evidence is outside the evidence tree: ${id}`);
+      reference(root, item, 'registered closure condition evidence');
+      if (!item.path.endsWith('.json')) continue;
+      const record = json(root, item.path);
+      check(typeof record.status === 'string' && record.status.startsWith('PASS'),
+        `registered closure evidence is not a passing record: ${id}`);
+      check(fixtureMode || !hasFixture(record), 'registered central closure uses fixture records');
+    }
+  }
+  for (const [role, record] of Object.entries(records)) {
     check(record.schema === 'trust12-registered-closure-evidence-v1' && record.role === role
       && record.closureSha256 === refs.closure.sha256
       && record.status === (role === 'negative' ? 'KILLED' : 'PASS'),
@@ -234,9 +283,11 @@ export function verifiedCentralCompletion(endToEnd) {
     && endToEnd.rows?.every(row => !['CURRENT-MANDATORY','SUCCESSOR-MANDATORY'].includes(row.status));
 }
 
-export function verifyTrust12Policy(root) {
+// `fixtureMode` is for the isolated policy controls only; every product entrypoint calls without options.
+export function verifyTrust12Policy(root, { fixtureMode = false } = {}) {
   const policy = json(root, 'evidence/trust12/release-policy.json');
   const ledger = json(root, 'evidence/trust12/obligation-ledger.json');
+  const endToEnd = json(root, 'evidence/end-to-end-refinement/obligation-ledger-v3.json');
   check(policy.schema === 'trust12-release-policy-v3' && ledger.schema === 'trust12-obligation-ledger-v2', 'release policy schema');
   check(policy.approval?.kind === 'RELEASE_SCOPE_RESET' && policy.approval.approvedBy === 'Jay Kim'
     && policy.approval.date === '2026-09-13' && nonempty(policy.approval.userInstruction), 'missing scope-reset approval');
@@ -312,8 +363,14 @@ export function verifyTrust12Policy(root) {
   'registered central closure row drift');
   for (const key of ['receivingProcess', 'responsibleArtifact', 'closureEvidence', 'reopenCondition'])
     check(nonempty(registered[key]), `registered central closure missing ${key}`);
-  if (registered.status === 'CLOSED') verifiedRegisteredClosure(root, registered);
-  else check(registered.proofCompleted === false && registered.registeredClosureEvidence == null,
+  if (registered.status === 'CLOSED') {
+    check(registered.proofCompleted === true
+      && ['positiveActivation', 'consumerRemovalNegative', 'compiledConsumer']
+        .every(key => nonempty(registered[key]) && !/pending/i.test(registered[key])),
+    'closed registered central closure has pending evidence');
+    verifiedRegisteredClosure(root, registered, endToEnd,
+      generalIds.every(id => rows.get(id).status === 'CLOSED'), fixtureMode);
+  } else check(registered.proofCompleted === false && registered.registeredClosureEvidence == null,
     'open registered central closure claims completion');
   for (const p of profiles) {
     const row = rows.get(`RUNTIME-LINK-${p}`);
@@ -360,6 +417,7 @@ export function verifyTrust12Policy(root) {
         'fresh assurance report is outside its declared evidence area');
       reference(root, assurance.report, 'fresh assurance');
       const report = json(root, assurance.report.path);
+      check(fixtureMode || !hasFixture(report), 'fresh assurance report is a fixture record');
       const generalDigests = Object.fromEntries(profiles.map(profile => {
         const proof = rows.get(`RESEARCH-RUNTIME-LINK-${profile}`).generalProofEvidence;
         return [profile, proof ? sha256(encoded(proof)) : null];
@@ -380,7 +438,6 @@ export function verifyTrust12Policy(root) {
       'fresh assurance report is not independently reproduced on the final inputs');
       return true;
     })();
-  const endToEnd = json(root, 'evidence/end-to-end-refinement/obligation-ledger-v3.json');
   const endToEndClosed = verifiedCentralCompletion(endToEnd);
   // TRUST 1.2 completion is the registered-execution scope; full refinement additionally needs every general link.
   const trust12Complete = pending.length === 0 && exceptions.length === 0
@@ -391,7 +448,9 @@ export function verifyTrust12Policy(root) {
   check(ledger.centralClosure.status === (complete ? 'COMPLETE' : trust12Complete ? 'COMPLETE_REGISTERED_SCOPE' : 'INCOMPLETE'),
     'central completion status drift');
   for (const row of exceptions) exception(root, row);
-  const readiness = pending.length ? 'PENDING' : exceptions.length ? 'READY_WITH_EXCEPTIONS' : 'EVIDENCE_READY';
+  // Closed evidence is not ready while the fresh independent assurance on the final inputs is missing.
+  const readiness = pending.length ? 'PENDING' : !audited ? 'ASSURANCE_PENDING'
+    : exceptions.length ? 'READY_WITH_EXCEPTIONS' : 'EVIDENCE_READY';
   check(ledger.releaseAssessment?.status === readiness
     && ledger.releaseAssessment.fullRefinementComplete === complete
     && ledger.releaseAssessment.trust12Complete === trust12Complete, 'release readiness drift');
@@ -403,7 +462,9 @@ export function verifyTrust12Policy(root) {
     check(complete ? completePhrase && !incompletePhrase : incompletePhrase && !completePhrase,
       `claim boundary drift: ${path}`);
     check(text.includes(deferralDisclosure) === (deferred.length > 0), `general runtime link deferral disclosure drift: ${path}`);
-    check(text.includes(registeredCompletionDisclosure) === trust12Complete, `registered completion disclosure drift: ${path}`);
+    check(text.includes(registeredCompletionDisclosure) === trust12Complete
+      && (trust12Complete || !/TRUST 1\.2 is (?:now )?complete|complete within the registered-execution scope/i.test(text)),
+    `registered completion disclosure drift: ${path}`);
     check(text.includes('TRUST 1.2 shipping exceptions: none.') === (exceptions.length === 0), `exception summary drift: ${path}`);
   }
   const profileRows = profiles.map(profile => rows.get(`RUNTIME-LINK-${profile}`));

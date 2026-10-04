@@ -221,3 +221,11 @@ rehashes 80 retained artifacts and 3263 current inputs and checks that each
 stage guard names exactly its declared roots. The symbolic family beyond the
 received point, engine equivalence and the three general runtime links remain
 open. This is a Building review, not fresh final Assurance.
+
+## Completion direction (2026-10-04)
+
+Decision 13 sets the TRUST 1.2 completion scope to the registered executions.
+The sections above that call the three general runtime links mandatory predate
+it: those links are now deferred research rows, unproved, and not required for
+TRUST 1.2 completion. The registered-scope central closure and the fresh
+independent assurance remain open.

@@ -35,12 +35,14 @@ runtime link rather than bounded instances of it.
 ## TRUST 1.2 completion scope (unreleased)
 
 The 2026-09-13 release-scope reset and the 2026-09-25 completion direction are
-historical. The current 2026-10-04 completion direction closes TRUST 1.2 at the
-registered-execution scope: the verified Isabelle abstract model, kernel-checked
+historical. The current 2026-10-04 completion direction defines TRUST 1.2
+completion at the registered-execution scope: the verified Isabelle abstract model, kernel-checked
 registered executions of the three declared profiles bound to their exact compiled
 runtimes, one registered-scope central closure that names its remaining
-assumptions, and fresh independent assurance. The central closure and the
-assurance are open.
+assumptions, and fresh independent assurance.
+Of these, only the abstract model is complete. The gate, malformed-branch and central conditions
+recorded in `runtime-link/tail-preparation/tail-obligations-v1.json`, the registered-scope
+central closure and the assurance are open.
 General runtime-to-model correspondence in each declared profile is deferred research and is not required for TRUST 1.2 completion.
 The verified Isabelle abstract model and profile-specific compiled-code evidence
 remain valid only within their recorded scopes. The general `runtime_link`
