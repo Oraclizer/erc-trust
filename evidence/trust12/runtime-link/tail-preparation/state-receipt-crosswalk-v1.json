@@ -9,13 +9,20 @@
     },
     {
       "path": "evidence/end-to-end-refinement/obligation-ledger-v3.json",
-      "bytes": 167036,
-      "sha256": "8b620ada0d8a297be0a5dd4771e288995dc1189bf67098792648dd792745c399"
+      "consumed": [
+        "stateIdentity",
+        "receiptIdentity"
+      ],
+      "consumedSha256": "bfc327c63d464e3214d5420bf45084a9aafcc93e698210b6c326729ea070b77d"
     },
     {
       "path": "evidence/end-to-end-refinement/central-closure-v3.json",
-      "bytes": 37124,
-      "sha256": "1645774e23e18c1339f8e64658b445fcf186d0fcf200349a4e8aac8ccf048eda"
+      "consumed": [
+        "stateIdentity",
+        "receiptIdentity",
+        "reflection.runtimeOnly"
+      ],
+      "consumedSha256": "e5c2e6e1b9e0e3f29d24ba79d22e18a0bb74eec674b0db487a088a371286e098"
     },
     {
       "path": "spec/erc-trust-kernel-v2.json",

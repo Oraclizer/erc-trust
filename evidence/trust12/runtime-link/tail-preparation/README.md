@@ -49,6 +49,7 @@ All tools are in `scripts/trust12/tail-preparation`. They never run a prover and
 | `state_receipt_crosswalk.py` | Traces the abstract fields to the storage of every runtime and the receipt to the ABI and events |
 | `certificate_registry.py` | Builds and verifies the certificate registry and its partition coverage from an evidence-side locator file |
 | `certificate_registry_v2.py` | Builds and verifies registry version 2 from an evidence-side locator file: the executed code and runtime set read from each recorded world, the kind of each record that consumed the world, and the acceptance verdict, recorded or recomputed from a stored proof graph |
+| `malformed_call_trace.py` | Reads the call frames of each registered request outside canonical form from its stored proof graph and checks them against the call list the kernel stages supply |
 | `kore_accounts.py` | Reads the accounts and the executing frame identifier of a KEVM configuration in KORE text form and fails closed on anything it does not recognise |
 | `assurance_seal.py` | Seals and verifies the frozen inputs of the independent Assurance |
 | `run_malformed_probe.py` | Runs the concrete malformed probe of the three endpoints in an isolated build directory |

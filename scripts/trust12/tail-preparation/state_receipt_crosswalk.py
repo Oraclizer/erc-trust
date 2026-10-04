@@ -16,18 +16,25 @@ A Hook column is derived only where the Hook runtime has the same storage label,
 type as the Partial runtime it was derived from, and is marked as derived rather than reviewed.
 Storage that no abstract field reads is listed per runtime with the reflection reason the earlier
 central closure gave, or as open.
+
+The conditional central ledger and the central closure are regenerated whenever any of their rows,
+counts or hashes change. The crosswalk reads only their state identity, receipt identity and
+runtime-only reflection tables, so it binds each of them by the digest of the members it reads,
+not by the hash of the whole file: a regeneration that leaves those members unchanged leaves the
+crosswalk unchanged, and a change to one of them changes the crosswalk.
 """
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import sys
 from pathlib import Path
 from typing import Any
 
 from tail_common import (
-    NONCLAIM, OUTPUT, PROFILE_RUNTIMES, ROOT, PreparationError, dump_json, file_reference, load_json,
-    require, write_or_check,
+    NONCLAIM, OUTPUT, PROFILE_RUNTIMES, ROOT, PreparationError, dump_json, file_reference, load_json, relative,
+    require, sha256_bytes, write_or_check,
 )
 
 DOCUMENT = OUTPUT / "state-receipt-crosswalk-v1.json"
@@ -69,6 +76,27 @@ def layouts() -> dict[str, list[dict[str, Any]]]:
             ]
     require(sorted(result) == sorted(name for names in PROFILE_RUNTIMES.values() for name in names), "layout set drift")
     return result
+
+
+LEDGER_MEMBERS = ("stateIdentity", "receiptIdentity")
+CLOSURE_MEMBERS = ("stateIdentity", "receiptIdentity", "reflection.runtimeOnly")
+
+
+def consumed_members(document: dict[str, Any], members: tuple[str, ...]) -> dict[str, Any]:
+    consumed = {}
+    for member in members:
+        value: Any = document
+        for part in member.split("."):
+            require(isinstance(value, dict) and part in value, f"consumed member missing: {member}")
+            value = value[part]
+        consumed[member] = value
+    return consumed
+
+
+def consumed_reference(path: Path, document: dict[str, Any], members: tuple[str, ...]) -> dict[str, Any]:
+    """The members of a regenerated document that the crosswalk reads, bound by the digest of their canonical JSON."""
+    canonical = json.dumps(consumed_members(document, members), sort_keys=True, separators=(",", ":"), ensure_ascii=True)
+    return {"path": relative(path), "consumed": list(members), "consumedSha256": sha256_bytes(canonical.encode("utf-8"))}
 
 
 def projection_label(projection: str) -> str:
@@ -167,8 +195,10 @@ def build() -> dict[str, Any]:
     return {
         "schema": "trust12-tail-preparation-state-receipt-crosswalk-v1",
         "status": "PREPARED_NOT_CLOSED",
-        "sources": [file_reference(path) for path in
-                    (STATE_THEORY, CENTRAL_LEDGER, CENTRAL_CLOSURE, KERNEL_SCHEMA, KERNEL_ABI, RECEIPT_SCHEMA)] + [
+        "sources": [file_reference(STATE_THEORY),
+                    consumed_reference(CENTRAL_LEDGER, ledger, LEDGER_MEMBERS),
+                    consumed_reference(CENTRAL_CLOSURE, closure, CLOSURE_MEMBERS)]
+                   + [file_reference(path) for path in (KERNEL_SCHEMA, KERNEL_ABI, RECEIPT_SCHEMA)] + [
             file_reference(ROOT / "evidence/runtime-binding-v3" / BINDING[profile] / "bridge-artifacts.json")
             for profile in PROFILE_RUNTIMES],
         "stateFields": state_rows,

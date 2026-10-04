@@ -178,6 +178,14 @@
       "coldReplay": false
     },
     {
+      "id": "malformed-call-trace-recompute",
+      "purpose": "Rehash the private call frame report and the stored proof graphs, node files, boundary records and node inventories of the 42 registered requests outside canonical form, recompute the report with the sealed tool and compare it with the stored report and the public record. No prover, symbolic execution or kernel session is rerun.",
+      "workingRoot": "PRODUCT",
+      "command": "python3 scripts/trust12/verify_malformed_call_trace_v1.py --product-root PRODUCT_CHECKOUT --evidence EVIDENCE_ROOT --stage-index ALIGNED_GATE_ARTIFACT_INDEX --artifact-index CALL_TRACE_ARTIFACT_INDEX",
+      "passCriterion": "Status PASS_MALFORMED_CALL_TRACE_RECOMPUTED.",
+      "coldReplay": false
+    },
+    {
       "id": "proof-sessions-cold",
       "purpose": "Replay the product proof sessions without saved heaps or databases, after installing the pinned Isabelle archive, AFP entry and formal foundation as the proof workflow does.",
       "workingRoot": "PRODUCT",
