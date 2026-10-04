@@ -9,7 +9,7 @@
   "closure": "CONDITIONAL",
   "closureRecord": {
     "path": "evidence/end-to-end-refinement/central-closure-v3.json",
-    "sha256": "8a6a18510c28c604938775ecf1aee08763939fcfc881357c320499421db37a9f"
+    "sha256": "fe0974a812854fba49d77d561f136758362d8683b7cbc15772d6fd1f2ffaf31c"
   },
   "counts": {
     "closed": 70,
@@ -597,7 +597,7 @@
       },
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "5817e47e30d852bc15b8962fd0ac9f86d024a9b59ff2c1156a53b43195df2449"
+        "sha256": "1f0e099d6faa38e577123bb2872cc436281abd3fba8748bbc3b4274ca8bd4a1f"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -724,6 +724,14 @@
         "sha256": "bded0634c3104c59553f96a27a806007fbd86c87a6930197e1729f9e00cdbb8a"
       },
       {
+        "path": "evidence/trust12/runtime-link/tail-preparation/reflection-dispositions-v1.json",
+        "sha256": "a829e2ef536c7470132a989b1ea4986b5690c06a674481217d2ea9fb80a97f74"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/reflection-scan-checkpoint-v1.json",
+        "sha256": "a6b3e00dc4cb4eb161686e33018fdfa2b4f40ef5a0188b28440e202285cebb96"
+      },
+      {
         "path": "evidence/trust12/runtime-link/tail-preparation/malformed-probe-mutants-v1.json",
         "sha256": "a20f3a334a7d0d413ab7d3ad699e815dfea4d6779e30e03f9f54d9263fa82fe6"
       },
@@ -777,7 +785,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "8be4ef950d7a7b3ae9f2c4348ba9a431cacc0c699f7b87aa3f61ddcee97d922d"
+        "sha256": "01822e95159c20725ab7b32e6f3d7f61c494f578be7b576cff12137a611e30b4"
       }
     ],
     "fullRefinementComplete": false,

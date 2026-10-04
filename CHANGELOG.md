@@ -2,6 +2,22 @@
 
 ## Unreleased
 
+- Record the reflection scan of the typed command paths in
+  reflection-scan-checkpoint-v1.json, with the reviewed dispositions in
+  reflection-dispositions-v1.json. The scan reads the stored solc build
+  information of the exact sources and lists every state write and guard that
+  the typed commands of the three endpoints reach (59, 60 and 61 guards and
+  17, 12 and 12 written state variables). Every one is classified by the
+  state and receipt crosswalk, a consumer snippet of the central ledger or a
+  reviewed disposition, none is unclassified, and the compiled layouts of the
+  seven profile runtimes agree with the crosswalk. Each of the twelve storage
+  variables that the crosswalk left open has a reviewed reason and named
+  ledger rows. A classification does not prove a guard sound or a reason
+  true, checks that the compiler generates are not listed, and no removal
+  negative targets the domain and identifier checks of a reversal request.
+  The public verifier runs in the required gate, and its saved mode reruns
+  the scan on the stored build information.
+
 - Record the call frames of the registered requests outside canonical form
   in call-trace-checkpoint-v1.json. For each of the 42 registered requests
   (Native 16, Partial 13, Hook 13), the stored KEVM proof graph of its

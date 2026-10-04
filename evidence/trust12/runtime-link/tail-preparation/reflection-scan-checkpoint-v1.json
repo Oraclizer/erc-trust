@@ -1,0 +1,3130 @@
+{
+  "schema": "trust12-reflection-scan-checkpoint-v1",
+  "status": "PASS_REFLECTION_SCAN_ALL_CLASSIFIED",
+  "scope": "A machine scan of the stored solc build information of the exact product sources, its abstract syntax trees and compiled storage layouts, lists every state write and every guard that the typed command entrypoints of the Native endpoint, the Partial adapter and the Hook adapter reach without an external call, together with the exact-use route handlers of the Native endpoint and the balance callback of the Hook adapter that a typed command reaches through a call back into the endpoint: 59, 60 and 61 guards and 17, 12 and 12 written state variables. Every write is classified as an abstract field of the state and receipt crosswalk, as a runtime-only variable with the reason of the earlier central closure, or as a runtime-only variable with a reason in the reviewed dispositions. Every guard is classified as matched with a final source consumer snippet of a row of the central obligation ledger, as linked by a reviewed disposition to the ledger rows that the disposition names, or as a runtime-only guard with a reason in the reviewed dispositions. No write or guard is unclassified, no write goes through an unresolved storage reference, and the compiled storage layouts of the seven profile runtimes agree with the crosswalk. Each of the twelve storage variables that the crosswalk leaves without an abstract field or an earlier runtime-only reason has a reviewed reason and named ledger rows, and the functions that write it are exactly the functions that the scan finds.",
+  "pathBoundary": "The scan follows internal calls, library calls and modifiers from the typed command entrypoints. The entrypoints that a typed command reaches through a call back into the endpoint are declared in the scan tool, not discovered by it: the two exact-use route handlers of the Native endpoint and the balance callback of the Hook adapter. A state write is an assignment, an increment or decrement, a delete, a push or a pop, followed through local storage pointers and storage parameters to the state variable; no implementation source holds an inline assembly storage write. A guard is a revert statement, a require or assert call, or an inline assembly block that reverts; checks that the compiler generates, such as calldata decoding and checked arithmetic, are not source guards and are not listed.",
+  "classificationBoundary": "The scan reads syntax trees and layouts; it does not execute the code. A classification records which obligation or reason a write or guard is matched with: a guard matches a consumer snippet when one text contains the other or when the snippet calls the function that holds the guard, and a Hook adapter guard in a function whose source text equals the Partial adapter function of the same name takes the classification of that Partial guard. A classification does not prove that a guard is sound, that a listed reason is true or that a named ledger row covers the guard. The fifteen Hook adapter columns that the crosswalk derives from the Partial layout are compared writer by writer with the Partial adapter, and the two Hook writers with their own source text have reviewed dispositions that pin both texts by hash. The syntax trees and layouts come from a stored build of the exact sources with the compiler settings that the product declares. The record binds that build by hash and does not rerun the compiler: that the stored syntax trees and layouts are what the pinned compiler produces for these sources is not rechecked, and the correctness of the compiler remains the assumption A-COMPILER.",
+  "reversalCheckBoundary": "Four of the reviewed guard dispositions classify the domain check and the derived identifier check of a reversal request on the Native endpoint and on the Partial adapter, and the Hook adapter takes both through its identical function text. The ledger rows they name receive or state the rule that the check enforces: the kernel domain value with its DOMAIN reason code, the IDENTIFIER reason code, the reversal identifier hash, the common shape rules and the single use of reversal identifiers. The final source consumers and the removal negatives of those rows name other statements, among them the matching checks of an action request and the replay checks, and no removal negative targets a domain or identifier check of a reversal request.",
+  "conditionBoundary": "This record is evidence for the two closure acceptance criteria of the preservation and reflection condition that it quotes, and for the finding on runtime-only storage: it gives the reason that the finding asks for each storage variable that no abstract field reads and that the earlier central closure left without a runtime-only reason. The condition also states that abstract allowed behavior is preserved by the final code; this record does not address that part. The scan also checks the dispositions of the open items of the crosswalk, but the record is not evidence for the state and receipt identity condition: the open item that waits for a formal reader of storage into abstract fields stays open, and so does the finding that no such reader exists.",
+  "reproductionBoundary": "Metadata mode reads tracked files only. It checks that this record is the reviewed one, that the scan tool, the dispositions and the crosswalk are the current files, that the implementation sources, the ledger members that the scan reads, the compiler declarations and the quoted condition are the current ones, that no implementation source holds an inline assembly storage write, and that every classification, disposition and count of this record follows from the current crosswalk, dispositions and ledgers. Saved mode additionally rehashes the stored build information and the stored scan report named through a private index, runs the current scan tool on the stored build information and requires the result to equal the stored report byte for byte and this record to follow from it. Neither mode runs the compiler or a prover, and the record states no completion of the preservation and reflection condition, the registered-scope central closure, any general runtime link, the independent Assurance or TRUST 1.2.",
+  "evidenceFor": {
+    "condition": "preservation-and-reflection",
+    "closureAcceptance": [
+      "Every guard and state write on the typed command paths is the consumer of an obligation or a listed runtime-only item with a reason.",
+      "The reflection list is produced by a machine scan of the final sources and compiled layouts, not by review alone."
+    ],
+    "finding": {
+      "id": "open-runtime-only-storage",
+      "decisionNeeded": "A reason or an abstract counterpart for each of them."
+    }
+  },
+  "coverage": {
+    "endpoints": {
+      "TrustToken": {
+        "entries": 4,
+        "reentries": 2,
+        "reachedFunctions": 47,
+        "writtenVariables": {
+          "ABSTRACT_FIELD": 13,
+          "RUNTIME_ONLY": 2,
+          "RUNTIME_ONLY_BY_DISPOSITION": 2
+        },
+        "guards": {
+          "LEDGER_CONSUMER": 39,
+          "LEDGER_CONSUMER_BY_DISPOSITION": 19,
+          "RUNTIME_ONLY_BY_DISPOSITION": 1
+        },
+        "unclassified": 0,
+        "unresolvedWrites": 0
+      },
+      "ERC3643TrustAdapter": {
+        "entries": 2,
+        "reentries": 0,
+        "reachedFunctions": 47,
+        "writtenVariables": {
+          "ABSTRACT_FIELD": 11,
+          "RUNTIME_ONLY": 1,
+          "RUNTIME_ONLY_BY_DISPOSITION": 0
+        },
+        "guards": {
+          "LEDGER_CONSUMER": 47,
+          "LEDGER_CONSUMER_BY_DISPOSITION": 12,
+          "RUNTIME_ONLY_BY_DISPOSITION": 1
+        },
+        "unclassified": 0,
+        "unresolvedWrites": 0
+      },
+      "ERC3643HookAdapter": {
+        "entries": 2,
+        "reentries": 1,
+        "reachedFunctions": 48,
+        "writtenVariables": {
+          "ABSTRACT_FIELD": 11,
+          "RUNTIME_ONLY": 1,
+          "RUNTIME_ONLY_BY_DISPOSITION": 0
+        },
+        "guards": {
+          "LEDGER_CONSUMER": 47,
+          "LEDGER_CONSUMER_BY_DISPOSITION": 13,
+          "RUNTIME_ONLY_BY_DISPOSITION": 1
+        },
+        "unclassified": 0,
+        "unresolvedWrites": 0
+      }
+    },
+    "compiledLayoutVariables": {
+      "TrustToken": 26,
+      "ERC3643TrustAdapter": 18,
+      "ProfileGovernor": 4,
+      "ERC3643HookAdapter": 18,
+      "ERC3643HookGovernor": 4,
+      "ERC3643HookCompliance": 2,
+      "ERC3643HookFactory": 0
+    },
+    "storageDispositions": 12,
+    "guardDispositions": 34,
+    "hookDerivedColumns": 15,
+    "hookColumnWritersWithOwnText": 2,
+    "openItems": 9,
+    "problems": 0,
+    "reviewPending": 0
+  },
+  "compiler": {
+    "solcVersion": "0.8.36",
+    "evmVersion": "cancun",
+    "viaIR": true,
+    "optimizer": true,
+    "optimizerRuns": 1,
+    "declaredIn": "foundry.toml"
+  },
+  "productIdentity": {
+    "scanTool": {
+      "path": "scripts/trust12/tail-preparation/reflection_scan.py",
+      "bytes": 46395,
+      "sha256": "3a8d013709d1c4555b9e1dfdd043691843bbbd814a6749b6d4d52c5c44a69ba6"
+    },
+    "dispositions": {
+      "path": "evidence/trust12/runtime-link/tail-preparation/reflection-dispositions-v1.json",
+      "bytes": 30676,
+      "sha256": "a829e2ef536c7470132a989b1ea4986b5690c06a674481217d2ea9fb80a97f74"
+    },
+    "crosswalk": {
+      "path": "evidence/trust12/runtime-link/tail-preparation/state-receipt-crosswalk-v1.json",
+      "bytes": 41449,
+      "sha256": "7570f37e22101ed1ceaba835b13978e8aab060e0da6c40a17f2b3ab6d3d8d6ae"
+    }
+  },
+  "implementationSources": [
+    {
+      "path": "implementation/src/ERC7943RouteTicket.sol",
+      "bytes": 584,
+      "sha256": "f1a8357a988a648775382603c7eaf2db410f7d55fd08a1cef29763e69de547a6"
+    },
+    {
+      "path": "implementation/src/TrustDependencyBinding.sol",
+      "bytes": 5208,
+      "sha256": "53fb6a74a5168f7f2b9f005657ee7df5528974d53dae2359ea1e4ae3fb063020"
+    },
+    {
+      "path": "implementation/src/TrustErrors.sol",
+      "bytes": 637,
+      "sha256": "fbe1dffd50792b2da9604a0de37a5b089c427b329c96f80253ff317bb16491df"
+    },
+    {
+      "path": "implementation/src/TrustNativeDecision.sol",
+      "bytes": 1706,
+      "sha256": "4643a157f29fd9557ff60e58c6500e98704b9d94b02ef12ffb5c7baecfaa24ee"
+    },
+    {
+      "path": "implementation/src/TrustNativeTypes.sol",
+      "bytes": 2569,
+      "sha256": "f76fc4fd80d74075c3ffdbbc7afb30919eb73bf465ac04e3b83d742c8f88745b"
+    },
+    {
+      "path": "implementation/src/TrustStorage.sol",
+      "bytes": 1899,
+      "sha256": "610170dbd24ba2791d459db9a24e2c05e7d699594c035074379a5700dbdb7931"
+    },
+    {
+      "path": "implementation/src/TrustToken.sol",
+      "bytes": 53935,
+      "sha256": "deeedf231b461035ac4496b36438d6ea28298ed2935b920bf9c01cb31f94ef1b"
+    },
+    {
+      "path": "implementation/src/generated/IERCTrustKernel.sol",
+      "bytes": 10418,
+      "sha256": "8f179a21b04fa1f172bdddef2f8878a01524d3429570c0abf9aa60cfc8738f7d"
+    },
+    {
+      "path": "implementation/src/interfaces/IERC20.sol",
+      "bytes": 713,
+      "sha256": "414510c4de8ff90b066ea33f3d75ce7c4891f4ee43de55c52e333740d6fd8131"
+    },
+    {
+      "path": "implementation/src/interfaces/IERC3643External.sol",
+      "bytes": 1726,
+      "sha256": "701bae4ffedc2f7a00287b882247bd8de5c68131e13ac3c3e957f1d678d12119"
+    },
+    {
+      "path": "implementation/src/interfaces/IERC7943.sol",
+      "bytes": 1189,
+      "sha256": "1b968ee48cd0c9adadf22d33f1f245486b14ed1141df23f7d01385abfbb159f7"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643HookAdapter.sol",
+      "bytes": 61253,
+      "sha256": "61056cd3aa34900820cb08592c55803a5add1ab36c493ec36a5e3ee72add9533"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643HookCompliance.sol",
+      "bytes": 2141,
+      "sha256": "700614fcb6db1246099a16859e79cb4b555785545ea1a31c780f8b97b8016e7a"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643HookDeployment.sol",
+      "bytes": 3445,
+      "sha256": "8a830ba8cdfac4a3cf33dc2b3338a8765b9303afd56bf32a207afa32b19e63bf"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643HookFactory.sol",
+      "bytes": 2588,
+      "sha256": "d7e24b5bde9ec8f4ce1d5537e83858fe727067bdca580c7d4a5126c1d35b94b1"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643HookGovernor.sol",
+      "bytes": 4330,
+      "sha256": "69a0b68f72427081acb26c24299ad03afcdc2b615e8885c05d8eaff52eb9d59e"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643ProfileTypes.sol",
+      "bytes": 2339,
+      "sha256": "9fbb5b1f379018e7412702324a4eae5a30db57f3937f0da42b24bab0e4efede4"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+      "bytes": 58926,
+      "sha256": "f2806571c8c39984ee6c50f5e8dd0aa94aac5e273564012afcb4ebb55e43320f"
+    },
+    {
+      "path": "implementation/src/profiles/ProfileGovernor.sol",
+      "bytes": 6812,
+      "sha256": "e9fec4c21a65edaa5619ee1368deb93da1645e311984a12cc89ca29131595ae8"
+    }
+  ],
+  "ledgerMembers": {
+    "central": {
+      "path": "evidence/end-to-end-refinement/obligation-ledger-v3.json",
+      "reads": [
+        "rows.id",
+        "rows.finalSourceConsumers.path",
+        "rows.finalSourceConsumers.snippet",
+        "assumptions.id"
+      ],
+      "sha256": "cce89b860df6a01ca3e2ffcc7fd016ac245430c3a8e2c13e43126532a55c1c7f"
+    },
+    "trust12": {
+      "path": "evidence/trust12/obligation-ledger.json",
+      "reads": [
+        "obligations.id"
+      ],
+      "sha256": "8b113f0b30517e850c321a2d4344d6ac9f86d5c02fb1330874c4edb631195834"
+    }
+  },
+  "artifacts": [
+    {
+      "id": "build-info",
+      "kind": "build-info",
+      "bytes": 5538608,
+      "sha256": "405d18414534fb9a63620ce6234851b96d6ef58c9f6bd20e359c06c6113de609"
+    },
+    {
+      "id": "reflection-scan-report",
+      "kind": "report",
+      "bytes": 161442,
+      "sha256": "c52eadd60f4ed6aac88195621da3c8f2f2a27fa45e3c1ce34179854ff057ada1"
+    }
+  ],
+  "rehashVerifier": {
+    "path": "scripts/trust12/verify_reflection_scan_v1.py",
+    "bytes": 41892,
+    "sha256": "527cae0f4617b71301d0a6bf152130400f1a65b5c955b520038ee34bf64f7531",
+    "command": "python3 scripts/trust12/verify_reflection_scan_v1.py --product-root <product-root> --artifact-index <private-artifact-index.json>"
+  },
+  "nonclaims": {
+    "guardSoundness": true,
+    "dispositionReasonTruth": true,
+    "ledgerRowCoverage": true,
+    "reversalCheckRemovalNegatives": true,
+    "compilerGeneratedChecks": true,
+    "abstractBehaviorPreservation": true,
+    "stateReceiptIdentity": true,
+    "formalStorageReader": true,
+    "compilerRerun": true,
+    "proverRerun": true,
+    "registeredCentralClosure": true,
+    "generalRuntimeLinks": true,
+    "independentAssurance": true,
+    "fullTrustCompletion": true,
+    "releaseOrDeployment": true
+  },
+  "storageDispositions": [
+    {
+      "runtime": "TrustToken",
+      "label": "_pendingCommitments",
+      "slot": 19,
+      "writtenBy": [
+        "_applyActionPrepared",
+        "executeERC7943Action"
+      ],
+      "assignedBy": [
+        "executeERC7943Action"
+      ],
+      "clearedBy": [
+        "_applyActionPrepared"
+      ],
+      "ledger": "central",
+      "rows": [
+        "NAT-ROUTE-01"
+      ],
+      "reason": "Carrier of the four commitments of an ERC-7943 action across the exact-use self call: executeERC7943Action assigns it before the call, the route handler reads it to rebuild the request, and the applied action deletes it in the same call, so a completed command leaves it empty; the abstract model has one typed entrypoint per command and no ERC-7943 route."
+    },
+    {
+      "runtime": "TrustToken",
+      "label": "_pendingReversals",
+      "slot": 20,
+      "writtenBy": [
+        "executeERC7943Reversal",
+        "setFrozenTokens"
+      ],
+      "assignedBy": [
+        "executeERC7943Reversal"
+      ],
+      "clearedBy": [
+        "setFrozenTokens"
+      ],
+      "ledger": "central",
+      "rows": [
+        "NAT-ROUTE-01"
+      ],
+      "reason": "Carrier of a prepared reversal across the exact-use self call: executeERC7943Reversal assigns it before the call and the route handler reads and deletes it before it applies the reversal in the same call, so a completed command leaves it empty; the abstract model has one typed entrypoint per command and no ERC-7943 route."
+    },
+    {
+      "runtime": "ProfileGovernor",
+      "label": "exclusiveAdapter",
+      "slot": 0,
+      "writtenBy": [
+        "seal"
+      ],
+      "assignedBy": [
+        "seal"
+      ],
+      "clearedBy": [],
+      "ledger": "central",
+      "rows": [
+        "GOV-SEAL-01",
+        "ADP-SEAL-01"
+      ],
+      "reason": "Sealed topology of the Partial governor, written only by the one-way seal; the earlier central closure gives the seal state and the governor topology fields as carried by ADP-SEAL-01 and GOV-SEAL-01, because the abstract onboarding theory starts from the sealed state."
+    },
+    {
+      "runtime": "ProfileGovernor",
+      "label": "sealedBinding",
+      "slot": 1,
+      "writtenBy": [
+        "seal"
+      ],
+      "assignedBy": [
+        "seal"
+      ],
+      "clearedBy": [],
+      "ledger": "central",
+      "rows": [
+        "GOV-SEAL-01",
+        "ADP-SEAL-01"
+      ],
+      "reason": "Sealed topology of the Partial governor, written only by the one-way seal; the earlier central closure gives the seal state and the governor topology fields as carried by ADP-SEAL-01 and GOV-SEAL-01, because the abstract onboarding theory starts from the sealed state."
+    },
+    {
+      "runtime": "ProfileGovernor",
+      "label": "importManifestHash",
+      "slot": 2,
+      "writtenBy": [
+        "seal"
+      ],
+      "assignedBy": [
+        "seal"
+      ],
+      "clearedBy": [],
+      "ledger": "central",
+      "rows": [
+        "GOV-SEAL-01",
+        "ADP-SEAL-01"
+      ],
+      "reason": "Sealed topology of the Partial governor, written only by the one-way seal; the earlier central closure gives the seal state and the governor topology fields as carried by ADP-SEAL-01 and GOV-SEAL-01, because the abstract onboarding theory starts from the sealed state."
+    },
+    {
+      "runtime": "ProfileGovernor",
+      "label": "topologySealed",
+      "slot": 3,
+      "writtenBy": [
+        "seal"
+      ],
+      "assignedBy": [
+        "seal"
+      ],
+      "clearedBy": [],
+      "ledger": "central",
+      "rows": [
+        "GOV-SEAL-01",
+        "ADP-SEAL-01"
+      ],
+      "reason": "Sealed topology of the Partial governor, written only by the one-way seal; the earlier central closure gives the seal state and the governor topology fields as carried by ADP-SEAL-01 and GOV-SEAL-01, because the abstract onboarding theory starts from the sealed state."
+    },
+    {
+      "runtime": "ERC3643HookGovernor",
+      "label": "exclusiveAdapter",
+      "slot": 0,
+      "writtenBy": [
+        "sealFresh"
+      ],
+      "assignedBy": [
+        "sealFresh"
+      ],
+      "clearedBy": [],
+      "ledger": "trust12",
+      "rows": [
+        "HOOK-FRESH-INITIAL"
+      ],
+      "reason": "Sealed topology of the Hook governor, written only by sealFresh, which only the constructing endpoint may call and only once; the Hook profile starts from the sealed fresh state."
+    },
+    {
+      "runtime": "ERC3643HookGovernor",
+      "label": "sealedBinding",
+      "slot": 1,
+      "writtenBy": [
+        "sealFresh"
+      ],
+      "assignedBy": [
+        "sealFresh"
+      ],
+      "clearedBy": [],
+      "ledger": "trust12",
+      "rows": [
+        "HOOK-FRESH-INITIAL"
+      ],
+      "reason": "Sealed topology of the Hook governor, written only by sealFresh, which only the constructing endpoint may call and only once; the Hook profile starts from the sealed fresh state."
+    },
+    {
+      "runtime": "ERC3643HookGovernor",
+      "label": "importManifestHash",
+      "slot": 2,
+      "writtenBy": [
+        "sealFresh"
+      ],
+      "assignedBy": [
+        "sealFresh"
+      ],
+      "clearedBy": [],
+      "ledger": "trust12",
+      "rows": [
+        "HOOK-FRESH-INITIAL"
+      ],
+      "reason": "Sealed topology of the Hook governor, written only by sealFresh, which only the constructing endpoint may call and only once; the Hook profile starts from the sealed fresh state."
+    },
+    {
+      "runtime": "ERC3643HookGovernor",
+      "label": "topologySealed",
+      "slot": 3,
+      "writtenBy": [
+        "sealFresh"
+      ],
+      "assignedBy": [
+        "sealFresh"
+      ],
+      "clearedBy": [],
+      "ledger": "trust12",
+      "rows": [
+        "HOOK-FRESH-INITIAL"
+      ],
+      "reason": "Sealed topology of the Hook governor, written only by sealFresh, which only the constructing endpoint may call and only once; the Hook profile starts from the sealed fresh state."
+    },
+    {
+      "runtime": "ERC3643HookCompliance",
+      "label": "endpoint",
+      "slot": 0,
+      "writtenBy": [
+        "activate"
+      ],
+      "assignedBy": [
+        "activate"
+      ],
+      "clearedBy": [],
+      "ledger": "trust12",
+      "rows": [
+        "HOOK-CALLER-AUTH"
+      ],
+      "reason": "The endpoint to which the Compliance module forwards balance callbacks. activate sets it once, only while it is zero and only from the deploying endpoint (decision 15, item 4); the module forwards a callback only when the token calls it, the module is bound and the endpoint is set. The module holds no regulatory state."
+    },
+    {
+      "runtime": "ERC3643HookCompliance",
+      "label": "bound",
+      "slot": 0,
+      "writtenBy": [
+        "bindToken"
+      ],
+      "assignedBy": [
+        "bindToken"
+      ],
+      "clearedBy": [],
+      "ledger": "trust12",
+      "rows": [
+        "HOOK-CALLER-AUTH"
+      ],
+      "reason": "The one-time binding flag of the Compliance module to its immutable token. bindToken sets it once, only when the token itself calls with its own address (decision 15, item 4); the balance callbacks and the bootstrap mint require it."
+    }
+  ],
+  "openItems": [
+    {
+      "index": 0,
+      "disposition": "AWAITS_FORMAL_READER"
+    },
+    {
+      "index": 1,
+      "disposition": "RESOLVED_BY_SCAN"
+    },
+    {
+      "index": 2,
+      "disposition": "NONCLAIM"
+    },
+    {
+      "index": 3,
+      "disposition": "RESOLVED_BY_SOURCE"
+    },
+    {
+      "index": 4,
+      "disposition": "ASSUMPTION"
+    },
+    {
+      "index": 5,
+      "disposition": "RESOLVED_BY_SOURCE"
+    },
+    {
+      "index": 6,
+      "disposition": "RUNTIME_ONLY"
+    },
+    {
+      "index": 7,
+      "disposition": "ASSUMPTION"
+    },
+    {
+      "index": 8,
+      "disposition": "RESOLVED_BY_SOURCE"
+    }
+  ],
+  "hookColumnWritersWithOwnText": [
+    "_activateEmptySeal",
+    "_bind"
+  ],
+  "endpoints": {
+    "TrustToken": {
+      "entries": [
+        "executeRegulatoryAction",
+        "executeRegulatoryReversal",
+        "executeERC7943Action",
+        "executeERC7943Reversal"
+      ],
+      "reentries": [
+        "forcedTransfer",
+        "setFrozenTokens"
+      ],
+      "variables": [
+        {
+          "label": "_actions",
+          "class": "ABSTRACT_FIELD",
+          "column": "BOUND_BY_CENTRAL_LEDGER",
+          "writers": [
+            "_applyActionPrepared",
+            "_applyReversalPrepared",
+            "_consumeActionAuthorization"
+          ]
+        },
+        {
+          "label": "_balances",
+          "class": "ABSTRACT_FIELD",
+          "column": "BOUND_BY_CENTRAL_LEDGER",
+          "writers": [
+            "_move"
+          ]
+        },
+        {
+          "label": "_cases",
+          "class": "ABSTRACT_FIELD",
+          "column": "BOUND_BY_CENTRAL_LEDGER",
+          "writers": [
+            "_applyActionPrepared",
+            "_applyReversalPrepared"
+          ]
+        },
+        {
+          "label": "_consumedEntitlements",
+          "class": "ABSTRACT_FIELD",
+          "column": "BOUND_BY_CENTRAL_LEDGER",
+          "writers": [
+            "_applyActionPrepared"
+          ]
+        },
+        {
+          "label": "_custody",
+          "class": "ABSTRACT_FIELD",
+          "column": "BOUND_BY_CENTRAL_LEDGER",
+          "writers": [
+            "_applyActionPrepared",
+            "_applyReversalPrepared",
+            "_consumeMatchingCustody"
+          ]
+        },
+        {
+          "label": "_custodyBacking",
+          "class": "ABSTRACT_FIELD",
+          "column": "BOUND_BY_CENTRAL_LEDGER",
+          "writers": [
+            "_applyActionPrepared",
+            "_applyReversalPrepared",
+            "_consumeMatchingCustody"
+          ]
+        },
+        {
+          "label": "_effects",
+          "class": "ABSTRACT_FIELD",
+          "column": "BOUND_BY_CENTRAL_LEDGER",
+          "writers": [
+            "_pushEffect"
+          ]
+        },
+        {
+          "label": "_entered",
+          "class": "RUNTIME_ONLY",
+          "column": null,
+          "writers": [
+            "nonReentrant"
+          ]
+        },
+        {
+          "label": "_freezeHeads",
+          "class": "ABSTRACT_FIELD",
+          "column": "BOUND_BY_CENTRAL_LEDGER",
+          "writers": [
+            "_applyActionPrepared",
+            "_applyReversalPrepared"
+          ]
+        },
+        {
+          "label": "_frozen",
+          "class": "ABSTRACT_FIELD",
+          "column": "BOUND_BY_CENTRAL_LEDGER",
+          "writers": [
+            "_applyActionPrepared",
+            "_applyReversalPrepared"
+          ]
+        },
+        {
+          "label": "_pendingCommitments",
+          "class": "RUNTIME_ONLY_BY_DISPOSITION",
+          "column": null,
+          "writers": [
+            "_applyActionPrepared",
+            "executeERC7943Action"
+          ]
+        },
+        {
+          "label": "_pendingReversals",
+          "class": "RUNTIME_ONLY_BY_DISPOSITION",
+          "column": null,
+          "writers": [
+            "executeERC7943Reversal",
+            "setFrozenTokens"
+          ]
+        },
+        {
+          "label": "_receipts",
+          "class": "ABSTRACT_FIELD",
+          "column": "BOUND_BY_CENTRAL_LEDGER",
+          "writers": [
+            "_storeReceipt"
+          ]
+        },
+        {
+          "label": "_restricted",
+          "class": "ABSTRACT_FIELD",
+          "column": "BOUND_BY_CENTRAL_LEDGER",
+          "writers": [
+            "_applyActionPrepared",
+            "_applyReversalPrepared"
+          ]
+        },
+        {
+          "label": "_restrictionHeads",
+          "class": "ABSTRACT_FIELD",
+          "column": "BOUND_BY_CENTRAL_LEDGER",
+          "writers": [
+            "_applyActionPrepared",
+            "_applyReversalPrepared"
+          ]
+        },
+        {
+          "label": "_routeTicket",
+          "class": "RUNTIME_ONLY",
+          "column": null,
+          "writers": [
+            "_consumeRoute",
+            "_prepareRoute"
+          ]
+        },
+        {
+          "label": "_usedNonces",
+          "class": "ABSTRACT_FIELD",
+          "column": "BOUND_BY_CENTRAL_LEDGER",
+          "writers": [
+            "_consumeActionAuthorization",
+            "_consumeReversalAuthorization"
+          ]
+        }
+      ],
+      "guards": [
+        {
+          "function": "nonReentrant",
+          "kind": "revert",
+          "line": 49,
+          "guard": "revert TrustReentrancy()",
+          "class": "RUNTIME_ONLY_BY_DISPOSITION",
+          "ledger": null,
+          "rows": [],
+          "sameBodyAs": null
+        },
+        {
+          "function": "executeERC7943Action",
+          "kind": "revert",
+          "line": 258,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "NAT-ROUTE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "executeERC7943Reversal",
+          "kind": "revert",
+          "line": 293,
+          "guard": "revert TrustInvalidCommand(request.reversalId, REASON_REVERSAL_PAIRING)",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "NAT-REV-01",
+            "NAT-ROUTE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "setFrozenTokens",
+          "kind": "revert",
+          "line": 321,
+          "guard": "revert TrustRouteMismatch(_routeId())",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "NAT-ROUTE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "setFrozenTokens",
+          "kind": "revert",
+          "line": 330,
+          "guard": "revert TrustRouteMismatch(_routeId())",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "NAT-ROUTE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "setFrozenTokens",
+          "kind": "revert",
+          "line": 336,
+          "guard": "revert TrustRouteMismatch(_routeId())",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "NAT-ROUTE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "forcedTransfer",
+          "kind": "revert",
+          "line": 342,
+          "guard": "revert TrustRouteMismatch(_routeId())",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "NAT-ROUTE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "forcedTransfer",
+          "kind": "revert",
+          "line": 348,
+          "guard": "revert TrustRouteMismatch(_routeId())",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "NAT-ROUTE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeAction",
+          "kind": "revert",
+          "line": 401,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_DOMAIN)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-SHAPE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeAction",
+          "kind": "revert",
+          "line": 403,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_IDENTIFIER)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-SHAPE-02"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeAction",
+          "kind": "revert",
+          "line": 406,
+          "guard": "revert TrustReplay(request.actionId)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-NONCE-02"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeAction",
+          "kind": "revert",
+          "line": 409,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_TIME)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-SHAPE-03"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeAction",
+          "kind": "revert",
+          "line": 413,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_DEPENDENCY_BINDING)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-STALE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 426,
+          "guard": "revert TrustInvalidCommand(request.reversalId, REASON_DOMAIN)",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "NAT-SHAPE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 429,
+          "guard": "revert TrustInvalidCommand(request.reversalId, REASON_IDENTIFIER)",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "NAT-NONCE-03",
+            "NAT-SHAPE-02"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 432,
+          "guard": "revert TrustReplay(request.reversalId)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-NONCE-03"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 435,
+          "guard": "revert TrustInvalidCommand(request.reversalId, REASON_TIME)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-SHAPE-03"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 439,
+          "guard": "revert TrustInvalidCommand(request.reversalId, REASON_DEPENDENCY_BINDING)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-STALE-01",
+            "NAT-STALE-02"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 442,
+          "guard": "revert TrustInvalidCommand(request.reversalId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-REV-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 445,
+          "guard": "revert TrustTerminal(original.caseId)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-REV-03"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 448,
+          "guard": "revert TrustInvalidCommand(request.reversalId, REASON_CURRENT_EFFECT)",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "NAT-REV-02"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 451,
+          "guard": "revert TrustInvalidCommand(request.reversalId, REASON_REVERSAL_PAIRING)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-REV-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_requireAuthority",
+          "kind": "revert",
+          "line": 462,
+          "guard": "revert TrustInvalidCommand(commandId, REASON_AUTHORITY_EPOCH)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-AUTH-02"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_requireAuthority",
+          "kind": "revert",
+          "line": 463,
+          "guard": "revert TrustUnauthorized(caller, authorityRef)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-AUTH-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_requireFreshNonce",
+          "kind": "revert",
+          "line": 468,
+          "guard": "revert TrustReplay(TrustNativeDecision.nonceKey(authorityRef, authorityEpoch, nonce))",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-NONCE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 476,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-SHAPE-04"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 479,
+          "guard": "revert TrustTerminal(request.caseId)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-CASE-01",
+            "NAT-SHAPE-04"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 487,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-SHAPE-04"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 491,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_FREEZE_DIRECTION)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-FRZ-01",
+            "NAT-SHAPE-04"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 498,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-SHAPE-04"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 502,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_NO_STATE_CHANGE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-CASE-03",
+            "NAT-SHAPE-04"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 510,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-SHAPE-04"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 517,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-SHAPE-04"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 520,
+          "guard": "revert TrustInvalidCommand( request.actionId, caseState.family == TrustKernelTypes.CaseFamily.CUSTODY ? REASON_CUSTODY : REASON_CASE_CONFLICT )",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-CASE-04",
+            "NAT-SHAPE-04"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 526,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-SHAPE-04"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 529,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_CASE_CONFLICT)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-CASE-04",
+            "NAT-SHAPE-04"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 532,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-SHAPE-04"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 539,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-SHAPE-04"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 542,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-SHAPE-04"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 546,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-SHAPE-04"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 549,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_ENTITLEMENT)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-DISP-03",
+            "NAT-SHAPE-04"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 552,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-SHAPE-04"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_requireOverlayAdmissible",
+          "kind": "revert",
+          "line": 565,
+          "guard": "revert TrustInvalidCommand(actionId, REASON_CASE_CONFLICT)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-CASE-02"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_requireOverlayAdmissible",
+          "kind": "revert",
+          "line": 568,
+          "guard": "revert TrustInvalidCommand(actionId, REASON_CASE_CONFLICT)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-CASE-02"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_assessBinding",
+          "kind": "revert",
+          "line": 662,
+          "guard": "revert TrustRejected(commandId, reason)",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "NAT-DEP-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_assessBinding",
+          "kind": "revert",
+          "line": 664,
+          "guard": "revert TrustOperationalFailure(commandId, reason, binding.bindingHash)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-DEP-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_applyActionPrepared",
+          "kind": "revert",
+          "line": 726,
+          "guard": "revert TrustReplay(request.actionId)",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "NAT-NONCE-02"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_applyReversalPrepared",
+          "kind": "revert",
+          "line": 806,
+          "guard": "revert TrustReplay(reversalId)",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "NAT-REV-02"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_move",
+          "kind": "revert",
+          "line": 925,
+          "guard": "revert TrustZeroAddress()",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "NAT-DISP-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_move",
+          "kind": "revert",
+          "line": 927,
+          "guard": "revert TrustInsufficientBalance(from, balance, amount)",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "NAT-CUST-02",
+            "NAT-DISP-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_consumeRoute",
+          "kind": "revert",
+          "line": 962,
+          "guard": "revert TrustRouteMismatch(_routeId())",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "NAT-ROUTE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_consumeMatchingCustody",
+          "kind": "revert",
+          "line": 1076,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_CUSTODY)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-CUST-03"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateCurrentEffect",
+          "kind": "revert",
+          "line": 1097,
+          "guard": "revert TrustInvalidCommand(reversalId, REASON_CUSTODY)",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "NAT-CUST-03",
+            "NAT-REV-06"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateCurrentEffect",
+          "kind": "revert",
+          "line": 1101,
+          "guard": "revert TrustInvalidCommand(reversalId, REASON_CURRENT_EFFECT)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-REV-02"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateCurrentEffect",
+          "kind": "revert",
+          "line": 1109,
+          "guard": "revert TrustInvalidCommand(reversalId, REASON_CURRENT_EFFECT)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-REV-02"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_requireUnbacked",
+          "kind": "revert",
+          "line": 1135,
+          "guard": "revert TrustInvalidCommand(commandId, REASON_CUSTODY)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-CUST-02"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_requireCalldataLength",
+          "kind": "assembly-revert",
+          "line": 1140,
+          "guard": "assembly (\"memory-safe\") { if xor(calldatasize(), expected) { revert(0, 0) } }",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "NAT-FAIL-01",
+            "NAT-SHAPE-05",
+            "SHR-DEC-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_bubble",
+          "kind": "revert",
+          "line": 1189,
+          "guard": "revert TrustUnsupported(msg.sig)",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "NAT-FAIL-01",
+            "NAT-ROUTE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_bubble",
+          "kind": "assembly-revert",
+          "line": 1190,
+          "guard": "assembly (\"memory-safe\") { revert(add(result, 32), mload(result)) }",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "NAT-FAIL-01",
+            "NAT-ROUTE-01"
+          ],
+          "sameBodyAs": null
+        }
+      ]
+    },
+    "ERC3643TrustAdapter": {
+      "entries": [
+        "executeRegulatoryAction",
+        "executeRegulatoryReversal"
+      ],
+      "reentries": [],
+      "variables": [
+        {
+          "label": "_actions",
+          "class": "ABSTRACT_FIELD",
+          "column": "BOUND_BY_CENTRAL_LEDGER",
+          "writers": [
+            "_applyActionPrepared",
+            "_applyReversalPrepared",
+            "_consumeActionAuthorization"
+          ]
+        },
+        {
+          "label": "_cases",
+          "class": "ABSTRACT_FIELD",
+          "column": "BOUND_BY_CENTRAL_LEDGER",
+          "writers": [
+            "_applyActionPrepared",
+            "_applyReversalPrepared"
+          ]
+        },
+        {
+          "label": "_consumedEntitlements",
+          "class": "ABSTRACT_FIELD",
+          "column": "BOUND_BY_CENTRAL_LEDGER",
+          "writers": [
+            "_applyActionPrepared"
+          ]
+        },
+        {
+          "label": "_custody",
+          "class": "ABSTRACT_FIELD",
+          "column": "BOUND_BY_CENTRAL_LEDGER",
+          "writers": [
+            "_applyActionPrepared",
+            "_applyReversalPrepared",
+            "_consumeMatchingCustody"
+          ]
+        },
+        {
+          "label": "_custodyBacking",
+          "class": "ABSTRACT_FIELD",
+          "column": "BOUND_BY_CENTRAL_LEDGER",
+          "writers": [
+            "_applyActionPrepared",
+            "_applyReversalPrepared",
+            "_consumeMatchingCustody"
+          ]
+        },
+        {
+          "label": "_effects",
+          "class": "ABSTRACT_FIELD",
+          "column": "BOUND_BY_CENTRAL_LEDGER",
+          "writers": [
+            "_pushEffect"
+          ]
+        },
+        {
+          "label": "_entered",
+          "class": "RUNTIME_ONLY",
+          "column": null,
+          "writers": [
+            "nonReentrant"
+          ]
+        },
+        {
+          "label": "_freezeHeads",
+          "class": "ABSTRACT_FIELD",
+          "column": "BOUND_BY_CENTRAL_LEDGER",
+          "writers": [
+            "_applyActionPrepared",
+            "_applyReversalPrepared"
+          ]
+        },
+        {
+          "label": "_owned",
+          "class": "ABSTRACT_FIELD",
+          "column": "BOUND_BY_CENTRAL_LEDGER",
+          "writers": [
+            "_applyActionPrepared",
+            "_applyReversalPrepared",
+            "_setRestricted",
+            "_syncFrozen"
+          ]
+        },
+        {
+          "label": "_receipts",
+          "class": "ABSTRACT_FIELD",
+          "column": "BOUND_BY_CENTRAL_LEDGER",
+          "writers": [
+            "_storeReceipt"
+          ]
+        },
+        {
+          "label": "_restrictionHeads",
+          "class": "ABSTRACT_FIELD",
+          "column": "BOUND_BY_CENTRAL_LEDGER",
+          "writers": [
+            "_applyActionPrepared",
+            "_applyReversalPrepared"
+          ]
+        },
+        {
+          "label": "_usedNonces",
+          "class": "ABSTRACT_FIELD",
+          "column": "BOUND_BY_CENTRAL_LEDGER",
+          "writers": [
+            "_consumeActionAuthorization",
+            "executeRegulatoryReversal"
+          ]
+        }
+      ],
+      "guards": [
+        {
+          "function": "nonReentrant",
+          "kind": "revert",
+          "line": 122,
+          "guard": "revert TrustReentrancy()",
+          "class": "RUNTIME_ONLY_BY_DISPOSITION",
+          "ledger": null,
+          "rows": [],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeAction",
+          "kind": "revert",
+          "line": 308,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_DOMAIN)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeAction",
+          "kind": "revert",
+          "line": 310,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_IDENTIFIER)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeAction",
+          "kind": "revert",
+          "line": 313,
+          "guard": "revert TrustReplay(request.actionId)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-NONCE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeAction",
+          "kind": "revert",
+          "line": 316,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_TIME)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeAction",
+          "kind": "revert",
+          "line": 320,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_DEPENDENCY_BINDING)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-STALE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 333,
+          "guard": "revert TrustInvalidCommand(request.reversalId, REASON_DOMAIN)",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 336,
+          "guard": "revert TrustInvalidCommand(request.reversalId, REASON_IDENTIFIER)",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "ADP-NONCE-01",
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 339,
+          "guard": "revert TrustReplay(request.reversalId)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-NONCE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 342,
+          "guard": "revert TrustInvalidCommand(request.reversalId, REASON_TIME)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 346,
+          "guard": "revert TrustInvalidCommand(request.reversalId, REASON_DEPENDENCY_BINDING)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-STALE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 349,
+          "guard": "revert TrustInvalidCommand(request.reversalId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-REV-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 352,
+          "guard": "revert TrustTerminal(original.caseId)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-REV-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 355,
+          "guard": "revert TrustInvalidCommand(request.reversalId, REASON_CURRENT_EFFECT)",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "ADP-REV-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 358,
+          "guard": "revert TrustInvalidCommand(request.reversalId, REASON_REVERSAL_PAIRING)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-REV-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_requireAuthority",
+          "kind": "revert",
+          "line": 370,
+          "guard": "revert TrustInvalidCommand(commandId, REASON_AUTHORITY_EPOCH)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-AUTH-02"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_requireAuthority",
+          "kind": "revert",
+          "line": 371,
+          "guard": "revert TrustUnauthorized(caller, requestedRef)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-AUTH-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_requireFreshNonce",
+          "kind": "revert",
+          "line": 376,
+          "guard": "revert TrustReplay(key)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-NONCE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 384,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 387,
+          "guard": "revert TrustTerminal(request.caseId)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-CASE-01",
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 395,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 399,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_FREEZE_DIRECTION)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-FRZ-01",
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 406,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 410,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_NO_STATE_CHANGE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-CASE-01",
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 418,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 425,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-CUST-01",
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 428,
+          "guard": "revert TrustInvalidCommand( request.actionId, caseState.family == TrustKernelTypes.CaseFamily.CUSTODY ? REASON_CUSTODY : REASON_CASE_CONFLICT )",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-CASE-01",
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 434,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 437,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_CASE_CONFLICT)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 440,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 447,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 450,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 454,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 457,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_ENTITLEMENT)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-DISP-01",
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 460,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_requireOverlayAdmissible",
+          "kind": "revert",
+          "line": 473,
+          "guard": "revert TrustInvalidCommand(actionId, REASON_CASE_CONFLICT)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-CASE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_requireOverlayAdmissible",
+          "kind": "revert",
+          "line": 476,
+          "guard": "revert TrustInvalidCommand(actionId, REASON_CASE_CONFLICT)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-CASE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateCurrentEffect",
+          "kind": "revert",
+          "line": 493,
+          "guard": "revert TrustInvalidCommand(reversalId, REASON_CUSTODY)",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "ADP-CUST-01",
+            "ADP-REV-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateCurrentEffect",
+          "kind": "revert",
+          "line": 497,
+          "guard": "revert TrustInvalidCommand(reversalId, REASON_CURRENT_EFFECT)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-REV-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateCurrentEffect",
+          "kind": "revert",
+          "line": 505,
+          "guard": "revert TrustInvalidCommand(reversalId, REASON_CURRENT_EFFECT)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-REV-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_requireLiveTopology",
+          "kind": "revert",
+          "line": 522,
+          "guard": "revert TrustOperationalFailure(commandId, REASON_SEALED_TOPOLOGY_NOT_LIVE, _tokenRef())",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01",
+            "ADP-SEAL-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_requireLiveTopology",
+          "kind": "revert",
+          "line": 525,
+          "guard": "revert TrustOperationalFailure( commandId, REASON_DEPENDENCY_CODE_MISMATCH, _bindings[TrustKernelTypes.BindingKind.POLICY].bindingHash )",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_requireLiveTopology",
+          "kind": "revert",
+          "line": 530,
+          "guard": "revert TrustOperationalFailure( commandId, REASON_DEPENDENCY_CODE_MISMATCH, _bindings[TrustKernelTypes.BindingKind.IDENTITY].bindingHash )",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_assessIdentity",
+          "kind": "revert",
+          "line": 572,
+          "guard": "revert TrustOperationalFailure(commandId, REASON_IDENTITY_REGISTRY_UNAVAILABLE, _addressRef(registry))",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_assessIdentity",
+          "kind": "revert",
+          "line": 574,
+          "guard": "revert TrustRejected(commandId, REASON_IDENTITY_DENIED)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_assessCompliance",
+          "kind": "revert",
+          "line": 582,
+          "guard": "revert TrustOperationalFailure(commandId, REASON_COMPLIANCE_UNAVAILABLE, _addressRef(policy))",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_assessCompliance",
+          "kind": "revert",
+          "line": 584,
+          "guard": "revert TrustRejected(commandId, REASON_POLICY_DENIED)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_requireOwnedUpstreamState",
+          "kind": "revert",
+          "line": 595,
+          "guard": "revert TrustOperationalFailure(commandId, REASON_UPSTREAM_STATE_NOT_OWNED, _addressRef(account))",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-UPSTREAM-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_applyActionPrepared",
+          "kind": "revert",
+          "line": 634,
+          "guard": "revert TrustReplay(request.actionId)",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "ADP-NONCE-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_consumeMatchingCustody",
+          "kind": "revert",
+          "line": 816,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_CUSTODY)",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "ADP-CUST-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_forcedTransfer",
+          "kind": "revert",
+          "line": 914,
+          "guard": "revert TrustOperationalFailure(commandId, REASON_UPSTREAM_CALL_FAILED, _tokenRef())",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_forcedTransfer",
+          "kind": "revert",
+          "line": 920,
+          "guard": "revert TrustOperationalFailure(commandId, REASON_UPSTREAM_POSTSTATE_MISMATCH, _tokenRef())",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_forcedTransfer",
+          "kind": "revert",
+          "line": 925,
+          "guard": "revert TrustOperationalFailure(commandId, REASON_UPSTREAM_POSTSTATE_MISMATCH, _addressRef(from))",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01",
+            "ADP-UPSTREAM-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_forcedTransfer",
+          "kind": "revert",
+          "line": 928,
+          "guard": "revert TrustOperationalFailure(commandId, REASON_UPSTREAM_POSTSTATE_MISMATCH, _addressRef(to))",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-UPSTREAM-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_syncFrozen",
+          "kind": "revert",
+          "line": 949,
+          "guard": "revert TrustOperationalFailure(commandId, REASON_UPSTREAM_POSTSTATE_MISMATCH, _tokenRef())",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_setRestricted",
+          "kind": "revert",
+          "line": 958,
+          "guard": "revert TrustOperationalFailure(commandId, REASON_UPSTREAM_POSTSTATE_MISMATCH, _tokenRef())",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_callVoid",
+          "kind": "revert",
+          "line": 965,
+          "guard": "revert TrustOperationalFailure(commandId, REASON_UPSTREAM_CALL_FAILED, _tokenRef())",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_requireUnbacked",
+          "kind": "revert",
+          "line": 972,
+          "guard": "revert TrustInvalidCommand(commandId, REASON_CUSTODY)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-CUST-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_upstreamWord",
+          "kind": "revert",
+          "line": 1000,
+          "guard": "revert TrustOperationalFailure(commandId, REASON_UPSTREAM_CALL_FAILED, _tokenRef())",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_requireCalldataLength",
+          "kind": "assembly-revert",
+          "line": 1181,
+          "guard": "assembly (\"memory-safe\") { if xor(calldatasize(), expected) { revert(0, 0) } }",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-02",
+            "SHR-DEC-01"
+          ],
+          "sameBodyAs": null
+        }
+      ]
+    },
+    "ERC3643HookAdapter": {
+      "entries": [
+        "executeRegulatoryAction",
+        "executeRegulatoryReversal"
+      ],
+      "reentries": [
+        "onTokenBalanceChanged"
+      ],
+      "variables": [
+        {
+          "label": "_actions",
+          "class": "ABSTRACT_FIELD",
+          "column": "DERIVED_BY_LAYOUT_IDENTITY",
+          "writers": [
+            "_applyActionPrepared",
+            "_applyReversalPrepared",
+            "_consumeActionAuthorization"
+          ]
+        },
+        {
+          "label": "_cases",
+          "class": "ABSTRACT_FIELD",
+          "column": "DERIVED_BY_LAYOUT_IDENTITY",
+          "writers": [
+            "_applyActionPrepared",
+            "_applyReversalPrepared"
+          ]
+        },
+        {
+          "label": "_consumedEntitlements",
+          "class": "ABSTRACT_FIELD",
+          "column": "DERIVED_BY_LAYOUT_IDENTITY",
+          "writers": [
+            "_applyActionPrepared"
+          ]
+        },
+        {
+          "label": "_custody",
+          "class": "ABSTRACT_FIELD",
+          "column": "DERIVED_BY_LAYOUT_IDENTITY",
+          "writers": [
+            "_applyActionPrepared",
+            "_applyReversalPrepared",
+            "_consumeMatchingCustody"
+          ]
+        },
+        {
+          "label": "_custodyBacking",
+          "class": "ABSTRACT_FIELD",
+          "column": "DERIVED_BY_LAYOUT_IDENTITY",
+          "writers": [
+            "_applyActionPrepared",
+            "_applyReversalPrepared",
+            "_consumeMatchingCustody"
+          ]
+        },
+        {
+          "label": "_effects",
+          "class": "ABSTRACT_FIELD",
+          "column": "DERIVED_BY_LAYOUT_IDENTITY",
+          "writers": [
+            "_pushEffect"
+          ]
+        },
+        {
+          "label": "_entered",
+          "class": "RUNTIME_ONLY",
+          "column": null,
+          "writers": [
+            "nonReentrant"
+          ]
+        },
+        {
+          "label": "_freezeHeads",
+          "class": "ABSTRACT_FIELD",
+          "column": "DERIVED_BY_LAYOUT_IDENTITY",
+          "writers": [
+            "_applyActionPrepared",
+            "_applyReversalPrepared"
+          ]
+        },
+        {
+          "label": "_owned",
+          "class": "ABSTRACT_FIELD",
+          "column": "DERIVED_BY_LAYOUT_IDENTITY",
+          "writers": [
+            "_applyActionPrepared",
+            "_applyReversalPrepared",
+            "_setRestricted",
+            "_syncFrozen"
+          ]
+        },
+        {
+          "label": "_receipts",
+          "class": "ABSTRACT_FIELD",
+          "column": "DERIVED_BY_LAYOUT_IDENTITY",
+          "writers": [
+            "_storeReceipt"
+          ]
+        },
+        {
+          "label": "_restrictionHeads",
+          "class": "ABSTRACT_FIELD",
+          "column": "DERIVED_BY_LAYOUT_IDENTITY",
+          "writers": [
+            "_applyActionPrepared",
+            "_applyReversalPrepared"
+          ]
+        },
+        {
+          "label": "_usedNonces",
+          "class": "ABSTRACT_FIELD",
+          "column": "DERIVED_BY_LAYOUT_IDENTITY",
+          "writers": [
+            "_consumeActionAuthorization",
+            "executeRegulatoryReversal"
+          ]
+        }
+      ],
+      "guards": [
+        {
+          "function": "nonReentrant",
+          "kind": "revert",
+          "line": 122,
+          "guard": "revert TrustReentrancy()",
+          "class": "RUNTIME_ONLY_BY_DISPOSITION",
+          "ledger": null,
+          "rows": [],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "onTokenBalanceChanged",
+          "kind": "revert",
+          "line": 293,
+          "guard": "revert TrustUnauthorized(msg.sender, bytes32(0))",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "trust12",
+          "rows": [
+            "HOOK-CALLER-AUTH"
+          ],
+          "sameBodyAs": null
+        },
+        {
+          "function": "_validateAndAuthorizeAction",
+          "kind": "revert",
+          "line": 353,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_DOMAIN)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateAndAuthorizeAction",
+          "kind": "revert",
+          "line": 355,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_IDENTIFIER)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateAndAuthorizeAction",
+          "kind": "revert",
+          "line": 358,
+          "guard": "revert TrustReplay(request.actionId)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-NONCE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateAndAuthorizeAction",
+          "kind": "revert",
+          "line": 361,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_TIME)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateAndAuthorizeAction",
+          "kind": "revert",
+          "line": 365,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_DEPENDENCY_BINDING)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-STALE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 378,
+          "guard": "revert TrustInvalidCommand(request.reversalId, REASON_DOMAIN)",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 381,
+          "guard": "revert TrustInvalidCommand(request.reversalId, REASON_IDENTIFIER)",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "ADP-NONCE-01",
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 384,
+          "guard": "revert TrustReplay(request.reversalId)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-NONCE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 387,
+          "guard": "revert TrustInvalidCommand(request.reversalId, REASON_TIME)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 391,
+          "guard": "revert TrustInvalidCommand(request.reversalId, REASON_DEPENDENCY_BINDING)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-STALE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 394,
+          "guard": "revert TrustInvalidCommand(request.reversalId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-REV-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 397,
+          "guard": "revert TrustTerminal(original.caseId)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-REV-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 400,
+          "guard": "revert TrustInvalidCommand(request.reversalId, REASON_CURRENT_EFFECT)",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "ADP-REV-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateAndAuthorizeReversal",
+          "kind": "revert",
+          "line": 403,
+          "guard": "revert TrustInvalidCommand(request.reversalId, REASON_REVERSAL_PAIRING)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-REV-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_requireAuthority",
+          "kind": "revert",
+          "line": 415,
+          "guard": "revert TrustInvalidCommand(commandId, REASON_AUTHORITY_EPOCH)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-AUTH-02"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_requireAuthority",
+          "kind": "revert",
+          "line": 416,
+          "guard": "revert TrustUnauthorized(caller, requestedRef)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-AUTH-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_requireFreshNonce",
+          "kind": "revert",
+          "line": 421,
+          "guard": "revert TrustReplay(key)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-NONCE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 429,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 432,
+          "guard": "revert TrustTerminal(request.caseId)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-CASE-01",
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 440,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 444,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_FREEZE_DIRECTION)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-FRZ-01",
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 451,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 455,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_NO_STATE_CHANGE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-CASE-01",
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 463,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 470,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-CUST-01",
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 473,
+          "guard": "revert TrustInvalidCommand( request.actionId, caseState.family == TrustKernelTypes.CaseFamily.CUSTODY ? REASON_CUSTODY : REASON_CASE_CONFLICT )",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-CASE-01",
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 479,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 482,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_CASE_CONFLICT)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 485,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 492,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 495,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 499,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 502,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_ENTITLEMENT)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-DISP-01",
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateActionShape",
+          "kind": "revert",
+          "line": 505,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_SHAPE)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_requireOverlayAdmissible",
+          "kind": "revert",
+          "line": 518,
+          "guard": "revert TrustInvalidCommand(actionId, REASON_CASE_CONFLICT)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-CASE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_requireOverlayAdmissible",
+          "kind": "revert",
+          "line": 521,
+          "guard": "revert TrustInvalidCommand(actionId, REASON_CASE_CONFLICT)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-CASE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateCurrentEffect",
+          "kind": "revert",
+          "line": 538,
+          "guard": "revert TrustInvalidCommand(reversalId, REASON_CUSTODY)",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "ADP-CUST-01",
+            "ADP-REV-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateCurrentEffect",
+          "kind": "revert",
+          "line": 542,
+          "guard": "revert TrustInvalidCommand(reversalId, REASON_CURRENT_EFFECT)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-REV-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_validateCurrentEffect",
+          "kind": "revert",
+          "line": 550,
+          "guard": "revert TrustInvalidCommand(reversalId, REASON_CURRENT_EFFECT)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-REV-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_requireLiveTopology",
+          "kind": "revert",
+          "line": 567,
+          "guard": "revert TrustOperationalFailure(commandId, REASON_SEALED_TOPOLOGY_NOT_LIVE, _tokenRef())",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01",
+            "ADP-SEAL-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_requireLiveTopology",
+          "kind": "revert",
+          "line": 570,
+          "guard": "revert TrustOperationalFailure( commandId, REASON_DEPENDENCY_CODE_MISMATCH, _bindings[TrustKernelTypes.BindingKind.POLICY].bindingHash )",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_requireLiveTopology",
+          "kind": "revert",
+          "line": 575,
+          "guard": "revert TrustOperationalFailure( commandId, REASON_DEPENDENCY_CODE_MISMATCH, _bindings[TrustKernelTypes.BindingKind.IDENTITY].bindingHash )",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_assessIdentity",
+          "kind": "revert",
+          "line": 617,
+          "guard": "revert TrustOperationalFailure(commandId, REASON_IDENTITY_REGISTRY_UNAVAILABLE, _addressRef(registry))",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_assessIdentity",
+          "kind": "revert",
+          "line": 619,
+          "guard": "revert TrustRejected(commandId, REASON_IDENTITY_DENIED)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_assessCompliance",
+          "kind": "revert",
+          "line": 627,
+          "guard": "revert TrustOperationalFailure(commandId, REASON_COMPLIANCE_UNAVAILABLE, _addressRef(policy))",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_assessCompliance",
+          "kind": "revert",
+          "line": 629,
+          "guard": "revert TrustRejected(commandId, REASON_POLICY_DENIED)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_requireOwnedUpstreamState",
+          "kind": "revert",
+          "line": 640,
+          "guard": "revert TrustOperationalFailure(commandId, REASON_UPSTREAM_STATE_NOT_OWNED, _addressRef(account))",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-UPSTREAM-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_applyActionPrepared",
+          "kind": "revert",
+          "line": 679,
+          "guard": "revert TrustReplay(request.actionId)",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "ADP-NONCE-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_consumeMatchingCustody",
+          "kind": "revert",
+          "line": 861,
+          "guard": "revert TrustInvalidCommand(request.actionId, REASON_CUSTODY)",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "ADP-CUST-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_forcedTransfer",
+          "kind": "revert",
+          "line": 959,
+          "guard": "revert TrustOperationalFailure(commandId, REASON_UPSTREAM_CALL_FAILED, _tokenRef())",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_forcedTransfer",
+          "kind": "revert",
+          "line": 965,
+          "guard": "revert TrustOperationalFailure(commandId, REASON_UPSTREAM_POSTSTATE_MISMATCH, _tokenRef())",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_forcedTransfer",
+          "kind": "revert",
+          "line": 970,
+          "guard": "revert TrustOperationalFailure(commandId, REASON_UPSTREAM_POSTSTATE_MISMATCH, _addressRef(from))",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01",
+            "ADP-UPSTREAM-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_forcedTransfer",
+          "kind": "revert",
+          "line": 973,
+          "guard": "revert TrustOperationalFailure(commandId, REASON_UPSTREAM_POSTSTATE_MISMATCH, _addressRef(to))",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-UPSTREAM-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_syncFrozen",
+          "kind": "revert",
+          "line": 994,
+          "guard": "revert TrustOperationalFailure(commandId, REASON_UPSTREAM_POSTSTATE_MISMATCH, _tokenRef())",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_setRestricted",
+          "kind": "revert",
+          "line": 1003,
+          "guard": "revert TrustOperationalFailure(commandId, REASON_UPSTREAM_POSTSTATE_MISMATCH, _tokenRef())",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_callVoid",
+          "kind": "revert",
+          "line": 1010,
+          "guard": "revert TrustOperationalFailure(commandId, REASON_UPSTREAM_CALL_FAILED, _tokenRef())",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_requireUnbacked",
+          "kind": "revert",
+          "line": 1017,
+          "guard": "revert TrustInvalidCommand(commandId, REASON_CUSTODY)",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-CUST-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_upstreamWord",
+          "kind": "revert",
+          "line": 1045,
+          "guard": "revert TrustOperationalFailure(commandId, REASON_UPSTREAM_CALL_FAILED, _tokenRef())",
+          "class": "LEDGER_CONSUMER_BY_DISPOSITION",
+          "ledger": "central",
+          "rows": [
+            "ADP-DEP-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        },
+        {
+          "function": "_requireCalldataLength",
+          "kind": "assembly-revert",
+          "line": 1224,
+          "guard": "assembly (\"memory-safe\") { if xor(calldatasize(), expected) { revert(0, 0) } }",
+          "class": "LEDGER_CONSUMER",
+          "ledger": "central",
+          "rows": [
+            "ADP-SHAPE-02",
+            "SHR-DEC-01"
+          ],
+          "sameBodyAs": "ERC3643TrustAdapter"
+        }
+      ]
+    }
+  }
+}

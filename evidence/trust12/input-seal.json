@@ -13,7 +13,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "bc3609c5cede1b2d64970d69e3ae4e47bded337a59b20a3c0680ff974274f391"
+      "sha256": "90eea709aab169651c12f3de4d251fe9e14bfae5d5a121d57eea87e28af000dc"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
@@ -129,7 +129,7 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "5817e47e30d852bc15b8962fd0ac9f86d024a9b59ff2c1156a53b43195df2449"
+      "sha256": "1f0e099d6faa38e577123bb2872cc436281abd3fba8748bbc3b4274ca8bd4a1f"
     },
     {
       "path": "evidence/trust12/profile-implementation-evidence-review.json",
@@ -216,6 +216,14 @@
       "sha256": "a20f3a334a7d0d413ab7d3ad699e815dfea4d6779e30e03f9f54d9263fa82fe6"
     },
     {
+      "path": "evidence/trust12/runtime-link/tail-preparation/reflection-dispositions-v1.json",
+      "sha256": "a829e2ef536c7470132a989b1ea4986b5690c06a674481217d2ea9fb80a97f74"
+    },
+    {
+      "path": "evidence/trust12/runtime-link/tail-preparation/reflection-scan-checkpoint-v1.json",
+      "sha256": "a6b3e00dc4cb4eb161686e33018fdfa2b4f40ef5a0188b28440e202285cebb96"
+    },
+    {
       "path": "evidence/trust12/runtime-link/tail-preparation/route-dispositions-v1.json",
       "sha256": "5922696279bc043f38fbc414833c1654e5973496e28e1156543991a09511d4c8"
     },
@@ -253,7 +261,7 @@
     },
     {
       "path": "evidence/trust12/veri-integration-audit.md",
-      "sha256": "6c10fb4dffa4608119d4bed6ea8657b323e07a55966ab59c39b0fb13f69889d2"
+      "sha256": "f9d516ebce607138dd8d9ece49bb98c6cfe28bcc3ea6a3bf81e958eda88e6c5a"
     },
     {
       "path": "evidence/trust12/veri-observation-results.json",
@@ -397,7 +405,7 @@
     },
     {
       "path": "scripts/generate-trust12-input-seal.py",
-      "sha256": "1d481160cdf5f1ebaa05550b79a71526545d971c3aabd3a0c668a5ce250191a9"
+      "sha256": "83ee867ae94ebe91d502ff86c2d99645059a816e050a119fe4a16d5a833033bc"
     },
     {
       "path": "scripts/generate-trust12-proof-audit.py",
@@ -536,6 +544,10 @@
       "sha256": "e35d99c52cfa1683f462d0c8e6769c152c772560882e0d3cfe00dd6457cfc77e"
     },
     {
+      "path": "scripts/test-reflection-scan.py",
+      "sha256": "f1376ec0a9c9e102ff76e1149a7eb1eb125809fde0d0e8358ea0fddd4c1f91a5"
+    },
+    {
       "path": "scripts/test-route-inventory.py",
       "sha256": "283b91c73f38e906575ce6d57cb550bd587c634de0fe82e3cbdc7b81f5364a34"
     },
@@ -553,7 +565,7 @@
     },
     {
       "path": "scripts/test-trust12-required.mjs",
-      "sha256": "79fc52afaea9003e3af5845a1d38e70f795964da03cb1e66c81e1ddffcd50bf1"
+      "sha256": "58b3269b62e9076ef5bbb617f0744e34ad3be8d7b525cc5e22a920818b6a7e09"
     },
     {
       "path": "scripts/test-typed-failure-binding.py",
@@ -578,6 +590,10 @@
     {
       "path": "scripts/trust12/tail-preparation/malformed_call_trace.py",
       "sha256": "0a0dfa96332db9f5ac260052c31d234a00a39a55fb1970e70b3f08c4b0e6d808"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/reflection_scan.py",
+      "sha256": "3a8d013709d1c4555b9e1dfdd043691843bbbd814a6749b6d4d52c5c44a69ba6"
     },
     {
       "path": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol",
@@ -610,6 +626,10 @@
     {
       "path": "scripts/trust12/tail-preparation/test_malformed_call_trace.py",
       "sha256": "5d5c6e29e65eeffd4e7cf7dfb55481f85dd67ba7d0c217f8bdce8d56579d366e"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/test_reflection_scan.py",
+      "sha256": "00256f03a4b01c4821d3ec39040043ad26fdda08a368e185ad57a5beb07108fd"
     },
     {
       "path": "scripts/trust12/tail-preparation/test_route_inventory_v2.py",
@@ -692,6 +712,10 @@
       "sha256": "937f66b9f3bcfc134562f240706fa1fda57c143aabedc255e3df9775c538c8c5"
     },
     {
+      "path": "scripts/trust12/verify_reflection_scan_v1.py",
+      "sha256": "527cae0f4617b71301d0a6bf152130400f1a65b5c955b520038ee34bf64f7531"
+    },
+    {
       "path": "scripts/trust12/verify_route_inventory_v1.py",
       "sha256": "5ea91bbf4c9f955b058ab5beb349fac0ca6ced2cd935aa55530a11b44a8319b4"
     },
@@ -733,7 +757,7 @@
     },
     {
       "path": "scripts/verify-trust12-required.mjs",
-      "sha256": "71346f6866d122d6a795807eedd65fb4dcb3b0c4f272668c18762294507cd0d2"
+      "sha256": "21d2b89a574559eb71b402fb694fa18fd2ed8efc6960595fe16b4f93f4677db4"
     },
     {
       "path": "spec/decisions/14-hook-route-classes.md",
