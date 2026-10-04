@@ -1,0 +1,318 @@
+{
+  "schema": "trust12-hook-route-classes-v1",
+  "status": "NORMATIVE",
+  "generatedFrom": {
+    "path": "spec/decisions/14-hook-route-classes.md",
+    "canonicalSha256": "7f191ca03257ce071e0d05bd86c98a9f0117f4eea601d8ba824f286dcbd97d26",
+    "statusLine": "accepted. It classifies the existing Hook entrypoints and changes no source or runtime."
+  },
+  "formalVocabulary": {
+    "source": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy",
+    "datatype": "trust_route_class",
+    "constructors": [
+      "Route_Kernel_Command",
+      "Route_Kernel_View",
+      "Route_Native_Exact_Use",
+      "Route_ERC7943_Sensitive",
+      "Route_ERC7943_View",
+      "Route_ERC20_Mutator",
+      "Route_ERC20_View",
+      "Route_Governance",
+      "Route_Immutable_View",
+      "Route_Profile_Command",
+      "Route_Profile_View",
+      "Route_Seal_Command",
+      "Route_Seal_View"
+    ]
+  },
+  "specClasses": [
+    {
+      "name": "Route_Hook_Balance_Callback",
+      "mutating": true,
+      "definition": "The post-balance callback of the endpoint, called by the bound Compliance module after an upstream balance change; it brings the upstream frozen amount of the touched accounts to their owned targets saturated at the new balances and records the applied amount."
+    },
+    {
+      "name": "Route_Compliance_Callback",
+      "mutating": true,
+      "definition": "An ERC-3643 Compliance hook that the bound token calls after a mint, a transfer or a burn; once the endpoint is set, its only effect is to forward the touched accounts to the balance callback of the endpoint."
+    },
+    {
+      "name": "Route_Compliance_Setup",
+      "mutating": true,
+      "definition": "A one-time binding or activation step of the Compliance module that the construction of the unit performs exactly once; every later call reverts."
+    },
+    {
+      "name": "Route_Compliance_View",
+      "mutating": false,
+      "definition": "A view or pure function of the Compliance module, including the pure unbinding entrypoint that always reverts."
+    },
+    {
+      "name": "Route_Unit_Creation",
+      "mutating": true,
+      "definition": "Creation of a new conformance unit by the factory; it writes no storage of an existing unit."
+    }
+  ],
+  "runtimes": [
+    {
+      "contract": "ERC3643HookAdapter",
+      "routes": [
+        {
+          "signature": "supportsInterface(bytes4)",
+          "selector": "0x01ffc9a7",
+          "class": "Route_Kernel_View"
+        },
+        {
+          "signature": "profileGovernor()",
+          "selector": "0x164068a4",
+          "class": "Route_Immutable_View"
+        },
+        {
+          "signature": "receipt(bytes32)",
+          "selector": "0x198a27aa",
+          "class": "Route_Kernel_View"
+        },
+        {
+          "signature": "resynchroniseFrozen(address)",
+          "selector": "0x24933056",
+          "class": "Route_Profile_Command"
+        },
+        {
+          "signature": "caseRecord(bytes32)",
+          "selector": "0x2a408631",
+          "class": "Route_Kernel_View"
+        },
+        {
+          "signature": "executeRegulatoryReversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "selector": "0x2b892e8f",
+          "class": "Route_Kernel_Command"
+        },
+        {
+          "signature": "sealedTopologyLive()",
+          "selector": "0x2ca444f1",
+          "class": "Route_Profile_View"
+        },
+        {
+          "signature": "executeRegulatoryAction((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "selector": "0x2f4e0773",
+          "class": "Route_Kernel_Command"
+        },
+        {
+          "signature": "actionRecord(bytes32)",
+          "selector": "0x330fcfde",
+          "class": "Route_Kernel_View"
+        },
+        {
+          "signature": "trustProfile()",
+          "selector": "0x5ba37779",
+          "class": "Route_Kernel_View"
+        },
+        {
+          "signature": "dependencyState()",
+          "selector": "0x7bf8f8b6",
+          "class": "Route_Kernel_View"
+        },
+        {
+          "signature": "activateSeal((address,uint256,bool)[])",
+          "selector": "0x8efb3179",
+          "class": "Route_Seal_Command"
+        },
+        {
+          "signature": "ownedState(address)",
+          "selector": "0x963f57d1",
+          "class": "Route_Profile_View"
+        },
+        {
+          "signature": "onTokenBalanceChanged(address,address)",
+          "selector": "0x9cbfdbf8",
+          "class": "Route_Hook_Balance_Callback"
+        },
+        {
+          "signature": "authority()",
+          "selector": "0xbf7e214f",
+          "class": "Route_Immutable_View"
+        },
+        {
+          "signature": "authorityRef()",
+          "selector": "0xf161af61",
+          "class": "Route_Immutable_View"
+        },
+        {
+          "signature": "deriveReversalId((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "selector": "0xf3315a6c",
+          "class": "Route_Kernel_View"
+        },
+        {
+          "signature": "token()",
+          "selector": "0xfc0c546a",
+          "class": "Route_Immutable_View"
+        },
+        {
+          "signature": "deriveActionId((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+          "selector": "0xfc6a9112",
+          "class": "Route_Kernel_View"
+        }
+      ]
+    },
+    {
+      "contract": "ERC3643HookGovernor",
+      "routes": [
+        {
+          "signature": "importManifestHash()",
+          "selector": "0x0ed81c40",
+          "class": "Route_Seal_View"
+        },
+        {
+          "signature": "identityRegistry()",
+          "selector": "0x134e18f4",
+          "class": "Route_Immutable_View"
+        },
+        {
+          "signature": "sealedTopologyLive(address)",
+          "selector": "0x155917d8",
+          "class": "Route_Seal_View"
+        },
+        {
+          "signature": "compliance()",
+          "selector": "0x6290865d",
+          "class": "Route_Immutable_View"
+        },
+        {
+          "signature": "topologySealed()",
+          "selector": "0x7f3bffea",
+          "class": "Route_Seal_View"
+        },
+        {
+          "signature": "expectedRegistryCodeId()",
+          "selector": "0x83300190",
+          "class": "Route_Immutable_View"
+        },
+        {
+          "signature": "expectedComplianceCodeId()",
+          "selector": "0xa35530ba",
+          "class": "Route_Immutable_View"
+        },
+        {
+          "signature": "sealFresh()",
+          "selector": "0xa941f8f9",
+          "class": "Route_Seal_Command"
+        },
+        {
+          "signature": "expectedTokenCodeId()",
+          "selector": "0xb534e5ab",
+          "class": "Route_Immutable_View"
+        },
+        {
+          "signature": "sealedBinding()",
+          "selector": "0xb98705b4",
+          "class": "Route_Seal_View"
+        },
+        {
+          "signature": "bootstrapAuthority()",
+          "selector": "0xce29a7f9",
+          "class": "Route_Immutable_View"
+        },
+        {
+          "signature": "exclusiveAdapter()",
+          "selector": "0xf877bff3",
+          "class": "Route_Seal_View"
+        },
+        {
+          "signature": "token()",
+          "selector": "0xfc0c546a",
+          "class": "Route_Immutable_View"
+        }
+      ]
+    },
+    {
+      "contract": "ERC3643HookCompliance",
+      "routes": [
+        {
+          "signature": "activate(address)",
+          "selector": "0x1c5a9d9c",
+          "class": "Route_Compliance_Setup"
+        },
+        {
+          "signature": "bindToken(address)",
+          "selector": "0x3ff5aa02",
+          "class": "Route_Compliance_Setup"
+        },
+        {
+          "signature": "unbindToken(address)",
+          "selector": "0x40db3b50",
+          "class": "Route_Compliance_View"
+        },
+        {
+          "signature": "endpoint()",
+          "selector": "0x5e280f11",
+          "class": "Route_Compliance_View"
+        },
+        {
+          "signature": "created(address,uint256)",
+          "selector": "0x5f8dead3",
+          "class": "Route_Compliance_Callback"
+        },
+        {
+          "signature": "getTokenBound()",
+          "selector": "0x6a3edf28",
+          "class": "Route_Immutable_View"
+        },
+        {
+          "signature": "transferred(address,address,uint256)",
+          "selector": "0x8baf29b4",
+          "class": "Route_Compliance_Callback"
+        },
+        {
+          "signature": "destroyed(address,uint256)",
+          "selector": "0x8d2ea772",
+          "class": "Route_Compliance_Callback"
+        },
+        {
+          "signature": "isTokenBound(address)",
+          "selector": "0x993e8b95",
+          "class": "Route_Compliance_View"
+        },
+        {
+          "signature": "bound()",
+          "selector": "0xbe4df7d6",
+          "class": "Route_Compliance_View"
+        },
+        {
+          "signature": "factory()",
+          "selector": "0xc45a0155",
+          "class": "Route_Immutable_View"
+        },
+        {
+          "signature": "canTransfer(address,address,uint256)",
+          "selector": "0xe46638e6",
+          "class": "Route_Compliance_View"
+        },
+        {
+          "signature": "token()",
+          "selector": "0xfc0c546a",
+          "class": "Route_Immutable_View"
+        }
+      ]
+    },
+    {
+      "contract": "ERC3643HookFactory",
+      "routes": [
+        {
+          "signature": "ADAPTER_CREATION_HASH()",
+          "selector": "0x1f0678e4",
+          "class": "Route_Immutable_View"
+        },
+        {
+          "signature": "deploy(bytes,address,bytes32,address,uint256,address[])",
+          "selector": "0x39c6db74",
+          "class": "Route_Unit_Creation"
+        },
+        {
+          "signature": "tokenCreationSource()",
+          "selector": "0xaf897f60",
+          "class": "Route_Immutable_View"
+        }
+      ]
+    }
+  ],
+  "nonclaim": "Generated from the route class table of the decision record. The classes say what role each Hook entrypoint has; they do not discharge route exhaustiveness."
+}

@@ -1,0 +1,1776 @@
+{
+  "schema": "trust12-route-inventory-checkpoint-v1",
+  "status": "PASS_ROUTE_INVENTORY_CLOSED",
+  "scope": "The route inventory classifies every public and external entrypoint of the seven profile runtimes of TRUST 1.2, 108 selectors read from the tracked compiled artifacts of the runtime binding: the Native and Partial runtimes by the route tables of the formal runtime bridge and the four Hook runtimes by the route class table of decision 14. Eight are the typed command entrypoints that the malformed input catalog lists, 80 are view or pure functions, and each of the other 20 has a disposition record that a closed obligation row or an accepted decision record of its own runtime justifies and that a passed test executes on its own runtime. No runtime declares a receive or fallback function, and the recorded malformed probe shows, for its unknown-selector request on each of the three endpoints, a revert with an empty payload and no log, external call or committed write.",
+  "classBoundary": "A class names the role of an entrypoint. The inventory checks it against the ABI state mutability of the compiled artifact and, for a Hook adapter or governor selector that also exists on the Partial runtime, against the class of that counterpart. A view or pure function counts as non-mutating because the compiler forbids state changes in it, which keeps the compiler a trusted assumption (A-COMPILER). The pinned upstream ERC-3643 token of the Hook profile is a dependency and is not classified; its behavior remains the assumption A-EXTERNAL.",
+  "dispositionBoundary": "A disposition record names the callers, the writes and the reason a route lies outside the runtime-link relation, and cites ledger rows, quoted decision sentences, source lines with their exact occurrence counts, tests and mutation receipts that the inventory checks against the current files. A test counts as an execution only when it passed in a recorded run: the recorded Foundry results of the implementation suite, which bind the current implementation sources and tests, for the tests under implementation/test, and a run of the disposition tests in an isolated copy, which binds the current route test files and the current implementation sources and tests by their hashes, for the tests under scripts/trust12/tail-preparation/route-dispositions. A test executes one deployment with chosen callers and inputs; it is not a proof over every caller, state or input.",
+  "unmatchedBoundary": "The catalogued unknown-selector request of each endpoint is the selector 0xffffffff followed by the calldata body of a FREEZE action request, 644 bytes in all, and the probe rows that this record carries are the rows of those requests. The record binds the probe receipt by its SHA-256, which the tracked out-of-spec probe summary also records, and the probe inputs of that summary have the same root as the current files under its six paths. The selector 0xffffffff is a function selector of none of the seven runtimes. Other selectors outside the dispatch lists, and the governor, Compliance and factory runtimes, rely on the compiled dispatcher without a receive or fallback function, not on a probe.",
+  "reproductionBoundary": "Metadata mode reads tracked files only: it rebuilds the inventory in closure mode from the current files with the test results and the probe rows that this record carries, and requires every public field of this record to follow from that build. Saved mode rehashes the private disposition test receipt, its forge report, the private malformed probe receipt and the stored inventory, recomputes the test receipt from the forge report, rebuilds the inventory from the private receipts and requires it to equal the stored one byte for byte and this record to follow from it. Neither mode reruns Foundry. The record states no completion of the registered-scope central closure, any general runtime link, the independent Assurance or TRUST 1.2.",
+  "coverage": {
+    "runtimes": 7,
+    "selectors": 108,
+    "dispositionStates": {
+      "IN_RUNTIME_LINK_DOMAIN": 8,
+      "OUTSIDE_NON_MUTATING": 80,
+      "OUTSIDE_DISPOSED": 20,
+      "OUTSIDE_DISPOSITION_OPEN": 0,
+      "OUTSIDE_REQUIRES_DISPOSITION": 0
+    },
+    "dispositionRecords": 20,
+    "dispositionsComplete": 20,
+    "justifiedByClosedRow": 17,
+    "justifiedOnlyByDecision": 3,
+    "executedInRecordedSuite": 15,
+    "executedInDispositionRun": 10,
+    "dispositionRunTests": 8,
+    "unknownSelectorEndpoints": 3
+  },
+  "criteria": {
+    "hook-class-record-accepted": "PASS",
+    "every-selector-has-a-normative-class": "PASS",
+    "every-state-changing-route-outside-the-typed-commands-is-disposed": "PASS",
+    "unknown-selectors-revert-empty-on-every-endpoint": "PASS"
+  },
+  "routes": [
+    {
+      "runtime": "TrustToken",
+      "signature": "supportsInterface(bytes4)",
+      "selector": "0x01ffc9a7",
+      "class": "Route_Kernel_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "name()",
+      "selector": "0x06fdde03",
+      "class": "Route_ERC20_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "approve(address,uint256)",
+      "selector": "0x095ea7b3",
+      "class": "Route_ERC20_Mutator",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_DISPOSED",
+      "kind": "ORDINARY_TOKEN_OPERATION"
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "governor()",
+      "selector": "0x0c340a24",
+      "class": "Route_Immutable_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "getFrozenTokens(address)",
+      "selector": "0x158b1a57",
+      "class": "Route_ERC7943_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "totalSupply()",
+      "selector": "0x18160ddd",
+      "class": "Route_ERC20_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "receipt(bytes32)",
+      "selector": "0x198a27aa",
+      "class": "Route_Kernel_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "executeERC7943Reversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+      "selector": "0x1c711a94",
+      "class": "Route_Native_Exact_Use",
+      "classSource": "formal bridge route table",
+      "disposition": "IN_RUNTIME_LINK_DOMAIN",
+      "kind": null
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "transferFrom(address,address,uint256)",
+      "selector": "0x23b872dd",
+      "class": "Route_ERC20_Mutator",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_DISPOSED",
+      "kind": "ORDINARY_TOKEN_OPERATION"
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "caseRecord(bytes32)",
+      "selector": "0x2a408631",
+      "class": "Route_Kernel_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "executeRegulatoryReversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+      "selector": "0x2b892e8f",
+      "class": "Route_Kernel_Command",
+      "classSource": "formal bridge route table",
+      "disposition": "IN_RUNTIME_LINK_DOMAIN",
+      "kind": null
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "canSend(address)",
+      "selector": "0x2bc06a92",
+      "class": "Route_ERC7943_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "executeRegulatoryAction((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+      "selector": "0x2f4e0773",
+      "class": "Route_Kernel_Command",
+      "classSource": "formal bridge route table",
+      "disposition": "IN_RUNTIME_LINK_DOMAIN",
+      "kind": null
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "decimals()",
+      "selector": "0x313ce567",
+      "class": "Route_ERC20_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "actionRecord(bytes32)",
+      "selector": "0x330fcfde",
+      "class": "Route_Kernel_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "executeERC7943Action((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+      "selector": "0x40a9c893",
+      "class": "Route_Native_Exact_Use",
+      "classSource": "formal bridge route table",
+      "disposition": "IN_RUNTIME_LINK_DOMAIN",
+      "kind": null
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "trustProfile()",
+      "selector": "0x5ba37779",
+      "class": "Route_Kernel_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "balanceOf(address)",
+      "selector": "0x70a08231",
+      "class": "Route_ERC20_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "dependencyState()",
+      "selector": "0x7bf8f8b6",
+      "class": "Route_Kernel_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "canReceive(address)",
+      "selector": "0x90d370ba",
+      "class": "Route_ERC7943_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "symbol()",
+      "selector": "0x95d89b41",
+      "class": "Route_ERC20_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "forcedTransfer(address,address,uint256)",
+      "selector": "0x9fc1d0e7",
+      "class": "Route_ERC7943_Sensitive",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_DISPOSED",
+      "kind": "EXACT_USE_ROUTE"
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "configureAuthority(bytes32,address,bool,bytes32,uint256)",
+      "selector": "0xa4fc4aad",
+      "class": "Route_Governance",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_DISPOSED",
+      "kind": "GOVERNANCE_TRANSITION"
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "transfer(address,uint256)",
+      "selector": "0xa9059cbb",
+      "class": "Route_ERC20_Mutator",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_DISPOSED",
+      "kind": "ORDINARY_TOKEN_OPERATION"
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "allowance(address,address)",
+      "selector": "0xdd62ed3e",
+      "class": "Route_ERC20_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "canTransfer(address,address,uint256)",
+      "selector": "0xe46638e6",
+      "class": "Route_ERC7943_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "setFrozenTokens(address,uint256)",
+      "selector": "0xebe45cba",
+      "class": "Route_ERC7943_Sensitive",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_DISPOSED",
+      "kind": "EXACT_USE_ROUTE"
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "deriveReversalId((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+      "selector": "0xf3315a6c",
+      "class": "Route_Kernel_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "rebindDependency(uint8,address,bytes32,bytes32,uint256)",
+      "selector": "0xf60d7b6f",
+      "class": "Route_Governance",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_DISPOSED",
+      "kind": "GOVERNANCE_TRANSITION"
+    },
+    {
+      "runtime": "TrustToken",
+      "signature": "deriveActionId((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+      "selector": "0xfc6a9112",
+      "class": "Route_Kernel_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "signature": "supportsInterface(bytes4)",
+      "selector": "0x01ffc9a7",
+      "class": "Route_Kernel_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "signature": "profileGovernor()",
+      "selector": "0x164068a4",
+      "class": "Route_Immutable_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "signature": "receipt(bytes32)",
+      "selector": "0x198a27aa",
+      "class": "Route_Kernel_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "signature": "resynchroniseFrozen(address)",
+      "selector": "0x24933056",
+      "class": "Route_Profile_Command",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_DISPOSED",
+      "kind": "PROFILE_SYNCHRONISATION"
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "signature": "caseRecord(bytes32)",
+      "selector": "0x2a408631",
+      "class": "Route_Kernel_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "signature": "executeRegulatoryReversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+      "selector": "0x2b892e8f",
+      "class": "Route_Kernel_Command",
+      "classSource": "formal bridge route table",
+      "disposition": "IN_RUNTIME_LINK_DOMAIN",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "signature": "sealedTopologyLive()",
+      "selector": "0x2ca444f1",
+      "class": "Route_Profile_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "signature": "executeRegulatoryAction((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+      "selector": "0x2f4e0773",
+      "class": "Route_Kernel_Command",
+      "classSource": "formal bridge route table",
+      "disposition": "IN_RUNTIME_LINK_DOMAIN",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "signature": "actionRecord(bytes32)",
+      "selector": "0x330fcfde",
+      "class": "Route_Kernel_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "signature": "trustProfile()",
+      "selector": "0x5ba37779",
+      "class": "Route_Kernel_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "signature": "dependencyState()",
+      "selector": "0x7bf8f8b6",
+      "class": "Route_Kernel_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "signature": "activateSeal((address,uint256,bool)[])",
+      "selector": "0x8efb3179",
+      "class": "Route_Seal_Command",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_DISPOSED",
+      "kind": "ONE_WAY_SEAL"
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "signature": "ownedState(address)",
+      "selector": "0x963f57d1",
+      "class": "Route_Profile_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "signature": "authority()",
+      "selector": "0xbf7e214f",
+      "class": "Route_Immutable_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "signature": "authorityRef()",
+      "selector": "0xf161af61",
+      "class": "Route_Immutable_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "signature": "deriveReversalId((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+      "selector": "0xf3315a6c",
+      "class": "Route_Kernel_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "signature": "token()",
+      "selector": "0xfc0c546a",
+      "class": "Route_Immutable_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643TrustAdapter",
+      "signature": "deriveActionId((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+      "selector": "0xfc6a9112",
+      "class": "Route_Kernel_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ProfileGovernor",
+      "signature": "importManifestHash()",
+      "selector": "0x0ed81c40",
+      "class": "Route_Seal_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ProfileGovernor",
+      "signature": "identityRegistry()",
+      "selector": "0x134e18f4",
+      "class": "Route_Immutable_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ProfileGovernor",
+      "signature": "sealedTopologyLive(address)",
+      "selector": "0x155917d8",
+      "class": "Route_Seal_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ProfileGovernor",
+      "signature": "compliance()",
+      "selector": "0x6290865d",
+      "class": "Route_Immutable_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ProfileGovernor",
+      "signature": "topologySealed()",
+      "selector": "0x7f3bffea",
+      "class": "Route_Seal_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ProfileGovernor",
+      "signature": "seal(address,(address,uint256,bool)[])",
+      "selector": "0x82c8fd1f",
+      "class": "Route_Seal_Command",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_DISPOSED",
+      "kind": "ONE_WAY_SEAL"
+    },
+    {
+      "runtime": "ProfileGovernor",
+      "signature": "manifestHashOf((address,uint256,bool)[])",
+      "selector": "0xb2e56d9e",
+      "class": "Route_Seal_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ProfileGovernor",
+      "signature": "expectedTokenCodeId()",
+      "selector": "0xb534e5ab",
+      "class": "Route_Immutable_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ProfileGovernor",
+      "signature": "sealedBinding()",
+      "selector": "0xb98705b4",
+      "class": "Route_Seal_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ProfileGovernor",
+      "signature": "bootstrapAuthority()",
+      "selector": "0xce29a7f9",
+      "class": "Route_Immutable_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ProfileGovernor",
+      "signature": "exclusiveAdapter()",
+      "selector": "0xf877bff3",
+      "class": "Route_Seal_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ProfileGovernor",
+      "signature": "token()",
+      "selector": "0xfc0c546a",
+      "class": "Route_Immutable_View",
+      "classSource": "formal bridge route table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookAdapter",
+      "signature": "supportsInterface(bytes4)",
+      "selector": "0x01ffc9a7",
+      "class": "Route_Kernel_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookAdapter",
+      "signature": "profileGovernor()",
+      "selector": "0x164068a4",
+      "class": "Route_Immutable_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookAdapter",
+      "signature": "receipt(bytes32)",
+      "selector": "0x198a27aa",
+      "class": "Route_Kernel_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookAdapter",
+      "signature": "resynchroniseFrozen(address)",
+      "selector": "0x24933056",
+      "class": "Route_Profile_Command",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_DISPOSED",
+      "kind": "PROFILE_SYNCHRONISATION"
+    },
+    {
+      "runtime": "ERC3643HookAdapter",
+      "signature": "caseRecord(bytes32)",
+      "selector": "0x2a408631",
+      "class": "Route_Kernel_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookAdapter",
+      "signature": "executeRegulatoryReversal((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+      "selector": "0x2b892e8f",
+      "class": "Route_Kernel_Command",
+      "classSource": "Hook class table",
+      "disposition": "IN_RUNTIME_LINK_DOMAIN",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookAdapter",
+      "signature": "sealedTopologyLive()",
+      "selector": "0x2ca444f1",
+      "class": "Route_Profile_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookAdapter",
+      "signature": "executeRegulatoryAction((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+      "selector": "0x2f4e0773",
+      "class": "Route_Kernel_Command",
+      "classSource": "Hook class table",
+      "disposition": "IN_RUNTIME_LINK_DOMAIN",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookAdapter",
+      "signature": "actionRecord(bytes32)",
+      "selector": "0x330fcfde",
+      "class": "Route_Kernel_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookAdapter",
+      "signature": "trustProfile()",
+      "selector": "0x5ba37779",
+      "class": "Route_Kernel_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookAdapter",
+      "signature": "dependencyState()",
+      "selector": "0x7bf8f8b6",
+      "class": "Route_Kernel_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookAdapter",
+      "signature": "activateSeal((address,uint256,bool)[])",
+      "selector": "0x8efb3179",
+      "class": "Route_Seal_Command",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_DISPOSED",
+      "kind": "NEVER_SUCCEEDS"
+    },
+    {
+      "runtime": "ERC3643HookAdapter",
+      "signature": "ownedState(address)",
+      "selector": "0x963f57d1",
+      "class": "Route_Profile_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookAdapter",
+      "signature": "onTokenBalanceChanged(address,address)",
+      "selector": "0x9cbfdbf8",
+      "class": "Route_Hook_Balance_Callback",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_DISPOSED",
+      "kind": "BALANCE_CALLBACK"
+    },
+    {
+      "runtime": "ERC3643HookAdapter",
+      "signature": "authority()",
+      "selector": "0xbf7e214f",
+      "class": "Route_Immutable_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookAdapter",
+      "signature": "authorityRef()",
+      "selector": "0xf161af61",
+      "class": "Route_Immutable_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookAdapter",
+      "signature": "deriveReversalId((bytes32,bytes32,bytes32,uint8,bytes32,uint64,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+      "selector": "0xf3315a6c",
+      "class": "Route_Kernel_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookAdapter",
+      "signature": "token()",
+      "selector": "0xfc0c546a",
+      "class": "Route_Immutable_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookAdapter",
+      "signature": "deriveActionId((bytes32,bytes32,uint8,address,address,address,address,uint256,bytes32,bytes32,uint64,bytes32,bytes32,bytes32,bytes32,bytes32,uint64,uint256,uint48,uint48))",
+      "selector": "0xfc6a9112",
+      "class": "Route_Kernel_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookGovernor",
+      "signature": "importManifestHash()",
+      "selector": "0x0ed81c40",
+      "class": "Route_Seal_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookGovernor",
+      "signature": "identityRegistry()",
+      "selector": "0x134e18f4",
+      "class": "Route_Immutable_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookGovernor",
+      "signature": "sealedTopologyLive(address)",
+      "selector": "0x155917d8",
+      "class": "Route_Seal_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookGovernor",
+      "signature": "compliance()",
+      "selector": "0x6290865d",
+      "class": "Route_Immutable_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookGovernor",
+      "signature": "topologySealed()",
+      "selector": "0x7f3bffea",
+      "class": "Route_Seal_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookGovernor",
+      "signature": "expectedRegistryCodeId()",
+      "selector": "0x83300190",
+      "class": "Route_Immutable_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookGovernor",
+      "signature": "expectedComplianceCodeId()",
+      "selector": "0xa35530ba",
+      "class": "Route_Immutable_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookGovernor",
+      "signature": "sealFresh()",
+      "selector": "0xa941f8f9",
+      "class": "Route_Seal_Command",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_DISPOSED",
+      "kind": "CONSTRUCTION_ONLY"
+    },
+    {
+      "runtime": "ERC3643HookGovernor",
+      "signature": "expectedTokenCodeId()",
+      "selector": "0xb534e5ab",
+      "class": "Route_Immutable_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookGovernor",
+      "signature": "sealedBinding()",
+      "selector": "0xb98705b4",
+      "class": "Route_Seal_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookGovernor",
+      "signature": "bootstrapAuthority()",
+      "selector": "0xce29a7f9",
+      "class": "Route_Immutable_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookGovernor",
+      "signature": "exclusiveAdapter()",
+      "selector": "0xf877bff3",
+      "class": "Route_Seal_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookGovernor",
+      "signature": "token()",
+      "selector": "0xfc0c546a",
+      "class": "Route_Immutable_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookCompliance",
+      "signature": "activate(address)",
+      "selector": "0x1c5a9d9c",
+      "class": "Route_Compliance_Setup",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_DISPOSED",
+      "kind": "CONSTRUCTION_ONLY"
+    },
+    {
+      "runtime": "ERC3643HookCompliance",
+      "signature": "bindToken(address)",
+      "selector": "0x3ff5aa02",
+      "class": "Route_Compliance_Setup",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_DISPOSED",
+      "kind": "CONSTRUCTION_ONLY"
+    },
+    {
+      "runtime": "ERC3643HookCompliance",
+      "signature": "unbindToken(address)",
+      "selector": "0x40db3b50",
+      "class": "Route_Compliance_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookCompliance",
+      "signature": "endpoint()",
+      "selector": "0x5e280f11",
+      "class": "Route_Compliance_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookCompliance",
+      "signature": "created(address,uint256)",
+      "selector": "0x5f8dead3",
+      "class": "Route_Compliance_Callback",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_DISPOSED",
+      "kind": "COMPLIANCE_CALLBACK"
+    },
+    {
+      "runtime": "ERC3643HookCompliance",
+      "signature": "getTokenBound()",
+      "selector": "0x6a3edf28",
+      "class": "Route_Immutable_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookCompliance",
+      "signature": "transferred(address,address,uint256)",
+      "selector": "0x8baf29b4",
+      "class": "Route_Compliance_Callback",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_DISPOSED",
+      "kind": "COMPLIANCE_CALLBACK"
+    },
+    {
+      "runtime": "ERC3643HookCompliance",
+      "signature": "destroyed(address,uint256)",
+      "selector": "0x8d2ea772",
+      "class": "Route_Compliance_Callback",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_DISPOSED",
+      "kind": "COMPLIANCE_CALLBACK"
+    },
+    {
+      "runtime": "ERC3643HookCompliance",
+      "signature": "isTokenBound(address)",
+      "selector": "0x993e8b95",
+      "class": "Route_Compliance_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookCompliance",
+      "signature": "bound()",
+      "selector": "0xbe4df7d6",
+      "class": "Route_Compliance_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookCompliance",
+      "signature": "factory()",
+      "selector": "0xc45a0155",
+      "class": "Route_Immutable_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookCompliance",
+      "signature": "canTransfer(address,address,uint256)",
+      "selector": "0xe46638e6",
+      "class": "Route_Compliance_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookCompliance",
+      "signature": "token()",
+      "selector": "0xfc0c546a",
+      "class": "Route_Immutable_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookFactory",
+      "signature": "ADAPTER_CREATION_HASH()",
+      "selector": "0x1f0678e4",
+      "class": "Route_Immutable_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    },
+    {
+      "runtime": "ERC3643HookFactory",
+      "signature": "deploy(bytes,address,bytes32,address,uint256,address[])",
+      "selector": "0x39c6db74",
+      "class": "Route_Unit_Creation",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_DISPOSED",
+      "kind": "UNIT_CREATION"
+    },
+    {
+      "runtime": "ERC3643HookFactory",
+      "signature": "tokenCreationSource()",
+      "selector": "0xaf897f60",
+      "class": "Route_Immutable_View",
+      "classSource": "Hook class table",
+      "disposition": "OUTSIDE_NON_MUTATING",
+      "kind": null
+    }
+  ],
+  "dispositions": [
+    {
+      "route": "TrustToken.approve(address,uint256)",
+      "kind": "ORDINARY_TOKEN_OPERATION",
+      "justifiedBy": [
+        "spec/decisions/15-route-dispositions.md"
+      ],
+      "executedBy": [
+        {
+          "run": "route-disposition-run",
+          "suite": "scripts/trust12/tail-preparation/route-dispositions/NativeAllowanceRoutes.t.sol:NativeAllowanceRoutesTest",
+          "test": "testApproveWritesOnlyTheAllowance"
+        },
+        {
+          "run": "route-disposition-run",
+          "suite": "scripts/trust12/tail-preparation/route-dispositions/NativeAllowanceRoutes.t.sol:NativeAllowanceRoutesTest",
+          "test": "testTransferFromSpendsAllowanceAndRespectsRestriction"
+        }
+      ]
+    },
+    {
+      "route": "TrustToken.transferFrom(address,address,uint256)",
+      "kind": "ORDINARY_TOKEN_OPERATION",
+      "justifiedBy": [
+        "NAT-XFER-01",
+        "NAT-XFER-02",
+        "spec/decisions/15-route-dispositions.md"
+      ],
+      "executedBy": [
+        {
+          "run": "route-disposition-run",
+          "suite": "scripts/trust12/tail-preparation/route-dispositions/NativeAllowanceRoutes.t.sol:NativeAllowanceRoutesTest",
+          "test": "testTransferFromSpendsAllowanceAndRespectsRestriction"
+        },
+        {
+          "run": "route-disposition-run",
+          "suite": "scripts/trust12/tail-preparation/route-dispositions/NativeAllowanceRoutes.t.sol:NativeAllowanceRoutesTest",
+          "test": "testTransferFromKeepsTheMaximumAllowanceAndTheFrozenFloor"
+        }
+      ]
+    },
+    {
+      "route": "TrustToken.transfer(address,uint256)",
+      "kind": "ORDINARY_TOKEN_OPERATION",
+      "justifiedBy": [
+        "NAT-XFER-01",
+        "NAT-XFER-02"
+      ],
+      "executedBy": [
+        {
+          "run": "recorded-foundry-suite",
+          "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+          "test": "testReversalReplayAndRestrictionTransferBlock"
+        }
+      ]
+    },
+    {
+      "route": "TrustToken.forcedTransfer(address,address,uint256)",
+      "kind": "EXACT_USE_ROUTE",
+      "justifiedBy": [
+        "NAT-ROUTE-01",
+        "spec/decisions/08-native-wiring.md"
+      ],
+      "executedBy": [
+        {
+          "run": "recorded-foundry-suite",
+          "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+          "test": "testERC7943ExactUseRoutesAndRawClosure"
+        }
+      ]
+    },
+    {
+      "route": "TrustToken.setFrozenTokens(address,uint256)",
+      "kind": "EXACT_USE_ROUTE",
+      "justifiedBy": [
+        "NAT-ROUTE-01",
+        "spec/decisions/08-native-wiring.md"
+      ],
+      "executedBy": [
+        {
+          "run": "recorded-foundry-suite",
+          "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+          "test": "testERC7943ExactUseRoutesAndRawClosure"
+        }
+      ]
+    },
+    {
+      "route": "TrustToken.configureAuthority(bytes32,address,bool,bytes32,uint256)",
+      "kind": "GOVERNANCE_TRANSITION",
+      "justifiedBy": [
+        "NAT-AUTH-02"
+      ],
+      "executedBy": [
+        {
+          "run": "recorded-foundry-suite",
+          "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+          "test": "testReplayNonceAndAuthorityRotation"
+        },
+        {
+          "run": "recorded-foundry-suite",
+          "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+          "test": "testGovernanceAuthorizationIsConsumedOnce"
+        }
+      ]
+    },
+    {
+      "route": "TrustToken.rebindDependency(uint8,address,bytes32,bytes32,uint256)",
+      "kind": "GOVERNANCE_TRANSITION",
+      "justifiedBy": [
+        "NAT-STALE-02",
+        "NAT-STALE-03"
+      ],
+      "executedBy": [
+        {
+          "run": "recorded-foundry-suite",
+          "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+          "test": "testEveryDependencyRebindMakesEarlierCommandsStale"
+        },
+        {
+          "run": "recorded-foundry-suite",
+          "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest",
+          "test": "testReversalAssessmentFailsClosedAfterPolicyRebind"
+        }
+      ]
+    },
+    {
+      "route": "ERC3643TrustAdapter.resynchroniseFrozen(address)",
+      "kind": "PROFILE_SYNCHRONISATION",
+      "justifiedBy": [
+        "ADP-FRZ-01",
+        "ADP-UPSTREAM-01",
+        "spec/decisions/09-erc3643-profile-wiring.md"
+      ],
+      "executedBy": [
+        {
+          "run": "recorded-foundry-suite",
+          "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest",
+          "test": "testInboundGrowthIsRefrozenByPermissionlessResynchronisation"
+        }
+      ]
+    },
+    {
+      "route": "ERC3643TrustAdapter.activateSeal((address,uint256,bool)[])",
+      "kind": "ONE_WAY_SEAL",
+      "justifiedBy": [
+        "ADP-IMPORT-01",
+        "ADP-SEAL-01",
+        "spec/decisions/09-erc3643-profile-wiring.md"
+      ],
+      "executedBy": [
+        {
+          "run": "recorded-foundry-suite",
+          "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+          "test": "testSealIsOneWayAndManifestMustBeCanonical"
+        },
+        {
+          "run": "recorded-foundry-suite",
+          "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+          "test": "testProfileSealAndDirectBypassClosure"
+        }
+      ]
+    },
+    {
+      "route": "ProfileGovernor.seal(address,(address,uint256,bool)[])",
+      "kind": "ONE_WAY_SEAL",
+      "justifiedBy": [
+        "GOV-SEAL-01",
+        "spec/decisions/09-erc3643-profile-wiring.md"
+      ],
+      "executedBy": [
+        {
+          "run": "recorded-foundry-suite",
+          "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest",
+          "test": "testSealIsOneWayAndManifestMustBeCanonical"
+        }
+      ]
+    },
+    {
+      "route": "ERC3643HookAdapter.resynchroniseFrozen(address)",
+      "kind": "PROFILE_SYNCHRONISATION",
+      "justifiedBy": [
+        "spec/decisions/15-route-dispositions.md"
+      ],
+      "executedBy": [
+        {
+          "run": "route-disposition-run",
+          "suite": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol:HookRouteDispositionsTest",
+          "test": "testHookResynchronisationIsIdempotentAndOwnershipGuarded"
+        }
+      ]
+    },
+    {
+      "route": "ERC3643HookAdapter.activateSeal((address,uint256,bool)[])",
+      "kind": "NEVER_SUCCEEDS",
+      "justifiedBy": [
+        "spec/decisions/15-route-dispositions.md"
+      ],
+      "executedBy": [
+        {
+          "run": "route-disposition-run",
+          "suite": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol:HookRouteDispositionsTest",
+          "test": "testHookActivateSealNeverSucceeds"
+        }
+      ]
+    },
+    {
+      "route": "ERC3643HookAdapter.onTokenBalanceChanged(address,address)",
+      "kind": "BALANCE_CALLBACK",
+      "justifiedBy": [
+        "HOOK-CALLBACK-ROLLBACK",
+        "HOOK-CALLER-AUTH",
+        "HOOK-INBOUND-FLOOR"
+      ],
+      "executedBy": [
+        {
+          "run": "recorded-foundry-suite",
+          "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest",
+          "test": "testHookInboundCannotEscapeInSameTransaction"
+        },
+        {
+          "run": "recorded-foundry-suite",
+          "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest",
+          "test": "testHookTransferFromInboundAndSelfTransfer"
+        },
+        {
+          "run": "recorded-foundry-suite",
+          "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest",
+          "test": "testHookBatchAndZeroTransfersEnforceTargets"
+        },
+        {
+          "run": "recorded-foundry-suite",
+          "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest",
+          "test": "testHookFactoryFreshStateAndAuthorityClosure"
+        },
+        {
+          "run": "recorded-foundry-suite",
+          "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest",
+          "test": "testHookPostCallbackFailureRollsBackTransferAndAllowance"
+        }
+      ]
+    },
+    {
+      "route": "ERC3643HookGovernor.sealFresh()",
+      "kind": "CONSTRUCTION_ONLY",
+      "justifiedBy": [
+        "HOOK-FRESH-INITIAL",
+        "HOOK-SOLE-AGENT"
+      ],
+      "executedBy": [
+        {
+          "run": "recorded-foundry-suite",
+          "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest",
+          "test": "testHookDirectFreshZeroSupplyAndCreationPins"
+        },
+        {
+          "run": "recorded-foundry-suite",
+          "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest",
+          "test": "testHookFactoryFreshStateAndAuthorityClosure"
+        },
+        {
+          "run": "route-disposition-run",
+          "suite": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol:HookRouteDispositionsTest",
+          "test": "testHookConstructionOnlyRoutesRevertAfterConstruction"
+        }
+      ]
+    },
+    {
+      "route": "ERC3643HookCompliance.activate(address)",
+      "kind": "CONSTRUCTION_ONLY",
+      "justifiedBy": [
+        "HOOK-FRESH-INITIAL",
+        "spec/decisions/15-route-dispositions.md"
+      ],
+      "executedBy": [
+        {
+          "run": "route-disposition-run",
+          "suite": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol:HookRouteDispositionsTest",
+          "test": "testHookConstructionOnlyRoutesRevertAfterConstruction"
+        },
+        {
+          "run": "recorded-foundry-suite",
+          "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest",
+          "test": "testHookFactoryFreshStateAndAuthorityClosure"
+        }
+      ]
+    },
+    {
+      "route": "ERC3643HookCompliance.bindToken(address)",
+      "kind": "CONSTRUCTION_ONLY",
+      "justifiedBy": [
+        "HOOK-SOLE-AGENT",
+        "spec/decisions/15-route-dispositions.md"
+      ],
+      "executedBy": [
+        {
+          "run": "route-disposition-run",
+          "suite": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol:HookRouteDispositionsTest",
+          "test": "testHookConstructionOnlyRoutesRevertAfterConstruction"
+        },
+        {
+          "run": "recorded-foundry-suite",
+          "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest",
+          "test": "testHookFactoryFreshStateAndAuthorityClosure"
+        }
+      ]
+    },
+    {
+      "route": "ERC3643HookCompliance.created(address,uint256)",
+      "kind": "COMPLIANCE_CALLBACK",
+      "justifiedBy": [
+        "HOOK-CALLER-AUTH",
+        "HOOK-SOLE-AGENT",
+        "spec/decisions/15-route-dispositions.md"
+      ],
+      "executedBy": [
+        {
+          "run": "route-disposition-run",
+          "suite": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol:HookRouteDispositionsTest",
+          "test": "testHookComplianceCallbacksAcceptOnlyTheToken"
+        },
+        {
+          "run": "route-disposition-run",
+          "suite": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol:HookRouteDispositionsTest",
+          "test": "testHookMintAndBurnCallbacksOnlyForward"
+        },
+        {
+          "run": "recorded-foundry-suite",
+          "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest",
+          "test": "testHookFactoryFreshStateAndAuthorityClosure"
+        }
+      ]
+    },
+    {
+      "route": "ERC3643HookCompliance.transferred(address,address,uint256)",
+      "kind": "COMPLIANCE_CALLBACK",
+      "justifiedBy": [
+        "HOOK-CALLBACK-ROLLBACK",
+        "HOOK-CALLER-AUTH",
+        "HOOK-INBOUND-FLOOR",
+        "spec/decisions/15-route-dispositions.md"
+      ],
+      "executedBy": [
+        {
+          "run": "route-disposition-run",
+          "suite": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol:HookRouteDispositionsTest",
+          "test": "testHookComplianceCallbacksAcceptOnlyTheToken"
+        },
+        {
+          "run": "recorded-foundry-suite",
+          "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest",
+          "test": "testHookInboundCannotEscapeInSameTransaction"
+        },
+        {
+          "run": "recorded-foundry-suite",
+          "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest",
+          "test": "testHookBatchAndZeroTransfersEnforceTargets"
+        },
+        {
+          "run": "recorded-foundry-suite",
+          "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest",
+          "test": "testHookPostCallbackFailureRollsBackTransferAndAllowance"
+        }
+      ]
+    },
+    {
+      "route": "ERC3643HookCompliance.destroyed(address,uint256)",
+      "kind": "COMPLIANCE_CALLBACK",
+      "justifiedBy": [
+        "HOOK-SOLE-AGENT",
+        "spec/decisions/15-route-dispositions.md"
+      ],
+      "executedBy": [
+        {
+          "run": "route-disposition-run",
+          "suite": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol:HookRouteDispositionsTest",
+          "test": "testHookComplianceCallbacksAcceptOnlyTheToken"
+        },
+        {
+          "run": "route-disposition-run",
+          "suite": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol:HookRouteDispositionsTest",
+          "test": "testHookMintAndBurnCallbacksOnlyForward"
+        }
+      ]
+    },
+    {
+      "route": "ERC3643HookFactory.deploy(bytes,address,bytes32,address,uint256,address[])",
+      "kind": "UNIT_CREATION",
+      "justifiedBy": [
+        "HOOK-FACTORY-CREATION",
+        "HOOK-FRESH-INITIAL",
+        "HOOK-SOLE-AGENT"
+      ],
+      "executedBy": [
+        {
+          "run": "recorded-foundry-suite",
+          "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest",
+          "test": "testHookFactoryFreshStateAndAuthorityClosure"
+        },
+        {
+          "run": "recorded-foundry-suite",
+          "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest",
+          "test": "testHookDirectFreshZeroSupplyAndCreationPins"
+        }
+      ]
+    }
+  ],
+  "unmatchedSelectors": {
+    "dispatcherSelector": "0xffffffff",
+    "probeInputsRoot": "9c9b3e3f0602423502dcf1ee5b08f3a4af06af98ea749bc09846530c150b73ad",
+    "receiptStatus": "PROBE_RECORDED",
+    "rows": [
+      {
+        "id": "hook-230",
+        "profile": "Hook",
+        "class": "unknown-selector",
+        "verdict": "CONFORMS",
+        "observed": {
+          "outcome": "untyped-empty-revert",
+          "returnBytes": 0,
+          "logs": 0,
+          "committedWrites": 0,
+          "externalAccesses": 0
+        }
+      },
+      {
+        "id": "native-002",
+        "profile": "Native",
+        "class": "unknown-selector",
+        "verdict": "CONFORMS",
+        "observed": {
+          "outcome": "untyped-empty-revert",
+          "returnBytes": 0,
+          "logs": 0,
+          "committedWrites": 0,
+          "externalAccesses": 0
+        }
+      },
+      {
+        "id": "partial-153",
+        "profile": "Partial",
+        "class": "unknown-selector",
+        "verdict": "CONFORMS",
+        "observed": {
+          "outcome": "untyped-empty-revert",
+          "returnBytes": 0,
+          "logs": 0,
+          "committedWrites": 0,
+          "externalAccesses": 0
+        }
+      }
+    ]
+  },
+  "dispositionRun": {
+    "status": "ROUTE_DISPOSITION_TESTS_PASSED",
+    "forgeVersion": "forge Version: 1.7.1",
+    "implementationRootSha256": "158420df1daf7b8abe43b722f01bdb124dcec32a5e46ffbe339bb51330711abd",
+    "sources": {
+      "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol": "f5daa42adc95e683f037072406b075954a61775995f0d493b09274d727110117",
+      "scripts/trust12/tail-preparation/route-dispositions/NativeAllowanceRoutes.t.sol": "1edd5f36033d42ec9b7764bf1c80a2b4fde17f98ff6021a967db533ed21f094b"
+    },
+    "tests": [
+      {
+        "suite": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol:HookRouteDispositionsTest",
+        "test": "testHookActivateSealNeverSucceeds()",
+        "status": "Success"
+      },
+      {
+        "suite": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol:HookRouteDispositionsTest",
+        "test": "testHookComplianceCallbacksAcceptOnlyTheToken()",
+        "status": "Success"
+      },
+      {
+        "suite": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol:HookRouteDispositionsTest",
+        "test": "testHookConstructionOnlyRoutesRevertAfterConstruction()",
+        "status": "Success"
+      },
+      {
+        "suite": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol:HookRouteDispositionsTest",
+        "test": "testHookMintAndBurnCallbacksOnlyForward()",
+        "status": "Success"
+      },
+      {
+        "suite": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol:HookRouteDispositionsTest",
+        "test": "testHookResynchronisationIsIdempotentAndOwnershipGuarded()",
+        "status": "Success"
+      },
+      {
+        "suite": "scripts/trust12/tail-preparation/route-dispositions/NativeAllowanceRoutes.t.sol:NativeAllowanceRoutesTest",
+        "test": "testApproveWritesOnlyTheAllowance()",
+        "status": "Success"
+      },
+      {
+        "suite": "scripts/trust12/tail-preparation/route-dispositions/NativeAllowanceRoutes.t.sol:NativeAllowanceRoutesTest",
+        "test": "testTransferFromKeepsTheMaximumAllowanceAndTheFrozenFloor()",
+        "status": "Success"
+      },
+      {
+        "suite": "scripts/trust12/tail-preparation/route-dispositions/NativeAllowanceRoutes.t.sol:NativeAllowanceRoutesTest",
+        "test": "testTransferFromSpendsAllowanceAndRespectsRestriction()",
+        "status": "Success"
+      }
+    ]
+  },
+  "inputs": [
+    {
+      "path": "evidence/foundry-results-v3.json",
+      "bytes": 29415,
+      "sha256": "4d30f5791b274a0787656fbd602d57bef85f363a161c2513c3349ac4a68b8210"
+    },
+    {
+      "path": "evidence/runtime-binding-v3/erc3643-hook/bridge-artifacts.json",
+      "bytes": 89975,
+      "sha256": "99362fa5bdebbb6534aea01fbb43d2fbe95f1642dbec7a3af99b2f395040d01e"
+    },
+    {
+      "path": "evidence/runtime-binding-v3/erc3643-partial/bridge-artifacts.json",
+      "bytes": 79050,
+      "sha256": "b25af3abcfdc219ee223526d711aa6f6c0514004da9f131149e29d950725c0d7"
+    },
+    {
+      "path": "evidence/runtime-binding-v3/native/bridge-artifacts.json",
+      "bytes": 93409,
+      "sha256": "e5ad6c4e54e66f2be7928a9ceb7667b1b0dc0de0ed6f4a29458db9685277847b"
+    },
+    {
+      "path": "evidence/trust12/mutation-callback-auth.json",
+      "bytes": 726,
+      "sha256": "a1499eb530d772259ba8cdc520e7b1ef8ccca3b27ce1901552e4c4b0ecd855b1"
+    },
+    {
+      "path": "evidence/trust12/mutation-factory-pin.json",
+      "bytes": 733,
+      "sha256": "c21eabdd494a783b70b250c9e4d3225ab4b6c45f262155c3ef85168393d6d81e"
+    },
+    {
+      "path": "evidence/trust12/mutation-hidden-agent.json",
+      "bytes": 720,
+      "sha256": "d8103bd6ceb0c0bccf3585f5727d63716ff28f86a89b912a5489044bf477d6d7"
+    },
+    {
+      "path": "evidence/trust12/mutation-inbound.json",
+      "bytes": 710,
+      "sha256": "5a56899d53056cd2480db0e033b2654392ec5a7b59654ebb5e3b030f42c7bb8f"
+    },
+    {
+      "path": "evidence/trust12/runtime-link/out-of-spec-probes-v1.json",
+      "bytes": 9998,
+      "sha256": "bc92161ea6f8acd50cd6b02ee7091726b33ef0e50a62abeec1b68bc75112ae0d"
+    },
+    {
+      "path": "evidence/trust12/runtime-link/tail-preparation/malformed-inputs-v1.json",
+      "bytes": 131575,
+      "sha256": "678f7ae2ce8b1182c400170f432a6aea7be745723f2719026cd3655b085e6b41"
+    },
+    {
+      "path": "evidence/trust12/runtime-link/tail-preparation/route-dispositions-v1.json",
+      "bytes": 43713,
+      "sha256": "5922696279bc043f38fbc414833c1654e5973496e28e1156543991a09511d4c8"
+    },
+    {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy",
+      "bytes": 16170,
+      "sha256": "0066aca8046e7129d007bfc527e4c7552d17b891406adfdb4720197664eb84fb"
+    },
+    {
+      "path": "implementation/src/TrustErrors.sol",
+      "bytes": 637,
+      "sha256": "fbe1dffd50792b2da9604a0de37a5b089c427b329c96f80253ff317bb16491df"
+    },
+    {
+      "path": "implementation/src/TrustToken.sol",
+      "bytes": 53935,
+      "sha256": "deeedf231b461035ac4496b36438d6ea28298ed2935b920bf9c01cb31f94ef1b"
+    },
+    {
+      "path": "implementation/src/generated/IERCTrustKernel.sol",
+      "bytes": 10418,
+      "sha256": "8f179a21b04fa1f172bdddef2f8878a01524d3429570c0abf9aa60cfc8738f7d"
+    },
+    {
+      "path": "implementation/src/interfaces/IERC7943.sol",
+      "bytes": 1189,
+      "sha256": "1b968ee48cd0c9adadf22d33f1f245486b14ed1141df23f7d01385abfbb159f7"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643HookAdapter.sol",
+      "bytes": 61253,
+      "sha256": "61056cd3aa34900820cb08592c55803a5add1ab36c493ec36a5e3ee72add9533"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643HookCompliance.sol",
+      "bytes": 2141,
+      "sha256": "700614fcb6db1246099a16859e79cb4b555785545ea1a31c780f8b97b8016e7a"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643HookDeployment.sol",
+      "bytes": 3445,
+      "sha256": "8a830ba8cdfac4a3cf33dc2b3338a8765b9303afd56bf32a207afa32b19e63bf"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643HookFactory.sol",
+      "bytes": 2588,
+      "sha256": "d7e24b5bde9ec8f4ce1d5537e83858fe727067bdca580c7d4a5126c1d35b94b1"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643HookGovernor.sol",
+      "bytes": 4330,
+      "sha256": "69a0b68f72427081acb26c24299ad03afcdc2b615e8885c05d8eaff52eb9d59e"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643ProfileTypes.sol",
+      "bytes": 2339,
+      "sha256": "9fbb5b1f379018e7412702324a4eae5a30db57f3937f0da42b24bab0e4efede4"
+    },
+    {
+      "path": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+      "bytes": 58926,
+      "sha256": "f2806571c8c39984ee6c50f5e8dd0aa94aac5e273564012afcb4ebb55e43320f"
+    },
+    {
+      "path": "implementation/src/profiles/ProfileGovernor.sol",
+      "bytes": 6812,
+      "sha256": "e9fec4c21a65edaa5619ee1368deb93da1645e311984a12cc89ca29131595ae8"
+    },
+    {
+      "path": "implementation/test/ERC3643HookTrexIntegration.t.sol",
+      "bytes": 22444,
+      "sha256": "9e904adced498aa21bd06cada1033b89410f40a61014d67baaa3f1b78a63a4f7"
+    },
+    {
+      "path": "implementation/test/ERC3643Profile.unit.t.sol",
+      "bytes": 99708,
+      "sha256": "ea647e5c405cb3410f3fa8bab63991f28b7fe202d762f7c9e9ed28a672bd7ada"
+    },
+    {
+      "path": "implementation/test/ERC3643ProfileTrexFixture.t.sol",
+      "bytes": 10796,
+      "sha256": "b7033e8c7e86cf0c1d9b54793d54bb1a2217fa2ac35bf35ddc588d0ec9404d3c"
+    },
+    {
+      "path": "implementation/test/TrustActions.unit.t.sol",
+      "bytes": 64785,
+      "sha256": "8dc0d6643700eb2545ab23ee8f5629e0fdb87efb9431ec9fde168f1f58786400"
+    },
+    {
+      "path": "implementation/test/TrustTestBase.t.sol",
+      "bytes": 10610,
+      "sha256": "570a8e368299b48a328c48cbef98a4641642dc57d86e95a46555aa8c9761d0e9"
+    },
+    {
+      "path": "implementation/test/mocks/MockBoundDependency.sol",
+      "bytes": 2146,
+      "sha256": "184fc5df8c37eef0f0388194546d107c63a89785e69cc9d6f14cba4ae5bcd1b8"
+    },
+    {
+      "path": "implementation/test/mocks/MockERC3643Dependencies.sol",
+      "bytes": 2002,
+      "sha256": "acbfc4c650f44c83ad95be5c1bb14c21eebc5b8ab03369ddf56bb3ff0b7701b1"
+    },
+    {
+      "path": "implementation/test/mocks/MockERC3643Token.sol",
+      "bytes": 9151,
+      "sha256": "884cabbde0396a5c906f2b99d4010fbde6ab3e430b7e52784b98dfefa4eb0438"
+    },
+    {
+      "path": "implementation/test/mocks/MockERC3643TokenTrex.sol",
+      "bytes": 9649,
+      "sha256": "870bf2344e6f6a4a26f307fba5e141a6605003abe7d894052552ccaf28bcc23c"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol",
+      "bytes": 10573,
+      "sha256": "f5daa42adc95e683f037072406b075954a61775995f0d493b09274d727110117"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/route-dispositions/NativeAllowanceRoutes.t.sol",
+      "bytes": 5492,
+      "sha256": "1edd5f36033d42ec9b7764bf1c80a2b4fde17f98ff6021a967db533ed21f094b"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/route_inventory.py",
+      "bytes": 10851,
+      "sha256": "81963370e073c659fe7dbffac8bd07f833b41566ccfa3babe443e9325fcda6db"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/route_inventory_v2.py",
+      "bytes": 47642,
+      "sha256": "e79c4320e5d382a212cd58f4dc5327ae2d64f37731a505d36103cf3bd704ecfb"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/run_route_disposition_tests.py",
+      "bytes": 8631,
+      "sha256": "cb414ead30ba4528eecbfbf2549d81c2cb8a6a0a18b20d5a1f2cff5215b3f1df"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/tail_common.py",
+      "bytes": 12799,
+      "sha256": "b9ee4b6809e7a8f306d8157b149fb672e3c2cdd15197df1ebf67f1ece34b473f"
+    },
+    {
+      "path": "spec/decisions/08-native-wiring.md",
+      "bytes": 7790,
+      "sha256": "1a952a7d876c25443909170db3f1b63f2ea86053edd05c0c4a24297bbcaf3cd0"
+    },
+    {
+      "path": "spec/decisions/09-erc3643-profile-wiring.md",
+      "bytes": 12895,
+      "sha256": "413a17dfeaa573217727871b2ec1d45ed1a3a1c0804f4c8dbb8d08e64cec9794"
+    },
+    {
+      "path": "spec/decisions/14-hook-route-classes.md",
+      "bytes": 12331,
+      "sha256": "7f191ca03257ce071e0d05bd86c98a9f0117f4eea601d8ba824f286dcbd97d26"
+    },
+    {
+      "path": "spec/decisions/15-route-dispositions.md",
+      "bytes": 10042,
+      "sha256": "32b77c4c3329982297bd5ac092bd6678232040db9c4100b1245f42c6ae1a1169"
+    },
+    {
+      "path": "spec/generated/hook-route-classes-v1.json",
+      "bytes": 10234,
+      "sha256": "fc30606bd32619ae94c9a16e45afd117a801db6e980b6eb9d142fd7889549b6b"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "route-inventory",
+      "kind": "inventory",
+      "bytes": 117158,
+      "sha256": "c8da912159e5c89e8bbd7da0a64758e7376a1e100675f32baa406a8f897f2885"
+    },
+    {
+      "id": "route-disposition-run",
+      "kind": "test-run-receipt",
+      "bytes": 3283,
+      "sha256": "e7c5b81e762a779cd041d91ec658d2ed6181ce3a4c8ccf4b5b32a6c13da02b69"
+    },
+    {
+      "id": "route-disposition-report",
+      "kind": "forge-report",
+      "bytes": 47795,
+      "sha256": "76b57710cc006ae21d6481abbbd8783a9fd1dade19ad5d9580c188d1e21f0cbd"
+    },
+    {
+      "id": "malformed-probe-receipt",
+      "kind": "probe-receipt",
+      "bytes": 167300,
+      "sha256": "2d36fcb550417555c5091209ed512f837b336bc1473e945613febd3aa07dfd9e"
+    }
+  ],
+  "rehashVerifier": {
+    "path": "scripts/trust12/verify_route_inventory_v1.py",
+    "bytes": 23087,
+    "sha256": "5ea91bbf4c9f955b058ab5beb349fac0ca6ced2cd935aa55530a11b44a8319b4",
+    "command": "python3 scripts/trust12/verify_route_inventory_v1.py --product-root <product-root> --artifact-index <private-artifact-index.json>"
+  },
+  "nonclaims": {
+    "proofOverEveryCallerStateAndInput": true,
+    "upstreamTokenClassification": true,
+    "compilerDispatcher": true,
+    "foundryRerun": true,
+    "registeredCentralClosure": true,
+    "generalRuntimeLinks": true,
+    "independentAssurance": true,
+    "fullTrustCompletion": true,
+    "releaseOrDeployment": true
+  }
+}

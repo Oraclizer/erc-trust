@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+- Add the version 2 route inventory of the runtime link and its public record
+  route-inventory-checkpoint-v1.json. Decision 14 classifies the 48 selectors
+  of the four Hook runtimes, and decision 15 states the behavior of the eight
+  state-changing routes that no closed obligation row names. Each of the 20
+  state-changing routes outside the typed commands of the seven profile
+  runtimes has a disposition record that a closed obligation row or an
+  accepted decision record of its own runtime justifies and that a passed
+  test executes on that runtime. The disposition tests run in an isolated
+  copy, and their receipt binds the route test files and the implementation
+  sources and tests by their hashes. The public verifier pins the reviewed
+  record and runs in the required gate; its saved mode rebuilds the inventory
+  from the private test and probe receipts. It does not rerun Foundry.
+
 - Disclose in the known limitations that the registered cell theorems of the
   Partial and Hook profiles rest on Isabelle code evaluation (the eval method)
   for concrete computations and depend on the oracle

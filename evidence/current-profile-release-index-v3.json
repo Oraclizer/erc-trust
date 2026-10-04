@@ -425,7 +425,7 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "1e583b1fdd8563270cd65c489527b4b2ae663006c789b8afc0c3bb2fb9f88a84"
+        "sha256": "6bbe7b65071d9851c80e7dbaedaf02b2110bd72cbe351ecdf87967aece2fc70a"
       }
     },
     "runtime": {
@@ -479,7 +479,7 @@
         },
         {
           "path": "evidence/trust12/obligation-ledger.json",
-          "sha256": "b0605b22fbbf5b5297dc7d68949de968f5559d5023bedc298c642f3912322e8b"
+          "sha256": "72750efd8835e3948131c4a79bcd7a6e0da429c04a9e52f76d1be6534a759425"
         },
         {
           "path": "evidence/trust12/runtime-identity.json",
@@ -618,6 +618,14 @@
           "sha256": "1ea2d88b595fcb2c0782c1204234b2666862b2c36eeddd172c2fca875acb3a10"
         },
         {
+          "path": "evidence/trust12/runtime-link/tail-preparation/route-dispositions-v1.json",
+          "sha256": "5922696279bc043f38fbc414833c1654e5973496e28e1156543991a09511d4c8"
+        },
+        {
+          "path": "evidence/trust12/runtime-link/tail-preparation/route-inventory-checkpoint-v1.json",
+          "sha256": "0c862d66d2a3e9a32335db5d522a469ef21045483b429e7c5142171731a5e9f7"
+        },
+        {
           "path": "evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json",
           "sha256": "3e6524fc20a951dab02e916f41980b8281a84338ec94b2dcf14f5a0e8a73a087"
         },
@@ -639,7 +647,7 @@
         },
         {
           "path": "evidence/trust12/input-seal.json",
-          "sha256": "8ee794baa8c643572fd5e5c0b5f67ad7c4daee4c293fd27426d881612beeaac1"
+          "sha256": "3e0c6d67a1064ab242d6512a7fdbf4e0af772202a3cdd593af07bec5f6c9a865"
         }
       ],
       "fullRefinementComplete": false,
@@ -775,7 +783,7 @@
       },
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "b0605b22fbbf5b5297dc7d68949de968f5559d5023bedc298c642f3912322e8b"
+        "sha256": "72750efd8835e3948131c4a79bcd7a6e0da429c04a9e52f76d1be6534a759425"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -914,6 +922,14 @@
         "sha256": "1ea2d88b595fcb2c0782c1204234b2666862b2c36eeddd172c2fca875acb3a10"
       },
       {
+        "path": "evidence/trust12/runtime-link/tail-preparation/route-dispositions-v1.json",
+        "sha256": "5922696279bc043f38fbc414833c1654e5973496e28e1156543991a09511d4c8"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/route-inventory-checkpoint-v1.json",
+        "sha256": "0c862d66d2a3e9a32335db5d522a469ef21045483b429e7c5142171731a5e9f7"
+      },
+      {
         "path": "evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json",
         "sha256": "3e6524fc20a951dab02e916f41980b8281a84338ec94b2dcf14f5a0e8a73a087"
       },
@@ -935,7 +951,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "8ee794baa8c643572fd5e5c0b5f67ad7c4daee4c293fd27426d881612beeaac1"
+        "sha256": "3e0c6d67a1064ab242d6512a7fdbf4e0af772202a3cdd593af07bec5f6c9a865"
       }
     ],
     "fullRefinementComplete": false,

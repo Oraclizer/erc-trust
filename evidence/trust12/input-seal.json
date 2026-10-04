@@ -13,7 +13,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "a0ed68fe8e4f034218aadf295b78ff76418957af739dc5c02b076f33d7a09f42"
+      "sha256": "73f278f531bf85544ec8dd34d98293e90abeaccde19f795a53d8333edae655fa"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
@@ -129,7 +129,7 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "b0605b22fbbf5b5297dc7d68949de968f5559d5023bedc298c642f3912322e8b"
+      "sha256": "72750efd8835e3948131c4a79bcd7a6e0da429c04a9e52f76d1be6534a759425"
     },
     {
       "path": "evidence/trust12/profile-implementation-evidence-review.json",
@@ -210,6 +210,14 @@
     {
       "path": "evidence/trust12/runtime-link/tail-preparation/malformed-probe-mutants-v1.json",
       "sha256": "a20f3a334a7d0d413ab7d3ad699e815dfea4d6779e30e03f9f54d9263fa82fe6"
+    },
+    {
+      "path": "evidence/trust12/runtime-link/tail-preparation/route-dispositions-v1.json",
+      "sha256": "5922696279bc043f38fbc414833c1654e5973496e28e1156543991a09511d4c8"
+    },
+    {
+      "path": "evidence/trust12/runtime-link/tail-preparation/route-inventory-checkpoint-v1.json",
+      "sha256": "0c862d66d2a3e9a32335db5d522a469ef21045483b429e7c5142171731a5e9f7"
     },
     {
       "path": "evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json",
@@ -377,7 +385,7 @@
     },
     {
       "path": "scripts/generate-trust12-input-seal.py",
-      "sha256": "d10a33a0aef5608623f21ed15e8941e5900df6c57e5558f9e8ccac288eea6fb6"
+      "sha256": "8e04ae6e933fdeef0904aedf62f44842368b9cffc5ba454d0bf7fea00db481ff"
     },
     {
       "path": "scripts/generate-trust12-proof-audit.py",
@@ -512,6 +520,10 @@
       "sha256": "e35d99c52cfa1683f462d0c8e6769c152c772560882e0d3cfe00dd6457cfc77e"
     },
     {
+      "path": "scripts/test-route-inventory.py",
+      "sha256": "283b91c73f38e906575ce6d57cb550bd587c634de0fe82e3cbdc7b81f5364a34"
+    },
+    {
       "path": "scripts/test-second-freeze-rejection.py",
       "sha256": "9e9af7163a0890262f74c395ede903bbbc0ed5cb08fe4db8a5a230b029e82821"
     },
@@ -525,7 +537,7 @@
     },
     {
       "path": "scripts/test-trust12-required.mjs",
-      "sha256": "6c1e8e9c897b73802c34051586c8b7d8d6853485acc0837316d07de8b71debc9"
+      "sha256": "956b90daff47b3d0849cff34cb98d64c0c0b7b978a8bc5239be684b7ab95424a"
     },
     {
       "path": "scripts/test-veri-dependency.py",
@@ -540,12 +552,32 @@
       "sha256": "7bd2691f6f6a8c574614a17f8b73f925e445100d1254f19710fe83b04f7bb731"
     },
     {
+      "path": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol",
+      "sha256": "f5daa42adc95e683f037072406b075954a61775995f0d493b09274d727110117"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/route-dispositions/NativeAllowanceRoutes.t.sol",
+      "sha256": "1edd5f36033d42ec9b7764bf1c80a2b4fde17f98ff6021a967db533ed21f094b"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/route_inventory_v2.py",
+      "sha256": "e79c4320e5d382a212cd58f4dc5327ae2d64f37731a505d36103cf3bd704ecfb"
+    },
+    {
       "path": "scripts/trust12/tail-preparation/run_malformed_probe_v2.py",
       "sha256": "7dd62c268d698df798b09f78ac5f25f58b79d0a04a7958e38b78fc4bcf2800a5"
     },
     {
+      "path": "scripts/trust12/tail-preparation/run_route_disposition_tests.py",
+      "sha256": "cb414ead30ba4528eecbfbf2549d81c2cb8a6a0a18b20d5a1f2cff5215b3f1df"
+    },
+    {
       "path": "scripts/trust12/tail-preparation/test_certificate_registry_v2.py",
       "sha256": "2f3abe3ebba139d0f5edfd90f27d7bc69ab5855eaef8a00bd97187cb6b55d370"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/test_route_inventory_v2.py",
+      "sha256": "1fdbc2859354fe21a85725fcfea6c21bfc2606f99b4b96ec8c735dec572b814c"
     },
     {
       "path": "scripts/trust12/verify_assess_call_reception_v1.py",
@@ -596,6 +628,10 @@
       "sha256": "937f66b9f3bcfc134562f240706fa1fda57c143aabedc255e3df9775c538c8c5"
     },
     {
+      "path": "scripts/trust12/verify_route_inventory_v1.py",
+      "sha256": "5ea91bbf4c9f955b058ab5beb349fac0ca6ced2cd935aa55530a11b44a8319b4"
+    },
+    {
       "path": "scripts/trust12/verify_second_freeze_rejection_v1.py",
       "sha256": "963fd5731718245c483ae1cf59addf5fa0e40dc4a0de750b3d8297b79c0b1219"
     },
@@ -629,7 +665,19 @@
     },
     {
       "path": "scripts/verify-trust12-required.mjs",
-      "sha256": "7c65df77b3e75f3df8797f8aef1689364a7f48353a5c43f7f8aa156cbd26e022"
+      "sha256": "d83c058f1d37b18de3a10635092f5bd2b17325c28bfe05f47f1fe9c14cc14a1c"
+    },
+    {
+      "path": "spec/decisions/14-hook-route-classes.md",
+      "sha256": "7f191ca03257ce071e0d05bd86c98a9f0117f4eea601d8ba824f286dcbd97d26"
+    },
+    {
+      "path": "spec/decisions/15-route-dispositions.md",
+      "sha256": "32b77c4c3329982297bd5ac092bd6678232040db9c4100b1245f42c6ae1a1169"
+    },
+    {
+      "path": "spec/generated/hook-route-classes-v1.json",
+      "sha256": "fc30606bd32619ae94c9a16e45afd117a801db6e980b6eb9d142fd7889549b6b"
     }
   ],
   "nonclaim": "This seals one local development tranche. It is not a deployment, release, conformance approval, or end-to-end refinement result."

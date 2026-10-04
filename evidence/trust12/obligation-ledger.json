@@ -1914,7 +1914,8 @@
         "evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json",
         "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
         "evidence/trust12/runtime-link/tail-preparation/malformed-guard-mutants-checkpoint-v1.json",
-        "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json"
+        "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+        "evidence/trust12/runtime-link/tail-preparation/route-inventory-checkpoint-v1.json"
       ],
       "requiredForRelease": true,
       "requiredForTrust12Completion": true,
@@ -2180,7 +2181,7 @@
     "status": "INCOMPLETE",
     "preservation": "PASS_ABSTRACT_MODEL: initial, ordinary, governance, failure and all nine regulatory state_wf preservation, linked-run induction and outcome-sensitive controls. Actual committed-source clean build and bounded independent source reviews are recorded in model-results.json and its references.",
     "reflection": "No general compiled-runtime reflection theorem.",
-    "routeExhaustiveness": "PASS_SCOPED_INVENTORY: factory, direct deployment, adapter, governor, compliance and executed callback routes were reverse-enumerated. Permissionless resynchroniseFrozen and fresh-lifecycle-unreachable activateSeal are present but unexecuted. batchForcedTransfer, recovery and post-activation mint/burn callbacks remain outside the graded Hook scope.",
+    "routeExhaustiveness": "PASS_ROUTE_INVENTORY: every selector of the seven profile runtimes has a class (the Hook runtimes by decision 14), and every state-changing route outside the typed commands has a disposition record that a closed row or an accepted decision record of its own runtime justifies and that a passed test executes on that runtime, including the permissionless resynchroniseFrozen and the never-succeeding activateSeal of the Hook adapter (evidence/trust12/runtime-link/tail-preparation/route-inventory-checkpoint-v1.json). The upstream token is not classified (A-EXTERNAL); batchForcedTransfer, recovery and post-activation mint/burn callbacks remain outside the graded Hook scope.",
     "stateReceiptIdentity": "Scoped component evidence and the current checkpoint consumers are received. The general FREEZE positive and its same-domain removal controls on both supply branches are complete; the registered-scope central closure remains open and the three general runtime links are deferred research.",
     "currentMandatory": [
       "REGISTERED-CENTRAL-CLOSURE"

@@ -60,6 +60,18 @@ export const requiredTrust12Paths = [
   'scripts/trust12/tail-preparation/test_certificate_registry_v2.py',
   'evidence/trust12/runtime-link/tail-preparation/certificate-registry-schema-v2.json',
   'evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json',
+  'scripts/test-route-inventory.py',
+  'scripts/trust12/verify_route_inventory_v1.py',
+  'scripts/trust12/tail-preparation/route_inventory_v2.py',
+  'scripts/trust12/tail-preparation/run_route_disposition_tests.py',
+  'scripts/trust12/tail-preparation/test_route_inventory_v2.py',
+  'scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol',
+  'scripts/trust12/tail-preparation/route-dispositions/NativeAllowanceRoutes.t.sol',
+  'spec/decisions/14-hook-route-classes.md',
+  'spec/decisions/15-route-dispositions.md',
+  'spec/generated/hook-route-classes-v1.json',
+  'evidence/trust12/runtime-link/tail-preparation/route-dispositions-v1.json',
+  'evidence/trust12/runtime-link/tail-preparation/route-inventory-checkpoint-v1.json',
   'evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json',
   'scripts/test-primitive-source-controls.py',
   'scripts/trust12/verify_primitive_source_controls_v1.py',
@@ -234,6 +246,10 @@ export function verifyTrust12Required(root = repository) {
     ['-B', resolve(root, 'scripts/trust12/verify_certificate_registry_v1.py'), '--product-root', root, '--metadata-only'],
     { cwd: root, encoding: 'utf8' });
   check(!certificateRegistryCheck.error && certificateRegistryCheck.status === 0, 'certificate-registry public metadata check failed');
+  const routeInventoryCheck = spawnSync(process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3'),
+    ['-B', resolve(root, 'scripts/trust12/verify_route_inventory_v1.py'), '--product-root', root, '--metadata-only'],
+    { cwd: root, encoding: 'utf8' });
+  check(!routeInventoryCheck.error && routeInventoryCheck.status === 0, 'route-inventory public metadata check failed');
   const primitiveControlsCheck = spawnSync(process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3'),
     ['-B', resolve(root, 'scripts/trust12/verify_primitive_source_controls_v1.py'), '--product-root', root, '--metadata-only'],
     { cwd: root, encoding: 'utf8' });
