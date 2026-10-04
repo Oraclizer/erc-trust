@@ -42,6 +42,9 @@ export const requiredTrust12Paths = [
   'scripts/test-dependency-call-provenance.py',
   'scripts/trust12/verify_dependency_call_provenance_v1.py',
   'evidence/trust12/runtime-link/dependency-call-provenance-checkpoint-v1.json',
+  'scripts/test-second-freeze-rejection.py',
+  'scripts/trust12/verify_second_freeze_rejection_v1.py',
+  'evidence/trust12/runtime-link/second-freeze-rejection-checkpoint-v1.json',
   'scripts/test-primitive-source-controls.py',
   'scripts/trust12/verify_primitive_source_controls_v1.py',
   'evidence/trust12/runtime-link/primitive-source-controls-checkpoint-v1.json',
@@ -199,6 +202,10 @@ export function verifyTrust12Required(root = repository) {
     ['-B', resolve(root, 'scripts/trust12/verify_dependency_call_provenance_v1.py'), '--product-root', root, '--metadata-only'],
     { cwd: root, encoding: 'utf8' });
   check(!dependencyCallCheck.error && dependencyCallCheck.status === 0, 'dependency-call-provenance public metadata check failed');
+  const secondFreezeCheck = spawnSync(process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3'),
+    ['-B', resolve(root, 'scripts/trust12/verify_second_freeze_rejection_v1.py'), '--product-root', root, '--metadata-only'],
+    { cwd: root, encoding: 'utf8' });
+  check(!secondFreezeCheck.error && secondFreezeCheck.status === 0, 'second-freeze-rejection public metadata check failed');
   const primitiveControlsCheck = spawnSync(process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3'),
     ['-B', resolve(root, 'scripts/trust12/verify_primitive_source_controls_v1.py'), '--product-root', root, '--metadata-only'],
     { cwd: root, encoding: 'utf8' });

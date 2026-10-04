@@ -176,3 +176,40 @@ thirteen-condition meaning is a hook-gated model rather than the engine
 interpretation, and the shape and order of the operational call list are not
 derived. This is a Building review, not fresh final Assurance; the three general
 runtime links remain mandatory.
+
+## Second FREEZE rejection (2026-10-04)
+
+Five further saved stages, with 566 explicitly named roots, assemble the second
+FREEZE of the deferred symbolic Native test as a transaction execution. The
+endpoint rejects this call with TrustInvalidCommand reason 12 (FREEZE_DIRECTION).
+The four small entry frame cells, the second amount binding, the revert status
+and the world before the call and after the revert are received from raw texts;
+the exported world, log and frame cell texts of this call are byte-identical to
+the received texts of the first FREEZE. The 5275-byte calldata and the 3119-byte
+revert output are lexed and parsed through end of input and then evaluated: the
+calldata decodes to the second FREEZE command and the output is the selector,
+the command identifier and reason 12. One classifier maps the raw status, the
+output and the decoded calldata to the gate phase and result.
+
+The record satisfies the product transaction relation with a rejected outcome:
+the abstract state before and after the call is the state the first FREEZE
+produced, no log is committed and the result is the typed rejection. It also
+satisfies the gate bound relation, in which the output decodes to a report bound
+to the decoded command identifier; the report reason is FREEZE_DIRECTION, and
+the abstract model does not admit the same command because the second amount
+does not exceed the frozen target. The rejected transaction starts from the
+configuration the first FREEZE left. Changing the command identifier in the
+report, a success result, a reverted phase, the earlier two-way classifier or
+one committed log each breaks the relation. TRUST_Returned is the gate label for
+a kernel-delivered outcome, not the EVM RETURN instruction; the raw status is an
+EVM revert. The external call list is set empty by the assembler and is not read
+by the rejection relation.
+
+The theorems hold for every keccak function with values below 2^256 that has the
+recorded values at the storage slots the first FREEZE reads, with the big-endian
+word encoding, at the received valuation point. The checkpoint
+second-freeze-rejection-checkpoint-v1.json binds the stages; its full mode
+rehashes 80 retained artifacts and 3263 current inputs and checks that each
+stage guard names exactly its declared roots. The symbolic family beyond the
+received point, engine equivalence and the three general runtime links remain
+open. This is a Building review, not fresh final Assurance.
