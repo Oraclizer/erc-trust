@@ -1,0 +1,1648 @@
+{
+  "schema": "trust12-malformed-word-guard-mutants-checkpoint-v1",
+  "status": "PASS_MALFORMED_WORD_GUARD_MUTANTS_AS_DECLARED",
+  "scope": "Each bounded word guard mutant weakens one kind of bounded word check of the typed entrypoints of the three profiles in an isolated copy of the product, and the word guard probe runs the same witnesses on the unmodified copy and on each mutant. In the unmodified copy every witness fails without an external call, a log or a committed storage write, and every kind control is accepted; in the same unmodified copy the malformed probe reruns every catalogued recipe on the frozen sources, every recipe outside canonical form fails quietly and every well-formed control is accepted with effects. Reading the address, uint64, uint48, action kind or reversal kind words truncated to their width instead of rejecting dirty high bits, or accepting every action kind word below 256, turns every witness of that kind on every profile into an execution that is accepted or that emits a log, makes an external call or changes state; the record lists the observed effects of each one. Accepting every reversal kind word below 256 leaves every reversal kind witness failing quietly with the typed reversal pairing failure, so the range part of that check is not the only check that rejects an out-of-range reversal kind. Under each mutant every witness of another kind still fails quietly.",
+  "decoderBoundary": "The product sources hold no statement that checks a bounded word. The compiler checks every read of an address, uint64, uint48 or enum field of a request struct in calldata, including the copy of the action request to memory, and a value that does not fit ends the call with empty revert data. A width mutant replaces every such read of the fields of one width, in every function that takes the request in calldata, by a read of the raw word truncated to the declared width, as a decoder that masks instead of rejecting would; a kind width mutant does the same for the kind word with a width of eight bits and keeps the checked conversion of the truncated value to the kind, which rejects a value outside the declared kinds; a kind bound mutant declares 256 members for the kind, so that only the eight-bit width of the kind word is checked. The other fields keep their compiler checks. For the Hook profile the isolated copy also pins the mutated adapter creation code in the factory, which otherwise refuses to deploy a changed adapter; the published factory and its pin are unchanged.",
+  "witnessBoundary": "A width witness is an accepted base request of the probe deployment in which one address, uint64 or uint48 word, or the kind word, also carries the bit just above its declared width, eight bits for a kind, with the identifier recomputed over the changed words. A kind witness is a transfer-shaped accepted base request whose kind word holds the first value outside the declared range, and a kind control is the same base request unmodified. The witnesses are concrete requests on the deployments of the malformed probe, one per profile, recorded with its recorder; they are neither the catalogued recipes nor the registered certificates.",
+  "catalogBoundary": "The catalogued dirty word recipes of the malformed probe set the whole word to a value whose low bits are zero, and the record lists which of them deviate under each mutant. A recipe that a later kernel rule rejects once its word is truncated, for example a zero subject or an epoch that does not match, still fails quietly, so those recipes alone do not show which checks matter.",
+  "equivalenceBoundary": "For the reversal kind word the record shows, on the probe deployments, that removing the range part of its check leaves a rule that rejects every observed reversal kind outside the declared range; the mutant list names the source lines of that rule, which the current sources contain. It is not a proof over all requests and all states.",
+  "product": {
+    "catalog": {
+      "path": "evidence/trust12/runtime-link/tail-preparation/malformed-inputs-v1.json",
+      "sha256": "678f7ae2ce8b1182c400170f432a6aea7be745723f2719026cd3655b085e6b41"
+    },
+    "mutantList": {
+      "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-v1.json",
+      "sha256": "a28e9537b9f9c014f4c30b8dce51a4632b5010a36fc0080b9b00049242f4345b"
+    },
+    "runners": [
+      {
+        "path": "scripts/trust12/tail-preparation/run_malformed_probe.py",
+        "sha256": "7f02dc93af7105ffc2b97f1d8a4e5ac41b3b534240a43348c8d3290325b5f243"
+      },
+      {
+        "path": "scripts/trust12/tail-preparation/run_malformed_probe_v2.py",
+        "sha256": "7dd62c268d698df798b09f78ac5f25f58b79d0a04a7958e38b78fc4bcf2800a5"
+      },
+      {
+        "path": "scripts/trust12/tail-preparation/run_word_guard_probe.py",
+        "sha256": "ac569232a80829a68d950244788c41c8ee3ae5a4e57a6a817a08b0493d7992b9"
+      },
+      {
+        "path": "scripts/trust12/tail-preparation/word_guard_mutation.py",
+        "sha256": "9996aa56a2de3f5ddf81c5c2b58aec42e4ef3fc9c8d42029a9a8c1a6d7bcaa08"
+      }
+    ],
+    "probeSources": [
+      {
+        "path": "scripts/trust12/tail-preparation/foundry/HookMalformedProbe.t.sol",
+        "sha256": "329b5fbfbbdaf5125a04f07003bbba91ca280e29ea0b5f9daaac3dbb00854dcb"
+      },
+      {
+        "path": "scripts/trust12/tail-preparation/foundry/MalformedProbeCore.sol",
+        "sha256": "a8a65230c2c290a232de0b7d9126ba4acad4209b5c12314135b2fdd18ac0e27c"
+      },
+      {
+        "path": "scripts/trust12/tail-preparation/foundry/MalformedProbeRecipes.sol",
+        "sha256": "6f8cf3f642ba9deecc4f14b2ed4e3964f291f22d72b230f96f59fec06efc106d"
+      },
+      {
+        "path": "scripts/trust12/tail-preparation/foundry/NativeMalformedProbe.t.sol",
+        "sha256": "0ae50b62942cfda940a5778080ecb49413d4c2d0ff72124f6791e5dc163450f0"
+      },
+      {
+        "path": "scripts/trust12/tail-preparation/foundry/PartialMalformedProbe.t.sol",
+        "sha256": "26b67a3b060ab1ccc7078d4dc14039a5ebca0d4f3d9e8fc086501378d422424a"
+      },
+      {
+        "path": "scripts/trust12/tail-preparation/word-guard-probe/HookWordGuardProbe.t.sol",
+        "sha256": "7cb007237301e7ea32d6e011da590b26e7bd9e8e8d18999cbd4c90e4c1390fd7"
+      },
+      {
+        "path": "scripts/trust12/tail-preparation/word-guard-probe/NativeWordGuardProbe.t.sol",
+        "sha256": "9a7f31dbc85f120e8919d378d12ed3cb3ae6ce0cb48bce4192a2e8f2ab664cdf"
+      },
+      {
+        "path": "scripts/trust12/tail-preparation/word-guard-probe/PartialWordGuardProbe.t.sol",
+        "sha256": "a4c8dee608658ade73747dad40241d7ba7c539d62e6f8ee74ab5b0ed901659f8"
+      },
+      {
+        "path": "scripts/trust12/tail-preparation/word-guard-probe/WordGuardProbeCore.sol",
+        "sha256": "4056ffceb8abc9b105b8dc5cd683eea334904beb8619a54b8621f47975dec27e"
+      }
+    ]
+  },
+  "baseline": {
+    "status": "BASELINE_RECORDED",
+    "witnesses": {
+      "Native": 32,
+      "Partial": 16,
+      "Hook": 16
+    },
+    "quietFailures": 64,
+    "outcomes": {
+      "untyped-empty-revert": 64
+    },
+    "controls": {
+      "count": 4,
+      "accepted": 4
+    },
+    "catalog": {
+      "recipes": 305,
+      "summary": {
+        "Hook/dirty-address-word/CONFORMS": 8,
+        "Hook/dirty-enum-word/CONFORMS": 6,
+        "Hook/dirty-uint48-word/CONFORMS": 8,
+        "Hook/dirty-uint64-word/CONFORMS": 8,
+        "Hook/length/CONFORMS": 12,
+        "Hook/no-selector/CONFORMS": 2,
+        "Hook/nonzero-call-value/CONFORMS": 2,
+        "Hook/ordering-probe/CONFORMS": 28,
+        "Hook/unknown-selector/CONFORMS": 1,
+        "Hook/well-formed-control/CONTROL_DETECTED": 2,
+        "Native/dirty-address-word/CONFORMS": 16,
+        "Native/dirty-enum-word/CONFORMS": 12,
+        "Native/dirty-uint48-word/CONFORMS": 16,
+        "Native/dirty-uint64-word/CONFORMS": 16,
+        "Native/length/CONFORMS": 24,
+        "Native/no-selector/CONFORMS": 2,
+        "Native/nonzero-call-value/CONFORMS": 4,
+        "Native/ordering-probe/CONFORMS": 56,
+        "Native/unknown-selector/CONFORMS": 1,
+        "Native/well-formed-control/CONTROL_DETECTED": 4,
+        "Partial/dirty-address-word/CONFORMS": 8,
+        "Partial/dirty-enum-word/CONFORMS": 6,
+        "Partial/dirty-uint48-word/CONFORMS": 8,
+        "Partial/dirty-uint64-word/CONFORMS": 8,
+        "Partial/length/CONFORMS": 12,
+        "Partial/no-selector/CONFORMS": 2,
+        "Partial/nonzero-call-value/CONFORMS": 2,
+        "Partial/ordering-probe/CONFORMS": 28,
+        "Partial/unknown-selector/CONFORMS": 1,
+        "Partial/well-formed-control/CONTROL_DETECTED": 2
+      }
+    },
+    "forgeElapsedSeconds": {
+      "wordGuardProbe": 19.8,
+      "malformedProbe": 13.0
+    },
+    "receiptSha256": "2d67e3acb484f90cacba768de456bdeeace72013e77374adee022a96d8fb1d9a"
+  },
+  "mutants": [
+    {
+      "id": "ADDRESS-WIDTH",
+      "status": "MUTANT_DETECTED",
+      "kind": "truncate-width",
+      "target": "address",
+      "profiles": [
+        "Native",
+        "Partial",
+        "Hook"
+      ],
+      "fault": "Read the four address words of an action request truncated to 160 bits instead of rejecting a word with dirty high bits",
+      "expectedVerdict": "DETECTED",
+      "mutation": {
+        "files": [
+          {
+            "file": "implementation/src/TrustToken.sol",
+            "profile": "Native",
+            "beforeSha256": "deeedf231b461035ac4496b36438d6ea28298ed2935b920bf9c01cb31f94ef1b",
+            "afterSha256": "2fc310ae95d6c37037f11bed1b0dd999f9b89442af24772ebd0f0fd3e845bbfe",
+            "reads": {
+              "ActionRequest.custodian": 6,
+              "ActionRequest.destination": 12,
+              "ActionRequest.source": 8,
+              "ActionRequest.subject": 14
+            },
+            "memoryCopies": 1,
+            "functions": [
+              "_assessOrRevert",
+              "_consumeActionAuthorization",
+              "_validateActionShape",
+              "executeERC7943Action",
+              "executeRegulatoryAction"
+            ]
+          },
+          {
+            "file": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+            "profile": "Partial",
+            "beforeSha256": "f2806571c8c39984ee6c50f5e8dd0aa94aac5e273564012afcb4ebb55e43320f",
+            "afterSha256": "2cdd033b5a7811b4d2af8fdcf518dbaa26a1034a987eb70251603ef546857dac",
+            "reads": {
+              "ActionRequest.custodian": 7,
+              "ActionRequest.destination": 11,
+              "ActionRequest.source": 10,
+              "ActionRequest.subject": 11
+            },
+            "memoryCopies": 1,
+            "functions": [
+              "_assessAction",
+              "_consumeActionAuthorization",
+              "_validateActionShape",
+              "executeRegulatoryAction"
+            ]
+          },
+          {
+            "file": "implementation/src/profiles/ERC3643HookAdapter.sol",
+            "profile": "Hook",
+            "beforeSha256": "61056cd3aa34900820cb08592c55803a5add1ab36c493ec36a5e3ee72add9533",
+            "afterSha256": "bfddf42a5e49d430a6263c357b7cb555b940988cb3186c2b0d1f18f56ce690ba",
+            "reads": {
+              "ActionRequest.custodian": 7,
+              "ActionRequest.destination": 11,
+              "ActionRequest.source": 10,
+              "ActionRequest.subject": 11
+            },
+            "memoryCopies": 1,
+            "functions": [
+              "_assessAction",
+              "_consumeActionAuthorization",
+              "_validateActionShape",
+              "executeRegulatoryAction"
+            ]
+          }
+        ]
+      },
+      "repin": {
+        "file": "implementation/src/profiles/ERC3643HookFactory.sol",
+        "beforePin": "0x7e196e99993b30b186c3a1cbeb24e89d926dbd990941fc83b3269a0d39b147b2",
+        "afterPin": "0x4ea24e8d7e4335b2b6893599e6731ba05f5180f86e256aae463e53f679abc315",
+        "reason": "pin the mutated adapter creation code in the isolated copy only"
+      },
+      "familyWitnesses": [
+        {
+          "profile": "Hook",
+          "entrypoint": 1,
+          "word": 3,
+          "field": "subject",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 49,
+          "externalAccesses": 32
+        },
+        {
+          "profile": "Hook",
+          "entrypoint": 1,
+          "word": 4,
+          "field": "source",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 49,
+          "externalAccesses": 32
+        },
+        {
+          "profile": "Hook",
+          "entrypoint": 1,
+          "word": 5,
+          "field": "destination",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 49,
+          "externalAccesses": 32
+        },
+        {
+          "profile": "Hook",
+          "entrypoint": 1,
+          "word": 6,
+          "field": "custodian",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 49,
+          "externalAccesses": 32
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 1,
+          "word": 3,
+          "field": "subject",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 50,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 1,
+          "word": 4,
+          "field": "source",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 50,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 1,
+          "word": 5,
+          "field": "destination",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 50,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 1,
+          "word": 6,
+          "field": "custodian",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 50,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 3,
+          "word": 3,
+          "field": "subject",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 62,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 3,
+          "word": 4,
+          "field": "source",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 62,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 3,
+          "word": 5,
+          "field": "destination",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 62,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 3,
+          "word": 6,
+          "field": "custodian",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 62,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Partial",
+          "entrypoint": 1,
+          "word": 3,
+          "field": "subject",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 49,
+          "externalAccesses": 26
+        },
+        {
+          "profile": "Partial",
+          "entrypoint": 1,
+          "word": 4,
+          "field": "source",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 49,
+          "externalAccesses": 26
+        },
+        {
+          "profile": "Partial",
+          "entrypoint": 1,
+          "word": 5,
+          "field": "destination",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 49,
+          "externalAccesses": 26
+        },
+        {
+          "profile": "Partial",
+          "entrypoint": 1,
+          "word": 6,
+          "field": "custodian",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 49,
+          "externalAccesses": 26
+        }
+      ],
+      "otherWitnesses": {
+        "count": 48,
+        "quiet": 48
+      },
+      "controls": {
+        "count": 4,
+        "accepted": 4
+      },
+      "catalogFamilyRecipes": {
+        "deviating": [
+          "native-022",
+          "native-023",
+          "native-026",
+          "native-027",
+          "native-096",
+          "native-097",
+          "native-100",
+          "native-101",
+          "partial-173",
+          "partial-174",
+          "partial-177",
+          "partial-178",
+          "hook-250",
+          "hook-251",
+          "hook-254",
+          "hook-255"
+        ],
+        "quiet": [
+          "native-014",
+          "native-015",
+          "native-018",
+          "native-019",
+          "native-088",
+          "native-089",
+          "native-092",
+          "native-093",
+          "partial-165",
+          "partial-166",
+          "partial-169",
+          "partial-170",
+          "hook-242",
+          "hook-243",
+          "hook-246",
+          "hook-247"
+        ]
+      },
+      "forgeElapsedSeconds": {
+        "wordGuardProbe": 20.0,
+        "malformedProbe": 13.1
+      },
+      "receiptSha256": "61846f457c9bfe4717e134bdd396bc85d6dc333482e37598c7debb81758546f1"
+    },
+    {
+      "id": "UINT64-WIDTH",
+      "status": "MUTANT_DETECTED",
+      "kind": "truncate-width",
+      "target": "uint64",
+      "profiles": [
+        "Native",
+        "Partial",
+        "Hook"
+      ],
+      "fault": "Read the dependency and authority epoch words of both requests truncated to 64 bits instead of rejecting a word with dirty high bits",
+      "expectedVerdict": "DETECTED",
+      "mutation": {
+        "files": [
+          {
+            "file": "implementation/src/TrustToken.sol",
+            "profile": "Native",
+            "beforeSha256": "deeedf231b461035ac4496b36438d6ea28298ed2935b920bf9c01cb31f94ef1b",
+            "afterSha256": "f040d3edd4bff90cff547835f506dee3668631505c2481c5dd017d1e87cfd078",
+            "reads": {
+              "ActionRequest.authorityEpoch": 4,
+              "ActionRequest.dependencyEpoch": 2,
+              "ReversalRequest.authorityEpoch": 3,
+              "ReversalRequest.dependencyEpoch": 1
+            },
+            "memoryCopies": 1,
+            "functions": [
+              "_consumeActionAuthorization",
+              "_consumeReversalAuthorization",
+              "_validateAndAuthorizeAction",
+              "_validateAndAuthorizeReversal",
+              "executeRegulatoryAction"
+            ]
+          },
+          {
+            "file": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+            "profile": "Partial",
+            "beforeSha256": "f2806571c8c39984ee6c50f5e8dd0aa94aac5e273564012afcb4ebb55e43320f",
+            "afterSha256": "1e52084632155e959e842fb70415ee8f4b12a01be0b34be671e412996799c3f8",
+            "reads": {
+              "ActionRequest.authorityEpoch": 4,
+              "ActionRequest.dependencyEpoch": 2,
+              "ReversalRequest.authorityEpoch": 3,
+              "ReversalRequest.dependencyEpoch": 1
+            },
+            "memoryCopies": 1,
+            "functions": [
+              "_consumeActionAuthorization",
+              "_validateAndAuthorizeAction",
+              "_validateAndAuthorizeReversal",
+              "executeRegulatoryAction",
+              "executeRegulatoryReversal"
+            ]
+          },
+          {
+            "file": "implementation/src/profiles/ERC3643HookAdapter.sol",
+            "profile": "Hook",
+            "beforeSha256": "61056cd3aa34900820cb08592c55803a5add1ab36c493ec36a5e3ee72add9533",
+            "afterSha256": "49549f1121980dac71e795940bde18807d6ccbea117cebff55bd64797a873692",
+            "reads": {
+              "ActionRequest.authorityEpoch": 4,
+              "ActionRequest.dependencyEpoch": 2,
+              "ReversalRequest.authorityEpoch": 3,
+              "ReversalRequest.dependencyEpoch": 1
+            },
+            "memoryCopies": 1,
+            "functions": [
+              "_consumeActionAuthorization",
+              "_validateAndAuthorizeAction",
+              "_validateAndAuthorizeReversal",
+              "executeRegulatoryAction",
+              "executeRegulatoryReversal"
+            ]
+          }
+        ]
+      },
+      "repin": {
+        "file": "implementation/src/profiles/ERC3643HookFactory.sol",
+        "beforePin": "0x7e196e99993b30b186c3a1cbeb24e89d926dbd990941fc83b3269a0d39b147b2",
+        "afterPin": "0x31c063c8f75eace1618c8cb6393cc0f25700ea27edd45c3b92a65972f98a852b",
+        "reason": "pin the mutated adapter creation code in the isolated copy only"
+      },
+      "familyWitnesses": [
+        {
+          "profile": "Hook",
+          "entrypoint": 1,
+          "word": 10,
+          "field": "dependencyEpoch",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 49,
+          "externalAccesses": 32
+        },
+        {
+          "profile": "Hook",
+          "entrypoint": 1,
+          "word": 16,
+          "field": "authorityEpoch",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 49,
+          "externalAccesses": 32
+        },
+        {
+          "profile": "Hook",
+          "entrypoint": 2,
+          "word": 5,
+          "field": "dependencyEpoch",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 29,
+          "externalAccesses": 32
+        },
+        {
+          "profile": "Hook",
+          "entrypoint": 2,
+          "word": 8,
+          "field": "authorityEpoch",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 29,
+          "externalAccesses": 32
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 1,
+          "word": 10,
+          "field": "dependencyEpoch",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 50,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 1,
+          "word": 16,
+          "field": "authorityEpoch",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 50,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 2,
+          "word": 5,
+          "field": "dependencyEpoch",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 27,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 2,
+          "word": 8,
+          "field": "authorityEpoch",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 27,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 3,
+          "word": 10,
+          "field": "dependencyEpoch",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 62,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 3,
+          "word": 16,
+          "field": "authorityEpoch",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 62,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 4,
+          "word": 5,
+          "field": "dependencyEpoch",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 45,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 4,
+          "word": 8,
+          "field": "authorityEpoch",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 45,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Partial",
+          "entrypoint": 1,
+          "word": 10,
+          "field": "dependencyEpoch",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 49,
+          "externalAccesses": 26
+        },
+        {
+          "profile": "Partial",
+          "entrypoint": 1,
+          "word": 16,
+          "field": "authorityEpoch",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 49,
+          "externalAccesses": 26
+        },
+        {
+          "profile": "Partial",
+          "entrypoint": 2,
+          "word": 5,
+          "field": "dependencyEpoch",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 29,
+          "externalAccesses": 26
+        },
+        {
+          "profile": "Partial",
+          "entrypoint": 2,
+          "word": 8,
+          "field": "authorityEpoch",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 29,
+          "externalAccesses": 26
+        }
+      ],
+      "otherWitnesses": {
+        "count": 48,
+        "quiet": 48
+      },
+      "controls": {
+        "count": 4,
+        "accepted": 4
+      },
+      "catalogFamilyRecipes": {
+        "deviating": [],
+        "quiet": [
+          "native-030",
+          "native-031",
+          "native-034",
+          "native-035",
+          "native-059",
+          "native-060",
+          "native-063",
+          "native-064",
+          "native-104",
+          "native-105",
+          "native-108",
+          "native-109",
+          "native-133",
+          "native-134",
+          "native-137",
+          "native-138",
+          "partial-181",
+          "partial-182",
+          "partial-185",
+          "partial-186",
+          "partial-210",
+          "partial-211",
+          "partial-214",
+          "partial-215",
+          "hook-258",
+          "hook-259",
+          "hook-262",
+          "hook-263",
+          "hook-287",
+          "hook-288",
+          "hook-291",
+          "hook-292"
+        ]
+      },
+      "forgeElapsedSeconds": {
+        "wordGuardProbe": 19.5,
+        "malformedProbe": 12.9
+      },
+      "receiptSha256": "8c66596f062fa1f3dd6b2a8d958072e5da3a1d9988adba3e4b9959957d3ecf86"
+    },
+    {
+      "id": "UINT48-WIDTH",
+      "status": "MUTANT_DETECTED",
+      "kind": "truncate-width",
+      "target": "uint48",
+      "profiles": [
+        "Native",
+        "Partial",
+        "Hook"
+      ],
+      "fault": "Read the two validity time words of both requests truncated to 48 bits instead of rejecting a word with dirty high bits",
+      "expectedVerdict": "DETECTED",
+      "mutation": {
+        "files": [
+          {
+            "file": "implementation/src/TrustToken.sol",
+            "profile": "Native",
+            "beforeSha256": "deeedf231b461035ac4496b36438d6ea28298ed2935b920bf9c01cb31f94ef1b",
+            "afterSha256": "3ae7a48edaf95f8eaa57faf35a66652bf82f3768fd13c97fdb9c17c6bf03dafc",
+            "reads": {
+              "ActionRequest.validAfter": 1,
+              "ActionRequest.validBefore": 2,
+              "ReversalRequest.validAfter": 1,
+              "ReversalRequest.validBefore": 2
+            },
+            "memoryCopies": 1,
+            "functions": [
+              "_validateAndAuthorizeAction",
+              "_validateAndAuthorizeReversal",
+              "executeRegulatoryAction"
+            ]
+          },
+          {
+            "file": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+            "profile": "Partial",
+            "beforeSha256": "f2806571c8c39984ee6c50f5e8dd0aa94aac5e273564012afcb4ebb55e43320f",
+            "afterSha256": "7246944a105666553d432216c4d6b32122bc9fd8a16dffde9abbeff3c5d33774",
+            "reads": {
+              "ActionRequest.validAfter": 1,
+              "ActionRequest.validBefore": 2,
+              "ReversalRequest.validAfter": 1,
+              "ReversalRequest.validBefore": 2
+            },
+            "memoryCopies": 1,
+            "functions": [
+              "_validateAndAuthorizeAction",
+              "_validateAndAuthorizeReversal",
+              "executeRegulatoryAction"
+            ]
+          },
+          {
+            "file": "implementation/src/profiles/ERC3643HookAdapter.sol",
+            "profile": "Hook",
+            "beforeSha256": "61056cd3aa34900820cb08592c55803a5add1ab36c493ec36a5e3ee72add9533",
+            "afterSha256": "13f74772e2918685db822b904b07b89ca352d14d937b5b57d6eb49e3c6379d79",
+            "reads": {
+              "ActionRequest.validAfter": 1,
+              "ActionRequest.validBefore": 2,
+              "ReversalRequest.validAfter": 1,
+              "ReversalRequest.validBefore": 2
+            },
+            "memoryCopies": 1,
+            "functions": [
+              "_validateAndAuthorizeAction",
+              "_validateAndAuthorizeReversal",
+              "executeRegulatoryAction"
+            ]
+          }
+        ]
+      },
+      "repin": {
+        "file": "implementation/src/profiles/ERC3643HookFactory.sol",
+        "beforePin": "0x7e196e99993b30b186c3a1cbeb24e89d926dbd990941fc83b3269a0d39b147b2",
+        "afterPin": "0xd7ee91615dc2c89c022b14bd56eed5fe56a5d14d84b63f12afe6b4591b8ba53b",
+        "reason": "pin the mutated adapter creation code in the isolated copy only"
+      },
+      "familyWitnesses": [
+        {
+          "profile": "Hook",
+          "entrypoint": 1,
+          "word": 18,
+          "field": "validAfter",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 49,
+          "externalAccesses": 32
+        },
+        {
+          "profile": "Hook",
+          "entrypoint": 1,
+          "word": 19,
+          "field": "validBefore",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 49,
+          "externalAccesses": 32
+        },
+        {
+          "profile": "Hook",
+          "entrypoint": 2,
+          "word": 10,
+          "field": "validAfter",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 29,
+          "externalAccesses": 32
+        },
+        {
+          "profile": "Hook",
+          "entrypoint": 2,
+          "word": 11,
+          "field": "validBefore",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 29,
+          "externalAccesses": 32
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 1,
+          "word": 18,
+          "field": "validAfter",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 50,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 1,
+          "word": 19,
+          "field": "validBefore",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 50,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 2,
+          "word": 10,
+          "field": "validAfter",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 27,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 2,
+          "word": 11,
+          "field": "validBefore",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 27,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 3,
+          "word": 18,
+          "field": "validAfter",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 62,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 3,
+          "word": 19,
+          "field": "validBefore",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 62,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 4,
+          "word": 10,
+          "field": "validAfter",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 45,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 4,
+          "word": 11,
+          "field": "validBefore",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 45,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Partial",
+          "entrypoint": 1,
+          "word": 18,
+          "field": "validAfter",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 49,
+          "externalAccesses": 26
+        },
+        {
+          "profile": "Partial",
+          "entrypoint": 1,
+          "word": 19,
+          "field": "validBefore",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 49,
+          "externalAccesses": 26
+        },
+        {
+          "profile": "Partial",
+          "entrypoint": 2,
+          "word": 10,
+          "field": "validAfter",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 29,
+          "externalAccesses": 26
+        },
+        {
+          "profile": "Partial",
+          "entrypoint": 2,
+          "word": 11,
+          "field": "validBefore",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 29,
+          "externalAccesses": 26
+        }
+      ],
+      "otherWitnesses": {
+        "count": 48,
+        "quiet": 48
+      },
+      "controls": {
+        "count": 4,
+        "accepted": 4
+      },
+      "catalogFamilyRecipes": {
+        "deviating": [
+          "native-038",
+          "native-039",
+          "native-067",
+          "native-068",
+          "native-112",
+          "native-113",
+          "native-141",
+          "native-142",
+          "partial-189",
+          "partial-190",
+          "partial-218",
+          "partial-219",
+          "hook-266",
+          "hook-267",
+          "hook-295",
+          "hook-296"
+        ],
+        "quiet": [
+          "native-042",
+          "native-043",
+          "native-071",
+          "native-072",
+          "native-116",
+          "native-117",
+          "native-145",
+          "native-146",
+          "partial-193",
+          "partial-194",
+          "partial-222",
+          "partial-223",
+          "hook-270",
+          "hook-271",
+          "hook-299",
+          "hook-300"
+        ]
+      },
+      "forgeElapsedSeconds": {
+        "wordGuardProbe": 19.7,
+        "malformedProbe": 13.2
+      },
+      "receiptSha256": "df80aec66d70d3cd7d4e34ad681e58674b314ace2063f6f46438df1ada2d6c8e"
+    },
+    {
+      "id": "ACTION-KIND-BOUND",
+      "status": "MUTANT_DETECTED",
+      "kind": "widen-enum",
+      "target": "ActionKind",
+      "profiles": [
+        "Native",
+        "Partial",
+        "Hook"
+      ],
+      "fault": "Accept every action kind word below 256 instead of only the six declared kinds",
+      "expectedVerdict": "DETECTED",
+      "mutation": {
+        "files": [
+          {
+            "file": "implementation/src/generated/IERCTrustKernel.sol",
+            "profile": null,
+            "beforeSha256": "8f179a21b04fa1f172bdddef2f8878a01524d3429570c0abf9aa60cfc8738f7d",
+            "afterSha256": "9d85f602456885cc7784e15e6c053190a3ff160f8e47486ce4e418f2afd7ab08",
+            "enum": "ActionKind",
+            "declaredMembers": 6,
+            "membersAfter": 256
+          }
+        ]
+      },
+      "repin": {
+        "file": "implementation/src/profiles/ERC3643HookFactory.sol",
+        "beforePin": "0x7e196e99993b30b186c3a1cbeb24e89d926dbd990941fc83b3269a0d39b147b2",
+        "afterPin": "0xd2db6957d90f1946a6c5106979a670d29bca8498901f2ff4664aaf2085137d04",
+        "reason": "pin the mutated adapter creation code in the isolated copy only"
+      },
+      "familyWitnesses": [
+        {
+          "profile": "Hook",
+          "entrypoint": 1,
+          "word": 2,
+          "field": "action",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 47,
+          "externalAccesses": 77
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 1,
+          "word": 2,
+          "field": "action",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 3,
+          "committedWrites": 46,
+          "externalAccesses": 6
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 3,
+          "word": 2,
+          "field": "action",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 3,
+          "committedWrites": 58,
+          "externalAccesses": 6
+        },
+        {
+          "profile": "Partial",
+          "entrypoint": 1,
+          "word": 2,
+          "field": "action",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 45,
+          "externalAccesses": 44
+        }
+      ],
+      "otherWitnesses": {
+        "count": 60,
+        "quiet": 60
+      },
+      "controls": {
+        "count": 4,
+        "accepted": 4
+      },
+      "catalogFamilyRecipes": {
+        "deviating": [],
+        "quiet": [
+          "native-009",
+          "native-010",
+          "native-011",
+          "native-083",
+          "native-084",
+          "native-085",
+          "partial-160",
+          "partial-161",
+          "partial-162",
+          "hook-237",
+          "hook-238",
+          "hook-239"
+        ]
+      },
+      "forgeElapsedSeconds": {
+        "wordGuardProbe": 20.0,
+        "malformedProbe": 12.9
+      },
+      "receiptSha256": "2bc9b9a60777f3abf8269828be17169d916db1a3beab57905b9edeaa62c43633"
+    },
+    {
+      "id": "REVERSAL-KIND-BOUND",
+      "status": "MUTANT_EQUIVALENT_CONFIRMED",
+      "kind": "widen-enum",
+      "target": "ReversalKind",
+      "profiles": [
+        "Native",
+        "Partial",
+        "Hook"
+      ],
+      "fault": "Accept every reversal kind word below 256 instead of only the three declared kinds",
+      "expectedVerdict": "EQUIVALENT",
+      "mutation": {
+        "files": [
+          {
+            "file": "implementation/src/generated/IERCTrustKernel.sol",
+            "profile": null,
+            "beforeSha256": "8f179a21b04fa1f172bdddef2f8878a01524d3429570c0abf9aa60cfc8738f7d",
+            "afterSha256": "ef48c2975dbdd617081c7bd8cdfe0826339cdc054132e20b2c79fb75cce189fc",
+            "enum": "ReversalKind",
+            "declaredMembers": 3,
+            "membersAfter": 256
+          }
+        ]
+      },
+      "repin": {
+        "file": "implementation/src/profiles/ERC3643HookFactory.sol",
+        "beforePin": "0x7e196e99993b30b186c3a1cbeb24e89d926dbd990941fc83b3269a0d39b147b2",
+        "afterPin": "0x8ce9aef2cf74696f56878d5dcf7c5d30d2ac6097936dab58319b395e4e983e14",
+        "reason": "pin the mutated adapter creation code in the isolated copy only"
+      },
+      "familyWitnesses": [
+        {
+          "profile": "Hook",
+          "entrypoint": 2,
+          "word": 3,
+          "field": "reversal",
+          "outcome": "typed-failure",
+          "typedFailure": "TrustInvalidCommand",
+          "reason": 7,
+          "logs": 0,
+          "committedWrites": 0,
+          "externalAccesses": 0
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 2,
+          "word": 3,
+          "field": "reversal",
+          "outcome": "typed-failure",
+          "typedFailure": "TrustInvalidCommand",
+          "reason": 7,
+          "logs": 0,
+          "committedWrites": 0,
+          "externalAccesses": 0
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 4,
+          "word": 3,
+          "field": "reversal",
+          "outcome": "typed-failure",
+          "typedFailure": "TrustInvalidCommand",
+          "reason": 7,
+          "logs": 0,
+          "committedWrites": 0,
+          "externalAccesses": 0
+        },
+        {
+          "profile": "Partial",
+          "entrypoint": 2,
+          "word": 3,
+          "field": "reversal",
+          "outcome": "typed-failure",
+          "typedFailure": "TrustInvalidCommand",
+          "reason": 7,
+          "logs": 0,
+          "committedWrites": 0,
+          "externalAccesses": 0
+        }
+      ],
+      "otherWitnesses": {
+        "count": 60,
+        "quiet": 60
+      },
+      "controls": {
+        "count": 4,
+        "accepted": 4
+      },
+      "catalogFamilyRecipes": {
+        "deviating": [],
+        "quiet": [
+          "native-054",
+          "native-055",
+          "native-056",
+          "native-128",
+          "native-129",
+          "native-130",
+          "partial-205",
+          "partial-206",
+          "partial-207",
+          "hook-282",
+          "hook-283",
+          "hook-284"
+        ]
+      },
+      "forgeElapsedSeconds": {
+        "wordGuardProbe": 20.1,
+        "malformedProbe": 13.1
+      },
+      "receiptSha256": "097cb87b86c37c8e9bb3fbebab4da6cbe61089602608182c8e05c4e510ab8ec1"
+    },
+    {
+      "id": "ACTION-KIND-WIDTH",
+      "status": "MUTANT_DETECTED",
+      "kind": "truncate-width",
+      "target": "ActionKindWord",
+      "profiles": [
+        "Native",
+        "Partial",
+        "Hook"
+      ],
+      "fault": "Read the action kind word truncated to eight bits instead of rejecting a word with dirty high bits; converting the truncated value to the kind still rejects a value outside the six declared kinds",
+      "expectedVerdict": "DETECTED",
+      "mutation": {
+        "files": [
+          {
+            "file": "implementation/src/TrustToken.sol",
+            "profile": "Native",
+            "beforeSha256": "deeedf231b461035ac4496b36438d6ea28298ed2935b920bf9c01cb31f94ef1b",
+            "afterSha256": "68a52a7e707705fa8c96ed57f5c9d360404c7850552d9da88bb1b22976f6196f",
+            "reads": {
+              "ActionRequest.action": 7
+            },
+            "memoryCopies": 1,
+            "functions": [
+              "_assessOrRevert",
+              "_consumeActionAuthorization",
+              "_validateActionShape",
+              "executeERC7943Action",
+              "executeRegulatoryAction"
+            ]
+          },
+          {
+            "file": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+            "profile": "Partial",
+            "beforeSha256": "f2806571c8c39984ee6c50f5e8dd0aa94aac5e273564012afcb4ebb55e43320f",
+            "afterSha256": "7c33b0f3c9bad8d8b6a3d9a1ee6d9b378b388a5ae1a2602893d42aaa64f37b0e",
+            "reads": {
+              "ActionRequest.action": 3
+            },
+            "memoryCopies": 1,
+            "functions": [
+              "_consumeActionAuthorization",
+              "_validateActionShape",
+              "executeRegulatoryAction"
+            ]
+          },
+          {
+            "file": "implementation/src/profiles/ERC3643HookAdapter.sol",
+            "profile": "Hook",
+            "beforeSha256": "61056cd3aa34900820cb08592c55803a5add1ab36c493ec36a5e3ee72add9533",
+            "afterSha256": "66d9d79dad429c2c00523699b29311954bf98aecbc55786a71288fb2ef22c865",
+            "reads": {
+              "ActionRequest.action": 3
+            },
+            "memoryCopies": 1,
+            "functions": [
+              "_consumeActionAuthorization",
+              "_validateActionShape",
+              "executeRegulatoryAction"
+            ]
+          }
+        ]
+      },
+      "repin": {
+        "file": "implementation/src/profiles/ERC3643HookFactory.sol",
+        "beforePin": "0x7e196e99993b30b186c3a1cbeb24e89d926dbd990941fc83b3269a0d39b147b2",
+        "afterPin": "0x1e7380cf37e9a314377fe247938192f76021b89c9f9e9eda5c169d0a351f0800",
+        "reason": "pin the mutated adapter creation code in the isolated copy only"
+      },
+      "familyWitnesses": [
+        {
+          "profile": "Hook",
+          "entrypoint": 1,
+          "word": 2,
+          "field": "action",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 49,
+          "externalAccesses": 32
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 1,
+          "word": 2,
+          "field": "action",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 50,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 3,
+          "word": 2,
+          "field": "action",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 62,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Partial",
+          "entrypoint": 1,
+          "word": 2,
+          "field": "action",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 49,
+          "externalAccesses": 26
+        }
+      ],
+      "otherWitnesses": {
+        "count": 60,
+        "quiet": 60
+      },
+      "controls": {
+        "count": 4,
+        "accepted": 4
+      },
+      "catalogFamilyRecipes": {
+        "deviating": [
+          "native-011",
+          "native-085",
+          "partial-162",
+          "hook-239"
+        ],
+        "quiet": [
+          "native-009",
+          "native-010",
+          "native-083",
+          "native-084",
+          "partial-160",
+          "partial-161",
+          "hook-237",
+          "hook-238"
+        ]
+      },
+      "forgeElapsedSeconds": {
+        "wordGuardProbe": 20.5,
+        "malformedProbe": 13.5
+      },
+      "receiptSha256": "d3f33eb4cc819d4769686ed7fad8be6cd38513b2eedf902e7d567dd5ea9a27ac"
+    },
+    {
+      "id": "REVERSAL-KIND-WIDTH",
+      "status": "MUTANT_DETECTED",
+      "kind": "truncate-width",
+      "target": "ReversalKindWord",
+      "profiles": [
+        "Native",
+        "Partial",
+        "Hook"
+      ],
+      "fault": "Read the reversal kind word truncated to eight bits instead of rejecting a word with dirty high bits; converting the truncated value to the kind still rejects a value outside the three declared kinds",
+      "expectedVerdict": "DETECTED",
+      "mutation": {
+        "files": [
+          {
+            "file": "implementation/src/TrustToken.sol",
+            "profile": "Native",
+            "beforeSha256": "deeedf231b461035ac4496b36438d6ea28298ed2935b920bf9c01cb31f94ef1b",
+            "afterSha256": "d0a1e9257b6777dccd182c5929953c6bd45213c91e83b0e90c5705881767aad0",
+            "reads": {
+              "ReversalRequest.reversal": 6
+            },
+            "memoryCopies": 0,
+            "functions": [
+              "_assessReversalOrRevert",
+              "_pendingReversalOf",
+              "_validateAndAuthorizeReversal",
+              "executeERC7943Reversal"
+            ]
+          },
+          {
+            "file": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+            "profile": "Partial",
+            "beforeSha256": "f2806571c8c39984ee6c50f5e8dd0aa94aac5e273564012afcb4ebb55e43320f",
+            "afterSha256": "6df1a9a06260940a33fffd5753f75fa2d9379ff3b7af258fed63476f7c77f480",
+            "reads": {
+              "ReversalRequest.reversal": 8
+            },
+            "memoryCopies": 0,
+            "functions": [
+              "_applyReversalPrepared",
+              "_assessReversal",
+              "_validateAndAuthorizeReversal",
+              "executeRegulatoryReversal"
+            ]
+          },
+          {
+            "file": "implementation/src/profiles/ERC3643HookAdapter.sol",
+            "profile": "Hook",
+            "beforeSha256": "61056cd3aa34900820cb08592c55803a5add1ab36c493ec36a5e3ee72add9533",
+            "afterSha256": "fe847b8ef6f1b0e863e273825210b715b9930119b4830beacd8fd8d7e4561dc2",
+            "reads": {
+              "ReversalRequest.reversal": 8
+            },
+            "memoryCopies": 0,
+            "functions": [
+              "_applyReversalPrepared",
+              "_assessReversal",
+              "_validateAndAuthorizeReversal",
+              "executeRegulatoryReversal"
+            ]
+          }
+        ]
+      },
+      "repin": {
+        "file": "implementation/src/profiles/ERC3643HookFactory.sol",
+        "beforePin": "0x7e196e99993b30b186c3a1cbeb24e89d926dbd990941fc83b3269a0d39b147b2",
+        "afterPin": "0xbc0ca3f153d988ba2b86dbb1ccc6583e4735a18780e1d46b4ec8fe997279361b",
+        "reason": "pin the mutated adapter creation code in the isolated copy only"
+      },
+      "familyWitnesses": [
+        {
+          "profile": "Hook",
+          "entrypoint": 2,
+          "word": 3,
+          "field": "reversal",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 29,
+          "externalAccesses": 32
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 2,
+          "word": 3,
+          "field": "reversal",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 27,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Native",
+          "entrypoint": 4,
+          "word": 3,
+          "field": "reversal",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 45,
+          "externalAccesses": 3
+        },
+        {
+          "profile": "Partial",
+          "entrypoint": 2,
+          "word": 3,
+          "field": "reversal",
+          "outcome": "success",
+          "typedFailure": null,
+          "reason": null,
+          "logs": 2,
+          "committedWrites": 29,
+          "externalAccesses": 26
+        }
+      ],
+      "otherWitnesses": {
+        "count": 60,
+        "quiet": 60
+      },
+      "controls": {
+        "count": 4,
+        "accepted": 4
+      },
+      "catalogFamilyRecipes": {
+        "deviating": [
+          "native-056",
+          "native-130",
+          "partial-207",
+          "hook-284"
+        ],
+        "quiet": [
+          "native-054",
+          "native-055",
+          "native-128",
+          "native-129",
+          "partial-205",
+          "partial-206",
+          "hook-282",
+          "hook-283"
+        ]
+      },
+      "forgeElapsedSeconds": {
+        "wordGuardProbe": 19.7,
+        "malformedProbe": 13.3
+      },
+      "receiptSha256": "4d58335812e05af38154efe4d103f5cc292bbd7bcea223c74eef74526e696214"
+    }
+  ],
+  "rehashVerifier": {
+    "path": "scripts/trust12/verify_malformed_word_guard_mutants_v1.py",
+    "sha256": "b40a57d062102b953819afb2b24d9685dd1c2ab4c73f4a70767bd4c714554bb3"
+  },
+  "nonclaims": {
+    "proofOverAllAcceptedExecutions": true,
+    "registeredCertificates": true,
+    "publishedRuntimeChange": true,
+    "malformedBranchClosure": true,
+    "registeredCentralClosure": true,
+    "generalRuntimeLinks": true,
+    "independentAssurance": true
+  }
+}

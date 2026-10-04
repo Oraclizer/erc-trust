@@ -1,0 +1,79 @@
+{
+  "schema": "trust12-malformed-word-guard-mutants-v1",
+  "purpose": "Bounded word checks of the typed entrypoints of the three profiles, each weakened in an isolated copy of the product, with the outcome that the word guard probe must observe.",
+  "decoderBoundary": "The sources hold no statement that checks a bounded word. The compiler checks every read of an address, uint64, uint48 or enum field of a request struct in calldata and rejects a value that does not fit with empty revert data, including the copy of the action request to memory. A mutant therefore rewrites the source of an isolated copy so that one kind of field is read without that check, or without its width part or its range part for a kind field.",
+  "mutants": [
+    {
+      "id": "ADDRESS-WIDTH",
+      "kind": "truncate-width",
+      "guard": "address",
+      "profiles": ["Native", "Partial", "Hook"],
+      "fault": "Read the four address words of an action request truncated to 160 bits instead of rejecting a word with dirty high bits",
+      "expectedVerdict": "DETECTED",
+      "repinAdapterCreationHash": true
+    },
+    {
+      "id": "UINT64-WIDTH",
+      "kind": "truncate-width",
+      "guard": "uint64",
+      "profiles": ["Native", "Partial", "Hook"],
+      "fault": "Read the dependency and authority epoch words of both requests truncated to 64 bits instead of rejecting a word with dirty high bits",
+      "expectedVerdict": "DETECTED",
+      "repinAdapterCreationHash": true
+    },
+    {
+      "id": "UINT48-WIDTH",
+      "kind": "truncate-width",
+      "guard": "uint48",
+      "profiles": ["Native", "Partial", "Hook"],
+      "fault": "Read the two validity time words of both requests truncated to 48 bits instead of rejecting a word with dirty high bits",
+      "expectedVerdict": "DETECTED",
+      "repinAdapterCreationHash": true
+    },
+    {
+      "id": "ACTION-KIND-BOUND",
+      "kind": "widen-enum",
+      "enum": "ActionKind",
+      "fault": "Accept every action kind word below 256 instead of only the six declared kinds",
+      "expectedVerdict": "DETECTED",
+      "repinAdapterCreationHash": true
+    },
+    {
+      "id": "REVERSAL-KIND-BOUND",
+      "kind": "widen-enum",
+      "enum": "ReversalKind",
+      "fault": "Accept every reversal kind word below 256 instead of only the three declared kinds",
+      "expectedVerdict": "EQUIVALENT",
+      "equivalentFailure": {"error": "TrustInvalidCommand", "reason": 7},
+      "rationale": "Every endpoint checks the reversal pairing before any external call and accepts only UNFREEZE after FREEZE, RELEASE after SEIZE and UNRESTRICT after RESTRICT, so a reversal kind outside the declared range ends in the pairing failure whether or not the decoder checks the kind word.",
+      "subsumingRule": [
+        {"file": "implementation/src/TrustNativeDecision.sol", "snippet": "return (action == TrustKernelTypes.ActionKind.FREEZE && reversal == TrustKernelTypes.ReversalKind.UNFREEZE)"},
+        {"file": "implementation/src/TrustToken.sol", "snippet": "if (!TrustNativeDecision.reversalMatches(original.action, request.reversal)) {"},
+        {"file": "implementation/src/profiles/ERC3643TrustAdapter.sol", "snippet": "if (!_reversalMatches(original.action, request.reversal)) {"},
+        {"file": "implementation/src/profiles/ERC3643TrustAdapter.sol", "snippet": "return (action == TrustKernelTypes.ActionKind.FREEZE && reversal == TrustKernelTypes.ReversalKind.UNFREEZE)"},
+        {"file": "implementation/src/profiles/ERC3643HookAdapter.sol", "snippet": "if (!_reversalMatches(original.action, request.reversal)) {"},
+        {"file": "implementation/src/profiles/ERC3643HookAdapter.sol", "snippet": "return (action == TrustKernelTypes.ActionKind.FREEZE && reversal == TrustKernelTypes.ReversalKind.UNFREEZE)"}
+      ],
+      "repinAdapterCreationHash": true
+    },
+    {
+      "id": "ACTION-KIND-WIDTH",
+      "kind": "truncate-width",
+      "guard": "ActionKindWord",
+      "profiles": ["Native", "Partial", "Hook"],
+      "fault": "Read the action kind word truncated to eight bits instead of rejecting a word with dirty high bits; converting the truncated value to the kind still rejects a value outside the six declared kinds",
+      "expectedVerdict": "DETECTED",
+      "repinAdapterCreationHash": true
+    },
+    {
+      "id": "REVERSAL-KIND-WIDTH",
+      "kind": "truncate-width",
+      "guard": "ReversalKindWord",
+      "profiles": ["Native", "Partial", "Hook"],
+      "fault": "Read the reversal kind word truncated to eight bits instead of rejecting a word with dirty high bits; converting the truncated value to the kind still rejects a value outside the three declared kinds",
+      "expectedVerdict": "DETECTED",
+      "repinAdapterCreationHash": true
+    }
+  ],
+  "nonclaim": "Each mutant changes the sources of an isolated copy of the product only; the published runtimes are unchanged."
+}

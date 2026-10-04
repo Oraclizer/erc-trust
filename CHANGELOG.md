@@ -2,6 +2,25 @@
 
 ## Unreleased
 
+- Record the bounded word guard mutants of the typed entrypoints in
+  malformed-word-guard-mutants-checkpoint-v1.json. The product sources hold no
+  statement that checks a bounded word; the compiler checks every read of an
+  address, uint64, uint48 or enum field of a request in calldata. Each of seven
+  mutants weakens one kind of that check in an isolated copy of the product,
+  and a new probe runs the same witnesses on the unmodified copy and on each
+  mutant. Reading the address, uint64, uint48, action kind or reversal kind
+  words truncated to their width, or accepting every action kind word below
+  256, turns every witness of that kind on every profile into an execution
+  that is accepted or that emits a log, makes an external call or changes
+  state. Accepting every reversal kind word below 256 changes no observed
+  outcome, because the reversal pairing rule rejects each such witness first,
+  while reading that word truncated to eight bits is detected. In the
+  unmodified copy the malformed probe also reruns all 305 catalogued recipes on
+  the frozen sources: every recipe outside canonical form fails quietly and
+  every well-formed control is detected. The witnesses are concrete requests on
+  the malformed probe deployments, not the registered certificates; the public
+  verifier runs in the required gate and its saved mode rehashes the receipts.
+
 - Record the reflection scan of the typed command paths in
   reflection-scan-checkpoint-v1.json, with the reviewed dispositions in
   reflection-dispositions-v1.json. The scan reads the stored solc build

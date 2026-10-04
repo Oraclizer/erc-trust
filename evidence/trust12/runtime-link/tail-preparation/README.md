@@ -30,6 +30,8 @@ needs, the prepared inputs, the acceptance criteria and the findings that block 
 | [typed-failure-checkpoint-v1.json](typed-failure-checkpoint-v1.json) | Public record of the typed failure probe, its mutants and the selector loads of a recorded isolated build: every recorded payload with its verdict, every mutant with the cases it unbinds, the loads of every runtime, and the private run records by hash |
 | [reflection-dispositions-v1.json](reflection-dispositions-v1.json) | Reviewed dispositions: the reason and ledger rows of every storage variable that the crosswalk leaves open, the guards that no consumer snippet names, the Hook adapter writers with their own source text and the open items of the crosswalk |
 | [reflection-scan-checkpoint-v1.json](reflection-scan-checkpoint-v1.json) | Public record of the reflection scan: every state write and guard on the typed command paths with its classification, the compiled layout counts, the storage dispositions, and the stored build information and scan report by hash |
+| [malformed-word-guard-mutants-v1.json](malformed-word-guard-mutants-v1.json) | The bounded word guard mutants: the kind of check each one weakens and the outcome the word guard probe must observe |
+| [malformed-word-guard-mutants-checkpoint-v1.json](malformed-word-guard-mutants-checkpoint-v1.json) | Public record of the word guard probe on the unmodified copy and on each mutant, with the private receipts by hash |
 | [assurance-input-seal-schema-v1.json](assurance-input-seal-schema-v1.json) | Format of the frozen Assurance inputs |
 | [assurance-input-seal-spec-v1.json](assurance-input-seal-spec-v1.json) | Bundles, toolchain pins, reproduction commands and independent checks of the seal |
 | [assurance-checklist-v1.md](assurance-checklist-v1.md) | Procedure of the independent assessor |
@@ -53,6 +55,8 @@ All tools are in `scripts/trust12/tail-preparation`. They never run a prover and
 | `certificate_registry_v2.py` | Builds and verifies registry version 2 from an evidence-side locator file: the executed code and runtime set read from each recorded world, the kind of each record that consumed the world, and the acceptance verdict, recorded or recomputed from a stored proof graph |
 | `malformed_call_trace.py` | Reads the call frames of each registered request outside canonical form from its stored proof graph and checks them against the call list the kernel stages supply |
 | `reflection_scan.py` | Lists every state write and guard on the typed command paths from the solc build information of the exact tree, compares the compiled layouts with the crosswalk and checks every disposition against the build |
+| `word_guard_mutation.py` | Rewrites an isolated copy of the sources so that one kind of bounded word is read without its decoder check |
+| `run_word_guard_probe.py` | Runs the word guard probe and the malformed probe on an isolated copy, unmodified or with one declared mutant, and records the witnesses |
 | `kore_accounts.py` | Reads the accounts and the executing frame identifier of a KEVM configuration in KORE text form and fails closed on anything it does not recognise |
 | `assurance_seal.py` | Seals and verifies the frozen inputs of the independent Assurance |
 | `run_malformed_probe.py` | Runs the concrete malformed probe of the three endpoints in an isolated build directory |

@@ -279,8 +279,8 @@ reversal), while the unmodified product fails the same probe requests quietly,
 as out-of-spec-probes-v1.json records. The Hook factory pins the adapter
 creation code and refuses a mutated adapter, so the isolated copy also pins the
 mutated adapter there; the published factory and its pin are unchanged. The
-probe does not cover the bounded word guards and is not a proof over all
-accepted executions.
+probe does not cover the bounded word checks, which the bounded word guard
+record measures, and is not a proof over all accepted executions.
 
 ## Call frames of the registered requests outside canonical form (2026-10-05)
 
@@ -323,3 +323,36 @@ those checks. The record does not address the preservation of abstract
 allowed behavior by the final code, and the formal reader of storage into
 abstract fields is still missing. The saved mode reruns the scan on the stored
 build information; the compiler is not rerun (A-COMPILER).
+
+## Bounded word guard mutants (2026-10-05)
+
+The product sources hold no statement that checks a bounded word: the compiler
+checks every read of an address, uint64, uint48 or enum field of a request
+struct in calldata, including the copy of the action request to memory, and a
+value that does not fit ends the call with empty revert data. The record
+malformed-word-guard-mutants-checkpoint-v1.json weakens one kind of that check
+per mutant in an isolated copy of the product: three width mutants read the
+words of one width truncated instead of rejecting dirty high bits, two kind
+width mutants read the action or the reversal kind word truncated to eight
+bits and keep the checked conversion to the kind, and two kind bound mutants
+declare 256 members for the action or the reversal kind. A word guard probe
+runs the same witnesses on the unmodified copy and on each mutant: for each
+bounded word and entrypoint a witness made from an accepted base request by
+adding the bit just above the declared width (eight bits for a kind word), and
+for each kind word a second witness that writes the first kind outside the
+declared range. In the unmodified copy every witness fails quietly, and the
+malformed probe reruns all 305 catalogued recipes on the frozen sources with
+every recipe outside canonical form failing quietly and every well-formed
+control detected. Each width
+mutant, each kind width mutant and the action kind bound mutant turn every
+witness of their kind into an execution that is accepted or that emits a log,
+makes an external call or changes state, while the witnesses of other kinds
+still fail quietly. The reversal kind bound mutant changes no observed
+outcome: the reversal pairing rule rejects every such witness with its typed
+failure before any external call, so the range part of that check is not the
+only check that rejects an out-of-range reversal kind; its width part is
+detected by the reversal kind width mutant. The catalogued dirty word recipes,
+whose values have zero low bits, are listed per mutant; a later kernel rule
+rejects most of them once the word is truncated. The witnesses are not the
+registered certificates, and the record is not a proof over all accepted
+executions.
