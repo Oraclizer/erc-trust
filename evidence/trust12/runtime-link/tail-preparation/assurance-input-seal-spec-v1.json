@@ -170,6 +170,14 @@
       "coldReplay": false
     },
     {
+      "id": "typed-failure-binding-recompute",
+      "purpose": "Rehash the private typed failure probe, mutant, frozen build and load scan records and the seven compiled artifacts, recompute every probe and mutant receipt from its forge report and the load scan from the compiled artifacts, and compare them with the stored records and the public record. Neither Foundry nor the compiler is rerun.",
+      "workingRoot": "PRODUCT",
+      "command": "python3 scripts/trust12/verify_typed_failure_binding_v1.py --product-root PRODUCT_CHECKOUT --artifact-index TYPED_FAILURE_ARTIFACT_INDEX",
+      "passCriterion": "Status PASS_TYPED_FAILURE_RECORDS_RECOMPUTED.",
+      "coldReplay": false
+    },
+    {
       "id": "proof-sessions-cold",
       "purpose": "Replay the product proof sessions without saved heaps or databases, after installing the pinned Isabelle archive, AFP entry and formal foundation as the proof workflow does.",
       "workingRoot": "PRODUCT",

@@ -26,6 +26,8 @@ needs, the prepared inputs, the acceptance criteria and the findings that block 
 | [certificate-registry-checkpoint-v1.json](certificate-registry-checkpoint-v1.json) | Public record of the registry built from the private evidence: coverage, executed code, retained assumptions and the private registry and locator file by hash |
 | [route-dispositions-v1.json](route-dispositions-v1.json) | One disposition record for every state-changing route outside the typed commands: callers, writes, reason, and the ledger rows, decision sentences, source lines and tests that cover it |
 | [route-inventory-checkpoint-v1.json](route-inventory-checkpoint-v1.json) | Public record of the route inventory built in closure mode: every selector with its class and disposition, the evidence of every disposition, the recorded test results and probe rows, and the private run records by hash |
+| [typed-failure-probe-mutants-v1.json](typed-failure-probe-mutants-v1.json) | Revert sites whose changed argument layout or selector must turn the named typed failure probe cases from bound into not bound |
+| [typed-failure-checkpoint-v1.json](typed-failure-checkpoint-v1.json) | Public record of the typed failure probe, its mutants and the selector loads of a recorded isolated build: every recorded payload with its verdict, every mutant with the cases it unbinds, the loads of every runtime, and the private run records by hash |
 | [assurance-input-seal-schema-v1.json](assurance-input-seal-schema-v1.json) | Format of the frozen Assurance inputs |
 | [assurance-input-seal-spec-v1.json](assurance-input-seal-spec-v1.json) | Bundles, toolchain pins, reproduction commands and independent checks of the seal |
 | [assurance-checklist-v1.md](assurance-checklist-v1.md) | Procedure of the independent assessor |
@@ -52,6 +54,9 @@ All tools are in `scripts/trust12/tail-preparation`. They never run a prover and
 | `run_malformed_probe.py` | Runs the concrete malformed probe of the three endpoints in an isolated build directory |
 | `route_inventory_v2.py` | Classifies every selector with the formal route tables and the Hook class table of decision 14, checks every disposition record against the tree and its recorded test runs, and closes only when every acceptance criterion of route exhaustiveness holds |
 | `run_route_disposition_tests.py` | Runs the route disposition tests under `route-dispositions` in an isolated build directory and records the result |
+| `typed_failure_report.py` | The fixed ABI reading of a typed failure report and its binding to the command and the sender, with the selector constants and reason codes read from the formal runtime bridge |
+| `run_typed_failure_probe.py` | Runs the typed failure probe under `typed-failure-probe`, or one declared mutant of it, in an isolated build directory and judges every case with the fixed reading |
+| `code_identity_v2.py` | Recomputes the typed failure selector loads from the compiled artifacts of a recorded isolated build and binds them to the runtime templates and the bound compiler inputs |
 
 ## Reproduction
 
@@ -107,6 +112,23 @@ and rebuilds the inventory from the private receipts:
 python3 scripts/trust12/verify_route_inventory_v1.py --metadata-only
 python3 scripts/test-route-inventory.py
 python3 scripts/trust12/verify_route_inventory_v1.py --artifact-index ARTIFACT_INDEX
+```
+
+The typed failure probe and each of its mutants run in an isolated build directory; the selector loads are scanned
+from the compiled artifacts of a build of the frozen sources in an isolated copy:
+
+```
+python3 scripts/trust12/tail-preparation/run_typed_failure_probe.py --product . --trex-artifacts out/trust12/trex/out --workdir WORKDIR --output PROBE_DIRECTORY [--mutant MUTANT_ID]
+python3 scripts/trust12/tail-preparation/code_identity_v2.py --artifacts BUILD_OUT --build-record BUILD_RECORD --mode closure --output SCAN_FILE
+```
+
+The public record of the typed failure binding is checked by re-reading every recorded payload with the current reading;
+with the private index of the run records and the compiled artifacts, the verifier recomputes every receipt and the scan:
+
+```
+python3 scripts/trust12/verify_typed_failure_binding_v1.py --metadata-only
+python3 scripts/test-typed-failure-binding.py
+python3 scripts/trust12/verify_typed_failure_binding_v1.py --artifact-index ARTIFACT_INDEX
 ```
 
 ## Findings of the preparation

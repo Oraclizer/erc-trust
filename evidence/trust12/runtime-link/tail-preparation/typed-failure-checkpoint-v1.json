@@ -1,0 +1,2209 @@
+{
+  "schema": "trust12-typed-failure-binding-checkpoint-v1",
+  "status": "PASS_TYPED_FAILURE_LAYOUT_AND_LOADS",
+  "scope": "The typed failure probe deployed each of the three profile endpoints once, the Native endpoint on the shared Native test fixture, the Partial endpoint as the sealed clean-room deployment and the Hook endpoint through the pinned factory against the pinned upstream token, and each emitted endpoint runtime has the code identity of its profile template. On each endpoint it drove all six typed failures through an action and a reversal entrypoint, on the kernel entrypoints of the three endpoints and also on the two exact-use route entrypoints of the Native endpoint: 52 typed failure cases and 8 accepted controls. Every typed failure case reverted with the expected selector and a payload of the exact length that the fixed ABI reading of the runtime-link gate accepts for that selector, and its report binds to the request and the sender as the gate defines. A build of the frozen sources in an isolated copy produced every profile runtime equal to its template, and each endpoint runtime loads each of the six typed failure selectors at least once.",
+  "layoutBoundary": "The gate binds the command identifier and a registered reason for the invalid-command, rejection and operational-failure selectors, the sender and the authority reference for the unauthorized selector, and the case of a forward command for the terminal selector; the replay selector and the terminal selector of a reversal bind by selector and length only, and the third word of an operational failure is not bound. For every bound case the reading rejects the payload with one byte more or one byte less, and where the gate binds a word or a reason, a changed word or an unregistered reason makes the binding fail. The probe executes at least one revert site of every typed failure on every entrypoint pair of every endpoint, not every revert site; every typed failure has only static parameters, so the compiler encodes the same length at every site of the same error (A-COMPILER).",
+  "negativeBoundary": "Four declared mutants each change one revert site in an isolated copy: a dropped authority word and a dropped case word of the Hook endpoint, a dropped command identifier of the Partial endpoint, and the rejection selector in place of the operational failure of the Native endpoint. In each mutant run every named case stops binding. A mutated Hook copy also pins its own adapter creation code in its factory. The mutated copies have other runtimes and are never runs of the frozen build.",
+  "loadBoundary": "A load means that the runtime puts the four selector bytes on the stack in one of three compiled forms; it shows that the runtime can produce the selector, not on which path. Each scanned runtime equals its template, its immutable ranges and method identifiers equal the bound bridge artifact, its compiler settings equal the bound standard JSON input and every source it names has the bound content; no typed failure selector is a function selector, and the recorded loads of the code identity equal the recomputed ones offset by offset.",
+  "reproductionBoundary": "Metadata mode reads tracked files only: it re-reads every recorded payload with the current reading and binding, requires every verdict, count and mutant record of this record to follow, and compares the load record with the code identity and the bound inputs. Saved mode rehashes the private probe, mutant, build and scan records and the seven compiled artifacts, recomputes every probe and mutant receipt from its forge report and the scan from the compiled artifacts, and requires them to equal the stored ones byte for byte. Neither mode reruns Foundry or the compiler. The record states no completion of the registered-scope central closure, any general runtime link, the independent Assurance or TRUST 1.2.",
+  "coverage": {
+    "cases": {
+      "Native": 30,
+      "Partial": 15,
+      "Hook": 15
+    },
+    "typedFailureCases": 52,
+    "boundCases": 52,
+    "acceptedControls": 8,
+    "sensitivityControlsDetected": 172,
+    "endpointsMatchingTemplates": 3,
+    "mutantsDetected": 4,
+    "runtimesScanned": 7,
+    "endpointLoads": {
+      "Native": {
+        "TrustOperationalFailure": 4,
+        "TrustReplay": 5,
+        "TrustRejected": 3,
+        "TrustUnauthorized": 3,
+        "TrustTerminal": 1,
+        "TrustInvalidCommand": 29
+      },
+      "Partial": {
+        "TrustOperationalFailure": 22,
+        "TrustReplay": 2,
+        "TrustRejected": 2,
+        "TrustUnauthorized": 2,
+        "TrustTerminal": 2,
+        "TrustInvalidCommand": 25
+      },
+      "Hook": {
+        "TrustOperationalFailure": 22,
+        "TrustReplay": 2,
+        "TrustRejected": 2,
+        "TrustUnauthorized": 3,
+        "TrustTerminal": 2,
+        "TrustInvalidCommand": 25
+      }
+    }
+  },
+  "probe": {
+    "status": "PROBE_RECORDED_ALL_BOUND",
+    "forgeVersion": "forge Version: 1.7.1",
+    "suites": {
+      "HookTypedFailureProbe.testHookTypedFailureProbe()": "Success",
+      "NativeTypedFailureProbe.testNativeTypedFailureProbe()": "Success",
+      "PartialTypedFailureProbe.testPartialTypedFailureProbe()": "Success"
+    },
+    "codeIdentity": {
+      "Native": {
+        "endpoint": "TrustToken",
+        "matches": true,
+        "codeBytes": 20043
+      },
+      "Partial": {
+        "endpoint": "ERC3643TrustAdapter",
+        "matches": true,
+        "codeBytes": 19480
+      },
+      "Hook": {
+        "endpoint": "ERC3643HookAdapter",
+        "matches": true,
+        "codeBytes": 19824
+      }
+    },
+    "rows": [
+      {
+        "index": 101,
+        "profile": "Hook",
+        "entrypoint": 1,
+        "expected": "TrustInvalidCommand",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x65ac65c6f708504a56a6addb5a02ad3499014e26b0e498f77962f28b1442532b",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0x5b2f6f60eb87664f822124a8a7b5d9c1b3ec186c2ac14f93fb2340fe39ba21b4",
+        "ok": false,
+        "returnData": "0xed623c1365ac65c6f708504a56a6addb5a02ad3499014e26b0e498f77962f28b1442532b0000000000000000000000000000000000000000000000000000000000000003",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": 3,
+        "returnBytes": 68,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "unregisteredReason": true
+        }
+      },
+      {
+        "index": 102,
+        "profile": "Hook",
+        "entrypoint": 2,
+        "expected": "TrustInvalidCommand",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x53db448d09f518ca2fc13f91b489bdd1d18d4612599d8d169461624eb8e5932d",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": false,
+        "returnData": "0xed623c1353db448d09f518ca2fc13f91b489bdd1d18d4612599d8d169461624eb8e5932d000000000000000000000000000000000000000000000000000000000000000b",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": 11,
+        "returnBytes": 68,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "unregisteredReason": true
+        }
+      },
+      {
+        "index": 103,
+        "profile": "Hook",
+        "entrypoint": 1,
+        "expected": null,
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x4f7d8f91d7b3a2f0318da5d80290229791a5345cdf0e8ad4fe6a2cae39749e22",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0xf6e22ddba029c85f90c317edac3023f56ca21cd942a69f1115f2882dffcd9131",
+        "ok": true,
+        "returnData": "0x56fd096d8da6c85e793f124c4609bbcc05b60f2ebf64241db6ac40e3e2a716f2",
+        "verdict": "CONTROL_ACCEPTED"
+      },
+      {
+        "index": 104,
+        "profile": "Hook",
+        "entrypoint": 1,
+        "expected": "TrustRejected",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x841ede76135193f0389973f2a18e06cf4b1975e0f44b9d126440e8258b3498a7",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0x298eb1dca760f2229cf46ad45eceaa3aada6a361bfbf69e6a21019b7b75fa94f",
+        "ok": false,
+        "returnData": "0x8cf60b6f841ede76135193f0389973f2a18e06cf4b1975e0f44b9d126440e8258b3498a70000000000000000000000000000000000000000000000000000000000000065",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": 101,
+        "returnBytes": 68,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "unregisteredReason": true
+        }
+      },
+      {
+        "index": 105,
+        "profile": "Hook",
+        "entrypoint": 1,
+        "expected": "TrustOperationalFailure",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x33efbf3d8cc8832bbb296e2d083edfa56751d7abdac44b711874f1c1ba029b59",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0x15c9dfb806c87bd07335aa5eb96f0356f86b612fb404555a1d228afffaf64ed2",
+        "ok": false,
+        "returnData": "0x386ecc5833efbf3d8cc8832bbb296e2d083edfa56751d7abdac44b711874f1c1ba029b590000000000000000000000000000000000000000000000000000000000000192000000000000000000000000f110414b89c2c859e21c71f47fb1983883fd41f0",
+        "verdict": "BOUND",
+        "outcome": "operational",
+        "reason": 402,
+        "returnBytes": 100,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "unregisteredReason": true
+        }
+      },
+      {
+        "index": 106,
+        "profile": "Hook",
+        "entrypoint": 2,
+        "expected": null,
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0xd48dd856e742d0808f8acec102baca2d67580c32a56cb286ffb96c0cf500d2c9",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": true,
+        "returnData": "0xbb087b4a2c4b0725dea0fac20e44bf3d2c721a2de88510c328a1867f980e5b9c",
+        "verdict": "CONTROL_ACCEPTED"
+      },
+      {
+        "index": 107,
+        "profile": "Hook",
+        "entrypoint": 2,
+        "expected": "TrustRejected",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0xf2ed40ef6686410af43cfae63c909b65aa44c30ac52dcae82be96e5b7dd1e0ac",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": false,
+        "returnData": "0x8cf60b6ff2ed40ef6686410af43cfae63c909b65aa44c30ac52dcae82be96e5b7dd1e0ac0000000000000000000000000000000000000000000000000000000000000065",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": 101,
+        "returnBytes": 68,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "unregisteredReason": true
+        }
+      },
+      {
+        "index": 108,
+        "profile": "Hook",
+        "entrypoint": 2,
+        "expected": "TrustOperationalFailure",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x19c4f76b815abf9f18f2d73edbfb23a213e9a6565a1feb01ac2891157adfef23",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": false,
+        "returnData": "0x386ecc5819c4f76b815abf9f18f2d73edbfb23a213e9a6565a1feb01ac2891157adfef230000000000000000000000000000000000000000000000000000000000000192000000000000000000000000f110414b89c2c859e21c71f47fb1983883fd41f0",
+        "verdict": "BOUND",
+        "outcome": "operational",
+        "reason": 402,
+        "returnBytes": 100,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "unregisteredReason": true
+        }
+      },
+      {
+        "index": 109,
+        "profile": "Hook",
+        "entrypoint": 1,
+        "expected": "TrustUnauthorized",
+        "sender": "0x0000000000000000000000000000000000005157",
+        "commandId": "0x6c417394eec73c8c9689fc532c1499f106073304aa0e3d8bb63d083683fd2afd",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0xfd6805a1d15f559b34550d41632fe64b695e7556976a601043c335cc415a8a40",
+        "ok": false,
+        "returnData": "0x996b613400000000000000000000000000000000000000000000000000000000000051578d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 68,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "word1": true
+        }
+      },
+      {
+        "index": 110,
+        "profile": "Hook",
+        "entrypoint": 2,
+        "expected": "TrustUnauthorized",
+        "sender": "0x0000000000000000000000000000000000005157",
+        "commandId": "0x0417bdf34292677478f636a7f7ce78a8fc2a7f64672d489278172c17bd0c2c6f",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": false,
+        "returnData": "0x996b613400000000000000000000000000000000000000000000000000000000000051578d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 68,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "word1": true
+        }
+      },
+      {
+        "index": 111,
+        "profile": "Hook",
+        "entrypoint": 1,
+        "expected": "TrustReplay",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x2d3941f6a40d2ba89512de089e5ccaec16bfd9807b9ae4197fc587e06922d4aa",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0x2106f30d6c5f9b5ade497e125e92853f3b13234df781d2629fc8325534ed724f",
+        "ok": false,
+        "returnData": "0x72841b292d3941f6a40d2ba89512de089e5ccaec16bfd9807b9ae4197fc587e06922d4aa",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 36,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true
+        }
+      },
+      {
+        "index": 112,
+        "profile": "Hook",
+        "entrypoint": 1,
+        "expected": "TrustReplay",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x8c16762fc17f18398b57413bdbb82a32beee0a924492dbceb36f6a4913e5e7d1",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0x52b04888b3c1330943fdf9ce25fe81ef869e9cfa6b86a5f639cffd48555a4dff",
+        "ok": false,
+        "returnData": "0x72841b29753c899cc4a6c1e46e8009859d658c6b0a8605cbcdc26c54eb7bc06878e312fe",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 36,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true
+        }
+      },
+      {
+        "index": 113,
+        "profile": "Hook",
+        "entrypoint": 2,
+        "expected": "TrustReplay",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0xbcf9fcbb968c4855ffa153e754ef751d38ac0ec32883a6ca264a522ab1439725",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": false,
+        "returnData": "0x72841b29bcf9fcbb968c4855ffa153e754ef751d38ac0ec32883a6ca264a522ab1439725",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 36,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true
+        }
+      },
+      {
+        "index": 114,
+        "profile": "Hook",
+        "entrypoint": 1,
+        "expected": "TrustTerminal",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0xc78bdbe8f6f9d7269b873d20a4e450da318db748a3094179b69f8bf183bce700",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0x4c246bfc040656fcba0b66f8ac8c71eba173fe9baf51d23c7dfc664a229dac2b",
+        "ok": false,
+        "returnData": "0xa6e257c34c246bfc040656fcba0b66f8ac8c71eba173fe9baf51d23c7dfc664a229dac2b",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 36,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true
+        }
+      },
+      {
+        "index": 115,
+        "profile": "Hook",
+        "entrypoint": 2,
+        "expected": "TrustTerminal",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x17cb41c9e4898baca38032a8467209d8311909d0add1855bab3df2f6b5bd0d89",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": false,
+        "returnData": "0xa6e257c34c246bfc040656fcba0b66f8ac8c71eba173fe9baf51d23c7dfc664a229dac2b",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 36,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true
+        }
+      },
+      {
+        "index": 101,
+        "profile": "Native",
+        "entrypoint": 1,
+        "expected": "TrustInvalidCommand",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x02ae757712124b83bc4e20819798d070c62a1ace1ed12af9e7767d6020fbc73c",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0x5b2f6f60eb87664f822124a8a7b5d9c1b3ec186c2ac14f93fb2340fe39ba21b4",
+        "ok": false,
+        "returnData": "0xed623c1302ae757712124b83bc4e20819798d070c62a1ace1ed12af9e7767d6020fbc73c0000000000000000000000000000000000000000000000000000000000000003",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": 3,
+        "returnBytes": 68,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "unregisteredReason": true
+        }
+      },
+      {
+        "index": 102,
+        "profile": "Native",
+        "entrypoint": 2,
+        "expected": "TrustInvalidCommand",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x5e221dd9e40bba4d441d67872ba8e4cf5341e46dbae76f43d9c9cfd76a4b95a0",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": false,
+        "returnData": "0xed623c135e221dd9e40bba4d441d67872ba8e4cf5341e46dbae76f43d9c9cfd76a4b95a0000000000000000000000000000000000000000000000000000000000000000b",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": 11,
+        "returnBytes": 68,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "unregisteredReason": true
+        }
+      },
+      {
+        "index": 103,
+        "profile": "Native",
+        "entrypoint": 1,
+        "expected": null,
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x90785016f58973079d2f2e7566c2e53388ed70fffae23832cb657c2b520b7abb",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0xf6e22ddba029c85f90c317edac3023f56ca21cd942a69f1115f2882dffcd9131",
+        "ok": true,
+        "returnData": "0x78a647c3b4d6763084ddb2a8ae1376a977ceb255cfc8d7f0a567305bece63f0c",
+        "verdict": "CONTROL_ACCEPTED"
+      },
+      {
+        "index": 104,
+        "profile": "Native",
+        "entrypoint": 1,
+        "expected": "TrustRejected",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0xd4840a4e0703d9b192b733aba1f3b3b630266a92687ed47bb6b1bcdde6c56189",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0x298eb1dca760f2229cf46ad45eceaa3aada6a361bfbf69e6a21019b7b75fa94f",
+        "ok": false,
+        "returnData": "0x8cf60b6fd4840a4e0703d9b192b733aba1f3b3b630266a92687ed47bb6b1bcdde6c561890000000000000000000000000000000000000000000000000000000000000064",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": 100,
+        "returnBytes": 68,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "unregisteredReason": true
+        }
+      },
+      {
+        "index": 105,
+        "profile": "Native",
+        "entrypoint": 1,
+        "expected": "TrustOperationalFailure",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0xc95f5500dcb366499f90452046bac0f7ccb2c1899c5823f1d3d9bea379bd44a2",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0x15c9dfb806c87bd07335aa5eb96f0356f86b612fb404555a1d228afffaf64ed2",
+        "ok": false,
+        "returnData": "0x386ecc58c95f5500dcb366499f90452046bac0f7ccb2c1899c5823f1d3d9bea379bd44a200000000000000000000000000000000000000000000000000000000000000c9d220b3d8a507a6001ddd6d6ecce88e10d85e34f31475b1f0682d0f15dba9b5f7",
+        "verdict": "BOUND",
+        "outcome": "operational",
+        "reason": 201,
+        "returnBytes": 100,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "unregisteredReason": true
+        }
+      },
+      {
+        "index": 106,
+        "profile": "Native",
+        "entrypoint": 2,
+        "expected": null,
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x7a8a54836041e151a3b20fe477544f733be63465fe8cf2b84fede445e75fd2ea",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": true,
+        "returnData": "0x147edf12530c7ab173ce1f605404cc5a472979742c316c5c489e22cf8ec01547",
+        "verdict": "CONTROL_ACCEPTED"
+      },
+      {
+        "index": 107,
+        "profile": "Native",
+        "entrypoint": 2,
+        "expected": "TrustRejected",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x00c81a1fc4337be59a133b153ca14687e8db71b279d31011e2b00f948e0a4721",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": false,
+        "returnData": "0x8cf60b6f00c81a1fc4337be59a133b153ca14687e8db71b279d31011e2b00f948e0a47210000000000000000000000000000000000000000000000000000000000000064",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": 100,
+        "returnBytes": 68,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "unregisteredReason": true
+        }
+      },
+      {
+        "index": 108,
+        "profile": "Native",
+        "entrypoint": 2,
+        "expected": "TrustOperationalFailure",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x43f8cebe0ca1699ac29ecf994eacb9fc4a1a08fcf8aeb434275f208f708d2641",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": false,
+        "returnData": "0x386ecc5843f8cebe0ca1699ac29ecf994eacb9fc4a1a08fcf8aeb434275f208f708d264100000000000000000000000000000000000000000000000000000000000000c9d220b3d8a507a6001ddd6d6ecce88e10d85e34f31475b1f0682d0f15dba9b5f7",
+        "verdict": "BOUND",
+        "outcome": "operational",
+        "reason": 201,
+        "returnBytes": 100,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "unregisteredReason": true
+        }
+      },
+      {
+        "index": 109,
+        "profile": "Native",
+        "entrypoint": 1,
+        "expected": "TrustUnauthorized",
+        "sender": "0x0000000000000000000000000000000000005157",
+        "commandId": "0x3c03dffa5c4f118cc6ecd0b2dac89a1a872c10a8ee20309d8c783837a00abe5d",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0xfd6805a1d15f559b34550d41632fe64b695e7556976a601043c335cc415a8a40",
+        "ok": false,
+        "returnData": "0x996b61340000000000000000000000000000000000000000000000000000000000005157843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 68,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "word1": true
+        }
+      },
+      {
+        "index": 110,
+        "profile": "Native",
+        "entrypoint": 2,
+        "expected": "TrustUnauthorized",
+        "sender": "0x0000000000000000000000000000000000005157",
+        "commandId": "0xa2fb95cac1b56ddae9f4903e685616b1cbcd50784851f7ed47311a83efd550c4",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": false,
+        "returnData": "0x996b61340000000000000000000000000000000000000000000000000000000000005157843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 68,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "word1": true
+        }
+      },
+      {
+        "index": 111,
+        "profile": "Native",
+        "entrypoint": 1,
+        "expected": "TrustReplay",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x813a185486a1de823682138c5141d8018d78b3c92c268a7b7842c1bc1a5653f4",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0x2106f30d6c5f9b5ade497e125e92853f3b13234df781d2629fc8325534ed724f",
+        "ok": false,
+        "returnData": "0x72841b29813a185486a1de823682138c5141d8018d78b3c92c268a7b7842c1bc1a5653f4",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 36,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true
+        }
+      },
+      {
+        "index": 112,
+        "profile": "Native",
+        "entrypoint": 1,
+        "expected": "TrustReplay",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x876aed4aa2a8d6552396da586acddae41376e88fff8e8ecf2490400e3f294ea5",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0x52b04888b3c1330943fdf9ce25fe81ef869e9cfa6b86a5f639cffd48555a4dff",
+        "ok": false,
+        "returnData": "0x72841b29d24298d02e91755597dee12cca687a160e67b6409d50d32424d6651172412f18",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 36,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true
+        }
+      },
+      {
+        "index": 113,
+        "profile": "Native",
+        "entrypoint": 2,
+        "expected": "TrustReplay",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x5b0c96a530e6d2dad150fe95e9321aadeed1a36e72acf00d20ab288165c9b721",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": false,
+        "returnData": "0x72841b295b0c96a530e6d2dad150fe95e9321aadeed1a36e72acf00d20ab288165c9b721",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 36,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true
+        }
+      },
+      {
+        "index": 114,
+        "profile": "Native",
+        "entrypoint": 1,
+        "expected": "TrustTerminal",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0xdc54812c91292b93ad8d9161ed4f0581808bbce35e48309e7213d06da0cd0f05",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0x4c246bfc040656fcba0b66f8ac8c71eba173fe9baf51d23c7dfc664a229dac2b",
+        "ok": false,
+        "returnData": "0xa6e257c34c246bfc040656fcba0b66f8ac8c71eba173fe9baf51d23c7dfc664a229dac2b",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 36,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true
+        }
+      },
+      {
+        "index": 115,
+        "profile": "Native",
+        "entrypoint": 2,
+        "expected": "TrustTerminal",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0xcd10804b2147a9c7d2a957d8d3ef6ad82fe4e47a99c4251972824e343d4f8b52",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": false,
+        "returnData": "0xa6e257c34c246bfc040656fcba0b66f8ac8c71eba173fe9baf51d23c7dfc664a229dac2b",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 36,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true
+        }
+      },
+      {
+        "index": 201,
+        "profile": "Native",
+        "entrypoint": 3,
+        "expected": "TrustInvalidCommand",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x02ae757712124b83bc4e20819798d070c62a1ace1ed12af9e7767d6020fbc73c",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0x5b2f6f60eb87664f822124a8a7b5d9c1b3ec186c2ac14f93fb2340fe39ba21b4",
+        "ok": false,
+        "returnData": "0xed623c1302ae757712124b83bc4e20819798d070c62a1ace1ed12af9e7767d6020fbc73c0000000000000000000000000000000000000000000000000000000000000003",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": 3,
+        "returnBytes": 68,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "unregisteredReason": true
+        }
+      },
+      {
+        "index": 202,
+        "profile": "Native",
+        "entrypoint": 4,
+        "expected": "TrustInvalidCommand",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x5e221dd9e40bba4d441d67872ba8e4cf5341e46dbae76f43d9c9cfd76a4b95a0",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": false,
+        "returnData": "0xed623c135e221dd9e40bba4d441d67872ba8e4cf5341e46dbae76f43d9c9cfd76a4b95a0000000000000000000000000000000000000000000000000000000000000000b",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": 11,
+        "returnBytes": 68,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "unregisteredReason": true
+        }
+      },
+      {
+        "index": 203,
+        "profile": "Native",
+        "entrypoint": 3,
+        "expected": null,
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x90785016f58973079d2f2e7566c2e53388ed70fffae23832cb657c2b520b7abb",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0xf6e22ddba029c85f90c317edac3023f56ca21cd942a69f1115f2882dffcd9131",
+        "ok": true,
+        "returnData": "0x78a647c3b4d6763084ddb2a8ae1376a977ceb255cfc8d7f0a567305bece63f0c",
+        "verdict": "CONTROL_ACCEPTED"
+      },
+      {
+        "index": 204,
+        "profile": "Native",
+        "entrypoint": 3,
+        "expected": "TrustRejected",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0xd4840a4e0703d9b192b733aba1f3b3b630266a92687ed47bb6b1bcdde6c56189",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0x298eb1dca760f2229cf46ad45eceaa3aada6a361bfbf69e6a21019b7b75fa94f",
+        "ok": false,
+        "returnData": "0x8cf60b6fd4840a4e0703d9b192b733aba1f3b3b630266a92687ed47bb6b1bcdde6c561890000000000000000000000000000000000000000000000000000000000000064",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": 100,
+        "returnBytes": 68,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "unregisteredReason": true
+        }
+      },
+      {
+        "index": 205,
+        "profile": "Native",
+        "entrypoint": 3,
+        "expected": "TrustOperationalFailure",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0xc95f5500dcb366499f90452046bac0f7ccb2c1899c5823f1d3d9bea379bd44a2",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0x15c9dfb806c87bd07335aa5eb96f0356f86b612fb404555a1d228afffaf64ed2",
+        "ok": false,
+        "returnData": "0x386ecc58c95f5500dcb366499f90452046bac0f7ccb2c1899c5823f1d3d9bea379bd44a200000000000000000000000000000000000000000000000000000000000000c9d220b3d8a507a6001ddd6d6ecce88e10d85e34f31475b1f0682d0f15dba9b5f7",
+        "verdict": "BOUND",
+        "outcome": "operational",
+        "reason": 201,
+        "returnBytes": 100,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "unregisteredReason": true
+        }
+      },
+      {
+        "index": 206,
+        "profile": "Native",
+        "entrypoint": 4,
+        "expected": null,
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x7a8a54836041e151a3b20fe477544f733be63465fe8cf2b84fede445e75fd2ea",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": true,
+        "returnData": "0x147edf12530c7ab173ce1f605404cc5a472979742c316c5c489e22cf8ec01547",
+        "verdict": "CONTROL_ACCEPTED"
+      },
+      {
+        "index": 207,
+        "profile": "Native",
+        "entrypoint": 4,
+        "expected": "TrustRejected",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x00c81a1fc4337be59a133b153ca14687e8db71b279d31011e2b00f948e0a4721",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": false,
+        "returnData": "0x8cf60b6f00c81a1fc4337be59a133b153ca14687e8db71b279d31011e2b00f948e0a47210000000000000000000000000000000000000000000000000000000000000064",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": 100,
+        "returnBytes": 68,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "unregisteredReason": true
+        }
+      },
+      {
+        "index": 208,
+        "profile": "Native",
+        "entrypoint": 4,
+        "expected": "TrustOperationalFailure",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x43f8cebe0ca1699ac29ecf994eacb9fc4a1a08fcf8aeb434275f208f708d2641",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": false,
+        "returnData": "0x386ecc5843f8cebe0ca1699ac29ecf994eacb9fc4a1a08fcf8aeb434275f208f708d264100000000000000000000000000000000000000000000000000000000000000c9d220b3d8a507a6001ddd6d6ecce88e10d85e34f31475b1f0682d0f15dba9b5f7",
+        "verdict": "BOUND",
+        "outcome": "operational",
+        "reason": 201,
+        "returnBytes": 100,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "unregisteredReason": true
+        }
+      },
+      {
+        "index": 209,
+        "profile": "Native",
+        "entrypoint": 3,
+        "expected": "TrustUnauthorized",
+        "sender": "0x0000000000000000000000000000000000005157",
+        "commandId": "0x3c03dffa5c4f118cc6ecd0b2dac89a1a872c10a8ee20309d8c783837a00abe5d",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0xfd6805a1d15f559b34550d41632fe64b695e7556976a601043c335cc415a8a40",
+        "ok": false,
+        "returnData": "0x996b61340000000000000000000000000000000000000000000000000000000000005157843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 68,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "word1": true
+        }
+      },
+      {
+        "index": 210,
+        "profile": "Native",
+        "entrypoint": 4,
+        "expected": "TrustUnauthorized",
+        "sender": "0x0000000000000000000000000000000000005157",
+        "commandId": "0xa2fb95cac1b56ddae9f4903e685616b1cbcd50784851f7ed47311a83efd550c4",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": false,
+        "returnData": "0x996b61340000000000000000000000000000000000000000000000000000000000005157843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 68,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "word1": true
+        }
+      },
+      {
+        "index": 211,
+        "profile": "Native",
+        "entrypoint": 3,
+        "expected": "TrustReplay",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x813a185486a1de823682138c5141d8018d78b3c92c268a7b7842c1bc1a5653f4",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0x2106f30d6c5f9b5ade497e125e92853f3b13234df781d2629fc8325534ed724f",
+        "ok": false,
+        "returnData": "0x72841b29813a185486a1de823682138c5141d8018d78b3c92c268a7b7842c1bc1a5653f4",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 36,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true
+        }
+      },
+      {
+        "index": 212,
+        "profile": "Native",
+        "entrypoint": 3,
+        "expected": "TrustReplay",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x876aed4aa2a8d6552396da586acddae41376e88fff8e8ecf2490400e3f294ea5",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0x52b04888b3c1330943fdf9ce25fe81ef869e9cfa6b86a5f639cffd48555a4dff",
+        "ok": false,
+        "returnData": "0x72841b29d24298d02e91755597dee12cca687a160e67b6409d50d32424d6651172412f18",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 36,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true
+        }
+      },
+      {
+        "index": 213,
+        "profile": "Native",
+        "entrypoint": 4,
+        "expected": "TrustReplay",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x5b0c96a530e6d2dad150fe95e9321aadeed1a36e72acf00d20ab288165c9b721",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": false,
+        "returnData": "0x72841b295b0c96a530e6d2dad150fe95e9321aadeed1a36e72acf00d20ab288165c9b721",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 36,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true
+        }
+      },
+      {
+        "index": 214,
+        "profile": "Native",
+        "entrypoint": 3,
+        "expected": "TrustTerminal",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0xdc54812c91292b93ad8d9161ed4f0581808bbce35e48309e7213d06da0cd0f05",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0x4c246bfc040656fcba0b66f8ac8c71eba173fe9baf51d23c7dfc664a229dac2b",
+        "ok": false,
+        "returnData": "0xa6e257c34c246bfc040656fcba0b66f8ac8c71eba173fe9baf51d23c7dfc664a229dac2b",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 36,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true
+        }
+      },
+      {
+        "index": 215,
+        "profile": "Native",
+        "entrypoint": 4,
+        "expected": "TrustTerminal",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0xcd10804b2147a9c7d2a957d8d3ef6ad82fe4e47a99c4251972824e343d4f8b52",
+        "authorityRef": "0x843b48dccc6ff192f9330133622b0536f7b94feca0cf36e7e46fc50060b6f882",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": false,
+        "returnData": "0xa6e257c34c246bfc040656fcba0b66f8ac8c71eba173fe9baf51d23c7dfc664a229dac2b",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 36,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true
+        }
+      },
+      {
+        "index": 101,
+        "profile": "Partial",
+        "entrypoint": 1,
+        "expected": "TrustInvalidCommand",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x0b2b442016ae0dcdefbd6e1e45707a73913503c9097bfe670f1481a8a1ab13e8",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0x5b2f6f60eb87664f822124a8a7b5d9c1b3ec186c2ac14f93fb2340fe39ba21b4",
+        "ok": false,
+        "returnData": "0xed623c130b2b442016ae0dcdefbd6e1e45707a73913503c9097bfe670f1481a8a1ab13e80000000000000000000000000000000000000000000000000000000000000003",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": 3,
+        "returnBytes": 68,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "unregisteredReason": true
+        }
+      },
+      {
+        "index": 102,
+        "profile": "Partial",
+        "entrypoint": 2,
+        "expected": "TrustInvalidCommand",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0xa3d3e47b5ce7fa49b5343ed1cda4a2e7f0f76f2b92f0dbd8e14d54870d77c437",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": false,
+        "returnData": "0xed623c13a3d3e47b5ce7fa49b5343ed1cda4a2e7f0f76f2b92f0dbd8e14d54870d77c437000000000000000000000000000000000000000000000000000000000000000b",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": 11,
+        "returnBytes": 68,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "unregisteredReason": true
+        }
+      },
+      {
+        "index": 103,
+        "profile": "Partial",
+        "entrypoint": 1,
+        "expected": null,
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x128e5afa3244feddd460cbae0addbd0b0b47e560c028c9b565ea2189879fa8e3",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0xf6e22ddba029c85f90c317edac3023f56ca21cd942a69f1115f2882dffcd9131",
+        "ok": true,
+        "returnData": "0x915a5c59e90e83a4673bbbbfe80465900617da04fa8973ef6800e91875003dfc",
+        "verdict": "CONTROL_ACCEPTED"
+      },
+      {
+        "index": 104,
+        "profile": "Partial",
+        "entrypoint": 1,
+        "expected": "TrustRejected",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0xfcebba97ab2539584683399fde5d3044d10926d2b3a30f8bd2f66c4c63bcc5b6",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0x298eb1dca760f2229cf46ad45eceaa3aada6a361bfbf69e6a21019b7b75fa94f",
+        "ok": false,
+        "returnData": "0x8cf60b6ffcebba97ab2539584683399fde5d3044d10926d2b3a30f8bd2f66c4c63bcc5b60000000000000000000000000000000000000000000000000000000000000065",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": 101,
+        "returnBytes": 68,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "unregisteredReason": true
+        }
+      },
+      {
+        "index": 105,
+        "profile": "Partial",
+        "entrypoint": 1,
+        "expected": "TrustOperationalFailure",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0xfe2cf591ee78722bb39aaad1b023bc9f55386e99fe9cdd79adf4815be7fc5068",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0x15c9dfb806c87bd07335aa5eb96f0356f86b612fb404555a1d228afffaf64ed2",
+        "ok": false,
+        "returnData": "0x386ecc58fe2cf591ee78722bb39aaad1b023bc9f55386e99fe9cdd79adf4815be7fc506800000000000000000000000000000000000000000000000000000000000001920000000000000000000000005615deb798bb3e4dfa0139dfa1b3d433cc23b72f",
+        "verdict": "BOUND",
+        "outcome": "operational",
+        "reason": 402,
+        "returnBytes": 100,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "unregisteredReason": true
+        }
+      },
+      {
+        "index": 106,
+        "profile": "Partial",
+        "entrypoint": 2,
+        "expected": null,
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0xa6d5418345809c4885d591c1e6036ba9191f24473afaccacd5ac59fa355b2de1",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": true,
+        "returnData": "0xb2429d7b12644e05d03dd2cc193a383018d094ea1ba62c8fbc935b7dedd755c3",
+        "verdict": "CONTROL_ACCEPTED"
+      },
+      {
+        "index": 107,
+        "profile": "Partial",
+        "entrypoint": 2,
+        "expected": "TrustRejected",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x5745f6bde90c704363c3d894ebc56d404413ec92df665442b1268c03cdd7d777",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": false,
+        "returnData": "0x8cf60b6f5745f6bde90c704363c3d894ebc56d404413ec92df665442b1268c03cdd7d7770000000000000000000000000000000000000000000000000000000000000065",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": 101,
+        "returnBytes": 68,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "unregisteredReason": true
+        }
+      },
+      {
+        "index": 108,
+        "profile": "Partial",
+        "entrypoint": 2,
+        "expected": "TrustOperationalFailure",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x1dea66bf30ff4ff6445c406d1f6e02ca742590f8aff2a60add9d5abd27dea391",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": false,
+        "returnData": "0x386ecc581dea66bf30ff4ff6445c406d1f6e02ca742590f8aff2a60add9d5abd27dea39100000000000000000000000000000000000000000000000000000000000001920000000000000000000000005615deb798bb3e4dfa0139dfa1b3d433cc23b72f",
+        "verdict": "BOUND",
+        "outcome": "operational",
+        "reason": 402,
+        "returnBytes": 100,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "unregisteredReason": true
+        }
+      },
+      {
+        "index": 109,
+        "profile": "Partial",
+        "entrypoint": 1,
+        "expected": "TrustUnauthorized",
+        "sender": "0x0000000000000000000000000000000000005157",
+        "commandId": "0x03c3b8a0dc9a871589d19af5432010a7952947e6c179d2616f5e9142378aa1c0",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0xfd6805a1d15f559b34550d41632fe64b695e7556976a601043c335cc415a8a40",
+        "ok": false,
+        "returnData": "0x996b613400000000000000000000000000000000000000000000000000000000000051578d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 68,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "word1": true
+        }
+      },
+      {
+        "index": 110,
+        "profile": "Partial",
+        "entrypoint": 2,
+        "expected": "TrustUnauthorized",
+        "sender": "0x0000000000000000000000000000000000005157",
+        "commandId": "0xc8e466e5004bf56c9bdaf069684ea37fb98528fedcb761904f5acbd7f08ba2d4",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": false,
+        "returnData": "0x996b613400000000000000000000000000000000000000000000000000000000000051578d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 68,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true,
+          "word1": true
+        }
+      },
+      {
+        "index": 111,
+        "profile": "Partial",
+        "entrypoint": 1,
+        "expected": "TrustReplay",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0xb2a4f873dbc422d0a5786869f77930df320fb463085843bfb492ace36d3e7021",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0x2106f30d6c5f9b5ade497e125e92853f3b13234df781d2629fc8325534ed724f",
+        "ok": false,
+        "returnData": "0x72841b29b2a4f873dbc422d0a5786869f77930df320fb463085843bfb492ace36d3e7021",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 36,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true
+        }
+      },
+      {
+        "index": 112,
+        "profile": "Partial",
+        "entrypoint": 1,
+        "expected": "TrustReplay",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x9667b6f01dd8e3f061bc8aa7b4df7fa853cec0eb21da4056edd0ca0ae196e0a8",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0x52b04888b3c1330943fdf9ce25fe81ef869e9cfa6b86a5f639cffd48555a4dff",
+        "ok": false,
+        "returnData": "0x72841b29753c899cc4a6c1e46e8009859d658c6b0a8605cbcdc26c54eb7bc06878e312fe",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 36,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true
+        }
+      },
+      {
+        "index": 113,
+        "profile": "Partial",
+        "entrypoint": 2,
+        "expected": "TrustReplay",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x8c2d169494f48b2c1e85c34bd72de6767f9a8017b6f2045750c27acb4983e243",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": false,
+        "returnData": "0x72841b298c2d169494f48b2c1e85c34bd72de6767f9a8017b6f2045750c27acb4983e243",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 36,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true
+        }
+      },
+      {
+        "index": 114,
+        "profile": "Partial",
+        "entrypoint": 1,
+        "expected": "TrustTerminal",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x607dc98e33e1a1410bced47c64942822f914956f0e76c7381709ce3fa0d4df31",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0x4c246bfc040656fcba0b66f8ac8c71eba173fe9baf51d23c7dfc664a229dac2b",
+        "ok": false,
+        "returnData": "0xa6e257c34c246bfc040656fcba0b66f8ac8c71eba173fe9baf51d23c7dfc664a229dac2b",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 36,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true,
+          "word0": true
+        }
+      },
+      {
+        "index": 115,
+        "profile": "Partial",
+        "entrypoint": 2,
+        "expected": "TrustTerminal",
+        "sender": "0x7fa9385be102ac3eac297483dd6233d62b3e1496",
+        "commandId": "0x4669ebad2497bd4d026b6763639d1e706b2346889f0c8f2b1dc3818c836b61be",
+        "authorityRef": "0x8d2c615f1fbfd8cc5dc67ec3785f8b28086298f4e80767d32d323f2192d26e4b",
+        "caseId": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "ok": false,
+        "returnData": "0xa6e257c34c246bfc040656fcba0b66f8ac8c71eba173fe9baf51d23c7dfc664a229dac2b",
+        "verdict": "BOUND",
+        "outcome": "rejected",
+        "reason": null,
+        "returnBytes": 36,
+        "controls": {
+          "extraByte": true,
+          "missingByte": true
+        }
+      }
+    ]
+  },
+  "mutants": [
+    {
+      "id": "HOOK-UNAUTHORIZED-AUTHORITY-WORD",
+      "status": "MUTANT_DETECTED",
+      "cases": {
+        "109": "NOT_BOUND",
+        "110": "NOT_BOUND"
+      },
+      "missingCases": [],
+      "mutation": {
+        "file": "implementation/src/profiles/ERC3643HookAdapter.sol",
+        "occurrences": 1,
+        "beforeSha256": "61056cd3aa34900820cb08592c55803a5add1ab36c493ec36a5e3ee72add9533",
+        "afterSha256": "aee9605d6357bdf249a6732399e1e8953bf5317231f3171a63a7a8965d0d46bd",
+        "repin": {
+          "file": "implementation/src/profiles/ERC3643HookFactory.sol",
+          "beforePin": "0x7e196e99993b30b186c3a1cbeb24e89d926dbd990941fc83b3269a0d39b147b2",
+          "afterPin": "0xe20a34459849104a7359616b71762c570920f4a14e9bd97d9ae7a323b79f7a82",
+          "reason": "pin the mutated adapter creation code in the isolated copy only"
+        }
+      }
+    },
+    {
+      "id": "HOOK-TERMINAL-CASE-WORD",
+      "status": "MUTANT_DETECTED",
+      "cases": {
+        "114": "NOT_BOUND"
+      },
+      "missingCases": [],
+      "mutation": {
+        "file": "implementation/src/profiles/ERC3643HookAdapter.sol",
+        "occurrences": 1,
+        "beforeSha256": "61056cd3aa34900820cb08592c55803a5add1ab36c493ec36a5e3ee72add9533",
+        "afterSha256": "1e1666138a1dfb78a34a8ce1c93b6344ba1fd304fc7b0838b1a4dd160d52bc04",
+        "repin": {
+          "file": "implementation/src/profiles/ERC3643HookFactory.sol",
+          "beforePin": "0x7e196e99993b30b186c3a1cbeb24e89d926dbd990941fc83b3269a0d39b147b2",
+          "afterPin": "0x049cdd745444d03ccc8528b52a902732372d7f2f843bb4f716b0d396614316c0",
+          "reason": "pin the mutated adapter creation code in the isolated copy only"
+        }
+      }
+    },
+    {
+      "id": "PARTIAL-INVALID-COMMAND-ID-WORD",
+      "status": "MUTANT_DETECTED",
+      "cases": {
+        "101": "NOT_BOUND"
+      },
+      "missingCases": [],
+      "mutation": {
+        "file": "implementation/src/profiles/ERC3643TrustAdapter.sol",
+        "occurrences": 1,
+        "beforeSha256": "f2806571c8c39984ee6c50f5e8dd0aa94aac5e273564012afcb4ebb55e43320f",
+        "afterSha256": "d5cd2f67e9823916b8262980b1bf05c21a3d38d47391567e053bafdf263ce13a"
+      }
+    },
+    {
+      "id": "NATIVE-OPERATIONAL-SELECTOR",
+      "status": "MUTANT_DETECTED",
+      "cases": {
+        "105": "OTHER_TYPED_FAILURE",
+        "108": "OTHER_TYPED_FAILURE",
+        "205": "OTHER_TYPED_FAILURE",
+        "208": "OTHER_TYPED_FAILURE"
+      },
+      "missingCases": [],
+      "mutation": {
+        "file": "implementation/src/TrustToken.sol",
+        "occurrences": 1,
+        "beforeSha256": "deeedf231b461035ac4496b36438d6ea28298ed2935b920bf9c01cb31f94ef1b",
+        "afterSha256": "0edca0a00c6e434deba9a99effc69eb80ed63c8bc228ec0d0c7577494317bec2"
+      }
+    }
+  ],
+  "loads": {
+    "forgeVersion": "forge Version: 1.7.1",
+    "build": {
+      "compiler": "0.8.36+commit.8a079791",
+      "settings": {
+        "optimizer": {
+          "enabled": true,
+          "runs": 1
+        },
+        "evmVersion": "cancun",
+        "viaIR": true
+      },
+      "metadata": {
+        "bytecodeHash": "none",
+        "appendCBOR": false
+      }
+    },
+    "runtimes": {
+      "TrustToken": {
+        "runtimeSha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1",
+        "runtimeBytes": 20043,
+        "artifactSha256": "fcc75e0cfcca87c278afe1d65942f95df31132489ab563a58a40d21815562dc7",
+        "loadCounts": {
+          "TrustOperationalFailure": 4,
+          "TrustReplay": 5,
+          "TrustRejected": 3,
+          "TrustUnauthorized": 3,
+          "TrustTerminal": 1,
+          "TrustInvalidCommand": 29
+        },
+        "typedFailureSelectorLoads": {
+          "TrustOperationalFailure": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": [
+              1221,
+              13128,
+              13288,
+              17678
+            ]
+          },
+          "TrustReplay": {
+            "push4": [
+              9500,
+              12796,
+              15766,
+              16601,
+              17021
+            ],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustRejected": {
+            "push4": [
+              13158,
+              13318,
+              17708
+            ],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustUnauthorized": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": [
+              1272,
+              1926,
+              16826
+            ]
+          },
+          "TrustTerminal": {
+            "push4": [
+              9308
+            ],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustInvalidCommand": {
+            "push4": [
+              3965,
+              6037,
+              9161,
+              9285,
+              9327,
+              9351,
+              9417,
+              9519,
+              9602,
+              11632,
+              11669,
+              11741,
+              11765,
+              11968,
+              12227,
+              12258,
+              12441,
+              12480,
+              12504,
+              12600,
+              12646,
+              12713,
+              12815,
+              16878,
+              17203,
+              17309,
+              17407,
+              19016,
+              19880
+            ],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          }
+        },
+        "sourceKeccak256": {
+          "implementation/src/ERC7943RouteTicket.sol": "0x6e0da4df448fac4ddb557c9b9dc30a9521bcc2020f31e84f909c615a6c40d2ba",
+          "implementation/src/TrustDependencyBinding.sol": "0x3fecf5889512d68dddce33a716f475d8d5fa788879ec84111f55314260d26e9a",
+          "implementation/src/TrustErrors.sol": "0x99612275fb9130c1251e9b0f05519082b4ea87a0e7f1517160c353ffc0b65210",
+          "implementation/src/TrustNativeDecision.sol": "0x79319c68f4ec57621abeb45dd061dc8a477a2b3fb7abdac66d1b46a788c00517",
+          "implementation/src/TrustNativeTypes.sol": "0x1029f7c5a82cf15c71bbcf92d49858d9d18841daeb2e52d8014737d456d9efa2",
+          "implementation/src/TrustStorage.sol": "0x1c9b02ded1815c8b3d6baf1b26cf8d335b27e94a914e145482788d92b3029dfc",
+          "implementation/src/TrustToken.sol": "0x1324392476c7739fffe53189c9a43e3a71ab319b0d9825d53f88d3322acc40e6",
+          "implementation/src/generated/IERCTrustKernel.sol": "0x922071a6664b59ca4ecbc3e6dcac0d9408a8f4c2f3780ff1b047e310d1574011",
+          "implementation/src/interfaces/IERC20.sol": "0xbaff1238a2f738715e912131e33f32b867f17a47ece817b324367ba78d4d96f3",
+          "implementation/src/interfaces/IERC7943.sol": "0xed226b147031c0a78b7fb8a87bfa384a332b25ba81650ace0540ef785e6f4e3b"
+        }
+      },
+      "ERC3643TrustAdapter": {
+        "runtimeSha256": "7a2dfa433911dd37e389498129356db30693e8ee8e128f8da63a5d3044a56349",
+        "runtimeBytes": 19480,
+        "artifactSha256": "28ff8616c9c445f90c588bf8b62f684edbe69f66941a817d307139086ef15dd0",
+        "loadCounts": {
+          "TrustOperationalFailure": 22,
+          "TrustReplay": 2,
+          "TrustRejected": 2,
+          "TrustUnauthorized": 2,
+          "TrustTerminal": 2,
+          "TrustInvalidCommand": 25
+        },
+        "typedFailureSelectorLoads": {
+          "TrustOperationalFailure": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": [
+              2956,
+              3140,
+              3274,
+              3531,
+              7453,
+              11218,
+              12392,
+              12546,
+              12627,
+              12680,
+              12713,
+              14256,
+              14307,
+              14338,
+              14595,
+              15699,
+              16624,
+              16804,
+              17748,
+              17819,
+              17862,
+              17960
+            ]
+          },
+          "TrustReplay": {
+            "push4": [
+              8146,
+              9511
+            ],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustRejected": {
+            "push4": [
+              16600,
+              16780
+            ],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustUnauthorized": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": [
+              3781,
+              15829
+            ]
+          },
+          "TrustTerminal": {
+            "push4": [
+              9322,
+              11694
+            ],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustInvalidCommand": {
+            "push4": [
+              8315,
+              8339,
+              8373,
+              8426,
+              8462,
+              8486,
+              8700,
+              8967,
+              8998,
+              9153,
+              9220,
+              9341,
+              9386,
+              9441,
+              9529,
+              9569,
+              11547,
+              11671,
+              11713,
+              15913,
+              16140,
+              16245,
+              16343,
+              18573,
+              19189
+            ],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          }
+        },
+        "sourceKeccak256": {
+          "implementation/src/TrustErrors.sol": "0x99612275fb9130c1251e9b0f05519082b4ea87a0e7f1517160c353ffc0b65210",
+          "implementation/src/generated/IERCTrustKernel.sol": "0x922071a6664b59ca4ecbc3e6dcac0d9408a8f4c2f3780ff1b047e310d1574011",
+          "implementation/src/interfaces/IERC3643External.sol": "0xae16b8339399bcfa54676dee4bf4fbcd6c38d626f00037485d2394b47ffd5bf9",
+          "implementation/src/profiles/ERC3643ProfileTypes.sol": "0x4a62c543818bf31c171251c9e45ac1d1f69862b31747c7cc68567462d430de58",
+          "implementation/src/profiles/ERC3643TrustAdapter.sol": "0x2b669d38e3e9d6c04effe0a41b5acaa8dd822318466bd8f1274ff81e6c67a1a8",
+          "implementation/src/profiles/ProfileGovernor.sol": "0x1284fc8aac5c0e8a2068d007f5d63eb8827a936db4a1d2565f00365c5e36d2fe"
+        }
+      },
+      "ProfileGovernor": {
+        "runtimeSha256": "78c08fbe4be793482e44a8cdf32fcc1af3276277c8cc78f48761fdcbc4bf9399",
+        "runtimeBytes": 2787,
+        "artifactSha256": "0f07135e6eaf9c0acd58495b04591e462136f597572a741220d9e8cc390b8f57",
+        "loadCounts": {
+          "TrustOperationalFailure": 2,
+          "TrustReplay": 0,
+          "TrustRejected": 0,
+          "TrustUnauthorized": 1,
+          "TrustTerminal": 0,
+          "TrustInvalidCommand": 0
+        },
+        "typedFailureSelectorLoads": {
+          "TrustOperationalFailure": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": [
+              885,
+              958
+            ]
+          },
+          "TrustReplay": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustRejected": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustUnauthorized": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": [
+              1048
+            ]
+          },
+          "TrustTerminal": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustInvalidCommand": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          }
+        },
+        "sourceKeccak256": {
+          "implementation/src/TrustErrors.sol": "0x99612275fb9130c1251e9b0f05519082b4ea87a0e7f1517160c353ffc0b65210",
+          "implementation/src/generated/IERCTrustKernel.sol": "0x922071a6664b59ca4ecbc3e6dcac0d9408a8f4c2f3780ff1b047e310d1574011",
+          "implementation/src/interfaces/IERC3643External.sol": "0xae16b8339399bcfa54676dee4bf4fbcd6c38d626f00037485d2394b47ffd5bf9",
+          "implementation/src/profiles/ERC3643ProfileTypes.sol": "0x4a62c543818bf31c171251c9e45ac1d1f69862b31747c7cc68567462d430de58",
+          "implementation/src/profiles/ProfileGovernor.sol": "0x1284fc8aac5c0e8a2068d007f5d63eb8827a936db4a1d2565f00365c5e36d2fe"
+        }
+      },
+      "ERC3643HookAdapter": {
+        "runtimeSha256": "f84c886b203dacd380c29b2aa3afd2ed401e487ed79f95e14b4d24edb24c1b85",
+        "runtimeBytes": 19824,
+        "artifactSha256": "4880a7fcad92bb6ed0745bebfd38c9fa4779990e404e0409d585b402e7f36e95",
+        "loadCounts": {
+          "TrustOperationalFailure": 22,
+          "TrustReplay": 2,
+          "TrustRejected": 2,
+          "TrustUnauthorized": 3,
+          "TrustTerminal": 2,
+          "TrustInvalidCommand": 25
+        },
+        "typedFailureSelectorLoads": {
+          "TrustOperationalFailure": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": [
+              3278,
+              3462,
+              3580,
+              3837,
+              7769,
+              11364,
+              12380,
+              13788,
+              13841,
+              13874,
+              14136,
+              14187,
+              14218,
+              14475,
+              14737,
+              16043,
+              16968,
+              17148,
+              18092,
+              18163,
+              18206,
+              18304
+            ]
+          },
+          "TrustReplay": {
+            "push4": [
+              8462,
+              9827
+            ],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustRejected": {
+            "push4": [
+              16944,
+              17124
+            ],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustUnauthorized": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": [
+              732,
+              4087,
+              16173
+            ]
+          },
+          "TrustTerminal": {
+            "push4": [
+              9638,
+              11840
+            ],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustInvalidCommand": {
+            "push4": [
+              8631,
+              8655,
+              8689,
+              8742,
+              8778,
+              8802,
+              9016,
+              9283,
+              9314,
+              9469,
+              9536,
+              9657,
+              9702,
+              9757,
+              9845,
+              9885,
+              11693,
+              11817,
+              11859,
+              16257,
+              16484,
+              16589,
+              16687,
+              18917,
+              19533
+            ],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          }
+        },
+        "sourceKeccak256": {
+          "implementation/src/TrustErrors.sol": "0x99612275fb9130c1251e9b0f05519082b4ea87a0e7f1517160c353ffc0b65210",
+          "implementation/src/generated/IERCTrustKernel.sol": "0x922071a6664b59ca4ecbc3e6dcac0d9408a8f4c2f3780ff1b047e310d1574011",
+          "implementation/src/interfaces/IERC3643External.sol": "0xae16b8339399bcfa54676dee4bf4fbcd6c38d626f00037485d2394b47ffd5bf9",
+          "implementation/src/profiles/ERC3643HookAdapter.sol": "0x614f10690b71e4c848c3e7ac5b8a24326e4bc64072f56e746f6d7437ce16f730",
+          "implementation/src/profiles/ERC3643HookCompliance.sol": "0xad32a93337857bc4206bedc0cf1ed3e67eeaede45406483335e3c9f27bf68b9d",
+          "implementation/src/profiles/ERC3643HookDeployment.sol": "0xcee9e0b86eb578e09b82f71a2abe2883d9917607da24f9efb46ad6248699954f",
+          "implementation/src/profiles/ERC3643HookGovernor.sol": "0xd2d16c4ba9dd6846afd829ca13d0fc36369e9afb3632aa1b50f39ef9c726dd3d",
+          "implementation/src/profiles/ERC3643ProfileTypes.sol": "0x4a62c543818bf31c171251c9e45ac1d1f69862b31747c7cc68567462d430de58",
+          "implementation/src/profiles/ProfileGovernor.sol": "0x1284fc8aac5c0e8a2068d007f5d63eb8827a936db4a1d2565f00365c5e36d2fe"
+        }
+      },
+      "ERC3643HookGovernor": {
+        "runtimeSha256": "0978059dea47b1286326902332f41079029836cf257691fb13c99bc2b5064012",
+        "runtimeBytes": 3026,
+        "artifactSha256": "630cea5a6a902eaec2c031bd88be2fabff3cc656ad4e4e7e0411e54e207b0a11",
+        "loadCounts": {
+          "TrustOperationalFailure": 0,
+          "TrustReplay": 0,
+          "TrustRejected": 0,
+          "TrustUnauthorized": 1,
+          "TrustTerminal": 0,
+          "TrustInvalidCommand": 0
+        },
+        "typedFailureSelectorLoads": {
+          "TrustOperationalFailure": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustReplay": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustRejected": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustUnauthorized": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": [
+              872
+            ]
+          },
+          "TrustTerminal": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustInvalidCommand": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          }
+        },
+        "sourceKeccak256": {
+          "implementation/src/TrustErrors.sol": "0x99612275fb9130c1251e9b0f05519082b4ea87a0e7f1517160c353ffc0b65210",
+          "implementation/src/generated/IERCTrustKernel.sol": "0x922071a6664b59ca4ecbc3e6dcac0d9408a8f4c2f3780ff1b047e310d1574011",
+          "implementation/src/interfaces/IERC3643External.sol": "0xae16b8339399bcfa54676dee4bf4fbcd6c38d626f00037485d2394b47ffd5bf9",
+          "implementation/src/profiles/ERC3643HookCompliance.sol": "0xad32a93337857bc4206bedc0cf1ed3e67eeaede45406483335e3c9f27bf68b9d",
+          "implementation/src/profiles/ERC3643HookGovernor.sol": "0xd2d16c4ba9dd6846afd829ca13d0fc36369e9afb3632aa1b50f39ef9c726dd3d",
+          "implementation/src/profiles/ERC3643ProfileTypes.sol": "0x4a62c543818bf31c171251c9e45ac1d1f69862b31747c7cc68567462d430de58"
+        }
+      },
+      "ERC3643HookCompliance": {
+        "runtimeSha256": "ebcf0ea744e5e505fb1bd5bd02a9ab0b4c0a112c628ee37cb8916ea7ce3f8881",
+        "runtimeBytes": 2078,
+        "artifactSha256": "9a94c9181b8ff8e5cc10b0a1052fbc5cf9361ac971adc34e198a33fe7a8d37bc",
+        "loadCounts": {
+          "TrustOperationalFailure": 0,
+          "TrustReplay": 0,
+          "TrustRejected": 0,
+          "TrustUnauthorized": 0,
+          "TrustTerminal": 0,
+          "TrustInvalidCommand": 0
+        },
+        "typedFailureSelectorLoads": {
+          "TrustOperationalFailure": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustReplay": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustRejected": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustUnauthorized": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustTerminal": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustInvalidCommand": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          }
+        },
+        "sourceKeccak256": {
+          "implementation/src/profiles/ERC3643HookCompliance.sol": "0xad32a93337857bc4206bedc0cf1ed3e67eeaede45406483335e3c9f27bf68b9d"
+        }
+      },
+      "ERC3643HookFactory": {
+        "runtimeSha256": "9636463d4fba1eebc1690648aad3439b30f53156927161bc93c899df1056d680",
+        "runtimeBytes": 1812,
+        "artifactSha256": "cfb8ed70d587b64057b21ce48c52f15be704a09e724c982ccf73e789f7354f84",
+        "loadCounts": {
+          "TrustOperationalFailure": 0,
+          "TrustReplay": 0,
+          "TrustRejected": 0,
+          "TrustUnauthorized": 0,
+          "TrustTerminal": 0,
+          "TrustInvalidCommand": 0
+        },
+        "typedFailureSelectorLoads": {
+          "TrustOperationalFailure": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustReplay": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustRejected": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustUnauthorized": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustTerminal": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          },
+          "TrustInvalidCommand": {
+            "push4": [],
+            "push32LeftAligned": [],
+            "shiftedPush": []
+          }
+        },
+        "sourceKeccak256": {
+          "implementation/src/generated/IERCTrustKernel.sol": "0x922071a6664b59ca4ecbc3e6dcac0d9408a8f4c2f3780ff1b047e310d1574011",
+          "implementation/src/profiles/ERC3643HookFactory.sol": "0x672a5a0e0cdc930548c077ebff79b2f1e0f67b0ca932e115a827ca394578c646"
+        }
+      }
+    },
+    "endpointLoads": {
+      "Native": {
+        "TrustOperationalFailure": 4,
+        "TrustReplay": 5,
+        "TrustRejected": 3,
+        "TrustUnauthorized": 3,
+        "TrustTerminal": 1,
+        "TrustInvalidCommand": 29
+      },
+      "Partial": {
+        "TrustOperationalFailure": 22,
+        "TrustReplay": 2,
+        "TrustRejected": 2,
+        "TrustUnauthorized": 2,
+        "TrustTerminal": 2,
+        "TrustInvalidCommand": 25
+      },
+      "Hook": {
+        "TrustOperationalFailure": 22,
+        "TrustReplay": 2,
+        "TrustRejected": 2,
+        "TrustUnauthorized": 3,
+        "TrustTerminal": 2,
+        "TrustInvalidCommand": 25
+      }
+    },
+    "criteria": {
+      "every-endpoint-loads-every-typed-failure-selector": "PASS",
+      "no-typed-failure-selector-is-a-function-selector": "PASS",
+      "recorded-loads-equal-the-recomputed-loads": "PASS"
+    }
+  },
+  "productIdentity": {
+    "probeRunner": {
+      "path": "scripts/trust12/tail-preparation/run_typed_failure_probe.py",
+      "bytes": 17823,
+      "sha256": "fcf72946657a9499bd4cb41e366a4cec82ae3e90adad7164777af2c4f52c40fd"
+    },
+    "failureReading": {
+      "path": "scripts/trust12/tail-preparation/typed_failure_report.py",
+      "bytes": 7140,
+      "sha256": "e881aee50dbd7488fe62f2bda8a54da4937348c30c492a32526b385c185d7c0b"
+    },
+    "loadScanner": {
+      "path": "scripts/trust12/tail-preparation/code_identity_v2.py",
+      "bytes": 14098,
+      "sha256": "2e9adf4efa4f402dcdfec1ec6f124934375b06a13e654730654c990ed707f9ed"
+    },
+    "codeIdentityTool": {
+      "path": "scripts/trust12/tail-preparation/code_identity.py",
+      "bytes": 15448,
+      "sha256": "fca66b88dbdb986418a940022f2057dd24303b45070fe204af29a8dec0e8ca57"
+    },
+    "preparationCommon": {
+      "path": "scripts/trust12/tail-preparation/tail_common.py",
+      "bytes": 12799,
+      "sha256": "b9ee4b6809e7a8f306d8157b149fb672e3c2cdd15197df1ebf67f1ece34b473f"
+    },
+    "malformedRunner": {
+      "path": "scripts/trust12/tail-preparation/run_malformed_probe.py",
+      "bytes": 10027,
+      "sha256": "7f02dc93af7105ffc2b97f1d8a4e5ac41b3b534240a43348c8d3290325b5f243"
+    },
+    "mutationHelpers": {
+      "path": "scripts/trust12/tail-preparation/run_malformed_probe_v2.py",
+      "bytes": 9104,
+      "sha256": "7dd62c268d698df798b09f78ac5f25f58b79d0a04a7958e38b78fc4bcf2800a5"
+    },
+    "probeCore": {
+      "path": "scripts/trust12/tail-preparation/typed-failure-probe/TypedFailureProbeCore.sol",
+      "bytes": 15991,
+      "sha256": "a1e9881879597cec041082a051069a54e0524fde7fa58396d02b54b6f62e6d30"
+    },
+    "nativeProbe": {
+      "path": "scripts/trust12/tail-preparation/typed-failure-probe/NativeTypedFailureProbe.t.sol",
+      "bytes": 2498,
+      "sha256": "c1f15fc4c7e96b56acdaa498dc05cb268f07a9132a0b009ce50ac76677381ee3"
+    },
+    "partialProbe": {
+      "path": "scripts/trust12/tail-preparation/typed-failure-probe/PartialTypedFailureProbe.t.sol",
+      "bytes": 3662,
+      "sha256": "2134004e14f8921ab28d0b7a11e66d4cc2c16898a1b9e53a275de882335b4e98"
+    },
+    "hookProbe": {
+      "path": "scripts/trust12/tail-preparation/typed-failure-probe/HookTypedFailureProbe.t.sol",
+      "bytes": 3504,
+      "sha256": "fb2045ed069d233dbda7954ad7bfec6c00b0470510023ed411da56af714badaa"
+    },
+    "mutantList": {
+      "path": "evidence/trust12/runtime-link/tail-preparation/typed-failure-probe-mutants-v1.json",
+      "bytes": 2364,
+      "sha256": "c98f5e30c7b7f40fbf9738919ab482922d0eed956b0c258a9e5b12002845f422"
+    },
+    "codeIdentity": {
+      "path": "evidence/trust12/runtime-link/tail-preparation/code-identity-v1.json",
+      "bytes": 34712,
+      "sha256": "7cfcfe7ba17ef9d8a8d05593e80d58b416902673b903bbc9e593bcfd6c2efc74"
+    },
+    "runtimeIdentity": {
+      "path": "evidence/trust12/runtime-identity.json",
+      "bytes": 6103,
+      "sha256": "7b2251faffe33990edf9326b7a6883d75e9402c36f5a25e4e28cb29075f0a348"
+    },
+    "formalBridge": {
+      "path": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy",
+      "bytes": 16170,
+      "sha256": "0066aca8046e7129d007bfc527e4c7552d17b891406adfdb4720197664eb84fb"
+    },
+    "kernelAbi": {
+      "path": "spec/generated/kernel-v2-abi.json",
+      "bytes": 25944,
+      "sha256": "73b45cee3e8e6a2abd484a306a21d51aaa3fc4da75b976dd3c938d936352814b"
+    },
+    "nativeInput": {
+      "path": "evidence/runtime-binding-v3/native/standard-json-input.json",
+      "bytes": 82140,
+      "sha256": "bd97c97773fdfd609c01898a39b31abf722143427e3980efbabdc7db2d61d547"
+    },
+    "partialInput": {
+      "path": "evidence/runtime-binding-v3/erc3643-partial/standard-json-input.json",
+      "bytes": 83797,
+      "sha256": "624668a7fe6fa1c0d645a18fed712820b09d647e7aa43a0a517b7be964f6f879"
+    },
+    "hookInput": {
+      "path": "evidence/runtime-binding-v3/erc3643-hook/standard-json-input.json",
+      "bytes": 99386,
+      "sha256": "d7e29f9e6863af59c037e42652028569b00c2d097aa2478311f8fd0851ed844e"
+    },
+    "nativeArtifacts": {
+      "path": "evidence/runtime-binding-v3/native/bridge-artifacts.json",
+      "bytes": 93409,
+      "sha256": "e5ad6c4e54e66f2be7928a9ceb7667b1b0dc0de0ed6f4a29458db9685277847b"
+    },
+    "partialArtifacts": {
+      "path": "evidence/runtime-binding-v3/erc3643-partial/bridge-artifacts.json",
+      "bytes": 79050,
+      "sha256": "b25af3abcfdc219ee223526d711aa6f6c0514004da9f131149e29d950725c0d7"
+    },
+    "hookArtifacts": {
+      "path": "evidence/runtime-binding-v3/erc3643-hook/bridge-artifacts.json",
+      "bytes": 89975,
+      "sha256": "99362fa5bdebbb6534aea01fbb43d2fbe95f1642dbec7a3af99b2f395040d01e"
+    }
+  },
+  "artifacts": [
+    {
+      "id": "probe-receipt",
+      "kind": "probe-receipt",
+      "bytes": 52818,
+      "sha256": "e7ebeebd01956f89b05073f3f826e445444f74807925ff36336e7f3f0aa7d889"
+    },
+    {
+      "id": "probe-forge-report",
+      "kind": "forge-report",
+      "bytes": 237108,
+      "sha256": "77e7a589203163d2f99d2a0cc43c7920e10b479858e3eec93f6c20243026078b"
+    },
+    {
+      "id": "mutant-HOOK-UNAUTHORIZED-AUTHORITY-WORD-receipt",
+      "kind": "mutant-receipt",
+      "bytes": 53644,
+      "sha256": "b3d5bfc8a36f65674d5d27c7c87f22391e3246e0ae20fb7898c2aa39e710fdae"
+    },
+    {
+      "id": "mutant-HOOK-TERMINAL-CASE-WORD-receipt",
+      "kind": "mutant-receipt",
+      "bytes": 53639,
+      "sha256": "26118ce70029de3cc373e307754dc9c31cc4ef762f56c82582fe551ea7725ffa"
+    },
+    {
+      "id": "mutant-PARTIAL-INVALID-COMMAND-ID-WORD-receipt",
+      "kind": "mutant-receipt",
+      "bytes": 53297,
+      "sha256": "6bd7376cf9867b4b23b3251a1d676481a57889dbfe1904a4c913344a81710c18"
+    },
+    {
+      "id": "mutant-NATIVE-OPERATIONAL-SELECTOR-receipt",
+      "kind": "mutant-receipt",
+      "bytes": 52508,
+      "sha256": "911b57cc6e120105830a12c46f41a30ea606ed5480ac416e0c4cde1164570819"
+    },
+    {
+      "id": "mutant-HOOK-UNAUTHORIZED-AUTHORITY-WORD-forge-report",
+      "kind": "forge-report",
+      "bytes": 237109,
+      "sha256": "fa6975b3881a27777b3fbf2b57a7009471c05361f9c8897857b63e71c8d11001"
+    },
+    {
+      "id": "mutant-HOOK-TERMINAL-CASE-WORD-forge-report",
+      "kind": "forge-report",
+      "bytes": 237107,
+      "sha256": "8bf419a90b98d0f7e82d77f1b709387849978e146a243c25783ec94888e0263c"
+    },
+    {
+      "id": "mutant-PARTIAL-INVALID-COMMAND-ID-WORD-forge-report",
+      "kind": "forge-report",
+      "bytes": 237173,
+      "sha256": "017fbd2838f6a7ffbb915043bc55a80d3b171bcab11aa9345e086da16e8084dd"
+    },
+    {
+      "id": "mutant-NATIVE-OPERATIONAL-SELECTOR-forge-report",
+      "kind": "forge-report",
+      "bytes": 236787,
+      "sha256": "116e097150ffa81f14aed9cb0c186e944a25f2f50158f9b6c6d295ebf567c4a4"
+    },
+    {
+      "id": "frozen-build-record",
+      "kind": "build-record",
+      "bytes": 1195,
+      "sha256": "de35de8899a4f5789a5f3ec9561a744293d774df163767cbed94cc5e0f49a12a"
+    },
+    {
+      "id": "load-scan",
+      "kind": "load-scan",
+      "bytes": 24002,
+      "sha256": "3f1c46c66b7c0ddbb691bc1e19e033171a274b3765cbac5293129fec774473f6"
+    },
+    {
+      "id": "compiled-TrustToken",
+      "kind": "compiled-artifact",
+      "bytes": 1421285,
+      "sha256": "fcc75e0cfcca87c278afe1d65942f95df31132489ab563a58a40d21815562dc7"
+    },
+    {
+      "id": "compiled-ERC3643TrustAdapter",
+      "kind": "compiled-artifact",
+      "bytes": 1417811,
+      "sha256": "28ff8616c9c445f90c588bf8b62f684edbe69f66941a817d307139086ef15dd0"
+    },
+    {
+      "id": "compiled-ProfileGovernor",
+      "kind": "compiled-artifact",
+      "bytes": 159943,
+      "sha256": "0f07135e6eaf9c0acd58495b04591e462136f597572a741220d9e8cc390b8f57"
+    },
+    {
+      "id": "compiled-ERC3643HookAdapter",
+      "kind": "compiled-artifact",
+      "bytes": 1511905,
+      "sha256": "4880a7fcad92bb6ed0745bebfd38c9fa4779990e404e0409d585b402e7f36e95"
+    },
+    {
+      "id": "compiled-ERC3643HookGovernor",
+      "kind": "compiled-artifact",
+      "bytes": 127614,
+      "sha256": "630cea5a6a902eaec2c031bd88be2fabff3cc656ad4e4e7e0411e54e207b0a11"
+    },
+    {
+      "id": "compiled-ERC3643HookCompliance",
+      "kind": "compiled-artifact",
+      "bytes": 80160,
+      "sha256": "9a94c9181b8ff8e5cc10b0a1052fbc5cf9361ac971adc34e198a33fe7a8d37bc"
+    },
+    {
+      "id": "compiled-ERC3643HookFactory",
+      "kind": "compiled-artifact",
+      "bytes": 65974,
+      "sha256": "cfb8ed70d587b64057b21ce48c52f15be704a09e724c982ccf73e789f7354f84"
+    }
+  ],
+  "rehashVerifier": {
+    "path": "scripts/trust12/verify_typed_failure_binding_v1.py",
+    "bytes": 33905,
+    "sha256": "1e4802999de7937af063e4b057a3197ce5d0fc56354d716373cc52ec5af7eeeb",
+    "command": "python3 scripts/trust12/verify_typed_failure_binding_v1.py --product-root <product-root> --artifact-index <private-artifact-index.json>"
+  },
+  "nonclaims": {
+    "proofOverEveryAcceptedExecution": true,
+    "everyRevertSiteExecuted": true,
+    "unboundWords": true,
+    "foundryRerun": true,
+    "compilerRerun": true,
+    "registeredCentralClosure": true,
+    "generalRuntimeLinks": true,
+    "independentAssurance": true,
+    "fullTrustCompletion": true,
+    "releaseOrDeployment": true
+  }
+}
