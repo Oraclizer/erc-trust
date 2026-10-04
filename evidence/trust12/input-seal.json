@@ -13,23 +13,23 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "dc8f0dd582337c62ea02b30ad1e5eba383c6ff9ab9bfb160d9915b6cc51d7ed8"
+      "sha256": "1642d9b7a8e1b595d2eafab54b1acf620836961a0300e040e2375a28a9dc85e6"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
-      "sha256": "88619fe1024f37811cd5b51d912112fbad2f9e387f0d1367fc1b8eacab532c50"
+      "sha256": "9fe2c07f4e14ab1faeffbe8056157dce5deb7f6e1885c21340502f6478b399bb"
     },
     {
       "path": "docs/PROFILES.md",
-      "sha256": "add303f317f4d9fdb64752b437a092b18ee588fcfa511b6464ae59600378a321"
+      "sha256": "abe6687f0d2e21765bec00c25a97404b5e78781cfb90feaa57a8ab03289953cd"
     },
     {
       "path": "evidence/claim-matrix.md",
-      "sha256": "dfc4c186f07bb466cd10991ce84c4d9ec2a93de29d8bb0826bb658bd6c88d0e1"
+      "sha256": "41f431fb257f7b0f6132f1dde001a4e7c6d53c9cac3c5fd6eb3b569c017fc260"
     },
     {
       "path": "evidence/known-limitations.md",
-      "sha256": "82431f20dbdc4f983d3dea52a7ec6df82462baa2ed7adc655339829a90ac0c36"
+      "sha256": "fca8db10e7ca65932f378394823238f35a062b5a583f93917f79ffda300e3dcc"
     },
     {
       "path": "evidence/trust12/README.md",
@@ -129,7 +129,7 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "12df4b5a0eac13b95753990cc6724dfc01c3271cdf6f4676a019ae58418ce8eb"
+      "sha256": "698f0d2537d7e9ba615713690f25e4bc9e7921bb77b648ed473036752fc4b919"
     },
     {
       "path": "evidence/trust12/profile-implementation-evidence-review.json",
@@ -137,11 +137,11 @@
     },
     {
       "path": "evidence/trust12/release-notes.md",
-      "sha256": "be0e5d9745f1b52972754878ad8a0bf2fa3aa7aba0280b8fafa457ce465c1f56"
+      "sha256": "67f3c093ac6a6be29665ec3965cef154f9212b41ca06f2271632b318e0622800"
     },
     {
       "path": "evidence/trust12/release-policy.json",
-      "sha256": "3a6e301698d6ea72130b21880be4fa9e13fc821bf805a4f1d95dc84256bcc46d"
+      "sha256": "ffda8c2ece66df8d16cc3adced3b7bd910e23abdc77b3ccf7f39cc863b8597d6"
     },
     {
       "path": "evidence/trust12/required-controls.json",
@@ -192,6 +192,10 @@
       "sha256": "d4e892982dcfa29fc9591f697e93ca10186306893ad5841306b12fd3ada9ee2c"
     },
     {
+      "path": "evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json",
+      "sha256": "3e6524fc20a951dab02e916f41980b8281a84338ec94b2dcf14f5a0e8a73a087"
+    },
+    {
       "path": "evidence/trust12/runtime-producer-feasibility.json",
       "sha256": "5e79eeefba7228515868535bbb43150d1d84e724103ed3542f1d81338751939e"
     },
@@ -209,7 +213,7 @@
     },
     {
       "path": "evidence/trust12/veri-integration-audit.md",
-      "sha256": "83d06cb533e3ca3c8c33351bd75dd12ebac45e1f03f8fa0afd072cb83cac4a3e"
+      "sha256": "b0f00854e0581eecc079bc0fafa455ae099df855bb2bfc7869d2a0b0009033fc"
     },
     {
       "path": "evidence/trust12/veri-observation-results.json",
@@ -353,7 +357,7 @@
     },
     {
       "path": "scripts/generate-trust12-input-seal.py",
-      "sha256": "2251e5c17941826cf286799c358785e6797024a73266e5fb6e47ce62848c2a77"
+      "sha256": "48924cdf279de0355afb4fe55ab08533f0932cf582547755348413c7aa66176a"
     },
     {
       "path": "scripts/generate-trust12-proof-audit.py",
@@ -373,7 +377,7 @@
     },
     {
       "path": "scripts/lib/trust12-policy.mjs",
-      "sha256": "1afa2bd51e22d411bc5293969f734b02fbf773264e840cd0b195a5b490d4eef1"
+      "sha256": "68ace60f7852cd4859627648a7fdf6a0905905aefb2c7cd254e3634abbdd9e16"
     },
     {
       "path": "scripts/prepare-native-storage-predicates.py",
@@ -485,7 +489,7 @@
     },
     {
       "path": "scripts/test-trust12-policy.mjs",
-      "sha256": "5e12e61830c5197fc888358bef0ba63981eb5d2ea145fb2579e152cdaef26678"
+      "sha256": "f12183aae484d0cde3520ff3b3e6142fa5fba15e262cba03cac0c9956fa40b35"
     },
     {
       "path": "scripts/test-trust12-required.mjs",
@@ -565,7 +569,7 @@
     },
     {
       "path": "scripts/verify-trust12-required.mjs",
-      "sha256": "70a4e0404fec223cd6104c6e8af297fe3b5df5ca8ee1e5672b1f3ccdc146977e"
+      "sha256": "3f3483a7d848acdd802408ee42a629bcf387d82f6f466f7269abab661e249fc3"
     }
   ],
   "nonclaim": "This seals one local development tranche. It is not a deployment, release, conformance approval, or end-to-end refinement result."

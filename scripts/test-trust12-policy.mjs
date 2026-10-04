@@ -4,7 +4,7 @@ import { mkdirSync, mkdtempSync, readFileSync, writeFileSync, rmSync } from 'nod
 import { dirname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { check, encoded, fileRef, json, sha256 } from './lib/local-evidence.mjs';
-import { components, deferralDisclosure, disclosures, implementationDisclosures, profiles, registeredClosureId, registeredCompletionDisclosure, verifiedCentralCompletion, verifyTrust12Policy, withoutIsabelleComments } from './lib/trust12-policy.mjs';
+import { components, deferralDisclosure, disclosures, implementationDisclosures, profiles, registeredClosureId, registeredCompletionDisclosure, registeredFinalInputs, verifiedCentralCompletion, verifyTrust12Policy, withoutIsabelleComments } from './lib/trust12-policy.mjs';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const out = resolve(root, 'out/trust12');
 mkdirSync(out, { recursive: true });
@@ -23,7 +23,7 @@ function collect(value) {
   if (typeof value.path === 'string' && typeof value.sha256 === 'string') refs.set(value.path, value);
   for (const v of Object.values(value)) collect(v);
 }
-collect(policy); collect(baseline);
+collect(policy); collect(baseline); collect(json(root, 'evidence/trust12/runtime-identity.json'));
 for (const path of new Set([...refs.keys(), 'evidence/trust12/symbolic-kontrol.json',
   'evidence/end-to-end-refinement/obligation-ledger-v3.json',
   'evidence/isabelle-results-v3.json', 'evidence/trust12/runtime-identity.json',
@@ -31,16 +31,18 @@ for (const path of new Set([...refs.keys(), 'evidence/trust12/symbolic-kontrol.j
   'evidence/certora-results-v3.json', ...implementationDisclosures]))
   put(path, readFileSync(resolve(root, path)));
 const documents = Object.fromEntries(implementationDisclosures.map(path => [path, readFileSync(resolve(root, path), 'utf8')]));
+const tailConditionsPath = 'evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json';
 function reset() {
   put(policyPath, policy); put(ledgerPath, baseline);
   put(endToEndPath, endToEndBaseline);
+  put(tailConditionsPath, readFileSync(resolve(root, tailConditionsPath)));
   for (const [path, text] of Object.entries(documents)) put(path, text);
 }
-function test(name, mutate, expected = null) {
+function test(name, mutate, expected = null, options = {}) {
   reset(); const ledger = structuredClone(baseline), p = structuredClone(policy);
   mutate(ledger, p); put(ledgerPath, ledger); put(policyPath, p);
   let error, report;
-  try { report = verifyTrust12Policy(scratch); } catch (e) { error = e.message; }
+  try { report = verifyTrust12Policy(scratch, options); } catch (e) { error = e.message; }
   if (expected) check(error?.includes(expected), `${name}: expected ${expected}; observed ${error ?? 'PASS'}`);
   else check(!error, `${name}: ${error}`);
   results.push({ name, status: expected ? 'REJECTED' : 'PASS', reason: error ?? report.releaseReadiness });
@@ -90,14 +92,21 @@ function nativeProofFixture(ledger) {
   ledger.releaseAssessment.status='PENDING'; ledger.status='IN_PROGRESS';
   return e;
 }
+const fixtures = { fixtureMode: true };
 function registeredClosureFixture(ledger) {
   const r=row(ledger,registeredClosureId);
   const tailPath='evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json', tail=json(scratch,tailPath);
+  const discharged=tail.conditions.map(c=>c.id).filter(id=>id!=='independent-assurance');
+  const evidencePath='evidence/trust12/fixture-registered-condition.json';
+  put(evidencePath,{status:'PASS_FIXTURE_ONLY',fixtureOnly:true});
+  const evidence=fileRef(scratch,evidencePath);
   const closurePath='evidence/trust12/fixture-registered-closure.json';
   put(closurePath,{schema:'trust12-registered-central-closure-v1',status:'PASS',fixtureOnly:true,
-    conditionsSha256:fileRef(scratch,tailPath).sha256,dischargedConditions:tail.conditions.map(c=>c.id),
+    finalInputs:registeredFinalInputs(scratch,r),dischargedConditions:discharged,
+    conditionEvidence:Object.fromEntries(discharged.map(id=>[id,[evidence]])),
     findingDispositions:Object.fromEntries(tail.findings.map(f=>[f.id,'Fixture-only disposition'])),
-    retainedAssumptions:['A-RUNTIME-LINK','A-RUNTIME-LINK-SPEC'],generalRuntimeLinkDischarged:false});
+    retainedAssumptions:json(scratch,endToEndPath).assumptions.filter(a=>a.status!=='DISCHARGED').map(a=>a.id),
+    generalRuntimeLinkDischarged:false});
   const closure=fileRef(scratch,closurePath);
   const references={closure};
   for(const role of ['positive','negative','compiledConsumer']){
@@ -110,7 +119,7 @@ function registeredClosureFixture(ledger) {
     consumerRemovalNegative:'Fixture-only registered negative',compiledConsumer:'Fixture-only registered consumer',
     registeredClosureEvidence:{status:'PASS_REGISTERED_CENTRAL_CLOSURE',references}});
   ledger.centralClosure.currentMandatory=ledger.centralClosure.currentMandatory.filter(x=>x!==registeredClosureId);
-  ledger.releaseAssessment.status='EVIDENCE_READY'; ledger.status='EVIDENCE_COMPLETE';
+  ledger.releaseAssessment.status='ASSURANCE_PENDING'; ledger.status='EVIDENCE_COMPLETE';
   return r;
 }
 function registeredCompletionFixture(ledger, closureDigest) {
@@ -126,6 +135,7 @@ function registeredCompletionFixture(ledger, closureDigest) {
     reviewer:'Fixture reviewer, not a real assurance',reproduction:{status:'PASS'},consumerRemoval:{status:'PASS'},finalIdentities});
   ledger.centralClosure.independentAssurance={status:'PASS_FRESH_ASSURANCE',report:fileRef(scratch,path)};
   ledger.centralClosure.status='COMPLETE_REGISTERED_SCOPE'; ledger.releaseAssessment.trust12Complete=true;
+  ledger.releaseAssessment.status='EVIDENCE_READY';
   for (const path of disclosures) put(path,documents[path]+'\n'+registeredCompletionDisclosure+'\n');
   return r;
 }
@@ -133,6 +143,11 @@ function rewriteClosure(r, mutate) {
   const ref=r.registeredClosureEvidence.references.closure, closure=json(scratch,ref.path);
   mutate(closure); put(ref.path,closure);
   r.registeredClosureEvidence.references.closure=fileRef(scratch,ref.path);
+  for(const role of ['positive','negative','compiledConsumer']){
+    const roleRef=r.registeredClosureEvidence.references[role], record=json(scratch,roleRef.path);
+    record.closureSha256=r.registeredClosureEvidence.references.closure.sha256; put(roleRef.path,record);
+    r.registeredClosureEvidence.references[role]=fileRef(scratch,roleRef.path);
+  }
 }
 function generalProofFixture(ledger, id) {
   const r=row(ledger,id), roles=['execution','formalProof','positive','negative','compiledConsumer'];
@@ -203,35 +218,87 @@ try {
   test('registered-closure-cannot-be-exception', l => { row(l,registeredClosureId).status='OPEN-SHIPPING-EXCEPTION';
     l.centralClosure.currentMandatory=[]; l.centralClosure.shippingExceptions=[registeredClosureId]; }, 'registered central closure row drift');
   test('evidence-less-registered-closure-rejected', l => { const r=row(l,registeredClosureId);
-    Object.assign(r,{status:'CLOSED',proofCompleted:true,positiveActivation:'Fixture',consumerRemovalNegative:'Fixture'});
+    Object.assign(r,{status:'CLOSED',proofCompleted:true,positiveActivation:'Fixture',consumerRemovalNegative:'Fixture',
+      compiledConsumer:'Fixture'});
     l.centralClosure.currentMandatory=[]; l.releaseAssessment.status='EVIDENCE_READY'; l.status='EVIDENCE_COMPLETE'; },
     'registered central closure lacks a verified evidence contract');
-  const registeredOnly = test('registered-closure-fixture-without-assurance', l => { registeredClosureFixture(l); });
-  check(registeredOnly.trust12Complete===false && registeredOnly.fullRefinementComplete===false,
-    'registered closure without fresh assurance promoted to completion');
+  test('fixture-closure-rejected-in-production', l => { registeredClosureFixture(l); }, 'uses fixture records');
+  const registeredOnly = test('registered-closure-fixture-without-assurance', l => { registeredClosureFixture(l); }, null, fixtures);
+  check(registeredOnly.trust12Complete===false && registeredOnly.fullRefinementComplete===false
+    && registeredOnly.releaseReadiness==='ASSURANCE_PENDING', 'registered closure without fresh assurance promoted to completion');
+  test('closed-evidence-is-not-ready-before-assurance', l => { registeredClosureFixture(l);
+    l.releaseAssessment.status='EVIDENCE_READY'; }, 'release readiness drift', fixtures);
   test('registered-closure-must-cover-every-condition', l => {
-    rewriteClosure(registeredClosureFixture(l), c => c.dischargedConditions.pop()); }, 'does not discharge every recorded condition');
+    rewriteClosure(registeredClosureFixture(l), c => { c.dischargedConditions.pop(); }); }, 'does not discharge every recorded condition', fixtures);
+  test('registered-closure-cannot-claim-the-assurance', l => {
+    rewriteClosure(registeredClosureFixture(l), c => { c.dischargedConditions.push('independent-assurance');
+      c.conditionEvidence['independent-assurance']=c.conditionEvidence[c.dischargedConditions[0]]; }); },
+    'does not discharge every recorded condition', fixtures);
   test('registered-closure-must-dispose-every-finding', l => {
-    rewriteClosure(registeredClosureFixture(l), c => { c.findingDispositions={}; }); }, 'does not discharge every recorded condition');
-  test('registered-closure-must-keep-general-assumptions', l => {
-    rewriteClosure(registeredClosureFixture(l), c => { c.retainedAssumptions=['A-KECCAK']; }); }, 'does not discharge every recorded condition');
+    rewriteClosure(registeredClosureFixture(l), c => { c.findingDispositions={}; }); }, 'does not discharge every recorded condition', fixtures);
+  test('registered-closure-must-name-every-assumption', l => {
+    rewriteClosure(registeredClosureFixture(l), c => { c.retainedAssumptions=c.retainedAssumptions.filter(a=>a!=='A-COMPILER'); }); },
+    'does not discharge every recorded condition', fixtures);
   test('registered-closure-cannot-claim-general-link', l => {
-    rewriteClosure(registeredClosureFixture(l), c => { c.generalRuntimeLinkDischarged=true; }); }, 'does not discharge every recorded condition');
+    rewriteClosure(registeredClosureFixture(l), c => { c.generalRuntimeLinkDischarged=true; }); }, 'does not discharge every recorded condition', fixtures);
+  test('registered-closure-bound-to-final-abi', l => {
+    rewriteClosure(registeredClosureFixture(l), c => { c.finalInputs.abiSha256='0'.repeat(64); }); }, 'does not discharge every recorded condition', fixtures);
+  test('registered-closure-bound-to-row-condition', l => { const r=registeredClosureFixture(l);
+    r.abstractCondition+=' Changed after closure.'; }, 'does not discharge every recorded condition', fixtures);
+  test('registered-closure-condition-needs-evidence', l => {
+    rewriteClosure(registeredClosureFixture(l), c => { c.conditionEvidence[c.dischargedConditions[0]]=[]; }); },
+    'condition has no evidence', fixtures);
+  test('registered-closure-evidence-must-pass', l => { registeredClosureFixture(l);
+    const path='evidence/trust12/fixture-registered-condition.json', closurePath='evidence/trust12/fixture-registered-closure.json';
+    put(path,{status:'FAIL',fixtureOnly:true}); const r=row(l,registeredClosureId);
+    rewriteClosure(r, c => { for (const id of Object.keys(c.conditionEvidence)) c.conditionEvidence[id]=[fileRef(scratch,path)]; }); },
+    'not a passing record', fixtures);
+  test('registered-closure-conditions-list-is-pinned', l => { registeredClosureFixture(l);
+    const tailPath='evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json', tail=json(scratch,tailPath);
+    tail.findings.pop(); put(tailPath,tail); }, 'differ from the reviewed list', fixtures);
+  test('registered-closure-role-bound-to-closure', l => { const r=registeredClosureFixture(l), ref=r.registeredClosureEvidence.references.positive;
+    const record=json(scratch,ref.path); record.closureSha256='0'.repeat(64); put(ref.path,record);
+    r.registeredClosureEvidence.references.positive=fileRef(scratch,ref.path); }, 'positive is not bound', fixtures);
+  test('registered-closure-roles-are-distinct', l => { const r=registeredClosureFixture(l);
+    r.registeredClosureEvidence.references.positive=r.registeredClosureEvidence.references.compiledConsumer; },
+    'evidence roles drift', fixtures);
   test('registered-closure-negative-must-kill', l => { const r=registeredClosureFixture(l), ref=r.registeredClosureEvidence.references.negative;
     const n=json(scratch,ref.path); n.status='PASS'; put(ref.path,n); r.registeredClosureEvidence.references.negative=fileRef(scratch,ref.path); },
-    'registered central closure negative is not bound');
-  const registeredComplete = test('registered-completion-with-fresh-assurance-fixture', l => { registeredCompletionFixture(l); });
+    'registered central closure negative is not bound', fixtures);
+  test('closed-registered-row-pending-consumer', l => { registeredClosureFixture(l).compiledConsumer='Pending'; },
+    'closed registered central closure has pending evidence', fixtures);
+  test('open-registered-row-with-evidence', l => { row(l,registeredClosureId).registeredClosureEvidence={status:'PASS_REGISTERED_CENTRAL_CLOSURE'}; },
+    'open registered central closure claims completion');
+  test('open-registered-row-proof-flag', l => { row(l,registeredClosureId).proofCompleted=true; },
+    'open registered central closure claims completion');
+  test('registered-row-contract-field-required', l => { delete row(l,registeredClosureId).reopenCondition; },
+    'registered central closure missing reopenCondition');
+  test('trust12-complete-flag-forged', l => { l.releaseAssessment.trust12Complete=true; }, 'release readiness drift');
+  test('fixture-completion-rejected-in-production', l => { registeredCompletionFixture(l); }, 'uses fixture records');
+  const registeredComplete = test('registered-completion-with-fresh-assurance-fixture', l => { registeredCompletionFixture(l); }, null, fixtures);
   check(registeredComplete.trust12Complete===true && registeredComplete.fullRefinementComplete===false
-    && registeredComplete.researchResiduals.length===3, 'registered completion fixture did not keep the general links deferred');
+    && registeredComplete.releaseReadiness==='EVIDENCE_READY' && registeredComplete.researchResiduals.length===3,
+    'registered completion fixture did not keep the general links deferred');
   test('registered-completion-cannot-claim-full-refinement', l => { registeredCompletionFixture(l);
-    l.centralClosure.status='COMPLETE'; l.releaseAssessment.fullRefinementComplete=true; }, 'central completion status drift');
+    l.centralClosure.status='COMPLETE'; l.releaseAssessment.fullRefinementComplete=true; }, 'central completion status drift', fixtures);
   test('registered-completion-needs-current-closure-assurance', l => { registeredCompletionFixture(l,'0'.repeat(64)); },
-    'fresh assurance report is not independently reproduced on the final inputs');
+    'fresh assurance report is not independently reproduced on the final inputs', fixtures);
   test('registered-completion-keeps-end-to-end-incomplete-label', l => { registeredCompletionFixture(l);
     for (const path of disclosures) put(path,documents[path].replaceAll('mapped implementation evidence; end-to-end refinement incomplete','mapped implementation evidence')
-      +'\n'+registeredCompletionDisclosure+'\n'); }, 'claim boundary drift');
+      +'\n'+registeredCompletionDisclosure+'\n'); }, 'claim boundary drift', fixtures);
+  test('registered-completion-phrase-required-in-every-disclosure', l => { registeredCompletionFixture(l);
+    put(disclosures[2],documents[disclosures[2]]); }, 'registered completion disclosure drift', fixtures);
   test('registered-completion-before-assurance-rejected', l => { registeredClosureFixture(l);
-    l.centralClosure.status='COMPLETE_REGISTERED_SCOPE'; l.releaseAssessment.trust12Complete=true; }, 'central completion status drift');
+    l.centralClosure.status='COMPLETE_REGISTERED_SCOPE'; l.releaseAssessment.trust12Complete=true; }, 'central completion status drift', fixtures);
+  test('completion-wording-variant-rejected-while-open', () => { const path='evidence/known-limitations.md';
+    put(path,documents[path]+'\nTRUST 1.2 is complete\n'); }, 'registered completion disclosure drift');
+  test('policy-schema-v2-rejected', (l,p) => { p.schema='trust12-release-policy-v2'; }, 'release policy schema');
+  test('parser-development-cannot-return-to-mandatory', (l,p) => { p.parserDevelopment='ACTIVE_FOR_TRUST12'; },
+    'release policy boundary drift');
+  test('direction-history-cannot-grow', (l,p) => { p.supersededCompletionDirections.push(structuredClone(p.supersededCompletionDirections[0])); },
+    'completion direction history missing');
+  test('deferral-date-must-match-direction', l => { row(l,'RESEARCH-RUNTIME-LINK-HOOK').deferral.date='2026-10-05'; },
+    'deferral is not the recorded decision');
   test('registered-completion-phrase-rejected-while-open', () => { const path='evidence/claim-matrix.md';
     put(path,documents[path]+'\n'+registeredCompletionDisclosure+'\n'); }, 'registered completion disclosure drift');
   test('general-profile-scope-cannot-be-narrowed', (l,p) => { p.profileScopes.PARTIAL='One fixed fixture only'; },
@@ -297,14 +364,15 @@ try {
   test('scope-reset-not-exception-approval', l => { const r=approvedException(l);
     r.shippingException.approval=fileRef(scratch,policyPath); }, 'invalid row-specific shipping approval');
   test('exception-disclosure-required', l => { approvedException(l); put(disclosures[1], documents[disclosures[1]]); }, 'missing exception disclosure');
-  const ready = test('exception-cannot-bypass-general-refinement', l => {
+  const ready = test('exception-cannot-bypass-completion', l => {
     approvedException(l);
     for (const p of profiles) { const r=row(l,`RUNTIME-LINK-${p}`); for(const c of r.components) promoteTests(c);
       r.evidenceGrade='EXECUTION_TESTS'; r.status='CLOSED'; r.positiveActivation='Scoped fixture'; r.consumerRemovalNegative='Scoped fixture'; }
-    l.releaseAssessment.status='PENDING'; l.status='IN_PROGRESS';
-  });
-  check(ready.releaseReadiness==='PENDING' && ready.fullRefinementComplete===false && ready.trust12Complete===false,
-    'exception promoted to completion');
+    registeredClosureFixture(l);
+    l.releaseAssessment.status='ASSURANCE_PENDING'; l.status='EVIDENCE_COMPLETE_WITH_EXCEPTIONS';
+  }, null, fixtures);
+  check(ready.releaseReadiness==='ASSURANCE_PENDING' && ready.fullRefinementComplete===false && ready.trust12Complete===false
+    && ready.shippingExceptions.length===1, 'exception promoted to completion');
   check(!withoutIsabelleComments('(* @{thm fake} (* nested *) *)').includes('@{thm fake}'),
     'comment-only theorem anchor was accepted');
   check(withoutIsabelleComments('text ‹@{thm real}›').includes('@{thm real}'),
