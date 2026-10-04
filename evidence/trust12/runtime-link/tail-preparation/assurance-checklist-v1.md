@@ -72,6 +72,7 @@ frozen inputs, reproduction commands and reuse conditions are defined by
 | 4.1 | Rebuild the obligation ledger from the sealed evidence | Every row status, count and hash equals the sealed ledger |
 | 4.2 | Recompute the certificate registry with its saved-mode verifier from the sealed locator file and evidence | The rebuilt registry equals the sealed registry byte for byte; the coverage, distinctness, executed code identity, consumed world and acceptance checks pass; and the public registry record follows from the rebuilt registry |
 | 4.3 | Recompute the central closure counts | No row is closed by a human-written table alone, and current mandatory rows are zero only if the recomputation says so |
+| 4.4 | Recompute the route inventory with its saved-mode verifier from the sealed run records | The rebuilt inventory equals the sealed inventory byte for byte, and every state-changing route outside the typed commands has a disposition that a closed row or an accepted decision record justifies and a passed test executes |
 
 ## Result record
 

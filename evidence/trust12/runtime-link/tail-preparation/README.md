@@ -24,6 +24,8 @@ needs, the prepared inputs, the acceptance criteria and the findings that block 
 | [certificate-registry-schema-v1.json](certificate-registry-schema-v1.json) | Registry, partition coverage and certificate locator formats |
 | [certificate-registry-schema-v2.json](certificate-registry-schema-v2.json) | Registry version 2: the executed code and runtime set of every certificate, the records that consumed each recorded world, the acceptance verdict and the locator format |
 | [certificate-registry-checkpoint-v1.json](certificate-registry-checkpoint-v1.json) | Public record of the registry built from the private evidence: coverage, executed code, retained assumptions and the private registry and locator file by hash |
+| [route-dispositions-v1.json](route-dispositions-v1.json) | One disposition record for every state-changing route outside the typed commands: callers, writes, reason, and the ledger rows, decision sentences, source lines and tests that cover it |
+| [route-inventory-checkpoint-v1.json](route-inventory-checkpoint-v1.json) | Public record of the route inventory built in closure mode: every selector with its class and disposition, the evidence of every disposition, the recorded test results and probe rows, and the private run records by hash |
 | [assurance-input-seal-schema-v1.json](assurance-input-seal-schema-v1.json) | Format of the frozen Assurance inputs |
 | [assurance-input-seal-spec-v1.json](assurance-input-seal-spec-v1.json) | Bundles, toolchain pins, reproduction commands and independent checks of the seal |
 | [assurance-checklist-v1.md](assurance-checklist-v1.md) | Procedure of the independent assessor |
@@ -48,6 +50,8 @@ All tools are in `scripts/trust12/tail-preparation`. They never run a prover and
 | `kore_accounts.py` | Reads the accounts and the executing frame identifier of a KEVM configuration in KORE text form and fails closed on anything it does not recognise |
 | `assurance_seal.py` | Seals and verifies the frozen inputs of the independent Assurance |
 | `run_malformed_probe.py` | Runs the concrete malformed probe of the three endpoints in an isolated build directory |
+| `route_inventory_v2.py` | Classifies every selector with the formal route tables and the Hook class table of decision 14, checks every disposition record against the tree and its recorded test runs, and closes only when every acceptance criterion of route exhaustiveness holds |
+| `run_route_disposition_tests.py` | Runs the route disposition tests under `route-dispositions` in an isolated build directory and records the result |
 
 ## Reproduction
 
@@ -88,6 +92,23 @@ verifier rehashes both, rebuilds the registry in closure mode and requires it to
 python3 scripts/trust12/verify_certificate_registry_v1.py --evidence EVIDENCE_ROOT --artifact-index ARTIFACT_INDEX
 ```
 
+The route disposition tests run in an isolated build directory like the malformed probe:
+
+```
+python3 scripts/trust12/tail-preparation/run_route_disposition_tests.py --product . --trex-artifacts out/trust12/trex/out --workdir WORKDIR --output RUN_DIRECTORY
+```
+
+The public record of the route inventory is checked by rebuilding the inventory from the tracked files with the
+test results and probe rows it carries; its negative controls run without private files. With the private index of
+the test receipt, its forge report, the malformed probe receipt and the stored inventory, the verifier rehashes them
+and rebuilds the inventory from the private receipts:
+
+```
+python3 scripts/trust12/verify_route_inventory_v1.py --metadata-only
+python3 scripts/test-route-inventory.py
+python3 scripts/trust12/verify_route_inventory_v1.py --artifact-index ARTIFACT_INDEX
+```
+
 ## Findings of the preparation
 
 1. The typed entrypoints evaluate the domain and identifier rules, and by source order further
@@ -101,8 +122,9 @@ python3 scripts/trust12/verify_certificate_registry_v1.py --evidence EVIDENCE_RO
 3. Every other malformed recipe (short, long and trailing calldata, unknown selectors and every
    dirty bounded word) ended in an empty revert with no external call, log or committed write, and
    the well-formed controls confirmed that the probe observes those effects.
-4. The Hook runtimes have no normative route classes, several storage variables have no recorded
-   runtime-only reason, and the formal model has no per-profile storage reader yet.
+4. The Hook runtimes had no normative route classes; decision 14 classifies them, and the route
+   inventory record shows every state-changing route outside the typed commands disposed. Several storage
+   variables have no recorded runtime-only reason, and the formal model has no per-profile storage reader yet.
 
 ## Integration accounting
 

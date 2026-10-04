@@ -1,0 +1,393 @@
+{
+  "schema": "trust12-tail-preparation-route-dispositions-v1",
+  "status": "RECORDED",
+  "scope": "One record for every state-changing route outside the typed commands of the seven profile runtimes. A record names who can call the route, what it writes, why it lies outside the runtime-link relation, the ledger rows and decision records that cover it and the tests that execute it on its own runtime. The route inventory checks every reference against the tree and every cited test against its recorded run.",
+  "referenceTypes": {
+    "ledgerRow": "a row of an obligation ledger; it justifies a disposition only when its status is CLOSED and its coverage is this runtime",
+    "decision": "a quoted sentence of a decision record; it justifies a disposition only when its coverage is this runtime and the status line of the record starts with an accepted status; the Hook class record never justifies a disposition",
+    "statement": "a quoted statement inside a tracked record that is not a ledger row; it supports a disposition but does not justify it",
+    "source": "a source line with its exact occurrence count; an occurrence count of zero records an absence",
+    "test": "a test function of a suite; it executes the route on this runtime only when the test passed in its recorded run: the recorded Foundry results of the implementation suite (run recorded-foundry-suite) or a run of the disposition tests (run route-disposition-run)",
+    "mutation": "a mutation receipt with status KILLED whose original source hash equals the current source"
+  },
+  "dispositionKinds": {
+    "ORDINARY_TOKEN_OPERATION": "ERC-20 balance or allowance operation; balances follow the abstract ordinary transfer and no regulatory record is written",
+    "EXACT_USE_ROUTE": "sensitive ERC-7943 selector that succeeds only while the typed wrapper holds a matching route ticket; every raw call reverts",
+    "GOVERNANCE_TRANSITION": "governor-only administrative transition modelled as an atomic abstract transition",
+    "PROFILE_SYNCHRONISATION": "permissionless synchronisation of the upstream frozen amount toward the owned target; no owned target, flag, case, record, nonce or receipt is written",
+    "ONE_WAY_SEAL": "seal step that succeeds once and fixes the topology the commands rely on",
+    "CONSTRUCTION_ONLY": "succeeds only inside the construction of the unit, exactly once, and reverts afterwards",
+    "NEVER_SUCCEEDS": "no reachable state and caller lets the route succeed",
+    "BALANCE_CALLBACK": "post-balance callback that moves the upstream frozen amount of the touched accounts to their owned targets saturated at the new balances",
+    "COMPLIANCE_CALLBACK": "Compliance hook that only the bound token can call; it forwards the touched accounts to the balance callback and writes no storage of its own",
+    "UNIT_CREATION": "creates a new conformance unit and writes no storage of an existing unit"
+  },
+  "dispositions": [
+    {
+      "route": "TrustToken.approve(address,uint256)",
+      "selector": "0x095ea7b3",
+      "kind": "ORDINARY_TOKEN_OPERATION",
+      "callers": "any account, including a restricted one",
+      "writes": ["the allowance of the caller for one spender", "Approval event"],
+      "justification": "Sets one allowance entry of the caller and emits Approval; it reads and writes no balance, frozen target, restriction flag, custody record, effect head, case, action record, nonce, binding or receipt. An allowance moves no tokens by itself; tokens leave an account under an allowance only through transferFrom, which runs the ordinary transfer with its restriction and unfrozen capacity checks.",
+      "references": [
+        {"type": "decision", "path": "spec/decisions/15-route-dispositions.md", "quote": "1. **Native allowance route.** `approve` of the Native endpoint", "coverage": "this runtime"},
+        {"type": "statement", "path": "evidence/end-to-end-refinement/obligation-ledger-v3.json", "pointer": "/closure/reflection/runtimeOnly/3/reason", "quote": "allowances are in the abstract state but are not regulatory conditions", "coverage": "this runtime"},
+        {"type": "source", "path": "implementation/src/TrustToken.sol", "snippet": "if (spender == address(0)) revert TrustZeroAddress();", "occurrences": 1},
+        {"type": "source", "path": "implementation/src/TrustToken.sol", "snippet": "_allowances[msg.sender][spender] = value;", "occurrences": 1},
+        {"type": "source", "path": "implementation/src/TrustToken.sol", "snippet": "emit Approval(msg.sender, spender, value);", "occurrences": 1},
+        {"type": "test", "runtime": "TrustToken", "run": "route-disposition-run", "suite": "scripts/trust12/tail-preparation/route-dispositions/NativeAllowanceRoutes.t.sol:NativeAllowanceRoutesTest", "test": "testApproveWritesOnlyTheAllowance"},
+        {"type": "test", "runtime": "TrustToken", "run": "route-disposition-run", "suite": "scripts/trust12/tail-preparation/route-dispositions/NativeAllowanceRoutes.t.sol:NativeAllowanceRoutesTest", "test": "testTransferFromSpendsAllowanceAndRespectsRestriction"}
+      ],
+      "gaps": []
+    },
+    {
+      "route": "TrustToken.transferFrom(address,address,uint256)",
+      "selector": "0x23b872dd",
+      "kind": "ORDINARY_TOKEN_OPERATION",
+      "callers": "any spender within its allowance",
+      "writes": ["the allowance of the caller unless it is the maximum value", "the balances of the source and the destination", "Approval and Transfer events"],
+      "justification": "Spends an allowance and performs the same ordinary transfer as transfer: the balance, the restriction flags of the sending and the receiving account and the unfrozen capacity are checked, and every regulatory record is preserved, as the abstract ordinary transfer requires.",
+      "references": [
+        {"type": "ledgerRow", "ledger": "evidence/end-to-end-refinement/obligation-ledger-v3.json", "row": "NAT-XFER-01", "coverage": "this runtime"},
+        {"type": "ledgerRow", "ledger": "evidence/end-to-end-refinement/obligation-ledger-v3.json", "row": "NAT-XFER-02", "coverage": "this runtime"},
+        {"type": "ledgerRow", "ledger": "evidence/trust12/obligation-ledger.json", "row": "MODEL-ORDINARY-PRESERVATION", "coverage": "abstract model"},
+        {"type": "decision", "path": "spec/decisions/15-route-dispositions.md", "quote": "then runs the same ordinary transfer as `transfer`", "coverage": "this runtime"},
+        {"type": "source", "path": "implementation/src/TrustToken.sol", "snippet": "_ordinaryTransfer(from, to, value);", "occurrences": 1},
+        {"type": "source", "path": "implementation/src/TrustToken.sol", "snippet": "if (current != type(uint256).max) {", "occurrences": 1},
+        {"type": "source", "path": "implementation/src/TrustToken.sol", "snippet": "_allowances[from][msg.sender] = current - value;", "occurrences": 1},
+        {"type": "test", "runtime": "TrustToken", "run": "route-disposition-run", "suite": "scripts/trust12/tail-preparation/route-dispositions/NativeAllowanceRoutes.t.sol:NativeAllowanceRoutesTest", "test": "testTransferFromSpendsAllowanceAndRespectsRestriction"},
+        {"type": "test", "runtime": "TrustToken", "run": "route-disposition-run", "suite": "scripts/trust12/tail-preparation/route-dispositions/NativeAllowanceRoutes.t.sol:NativeAllowanceRoutesTest", "test": "testTransferFromKeepsTheMaximumAllowanceAndTheFrozenFloor"}
+      ],
+      "gaps": []
+    },
+    {
+      "route": "TrustToken.transfer(address,uint256)",
+      "selector": "0xa9059cbb",
+      "kind": "ORDINARY_TOKEN_OPERATION",
+      "callers": "any holder",
+      "writes": ["the balances of the caller and the destination", "Transfer event"],
+      "justification": "The abstract ordinary transfer: both restriction flags and the frozen floor are enforced and every regulatory record is preserved.",
+      "references": [
+        {"type": "ledgerRow", "ledger": "evidence/end-to-end-refinement/obligation-ledger-v3.json", "row": "NAT-XFER-01", "coverage": "this runtime"},
+        {"type": "ledgerRow", "ledger": "evidence/end-to-end-refinement/obligation-ledger-v3.json", "row": "NAT-XFER-02", "coverage": "this runtime"},
+        {"type": "source", "path": "implementation/src/TrustToken.sol", "snippet": "_ordinaryTransfer(msg.sender, to, value);", "occurrences": 1},
+        {"type": "test", "runtime": "TrustToken", "run": "recorded-foundry-suite", "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest", "test": "testReversalReplayAndRestrictionTransferBlock"}
+      ],
+      "gaps": []
+    },
+    {
+      "route": "TrustToken.forcedTransfer(address,address,uint256)",
+      "selector": "0x9fc1d0e7",
+      "kind": "EXACT_USE_ROUTE",
+      "callers": "only the endpoint itself inside executeERC7943Action while it holds the matching route ticket; every raw call reverts",
+      "writes": ["when the ticket matches, the prepared action of the typed wrapper; otherwise nothing"],
+      "justification": "The second half of the typed command executeERC7943Action, which is in the runtime-link domain. A raw call finds no ticket and reverts with TrustRouteMismatch.",
+      "references": [
+        {"type": "ledgerRow", "ledger": "evidence/end-to-end-refinement/obligation-ledger-v3.json", "row": "NAT-ROUTE-01", "coverage": "this runtime"},
+        {"type": "decision", "path": "spec/decisions/08-native-wiring.md", "quote": "The exact-use ERC-7943 route keeps the version 1 shape: the wrapper", "coverage": "this runtime"},
+        {"type": "source", "path": "implementation/src/TrustToken.sol", "snippet": "delete _routeTicket;", "occurrences": 1},
+        {"type": "test", "runtime": "TrustToken", "run": "recorded-foundry-suite", "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest", "test": "testERC7943ExactUseRoutesAndRawClosure"}
+      ],
+      "gaps": []
+    },
+    {
+      "route": "TrustToken.setFrozenTokens(address,uint256)",
+      "selector": "0xebe45cba",
+      "kind": "EXACT_USE_ROUTE",
+      "callers": "only the endpoint itself inside executeERC7943Action or executeERC7943Reversal while it holds the matching route ticket; every raw call reverts",
+      "writes": ["when the ticket matches, the prepared action or reversal of the typed wrapper; otherwise nothing"],
+      "justification": "The second half of the typed commands executeERC7943Action and executeERC7943Reversal, which are in the runtime-link domain. A raw call finds no ticket and reverts with TrustRouteMismatch.",
+      "references": [
+        {"type": "ledgerRow", "ledger": "evidence/end-to-end-refinement/obligation-ledger-v3.json", "row": "NAT-ROUTE-01", "coverage": "this runtime"},
+        {"type": "decision", "path": "spec/decisions/08-native-wiring.md", "quote": "The exact-use ERC-7943 route keeps the version 1 shape: the wrapper", "coverage": "this runtime"},
+        {"type": "test", "runtime": "TrustToken", "run": "recorded-foundry-suite", "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest", "test": "testERC7943ExactUseRoutesAndRawClosure"}
+      ],
+      "gaps": []
+    },
+    {
+      "route": "TrustToken.configureAuthority(bytes32,address,bool,bytes32,uint256)",
+      "selector": "0xa4fc4aad",
+      "kind": "GOVERNANCE_TRANSITION",
+      "callers": "only the immutable governor",
+      "writes": ["the authority record of one reference (epoch, account, active flag)", "the consumed governance identifiers", "TrustAuthorityChanged event"],
+      "justification": "The abstract authority rotation: the epoch advances by one and every command built under the earlier epoch becomes stale. The governance identifier is an operational guard with no abstract counterpart.",
+      "references": [
+        {"type": "ledgerRow", "ledger": "evidence/end-to-end-refinement/obligation-ledger-v3.json", "row": "NAT-AUTH-02", "coverage": "this runtime"},
+        {"type": "statement", "path": "evidence/end-to-end-refinement/obligation-ledger-v3.json", "pointer": "/closure/reflection/runtimeOnly/0/item", "quote": "governance authorization identifiers (_usedGovernanceIds)", "coverage": "this runtime"},
+        {"type": "source", "path": "implementation/src/TrustToken.sol", "snippet": "if (msg.sender != governor) revert TrustUnauthorized(msg.sender, bytes32(0));", "occurrences": 1},
+        {"type": "source", "path": "implementation/src/TrustToken.sol", "snippet": "authorityConfig.epoch += 1;", "occurrences": 1},
+        {"type": "test", "runtime": "TrustToken", "run": "recorded-foundry-suite", "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest", "test": "testReplayNonceAndAuthorityRotation"},
+        {"type": "test", "runtime": "TrustToken", "run": "recorded-foundry-suite", "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest", "test": "testGovernanceAuthorizationIsConsumedOnce"}
+      ],
+      "gaps": []
+    },
+    {
+      "route": "TrustToken.rebindDependency(uint8,address,bytes32,bytes32,uint256)",
+      "selector": "0xf60d7b6f",
+      "kind": "GOVERNANCE_TRANSITION",
+      "callers": "only the immutable governor",
+      "writes": ["one dependency binding", "the dependency root and the global dependency epoch", "the consumed governance identifiers", "TrustDependencyChanged event"],
+      "justification": "The abstract dependency rebind: the binding is replaced, the global epoch advances by one and the root is recomputed, so commands built under the earlier root become stale.",
+      "references": [
+        {"type": "ledgerRow", "ledger": "evidence/end-to-end-refinement/obligation-ledger-v3.json", "row": "NAT-STALE-03", "coverage": "this runtime"},
+        {"type": "ledgerRow", "ledger": "evidence/end-to-end-refinement/obligation-ledger-v3.json", "row": "NAT-STALE-02", "coverage": "this runtime"},
+        {"type": "source", "path": "implementation/src/TrustToken.sol", "snippet": "_dependencyEpoch += 1;", "occurrences": 1},
+        {"type": "test", "runtime": "TrustToken", "run": "recorded-foundry-suite", "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest", "test": "testEveryDependencyRebindMakesEarlierCommandsStale"},
+        {"type": "test", "runtime": "TrustToken", "run": "recorded-foundry-suite", "suite": "implementation/test/TrustActions.unit.t.sol:TrustActionsUnitTest", "test": "testReversalAssessmentFailsClosedAfterPolicyRebind"}
+      ],
+      "gaps": []
+    },
+    {
+      "route": "ERC3643TrustAdapter.resynchroniseFrozen(address)",
+      "selector": "0x24933056",
+      "kind": "PROFILE_SYNCHRONISATION",
+      "callers": "any account",
+      "writes": ["the applied frozen amount of the account", "the upstream frozen amount of the account through the Agent role", "FrozenTargetResynchronised event"],
+      "justification": "Requires the live sealed topology and the ownership precondition, then moves the upstream frozen amount to the owned target saturated at the current balance; it never lowers an owned frozen amount and writes no owned target, flag, case, record, nonce or receipt.",
+      "references": [
+        {"type": "ledgerRow", "ledger": "evidence/end-to-end-refinement/obligation-ledger-v3.json", "row": "ADP-FRZ-01", "coverage": "this runtime"},
+        {"type": "ledgerRow", "ledger": "evidence/end-to-end-refinement/obligation-ledger-v3.json", "row": "ADP-UPSTREAM-01", "coverage": "this runtime"},
+        {"type": "decision", "path": "spec/decisions/09-erc3643-profile-wiring.md", "quote": "requires the live topology and the ownership precondition of item 5 and then", "coverage": "this runtime"},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643TrustAdapter.sol", "snippet": "_requireOwnedUpstreamState(bytes32(0), account);", "occurrences": 1},
+        {"type": "test", "runtime": "ERC3643TrustAdapter", "run": "recorded-foundry-suite", "suite": "implementation/test/ERC3643ProfileTrexFixture.t.sol:ERC3643ProfileTrexFixtureTest", "test": "testInboundGrowthIsRefrozenByPermissionlessResynchronisation"}
+      ],
+      "gaps": []
+    },
+    {
+      "route": "ERC3643TrustAdapter.activateSeal((address,uint256,bool)[])",
+      "selector": "0x8efb3179",
+      "kind": "ONE_WAY_SEAL",
+      "callers": "only the profile governor, inside its seal",
+      "writes": ["once: the seal state, the dependency bindings, the dependency root and epoch, and the imported cases"],
+      "justification": "The adapter half of the one-way seal; the governor calls it once after it has sealed the topology, and every later call fails the seal check.",
+      "references": [
+        {"type": "ledgerRow", "ledger": "evidence/end-to-end-refinement/obligation-ledger-v3.json", "row": "ADP-SEAL-01", "coverage": "this runtime"},
+        {"type": "ledgerRow", "ledger": "evidence/end-to-end-refinement/obligation-ledger-v3.json", "row": "ADP-IMPORT-01", "coverage": "this runtime"},
+        {"type": "decision", "path": "spec/decisions/09-erc3643-profile-wiring.md", "quote": "The reference governor seals exactly once and offers no reseal, Agent management,", "coverage": "this runtime"},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643TrustAdapter.sol", "snippet": "if (msg.sender != address(profileGovernor)) revert TrustUnauthorized(msg.sender, bytes32(0));", "occurrences": 1},
+        {"type": "test", "runtime": "ERC3643TrustAdapter", "run": "recorded-foundry-suite", "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest", "test": "testSealIsOneWayAndManifestMustBeCanonical"},
+        {"type": "test", "runtime": "ERC3643TrustAdapter", "run": "recorded-foundry-suite", "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest", "test": "testProfileSealAndDirectBypassClosure"}
+      ],
+      "gaps": []
+    },
+    {
+      "route": "ProfileGovernor.seal(address,(address,uint256,bool)[])",
+      "selector": "0x82c8fd1f",
+      "kind": "ONE_WAY_SEAL",
+      "callers": "only the bootstrap authority, once",
+      "writes": ["once: the exclusive adapter, the sealed binding, the import manifest hash and the sealed flag", "ProfileSealed event", "the adapter seal through activateSeal"],
+      "justification": "The one-way seal of the conformance unit over a canonical declared import manifest; every later call fails because the topology is sealed.",
+      "references": [
+        {"type": "ledgerRow", "ledger": "evidence/end-to-end-refinement/obligation-ledger-v3.json", "row": "GOV-SEAL-01", "coverage": "this runtime"},
+        {"type": "decision", "path": "spec/decisions/09-erc3643-profile-wiring.md", "quote": "The reference governor seals exactly once and offers no reseal, Agent management,", "coverage": "this runtime"},
+        {"type": "source", "path": "implementation/src/profiles/ProfileGovernor.sol", "snippet": "if (msg.sender != bootstrapAuthority) revert IERCTrustKernel.TrustUnauthorized(msg.sender, bytes32(0));", "occurrences": 1},
+        {"type": "source", "path": "implementation/src/profiles/ProfileGovernor.sol", "snippet": "if (topologySealed || adapter == address(0)) {", "occurrences": 1},
+        {"type": "test", "runtime": "ProfileGovernor", "run": "recorded-foundry-suite", "suite": "implementation/test/ERC3643Profile.unit.t.sol:ERC3643ProfileUnitTest", "test": "testSealIsOneWayAndManifestMustBeCanonical"}
+      ],
+      "gaps": []
+    },
+    {
+      "route": "ERC3643HookAdapter.resynchroniseFrozen(address)",
+      "selector": "0x24933056",
+      "kind": "PROFILE_SYNCHRONISATION",
+      "callers": "any account",
+      "writes": ["the applied frozen amount of the account", "the upstream frozen amount of the account through the Agent role", "FrozenTargetResynchronised event"],
+      "justification": "Requires the live sealed topology and the ownership precondition, then moves the upstream frozen amount to the owned target saturated at the current balance; it writes no owned target, flag, case, record, nonce or receipt. With the same-transaction balance callback the target is normally materialised already, so the route is an idempotent repair entrypoint, and an upstream state the endpoint did not apply fails with reason 304.",
+      "references": [
+        {"type": "decision", "path": "spec/decisions/15-route-dispositions.md", "quote": "2. **Hook resynchronisation route.** `resynchroniseFrozen` of the Hook endpoint", "coverage": "this runtime"},
+        {"type": "ledgerRow", "ledger": "evidence/end-to-end-refinement/obligation-ledger-v3.json", "row": "ADP-FRZ-01", "coverage": "counterpart runtime"},
+        {"type": "ledgerRow", "ledger": "evidence/end-to-end-refinement/obligation-ledger-v3.json", "row": "ADP-UPSTREAM-01", "coverage": "counterpart runtime"},
+        {"type": "decision", "path": "spec/decisions/09-erc3643-profile-wiring.md", "quote": "requires the live topology and the ownership precondition of item 5 and then", "coverage": "counterpart runtime"},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookAdapter.sol", "snippet": "function resynchroniseFrozen(address account) external nonReentrant returns (uint256 appliedFrozen) {", "occurrences": 1},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookAdapter.sol", "snippet": "_requireOwnedUpstreamState(bytes32(0), account);", "occurrences": 1},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookAdapter.sol", "snippet": "_syncFrozen(bytes32(0), account);", "occurrences": 1},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookAdapter.sol", "snippet": "revert TrustOperationalFailure(commandId, REASON_UPSTREAM_STATE_NOT_OWNED, _addressRef(account));", "occurrences": 1},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookAdapter.sol", "snippet": "retained as an idempotent diagnosis and repair entrypoint under the same live topology checks.", "occurrences": 1},
+        {"type": "test", "runtime": "ERC3643HookAdapter", "run": "route-disposition-run", "suite": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol:HookRouteDispositionsTest", "test": "testHookResynchronisationIsIdempotentAndOwnershipGuarded"}
+      ],
+      "gaps": []
+    },
+    {
+      "route": "ERC3643HookAdapter.activateSeal((address,uint256,bool)[])",
+      "selector": "0x8efb3179",
+      "kind": "NEVER_SUCCEEDS",
+      "callers": "only the governor passes the caller check, and the Hook governor contains no call to this function",
+      "writes": ["none reachable; the constructor writes the seal state through the internal empty seal"],
+      "justification": "The caller check admits only the governor, whose code has no call to activateSeal, and the constructor has already set the seal flag through the internal empty seal, so a call from the governor address fails the next check with reason 301 as well. No transaction can make the route succeed.",
+      "references": [
+        {"type": "decision", "path": "spec/decisions/15-route-dispositions.md", "quote": "3. **Hook seal activation never succeeds.**", "coverage": "this runtime"},
+        {"type": "ledgerRow", "ledger": "evidence/end-to-end-refinement/obligation-ledger-v3.json", "row": "ADP-SEAL-01", "coverage": "counterpart runtime"},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookAdapter.sol", "snippet": "if (msg.sender != address(profileGovernor)) revert TrustUnauthorized(msg.sender, bytes32(0));", "occurrences": 1},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookAdapter.sol", "snippet": "_activateEmptySeal();", "occurrences": 1},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookGovernor.sol", "snippet": "activateSeal", "occurrences": 0},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookDeployment.sol", "snippet": "activateSeal", "occurrences": 0},
+        {"type": "test", "runtime": "ERC3643HookAdapter", "run": "route-disposition-run", "suite": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol:HookRouteDispositionsTest", "test": "testHookActivateSealNeverSucceeds"}
+      ],
+      "gaps": []
+    },
+    {
+      "route": "ERC3643HookAdapter.onTokenBalanceChanged(address,address)",
+      "selector": "0x9cbfdbf8",
+      "kind": "BALANCE_CALLBACK",
+      "callers": "only the immutable Compliance module bound to the token",
+      "writes": ["the applied frozen amount of the touched accounts", "the upstream frozen amount of the touched accounts through the Agent role"],
+      "justification": "Runs inside an ordinary upstream balance change and materialises min(owned target, new balance) before the token call returns; it cannot create a TRUST command and writes no owned target, flag, case, record, nonce or receipt. A failure reverts the whole token operation.",
+      "references": [
+        {"type": "ledgerRow", "ledger": "evidence/trust12/obligation-ledger.json", "row": "HOOK-CALLER-AUTH", "coverage": "this runtime"},
+        {"type": "ledgerRow", "ledger": "evidence/trust12/obligation-ledger.json", "row": "HOOK-INBOUND-FLOOR", "coverage": "this runtime"},
+        {"type": "ledgerRow", "ledger": "evidence/trust12/obligation-ledger.json", "row": "HOOK-CALLBACK-ROLLBACK", "coverage": "this runtime"},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookAdapter.sol", "snippet": "if (msg.sender != profileGovernor.compliance()) revert TrustUnauthorized(msg.sender, bytes32(0));", "occurrences": 1},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookAdapter.sol", "snippet": "if (to != address(0) && to != from) _syncFrozen(bytes32(0), to);", "occurrences": 1},
+        {"type": "test", "runtime": "ERC3643HookAdapter", "run": "recorded-foundry-suite", "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest", "test": "testHookInboundCannotEscapeInSameTransaction"},
+        {"type": "test", "runtime": "ERC3643HookAdapter", "run": "recorded-foundry-suite", "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest", "test": "testHookTransferFromInboundAndSelfTransfer"},
+        {"type": "test", "runtime": "ERC3643HookAdapter", "run": "recorded-foundry-suite", "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest", "test": "testHookBatchAndZeroTransfersEnforceTargets"},
+        {"type": "test", "runtime": "ERC3643HookAdapter", "run": "recorded-foundry-suite", "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest", "test": "testHookFactoryFreshStateAndAuthorityClosure"},
+        {"type": "test", "runtime": "ERC3643HookAdapter", "run": "recorded-foundry-suite", "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest", "test": "testHookPostCallbackFailureRollsBackTransferAndAllowance"},
+        {"type": "mutation", "path": "evidence/trust12/mutation-callback-auth.json"},
+        {"type": "mutation", "path": "evidence/trust12/mutation-inbound.json"}
+      ],
+      "gaps": []
+    },
+    {
+      "route": "ERC3643HookGovernor.sealFresh()",
+      "selector": "0xa941f8f9",
+      "kind": "CONSTRUCTION_ONLY",
+      "callers": "only the bootstrap authority, which is the endpoint that created the governor",
+      "writes": ["once, inside construction: the import manifest hash of the empty manifest, the exclusive adapter, the sealed binding and the sealed flag", "ProfileSealed event"],
+      "justification": "The endpoint constructor calls it once after the topology is complete and then never again; after that call the sealed flag is set, so every later call fails the fresh-topology requirement, and any other caller fails the first check.",
+      "references": [
+        {"type": "ledgerRow", "ledger": "evidence/trust12/obligation-ledger.json", "row": "HOOK-FRESH-INITIAL", "coverage": "this runtime"},
+        {"type": "ledgerRow", "ledger": "evidence/trust12/obligation-ledger.json", "row": "HOOK-SOLE-AGENT", "coverage": "this runtime"},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookGovernor.sol", "snippet": "if (msg.sender != adapter) revert IERCTrustKernel.TrustUnauthorized(msg.sender, bytes32(0));", "occurrences": 1},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookGovernor.sol", "snippet": "require(!topologySealed && _topologyMatches(adapter), \"invalid fresh topology\");", "occurrences": 1},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookAdapter.sol", "snippet": "sealFresh", "occurrences": 1},
+        {"type": "test", "runtime": "ERC3643HookGovernor", "run": "recorded-foundry-suite", "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest", "test": "testHookDirectFreshZeroSupplyAndCreationPins"},
+        {"type": "test", "runtime": "ERC3643HookGovernor", "run": "recorded-foundry-suite", "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest", "test": "testHookFactoryFreshStateAndAuthorityClosure"},
+        {"type": "test", "runtime": "ERC3643HookGovernor", "run": "route-disposition-run", "suite": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol:HookRouteDispositionsTest", "test": "testHookConstructionOnlyRoutesRevertAfterConstruction"}
+      ],
+      "notes": ["The disposition tests call the fresh seal after construction both from another account, which the first check rejects, and as the endpoint itself, which the fresh-topology requirement rejects."],
+      "gaps": []
+    },
+    {
+      "route": "ERC3643HookCompliance.activate(address)",
+      "selector": "0x1c5a9d9c",
+      "kind": "CONSTRUCTION_ONLY",
+      "callers": "only the contract that constructed the module, which is the endpoint during its own construction, and only while no endpoint is set",
+      "writes": ["once, inside construction: the endpoint address"],
+      "justification": "The deployment sequence inside the endpoint constructor calls it once with the endpoint itself; afterwards the endpoint is set, no code of the module clears it, and the requirement fails for every caller.",
+      "references": [
+        {"type": "decision", "path": "spec/decisions/15-route-dispositions.md", "quote": "4. **Compliance setup steps run once, inside construction.**", "coverage": "this runtime"},
+        {"type": "ledgerRow", "ledger": "evidence/trust12/obligation-ledger.json", "row": "HOOK-FRESH-INITIAL", "coverage": "this runtime"},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookCompliance.sol", "snippet": "require(msg.sender == factory && endpoint == address(0) && endpoint_ == factory, \"invalid activation\");", "occurrences": 1},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookCompliance.sol", "snippet": "endpoint = endpoint_;", "occurrences": 1},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookDeployment.sol", "snippet": "hook.activate(address(this));", "occurrences": 1},
+        {"type": "test", "runtime": "ERC3643HookCompliance", "run": "route-disposition-run", "suite": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol:HookRouteDispositionsTest", "test": "testHookConstructionOnlyRoutesRevertAfterConstruction"},
+        {"type": "test", "runtime": "ERC3643HookCompliance", "run": "recorded-foundry-suite", "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest", "test": "testHookFactoryFreshStateAndAuthorityClosure"}
+      ],
+      "gaps": []
+    },
+    {
+      "route": "ERC3643HookCompliance.bindToken(address)",
+      "selector": "0x3ff5aa02",
+      "kind": "CONSTRUCTION_ONLY",
+      "callers": "only the bound token while the module is unbound; the token binds the module during construction",
+      "writes": ["once, inside construction: the bound flag"],
+      "justification": "The bound flag is set once the unit is constructed, bindToken is the only code that sets it and requires the token as caller, no code of the module clears it and the unbinding entrypoint always reverts, so every later call fails.",
+      "references": [
+        {"type": "decision", "path": "spec/decisions/15-route-dispositions.md", "quote": "4. **Compliance setup steps run once, inside construction.**", "coverage": "this runtime"},
+        {"type": "ledgerRow", "ledger": "evidence/trust12/obligation-ledger.json", "row": "HOOK-SOLE-AGENT", "coverage": "this runtime"},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookCompliance.sol", "snippet": "require(!bound && msg.sender == token && token_ == token, \"invalid binding\");", "occurrences": 1},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookCompliance.sol", "snippet": "bound = true;", "occurrences": 1},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookCompliance.sol", "snippet": "revert(\"immutable binding\");", "occurrences": 1},
+        {"type": "test", "runtime": "ERC3643HookCompliance", "run": "route-disposition-run", "suite": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol:HookRouteDispositionsTest", "test": "testHookConstructionOnlyRoutesRevertAfterConstruction"},
+        {"type": "test", "runtime": "ERC3643HookCompliance", "run": "recorded-foundry-suite", "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest", "test": "testHookFactoryFreshStateAndAuthorityClosure"}
+      ],
+      "notes": ["The initialiser of the pinned upstream token, which calls bindToken during construction, is upstream code recorded by commit in the TRUST 1.2 runtime identity; the route inventory does not read the upstream source."],
+      "gaps": []
+    },
+    {
+      "route": "ERC3643HookCompliance.created(address,uint256)",
+      "selector": "0x5f8dead3",
+      "kind": "COMPLIANCE_CALLBACK",
+      "callers": "only the bound token; the token calls it after a mint, which only an Agent can perform, and the endpoint, the only Agent, mints only inside construction before activation",
+      "writes": ["none of its own; before activation it returns, after activation it forwards to the balance callback"],
+      "justification": "During construction the initial mint reaches the bootstrap branch, which only checks the caller. After activation the route forwards to the balance callback and accepts only the token, and no mint by the token is reachable because the endpoint never mints after construction.",
+      "references": [
+        {"type": "decision", "path": "spec/decisions/15-route-dispositions.md", "quote": "5. **Compliance callbacks only forward.**", "coverage": "this runtime"},
+        {"type": "ledgerRow", "ledger": "evidence/trust12/obligation-ledger.json", "row": "HOOK-SOLE-AGENT", "coverage": "this runtime"},
+        {"type": "ledgerRow", "ledger": "evidence/trust12/obligation-ledger.json", "row": "HOOK-CALLER-AUTH", "coverage": "this runtime"},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookCompliance.sol", "snippet": "require(msg.sender == token && bound, \"only bootstrap mint\");", "occurrences": 1},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookCompliance.sol", "snippet": "require(msg.sender == token && bound, \"only token\");", "occurrences": 1},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookAdapter.sol", "snippet": "mint", "occurrences": 0},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookDeployment.sol", "snippet": "if (supply != 0) upstream.mint(holder, supply);", "occurrences": 1},
+        {"type": "test", "runtime": "ERC3643HookCompliance", "run": "route-disposition-run", "suite": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol:HookRouteDispositionsTest", "test": "testHookComplianceCallbacksAcceptOnlyTheToken"},
+        {"type": "test", "runtime": "ERC3643HookCompliance", "run": "route-disposition-run", "suite": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol:HookRouteDispositionsTest", "test": "testHookMintAndBurnCallbacksOnlyForward"},
+        {"type": "test", "runtime": "ERC3643HookCompliance", "run": "recorded-foundry-suite", "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest", "test": "testHookFactoryFreshStateAndAuthorityClosure"}
+      ],
+      "gaps": []
+    },
+    {
+      "route": "ERC3643HookCompliance.transferred(address,address,uint256)",
+      "selector": "0x8baf29b4",
+      "kind": "COMPLIANCE_CALLBACK",
+      "callers": "only the bound token, after transfer, transferFrom, batch transfer and forced transfer",
+      "writes": ["none of its own; it forwards the two touched accounts to the balance callback"],
+      "justification": "Part of every ordinary upstream transfer; its only effect is the forwarded balance callback, and a call by any other account fails the token check.",
+      "references": [
+        {"type": "decision", "path": "spec/decisions/15-route-dispositions.md", "quote": "5. **Compliance callbacks only forward.**", "coverage": "this runtime"},
+        {"type": "ledgerRow", "ledger": "evidence/trust12/obligation-ledger.json", "row": "HOOK-INBOUND-FLOOR", "coverage": "this runtime"},
+        {"type": "ledgerRow", "ledger": "evidence/trust12/obligation-ledger.json", "row": "HOOK-CALLBACK-ROLLBACK", "coverage": "this runtime"},
+        {"type": "ledgerRow", "ledger": "evidence/trust12/obligation-ledger.json", "row": "HOOK-CALLER-AUTH", "coverage": "this runtime"},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookCompliance.sol", "snippet": "require(msg.sender == token && bound, \"only token\");", "occurrences": 1},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookCompliance.sol", "snippet": "ITrustBalanceHook(endpoint).onTokenBalanceChanged(from, to);", "occurrences": 1},
+        {"type": "test", "runtime": "ERC3643HookCompliance", "run": "route-disposition-run", "suite": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol:HookRouteDispositionsTest", "test": "testHookComplianceCallbacksAcceptOnlyTheToken"},
+        {"type": "test", "runtime": "ERC3643HookCompliance", "run": "recorded-foundry-suite", "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest", "test": "testHookInboundCannotEscapeInSameTransaction"},
+        {"type": "test", "runtime": "ERC3643HookCompliance", "run": "recorded-foundry-suite", "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest", "test": "testHookBatchAndZeroTransfersEnforceTargets"},
+        {"type": "test", "runtime": "ERC3643HookCompliance", "run": "recorded-foundry-suite", "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest", "test": "testHookPostCallbackFailureRollsBackTransferAndAllowance"},
+        {"type": "mutation", "path": "evidence/trust12/mutation-inbound.json"}
+      ],
+      "notes": ["The removal of the token check of the Compliance module has no mutation receipt; the disposition test executes the rejected call by another account on the unmodified module."],
+      "gaps": []
+    },
+    {
+      "route": "ERC3643HookCompliance.destroyed(address,uint256)",
+      "selector": "0x8d2ea772",
+      "kind": "COMPLIANCE_CALLBACK",
+      "callers": "only the bound token; the token calls it after a burn, which only an Agent can perform, and the endpoint, the only Agent, never burns",
+      "writes": ["none of its own; it would forward the source account to the balance callback"],
+      "justification": "Unreachable from the token in a constructed unit, because the only Agent never burns; a call by any other account fails the token check, and a call by the token only forwards.",
+      "references": [
+        {"type": "decision", "path": "spec/decisions/15-route-dispositions.md", "quote": "5. **Compliance callbacks only forward.**", "coverage": "this runtime"},
+        {"type": "ledgerRow", "ledger": "evidence/trust12/obligation-ledger.json", "row": "HOOK-SOLE-AGENT", "coverage": "this runtime"},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookCompliance.sol", "snippet": "function destroyed(address from, uint256) external {", "occurrences": 1},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookAdapter.sol", "snippet": "burn", "occurrences": 0},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookDeployment.sol", "snippet": "burn", "occurrences": 0},
+        {"type": "test", "runtime": "ERC3643HookCompliance", "run": "route-disposition-run", "suite": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol:HookRouteDispositionsTest", "test": "testHookComplianceCallbacksAcceptOnlyTheToken"},
+        {"type": "test", "runtime": "ERC3643HookCompliance", "run": "route-disposition-run", "suite": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol:HookRouteDispositionsTest", "test": "testHookMintAndBurnCallbacksOnlyForward"}
+      ],
+      "gaps": []
+    },
+    {
+      "route": "ERC3643HookFactory.deploy(bytes,address,bytes32,address,uint256,address[])",
+      "selector": "0x39c6db74",
+      "kind": "UNIT_CREATION",
+      "callers": "any account",
+      "writes": ["no factory storage; a new token, registry, Compliance module, governor and endpoint", "HookUnitCreated event"],
+      "justification": "Admits only the pinned endpoint creation code, supplies the constructor arguments itself and returns only a sealed unit; no storage of an existing unit is written, and each new unit starts from the fresh initial state.",
+      "references": [
+        {"type": "ledgerRow", "ledger": "evidence/trust12/obligation-ledger.json", "row": "HOOK-FACTORY-CREATION", "coverage": "this runtime"},
+        {"type": "ledgerRow", "ledger": "evidence/trust12/obligation-ledger.json", "row": "HOOK-FRESH-INITIAL", "coverage": "this runtime"},
+        {"type": "ledgerRow", "ledger": "evidence/trust12/obligation-ledger.json", "row": "HOOK-SOLE-AGENT", "coverage": "this runtime"},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookFactory.sol", "snippet": "require(keccak256(adapterCreationCode) == ADAPTER_CREATION_HASH, \"unapproved adapter creation code\");", "occurrences": 1},
+        {"type": "source", "path": "implementation/src/profiles/ERC3643HookFactory.sol", "snippet": "require(endpoint.trustProfile().full, \"unit not sealed\");", "occurrences": 1},
+        {"type": "test", "runtime": "ERC3643HookFactory", "run": "recorded-foundry-suite", "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest", "test": "testHookFactoryFreshStateAndAuthorityClosure"},
+        {"type": "test", "runtime": "ERC3643HookFactory", "run": "recorded-foundry-suite", "suite": "implementation/test/ERC3643HookTrexIntegration.t.sol:ERC3643HookTrexIntegrationTest", "test": "testHookDirectFreshZeroSupplyAndCreationPins"},
+        {"type": "mutation", "path": "evidence/trust12/mutation-factory-pin.json"},
+        {"type": "mutation", "path": "evidence/trust12/mutation-hidden-agent.json"}
+      ],
+      "gaps": []
+    }
+  ],
+  "nonclaim": "A record states why a route lies outside the runtime-link relation and which evidence covers it; it does not discharge the route-exhaustiveness condition by itself, a cited test is an execution on one deployment and not a proof over every caller, state or input, and the record does not authorize a merge, a release or a deployment."
+}

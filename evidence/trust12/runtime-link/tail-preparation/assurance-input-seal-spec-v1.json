@@ -162,6 +162,14 @@
       "coldReplay": false
     },
     {
+      "id": "route-inventory-recompute",
+      "purpose": "Rehash the private route disposition test receipt, its forge report, the malformed probe receipt and the stored route inventory, recompute the test receipt from the forge report, rebuild the inventory in closure mode with the sealed tool and compare it with the stored inventory and its public record. Foundry is not rerun.",
+      "workingRoot": "PRODUCT",
+      "command": "python3 scripts/trust12/verify_route_inventory_v1.py --product-root PRODUCT_CHECKOUT --artifact-index ROUTE_INVENTORY_ARTIFACT_INDEX",
+      "passCriterion": "Status PASS_ROUTE_INVENTORY_RECOMPUTED.",
+      "coldReplay": false
+    },
+    {
       "id": "proof-sessions-cold",
       "purpose": "Replay the product proof sessions without saved heaps or databases, after installing the pinned Isabelle archive, AFP entry and formal foundation as the proof workflow does.",
       "workingRoot": "PRODUCT",
