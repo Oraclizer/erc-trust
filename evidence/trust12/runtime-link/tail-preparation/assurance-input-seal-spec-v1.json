@@ -194,6 +194,14 @@
       "coldReplay": false
     },
     {
+      "id": "malformed-word-guard-recompute",
+      "purpose": "Rehash the private word guard probe receipts of the unmodified copy and of every declared bounded word guard mutant, compare each receipt with the public record and check that the recorded inputs are the sealed catalog, mutant list, runners and probe sources. Foundry is not rerun.",
+      "workingRoot": "PRODUCT",
+      "command": "python3 scripts/trust12/verify_malformed_word_guard_mutants_v1.py --product-root PRODUCT_CHECKOUT --receipts WORD_GUARD_RECEIPTS",
+      "passCriterion": "Status PASS_SAVED_WORD_GUARD_MUTANT_RECEIPTS_REHASHED.",
+      "coldReplay": false
+    },
+    {
       "id": "proof-sessions-cold",
       "purpose": "Replay the product proof sessions without saved heaps or databases, after installing the pinned Isabelle archive, AFP entry and formal foundation as the proof workflow does.",
       "workingRoot": "PRODUCT",

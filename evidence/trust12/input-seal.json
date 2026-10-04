@@ -13,7 +13,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "90eea709aab169651c12f3de4d251fe9e14bfae5d5a121d57eea87e28af000dc"
+      "sha256": "4d1768adec5cb7d78a7c2b43643af1622dda009b61f8d77f486048fb64dc6282"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
@@ -129,7 +129,7 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "1f0e099d6faa38e577123bb2872cc436281abd3fba8748bbc3b4274ca8bd4a1f"
+      "sha256": "1781afe12e1f2c931775799ccf5aec223807ce5b43bb08699ec459c94dce804e"
     },
     {
       "path": "evidence/trust12/profile-implementation-evidence-review.json",
@@ -216,6 +216,14 @@
       "sha256": "a20f3a334a7d0d413ab7d3ad699e815dfea4d6779e30e03f9f54d9263fa82fe6"
     },
     {
+      "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+      "sha256": "b96937be7c5f094a3576a53b52dead28ac8d37aa7e94941b0ce07a5f63b5f759"
+    },
+    {
+      "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-v1.json",
+      "sha256": "a28e9537b9f9c014f4c30b8dce51a4632b5010a36fc0080b9b00049242f4345b"
+    },
+    {
       "path": "evidence/trust12/runtime-link/tail-preparation/reflection-dispositions-v1.json",
       "sha256": "a829e2ef536c7470132a989b1ea4986b5690c06a674481217d2ea9fb80a97f74"
     },
@@ -261,7 +269,7 @@
     },
     {
       "path": "evidence/trust12/veri-integration-audit.md",
-      "sha256": "f9d516ebce607138dd8d9ece49bb98c6cfe28bcc3ea6a3bf81e958eda88e6c5a"
+      "sha256": "edfde01a3dfc3435664b3c091aa73567566f8603c7ac784e1f8f18ec51d19e28"
     },
     {
       "path": "evidence/trust12/veri-observation-results.json",
@@ -405,7 +413,7 @@
     },
     {
       "path": "scripts/generate-trust12-input-seal.py",
-      "sha256": "83ee867ae94ebe91d502ff86c2d99645059a816e050a119fe4a16d5a833033bc"
+      "sha256": "bf0a69e8e5fa38004c87b95e16db6331c599f61486dfcb1010b21ff1d6c47db2"
     },
     {
       "path": "scripts/generate-trust12-proof-audit.py",
@@ -520,6 +528,10 @@
       "sha256": "ed0d1cdd9b291165730fe8da0fecc8ba2d478cabe974ad27191d1e41d3ca06dd"
     },
     {
+      "path": "scripts/test-malformed-word-guard-mutants.py",
+      "sha256": "ea7997e5f2f613b3acf0449ebd38b0cc8b9247ee60c230a5bc42788701abece1"
+    },
+    {
       "path": "scripts/test-model-source-reception.py",
       "sha256": "938671463613efecdf13eaf172f958f0171be1e974a8940878d15e7b8f1eece4"
     },
@@ -565,7 +577,7 @@
     },
     {
       "path": "scripts/test-trust12-required.mjs",
-      "sha256": "58b3269b62e9076ef5bbb617f0744e34ad3be8d7b525cc5e22a920818b6a7e09"
+      "sha256": "49652a4afb7fe92959deb73e9bcf36df21cb3b8e2923297af9eb9929f7942e10"
     },
     {
       "path": "scripts/test-typed-failure-binding.py",
@@ -620,6 +632,10 @@
       "sha256": "fcf72946657a9499bd4cb41e366a4cec82ae3e90adad7164777af2c4f52c40fd"
     },
     {
+      "path": "scripts/trust12/tail-preparation/run_word_guard_probe.py",
+      "sha256": "ac569232a80829a68d950244788c41c8ee3ae5a4e57a6a817a08b0493d7992b9"
+    },
+    {
       "path": "scripts/trust12/tail-preparation/test_certificate_registry_v2.py",
       "sha256": "2f3abe3ebba139d0f5edfd90f27d7bc69ab5855eaef8a00bd97187cb6b55d370"
     },
@@ -640,6 +656,10 @@
       "sha256": "7d5fc252f2bd7846ebb96ed5698c993e549749e732217fe6abc1e3efa1f87643"
     },
     {
+      "path": "scripts/trust12/tail-preparation/test_word_guard_mutation.py",
+      "sha256": "98fccd5e8ad33a2710eff12e830032e9ed5cd1468756bba4502eb6cdbec3a777"
+    },
+    {
       "path": "scripts/trust12/tail-preparation/typed-failure-probe/HookTypedFailureProbe.t.sol",
       "sha256": "fb2045ed069d233dbda7954ad7bfec6c00b0470510023ed411da56af714badaa"
     },
@@ -658,6 +678,26 @@
     {
       "path": "scripts/trust12/tail-preparation/typed_failure_report.py",
       "sha256": "e881aee50dbd7488fe62f2bda8a54da4937348c30c492a32526b385c185d7c0b"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/word-guard-probe/HookWordGuardProbe.t.sol",
+      "sha256": "7cb007237301e7ea32d6e011da590b26e7bd9e8e8d18999cbd4c90e4c1390fd7"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/word-guard-probe/NativeWordGuardProbe.t.sol",
+      "sha256": "9a7f31dbc85f120e8919d378d12ed3cb3ae6ce0cb48bce4192a2e8f2ab664cdf"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/word-guard-probe/PartialWordGuardProbe.t.sol",
+      "sha256": "a4c8dee608658ade73747dad40241d7ba7c539d62e6f8ee74ab5b0ed901659f8"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/word-guard-probe/WordGuardProbeCore.sol",
+      "sha256": "4056ffceb8abc9b105b8dc5cd683eea334904beb8619a54b8621f47975dec27e"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/word_guard_mutation.py",
+      "sha256": "9996aa56a2de3f5ddf81c5c2b58aec42e4ef3fc9c8d42029a9a8c1a6d7bcaa08"
     },
     {
       "path": "scripts/trust12/verify_assess_call_reception_v1.py",
@@ -686,6 +726,10 @@
     {
       "path": "scripts/trust12/verify_malformed_guard_mutants_v1.py",
       "sha256": "00656bd32cd88c4ba8140ede66b05fa742dd99a76a8d4aa3ac04c7d25e13d849"
+    },
+    {
+      "path": "scripts/trust12/verify_malformed_word_guard_mutants_v1.py",
+      "sha256": "b40a57d062102b953819afb2b24d9685dd1c2ab4c73f4a70767bd4c714554bb3"
     },
     {
       "path": "scripts/trust12/verify_model_source_reception_v1.py",
@@ -757,7 +801,7 @@
     },
     {
       "path": "scripts/verify-trust12-required.mjs",
-      "sha256": "21d2b89a574559eb71b402fb694fa18fd2ed8efc6960595fe16b4f93f4677db4"
+      "sha256": "a539a7126989779cfb774ebaa41dad7099d68afd184725b727df5b3f3f0ce7b3"
     },
     {
       "path": "spec/decisions/14-hook-route-classes.md",
