@@ -52,7 +52,12 @@ configuration target, static flag and call data from an exact booster replay of
 the recorded caller-side prefix, with the return data from the checked storage
 summary. This is bound by dependency-call-provenance-checkpoint-v1.json; the
 summary application step, engine equivalence and the general producer remain
-open. Partial retains its narrower profile and four historical Certora rules.
+open. The second FREEZE of the same test, which the endpoint rejects with
+reason 12, is assembled from received raw texts as a rejected transaction that
+satisfies the product relation and the gate bound relation, with a report bound
+to the decoded command. This is bound by
+second-freeze-rejection-checkpoint-v1.json. Partial retains its narrower
+profile and four historical Certora rules.
 Hook has its own nine actual T-REX integration tests, six feature mutations and
 compiler identity. None supplies the missing general producer for another
 profile.

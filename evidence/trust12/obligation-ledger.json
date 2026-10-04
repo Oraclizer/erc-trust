@@ -249,7 +249,7 @@
         },
         "review": {
           "path": "evidence/trust12/veri-integration-audit.md",
-          "sha256": "079e6c18aad51c85becbbb67e2bd68ca5c11a0421cd71198ffafab1f681c4c0b"
+          "sha256": "5db0797e4f74c1609ed962f026d697e80e73c1781cafb947ba4a1f18915cf3c6"
         }
       },
       "probeDisposition": "Completed general positive and both complementary same-domain removal controls received. No shipping exception.",
@@ -1925,7 +1925,8 @@
         "evidence/trust12/runtime-link/received-transaction-controls-checkpoint-v1.json",
         "evidence/trust12/runtime-link/original-binding-meaning-checkpoint-v1.json",
         "evidence/trust12/runtime-link/assess-call-reception-checkpoint-v1.json",
-        "evidence/trust12/runtime-link/dependency-call-provenance-checkpoint-v1.json"
+        "evidence/trust12/runtime-link/dependency-call-provenance-checkpoint-v1.json",
+        "evidence/trust12/runtime-link/second-freeze-rejection-checkpoint-v1.json"
       ],
       "requiredForRelease": true,
       "requiredForTrust12Completion": true,
@@ -1995,6 +1996,11 @@
           {
             "path": "evidence/trust12/runtime-link/dependency-call-provenance-checkpoint-v1.json",
             "sha256": "da5f9a9e6506cadb033261d1206d0b558cc38875840465e8704c0e6ffc691240",
+            "countsTowardGeneralClosure": false
+          },
+          {
+            "path": "evidence/trust12/runtime-link/second-freeze-rejection-checkpoint-v1.json",
+            "sha256": "6c83f21cbe1b752d0601bd23e20182d0014989918c406587889e1c089512dbf4",
             "countsTowardGeneralClosure": false
           }
         ],

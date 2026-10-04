@@ -425,7 +425,7 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "41ec58cff95ac6a5a13e6a4c0aca5750ec76fa1e9e458f970d6e563ef3e9183b"
+        "sha256": "41e0f1b52666d3e0e7b64139cce87afe3de1f5c47c3fe9edb56882576f5590e0"
       }
     },
     "runtime": {
@@ -481,7 +481,7 @@
         },
         {
           "path": "evidence/trust12/obligation-ledger.json",
-          "sha256": "1657f85eb64ef0357a73f5763d7544da1c158696572b9d0d99edf4885aeff78b"
+          "sha256": "4508de0c3bb941aaa473bd14989218f4d20362028b23410f5b6beab749a9f1d6"
         },
         {
           "path": "evidence/trust12/runtime-identity.json",
@@ -489,7 +489,7 @@
         },
         {
           "path": "evidence/trust12/runtime-link-source-blockers.md",
-          "sha256": "2b86788da9a7346a4738f01a9d51992b01cf883701b9b5e3bd1c8be37fc8a477"
+          "sha256": "e3c62648e593859c67cbc60400aa16b642500e9ddd5ff55174c04b95ac6683a7"
         },
         {
           "path": "evidence/trust12/independent-audit.md",
@@ -596,6 +596,10 @@
           "sha256": "da5f9a9e6506cadb033261d1206d0b558cc38875840465e8704c0e6ffc691240"
         },
         {
+          "path": "evidence/trust12/runtime-link/second-freeze-rejection-checkpoint-v1.json",
+          "sha256": "6c83f21cbe1b752d0601bd23e20182d0014989918c406587889e1c089512dbf4"
+        },
+        {
           "path": "evidence/trust12/runtime-link/primitive-source-controls-checkpoint-v1.json",
           "sha256": "fb9e988a785733f3427159c29798bba1faf6faa34addb9354486adf89eee5c2b"
         },
@@ -613,7 +617,7 @@
         },
         {
           "path": "evidence/trust12/input-seal.json",
-          "sha256": "f4786a7b6f121ba16f6466d61cc923dbbc59a88d1eac2d1387df8192130a1e06"
+          "sha256": "07f0b018d4d477c9bfe3edc8985882a2e28e91a3d970f95ed01502de494429fd"
         }
       ],
       "fullRefinementComplete": false,
@@ -745,7 +749,7 @@
       },
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "1657f85eb64ef0357a73f5763d7544da1c158696572b9d0d99edf4885aeff78b"
+        "sha256": "4508de0c3bb941aaa473bd14989218f4d20362028b23410f5b6beab749a9f1d6"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -753,7 +757,7 @@
       },
       {
         "path": "evidence/trust12/runtime-link-source-blockers.md",
-        "sha256": "2b86788da9a7346a4738f01a9d51992b01cf883701b9b5e3bd1c8be37fc8a477"
+        "sha256": "e3c62648e593859c67cbc60400aa16b642500e9ddd5ff55174c04b95ac6683a7"
       },
       {
         "path": "evidence/trust12/independent-audit.md",
@@ -860,6 +864,10 @@
         "sha256": "da5f9a9e6506cadb033261d1206d0b558cc38875840465e8704c0e6ffc691240"
       },
       {
+        "path": "evidence/trust12/runtime-link/second-freeze-rejection-checkpoint-v1.json",
+        "sha256": "6c83f21cbe1b752d0601bd23e20182d0014989918c406587889e1c089512dbf4"
+      },
+      {
         "path": "evidence/trust12/runtime-link/primitive-source-controls-checkpoint-v1.json",
         "sha256": "fb9e988a785733f3427159c29798bba1faf6faa34addb9354486adf89eee5c2b"
       },
@@ -877,7 +885,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "f4786a7b6f121ba16f6466d61cc923dbbc59a88d1eac2d1387df8192130a1e06"
+        "sha256": "07f0b018d4d477c9bfe3edc8985882a2e28e91a3d970f95ed01502de494429fd"
       }
     ],
     "fullRefinementComplete": false,
