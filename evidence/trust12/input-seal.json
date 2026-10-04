@@ -13,7 +13,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "4d1768adec5cb7d78a7c2b43643af1622dda009b61f8d77f486048fb64dc6282"
+      "sha256": "bf27aa1b5abcc74a86dd088ac8ee3d5f98ae108a82c60ed500cf244833d5ab96"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
@@ -129,7 +129,7 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "1781afe12e1f2c931775799ccf5aec223807ce5b43bb08699ec459c94dce804e"
+      "sha256": "aa2a9cc093e2d87ed033994f238c54773b690200c32180e6549d1ff2d54cc4a0"
     },
     {
       "path": "evidence/trust12/profile-implementation-evidence-review.json",
@@ -225,11 +225,11 @@
     },
     {
       "path": "evidence/trust12/runtime-link/tail-preparation/reflection-dispositions-v1.json",
-      "sha256": "a829e2ef536c7470132a989b1ea4986b5690c06a674481217d2ea9fb80a97f74"
+      "sha256": "74cddd383392121f488c588b4393571a8d767fedfb187164918bf6a77a5ceb94"
     },
     {
       "path": "evidence/trust12/runtime-link/tail-preparation/reflection-scan-checkpoint-v1.json",
-      "sha256": "a6b3e00dc4cb4eb161686e33018fdfa2b4f40ef5a0188b28440e202285cebb96"
+      "sha256": "c4c7bbed27cbec703bea8f534376136d0fb4ec2c3a64dc36615840bfe0eb05ba"
     },
     {
       "path": "evidence/trust12/runtime-link/tail-preparation/route-dispositions-v1.json",
@@ -238,6 +238,10 @@
     {
       "path": "evidence/trust12/runtime-link/tail-preparation/route-inventory-checkpoint-v1.json",
       "sha256": "0c862d66d2a3e9a32335db5d522a469ef21045483b429e7c5142171731a5e9f7"
+    },
+    {
+      "path": "evidence/trust12/runtime-link/tail-preparation/storage-reader-checkpoint-v1.json",
+      "sha256": "7bd763ba139ceba3323df2f6ead5a7bb430c307c2c770ffefacb32492629ef3e"
     },
     {
       "path": "evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json",
@@ -269,7 +273,7 @@
     },
     {
       "path": "evidence/trust12/veri-integration-audit.md",
-      "sha256": "edfde01a3dfc3435664b3c091aa73567566f8603c7ac784e1f8f18ec51d19e28"
+      "sha256": "9877fd51c1db51ac5f3adc8fe4dee7f02744369df6b61c42f3e50088257184dd"
     },
     {
       "path": "evidence/trust12/veri-observation-results.json",
@@ -413,7 +417,7 @@
     },
     {
       "path": "scripts/generate-trust12-input-seal.py",
-      "sha256": "bf0a69e8e5fa38004c87b95e16db6331c599f61486dfcb1010b21ff1d6c47db2"
+      "sha256": "92b8c6b91c09019982eff05ba8cf27add0d8b6fb7e9a0faa1151c2d57b8b42c3"
     },
     {
       "path": "scripts/generate-trust12-proof-audit.py",
@@ -568,6 +572,10 @@
       "sha256": "9e9af7163a0890262f74c395ede903bbbc0ed5cb08fe4db8a5a230b029e82821"
     },
     {
+      "path": "scripts/test-storage-reader.py",
+      "sha256": "be8c52100e96042f06b79aabd58b05686b1c1dffe4d8066cccb3b54d997439aa"
+    },
+    {
       "path": "scripts/test-trust12-evidence-reuse.mjs",
       "sha256": "29b886f2d41ba3c6fad59902d67a3570e01be965a91655b9e3b3efd5a1c51301"
     },
@@ -577,7 +585,7 @@
     },
     {
       "path": "scripts/test-trust12-required.mjs",
-      "sha256": "49652a4afb7fe92959deb73e9bcf36df21cb3b8e2923297af9eb9929f7942e10"
+      "sha256": "bef2cfb460d3ee617a64cceee503157edc0368bc2491aa577e02eccad8c91a61"
     },
     {
       "path": "scripts/test-typed-failure-binding.py",
@@ -605,7 +613,7 @@
     },
     {
       "path": "scripts/trust12/tail-preparation/reflection_scan.py",
-      "sha256": "3a8d013709d1c4555b9e1dfdd043691843bbbd814a6749b6d4d52c5c44a69ba6"
+      "sha256": "16d54721d29b45978a68677be50d57a6d0924c7c20230e5ae3080c8d09cbe7e6"
     },
     {
       "path": "scripts/trust12/tail-preparation/route-dispositions/HookRouteDispositions.t.sol",
@@ -636,6 +644,10 @@
       "sha256": "ac569232a80829a68d950244788c41c8ee3ae5a4e57a6a817a08b0493d7992b9"
     },
     {
+      "path": "scripts/trust12/tail-preparation/storage_reader.py",
+      "sha256": "60c9ce2056e923be11ab1058ca2f20f93ec5c478ff486632e3c1e7a9655e5352"
+    },
+    {
       "path": "scripts/trust12/tail-preparation/test_certificate_registry_v2.py",
       "sha256": "2f3abe3ebba139d0f5edfd90f27d7bc69ab5855eaef8a00bd97187cb6b55d370"
     },
@@ -650,6 +662,10 @@
     {
       "path": "scripts/trust12/tail-preparation/test_route_inventory_v2.py",
       "sha256": "1fdbc2859354fe21a85725fcfea6c21bfc2606f99b4b96ec8c735dec572b814c"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/test_storage_reader.py",
+      "sha256": "43d2b683fb3d1c8d9fa319962911a33d29d14cadfdf9ed0a370560ea9f1e35ac"
     },
     {
       "path": "scripts/trust12/tail-preparation/test_typed_failure_binding.py",
@@ -757,7 +773,7 @@
     },
     {
       "path": "scripts/trust12/verify_reflection_scan_v1.py",
-      "sha256": "527cae0f4617b71301d0a6bf152130400f1a65b5c955b520038ee34bf64f7531"
+      "sha256": "9b4b50ec8ed2e0e05602ed0640398328cf31d387d8da3ddaa833406b90756a8b"
     },
     {
       "path": "scripts/trust12/verify_route_inventory_v1.py",
@@ -766,6 +782,10 @@
     {
       "path": "scripts/trust12/verify_second_freeze_rejection_v1.py",
       "sha256": "963fd5731718245c483ae1cf59addf5fa0e40dc4a0de750b3d8297b79c0b1219"
+    },
+    {
+      "path": "scripts/trust12/verify_storage_reader_v1.py",
+      "sha256": "a90e0003176b857933a9c2123db0e0ccde9ac17135a7acc22c59c490edbf2bc1"
     },
     {
       "path": "scripts/trust12/verify_typed_failure_binding_v1.py",
@@ -801,7 +821,7 @@
     },
     {
       "path": "scripts/verify-trust12-required.mjs",
-      "sha256": "a539a7126989779cfb774ebaa41dad7099d68afd184725b727df5b3f3f0ce7b3"
+      "sha256": "1209666ae242d160cbc03ce83852c25a2dee572e96839a16826df9ab8f76391c"
     },
     {
       "path": "spec/decisions/14-hook-route-classes.md",

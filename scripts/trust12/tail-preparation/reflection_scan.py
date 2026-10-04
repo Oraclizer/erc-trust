@@ -84,7 +84,8 @@ DERIVED = "DERIVED_BY_LAYOUT_IDENTITY"
 OPEN = "OPEN"
 # Open item dispositions; True marks an item carried to a later gate, which must name where and how it closes.
 OPEN_ITEM_KINDS = {"AWAITS_FORMAL_READER": True, "NEEDS_DECISION": True, "RESOLVED_BY_SCAN": False,
-                   "RESOLVED_BY_SOURCE": False, "NONCLAIM": False, "ASSUMPTION": False, "RUNTIME_ONLY": False}
+                   "RESOLVED_BY_SOURCE": False, "RESOLVED_BY_FORMAL_READER": False, "NONCLAIM": False,
+                   "ASSUMPTION": False, "RUNTIME_ONLY": False}
 CARRY_FIELDS = ("receivingGate", "owner", "closureEvidence", "reopen")
 REVIEWED = "REVIEWED"
 NONCLAIM = ("A syntax scan of the final sources and a comparison of the compiled layouts. It lists writes and guards "

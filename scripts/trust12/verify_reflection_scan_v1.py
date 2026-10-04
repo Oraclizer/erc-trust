@@ -108,9 +108,8 @@ CONDITION_BOUNDARY = ("This record is evidence for the two closure acceptance cr
                       "the earlier central closure left without a runtime-only reason. The condition also states that "
                       "abstract allowed behavior is preserved by the final code; this record does not address that "
                       "part. The scan also checks the dispositions of the open items of the crosswalk, but the record "
-                      "is not evidence for the state and receipt identity condition: the open item that waits for a "
-                      "formal reader of storage into abstract fields stays open, and so does the finding that no such "
-                      "reader exists.")
+                      "is not evidence for the state and receipt identity condition or for the formal reader of "
+                      "storage into abstract fields.")
 REPRODUCTION_BOUNDARY = ("Metadata mode reads tracked files only. It checks that this record is the reviewed one, that "
                          "the scan tool, the dispositions and the crosswalk are the current files, that the "
                          "implementation sources, the ledger members that the scan reads, the compiler declarations "
@@ -158,7 +157,7 @@ NONCLAIM_KEYS = ("guardSoundness", "dispositionReasonTruth", "ledgerRowCoverage"
                  "compilerGeneratedChecks", "abstractBehaviorPreservation", "stateReceiptIdentity",
                  "formalStorageReader", "compilerRerun", "proverRerun", "registeredCentralClosure",
                  "generalRuntimeLinks", "independentAssurance", "fullTrustCompletion", "releaseOrDeployment")
-EXPECTED_EVIDENCE_DIGEST = 'd91a26afe945929825453ae3c1ad2538f3b7d6050048cdb7555eb425a6892149'
+EXPECTED_EVIDENCE_DIGEST = 'd71762783dd4b1f2046a8bdfbf1a59d12b5d8dd5afdcb30ed8608a66d74e4cc8'
 PUBLIC_KEYS = {"schema", "status", "scope", "pathBoundary", "classificationBoundary", "reversalCheckBoundary",
                "conditionBoundary", "reproductionBoundary", "evidenceFor", "coverage", "compiler", "productIdentity",
                "implementationSources", "ledgerMembers", "artifacts", "rehashVerifier", "nonclaims",

@@ -194,6 +194,14 @@
       "coldReplay": false
     },
     {
+      "id": "storage-reader-recompute",
+      "purpose": "Rehash the completed kernel session databases and the stored build information, reread every reader source from the session database that stored it, recompute the read forms, the comparison with the crosswalk, the recorded-world theorems, the cell theorem statements and the compiled struct member locations, and compare them with the public record. No prover or compiler runs.",
+      "workingRoot": "PRODUCT",
+      "command": "python3 scripts/trust12/verify_storage_reader_v1.py --product-root PRODUCT_CHECKOUT --artifact-index STORAGE_READER_ARTIFACT_INDEX",
+      "passCriterion": "Status PASS_STORAGE_READER_RECOMPUTED.",
+      "coldReplay": false
+    },
+    {
       "id": "malformed-word-guard-recompute",
       "purpose": "Rehash the private word guard probe receipts of the unmodified copy and of every declared bounded word guard mutant, compare each receipt with the public record and check that the recorded inputs are the sealed catalog, mutant list, runners and probe sources. Foundry is not rerun.",
       "workingRoot": "PRODUCT",

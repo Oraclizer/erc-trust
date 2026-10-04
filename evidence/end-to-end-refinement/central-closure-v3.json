@@ -794,7 +794,7 @@
       },
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "1781afe12e1f2c931775799ccf5aec223807ce5b43bb08699ec459c94dce804e"
+        "sha256": "aa2a9cc093e2d87ed033994f238c54773b690200c32180e6549d1ff2d54cc4a0"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -922,11 +922,15 @@
       },
       {
         "path": "evidence/trust12/runtime-link/tail-preparation/reflection-dispositions-v1.json",
-        "sha256": "a829e2ef536c7470132a989b1ea4986b5690c06a674481217d2ea9fb80a97f74"
+        "sha256": "74cddd383392121f488c588b4393571a8d767fedfb187164918bf6a77a5ceb94"
       },
       {
         "path": "evidence/trust12/runtime-link/tail-preparation/reflection-scan-checkpoint-v1.json",
-        "sha256": "a6b3e00dc4cb4eb161686e33018fdfa2b4f40ef5a0188b28440e202285cebb96"
+        "sha256": "c4c7bbed27cbec703bea8f534376136d0fb4ec2c3a64dc36615840bfe0eb05ba"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/storage-reader-checkpoint-v1.json",
+        "sha256": "7bd763ba139ceba3323df2f6ead5a7bb430c307c2c770ffefacb32492629ef3e"
       },
       {
         "path": "evidence/trust12/runtime-link/tail-preparation/malformed-probe-mutants-v1.json",
@@ -990,7 +994,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "5f2cf9e392c95c3cce4dbc1ca81aabb5f91678165966282ef3df9a985c83aa9e"
+        "sha256": "9466a71470b7c4304f4668bf0b0b127e81fe26934694200f1006397cf6b22f35"
       }
     ],
     "fullRefinementComplete": false,

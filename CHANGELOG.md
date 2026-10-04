@@ -2,6 +2,30 @@
 
 ## Unreleased
 
+- Resolve the open item of the state and receipt crosswalk that waited for a
+  formal reader of storage in the reviewed dispositions: it names the storage
+  reader record. The reflection scan accepts the resolved form, and its record
+  is written again from the stored build information with the updated
+  dispositions; no classification, layout or storage disposition changes.
+
+- Record the storage readers of the three profile manifests in
+  storage-reader-checkpoint-v1.json, with the reader tool storage_reader.py.
+  For every abstract state field and every crosswalk runtime, the account,
+  base slot, mapping depth, key, word and value decoding of the manifests that
+  the Native cell theorems and the restated Partial and Hook cell theorems of
+  the registered executions use agree with the state and receipt crosswalk: 49
+  storage columns agree slot for slot, among them the fifteen Hook adapter
+  columns that the crosswalk derives from the Partial layout, no reader reads
+  the governor columns, and the other adapter columns are constants of the
+  profile or are read from the upstream token. The struct readers read the
+  crosswalk sub-records in order and at the member locations of the compiled
+  layouts, and kernel theorems state the reader values for the sixteen
+  recorded worlds of each adapter profile. The open item of the crosswalk that
+  waited for a formal reader is closed by the record. The agreement is between
+  definitions and does not show the values of a general execution. The public
+  verifier runs in the required gate, and its saved mode rereads every reader
+  source from the kernel session database that stored it.
+
 - Record the bounded word guard mutants of the typed entrypoints in
   malformed-word-guard-mutants-checkpoint-v1.json. The product sources hold no
   statement that checks a bounded word; the compiler checks every read of an

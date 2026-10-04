@@ -32,6 +32,7 @@ needs, the prepared inputs, the acceptance criteria and the findings that block 
 | [reflection-scan-checkpoint-v1.json](reflection-scan-checkpoint-v1.json) | Public record of the reflection scan: every state write and guard on the typed command paths with its classification, the compiled layout counts, the storage dispositions, and the stored build information and scan report by hash |
 | [malformed-word-guard-mutants-v1.json](malformed-word-guard-mutants-v1.json) | The bounded word guard mutants: the kind of check each one weakens and the outcome the word guard probe must observe |
 | [malformed-word-guard-mutants-checkpoint-v1.json](malformed-word-guard-mutants-checkpoint-v1.json) | Public record of the word guard probe on the unmodified copy and on each mutant, with the private receipts by hash |
+| [storage-reader-checkpoint-v1.json](storage-reader-checkpoint-v1.json) | Public record of the storage readers of the three profile manifests: the quoted reader clauses, the read form of every abstract field, the comparison with every crosswalk column, the open item that it closes, and the session databases that stored the reader sources by hash |
 | [assurance-input-seal-schema-v1.json](assurance-input-seal-schema-v1.json) | Format of the frozen Assurance inputs |
 | [assurance-input-seal-spec-v1.json](assurance-input-seal-spec-v1.json) | Bundles, toolchain pins, reproduction commands and independent checks of the seal |
 | [assurance-checklist-v1.md](assurance-checklist-v1.md) | Procedure of the independent assessor |
@@ -57,6 +58,7 @@ All tools are in `scripts/trust12/tail-preparation`. They never run a prover and
 | `reflection_scan.py` | Lists every state write and guard on the typed command paths from the solc build information of the exact tree, compares the compiled layouts with the crosswalk and checks every disposition against the build |
 | `word_guard_mutation.py` | Rewrites an isolated copy of the sources so that one kind of bounded word is read without its decoder check |
 | `run_word_guard_probe.py` | Runs the word guard probe and the malformed probe on an isolated copy, unmodified or with one declared mutant, and records the witnesses |
+| `storage_reader.py` | Reads the storage readers of the three profile manifests from the reader sources or quoted clauses and compares their read forms with the crosswalk, the generated slot tables, the recorded-world theorems, the cell theorem statements and the compiled struct layouts |
 | `kore_accounts.py` | Reads the accounts and the executing frame identifier of a KEVM configuration in KORE text form and fails closed on anything it does not recognise |
 | `assurance_seal.py` | Seals and verifies the frozen inputs of the independent Assurance |
 | `run_malformed_probe.py` | Runs the concrete malformed probe of the three endpoints in an isolated build directory |
@@ -157,6 +159,17 @@ python3 scripts/test-reflection-scan.py
 python3 scripts/trust12/verify_reflection_scan_v1.py --artifact-index ARTIFACT_INDEX
 ```
 
+The public record of the storage readers recomputes every read form and comparison row from the reader clauses it
+quotes and the tracked crosswalk, and its negative controls run without private files. With the private index of the
+session databases and the stored build information, the verifier rereads every reader source from the database that
+stored it and recomputes the whole record:
+
+```
+python3 scripts/trust12/verify_storage_reader_v1.py --metadata-only
+python3 scripts/test-storage-reader.py
+python3 scripts/trust12/verify_storage_reader_v1.py --artifact-index ARTIFACT_INDEX
+```
+
 ## Findings of the preparation
 
 1. The typed entrypoints evaluate the domain and identifier rules, and by source order further
@@ -173,7 +186,8 @@ python3 scripts/trust12/verify_reflection_scan_v1.py --artifact-index ARTIFACT_I
 4. The Hook runtimes had no normative route classes; decision 14 classifies them, and the route
    inventory record shows every state-changing route outside the typed commands disposed. The reflection
    scan record gives a reviewed reason and ledger rows for every storage variable that the crosswalk
-   leaves open; the formal model has no per-profile storage reader yet.
+   leaves open, and the storage reader record compares the storage reader of each profile
+   manifest with the crosswalk column by column.
 
 ## Integration accounting
 

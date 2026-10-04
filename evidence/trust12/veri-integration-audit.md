@@ -356,3 +356,30 @@ whose values have zero low bits, are listed per mutant; a later kernel rule
 rejects most of them once the word is truncated. The witnesses are not the
 registered certificates, and the record is not a proof over all accepted
 executions.
+
+## Storage readers of the profile manifests (2026-10-05)
+
+The record storage-reader-checkpoint-v1.json compares the storage reader of
+each profile manifest with the state and receipt crosswalk. The manifests that
+the Native cell theorems and the restated Partial and Hook cell theorems of
+the registered executions use define every abstract field by a reading of
+storage or by a profile constant: the Native manifest reads the endpoint
+storage, and the reader shared by the Partial and Hook profiles reads the
+adapter storage and the upstream token storage. The reader tool derives, from
+the quoted definitions and the selector lemmas that state each projection, the
+account, slot, mapping depth, key, word and value decoding of every field and
+compares them with every crosswalk column in both directions: 49 storage
+columns agree, among them the fifteen Hook adapter columns derived from the
+Partial layout, no reader reads the 38 governor columns, five adapter columns
+are constants and three are read from the upstream token, whose storage the
+crosswalk layouts do not cover (A-EXTERNAL). Mapping locations use a hash
+parameter constrained by recorded preimage equations (A-KECCAK), and keys
+outside the footprint or the registered certificates read as absent values.
+The saved mode rereads each reader source from the completed kernel session
+database that stored it, recounts the recorded-world reader theorems (sixteen
+worlds and 304 field facts for each adapter profile) and the cell theorem
+statements, and compares the struct member locations with the compiled layouts
+of the stored build. The agreement is between definitions; it does not show
+that a deployed runtime holds these values in a general execution, and the
+instantiation of the Native cells over one common manifest and the gate over
+the twenty-seven cells are not part of the record.
