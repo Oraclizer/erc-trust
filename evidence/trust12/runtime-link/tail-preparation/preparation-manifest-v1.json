@@ -36,7 +36,7 @@
       "command": "python3 -m unittest discover -s scripts/trust12/tail-preparation -p test_*.py -v",
       "exitCode": 0,
       "log": {
-        "path": "rl20-tail-prep-v1/logs/unit-tests.log",
+        "path": "tail-prep-v1/logs/unit-tests.log",
         "sha256": "4826ed5321082f463d239a78fb8cea26f23ca4af9f03523ca05b10c05e0586c2"
       }
     },
@@ -46,7 +46,7 @@
       "command": "python3 scripts/trust12/tail-preparation/prepare_tail.py check",
       "exitCode": 0,
       "log": {
-        "path": "rl20-tail-prep-v1/logs/generated-documents-check.log",
+        "path": "tail-prep-v1/logs/generated-documents-check.log",
         "sha256": "88c31981bf3f8b95870de37aa8eac63ee9d4b84d809b596522f1fcf6b759b4a2"
       }
     },
@@ -56,7 +56,7 @@
       "command": "python3 scripts/trust12/tail-preparation/prepare_tail.py check --artifacts PRODUCT_BUILD_OUT",
       "exitCode": 0,
       "log": {
-        "path": "rl20-tail-prep-v1/logs/generated-documents-check-with-artifacts.log",
+        "path": "tail-prep-v1/logs/generated-documents-check-with-artifacts.log",
         "sha256": "88c31981bf3f8b95870de37aa8eac63ee9d4b84d809b596522f1fcf6b759b4a2"
       }
     },
@@ -66,7 +66,7 @@
       "command": "node scripts/verify-links.mjs",
       "exitCode": 0,
       "log": {
-        "path": "rl20-tail-prep-v1/logs/public-links.log",
+        "path": "tail-prep-v1/logs/public-links.log",
         "sha256": "cba475037668f3a007e053b6e257c2b2cc8202baab1883e7911aaaa1ced1b5b9"
       }
     },
@@ -76,7 +76,7 @@
       "command": "node scripts/verify-public-surface.mjs",
       "exitCode": 0,
       "log": {
-        "path": "rl20-tail-prep-v1/logs/public-surface.log",
+        "path": "tail-prep-v1/logs/public-surface.log",
         "sha256": "3840447ec4c093bb57cb94e9b7d776f241955db14417eb8f97ffcd92866b9882"
       }
     },
@@ -86,7 +86,7 @@
       "command": "node scripts/verify-repository-health.mjs",
       "exitCode": 0,
       "log": {
-        "path": "rl20-tail-prep-v1/logs/repository-health.log",
+        "path": "tail-prep-v1/logs/repository-health.log",
         "sha256": "c98f286ca4c133cdf4af999148cfb9355bb75209292138d5889bcf5bf6475651"
       }
     },
@@ -96,7 +96,7 @@
       "command": "forge fmt --check scripts/trust12/tail-preparation/foundry/",
       "exitCode": 0,
       "log": {
-        "path": "rl20-tail-prep-v1/logs/probe-format-check.log",
+        "path": "tail-prep-v1/logs/probe-format-check.log",
         "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       }
     },
@@ -112,7 +112,7 @@
         "program-identity": "PASS"
       },
       "output": {
-        "path": "rl20-tail-prep-v1/certificate-registry-dry-run.json",
+        "path": "tail-prep-v1/certificate-registry-dry-run.json",
         "sha256": "be7234c87df21f35d71fd9e789c1f73e67ef49f999b4d00fec0920b3445fa16b"
       }
     },
@@ -124,7 +124,7 @@
       "files": 2806,
       "sealRootSha256": "3105363b617a19477cfeca42f8a94ccf217f5a83536166630ba24d105d09e111",
       "output": {
-        "path": "rl20-tail-prep-v1/assurance-seal-dry-run.json",
+        "path": "tail-prep-v1/assurance-seal-dry-run.json",
         "sha256": "d0343adf3ccb40c53f9c35a4f69f4d5a42d6ff0320ad6cf72b913a72fd5a0cf7"
       }
     },
@@ -133,7 +133,7 @@
       "workingRoot": "EVIDENCE",
       "result": "PASS_ROW_MAP_MATCHES_OPEN_TAIL_ROWS",
       "output": {
-        "path": "rl20-tail-prep-v1/ledger-row-map-check.json",
+        "path": "tail-prep-v1/ledger-row-map-check.json",
         "sha256": "cdad51442bfc8e6043c1edf6fd20a9ab025825701742f0b4610295c9e1a68793"
       }
     },
@@ -149,7 +149,7 @@
         "TYPED_BEFORE_CANONICAL_CHECK": 112
       },
       "output": {
-        "path": "rl20-tail-prep-v1/malformed-probe/receipt.json",
+        "path": "tail-prep-v1/malformed-probe/receipt.json",
         "sha256": "1d0d943968119462278c3084808d76b39b0b2d23bd82c98c5946e17e4deb620a"
       }
     }
@@ -350,94 +350,98 @@
     },
     {
       "root": "EVIDENCE",
-      "path": "rl20-tail-prep-v1/assurance-seal-dry-run.json",
+      "path": "tail-prep-v1/assurance-seal-dry-run.json",
       "bytes": 768144,
       "sha256": "d0343adf3ccb40c53f9c35a4f69f4d5a42d6ff0320ad6cf72b913a72fd5a0cf7"
     },
     {
       "root": "EVIDENCE",
-      "path": "rl20-tail-prep-v1/certificate-locators.json",
+      "path": "tail-prep-v1/certificate-locators.json",
       "bytes": 32080,
       "sha256": "a2fd484a9791f574b84ff1bfa57dce1ceb0913ac4f2e95dbbefa755df1c08de7"
     },
     {
       "root": "EVIDENCE",
-      "path": "rl20-tail-prep-v1/certificate-registry-dry-run.json",
+      "path": "tail-prep-v1/certificate-registry-dry-run.json",
       "bytes": 46259,
       "sha256": "be7234c87df21f35d71fd9e789c1f73e67ef49f999b4d00fec0920b3445fa16b"
     },
     {
       "root": "EVIDENCE",
-      "path": "rl20-tail-prep-v1/checks.json",
+      "path": "tail-prep-v1/checks.json",
       "bytes": 4560,
       "sha256": "cdefcbe0bdcf46ec891e2e5c7f1e97093370181ad6d8fae5ff3d2b37f7ac2cde"
     },
     {
       "root": "EVIDENCE",
-      "path": "rl20-tail-prep-v1/ledger-row-map-check.json",
+      "path": "tail-prep-v1/ledger-row-map-check.json",
       "bytes": 3641,
       "sha256": "cdad51442bfc8e6043c1edf6fd20a9ab025825701742f0b4610295c9e1a68793"
     },
     {
       "root": "EVIDENCE",
-      "path": "rl20-tail-prep-v1/ledger-row-map.json",
+      "path": "tail-prep-v1/ledger-row-map.json",
       "bytes": 946,
       "sha256": "43ecb9020fc1af524e8baff585c0ffbddde42086f1228f7d0440c16c26d58b33"
     },
     {
       "root": "EVIDENCE",
-      "path": "rl20-tail-prep-v1/logs/exit-codes.txt",
+      "path": "tail-prep-v1/logs/exit-codes.txt",
       "bytes": 157,
       "sha256": "95d9eddba87e50aed4ae3a6b4132365f53847b52d36146d8eee5400392d708cc"
     },
     {
       "root": "EVIDENCE",
-      "path": "rl20-tail-prep-v1/logs/generated-documents-check-with-artifacts.log",
+      "path": "tail-prep-v1/logs/generated-documents-check-with-artifacts.log",
       "bytes": 614,
       "sha256": "88c31981bf3f8b95870de37aa8eac63ee9d4b84d809b596522f1fcf6b759b4a2"
     },
     {
       "root": "EVIDENCE",
-      "path": "rl20-tail-prep-v1/logs/generated-documents-check.log",
+      "path": "tail-prep-v1/logs/generated-documents-check.log",
       "bytes": 614,
       "sha256": "88c31981bf3f8b95870de37aa8eac63ee9d4b84d809b596522f1fcf6b759b4a2"
     },
     {
       "root": "EVIDENCE",
-      "path": "rl20-tail-prep-v1/logs/probe-format-check.log",
+      "path": "tail-prep-v1/logs/probe-format-check.log",
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
       "root": "EVIDENCE",
-      "path": "rl20-tail-prep-v1/logs/public-links.log",
+      "path": "tail-prep-v1/logs/public-links.log",
       "bytes": 167,
       "sha256": "cba475037668f3a007e053b6e257c2b2cc8202baab1883e7911aaaa1ced1b5b9"
     },
     {
       "root": "EVIDENCE",
-      "path": "rl20-tail-prep-v1/logs/public-surface.log",
+      "path": "tail-prep-v1/logs/public-surface.log",
       "bytes": 56,
       "sha256": "3840447ec4c093bb57cb94e9b7d776f241955db14417eb8f97ffcd92866b9882"
     },
     {
       "root": "EVIDENCE",
-      "path": "rl20-tail-prep-v1/logs/repository-health.log",
+      "path": "tail-prep-v1/logs/repository-health.log",
       "bytes": 45,
       "sha256": "c98f286ca4c133cdf4af999148cfb9355bb75209292138d5889bcf5bf6475651"
     },
     {
       "root": "EVIDENCE",
-      "path": "rl20-tail-prep-v1/logs/unit-tests.log",
+      "path": "tail-prep-v1/logs/unit-tests.log",
       "bytes": 4828,
       "sha256": "4826ed5321082f463d239a78fb8cea26f23ca4af9f03523ca05b10c05e0586c2"
     },
     {
       "root": "EVIDENCE",
-      "path": "rl20-tail-prep-v1/malformed-probe/receipt.json",
+      "path": "tail-prep-v1/malformed-probe/receipt.json",
       "bytes": 169787,
       "sha256": "1d0d943968119462278c3084808d76b39b0b2d23bd82c98c5946e17e4deb620a"
     }
   ],
-  "nonclaim": "Preparation only. This document describes inputs, checks and acceptance criteria for conditions that remain open. It does not discharge a runtime-link cell, the malformed branch, the acceptance partition, the central refinement closure or the independent Assurance, and it does not authorize a merge, a release or a deployment."
+  "nonclaim": "Preparation only. This document describes inputs, checks and acceptance criteria for conditions that remain open. It does not discharge a runtime-link cell, the malformed branch, the acceptance partition, the central refinement closure or the independent Assurance, and it does not authorize a merge, a release or a deployment.",
+  "privateNameAliases": {
+    "aliasMapSha256": "90c58bf3d7d5c20e70bc237055aa7a77c04b35f59a339226b0c38cba2039a139",
+    "note": "Private evidence folder names and maintainer tool paths are aliased or omitted in this public record; every recorded hash and byte count is unchanged, and a private alias map, named here by hash, restores the names."
+  }
 }

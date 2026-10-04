@@ -3154,98 +3154,82 @@
   "sessionsChecked": 63,
   "tools": [
     {
-      "root": "ORACLIZER",
-      "path": "tools/trust12/prepare_hook_operation_accounts_bundle.py",
+      "root": "MAINTAINER",
       "bytes": 6598,
       "sha256": "68228035ed05da033179f74835a349b6170f8276c9cf85dbe9867f13339f7bd9"
     },
     {
-      "root": "ORACLIZER",
-      "path": "tools/trust12/prepare_cell_bundle_v2.py",
+      "root": "MAINTAINER",
       "bytes": 12195,
       "sha256": "7156a219bf9f22e71c6f197a2554a32637a1430e4a1c399defcf1521eec62eec"
     },
     {
-      "root": "ORACLIZER",
-      "path": "tools/trust12/prepare_hook_operation_world_canary.py",
+      "root": "MAINTAINER",
       "bytes": 11139,
       "sha256": "8ff7cb9ff5dee15937d4b78350747a266fe820fa4adb6ecaf7fac38d13f14ca0"
     },
     {
-      "root": "ORACLIZER",
-      "path": "tools/trust12/prepare_hook_operation_transaction_bundle.py",
+      "root": "MAINTAINER",
       "bytes": 7491,
       "sha256": "9b747ebad36a5f8a5fb00239b9ddeb332d30be961d6e13bb9ffc1dc35b2e112a"
     },
     {
-      "root": "ORACLIZER",
-      "path": "tools/trust12/prepare_hook_forward_semantic_decode.py",
+      "root": "MAINTAINER",
       "bytes": 21310,
       "sha256": "ffc88c59cabcd07c5c55d128a3222695ced8c82e4d4ddb4d8a8c67ecb93b9880"
     },
     {
-      "root": "ORACLIZER",
-      "path": "tools/trust12/prepare_hook_reversal_semantic_decode.py",
+      "root": "MAINTAINER",
       "bytes": 17484,
       "sha256": "8dd27068efa00c9d67fbe16d7f2b2051a9a5d4f77170d81d2788eed9fc8a74ea"
     },
     {
-      "root": "ORACLIZER",
-      "path": "tools/trust12/extract_hook_operation_direct_call_trace.py",
+      "root": "MAINTAINER",
       "bytes": 3829,
       "sha256": "be7fa9b72baa13a9f98b961a8693d3c1322eb9a24022767071827c22174748c1"
     },
     {
-      "root": "ORACLIZER",
-      "path": "tools/trust12/prepare_hook_operation_external_trace.py",
+      "root": "MAINTAINER",
       "bytes": 10100,
       "sha256": "9e8d903f99e06eb5298c73f9da234a402db9e09cd2aae47aa9da0dc3e7c84ff0"
     },
     {
-      "root": "ORACLIZER",
-      "path": "tools/trust12/prepare_hook_forward_retrieve.py",
+      "root": "MAINTAINER",
       "bytes": 20427,
       "sha256": "d9d8fddccde6ad2ddea4cae30f59b24a9b688010e9d90a2f9a023231cd223c3a"
     },
     {
-      "root": "ORACLIZER",
-      "path": "tools/trust12/prepare_hook_reversal_retrieve.py",
+      "root": "MAINTAINER",
       "bytes": 24637,
       "sha256": "4e6a53a6ecde55a301256c315fb33dc5a10b7ad1df829668430ac673b896f12e"
     },
     {
-      "root": "ORACLIZER",
-      "path": "tools/trust12/prepare_hook_forward_runtime_cell.py",
+      "root": "MAINTAINER",
       "bytes": 21778,
       "sha256": "907627ddf81733015839d3f84d45b850eed3952a04cfb4781bbd859d463a0020"
     },
     {
-      "root": "ORACLIZER",
-      "path": "tools/trust12/prepare_hook_reversal_runtime_cell.py",
+      "root": "MAINTAINER",
       "bytes": 17442,
       "sha256": "a9b5399e1a34cc2669c8797b01d8b9130ea662060befcea009b680fd3dd63e20"
     },
     {
-      "root": "ORACLIZER",
-      "path": "tools/trust12/poly_compact_hierarchy_policy.sh",
+      "root": "MAINTAINER",
       "bytes": 3752,
       "sha256": "2af07155f43148ac571064ad03b3ed8d59c4682317ee8fd29bf7f8890399cada"
     },
     {
-      "root": "ORACLIZER",
-      "path": "tools/trust12/poly_compact_hierarchy_policy_v2.sh",
+      "root": "MAINTAINER",
       "bytes": 4072,
       "sha256": "29c2320f027980c6f1917d13dee4b515116da1692cb562f91ca751f1b79be5f0"
     },
     {
-      "root": "ORACLIZER",
-      "path": "tools/trust12/poly_compact_hierarchy_policy_v3.sh",
+      "root": "MAINTAINER",
       "bytes": 5047,
       "sha256": "add1ef625e904035a5e7e8f3ed31a99f464c76c7dff44991573c8aeafced7a71"
     },
     {
-      "root": "ORACLIZER",
-      "path": "tools/trust12/check_hook_pregenerated.py",
+      "root": "MAINTAINER",
       "bytes": 9772,
       "sha256": "48bf7281f3bda58d7ec256cd93baae28cbb548dfc70c2dcf4986ae940dbe50d5"
     },
@@ -3298,5 +3282,9 @@
       "sha256": "0d74a56fc53bef0ae7bef9bc96cb292d1e6edf44899b4db302305dc03127309d"
     }
   ],
-  "nonclaim": "This returns the exact two-certificate runtime-link cells of the ERC-3643 hook adapter on the pinned product formal inputs and their evidence chain. It does not discharge the profile-wide acceptance partition, the malformed branch, the central bidirectional closure or an independent assurance review, and it does not authorize a release, deployment or publication."
+  "nonclaim": "This returns the exact two-certificate runtime-link cells of the ERC-3643 hook adapter on the pinned product formal inputs and their evidence chain. It does not discharge the profile-wide acceptance partition, the malformed branch, the central bidirectional closure or an independent assurance review, and it does not authorize a release, deployment or publication.",
+  "privateNameAliases": {
+    "aliasMapSha256": "90c58bf3d7d5c20e70bc237055aa7a77c04b35f59a339226b0c38cba2039a139",
+    "note": "Private evidence folder names and maintainer tool paths are aliased or omitted in this public record; every recorded hash and byte count is unchanged, and a private alias map, named here by hash, restores the names."
+  }
 }

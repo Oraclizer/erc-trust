@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Alias private process folder names and omit private maintainer tool paths in
+  the Partial RELEASE and Hook closure manifests and the tail preparation
+  manifest. Every recorded hash and byte count is unchanged; a private alias
+  map, named in each record by hash, restores the names. The public surface
+  and repository health scans now reject process step numbers and private
+  maintainer tool paths in public text.
 - Record the aligned gate relation for the registered requests outside
   canonical form. For the 16 Native, 13 Partial and 13 Hook registered requests,
   prove the gate relation that follows decision 12 (a request whose

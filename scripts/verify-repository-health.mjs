@@ -15,6 +15,8 @@ const proofBoundPaths = new Map(proofBoundAllowlist.files.map((entry) => [entry.
 const internalLifecyclePattern = /\b(?:M[1-9]\d*|G[1-9]\d*|FV\d+)\b/;
 const internalSchemaPattern = /changedByM\d|g\d+Regression|fv\d+Rows/i;
 const privateBranchPattern = /\b(?:sourceBranch|formerBranch|branch)\s*[:=]\s*["'](?:codex|claude)\//i;
+const privateProcessPattern =
+  /"root":\s*"ORACLIZER"|tools\/trust12\/|(?:^|[^A-Za-z0-9])(?:RL|FV)[-_]?\d+(?!\d)|(?:^|[^a-z0-9])(?:rl|fv)[-_]?\d+(?!\d)/;
 const lifecycleScannerFiles = new Set([
   "docs/PROOF-BOUND-IDENTIFIERS.md",
   "evidence/public-release/diet-manifest-v1.json",
@@ -141,7 +143,7 @@ for (const absolute of files) {
     for (let index = 0; index < lines.length; index += 1) {
       const lifecycle = lines[index].match(internalLifecyclePattern);
       const schema = lines[index].match(internalSchemaPattern);
-      const match = lifecycle ?? schema;
+      const match = lifecycle ?? schema ?? lines[index].match(privateProcessPattern);
       if (match) {
         failures.push(`internal lifecycle/property identifier: ${path}:${index + 1}: ${match[0]}`);
       }
