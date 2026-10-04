@@ -773,30 +773,28 @@
   "trust12Required": {
     "centralClosure": "INCOMPLETE",
     "currentMandatory": [
-      "RESEARCH-RUNTIME-LINK-HOOK",
-      "RESEARCH-RUNTIME-LINK-NATIVE",
-      "RESEARCH-RUNTIME-LINK-PARTIAL"
+      "REGISTERED-CENTRAL-CLOSURE"
     ],
     "evidence": [
       {
         "path": "evidence/trust12/release-policy.json",
-        "sha256": "5bc93c643afdac4e2faeb3fca12e75ca90ac26f272304c0a6f661a35d5e5a8e4"
+        "sha256": "3a6e301698d6ea72130b21880be4fa9e13fc821bf805a4f1d95dc84256bcc46d"
       },
       {
         "path": "evidence/trust12/release-notes.md",
-        "sha256": "f4de6747568d5517a55666267813fcb9403d90e1b61c3dd7dfe7233ffd003c25"
+        "sha256": "be0e5d9745f1b52972754878ad8a0bf2fa3aa7aba0280b8fafa457ce465c1f56"
       },
       {
         "path": "evidence/claim-matrix.md",
-        "sha256": "81fc908900bbe64d91c5e34128cb1e4ad58173f623867bea84a0010e554a041c"
+        "sha256": "dfc4c186f07bb466cd10991ce84c4d9ec2a93de29d8bb0826bb658bd6c88d0e1"
       },
       {
         "path": "evidence/known-limitations.md",
-        "sha256": "26c49738dd9b7bee57e40e0fb95bd026b4f57f1bacf41b73369009d12e8ce81e"
+        "sha256": "82431f20dbdc4f983d3dea52a7ec6df82462baa2ed7adc655339829a90ac0c36"
       },
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "e3c850eb1a1ffca16be161cb8870e5ea5c4888cc453b1d6227cc17efd29f6255"
+        "sha256": "12df4b5a0eac13b95753990cc6724dfc01c3271cdf6f4676a019ae58418ce8eb"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -804,7 +802,7 @@
       },
       {
         "path": "evidence/trust12/runtime-link-source-blockers.md",
-        "sha256": "1737e31ab96215ca916f860faaa5f199d6c61107419ec6a33934c50314b2e919"
+        "sha256": "f5b023f3d1ee580c5635707ca9a80aba7b5e28c1cd327c386ebe4634aca06ff6"
       },
       {
         "path": "evidence/trust12/independent-audit.md",
@@ -932,11 +930,11 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "ecdb279802de1a17a1f799272be91ad92ac7dc27336d092ed5c47ef72be819c4"
+        "sha256": "abd46e7ff2fd7bea83a4bcdba060d7e5b30c0d8e8ee1d175ad496ce3ab61d564"
       }
     ],
     "fullRefinementComplete": false,
-    "generalRuntimeLinkMandatory": [
+    "generalRuntimeLinkDeferred": [
       "RESEARCH-RUNTIME-LINK-HOOK",
       "RESEARCH-RUNTIME-LINK-NATIVE",
       "RESEARCH-RUNTIME-LINK-PARTIAL"
@@ -946,32 +944,38 @@
       "preservation": "PASS_ABSTRACT_MODEL",
       "runtimeConnection": "CONDITIONAL"
     },
-    "nonclaim": "Required development evidence is bound to current inputs. General runtime-to-model correspondence remains mandatory and unproved; policy consistency is not proof completion or shipping approval.",
+    "nonclaim": "Required development evidence is bound to current inputs. The registered-scope central closure is open, and general runtime-to-model correspondence is deferred research and unproved; policy consistency is not proof completion or shipping approval.",
     "profiles": {
       "hook": {
         "functionalConformance": "PASS_PINNED_FRESH_TREX",
         "integrationTests": 9,
-        "runtimeRefinement": "INCOMPLETE",
+        "runtimeRefinement": "DEFERRED_RESEARCH",
         "semanticMutations": 6
       },
       "native": {
         "existingEvidence": "PRESERVED",
-        "runtimeRefinement": "INCOMPLETE"
+        "runtimeRefinement": "DEFERRED_RESEARCH"
       },
       "partial": {
         "existingEvidence": "PRESERVED",
         "full": false,
-        "runtimeRefinement": "INCOMPLETE"
+        "runtimeRefinement": "DEFERRED_RESEARCH"
       }
     },
+    "registeredCentralClosure": "CURRENT-MANDATORY",
     "releaseReadiness": "PENDING",
-    "researchResiduals": [],
+    "researchResiduals": [
+      "RESEARCH-RUNTIME-LINK-HOOK",
+      "RESEARCH-RUNTIME-LINK-NATIVE",
+      "RESEARCH-RUNTIME-LINK-PARTIAL"
+    ],
     "shippingExceptions": [],
     "status": "PASS_CONSISTENT_DEVELOPMENT",
     "symbolicBackendComparison": {
       "guardRemoval": "NOT_RUN because the positive proof did not complete",
       "proofExit": 124,
       "status": "INCOMPLETE"
-    }
+    },
+    "trust12Complete": false
   }
 }

@@ -3,10 +3,15 @@
 Unaudited. Not for production. No deployment, proxy, migration, or external
 legal/factual truth is verified. This file does not announce a release.
 
-The 2026-09-13 release-scope reset is historical. Jay Kim's 2026-09-25 completion
-direction requires general machine-checked runtime-to-model correspondence for
-Native, Partial and Hook within each declared product scope. The current evidence
-does not discharge those obligations. Verified Isabelle model evidence and scoped
+The 2026-09-13 release-scope reset and Jay Kim's 2026-09-25 completion direction
+are historical. Jay Kim's 2026-10-04 completion direction closes TRUST 1.2 at the
+registered-execution scope: the verified Isabelle abstract model, kernel-checked
+registered executions of Native, Partial and Hook bound to their exact compiled
+runtimes, one registered-scope central closure that names its remaining
+assumptions, and fresh independent assurance. The central closure and the
+assurance are open.
+General runtime-to-model correspondence in each declared profile is deferred research and is not required for TRUST 1.2 completion.
+The current evidence does not discharge the general runtime links. Verified Isabelle model evidence and scoped
 compiled-code checks remain valid at their stated levels. The permitted claim is
 "mapped implementation evidence; end-to-end refinement incomplete".
 
@@ -37,13 +42,14 @@ supply. The complete mutant transaction is not claimed. The earlier bounded alte
 retained as history. A shipping exception requires a separate Jay decision and leaves
 the proof explicitly unproven, with a receiving process, responsible artifact,
 closure evidence and resume condition. Existing parser and symbolic receiver work
-is available for the mandatory general connection; no unproved producer is promoted.
+is preserved for the deferred general connection; no unproved producer is promoted.
 
 TRUST 1.2 shipping exceptions: none.
 
 `release-policy.json` records the historical and current decisions. `obligation-ledger.json` records
-the 21 graded components, the open Native symbolic proof and the three mandatory
-general connections separately from end-to-end proof completeness and public-release
+the 21 graded components, the closed Native symbolic proof, the open
+registered-scope central closure and the three deferred general connections
+separately from end-to-end proof completeness and public-release
 authorization. `profile-implementation-evidence-review.json` records the scope
 inventory, and `native-alternative-probe.json` records the bounded probe result.
 The local proof-run inventory and the end-to-end product ledger have different

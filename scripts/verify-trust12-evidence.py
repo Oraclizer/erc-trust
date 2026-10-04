@@ -70,6 +70,7 @@ def main() -> None:
                 "releaseReadiness": policy["releaseReadiness"],
                 "researchResiduals": policy["researchResiduals"],
                 "shippingExceptions": policy["shippingExceptions"],
+                "trust12Complete": policy["trust12Complete"],
                 "fullRefinementComplete": policy["fullRefinementComplete"],
             },
             indent=2,

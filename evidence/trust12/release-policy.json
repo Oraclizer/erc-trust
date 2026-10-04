@@ -1,5 +1,5 @@
 {
-  "schema": "trust12-release-policy-v2",
+  "schema": "trust12-release-policy-v3",
   "approval": {
     "kind": "RELEASE_SCOPE_RESET",
     "approvedBy": "Jay Kim",
@@ -10,12 +10,21 @@
   "completionDirection": {
     "kind": "TRUST12_COMPLETION_DIRECTION",
     "approvedBy": "Jay Kim",
-    "date": "2026-09-25",
-    "userInstruction": "Continue through TRUST 1.2 completion with the current evidence-preserving method and execution repairs.",
-    "scope": "General runtime-to-model correspondence in each declared profile is mandatory for TRUST 1.2 completion. Development checkpoints may remain incomplete; no release or deployment is authorized."
+    "date": "2026-10-04",
+    "userInstruction": "Close TRUST 1.2 at the registered-execution scope and update every canonical record; pursue the general runtime link only after research on better agents and approaches.",
+    "scope": "TRUST 1.2 completes with the verified abstract model, kernel-checked registered executions of the three declared profiles bound to their exact compiled runtimes, one registered-scope central closure that names its remaining assumptions, and fresh independent assurance. General runtime-to-model correspondence in each declared profile is deferred research and is not required for TRUST 1.2 completion. No release or deployment is authorized."
   },
-  "generalRuntimeLinkRequiredForRelease": true,
-  "parserDevelopment": "ACTIVE_FOR_TRUST12",
+  "supersededCompletionDirections": [
+    {
+      "kind": "TRUST12_COMPLETION_DIRECTION",
+      "approvedBy": "Jay Kim",
+      "date": "2026-09-25",
+      "userInstruction": "Continue through TRUST 1.2 completion with the current evidence-preserving method and execution repairs.",
+      "scope": "General runtime-to-model correspondence in each declared profile is mandatory for TRUST 1.2 completion. Development checkpoints may remain incomplete; no release or deployment is authorized."
+    }
+  ],
+  "generalRuntimeLinkRequiredForRelease": false,
+  "parserDevelopment": "PRESERVE_ONLY",
   "profileScopes": {
     "NATIVE": "The exact pinned Native TrustToken runtime under the declared direct, non-proxy execution and environment assumptions: six actions, three reversals, success, rejection and malformed-call behavior with state, calls, return, logs and receipts.",
     "PARTIAL": "The exact published ERC-3643 Partial adapter and governor runtimes under their declared custody, owner and token assumptions, with full=false: six actions, three reversals, success, rejection and malformed-call behavior within that product scope.",
@@ -25,7 +34,7 @@
     "budget": "One day of bounded alternative/decomposition work; record actual elapsed work and attempt costs before reassessment.",
     "automaticBoundedClosure": false,
     "decisionAuthority": "Jay Kim",
-    "ifIncomplete": "Report the proven scope, unverified scope and measured continuation cost; keep the general proof mandatory and open. This historical bounded probe is not a stop line for the current completion effort."
+    "ifIncomplete": "Report the proven scope, unverified scope and measured continuation cost. This historical bounded probe is not a stop line; the general proof stays open as deferred research."
   },
   "toolchain": {
     "isabelle": "Isabelle2025-2",
@@ -54,6 +63,7 @@
   "nonclaims": [
     "No individual shipping exception is approved by this reset.",
     "No deployment, public push, tag, release or paid execution is authorized.",
-    "Evidence metadata validation is not proof replay or semantic completeness."
+    "Evidence metadata validation is not proof replay or semantic completeness.",
+    "Deferred general runtime-to-model correspondence is unproved and is not claimed."
   ]
 }
