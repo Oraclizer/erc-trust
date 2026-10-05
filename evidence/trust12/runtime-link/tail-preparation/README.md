@@ -40,7 +40,9 @@ needs, the prepared inputs, the acceptance criteria and the findings that block 
 | [storage-reader-checkpoint-v1.json](storage-reader-checkpoint-v1.json) | Public record of the storage readers of the three profile manifests: the quoted reader clauses, the read form of every abstract field, the comparison with every crosswalk column, the open item that it closes, and the session databases that stored the reader sources by hash |
 | [registered-gate-checkpoint-v1.json](registered-gate-checkpoint-v1.json) | Public record of the kernel runs that instantiate the twenty-seven-cell gate over the certificate registry: the quoted definitions and theorems, the certificate list, the final audits, the formal theories that the runs read, and the session databases and run records by hash |
 | [assurance-input-seal-schema-v1.json](assurance-input-seal-schema-v1.json) | Format of the frozen Assurance inputs |
-| [assurance-input-seal-spec-v1.json](assurance-input-seal-spec-v1.json) | Bundles, toolchain pins, reproduction commands and independent checks of the seal |
+| [assurance-input-list-schema-v1.json](assurance-input-list-schema-v1.json) | Format of an input list: every private file that one saved-mode recomputation or the kernel replay reads, with the generator that regenerates the list |
+| [assurance-input-seal-spec-v1.json](assurance-input-seal-spec-v1.json) | Bundles, toolchain pins, reproduction commands and independent checks of the current-completion seal, whose kernel replay rebuilds the declared top sessions over the recorded ancestor heaps |
+| [assurance-input-seal-spec-final-v1.json](assurance-input-seal-spec-final-v1.json) | The same for the final frozen-source clean Assurance, whose kernel replay rebuilds every sealed kernel session without recorded heaps |
 | [assurance-checklist-v1.md](assurance-checklist-v1.md) | Procedure of the independent assessor |
 
 The generated documents are rebuilt from tracked sources only: the kernel schema and ABI, the
@@ -66,7 +68,8 @@ All tools are in `scripts/trust12/tail-preparation`. They never run a prover and
 | `run_word_guard_probe.py` | Runs the word guard probe and the malformed probe on an isolated copy, unmodified or with one declared mutant, and records the witnesses |
 | `storage_reader.py` | Reads the storage readers of the three profile manifests from the reader sources or quoted clauses and compares their read forms with the crosswalk, the generated slot tables, the recorded-world theorems, the cell theorem statements and the compiled struct layouts |
 | `kore_accounts.py` | Reads the accounts and the executing frame identifier of a KEVM configuration in KORE text form and fails closed on anything it does not recognise |
-| `assurance_seal.py` | Seals and verifies the frozen inputs of the independent Assurance |
+| `assurance_seal.py` | Seals and verifies the frozen inputs of the independent Assurance, directly or through sealed input lists |
+| `assurance_inputs.py` | Writes and regenerates the input list of a saved-mode recomputation: a private artifact index and its files, a receipt directory, the files that the registry or call frame recomputation actually reads, or the run inputs that the registered gate recomputation rehashes |
 | `run_malformed_probe.py` | Runs the concrete malformed probe of the three endpoints in an isolated build directory |
 | `route_inventory_v2.py` | Classifies every selector with the formal route tables and the Hook class table of decision 14, checks every disposition record against the tree and its recorded test runs, and closes only when every acceptance criterion of route exhaustiveness holds |
 | `run_route_disposition_tests.py` | Runs the route disposition tests under `route-dispositions` in an isolated build directory and records the result |

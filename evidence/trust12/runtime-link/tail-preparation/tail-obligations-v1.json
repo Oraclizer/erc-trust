@@ -178,7 +178,7 @@
       ],
       "closureAcceptance": [
         "A seal with status SEALED_FOR_INDEPENDENT_ASSURANCE covers the final inputs.",
-        "A non-participant runs the checklist with a cold replay and records a PASS verdict next to the seal."
+        "A non-participant runs the checklist within the replay scope that the seal declares and records a PASS verdict next to the seal."
       ],
       "blockingFindings": []
     }

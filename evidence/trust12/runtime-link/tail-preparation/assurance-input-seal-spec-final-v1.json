@@ -1,6 +1,6 @@
 {
   "schema": "trust12-tail-preparation-assurance-seal-spec-v1",
-  "description": "Selectors, toolchain pins, reproduction commands and independent checks from which the seal tool builds the frozen input list of the independent Assurance. The product root is enumerated from Git; the runtime-link evidence root is enumerated only under the paths its obligation ledger cites and through the sealed input lists; the maintainer tool root holds the process policy that the recorded kernel runs read, and the Veri formal root and the AFP entry hold sources that the recorded kernel catalog loads; those three roots are named only through the sealed input lists. This template describes current-completion Assurance. Final frozen-source clean Assurance requires a separately frozen specification and seal whose runtime-link-kernel-replay entry has coldReplay true and executes every sealed kernel command without recorded heaps.",
+  "description": "Selectors, toolchain pins, reproduction commands and independent checks from which the seal tool builds the frozen input list of the final frozen-source clean Assurance. It differs from the current-completion template in the kernel replay, which is cold: every kernel session that the sealed kernel replay manifest names is rebuilt in a heap store that starts empty, from the sealed sources only, and compared with the recorded results; no recorded heap, database or proof object is read by the build. The product root is enumerated from Git; the runtime-link evidence root, the maintainer tool root, the Veri formal root and the AFP entry are enumerated only through the obligation ledger and the sealed input lists.",
   "rootInventory": {
     "PRODUCT": "git-tracked",
     "EVIDENCE": "walk",
@@ -14,7 +14,14 @@
       "centralClosureRole": "abstract authority",
       "description": "Isabelle theories, sessions and dependency locks that define the abstract model, the transaction relation and the runtime bridge constants.",
       "selectors": [
-        {"root": "PRODUCT", "include": ["formal/**", "formal-dependencies.lock.json", "formal-dependencies-public-v1.lock.json"]}
+        {
+          "root": "PRODUCT",
+          "include": [
+            "formal/**",
+            "formal-dependencies.lock.json",
+            "formal-dependencies-public-v1.lock.json"
+          ]
+        }
       ]
     },
     {
@@ -22,7 +29,17 @@
       "centralClosureRole": "normative authority",
       "description": "Kernel schema and generated ABI, receipt schema, conformance vectors and the normative proposal and profile documents.",
       "selectors": [
-        {"root": "PRODUCT", "include": ["spec/**", "schemas/**", "vectors/**", "docs/ERC-DRAFT.md", "docs/PROFILES.md", "docs/ARCHITECTURE.md"]}
+        {
+          "root": "PRODUCT",
+          "include": [
+            "spec/**",
+            "schemas/**",
+            "vectors/**",
+            "docs/ERC-DRAFT.md",
+            "docs/PROFILES.md",
+            "docs/ARCHITECTURE.md"
+          ]
+        }
       ]
     },
     {
@@ -30,7 +47,13 @@
       "centralClosureRole": "implementation target",
       "description": "Final Solidity sources of the three profiles, their tests and symbolic harnesses, and the compiler configuration.",
       "selectors": [
-        {"root": "PRODUCT", "include": ["implementation/**", "foundry.toml"]}
+        {
+          "root": "PRODUCT",
+          "include": [
+            "implementation/**",
+            "foundry.toml"
+          ]
+        }
       ]
     },
     {
@@ -80,7 +103,13 @@
       "centralClosureRole": "reproduction tooling",
       "description": "Verification scripts and continuous-integration workflows that the reproduction commands run.",
       "selectors": [
-        {"root": "PRODUCT", "include": ["scripts/**", ".github/**"]}
+        {
+          "root": "PRODUCT",
+          "include": [
+            "scripts/**",
+            ".github/**"
+          ]
+        }
       ]
     },
     {
@@ -88,25 +117,70 @@
       "centralClosureRole": "runtime-link evidence",
       "description": "The current runtime-link obligation ledger, the ledger that the sealed certificate locator file names; for every kernel run it cites, the recorded result, the recorded command and the session sources of every evidence directory that command loads; the input lists of the saved-mode recomputations, each naming every private file that recomputation reads; and the kernel replay kit: its manifest of the recorded chain with the recorded heap, database and fingerprint of every session, its catalog, its command template, its tools and step scripts, and every source file and session root file that a kernel replay reads, including the Veri formal sources and the AFP entry.",
       "selectors": [
-        {"root": "EVIDENCE", "include": ["ledger-final-chain-v4/obligation-ledger.json", "ledger-final-chain-v4/ledger-summary.json"]},
+        {
+          "root": "EVIDENCE",
+          "include": [
+            "ledger-final-chain-v4/obligation-ledger.json",
+            "ledger-final-chain-v4/ledger-summary.json"
+          ]
+        },
         {
           "root": "EVIDENCE",
           "ledger": "ledger-final-chain-v4/obligation-ledger.json",
-          "runFiles": ["result.json"],
-          "optionalRunFiles": ["command.json", "command.sh"],
-          "rootFiles": ["ROOT", "*.thy", "input-binding.json"],
+          "runFiles": [
+            "result.json"
+          ],
+          "optionalRunFiles": [
+            "command.json",
+            "command.sh"
+          ],
+          "rootFiles": [
+            "ROOT",
+            "*.thy",
+            "input-binding.json"
+          ],
           "followSessionDirectories": true
         },
-        {"root": "EVIDENCE", "list": "assurance-inputs-v1/certificate-registry-reads.json"},
-        {"root": "EVIDENCE", "list": "assurance-inputs-v1/malformed-call-trace-reads.json"},
-        {"root": "EVIDENCE", "list": "assurance-inputs-v1/route-inventory-artifacts.json"},
-        {"root": "EVIDENCE", "list": "assurance-inputs-v1/typed-failure-artifacts.json"},
-        {"root": "EVIDENCE", "list": "assurance-inputs-v1/reflection-scan-artifacts.json"},
-        {"root": "EVIDENCE", "list": "assurance-inputs-v1/word-guard-receipts.json"},
-        {"root": "EVIDENCE", "list": "assurance-inputs-v1/aligned-gate-artifacts.json"},
-        {"root": "EVIDENCE", "list": "assurance-inputs-v1/storage-reader-artifacts.json"},
-        {"root": "EVIDENCE", "list": "assurance-inputs-v1/registered-gate-reads.json"},
-        {"root": "EVIDENCE", "list": "kernel-replay-kit-v1/input-list.json"}
+        {
+          "root": "EVIDENCE",
+          "list": "assurance-inputs-v1/certificate-registry-reads.json"
+        },
+        {
+          "root": "EVIDENCE",
+          "list": "assurance-inputs-v1/malformed-call-trace-reads.json"
+        },
+        {
+          "root": "EVIDENCE",
+          "list": "assurance-inputs-v1/route-inventory-artifacts.json"
+        },
+        {
+          "root": "EVIDENCE",
+          "list": "assurance-inputs-v1/typed-failure-artifacts.json"
+        },
+        {
+          "root": "EVIDENCE",
+          "list": "assurance-inputs-v1/reflection-scan-artifacts.json"
+        },
+        {
+          "root": "EVIDENCE",
+          "list": "assurance-inputs-v1/word-guard-receipts.json"
+        },
+        {
+          "root": "EVIDENCE",
+          "list": "assurance-inputs-v1/aligned-gate-artifacts.json"
+        },
+        {
+          "root": "EVIDENCE",
+          "list": "assurance-inputs-v1/storage-reader-artifacts.json"
+        },
+        {
+          "root": "EVIDENCE",
+          "list": "assurance-inputs-v1/registered-gate-reads.json"
+        },
+        {
+          "root": "EVIDENCE",
+          "list": "kernel-replay-kit-v1/input-list.json"
+        }
       ]
     },
     {
@@ -114,24 +188,131 @@
       "centralClosureRole": "remaining tracked files",
       "description": "Every other tracked file of the product commit, so that the whole release tree is frozen.",
       "selectors": [
-        {"root": "PRODUCT", "remainder": true}
+        {
+          "root": "PRODUCT",
+          "remainder": true
+        }
       ]
     }
   ],
   "toolchain": [
-    {"name": "solc", "pin": "0.8.36", "declaredIn": {"root": "PRODUCT", "path": "foundry.toml"}, "declarationText": "solc_version = \"0.8.36\""},
-    {"name": "evm-version", "pin": "cancun", "declaredIn": {"root": "PRODUCT", "path": "foundry.toml"}, "declarationText": "evm_version = \"cancun\""},
-    {"name": "via-ir", "pin": "true", "declaredIn": {"root": "PRODUCT", "path": "foundry.toml"}, "declarationText": "via_ir = true"},
-    {"name": "optimizer-runs", "pin": "1", "declaredIn": {"root": "PRODUCT", "path": "foundry.toml"}, "declarationText": "optimizer_runs = 1"},
-    {"name": "foundry", "pin": "v1.7.1", "declaredIn": {"root": "PRODUCT", "path": ".github/workflows/ci.yml"}, "declarationText": "version: v1.7.1"},
-    {"name": "foundry-commit", "pin": "4072e48705af9d93e3c0f6e29e93b5e9a40caed8", "declaredIn": {"root": "PRODUCT", "path": "scripts/generate-release-manifest.mjs"}, "declarationText": "foundryCommit: \"4072e48705af9d93e3c0f6e29e93b5e9a40caed8\""},
-    {"name": "node", "pin": "24.14.0", "declaredIn": {"root": "PRODUCT", "path": ".github/workflows/ci.yml"}, "declarationText": "node-version: 24.14.0"},
-    {"name": "pnpm", "pin": "11.9.0", "declaredIn": {"root": "PRODUCT", "path": ".github/workflows/ci.yml"}, "declarationText": "version: 11.9.0"},
-    {"name": "isabelle-archive", "pin": "a20a507bc7c1270d8be96a9f3fbec06345387789d2dc2c4d3df6260d47bfb33c", "declaredIn": {"root": "PRODUCT", "path": ".github/workflows/proofs.yml"}, "declarationText": "ISABELLE_SHA256: a20a507bc7c1270d8be96a9f3fbec06345387789d2dc2c4d3df6260d47bfb33c"},
-    {"name": "afp-ads-functor", "pin": "10d6fa8671c461022ae5e71859a07610d616681fed79e2f1c81029a124203c85", "declaredIn": {"root": "PRODUCT", "path": ".github/workflows/proofs.yml"}, "declarationText": "AFP_ADS_FUNCTOR_SHA256: 10d6fa8671c461022ae5e71859a07610d616681fed79e2f1c81029a124203c85"},
-    {"name": "formal-foundation", "pin": "db8e0802e55f0229cf7bc9e5e6cfbf40681adbba", "declaredIn": {"root": "PRODUCT", "path": ".github/workflows/proofs.yml"}, "declarationText": "FORMAL_FOUNDATION_COMMIT: db8e0802e55f0229cf7bc9e5e6cfbf40681adbba"},
-    {"name": "kontrol", "pin": "1.0.255", "declaredIn": {"root": "PRODUCT", "path": "scripts/generate-release-manifest.mjs"}, "declarationText": "kontrol: \"1.0.255\""},
-    {"name": "kevm", "pin": "1.0.678", "declaredIn": {"root": "PRODUCT", "path": "scripts/generate-release-manifest.mjs"}, "declarationText": "kevm: \"1.0.678\""}
+    {
+      "name": "solc",
+      "pin": "0.8.36",
+      "declaredIn": {
+        "root": "PRODUCT",
+        "path": "foundry.toml"
+      },
+      "declarationText": "solc_version = \"0.8.36\""
+    },
+    {
+      "name": "evm-version",
+      "pin": "cancun",
+      "declaredIn": {
+        "root": "PRODUCT",
+        "path": "foundry.toml"
+      },
+      "declarationText": "evm_version = \"cancun\""
+    },
+    {
+      "name": "via-ir",
+      "pin": "true",
+      "declaredIn": {
+        "root": "PRODUCT",
+        "path": "foundry.toml"
+      },
+      "declarationText": "via_ir = true"
+    },
+    {
+      "name": "optimizer-runs",
+      "pin": "1",
+      "declaredIn": {
+        "root": "PRODUCT",
+        "path": "foundry.toml"
+      },
+      "declarationText": "optimizer_runs = 1"
+    },
+    {
+      "name": "foundry",
+      "pin": "v1.7.1",
+      "declaredIn": {
+        "root": "PRODUCT",
+        "path": ".github/workflows/ci.yml"
+      },
+      "declarationText": "version: v1.7.1"
+    },
+    {
+      "name": "foundry-commit",
+      "pin": "4072e48705af9d93e3c0f6e29e93b5e9a40caed8",
+      "declaredIn": {
+        "root": "PRODUCT",
+        "path": "scripts/generate-release-manifest.mjs"
+      },
+      "declarationText": "foundryCommit: \"4072e48705af9d93e3c0f6e29e93b5e9a40caed8\""
+    },
+    {
+      "name": "node",
+      "pin": "24.14.0",
+      "declaredIn": {
+        "root": "PRODUCT",
+        "path": ".github/workflows/ci.yml"
+      },
+      "declarationText": "node-version: 24.14.0"
+    },
+    {
+      "name": "pnpm",
+      "pin": "11.9.0",
+      "declaredIn": {
+        "root": "PRODUCT",
+        "path": ".github/workflows/ci.yml"
+      },
+      "declarationText": "version: 11.9.0"
+    },
+    {
+      "name": "isabelle-archive",
+      "pin": "a20a507bc7c1270d8be96a9f3fbec06345387789d2dc2c4d3df6260d47bfb33c",
+      "declaredIn": {
+        "root": "PRODUCT",
+        "path": ".github/workflows/proofs.yml"
+      },
+      "declarationText": "ISABELLE_SHA256: a20a507bc7c1270d8be96a9f3fbec06345387789d2dc2c4d3df6260d47bfb33c"
+    },
+    {
+      "name": "afp-ads-functor",
+      "pin": "10d6fa8671c461022ae5e71859a07610d616681fed79e2f1c81029a124203c85",
+      "declaredIn": {
+        "root": "PRODUCT",
+        "path": ".github/workflows/proofs.yml"
+      },
+      "declarationText": "AFP_ADS_FUNCTOR_SHA256: 10d6fa8671c461022ae5e71859a07610d616681fed79e2f1c81029a124203c85"
+    },
+    {
+      "name": "formal-foundation",
+      "pin": "db8e0802e55f0229cf7bc9e5e6cfbf40681adbba",
+      "declaredIn": {
+        "root": "PRODUCT",
+        "path": ".github/workflows/proofs.yml"
+      },
+      "declarationText": "FORMAL_FOUNDATION_COMMIT: db8e0802e55f0229cf7bc9e5e6cfbf40681adbba"
+    },
+    {
+      "name": "kontrol",
+      "pin": "1.0.255",
+      "declaredIn": {
+        "root": "PRODUCT",
+        "path": "scripts/generate-release-manifest.mjs"
+      },
+      "declarationText": "kontrol: \"1.0.255\""
+    },
+    {
+      "name": "kevm",
+      "pin": "1.0.678",
+      "declaredIn": {
+        "root": "PRODUCT",
+        "path": "scripts/generate-release-manifest.mjs"
+      },
+      "declarationText": "kevm: \"1.0.678\""
+    }
   ],
   "reproduction": [
     {
@@ -248,10 +429,18 @@
     },
     {
       "id": "runtime-link-kernel-replay",
-      "purpose": "For current-completion Assurance, confirm that every recorded runtime-link kernel result is current and rebuild the gate checks and selected top-level kernel consumers from the sealed sources over the recorded ancestor heaps. The run store starts as a copy of every recorded heap and session database that the sealed kernel replay manifest names, each checked against the size and SHA-256 of the manifest while it is copied; a no-build run of the pinned Isabelle over the copy must find nothing to build; then the replay groups are removed from the copy and rebuilt. The replay groups are the group registered-gate-top that the sealed kit declares, which holds the reader cell session of the registered gate checkpoint and every session of its profile-parts-run and gate-instance-run kernel runs, and for each profile the source consumer session of one cell row of the sealed ledger, which the assessor chooses and records before the replay starts. Every other kernel result is a reused result under the five reuse conditions: the copy check establishes materialization and input identity of its stored bytes, the no-build run establishes current consumption against the sealed sources, options and parent heaps, and the sealed manifest and toolchain pins establish tool identity and provenance. The recorded stores are only read.",
+      "purpose": "For final frozen-source clean Assurance, rebuild every kernel session that the sealed kernel replay manifest names in a heap store and a system heap directory that both start empty, from the sealed sources only: the parent chain of the final target, including Pure and HOL from the pinned Isabelle distribution, and every further session whose recorded result a sealed record cites. The build uses the recorded catalog, options and process policy of the final chain, except that Pure, which has no parent heap, is built first without the process policy; the process policy is not a content option and enters no sources digest. No recorded heap, database or proof object is read; the recorded databases are only the comparison baseline.",
       "workingRoot": "EVIDENCE",
-      "command": "python3 EVIDENCE_ROOT/kernel-replay-kit-v1/tools/run_kernel_replay.py preflight --kit EVIDENCE_ROOT/kernel-replay-kit-v1 --run REPLAY_RUN_DIR --mode top --replay-group @registered-gate-top --replay-group cell:Native/OPERATION --replay-group cell:Partial/OPERATION --replay-group cell:Hook/OPERATION --ledger EVIDENCE_ROOT/ledger-final-chain-v4/obligation-ledger.json --recorded-store EVIDENCE=EVIDENCE_ROOT --recorded-store SYSTEM=SYSTEM_HEAPS --root EVIDENCE=EVIDENCE_ROOT --root VERI=VERI_ROOT --root AFP=AFP_ENTRY; then powershell -NoProfile -ExecutionPolicy Bypass -File EVIDENCE_ROOT/kernel-replay-kit-v1/tools/start_detached.ps1 -Kit EVIDENCE_ROOT/kernel-replay-kit-v1 -Run REPLAY_RUN_DIR -Mode fresh, and after a passing fresh check the same command with -Mode start; after the build exits, python3 EVIDENCE_ROOT/kernel-replay-kit-v1/tools/compare_kernel_replay.py --kit EVIDENCE_ROOT/kernel-replay-kit-v1 --run REPLAY_RUN_DIR. An interrupted build resumes in the same run directory with -Mode resume. python3 EVIDENCE_ROOT/kernel-replay-kit-v1/tools/run_kernel_replay.py cells --kit EVIDENCE_ROOT/kernel-replay-kit-v1 --ledger EVIDENCE_ROOT/ledger-final-chain-v4/obligation-ledger.json lists the cell rows and their sessions.",
-      "passCriterion": "Every copied heap and session database equals the sealed manifest (PASS_TOP_REPLAY_PREFLIGHT); the no-build run exits 0, lists no session to build and leaves the copy unchanged (PASS_TOP_REPLAY_FRESH); each replay group builds exactly its sessions, every rebuilt heap and database is created by the run, and every other copy still equals the manifest (PASS_TOP_REPLAY_BUILD_COMPLETED); and for every rebuilt session the recorded database yields the sealed fingerprint and the rebuilt database reports return code 0, no recorded error, the recorded sources digest, ancestor names, export inventory, theory exports and normalized messages, no nonzero oracle count and a fresh database uuid (PASS_TOP_REPLAY_REPRODUCED).",
+      "command": "python3 EVIDENCE_ROOT/kernel-replay-kit-v1/tools/run_kernel_replay.py preflight --kit EVIDENCE_ROOT/kernel-replay-kit-v1 --run REPLAY_RUN_DIR --mode cold --root EVIDENCE=EVIDENCE_ROOT --root VERI=VERI_ROOT --root AFP=AFP_ENTRY; then powershell -NoProfile -ExecutionPolicy Bypass -File EVIDENCE_ROOT/kernel-replay-kit-v1/tools/start_detached.ps1 -Kit EVIDENCE_ROOT/kernel-replay-kit-v1 -Run REPLAY_RUN_DIR -Mode plan, and after a passing plan the same command with -Mode start; after the build exits, python3 EVIDENCE_ROOT/kernel-replay-kit-v1/tools/compare_kernel_replay.py --kit EVIDENCE_ROOT/kernel-replay-kit-v1 --run REPLAY_RUN_DIR. An interrupted build resumes in the same run directory and store with -Mode resume.",
+      "passCriterion": "The build plan in the empty store equals the sealed expected session list; the build exits 0 with every expected session finished and no other session built; every heap and database in the run store was created by this run; and for every expected session the comparison reports return code 0, no recorded error, the recorded sources digest, the recorded ancestor names, the recorded export inventory, the recorded theory exports and the recorded normalized messages, a database uuid that differs from the recorded one and no nonzero oracle count, with comparison status PASS_COLD_REPLAY_REPRODUCED.",
+      "coldReplay": true
+    },
+    {
+      "id": "kernel-replay-baseline-check",
+      "purpose": "Recompute the recorded fingerprint of every expected session from its recorded database, after checking the database against the size and SHA-256 that the sealed manifest records, and compare it with the sealed baseline, so that the comparison baseline follows from the recorded results.",
+      "workingRoot": "EVIDENCE",
+      "command": "python3 EVIDENCE_ROOT/kernel-replay-kit-v1/tools/compare_kernel_replay.py --kit EVIDENCE_ROOT/kernel-replay-kit-v1 --baseline-only --recorded-store EVIDENCE=EVIDENCE_ROOT --recorded-store SYSTEM=SYSTEM_HEAPS",
+      "passCriterion": "Status PASS_COLD_REPLAY_BASELINE_RECOMPUTED.",
       "coldReplay": false
     },
     {
@@ -275,7 +464,9 @@
     {
       "id": "reconstruct-from-frozen-specification",
       "question": "Can the command, state and receipt observables be reconstructed from the frozen schema, requirements and vectors alone, without reading the implementation?",
-      "inputs": ["normative-authority"],
+      "inputs": [
+        "normative-authority"
+      ],
       "procedure": [
         "Rebuild every conformance vector command, its calldata and its expected receipt from the kernel schema and the generated ABI only.",
         "Rebuild the malformed input catalog from the kernel ABI and the generated bridge constants and compare it with the sealed catalog.",
@@ -287,7 +478,12 @@
     {
       "id": "reverse-enumerate-obligations",
       "question": "Does every route, state write, event and theorem of the final artifacts belong to an obligation row or to a declared runtime-only item?",
-      "inputs": ["implementation-target", "compiled-target", "product-consumer", "runtime-link-evidence"],
+      "inputs": [
+        "implementation-target",
+        "compiled-target",
+        "product-consumer",
+        "runtime-link-evidence"
+      ],
       "procedure": [
         "Enumerate every public and external selector of every profile runtime from a fresh build and compare it with the sealed route inventory.",
         "Enumerate every storage variable and emitted event of the profile runtimes and compare them with the sealed state and receipt crosswalk.",
@@ -299,11 +495,15 @@
     {
       "id": "reproduce-removal-negatives",
       "question": "Does removing or weakening each load-bearing consumer actually break the claim that depends on it?",
-      "inputs": ["runtime-link-evidence", "implementation-target", "reproduction-tooling"],
+      "inputs": [
+        "runtime-link-evidence",
+        "implementation-target",
+        "reproduction-tooling"
+      ],
       "procedure": [
-        "Reproduce every certificate-removal negative and every consumer-removal negative that the ledger cites: a kernel negative inside a replay group is rebuilt by the kernel replay and compared; every other kernel negative is a reused kernel result that the copy check, the no-build run and its recorded result cover under the five reuse conditions; and the negative outside the kernel is rechecked from its sealed record and the product mutation it is bound to.",
-        "Rerun the declared mutation campaign and the semantic consumer removals of the product.",
-        "For the malformed rows, replay the malformed probe with its checks disabled one at a time and confirm that the probe fails."
+        "Replay every consumer-removal and certificate-removal negative that the runtime-link ledger cites: the kernel negatives are rebuilt by the cold kernel replay and compared session by session, and the negative outside the kernel is rechecked from its sealed record and the product mutation it is bound to.",
+        "Rerun the declared product mutation campaign on the sealed product checkout and require every declared mutation to be killed by its declared detector.",
+        "For each profile, rerun the malformed probe with one length guard disabled at a time, the word guard probe on every declared bounded word guard mutant, and the typed failure probe on every declared typed failure mutant, and require the declared outcome for each."
       ],
       "passCriterion": "Every negative fails at the claimed consumer and at no earlier unrelated step.",
       "onFailure": "Return to Building with the surviving negative."
@@ -311,7 +511,11 @@
     {
       "id": "recompute-central-artifact",
       "question": "Do the numbers, hashes and statuses of the central closure artifact follow from the actual files, build exits and runtime outputs?",
-      "inputs": ["product-consumer", "runtime-link-evidence", "compiled-target"],
+      "inputs": [
+        "product-consumer",
+        "runtime-link-evidence",
+        "compiled-target"
+      ],
       "procedure": [
         "Rebuild the obligation ledger from the sealed evidence and compare every row status, count and hash.",
         "Recompute the certificate registry from the sealed locator file and evidence, require it to equal the sealed registry byte for byte, and confirm that the public registry record, including the executed code of every certificate and the records that consumed every recorded world, follows from it.",
@@ -322,7 +526,7 @@
     }
   ],
   "reuse": {
-    "policy": "Validated earlier results may be reused only as the incremental verification standard allows; a cache hit is never a check result, and the union of new and reused checks must cover the whole declared scope.",
+    "policy": "Final frozen-source clean Assurance reuses no kernel result: every runtime-link kernel session and every product proof session is rebuilt without recorded heaps or databases, and the recorded results serve only as the comparison baseline. The saved-mode recomputations read recorded prover outputs, such as stored proof graphs, compiled artifacts and forge reports, whose acceptance their checkpoints read rather than reprove; each such artifact is frozen by a sealed input list and must satisfy the five conditions below. A cache hit is never a check result.",
     "conditions": [
       "Input identity: sources, transitive dependencies, generated inputs, statements and assumptions of the reused unit equal the sealed ones.",
       "Tool identity: checker and compiler versions, dependency locks, build options and platform equal the sealed pins; Windows and Linux heaps are never exchanged.",
@@ -340,6 +544,8 @@
     "Conclusions, handoffs, status summaries and chat reports of the Building sessions are not Assurance inputs.",
     "The assessor never edits a sealed file; any needed change returns the work to Building and requires a new seal.",
     "A seal with status TEMPLATE_DRY_RUN is a format exercise and is never an Assurance input.",
-    "A participant of any Building session of this runtime link does not act as the independent assessor."
+    "A participant of any Building session of this runtime link does not act as the independent assessor.",
+    "A seal produced from the current-completion specification is never relabeled or edited into a final seal.",
+    "The cold kernel replay never reads the recorded heap stores; their databases are opened read-only for the baseline check only."
   ]
 }

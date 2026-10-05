@@ -28,7 +28,7 @@ VERIFIER_PATH = "scripts/trust12/verify_registered_closure_v1.py"
 LEDGER_PATH = "evidence/trust12/obligation-ledger.json"
 CENTRAL_LEDGER_PATH = "evidence/end-to-end-refinement/obligation-ledger-v3.json"
 CONDITIONS_PATH = "evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json"
-CONDITIONS_SHA256 = "3e6524fc20a951dab02e916f41980b8281a84338ec94b2dcf14f5a0e8a73a087"
+CONDITIONS_SHA256 = "eb9581d90d63ac4d1ac38cd04347747c2733ced6c5a24a836ed3b22343b1ca95"
 REQUIRED_GATE_PATH = "scripts/verify-trust12-required.mjs"
 REQUIRED_CONTROLS_PATH = "scripts/test-trust12-required.mjs"
 RUNTIME_IDENTITY_PATH = "evidence/trust12/runtime-identity.json"
@@ -114,7 +114,7 @@ ASSUMPTION_SOURCES = {"central-ledger", "decision", "record", "closure"}
 FINDING_KINDS = {"RESOLVED", "NONCLAIM"}
 # Dispositions of an open item of the state and receipt crosswalk that carry the item to a later gate.
 CARRIED_KINDS = ("AWAITS_FORMAL_READER", "NEEDS_DECISION")
-EXPECTED_EVIDENCE_DIGEST = '5f2d01ef6782f6daba7fdeb7a1a7595e5cc819784a10ad103655ec73b7c9bc8e'
+EXPECTED_EVIDENCE_DIGEST = '2f33a84b8fdb445aacfb82862fedb22cfdf7466bce1694156c9ff117751d4c8b'
 PUBLIC_KEYS = {"schema", "status", "scope", "executionBoundary", "evidenceBoundary", "assumptionBoundary",
                "reproductionBoundary", "conditionsSource", "finalInputs", "dischargedConditions", "conditionEvidence",
                "acceptance", "conditionSupport", "conditionNotes", "findingDispositions", "retainedAssumptions",
