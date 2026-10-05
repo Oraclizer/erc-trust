@@ -772,9 +772,7 @@
   },
   "trust12Required": {
     "centralClosure": "INCOMPLETE",
-    "currentMandatory": [
-      "REGISTERED-CENTRAL-CLOSURE"
-    ],
+    "currentMandatory": [],
     "evidence": [
       {
         "path": "evidence/trust12/release-policy.json",
@@ -782,19 +780,19 @@
       },
       {
         "path": "evidence/trust12/release-notes.md",
-        "sha256": "67f3c093ac6a6be29665ec3965cef154f9212b41ca06f2271632b318e0622800"
+        "sha256": "d12de4400b77cb8b1c848901c2b7a0c49a84bd12bbb159047b1ad51868771bd9"
       },
       {
         "path": "evidence/claim-matrix.md",
-        "sha256": "1cdaac08f1d15f1cb621a12c1cb75d31243fc6613aa5b3f7f058d2eee23b85b6"
+        "sha256": "8f74c6dbe2ae5b221262a388d62c386ab94b76a7be8a07bb0b9d8eb8012c6812"
       },
       {
         "path": "evidence/known-limitations.md",
-        "sha256": "b504a9ad044c6f9beed4d37307ceffcacfb9b892ddea1f41886362845323a9fd"
+        "sha256": "6629e81ee00779840ad2371f965d1e5b50f49dbbd32bcf441ea830d88a4095ad"
       },
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "352194d5cc4576e12ac9896ed60281e56c2eabd63562fad8f6ff559dee27e3ec"
+        "sha256": "1e0ad74ac32f7923780b0a6c41df69ee60d96de77dd2617e1227cdc931eaa845"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -981,6 +979,22 @@
         "sha256": "3e6524fc20a951dab02e916f41980b8281a84338ec94b2dcf14f5a0e8a73a087"
       },
       {
+        "path": "evidence/trust12/registered-central-closure/closure-v1.json",
+        "sha256": "f94649e826779a440e56ec5bd6c6be9f3c96dc04e000177e0a38aad9f5816bf4"
+      },
+      {
+        "path": "evidence/trust12/registered-central-closure/positive-v1.json",
+        "sha256": "a58c50cae2849bbc0ca1b729af23858107920eb69341323df15074ca2a1901b2"
+      },
+      {
+        "path": "evidence/trust12/registered-central-closure/negative-v1.json",
+        "sha256": "f7a82a13671e02ca4fec0d14672836ebf34fade403a5093a967315567e69c35c"
+      },
+      {
+        "path": "evidence/trust12/registered-central-closure/compiled-consumer-v1.json",
+        "sha256": "f31da82198eece32c863e209f5ceb56655b40db4da97978a7549be2af83d787e"
+      },
+      {
         "path": "evidence/trust12/runtime-link/primitive-source-controls-checkpoint-v1.json",
         "sha256": "fb9e988a785733f3427159c29798bba1faf6faa34addb9354486adf89eee5c2b"
       },
@@ -998,7 +1012,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "20395a8edf98b7be543c740872c79c13796fc12820736c35483ef5bdac9ab60e"
+        "sha256": "e07826720f823c38a76347ea864a2240fba451d8b55b194f7298695bae70d3b2"
       }
     ],
     "fullRefinementComplete": false,
@@ -1012,7 +1026,7 @@
       "preservation": "PASS_ABSTRACT_MODEL",
       "runtimeConnection": "CONDITIONAL"
     },
-    "nonclaim": "Required development evidence is bound to current inputs. The registered-scope central closure is open, and general runtime-to-model correspondence is deferred research and unproved; policy consistency is not proof completion or shipping approval.",
+    "nonclaim": "Required development evidence is bound to current inputs. The registered-scope central closure is closed and awaits the fresh independent assurance, and general runtime-to-model correspondence is deferred research and unproved; policy consistency is not proof completion or shipping approval.",
     "profiles": {
       "hook": {
         "functionalConformance": "PASS_PINNED_FRESH_TREX",
@@ -1030,8 +1044,8 @@
         "runtimeRefinement": "DEFERRED_RESEARCH"
       }
     },
-    "registeredCentralClosure": "CURRENT-MANDATORY",
-    "releaseReadiness": "PENDING",
+    "registeredCentralClosure": "CLOSED",
+    "releaseReadiness": "ASSURANCE_PENDING",
     "researchResiduals": [
       "RESEARCH-RUNTIME-LINK-HOOK",
       "RESEARCH-RUNTIME-LINK-NATIVE",

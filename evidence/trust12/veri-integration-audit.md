@@ -412,3 +412,39 @@ follows the parent heaps and rehashes the input files that each run recorded.
 The certificate registry record still names the earlier cell stages as the
 kernel results of the Partial and Hook cells, and the governor and compliance
 code is bound by the registry alone.
+
+## Registered-scope central closure (2026-10-05)
+
+The record registered-central-closure/closure-v1.json closes the
+registered-scope central closure. For each of the ten conditions of the reviewed
+conditions list other than the independent assurance it cites passing checkpoint
+records that the required gate verifies, and for each acceptance criterion it
+names fields of those records and the value each holds; the public verifier The
+typed failure record shows both acceptance criteria of its condition and the
+route inventory closes its condition alone; the gate record shows that the
+registered rejections reach a typed failure. The certificate registry, the
+aligned gate, the call frame record and the two guard mutant records cover the
+malformed branch, and the gate record of the kernel run consumes the aligned
+relation over the registered image, instantiates the gate and shows that
+removing any registered certificate breaks it. The reflection scan covers the
+reflection criteria, and the applied witness of every cell in the gate
+instantiation covers the preservation clause within the registered scope. The
+storage reader record covers the state and receipt identity, and the relation of
+every applied cell in the gate instantiation covers its calldata, receipt event
+and returned receipt hash. The certificate registry is cited for coverage,
+closure mode and executed code; its agreement check still names the earlier cell
+stages of the Partial and Hook profiles, and the kernel facts of the closure
+come from the gate record, which consumes the cell theorems over the
+storage-reading manifests and keeps the recorded hash equations as assumptions
+under A-KECCAK. The four findings are resolved by the registry, the route
+inventory, the reflection scan and the storage reader record. The closure
+retains A-RUNTIME-LINK, A-RUNTIME-LINK-SPEC, A-COMPILER, A-KECCAK, A-DEPLOYMENT,
+A-EXTERNAL, A-EVM, A-LAYOUT, A-MUTATION and A-KEVM-TOOLCHAIN. Limits stay as the
+cited records state them: the typed failure probe executes at least one revert
+site per error, unknown selectors other than the probed one rely on the compiled
+dispatcher, accepting every reversal kind word below 256 is an equivalent mutant
+because the pairing rule rejects first, a classification of the scan is not a
+soundness proof, and no cited record measures the payload of a dependency
+revert. The executions outside the registered set keep the runtime link
+assumptions, and the fresh independent assurance is open. This is a Building
+record, not fresh final Assurance.

@@ -116,6 +116,12 @@ export const requiredTrust12Paths = [
   'evidence/trust12/runtime-link/tail-preparation/typed-failure-probe-mutants-v1.json',
   'evidence/trust12/runtime-link/tail-preparation/typed-failure-checkpoint-v1.json',
   'evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json',
+  'scripts/trust12/verify_registered_closure_v1.py',
+  'scripts/test-registered-closure.py',
+  'evidence/trust12/registered-central-closure/closure-v1.json',
+  'evidence/trust12/registered-central-closure/positive-v1.json',
+  'evidence/trust12/registered-central-closure/negative-v1.json',
+  'evidence/trust12/registered-central-closure/compiled-consumer-v1.json',
   'scripts/test-primitive-source-controls.py',
   'scripts/trust12/verify_primitive_source_controls_v1.py',
   'evidence/trust12/runtime-link/primitive-source-controls-checkpoint-v1.json',
@@ -325,6 +331,10 @@ export function verifyTrust12Required(root = repository) {
     ['-B', resolve(root, 'scripts/trust12/verify_registered_gate_v1.py'), '--product-root', root, '--metadata-only'],
     { cwd: root, encoding: 'utf8' });
   check(!registeredGateCheck.error && registeredGateCheck.status === 0, 'registered-gate public metadata check failed');
+  const registeredClosureCheck = spawnSync(process.env.PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3'),
+    ['-B', resolve(root, 'scripts/trust12/verify_registered_closure_v1.py'), '--product-root', root, '--metadata-only'],
+    { cwd: root, encoding: 'utf8' });
+  check(!registeredClosureCheck.error && registeredClosureCheck.status === 0, 'registered-closure public metadata check failed');
   return { status: policy.fullRefinementComplete ? 'PASS_TRUST12_FULL_REFINEMENT' :
       policy.trust12Complete ? 'PASS_TRUST12_REGISTERED_COMPLETION' : 'PASS_CONSISTENT_DEVELOPMENT',
     centralClosure: ledger.centralClosure.status, currentMandatory: mandatory,
@@ -343,6 +353,8 @@ export function verifyTrust12Required(root = repository) {
       'Completion is limited to the declared final source, runtime and profiles; policy consistency is not deployment approval.' :
       policy.trust12Complete ?
       'TRUST 1.2 completion is limited to the registered executions of the declared final source, runtimes and profiles. General runtime-to-model correspondence is deferred research and unproved; policy consistency is not deployment approval.' :
+      rows.get(registeredClosureId).status === 'CLOSED' ?
+      'Required development evidence is bound to current inputs. The registered-scope central closure is closed and awaits the fresh independent assurance, and general runtime-to-model correspondence is deferred research and unproved; policy consistency is not proof completion or shipping approval.' :
       'Required development evidence is bound to current inputs. The registered-scope central closure is open, and general runtime-to-model correspondence is deferred research and unproved; policy consistency is not proof completion or shipping approval.' };
 }
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) console.log(JSON.stringify(verifyTrust12Required(),null,2));

@@ -26,8 +26,14 @@ forbidden by `claim-matrix.md`.
 
 The 2026-09-13 release-scope reset and the 2026-09-25 completion direction are
 historical. The current completion direction defines TRUST 1.2 completion at the
-registered-execution scope; its gate, malformed-branch and central conditions,
-its central closure and the fresh assurance are open.
+registered-execution scope. Its registered-scope central closure is closed: the
+record `trust12/registered-central-closure/closure-v1.json` discharges the gate,
+malformed-branch and central conditions with checkpoint records that the required
+gate verifies, and it retains A-RUNTIME-LINK, A-RUNTIME-LINK-SPEC, A-COMPILER,
+A-KECCAK, A-DEPLOYMENT, A-EXTERNAL, A-EVM, A-LAYOUT, A-MUTATION and
+A-KEVM-TOOLCHAIN. The registered executions are not every declared execution: for
+any other execution the `runtime_link` and `runtime_link_spec` locale assumptions
+remain. The fresh independent assurance is open.
 General runtime-to-model correspondence in each declared profile is deferred research and is not required for TRUST 1.2 completion.
 General `runtime_link` discharge remains unproved. Scoped model and external-prover
 evidence retain their recorded validity. The required
@@ -71,10 +77,12 @@ executions, and their audits find no oracle in the gate theorems or in any
 theorem that these depend on, among them the Native cell relations. The earlier
 cell theorems that rest on code evaluation stay in the session chain unchanged;
 the restated theorems reuse the definitions of the registered executions from
-those stages but none of their evaluated facts. The certificate registry of the
-runtime link still names the earlier stages as the kernel results of the Partial
-and Hook cells, so they remain cited until the registry or the registered-scope
-central closure names the restated theorems.
+those stages but none of their evaluated facts. The registered-scope central
+closure takes the kernel facts of the Partial and Hook cells from its gate
+record, which consumes the restated theorems and reports that every theorem it
+consumes depends on no oracle; the certificate registry that the closure cites
+for coverage and executed code still names the earlier stages as the kernel
+results of those cells.
 
 TRUST 1.2 profile row grades: Native EXECUTION_TESTS; Partial EXECUTION_TESTS; Hook EXECUTION_TESTS.
 

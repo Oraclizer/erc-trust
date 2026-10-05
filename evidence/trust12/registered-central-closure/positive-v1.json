@@ -1,0 +1,318 @@
+{
+  "schema": "trust12-registered-closure-evidence-v1",
+  "role": "positive",
+  "status": "PASS",
+  "closureSha256": "f94649e826779a440e56ec5bd6c6be9f3c96dc04e000177e0a38aad9f5816bf4",
+  "statement": "For every condition that the closure discharges, the cited records show the premise and its consumer executing on the final target: the registered certificates and the probes run the exact compiled runtimes, and the kernel results and scans are about the final sources.",
+  "conditions": {
+    "typed-failure-report-binding": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/typed-failure-checkpoint-v1.json",
+        "sha256": "6aa21dac6ee60676fb962aa91b04eb838f54c36a27525f7fef4e5d1a47abcec6",
+        "kind": "PROBE_EXECUTION",
+        "support": [
+          {
+            "pointer": "/coverage/boundCases",
+            "expected": 52
+          },
+          {
+            "pointer": "/coverage/endpointsMatchingTemplates",
+            "expected": 3
+          }
+        ],
+        "detail": "Every typed failure case of the probe on the three endpoints binds to the request and sender."
+      }
+    ],
+    "twenty-seven-cell-architecture": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+        "sha256": "1ea2d88b595fcb2c0782c1204234b2666862b2c36eeddd172c2fca875acb3a10",
+        "kind": "REGISTRY_RECORD",
+        "support": [
+          {
+            "pointer": "/coverage/boundCells",
+            "expected": 27
+          },
+          {
+            "pointer": "/coverage/certificates",
+            "expected": {
+              "Native": 34,
+              "Partial": 31,
+              "Hook": 31
+            }
+          }
+        ],
+        "detail": "Every cell has registered applied and not-applied certificates."
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+        "sha256": "e616c1fa2733317b3e00985edd5e8c97aa3c6617cfdfc4a6720e7ce412941008",
+        "kind": "KERNEL_RESULT",
+        "support": [
+          {
+            "pointer": "/criteria/applied-and-not-applied-witness-in-every-cell",
+            "expected": "PASS"
+          },
+          {
+            "pointer": "/coverage/cells",
+            "expected": 27
+          }
+        ],
+        "detail": "The gate instantiation has a witness pair in every cell."
+      }
+    ],
+    "enforced-cell-witnesses": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+        "sha256": "1ea2d88b595fcb2c0782c1204234b2666862b2c36eeddd172c2fca875acb3a10",
+        "kind": "REGISTRY_RECORD",
+        "support": [
+          {
+            "pointer": "/coverage/executedCodeMatches",
+            "expected": 96
+          }
+        ],
+        "detail": "Every registered certificate records the code it executed."
+      }
+    ],
+    "malformed-native": [
+      {
+        "path": "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
+        "sha256": "e52ede796d01f59f879aa8371059fbe98b1d8ce96992400779facf1c99153caa",
+        "kind": "KERNEL_RESULT",
+        "support": [
+          {
+            "pointer": "/coverage/alignedGateHolds/native",
+            "expected": 16
+          }
+        ],
+        "detail": "The 16 registered requests outside canonical form satisfy the aligned gate relation and the product relation in a kernel run."
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+        "sha256": "b96937be7c5f094a3576a53b52dead28ac8d37aa7e94941b0ce07a5f63b5f759",
+        "kind": "PROBE_EXECUTION",
+        "support": [
+          {
+            "pointer": "/baseline/witnesses/Native",
+            "expected": 32
+          },
+          {
+            "pointer": "/baseline/outcomes",
+            "expected": {
+              "untyped-empty-revert": 64
+            }
+          }
+        ],
+        "detail": "On the unmodified copy every word guard witness fails quietly."
+      }
+    ],
+    "malformed-partial": [
+      {
+        "path": "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
+        "sha256": "e52ede796d01f59f879aa8371059fbe98b1d8ce96992400779facf1c99153caa",
+        "kind": "KERNEL_RESULT",
+        "support": [
+          {
+            "pointer": "/coverage/alignedGateHolds/partial",
+            "expected": 13
+          }
+        ],
+        "detail": "The 13 registered requests outside canonical form satisfy the aligned gate relation and the product relation in a kernel run."
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+        "sha256": "b96937be7c5f094a3576a53b52dead28ac8d37aa7e94941b0ce07a5f63b5f759",
+        "kind": "PROBE_EXECUTION",
+        "support": [
+          {
+            "pointer": "/baseline/witnesses/Partial",
+            "expected": 16
+          },
+          {
+            "pointer": "/baseline/outcomes",
+            "expected": {
+              "untyped-empty-revert": 64
+            }
+          }
+        ],
+        "detail": "On the unmodified copy every word guard witness fails quietly."
+      }
+    ],
+    "malformed-hook": [
+      {
+        "path": "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
+        "sha256": "e52ede796d01f59f879aa8371059fbe98b1d8ce96992400779facf1c99153caa",
+        "kind": "KERNEL_RESULT",
+        "support": [
+          {
+            "pointer": "/coverage/alignedGateHolds/hook",
+            "expected": 13
+          }
+        ],
+        "detail": "The 13 registered requests outside canonical form satisfy the aligned gate relation and the product relation in a kernel run."
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+        "sha256": "b96937be7c5f094a3576a53b52dead28ac8d37aa7e94941b0ce07a5f63b5f759",
+        "kind": "PROBE_EXECUTION",
+        "support": [
+          {
+            "pointer": "/baseline/witnesses/Hook",
+            "expected": 16
+          },
+          {
+            "pointer": "/baseline/outcomes",
+            "expected": {
+              "untyped-empty-revert": 64
+            }
+          }
+        ],
+        "detail": "On the unmodified copy every word guard witness fails quietly."
+      }
+    ],
+    "preservation-and-reflection": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/reflection-scan-checkpoint-v1.json",
+        "sha256": "c4c7bbed27cbec703bea8f534376136d0fb4ec2c3a64dc36615840bfe0eb05ba",
+        "kind": "SOURCE_SCAN",
+        "support": [
+          {
+            "pointer": "/coverage/endpoints/TrustToken/unclassified",
+            "expected": 0
+          },
+          {
+            "pointer": "/coverage/endpoints/ERC3643TrustAdapter/unclassified",
+            "expected": 0
+          },
+          {
+            "pointer": "/coverage/endpoints/ERC3643HookAdapter/unclassified",
+            "expected": 0
+          }
+        ],
+        "detail": "Every guard and write on the typed command paths of the final sources is classified."
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+        "sha256": "e616c1fa2733317b3e00985edd5e8c97aa3c6617cfdfc4a6720e7ce412941008",
+        "kind": "KERNEL_RESULT",
+        "support": [
+          {
+            "pointer": "/criteria/applied-and-not-applied-witness-in-every-cell",
+            "expected": "PASS"
+          },
+          {
+            "pointer": "/coverage/cells",
+            "expected": 27
+          }
+        ],
+        "detail": "Every cell has an applied registered execution."
+      }
+    ],
+    "route-exhaustiveness": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/route-inventory-checkpoint-v1.json",
+        "sha256": "0c862d66d2a3e9a32335db5d522a469ef21045483b429e7c5142171731a5e9f7",
+        "kind": "TEST_EXECUTION",
+        "support": [
+          {
+            "pointer": "/dispositionRun/status",
+            "expected": "ROUTE_DISPOSITION_TESTS_PASSED"
+          },
+          {
+            "pointer": "/coverage/executedInRecordedSuite",
+            "expected": 15
+          },
+          {
+            "pointer": "/coverage/executedInDispositionRun",
+            "expected": 10
+          }
+        ],
+        "detail": "Every disposed route is executed on its own runtime by a passed test."
+      }
+    ],
+    "state-and-receipt-identity": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/storage-reader-checkpoint-v1.json",
+        "sha256": "7bd763ba139ceba3323df2f6ead5a7bb430c307c2c770ffefacb32492629ef3e",
+        "kind": "READER_COMPARISON",
+        "support": [
+          {
+            "pointer": "/coverage/recordedWorlds",
+            "expected": {
+              "partial": {
+                "worlds": 16,
+                "fieldFacts": 304
+              },
+              "hook": {
+                "worlds": 16,
+                "fieldFacts": 304
+              }
+            }
+          }
+        ],
+        "detail": "Kernel theorems state the reader values of every field for every recorded world."
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+        "sha256": "e616c1fa2733317b3e00985edd5e8c97aa3c6617cfdfc4a6720e7ce412941008",
+        "kind": "KERNEL_RESULT",
+        "support": [
+          {
+            "pointer": "/criteria/applied-and-not-applied-witness-in-every-cell",
+            "expected": "PASS"
+          },
+          {
+            "pointer": "/coverage/cells",
+            "expected": 27
+          }
+        ],
+        "detail": "Every applied cell relates its calldata, receipt event and returned receipt hash."
+      }
+    ],
+    "accepted-set-is-certificate-image": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+        "sha256": "e616c1fa2733317b3e00985edd5e8c97aa3c6617cfdfc4a6720e7ce412941008",
+        "kind": "KERNEL_RESULT",
+        "support": [
+          {
+            "pointer": "/criteria/gate-instantiated-over-the-registered-image",
+            "expected": "PASS"
+          },
+          {
+            "pointer": "/coverage/registeredCertificates",
+            "expected": {
+              "Native": 34,
+              "Partial": 31,
+              "Hook": 31
+            }
+          }
+        ],
+        "detail": "The accepted set is the image of the registered certificates."
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+        "sha256": "1ea2d88b595fcb2c0782c1204234b2666862b2c36eeddd172c2fca875acb3a10",
+        "kind": "REGISTRY_RECORD",
+        "support": [
+          {
+            "pointer": "/coverage/certificates",
+            "expected": {
+              "Native": 34,
+              "Partial": 31,
+              "Hook": 31
+            }
+          }
+        ],
+        "detail": "The registry names every registered certificate."
+      }
+    ]
+  },
+  "nonclaims": {
+    "unregisteredExecutions": true,
+    "generalRuntimeLinks": true,
+    "independentAssurance": true,
+    "trust12Completion": true
+  }
+}

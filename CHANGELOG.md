@@ -2,6 +2,26 @@
 
 ## Unreleased
 
+- Close the registered-scope central closure of TRUST 1.2 in
+  registered-central-closure/closure-v1.json, with its positive, negative and
+  compiled-consumer records in the same directory. For each of the ten
+  conditions of the reviewed conditions list other than the independent
+  assurance, the record cites passing checkpoint records that the required
+  gate verifies and names, for every acceptance criterion, the fields of those
+  records that show it, with the limit of each where one applies. It resolves
+  the four recorded findings with cited evidence and retains A-RUNTIME-LINK,
+  A-RUNTIME-LINK-SPEC, A-COMPILER, A-KECCAK, A-DEPLOYMENT, A-EXTERNAL, A-EVM,
+  A-LAYOUT, A-MUTATION and A-KEVM-TOOLCHAIN. The kernel facts of the Partial
+  and Hook cells come from the gate record, which consumes the cell theorems
+  over the storage-reading manifests; the certificate registry, cited for
+  coverage and executed code, still names the earlier cell stages. The ledger
+  row REGISTERED-CENTRAL-CLOSURE is closed and the release assessment reports
+  ASSURANCE_PENDING. The fresh independent assurance remains open, so
+  TRUST 1.2 completion is not claimed, and the general runtime links remain
+  deferred research. A public verifier runs in the required gate and checks
+  every cited record, quoted criterion, named field, finding, retained
+  assumption and role record against the tracked files.
+
 - Restate the eighteen registered cells of the Partial and Hook profiles over
   the storage-reading manifests and prove them again without code evaluation.
   Kernel audits find no oracle in the restated cell theorems or in any theorem
