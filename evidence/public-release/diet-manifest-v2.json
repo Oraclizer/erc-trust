@@ -12,10 +12,10 @@
   "summary": {
     "removedFiles": 613,
     "removedBytes": 27687711,
-    "retainedFiles": 1182,
-    "retainedBytesExcludingManifest": 27299221,
-    "successorFilesAdded": 372,
-    "successorBytesAdded": 12024225
+    "retainedFiles": 1183,
+    "retainedBytesExcludingManifest": 27678485,
+    "successorFilesAdded": 373,
+    "successorBytesAdded": 12403489
   },
   "claimBoundary": "This successor accounts for the repaired candidate's retained public tree while preserving the version-1 archive removal set byte-for-byte. It does not rewrite historical removal dispositions or imply a GitHub Release, deployment, audit, or production claim."
 }
