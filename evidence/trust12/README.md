@@ -31,6 +31,9 @@ discharges every condition in
 `runtime-link/tail-preparation/tail-obligations-v1.json`, disposes every recorded
 finding and names the retained assumptions, bound to positive, same-scope
 negative and compiled-consumer records.
+That record is `registered-central-closure/closure-v1.json`; its positive,
+negative and compiled-consumer records are in the same directory, the ledger row
+`REGISTERED-CENTRAL-CLOSURE` is closed, and the fresh independent assurance is open.
 Closing a deferred general connection requires a new audited Isabelle theorem in the
 current proof catalog, plus separate checked execution, normal-branch,
 same-domain consumer-removal, and
@@ -263,7 +266,8 @@ Duplicate-map and wrong-value controls are local helper checks. They are not the
 same-domain FREEZE guard-removal evidence, which is recorded separately. The Native
 general symbolic obligation is closed. The three profile implementation-
 evidence obligations are closed at EXECUTION_TESTS, the registered-scope central
-closure is open, and the three general runtime-link obligations are deferred
+closure is closed and awaits the fresh independent assurance, and the three
+general runtime-link obligations are deferred
 research and unproved. The existing aggregate gate checks
 sealed development-evidence consistency; it does not replay these K proofs or
 supply an Isabelle runtime receiver. Raw files remain under ignored out/trust12.
@@ -346,3 +350,36 @@ This is model source reception. Original symbolic operational execution,
 runtime-to-model correspondence, the three general profile links, central
 closure, final Assurance and full TRUST completion remain open. Existing
 implementation, ABI and compiled runtime identities are preserved.
+
+## Registered-scope central closure
+
+The [closure record](registered-central-closure/closure-v1.json) discharges every
+condition of the
+[conditions list](runtime-link/tail-preparation/tail-obligations-v1.json) other than
+the independent assurance. For each condition it cites passing checkpoint records
+whose verifiers the required gate runs and, for every acceptance criterion, names
+the fields of those records that show it, with the limit of each where one applies;
+it resolves the four recorded findings and retains A-RUNTIME-LINK,
+A-RUNTIME-LINK-SPEC, A-COMPILER, A-KECCAK, A-DEPLOYMENT, A-EXTERNAL, A-EVM,
+A-LAYOUT, A-MUTATION and A-KEVM-TOOLCHAIN. The
+[positive](registered-central-closure/positive-v1.json),
+[negative](registered-central-closure/negative-v1.json) and
+[compiled-consumer](registered-central-closure/compiled-consumer-v1.json) records
+bind the closure by its hash and name evidence for every condition.
+
+The [checker](../../scripts/trust12/verify_registered_closure_v1.py) reads tracked
+files only; [its controls](../../scripts/test-registered-closure.py) reject a
+dropped condition, an uncited or stale record, an edited criterion, a changed field,
+a finding declared out of scope, an open item of the state and receipt crosswalk
+that is still carried to a later gate, a missing assumption and an unbound role
+record:
+
+```sh
+python3 scripts/trust12/verify_registered_closure_v1.py --metadata-only
+python3 scripts/test-registered-closure.py
+```
+
+The closure covers the registered executions only. The `runtime_link` and
+`runtime_link_spec` locale assumptions remain for every other execution, the three
+general runtime links are deferred research, and the fresh independent assurance is
+open.

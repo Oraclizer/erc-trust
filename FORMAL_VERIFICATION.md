@@ -519,5 +519,5 @@ and both recursive proof-audit exports. Its admitted digest is fixed only after
 execution and independent review; a new input must reopen that admission.
 `aggregate-evidence-audit.md` records the bounded independent review and repairs.
 A passing aggregate keeps Native, Partial and the pinned fresh Hook feature
-results separate from the open registered-scope central closure and the three
-deferred general runtime links.
+results separate from the registered-scope central closure, which is closed and
+awaits fresh independent assurance, and from the three deferred general runtime links.

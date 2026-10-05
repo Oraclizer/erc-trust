@@ -1,6 +1,6 @@
 {
   "schema": "trust12-obligation-ledger-v2",
-  "status": "IN_PROGRESS",
+  "status": "EVIDENCE_COMPLETE",
   "claimBoundary": {
     "hookProfile": "The constructor-sealed development reference has an independent functional-conformance PASS for same-transaction frozen-target enforcement on the pinned T-REX implementation.",
     "native": "The published Native runtime is byte-exact. The new model source does not automatically renew the previous model-to-runtime mapping.",
@@ -249,7 +249,7 @@
         },
         "review": {
           "path": "evidence/trust12/veri-integration-audit.md",
-          "sha256": "dde96d29e2b31211247292ed58b2766d1951f24189df9701890a71387e5576c1"
+          "sha256": "bb7187300186ed33bd22b593132e98845bdebafa383d9118cd71a578a9e8bae7"
         }
       },
       "probeDisposition": "Completed general positive and both complementary same-domain removal controls received. No shipping exception.",
@@ -1905,11 +1905,11 @@
       "conditionsSource": "evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json",
       "normativeReceiver": "Central refinement closure, registered-execution scope",
       "finalSourceConsumer": "Per condition, as recorded in the conditions source.",
-      "positiveActivation": "Pending",
-      "consumerRemovalNegative": "Pending",
-      "compiledConsumer": "Pending",
+      "positiveActivation": "Registered positive record evidence/trust12/registered-central-closure/positive-v1.json: for every discharged condition the premise and its consumer execute on the final target.",
+      "consumerRemovalNegative": "Registered negative record evidence/trust12/registered-central-closure/negative-v1.json: for every discharged condition a cited control removes or weakens the consumer, or removes a registered certificate, and the claim fails.",
+      "compiledConsumer": "Registered compiled-consumer record evidence/trust12/registered-central-closure/compiled-consumer-v1.json: for every discharged condition the compiled runtime or a downstream product consumer consumes the condition.",
       "assumptionsNonclaims": "The runtime_link and runtime_link_spec locale assumptions remain assumptions for executions outside the registered set; registered executions are not every declared execution.",
-      "status": "CURRENT-MANDATORY",
+      "status": "CLOSED",
       "supplementalEvidence": [
         "evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json",
         "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
@@ -1925,12 +1925,33 @@
       ],
       "requiredForRelease": true,
       "requiredForTrust12Completion": true,
-      "proofCompleted": false,
-      "disposition": "Mandatory for TRUST 1.2 completion under the 2026-10-04 completion direction; currently open.",
+      "proofCompleted": true,
+      "disposition": "Closed under the 2026-10-04 completion direction by the registered central closure record; TRUST 1.2 completion still needs the fresh independent assurance.",
       "receivingProcess": "TRUST 1.2 registered-scope central closure.",
       "responsibleArtifact": "This ledger row and the conditions source.",
       "closureEvidence": "A registered central closure record that discharges every recorded condition with positive, same-scope negative and compiled-consumer evidence, disposes every recorded finding and names the retained assumptions.",
-      "reopenCondition": "Any final source, ABI, runtime, profile, registered certificate or proof-input change reopens the affected conditions."
+      "reopenCondition": "Any final source, ABI, runtime, profile, registered certificate or proof-input change reopens the affected conditions.",
+      "registeredClosureEvidence": {
+        "status": "PASS_REGISTERED_CENTRAL_CLOSURE",
+        "references": {
+          "closure": {
+            "path": "evidence/trust12/registered-central-closure/closure-v1.json",
+            "sha256": "f94649e826779a440e56ec5bd6c6be9f3c96dc04e000177e0a38aad9f5816bf4"
+          },
+          "positive": {
+            "path": "evidence/trust12/registered-central-closure/positive-v1.json",
+            "sha256": "a58c50cae2849bbc0ca1b729af23858107920eb69341323df15074ca2a1901b2"
+          },
+          "negative": {
+            "path": "evidence/trust12/registered-central-closure/negative-v1.json",
+            "sha256": "f7a82a13671e02ca4fec0d14672836ebf34fade403a5093a967315567e69c35c"
+          },
+          "compiledConsumer": {
+            "path": "evidence/trust12/registered-central-closure/compiled-consumer-v1.json",
+            "sha256": "f31da82198eece32c863e209f5ceb56655b40db4da97978a7549be2af83d787e"
+          }
+        }
+      }
     },
     {
       "id": "RESEARCH-RUNTIME-LINK-NATIVE",
@@ -2186,12 +2207,10 @@
   "centralClosure": {
     "status": "INCOMPLETE",
     "preservation": "PASS_ABSTRACT_MODEL: initial, ordinary, governance, failure and all nine regulatory state_wf preservation, linked-run induction and outcome-sensitive controls. Actual committed-source clean build and bounded independent source reviews are recorded in model-results.json and its references.",
-    "reflection": "No general compiled-runtime reflection theorem.",
+    "reflection": "No general compiled-runtime reflection theorem. Within the registered-execution scope the reflection scan record classifies every guard and state write on the typed command paths, and the registered central closure cites it.",
     "routeExhaustiveness": "PASS_ROUTE_INVENTORY: every selector of the seven profile runtimes has a class (the Hook runtimes by decision 14), and every state-changing route outside the typed commands has a disposition record that a closed row or an accepted decision record of its own runtime justifies and that a passed test executes on that runtime, including the permissionless resynchroniseFrozen and the never-succeeding activateSeal of the Hook adapter (evidence/trust12/runtime-link/tail-preparation/route-inventory-checkpoint-v1.json). The upstream token is not classified (A-EXTERNAL); batchForcedTransfer, recovery and post-activation mint/burn callbacks remain outside the graded Hook scope.",
-    "stateReceiptIdentity": "Scoped component evidence and the current checkpoint consumers are received. The general FREEZE positive and its same-domain removal controls on both supply branches are complete; the registered-scope central closure remains open and the three general runtime links are deferred research.",
-    "currentMandatory": [
-      "REGISTERED-CENTRAL-CLOSURE"
-    ],
+    "stateReceiptIdentity": "Scoped component evidence and the current checkpoint consumers are received. The general FREEZE positive and its same-domain removal controls on both supply branches are complete; the registered-scope central closure is closed and awaits the fresh independent assurance, and the three general runtime links are deferred research.",
+    "currentMandatory": [],
     "researchResiduals": [
       "RESEARCH-RUNTIME-LINK-HOOK",
       "RESEARCH-RUNTIME-LINK-NATIVE",
@@ -2202,9 +2221,9 @@
   },
   "releasePolicy": "evidence/trust12/release-policy.json",
   "releaseAssessment": {
-    "status": "PENDING",
+    "status": "ASSURANCE_PENDING",
     "trust12Complete": false,
     "fullRefinementComplete": false,
-    "meaning": "Three scoped profile implementation rows and the general symbolic FREEZE obligation are CLOSED. The registered-scope central closure is open. The three general runtime links are deferred research and unproved. No shipping exception, final Assurance or release is asserted."
+    "meaning": "Three scoped profile implementation rows, the general symbolic FREEZE obligation and the registered-scope central closure are CLOSED. The fresh independent assurance that TRUST 1.2 completion requires is open. The three general runtime links are deferred research and unproved. No shipping exception, final Assurance or release is asserted."
   }
 }

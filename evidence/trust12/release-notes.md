@@ -9,9 +9,12 @@ completion at the registered-execution scope: the verified Isabelle abstract mod
 registered executions of Native, Partial and Hook bound to their exact compiled
 runtimes, one registered-scope central closure that names its remaining
 assumptions, and fresh independent assurance.
-Of these, only the abstract model is complete. The gate, malformed-branch and central conditions
-recorded in `runtime-link/tail-preparation/tail-obligations-v1.json`, the registered-scope
-central closure and the assurance are open.
+Of these, the abstract model, the kernel-checked registered executions and the
+registered-scope central closure are recorded. The closure record
+`registered-central-closure/closure-v1.json` discharges every gate, malformed-branch
+and central condition recorded in `runtime-link/tail-preparation/tail-obligations-v1.json`
+other than the independent assurance and names the assumptions that remain. The fresh
+independent assurance is open.
 General runtime-to-model correspondence in each declared profile is deferred research and is not required for TRUST 1.2 completion.
 The current evidence does not discharge the general runtime links. Verified Isabelle model evidence and scoped
 compiled-code checks remain valid at their stated levels. The permitted claim is
@@ -49,12 +52,12 @@ is preserved for the deferred general connection; no unproved producer is promot
 TRUST 1.2 shipping exceptions: none.
 
 `release-policy.json` records the historical and current decisions. `obligation-ledger.json` records
-the 21 graded components, the closed Native symbolic proof, the open
+the 21 graded components, the closed Native symbolic proof, the closed
 registered-scope central closure and the three deferred general connections
 separately from end-to-end proof completeness and public-release
 authorization. `profile-implementation-evidence-review.json` records the scope
 inventory, and `native-alternative-probe.json` records the bounded probe result.
 The local proof-run inventory and the end-to-end product ledger have different
-denominators and cannot substitute for these open TRUST 1.2 product obligations.
+denominators and cannot substitute for these TRUST 1.2 product obligations.
 The verifier checks consistency of approval records; it does not authenticate human
 authority or replace independent semantic review.

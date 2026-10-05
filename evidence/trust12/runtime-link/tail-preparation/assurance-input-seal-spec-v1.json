@@ -218,6 +218,14 @@
       "coldReplay": false
     },
     {
+      "id": "registered-closure-check",
+      "purpose": "Check the registered central closure record and its positive, negative and compiled-consumer records against the sealed product tree: every cited record is current and passes the evidence contract of the policy check, every acceptance criterion is quoted from the sealed conditions list and every named field still holds its recorded value, every finding is resolved with cited evidence and every retained assumption is named.",
+      "workingRoot": "PRODUCT",
+      "command": "python3 scripts/trust12/verify_registered_closure_v1.py --product-root PRODUCT_CHECKOUT --metadata-only",
+      "passCriterion": "Status PASS_REGISTERED_CLOSURE_CONSISTENT.",
+      "coldReplay": false
+    },
+    {
       "id": "proof-sessions-cold",
       "purpose": "Replay the product proof sessions without saved heaps or databases, after installing the pinned Isabelle archive, AFP entry and formal foundation as the proof workflow does.",
       "workingRoot": "PRODUCT",

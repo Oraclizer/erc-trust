@@ -1,0 +1,1683 @@
+{
+  "schema": "trust12-registered-central-closure-v1",
+  "status": "PASS",
+  "scope": "This record closes the registered-scope central closure of TRUST 1.2. For each condition of the reviewed conditions list other than the independent assurance, it cites passing checkpoint records that the required gate verifies and, for each acceptance criterion of that condition, names the fields of those records that show the criterion. It resolves the four recorded findings with cited evidence and names every assumption that remains. The registered executions are the registered certificates of the twenty-seven profile and operation cells and the registered requests outside canonical form of the Native, Partial and Hook profiles on their exact compiled runtimes.",
+  "executionBoundary": "The registered executions are not every declared execution. For every other execution the runtime_link and runtime_link_spec locale assumptions remain undischarged, and the three general runtime links stay deferred research. A probe, a mutant or a scan that a cited record reports runs on the deployment or build that the record names, and a mutant copy is never a run of the frozen build.",
+  "evidenceBoundary": "Each cited record keeps its own scope and non-claims, and this record does not extend them. A criterion is shown by the fields named for it; where those fields show it only under a stated limit, the limit is recorded with the criterion. A clause of a condition beyond its acceptance criteria is shown by the fields named for that clause or is described in the note of the condition. This record does not replay kernel sessions, prover runs or Foundry executions; the saved-mode verifier of each cited record and the fresh independent assurance do.",
+  "assumptionBoundary": "The retained assumptions are the open assumptions of the central end-to-end ledger, the toolchain assumption under which K, KEVM and Kontrol with its backend are trusted to produce the registered certificates, and every assumption that a cited record retains. This record neither proves nor tests a retained assumption.",
+  "reproductionBoundary": "The public verifier reads tracked files only. It checks that this record is the reviewed one; that every cited record is current, passes and has a verifier that the required gate runs; that every acceptance criterion is quoted from the current conditions list and every named field still holds its recorded value; that every recorded finding is resolved with cited evidence; that the reviewed dispositions carry no open item of the state and receipt crosswalk to a later gate; that every retained assumption of the policy, the central ledger and the cited records is named; that the final inputs are the current runtimes, sources, ABI, formal root and conditions; and that the positive, negative and compiled-consumer records and the ledger row bind this record. It runs no prover, compiler, kernel session or Foundry execution.",
+  "conditionsSource": {
+    "path": "evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json",
+    "sha256": "3e6524fc20a951dab02e916f41980b8281a84338ec94b2dcf14f5a0e8a73a087"
+  },
+  "finalInputs": {
+    "runtimeSha256ByContract": {
+      "TrustToken": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1",
+      "ERC3643TrustAdapter": "7a2dfa433911dd37e389498129356db30693e8ee8e128f8da63a5d3044a56349",
+      "ProfileGovernor": "78c08fbe4be793482e44a8cdf32fcc1af3276277c8cc78f48761fdcbc4bf9399",
+      "ERC3643HookAdapter": "f84c886b203dacd380c29b2aa3afd2ed401e487ed79f95e14b4d24edb24c1b85",
+      "ERC3643HookGovernor": "0978059dea47b1286326902332f41079029836cf257691fb13c99bc2b5064012",
+      "ERC3643HookCompliance": "ebcf0ea744e5e505fb1bd5bd02a9ab0b4c0a112c628ee37cb8916ea7ce3f8881",
+      "ERC3643HookFactory": "9636463d4fba1eebc1690648aad3439b30f53156927161bc93c899df1056d680"
+    },
+    "sourceInventorySha256": "66a04d004f7f332eedb4d82c663ac8cf6da4b74690c64ad37c043560913ec8bd",
+    "abiSha256": "73b45cee3e8e6a2abd484a306a21d51aaa3fc4da75b976dd3c938d936352814b",
+    "formalRootSha256": "7c6d08d4cca6ca035959f46d2cd5e4ae26595ad5005abaf9dd2da5e9c908954a",
+    "conditionSha256": "80437a5a7a2f5ff055e57e31b396c4bca494fec0f025dcce4e529e65f2bdf772",
+    "conditionsSha256": "3e6524fc20a951dab02e916f41980b8281a84338ec94b2dcf14f5a0e8a73a087"
+  },
+  "dischargedConditions": [
+    "typed-failure-report-binding",
+    "twenty-seven-cell-architecture",
+    "enforced-cell-witnesses",
+    "malformed-native",
+    "malformed-partial",
+    "malformed-hook",
+    "preservation-and-reflection",
+    "route-exhaustiveness",
+    "state-and-receipt-identity",
+    "accepted-set-is-certificate-image"
+  ],
+  "conditionEvidence": {
+    "typed-failure-report-binding": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/typed-failure-checkpoint-v1.json",
+        "sha256": "6aa21dac6ee60676fb962aa91b04eb838f54c36a27525f7fef4e5d1a47abcec6"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+        "sha256": "e616c1fa2733317b3e00985edd5e8c97aa3c6617cfdfc4a6720e7ce412941008"
+      }
+    ],
+    "twenty-seven-cell-architecture": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+        "sha256": "1ea2d88b595fcb2c0782c1204234b2666862b2c36eeddd172c2fca875acb3a10"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+        "sha256": "e616c1fa2733317b3e00985edd5e8c97aa3c6617cfdfc4a6720e7ce412941008"
+      }
+    ],
+    "enforced-cell-witnesses": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+        "sha256": "1ea2d88b595fcb2c0782c1204234b2666862b2c36eeddd172c2fca875acb3a10"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+        "sha256": "e616c1fa2733317b3e00985edd5e8c97aa3c6617cfdfc4a6720e7ce412941008"
+      }
+    ],
+    "malformed-native": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+        "sha256": "1ea2d88b595fcb2c0782c1204234b2666862b2c36eeddd172c2fca875acb3a10"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
+        "sha256": "e52ede796d01f59f879aa8371059fbe98b1d8ce96992400779facf1c99153caa"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/malformed/call-trace-checkpoint-v1.json",
+        "sha256": "bded0634c3104c59553f96a27a806007fbd86c87a6930197e1729f9e00cdbb8a"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/malformed-guard-mutants-checkpoint-v1.json",
+        "sha256": "0fced074b648ed1d852da97792ff41032eb5d6f5990965dddb72340fefb6f6ea"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+        "sha256": "b96937be7c5f094a3576a53b52dead28ac8d37aa7e94941b0ce07a5f63b5f759"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+        "sha256": "e616c1fa2733317b3e00985edd5e8c97aa3c6617cfdfc4a6720e7ce412941008"
+      }
+    ],
+    "malformed-partial": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+        "sha256": "1ea2d88b595fcb2c0782c1204234b2666862b2c36eeddd172c2fca875acb3a10"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
+        "sha256": "e52ede796d01f59f879aa8371059fbe98b1d8ce96992400779facf1c99153caa"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/malformed/call-trace-checkpoint-v1.json",
+        "sha256": "bded0634c3104c59553f96a27a806007fbd86c87a6930197e1729f9e00cdbb8a"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/malformed-guard-mutants-checkpoint-v1.json",
+        "sha256": "0fced074b648ed1d852da97792ff41032eb5d6f5990965dddb72340fefb6f6ea"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+        "sha256": "b96937be7c5f094a3576a53b52dead28ac8d37aa7e94941b0ce07a5f63b5f759"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+        "sha256": "e616c1fa2733317b3e00985edd5e8c97aa3c6617cfdfc4a6720e7ce412941008"
+      }
+    ],
+    "malformed-hook": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+        "sha256": "1ea2d88b595fcb2c0782c1204234b2666862b2c36eeddd172c2fca875acb3a10"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
+        "sha256": "e52ede796d01f59f879aa8371059fbe98b1d8ce96992400779facf1c99153caa"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/malformed/call-trace-checkpoint-v1.json",
+        "sha256": "bded0634c3104c59553f96a27a806007fbd86c87a6930197e1729f9e00cdbb8a"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/malformed-guard-mutants-checkpoint-v1.json",
+        "sha256": "0fced074b648ed1d852da97792ff41032eb5d6f5990965dddb72340fefb6f6ea"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+        "sha256": "b96937be7c5f094a3576a53b52dead28ac8d37aa7e94941b0ce07a5f63b5f759"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+        "sha256": "e616c1fa2733317b3e00985edd5e8c97aa3c6617cfdfc4a6720e7ce412941008"
+      }
+    ],
+    "preservation-and-reflection": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/reflection-scan-checkpoint-v1.json",
+        "sha256": "c4c7bbed27cbec703bea8f534376136d0fb4ec2c3a64dc36615840bfe0eb05ba"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+        "sha256": "e616c1fa2733317b3e00985edd5e8c97aa3c6617cfdfc4a6720e7ce412941008"
+      }
+    ],
+    "route-exhaustiveness": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/route-inventory-checkpoint-v1.json",
+        "sha256": "0c862d66d2a3e9a32335db5d522a469ef21045483b429e7c5142171731a5e9f7"
+      }
+    ],
+    "state-and-receipt-identity": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/storage-reader-checkpoint-v1.json",
+        "sha256": "7bd763ba139ceba3323df2f6ead5a7bb430c307c2c770ffefacb32492629ef3e"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+        "sha256": "e616c1fa2733317b3e00985edd5e8c97aa3c6617cfdfc4a6720e7ce412941008"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/typed-failure-checkpoint-v1.json",
+        "sha256": "6aa21dac6ee60676fb962aa91b04eb838f54c36a27525f7fef4e5d1a47abcec6"
+      }
+    ],
+    "accepted-set-is-certificate-image": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+        "sha256": "1ea2d88b595fcb2c0782c1204234b2666862b2c36eeddd172c2fca875acb3a10"
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+        "sha256": "e616c1fa2733317b3e00985edd5e8c97aa3c6617cfdfc4a6720e7ce412941008"
+      }
+    ]
+  },
+  "acceptance": {
+    "typed-failure-report-binding": [
+      {
+        "criterion": "Every profile endpoint runtime of the frozen build loads each typed failure selector, and the recorded loads are recomputed from that build.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/typed-failure-checkpoint-v1.json",
+            "pointer": "/loads/criteria/every-endpoint-loads-every-typed-failure-selector",
+            "expected": "PASS"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/typed-failure-checkpoint-v1.json",
+            "pointer": "/loads/criteria/recorded-loads-equal-the-recomputed-loads",
+            "expected": "PASS"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/typed-failure-checkpoint-v1.json",
+            "pointer": "/coverage/endpointsMatchingTemplates",
+            "expected": 3
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/typed-failure-checkpoint-v1.json",
+            "pointer": "/coverage/runtimesScanned",
+            "expected": 7
+          }
+        ],
+        "limits": "A load shows that a runtime can produce the selector, not on which path. The loads are recomputed from a build of the frozen sources in an isolated copy whose profile runtimes equal their templates."
+      },
+      {
+        "criterion": "Each typed revert site emits the argument layout that the report reading expects, shown per selector on the compiled runtime.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/typed-failure-checkpoint-v1.json",
+            "pointer": "/coverage/typedFailureCases",
+            "expected": 52
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/typed-failure-checkpoint-v1.json",
+            "pointer": "/coverage/boundCases",
+            "expected": 52
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/typed-failure-checkpoint-v1.json",
+            "pointer": "/probe/status",
+            "expected": "PROBE_RECORDED_ALL_BOUND"
+          }
+        ],
+        "limits": "The probe executes at least one revert site of every typed failure on every entrypoint pair of every endpoint, not every revert site; that every site of one error encodes the same static layout rests on A-COMPILER. The replay selector and the terminal selector of a reversal bind by selector and length only."
+      }
+    ],
+    "twenty-seven-cell-architecture": [
+      {
+        "criterion": "The registry builds in closure mode: every cell and every malformed branch is covered and no check fails.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+            "pointer": "/status",
+            "expected": "PASS_CERTIFICATE_REGISTRY_COVERAGE_AND_EXECUTED_CODE"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+            "pointer": "/coverage/declaredCells",
+            "expected": 27
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+            "pointer": "/coverage/boundCells",
+            "expected": 27
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+            "pointer": "/coverage/requestsOutsideCanonicalForm",
+            "expected": {
+              "Native": 16,
+              "Partial": 13,
+              "Hook": 13
+            }
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+            "pointer": "/coverage/checks",
+            "expected": {
+              "certificate-keys-unique": "PASS",
+              "certificates-distinct": "PASS",
+              "certificate-records-consistent": "PASS",
+              "cells-agree-with-ledger-and-kernels": "PASS",
+              "malformed-registered-as-catalogued": "PASS",
+              "executed-code-identity": "PASS",
+              "recorded-worlds-consumed": "PASS"
+            }
+          }
+        ],
+        "limits": "The public record states the coverage and check results; the saved-mode verifier of the registry record rebuilds the stored registry in closure mode."
+      },
+      {
+        "criterion": "A kernel run instantiates the gate with the accepted set defined as the image of the registered certificates.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/gate-instantiated-over-the-registered-image",
+            "expected": "PASS"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/coverage/registeredCertificates",
+            "expected": {
+              "Native": 34,
+              "Partial": 31,
+              "Hook": 31
+            }
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/no-oracle-and-no-skipped-proof",
+            "expected": "PASS"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/coverage/oracleDependencies",
+            "expected": 0
+          }
+        ],
+        "limits": ""
+      },
+      {
+        "criterion": "Removing any registered certificate breaks that instantiation.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/every-certificate-removal-breaks-the-instantiation",
+            "expected": "PASS"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/coverage/certificateRemovals",
+            "expected": {
+              "Native": 34,
+              "Partial": 31,
+              "Hook": 31
+            }
+          }
+        ],
+        "limits": ""
+      }
+    ],
+    "enforced-cell-witnesses": [
+      {
+        "criterion": "Every registered certificate records the code it executed, and that code equals its profile template outside the immutable ranges.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+            "pointer": "/coverage/executedCodeMatches",
+            "expected": 96
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+            "pointer": "/coverage/checks/executed-code-identity",
+            "expected": "PASS"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+            "pointer": "/coverage/certificates",
+            "expected": {
+              "Native": 34,
+              "Partial": 31,
+              "Hook": 31
+            }
+          }
+        ],
+        "limits": "A match means the same length and equal bytes outside the merged immutable ranges; immutable values are not compared with any deployment (A-DEPLOYMENT)."
+      },
+      {
+        "criterion": "The profile index of every cell names exactly that code identity.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+            "pointer": "/runtimeIdentity/Native/profileIndex",
+            "expected": "Runtime_Native"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+            "pointer": "/runtimeIdentity/Partial/profileIndex",
+            "expected": "Runtime_Partial"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+            "pointer": "/runtimeIdentity/Hook/profileIndex",
+            "expected": "Runtime_Hook"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+            "pointer": "/runtimeIdentity/Native/codeIdentityRootSha256",
+            "expected": "f19a8bef73333c7608984c530427b69598a5919e8624d80404c89983f896c488"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+            "pointer": "/runtimeIdentity/Partial/codeIdentityRootSha256",
+            "expected": "dd5a0bb0c6b930fc2bb8d967095cc955bde0c2d363121c85413abc2facdd9c3b"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+            "pointer": "/runtimeIdentity/Hook/codeIdentityRootSha256",
+            "expected": "45bfbc13128ba737f349a468827bfd81b0c42bf15b165e8de5f92ba155840879"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/accepted-executions-pin-profile-code",
+            "expected": "PASS"
+          }
+        ],
+        "limits": "The registry record compares the profile runtime accounts of every recorded world with their templates; the kernel code pin covers the accounts that the profile manifest names, as the gate record states. The Hook factory appears in no recorded world, so its deployment remains A-DEPLOYMENT."
+      }
+    ],
+    "malformed-native": [
+      {
+        "criterion": "Certificates of the malformed classes of the endpoint are registered.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+            "pointer": "/coverage/requestsOutsideCanonicalForm/Native",
+            "expected": 16
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+            "pointer": "/coverage/checks/malformed-registered-as-catalogued",
+            "expected": "PASS"
+          }
+        ],
+        "limits": ""
+      },
+      {
+        "criterion": "A kernel run proves the malformed branch over them.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
+            "pointer": "/status",
+            "expected": "PASS_KERNEL_CHECKED_REGISTERED_MALFORMED_ALIGNED_GATE"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
+            "pointer": "/coverage/alignedGateHolds/native",
+            "expected": 16
+          },
+          {
+            "path": "evidence/trust12/runtime-link/malformed/call-trace-checkpoint-v1.json",
+            "pointer": "/coverage/suppliedEmptyCallLists/Native",
+            "expected": 16
+          },
+          {
+            "path": "evidence/trust12/runtime-link/malformed/call-trace-checkpoint-v1.json",
+            "pointer": "/coverage/framesEnteredInSegments",
+            "expected": 0
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/malformed-branch-over-the-registered-requests",
+            "expected": "PASS"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/coverage/malformedRequests/Native",
+            "expected": 16
+          }
+        ],
+        "limits": "The aligned gate stages take status, revert output and calldata as received values, define each post world and its logs as the recorded pre-call world and logs, and take the external call list as a supplied field; the call frame record checks that list against the stored proof graphs (A-KEVM-TOOLCHAIN). The gate instantiation consumes the aligned relation over the registered image."
+      },
+      {
+        "criterion": "Disabling the exact length guard or a bounded word check turns a witness outside canonical form into an execution that is accepted or that emits a log, makes an external call or changes state.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=NATIVE-ACTION-LENGTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=NATIVE-REVERSAL-LENGTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=ADDRESS-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=UINT64-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=UINT48-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=ACTION-KIND-BOUND]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=ACTION-KIND-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=REVERSAL-KIND-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=REVERSAL-KIND-BOUND]/status",
+            "expected": "MUTANT_EQUIVALENT_CONFIRMED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/baseline/witnesses/Native",
+            "expected": 32
+          }
+        ],
+        "limits": "The witnesses are concrete requests on the probe deployments, not the registered certificates. Accepting every reversal kind word below 256 changes no observed outcome, because the reversal pairing rule rejects each such witness with its typed failure first; reading that word truncated to eight bits is detected."
+      },
+      {
+        "criterion": "The probe is rerun on the frozen build with every control detected.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/baseline/status",
+            "expected": "BASELINE_RECORDED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/baseline/catalog/recipes",
+            "expected": 305
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/baseline/catalog/summary/Native~1well-formed-control~1CONTROL_DETECTED",
+            "expected": 4
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/baseline/catalog/summary",
+            "expected": {
+              "Hook/dirty-address-word/CONFORMS": 8,
+              "Hook/dirty-enum-word/CONFORMS": 6,
+              "Hook/dirty-uint48-word/CONFORMS": 8,
+              "Hook/dirty-uint64-word/CONFORMS": 8,
+              "Hook/length/CONFORMS": 12,
+              "Hook/no-selector/CONFORMS": 2,
+              "Hook/nonzero-call-value/CONFORMS": 2,
+              "Hook/ordering-probe/CONFORMS": 28,
+              "Hook/unknown-selector/CONFORMS": 1,
+              "Hook/well-formed-control/CONTROL_DETECTED": 2,
+              "Native/dirty-address-word/CONFORMS": 16,
+              "Native/dirty-enum-word/CONFORMS": 12,
+              "Native/dirty-uint48-word/CONFORMS": 16,
+              "Native/dirty-uint64-word/CONFORMS": 16,
+              "Native/length/CONFORMS": 24,
+              "Native/no-selector/CONFORMS": 2,
+              "Native/nonzero-call-value/CONFORMS": 4,
+              "Native/ordering-probe/CONFORMS": 56,
+              "Native/unknown-selector/CONFORMS": 1,
+              "Native/well-formed-control/CONTROL_DETECTED": 4,
+              "Partial/dirty-address-word/CONFORMS": 8,
+              "Partial/dirty-enum-word/CONFORMS": 6,
+              "Partial/dirty-uint48-word/CONFORMS": 8,
+              "Partial/dirty-uint64-word/CONFORMS": 8,
+              "Partial/length/CONFORMS": 12,
+              "Partial/no-selector/CONFORMS": 2,
+              "Partial/nonzero-call-value/CONFORMS": 2,
+              "Partial/ordering-probe/CONFORMS": 28,
+              "Partial/unknown-selector/CONFORMS": 1,
+              "Partial/well-formed-control/CONTROL_DETECTED": 2
+            }
+          }
+        ],
+        "limits": "The rerun is the malformed probe on an unmodified isolated copy of the frozen sources, which Foundry compiles; the record binds the receipts by hash."
+      }
+    ],
+    "malformed-partial": [
+      {
+        "criterion": "Certificates of the malformed classes of the endpoint are registered.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+            "pointer": "/coverage/requestsOutsideCanonicalForm/Partial",
+            "expected": 13
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+            "pointer": "/coverage/checks/malformed-registered-as-catalogued",
+            "expected": "PASS"
+          }
+        ],
+        "limits": ""
+      },
+      {
+        "criterion": "A kernel run proves the malformed branch over them.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
+            "pointer": "/status",
+            "expected": "PASS_KERNEL_CHECKED_REGISTERED_MALFORMED_ALIGNED_GATE"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
+            "pointer": "/coverage/alignedGateHolds/partial",
+            "expected": 13
+          },
+          {
+            "path": "evidence/trust12/runtime-link/malformed/call-trace-checkpoint-v1.json",
+            "pointer": "/coverage/suppliedEmptyCallLists/Partial",
+            "expected": 13
+          },
+          {
+            "path": "evidence/trust12/runtime-link/malformed/call-trace-checkpoint-v1.json",
+            "pointer": "/coverage/framesEnteredInSegments",
+            "expected": 0
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/malformed-branch-over-the-registered-requests",
+            "expected": "PASS"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/coverage/malformedRequests/Partial",
+            "expected": 13
+          }
+        ],
+        "limits": "The aligned gate stages take status, revert output and calldata as received values, define each post world and its logs as the recorded pre-call world and logs, and take the external call list as a supplied field; the call frame record checks that list against the stored proof graphs (A-KEVM-TOOLCHAIN). The gate instantiation consumes the aligned relation over the registered image."
+      },
+      {
+        "criterion": "Disabling the exact length guard or a bounded word check turns a witness outside canonical form into an execution that is accepted or that emits a log, makes an external call or changes state.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=PARTIAL-ACTION-LENGTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=PARTIAL-REVERSAL-LENGTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=ADDRESS-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=UINT64-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=UINT48-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=ACTION-KIND-BOUND]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=ACTION-KIND-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=REVERSAL-KIND-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=REVERSAL-KIND-BOUND]/status",
+            "expected": "MUTANT_EQUIVALENT_CONFIRMED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/baseline/witnesses/Partial",
+            "expected": 16
+          }
+        ],
+        "limits": "The witnesses are concrete requests on the probe deployments, not the registered certificates. Accepting every reversal kind word below 256 changes no observed outcome, because the reversal pairing rule rejects each such witness with its typed failure first; reading that word truncated to eight bits is detected."
+      },
+      {
+        "criterion": "The probe is rerun on the frozen build with every control detected.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/baseline/status",
+            "expected": "BASELINE_RECORDED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/baseline/catalog/recipes",
+            "expected": 305
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/baseline/catalog/summary/Partial~1well-formed-control~1CONTROL_DETECTED",
+            "expected": 2
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/baseline/catalog/summary",
+            "expected": {
+              "Hook/dirty-address-word/CONFORMS": 8,
+              "Hook/dirty-enum-word/CONFORMS": 6,
+              "Hook/dirty-uint48-word/CONFORMS": 8,
+              "Hook/dirty-uint64-word/CONFORMS": 8,
+              "Hook/length/CONFORMS": 12,
+              "Hook/no-selector/CONFORMS": 2,
+              "Hook/nonzero-call-value/CONFORMS": 2,
+              "Hook/ordering-probe/CONFORMS": 28,
+              "Hook/unknown-selector/CONFORMS": 1,
+              "Hook/well-formed-control/CONTROL_DETECTED": 2,
+              "Native/dirty-address-word/CONFORMS": 16,
+              "Native/dirty-enum-word/CONFORMS": 12,
+              "Native/dirty-uint48-word/CONFORMS": 16,
+              "Native/dirty-uint64-word/CONFORMS": 16,
+              "Native/length/CONFORMS": 24,
+              "Native/no-selector/CONFORMS": 2,
+              "Native/nonzero-call-value/CONFORMS": 4,
+              "Native/ordering-probe/CONFORMS": 56,
+              "Native/unknown-selector/CONFORMS": 1,
+              "Native/well-formed-control/CONTROL_DETECTED": 4,
+              "Partial/dirty-address-word/CONFORMS": 8,
+              "Partial/dirty-enum-word/CONFORMS": 6,
+              "Partial/dirty-uint48-word/CONFORMS": 8,
+              "Partial/dirty-uint64-word/CONFORMS": 8,
+              "Partial/length/CONFORMS": 12,
+              "Partial/no-selector/CONFORMS": 2,
+              "Partial/nonzero-call-value/CONFORMS": 2,
+              "Partial/ordering-probe/CONFORMS": 28,
+              "Partial/unknown-selector/CONFORMS": 1,
+              "Partial/well-formed-control/CONTROL_DETECTED": 2
+            }
+          }
+        ],
+        "limits": "The rerun is the malformed probe on an unmodified isolated copy of the frozen sources, which Foundry compiles; the record binds the receipts by hash."
+      }
+    ],
+    "malformed-hook": [
+      {
+        "criterion": "Certificates of the malformed classes of the endpoint are registered.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+            "pointer": "/coverage/requestsOutsideCanonicalForm/Hook",
+            "expected": 13
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+            "pointer": "/coverage/checks/malformed-registered-as-catalogued",
+            "expected": "PASS"
+          }
+        ],
+        "limits": ""
+      },
+      {
+        "criterion": "A kernel run proves the malformed branch over them.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
+            "pointer": "/status",
+            "expected": "PASS_KERNEL_CHECKED_REGISTERED_MALFORMED_ALIGNED_GATE"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
+            "pointer": "/coverage/alignedGateHolds/hook",
+            "expected": 13
+          },
+          {
+            "path": "evidence/trust12/runtime-link/malformed/call-trace-checkpoint-v1.json",
+            "pointer": "/coverage/suppliedEmptyCallLists/Hook",
+            "expected": 13
+          },
+          {
+            "path": "evidence/trust12/runtime-link/malformed/call-trace-checkpoint-v1.json",
+            "pointer": "/coverage/framesEnteredInSegments",
+            "expected": 0
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/malformed-branch-over-the-registered-requests",
+            "expected": "PASS"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/coverage/malformedRequests/Hook",
+            "expected": 13
+          }
+        ],
+        "limits": "The aligned gate stages take status, revert output and calldata as received values, define each post world and its logs as the recorded pre-call world and logs, and take the external call list as a supplied field; the call frame record checks that list against the stored proof graphs (A-KEVM-TOOLCHAIN). The gate instantiation consumes the aligned relation over the registered image. The Hook aligned stages retain five conditional reader facts, as the aligned gate record states."
+      },
+      {
+        "criterion": "Disabling the exact length guard or a bounded word check turns a witness outside canonical form into an execution that is accepted or that emits a log, makes an external call or changes state.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=HOOK-ACTION-LENGTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=HOOK-REVERSAL-LENGTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=ADDRESS-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=UINT64-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=UINT48-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=ACTION-KIND-BOUND]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=ACTION-KIND-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=REVERSAL-KIND-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/mutants[id=REVERSAL-KIND-BOUND]/status",
+            "expected": "MUTANT_EQUIVALENT_CONFIRMED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/baseline/witnesses/Hook",
+            "expected": 16
+          }
+        ],
+        "limits": "The witnesses are concrete requests on the probe deployments, not the registered certificates. Accepting every reversal kind word below 256 changes no observed outcome, because the reversal pairing rule rejects each such witness with its typed failure first; reading that word truncated to eight bits is detected."
+      },
+      {
+        "criterion": "The probe is rerun on the frozen build with every control detected.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/baseline/status",
+            "expected": "BASELINE_RECORDED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/baseline/catalog/recipes",
+            "expected": 305
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/baseline/catalog/summary/Hook~1well-formed-control~1CONTROL_DETECTED",
+            "expected": 2
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+            "pointer": "/baseline/catalog/summary",
+            "expected": {
+              "Hook/dirty-address-word/CONFORMS": 8,
+              "Hook/dirty-enum-word/CONFORMS": 6,
+              "Hook/dirty-uint48-word/CONFORMS": 8,
+              "Hook/dirty-uint64-word/CONFORMS": 8,
+              "Hook/length/CONFORMS": 12,
+              "Hook/no-selector/CONFORMS": 2,
+              "Hook/nonzero-call-value/CONFORMS": 2,
+              "Hook/ordering-probe/CONFORMS": 28,
+              "Hook/unknown-selector/CONFORMS": 1,
+              "Hook/well-formed-control/CONTROL_DETECTED": 2,
+              "Native/dirty-address-word/CONFORMS": 16,
+              "Native/dirty-enum-word/CONFORMS": 12,
+              "Native/dirty-uint48-word/CONFORMS": 16,
+              "Native/dirty-uint64-word/CONFORMS": 16,
+              "Native/length/CONFORMS": 24,
+              "Native/no-selector/CONFORMS": 2,
+              "Native/nonzero-call-value/CONFORMS": 4,
+              "Native/ordering-probe/CONFORMS": 56,
+              "Native/unknown-selector/CONFORMS": 1,
+              "Native/well-formed-control/CONTROL_DETECTED": 4,
+              "Partial/dirty-address-word/CONFORMS": 8,
+              "Partial/dirty-enum-word/CONFORMS": 6,
+              "Partial/dirty-uint48-word/CONFORMS": 8,
+              "Partial/dirty-uint64-word/CONFORMS": 8,
+              "Partial/length/CONFORMS": 12,
+              "Partial/no-selector/CONFORMS": 2,
+              "Partial/nonzero-call-value/CONFORMS": 2,
+              "Partial/ordering-probe/CONFORMS": 28,
+              "Partial/unknown-selector/CONFORMS": 1,
+              "Partial/well-formed-control/CONTROL_DETECTED": 2
+            }
+          }
+        ],
+        "limits": "The rerun is the malformed probe on an unmodified isolated copy of the frozen sources, which Foundry compiles; the record binds the receipts by hash."
+      }
+    ],
+    "preservation-and-reflection": [
+      {
+        "criterion": "Every guard and state write on the typed command paths is the consumer of an obligation or a listed runtime-only item with a reason.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/reflection-scan-checkpoint-v1.json",
+            "pointer": "/status",
+            "expected": "PASS_REFLECTION_SCAN_ALL_CLASSIFIED"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/reflection-scan-checkpoint-v1.json",
+            "pointer": "/coverage/endpoints/TrustToken/unclassified",
+            "expected": 0
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/reflection-scan-checkpoint-v1.json",
+            "pointer": "/coverage/endpoints/ERC3643TrustAdapter/unclassified",
+            "expected": 0
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/reflection-scan-checkpoint-v1.json",
+            "pointer": "/coverage/endpoints/ERC3643HookAdapter/unclassified",
+            "expected": 0
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/reflection-scan-checkpoint-v1.json",
+            "pointer": "/coverage/endpoints/TrustToken/unresolvedWrites",
+            "expected": 0
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/reflection-scan-checkpoint-v1.json",
+            "pointer": "/coverage/endpoints/ERC3643TrustAdapter/unresolvedWrites",
+            "expected": 0
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/reflection-scan-checkpoint-v1.json",
+            "pointer": "/coverage/endpoints/ERC3643HookAdapter/unresolvedWrites",
+            "expected": 0
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/reflection-scan-checkpoint-v1.json",
+            "pointer": "/coverage/problems",
+            "expected": 0
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/reflection-scan-checkpoint-v1.json",
+            "pointer": "/coverage/reviewPending",
+            "expected": 0
+          }
+        ],
+        "limits": "A classification records which obligation or reason a guard or write is matched with; it does not prove that a guard is sound, that a reason is true or that a named row covers the guard. No removal negative targets the domain and identifier checks of a reversal request."
+      },
+      {
+        "criterion": "The reflection list is produced by a machine scan of the final sources and compiled layouts, not by review alone.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/reflection-scan-checkpoint-v1.json",
+            "pointer": "/evidenceFor/closureAcceptance",
+            "expected": [
+              "Every guard and state write on the typed command paths is the consumer of an obligation or a listed runtime-only item with a reason.",
+              "The reflection list is produced by a machine scan of the final sources and compiled layouts, not by review alone."
+            ]
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/reflection-scan-checkpoint-v1.json",
+            "pointer": "/compiler",
+            "expected": {
+              "solcVersion": "0.8.36",
+              "evmVersion": "cancun",
+              "viaIR": true,
+              "optimizer": true,
+              "optimizerRuns": 1,
+              "declaredIn": "foundry.toml"
+            }
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/reflection-scan-checkpoint-v1.json",
+            "pointer": "/coverage/compiledLayoutVariables",
+            "expected": {
+              "TrustToken": 26,
+              "ERC3643TrustAdapter": 18,
+              "ProfileGovernor": 4,
+              "ERC3643HookAdapter": 18,
+              "ERC3643HookGovernor": 4,
+              "ERC3643HookCompliance": 2,
+              "ERC3643HookFactory": 0
+            }
+          }
+        ],
+        "limits": "The scan reads a stored build of the exact sources with the declared compiler settings and does not rerun the compiler (A-COMPILER)."
+      }
+    ],
+    "route-exhaustiveness": [
+      {
+        "criterion": "Every selector has a normative class and a disposition, and no state-changing selector is unclassified.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/route-inventory-checkpoint-v1.json",
+            "pointer": "/criteria/every-selector-has-a-normative-class",
+            "expected": "PASS"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/route-inventory-checkpoint-v1.json",
+            "pointer": "/coverage/selectors",
+            "expected": 108
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/route-inventory-checkpoint-v1.json",
+            "pointer": "/coverage/dispositionStates/OUTSIDE_REQUIRES_DISPOSITION",
+            "expected": 0
+          }
+        ],
+        "limits": ""
+      },
+      {
+        "criterion": "Every state-changing route outside the typed commands has a justified disposition.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/route-inventory-checkpoint-v1.json",
+            "pointer": "/criteria/every-state-changing-route-outside-the-typed-commands-is-disposed",
+            "expected": "PASS"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/route-inventory-checkpoint-v1.json",
+            "pointer": "/coverage/dispositionsComplete",
+            "expected": 20
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/route-inventory-checkpoint-v1.json",
+            "pointer": "/coverage/dispositionStates/OUTSIDE_DISPOSITION_OPEN",
+            "expected": 0
+          }
+        ],
+        "limits": "A disposition test executes one deployment with chosen callers and inputs; it is not a proof over every caller, state or input. The pinned upstream token of the Hook profile is not classified (A-EXTERNAL)."
+      },
+      {
+        "criterion": "Selectors that reach no function revert with an empty payload on every endpoint.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/route-inventory-checkpoint-v1.json",
+            "pointer": "/criteria/unknown-selectors-revert-empty-on-every-endpoint",
+            "expected": "PASS"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/route-inventory-checkpoint-v1.json",
+            "pointer": "/coverage/unknownSelectorEndpoints",
+            "expected": 3
+          }
+        ],
+        "limits": "The probe sends one unknown selector to each of the three endpoints; other selectors outside the dispatch lists, and the governor, Compliance and factory runtimes, rely on the compiled dispatcher without a receive or fallback function (A-COMPILER)."
+      }
+    ],
+    "state-and-receipt-identity": [
+      {
+        "criterion": "A formal reader of each profile manifest maps slots and mapping keys to abstract fields and agrees with the crosswalk.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/storage-reader-checkpoint-v1.json",
+            "pointer": "/status",
+            "expected": "PASS_STORAGE_READER_AGREES_WITH_CROSSWALK"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/storage-reader-checkpoint-v1.json",
+            "pointer": "/coverage/profiles",
+            "expected": 3
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/storage-reader-checkpoint-v1.json",
+            "pointer": "/coverage/verdicts",
+            "expected": {
+              "AGREES": 49,
+              "AGREES_CONSTANT": 5,
+              "AGREES_NOT_READ": 38,
+              "AGREES_UPSTREAM_TOKEN": 3
+            }
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/storage-reader-checkpoint-v1.json",
+            "pointer": "/coverage/mismatches",
+            "expected": 0
+          }
+        ],
+        "limits": "The agreement is between definitions: the readers of the profile manifests and the crosswalk columns. Mapping locations rest on A-KECCAK, keys outside the scope of a reader read as absent values, and the upstream token storage of the adapter profiles is outside the crosswalk layouts (A-EXTERNAL)."
+      },
+      {
+        "criterion": "Every derived Hook column is reviewed or replaced by that reader.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/storage-reader-checkpoint-v1.json",
+            "pointer": "/coverage/derivedHookColumns",
+            "expected": {
+              "total": 15,
+              "agreeing": 15
+            }
+          }
+        ],
+        "limits": ""
+      },
+      {
+        "criterion": "Every open item of the crosswalk is resolved or turned into an exact non-claim.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/storage-reader-checkpoint-v1.json",
+            "pointer": "/coverage/openItems",
+            "expected": {
+              "closedByThisRecord": 1,
+              "reviewedDispositions": 8
+            }
+          }
+        ],
+        "limits": ""
+      }
+    ],
+    "accepted-set-is-certificate-image": [
+      {
+        "criterion": "The accepted set is defined in a kernel run as the image of the registered certificates.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/gate-instantiated-over-the-registered-image",
+            "expected": "PASS"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/coverage/registeredCertificates",
+            "expected": {
+              "Native": 34,
+              "Partial": 31,
+              "Hook": 31
+            }
+          }
+        ],
+        "limits": ""
+      },
+      {
+        "criterion": "The registry covers every cell and every malformed branch and binds every certificate to its program identity.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+            "pointer": "/coverage/boundCells",
+            "expected": 27
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+            "pointer": "/coverage/requestsOutsideCanonicalForm",
+            "expected": {
+              "Native": 16,
+              "Partial": 13,
+              "Hook": 13
+            }
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+            "pointer": "/coverage/executedCodeMatches",
+            "expected": 96
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+            "pointer": "/coverage/checks/executed-code-identity",
+            "expected": "PASS"
+          }
+        ],
+        "limits": ""
+      },
+      {
+        "criterion": "The partition theorem is proved over the whole registry.",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/partition-over-the-whole-registry",
+            "expected": "PASS"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/gate-instantiated-over-the-registered-image",
+            "expected": "PASS"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/coverage/registeredCertificates",
+            "expected": {
+              "Native": 34,
+              "Partial": 31,
+              "Hook": 31
+            }
+          }
+        ],
+        "limits": ""
+      }
+    ]
+  },
+  "conditionSupport": {
+    "typed-failure-report-binding": [
+      {
+        "clause": "Every accepted rejection or operational failure returns a typed failure",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/failure-checkers-sound",
+            "expected": "PASS"
+          }
+        ]
+      }
+    ],
+    "twenty-seven-cell-architecture": [
+      {
+        "clause": "sound failure checkers",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/failure-checkers-sound",
+            "expected": "PASS"
+          }
+        ]
+      },
+      {
+        "clause": "the acceptance partition",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/partition-over-the-whole-registry",
+            "expected": "PASS"
+          }
+        ]
+      },
+      {
+        "clause": "an applied and a non-applied witness in every cell",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/applied-and-not-applied-witness-in-every-cell",
+            "expected": "PASS"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/coverage/cells",
+            "expected": 27
+          }
+        ]
+      },
+      {
+        "clause": "the malformed branch of every profile",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/malformed-branch-over-the-registered-requests",
+            "expected": "PASS"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/coverage/malformedRequests/Native",
+            "expected": 16
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/malformed-branch-over-the-registered-requests",
+            "expected": "PASS"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/coverage/malformedRequests/Partial",
+            "expected": 13
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/malformed-branch-over-the-registered-requests",
+            "expected": "PASS"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/coverage/malformedRequests/Hook",
+            "expected": 13
+          }
+        ]
+      }
+    ],
+    "enforced-cell-witnesses": [
+      {
+        "clause": "a same-route typed rejection",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/failure-checkers-sound",
+            "expected": "PASS"
+          }
+        ]
+      }
+    ],
+    "malformed-native": [
+      {
+        "clause": "every such accepted execution fails without an external call, a log or a net state change",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
+            "pointer": "/controlBoundary",
+            "expected": "Controls: a classifier that reads a typed output before the decoded command, and the recorded reverted phase label, break the aligned gate relation and keep the product relation; a success flag, one external call or one log breaks both relations."
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/malformed-branch-over-the-registered-requests",
+            "expected": "PASS"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/coverage/malformedRequests/Native",
+            "expected": 16
+          }
+        ]
+      }
+    ],
+    "malformed-partial": [
+      {
+        "clause": "every such accepted execution fails without an external call, a log or a net state change",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
+            "pointer": "/controlBoundary",
+            "expected": "Controls: a classifier that reads a typed output before the decoded command, and the recorded reverted phase label, break the aligned gate relation and keep the product relation; a success flag, one external call or one log breaks both relations."
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/malformed-branch-over-the-registered-requests",
+            "expected": "PASS"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/coverage/malformedRequests/Partial",
+            "expected": 13
+          }
+        ]
+      }
+    ],
+    "malformed-hook": [
+      {
+        "clause": "every such accepted execution fails without an external call, a log or a net state change",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
+            "pointer": "/controlBoundary",
+            "expected": "Controls: a classifier that reads a typed output before the decoded command, and the recorded reverted phase label, break the aligned gate relation and keep the product relation; a success flag, one external call or one log breaks both relations."
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/malformed-branch-over-the-registered-requests",
+            "expected": "PASS"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/coverage/malformedRequests/Hook",
+            "expected": 13
+          }
+        ]
+      }
+    ],
+    "preservation-and-reflection": [
+      {
+        "clause": "Abstract allowed behavior is preserved by the final code",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/applied-and-not-applied-witness-in-every-cell",
+            "expected": "PASS"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/coverage/cells",
+            "expected": 27
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/gate-instantiated-over-the-registered-image",
+            "expected": "PASS"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/coverage/registeredCertificates",
+            "expected": {
+              "Native": 34,
+              "Partial": 31,
+              "Hook": 31
+            }
+          }
+        ]
+      }
+    ],
+    "route-exhaustiveness": [],
+    "state-and-receipt-identity": [
+      {
+        "clause": "Abstract state, authorization, nonce, terminality and receipt fields are traced both ways to the storage",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/storage-reader-checkpoint-v1.json",
+            "pointer": "/coverage/cellTheorems",
+            "expected": {
+              "partial": 9,
+              "hook": 9,
+              "native": 10
+            }
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/storage-reader-checkpoint-v1.json",
+            "pointer": "/coverage/reverseRuntimes",
+            "expected": 5
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/cells-over-storage-reading-manifests",
+            "expected": "PASS"
+          }
+        ]
+      },
+      {
+        "clause": "ABI, events and return data of every profile runtime",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/applied-and-not-applied-witness-in-every-cell",
+            "expected": "PASS"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/coverage/cells",
+            "expected": 27
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/typed-failure-checkpoint-v1.json",
+            "pointer": "/coverage/boundCases",
+            "expected": 52
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/typed-failure-checkpoint-v1.json",
+            "pointer": "/probe/status",
+            "expected": "PROBE_RECORDED_ALL_BOUND"
+          }
+        ]
+      }
+    ],
+    "accepted-set-is-certificate-image": [
+      {
+        "clause": "rather than a locale parameter",
+        "support": [
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/gate-instantiated-over-the-registered-image",
+            "expected": "PASS"
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/coverage/registeredCertificates",
+            "expected": {
+              "Native": 34,
+              "Partial": 31,
+              "Hook": 31
+            }
+          },
+          {
+            "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+            "pointer": "/criteria/cells-over-storage-reading-manifests",
+            "expected": "PASS"
+          }
+        ]
+      }
+    ]
+  },
+  "conditionNotes": {
+    "typed-failure-report-binding": "The acceptance criteria rest on the typed failure probe of the three endpoint deployments and on the selector scan; the registered certificates that are not applied reach their typed rejection in the gate instantiation. No cited record measures the payload of a dependency revert: the abstract model relates a dependency revert to a full-state stutter (central ledger row NAT-FAIL-01), and the revert data of a request outside canonical form is not specified (decision 12).",
+    "twenty-seven-cell-architecture": "The certificate registry is cited for coverage, closure mode and executed code. Its agreement check names the earlier cell stages of the Partial and Hook profiles, whose manifests select the recorded abstract states, as the kernel results of those cells; the kernel facts of this closure come from the gate record, whose instantiation consumes the cell theorems over the storage-reading manifests.",
+    "enforced-cell-witnesses": "The certificate registry is cited for coverage, closure mode and executed code. Its agreement check names the earlier cell stages of the Partial and Hook profiles, whose manifests select the recorded abstract states, as the kernel results of those cells; the kernel facts of this closure come from the gate record, whose instantiation consumes the cell theorems over the storage-reading manifests.",
+    "malformed-native": "The registered requests are the catalogued requests outside canonical form of the endpoint; executions outside the registered set are not covered.",
+    "malformed-partial": "The registered requests are the catalogued requests outside canonical form of the endpoint; executions outside the registered set are not covered.",
+    "malformed-hook": "The registered requests are the catalogued requests outside canonical form of the endpoint; executions outside the registered set are not covered.",
+    "preservation-and-reflection": "Within the registered scope, preservation is the applied certificate of every cell in the gate instantiation: the final code realizes each abstract allowed operation of a cell in its registered execution. Executions outside the registered set are not covered.",
+    "route-exhaustiveness": "",
+    "state-and-receipt-identity": "Within the registered scope the relation of every applied cell decodes the calldata through the bridge decoder, requires the receipt event as the last log and the returned receipt hash, and every rejected or operational cell returns its typed failure; the typed failure record binds the failure return data to the command and the sender. The receipt field order and the event inputs are generated in the crosswalk from the kernel schema and ABI, a preparation document that the storage reader and reflection scan records bind by hash, and the central ledger rows NAT-RCPT-01, NAT-RCPT-02, ADP-RCPT-01 and SHR-ABI-01 are closed with killed removal negatives. For executions outside the registered set the correspondence remains the runtime_link assumption.",
+    "accepted-set-is-certificate-image": "The certificate registry is cited for coverage, closure mode and executed code. Its agreement check names the earlier cell stages of the Partial and Hook profiles, whose manifests select the recorded abstract states, as the kernel results of those cells; the kernel facts of this closure come from the gate record, whose instantiation consumes the cell theorems over the storage-reading manifests."
+  },
+  "findingDispositions": {
+    "per-certificate-program-identity": {
+      "kind": "RESOLVED",
+      "detail": "Every one of the 96 registered certificates records the code it executed, and that code equals its profile template outside the merged immutable ranges.",
+      "decisionNeeded": "Each certificate needs the code it executed, bound to the profile template by the exact matching rule.",
+      "evidence": [
+        {
+          "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+          "sha256": "1ea2d88b595fcb2c0782c1204234b2666862b2c36eeddd172c2fca875acb3a10"
+        }
+      ],
+      "support": [
+        {
+          "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+          "pointer": "/coverage/executedCodeMatches",
+          "expected": 96
+        },
+        {
+          "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+          "pointer": "/coverage/checks/executed-code-identity",
+          "expected": "PASS"
+        }
+      ]
+    },
+    "unclassified-hook-routes": {
+      "kind": "RESOLVED",
+      "detail": "Decision 14 classifies the Hook runtimes, and the route inventory record shows every selector of the seven runtimes classified and every state-changing route outside the typed commands disposed.",
+      "decisionNeeded": "Normative classes for the Hook runtimes, including classes for the balance-change callback, the fresh seal, the compliance module and the factory.",
+      "evidence": [
+        {
+          "path": "evidence/trust12/runtime-link/tail-preparation/route-inventory-checkpoint-v1.json",
+          "sha256": "0c862d66d2a3e9a32335db5d522a469ef21045483b429e7c5142171731a5e9f7"
+        }
+      ],
+      "support": [
+        {
+          "path": "evidence/trust12/runtime-link/tail-preparation/route-inventory-checkpoint-v1.json",
+          "pointer": "/criteria/hook-class-record-accepted",
+          "expected": "PASS"
+        },
+        {
+          "path": "evidence/trust12/runtime-link/tail-preparation/route-inventory-checkpoint-v1.json",
+          "pointer": "/coverage/dispositionStates/OUTSIDE_REQUIRES_DISPOSITION",
+          "expected": 0
+        }
+      ]
+    },
+    "open-runtime-only-storage": {
+      "kind": "RESOLVED",
+      "detail": "The reflection scan record gives a reviewed reason and named ledger rows for each of the twelve storage variables that the crosswalk left without an abstract field or an earlier runtime-only reason, and the functions that write each one are exactly the scanned writers.",
+      "decisionNeeded": "A reason or an abstract counterpart for each of them.",
+      "evidence": [
+        {
+          "path": "evidence/trust12/runtime-link/tail-preparation/reflection-scan-checkpoint-v1.json",
+          "sha256": "c4c7bbed27cbec703bea8f534376136d0fb4ec2c3a64dc36615840bfe0eb05ba"
+        }
+      ],
+      "support": [
+        {
+          "path": "evidence/trust12/runtime-link/tail-preparation/reflection-scan-checkpoint-v1.json",
+          "pointer": "/coverage/storageDispositions",
+          "expected": 12
+        },
+        {
+          "path": "evidence/trust12/runtime-link/tail-preparation/reflection-scan-checkpoint-v1.json",
+          "pointer": "/evidenceFor/finding/id",
+          "expected": "open-runtime-only-storage"
+        }
+      ]
+    },
+    "no-formal-storage-reader": {
+      "kind": "RESOLVED",
+      "detail": "The storage reader record compares, for each profile manifest, the reader of every abstract field with the crosswalk column by column, in both directions, with no mismatch; the mapping locations rest on A-KECCAK.",
+      "decisionNeeded": "A formal reader per profile manifest, checked against the crosswalk.",
+      "evidence": [
+        {
+          "path": "evidence/trust12/runtime-link/tail-preparation/storage-reader-checkpoint-v1.json",
+          "sha256": "7bd763ba139ceba3323df2f6ead5a7bb430c307c2c770ffefacb32492629ef3e"
+        }
+      ],
+      "support": [
+        {
+          "path": "evidence/trust12/runtime-link/tail-preparation/storage-reader-checkpoint-v1.json",
+          "pointer": "/evidenceFor/finding/id",
+          "expected": "no-formal-storage-reader"
+        },
+        {
+          "path": "evidence/trust12/runtime-link/tail-preparation/storage-reader-checkpoint-v1.json",
+          "pointer": "/coverage/mismatches",
+          "expected": 0
+        }
+      ]
+    }
+  },
+  "retainedAssumptions": [
+    "A-RUNTIME-LINK",
+    "A-RUNTIME-LINK-SPEC",
+    "A-COMPILER",
+    "A-KECCAK",
+    "A-DEPLOYMENT",
+    "A-EXTERNAL",
+    "A-EVM",
+    "A-LAYOUT",
+    "A-MUTATION",
+    "A-KEVM-TOOLCHAIN"
+  ],
+  "assumptionStatements": {
+    "A-RUNTIME-LINK": {
+      "source": "central-ledger",
+      "path": "evidence/end-to-end-refinement/obligation-ledger-v3.json",
+      "statement": "pinned_runtime_refinement.runtime_link: every accepted execution of the pinned runtime template corresponds to a concrete transaction whose abstraction is admitted by the model and reaches the expected success state or stutters. This is a locale assumption. Nothing in this ledger discharges it; the Kontrol proofs and the Foundry executions are bounded instances of it, not a proof of it."
+    },
+    "A-RUNTIME-LINK-SPEC": {
+      "source": "central-ledger",
+      "path": "evidence/end-to-end-refinement/obligation-ledger-v3.json",
+      "statement": "pinned_runtime_refinement_spec.runtime_link_spec (formal/isabelle/ERC_TRUST/TRUST_Out_Of_Spec_Refinement.thy): every execution of a typed command function of the pinned runtime template that starts from an idle configuration satisfies alpha_transaction_spec; the treatment of a reentrant call is not formalized, and an endpoint fronted by a proxy that runs the implementation by a DELEGATECALL is outside the relation. A request in canonical form that the bridge decodes is related by alpha_transaction; every other request is a full-state stutter without a log or an external call, whatever its revert data. The assumption yields runtime_link only for executions in canonical form that the bridge decodes. This is a locale assumption. Nothing in this ledger discharges it; the malformed-input probe and the derived-identifier probe measure it concretely on one deployment of each reference endpoint (evidence/trust12/runtime-link/out-of-spec-probes-v1.json), not a proof of it."
+    },
+    "A-COMPILER": {
+      "source": "central-ledger",
+      "path": "evidence/end-to-end-refinement/obligation-ledger-v3.json",
+      "statement": "solc 0.8.36 compiles the final source to the runtime templates named in the generated bridge correctly (compiler_correctness_remains_a_nonclaim). The deterministic build receipt establishes reproducibility, not correctness."
+    },
+    "A-KECCAK": {
+      "source": "central-ledger",
+      "path": "evidence/end-to-end-refinement/obligation-ledger-v3.json",
+      "statement": "keccak-256 is collision resistant for the identifier, receipt hash, dependency root, nonce key, and case identifier preimages."
+    },
+    "A-DEPLOYMENT": {
+      "source": "central-ledger",
+      "path": "evidence/end-to-end-refinement/obligation-ledger-v3.json",
+      "statement": "No deployed instance is bound. Deployment identity, immutable resolution, and chain context are outside this ledger."
+    },
+    "A-EXTERNAL": {
+      "source": "central-ledger",
+      "path": "evidence/end-to-end-refinement/obligation-ledger-v3.json",
+      "statement": "Policy, identity, settlement, and entitlement dependencies (native) and the sealed token, Identity Registry, and Compliance (adapter) behave only through the typed boundary the model classifies (trust_external_assumptions, classify_dependency). Their internal correctness is not claimed."
+    },
+    "A-EVM": {
+      "source": "central-ledger",
+      "path": "evidence/end-to-end-refinement/obligation-ledger-v3.json",
+      "statement": "CANCUN schedule semantics, in particular that a reverting call restores the whole state and emits no log, which the abstract failure stutters rely on (approved_evm_schedule)."
+    },
+    "A-LAYOUT": {
+      "source": "central-ledger",
+      "path": "evidence/end-to-end-refinement/obligation-ledger-v3.json",
+      "statement": "The storage layout in the generated bridge is the compiler layout of the exact sources (sourceBinding); TRUST_State_Abi_Normal_Form proves label distinctness and nonaliasing over the declared finite preimages, not the compiler's implementation of the layout."
+    },
+    "A-MUTATION": {
+      "source": "central-ledger",
+      "path": "evidence/end-to-end-refinement/obligation-ledger-v3.json",
+      "statement": "A KILLED mutation shows that the named detector depends on the named consumer; it does not show behavioral equivalence of the code and the model beyond the detector."
+    },
+    "A-KEVM-TOOLCHAIN": {
+      "source": "decision",
+      "path": "spec/decisions/13-trust12-completion-scope.md",
+      "statement": "K, KEVM and Kontrol with its backend are trusted to produce the registered certificates."
+    }
+  },
+  "assumptionScope": {
+    "A-KECCAK": {
+      "statement": "In the cell theorems that the gate record consumes, mapping locations are computed by a hash function that is a parameter of the theorem context, constrained by the recorded preimage equations as assumptions; that this function is Keccak-256 on those inputs rests on A-KECCAK. The table function that shows the recorded equations can hold together is checked with evaluation, and no theorem that the gate record consumes instantiates it.",
+      "support": [
+        {
+          "path": "evidence/trust12/runtime-link/tail-preparation/storage-reader-checkpoint-v1.json",
+          "pointer": "/readerBoundary",
+          "expected": "The readers are definitions in Isabelle theories that completed kernel sessions stored: the Native manifest and its two later generations, which replace only the layout predicate and then the receipt projection, the manifest names that the Native cell theorems use, and the reader shared by the two adapter profiles with the Partial and Hook profile constants and manifests. Selector lemmas of the same theories state each projection one field at a time. A helper definition is interpreted only when its text equals the text pinned in the reader tool. Mapping locations are computed by a hash function that is a parameter of the reader, constrained by the recorded preimage equations of each theorem context; that this function is Keccak-256 on those inputs is the retained assumption A-KECCAK. The Native reader reads a mapping key only when the configuration footprint names the key or its preimage, except the binding kinds, which it always reads; the adapter reader reads only the holders, identifiers, nonce keys and entitlements of the registered certificates and every binding kind. Any other key reads as the absent value."
+        },
+        {
+          "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+          "pointer": "/criteria/hash-equations-remain-locale-assumptions",
+          "expected": "PASS"
+        },
+        {
+          "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+          "pointer": "/criteria/no-oracle-and-no-skipped-proof",
+          "expected": "PASS"
+        },
+        {
+          "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+          "pointer": "/coverage/oracleDependencies",
+          "expected": 0
+        }
+      ]
+    }
+  },
+  "generalRuntimeLinkDischarged": false,
+  "assurance": {
+    "condition": "independent-assurance",
+    "status": "OPEN",
+    "detail": "A fresh assessor who took no part in Building reproduces this closure on inputs frozen by a final input seal. Until a PASS verdict is recorded next to that seal, TRUST 1.2 completion is not claimed."
+  },
+  "nonclaims": {
+    "independentAssurance": true,
+    "trust12Completion": true,
+    "generalRuntimeLinks": true,
+    "unregisteredExecutions": true,
+    "fullRefinement": true,
+    "kernelReplay": true,
+    "compilerCorrectness": true,
+    "deploymentIdentity": true,
+    "releaseOrDeployment": true
+  }
+}

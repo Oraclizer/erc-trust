@@ -4,6 +4,11 @@ Status: prepared, not closed. Nothing in this directory discharges a runtime-lin
 malformed branch, the acceptance partition, the central refinement closure or the independent
 Assurance, and nothing here authorizes a merge, a release or a deployment.
 
+The registered central closure record outside this directory,
+`../../registered-central-closure/closure-v1.json`, cites these preparations through
+the checkpoint records that discharge each condition; the documents here remain
+preparation.
+
 The runtime link of TRUST 1.2 is organised as twenty-seven cells (three runtime profiles times nine
 regulatory operations) plus the conditions that tie the cells together. This directory prepares
 the inputs of those remaining conditions: the malformed branch of each profile, the certificate

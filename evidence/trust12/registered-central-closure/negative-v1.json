@@ -1,0 +1,450 @@
+{
+  "schema": "trust12-registered-closure-evidence-v1",
+  "role": "negative",
+  "status": "KILLED",
+  "closureSha256": "f94649e826779a440e56ec5bd6c6be9f3c96dc04e000177e0a38aad9f5816bf4",
+  "statement": "For every condition that the closure discharges, a cited control removes, weakens or substitutes the consumer that the condition names, or removes a registered certificate, and the stated claim then fails. The kind of each control is recorded; a probe mutant runs on an isolated copy and is never a run of the frozen build.",
+  "conditions": {
+    "typed-failure-report-binding": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/typed-failure-checkpoint-v1.json",
+        "sha256": "6aa21dac6ee60676fb962aa91b04eb838f54c36a27525f7fef4e5d1a47abcec6",
+        "kind": "KILLED_MUTANT",
+        "support": [
+          {
+            "pointer": "/coverage/mutantsDetected",
+            "expected": 4
+          },
+          {
+            "pointer": "/mutants[id=HOOK-UNAUTHORIZED-AUTHORITY-WORD]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "pointer": "/mutants[id=HOOK-TERMINAL-CASE-WORD]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "pointer": "/mutants[id=PARTIAL-INVALID-COMMAND-ID-WORD]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "pointer": "/mutants[id=NATIVE-OPERATIONAL-SELECTOR]/status",
+            "expected": "MUTANT_DETECTED"
+          }
+        ],
+        "detail": "Changing one revert site unbinds every named case."
+      }
+    ],
+    "twenty-seven-cell-architecture": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+        "sha256": "e616c1fa2733317b3e00985edd5e8c97aa3c6617cfdfc4a6720e7ce412941008",
+        "kind": "KERNEL_REMOVAL",
+        "support": [
+          {
+            "pointer": "/criteria/every-certificate-removal-breaks-the-instantiation",
+            "expected": "PASS"
+          },
+          {
+            "pointer": "/coverage/certificateRemovals",
+            "expected": {
+              "Native": 34,
+              "Partial": 31,
+              "Hook": 31
+            }
+          }
+        ],
+        "detail": "Removing any registered certificate breaks the instantiation."
+      }
+    ],
+    "enforced-cell-witnesses": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+        "sha256": "e616c1fa2733317b3e00985edd5e8c97aa3c6617cfdfc4a6720e7ce412941008",
+        "kind": "KERNEL_REMOVAL",
+        "support": [
+          {
+            "pointer": "/criteria/every-certificate-removal-breaks-the-instantiation",
+            "expected": "PASS"
+          },
+          {
+            "pointer": "/coverage/certificateRemovals",
+            "expected": {
+              "Native": 34,
+              "Partial": 31,
+              "Hook": 31
+            }
+          }
+        ],
+        "detail": "Removing a certificate leaves its cell without that witness."
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/typed-failure-checkpoint-v1.json",
+        "sha256": "6aa21dac6ee60676fb962aa91b04eb838f54c36a27525f7fef4e5d1a47abcec6",
+        "kind": "KILLED_MUTANT",
+        "support": [
+          {
+            "pointer": "/mutants[id=HOOK-UNAUTHORIZED-AUTHORITY-WORD]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "pointer": "/mutants[id=HOOK-TERMINAL-CASE-WORD]/status",
+            "expected": "MUTANT_DETECTED"
+          }
+        ],
+        "detail": "Dropping a bound word from a typed rejection unbinds the same-route rejection."
+      }
+    ],
+    "malformed-native": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/malformed-guard-mutants-checkpoint-v1.json",
+        "sha256": "0fced074b648ed1d852da97792ff41032eb5d6f5990965dddb72340fefb6f6ea",
+        "kind": "KILLED_MUTANT",
+        "support": [
+          {
+            "pointer": "/mutants[id=NATIVE-ACTION-LENGTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "pointer": "/mutants[id=NATIVE-REVERSAL-LENGTH]/status",
+            "expected": "MUTANT_DETECTED"
+          }
+        ],
+        "detail": "Removing the exact calldata length guard turns longer requests into accepted executions with effects."
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+        "sha256": "b96937be7c5f094a3576a53b52dead28ac8d37aa7e94941b0ce07a5f63b5f759",
+        "kind": "KILLED_MUTANT",
+        "support": [
+          {
+            "pointer": "/mutants[id=ADDRESS-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "pointer": "/mutants[id=UINT64-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "pointer": "/mutants[id=UINT48-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "pointer": "/mutants[id=ACTION-KIND-BOUND]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "pointer": "/mutants[id=ACTION-KIND-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "pointer": "/mutants[id=REVERSAL-KIND-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          }
+        ],
+        "detail": "Each bounded word mutant except the declared equivalent one turns its witnesses into executions that are accepted or have effects."
+      },
+      {
+        "path": "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
+        "sha256": "e52ede796d01f59f879aa8371059fbe98b1d8ce96992400779facf1c99153caa",
+        "kind": "KERNEL_CONTROL",
+        "support": [
+          {
+            "pointer": "/controlBoundary",
+            "expected": "Controls: a classifier that reads a typed output before the decoded command, and the recorded reverted phase label, break the aligned gate relation and keep the product relation; a success flag, one external call or one log breaks both relations."
+          }
+        ],
+        "detail": "A success flag, one external call or one log breaks the aligned and the product relation."
+      }
+    ],
+    "malformed-partial": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/malformed-guard-mutants-checkpoint-v1.json",
+        "sha256": "0fced074b648ed1d852da97792ff41032eb5d6f5990965dddb72340fefb6f6ea",
+        "kind": "KILLED_MUTANT",
+        "support": [
+          {
+            "pointer": "/mutants[id=PARTIAL-ACTION-LENGTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "pointer": "/mutants[id=PARTIAL-REVERSAL-LENGTH]/status",
+            "expected": "MUTANT_DETECTED"
+          }
+        ],
+        "detail": "Removing the exact calldata length guard turns longer requests into accepted executions with effects."
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+        "sha256": "b96937be7c5f094a3576a53b52dead28ac8d37aa7e94941b0ce07a5f63b5f759",
+        "kind": "KILLED_MUTANT",
+        "support": [
+          {
+            "pointer": "/mutants[id=ADDRESS-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "pointer": "/mutants[id=UINT64-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "pointer": "/mutants[id=UINT48-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "pointer": "/mutants[id=ACTION-KIND-BOUND]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "pointer": "/mutants[id=ACTION-KIND-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "pointer": "/mutants[id=REVERSAL-KIND-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          }
+        ],
+        "detail": "Each bounded word mutant except the declared equivalent one turns its witnesses into executions that are accepted or have effects."
+      },
+      {
+        "path": "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
+        "sha256": "e52ede796d01f59f879aa8371059fbe98b1d8ce96992400779facf1c99153caa",
+        "kind": "KERNEL_CONTROL",
+        "support": [
+          {
+            "pointer": "/controlBoundary",
+            "expected": "Controls: a classifier that reads a typed output before the decoded command, and the recorded reverted phase label, break the aligned gate relation and keep the product relation; a success flag, one external call or one log breaks both relations."
+          }
+        ],
+        "detail": "A success flag, one external call or one log breaks the aligned and the product relation."
+      }
+    ],
+    "malformed-hook": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/malformed-guard-mutants-checkpoint-v1.json",
+        "sha256": "0fced074b648ed1d852da97792ff41032eb5d6f5990965dddb72340fefb6f6ea",
+        "kind": "KILLED_MUTANT",
+        "support": [
+          {
+            "pointer": "/mutants[id=HOOK-ACTION-LENGTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "pointer": "/mutants[id=HOOK-REVERSAL-LENGTH]/status",
+            "expected": "MUTANT_DETECTED"
+          }
+        ],
+        "detail": "Removing the exact calldata length guard turns longer requests into accepted executions with effects."
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/malformed-word-guard-mutants-checkpoint-v1.json",
+        "sha256": "b96937be7c5f094a3576a53b52dead28ac8d37aa7e94941b0ce07a5f63b5f759",
+        "kind": "KILLED_MUTANT",
+        "support": [
+          {
+            "pointer": "/mutants[id=ADDRESS-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "pointer": "/mutants[id=UINT64-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "pointer": "/mutants[id=UINT48-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "pointer": "/mutants[id=ACTION-KIND-BOUND]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "pointer": "/mutants[id=ACTION-KIND-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          },
+          {
+            "pointer": "/mutants[id=REVERSAL-KIND-WIDTH]/status",
+            "expected": "MUTANT_DETECTED"
+          }
+        ],
+        "detail": "Each bounded word mutant except the declared equivalent one turns its witnesses into executions that are accepted or have effects."
+      },
+      {
+        "path": "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
+        "sha256": "e52ede796d01f59f879aa8371059fbe98b1d8ce96992400779facf1c99153caa",
+        "kind": "KERNEL_CONTROL",
+        "support": [
+          {
+            "pointer": "/controlBoundary",
+            "expected": "Controls: a classifier that reads a typed output before the decoded command, and the recorded reverted phase label, break the aligned gate relation and keep the product relation; a success flag, one external call or one log breaks both relations."
+          }
+        ],
+        "detail": "A success flag, one external call or one log breaks the aligned and the product relation."
+      }
+    ],
+    "preservation-and-reflection": [
+      {
+        "path": "evidence/mutation-results.json",
+        "sha256": "7267fd6d18b9405cdc9d69c612734eda0a323b23ef271321dd3f1061c55b15cc",
+        "kind": "LEDGER_ROW_NEGATIVE",
+        "support": [
+          {
+            "pointer": "/killed",
+            "expected": 121
+          },
+          {
+            "pointer": "/survived",
+            "expected": 0
+          }
+        ],
+        "detail": "The consumer-removal mutants of the central ledger rows that the scan matches are killed."
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+        "sha256": "e616c1fa2733317b3e00985edd5e8c97aa3c6617cfdfc4a6720e7ce412941008",
+        "kind": "KERNEL_REMOVAL",
+        "support": [
+          {
+            "pointer": "/criteria/every-certificate-removal-breaks-the-instantiation",
+            "expected": "PASS"
+          },
+          {
+            "pointer": "/coverage/certificateRemovals",
+            "expected": {
+              "Native": 34,
+              "Partial": 31,
+              "Hook": 31
+            }
+          }
+        ],
+        "detail": "Removing the applied certificate of a cell breaks the instantiation."
+      }
+    ],
+    "route-exhaustiveness": [
+      {
+        "path": "evidence/trust12/mutation-callback-auth.json",
+        "sha256": "a1499eb530d772259ba8cdc520e7b1ef8ccca3b27ce1901552e4c4b0ecd855b1",
+        "kind": "KILLED_MUTANT",
+        "support": [
+          {
+            "pointer": "/status",
+            "expected": "KILLED"
+          }
+        ],
+        "detail": "A disposition of a Hook route cites this killed consumer-removal mutant."
+      },
+      {
+        "path": "evidence/trust12/mutation-inbound.json",
+        "sha256": "5a56899d53056cd2480db0e033b2654392ec5a7b59654ebb5e3b030f42c7bb8f",
+        "kind": "KILLED_MUTANT",
+        "support": [
+          {
+            "pointer": "/status",
+            "expected": "KILLED"
+          }
+        ],
+        "detail": "A disposition of a Hook route cites this killed consumer-removal mutant."
+      },
+      {
+        "path": "evidence/trust12/mutation-factory-pin.json",
+        "sha256": "c21eabdd494a783b70b250c9e4d3225ab4b6c45f262155c3ef85168393d6d81e",
+        "kind": "KILLED_MUTANT",
+        "support": [
+          {
+            "pointer": "/status",
+            "expected": "KILLED"
+          }
+        ],
+        "detail": "A disposition of a Hook route cites this killed consumer-removal mutant."
+      },
+      {
+        "path": "evidence/trust12/mutation-hidden-agent.json",
+        "sha256": "d8103bd6ceb0c0bccf3585f5727d63716ff28f86a89b912a5489044bf477d6d7",
+        "kind": "KILLED_MUTANT",
+        "support": [
+          {
+            "pointer": "/status",
+            "expected": "KILLED"
+          }
+        ],
+        "detail": "A disposition of a Hook route cites this killed consumer-removal mutant."
+      }
+    ],
+    "state-and-receipt-identity": [
+      {
+        "path": "scripts/test-storage-reader.py",
+        "sha256": "be8c52100e96042f06b79aabd58b05686b1c1dffe4d8066cccb3b54d997439aa",
+        "kind": "RECORD_CONTROL",
+        "controls": [
+          "slot-changed-in-reader",
+          "native-slot-changed",
+          "struct-member-moved",
+          "crosswalk-slot-moved",
+          "crosswalk-type-changed",
+          "reordered-state-fields",
+          "moved-generated-slot"
+        ],
+        "detail": "Moving a slot in a reader or in the crosswalk, changing a value type, reordering the state fields or moving a struct member makes the readers disagree with the crosswalk."
+      },
+      {
+        "path": "evidence/mutation-results.json",
+        "sha256": "7267fd6d18b9405cdc9d69c612734eda0a323b23ef271321dd3f1061c55b15cc",
+        "kind": "LEDGER_ROW_NEGATIVE",
+        "support": [
+          {
+            "pointer": "/results[id=MUT-22-RECEIPT-PREIMAGE]/result",
+            "expected": "KILLED"
+          },
+          {
+            "pointer": "/results[id=MUT-03-RECEIPT-LAST]/result",
+            "expected": "KILLED"
+          },
+          {
+            "pointer": "/results[id=MUT-76-RECEIPT-DEPENDENCY-ROOT]/result",
+            "expected": "KILLED"
+          },
+          {
+            "pointer": "/results[id=MUT-100-ERC3643-RECEIPT-PREIMAGE]/result",
+            "expected": "KILLED"
+          },
+          {
+            "pointer": "/results[id=MUT-101-ERC3643-RECEIPT-DEPENDENCY-ROOT]/result",
+            "expected": "KILLED"
+          },
+          {
+            "pointer": "/results[id=MUT-39-ERC3643-RECEIPT-KIND-TAG]/result",
+            "expected": "KILLED"
+          }
+        ],
+        "detail": "Removing the receipt preimage, the final receipt event, the dependency root or the kind tag of a receipt is killed."
+      }
+    ],
+    "accepted-set-is-certificate-image": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+        "sha256": "e616c1fa2733317b3e00985edd5e8c97aa3c6617cfdfc4a6720e7ce412941008",
+        "kind": "KERNEL_REMOVAL",
+        "support": [
+          {
+            "pointer": "/criteria/every-certificate-removal-breaks-the-instantiation",
+            "expected": "PASS"
+          },
+          {
+            "pointer": "/coverage/certificateRemovals",
+            "expected": {
+              "Native": 34,
+              "Partial": 31,
+              "Hook": 31
+            }
+          }
+        ],
+        "detail": "Removing any registered certificate breaks the instantiation."
+      }
+    ]
+  },
+  "nonclaims": {
+    "unregisteredExecutions": true,
+    "generalRuntimeLinks": true,
+    "independentAssurance": true,
+    "trust12Completion": true
+  }
+}

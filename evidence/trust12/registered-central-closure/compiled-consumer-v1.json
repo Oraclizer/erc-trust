@@ -1,0 +1,339 @@
+{
+  "schema": "trust12-registered-closure-evidence-v1",
+  "role": "compiledConsumer",
+  "status": "PASS",
+  "closureSha256": "f94649e826779a440e56ec5bd6c6be9f3c96dc04e000177e0a38aad9f5816bf4",
+  "statement": "For every condition that the closure discharges, the cited records show that the compiled runtime or a downstream product consumer consumes the condition: the runtimes that the certificates and probes execute equal the templates of the runtime identity, and the scans read compiled artifacts and layouts.",
+  "conditions": {
+    "typed-failure-report-binding": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/typed-failure-checkpoint-v1.json",
+        "sha256": "6aa21dac6ee60676fb962aa91b04eb838f54c36a27525f7fef4e5d1a47abcec6",
+        "kind": "COMPILED_RUNTIME_SCAN",
+        "support": [
+          {
+            "pointer": "/loads/criteria/every-endpoint-loads-every-typed-failure-selector",
+            "expected": "PASS"
+          },
+          {
+            "pointer": "/loads/criteria/no-typed-failure-selector-is-a-function-selector",
+            "expected": "PASS"
+          }
+        ],
+        "detail": "Every compiled endpoint runtime loads every typed failure selector."
+      }
+    ],
+    "twenty-seven-cell-architecture": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+        "sha256": "1ea2d88b595fcb2c0782c1204234b2666862b2c36eeddd172c2fca875acb3a10",
+        "kind": "EXECUTED_CODE_IDENTITY",
+        "support": [
+          {
+            "pointer": "/coverage/executedCodeMatches",
+            "expected": 96
+          }
+        ],
+        "detail": "Every registered certificate executed its compiled profile template."
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+        "sha256": "e616c1fa2733317b3e00985edd5e8c97aa3c6617cfdfc4a6720e7ce412941008",
+        "kind": "KERNEL_CODE_PIN",
+        "support": [
+          {
+            "pointer": "/criteria/accepted-executions-pin-profile-code",
+            "expected": "PASS"
+          }
+        ],
+        "detail": "Accepted executions pin the profile code."
+      }
+    ],
+    "enforced-cell-witnesses": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+        "sha256": "1ea2d88b595fcb2c0782c1204234b2666862b2c36eeddd172c2fca875acb3a10",
+        "kind": "EXECUTED_CODE_IDENTITY",
+        "support": [
+          {
+            "pointer": "/runtimeIdentity",
+            "expected": {
+              "Native": {
+                "profileIndex": "Runtime_Native",
+                "endpoint": "TrustToken",
+                "codeIdentityRootSha256": "f19a8bef73333c7608984c530427b69598a5919e8624d80404c89983f896c488",
+                "executed": {
+                  "TrustToken": {
+                    "templateSha256": "b82010913d2b6f1f7778c48d05a63e73c7498b62f8829f0ed33a86783c0667c1",
+                    "bytes": 20043
+                  }
+                },
+                "deploymentOnly": {}
+              },
+              "Partial": {
+                "profileIndex": "Runtime_Partial",
+                "endpoint": "ERC3643TrustAdapter",
+                "codeIdentityRootSha256": "dd5a0bb0c6b930fc2bb8d967095cc955bde0c2d363121c85413abc2facdd9c3b",
+                "executed": {
+                  "ERC3643TrustAdapter": {
+                    "templateSha256": "7a2dfa433911dd37e389498129356db30693e8ee8e128f8da63a5d3044a56349",
+                    "bytes": 19480
+                  },
+                  "ProfileGovernor": {
+                    "templateSha256": "78c08fbe4be793482e44a8cdf32fcc1af3276277c8cc78f48761fdcbc4bf9399",
+                    "bytes": 2787
+                  }
+                },
+                "deploymentOnly": {}
+              },
+              "Hook": {
+                "profileIndex": "Runtime_Hook",
+                "endpoint": "ERC3643HookAdapter",
+                "codeIdentityRootSha256": "45bfbc13128ba737f349a468827bfd81b0c42bf15b165e8de5f92ba155840879",
+                "executed": {
+                  "ERC3643HookAdapter": {
+                    "templateSha256": "f84c886b203dacd380c29b2aa3afd2ed401e487ed79f95e14b4d24edb24c1b85",
+                    "bytes": 19824
+                  },
+                  "ERC3643HookGovernor": {
+                    "templateSha256": "0978059dea47b1286326902332f41079029836cf257691fb13c99bc2b5064012",
+                    "bytes": 3026
+                  },
+                  "ERC3643HookCompliance": {
+                    "templateSha256": "ebcf0ea744e5e505fb1bd5bd02a9ab0b4c0a112c628ee37cb8916ea7ce3f8881",
+                    "bytes": 2078
+                  }
+                },
+                "deploymentOnly": {
+                  "ERC3643HookFactory": {
+                    "templateSha256": "9636463d4fba1eebc1690648aad3439b30f53156927161bc93c899df1056d680",
+                    "bytes": 1812,
+                    "accountsInRecordedWorlds": 0,
+                    "reason": "Every recorded world is a state after the unit was created, and the certificate harness creates each unit by running the adapter creation code directly, so the factory, which in a product deployment hash-checks and runs that creation code, is neither deployed nor called in a recorded world."
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "detail": "The executed code of every profile equals the templates of the runtime identity."
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+        "sha256": "e616c1fa2733317b3e00985edd5e8c97aa3c6617cfdfc4a6720e7ce412941008",
+        "kind": "KERNEL_CODE_PIN",
+        "support": [
+          {
+            "pointer": "/criteria/accepted-executions-pin-profile-code",
+            "expected": "PASS"
+          }
+        ],
+        "detail": "Accepted executions pin the profile code."
+      }
+    ],
+    "malformed-native": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+        "sha256": "1ea2d88b595fcb2c0782c1204234b2666862b2c36eeddd172c2fca875acb3a10",
+        "kind": "EXECUTED_CODE_IDENTITY",
+        "support": [
+          {
+            "pointer": "/coverage/requestsOutsideCanonicalForm/Native",
+            "expected": 16
+          },
+          {
+            "pointer": "/coverage/checks/executed-code-identity",
+            "expected": "PASS"
+          }
+        ],
+        "detail": "The registered requests executed the profile template outside the immutable ranges."
+      },
+      {
+        "path": "evidence/trust12/runtime-link/malformed/call-trace-checkpoint-v1.json",
+        "sha256": "bded0634c3104c59553f96a27a806007fbd86c87a6930197e1729f9e00cdbb8a",
+        "kind": "PROOF_GRAPH",
+        "support": [
+          {
+            "pointer": "/coverage/segmentNodes/Native",
+            "expected": 96
+          },
+          {
+            "pointer": "/coverage/suppliedEmptyCallLists/Native",
+            "expected": 16
+          }
+        ],
+        "detail": "The proof graphs of the compiled runtime enter no call frame in the command segment."
+      }
+    ],
+    "malformed-partial": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+        "sha256": "1ea2d88b595fcb2c0782c1204234b2666862b2c36eeddd172c2fca875acb3a10",
+        "kind": "EXECUTED_CODE_IDENTITY",
+        "support": [
+          {
+            "pointer": "/coverage/requestsOutsideCanonicalForm/Partial",
+            "expected": 13
+          },
+          {
+            "pointer": "/coverage/checks/executed-code-identity",
+            "expected": "PASS"
+          }
+        ],
+        "detail": "The registered requests executed the profile template outside the immutable ranges."
+      },
+      {
+        "path": "evidence/trust12/runtime-link/malformed/call-trace-checkpoint-v1.json",
+        "sha256": "bded0634c3104c59553f96a27a806007fbd86c87a6930197e1729f9e00cdbb8a",
+        "kind": "PROOF_GRAPH",
+        "support": [
+          {
+            "pointer": "/coverage/segmentNodes/Partial",
+            "expected": 78
+          },
+          {
+            "pointer": "/coverage/suppliedEmptyCallLists/Partial",
+            "expected": 13
+          }
+        ],
+        "detail": "The proof graphs of the compiled runtime enter no call frame in the command segment."
+      }
+    ],
+    "malformed-hook": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+        "sha256": "1ea2d88b595fcb2c0782c1204234b2666862b2c36eeddd172c2fca875acb3a10",
+        "kind": "EXECUTED_CODE_IDENTITY",
+        "support": [
+          {
+            "pointer": "/coverage/requestsOutsideCanonicalForm/Hook",
+            "expected": 13
+          },
+          {
+            "pointer": "/coverage/checks/executed-code-identity",
+            "expected": "PASS"
+          }
+        ],
+        "detail": "The registered requests executed the profile template outside the immutable ranges."
+      },
+      {
+        "path": "evidence/trust12/runtime-link/malformed/call-trace-checkpoint-v1.json",
+        "sha256": "bded0634c3104c59553f96a27a806007fbd86c87a6930197e1729f9e00cdbb8a",
+        "kind": "PROOF_GRAPH",
+        "support": [
+          {
+            "pointer": "/coverage/segmentNodes/Hook",
+            "expected": 78
+          },
+          {
+            "pointer": "/coverage/suppliedEmptyCallLists/Hook",
+            "expected": 13
+          }
+        ],
+        "detail": "The proof graphs of the compiled runtime enter no call frame in the command segment."
+      }
+    ],
+    "preservation-and-reflection": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/reflection-scan-checkpoint-v1.json",
+        "sha256": "c4c7bbed27cbec703bea8f534376136d0fb4ec2c3a64dc36615840bfe0eb05ba",
+        "kind": "COMPILED_LAYOUT",
+        "support": [
+          {
+            "pointer": "/coverage/compiledLayoutVariables",
+            "expected": {
+              "TrustToken": 26,
+              "ERC3643TrustAdapter": 18,
+              "ProfileGovernor": 4,
+              "ERC3643HookAdapter": 18,
+              "ERC3643HookGovernor": 4,
+              "ERC3643HookCompliance": 2,
+              "ERC3643HookFactory": 0
+            }
+          }
+        ],
+        "detail": "The compiled storage layouts of the seven runtimes agree with the crosswalk."
+      }
+    ],
+    "route-exhaustiveness": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/route-inventory-checkpoint-v1.json",
+        "sha256": "0c862d66d2a3e9a32335db5d522a469ef21045483b429e7c5142171731a5e9f7",
+        "kind": "COMPILED_RUNTIME_SCAN",
+        "support": [
+          {
+            "pointer": "/coverage/selectors",
+            "expected": 108
+          },
+          {
+            "pointer": "/coverage/runtimes",
+            "expected": 7
+          }
+        ],
+        "detail": "The selectors are read from the compiled artifacts of the seven runtimes."
+      }
+    ],
+    "state-and-receipt-identity": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/storage-reader-checkpoint-v1.json",
+        "sha256": "7bd763ba139ceba3323df2f6ead5a7bb430c307c2c770ffefacb32492629ef3e",
+        "kind": "COMPILED_LAYOUT",
+        "support": [
+          {
+            "pointer": "/coverage/memberLayoutRows",
+            "expected": 24
+          },
+          {
+            "pointer": "/coverage/layoutWidthRows",
+            "expected": 42
+          }
+        ],
+        "detail": "The readers agree with the struct member locations and widths of the compiled layouts."
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/typed-failure-checkpoint-v1.json",
+        "sha256": "6aa21dac6ee60676fb962aa91b04eb838f54c36a27525f7fef4e5d1a47abcec6",
+        "kind": "COMPILED_RUNTIME_SCAN",
+        "support": [
+          {
+            "pointer": "/loads/criteria/every-endpoint-loads-every-typed-failure-selector",
+            "expected": "PASS"
+          }
+        ],
+        "detail": "Every compiled endpoint runtime loads every typed failure selector."
+      }
+    ],
+    "accepted-set-is-certificate-image": [
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/certificate-registry-checkpoint-v1.json",
+        "sha256": "1ea2d88b595fcb2c0782c1204234b2666862b2c36eeddd172c2fca875acb3a10",
+        "kind": "EXECUTED_CODE_IDENTITY",
+        "support": [
+          {
+            "pointer": "/coverage/executedCodeMatches",
+            "expected": 96
+          }
+        ],
+        "detail": "Every registered certificate executed its compiled profile template."
+      },
+      {
+        "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+        "sha256": "e616c1fa2733317b3e00985edd5e8c97aa3c6617cfdfc4a6720e7ce412941008",
+        "kind": "KERNEL_CODE_PIN",
+        "support": [
+          {
+            "pointer": "/criteria/accepted-executions-pin-profile-code",
+            "expected": "PASS"
+          }
+        ],
+        "detail": "Accepted executions pin the profile code."
+      }
+    ]
+  },
+  "nonclaims": {
+    "unregisteredExecutions": true,
+    "generalRuntimeLinks": true,
+    "independentAssurance": true,
+    "trust12Completion": true
+  }
+}

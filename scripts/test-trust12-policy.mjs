@@ -25,6 +25,17 @@ function collect(value) {
   for (const v of Object.values(value)) collect(v);
 }
 collect(policy); collect(baseline); collect(json(root, 'evidence/trust12/runtime-identity.json'));
+// A closed registered closure cites checkpoint records and their verifiers; the controls copy them as well.
+const registeredBaseline = baseline.obligations.find(r => r.id === registeredClosureId);
+const registeredClosurePaths = Object.values(registeredBaseline.registeredClosureEvidence?.references ?? {})
+  .map(ref => ref.path);
+for (const path of registeredClosurePaths) {
+  const record = json(root, path);
+  collect(record);
+  for (const items of [...Object.values(record.conditionEvidence ?? {}),
+    ...Object.values(record.findingDispositions ?? {}).map(item => item.evidence ?? [])])
+    for (const item of items) collect(json(root, item.path).rehashVerifier);
+}
 for (const path of new Set([...refs.keys(), 'evidence/trust12/symbolic-kontrol.json',
   'evidence/end-to-end-refinement/obligation-ledger-v3.json',
   'evidence/isabelle-results-v3.json', 'evidence/trust12/runtime-identity.json',
@@ -39,6 +50,7 @@ function reset() {
   put(policyPath, policy); put(ledgerPath, baseline);
   put(endToEndPath, endToEndBaseline);
   put(tailConditionsPath, readFileSync(resolve(root, tailConditionsPath)));
+  for (const path of registeredClosurePaths) put(path, readFileSync(resolve(root, path)));
   for (const [path, text] of Object.entries(documents)) put(path, text);
 }
 function test(name, mutate, expected = null, options = {}) {
@@ -60,6 +72,23 @@ function promoteTests(cell) {
     negative: { kind: 'BOUNDED_BEHAVIORAL', scope: 'Fixture input', evidence: [ref] },
     result: { kind: 'TESTS', status: 'PASS', sampleScope: 'Fixture case only' } });
 }
+// The readiness that the policy derives while no fresh assurance exists.
+function settle(ledger) {
+  const pending = ledger.centralClosure.currentMandatory.length > 0;
+  ledger.releaseAssessment.status = pending ? 'PENDING' : 'ASSURANCE_PENDING';
+  ledger.status = pending ? 'IN_PROGRESS'
+    : ledger.centralClosure.shippingExceptions.length ? 'EVIDENCE_COMPLETE_WITH_EXCEPTIONS' : 'EVIDENCE_COMPLETE';
+}
+function reopenRegistered(ledger) {
+  const r=row(ledger,registeredClosureId);
+  Object.assign(r,{status:'CURRENT-MANDATORY',proofCompleted:false,positiveActivation:'Pending',
+    consumerRemovalNegative:'Pending',compiledConsumer:'Pending'});
+  delete r.registeredClosureEvidence;
+  if (!ledger.centralClosure.currentMandatory.includes(registeredClosureId))
+    ledger.centralClosure.currentMandatory.push(registeredClosureId);
+  settle(ledger);
+  return r;
+}
 function approvedException(ledger) {
   const r = row(ledger, 'NATIVE-SYMBOLIC-FREEZE');
   const approval = { kind: 'SHIPPING_EXCEPTION', approvedBy: 'Jay Kim', date: '2026-09-13',
@@ -73,7 +102,7 @@ function approvedException(ledger) {
     disclosure: 'TEST ONLY: NATIVE-SYMBOLIC-FREEZE remains unproven; approved test exception.' };
   ledger.centralClosure.currentMandatory = ledger.centralClosure.currentMandatory.filter(id => id !== r.id);
   ledger.centralClosure.shippingExceptions = [r.id];
-  ledger.releaseAssessment.status='PENDING'; ledger.status='IN_PROGRESS';
+  settle(ledger);
   for (const [path, text] of Object.entries(documents))
     put(path, text.replace('TRUST 1.2 shipping exceptions: none.', r.shippingException.disclosure));
   return r;
@@ -92,7 +121,7 @@ function nativeProofFixture(ledger) {
   r.fullDomainNegativeReceived=true;
   r.status='CLOSED';r.positiveActivation='Test-only full scope';r.consumerRemovalNegative='Test-only same-domain removal';
   ledger.centralClosure.currentMandatory=ledger.centralClosure.currentMandatory.filter(id=>id!==r.id);
-  ledger.releaseAssessment.status='PENDING'; ledger.status='IN_PROGRESS';
+  settle(ledger);
   return e;
 }
 const fixtures = { fixtureMode: true };
@@ -174,7 +203,8 @@ function generalProofFixture(ledger, id) {
   return r;
 }
 try {
-  test('current-open-policy', () => {});
+  test('current-policy', () => {});
+  test('reopened-registered-row-is-consistent', l => { reopenRegistered(l); });
   test('unknown-state', l => { row(l).status = 'PASS'; }, 'unknown status');
   test('missing-component', l => row(l).components.pop(), 'exactly seven');
   test('duplicate-component', l => { row(l).components[1].id = components[0]; }, 'exactly seven');
@@ -227,10 +257,36 @@ try {
     l.centralClosure.currentMandatory=[]; l.centralClosure.shippingExceptions=[registeredClosureId]; }, 'registered central closure row drift');
   test('evidence-less-registered-closure-rejected', l => { const r=row(l,registeredClosureId);
     Object.assign(r,{status:'CLOSED',proofCompleted:true,positiveActivation:'Fixture',consumerRemovalNegative:'Fixture',
-      compiledConsumer:'Fixture'});
+      compiledConsumer:'Fixture'}); delete r.registeredClosureEvidence;
     l.centralClosure.currentMandatory=[]; l.releaseAssessment.status='EVIDENCE_READY'; l.status='EVIDENCE_COMPLETE'; },
     'registered central closure lacks a verified evidence contract');
   test('fixture-closure-rejected-in-production', l => { registeredClosureFixture(l); }, 'uses fixture records');
+  if (registeredClosurePaths.length) {
+    // Controls on the real closure record, without fixture mode.
+    test('closed-closure-condition-evidence-removed', l => {
+      rewriteClosure(row(l,registeredClosureId), c => { delete c.conditionEvidence['route-exhaustiveness']; }); },
+      'does not discharge every recorded condition');
+    test('closed-closure-blocking-finding-nonclaim', l => {
+      rewriteClosure(row(l,registeredClosureId), c => {
+        c.findingDispositions['unclassified-hook-routes']={kind:'NONCLAIM',detail:'Declared out of scope'}; }); },
+      'while its blocking finding is not resolved');
+    test('closed-closure-assumption-removed', l => {
+      rewriteClosure(row(l,registeredClosureId), c => {
+        c.retainedAssumptions=c.retainedAssumptions.filter(a=>a!=='A-KEVM-TOOLCHAIN'); }); },
+      'does not discharge every recorded condition');
+    test('closed-closure-role-unbound', l => { const r=row(l,registeredClosureId),
+      ref=r.registeredClosureEvidence.references.negative, record=json(scratch,ref.path);
+      record.closureSha256='0'.repeat(64); put(ref.path,record);
+      r.registeredClosureEvidence.references.negative=fileRef(scratch,ref.path); }, 'negative is not bound');
+    test('closed-closure-ungated-evidence', l => {
+      const path='evidence/trust12/runtime-link/malformed/native-relation-checkpoint-v1.json';
+      put(path, readFileSync(resolve(root,path)));
+      rewriteClosure(row(l,registeredClosureId), c => {
+        c.conditionEvidence['malformed-native']=[...c.conditionEvidence['malformed-native'],fileRef(scratch,path)]; }); },
+      'not a checkpoint verified by the required gate');
+    test('closed-closure-readiness-forged', l => { l.releaseAssessment.status='EVIDENCE_READY'; },
+      'release readiness drift');
+  }
   check(hasFixture({a:[{b:{fixtureOnly:true}}]}) && !hasFixture({a:[{b:1}]}), 'fixture marker detection failed');
   results.push({name:'nested-fixture-marker-detected',status:'PASS'});
   let reservedError;
@@ -342,9 +398,9 @@ try {
     'registered central closure negative is not bound', fixtures);
   test('closed-registered-row-pending-consumer', l => { registeredClosureFixture(l).compiledConsumer='Pending'; },
     'closed registered central closure has pending evidence', fixtures);
-  test('open-registered-row-with-evidence', l => { row(l,registeredClosureId).registeredClosureEvidence={status:'PASS_REGISTERED_CENTRAL_CLOSURE'}; },
+  test('open-registered-row-with-evidence', l => { reopenRegistered(l).registeredClosureEvidence={status:'PASS_REGISTERED_CENTRAL_CLOSURE'}; },
     'open registered central closure claims completion');
-  test('open-registered-row-proof-flag', l => { row(l,registeredClosureId).proofCompleted=true; },
+  test('open-registered-row-proof-flag', l => { reopenRegistered(l).proofCompleted=true; },
     'open registered central closure claims completion');
   test('registered-row-contract-field-required', l => { delete row(l,registeredClosureId).reopenCondition; },
     'registered central closure missing reopenCondition');

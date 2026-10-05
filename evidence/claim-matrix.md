@@ -40,9 +40,13 @@ completion at the registered-execution scope: the verified Isabelle abstract mod
 registered executions of the three declared profiles bound to their exact compiled
 runtimes, one registered-scope central closure that names its remaining
 assumptions, and fresh independent assurance.
-Of these, only the abstract model is complete. The gate, malformed-branch and central conditions
-recorded in `trust12/runtime-link/tail-preparation/tail-obligations-v1.json`, the registered-scope
-central closure and the assurance are open.
+Of these, the abstract model, the kernel-checked registered executions and the
+registered-scope central closure are recorded. The closure record
+`trust12/registered-central-closure/closure-v1.json` discharges every gate,
+malformed-branch and central condition recorded in
+`trust12/runtime-link/tail-preparation/tail-obligations-v1.json` other than the
+independent assurance and names the assumptions that remain. The fresh independent
+assurance is open, so TRUST 1.2 is not yet complete.
 General runtime-to-model correspondence in each declared profile is deferred research and is not required for TRUST 1.2 completion.
 The verified Isabelle abstract model and profile-specific compiled-code evidence
 remain valid only within their recorded scopes. The general `runtime_link`

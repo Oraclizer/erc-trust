@@ -13,27 +13,27 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "b5d286fcb6f9348a01b6db661d49764206b82eefe9586eb8469097ccf746a05e"
+      "sha256": "8bfc18d7eb275ea872d7884ed2ef2bb93f6f44e6f28d237f4fc6c85a667908e5"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
-      "sha256": "fecdc508dd67ed9983424ec4d272daac73a18085cf5004d8bcf8780ae134fd7c"
+      "sha256": "f52737cdf5b2be8dad6151813a55f283c6dbead373240a20ce6627b126b51eb6"
     },
     {
       "path": "docs/PROFILES.md",
-      "sha256": "abe6687f0d2e21765bec00c25a97404b5e78781cfb90feaa57a8ab03289953cd"
+      "sha256": "282e60c62847dc99c58398e7ab5a6b59754fed3846b09743950d9a601dbfe25a"
     },
     {
       "path": "evidence/claim-matrix.md",
-      "sha256": "1cdaac08f1d15f1cb621a12c1cb75d31243fc6613aa5b3f7f058d2eee23b85b6"
+      "sha256": "8f74c6dbe2ae5b221262a388d62c386ab94b76a7be8a07bb0b9d8eb8012c6812"
     },
     {
       "path": "evidence/known-limitations.md",
-      "sha256": "b504a9ad044c6f9beed4d37307ceffcacfb9b892ddea1f41886362845323a9fd"
+      "sha256": "6629e81ee00779840ad2371f965d1e5b50f49dbbd32bcf441ea830d88a4095ad"
     },
     {
       "path": "evidence/trust12/README.md",
-      "sha256": "5dabdaf440659a7a7f37557ac17d0c0560bb6181ba490c2bc8588388567c7905"
+      "sha256": "35bbeae870f2147932f20748829515fb525df8ff6623f7ab86ed9f4bea97ddec"
     },
     {
       "path": "evidence/trust12/aggregate-evidence-audit.md",
@@ -129,15 +129,31 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "352194d5cc4576e12ac9896ed60281e56c2eabd63562fad8f6ff559dee27e3ec"
+      "sha256": "1e0ad74ac32f7923780b0a6c41df69ee60d96de77dd2617e1227cdc931eaa845"
     },
     {
       "path": "evidence/trust12/profile-implementation-evidence-review.json",
       "sha256": "39cf9abc04adb9f896664c7f9618b4295a8dee1c7412e22e570c64ff0ca90168"
     },
     {
+      "path": "evidence/trust12/registered-central-closure/closure-v1.json",
+      "sha256": "f94649e826779a440e56ec5bd6c6be9f3c96dc04e000177e0a38aad9f5816bf4"
+    },
+    {
+      "path": "evidence/trust12/registered-central-closure/compiled-consumer-v1.json",
+      "sha256": "f31da82198eece32c863e209f5ceb56655b40db4da97978a7549be2af83d787e"
+    },
+    {
+      "path": "evidence/trust12/registered-central-closure/negative-v1.json",
+      "sha256": "f7a82a13671e02ca4fec0d14672836ebf34fade403a5093a967315567e69c35c"
+    },
+    {
+      "path": "evidence/trust12/registered-central-closure/positive-v1.json",
+      "sha256": "a58c50cae2849bbc0ca1b729af23858107920eb69341323df15074ca2a1901b2"
+    },
+    {
       "path": "evidence/trust12/release-notes.md",
-      "sha256": "67f3c093ac6a6be29665ec3965cef154f9212b41ca06f2271632b318e0622800"
+      "sha256": "d12de4400b77cb8b1c848901c2b7a0c49a84bd12bbb159047b1ad51868771bd9"
     },
     {
       "path": "evidence/trust12/release-policy.json",
@@ -277,7 +293,7 @@
     },
     {
       "path": "evidence/trust12/veri-integration-audit.md",
-      "sha256": "dde96d29e2b31211247292ed58b2766d1951f24189df9701890a71387e5576c1"
+      "sha256": "bb7187300186ed33bd22b593132e98845bdebafa383d9118cd71a578a9e8bae7"
     },
     {
       "path": "evidence/trust12/veri-observation-results.json",
@@ -421,7 +437,7 @@
     },
     {
       "path": "scripts/generate-trust12-input-seal.py",
-      "sha256": "fcee2d37792971e220ddd571d0e8e45ecef3a3119148d28c57ee7ccbec264723"
+      "sha256": "094efb291911afef7bd4dcc79d32fbf7d3be8e4a5f71fab74d59687b378627ec"
     },
     {
       "path": "scripts/generate-trust12-proof-audit.py",
@@ -568,6 +584,10 @@
       "sha256": "f1376ec0a9c9e102ff76e1149a7eb1eb125809fde0d0e8358ea0fddd4c1f91a5"
     },
     {
+      "path": "scripts/test-registered-closure.py",
+      "sha256": "66285f7421c395b920ae6e016fe5913c902e4d18a2f374e455684eb994734bc8"
+    },
+    {
       "path": "scripts/test-registered-gate.py",
       "sha256": "c5c69a277b80d78e4223746782be8c9d6127e541e53e850607a9a0785037e2b1"
     },
@@ -589,11 +609,11 @@
     },
     {
       "path": "scripts/test-trust12-policy.mjs",
-      "sha256": "dd3828c637d05dba93f0b45e43b9e80b63c394a4f2d80ed81d0d804730aeff6b"
+      "sha256": "873a71cdd5316b9dd7c946d38f89446050a62f9db3a393008166df0103d16c28"
     },
     {
       "path": "scripts/test-trust12-required.mjs",
-      "sha256": "9d61402c8b3749ac25d4c203aefaaef9b6cb834c6034aa367c618c1210200df2"
+      "sha256": "f1044cdff6e262dbb63cea3488785fafa9028c7d7326a7d611006304ceabe698"
     },
     {
       "path": "scripts/test-typed-failure-binding.py",
@@ -788,6 +808,10 @@
       "sha256": "9b4b50ec8ed2e0e05602ed0640398328cf31d387d8da3ddaa833406b90756a8b"
     },
     {
+      "path": "scripts/trust12/verify_registered_closure_v1.py",
+      "sha256": "4a2a1fb37541fe6f0e128f2b3c0b1b717fd7f745d6d17efbb56ae5c117a65bae"
+    },
+    {
       "path": "scripts/trust12/verify_registered_gate_v1.py",
       "sha256": "30a255b7d57a143fb148ba42c25cb53e2fb5eb4db488d7590e73f069a6b47fcb"
     },
@@ -837,7 +861,7 @@
     },
     {
       "path": "scripts/verify-trust12-required.mjs",
-      "sha256": "4286c333b50248f3b155c7015ddd04310adb81b088b94a134f50a4722374b2b6"
+      "sha256": "7033b4f207cf39e8965979484f94ae8dd19564bca64565a71290f58981d69c96"
     },
     {
       "path": "spec/decisions/14-hook-route-classes.md",
