@@ -1,0 +1,627 @@
+{
+  "schema": "trust12-final-assurance-v1",
+  "status": "PASS_FRESH_ASSURANCE",
+  "independentOfBuilding": true,
+  "reviewer": "Internal reviewer who took no part in building the runtime link (not a third-party audit)",
+  "seal": {
+    "path": "evidence/trust12/assurance/trust12-runtime-link-assurance-seal-v2.json",
+    "sha256": "85aa6dfbc87697086ba173bf1746e97ac76ad9d1afa72bd65ddc53b4020b7b91"
+  },
+  "finalIdentities": {
+    "formalRootSha256": "7c6d08d4cca6ca035959f46d2cd5e4ae26595ad5005abaf9dd2da5e9c908954a",
+    "runtimeIdentitySha256": "7b2251faffe33990edf9326b7a6883d75e9402c36f5a25e4e28cb29075f0a348",
+    "abiSha256": "73b45cee3e8e6a2abd484a306a21d51aaa3fc4da75b976dd3c938d936352814b",
+    "endToEndLedgerSha256": "8b620ada0d8a297be0a5dd4771e288995dc1189bf67098792648dd792745c399",
+    "registeredClosureSha256": "3153515f18c81d5a2b17609e303b44dfff93c97c8157374c22068d4a243ecfdd",
+    "assuranceSealSha256": "85aa6dfbc87697086ba173bf1746e97ac76ad9d1afa72bd65ddc53b4020b7b91",
+    "generalProofDigests": {
+      "NATIVE": null,
+      "PARTIAL": null,
+      "HOOK": null
+    }
+  },
+  "replayScope": {
+    "mode": "top",
+    "description": "Current-completion Assurance: every recorded runtime-link kernel result was copied, re-hashed and found current by a no-build run; the replay groups were rebuilt from the sealed sources over the recorded ancestor heaps; the product proof sessions were rebuilt without saved heaps or databases.",
+    "replayGroups": [
+      "@registered-gate-top",
+      "cell:Hook/RELEASE",
+      "cell:Partial/LIQUIDATE",
+      "cell:Native/SEIZE"
+    ],
+    "replayedKernelSessions": 11,
+    "reusedKernelResults": 577
+  },
+  "reproduction": {
+    "status": "PASS",
+    "missingSteps": [],
+    "steps": [
+      {
+        "id": "seal-verify-before",
+        "exitCode": 0,
+        "elapsedSeconds": 14.6,
+        "outputSha256": "263d2e799a3fd08945630dd6ca24c26e313b07c3d09584678c07c216508b1435",
+        "verdict": "PASS"
+      },
+      {
+        "id": "lists-certificate-registry-reads",
+        "exitCode": 0,
+        "elapsedSeconds": 8.6,
+        "outputSha256": "591f4179af43dce31c07fdbe0ba6dd3d3ad1ff4c73479024b44a9827be7ab9c9",
+        "verdict": "PASS"
+      },
+      {
+        "id": "lists-malformed-call-trace-reads",
+        "exitCode": 0,
+        "elapsedSeconds": 3.7,
+        "outputSha256": "dc36cee8c07cefe765a802685d47d521e2ed910338e2dc83aa2d35f7f2ca8137",
+        "verdict": "PASS"
+      },
+      {
+        "id": "lists-route-inventory-artifacts",
+        "exitCode": 0,
+        "elapsedSeconds": 0.1,
+        "outputSha256": "c2c22bd22bde8b76b755fa96c027dc1016f4628409b89fc678a93cc8494d175a",
+        "verdict": "PASS"
+      },
+      {
+        "id": "lists-typed-failure-artifacts",
+        "exitCode": 0,
+        "elapsedSeconds": 0.1,
+        "outputSha256": "3422feda6e4ca9f68028c5756d9ec0bc2055f3f0b131c32a8832fe0798d78b87",
+        "verdict": "PASS"
+      },
+      {
+        "id": "lists-reflection-scan-artifacts",
+        "exitCode": 0,
+        "elapsedSeconds": 0.1,
+        "outputSha256": "321c7e03c77a8a8f0586512786138c0b8c242bfb0a6521b1394fd2883510acfc",
+        "verdict": "PASS"
+      },
+      {
+        "id": "lists-word-guard-receipts",
+        "exitCode": 0,
+        "elapsedSeconds": 0.1,
+        "outputSha256": "f7435da580c79608311af44e0b73f18d60b7a6eecadf7e2ba283a2584394c266",
+        "verdict": "PASS"
+      },
+      {
+        "id": "lists-aligned-gate-artifacts",
+        "exitCode": 0,
+        "elapsedSeconds": 0.2,
+        "outputSha256": "9968a065fe87f090493f9fb560dd72af084f291c4f3a1f242c31ff22ec44932a",
+        "verdict": "PASS"
+      },
+      {
+        "id": "lists-storage-reader-artifacts",
+        "exitCode": 0,
+        "elapsedSeconds": 0.1,
+        "outputSha256": "7195e40a853f31a0e451d3ae0b87f881a8df9746f2c0bb1aea254ec434babc98",
+        "verdict": "PASS"
+      },
+      {
+        "id": "lists-registered-gate-reads",
+        "exitCode": 0,
+        "elapsedSeconds": 13.9,
+        "outputSha256": "8ff3ed50cc15026f9bcf0543e7905a1288ab756b70512e8afbb78f39a8bcc60f",
+        "verdict": "PASS"
+      },
+      {
+        "id": "saved-certificate-registry",
+        "exitCode": 0,
+        "elapsedSeconds": 8.4,
+        "outputSha256": "6f97e9313fec3708883a4b3829808bb4f3907040aa5d550d21bbc5b02f03d119",
+        "verdict": "PASS"
+      },
+      {
+        "id": "saved-route-inventory",
+        "exitCode": 0,
+        "elapsedSeconds": 1.2,
+        "outputSha256": "4609ea1e8681b891787b88364bd5c6556978ee5877c9f3a6ae7615325d1db58a",
+        "verdict": "PASS"
+      },
+      {
+        "id": "saved-typed-failure",
+        "exitCode": 0,
+        "elapsedSeconds": 0.9,
+        "outputSha256": "d995ff978c3c79a05f8ae7b74149dd58bb7c653775f89f21889250bd1f939a07",
+        "verdict": "PASS"
+      },
+      {
+        "id": "saved-call-trace",
+        "exitCode": 0,
+        "elapsedSeconds": 2.9,
+        "outputSha256": "731c42ffdf1181ce0b0c519b55f93486391f5ff49b70bc3ab19d30b5d4ec2697",
+        "verdict": "PASS"
+      },
+      {
+        "id": "saved-reflection-scan",
+        "exitCode": 0,
+        "elapsedSeconds": 0.9,
+        "outputSha256": "167b02cfb8e3d4ef044abe847644d504c2481b2d4566fb4c8ecef4c1518966d0",
+        "verdict": "PASS"
+      },
+      {
+        "id": "saved-word-guard",
+        "exitCode": 0,
+        "elapsedSeconds": 0.6,
+        "outputSha256": "ac043384933fa9700514704a28f3606e56f4026b4d0b472af601201a9c526333",
+        "verdict": "PASS"
+      },
+      {
+        "id": "saved-storage-reader",
+        "exitCode": 0,
+        "elapsedSeconds": 1.6,
+        "outputSha256": "f818ba3e2918403867d10729a7eaade70b99ae459e19bea376bb013936d8c1eb",
+        "verdict": "PASS"
+      },
+      {
+        "id": "saved-registered-gate",
+        "exitCode": 0,
+        "elapsedSeconds": 2.3,
+        "outputSha256": "a020c16df5fcf347a6218c22d01dab00b0fa2a87d9bd5f2156fcad7a6c3434b1",
+        "verdict": "PASS"
+      },
+      {
+        "id": "saved-registered-closure",
+        "exitCode": 0,
+        "elapsedSeconds": 0.2,
+        "outputSha256": "0f0ee9cfadf52193a7d744933cbfc17c60fbd97ea07f1c9929fce3a836e51e51",
+        "verdict": "PASS"
+      },
+      {
+        "id": "verifiers-current-profile-release",
+        "exitCode": 0,
+        "elapsedSeconds": 5.1,
+        "outputSha256": "3a08cab039d90f48fa6401c18563e252408c1a100de7c79b4d35dd83e4919ed4",
+        "verdict": "PASS"
+      },
+      {
+        "id": "verifiers-obligation-ledger",
+        "exitCode": 0,
+        "elapsedSeconds": 5.1,
+        "outputSha256": "e93a74e9d8831265250c9ad6511db66756cb519a474fb91a8d3bd11e8b702e7b",
+        "verdict": "PASS"
+      },
+      {
+        "id": "verifiers-trust12-evidence",
+        "exitCode": 0,
+        "elapsedSeconds": 0.2,
+        "outputSha256": "40a72eb0f2304aeda0c0ad579f76befd8cd8cabe656f1eba1782895a793a0880",
+        "verdict": "PASS"
+      },
+      {
+        "id": "verifiers-trust12-policy",
+        "exitCode": 0,
+        "elapsedSeconds": 0.1,
+        "outputSha256": "a73771bde192d0a7d985ae322e816c78dbdacfcebe8f0b18c4b3378b85f1da45",
+        "verdict": "PASS"
+      },
+      {
+        "id": "top-preflight",
+        "exitCode": 0,
+        "elapsedSeconds": 38.2,
+        "outputSha256": "24b519a1d28297714e2a93c5d7c9110defa85d826e5db91fba52b82c2629f69a",
+        "verdict": "PASS"
+      },
+      {
+        "id": "build-copy",
+        "exitCode": 0,
+        "elapsedSeconds": 1.6,
+        "outputSha256": "0c830dd0103d6281679d147cdba6ee02062d75faad695f20463b1e8861b44070",
+        "verdict": "PASS"
+      },
+      {
+        "id": "build-forge",
+        "exitCode": 0,
+        "elapsedSeconds": 56.2,
+        "outputSha256": "77ea0fe3c537f9236c733dd9dbd13b3bea4d3b6ee28e1269e5c14dc88c616250",
+        "verdict": "PASS"
+      },
+      {
+        "id": "tail-preparation-check",
+        "exitCode": 0,
+        "elapsedSeconds": 0.2,
+        "outputSha256": "416ab05d265ed298d335130a7fbcd19a7f50677bd4d69854d4dca24aa4a514d6",
+        "verdict": "PASS"
+      },
+      {
+        "id": "tests-forge",
+        "exitCode": 0,
+        "elapsedSeconds": 26.4,
+        "outputSha256": "1d6d602b84637703cfccd6c4252a8e204fd06c128fdc69f334bb14c27de0fdb1",
+        "verdict": "PASS"
+      },
+      {
+        "id": "top-fresh-result",
+        "exitCode": 0,
+        "elapsedSeconds": 0.1,
+        "outputSha256": "541d44a372fa0a85eeb4e50203ca1adeb13d49877c8db33a6d613930bc0bc3d8",
+        "verdict": "PASS"
+      },
+      {
+        "id": "top-build-result",
+        "exitCode": 0,
+        "elapsedSeconds": 0.1,
+        "outputSha256": "ea890b2d6f41bcecce87fd0195f1a24ccf895825bf4ef52697704b0c68c16d83",
+        "verdict": "PASS"
+      },
+      {
+        "id": "top-compare",
+        "exitCode": 0,
+        "elapsedSeconds": 4.4,
+        "outputSha256": "86e26ea3799f1a0071e90528be76812f8ef959e28d3d228d8e8395b62c25edf8",
+        "verdict": "PASS"
+      },
+      {
+        "id": "proofs-sessions-cold",
+        "exitCode": 0,
+        "elapsedSeconds": 0.9,
+        "outputSha256": "81b2bd4ea98c8db66554fbc8d7637a1a69a130f331feb732b75caab4c4868fd5",
+        "verdict": "PASS"
+      },
+      {
+        "id": "seal-verify-after",
+        "exitCode": 0,
+        "elapsedSeconds": 7.4,
+        "outputSha256": "263d2e799a3fd08945630dd6ca24c26e313b07c3d09584678c07c216508b1435",
+        "verdict": "PASS"
+      }
+    ]
+  },
+  "consumerRemoval": {
+    "status": "PASS",
+    "kernelNegatives": "rebuilt and compared inside the replay groups; every other kernel negative reused under the five reuse conditions after the copy check and the no-build run",
+    "steps": [
+      {
+        "id": "negative-mutation-campaign",
+        "exitCode": 0,
+        "elapsedSeconds": 7452,
+        "outputSha256": "43773efd27fd3f6c0bcdceab2da6ee8ac8e7cb0b65b685268517098fddcbd332",
+        "verdict": "PASS"
+      },
+      {
+        "id": "negative-mutation-campaign-result",
+        "exitCode": 0,
+        "elapsedSeconds": 0,
+        "outputSha256": "9bcce988d52812c6443c2fd03fc4db989a0bc071427885778492b3529ac1762c",
+        "verdict": "PASS"
+      },
+      {
+        "id": "negative-length-NATIVE-ACTION-LENGTH",
+        "exitCode": 0,
+        "elapsedSeconds": 13.8,
+        "outputSha256": "9315a41fa188c3b34c6bd2ff17013d8cbb298564783ff52ca2b633c7d4aaf3c4",
+        "verdict": "PASS"
+      },
+      {
+        "id": "negative-length-NATIVE-REVERSAL-LENGTH",
+        "exitCode": 0,
+        "elapsedSeconds": 14.8,
+        "outputSha256": "f6700a84f71bbf1972cb2da4d8c567384d61fe15a6a18a7fcb91aa4cfab1ab97",
+        "verdict": "PASS"
+      },
+      {
+        "id": "negative-length-PARTIAL-ACTION-LENGTH",
+        "exitCode": 0,
+        "elapsedSeconds": 14.2,
+        "outputSha256": "3e2b45f480a366395a94abf498a1de6ef7f5710258c1eb0cc4697d56823ff6e4",
+        "verdict": "PASS"
+      },
+      {
+        "id": "negative-length-PARTIAL-REVERSAL-LENGTH",
+        "exitCode": 0,
+        "elapsedSeconds": 13.8,
+        "outputSha256": "0811b94b707907a168beffcbcc621b6c7320962ebccfe2854181cdf53466c9cd",
+        "verdict": "PASS"
+      },
+      {
+        "id": "negative-length-HOOK-ACTION-LENGTH",
+        "exitCode": 0,
+        "elapsedSeconds": 17.6,
+        "outputSha256": "1083de09947e2c5cafb11b84c3a296176d72388a6fb4725ff144dd942e18cdc9",
+        "verdict": "PASS"
+      },
+      {
+        "id": "negative-length-HOOK-REVERSAL-LENGTH",
+        "exitCode": 0,
+        "elapsedSeconds": 17.7,
+        "outputSha256": "0afb29f6c420eea1b6e25a2af14e7ea893ccf399d2e4ca17ffb80803e9f894b6",
+        "verdict": "PASS"
+      },
+      {
+        "id": "negative-word-baseline",
+        "exitCode": 0,
+        "elapsedSeconds": 34.1,
+        "outputSha256": "a67b27a0eb421986c34c93f6ab152e4d7697cc241b4f4dc4599e2c9df775a418",
+        "verdict": "PASS"
+      },
+      {
+        "id": "negative-word-ADDRESS-WIDTH",
+        "exitCode": 0,
+        "elapsedSeconds": 47.9,
+        "outputSha256": "0f821ee82c98b502795927a4ab6a2d7677b159d81c0f717953535f17ffc97fbc",
+        "verdict": "PASS"
+      },
+      {
+        "id": "negative-word-UINT64-WIDTH",
+        "exitCode": 0,
+        "elapsedSeconds": 47.9,
+        "outputSha256": "5faead5feec6706429ed7b19c09f54a44207dc38923a52d69e8e5ffa28029b5d",
+        "verdict": "PASS"
+      },
+      {
+        "id": "negative-word-UINT48-WIDTH",
+        "exitCode": 0,
+        "elapsedSeconds": 48,
+        "outputSha256": "d636f791809378f56eab63ce78e33260191639515a4a7bbbd39a4a5a90b85955",
+        "verdict": "PASS"
+      },
+      {
+        "id": "negative-word-ACTION-KIND-BOUND",
+        "exitCode": 0,
+        "elapsedSeconds": 47.4,
+        "outputSha256": "f83699c9a15c105ecb282fc5b651057f47e957c82f60037762b1bb99ddea4d1a",
+        "verdict": "PASS"
+      },
+      {
+        "id": "negative-word-REVERSAL-KIND-BOUND",
+        "exitCode": 0,
+        "elapsedSeconds": 47.7,
+        "outputSha256": "1b190fbdda6c52da36e7651a9f08f6cdbb832fa0349e51dd3fbedf284ee18b14",
+        "verdict": "PASS"
+      },
+      {
+        "id": "negative-word-ACTION-KIND-WIDTH",
+        "exitCode": 0,
+        "elapsedSeconds": 47.8,
+        "outputSha256": "43955933f84869d3d82a1c1c7a51d35aa11a0eac49b9b3c2b5ed7624caa62dd4",
+        "verdict": "PASS"
+      },
+      {
+        "id": "negative-word-REVERSAL-KIND-WIDTH",
+        "exitCode": 0,
+        "elapsedSeconds": 47.8,
+        "outputSha256": "bb8b3c1e843649572cbdab58a43a86c093044628c2d01288d2a0fbe732dd535f",
+        "verdict": "PASS"
+      },
+      {
+        "id": "negative-typed-baseline",
+        "exitCode": 0,
+        "elapsedSeconds": 11.2,
+        "outputSha256": "2f106735f637580e958843bfd9d4be95e542c5aea4f4202ac60339ce920133a0",
+        "verdict": "PASS"
+      },
+      {
+        "id": "negative-typed-HOOK-UNAUTHORIZED-AUTHORITY-WORD",
+        "exitCode": 0,
+        "elapsedSeconds": 14.9,
+        "outputSha256": "6c5b5bce5f7d8801b5284c8b533951b0b3f8d14ff756a020cd4c44011d7be6b1",
+        "verdict": "PASS"
+      },
+      {
+        "id": "negative-typed-HOOK-TERMINAL-CASE-WORD",
+        "exitCode": 0,
+        "elapsedSeconds": 14.7,
+        "outputSha256": "96e41966d1c3e44398aa5ee1f687fa395c849d0a4d5969e38530391ae34b888e",
+        "verdict": "PASS"
+      },
+      {
+        "id": "negative-typed-PARTIAL-INVALID-COMMAND-ID-WORD",
+        "exitCode": 0,
+        "elapsedSeconds": 11.3,
+        "outputSha256": "17774172ab1948863cf84fc90ec03b6661203e1b22964a6eaffb0d02f6555d2d",
+        "verdict": "PASS"
+      },
+      {
+        "id": "negative-typed-NATIVE-OPERATIONAL-SELECTOR",
+        "exitCode": 0,
+        "elapsedSeconds": 11.2,
+        "outputSha256": "4bcfa1f150f67bb94ab8f295cb18cea0eea3facd5cc58aef0b16cc7571f01bae",
+        "verdict": "PASS"
+      },
+      {
+        "id": "negative-semantic-inbound",
+        "exitCode": 0,
+        "elapsedSeconds": 61.6,
+        "outputSha256": "cb859ace9561b821f43c01cffaa0d238c21cd395a1b9bd3e2ec1745b6cdeb532",
+        "verdict": "PASS"
+      },
+      {
+        "id": "negative-semantic-initial",
+        "exitCode": 0,
+        "elapsedSeconds": 62.7,
+        "outputSha256": "ff1853d20b426956a66364c7c2d990a669b1e598fee1ee97d1d67cd845fda659",
+        "verdict": "PASS"
+      },
+      {
+        "id": "negative-semantic-receipt",
+        "exitCode": 0,
+        "elapsedSeconds": 62.2,
+        "outputSha256": "276c16e6a49941b5cd8e26998d8f4456af55b36d4d970df39c2c4065bc045540",
+        "verdict": "PASS"
+      },
+      {
+        "id": "negative-semantic-callback-auth",
+        "exitCode": 0,
+        "elapsedSeconds": 62.2,
+        "outputSha256": "e69cbd7e94037f630c21b11b07b0da037286a4871c43628e9e71f920d4be29c6",
+        "verdict": "PASS"
+      },
+      {
+        "id": "negative-semantic-hidden-agent",
+        "exitCode": 0,
+        "elapsedSeconds": 61.7,
+        "outputSha256": "c8b051a3dc273dda0ea55458a30c07cb77f44ba6cd0bcfa8a2437c9027c92a50",
+        "verdict": "PASS"
+      },
+      {
+        "id": "negative-semantic-factory-pin",
+        "exitCode": 0,
+        "elapsedSeconds": 55.6,
+        "outputSha256": "f00bc1a3e1182230bc5724aa6b51b5bd4dffa21cdb77a3b5bf62dda4f530a826",
+        "verdict": "PASS"
+      },
+      {
+        "id": "top-compare",
+        "exitCode": 0,
+        "elapsedSeconds": 4.4,
+        "outputSha256": "86e26ea3799f1a0071e90528be76812f8ef959e28d3d228d8e8395b62c25edf8",
+        "verdict": "PASS"
+      }
+    ]
+  },
+  "sealVerification": {
+    "before": "263d2e799a3fd08945630dd6ca24c26e313b07c3d09584678c07c216508b1435",
+    "after": "263d2e799a3fd08945630dd6ca24c26e313b07c3d09584678c07c216508b1435"
+  },
+  "observedToolchain": [
+    {
+      "name": "solc",
+      "pin": "0.8.36",
+      "observed": "0.8.36+commit.8a079791.Linux.g++ (WSL Ubuntu, svm ~/.local/share/svm/0.8.36/solc-0.8.36, sha256 c8d35afdddc3cd2743ee88b8f25e0fecd16e2bdd5f2120f37e52cd9cc45ae0e6); same installation for the v2 build, tests and probes and for the reused v1 mutation campaign",
+      "match": true
+    },
+    {
+      "name": "evm-version",
+      "pin": "cancun",
+      "observed": "declared in the sealed foundry.toml; used as declared",
+      "match": true
+    },
+    {
+      "name": "via-ir",
+      "pin": "true",
+      "observed": "declared in the sealed foundry.toml; used as declared",
+      "match": true
+    },
+    {
+      "name": "optimizer-runs",
+      "pin": "1",
+      "observed": "declared in the sealed foundry.toml; used as declared",
+      "match": true
+    },
+    {
+      "name": "foundry",
+      "pin": "v1.7.1",
+      "observed": "forge 1.7.1 and cast 1.7.1 (WSL Ubuntu /usr/local/bin/forge -> ~/.foundry/bin/forge); same installation for the v2 build, tests and probes and for the reused v1 mutation campaign",
+      "match": true
+    },
+    {
+      "name": "foundry-commit",
+      "pin": "4072e48705af9d93e3c0f6e29e93b5e9a40caed8",
+      "observed": "4072e48705af9d93e3c0f6e29e93b5e9a40caed8; same installation for the v2 build, tests and probes and for the reused v1 mutation campaign",
+      "match": true
+    },
+    {
+      "name": "node",
+      "pin": "24.14.0",
+      "observed": "24.14.0 (pinned binary from the official node-v24.14.0-win-x64 archive; Authenticode signature valid, OpenJS Foundation; SHA-256 63c259c81e5d472b5f11c8d506070130cb04a1ecf84b80377a34ed6ec9048088 equal to win-x64/node.exe of https://nodejs.org/dist/v24.14.0/SHASUMS256.txt). Used for every Node step of steps 1 to 16 and the assessor Check 1 runs.",
+      "match": true
+    },
+    {
+      "name": "pnpm",
+      "pin": "11.9.0",
+      "observed": "11.9.0; used only for the offline frozen-lockfile install of the SDK dependencies of the assessor Check 1 runs (pnpm itself ran on the host Node 24.18.1; the installed packages are integrity-checked against the lockfile)",
+      "match": true
+    },
+    {
+      "name": "isabelle-archive",
+      "pin": "a20a507bc7c1270d8be96a9f3fbec06345387789d2dc2c4d3df6260d47bfb33c",
+      "observed": "Proofs run 37303105545 checked this SHA-256 on the runner (sha256sum --check OK). The reused local kernel replay used the Windows distribution C:/Isabelle2025-2 whose launcher equals the manifest SHA-256 (v1 preflight; the v2 manifest keeps the same launcher hash).",
+      "match": true
+    },
+    {
+      "name": "afp-ads-functor",
+      "pin": "10d6fa8671c461022ae5e71859a07610d616681fed79e2f1c81029a124203c85",
+      "observed": "Proofs run 37303105545 checked this SHA-256 (OK); the local AFP root is verified by the seal v2 verification.",
+      "match": true
+    },
+    {
+      "name": "formal-foundation",
+      "pin": "db8e0802e55f0229cf7bc9e5e6cfbf40681adbba",
+      "observed": "Proofs run 37303105545 fetched db8e0802e55f0229cf7bc9e5e6cfbf40681adbba (supersession PASS 14/14).",
+      "match": true
+    },
+    {
+      "name": "kontrol",
+      "pin": "1.0.255",
+      "observed": "not exercised by the current-completion Assurance steps 0 to 16",
+      "match": null
+    },
+    {
+      "name": "kevm",
+      "pin": "1.0.678",
+      "observed": "not exercised by the current-completion Assurance steps 0 to 16",
+      "match": null
+    }
+  ],
+  "reusedUnits": [
+    {
+      "unit": "kernel replay run of the seal v1 Assurance (steps 9 to 11: preflight copy and rehash, no-build run, rebuild of the replay groups @registered-gate-top, cell:Hook/RELEASE, cell:Partial/LIQUIDATE and cell:Native/SEIZE)",
+      "reusedFrom": "first Assurance record (seal v1), steps top-preflight, top-fresh-result and top-build-result, and its kernel replay run directory",
+      "conditions": {
+        "inputIdentity": "seal v2 changes no build input of the run: the kit command template, catalog, process policy, targets, expected sessions and every recorded heap and database identity of the manifest are byte-identical between the v1 and v2 kits (reuse-decisions.json changeAnalysis), and seal-verify-before of v2 rechecked every source file of the kit list; the cells listing of v2 equals the v1 listing",
+        "toolIdentity": "same Isabelle2025-2 launcher hash in both manifests; run_kernel_replay.py and start_detached.ps1 of the v2 kit equal the hashes in the launch records of the run; the changed kernel_replay_lib.py differs only in the comparison normalization",
+        "materialization": "assessor-extra step assessor-v2-replay-store-rehash: 577 copied sessions equal the v2 manifest, 11 replayed sessions present, written after the run start and equal to the database hashes recorded by the v1 comparison; no unexpected heap or database",
+        "provenance": "the run records preflight.json, fresh.json, result.json, launch-1.json and launch-2.json of the run; v1 record steps of this assessor; top-preflight carried into this record with reusedFrom",
+        "currentConsumption": "top-compare of this record ran the v2 comparison over the run (PASS_TOP_REPLAY_REPRODUCED); top-fresh-result and top-build-result reread the run records"
+      }
+    },
+    {
+      "unit": "kernel session results of the runtime-link chain outside the replay groups",
+      "count": 577,
+      "conditions": {
+        "inputIdentity": "seal-verify-before and seal-verify-after of v2; the v1 no-build run over the copy found nothing to build for the same sources, options and parent heaps",
+        "toolIdentity": "Isabelle launcher hash of the manifest; same Windows platform for the recorded and replayed heaps",
+        "materialization": "copy and rehash in the v1 preflight and again now in assessor-v2-replay-store-rehash",
+        "provenance": "the v2 manifest names the recorded store and path of every heap and database; the sealed ledger cites the producing runs",
+        "currentConsumption": "the no-build run of the reused replay and the rebuilt groups that load these heaps; assessor-v2-manifest-baseline-recompute recomputed all 588 recorded fingerprints of the v2 manifest from the recorded databases (PASS_COLD_REPLAY_BASELINE_RECOMPUTED)"
+      }
+    },
+    {
+      "unit": "mutation campaign of 121 declared mutations",
+      "reusedFrom": "first Assurance record (seal v1), step negative-mutation-campaign and its mutation result file",
+      "conditions": {
+        "inputIdentity": "reuse-evidence-mutation.json: implementation/, foundry.toml, vectors/, scripts/mutation-campaign-v1.json and scripts/run-mutations.ps1 have identical tree and blob ids at d7944a9 and 6d94e63; the result's sourceRootSha256 equals the current source root reported by verifiers-current-profile-release of this record",
+        "toolIdentity": "same WSL forge 1.7.1 (4072e48) and solc 0.8.36 installation as the v2 build and tests of this record",
+        "materialization": "record-v2/mutation-results.json byte-identical to the v1 result (SHA-256 cad130aa0e895772e47e46539de1c7be8b60cb3fb71e5fa71c7381f20ccb5d9f)",
+        "provenance": "run by this assessor on the sealed checkout of d7944a9, 2026-10-05 06:41 to 08:45 UTC; carried with reusedFrom",
+        "currentConsumption": "negative-mutation-campaign-result of this record rechecked the result (ALL_KILLED 121)"
+      }
+    },
+    {
+      "unit": "saved-mode records of the eight recomputations",
+      "count": 8,
+      "conditions": {
+        "inputIdentity": "lists-* steps of this record regenerated every sealed input list byte for byte, and seal v2 verification rechecked every listed file",
+        "toolIdentity": "verifiers of the sealed product commit 6d94e63 run from the clean checkout",
+        "materialization": "each saved-* step rehashed every private file it reads",
+        "provenance": "each input list records its generator and source",
+        "currentConsumption": "each saved-* step requires the public record to follow from the recomputation; saved-registered-closure checks that the closure cites those records as current"
+      }
+    },
+    {
+      "unit": "tool-kind evidence that the sealed runtime-link ledger cites",
+      "count": 220,
+      "conditions": {
+        "inputIdentity": "assessor-check4-tool-evidence-rehash of this record: 220 of 220 files equal the SHA-256 and status of the sealed ledger record; 91 items (51 files) are pinned only through that record (see record/assessor-extra/tool-evidence-pinning.json)",
+        "toolIdentity": "KEVM and Kontrol pins of the seal; the tool runs were not repeated",
+        "materialization": "every cited file present and rehashed",
+        "provenance": "the sealed ledger records path, SHA-256 and status of every item",
+        "currentConsumption": "partly established, as recorded in the seal v1 Assurance; the consumer-removal negative is bound to MUT-08-FREEZE-DIRECTION of the reused mutation campaign"
+      }
+    },
+    {
+      "unit": "recorded receipts of the product evidence lanes (Isabelle, Kontrol, Certora, Foundry, runtime binding)",
+      "conditions": {
+        "inputIdentity": "verifiers-current-profile-release of this record binds every lane receipt to the current source and formal roots",
+        "toolIdentity": "lane toolchains pinned in the sealed release manifest and seal toolchain",
+        "materialization": "tracked files of the sealed commit, frozen by the seal",
+        "provenance": "the receipts record their producing runs",
+        "currentConsumption": "accepted by the product verifiers for the current identity; the Kontrol and Certora proofs were not rerun"
+      }
+    }
+  ],
+  "scope": "The registered-execution scope named by the sealed registered central closure.",
+  "nonclaim": "This verdict supports only the scope that the sealed central closure names. It does not extend to compiler correctness, deployment identity or external dependency behavior, and it does not prove the general runtime links."
+}

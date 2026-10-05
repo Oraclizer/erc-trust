@@ -33,7 +33,12 @@ gate verifies, and it retains A-RUNTIME-LINK, A-RUNTIME-LINK-SPEC, A-COMPILER,
 A-KECCAK, A-DEPLOYMENT, A-EXTERNAL, A-EVM, A-LAYOUT, A-MUTATION and
 A-KEVM-TOOLCHAIN. The registered executions are not every declared execution: for
 any other execution the `runtime_link` and `runtime_link_spec` locale assumptions
-remain. The fresh independent assurance is open.
+remain. TRUST 1.2 is complete within the registered-execution scope. Its independent assurance is an internal
+review by a non-participant, not a third-party audit. It checked a clean CI replay of the public
+product proof sessions without saved heaps, compared a rebuild of the registered gate sessions
+and one cell session per profile over recorded ancestor heaps with their records, and checked
+every other recorded kernel result for byte identity and freshness; it did not rebuild the
+internal runtime-link proof chain in full from an empty heap store.
 General runtime-to-model correspondence in each declared profile is deferred research and is not required for TRUST 1.2 completion.
 General `runtime_link` discharge remains unproved. Scoped model and external-prover
 evidence retain their recorded validity. The required

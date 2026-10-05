@@ -13,11 +13,11 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "8bfc18d7eb275ea872d7884ed2ef2bb93f6f44e6f28d237f4fc6c85a667908e5"
+      "sha256": "47e693c2ef8065e8584c44d094455348996a69875fcbd05308d0fba3ce47952f"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
-      "sha256": "f52737cdf5b2be8dad6151813a55f283c6dbead373240a20ce6627b126b51eb6"
+      "sha256": "ff0f71c36975a0f1355297b50d51fb819d81e7153237d758b491243690962cb4"
     },
     {
       "path": "docs/PROFILES.md",
@@ -25,15 +25,15 @@
     },
     {
       "path": "evidence/claim-matrix.md",
-      "sha256": "8f74c6dbe2ae5b221262a388d62c386ab94b76a7be8a07bb0b9d8eb8012c6812"
+      "sha256": "eee9bde867ad630c3ce35b0425bb811042399eb3c48ce932980fef32b4e017a5"
     },
     {
       "path": "evidence/known-limitations.md",
-      "sha256": "6629e81ee00779840ad2371f965d1e5b50f49dbbd32bcf441ea830d88a4095ad"
+      "sha256": "edfada38af5100c8bb23e5dd04fccd92bc2a8c98f56646b8c8390d6f3a5722be"
     },
     {
       "path": "evidence/trust12/README.md",
-      "sha256": "35bbeae870f2147932f20748829515fb525df8ff6623f7ab86ed9f4bea97ddec"
+      "sha256": "8214458901b8e73603c325de0e99cf12142da2e8a046c70178ca6d065f1db3ef"
     },
     {
       "path": "evidence/trust12/aggregate-evidence-audit.md",
@@ -129,7 +129,7 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "6d67f04dc74c2cc1befba6a239318ec80640be34a8729b956119c51b085666d1"
+      "sha256": "d8f544a1712a27e9f91663d446b62c1902560fd89d7e0343f7029d96402ed25b"
     },
     {
       "path": "evidence/trust12/profile-implementation-evidence-review.json",
@@ -153,7 +153,7 @@
     },
     {
       "path": "evidence/trust12/release-notes.md",
-      "sha256": "d12de4400b77cb8b1c848901c2b7a0c49a84bd12bbb159047b1ad51868771bd9"
+      "sha256": "fa25b1910cef51507c64ed6cabf382634066bf87f0b0e625886b69ee593697aa"
     },
     {
       "path": "evidence/trust12/release-policy.json",
@@ -609,7 +609,7 @@
     },
     {
       "path": "scripts/test-trust12-policy.mjs",
-      "sha256": "873a71cdd5316b9dd7c946d38f89446050a62f9db3a393008166df0103d16c28"
+      "sha256": "9189eaf365fef3856ea0c138ac1dfd8e00f7a0e9ed52499d25e95384c13566b5"
     },
     {
       "path": "scripts/test-trust12-required.mjs",

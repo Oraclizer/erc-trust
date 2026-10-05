@@ -10,7 +10,18 @@ const out = resolve(root, 'out/trust12');
 mkdirSync(out, { recursive: true });
 const scratch = mkdtempSync(resolve(out, 'policy-controls-'));
 const policyPath = 'evidence/trust12/release-policy.json', ledgerPath = 'evidence/trust12/obligation-ledger.json';
-const policy = json(root, policyPath), baseline = json(root, ledgerPath), results = [];
+const policy = json(root, policyPath), recorded = json(root, ledgerPath), results = [];
+// The controls model the state before the fresh assurance. A recorded assurance is removed from their baseline
+// and checked by its own control; the fixtures below still construct a completion from that pending baseline.
+function pendingLedger(ledger) {
+  const pending = structuredClone(ledger);
+  if (!pending.centralClosure.independentAssurance) return pending;
+  delete pending.centralClosure.independentAssurance;
+  pending.centralClosure.status = 'INCOMPLETE';
+  Object.assign(pending.releaseAssessment, { status: 'ASSURANCE_PENDING', trust12Complete: false });
+  return pending;
+}
+const baseline = pendingLedger(recorded);
 const endToEndPath = 'evidence/end-to-end-refinement/obligation-ledger-v3.json';
 const endToEndBaseline = json(root, endToEndPath);
 function put(path, value) {
@@ -24,7 +35,7 @@ function collect(value) {
   if (typeof value.path === 'string' && typeof value.sha256 === 'string') refs.set(value.path, value);
   for (const v of Object.values(value)) collect(v);
 }
-collect(policy); collect(baseline); collect(json(root, 'evidence/trust12/runtime-identity.json'));
+collect(policy); collect(recorded); collect(json(root, 'evidence/trust12/runtime-identity.json'));
 // A closed registered closure cites checkpoint records and their verifiers; the controls copy them as well.
 const registeredBaseline = baseline.obligations.find(r => r.id === registeredClosureId);
 const registeredClosurePaths = Object.values(registeredBaseline.registeredClosureEvidence?.references ?? {})
@@ -36,6 +47,9 @@ for (const path of registeredClosurePaths) {
     ...Object.values(record.findingDispositions ?? {}).map(item => item.evidence ?? [])])
     for (const item of items) collect(json(root, item.path).rehashVerifier);
 }
+// A recorded fresh assurance names its report, and the report names its input seal; the controls copy both.
+const assuranceReport = recorded.centralClosure.independentAssurance?.report;
+if (assuranceReport) collect(json(root, assuranceReport.path));
 for (const path of new Set([...refs.keys(), 'evidence/trust12/symbolic-kontrol.json',
   'evidence/end-to-end-refinement/obligation-ledger-v3.json',
   'evidence/isabelle-results-v3.json', 'evidence/trust12/runtime-identity.json',
@@ -43,12 +57,19 @@ for (const path of new Set([...refs.keys(), 'evidence/trust12/symbolic-kontrol.j
   'scripts/verify-trust12-required.mjs', checkpointVerifier,
   'evidence/certora-results-v3.json', ...implementationDisclosures, ...completionWordingDocuments]))
   put(path, readFileSync(resolve(root, path)));
-const documents = Object.fromEntries([...new Set([...implementationDisclosures, ...completionWordingDocuments])]
+const recordedDocuments = Object.fromEntries([...new Set([...implementationDisclosures, ...completionWordingDocuments])]
   .map(path => [path, readFileSync(resolve(root, path), 'utf8')]));
+// The same pattern as the completion claim of the release policy; the pending documents carry no completion claim.
+const completionWording = /TRUST\s+1\.2\s+(?:is\s+(?:now\s+|fully\s+)?complete(?:d)?\b|has\s+been\s+completed\b|was\s+completed\b|completed\s+(?:at|within)\b)|\bis\s+(?:now\s+)?complete\s+within\s+the\s+registered-execution\s+scope/gi;
+const documents = recorded.centralClosure.independentAssurance
+  ? Object.fromEntries(Object.entries(recordedDocuments).map(([path, text]) => [path,
+    text.split(registeredCompletionDisclosure).join('').replace(completionWording, 'TRUST 1.2 awaits assurance')]))
+  : recordedDocuments;
 const tailConditionsPath = 'evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json';
 function reset() {
   put(policyPath, policy); put(ledgerPath, baseline);
-  put(endToEndPath, endToEndBaseline);
+  // The original bytes: a recorded fresh assurance binds the SHA-256 of this file in its final identities.
+  put(endToEndPath, readFileSync(resolve(root, endToEndPath)));
   put(tailConditionsPath, readFileSync(resolve(root, tailConditionsPath)));
   for (const path of registeredClosurePaths) put(path, readFileSync(resolve(root, path)));
   for (const [path, text] of Object.entries(documents)) put(path, text);
@@ -204,6 +225,15 @@ function generalProofFixture(ledger, id) {
 }
 try {
   test('current-policy', () => {});
+  if (recorded.centralClosure.independentAssurance) {
+    // The recorded fresh assurance of this tree completes TRUST 1.2 within the registered-execution scope.
+    reset(); put(ledgerPath, recorded);
+    for (const [path, text] of Object.entries(recordedDocuments)) put(path, text);
+    const completed = verifyTrust12Policy(scratch);
+    check(completed.trust12Complete === true && completed.fullRefinementComplete === false
+      && completed.releaseReadiness === 'EVIDENCE_READY', 'recorded assurance does not complete TRUST 1.2');
+    results.push({ name: 'recorded-registered-completion', status: 'PASS', reason: completed.releaseReadiness });
+  }
   test('reopened-registered-row-is-consistent', l => { reopenRegistered(l); });
   test('unknown-state', l => { row(l).status = 'PASS'; }, 'unknown status');
   test('missing-component', l => row(l).components.pop(), 'exactly seven');

@@ -13,8 +13,23 @@ Of these, the abstract model, the kernel-checked registered executions and the
 registered-scope central closure are recorded. The closure record
 `registered-central-closure/closure-v1.json` discharges every gate, malformed-branch
 and central condition recorded in `runtime-link/tail-preparation/tail-obligations-v1.json`
-other than the independent assurance and names the assumptions that remain. The fresh
-independent assurance is open.
+other than the independent assurance and names the assumptions that remain.
+TRUST 1.2 is complete within the registered-execution scope.
+
+Independent assurance. A reviewer who took no part in building this evidence checked it on
+inputs frozen by the seal `assurance/trust12-runtime-link-assurance-seal-v2.json` and recorded a
+PASS verdict in `assurance/trust12-runtime-link-assurance-seal-v2-final-assurance.json`. This was
+an internal review by a non-participant, not a third-party audit. The review reran the product
+build, tests and malformed input probes on the sealed commit and reused the mutation campaign of
+its first attempt, whose implementation sources are byte-identical; recomputed the saved
+verification records from the sealed inputs; checked a clean CI replay of the public product proof
+sessions without saved heaps or databases on the sealed commit; and compared a rebuild of the
+registered gate sessions and one cell session of each profile, made in its first attempt from the
+same sealed sources over the recorded heaps of their ancestors, with their recorded results. Every
+other recorded kernel result was accepted only after its stored bytes
+matched the sealed manifest and a no-build run of the pinned Isabelle found it current for the
+sealed sources. The internal runtime-link proof chain was not rebuilt in full from an empty heap
+store.
 General runtime-to-model correspondence in each declared profile is deferred research and is not required for TRUST 1.2 completion.
 The current evidence does not discharge the general runtime links. Verified Isabelle model evidence and scoped
 compiled-code checks remain valid at their stated levels. The permitted claim is
