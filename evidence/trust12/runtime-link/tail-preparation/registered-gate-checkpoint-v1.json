@@ -1,0 +1,1837 @@
+{
+  "schema": "trust12-registered-gate-checkpoint-v1",
+  "status": "PASS_KERNEL_CHECKED_REGISTERED_GATE",
+  "scope": "Kernel runs instantiate the twenty-seven-cell gate of the runtime link over the three profiles with the accepted set of each profile defined as the image of its registered certificates. The certificate list of the gate is the list of the certificate registry, 96 certificates (Native 34, Partial 31, Hook 31): one applied and one not-applied certificate for each of the twenty-seven profile and operation cells and one certificate for each registered request outside canonical form (Native 16, Partial 13, Hook 13). The gate theorem states, for the storage-reading manifests of the three profiles, sound typed failure checkers, the acceptance partition, the bound and the enforced relation for every accepted execution of every cell with an applied and a not-applied witness in each cell, the aligned malformed branch of every profile, and the acceptance of every registered request outside canonical form. A second theorem states that removing any one of the 96 certificates from the registry makes the gate false, and a third that the accepted set partitions over the whole registry. Each profile part also states that every accepted execution runs the code that the profile manifest pins at the accounts of its footprint and that the accepted set refines the product specification. The Partial and Hook cells of the gate are built from the restated enforced relations of the applied and the not-applied registered execution of each cell over the storage-reading manifests of those profiles, the facts from which the eighteen restated cell theorems are proved. Kernel audits find no oracle and no skipped proof in any audited theorem of the three runs, among them the gate theorems and the restated cell theorems.",
+  "gateBoundary": "The gate theorems are theorems of one locale that joins the hash contexts of the three profiles. Its assumptions are the recorded hash equations of every theorem context (a hash function parameter applied to each recorded preimage gives the recorded value, and every value is a 256-bit word), bounds of the recorded timestamp variables, and the equation of a word encoding parameter with the big-endian encoding; the gas limits are parameters. No kernel theorem instantiates this locale: the theorems hold for every hash function and valuation that satisfy the assumptions, and that the hash function is Keccak-256 on the recorded preimages is the retained assumption A-KECCAK. Each adapter profile also defines a table function that satisfies its recorded hash equations; that check uses evaluation, and no audited theorem of this record depends on it, because every such theorem is free of oracles while a theorem instantiated with the table function depends on the evaluation oracle. The five conditional reader facts of the Hook stages are facts of the same Hook hash context and are not separate assumptions here. The gate predicate joins predicates of the earlier gate stages: sound typed failure checkers, the partition of the accepted executions into requests outside canonical form and the cells of the nine operations, and for every cell the bound and the enforced relation of each accepted execution together with an applied execution and a rejected or operational execution. The enforced relation itself, with its typed rejection and dependency revert rules, is the relation of those stages and is not restated here.",
+  "modelBoundary": "The runs read one copy of the public formal theories. All of them equal the current product theories except two: the out-of-specification theory, whose eight core definitions the existing alias checkpoint proves equivalent to the current ones and whose read copy is the pinned model of the aligned gate record, and the generated obligation ledger theory, which was regenerated later and which this record does not compare. Each certificate of the gate denotes the execution that the earlier kernel stages define from the recorded worlds, requests and results of that certificate; the record binds the certificate list to the registry by key and order, and the certificate registry binds each certificate to the worlds that kernel stages consumed. Status, revert output and calldata of a registered request outside canonical form are received values bound to its record, and its gas limit and external call list are supplied, as the aligned gate record states.",
+  "registryBoundary": "The certificate list of the gate equals the list of the private certificate registry that the certificate registry record names, key for key and in its order, and the registry record keys the same 96 certificates. The registry record cites, as the kernel results of the Partial and Hook cells, the earlier cell theorems that rest on code evaluation; the gate takes those cells from the restated relations of the same registered executions instead, which hold over the storage-reading manifests and depend on no oracle. The registry record is unchanged by this record, so it still names the earlier stages until it is rebuilt. The Native cells of the gate move the enforced relations of the earlier Native stages to one manifest and one bridge without restating them.",
+  "conditionBoundary": "This record is evidence for the kernel-run criteria that it quotes from the conditions list. For the twenty-seven-cell architecture: a kernel run instantiates the gate with the accepted set defined as the image of the registered certificates, and removing any registered certificate breaks that instantiation; that the registry builds in closure mode is the certificate registry record. For the accepted set: the accepted set is defined in a kernel run as the image of the registered certificates and the partition theorem is proved over the whole registry; that the registry covers every cell and malformed branch and binds every certificate to its program identity is the certificate registry record, and this record shows only that the gate lists exactly the registry keys. For each malformed branch: a kernel run proves the malformed branch over the registered requests outside canonical form; their registration is the certificate registry record, and the guard mutants and the probe rerun are other records. For the enforced cell witnesses this record adds only the kernel half of the profile index: every accepted execution runs the code that the profile manifest pins at its footprint accounts, which are the endpoint and token accounts; that this code equals the registry code identity is a computation of the certificate registry and is not a kernel theorem, and the governor and compliance accounts are bound by the registry alone. For the conditions on preservation and on state and receipt identity this record supplies the relation of every registered execution, including the decoded calldata, receipt logs and returned receipt hash that the bridge reads, but none of their acceptance criteria.",
+  "reproductionBoundary": "Metadata mode reads tracked files only. It checks that this record is the reviewed one, that the quoted criteria are the current ones, that the certificate keys and the private registry hash are those of the certificate registry record, that the session databases and sources that the storage reader and aligned gate records also name carry the same hashes there, and that the formal theories marked current are the current product files, and it recomputes every criterion from the quoted statements and audit rows. Saved mode additionally rehashes the private artifacts named through a private index, reads every source from the session database that stored it, finds each quoted statement there with its context, rereads the kernel markers and audits, follows the parent heap of every session, rehashes every input file that each run recorded and requires the derived part of the record to equal this record. Neither mode runs a prover, and the record states no completion of the registered-scope central closure, any general runtime link, the independent Assurance or TRUST 1.2.",
+  "evidenceFor": [
+    {
+      "condition": "twenty-seven-cell-architecture",
+      "closureAcceptance": [
+        "The registry builds in closure mode: every cell and every malformed branch is covered and no check fails.",
+        "A kernel run instantiates the gate with the accepted set defined as the image of the registered certificates.",
+        "Removing any registered certificate breaks that instantiation."
+      ],
+      "supported": [
+        2,
+        3
+      ],
+      "clauses": [
+        "The 27-cell gate holds for one accepted set per profile"
+      ]
+    },
+    {
+      "condition": "accepted-set-is-certificate-image",
+      "closureAcceptance": [
+        "The accepted set is defined in a kernel run as the image of the registered certificates.",
+        "The registry covers every cell and every malformed branch and binds every certificate to its program identity.",
+        "The partition theorem is proved over the whole registry."
+      ],
+      "supported": [
+        1,
+        3
+      ],
+      "clauses": [
+        "The accepted set of each profile is the image of a checked K/KEVM certificate decoder"
+      ]
+    },
+    {
+      "condition": "malformed-native",
+      "closureAcceptance": [
+        "Certificates of the malformed classes of the endpoint are registered.",
+        "A kernel run proves the malformed branch over them.",
+        "Disabling the exact length guard or a bounded word check turns a witness outside canonical form into an execution that is accepted or that emits a log, makes an external call or changes state.",
+        "The probe is rerun on the frozen build with every control detected."
+      ],
+      "supported": [
+        2
+      ],
+      "clauses": []
+    },
+    {
+      "condition": "malformed-partial",
+      "closureAcceptance": [
+        "Certificates of the malformed classes of the endpoint are registered.",
+        "A kernel run proves the malformed branch over them.",
+        "Disabling the exact length guard or a bounded word check turns a witness outside canonical form into an execution that is accepted or that emits a log, makes an external call or changes state.",
+        "The probe is rerun on the frozen build with every control detected."
+      ],
+      "supported": [
+        2
+      ],
+      "clauses": []
+    },
+    {
+      "condition": "malformed-hook",
+      "closureAcceptance": [
+        "Certificates of the malformed classes of the endpoint are registered.",
+        "A kernel run proves the malformed branch over them.",
+        "Disabling the exact length guard or a bounded word check turns a witness outside canonical form into an execution that is accepted or that emits a log, makes an external call or changes state.",
+        "The probe is rerun on the frozen build with every control detected."
+      ],
+      "supported": [
+        2
+      ],
+      "clauses": []
+    },
+    {
+      "condition": "enforced-cell-witnesses",
+      "closureAcceptance": [
+        "Every registered certificate records the code it executed, and that code equals its profile template outside the immutable ranges.",
+        "The profile index of every cell names exactly that code identity."
+      ],
+      "supported": [],
+      "clauses": [
+        "a profile index tied to a code identity"
+      ]
+    },
+    {
+      "condition": "preservation-and-reflection",
+      "closureAcceptance": [
+        "Every guard and state write on the typed command paths is the consumer of an obligation or a listed runtime-only item with a reason.",
+        "The reflection list is produced by a machine scan of the final sources and compiled layouts, not by review alone."
+      ],
+      "supported": [],
+      "clauses": [
+        "Abstract allowed behavior is preserved by the final code"
+      ]
+    },
+    {
+      "condition": "state-and-receipt-identity",
+      "closureAcceptance": [
+        "A formal reader of each profile manifest maps slots and mapping keys to abstract fields and agrees with the crosswalk.",
+        "Every derived Hook column is reviewed or replaced by that reader.",
+        "Every open item of the crosswalk is resolved or turned into an exact non-claim."
+      ],
+      "supported": [],
+      "clauses": [
+        "ABI, events and return data"
+      ]
+    }
+  ],
+  "criteria": {
+    "gate-instantiated-over-the-registered-image": "PASS",
+    "every-certificate-removal-breaks-the-instantiation": "PASS",
+    "partition-over-the-whole-registry": "PASS",
+    "applied-and-not-applied-witness-in-every-cell": "PASS",
+    "failure-checkers-sound": "PASS",
+    "malformed-branch-over-the-registered-requests": "PASS",
+    "accepted-executions-pin-profile-code": "PASS",
+    "cells-over-storage-reading-manifests": "PASS",
+    "hash-equations-remain-locale-assumptions": "PASS",
+    "no-oracle-and-no-skipped-proof": "PASS",
+    "cell-theorems-without-evaluation": "PASS"
+  },
+  "coverage": {
+    "registeredCertificates": {
+      "Native": 34,
+      "Partial": 31,
+      "Hook": 31
+    },
+    "certificateRemovals": {
+      "Native": 34,
+      "Partial": 31,
+      "Hook": 31
+    },
+    "cells": 27,
+    "cellWitnesses": {
+      "applied": 27,
+      "notApplied": 27
+    },
+    "malformedRequests": {
+      "Native": 16,
+      "Partial": 13,
+      "Hook": 13
+    },
+    "restatedCellTheorems": 18,
+    "restatedExecutionRelations": 36,
+    "sameStatementPairs": 142,
+    "kernelRuns": 3,
+    "kernelSessions": 16,
+    "auditedNames": 6565,
+    "oracleDependencies": 0
+  },
+  "registry": {
+    "id": "certificate-registry",
+    "sha256": "53f54df8469d968c5d82dd630fae888a2f347ae3af935773cac41bfd3711eade",
+    "bytes": 548950,
+    "keys": [
+      "Native/FREEZE/applied",
+      "Native/FREEZE/not-applied",
+      "Native/SEIZE/applied",
+      "Native/SEIZE/not-applied",
+      "Native/CONFISCATE/applied",
+      "Native/CONFISCATE/not-applied",
+      "Native/RECOVER/applied",
+      "Native/RECOVER/not-applied",
+      "Native/UNFREEZE/applied",
+      "Native/UNFREEZE/not-applied",
+      "Native/RELEASE/applied",
+      "Native/RELEASE/not-applied",
+      "Native/RESTRICT/applied",
+      "Native/RESTRICT/not-applied",
+      "Native/UNRESTRICT/applied",
+      "Native/UNRESTRICT/not-applied",
+      "Native/LIQUIDATE/applied",
+      "Native/LIQUIDATE/not-applied",
+      "Partial/FREEZE/applied",
+      "Partial/FREEZE/not-applied",
+      "Partial/SEIZE/applied",
+      "Partial/SEIZE/not-applied",
+      "Partial/CONFISCATE/applied",
+      "Partial/CONFISCATE/not-applied",
+      "Partial/LIQUIDATE/applied",
+      "Partial/LIQUIDATE/not-applied",
+      "Partial/RESTRICT/applied",
+      "Partial/RESTRICT/not-applied",
+      "Partial/RECOVER/applied",
+      "Partial/RECOVER/not-applied",
+      "Partial/UNFREEZE/applied",
+      "Partial/UNFREEZE/not-applied",
+      "Partial/RELEASE/applied",
+      "Partial/RELEASE/not-applied",
+      "Partial/UNRESTRICT/applied",
+      "Partial/UNRESTRICT/not-applied",
+      "Hook/FREEZE/applied",
+      "Hook/FREEZE/not-applied",
+      "Hook/SEIZE/applied",
+      "Hook/SEIZE/not-applied",
+      "Hook/CONFISCATE/applied",
+      "Hook/CONFISCATE/not-applied",
+      "Hook/LIQUIDATE/applied",
+      "Hook/LIQUIDATE/not-applied",
+      "Hook/RESTRICT/applied",
+      "Hook/RESTRICT/not-applied",
+      "Hook/RECOVER/applied",
+      "Hook/RECOVER/not-applied",
+      "Hook/UNFREEZE/applied",
+      "Hook/UNFREEZE/not-applied",
+      "Hook/RELEASE/applied",
+      "Hook/RELEASE/not-applied",
+      "Hook/UNRESTRICT/applied",
+      "Hook/UNRESTRICT/not-applied",
+      "Native/MALFORMED/empty-calldata",
+      "Native/MALFORMED/three-byte-calldata",
+      "Native/MALFORMED/unknown-selector",
+      "Native/MALFORMED/action-one-byte-short",
+      "Native/MALFORMED/action-one-byte-long",
+      "Native/MALFORMED/action-dirty-address",
+      "Native/MALFORMED/action-enum-out-of-range",
+      "Native/MALFORMED/action-dirty-uint64",
+      "Native/MALFORMED/action-dirty-uint48",
+      "Native/MALFORMED/action-nonzero-value",
+      "Native/MALFORMED/action-ordering-foreign-domain",
+      "Native/MALFORMED/reversal-one-byte-short",
+      "Native/MALFORMED/reversal-enum-out-of-range",
+      "Native/MALFORMED/route-action-one-byte-short",
+      "Native/MALFORMED/route-action-enum-out-of-range",
+      "Native/MALFORMED/route-reversal-one-byte-short",
+      "Partial/MALFORMED/empty-calldata",
+      "Partial/MALFORMED/three-byte-calldata",
+      "Partial/MALFORMED/unknown-selector",
+      "Partial/MALFORMED/action-one-byte-short",
+      "Partial/MALFORMED/action-one-byte-long",
+      "Partial/MALFORMED/action-dirty-address",
+      "Partial/MALFORMED/action-enum-out-of-range",
+      "Partial/MALFORMED/action-dirty-uint64",
+      "Partial/MALFORMED/action-dirty-uint48",
+      "Partial/MALFORMED/action-nonzero-value",
+      "Partial/MALFORMED/action-ordering-foreign-domain",
+      "Partial/MALFORMED/reversal-one-byte-short",
+      "Partial/MALFORMED/reversal-enum-out-of-range",
+      "Hook/MALFORMED/empty-calldata",
+      "Hook/MALFORMED/three-byte-calldata",
+      "Hook/MALFORMED/unknown-selector",
+      "Hook/MALFORMED/action-one-byte-short",
+      "Hook/MALFORMED/action-one-byte-long",
+      "Hook/MALFORMED/action-dirty-address",
+      "Hook/MALFORMED/action-enum-out-of-range",
+      "Hook/MALFORMED/action-dirty-uint64",
+      "Hook/MALFORMED/action-dirty-uint48",
+      "Hook/MALFORMED/action-nonzero-value",
+      "Hook/MALFORMED/action-ordering-foreign-domain",
+      "Hook/MALFORMED/reversal-one-byte-short",
+      "Hook/MALFORMED/reversal-enum-out-of-range"
+    ]
+  },
+  "statements": [
+    {
+      "role": "acceptance-partition-predicate",
+      "session": "ancestor-partition-definitions",
+      "kind": "definition",
+      "name": "TRUST_Runtime_Link_27_Gate_G2.runtime_acceptance_partition",
+      "text": "runtime_acceptance_partition runtime_accepts runtime_abstraction <longleftrightarrow> (<forall>profile <in> set all_runtime_profiles. <forall>execution. runtime_accepts profile execution <longrightarrow> abstraction_outcome (runtime_abstraction profile execution) = TRUST_Abstract_Malformed <or> (<exists>operation <in> set all_runtime_operations. runtime_operation_of_command (abstraction_command (runtime_abstraction profile execution)) = Some operation))"
+    },
+    {
+      "role": "checker-soundness-predicate",
+      "session": "ancestor-checker-definitions",
+      "kind": "definition",
+      "name": "TRUST_Runtime_Link_27_Gate_G3.failure_report_checker_sound",
+      "text": "failure_report_checker_sound checker <longleftrightarrow> (<forall>payload report outcome. failure_report_decoder checker payload = Some (report,outcome) <longrightarrow> typed_failure_payload payload <and> abi_failure_report payload = Some report <and> typed_failure_outcome (report_selector report) = outcome)"
+    },
+    {
+      "role": "abi-checker",
+      "session": "ancestor-checker-definitions",
+      "kind": "definition",
+      "name": "TRUST_Runtime_Link_27_Gate_G3.abi_failure_checker",
+      "text": "abi_failure_checker = <lparr>failure_report_decoder = abi_failure_decode<rparr>"
+    },
+    {
+      "role": "abi-checker-sound",
+      "session": "ancestor-checker-definitions",
+      "kind": "theorem",
+      "name": "TRUST_Runtime_Link_27_Gate_G3.abi_failure_checker_is_sound",
+      "text": "failure_report_checker_sound abi_failure_checker"
+    },
+    {
+      "role": "enforced-cell-predicate",
+      "session": "ancestor-cell-definitions",
+      "kind": "definition",
+      "name": "TRUST_Runtime_Link_Enforced_Gate_G31.runtime_link_cell_enforced",
+      "text": "runtime_link_cell_enforced manifests bridges failure_checkers runtime_accepts runtime_abstraction profile operation <longleftrightarrow> (<exists>execution. runtime_accepts profile execution <and> runtime_operation_of_command (abstraction_command (runtime_abstraction profile execution)) = Some operation <and> abstraction_outcome (runtime_abstraction profile execution) = TRUST_Abstract_Applied) <and> (<exists>execution. runtime_accepts profile execution <and> runtime_operation_of_command (abstraction_command (runtime_abstraction profile execution)) = Some operation <and> (abstraction_outcome (runtime_abstraction profile execution) = TRUST_Abstract_Rejected <or> abstraction_outcome (runtime_abstraction profile execution) = TRUST_Abstract_Operational)) <and> (<forall>execution. runtime_accepts profile execution <and> runtime_operation_of_command (abstraction_command (runtime_abstraction profile execution)) = Some operation <longrightarrow> alpha_transaction_enforced (manifests profile) (bridges profile) (failure_checkers profile) execution (runtime_abstraction profile execution))"
+    },
+    {
+      "role": "registry-set",
+      "session": "session-gate-common",
+      "kind": "definition",
+      "name": "TRUST_E2_Gate.e2_registry",
+      "text": "e2_registry = set e2_registry_list"
+    },
+    {
+      "role": "registry-size",
+      "session": "session-gate-common",
+      "kind": "theorem",
+      "name": "TRUST_E2_Gate.e2_registry_size",
+      "text": "length e2_registry_list = 96"
+    },
+    {
+      "role": "registry-distinct",
+      "session": "session-gate-common",
+      "kind": "theorem",
+      "name": "TRUST_E2_Gate.e2_registry_distinct",
+      "text": "distinct e2_registry_list"
+    },
+    {
+      "role": "gate-predicate",
+      "session": "session-gate-common",
+      "kind": "definition",
+      "name": "TRUST_E2_Gate.e2_runtime_link_27_registered",
+      "text": "e2_runtime_link_27_registered manifests bridges failure_checkers runtime_accepts runtime_abstraction registered <longleftrightarrow> (<forall>profile <in> set all_runtime_profiles. failure_report_checker_sound (failure_checkers profile)) <and> runtime_acceptance_partition runtime_accepts runtime_abstraction <and> (<forall>profile <in> set all_runtime_profiles. <forall>operation <in> set all_runtime_operations. runtime_link_cell_bound manifests bridges failure_checkers runtime_accepts runtime_abstraction profile operation) <and> (<forall>profile <in> set all_runtime_profiles. <forall>operation <in> set all_runtime_operations. runtime_link_cell_enforced manifests bridges failure_checkers runtime_accepts runtime_abstraction profile operation) <and> (<forall>profile <in> set all_runtime_profiles. e2_malformed_runtime_link_gate manifests bridges failure_checkers runtime_accepts runtime_abstraction profile) <and> (<forall>profile <in> set all_runtime_profiles. e2_registered_out_of_spec_accepted registered runtime_accepts profile)"
+    },
+    {
+      "role": "malformed-branch-predicate",
+      "session": "session-gate-common",
+      "kind": "definition",
+      "name": "TRUST_E2_Gate.e2_malformed_runtime_link_gate",
+      "text": "e2_malformed_runtime_link_gate manifests bridges failure_checkers runtime_accepts runtime_abstraction profile <longleftrightarrow> (<exists>execution. runtime_accepts profile execution <and> abstraction_outcome (runtime_abstraction profile execution) = TRUST_Abstract_Malformed) <and> (<forall>execution. runtime_accepts profile execution <and> abstraction_outcome (runtime_abstraction profile execution) = TRUST_Abstract_Malformed <longrightarrow> TRUST_Native_Malformed_Gate_Aligned_G103_V1.alpha_transaction_gate (manifests profile) (bridges profile) (failure_checkers profile) execution (runtime_abstraction profile execution))"
+    },
+    {
+      "role": "registered-requests-predicate",
+      "session": "session-gate-common",
+      "kind": "definition",
+      "name": "TRUST_E2_Gate.e2_registered_out_of_spec_accepted",
+      "text": "e2_registered_out_of_spec_accepted registered runtime_accepts profile <longleftrightarrow> (<forall>execution. registered profile execution <longrightarrow> runtime_accepts profile execution)"
+    },
+    {
+      "role": "gate-from-parts",
+      "session": "session-gate-common",
+      "kind": "theorem",
+      "name": "TRUST_E2_Gate.e2_gate_from_parts",
+      "text": "assumes PARTS: \"<And>profile. e2_profile_part (manifests profile) (bridges profile) (checkers profile) (accepts profile) (abstraction profile) (registered profile) profile\" shows \"e2_runtime_link_27_registered manifests bridges checkers accepts abstraction registered\""
+    },
+    {
+      "role": "gate-gives-parts",
+      "session": "session-gate-common",
+      "kind": "theorem",
+      "name": "TRUST_E2_Gate.e2_gate_implies_part",
+      "text": "assumes GATE: \"e2_runtime_link_27_registered manifests bridges checkers accepts abstraction registered\" shows \"e2_profile_part (manifests profile) (bridges profile) (checkers profile) (accepts profile) (abstraction profile) (registered profile) profile\""
+    },
+    {
+      "role": "gate-context",
+      "session": "session-gate-instance",
+      "kind": "locale",
+      "name": "TRUST_E2B_Registered_Gate.e2b_registered_context",
+      "text": "e2n_native_context + e2p_cell_times + e2h_cell_times"
+    },
+    {
+      "role": "profile-manifests",
+      "session": "session-gate-instance",
+      "kind": "definition",
+      "name": "e2b_registered_context.e2b_manifests",
+      "text": "e2b_manifests profile = (case profile of Runtime_Native <Rightarrow> nr_manifest keccak | Runtime_Partial <Rightarrow> psr_partial_manifest | Runtime_Hook <Rightarrow> psr_hook_manifest)"
+    },
+    {
+      "role": "profile-checkers",
+      "session": "session-gate-instance",
+      "kind": "definition",
+      "name": "e2b_registered_context.e2b_checkers",
+      "text": "e2b_checkers profile = abi_failure_checker"
+    },
+    {
+      "role": "accepted-set",
+      "session": "session-gate-instance",
+      "kind": "definition",
+      "name": "e2b_registered_context.e2b_accepts",
+      "text": "e2b_accepts registry profile execution <longleftrightarrow> (<exists>certificate <in> registry. e2_cert_profile certificate = profile <and> e2b_execution certificate = execution)"
+    },
+    {
+      "role": "registered-requests",
+      "session": "session-gate-instance",
+      "kind": "definition",
+      "name": "e2b_registered_context.e2b_registered",
+      "text": "e2b_registered profile execution <longleftrightarrow> (<exists>certificate <in> e2_registry. e2_cert_profile certificate = profile <and> e2_cert_is_record certificate <and> e2b_execution certificate = execution)"
+    },
+    {
+      "role": "gate-instance",
+      "session": "session-gate-instance",
+      "kind": "theorem",
+      "name": "e2b_registered_context.e2b_registered_gate",
+      "text": "e2_runtime_link_27_registered e2b_manifests e2b_bridges e2b_checkers (e2b_accepts e2_registry) e2b_abstraction e2b_registered"
+    },
+    {
+      "role": "certificate-removal",
+      "session": "session-gate-instance",
+      "kind": "theorem",
+      "name": "e2b_registered_context.e2b_removing_any_certificate_breaks_gate",
+      "text": "<forall>certificate <in> e2_registry. <not> e2_runtime_link_27_registered e2b_manifests e2b_bridges e2b_checkers (e2b_accepts (e2_registry - {certificate})) e2b_abstraction e2b_registered"
+    },
+    {
+      "role": "accepted-set-is-image",
+      "session": "session-gate-instance",
+      "kind": "theorem",
+      "name": "e2b_registered_context.e2b_accepted_set_is_the_registry_image",
+      "text": "e2b_accepts e2_registry profile execution <longleftrightarrow> (<exists>certificate <in> e2_registry. e2_cert_profile certificate = profile <and> e2b_execution certificate = execution)"
+    },
+    {
+      "role": "registered-certificates-accepted",
+      "session": "session-gate-instance",
+      "kind": "theorem",
+      "name": "e2b_registered_context.e2b_every_registered_certificate_is_accepted",
+      "text": "<forall>certificate <in> e2_registry. e2b_accepts e2_registry (e2_cert_profile certificate) (e2b_execution certificate)"
+    },
+    {
+      "role": "acceptance-partition",
+      "session": "session-gate-instance",
+      "kind": "theorem",
+      "name": "e2b_registered_context.e2b_acceptance_partition",
+      "text": "runtime_acceptance_partition (e2b_accepts e2_registry) e2b_abstraction"
+    },
+    {
+      "role": "registry-partition",
+      "session": "session-gate-instance",
+      "kind": "theorem",
+      "name": "e2b_registered_context.e2b_registry_partition",
+      "text": "<forall>certificate <in> e2_registry. abstraction_outcome (e2b_abstraction (e2_cert_profile certificate) (e2b_execution certificate)) = TRUST_Abstract_Malformed <or> (<exists>operation <in> set all_runtime_operations. runtime_operation_of_command (abstraction_command (e2b_abstraction (e2_cert_profile certificate) (e2b_execution certificate))) = Some operation)"
+    },
+    {
+      "role": "native-part",
+      "session": "session-native-part",
+      "kind": "theorem",
+      "name": "e2n_native_context.e2n_profile_part",
+      "text": "e2_profile_part (nr_manifest keccak) (e2n_bridge keccak) abi_failure_checker (e2_image_accepts e2n_certificates e2n_execution e2_registry) e2n_abstraction (e2_image_registered e2n_certificates e2n_execution) Runtime_Native"
+    },
+    {
+      "role": "partial-part",
+      "session": "session-partial-part",
+      "kind": "theorem",
+      "name": "e2p_cell_times.e2p_profile_part",
+      "text": "e2_profile_part psr_partial_manifest (e2p_bridge kc) abi_failure_checker (e2_image_accepts e2p_certificates (e2p_execution vv) e2_registry) (e2p_abstraction vv) (e2_image_registered e2p_certificates (e2p_execution vv)) Runtime_Partial"
+    },
+    {
+      "role": "hook-part",
+      "session": "session-hook-part",
+      "kind": "theorem",
+      "name": "e2h_cell_times.e2h_profile_part",
+      "text": "e2_profile_part psr_hook_manifest (e2h_bridge kc) abi_failure_checker (e2_image_accepts e2h_certificates (e2h_execution vv) e2_registry) (e2h_abstraction vv) (e2_image_registered e2h_certificates (e2h_execution vv)) Runtime_Hook"
+    },
+    {
+      "role": "native-part-removal",
+      "session": "session-native-part",
+      "kind": "theorem",
+      "name": "e2n_native_context.e2n_removing_any_certificate_breaks_part",
+      "text": "<forall>certificate <in> set e2n_certificates. <not> e2_profile_part (nr_manifest keccak) (e2n_bridge keccak) abi_failure_checker (e2_image_accepts e2n_certificates e2n_execution (e2_registry - {certificate})) e2n_abstraction (e2_image_registered e2n_certificates e2n_execution) Runtime_Native"
+    },
+    {
+      "role": "partial-part-removal",
+      "session": "session-partial-part",
+      "kind": "theorem",
+      "name": "e2p_cell_times.e2p_removing_any_certificate_breaks_part",
+      "text": "<forall>certificate <in> set e2p_certificates. <not> e2_profile_part psr_partial_manifest (e2p_bridge kc) abi_failure_checker (e2_image_accepts e2p_certificates (e2p_execution vv) (e2_registry - {certificate})) (e2p_abstraction vv) (e2_image_registered e2p_certificates (e2p_execution vv)) Runtime_Partial"
+    },
+    {
+      "role": "hook-part-removal",
+      "session": "session-hook-part",
+      "kind": "theorem",
+      "name": "e2h_cell_times.e2h_removing_any_certificate_breaks_part",
+      "text": "<forall>certificate <in> set e2h_certificates. <not> e2_profile_part psr_hook_manifest (e2h_bridge kc) abi_failure_checker (e2_image_accepts e2h_certificates (e2h_execution vv) (e2_registry - {certificate})) (e2h_abstraction vv) (e2_image_registered e2h_certificates (e2h_execution vv)) Runtime_Hook"
+    },
+    {
+      "role": "native-code-pins",
+      "session": "session-native-part",
+      "kind": "theorem",
+      "name": "e2n_native_context.e2n_accepted_execution_pins_code",
+      "text": "assumes ACC: \"e2_image_accepts e2n_certificates e2n_execution e2_registry execution\" shows \"<forall>address <in> footprint_addresses (current_footprint (transaction_pre execution)). <exists>code. manifest_expected_code (nr_manifest keccak) (current_topology (transaction_pre execution)) address = Some code <and> account_code_at (transaction_pre execution) address = Some code\""
+    },
+    {
+      "role": "partial-code-pins",
+      "session": "session-partial-part",
+      "kind": "theorem",
+      "name": "e2p_cell_times.e2p_accepted_execution_pins_code",
+      "text": "assumes ACC: \"e2_image_accepts e2p_certificates (e2p_execution vv) e2_registry execution\" and ADDRESS: \"address <in> footprint_addresses (current_footprint (transaction_pre execution))\" shows \"(address = 1136628940260574992893479910319181283093952727985 <and> account_code_at (transaction_pre execution) address = Some (psr_fill_immutables psr_partial_adapter_template psr_partial_adapter_fills)) <or> (address = 1405310203571408291950365054053061012934685786634 <and> account_code_at (transaction_pre execution) address = Some psr_partial_token_template)\""
+    },
+    {
+      "role": "hook-code-pins",
+      "session": "session-hook-part",
+      "kind": "theorem",
+      "name": "e2h_cell_times.e2h_accepted_execution_pins_code",
+      "text": "assumes ACC: \"e2_image_accepts e2h_certificates (e2h_execution vv) e2_registry execution\" and ADDRESS: \"address <in> footprint_addresses (current_footprint (transaction_pre execution))\" shows \"(address = 263400868551549723330807389252719309078400616203 <and> account_code_at (transaction_pre execution) address = Some (psr_fill_immutables psr_hook_adapter_template psr_hook_adapter_fills)) <or> (address = 1460527404560287590434513347898208524365513298092 <and> account_code_at (transaction_pre execution) address = Some psr_hook_token_template)\""
+    },
+    {
+      "role": "native-pinned-runtime",
+      "session": "session-native-canonical",
+      "kind": "theorem",
+      "name": "e2n_native_context.e2n_accepted_execution_runs_pinned_code",
+      "text": "assumes ACC: \"e2_image_accepts e2n_certificates e2n_execution e2_registry execution\" and TOPOLOGY: \"current_topology (transaction_pre execution) = TRUST_Native endpoint\" and ADDRESS: \"address <in> footprint_addresses (current_footprint (transaction_pre execution))\" shows \"address = endpoint <and> account_code_at (transaction_pre execution) address = Some pw_expected_runtime_code\""
+    },
+    {
+      "role": "native-product-spec",
+      "session": "session-native-canonical",
+      "kind": "theorem",
+      "name": "e2n_native_context.e2n_refines_product_spec",
+      "text": "pinned_runtime_refinement_spec (nr_manifest keccak) (e2n_bridge keccak) (e2_image_accepts e2n_certificates e2n_execution e2_registry) e2n_abstraction"
+    },
+    {
+      "role": "partial-product-spec",
+      "session": "session-adapter-canonical",
+      "kind": "theorem",
+      "name": "e2p_cell_times.e2p_refines_product_spec",
+      "text": "pinned_runtime_refinement_spec psr_partial_manifest (e2p_bridge kc) (e2_image_accepts e2p_certificates (e2p_execution vv) e2_registry) (e2p_abstraction vv)"
+    },
+    {
+      "role": "hook-product-spec",
+      "session": "session-adapter-canonical",
+      "kind": "theorem",
+      "name": "e2h_cell_times.e2h_refines_product_spec",
+      "text": "pinned_runtime_refinement_spec psr_hook_manifest (e2h_bridge kc) (e2_image_accepts e2h_certificates (e2h_execution vv) e2_registry) (e2h_abstraction vv)"
+    },
+    {
+      "role": "restated-cell",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1pfreeze_cell_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-cell",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1pseize_cell_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-cell",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1pconfiscate_cell_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-cell",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1pliquidate_cell_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-cell",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1prestrict_cell_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-cell",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1precover_cell_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-cell",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1punfreeze_cell_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-cell",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1prelease_cell_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-cell",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1punrestrict_cell_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-cell",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hfreeze_cell_enforced",
+      "text": null,
+      "profile": "Hook"
+    },
+    {
+      "role": "restated-cell",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hseize_cell_enforced",
+      "text": null,
+      "profile": "Hook"
+    },
+    {
+      "role": "restated-cell",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hconfiscate_cell_enforced",
+      "text": null,
+      "profile": "Hook"
+    },
+    {
+      "role": "restated-cell",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hliquidate_cell_enforced",
+      "text": null,
+      "profile": "Hook"
+    },
+    {
+      "role": "restated-cell",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hrestrict_cell_enforced",
+      "text": null,
+      "profile": "Hook"
+    },
+    {
+      "role": "restated-cell",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hrecover_cell_enforced",
+      "text": null,
+      "profile": "Hook"
+    },
+    {
+      "role": "restated-cell",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hunfreeze_cell_enforced",
+      "text": null,
+      "profile": "Hook"
+    },
+    {
+      "role": "restated-cell",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hrelease_cell_enforced",
+      "text": null,
+      "profile": "Hook"
+    },
+    {
+      "role": "restated-cell",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hunrestrict_cell_enforced",
+      "text": null,
+      "profile": "Hook"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1pfreeze_applied_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1pfreeze_rejected_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1pseize_applied_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1pseize_rejected_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1pconfiscate_applied_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1pconfiscate_rejected_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1pliquidate_applied_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1pliquidate_rejected_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1prestrict_applied_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1prestrict_rejected_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1precover_applied_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1precover_rejected_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1punfreeze_applied_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1punfreeze_rejected_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1prelease_applied_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1prelease_rejected_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1punrestrict_applied_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_partial_keccak.e1punrestrict_rejected_enforced",
+      "text": null,
+      "profile": "Partial"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hfreeze_applied_enforced",
+      "text": null,
+      "profile": "Hook"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hfreeze_rejected_enforced",
+      "text": null,
+      "profile": "Hook"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hseize_applied_enforced",
+      "text": null,
+      "profile": "Hook"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hseize_rejected_enforced",
+      "text": null,
+      "profile": "Hook"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hconfiscate_applied_enforced",
+      "text": null,
+      "profile": "Hook"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hconfiscate_rejected_enforced",
+      "text": null,
+      "profile": "Hook"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hliquidate_applied_enforced",
+      "text": null,
+      "profile": "Hook"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hliquidate_rejected_enforced",
+      "text": null,
+      "profile": "Hook"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hrestrict_applied_enforced",
+      "text": null,
+      "profile": "Hook"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hrestrict_rejected_enforced",
+      "text": null,
+      "profile": "Hook"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hrecover_applied_enforced",
+      "text": null,
+      "profile": "Hook"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hrecover_rejected_enforced",
+      "text": null,
+      "profile": "Hook"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hunfreeze_applied_enforced",
+      "text": null,
+      "profile": "Hook"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hunfreeze_rejected_enforced",
+      "text": null,
+      "profile": "Hook"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hrelease_applied_enforced",
+      "text": null,
+      "profile": "Hook"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hrelease_rejected_enforced",
+      "text": null,
+      "profile": "Hook"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hunrestrict_applied_enforced",
+      "text": null,
+      "profile": "Hook"
+    },
+    {
+      "role": "restated-execution",
+      "session": "session-reader-cells",
+      "kind": "theorem",
+      "name": "psr_hook_keccak.e1hunrestrict_rejected_enforced",
+      "text": null,
+      "profile": "Hook"
+    }
+  ],
+  "audits": [
+    {
+      "session": "session-reader-cells",
+      "source": "fcdc7d4891efa302f5d817cf831c12502a79158da44e6134433fe69102c78854",
+      "line": "ROOT_COUNT=5261 NAME_COUNT=4655 CELL_THEOREMS=18 CELL_ROOTS=18 missing=0 oracles=0 cell_oracles=0 same_statement_pairs=142 different=0",
+      "names": 4655
+    },
+    {
+      "session": "session-adapter-canonical",
+      "source": "ac925db5113903434f01be7d0bfd3a7e6e5ccf938ba5b405e147ff2ae2a8f2fc",
+      "line": "ROOT_COUNT=1235 NAME_COUNT=1235",
+      "names": 1235
+    },
+    {
+      "session": "session-native-canonical",
+      "source": "7a5ca3c72e3e85c377e32e302449f29ec3fae75745eff3742951443c062d9256",
+      "line": "ROOT_COUNT=675 NAME_COUNT=675 AUDIT=B_AUDIT",
+      "names": 675
+    }
+  ],
+  "modelIdentity": {
+    "sameAsProduct": [
+      {
+        "path": "formal/isabelle/ERC_TRUST/Claim_Boundary.thy",
+        "bytes": 4005,
+        "sha256": "313549026c3645fbd9bb7eb7da4b32a47c4eb6257d625342de5f0927fd1da7eb"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/Executable_Regulatory_Kernel.thy",
+        "bytes": 17553,
+        "sha256": "72f531eadbe62f39849248bbf1d1de61182abc85d8d865bc8138ebd4aaf27bb8"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/Privileged_Governance.thy",
+        "bytes": 16734,
+        "sha256": "bca0c163d55f69a35350c8d79a990d6174c5ce3478682f80a285dfa53d0d614c"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/Proof_Audit.thy",
+        "bytes": 4040,
+        "sha256": "0f2860b07ceff3217c6c175e296f3ac325dad91bb043e4838e4c92e8f7084de4"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/RCP_Action_Mapping.thy",
+        "bytes": 5026,
+        "sha256": "e628178a9b09f3dab7759503db1a9a47141e932f591d4f3f19cceac359e900a4"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/README.md",
+        "bytes": 3607,
+        "sha256": "f2e5c588441082f8139478f513a9be6edc8abeb9c88616d4403ee0ebd970967f"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/ROOT",
+        "bytes": 878,
+        "sha256": "2b45689839bfc6a21c823b52382ab15f8702cf8a00817081090fc20e67d45e85"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/Regulatory_Execution_Semantics.thy",
+        "bytes": 70924,
+        "sha256": "6b621b3b36342c0d432f1d7971a6153faaa87f9c9f3c97a80593f28fb3c295c1"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/Regulatory_Execution_Simulation.thy",
+        "bytes": 93979,
+        "sha256": "68a477f4335d4572cfa01490947b2c5a6a7729d7ce1fc635bb3e6bebc318428d"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_Bound_Dependency_Assume_Guarantee.thy",
+        "bytes": 7058,
+        "sha256": "6ed2c7919a25b03170232bcb109c3c6be31d31569b5178760d09709eb5104258"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_C0_Decode_Slices.thy",
+        "bytes": 4101,
+        "sha256": "88a238346d74c3a6627e01972d0b52cbb76755ea070cfa0ce450b7e275fe4b9a"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_Compositional_State.thy",
+        "bytes": 15157,
+        "sha256": "ecb28da66b0ea1d1e1e4d05255a00246294d5ec9b5aafd320866af92c3ac880a"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_Concrete_Configuration.thy",
+        "bytes": 5896,
+        "sha256": "642daa38742595bb7a00700b08b0a24d74e18d1239eb848f45e197c78ba5ce56"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_Decoder_Guard_Words.thy",
+        "bytes": 2409,
+        "sha256": "e19b61acc6748a6059ae0194dd0ea4144612d36562873869fdf54af385e037ae"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_End_To_End_Composition.thy",
+        "bytes": 20873,
+        "sha256": "dde2f9c95d702cf4f394dc3bde7e0e000203ba95698cfd7a8ba6569e59f8ccc5"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_M4_Action_Reversal_Row_Corollaries.thy",
+        "bytes": 2193,
+        "sha256": "ae3b862dcdf0ba6b2049b0d4c92e216ce99c8745757ddc7b606854f1be3db355"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_Retrieve_Relation.thy",
+        "bytes": 15893,
+        "sha256": "5fe73a17b58d636ca2f489a02e42a442309f8f42f99cb99e72de678090475587"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_Reusable_Summaries.thy",
+        "bytes": 7659,
+        "sha256": "932d138e9c9b96e3c0c8e62753970d52af9826d1f3df7ff356cef3626fc337fa"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy",
+        "bytes": 16170,
+        "sha256": "0066aca8046e7129d007bfc527e4c7552d17b891406adfdb4720197664eb84fb"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_State_Abi_Normal_Form.thy",
+        "bytes": 7113,
+        "sha256": "b645ce637c97ee3ca7a91c889d6b05efbb233404fe056b22d21816fe3abf710f"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_Transaction_Refinement.thy",
+        "bytes": 78470,
+        "sha256": "b49b9d7a71455e547bf5185fcd66195597b185bbb5d50441b281e37eabf60149"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_Verified_Profile_Onboarding.thy",
+        "bytes": 16360,
+        "sha256": "2abd913f98815a695e8d006a7586b2accacebe8ba19cb8efeae60752ee13075e"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/Token_Compatibility.thy",
+        "bytes": 14114,
+        "sha256": "07e1c6cc1ad470bdd9fc3bebaa8acac31998c18a6b8e7cd2221f8fd1dc01ef96"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/document/root.bib",
+        "bytes": 536,
+        "sha256": "17f37b36ae719608d206e0ebae9dc27cdfc539f2cef1a7a42897ee03fe87dfa4"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/document/root.tex",
+        "bytes": 2263,
+        "sha256": "cd6fd45bc3ac39f297b47efcc3cf5f0092daef52f6f0e3e8206b71cb540f2e59"
+      },
+      {
+        "path": "formal/isabelle/ROOTS",
+        "bytes": 31,
+        "sha256": "bc0d98972158b22dd35d8e3f0c99a9231b7d7969b744ead12644ca79603944ad"
+      },
+      {
+        "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/ROOT",
+        "bytes": 488,
+        "sha256": "93a8ce9c52f9a2bc1b60952fabcb3625b580d4817babfec92db6b6d908a78d5d"
+      },
+      {
+        "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST12_Obstruction_Proof_Audit.thy",
+        "bytes": 11231,
+        "sha256": "e073c4787c450f41eaeb437e6e630995e082b3a2bf749958a0bc8e69208a9e68"
+      },
+      {
+        "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Accounting_Invariant_Obstruction.thy",
+        "bytes": 5255,
+        "sha256": "b9ba46b12ecb03baffd3f4cc0521219c6100fbb31820ad2d15b4a324a12b91fe"
+      },
+      {
+        "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Custody_Accounting.thy",
+        "bytes": 7877,
+        "sha256": "bee1f0f5cbf68f91fa9c3ca92fb5851020dd272a61b13ce5db18ccc8c8044ce9"
+      },
+      {
+        "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Linked_Run.thy",
+        "bytes": 11973,
+        "sha256": "47813adc486ad97b256df3721baf792f0a59d6edd4906babf1eca4c1a0d88f68"
+      },
+      {
+        "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Regulatory_Preservation.thy",
+        "bytes": 111130,
+        "sha256": "77a5ccac16322ea85c35d968a40f53d786d2911254ddb7e6697659bea797b4fb"
+      },
+      {
+        "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Release_Preservation.thy",
+        "bytes": 27086,
+        "sha256": "bbab722b3115ef246d9b083d6b3a405a9d3fa3ba675ad870c66278b39e9554de"
+      },
+      {
+        "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Reversal_Preservation.thy",
+        "bytes": 23717,
+        "sha256": "fcaa7178a21e63e077d303069ba80ef76cc8aef2c9e7440bc16921febf3e6aba"
+      },
+      {
+        "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_State_Interaction_Controls.thy",
+        "bytes": 13592,
+        "sha256": "68c740c4e75fb0b95facc1c3bd174fb9959e6c0fbf3a74179d2f255d100afc4e"
+      },
+      {
+        "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_State_Invariants.thy",
+        "bytes": 21220,
+        "sha256": "1f05719150c9c1eac15ca417eb0516b738150077589da0fa827acb19cdc792fe"
+      },
+      {
+        "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Structure_Invariant_Controls.thy",
+        "bytes": 28914,
+        "sha256": "d9c5603ae6343151448e3fc97d2448fd0eda0c764d8868610f9bf5742e527bdc"
+      },
+      {
+        "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Unfreeze_Preservation.thy",
+        "bytes": 24571,
+        "sha256": "142a7302a0c9378b4d2631a5994b56cd32edd0330664364c59150a2c4e4f4654"
+      }
+    ],
+    "pinnedOnly": [
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_Obligation_Ledger_Generated.thy",
+        "sha256": "722a5eea4ae2eb7b41fed0e2c3f4c19bf270f756d6b8de0f8dbb8fe6a842d426"
+      },
+      {
+        "path": "formal/isabelle/ERC_TRUST/TRUST_Out_Of_Spec_Refinement.thy",
+        "sha256": "3e51be34f4d3bf1b4528309f2bfcacb0848c11a6f632487bf960ad19c82f8471",
+        "sameAs": {
+          "record": "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
+          "artifact": "pinned-malformed-model"
+        }
+      }
+    ]
+  },
+  "kernelRuns": [
+    {
+      "id": "reader-cells-run",
+      "result": "reader-cells-run-result",
+      "inputsBefore": "reader-cells-run-inputs-before",
+      "inputsAfter": "reader-cells-run-inputs-after",
+      "buildLog": "reader-cells-run-build-log",
+      "sessions": [
+        "session-partial-worlds-1",
+        "session-partial-worlds-2",
+        "session-partial-worlds-3",
+        "session-partial-worlds-4",
+        "session-hook-worlds-1",
+        "session-hook-worlds-2",
+        "session-hook-worlds-3",
+        "session-hook-worlds-4",
+        "session-reader-cells"
+      ]
+    },
+    {
+      "id": "profile-parts-run",
+      "result": "profile-parts-run-result",
+      "inputsBefore": "profile-parts-run-inputs-before",
+      "inputsAfter": "profile-parts-run-inputs-after",
+      "buildLog": "profile-parts-run-build-log",
+      "sessions": [
+        "session-gate-common",
+        "session-partial-part",
+        "session-hook-part",
+        "session-adapter-canonical"
+      ]
+    },
+    {
+      "id": "gate-instance-run",
+      "result": "gate-instance-run-result",
+      "inputsBefore": "gate-instance-run-inputs-before",
+      "inputsAfter": "gate-instance-run-inputs-after",
+      "buildLog": "gate-instance-run-build-log",
+      "sessions": [
+        "session-native-part",
+        "session-gate-instance",
+        "session-native-canonical"
+      ]
+    }
+  ],
+  "kernelSessions": [
+    {
+      "id": "session-partial-worlds-1",
+      "run": "reader-cells-run",
+      "database": "session-partial-worlds-1",
+      "sources": [
+        {
+          "sha256": "269a64a83aafa1ab240da10aad21b92a2a77dd801f18bdba7583d6e0154353f2",
+          "bytes": 394888
+        }
+      ],
+      "passMarkers": 1,
+      "audits": [
+        {
+          "rootCount": 575,
+          "nameCount": 575
+        }
+      ]
+    },
+    {
+      "id": "session-partial-worlds-2",
+      "run": "reader-cells-run",
+      "database": "session-partial-worlds-2",
+      "sources": [
+        {
+          "sha256": "5d0918e279f21875bbfb66c739433a16c8669ef522bde65549841c1e67b83599",
+          "bytes": 159376
+        }
+      ],
+      "passMarkers": 1,
+      "audits": [
+        {
+          "rootCount": 96,
+          "nameCount": 96
+        }
+      ]
+    },
+    {
+      "id": "session-partial-worlds-3",
+      "run": "reader-cells-run",
+      "database": "session-partial-worlds-3",
+      "sources": [
+        {
+          "sha256": "6c9f2ccdce3207236fa38467a5a8494c1b47db0710c7c7f9742dcb13440ae150",
+          "bytes": 121079
+        }
+      ],
+      "passMarkers": 1,
+      "audits": [
+        {
+          "rootCount": 72,
+          "nameCount": 72
+        }
+      ]
+    },
+    {
+      "id": "session-partial-worlds-4",
+      "run": "reader-cells-run",
+      "database": "session-partial-worlds-4",
+      "sources": [
+        {
+          "sha256": "402f95f2beb8a2257242ff4c41aac96faa4a8d939e0cac8dbb33d44601c31835",
+          "bytes": 123966
+        }
+      ],
+      "passMarkers": 1,
+      "audits": [
+        {
+          "rootCount": 72,
+          "nameCount": 72
+        }
+      ]
+    },
+    {
+      "id": "session-hook-worlds-1",
+      "run": "reader-cells-run",
+      "database": "session-hook-worlds-1",
+      "sources": [
+        {
+          "sha256": "da54977f817f4b52f37ead9fe6e5d729294a7b139a883f2801e0d8d18877aa30",
+          "bytes": 387464
+        }
+      ],
+      "passMarkers": 1,
+      "audits": [
+        {
+          "rootCount": 575,
+          "nameCount": 575
+        }
+      ]
+    },
+    {
+      "id": "session-hook-worlds-2",
+      "run": "reader-cells-run",
+      "database": "session-hook-worlds-2",
+      "sources": [
+        {
+          "sha256": "751f5052d8c64a9709ad96a748968758c03068e04eb88395f3e98e8ea81dfba5",
+          "bytes": 156148
+        }
+      ],
+      "passMarkers": 1,
+      "audits": [
+        {
+          "rootCount": 96,
+          "nameCount": 96
+        }
+      ]
+    },
+    {
+      "id": "session-hook-worlds-3",
+      "run": "reader-cells-run",
+      "database": "session-hook-worlds-3",
+      "sources": [
+        {
+          "sha256": "851f9513f13fd34e2d04caacb60a895a8a3d5575e7b44e8ddc203b942f1e3086",
+          "bytes": 118565
+        }
+      ],
+      "passMarkers": 1,
+      "audits": [
+        {
+          "rootCount": 72,
+          "nameCount": 72
+        }
+      ]
+    },
+    {
+      "id": "session-hook-worlds-4",
+      "run": "reader-cells-run",
+      "database": "session-hook-worlds-4",
+      "sources": [
+        {
+          "sha256": "c0a5c4c95b24127ca8a6512adfb86faef2453c8867ed36ed97da82bb15f418cc",
+          "bytes": 121551
+        }
+      ],
+      "passMarkers": 1,
+      "audits": [
+        {
+          "rootCount": 72,
+          "nameCount": 72
+        }
+      ]
+    },
+    {
+      "id": "session-reader-cells",
+      "run": "reader-cells-run",
+      "database": "session-reader-cells",
+      "sources": [
+        {
+          "sha256": "02acc59bc026f7191158115ef4707225307247cbf927959bbf87ccaf1e1acd0d",
+          "bytes": 497066
+        },
+        {
+          "sha256": "13af2d89d2542b43ba5507ecba0337fbee387457cf383a795fe1189034abc5c5",
+          "bytes": 414140
+        },
+        {
+          "sha256": "16ad307c93dd14a7cdb18cbb1bbe26fe39a299f2273bfcceeb65d6f2f1273b53",
+          "bytes": 57216
+        },
+        {
+          "sha256": "17da56dcdcd1e11c9fbfc923a468a6bc9ea8778b565cd11f4362f406c2bc40b5",
+          "bytes": 483725
+        },
+        {
+          "sha256": "18d0ed9830541b95de11c412dff108c0ebd46f4c4fc920d699e9ae6a6c47082c",
+          "bytes": 494647
+        },
+        {
+          "sha256": "261f640e4481495ee8dfcc99859094a4af2f8a6c8cd0a926b93883606aefcfc2",
+          "bytes": 516009
+        },
+        {
+          "sha256": "2f7830d840046c8ed4e7258e9dfe6b127ef0d8e360b84f6c2dad30747a566a3c",
+          "bytes": 484971
+        },
+        {
+          "sha256": "3c6d9d671e61fa0aa9ffbb067a7863660ff2b422ee1e68ec5a12ae68580164e8",
+          "bytes": 425547
+        },
+        {
+          "sha256": "4fe725c6f0fa8d2ed2f84e94c185f618f26b5aad74c08f12094e9d01f93f61ef",
+          "bytes": 501749
+        },
+        {
+          "sha256": "8bd008d25d4b0bac7a68ea148fa30853adfa71b6dce98a11dee5ac92b5438f4c",
+          "bytes": 567068
+        },
+        {
+          "sha256": "95062fbe9493f11017d62a7dff5d9b2b4c69462333aa7d8fc13399cb30478d27",
+          "bytes": 565728
+        },
+        {
+          "sha256": "a0f49ade88562817fc750ac48f74f20dda282bce6f4cece97ab031ad1272ef03",
+          "bytes": 420145
+        },
+        {
+          "sha256": "b2f118e505845ea8e8722593c8bbd4eaaa69de9915dd3f671434c64823604783",
+          "bytes": 43578
+        },
+        {
+          "sha256": "b5d6e98e18ed52b11ae5997775cbb31b8031dd14764a01e3c5a0c86bbc3c7f43",
+          "bytes": 428933
+        },
+        {
+          "sha256": "b9ddd1131ba4752cde24593892cf7bbfb772c35a675caaf9f9a07ae13de06220",
+          "bytes": 581574
+        },
+        {
+          "sha256": "bdc7bb956969901b08695175ffc58aa3c685aa3bc60a56464564a11f311f8d33",
+          "bytes": 510644
+        },
+        {
+          "sha256": "c3983a2ba382566511c90a4df82ce8fc539cac018d8a0c59f188a1476a7c9970",
+          "bytes": 430883
+        },
+        {
+          "sha256": "ca59fd454fb5d13eb7a5f7cdc30bc82c5226f00a7fc7b8b5689e302947398ac5",
+          "bytes": 405179
+        },
+        {
+          "sha256": "caf207d7a97783d5a4f56ef517c6e70e812184bdff40a96ea313e0bf2ee09768",
+          "bytes": 364279
+        },
+        {
+          "sha256": "d0c83ec3e847bf8bd4314d9fe65139071a0cd684f09d827db6522f54bdc4a2c5",
+          "bytes": 483455
+        },
+        {
+          "sha256": "fcdc7d4891efa302f5d817cf831c12502a79158da44e6134433fe69102c78854",
+          "bytes": 277845
+        }
+      ],
+      "passMarkers": 1,
+      "audits": [
+        {
+          "rootCount": 5261,
+          "nameCount": 4655
+        }
+      ]
+    },
+    {
+      "id": "session-gate-common",
+      "run": "profile-parts-run",
+      "database": "session-gate-common",
+      "sources": [
+        {
+          "sha256": "058ab13e87ecd00065c64a46586ea30248d1fa3f6284b354cf4032b49da33e6e",
+          "bytes": 88992
+        },
+        {
+          "sha256": "a54ecae17b3625925c0ab78e708e768053709f3194ea27a486212a9324fd6e7b",
+          "bytes": 212576,
+          "sameAs": {
+            "record": "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
+            "artifact": "native-aligned-source"
+          }
+        }
+      ],
+      "passMarkers": 1,
+      "audits": [
+        {
+          "rootCount": 354,
+          "nameCount": null
+        }
+      ]
+    },
+    {
+      "id": "session-partial-part",
+      "run": "profile-parts-run",
+      "database": "session-partial-part",
+      "sources": [
+        {
+          "sha256": "1757b422cbb102871a7f6ab7fcd9491f1b5f2c300b9c3463acb8263ecc003102",
+          "bytes": 320402
+        },
+        {
+          "sha256": "d4923ecded208734720995e49e8e1514a806ef817d730807d1f2ba7516649a02",
+          "bytes": 165635,
+          "sameAs": {
+            "record": "evidence/trust12/runtime-link/malformed/aligned-gate-checkpoint-v1.json",
+            "artifact": "partial-aligned-source"
+          }
+        }
+      ],
+      "passMarkers": 1,
+      "audits": [
+        {
+          "rootCount": 276,
+          "nameCount": null
+        }
+      ]
+    },
+    {
+      "id": "session-hook-part",
+      "run": "profile-parts-run",
+      "database": "session-hook-part",
+      "sources": [
+        {
+          "sha256": "437c64c3d6f908d8a509df74aef26396773b340e370faf9dfd867314a30547cb",
+          "bytes": 312218
+        }
+      ],
+      "passMarkers": 0,
+      "audits": []
+    },
+    {
+      "id": "session-adapter-canonical",
+      "run": "profile-parts-run",
+      "database": "session-adapter-canonical",
+      "sources": [
+        {
+          "sha256": "99f1b1f0e0ab19e409b7ad865f3b6d8100f24cd14e83d9bb6ff79597bc72383b",
+          "bytes": 9187
+        },
+        {
+          "sha256": "ac925db5113903434f01be7d0bfd3a7e6e5ccf938ba5b405e147ff2ae2a8f2fc",
+          "bytes": 72633
+        },
+        {
+          "sha256": "f5c5dc27df239f6c739bbeb0bde7c0b148e23cabef54c2b3feedbb1e485f4686",
+          "bytes": 76929
+        },
+        {
+          "sha256": "fa26b77e61063a47cf853e918922782ef11229a223c83a9c400710b88e6d8e4b",
+          "bytes": 81171
+        }
+      ],
+      "passMarkers": 1,
+      "audits": [
+        {
+          "rootCount": 1235,
+          "nameCount": 1235
+        }
+      ]
+    },
+    {
+      "id": "session-native-part",
+      "run": "gate-instance-run",
+      "database": "session-native-part",
+      "sources": [
+        {
+          "sha256": "352d75e93108abc4229b32d50b9ec5769bb8c96aaa70b9206cc378ccf42b5a3b",
+          "bytes": 352639
+        }
+      ],
+      "passMarkers": 0,
+      "audits": []
+    },
+    {
+      "id": "session-gate-instance",
+      "run": "gate-instance-run",
+      "database": "session-gate-instance",
+      "sources": [
+        {
+          "sha256": "079d1e8680155d15ea49304aa776dfbfcf7f93bcb7840ee8e847f624ad8237fd",
+          "bytes": 36960
+        }
+      ],
+      "passMarkers": 0,
+      "audits": []
+    },
+    {
+      "id": "session-native-canonical",
+      "run": "gate-instance-run",
+      "database": "session-native-canonical",
+      "sources": [
+        {
+          "sha256": "65d218038c821f3e26a3cb9a496a9cc9a30466a2475dc2420475caf26107ee35",
+          "bytes": 74097
+        },
+        {
+          "sha256": "7a5ca3c72e3e85c377e32e302449f29ec3fae75745eff3742951443c062d9256",
+          "bytes": 42713
+        }
+      ],
+      "passMarkers": 1,
+      "audits": [
+        {
+          "rootCount": 675,
+          "nameCount": 675
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "session-anchor",
+      "kind": "session-database",
+      "bytes": 593920,
+      "sha256": "4456be37140c89b00321b664828d438ed2ba28573eb7fe3a4bfde1dbb34bc7f8"
+    },
+    {
+      "id": "ancestor-partition-definitions",
+      "kind": "session-database",
+      "bytes": 282624,
+      "sha256": "a966ee5a1d7cd5cde6ca6f1438fa3f5a4edd566e7192608270f310dd51fcb7c4"
+    },
+    {
+      "id": "ancestor-checker-definitions",
+      "kind": "session-database",
+      "bytes": 360448,
+      "sha256": "a0e81ecb7bcf94c5d7ca0575d1a268eba18174813ca17627a84db0d9cad56171"
+    },
+    {
+      "id": "ancestor-cell-definitions",
+      "kind": "session-database",
+      "bytes": 237568,
+      "sha256": "666553862af80670040f361a782b85c6373707d2649acc2855ac85fc12ff2732"
+    },
+    {
+      "id": "session-partial-worlds-1",
+      "kind": "session-database",
+      "bytes": 626688,
+      "sha256": "d4fc41f3b0e358c53e3831e4cc6eef0896edb39c20980f3def84c885d75db56f"
+    },
+    {
+      "id": "session-partial-worlds-2",
+      "kind": "session-database",
+      "bytes": 569344,
+      "sha256": "a5426a49dfd503e4316a150f6b9e93fd466fff372f45b48dea7be11d3809ab4d"
+    },
+    {
+      "id": "session-partial-worlds-3",
+      "kind": "session-database",
+      "bytes": 512000,
+      "sha256": "6f4b01362d16c37e7b32c29dd7614f328843f6de952245c0d052ab879670fb5f"
+    },
+    {
+      "id": "session-partial-worlds-4",
+      "kind": "session-database",
+      "bytes": 520192,
+      "sha256": "1443f8f5596d30ff52aa46bbfe2d84ca7e10e3c9d00c8de5fa607b0ccd6a74c9"
+    },
+    {
+      "id": "session-hook-worlds-1",
+      "kind": "session-database",
+      "bytes": 630784,
+      "sha256": "91b9c45691c6e1e4025ed6b1d2b6aa6a1b7692709ece66b99414a51357de1d55"
+    },
+    {
+      "id": "session-hook-worlds-2",
+      "kind": "session-database",
+      "bytes": 536576,
+      "sha256": "8e15c0cd9295651d3853c0b074f07de149cfa3e24b9c4ef10c90c0eb968f713d"
+    },
+    {
+      "id": "session-hook-worlds-3",
+      "kind": "session-database",
+      "bytes": 499712,
+      "sha256": "733204ffcbf5ae1307344a506a318421d8381ec785a8b0ba7c4225e22304e3f5"
+    },
+    {
+      "id": "session-hook-worlds-4",
+      "kind": "session-database",
+      "bytes": 528384,
+      "sha256": "8d8fd7fc04016c82b31450bf54b16cd04978005e36866f3e65318642a6722ecb"
+    },
+    {
+      "id": "session-reader-cells",
+      "kind": "session-database",
+      "bytes": 5427200,
+      "sha256": "d0f9733fc9eb4a8dd10da870e0ba13d7806adc4585d720d16d97c4c0b2377ff9"
+    },
+    {
+      "id": "session-gate-common",
+      "kind": "session-database",
+      "bytes": 917504,
+      "sha256": "55e2665b42145688658e383f4cf6d9b07cb642def72eeaa54ceee71b739e1a50"
+    },
+    {
+      "id": "session-partial-part",
+      "kind": "session-database",
+      "bytes": 1142784,
+      "sha256": "1e9808e8ea32062048853520f5981e95a6dbb65fa08d2083085dbd274b438ce3"
+    },
+    {
+      "id": "session-hook-part",
+      "kind": "session-database",
+      "bytes": 872448,
+      "sha256": "368982245502b10df6092c38e70a280ac9cf47177fc478bb29d06a15726c9710"
+    },
+    {
+      "id": "session-adapter-canonical",
+      "kind": "session-database",
+      "bytes": 946176,
+      "sha256": "b97b02f37346ebf9b2054964cba1a0384d3ab5a1b88a718b9e553c23d57ad1fa"
+    },
+    {
+      "id": "session-native-part",
+      "kind": "session-database",
+      "bytes": 913408,
+      "sha256": "7fd2b571427e17c84a3db9dc36056a168bed4ef5a7985eb7ee49f6645029563d"
+    },
+    {
+      "id": "session-gate-instance",
+      "kind": "session-database",
+      "bytes": 778240,
+      "sha256": "9ec9fd9ff0be52fb71bafac23b3e1093008566d56d5d585d01068c4fcd776546"
+    },
+    {
+      "id": "session-native-canonical",
+      "kind": "session-database",
+      "bytes": 831488,
+      "sha256": "394187e4b47c19367069d25e035d37d7c063a661781d8334fe5fd1f271fd4e96"
+    },
+    {
+      "id": "reader-cells-run-result",
+      "kind": "kernel-build-result",
+      "bytes": 16286,
+      "sha256": "fffc52e752d0b33a03daba85ec145d0f96ceea22a9d49cdcab9bb6892047c739"
+    },
+    {
+      "id": "reader-cells-run-inputs-before",
+      "kind": "proof-input-snapshot",
+      "bytes": 1122986,
+      "sha256": "89b556a82147500bb518b3521db3075ab5d6f81f97893869662a95b78ed669a8"
+    },
+    {
+      "id": "reader-cells-run-inputs-after",
+      "kind": "proof-input-snapshot",
+      "bytes": 1122986,
+      "sha256": "89b556a82147500bb518b3521db3075ab5d6f81f97893869662a95b78ed669a8"
+    },
+    {
+      "id": "reader-cells-run-build-log",
+      "kind": "kernel-build-log",
+      "bytes": 1308162,
+      "sha256": "8d69407bcc2febf67592f2f59c955452caafe93f116ee3516d6b14896083e752"
+    },
+    {
+      "id": "profile-parts-run-result",
+      "kind": "kernel-build-result",
+      "bytes": 14111,
+      "sha256": "670935d368f19afff866c4dee8579e02772d69dc30230fecd240f51a8c753a3b"
+    },
+    {
+      "id": "profile-parts-run-inputs-before",
+      "kind": "proof-input-snapshot",
+      "bytes": 1126158,
+      "sha256": "142dbb0a0da9d8776da407853073be12fb46ed487538e9929ae69f9dc3b2d116"
+    },
+    {
+      "id": "profile-parts-run-inputs-after",
+      "kind": "proof-input-snapshot",
+      "bytes": 1126158,
+      "sha256": "142dbb0a0da9d8776da407853073be12fb46ed487538e9929ae69f9dc3b2d116"
+    },
+    {
+      "id": "profile-parts-run-build-log",
+      "kind": "kernel-build-log",
+      "bytes": 60139,
+      "sha256": "95340dd1e78bbbfdec29647f3b1331e38e48120e96a4c48e423d567772842ed5"
+    },
+    {
+      "id": "gate-instance-run-result",
+      "kind": "kernel-build-result",
+      "bytes": 13719,
+      "sha256": "9edaeb83d05a2832acae2a5b4dc564e6e4a41292942f6dbdc6283b89e85285db"
+    },
+    {
+      "id": "gate-instance-run-inputs-before",
+      "kind": "proof-input-snapshot",
+      "bytes": 1127254,
+      "sha256": "f506337cd1cae1fa4f4d336d4b721855360bcdbe83ddbc17249adb50c737e8c4"
+    },
+    {
+      "id": "gate-instance-run-inputs-after",
+      "kind": "proof-input-snapshot",
+      "bytes": 1127254,
+      "sha256": "f506337cd1cae1fa4f4d336d4b721855360bcdbe83ddbc17249adb50c737e8c4"
+    },
+    {
+      "id": "gate-instance-run-build-log",
+      "kind": "kernel-build-log",
+      "bytes": 42003,
+      "sha256": "6ffdd0f484685e9a92be8bbcfc2f15b989e169560ce642afabef2b68d1d8d21e"
+    },
+    {
+      "id": "certificate-registry",
+      "kind": "registry",
+      "bytes": 548950,
+      "sha256": "53f54df8469d968c5d82dd630fae888a2f347ae3af935773cac41bfd3711eade"
+    }
+  ],
+  "retainedAssumptions": {
+    "A-KECCAK": "The gate theorems hold in a locale whose hash function parameter satisfies the recorded preimage equations of every theorem context; that this function is Keccak-256 on those preimages is assumed."
+  },
+  "rehashVerifier": {
+    "path": "scripts/trust12/verify_registered_gate_v1.py",
+    "bytes": 70860,
+    "sha256": "30a255b7d57a143fb148ba42c25cb53e2fb5eb4db488d7590e73f069a6b47fcb",
+    "command": "python3 scripts/trust12/verify_registered_gate_v1.py --product-root <product-root> --artifact-index <private-artifact-index.json>"
+  },
+  "nonclaims": {
+    "assumptionSatisfiabilityInKernel": true,
+    "keccakIdentity": true,
+    "unregisteredExecutions": true,
+    "generalRuntimeLinks": true,
+    "registryNamesRestatedCells": true,
+    "codeIdentityInKernel": true,
+    "governorAndComplianceCode": true,
+    "enforcedRelationRestated": true,
+    "proverRerun": true,
+    "registeredCentralClosure": true,
+    "independentAssurance": true,
+    "fullTrustCompletion": true,
+    "releaseOrDeployment": true
+  }
+}

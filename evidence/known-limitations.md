@@ -46,16 +46,35 @@ shipping exception cannot be described as proof completion.
 Existing Kontrol PASS records remain supplemental bounded evidence because their
 receipt does not record the proof metadata required for proof-grade credit.
 
-The registered cell theorems of the Partial and Hook profiles rest on code
-evaluation for concrete computations: in their recorded-world, decoding and
-retrieval stages about 1,600 concrete steps are proved with Isabelle's `eval`
-method, and each of the eighteen cell theorems depends on the oracle
-`Code_Generator.holds_by_evaluation`. Such a step is checked by running code that
-Isabelle generates, not by the kernel inference rules. The Native cell stages use
-no evaluation step, and kernel audits found no oracle in the Native SEIZE cell
-theorem and in the aligned malformed-gate theorems. The registered-scope
-central closure either replaces these steps with kernel proofs or names this
-trust as a retained assumption.
+The registered cell theorems of the Partial and Hook profiles were first proved
+with code evaluation for concrete computations: in their recorded-world,
+decoding, external trace and retrieval stages about 1,600 concrete steps were
+proved with Isabelle's `eval` method, and each of those eighteen cell theorems
+depends on the oracle `Code_Generator.holds_by_evaluation`. Such a step is
+checked by running code that Isabelle generates, not by the kernel inference
+rules. The eighteen cells are now restated over the storage-reading manifests of
+the two profiles and proved again without code evaluation: kernel audits find no
+oracle in the restated cell theorems or in any theorem that they depend on, nor
+in the listed theorems of the restatement, which include the reader theorems of
+the recorded worlds that it adds and 142 supporting facts proved again with
+statements identical to the earlier ones. The distinctness of the recorded
+mapping locations of each profile is proved with `code_simp`, which rewrites
+with code equations through the kernel inference rules and adds no oracle. Each
+profile also defines a table function that satisfies every recorded hash
+equation that the restated theorems assume, which shows that these equations can
+hold together; that check still uses `eval`, and no restated theorem depends on
+it. The Native cell stages use no evaluation step, and kernel audits found no
+oracle in the Native SEIZE cell theorem and in the aligned malformed-gate
+theorems. The kernel runs of the registered gate record build the Partial and
+Hook cells of the gate from the restated relations of the registered
+executions, and their audits find no oracle in the gate theorems or in any
+theorem that these depend on, among them the Native cell relations. The earlier
+cell theorems that rest on code evaluation stay in the session chain unchanged;
+the restated theorems reuse the definitions of the registered executions from
+those stages but none of their evaluated facts. The certificate registry of the
+runtime link still names the earlier stages as the kernel results of the Partial
+and Hook cells, so they remain cited until the registry or the registered-scope
+central closure names the restated theorems.
 
 TRUST 1.2 profile row grades: Native EXECUTION_TESTS; Partial EXECUTION_TESTS; Hook EXECUTION_TESTS.
 

@@ -202,6 +202,14 @@
       "coldReplay": false
     },
     {
+      "id": "registered-gate-recompute",
+      "purpose": "Rehash the completed kernel session databases, the result, input snapshots and build log of every kernel run and the private certificate registry, reread every quoted definition and theorem from the session database that stored it with its text and context, reread the kernel markers and final audits, follow the parent heap of every session, rehash every input file that each run recorded at its recorded location, and compare the derived record with the public record. No prover runs.",
+      "workingRoot": "PRODUCT",
+      "command": "python3 scripts/trust12/verify_registered_gate_v1.py --product-root PRODUCT_CHECKOUT --artifact-index REGISTERED_GATE_ARTIFACT_INDEX",
+      "passCriterion": "Status PASS_REGISTERED_GATE_RECOMPUTED.",
+      "coldReplay": false
+    },
+    {
       "id": "malformed-word-guard-recompute",
       "purpose": "Rehash the private word guard probe receipts of the unmodified copy and of every declared bounded word guard mutant, compare each receipt with the public record and check that the recorded inputs are the sealed catalog, mutant list, runners and probe sources. Foundry is not rerun.",
       "workingRoot": "PRODUCT",

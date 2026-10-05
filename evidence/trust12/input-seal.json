@@ -13,7 +13,7 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "bf27aa1b5abcc74a86dd088ac8ee3d5f98ae108a82c60ed500cf244833d5ab96"
+      "sha256": "b5d286fcb6f9348a01b6db661d49764206b82eefe9586eb8469097ccf746a05e"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
@@ -29,7 +29,7 @@
     },
     {
       "path": "evidence/known-limitations.md",
-      "sha256": "c7b083482f15e68771e02bbee49e5c8efa40645b50931f0d3923966ca70d8ffe"
+      "sha256": "b504a9ad044c6f9beed4d37307ceffcacfb9b892ddea1f41886362845323a9fd"
     },
     {
       "path": "evidence/trust12/README.md",
@@ -129,7 +129,7 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "aa2a9cc093e2d87ed033994f238c54773b690200c32180e6549d1ff2d54cc4a0"
+      "sha256": "352194d5cc4576e12ac9896ed60281e56c2eabd63562fad8f6ff559dee27e3ec"
     },
     {
       "path": "evidence/trust12/profile-implementation-evidence-review.json",
@@ -232,6 +232,10 @@
       "sha256": "c4c7bbed27cbec703bea8f534376136d0fb4ec2c3a64dc36615840bfe0eb05ba"
     },
     {
+      "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+      "sha256": "e616c1fa2733317b3e00985edd5e8c97aa3c6617cfdfc4a6720e7ce412941008"
+    },
+    {
       "path": "evidence/trust12/runtime-link/tail-preparation/route-dispositions-v1.json",
       "sha256": "5922696279bc043f38fbc414833c1654e5973496e28e1156543991a09511d4c8"
     },
@@ -273,7 +277,7 @@
     },
     {
       "path": "evidence/trust12/veri-integration-audit.md",
-      "sha256": "9877fd51c1db51ac5f3adc8fe4dee7f02744369df6b61c42f3e50088257184dd"
+      "sha256": "dde96d29e2b31211247292ed58b2766d1951f24189df9701890a71387e5576c1"
     },
     {
       "path": "evidence/trust12/veri-observation-results.json",
@@ -417,7 +421,7 @@
     },
     {
       "path": "scripts/generate-trust12-input-seal.py",
-      "sha256": "92b8c6b91c09019982eff05ba8cf27add0d8b6fb7e9a0faa1151c2d57b8b42c3"
+      "sha256": "fcee2d37792971e220ddd571d0e8e45ecef3a3119148d28c57ee7ccbec264723"
     },
     {
       "path": "scripts/generate-trust12-proof-audit.py",
@@ -564,6 +568,10 @@
       "sha256": "f1376ec0a9c9e102ff76e1149a7eb1eb125809fde0d0e8358ea0fddd4c1f91a5"
     },
     {
+      "path": "scripts/test-registered-gate.py",
+      "sha256": "c5c69a277b80d78e4223746782be8c9d6127e541e53e850607a9a0785037e2b1"
+    },
+    {
       "path": "scripts/test-route-inventory.py",
       "sha256": "283b91c73f38e906575ce6d57cb550bd587c634de0fe82e3cbdc7b81f5364a34"
     },
@@ -585,7 +593,7 @@
     },
     {
       "path": "scripts/test-trust12-required.mjs",
-      "sha256": "bef2cfb460d3ee617a64cceee503157edc0368bc2491aa577e02eccad8c91a61"
+      "sha256": "9d61402c8b3749ac25d4c203aefaaef9b6cb834c6034aa367c618c1210200df2"
     },
     {
       "path": "scripts/test-typed-failure-binding.py",
@@ -658,6 +666,10 @@
     {
       "path": "scripts/trust12/tail-preparation/test_reflection_scan.py",
       "sha256": "00256f03a4b01c4821d3ec39040043ad26fdda08a368e185ad57a5beb07108fd"
+    },
+    {
+      "path": "scripts/trust12/tail-preparation/test_registered_gate.py",
+      "sha256": "005ff2cebd03ff3de47408aa2a941b7cefafc9e40bd53c33c6be5a3c4de8b493"
     },
     {
       "path": "scripts/trust12/tail-preparation/test_route_inventory_v2.py",
@@ -776,6 +788,10 @@
       "sha256": "9b4b50ec8ed2e0e05602ed0640398328cf31d387d8da3ddaa833406b90756a8b"
     },
     {
+      "path": "scripts/trust12/verify_registered_gate_v1.py",
+      "sha256": "30a255b7d57a143fb148ba42c25cb53e2fb5eb4db488d7590e73f069a6b47fcb"
+    },
+    {
       "path": "scripts/trust12/verify_route_inventory_v1.py",
       "sha256": "5ea91bbf4c9f955b058ab5beb349fac0ca6ced2cd935aa55530a11b44a8319b4"
     },
@@ -821,7 +837,7 @@
     },
     {
       "path": "scripts/verify-trust12-required.mjs",
-      "sha256": "1209666ae242d160cbc03ce83852c25a2dee572e96839a16826df9ab8f76391c"
+      "sha256": "4286c333b50248f3b155c7015ddd04310adb81b088b94a134f50a4722374b2b6"
     },
     {
       "path": "spec/decisions/14-hook-route-classes.md",

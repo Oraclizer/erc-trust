@@ -2,6 +2,35 @@
 
 ## Unreleased
 
+- Restate the eighteen registered cells of the Partial and Hook profiles over
+  the storage-reading manifests and prove them again without code evaluation.
+  Kernel audits find no oracle in the restated cell theorems or in any theorem
+  that they depend on, nor in the listed theorems of the restatement, among
+  them 142 supporting facts proved again with statements identical to the
+  earlier ones. The earlier cell theorems that rest on code evaluation stay in
+  the session chain, and the certificate registry still names them; the known
+  limitations now state both and count the evaluated steps by stage.
+
+- Record the kernel runs that instantiate the twenty-seven-cell gate of the
+  runtime link over the three profiles in registered-gate-checkpoint-v1.json.
+  The accepted set of each profile is defined as the image of its registered
+  certificates, and the certificate list of the gate is the list of the
+  certificate registry, 96 certificates (Native 34, Partial 31, Hook 31).
+  Kernel theorems state the gate for the storage-reading manifests of the three
+  profiles, that removing any one of the 96 certificates makes the gate false,
+  and that the accepted set partitions over the whole registry; each profile
+  part also states that every accepted execution runs the code that the profile
+  manifest pins and that the accepted set refines the product specification.
+  The Partial and Hook cells are built from the restated relations of their
+  registered executions. Kernel audits find no oracle and no skipped proof in
+  the audited theorems of the three runs. The theorems hold in a locale whose
+  assumptions include the recorded hash equations (A-KECCAK), and the
+  certificate registry record still names the earlier cell stages. The public
+  verifier runs in the required gate and recomputes every criterion from the
+  quoted statements; its saved mode rereads every quoted statement and kernel
+  marker from the session database that stored it and rehashes the recorded
+  input files of every run.
+
 - Resolve the open item of the state and receipt crosswalk that waited for a
   formal reader of storage in the reviewed dispositions: it names the storage
   reader record. The reflection scan accepts the resolved form, and its record
