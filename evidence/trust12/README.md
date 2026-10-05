@@ -1,8 +1,8 @@
-# TRUST 1.2 development evidence
+# TRUST 1.2 evidence
 
-The implementation adds a fresh T-REX hook profile. This directory records development
-evidence separately from the published kernel version 2 baseline. It does not declare
-all TRUST 1.2 work complete or discharge the general runtime link.
+The implementation adds a fresh T-REX hook profile. This directory records the TRUST 1.2
+evidence separately from the published kernel version 2 baseline. TRUST 1.2 is complete within the registered-execution scope.
+Nothing here discharges the general runtime link, which remains deferred research.
 
 ## Current completion policy (2026-10-04)
 
@@ -39,8 +39,8 @@ Closing a deferred general connection requires a new audited Isabelle theorem in
 current proof catalog, plus separate checked execution, normal-branch,
 same-domain consumer-removal, and
 compiled-consumer records bound to the final source, ABI, runtimes and profile
-scope. TRUST 1.2 completion additionally requires fresh independent reproduction
-on the final inputs; full end-to-end refinement additionally requires every
+scope. TRUST 1.2 completion additionally required fresh independent reproduction
+on the final inputs, which passed; full end-to-end refinement additionally requires every
 general connection and the central end-to-end ledger.
 
 Existing Kontrol PASS records remain supplemental bounded evidence because their
@@ -97,12 +97,12 @@ initcode length, including the membership array.
   consistency alone cannot establish preservation across every regulatory step.
 - The symbolic Native harness admits every positive pair `second <= first`,
   including targets above supply. A Foundry fuzz pass is not a Kontrol proof receipt.
-- General `runtime_link` and connected
-  runtime histories, and fresh independent conformance/assurance remain separate
-  obligations. Legacy evidence is not automatically credited to the new hook profile.
+- General `runtime_link` and connected runtime histories remain separate, deferred
+  obligations; the fresh independent assurance of the registered-execution scope passed.
+  Legacy evidence is not automatically credited to the new hook profile.
 - `obligation-ledger.json` keeps functional conformance and runtime refinement separate.
-  Its `CURRENT-MANDATORY` and `RESEARCH-RESIDUAL` rows prevent the bounded results from
-  becoming an end-to-end claim.
+  Its `RESEARCH-RESIDUAL` rows, the three deferred general runtime links, keep the
+  registered-scope results from becoming an end-to-end claim.
 
 ## Local replay
 
@@ -148,9 +148,9 @@ They are not a rerun of the historical 121 implementation mutations.
 The three v3 aggregate entrypoints consume `verify-trust12-required.mjs`. It binds
 legacy Native and Partial evidence, the exact previously audited Hook inputs, the
 nine actual T-REX integration tests and six semantic mutations, the complete
-Isabelle parent/child session graph, and the open TRUST 1.2 obligations. A passing
-check means consistent development evidence; general runtime refinement remains
-incomplete and release mode stays prohibited.
+Isabelle parent/child session graph, and the TRUST 1.2 obligation ledger. A passing
+check now reports the registered-execution completion of TRUST 1.2; general runtime
+refinement remains incomplete and release mode stays prohibited.
 
 The Foundry recorder accepts `--local` with the original `local-validation.json`.
 It checks raw log hashes and individual test outcomes against the recorded source
@@ -205,7 +205,7 @@ actual proof export before recording the model theorem and control groups.
 `model-source-normalization.json` reconstructs the reviewed bytes across the
 small line-ending edits. The required gate binds the exact model result and
 rejects model, review, input and release-promotion drift; each of its negative
-fixtures must be rejected. The three runtime producer obligations remain open;
+fixtures must be rejected. The three general runtime producer obligations remain open as deferred research;
 the legacy Partial profile remains full=false.
 
 `runtime-producer-feasibility.json` records the completed 21-minute local
@@ -250,7 +250,8 @@ general frame projection or the original Native proof.
 native-storage-progress.json records the original node99 SLOAD returning 0 in
 actual EVM.sload, push and PC-increment edges. Thirteen checked finite-map
 helpers preserve the functional update, original constraints and runtime input.
-The continued Native proof remains at node148/PC7618 with one pending node.
+That continued proof attempt stopped at node148/PC7618 with one pending node; the
+Native general symbolic obligation was closed separately (see below).
 native-storage-raw-inventory.json binds the retained local proof files, exact
 queries, normalized RPC results, helper exporters, modules and runners.
 
@@ -348,8 +349,9 @@ python3 scripts/trust12/verify_model_source_reception_v1.py \
 ```
 
 This is model source reception. Original symbolic operational execution,
-runtime-to-model correspondence, the three general profile links, central
-closure, final Assurance and full TRUST completion remain open. Existing
+runtime-to-model correspondence and the three general profile links remain open
+as deferred research. The registered-scope central closure and its fresh
+independent assurance are recorded separately below. Existing
 implementation, ABI and compiled runtime identities are preserved.
 
 ## Registered-scope central closure
@@ -382,5 +384,6 @@ python3 scripts/test-registered-closure.py
 
 The closure covers the registered executions only. The `runtime_link` and
 `runtime_link_spec` locale assumptions remain for every other execution, the three
-general runtime links are deferred research, and the fresh independent assurance is
-open.
+general runtime links are deferred research, and the fresh independent assurance
+passed on the sealed final inputs
+([report](assurance/trust12-runtime-link-assurance-seal-v2-final-assurance.json)).

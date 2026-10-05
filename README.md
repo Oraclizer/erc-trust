@@ -30,11 +30,10 @@
 
 ERC-TRUST is a conformance extension of the proposed **ERC-8319**
 (Regulatory Compliance Protocol). ERC-8319 is an open, not-yet-merged Draft
-at [ethereum/ERCs PR #1848](https://github.com/ethereum/ERCs/pull/1848). The
-official ERC-TRUST proposal will be submitted after ERC-8319 merges, with the
-intended preamble `requires: 20, 165, 7943, 8319`; until then ERC-TRUST has
-no official ERC number and [`docs/ERC-DRAFT.md`](docs/ERC-DRAFT.md) is the
-working draft.
+at [ethereum/ERCs PR #1848](https://github.com/ethereum/ERCs/pull/1848). No
+official ERC-TRUST proposal has been submitted yet; until one is, ERC-TRUST has
+no official ERC number and [`docs/ERC-DRAFT.md`](docs/ERC-DRAFT.md), whose
+preamble is `requires: 20, 165, 7943, 8319`, is the working draft.
 
 ## Research paper
 
@@ -47,12 +46,11 @@ into an audit, deployment verification, compiler-correctness result, or a
 complete Isabelle-to-EVM refinement theorem.
 
 The permanent arXiv record preserves its version history: v1 binds candidate
-1 and v2 binds candidate 2, the shipped candidate. The successor now on the
-public `main` branch implements kernel version 2 of the wire format, which
-the paper does not yet describe; a revision is pending, and until it appears
-this repository, not the paper, describes the successor. Readers should use
-the latest arXiv version together with the exact commit and manifest
-identities stated here.
+1, v2 binds candidate 2, the shipped candidate, and v3 binds the kernel
+version 2 successor at commit `a1cd93c8288b2a92655a9daf2e96d7f564cda614`. No
+arXiv version describes the TRUST 1.2 hook profile or its registered-execution
+evidence; this repository describes them. Readers should use the latest arXiv
+version together with the exact commit and manifest identities stated here.
 
 ## The problem
 
@@ -216,10 +214,10 @@ than Solidity. Measured on this tree (files | lines):
 
 | Layer | Successor (kernel version 2) | Preserved candidate 2 history | What it is |
 | --- | --- | --- | --- |
-| Isabelle/HOL theories | 22 files, 9,413 lines in `formal/isabelle/ERC_TRUST/` | 41 files, 2,802 lines under `evidence/candidate-2/` | The abstract model, its theorems, and the generated bridge and ledger theories |
+| Isabelle/HOL theories | 23 files, 10,239 lines in `formal/isabelle/ERC_TRUST/`; 11 files, 4,593 lines in `formal/isabelle/TRUST12_OBSTRUCTIONS/` | 41 files, 2,802 lines under `evidence/candidate-2/` | The abstract model, its theorems, the TRUST 1.2 state invariants, and the generated bridge and ledger theories |
 | KEVM and Kontrol K sources | 1 file, 37 lines under `formal/kevm/` | 248 files, 35,114 lines under `evidence/candidate-2/formal/kevm/` | Bytecode-level claims and lemmas; the successor KEVM program has not been restarted |
 | Certora rules | 1 successor spec with 4 rules and 56 lines under `implementation/certora/`; exact 4/4 PASS receipt recorded | 11 files, 858 lines under `evidence/candidate-2/` | Bounded source-level rules on the current Partial adapter runtime; not an end-to-end refinement result |
-| Solidity | 14 source files, 3,211 lines, plus 15 test, Kontrol, and Certora harness files with 5,022 lines | 30 files, 15,315 lines under `evidence/candidate-2/` and `pilot/` | The reference contracts those artifacts are about |
+| Solidity | 19 source files, 4,748 lines, plus 18 test, Kontrol, and Certora harness files with 5,552 lines | 30 files, 15,315 lines under `evidence/candidate-2/` and `pilot/` | The reference contracts those artifacts are about |
 
 The boundaries of what that evidence does and does not establish are stated
 below, in `evidence/claim-matrix.md`, and in `evidence/known-limitations.md`;
@@ -243,20 +241,24 @@ The successor on public `main` (kernel version 2, working label
 
 | Layer | Result |
 | --- | --- |
-| Foundry | 93/93 tests across seven suites; two fuzz properties at 256 runs; nine invariants at 256 runs and depth 500 (1,152,000 calls, zero reverts) |
+| Foundry | 102/102 tests across eight suites, including nine integration tests that execute the pinned upstream T-REX 4.1.3 bytecode through the hook adapter; two fuzz properties at 256 runs; nine invariants at 256 runs and depth 500 (1,152,000 calls, zero reverts) |
 | Mutation | 121/121 declared faults killed, including Partial descriptor, touched-account restriction post-state, role-authentic observation, sealed-topology view, and Partial interface ID negatives |
 | Kontrol and KEVM | 4/4 proofs rerun on the successor native runtime; the adapter has no symbolic lane |
-| Isabelle/HOL abstract model | 22 theories modelling kernel version 2; clean build and proof audit with 412 explicit roots, 413 qualified facts, and zero oracle dependencies |
+| Isabelle/HOL abstract model | Sessions `ERC_TRUST` (23 theories modelling kernel version 2) and `TRUST12_Accounting_Obstruction` (11 theories); recorded clean build and proof audit with 675 explicit roots, 693 qualified facts, and zero oracle dependencies |
 | Obligation ledger | 74 rows: 70 closed, 2 open (the undischarged runtime link), 2 not applicable; closure conditional |
 | Deterministic build | Two isolated clean builds of the three runtimes, byte-identical |
 | Runtime binding | Three runtimes agree with the pinned-compiler replay in six semantic projections; verifier self-mutation 18/18 |
 | Independent reproduction | 23 vectors, 401 assertions reproduced from the specification alone |
 | Certora | 4/4 named rules PASS with advanced sanity, exact nine-file input root, provider provenance, and current Partial adapter runtime binding |
 | SDK | 13 source tests plus a pack-install consumer smoke from the package root |
+| TRUST 1.2 | Complete within the registered-execution scope: kernel-checked registered executions of Native, Partial, and Hook bound to their exact compiled runtimes, one registered-scope central closure that names its retained assumptions, and a fresh independent assurance by an internal reviewer who took no part in building the runtime link (not a third-party audit); general runtime-to-model correspondence is deferred research |
 
 The claim this supports is "mapped implementation evidence; end-to-end
 refinement incomplete": no theorem states that the compiled runtime
-implements the model, and no Full or refinement-complete wording applies. The
+implements the model for every declared execution, and no Full or
+refinement-complete wording applies. TRUST 1.2 is complete within the registered-execution scope. Its
+scope, retained assumptions, and replay limits are stated in
+[`evidence/trust12/release-notes.md`](evidence/trust12/release-notes.md). The
 shipped candidate `0.1.0-candidate.2` keeps its own disposition as history in
 the [verification summary](evidence/verification-summary.md); the exact runs,
 hashes, harnesses, and replay commands of both are in that summary,

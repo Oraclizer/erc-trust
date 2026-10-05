@@ -1,7 +1,9 @@
 # Decision 13: the completion scope of TRUST 1.2
 
 Status: recorded as the 2026-10-04 completion direction in
-`evidence/trust12/release-policy.json`, 2026-10-04. The evidence mode remains
+`evidence/trust12/release-policy.json`, 2026-10-04. Met on 2026-10-05, when the
+fresh independent assurance passed and the ledger recorded TRUST 1.2 as complete
+within the registered-execution scope. The evidence mode remains
 `successor-development`; no release or deployment claim follows.
 
 ## Decision

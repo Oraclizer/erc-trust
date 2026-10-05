@@ -75,7 +75,9 @@ exact source, runtime, harnesses, assumptions, and claim boundaries. The
 successor Certora receipt covers four named rules on the current ERC-3643
 Partial adapter runtime; receipts under `evidence/candidate-2/` describe
 different historical bytes. None of these results is an independent security
-audit or covers deployments or external legal and factual truth.
+audit or covers deployments or external legal and factual truth. The TRUST 1.2
+independent assurance is an internal review by a reviewer who took no part in
+building the runtime link; it is not a third-party or security audit.
 
 See:
 
