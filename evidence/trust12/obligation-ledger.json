@@ -2205,7 +2205,7 @@
     }
   ],
   "centralClosure": {
-    "status": "INCOMPLETE",
+    "status": "COMPLETE_REGISTERED_SCOPE",
     "preservation": "PASS_ABSTRACT_MODEL: initial, ordinary, governance, failure and all nine regulatory state_wf preservation, linked-run induction and outcome-sensitive controls. Actual committed-source clean build and bounded independent source reviews are recorded in model-results.json and its references.",
     "reflection": "No general compiled-runtime reflection theorem. Within the registered-execution scope the reflection scan record classifies every guard and state write on the typed command paths, and the registered central closure cites it.",
     "routeExhaustiveness": "PASS_ROUTE_INVENTORY: every selector of the seven profile runtimes has a class (the Hook runtimes by decision 14), and every state-changing route outside the typed commands has a disposition record that a closed row or an accepted decision record of its own runtime justifies and that a passed test executes on that runtime, including the permissionless resynchroniseFrozen and the never-succeeding activateSeal of the Hook adapter (evidence/trust12/runtime-link/tail-preparation/route-inventory-checkpoint-v1.json). The upstream token is not classified (A-EXTERNAL); batchForcedTransfer, recovery and post-activation mint/burn callbacks remain outside the graded Hook scope.",
@@ -2217,13 +2217,20 @@
       "RESEARCH-RUNTIME-LINK-PARTIAL"
     ],
     "shippingExceptions": [],
-    "releaseScopeReset": "The 2026-09-13 release-scope reset and the 2026-09-25 completion direction are historical. Jay Kim's 2026-10-04 completion direction defines TRUST 1.2 completion at the registered-execution scope and defers general correspondence as research while preserving scoped implementation-evidence rows."
+    "releaseScopeReset": "The 2026-09-13 release-scope reset and the 2026-09-25 completion direction are historical. Jay Kim's 2026-10-04 completion direction defines TRUST 1.2 completion at the registered-execution scope and defers general correspondence as research while preserving scoped implementation-evidence rows.",
+    "independentAssurance": {
+      "status": "PASS_FRESH_ASSURANCE",
+      "report": {
+        "path": "evidence/trust12/assurance/trust12-runtime-link-assurance-seal-v2-final-assurance.json",
+        "sha256": "8bcf90d4e68cc16c91d665fcced5998d7fa9bfee4c8d61885e6184ceb87d933a"
+      }
+    }
   },
   "releasePolicy": "evidence/trust12/release-policy.json",
   "releaseAssessment": {
-    "status": "ASSURANCE_PENDING",
-    "trust12Complete": false,
+    "status": "EVIDENCE_READY",
+    "trust12Complete": true,
     "fullRefinementComplete": false,
-    "meaning": "Three scoped profile implementation rows, the general symbolic FREEZE obligation and the registered-scope central closure are CLOSED. The fresh independent assurance that TRUST 1.2 completion requires is open. The three general runtime links are deferred research and unproved. No shipping exception, final Assurance or release is asserted."
+    "meaning": "Three scoped profile implementation rows, the general symbolic FREEZE obligation and the registered-scope central closure are CLOSED, and the fresh independent assurance passed on the sealed final inputs, so TRUST 1.2 is complete within the registered-execution scope. The three general runtime links are deferred research and unproved. No shipping exception or release is asserted."
   }
 }

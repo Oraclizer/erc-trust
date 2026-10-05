@@ -45,8 +45,13 @@ registered-scope central closure are recorded. The closure record
 `trust12/registered-central-closure/closure-v1.json` discharges every gate,
 malformed-branch and central condition recorded in
 `trust12/runtime-link/tail-preparation/tail-obligations-v1.json` other than the
-independent assurance and names the assumptions that remain. The fresh independent
-assurance is open, so TRUST 1.2 is not yet complete.
+independent assurance and names the assumptions that remain. A reviewer who took no
+part in building the runtime link checked the final inputs frozen by the seal
+`trust12/assurance/trust12-runtime-link-assurance-seal-v2.json` and recorded a PASS verdict in
+`trust12/assurance/trust12-runtime-link-assurance-seal-v2-final-assurance.json`. This was an
+internal review within the replay scope of its seal, not a third-party audit; the full
+runtime-link proof chain was not rebuilt from an empty heap store.
+TRUST 1.2 is complete within the registered-execution scope.
 General runtime-to-model correspondence in each declared profile is deferred research and is not required for TRUST 1.2 completion.
 The verified Isabelle abstract model and profile-specific compiled-code evidence
 remain valid only within their recorded scopes. The general `runtime_link`

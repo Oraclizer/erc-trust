@@ -33,7 +33,8 @@ finding and names the retained assumptions, bound to positive, same-scope
 negative and compiled-consumer records.
 That record is `registered-central-closure/closure-v1.json`; its positive,
 negative and compiled-consumer records are in the same directory, the ledger row
-`REGISTERED-CENTRAL-CLOSURE` is closed, and the fresh independent assurance is open.
+`REGISTERED-CENTRAL-CLOSURE` is closed, and the fresh independent assurance passed on the sealed
+final inputs (`assurance/trust12-runtime-link-assurance-seal-v2-final-assurance.json`).
 Closing a deferred general connection requires a new audited Isabelle theorem in the
 current proof catalog, plus separate checked execution, normal-branch,
 same-domain consumer-removal, and
@@ -266,7 +267,7 @@ Duplicate-map and wrong-value controls are local helper checks. They are not the
 same-domain FREEZE guard-removal evidence, which is recorded separately. The Native
 general symbolic obligation is closed. The three profile implementation-
 evidence obligations are closed at EXECUTION_TESTS, the registered-scope central
-closure is closed and awaits the fresh independent assurance, and the three
+closure is closed and its fresh independent assurance passed, and the three
 general runtime-link obligations are deferred
 research and unproved. The existing aggregate gate checks
 sealed development-evidence consistency; it does not replay these K proofs or

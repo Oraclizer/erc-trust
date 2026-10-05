@@ -2,6 +2,31 @@
 
 ## Unreleased
 
+- Record the fresh independent assurance of TRUST 1.2. A reviewer who took no
+  part in building the runtime link checked the final inputs frozen by the
+  published seal and recorded a PASS verdict in
+  evidence/trust12/assurance/trust12-runtime-link-assurance-seal-v2-final-assurance.json
+  within the replay scope of the seal: the product build, tests and malformed
+  input probes on the sealed commit, the mutation campaign of its first attempt
+  on byte-identical implementation sources, the saved-mode recomputations, a
+  clean CI replay of the public proof sessions, and a comparison of a rebuild
+  of the registered gate sessions and one cell session per profile over the
+  recorded ancestor heaps with their records. This was an internal review by a
+  non-participant, not a third-party audit, and the full runtime-link proof
+  chain was not rebuilt from an empty heap store. The ledger records the
+  assurance, the central closure is complete at the registered-execution
+  scope and the release assessment reports EVIDENCE_READY. TRUST 1.2 is
+  complete within the registered-execution scope; the general runtime links
+  remain deferred research, and no release or deployment is made.
+
+- Publish the seals of the assurance inputs in evidence/trust12/assurance/.
+  The assurance on the first seal returned the work to building because the
+  kernel replay comparison did not mask the wall-clock values that audit code
+  binds in ML; the replay kit now masks that binding form, and the second seal
+  binds the corrected kit. The seal tool records input lists and a kernel
+  replay kit, and the independent assurance condition accepts a PASS verdict
+  within the replay scope that the seal declares.
+
 - Close the registered-scope central closure of TRUST 1.2 in
   registered-central-closure/closure-v1.json, with its positive, negative and
   compiled-consumer records in the same directory. For each of the ten

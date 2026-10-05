@@ -425,7 +425,7 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "eac27f0d1b59c45c2ce2ee80993425b1b3a9a83fdd547626fa9944d0daa219f1"
+        "sha256": "3bbb80abd56e4eefa7e5d1395536c27a1a78a888e5adb0992ec91818084d0b4b"
       }
     },
     "runtime": {
@@ -456,7 +456,7 @@
       ]
     },
     "trust12Required": {
-      "centralClosure": "INCOMPLETE",
+      "centralClosure": "COMPLETE_REGISTERED_SCOPE",
       "currentMandatory": [],
       "evidence": [
         {
@@ -465,19 +465,19 @@
         },
         {
           "path": "evidence/trust12/release-notes.md",
-          "sha256": "d12de4400b77cb8b1c848901c2b7a0c49a84bd12bbb159047b1ad51868771bd9"
+          "sha256": "fa25b1910cef51507c64ed6cabf382634066bf87f0b0e625886b69ee593697aa"
         },
         {
           "path": "evidence/claim-matrix.md",
-          "sha256": "8f74c6dbe2ae5b221262a388d62c386ab94b76a7be8a07bb0b9d8eb8012c6812"
+          "sha256": "eee9bde867ad630c3ce35b0425bb811042399eb3c48ce932980fef32b4e017a5"
         },
         {
           "path": "evidence/known-limitations.md",
-          "sha256": "6629e81ee00779840ad2371f965d1e5b50f49dbbd32bcf441ea830d88a4095ad"
+          "sha256": "edfada38af5100c8bb23e5dd04fccd92bc2a8c98f56646b8c8390d6f3a5722be"
         },
         {
           "path": "evidence/trust12/obligation-ledger.json",
-          "sha256": "6d67f04dc74c2cc1befba6a239318ec80640be34a8729b956119c51b085666d1"
+          "sha256": "d8f544a1712a27e9f91663d446b62c1902560fd89d7e0343f7029d96402ed25b"
         },
         {
           "path": "evidence/trust12/runtime-identity.json",
@@ -697,7 +697,7 @@
         },
         {
           "path": "evidence/trust12/input-seal.json",
-          "sha256": "c8caad491ad914cb515c74f21ca3653bca4a58591677e9e96217cfab9442d393"
+          "sha256": "a012fdaddf95c278d08c957e229bea82babbda5670da1688587cfe42ff8095d4"
         }
       ],
       "fullRefinementComplete": false,
@@ -711,7 +711,7 @@
         "preservation": "PASS_ABSTRACT_MODEL",
         "runtimeConnection": "CONDITIONAL"
       },
-      "nonclaim": "Required development evidence is bound to current inputs. The registered-scope central closure is closed and awaits the fresh independent assurance, and general runtime-to-model correspondence is deferred research and unproved; policy consistency is not proof completion or shipping approval.",
+      "nonclaim": "TRUST 1.2 completion is limited to the registered executions of the declared final source, runtimes and profiles. General runtime-to-model correspondence is deferred research and unproved; policy consistency is not deployment approval.",
       "profiles": {
         "hook": {
           "functionalConformance": "PASS_PINNED_FRESH_TREX",
@@ -730,7 +730,7 @@
         }
       },
       "registeredCentralClosure": "CLOSED",
-      "releaseReadiness": "ASSURANCE_PENDING",
+      "releaseReadiness": "EVIDENCE_READY",
       "researchResiduals": [
         "RESEARCH-RUNTIME-LINK-HOOK",
         "RESEARCH-RUNTIME-LINK-NATIVE",
@@ -744,7 +744,7 @@
         "proofExit": 124,
         "status": "INCOMPLETE"
       },
-      "trust12Complete": false
+      "trust12Complete": true
     }
   },
   "mode": "successor-development",
@@ -810,7 +810,7 @@
     "schema": "trust12-evidence-reuse-v1"
   },
   "trust12Required": {
-    "centralClosure": "INCOMPLETE",
+    "centralClosure": "COMPLETE_REGISTERED_SCOPE",
     "currentMandatory": [],
     "evidence": [
       {
@@ -819,19 +819,19 @@
       },
       {
         "path": "evidence/trust12/release-notes.md",
-        "sha256": "d12de4400b77cb8b1c848901c2b7a0c49a84bd12bbb159047b1ad51868771bd9"
+        "sha256": "fa25b1910cef51507c64ed6cabf382634066bf87f0b0e625886b69ee593697aa"
       },
       {
         "path": "evidence/claim-matrix.md",
-        "sha256": "8f74c6dbe2ae5b221262a388d62c386ab94b76a7be8a07bb0b9d8eb8012c6812"
+        "sha256": "eee9bde867ad630c3ce35b0425bb811042399eb3c48ce932980fef32b4e017a5"
       },
       {
         "path": "evidence/known-limitations.md",
-        "sha256": "6629e81ee00779840ad2371f965d1e5b50f49dbbd32bcf441ea830d88a4095ad"
+        "sha256": "edfada38af5100c8bb23e5dd04fccd92bc2a8c98f56646b8c8390d6f3a5722be"
       },
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "6d67f04dc74c2cc1befba6a239318ec80640be34a8729b956119c51b085666d1"
+        "sha256": "d8f544a1712a27e9f91663d446b62c1902560fd89d7e0343f7029d96402ed25b"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -1051,7 +1051,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "c8caad491ad914cb515c74f21ca3653bca4a58591677e9e96217cfab9442d393"
+        "sha256": "a012fdaddf95c278d08c957e229bea82babbda5670da1688587cfe42ff8095d4"
       }
     ],
     "fullRefinementComplete": false,
@@ -1065,7 +1065,7 @@
       "preservation": "PASS_ABSTRACT_MODEL",
       "runtimeConnection": "CONDITIONAL"
     },
-    "nonclaim": "Required development evidence is bound to current inputs. The registered-scope central closure is closed and awaits the fresh independent assurance, and general runtime-to-model correspondence is deferred research and unproved; policy consistency is not proof completion or shipping approval.",
+    "nonclaim": "TRUST 1.2 completion is limited to the registered executions of the declared final source, runtimes and profiles. General runtime-to-model correspondence is deferred research and unproved; policy consistency is not deployment approval.",
     "profiles": {
       "hook": {
         "functionalConformance": "PASS_PINNED_FRESH_TREX",
@@ -1084,19 +1084,19 @@
       }
     },
     "registeredCentralClosure": "CLOSED",
-    "releaseReadiness": "ASSURANCE_PENDING",
+    "releaseReadiness": "EVIDENCE_READY",
     "researchResiduals": [
       "RESEARCH-RUNTIME-LINK-HOOK",
       "RESEARCH-RUNTIME-LINK-NATIVE",
       "RESEARCH-RUNTIME-LINK-PARTIAL"
     ],
     "shippingExceptions": [],
-    "status": "PASS_CONSISTENT_DEVELOPMENT",
+    "status": "PASS_TRUST12_REGISTERED_COMPLETION",
     "symbolicBackendComparison": {
       "guardRemoval": "NOT_RUN because the positive proof did not complete",
       "proofExit": 124,
       "status": "INCOMPLETE"
     },
-    "trust12Complete": false
+    "trust12Complete": true
   }
 }
