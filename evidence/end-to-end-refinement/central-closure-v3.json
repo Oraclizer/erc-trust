@@ -790,11 +790,11 @@
       },
       {
         "path": "evidence/known-limitations.md",
-        "sha256": "c7b083482f15e68771e02bbee49e5c8efa40645b50931f0d3923966ca70d8ffe"
+        "sha256": "b504a9ad044c6f9beed4d37307ceffcacfb9b892ddea1f41886362845323a9fd"
       },
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "aa2a9cc093e2d87ed033994f238c54773b690200c32180e6549d1ff2d54cc4a0"
+        "sha256": "352194d5cc4576e12ac9896ed60281e56c2eabd63562fad8f6ff559dee27e3ec"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -933,6 +933,10 @@
         "sha256": "7bd763ba139ceba3323df2f6ead5a7bb430c307c2c770ffefacb32492629ef3e"
       },
       {
+        "path": "evidence/trust12/runtime-link/tail-preparation/registered-gate-checkpoint-v1.json",
+        "sha256": "e616c1fa2733317b3e00985edd5e8c97aa3c6617cfdfc4a6720e7ce412941008"
+      },
+      {
         "path": "evidence/trust12/runtime-link/tail-preparation/malformed-probe-mutants-v1.json",
         "sha256": "a20f3a334a7d0d413ab7d3ad699e815dfea4d6779e30e03f9f54d9263fa82fe6"
       },
@@ -994,7 +998,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "9466a71470b7c4304f4668bf0b0b127e81fe26934694200f1006397cf6b22f35"
+        "sha256": "20395a8edf98b7be543c740872c79c13796fc12820736c35483ef5bdac9ab60e"
       }
     ],
     "fullRefinementComplete": false,

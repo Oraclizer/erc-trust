@@ -33,6 +33,7 @@ needs, the prepared inputs, the acceptance criteria and the findings that block 
 | [malformed-word-guard-mutants-v1.json](malformed-word-guard-mutants-v1.json) | The bounded word guard mutants: the kind of check each one weakens and the outcome the word guard probe must observe |
 | [malformed-word-guard-mutants-checkpoint-v1.json](malformed-word-guard-mutants-checkpoint-v1.json) | Public record of the word guard probe on the unmodified copy and on each mutant, with the private receipts by hash |
 | [storage-reader-checkpoint-v1.json](storage-reader-checkpoint-v1.json) | Public record of the storage readers of the three profile manifests: the quoted reader clauses, the read form of every abstract field, the comparison with every crosswalk column, the open item that it closes, and the session databases that stored the reader sources by hash |
+| [registered-gate-checkpoint-v1.json](registered-gate-checkpoint-v1.json) | Public record of the kernel runs that instantiate the twenty-seven-cell gate over the certificate registry: the quoted definitions and theorems, the certificate list, the final audits, the formal theories that the runs read, and the session databases and run records by hash |
 | [assurance-input-seal-schema-v1.json](assurance-input-seal-schema-v1.json) | Format of the frozen Assurance inputs |
 | [assurance-input-seal-spec-v1.json](assurance-input-seal-spec-v1.json) | Bundles, toolchain pins, reproduction commands and independent checks of the seal |
 | [assurance-checklist-v1.md](assurance-checklist-v1.md) | Procedure of the independent assessor |
@@ -168,6 +169,18 @@ stored it and recomputes the whole record:
 python3 scripts/trust12/verify_storage_reader_v1.py --metadata-only
 python3 scripts/test-storage-reader.py
 python3 scripts/trust12/verify_storage_reader_v1.py --artifact-index ARTIFACT_INDEX
+```
+
+The public record of the registered gate recomputes every criterion from the definitions and theorems it quotes, the
+certificate registry record and the records that share its session databases, and its negative controls run without
+private files. With the private index of the session databases, the run records and the private registry, the
+verifier rereads every quoted statement and kernel marker from the database that stored it, follows the parent heaps
+and rehashes the input files that each run recorded:
+
+```
+python3 scripts/trust12/verify_registered_gate_v1.py --metadata-only
+python3 scripts/test-registered-gate.py
+python3 scripts/trust12/verify_registered_gate_v1.py --artifact-index ARTIFACT_INDEX
 ```
 
 ## Findings of the preparation

@@ -383,3 +383,32 @@ of the stored build. The agreement is between definitions; it does not show
 that a deployed runtime holds these values in a general execution, and the
 instantiation of the Native cells over one common manifest and the gate over
 the twenty-seven cells are not part of the record.
+
+## Registered gate over the certificate registry (2026-10-05)
+
+The record registered-gate-checkpoint-v1.json binds three completed kernel runs
+of sixteen sessions, one chain of saved heaps that starts at the Hook value
+stage of the aligned malformed gate. The gate theorem instantiates the
+twenty-seven-cell gate over the three profiles with the accepted set of each
+profile defined as the image of its registered certificates, for the
+storage-reading manifests that the storage reader record compares with the
+crosswalk; the certificate list that the kernel printed equals the list of the
+private certificate registry, 96 certificates. Further theorems state that
+removing any one certificate makes the gate false, that the accepted set
+partitions over the whole registry, and, for each profile, that every accepted
+execution runs the code that the manifest pins at its footprint accounts and
+that the accepted set refines the product specification. The Partial and Hook
+cells are built from the restated relations of the applied and the not-applied
+registered execution of each cell, and the Native cells move the relations of
+the earlier Native stages to one manifest and one bridge. Kernel audits of the
+three runs find no oracle and no skipped proof in 6,565 audited theorems, among
+them the gate theorems and the eighteen restated cell theorems. The theorems
+hold in one locale whose assumptions are the recorded hash equations, bounds of
+the recorded timestamps and the word encoding equation; no kernel theorem
+instantiates that locale, and that the hash function is Keccak-256 is the
+retained assumption A-KECCAK. The saved mode rereads every quoted definition and
+theorem from the session database that stored it, rereads the kernel markers,
+follows the parent heaps and rehashes the input files that each run recorded.
+The certificate registry record still names the earlier cell stages as the
+kernel results of the Partial and Hook cells, and the governor and compliance
+code is bound by the registry alone.
