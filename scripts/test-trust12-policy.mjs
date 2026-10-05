@@ -509,7 +509,7 @@ try {
   test('swapped-tool-pin', (l,p) => { p.toolchain.kevmCommit=p.toolchain.kCommit; }, 'tool pin differs from formal TCB');
   test('stale-certora-version', (l,p) => { p.toolchain.certora='UNRECORDED'; }, 'Certora tool version');
   test('profile-grade-disclosure-required', () => {
-    const path='evidence/trust12/README.md'; put(path, readFileSync(resolve(root,path),'utf8').replace('TRUST 1.2 profile row grades:', 'Removed profile grades:'));
+    const path='evidence/trust12/README.md'; put(path, documents[path].replace('TRUST 1.2 profile row grades:', 'Removed profile grades:'));
   }, 'profile grade disclosure drift');
   test('bounded-native-not-closed', l => { const r=row(l,'NATIVE-SYMBOLIC-FREEZE'); promoteTests(r.symbolicEvidence);
     r.status='CLOSED'; r.positiveActivation='Fixture'; r.consumerRemovalNegative='Fixture'; }, 'bounded evidence cannot close');

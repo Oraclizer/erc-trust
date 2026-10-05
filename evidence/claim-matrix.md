@@ -22,7 +22,8 @@ Each claim below names the receipt that backs it and the qualifier it must carry
 | "Four named Certora rules pass with advanced sanity on the current ERC-3643 Partial adapter runtime: the descriptor remains Partial and never Full, the restriction predicate is exact, and subject and role observations consume actual upstream restriction flags." | Bounded rule scope only; not manifest completeness, ordinary-transfer hook closure, deployment identity, or end-to-end refinement | `evidence/certora-results-v3.json`; `evidence/evidence-expectations-v3.json`; `implementation/certora/ERC3643Partial.spec` |
 | "Every receipt that binds code identity (deterministic build, Foundry, mutation, Kontrol, runtime binding, and Certora when present) binds the current source root or runtime template, and a stale one is rejected; the Isabelle receipt binds the formal root, the independent reproduction binds the vectors, and the model regression record binds neither." | Receipts are bound to the identity of the artifact they are about, not to time | `scripts/verify-current-profile-release-v3.mjs`; `scripts/verify-runtime-binding-v3.mjs` (stale evidence rejection) |
 
-All twelve current evidence lanes are PASS and the pending-lane set is empty. The
+All thirteen current evidence lanes, including the TRUST 1.2 required-evidence lane, are
+PASS and the pending-lane set is empty. The
 evidence mode stays `successor-development`: recording every lane does not by itself
 authorize a release-mode claim, a tag, a deployment assertion, or a complete refinement
 claim.
@@ -84,7 +85,7 @@ scope, carryover duties and matching disclosures. No public release is authorize
 TRUST 1.2 shipping exceptions: none.
 
 See `evidence/trust12/release-policy.json`, `obligation-ledger.json` and
-`release-notes.md` for the current development decision and validator contract.
+`release-notes.md` for the current completion decision and validator contract.
 
 ## Allowed exact claims (candidate 2)
 

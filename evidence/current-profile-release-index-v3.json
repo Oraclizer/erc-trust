@@ -425,7 +425,7 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "3bbb80abd56e4eefa7e5d1395536c27a1a78a888e5adb0992ec91818084d0b4b"
+        "sha256": "bf487034a5ff53e368a71a84fe1862389c1488f1a27cc51e120772caf881515f"
       }
     },
     "runtime": {
@@ -469,11 +469,11 @@
         },
         {
           "path": "evidence/claim-matrix.md",
-          "sha256": "eee9bde867ad630c3ce35b0425bb811042399eb3c48ce932980fef32b4e017a5"
+          "sha256": "58b651af0f07f0e42556aeff8ce00d97dfd4c156ffb4b9395c8c9ea5d047023a"
         },
         {
           "path": "evidence/known-limitations.md",
-          "sha256": "edfada38af5100c8bb23e5dd04fccd92bc2a8c98f56646b8c8390d6f3a5722be"
+          "sha256": "c1cb043860c68473e79a1f27c92e95019d0268aed931e133a3699db64996b6df"
         },
         {
           "path": "evidence/trust12/obligation-ledger.json",
@@ -697,7 +697,7 @@
         },
         {
           "path": "evidence/trust12/input-seal.json",
-          "sha256": "a012fdaddf95c278d08c957e229bea82babbda5670da1688587cfe42ff8095d4"
+          "sha256": "38e2fd23397c4c801316bee98eca8c9830e2fee98eeda4136037e93ff107adcc"
         }
       ],
       "fullRefinementComplete": false,
@@ -823,11 +823,11 @@
       },
       {
         "path": "evidence/claim-matrix.md",
-        "sha256": "eee9bde867ad630c3ce35b0425bb811042399eb3c48ce932980fef32b4e017a5"
+        "sha256": "58b651af0f07f0e42556aeff8ce00d97dfd4c156ffb4b9395c8c9ea5d047023a"
       },
       {
         "path": "evidence/known-limitations.md",
-        "sha256": "edfada38af5100c8bb23e5dd04fccd92bc2a8c98f56646b8c8390d6f3a5722be"
+        "sha256": "c1cb043860c68473e79a1f27c92e95019d0268aed931e133a3699db64996b6df"
       },
       {
         "path": "evidence/trust12/obligation-ledger.json",
@@ -1051,7 +1051,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "a012fdaddf95c278d08c957e229bea82babbda5670da1688587cfe42ff8095d4"
+        "sha256": "38e2fd23397c4c801316bee98eca8c9830e2fee98eeda4136037e93ff107adcc"
       }
     ],
     "fullRefinementComplete": false,

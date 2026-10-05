@@ -12,6 +12,8 @@ Start with:
   lane by lane, with the candidate 2 results kept as history.
 - [`known-limitations.md`](known-limitations.md): what the code, the evidence,
   and the documents do not establish, with the artifact that owns each entry.
+- [`trust12/README.md`](trust12/README.md): the TRUST 1.2 hook profile, its
+  registered-execution evidence, and its independent assurance.
 - [`trust-ref-matrix.md`](trust-ref-matrix.md): the candidate 2 obligation
   matrix, kept as history; the successor map is the obligation ledger under
   `end-to-end-refinement/`.
@@ -31,6 +33,7 @@ Contents:
 | `mutator-inventory.md`, `pilot-*`, `clean-room-provenance.md` | Mutation inventory, the byte-bound pilot, and the clean-room provenance record |
 | `model-regression.json`, `isabelle-solidity-applicability.md` | Model-level regression and applicability notes |
 | `public-release/` | Release identity records: supersession manifests, the proof-bound identifier allowlist, and terminal receipts |
+| `trust12/` | TRUST 1.2 evidence: the hook profile, the registered-execution runtime link, the registered-scope central closure, the independent assurance report and its input seals, the obligation ledger, and the release policy; start with its README |
 
 To replay the binding checks locally, follow the quickstart in the top-level
 README; `scripts/verify-release.mjs` and

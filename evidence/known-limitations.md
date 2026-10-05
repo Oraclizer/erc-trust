@@ -20,7 +20,7 @@ forbidden by `claim-matrix.md`.
 | The obligation ledger enumerates the load-bearing abstract conditions by review. A condition the review did not name has no row, and the verifier cannot detect its absence. | `evidence/end-to-end-refinement/obligation-ledger-v3.json` |
 | The mutation campaign establishes that each listed fault is detected by the named detector. It is detector evidence for the declared faults, not a completeness result. | `evidence/mutation-results.json`; `scripts/run-mutations.ps1` |
 | The abstract model is verified within its declared semantic domain. Compiler correctness, EVM semantics, and the K-to-Isabelle correspondence of the composite decoder-guard result are trust seams, not proved objects. | `FORMAL_VERIFICATION.md` |
-| The published research paper describes kernel version 1 (candidate 2). A revision for kernel version 2 is pending; until it appears, the repository, not the paper, describes the successor. | `README.md` |
+| The published research paper (arXiv version 3) describes the kernel version 2 successor at commit `a1cd93c8288b2a92655a9daf2e96d7f564cda614`. No arXiv version describes the TRUST 1.2 hook profile, its registered executions, or their independent assurance; for those the repository is the description. | `README.md` |
 
 ## TRUST 1.2 release evidence (unreleased)
 

@@ -177,10 +177,10 @@ The successor disposition, lane by lane:
 
 | Lane | Result | Receipt |
 | --- | --- | --- |
-| Foundry | 93/93 tests across seven suites; two fuzz properties at 256 runs; nine invariants at 256 runs and depth 500 (1,152,000 calls, zero reverts); format, lint, and size gates PASS | `evidence/foundry-results-v3.json` |
+| Foundry | 102/102 tests across eight suites, including nine hook-adapter integration tests on the pinned upstream T-REX 4.1.3 bytecode; two fuzz properties at 256 runs; nine invariants at 256 runs and depth 500 (1,152,000 calls, zero reverts); format, lint, and size gates PASS | `evidence/foundry-results-v3.json` |
 | Mutation | 121/121 declared faults killed; every fault names its detector and, where it removes a load-bearing consumer, the obligation ledger row it serves | `evidence/mutation-results.json` |
 | Kontrol and KEVM | 4/4 proofs rerun on the successor native runtime under Kontrol 1.0.255 and KEVM 1.0.678; the adapter has no symbolic lane | `evidence/kontrol-results-v3.json` |
-| Isabelle/HOL | 22 theories; clean build and proof audit in continuous integration with 412 explicit roots, 413 qualified facts, zero oracle dependencies, zero banned source forms | `evidence/isabelle-results-v3.json` |
+| Isabelle/HOL | Sessions `ERC_TRUST` (23 theories) and `TRUST12_Accounting_Obstruction` (11 theories); recorded clean build and proof audit with 675 explicit roots, 693 qualified facts, zero oracle dependencies, zero banned source forms | `evidence/isabelle-results-v3.json` |
 | Obligation ledger | 74 rows: 70 closed, 2 open (the runtime link), 2 not applicable; closure conditional | `evidence/end-to-end-refinement/obligation-ledger-summary-v3.json` |
 | Deterministic build | Two isolated clean builds of the native token (20,043 bytes), the adapter (19,480), and the governor (2,787), byte-identical | `evidence/deterministic-build.json` |
 | Runtime binding | Three runtimes agree with the pinned-compiler replay in ABI, semantic storage layout, creation and runtime bytecode, method identifiers, and immutable references; verifier self-mutation 18/18; stale receipts rejected | `evidence/runtime-binding-v3.json` |
@@ -485,7 +485,7 @@ dependency commit, compiler setting, evidence hash, or claim disposition must
 update this map and regenerate the release manifest in the same change.
 Historical raw runs and generated directories are not canonical source.
 
-## TRUST 1.2 development
+## TRUST 1.2 registered-execution evidence
 
 The fresh T-REX hook reference and additional model invariants are tracked in
 [evidence/trust12](evidence/trust12/README.md). The published baseline runtimes remain
@@ -494,6 +494,10 @@ Under the 2026-10-04 completion direction
 ([decision 13](spec/decisions/13-trust12-completion-scope.md)), TRUST 1.2
 completion is defined at the registered-execution scope; general runtime-to-model
 correspondence is deferred research and is not a completion requirement.
+TRUST 1.2 is complete within the registered-execution scope. The registered-scope central closure is closed, and its fresh
+independent assurance, an internal review by a reviewer who took no part in
+building the runtime link and not a third-party audit, passed on the sealed
+final inputs (`evidence/trust12/assurance/trust12-runtime-link-assurance-seal-v2-final-assurance.json`).
 The child session `TRUST12_Accounting_Obstruction` preserves the accounting-only
 obstruction and now defines the stronger `state_wf`. Canonical source contains
 initial, ordinary-transfer, authority/dependency-change and failure preservation,
@@ -501,7 +505,7 @@ and preservation for all six forward and three reversal actions. The nine
 regulatory preservation results and linked-run controls have a local kernel
 build with 219 declared roots, 236 qualified facts and no oracle dependencies.
 The preservation and linked-run/control source reviews passed. The actual
-committed-source clean build binds all 44 inputs, both named sessions, and the
+committed-source clean build binds all 48 inputs, both named sessions, and the
 fixed foundation and ADS bytes. `model-results.json` records the admitted scope.
 
 `TRUST_Linked_Run.thy` provides the checked run-level extension. Its step predicate
@@ -512,7 +516,7 @@ remains conditional on the runtime link and connected concrete configurations.
 The general runtime link remains undischarged. A symbolic harness or a live Full
 profile descriptor does not establish end-to-end refinement.
 
-The required development gate is `scripts/verify-trust12-required.mjs`, consumed by
+The required TRUST 1.2 gate is `scripts/verify-trust12-required.mjs`, consumed by
 all three v3 aggregate entrypoints. `formal-build-replay.json` binds the complete
 parent/child source and session graph, the actual foundation and ADS input bytes,
 and both recursive proof-audit exports. Its admitted digest is fixed only after

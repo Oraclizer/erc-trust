@@ -12,7 +12,7 @@ conformance conditions; a Partial or Unsupported profile always returns
 | --- | --- | --- | --- | --- | --- |
 | Native Full | `keccak256("ERC-TRUST/v2/native-full")` | Yes | Fungible `0x3edbb4c4` and the exact-use route `0x5cd8d207` | Token | Exact immutable source, pinned compiler, and four bound read-only dependencies |
 | ERC-3643 Partial reference | `keccak256("ERC-TRUST/v2/erc3643-partial")` | Yes, within the documented adapter boundary | Not claimed | Adapter, over a sealed token | Current reference; `profileKind = PARTIAL`, `full = false` |
-| ERC-3643 Verified Full | `keccak256("ERC-TRUST/v2/erc3643-verified-full")` | TRUST 1.2 development reference | Not claimed | Fresh hook-enabled endpoint | Constructor-sealed development reference; its functional conformance passed an independent audit for the exact T-REX 4.1.3 source, while its registered-scope central closure is closed, the final independent assurance is pending and its general runtime link is deferred research |
+| ERC-3643 Verified Full | `keccak256("ERC-TRUST/v2/erc3643-verified-full")` | Yes, within the documented hook-adapter boundary | Not claimed | Fresh hook-enabled endpoint | Constructor-sealed development reference; its functional conformance passed an independent internal review for the exact T-REX 4.1.3 source, its registered-scope central closure is closed and its fresh independent assurance passed (an internal review, not a third-party audit), and its general runtime link is deferred research |
 | Unsupported | none | No reliable declaration | No | Unknown | Missing, stale, or contradictory evidence |
 
 The published Native and Partial references implement the kernel interface `0x2b020308` from the
