@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "trust12-tail-preparation-assurance-input-seal-v1",
   "title": "Frozen inputs of the independent Assurance of the TRUST 1.2 runtime link",
-  "description": "A seal names every input that the independent Assurance may read, by root alias and relative path, with its size and SHA-256. Verification recomputes each file set from the recorded selectors, so a modified, added or removed file fails. The seal carries the reproduction commands and the four independent checks of the central refinement closure. It is not an Assurance result.",
+  "description": "A seal names every input that the independent Assurance may read, by root alias and relative path, with its size and SHA-256, either directly or through a sealed input list that names each file the same way. Verification recomputes each file set from the recorded selectors and rechecks every listed file against its list, so a modified, added or removed file fails; an added file that only a recomputation would read is detected by regenerating the list. The seal carries the reproduction commands and the four independent checks of the central refinement closure. It is not an Assurance result.",
   "type": "object",
   "required": [
     "schema", "status", "rootAliases", "rootInventory", "product", "bundles", "sealRootSha256",
@@ -184,6 +184,16 @@
           "properties": {
             "root": {"$ref": "#/$defs/alias"},
             "remainder": {"const": true},
+            "allowEmpty": {"type": "boolean"}
+          }
+        },
+        {
+          "type": "object",
+          "required": ["root", "list"],
+          "additionalProperties": false,
+          "properties": {
+            "root": {"$ref": "#/$defs/alias"},
+            "list": {"$ref": "#/$defs/relativePath"},
             "allowEmpty": {"type": "boolean"}
           }
         },

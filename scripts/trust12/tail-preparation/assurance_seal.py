@@ -8,11 +8,17 @@ independent checks. Files are addressed by root alias and relative path only, so
 carries a private absolute path. Verification recomputes every selected file set from the same
 selectors, so a modified, added or removed file fails the seal.
 
-Two selector forms exist. A path selector names include and exclude patterns under one root;
+Four selector forms exist. A path selector names include and exclude patterns under one root;
 its first path segment must be literal, so that only that directory is enumerated. A ledger
 selector reads an obligation ledger under the evidence root and selects the named files of
 every kernel run the ledger cites, so the public specification never has to list internal
-evidence directory names.
+evidence directory names. A remainder selector seals every tracked file of a root that no
+earlier bundle sealed. A list selector seals one input list written by `assurance_inputs.py`
+or by the kernel replay kit tool: the list names, by root alias, relative path, size and
+SHA-256, every file that one saved-mode recomputation or the kernel replay reads. The seal
+records the list file itself; sealing and verification both recheck every listed file against
+the list, so a modified or removed listed file fails, and regenerating the list from its
+recorded generator detects an added one.
 
 Usage:
   assurance_seal.py seal   --spec SPEC --root PRODUCT=DIR [--root EVIDENCE=DIR] --output FILE [--status STATUS]
@@ -26,7 +32,7 @@ import json
 import re
 import subprocess
 import sys
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Any
 
 from tail_common import (
@@ -35,7 +41,9 @@ from tail_common import (
 )
 
 SCHEMA = OUTPUT / "assurance-input-seal-schema-v1.json"
+LIST_SCHEMA_DOCUMENT = OUTPUT / "assurance-input-list-schema-v1.json"
 SPEC_SCHEMA = "trust12-tail-preparation-assurance-seal-spec-v1"
+LIST_SCHEMA = "trust12-tail-preparation-assurance-input-list-v1"
 DRY_RUN = "TEMPLATE_DRY_RUN"
 SEALED = "SEALED_FOR_INDEPENDENT_ASSURANCE"
 GLOB_CHARACTERS = set("*?[")
@@ -107,6 +115,40 @@ def record(root_alias: str, root: Path, path: str) -> dict[str, Any]:
     return {"root": root_alias, "path": path, "bytes": absolute.stat().st_size, "sha256": sha256_file(absolute)}
 
 
+def resolve_inside(root: Path, path: str) -> Path:
+    """The file of a relative path under a root; a link or a parent step that leaves the root fails."""
+    pure = PurePosixPath(path)
+    require(path and not pure.is_absolute() and ".." not in pure.parts and "\\" not in path
+            and not re.match(r"^[A-Za-z]:", path), f"not a relative path: {path}")
+    absolute = (root / path).resolve()
+    require(absolute.is_relative_to(root.resolve()), f"path leaves its root: {path}")
+    return absolute
+
+
+def listed_inputs(alias: str, root: Path, path: str, roots: dict[str, Path]) -> int:
+    """Check every file that a sealed input list names against the list and return their number.
+
+    The list is the output of `assurance_inputs.py`. Each entry names a bound root, a relative path, a size and a
+    SHA-256; the entries are sorted and unique, and the recorded count and root agree with them.
+    """
+    list_file = resolve_inside(root, path)
+    require(list_file.is_file(), f"input list missing under {alias}: {path}")
+    document = load_json(list_file)
+    require_schema(document, load_json(LIST_SCHEMA_DOCUMENT), f"input list {path}")
+    entries = document["files"]
+    keys = [(entry["root"], entry["path"]) for entry in entries]
+    require(keys == sorted(set(keys)), f"input list entries are not sorted and unique: {path}")
+    require(document["fileCount"] == len(entries) and document["rootSha256"] == tree_root(entries),
+            f"input list count or root does not match its entries: {path}")
+    for entry in entries:
+        require(entry["root"] in roots, f"input list names an unbound root: {entry['root']}")
+        target = resolve_inside(roots[entry["root"]], entry["path"])
+        require(target.is_file(), f"listed input missing: {entry['root']}:{entry['path']}")
+        require(target.stat().st_size == entry["bytes"] and sha256_file(target) == entry["sha256"],
+                f"listed input drift: {entry['root']}:{entry['path']}")
+    return len(entries)
+
+
 def ledger_runs(ledger: dict[str, Any]) -> list[tuple[str, str]]:
     runs = set()
     for row in ledger["rows"]:
@@ -151,6 +193,10 @@ def select(selector: dict[str, Any], roots: dict[str, Path], modes: dict[str, st
     if selector.get("remainder"):
         require(modes.get(alias) == "git-tracked", "a remainder selector needs a git-tracked root")
         paths = [path for path in tracked[alias] if (alias, path) not in owned]
+    elif "list" in selector:
+        # The list file is the sealed record; its entries are rechecked on every seal and verification.
+        listed_inputs(alias, root, selector["list"], roots)
+        paths = [selector["list"]]
     elif "ledger" in selector:
         require(modes.get(alias) == "walk", "a ledger selector needs a walked root")
         ledger_path = root / selector["ledger"]
@@ -217,6 +263,30 @@ def collect(bundle: dict[str, Any], roots: dict[str, Path], modes: dict[str, str
     return files
 
 
+def check_ledger_agreement(bundles: list[dict[str, Any]], roots: dict[str, Path]) -> int:
+    """Every ledger that a sealed input list was generated from is a ledger that a ledger selector seals.
+
+    The input list of the certificate registry recomputation names the runtime-link ledger it was built from. A
+    seal whose ledger selector reads another ledger would freeze two different ledgers, so it fails. Returns the
+    listed file count.
+    """
+    sealed = {(selector["root"], selector["ledger"]) for bundle in bundles for selector in bundle["selectors"]
+              if "ledger" in selector}
+    listed = 0
+    for bundle in bundles:
+        for selector in bundle["selectors"]:
+            if "list" not in selector:
+                continue
+            document = load_json(resolve_inside(roots[selector["root"]], selector["list"]))
+            listed += document["fileCount"]
+            ledger = document["generator"].get("ledger")
+            if ledger is not None:
+                require((ledger["root"], ledger["path"]) in sealed,
+                        f"input list {selector['list']} was generated from a ledger the seal does not select: "
+                        f"{ledger['root']}:{ledger['path']}")
+    return listed
+
+
 def check_toolchain(toolchain: list[dict[str, Any]], roots: dict[str, Path]) -> None:
     for pin in toolchain:
         location = pin["declaredIn"]
@@ -250,6 +320,7 @@ def build_seal(spec: dict[str, Any], roots: dict[str, Path], status: str) -> dic
             "rootSha256": tree_root(files),
             "files": files,
         })
+    check_ledger_agreement(spec["bundles"], roots)
     return {
         "schema": "trust12-tail-preparation-assurance-input-seal-v1",
         "status": status,
@@ -300,11 +371,13 @@ def verify_seal(seal: dict[str, Any], roots: dict[str, Path]) -> dict[str, Any]:
     if tree_root([item for bundle in seal["bundles"] for item in bundle["files"]]) != seal["sealRootSha256"]:
         problems.append("recorded seal root does not match the bundles")
     require(not problems, "seal verification failed: " + "; ".join(problems[:20]))
+    listed = check_ledger_agreement(seal["bundles"], roots)
     return {
         "status": "PASS_ASSURANCE_INPUT_SEAL_VERIFIED",
         "sealStatus": seal["status"],
         "bundles": len(seal["bundles"]),
         "files": sum(len(bundle["files"]) for bundle in seal["bundles"]),
+        "listedFiles": listed,
         "sealRootSha256": seal["sealRootSha256"],
     }
 
@@ -330,6 +403,7 @@ def main(argv: list[str]) -> int:
         args.output.write_text(dump_json(seal), encoding="utf-8", newline="\n")
         print(json.dumps({"status": seal["status"], "bundles": len(seal["bundles"]),
                           "files": sum(bundle["fileCount"] for bundle in seal["bundles"]),
+                          "listedFiles": check_ledger_agreement(seal["bundles"], roots),
                           "sealRootSha256": seal["sealRootSha256"]}, indent=2))
     else:
         print(json.dumps(verify_seal(load_json(args.seal), roots), indent=2))

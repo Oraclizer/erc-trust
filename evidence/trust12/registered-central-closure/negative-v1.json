@@ -2,7 +2,7 @@
   "schema": "trust12-registered-closure-evidence-v1",
   "role": "negative",
   "status": "KILLED",
-  "closureSha256": "f94649e826779a440e56ec5bd6c6be9f3c96dc04e000177e0a38aad9f5816bf4",
+  "closureSha256": "1968e8903b780698355158d6f12c86b139e64bd978eb7de786517d95a161afcb",
   "statement": "For every condition that the closure discharges, a cited control removes, weakens or substitutes the consumer that the condition names, or removes a registered certificate, and the stated claim then fails. The kind of each control is recorded; a probe mutant runs on an isolated copy and is never a run of the frozen build.",
   "conditions": {
     "typed-failure-report-binding": [

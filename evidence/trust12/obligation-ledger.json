@@ -1936,19 +1936,19 @@
         "references": {
           "closure": {
             "path": "evidence/trust12/registered-central-closure/closure-v1.json",
-            "sha256": "f94649e826779a440e56ec5bd6c6be9f3c96dc04e000177e0a38aad9f5816bf4"
+            "sha256": "1968e8903b780698355158d6f12c86b139e64bd978eb7de786517d95a161afcb"
           },
           "positive": {
             "path": "evidence/trust12/registered-central-closure/positive-v1.json",
-            "sha256": "a58c50cae2849bbc0ca1b729af23858107920eb69341323df15074ca2a1901b2"
+            "sha256": "4c27df5d58453e4925f87615252afd60237dd1c9d1e180da24fc945e9bd1f260"
           },
           "negative": {
             "path": "evidence/trust12/registered-central-closure/negative-v1.json",
-            "sha256": "f7a82a13671e02ca4fec0d14672836ebf34fade403a5093a967315567e69c35c"
+            "sha256": "262f07747f58921410832d307fbeb5cfda3cf7d5656491504cac76baa83c9722"
           },
           "compiledConsumer": {
             "path": "evidence/trust12/registered-central-closure/compiled-consumer-v1.json",
-            "sha256": "f31da82198eece32c863e209f5ceb56655b40db4da97978a7549be2af83d787e"
+            "sha256": "32c470f3eb2275b676899f8647b6a406d6bbbb73cc2e424727958628ce449cf6"
           }
         }
       }

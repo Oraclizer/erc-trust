@@ -15,7 +15,7 @@ export const generalIds = profiles.map(p => `RESEARCH-RUNTIME-LINK-${p}`).sort()
 export const registeredClosureId = 'REGISTERED-CENTRAL-CLOSURE';
 const tailObligations = 'evidence/trust12/runtime-link/tail-preparation/tail-obligations-v1.json';
 // Reviewed conditions list of the registered closure; changing the list requires changing this pin.
-const approvedTailSha256 = '3e6524fc20a951dab02e916f41980b8281a84338ec94b2dcf14f5a0e8a73a087';
+const approvedTailSha256 = 'eb9581d90d63ac4d1ac38cd04347747c2733ced6c5a24a836ed3b22343b1ca95';
 const assuranceCondition = 'independent-assurance';
 const requiredGate = 'scripts/verify-trust12-required.mjs';
 // Assumptions every registered closure names, beyond the open assumptions of the central end-to-end ledger.

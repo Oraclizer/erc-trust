@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "trust12-tail-preparation-assurance-input-list-v1",
+  "title": "Input list of one recomputation of the independent Assurance of the TRUST 1.2 runtime link",
+  "description": "An input list names, by root alias and relative path, with its size and SHA-256, every file that one saved-mode recomputation or the kernel replay reads. A seal freezes the list file through a list selector, and sealing and verification recheck every listed file. The generator records the exact parameters from which the list is regenerated; a regenerated list must be byte-identical. A list is not a recomputation result.",
+  "type": "object",
+  "required": ["schema", "purpose", "generator", "fileCount", "rootSha256", "files", "nonclaim"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {"const": "trust12-tail-preparation-assurance-input-list-v1"},
+    "purpose": {"type": "string", "minLength": 1},
+    "generator": {
+      "type": "object",
+      "required": ["kind", "tool"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {"enum": ["artifact-index", "directory", "recomputation-reads", "kernel-replay-kit"]},
+        "tool": {"$ref": "#/$defs/fileLocation"},
+        "recomputation": {"enum": ["certificate-registry", "malformed-call-trace", "registered-gate"]},
+        "index": {"$ref": "#/$defs/fileLocation"},
+        "indexBase": {"enum": ["index", "root"]},
+        "stageIndex": {"$ref": "#/$defs/fileLocation"},
+        "directory": {"$ref": "#/$defs/fileLocation"},
+        "pattern": {"type": "string", "minLength": 1},
+        "ledger": {"$ref": "#/$defs/fileLocation"},
+        "manifest": {"$ref": "#/$defs/fileLocation"}
+      }
+    },
+    "fileCount": {"type": "integer", "minimum": 0},
+    "rootSha256": {"$ref": "#/$defs/sha256"},
+    "files": {"type": "array", "items": {"$ref": "#/$defs/fileRecord"}},
+    "nonclaim": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "alias": {"type": "string", "pattern": "^[A-Z][A-Z_]*$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "relativePath": {"type": "string", "pattern": "^(?![/\\\\])(?![A-Za-z]:)(?!.*\\.\\.)[^\\\\]+$"},
+    "fileLocation": {
+      "type": "object",
+      "required": ["root", "path"],
+      "additionalProperties": false,
+      "properties": {
+        "root": {"$ref": "#/$defs/alias"},
+        "path": {"$ref": "#/$defs/relativePath"}
+      }
+    },
+    "fileRecord": {
+      "type": "object",
+      "required": ["root", "path", "bytes", "sha256"],
+      "additionalProperties": false,
+      "properties": {
+        "root": {"$ref": "#/$defs/alias"},
+        "path": {"$ref": "#/$defs/relativePath"},
+        "bytes": {"type": "integer", "minimum": 0},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    }
+  }
+}

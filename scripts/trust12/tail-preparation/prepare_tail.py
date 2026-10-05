@@ -35,8 +35,8 @@ OBLIGATIONS = OUTPUT / "tail-obligations-v1.json"
 MANIFEST = OUTPUT / "preparation-manifest-v1.json"
 PRODUCT_PREFIXES = ("evidence/trust12/runtime-link/tail-preparation/", "scripts/trust12/tail-preparation/")
 GROUP_SIZES = {"gate": 3, "malformed": 3, "central": 4, "assurance": 1}
-SCHEMA_DOCUMENTS = ("assurance-input-seal-schema-v1.json", "certificate-registry-schema-v1.json",
-                    "certificate-registry-schema-v2.json")
+SCHEMA_DOCUMENTS = ("assurance-input-seal-schema-v1.json", "assurance-input-list-schema-v1.json",
+                    "certificate-registry-schema-v1.json", "certificate-registry-schema-v2.json")
 MANIFEST_EXCLUDED_PARTS = {"__pycache__"}
 
 
