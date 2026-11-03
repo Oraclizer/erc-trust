@@ -204,7 +204,18 @@ try {
   check(() => assert.match(workflow, /push:\s*branches: \["main"\]/));
   check(() => assert.match(workflow, /pull_request:\s*workflow_call:/));
   check(() => assert(!/^\s+paths:/m.test(workflow)));
-  check(() => assert.match(workflow, /cron: "17 4 \* \* 1"/));
+  // No scheduled trigger: a clean replay comes only from the call or dispatch input.
+  const unscheduled = (text) => assert(!/^\s+schedule:/m.test(text) && !/^\s+- cron:/m.test(text)
+    && !text.includes("'schedule'") && /CLEAN_REPLAY: \$\{\{ inputs\.clean == true \}\}/.test(text));
+  check(() => unscheduled(workflow));
+  reject(() => unscheduled(workflow.replace("  workflow_dispatch:\n", '  schedule:\n    - cron: "17 4 * * 1"\n  workflow_dispatch:\n')));
+  reject(() => unscheduled(workflow.replace("inputs.clean == true }}", "github.event_name == 'schedule' || inputs.clean == true }}")));
+  // The pinned archive comes from the versioned release site; the dist address keeps only the newest release.
+  const releaseArchive = (text) => assert.match(text,
+    /^      ISABELLE_URL: https:\/\/isabelle\.in\.tum\.de\/website-Isabelle2025-2\/dist\/Isabelle2025-2_linux\.tar\.gz$/m);
+  check(() => releaseArchive(workflow));
+  reject(() => releaseArchive(workflow.replace("https://isabelle.in.tum.de/website-Isabelle2025-2/dist/",
+    "https://www.cl.cam.ac.uk/research/hvg/Isabelle/dist/")));
   check(() => assert.match(workflow, /needs: \[gate, formal\]/));
   check(() => assert.match(workflow, /if: \$\{\{ always\(\) \}\}/));
   check(() => assert.match(workflow, /test "\$GATE_RESULT" = success\s+test "\$FORMAL_RESULT" = success/));
