@@ -1,5 +1,5 @@
 {
-  "admissionDigest": "b938a742ef50ccbfa3453462412057c6a59790e315373b4a7a1ded8062052bc4",
+  "admissionDigest": "5ea373675622333695b3028e0cb343814fc6f78c25d74b3ac6f832e08f4b2897",
   "candidate": "0.2.0-candidate.1",
   "checks": {
     "bannedSourceForms": 0,
@@ -16,7 +16,7 @@
     "inputs": [
       {
         "path": ".github/workflows/proofs.yml",
-        "sha256": "1e6f6e62448134e995e15ad61000a1878d6d43e1d527e20ec95ce1029423e643"
+        "sha256": "bcd6229efd339c133147b0c7dd90f57782588fdceb47d4cbe9c466bf97a54af6"
       },
       {
         "path": "evidence/public-release/formal-foundation-supersession-v1.json",
@@ -204,11 +204,11 @@
       },
       {
         "path": "scripts/test-proof-ci.mjs",
-        "sha256": "13d832941126334952262d337a096b72fcc72abfe311ea9e4bf95c0e71cc4867"
+        "sha256": "f9ab14d359396ae4bc3fbde126dd9e07105c7a30d66433d157ad72c3798b48ca"
       }
     ],
     "path": "formal/isabelle",
-    "rootSha256": "7c6d08d4cca6ca035959f46d2cd5e4ae26595ad5005abaf9dd2da5e9c908954a",
+    "rootSha256": "71991a59d64b71149ceaca6b1e4ec2086ef5b278b29ce0255a60873cb38d3516",
     "sessions": [
       "ERC_TRUST",
       "TRUST12_Accounting_Obstruction"
@@ -296,7 +296,7 @@
         }
       ]
     },
-    "finishedAt": "2026-09-25T00:04:35.5665717Z",
+    "finishedAt": "2026-11-03T08:16:06.0092855Z",
     "provider": "local-windows-isabelle",
     "sessions": [
       {
@@ -322,12 +322,12 @@
     ],
     "source": {
       "path": "evidence/trust12/formal-build-replay.json",
-      "sha256": "9a251a006272029664ddb50d8398c2dc011065151195c3dde5ef6317c54b7078"
+      "sha256": "a438e93b17371a4a9e8054a9deab1d27b76e4e01d477d77e570bda9043d2b011"
     },
     "sourceInputs": [
       {
         "path": ".github/workflows/proofs.yml",
-        "sha256": "1e6f6e62448134e995e15ad61000a1878d6d43e1d527e20ec95ce1029423e643"
+        "sha256": "bcd6229efd339c133147b0c7dd90f57782588fdceb47d4cbe9c466bf97a54af6"
       },
       {
         "path": "evidence/public-release/formal-foundation-supersession-v1.json",
@@ -515,11 +515,11 @@
       },
       {
         "path": "scripts/test-proof-ci.mjs",
-        "sha256": "13d832941126334952262d337a096b72fcc72abfe311ea9e4bf95c0e71cc4867"
+        "sha256": "f9ab14d359396ae4bc3fbde126dd9e07105c7a30d66433d157ad72c3798b48ca"
       }
     ],
-    "sourceRootSha256": "7c6d08d4cca6ca035959f46d2cd5e4ae26595ad5005abaf9dd2da5e9c908954a",
-    "startedAt": "2026-09-25T00:01:01.8869252Z"
+    "sourceRootSha256": "71991a59d64b71149ceaca6b1e4ec2086ef5b278b29ce0255a60873cb38d3516",
+    "startedAt": "2026-11-03T08:08:56.5950551Z"
   },
   "schema": "erc-trust-isabelle-results-v3",
   "sessions": [
@@ -544,7 +544,7 @@
       "status": "PASS"
     }
   ],
-  "sourceCommit": "be132e515a8a30d18b6ae20c588850ca68ae01ea",
+  "sourceCommit": "5ce35ac6b48d862989050c8f84ebf2cc824ddcb2",
   "status": "PASS",
   "toolchain": {
     "foundationCommit": "db8e0802e55f0229cf7bc9e5e6cfbf40681adbba",

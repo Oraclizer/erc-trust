@@ -792,7 +792,7 @@
       },
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "d8f544a1712a27e9f91663d446b62c1902560fd89d7e0343f7029d96402ed25b"
+        "sha256": "afc7ca4393fe82dfb129d173a41424f2f6afe3fbf4e07f68d36af06f01b5a55f"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -824,11 +824,11 @@
       },
       {
         "path": "evidence/trust12/formal-build-replay.json",
-        "sha256": "9a251a006272029664ddb50d8398c2dc011065151195c3dde5ef6317c54b7078"
+        "sha256": "a438e93b17371a4a9e8054a9deab1d27b76e4e01d477d77e570bda9043d2b011"
       },
       {
         "path": "evidence/trust12/model-results.json",
-        "sha256": "9dd096aed9fb49c59fc11ba3b2c341f31ce2c06a29c58c20e8b21587572e5414"
+        "sha256": "9541f8dae426040c67c085a6e4d00d937629395e5296ce144d1af08702f4949d"
       },
       {
         "path": "evidence/trust12/model-preservation-audit.md",
@@ -980,19 +980,19 @@
       },
       {
         "path": "evidence/trust12/registered-central-closure/closure-v1.json",
-        "sha256": "1968e8903b780698355158d6f12c86b139e64bd978eb7de786517d95a161afcb"
+        "sha256": "00f7d745c5a126349c6d5ba2fcebbdf1199a02c2159da8171743618697261ae2"
       },
       {
         "path": "evidence/trust12/registered-central-closure/positive-v1.json",
-        "sha256": "4c27df5d58453e4925f87615252afd60237dd1c9d1e180da24fc945e9bd1f260"
+        "sha256": "185a527bc76ddfdc4cb69d5efe9b946dca0b7a5fddcbc049fd9f9cf28f6bc2f9"
       },
       {
         "path": "evidence/trust12/registered-central-closure/negative-v1.json",
-        "sha256": "262f07747f58921410832d307fbeb5cfda3cf7d5656491504cac76baa83c9722"
+        "sha256": "8ddd2d8f54e5ed059778305afd1ab0ceeb941df1e1d3fd3f91b90bcd84d0e4ce"
       },
       {
         "path": "evidence/trust12/registered-central-closure/compiled-consumer-v1.json",
-        "sha256": "32c470f3eb2275b676899f8647b6a406d6bbbb73cc2e424727958628ce449cf6"
+        "sha256": "130d36d30c04d1979a6d59bd587fde40a018f276c1ce3b707eaddbe69155180d"
       },
       {
         "path": "evidence/trust12/runtime-link/primitive-source-controls-checkpoint-v1.json",
@@ -1012,7 +1012,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "38e2fd23397c4c801316bee98eca8c9830e2fee98eeda4136037e93ff107adcc"
+        "sha256": "5ac8b63383a4ac1e9f47b82acad2f222230cb883ab1bf550f769b4f940d2f111"
       }
     ],
     "fullRefinementComplete": false,

@@ -1,8 +1,8 @@
 {
-  "admissionDigest": "b938a742ef50ccbfa3453462412057c6a59790e315373b4a7a1ded8062052bc4",
+  "admissionDigest": "5ea373675622333695b3028e0cb343814fc6f78c25d74b3ac6f832e08f4b2897",
   "buildLog": {
-    "path": "formal/isabelle/ERC_TRUST/evidence/model-verification/out/runs/20260925T000102Z/isabelle-clean-build.log",
-    "sha256": "d7b785564a4b706081d2b20d7b9b7e8cb6e34766a50be6e651882946f529a2bc"
+    "path": "formal/isabelle/ERC_TRUST/evidence/model-verification/out/runs/20261103T080857Z/isabelle-clean-build.log",
+    "sha256": "0fc4712e25be19056570d777ed4275061cb1dcfda387efa35ff2630549169348"
   },
   "command": "isabelle build -c -o record_proofs=1 -o threads=2 -o parallel_proofs=0 -d <ADS_Functor> -d <verified-foundation-overlay> -d formal/isabelle ERC_TRUST TRUST12_Accounting_Obstruction",
   "dependencyInputs": {
@@ -85,17 +85,17 @@
     ]
   },
   "exportLog": {
-    "path": "formal/isabelle/ERC_TRUST/evidence/model-verification/out/runs/20260925T000102Z/isabelle-export.log",
-    "sha256": "dd45a6bec8fea542381ba9525149e7b3e467bc293ecf69ce35fef3572685776b"
+    "path": "formal/isabelle/ERC_TRUST/evidence/model-verification/out/runs/20261103T080857Z/isabelle-export.log",
+    "sha256": "06b6048d6bd275dac40c8f2029f76dd1f9d7cd29037e4c0e016db26c06d06d0f"
   },
-  "finishedAt": "2026-09-25T00:04:35.5665717Z",
+  "finishedAt": "2026-11-03T08:16:06.0092855Z",
   "formalSource": {
     "algorithm": "sha256-formal-session-graph-inputs-v2",
     "foundationCommit": "db8e0802e55f0229cf7bc9e5e6cfbf40681adbba",
     "inputs": [
       {
         "path": ".github/workflows/proofs.yml",
-        "sha256": "1e6f6e62448134e995e15ad61000a1878d6d43e1d527e20ec95ce1029423e643"
+        "sha256": "bcd6229efd339c133147b0c7dd90f57782588fdceb47d4cbe9c466bf97a54af6"
       },
       {
         "path": "evidence/public-release/formal-foundation-supersession-v1.json",
@@ -283,11 +283,11 @@
       },
       {
         "path": "scripts/test-proof-ci.mjs",
-        "sha256": "13d832941126334952262d337a096b72fcc72abfe311ea9e4bf95c0e71cc4867"
+        "sha256": "f9ab14d359396ae4bc3fbde126dd9e07105c7a30d66433d157ad72c3798b48ca"
       }
     ],
     "path": "formal/isabelle",
-    "rootSha256": "7c6d08d4cca6ca035959f46d2cd5e4ae26595ad5005abaf9dd2da5e9c908954a",
+    "rootSha256": "71991a59d64b71149ceaca6b1e4ec2086ef5b278b29ce0255a60873cb38d3516",
     "sessions": [
       "ERC_TRUST",
       "TRUST12_Accounting_Obstruction"
@@ -296,14 +296,14 @@
   },
   "inputCapture": {
     "beforeAfterEqual": true,
-    "sha256": "c6b33048e62c4743b5b0de3305631b754f656b8dfce0740697da8879ae86c13c"
+    "sha256": "e80e8bd5ddb95aadee6a9dfbe30436ff96c0dda0331b624021d1615495589b2e"
   },
   "nonclaim": "A local kernel-checked model build with explicit dependency bytes. No CI execution, constructor decoding, compiler correctness or runtime_link discharge is asserted.",
   "processExit": 0,
   "provider": "local-windows-isabelle",
   "rawRun": {
-    "path": "out/trust12/out-of-spec-v7-formal-clean-run.json",
-    "sha256": "7c24b5645b6e922ada8018d430d9af0f21494ff0d4e24a2bd3ba15b14eaae144"
+    "path": "out/trust12/isabelle-archive-address-formal-clean-run.json",
+    "sha256": "fddfaf3ddaa8c1c296b524375c2d5f70359f16e45a004c1cd204726b9ad3597d"
   },
   "schema": "trust12-formal-build-replay-v1",
   "sessions": [
@@ -328,7 +328,7 @@
       "status": "PASS"
     }
   ],
-  "sourceCommit": "be132e515a8a30d18b6ae20c588850ca68ae01ea",
-  "startedAt": "2026-09-25T00:01:01.8869252Z",
+  "sourceCommit": "5ce35ac6b48d862989050c8f84ebf2cc824ddcb2",
+  "startedAt": "2026-11-03T08:08:56.5950551Z",
   "status": "PASS"
 }

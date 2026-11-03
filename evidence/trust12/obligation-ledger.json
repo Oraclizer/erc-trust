@@ -1936,19 +1936,19 @@
         "references": {
           "closure": {
             "path": "evidence/trust12/registered-central-closure/closure-v1.json",
-            "sha256": "1968e8903b780698355158d6f12c86b139e64bd978eb7de786517d95a161afcb"
+            "sha256": "00f7d745c5a126349c6d5ba2fcebbdf1199a02c2159da8171743618697261ae2"
           },
           "positive": {
             "path": "evidence/trust12/registered-central-closure/positive-v1.json",
-            "sha256": "4c27df5d58453e4925f87615252afd60237dd1c9d1e180da24fc945e9bd1f260"
+            "sha256": "185a527bc76ddfdc4cb69d5efe9b946dca0b7a5fddcbc049fd9f9cf28f6bc2f9"
           },
           "negative": {
             "path": "evidence/trust12/registered-central-closure/negative-v1.json",
-            "sha256": "262f07747f58921410832d307fbeb5cfda3cf7d5656491504cac76baa83c9722"
+            "sha256": "8ddd2d8f54e5ed059778305afd1ab0ceeb941df1e1d3fd3f91b90bcd84d0e4ce"
           },
           "compiledConsumer": {
             "path": "evidence/trust12/registered-central-closure/compiled-consumer-v1.json",
-            "sha256": "32c470f3eb2275b676899f8647b6a406d6bbbb73cc2e424727958628ce449cf6"
+            "sha256": "130d36d30c04d1979a6d59bd587fde40a018f276c1ce3b707eaddbe69155180d"
           }
         }
       }
@@ -2221,8 +2221,8 @@
     "independentAssurance": {
       "status": "PASS_FRESH_ASSURANCE",
       "report": {
-        "path": "evidence/trust12/assurance/trust12-runtime-link-assurance-seal-v2-final-assurance.json",
-        "sha256": "8bcf90d4e68cc16c91d665fcced5998d7fa9bfee4c8d61885e6184ceb87d933a"
+        "path": "evidence/trust12/assurance/trust12-runtime-link-assurance-seal-v2-final-assurance-rebinding-v1.json",
+        "sha256": "067d1ac2d2679ecd484e58d295d861cb8965e495ce3100c0e4218e506ce824a0"
       }
     }
   },
