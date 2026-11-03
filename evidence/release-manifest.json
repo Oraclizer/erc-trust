@@ -33,7 +33,7 @@
   "sourceTree": {
     "scope": "protected-release-inputs-v1",
     "algorithm": "sha256-canonical-utf8-lf-lines-v1",
-    "root": "7178dc97d272c14e94168ace57c274a144ba382d848b8a225bfd423f283a0c56",
+    "root": "075ed8e2e32e723440c4e1bfb3a27528a468443b10adc30008a6c113d032d333",
     "files": {
       "evidence/README.md": "75263d3d7027608bf8f2770fdfb1194ef689156e49b7833be2e4f8b8e005ca3a",
       "evidence/candidate-2/README.md": "04407d7f2edca1613d4934f509f76dbdca7449c8676b35225553b6d018d0a662",
@@ -1010,7 +1010,7 @@
       "scripts/verify-trust12-policy.mjs": "6e8232b26447919517a43f1b2d640845b5482f6adfa8073ba12bcc9990af1890",
       "scripts/verify-trust12-required.mjs": "901613b79fcb780439f240d32453be901db289ff5342c0ddf8989ad597604275",
       "sdk/package.json": "9418d75f5e96113bcdadf379b6f82235247d285ca7a6fce96876d895c2af0f7c",
-      "sdk/pnpm-lock.yaml": "09c31065df4c1066f5766bdc1b30731467f67134e993ebed402d5f65925ad3ba",
+      "sdk/pnpm-lock.yaml": "7aca55bfe3fe534b5dc4933739164b20db2dc8de8e38e51e1de9fe4ca7767bd9",
       "sdk/src/index.test.ts": "8efe1166181fa05f068b0c78886944d22b88ec15f28363cf68b25fed147392f1",
       "sdk/src/index.ts": "50050e27b158a2ee7cbe79aa99ae9f1a6f4528acce95fe78c2953ef16643c145",
       "sdk/src/kernel-v2.test.ts": "32d4ca9302243b8cbeea4e4c55ebdce86650ecad9048f6bb3cc9b23258420ab9",
