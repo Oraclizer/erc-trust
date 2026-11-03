@@ -164,7 +164,7 @@
         "identity": "formalRootSha256",
         "before": "7c6d08d4cca6ca035959f46d2cd5e4ae26595ad5005abaf9dd2da5e9c908954a",
         "after": "71991a59d64b71149ceaca6b1e4ec2086ef5b278b29ce0255a60873cb38d3516",
-        "cause": "The formal root hashes the two changed workflow files with every theory and lock file."
+        "cause": "The formal root hashes the Proofs workflow and its policy test together with the 46 unchanged inputs listed under unchangedProofInputs.formalInputs."
       },
       {
         "identity": "formalAdmissionDigest",
@@ -412,7 +412,7 @@
         "path": "evidence/trust12/formal-build-replay.json",
         "beforeSha256": "9a251a006272029664ddb50d8398c2dc011065151195c3dde5ef6317c54b7078",
         "afterSha256": "a438e93b17371a4a9e8054a9deab1d27b76e4e01d477d77e570bda9043d2b011",
-        "change": "Re-recorded from the clean build: execution commit, formal root, the two workflow input hashes, times, log hashes, input capture hash, admission digest. Sessions and dependency inputs are unchanged."
+        "change": "Re-recorded from the clean build: execution commit, formal root, the two workflow input hashes, times, log hashes, input capture hash, admission digest. Sessions and dependency inputs are unchanged. The build and export log paths and the raw run reference also name the new run."
       },
       {
         "path": "evidence/trust12/model-results.json",
@@ -503,7 +503,7 @@
         "beforeSha256": "3f5215b5581959405f36d9112b52a75484e6ea3097ddd14a39c417917482ea06",
         "afterSha256": null,
         "regeneratedAfterThisRecord": true,
-        "change": "Tracked file and byte accounting of the public tree."
+        "change": "Tracked file and byte accounting of the public tree, and the accounting date."
       }
     ],
     "newExecutions": [
@@ -710,12 +710,26 @@
     }
   },
   "internalReview": {
-    "status": "PENDING",
-    "reviewer": null,
-    "date": null,
+    "status": "PASS",
+    "reviewer": "Internal reviewer who took no part in the workflow update or the record regeneration (not a third-party audit)",
+    "date": "2026-11-03",
     "scope": "The change against the base commit and this record.",
-    "checked": [],
-    "notes": null
+    "checked": [
+      "The change against base commit 767c87c2db03219032bdbeaf8e5b06beac19208e, reviewed at revision 2245a431ad4abf92110635cf163862711a585134, touches 22 files: the Proofs workflow, its policy test, the pinned constants of two verifiers, 16 regenerated records, three documents and this record.",
+      "The Proofs workflow diff has three hunks: the weekly schedule trigger is removed, ISABELLE_URL moves to the versioned Isabelle2025-2 release site, and CLEAN_REPLAY drops the schedule condition. The Isabelle and AFP SHA-256 pins, the Isabelle version, the foundation commit, the remaining triggers and every step are unchanged, and the install step still checks the archive with sha256sum --check --strict.",
+      "For every remaining trigger the simplified CLEAN_REPLAY expression has its previous value; the release validation workflow that calls the Proofs workflow has no schedule and passes clean: true.",
+      "No file under formal, implementation, spec, schemas, vectors, sdk or pilot changed. The dependency lock files, the runtime identity, the kernel ABI and the recorded prover results are byte-identical. 46 of the 48 formal identity inputs are byte-identical; the two that changed are the Proofs workflow and its policy test.",
+      "The formal inputs at execution commit 5ce35ac6b48d862989050c8f84ebf2cc824ddcb2 equal those of the reviewed revision.",
+      "The build and export logs of the local clean build exist with the recorded SHA-256 values and show both sessions cleaned and rebuilt with exit code 0; the two proof audit exports hash to the export SHA-256 values of the admitted build.",
+      "The policy test replaces its single schedule assertion with checks for the absence of a scheduled trigger, the CLEAN_REPLAY form and the archive address, plus three rejected variants; it passes with 155 checks, against 151 at the base commit.",
+      "The two changed verifiers differ only in their pinned values; their check logic and messages are unchanged.",
+      "With only the new workflow applied to the base commit the required gate fails on sealed input drift, and with the ledger pointing at the 2026-10-05 report the release policy fails on the final identities; the regenerated records and this record are required by the workflow change.",
+      "Every SHA-256, count and line range in this record was recomputed from the base commit and the reviewed revision and matches, including unchangedProofInputs, recordUpdates, identityChanges and sealComparison.",
+      "The verdict source records the Proofs run that checked the pinned Isabelle archive SHA-256 on the runner.",
+      "In a fresh clone of the reviewed revision each of the 15 commands listed under rebinding.newExecutions exited 0, the public tree check with its absolute path length limit applied to the usual checkout location, and the verifiers that regenerate records left the tree unchanged.",
+      "This record, the added documentation lines and the commit messages contain no local paths, no tool attribution, no em or en dash characters, no internal work identifiers and no numbered properties."
+    ],
+    "notes": "Reviewed at revision 2245a431ad4abf92110635cf163862711a585134. After the review this record gained this review block and three clarifying sentences proposed by the review: the cause of the formal root change, the log and raw run references of the formal build record, and the accounting date of the public tree record. No other field of the reviewed record changed except the digests that hash this record and the records derived from it."
   },
   "scope": "The registered-execution scope named by the sealed registered central closure.",
   "nonclaim": "This record re-binds the verdict of its verdict source. It is not a new independent assurance: the assurance procedure was not repeated, and the runs under rebinding.newExecutions are local runs made for this update. The scope and nonclaims of the verdict source apply unchanged. It does not extend to compiler correctness, deployment identity, external dependencies or the deferred general runtime links."

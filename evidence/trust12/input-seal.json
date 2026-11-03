@@ -129,7 +129,7 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "0fe349dfa991a289e3faf3c6204e21a8b0b14b791dd0c440ccc35341c65b8c86"
+      "sha256": "61d64ace2b98f757bbaf4f0c89b57b141fa1f02da97ae8c451efa50bd5215cc0"
     },
     {
       "path": "evidence/trust12/profile-implementation-evidence-review.json",
