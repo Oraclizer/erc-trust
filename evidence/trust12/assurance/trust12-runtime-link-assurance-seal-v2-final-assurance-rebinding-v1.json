@@ -3,7 +3,7 @@
   "status": "PASS_FRESH_ASSURANCE",
   "recordKind": "VERDICT_REBINDING_AFTER_WORKFLOW_UPDATE",
   "date": "2026-11-03",
-  "statusMeaning": "The status is the verdict of the report named in verdictSource. This record binds that verdict to the final identities after an update of the Proofs workflow that changed no theory, proof, implementation, ABI or runtime input. It does not repeat the assurance.",
+  "statusMeaning": "The status is the verdict of the report named in verdictSource. This record binds that verdict to the final identities after an update of the Proofs workflow and its policy test that changed no theory, proof, implementation, ABI or runtime input. It does not repeat the assurance.",
   "independentOfBuilding": true,
   "reviewer": "Internal reviewer who took no part in building the runtime link (not a third-party audit); the verdict is carried unchanged from the report named in verdictSource",
   "verdictSource": {
@@ -32,13 +32,13 @@
     "status": "PASS",
     "basis": "CARRIED_FROM_VERDICT_SOURCE",
     "steps": 33,
-    "statement": "The reproduction steps of the verdict source were not repeated. Their inputs are byte-identical, except the two workflow files listed under rebinding, which no reproduction step builds or proves."
+    "statement": "The reproduction steps of the verdict source were not repeated for this record. They ran on the sealed commit and the other roots bound by the seal, which this update leaves as they were. One of them recorded a clean run of the previous Proofs workflow on a GitHub Linux runner, which checked the Isabelle archive against the same pinned SHA-256; this update changes that workflow only in the address it downloads that archive from and by removing its weekly trigger. Of the steps that read records this update regenerates, the evidence verifiers, the release policy and the metadata checks of the saved-mode recomputations ran again on the updated tree, as listed under rebinding.newExecutions."
   },
   "consumerRemoval": {
     "status": "PASS",
     "basis": "CARRIED_FROM_VERDICT_SOURCE",
     "steps": 28,
-    "statement": "The consumer-removal and fault-injection steps of the verdict source were not repeated; the sources, tests and runtimes they exercise are byte-identical."
+    "statement": "The consumer-removal and fault-injection steps of the verdict source were not repeated for this record. The implementation sources, tests and driving scripts they exercise, the runtime identity and the ABI are byte-identical to the sealed commit (rebinding.sealComparison)."
   },
   "rebinding": {
     "decision": "Jay Kim's 2026-11-03 direction: remove the weekly scheduled proof replay. Because the update changes no proof, implementation or runtime input, the 2026-10-05 assurance and its public statement stay valid; the fingerprints are updated with this record of what changed and what stayed instead of a repeated assurance.",
@@ -155,7 +155,7 @@
       {
         "path": "evidence/trust12/README.md",
         "beforeSha256": "1b0e97e5ee10692ce50356abac1421de694199506fd0d1036359b3d93689a458",
-        "afterSha256": "90c0a342b17eb2bd53e2fcb786da6db3158326bdd495b8e99c76439b360f0689",
+        "afterSha256": "88a64dfc0518dc5bf582ed37f3f618967065d24c163df7698f4b9fbef81a69a9",
         "change": "New paragraph that links this record."
       }
     ],
@@ -543,7 +543,7 @@
           "admissionDigest": "b938a742ef50ccbfa3453462412057c6a59790e315373b4a7a1ded8062052bc4",
           "finishedAt": "2026-09-25T00:04:35.5665717Z"
         },
-        "statement": "Both sessions were cleaned and rebuilt without saved heaps, and both proof audit exports are byte-identical to those of the admitted build, so the kernel-checked theorem inventory is unchanged."
+        "statement": "Both sessions were cleaned (their saved heaps and session databases removed) and rebuilt from source with the command of the admitted build; their parent sessions came from the local heap store. Both proof audit exports are byte-identical to those of the admitted build, so the kernel-checked theorem inventory is unchanged."
       },
       {
         "id": "formal-and-model-recording",
@@ -567,6 +567,10 @@
           },
           {
             "command": "node scripts/verify-trust12-required.mjs",
+            "exitCode": 0
+          },
+          {
+            "command": "node scripts/verify-trust12-policy.mjs",
             "exitCode": 0
           },
           {
@@ -636,7 +640,7 @@
       },
       {
         "item": "Consumer-removal and fault-injection controls of the assurance",
-        "reason": "They exercise the same byte-identical sources, tests and runtimes."
+        "reason": "The implementation sources, tests and driving scripts they exercise are byte-identical to the sealed commit."
       },
       {
         "item": "Runtime-link kernel proof chain kept outside this repository",
@@ -714,5 +718,5 @@
     "notes": null
   },
   "scope": "The registered-execution scope named by the sealed registered central closure.",
-  "nonclaim": "This record re-binds the verdict of its verdict source; it is not a new independent assurance and no assurance step was repeated. The scope and nonclaims of the verdict source apply unchanged. It does not extend to compiler correctness, deployment identity, external dependencies or the deferred general runtime links."
+  "nonclaim": "This record re-binds the verdict of its verdict source. It is not a new independent assurance: the assurance procedure was not repeated, and the runs under rebinding.newExecutions are local runs made for this update. The scope and nonclaims of the verdict source apply unchanged. It does not extend to compiler correctness, deployment identity, external dependencies or the deferred general runtime links."
 }

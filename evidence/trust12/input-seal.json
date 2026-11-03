@@ -33,7 +33,7 @@
     },
     {
       "path": "evidence/trust12/README.md",
-      "sha256": "90c0a342b17eb2bd53e2fcb786da6db3158326bdd495b8e99c76439b360f0689"
+      "sha256": "88a64dfc0518dc5bf582ed37f3f618967065d24c163df7698f4b9fbef81a69a9"
     },
     {
       "path": "evidence/trust12/aggregate-evidence-audit.md",
@@ -129,7 +129,7 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "afc7ca4393fe82dfb129d173a41424f2f6afe3fbf4e07f68d36af06f01b5a55f"
+      "sha256": "0fe349dfa991a289e3faf3c6204e21a8b0b14b791dd0c440ccc35341c65b8c86"
     },
     {
       "path": "evidence/trust12/profile-implementation-evidence-review.json",

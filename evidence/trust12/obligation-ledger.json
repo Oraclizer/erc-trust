@@ -2222,7 +2222,7 @@
       "status": "PASS_FRESH_ASSURANCE",
       "report": {
         "path": "evidence/trust12/assurance/trust12-runtime-link-assurance-seal-v2-final-assurance-rebinding-v1.json",
-        "sha256": "067d1ac2d2679ecd484e58d295d861cb8965e495ce3100c0e4218e506ce824a0"
+        "sha256": "41ce13357c0e908b65773763ac32be63a2d8f66c714084a99384b3b30d89881b"
       }
     }
   },

@@ -425,7 +425,7 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "62c7ceb06fb71923d5a2af0e3a02d797aa85cc45b28c22fdced728dbd5c93215"
+        "sha256": "7fa40f47e69cff02fd56e28ad9cac0246180f1990de25f1b34729510e5fe74dd"
       }
     },
     "runtime": {
@@ -477,7 +477,7 @@
         },
         {
           "path": "evidence/trust12/obligation-ledger.json",
-          "sha256": "afc7ca4393fe82dfb129d173a41424f2f6afe3fbf4e07f68d36af06f01b5a55f"
+          "sha256": "0fe349dfa991a289e3faf3c6204e21a8b0b14b791dd0c440ccc35341c65b8c86"
         },
         {
           "path": "evidence/trust12/runtime-identity.json",
@@ -697,7 +697,7 @@
         },
         {
           "path": "evidence/trust12/input-seal.json",
-          "sha256": "5ac8b63383a4ac1e9f47b82acad2f222230cb883ab1bf550f769b4f940d2f111"
+          "sha256": "0fc45ed59b4ded3bf06df7639bef78c7a255fc8fbb8863d54396607b56c51204"
         }
       ],
       "fullRefinementComplete": false,
@@ -831,7 +831,7 @@
       },
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "afc7ca4393fe82dfb129d173a41424f2f6afe3fbf4e07f68d36af06f01b5a55f"
+        "sha256": "0fe349dfa991a289e3faf3c6204e21a8b0b14b791dd0c440ccc35341c65b8c86"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -1051,7 +1051,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "5ac8b63383a4ac1e9f47b82acad2f222230cb883ab1bf550f769b4f940d2f111"
+        "sha256": "0fc45ed59b4ded3bf06df7639bef78c7a255fc8fbb8863d54396607b56c51204"
       }
     ],
     "fullRefinementComplete": false,
