@@ -9,15 +9,15 @@
     },
     {
       "path": ".github/workflows/proofs.yml",
-      "sha256": "1e6f6e62448134e995e15ad61000a1878d6d43e1d527e20ec95ce1029423e643"
+      "sha256": "bcd6229efd339c133147b0c7dd90f57782588fdceb47d4cbe9c466bf97a54af6"
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "47e693c2ef8065e8584c44d094455348996a69875fcbd05308d0fba3ce47952f"
+      "sha256": "5c39a20a223a91739be5cfae3d42e9ca981404d1243c6b0c8f4a93a6d5a905f0"
     },
     {
       "path": "FORMAL_VERIFICATION.md",
-      "sha256": "b09552a9ca543c282838fefde9e97cc3c8fffcca48ad4fe5a8b8fd27af6094c7"
+      "sha256": "e4e9927a998ba8715612d0b7a7b002f60ba3fbb33695e7417439492fdef8c2c1"
     },
     {
       "path": "docs/PROFILES.md",
@@ -33,7 +33,7 @@
     },
     {
       "path": "evidence/trust12/README.md",
-      "sha256": "1b0e97e5ee10692ce50356abac1421de694199506fd0d1036359b3d93689a458"
+      "sha256": "88a64dfc0518dc5bf582ed37f3f618967065d24c163df7698f4b9fbef81a69a9"
     },
     {
       "path": "evidence/trust12/aggregate-evidence-audit.md",
@@ -57,7 +57,7 @@
     },
     {
       "path": "evidence/trust12/formal-build-replay.json",
-      "sha256": "9a251a006272029664ddb50d8398c2dc011065151195c3dde5ef6317c54b7078"
+      "sha256": "a438e93b17371a4a9e8054a9deab1d27b76e4e01d477d77e570bda9043d2b011"
     },
     {
       "path": "evidence/trust12/formal-build.json",
@@ -85,7 +85,7 @@
     },
     {
       "path": "evidence/trust12/model-results.json",
-      "sha256": "9dd096aed9fb49c59fc11ba3b2c341f31ce2c06a29c58c20e8b21587572e5414"
+      "sha256": "9541f8dae426040c67c085a6e4d00d937629395e5296ce144d1af08702f4949d"
     },
     {
       "path": "evidence/trust12/model-source-normalization.json",
@@ -129,7 +129,7 @@
     },
     {
       "path": "evidence/trust12/obligation-ledger.json",
-      "sha256": "d8f544a1712a27e9f91663d446b62c1902560fd89d7e0343f7029d96402ed25b"
+      "sha256": "61d64ace2b98f757bbaf4f0c89b57b141fa1f02da97ae8c451efa50bd5215cc0"
     },
     {
       "path": "evidence/trust12/profile-implementation-evidence-review.json",
@@ -137,19 +137,19 @@
     },
     {
       "path": "evidence/trust12/registered-central-closure/closure-v1.json",
-      "sha256": "1968e8903b780698355158d6f12c86b139e64bd978eb7de786517d95a161afcb"
+      "sha256": "00f7d745c5a126349c6d5ba2fcebbdf1199a02c2159da8171743618697261ae2"
     },
     {
       "path": "evidence/trust12/registered-central-closure/compiled-consumer-v1.json",
-      "sha256": "32c470f3eb2275b676899f8647b6a406d6bbbb73cc2e424727958628ce449cf6"
+      "sha256": "130d36d30c04d1979a6d59bd587fde40a018f276c1ce3b707eaddbe69155180d"
     },
     {
       "path": "evidence/trust12/registered-central-closure/negative-v1.json",
-      "sha256": "262f07747f58921410832d307fbeb5cfda3cf7d5656491504cac76baa83c9722"
+      "sha256": "8ddd2d8f54e5ed059778305afd1ab0ceeb941df1e1d3fd3f91b90bcd84d0e4ce"
     },
     {
       "path": "evidence/trust12/registered-central-closure/positive-v1.json",
-      "sha256": "4c27df5d58453e4925f87615252afd60237dd1c9d1e180da24fc945e9bd1f260"
+      "sha256": "185a527bc76ddfdc4cb69d5efe9b946dca0b7a5fddcbc049fd9f9cf28f6bc2f9"
     },
     {
       "path": "evidence/trust12/release-notes.md",
@@ -573,7 +573,7 @@
     },
     {
       "path": "scripts/test-proof-ci.mjs",
-      "sha256": "13d832941126334952262d337a096b72fcc72abfe311ea9e4bf95c0e71cc4867"
+      "sha256": "f9ab14d359396ae4bc3fbde126dd9e07105c7a30d66433d157ad72c3798b48ca"
     },
     {
       "path": "scripts/test-received-transaction-controls.py",
@@ -809,7 +809,7 @@
     },
     {
       "path": "scripts/trust12/verify_registered_closure_v1.py",
-      "sha256": "f82e668e51cf683e18588d82fd1d6c27e86a80f31dfe48ba04d518df7bbaaa50"
+      "sha256": "fe089502fe01981d9fe3c8df1c6ab9f3d2cac1c521c8c1b33f040e1ca326b254"
     },
     {
       "path": "scripts/trust12/verify_registered_gate_v1.py",
@@ -861,7 +861,7 @@
     },
     {
       "path": "scripts/verify-trust12-required.mjs",
-      "sha256": "7033b4f207cf39e8965979484f94ae8dd19564bca64565a71290f58981d69c96"
+      "sha256": "901613b79fcb780439f240d32453be901db289ff5342c0ddf8989ad597604275"
     },
     {
       "path": "spec/decisions/14-hook-route-classes.md",

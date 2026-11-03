@@ -1,0 +1,736 @@
+{
+  "schema": "trust12-final-assurance-v1",
+  "status": "PASS_FRESH_ASSURANCE",
+  "recordKind": "VERDICT_REBINDING_AFTER_WORKFLOW_UPDATE",
+  "date": "2026-11-03",
+  "statusMeaning": "The status is the verdict of the report named in verdictSource. This record binds that verdict to the final identities after an update of the Proofs workflow and its policy test that changed no theory, proof, implementation, ABI or runtime input. It does not repeat the assurance.",
+  "independentOfBuilding": true,
+  "reviewer": "Internal reviewer who took no part in building the runtime link (not a third-party audit); the verdict is carried unchanged from the report named in verdictSource",
+  "verdictSource": {
+    "path": "evidence/trust12/assurance/trust12-runtime-link-assurance-seal-v2-final-assurance.json",
+    "sha256": "8bcf90d4e68cc16c91d665fcced5998d7fa9bfee4c8d61885e6184ceb87d933a",
+    "verdictDate": "2026-10-05"
+  },
+  "seal": {
+    "path": "evidence/trust12/assurance/trust12-runtime-link-assurance-seal-v2.json",
+    "sha256": "85aa6dfbc87697086ba173bf1746e97ac76ad9d1afa72bd65ddc53b4020b7b91"
+  },
+  "finalIdentities": {
+    "formalRootSha256": "71991a59d64b71149ceaca6b1e4ec2086ef5b278b29ce0255a60873cb38d3516",
+    "runtimeIdentitySha256": "7b2251faffe33990edf9326b7a6883d75e9402c36f5a25e4e28cb29075f0a348",
+    "abiSha256": "73b45cee3e8e6a2abd484a306a21d51aaa3fc4da75b976dd3c938d936352814b",
+    "endToEndLedgerSha256": "8b620ada0d8a297be0a5dd4771e288995dc1189bf67098792648dd792745c399",
+    "registeredClosureSha256": "1293975b0bd58f83dbbb5b29a061fc423d9466f1594bf3822750ab218c38a47c",
+    "assuranceSealSha256": "85aa6dfbc87697086ba173bf1746e97ac76ad9d1afa72bd65ddc53b4020b7b91",
+    "generalProofDigests": {
+      "NATIVE": null,
+      "PARTIAL": null,
+      "HOOK": null
+    }
+  },
+  "reproduction": {
+    "status": "PASS",
+    "basis": "CARRIED_FROM_VERDICT_SOURCE",
+    "steps": 33,
+    "statement": "The reproduction steps of the verdict source were not repeated for this record. They ran on the sealed commit and the other roots bound by the seal, which this update leaves as they were. One of them recorded a clean run of the previous Proofs workflow on a GitHub Linux runner, which checked the Isabelle archive against the same pinned SHA-256; this update changes that workflow only in the address it downloads that archive from and by removing its weekly trigger. Of the steps that read records this update regenerates, the evidence verifiers, the release policy and the metadata checks of the saved-mode recomputations ran again on the updated tree, as listed under rebinding.newExecutions."
+  },
+  "consumerRemoval": {
+    "status": "PASS",
+    "basis": "CARRIED_FROM_VERDICT_SOURCE",
+    "steps": 28,
+    "statement": "The consumer-removal and fault-injection steps of the verdict source were not repeated for this record. The implementation sources, tests and driving scripts they exercise, the runtime identity and the ABI are byte-identical to the sealed commit (rebinding.sealComparison)."
+  },
+  "rebinding": {
+    "decision": "Jay Kim's 2026-11-03 direction: remove the weekly scheduled proof replay. Because the update changes no proof, implementation or runtime input, the 2026-10-05 assurance and its public statement stay valid; the fingerprints are updated with this record of what changed and what stayed instead of a repeated assurance.",
+    "reason": "The dist address of the Isabelle site keeps only the newest release, so the pinned Isabelle2025-2 archive returned HTTP 404 there. The versioned Isabelle2025-2 release site serves the same archive, which the workflow still checks against the unchanged SHA-256 before use.",
+    "configurationChanges": [
+      {
+        "path": ".github/workflows/proofs.yml",
+        "formalInput": true,
+        "beforeSha256": "1e6f6e62448134e995e15ad61000a1878d6d43e1d527e20ec95ce1029423e643",
+        "afterSha256": "bcd6229efd339c133147b0c7dd90f57782588fdceb47d4cbe9c466bf97a54af6",
+        "hunks": [
+          {
+            "beforeLines": {
+              "start": 12,
+              "count": 2
+            },
+            "afterLines": {
+              "start": 11,
+              "count": 0
+            },
+            "removed": [
+              "  schedule:",
+              "    - cron: \"17 4 * * 1\""
+            ],
+            "added": []
+          },
+          {
+            "beforeLines": {
+              "start": 52,
+              "count": 1
+            },
+            "afterLines": {
+              "start": 50,
+              "count": 1
+            },
+            "removed": [
+              "      ISABELLE_URL: https://www.cl.cam.ac.uk/research/hvg/Isabelle/dist/Isabelle2025-2_linux.tar.gz"
+            ],
+            "added": [
+              "      ISABELLE_URL: https://isabelle.in.tum.de/website-Isabelle2025-2/dist/Isabelle2025-2_linux.tar.gz"
+            ]
+          },
+          {
+            "beforeLines": {
+              "start": 56,
+              "count": 3
+            },
+            "afterLines": {
+              "start": 54,
+              "count": 3
+            },
+            "removed": [
+              "      # Called release validation defaults to clean=true. Weekly and explicit",
+              "      # clean jobs restore no archive, project heap, database or PR artifact.",
+              "      CLEAN_REPLAY: ${{ github.event_name == 'schedule' || inputs.clean == true }}"
+            ],
+            "added": [
+              "      # Called release validation defaults to clean=true. Explicit clean jobs",
+              "      # restore no archive, project heap, database or PR artifact.",
+              "      CLEAN_REPLAY: ${{ inputs.clean == true }}"
+            ]
+          }
+        ]
+      },
+      {
+        "path": "scripts/test-proof-ci.mjs",
+        "formalInput": true,
+        "beforeSha256": "13d832941126334952262d337a096b72fcc72abfe311ea9e4bf95c0e71cc4867",
+        "afterSha256": "f9ab14d359396ae4bc3fbde126dd9e07105c7a30d66433d157ad72c3798b48ca",
+        "hunks": [
+          {
+            "beforeLines": {
+              "start": 207,
+              "count": 1
+            },
+            "afterLines": {
+              "start": 207,
+              "count": 12
+            },
+            "removed": [
+              "  check(() => assert.match(workflow, /cron: \"17 4 \\* \\* 1\"/));"
+            ],
+            "added": [
+              "  // No scheduled trigger: a clean replay comes only from the call or dispatch input.",
+              "  const unscheduled = (text) => assert(!/^\\s+schedule:/m.test(text) && !/^\\s+- cron:/m.test(text)",
+              "    && !text.includes(\"'schedule'\") && /CLEAN_REPLAY: \\$\\{\\{ inputs\\.clean == true \\}\\}/.test(text));",
+              "  check(() => unscheduled(workflow));",
+              "  reject(() => unscheduled(workflow.replace(\"  workflow_dispatch:\\n\", '  schedule:\\n    - cron: \"17 4 * * 1\"\\n  workflow_dispatch:\\n')));",
+              "  reject(() => unscheduled(workflow.replace(\"inputs.clean == true }}\", \"github.event_name == 'schedule' || inputs.clean == true }}\")));",
+              "  // The pinned archive comes from the versioned release site; the dist address keeps only the newest release.",
+              "  const releaseArchive = (text) => assert.match(text,",
+              "    /^      ISABELLE_URL: https:\\/\\/isabelle\\.in\\.tum\\.de\\/website-Isabelle2025-2\\/dist\\/Isabelle2025-2_linux\\.tar\\.gz$/m);",
+              "  check(() => releaseArchive(workflow));",
+              "  reject(() => releaseArchive(workflow.replace(\"https://isabelle.in.tum.de/website-Isabelle2025-2/dist/\",",
+              "    \"https://www.cl.cam.ac.uk/research/hvg/Isabelle/dist/\")));"
+            ]
+          }
+        ]
+      }
+    ],
+    "documentChanges": [
+      {
+        "path": "FORMAL_VERIFICATION.md",
+        "beforeSha256": "b09552a9ca543c282838fefde9e97cc3c8fffcca48ad4fe5a8b8fd27af6094c7",
+        "afterSha256": "e4e9927a998ba8715612d0b7a7b002f60ba3fbb33695e7417439492fdef8c2c1",
+        "change": "The proof workflow paragraph now says the workflow has no scheduled trigger and downloads the pinned archive from the versioned Isabelle2025-2 release site."
+      },
+      {
+        "path": "CHANGELOG.md",
+        "beforeSha256": "47e693c2ef8065e8584c44d094455348996a69875fcbd05308d0fba3ce47952f",
+        "afterSha256": "5c39a20a223a91739be5cfae3d42e9ca981404d1243c6b0c8f4a93a6d5a905f0",
+        "change": "New entry for this update."
+      },
+      {
+        "path": "evidence/trust12/README.md",
+        "beforeSha256": "1b0e97e5ee10692ce50356abac1421de694199506fd0d1036359b3d93689a458",
+        "afterSha256": "88a64dfc0518dc5bf582ed37f3f618967065d24c163df7698f4b9fbef81a69a9",
+        "change": "New paragraph that links this record."
+      }
+    ],
+    "identityChanges": [
+      {
+        "identity": "formalRootSha256",
+        "before": "7c6d08d4cca6ca035959f46d2cd5e4ae26595ad5005abaf9dd2da5e9c908954a",
+        "after": "71991a59d64b71149ceaca6b1e4ec2086ef5b278b29ce0255a60873cb38d3516",
+        "cause": "The formal root hashes the Proofs workflow and its policy test together with the 46 unchanged inputs listed under unchangedProofInputs.formalInputs."
+      },
+      {
+        "identity": "formalAdmissionDigest",
+        "before": "b938a742ef50ccbfa3453462412057c6a59790e315373b4a7a1ded8062052bc4",
+        "after": "5ea373675622333695b3028e0cb343814fc6f78c25d74b3ac6f832e08f4b2897",
+        "cause": "Binds the execution commit, the formal identity, the dependency inputs and the session exports; only the first two changed."
+      },
+      {
+        "identity": "registeredClosureSha256",
+        "before": "3153515f18c81d5a2b17609e303b44dfff93c97c8157374c22068d4a243ecfdd",
+        "after": "1293975b0bd58f83dbbb5b29a061fc423d9466f1594bf3822750ab218c38a47c",
+        "cause": "The registered closure record binds the formal root; its three role records bind the closure record."
+      },
+      {
+        "identity": "reviewedClosureEvidenceDigest",
+        "before": "2f33a84b8fdb445aacfb82862fedb22cfdf7466bce1694156c9ff117751d4c8b",
+        "after": "e132ef4ff143eab610451a848a73004e4219a1187814edf9c0a51b30036df874",
+        "cause": "The digest of the closure record that its verifier pins."
+      }
+    ],
+    "unchangedIdentities": {
+      "runtimeIdentitySha256": "7b2251faffe33990edf9326b7a6883d75e9402c36f5a25e4e28cb29075f0a348",
+      "abiSha256": "73b45cee3e8e6a2abd484a306a21d51aaa3fc4da75b976dd3c938d936352814b",
+      "endToEndLedgerSha256": "8b620ada0d8a297be0a5dd4771e288995dc1189bf67098792648dd792745c399",
+      "assuranceSealSha256": "85aa6dfbc87697086ba173bf1746e97ac76ad9d1afa72bd65ddc53b4020b7b91",
+      "generalProofDigests": {
+        "NATIVE": null,
+        "PARTIAL": null,
+        "HOOK": null
+      }
+    },
+    "unchangedProofInputs": {
+      "formalInputs": {
+        "statement": "Every input of the formal identity other than the two workflow files, with the same SHA-256 at the base commit and now.",
+        "count": 46,
+        "totalInputs": 48,
+        "files": [
+          {
+            "path": "evidence/public-release/formal-foundation-supersession-v1.json",
+            "sha256": "fd42345ad6eee7a898301530e1207162242538e436f0e574a04f1595b381ec45"
+          },
+          {
+            "path": "formal-dependencies-public-v1.lock.json",
+            "sha256": "eb26e09a60e74a90ca5e86d9b040fd9b20bca31589b1c9e9ab8ee4d54d6455f5"
+          },
+          {
+            "path": "formal-dependencies.lock.json",
+            "sha256": "f0bf6cfa4b05bef9e40a1be64b6309ec7722059bdbdacee5c6924df3bb35cab6"
+          },
+          {
+            "path": "formal/isabelle/ERC_TRUST/Claim_Boundary.thy",
+            "sha256": "313549026c3645fbd9bb7eb7da4b32a47c4eb6257d625342de5f0927fd1da7eb"
+          },
+          {
+            "path": "formal/isabelle/ERC_TRUST/Executable_Regulatory_Kernel.thy",
+            "sha256": "72f531eadbe62f39849248bbf1d1de61182abc85d8d865bc8138ebd4aaf27bb8"
+          },
+          {
+            "path": "formal/isabelle/ERC_TRUST/Privileged_Governance.thy",
+            "sha256": "bca0c163d55f69a35350c8d79a990d6174c5ce3478682f80a285dfa53d0d614c"
+          },
+          {
+            "path": "formal/isabelle/ERC_TRUST/Proof_Audit.thy",
+            "sha256": "0f2860b07ceff3217c6c175e296f3ac325dad91bb043e4838e4c92e8f7084de4"
+          },
+          {
+            "path": "formal/isabelle/ERC_TRUST/RCP_Action_Mapping.thy",
+            "sha256": "e628178a9b09f3dab7759503db1a9a47141e932f591d4f3f19cceac359e900a4"
+          },
+          {
+            "path": "formal/isabelle/ERC_TRUST/ROOT",
+            "sha256": "2b45689839bfc6a21c823b52382ab15f8702cf8a00817081090fc20e67d45e85"
+          },
+          {
+            "path": "formal/isabelle/ERC_TRUST/Regulatory_Execution_Semantics.thy",
+            "sha256": "6b621b3b36342c0d432f1d7971a6153faaa87f9c9f3c97a80593f28fb3c295c1"
+          },
+          {
+            "path": "formal/isabelle/ERC_TRUST/Regulatory_Execution_Simulation.thy",
+            "sha256": "68a477f4335d4572cfa01490947b2c5a6a7729d7ce1fc635bb3e6bebc318428d"
+          },
+          {
+            "path": "formal/isabelle/ERC_TRUST/TRUST_Bound_Dependency_Assume_Guarantee.thy",
+            "sha256": "6ed2c7919a25b03170232bcb109c3c6be31d31569b5178760d09709eb5104258"
+          },
+          {
+            "path": "formal/isabelle/ERC_TRUST/TRUST_C0_Decode_Slices.thy",
+            "sha256": "88a238346d74c3a6627e01972d0b52cbb76755ea070cfa0ce450b7e275fe4b9a"
+          },
+          {
+            "path": "formal/isabelle/ERC_TRUST/TRUST_Compositional_State.thy",
+            "sha256": "ecb28da66b0ea1d1e1e4d05255a00246294d5ec9b5aafd320866af92c3ac880a"
+          },
+          {
+            "path": "formal/isabelle/ERC_TRUST/TRUST_Concrete_Configuration.thy",
+            "sha256": "642daa38742595bb7a00700b08b0a24d74e18d1239eb848f45e197c78ba5ce56"
+          },
+          {
+            "path": "formal/isabelle/ERC_TRUST/TRUST_Decoder_Guard_Words.thy",
+            "sha256": "e19b61acc6748a6059ae0194dd0ea4144612d36562873869fdf54af385e037ae"
+          },
+          {
+            "path": "formal/isabelle/ERC_TRUST/TRUST_End_To_End_Composition.thy",
+            "sha256": "dde2f9c95d702cf4f394dc3bde7e0e000203ba95698cfd7a8ba6569e59f8ccc5"
+          },
+          {
+            "path": "formal/isabelle/ERC_TRUST/TRUST_M4_Action_Reversal_Row_Corollaries.thy",
+            "sha256": "ae3b862dcdf0ba6b2049b0d4c92e216ce99c8745757ddc7b606854f1be3db355"
+          },
+          {
+            "path": "formal/isabelle/ERC_TRUST/TRUST_Obligation_Ledger_Generated.thy",
+            "sha256": "00e099e0011b99f5c7de746ed54ca26cb5a36200df62ef77896b624e14f70ad9"
+          },
+          {
+            "path": "formal/isabelle/ERC_TRUST/TRUST_Out_Of_Spec_Refinement.thy",
+            "sha256": "6c159584f9f88ce9cf37b6d40bf03aca6b41b9ca678e52176ed57febbacd13a0"
+          },
+          {
+            "path": "formal/isabelle/ERC_TRUST/TRUST_Retrieve_Relation.thy",
+            "sha256": "5fe73a17b58d636ca2f489a02e42a442309f8f42f99cb99e72de678090475587"
+          },
+          {
+            "path": "formal/isabelle/ERC_TRUST/TRUST_Reusable_Summaries.thy",
+            "sha256": "932d138e9c9b96e3c0c8e62753970d52af9826d1f3df7ff356cef3626fc337fa"
+          },
+          {
+            "path": "formal/isabelle/ERC_TRUST/TRUST_Runtime_Bridge_Generated.thy",
+            "sha256": "0066aca8046e7129d007bfc527e4c7552d17b891406adfdb4720197664eb84fb"
+          },
+          {
+            "path": "formal/isabelle/ERC_TRUST/TRUST_State_Abi_Normal_Form.thy",
+            "sha256": "b645ce637c97ee3ca7a91c889d6b05efbb233404fe056b22d21816fe3abf710f"
+          },
+          {
+            "path": "formal/isabelle/ERC_TRUST/TRUST_Transaction_Refinement.thy",
+            "sha256": "b49b9d7a71455e547bf5185fcd66195597b185bbb5d50441b281e37eabf60149"
+          },
+          {
+            "path": "formal/isabelle/ERC_TRUST/TRUST_Verified_Profile_Onboarding.thy",
+            "sha256": "2abd913f98815a695e8d006a7586b2accacebe8ba19cb8efeae60752ee13075e"
+          },
+          {
+            "path": "formal/isabelle/ERC_TRUST/Token_Compatibility.thy",
+            "sha256": "07e1c6cc1ad470bdd9fc3bebaa8acac31998c18a6b8e7cd2221f8fd1dc01ef96"
+          },
+          {
+            "path": "formal/isabelle/ERC_TRUST/evidence/model-verification/run-trust-closure.ps1",
+            "sha256": "3ad425ff797f90937c67833b368b17463c511ecc5d6eef311461c6c201eece5a"
+          },
+          {
+            "path": "formal/isabelle/ROOTS",
+            "sha256": "bc0d98972158b22dd35d8e3f0c99a9231b7d7969b744ead12644ca79603944ad"
+          },
+          {
+            "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/ROOT",
+            "sha256": "93a8ce9c52f9a2bc1b60952fabcb3625b580d4817babfec92db6b6d908a78d5d"
+          },
+          {
+            "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST12_Obstruction_Proof_Audit.thy",
+            "sha256": "e073c4787c450f41eaeb437e6e630995e082b3a2bf749958a0bc8e69208a9e68"
+          },
+          {
+            "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Accounting_Invariant_Obstruction.thy",
+            "sha256": "b9ba46b12ecb03baffd3f4cc0521219c6100fbb31820ad2d15b4a324a12b91fe"
+          },
+          {
+            "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Custody_Accounting.thy",
+            "sha256": "bee1f0f5cbf68f91fa9c3ca92fb5851020dd272a61b13ce5db18ccc8c8044ce9"
+          },
+          {
+            "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Linked_Run.thy",
+            "sha256": "47813adc486ad97b256df3721baf792f0a59d6edd4906babf1eca4c1a0d88f68"
+          },
+          {
+            "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Regulatory_Preservation.thy",
+            "sha256": "77a5ccac16322ea85c35d968a40f53d786d2911254ddb7e6697659bea797b4fb"
+          },
+          {
+            "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Release_Preservation.thy",
+            "sha256": "bbab722b3115ef246d9b083d6b3a405a9d3fa3ba675ad870c66278b39e9554de"
+          },
+          {
+            "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Reversal_Preservation.thy",
+            "sha256": "fcaa7178a21e63e077d303069ba80ef76cc8aef2c9e7440bc16921febf3e6aba"
+          },
+          {
+            "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_State_Interaction_Controls.thy",
+            "sha256": "68c740c4e75fb0b95facc1c3bd174fb9959e6c0fbf3a74179d2f255d100afc4e"
+          },
+          {
+            "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_State_Invariants.thy",
+            "sha256": "1f05719150c9c1eac15ca417eb0516b738150077589da0fa827acb19cdc792fe"
+          },
+          {
+            "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Structure_Invariant_Controls.thy",
+            "sha256": "d9c5603ae6343151448e3fc97d2448fd0eda0c764d8868610f9bf5742e527bdc"
+          },
+          {
+            "path": "formal/isabelle/TRUST12_OBSTRUCTIONS/TRUST_Unfreeze_Preservation.thy",
+            "sha256": "142a7302a0c9378b4d2631a5994b56cd32edd0330664364c59150a2c4e4f4654"
+          },
+          {
+            "path": "scripts/capture-isabelle-local-inputs.mjs",
+            "sha256": "421fb8663011d8d6192bce9f8bcfdb50f586bb21133eb9a677f53e236213713e"
+          },
+          {
+            "path": "scripts/generate-trust12-proof-audit.py",
+            "sha256": "a749060fd8a192e82a3b7bb95074b2986cdcf661488a6e6d13ed474581783997"
+          },
+          {
+            "path": "scripts/lib/formal-inputs.mjs",
+            "sha256": "d7bff305febdb9fc6288c494438e3e3e9e061396aeedf0810fd0d0879e2ba488"
+          },
+          {
+            "path": "scripts/proof-ci.mjs",
+            "sha256": "cc463a7fd0ff8ba6313c2f9a970013dac42bec3ff905f7074a4cafc4896a92b3"
+          },
+          {
+            "path": "scripts/run-proof-ci.sh",
+            "sha256": "74b9240388c75e2683fdbe3d117a473be09e6020bd065ff374964e63adb33acd"
+          }
+        ]
+      },
+      "dependencyInputs": {
+        "statement": "Pinned foundation overlay and AFP entry inputs of the clean build, equal to the admitted build.",
+        "foundationCommit": "db8e0802e55f0229cf7bc9e5e6cfbf40681adbba",
+        "overlayFiles": 12,
+        "adsFunctorFiles": 6,
+        "digest": "5ae5e61f6bb66f708962d0d0a95d779e403fdcbce4521cbe2a40905e5d12d698"
+      },
+      "implementationInputs": {
+        "statement": "implementation/src, implementation/test and foundry.toml, byte-identical to the base.",
+        "files": 34,
+        "inventoryRootSha256": "158420df1daf7b8abe43b722f01bdb124dcec32a5e46ffbe339bb51330711abd"
+      }
+    },
+    "recordUpdates": [
+      {
+        "path": "evidence/isabelle-results-v3.json",
+        "beforeSha256": "33ed63dd96257f8862da41b72361ed6cfa6bba2331e37688ec56cecec7e909f5",
+        "afterSha256": "87b1775a6c69657c5b50732e0a09c3e87a5b196ec4a938c3d50c6bdd5dea10e0",
+        "change": "Re-recorded from the clean build of the execution commit: source commit, formal root, the two workflow input hashes, run times, admission digest and the replay reference. Sessions, checks, toolchain and dependency inputs are unchanged."
+      },
+      {
+        "path": "evidence/trust12/formal-build-replay.json",
+        "beforeSha256": "9a251a006272029664ddb50d8398c2dc011065151195c3dde5ef6317c54b7078",
+        "afterSha256": "a438e93b17371a4a9e8054a9deab1d27b76e4e01d477d77e570bda9043d2b011",
+        "change": "Re-recorded from the clean build: execution commit, formal root, the two workflow input hashes, times, log hashes, input capture hash, admission digest. Sessions and dependency inputs are unchanged. The build and export log paths and the raw run reference also name the new run."
+      },
+      {
+        "path": "evidence/trust12/model-results.json",
+        "beforeSha256": "9dd096aed9fb49c59fc11ba3b2c341f31ce2c06a29c58c20e8b21587572e5414",
+        "afterSha256": "9541f8dae426040c67c085a6e4d00d937629395e5296ce144d1af08702f4949d",
+        "change": "Re-recorded from the clean build: executionCommit, formalRootSha256 and formalAdmissionDigest. Theorem groups, controls, reviews and normalization references are unchanged."
+      },
+      {
+        "path": "scripts/verify-trust12-required.mjs",
+        "beforeSha256": "7033b4f207cf39e8965979484f94ae8dd19564bca64565a71290f58981d69c96",
+        "afterSha256": "901613b79fcb780439f240d32453be901db289ff5342c0ddf8989ad597604275",
+        "change": "The admitted formal root, the admitted build digest and the admitted model result digest."
+      },
+      {
+        "path": "evidence/trust12/registered-central-closure/closure-v1.json",
+        "beforeSha256": "1968e8903b780698355158d6f12c86b139e64bd978eb7de786517d95a161afcb",
+        "afterSha256": "00f7d745c5a126349c6d5ba2fcebbdf1199a02c2159da8171743618697261ae2",
+        "change": "finalInputs.formalRootSha256 only."
+      },
+      {
+        "path": "evidence/trust12/registered-central-closure/positive-v1.json",
+        "beforeSha256": "4c27df5d58453e4925f87615252afd60237dd1c9d1e180da24fc945e9bd1f260",
+        "afterSha256": "185a527bc76ddfdc4cb69d5efe9b946dca0b7a5fddcbc049fd9f9cf28f6bc2f9",
+        "change": "closureSha256 only."
+      },
+      {
+        "path": "evidence/trust12/registered-central-closure/negative-v1.json",
+        "beforeSha256": "262f07747f58921410832d307fbeb5cfda3cf7d5656491504cac76baa83c9722",
+        "afterSha256": "8ddd2d8f54e5ed059778305afd1ab0ceeb941df1e1d3fd3f91b90bcd84d0e4ce",
+        "change": "closureSha256 only."
+      },
+      {
+        "path": "evidence/trust12/registered-central-closure/compiled-consumer-v1.json",
+        "beforeSha256": "32c470f3eb2275b676899f8647b6a406d6bbbb73cc2e424727958628ce449cf6",
+        "afterSha256": "130d36d30c04d1979a6d59bd587fde40a018f276c1ce3b707eaddbe69155180d",
+        "change": "closureSha256 only."
+      },
+      {
+        "path": "scripts/trust12/verify_registered_closure_v1.py",
+        "beforeSha256": "f82e668e51cf683e18588d82fd1d6c27e86a80f31dfe48ba04d518df7bbaaa50",
+        "afterSha256": "fe089502fe01981d9fe3c8df1c6ab9f3d2cac1c521c8c1b33f040e1ca326b254",
+        "change": "The reviewed evidence digest of the closure record only."
+      },
+      {
+        "path": "evidence/trust12/obligation-ledger.json",
+        "beforeSha256": "d8f544a1712a27e9f91663d446b62c1902560fd89d7e0343f7029d96402ed25b",
+        "afterSha256": null,
+        "regeneratedAfterThisRecord": true,
+        "change": "The four registered closure references, and the assurance report reference, which now names this record."
+      },
+      {
+        "path": "evidence/trust12/input-seal.json",
+        "beforeSha256": "38e2fd23397c4c801316bee98eca8c9830e2fee98eeda4136037e93ff107adcc",
+        "afterSha256": null,
+        "regeneratedAfterThisRecord": true,
+        "change": "Regenerated by scripts/generate-trust12-input-seal.py."
+      },
+      {
+        "path": "evidence/end-to-end-refinement/central-closure-v3.json",
+        "beforeSha256": "9d33b5f895db0fdf3e70ca67389f2572a788f0593e31d2ec3f0c041cb2ab65fd",
+        "afterSha256": null,
+        "regeneratedAfterThisRecord": true,
+        "change": "Regenerated by scripts/verify-obligation-ledger-v3.mjs without writing the generated ledger theory, which stays byte-identical."
+      },
+      {
+        "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
+        "beforeSha256": "bf487034a5ff53e368a71a84fe1862389c1488f1a27cc51e120772caf881515f",
+        "afterSha256": null,
+        "regeneratedAfterThisRecord": true,
+        "change": "Regenerated with the same projection."
+      },
+      {
+        "path": "evidence/current-profile-release-index-v3.json",
+        "beforeSha256": "4e323c03e9a12632fbf5f458474beba1104b8182b41c6ce2bf5904f93861bf9d",
+        "afterSha256": null,
+        "regeneratedAfterThisRecord": true,
+        "change": "Regenerated by scripts/verify-current-profile-release-v3.mjs."
+      },
+      {
+        "path": "evidence/release-manifest.json",
+        "beforeSha256": "d61656ab4fb1f7416182b40f32d1832609abec768a12c4c28829b57bf001cb68",
+        "afterSha256": null,
+        "regeneratedAfterThisRecord": true,
+        "change": "Regenerated by scripts/generate-release-manifest.mjs."
+      },
+      {
+        "path": "evidence/public-release/diet-manifest-v2.json",
+        "beforeSha256": "3f5215b5581959405f36d9112b52a75484e6ea3097ddd14a39c417917482ea06",
+        "afterSha256": null,
+        "regeneratedAfterThisRecord": true,
+        "change": "Tracked file and byte accounting of the public tree, and the accounting date."
+      }
+    ],
+    "newExecutions": [
+      {
+        "id": "formal-clean-build-and-proof-export",
+        "provider": "local-windows-isabelle",
+        "executionCommit": "5ce35ac6b48d862989050c8f84ebf2cc824ddcb2",
+        "command": "isabelle build -c -o record_proofs=1 -o threads=2 -o parallel_proofs=0 -d <ADS_Functor> -d <verified-foundation-overlay> -d formal/isabelle ERC_TRUST TRUST12_Accounting_Obstruction",
+        "isabelle": "Isabelle2025-2",
+        "startedAt": "2026-11-03T08:08:56.5950551Z",
+        "finishedAt": "2026-11-03T08:16:06.0092855Z",
+        "elapsedSeconds": 429,
+        "processExit": 0,
+        "buildLogSha256": "0fc4712e25be19056570d777ed4275061cb1dcfda387efa35ff2630549169348",
+        "exportLogSha256": "06b6048d6bd275dac40c8f2029f76dd1f9d7cd29037e4c0e016db26c06d06d0f",
+        "inputCaptureBeforeAfterEqual": true,
+        "sessions": [
+          {
+            "name": "ERC_TRUST",
+            "explicitRoots": 456,
+            "qualifiedFacts": 457,
+            "oracleDependencies": 0,
+            "exportSha256": "82bc1aa9ca879d083f17b3e17fb1e76be23f67efaedb6341999a73da5c66063e",
+            "equalToAdmittedBuild": true
+          },
+          {
+            "name": "TRUST12_Accounting_Obstruction",
+            "explicitRoots": 219,
+            "qualifiedFacts": 236,
+            "oracleDependencies": 0,
+            "exportSha256": "85fe1610f63a4a0922fab0f77cabf7058862e3fd3f008102d94448d75326dd51",
+            "equalToAdmittedBuild": true
+          }
+        ],
+        "admittedBuildBefore": {
+          "executionCommit": "be132e515a8a30d18b6ae20c588850ca68ae01ea",
+          "admissionDigest": "b938a742ef50ccbfa3453462412057c6a59790e315373b4a7a1ded8062052bc4",
+          "finishedAt": "2026-09-25T00:04:35.5665717Z"
+        },
+        "statement": "Both sessions were cleaned (their saved heaps and session databases removed) and rebuilt from source with the command of the admitted build; their parent sessions came from the local heap store. Both proof audit exports are byte-identical to those of the admitted build, so the kernel-checked theorem inventory is unchanged."
+      },
+      {
+        "id": "formal-and-model-recording",
+        "commands": [
+          "node scripts/record-isabelle-results-v3.mjs --run RAW_RUN_RECORD --commit EXECUTION_COMMIT --local --foundation-root PINNED_FOUNDATION --overlay-root VERIFIED_OVERLAY --ads-root AFP_ADS_FUNCTOR --write",
+          "node scripts/record-trust12-model-results.mjs --write"
+        ],
+        "statement": "The two recorders checked the raw run against its log and the execution commit, and rewrote only the execution binding fields listed under recordUpdates."
+      },
+      {
+        "id": "repository-checks",
+        "environment": {
+          "platform": "Windows (local)",
+          "node": "v24.18.1",
+          "python": "3.14.6"
+        },
+        "results": [
+          {
+            "command": "node scripts/test-proof-ci.mjs",
+            "exitCode": 0
+          },
+          {
+            "command": "node scripts/verify-trust12-required.mjs",
+            "exitCode": 0
+          },
+          {
+            "command": "node scripts/verify-trust12-policy.mjs",
+            "exitCode": 0
+          },
+          {
+            "command": "node scripts/test-trust12-policy.mjs",
+            "exitCode": 0
+          },
+          {
+            "command": "node scripts/test-trust12-required.mjs",
+            "exitCode": 0
+          },
+          {
+            "command": "python -B scripts/verify-trust12-evidence.py",
+            "exitCode": 0
+          },
+          {
+            "command": "python -B scripts/trust12/verify_registered_closure_v1.py --metadata-only",
+            "exitCode": 0
+          },
+          {
+            "command": "python -B scripts/test-registered-closure.py",
+            "exitCode": 0
+          },
+          {
+            "command": "node scripts/verify-obligation-ledger-v3.mjs",
+            "exitCode": 0
+          },
+          {
+            "command": "node scripts/verify-current-profile-release-v3.mjs",
+            "exitCode": 0
+          },
+          {
+            "command": "node scripts/verify-current-profile-release-v3.mjs --self-test",
+            "exitCode": 0
+          },
+          {
+            "command": "node scripts/verify-links.mjs",
+            "exitCode": 0
+          },
+          {
+            "command": "node scripts/verify-public-surface.mjs",
+            "exitCode": 0
+          },
+          {
+            "command": "node scripts/verify-repository-health.mjs",
+            "exitCode": 0
+          },
+          {
+            "command": "node scripts/verify-public-release-tree.mjs",
+            "exitCode": 0
+          }
+        ],
+        "statement": "Each command ran on the final tree that contains this record and exited 0; the regeneration that wrote this record fails otherwise. They are local runs, not CI."
+      }
+    ],
+    "notRerun": [
+      {
+        "item": "KEVM and Kontrol symbolic runs",
+        "reason": "Their bound inputs (implementation sources and tests, foundry.toml, runtime identity, ABI) are byte-identical, and neither reads the workflow files."
+      },
+      {
+        "item": "Certora rule runs",
+        "reason": "Same bound inputs, byte-identical."
+      },
+      {
+        "item": "Foundry build, unit, fuzz and invariant tests, and the mutation campaign",
+        "reason": "The implementation inventory root above is unchanged; the recorded Foundry results and mutation records are kept as they are."
+      },
+      {
+        "item": "Consumer-removal and fault-injection controls of the assurance",
+        "reason": "The implementation sources, tests and driving scripts they exercise are byte-identical to the sealed commit."
+      },
+      {
+        "item": "Runtime-link kernel proof chain kept outside this repository",
+        "reason": "Its inputs are outside this repository and this update does not touch them; the runtime identity and ABI it binds are byte-identical."
+      },
+      {
+        "item": "GitHub Actions runs of the changed workflows for this record",
+        "reason": "Not part of this local record. The workflow checks the downloaded archive against the pinned SHA-256 before any proof step."
+      }
+    ],
+    "sealComparison": {
+      "statement": "Comparison of the PRODUCT files frozen by the seal with this tree. The seal froze every tracked file of its product commit. Its other roots are outside this repository and are not touched by this update.",
+      "sealProductCommit": "6d94e6395d9eacf61d6bb06480734416e24e6f6e",
+      "sealedProductFiles": 1183,
+      "byteIdenticalToSeal": 1152,
+      "changedAfterSealBeforeThisUpdate": [
+        "CHANGELOG.md",
+        "FORMAL_VERIFICATION.md",
+        "README.md",
+        "SECURITY.md",
+        "docs/PROFILES.md",
+        "evidence/README.md",
+        "evidence/claim-matrix.md",
+        "evidence/current-profile-release-index-v3.json",
+        "evidence/end-to-end-refinement/central-closure-v3.json",
+        "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
+        "evidence/known-limitations.md",
+        "evidence/public-release/diet-manifest-v2.json",
+        "evidence/release-manifest.json",
+        "evidence/trust12/README.md",
+        "evidence/trust12/input-seal.json",
+        "evidence/trust12/obligation-ledger.json",
+        "evidence/trust12/release-notes.md",
+        "evidence/verification-summary.md",
+        "scripts/test-trust12-policy.mjs",
+        "spec/decisions/13-trust12-completion-scope.md"
+      ],
+      "changedByThisUpdate": [
+        ".github/workflows/proofs.yml",
+        "CHANGELOG.md",
+        "FORMAL_VERIFICATION.md",
+        "evidence/current-profile-release-index-v3.json",
+        "evidence/end-to-end-refinement/central-closure-v3.json",
+        "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
+        "evidence/isabelle-results-v3.json",
+        "evidence/public-release/diet-manifest-v2.json",
+        "evidence/release-manifest.json",
+        "evidence/trust12/README.md",
+        "evidence/trust12/formal-build-replay.json",
+        "evidence/trust12/input-seal.json",
+        "evidence/trust12/model-results.json",
+        "evidence/trust12/obligation-ledger.json",
+        "evidence/trust12/registered-central-closure/closure-v1.json",
+        "evidence/trust12/registered-central-closure/compiled-consumer-v1.json",
+        "evidence/trust12/registered-central-closure/negative-v1.json",
+        "evidence/trust12/registered-central-closure/positive-v1.json",
+        "scripts/test-proof-ci.mjs",
+        "scripts/trust12/verify_registered_closure_v1.py",
+        "scripts/verify-trust12-required.mjs"
+      ],
+      "removedAfterSeal": [],
+      "addedAfterSeal": [
+        "evidence/trust12/assurance/trust12-runtime-link-assurance-seal-v2-final-assurance-rebinding-v1.json",
+        "evidence/trust12/assurance/trust12-runtime-link-assurance-seal-v2-final-assurance.json",
+        "evidence/trust12/assurance/trust12-runtime-link-assurance-seal-v2.json"
+      ]
+    }
+  },
+  "internalReview": {
+    "status": "PASS",
+    "reviewer": "Internal reviewer who took no part in the workflow update or the record regeneration (not a third-party audit)",
+    "date": "2026-11-03",
+    "scope": "The change against the base commit and this record.",
+    "checked": [
+      "The change against base commit 767c87c2db03219032bdbeaf8e5b06beac19208e, reviewed at revision 2245a431ad4abf92110635cf163862711a585134, touches 22 files: the Proofs workflow, its policy test, the pinned constants of two verifiers, 16 regenerated records, three documents and this record.",
+      "The Proofs workflow diff has three hunks: the weekly schedule trigger is removed, ISABELLE_URL moves to the versioned Isabelle2025-2 release site, and CLEAN_REPLAY drops the schedule condition. The Isabelle and AFP SHA-256 pins, the Isabelle version, the foundation commit, the remaining triggers and every step are unchanged, and the install step still checks the archive with sha256sum --check --strict.",
+      "For every remaining trigger the simplified CLEAN_REPLAY expression has its previous value; the release validation workflow that calls the Proofs workflow has no schedule and passes clean: true.",
+      "No file under formal, implementation, spec, schemas, vectors, sdk or pilot changed. The dependency lock files, the runtime identity, the kernel ABI and the recorded prover results are byte-identical. 46 of the 48 formal identity inputs are byte-identical; the two that changed are the Proofs workflow and its policy test.",
+      "The formal inputs at execution commit 5ce35ac6b48d862989050c8f84ebf2cc824ddcb2 equal those of the reviewed revision.",
+      "The build and export logs of the local clean build exist with the recorded SHA-256 values and show both sessions cleaned and rebuilt with exit code 0; the two proof audit exports hash to the export SHA-256 values of the admitted build.",
+      "The policy test replaces its single schedule assertion with checks for the absence of a scheduled trigger, the CLEAN_REPLAY form and the archive address, plus three rejected variants; it passes with 155 checks, against 151 at the base commit.",
+      "The two changed verifiers differ only in their pinned values; their check logic and messages are unchanged.",
+      "With only the new workflow applied to the base commit the required gate fails on sealed input drift, and with the ledger pointing at the 2026-10-05 report the release policy fails on the final identities; the regenerated records and this record are required by the workflow change.",
+      "Every SHA-256, count and line range in this record was recomputed from the base commit and the reviewed revision and matches, including unchangedProofInputs, recordUpdates, identityChanges and sealComparison.",
+      "The verdict source records the Proofs run that checked the pinned Isabelle archive SHA-256 on the runner.",
+      "In a fresh clone of the reviewed revision each of the 15 commands listed under rebinding.newExecutions exited 0, the public tree check with its absolute path length limit applied to the usual checkout location, and the verifiers that regenerate records left the tree unchanged.",
+      "This record, the added documentation lines and the commit messages contain no local paths, no tool attribution, no em or en dash characters, no internal work identifiers and no numbered properties."
+    ],
+    "notes": "Reviewed at revision 2245a431ad4abf92110635cf163862711a585134. After the review this record gained this review block and three clarifying sentences proposed by the review: the cause of the formal root change, the log and raw run references of the formal build record, and the accounting date of the public tree record. No other field of the reviewed record changed except the digests that hash this record and the records derived from it."
+  },
+  "scope": "The registered-execution scope named by the sealed registered central closure.",
+  "nonclaim": "This record re-binds the verdict of its verdict source. It is not a new independent assurance: the assurance procedure was not repeated, and the runs under rebinding.newExecutions are local runs made for this update. The scope and nonclaims of the verdict source apply unchanged. It does not extend to compiler correctness, deployment identity, external dependencies or the deferred general runtime links."
+}

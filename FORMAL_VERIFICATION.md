@@ -107,8 +107,10 @@ and unavailable GitHub lookups fall back to a normal native build; export
 auditing still runs. An I/O failure that leaves a partially copied heap
 directory stops the job before building, so partial state cannot be consumed.
 
-The Monday schedule, release validation calls, and manual `clean: true` runs
-perform a full replay without restoring saved archives or project state. The
+Release validation calls and manual `clean: true` runs perform a full replay
+without restoring saved archives or project state; the workflow has no
+scheduled trigger. The pinned Isabelle archive is downloaded from the versioned
+Isabelle2025-2 release site and checked against its SHA-256. The
 Proofs workflow has a 120-minute limit; maintainers inspect failures and can
 use the explicit clean run to investigate reuse defects. The first compatible
 run pays the initial build cost. Build logs report actual rebuilt/current

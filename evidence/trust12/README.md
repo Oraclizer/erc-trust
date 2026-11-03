@@ -43,6 +43,14 @@ scope. TRUST 1.2 completion additionally required fresh independent reproduction
 on the final inputs, which passed; full end-to-end refinement additionally requires every
 general connection and the central end-to-end ledger.
 
+On 2026-11-03 the Proofs workflow moved its Isabelle download to the versioned
+Isabelle2025-2 release site and dropped its weekly scheduled replay. No theory,
+proof, implementation, ABI or runtime input changed, and a local clean rebuild of
+both proof sessions on the new commit produced byte-identical proof exports.
+[`assurance/trust12-runtime-link-assurance-seal-v2-final-assurance-rebinding-v1.json`](assurance/trust12-runtime-link-assurance-seal-v2-final-assurance-rebinding-v1.json)
+binds the same verdict to the updated final identities and lists what changed,
+what stayed byte-identical, what was run again and what was not rerun.
+
 Existing Kontrol PASS records remain supplemental bounded evidence because their
 receipt does not record the proof metadata required for proof-grade credit.
 

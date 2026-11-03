@@ -2,6 +2,21 @@
 
 ## Unreleased
 
+- Download the pinned Isabelle archive from the versioned Isabelle2025-2
+  release site and remove the weekly scheduled proof replay. The archive and
+  its SHA-256 are unchanged, and no theory, proof, implementation, ABI or
+  runtime input changed. The Proofs workflow and its policy test are inputs
+  of the formal identity, so the formal root changed; a local clean rebuild
+  of both proof sessions on the new commit produced proof exports
+  byte-identical to those of the admitted build. The admitted build
+  constants, the registered closure records that bind the formal root and
+  the derived records are updated, and
+  evidence/trust12/assurance/trust12-runtime-link-assurance-seal-v2-final-assurance-rebinding-v1.json
+  binds the 2026-10-05 assurance verdict to the updated final identities and
+  lists what changed, what stayed byte-identical, what was run again and
+  what was not rerun. The 2026-10-05 assurance was not repeated, and the
+  public status statements are unchanged.
+
 - Record the fresh independent assurance of TRUST 1.2. A reviewer who took no
   part in building the runtime link checked the final inputs frozen by the
   published seal and recorded a PASS verdict in

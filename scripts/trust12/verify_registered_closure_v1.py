@@ -114,7 +114,7 @@ ASSUMPTION_SOURCES = {"central-ledger", "decision", "record", "closure"}
 FINDING_KINDS = {"RESOLVED", "NONCLAIM"}
 # Dispositions of an open item of the state and receipt crosswalk that carry the item to a later gate.
 CARRIED_KINDS = ("AWAITS_FORMAL_READER", "NEEDS_DECISION")
-EXPECTED_EVIDENCE_DIGEST = '2f33a84b8fdb445aacfb82862fedb22cfdf7466bce1694156c9ff117751d4c8b'
+EXPECTED_EVIDENCE_DIGEST = 'e132ef4ff143eab610451a848a73004e4219a1187814edf9c0a51b30036df874'
 PUBLIC_KEYS = {"schema", "status", "scope", "executionBoundary", "evidenceBoundary", "assumptionBoundary",
                "reproductionBoundary", "conditionsSource", "finalInputs", "dischargedConditions", "conditionEvidence",
                "acceptance", "conditionSupport", "conditionNotes", "findingDispositions", "retainedAssumptions",

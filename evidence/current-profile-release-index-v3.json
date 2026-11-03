@@ -12,7 +12,7 @@
       "inputs": [
         {
           "path": ".github/workflows/proofs.yml",
-          "sha256": "1e6f6e62448134e995e15ad61000a1878d6d43e1d527e20ec95ce1029423e643"
+          "sha256": "bcd6229efd339c133147b0c7dd90f57782588fdceb47d4cbe9c466bf97a54af6"
         },
         {
           "path": "evidence/public-release/formal-foundation-supersession-v1.json",
@@ -200,11 +200,11 @@
         },
         {
           "path": "scripts/test-proof-ci.mjs",
-          "sha256": "13d832941126334952262d337a096b72fcc72abfe311ea9e4bf95c0e71cc4867"
+          "sha256": "f9ab14d359396ae4bc3fbde126dd9e07105c7a30d66433d157ad72c3798b48ca"
         }
       ],
       "path": "formal/isabelle",
-      "rootSha256": "7c6d08d4cca6ca035959f46d2cd5e4ae26595ad5005abaf9dd2da5e9c908954a",
+      "rootSha256": "71991a59d64b71149ceaca6b1e4ec2086ef5b278b29ce0255a60873cb38d3516",
       "sessions": [
         "ERC_TRUST",
         "TRUST12_Accounting_Obstruction"
@@ -254,7 +254,7 @@
     "isabelleBuild": {
       "receipt": {
         "path": "evidence/isabelle-results-v3.json",
-        "sha256": "33ed63dd96257f8862da41b72361ed6cfa6bba2331e37688ec56cecec7e909f5"
+        "sha256": "87b1775a6c69657c5b50732e0a09c3e87a5b196ec4a938c3d50c6bdd5dea10e0"
       },
       "status": "PASS"
     },
@@ -425,7 +425,7 @@
       "status": "PASS",
       "summary": {
         "path": "evidence/end-to-end-refinement/obligation-ledger-summary-v3.json",
-        "sha256": "bf487034a5ff53e368a71a84fe1862389c1488f1a27cc51e120772caf881515f"
+        "sha256": "64d43bd76b858f2203d1f0e42023f99f56f8a8529df561f152b41ca3da10fa87"
       }
     },
     "runtime": {
@@ -477,7 +477,7 @@
         },
         {
           "path": "evidence/trust12/obligation-ledger.json",
-          "sha256": "d8f544a1712a27e9f91663d446b62c1902560fd89d7e0343f7029d96402ed25b"
+          "sha256": "61d64ace2b98f757bbaf4f0c89b57b141fa1f02da97ae8c451efa50bd5215cc0"
         },
         {
           "path": "evidence/trust12/runtime-identity.json",
@@ -509,11 +509,11 @@
         },
         {
           "path": "evidence/trust12/formal-build-replay.json",
-          "sha256": "9a251a006272029664ddb50d8398c2dc011065151195c3dde5ef6317c54b7078"
+          "sha256": "a438e93b17371a4a9e8054a9deab1d27b76e4e01d477d77e570bda9043d2b011"
         },
         {
           "path": "evidence/trust12/model-results.json",
-          "sha256": "9dd096aed9fb49c59fc11ba3b2c341f31ce2c06a29c58c20e8b21587572e5414"
+          "sha256": "9541f8dae426040c67c085a6e4d00d937629395e5296ce144d1af08702f4949d"
         },
         {
           "path": "evidence/trust12/model-preservation-audit.md",
@@ -665,19 +665,19 @@
         },
         {
           "path": "evidence/trust12/registered-central-closure/closure-v1.json",
-          "sha256": "1968e8903b780698355158d6f12c86b139e64bd978eb7de786517d95a161afcb"
+          "sha256": "00f7d745c5a126349c6d5ba2fcebbdf1199a02c2159da8171743618697261ae2"
         },
         {
           "path": "evidence/trust12/registered-central-closure/positive-v1.json",
-          "sha256": "4c27df5d58453e4925f87615252afd60237dd1c9d1e180da24fc945e9bd1f260"
+          "sha256": "185a527bc76ddfdc4cb69d5efe9b946dca0b7a5fddcbc049fd9f9cf28f6bc2f9"
         },
         {
           "path": "evidence/trust12/registered-central-closure/negative-v1.json",
-          "sha256": "262f07747f58921410832d307fbeb5cfda3cf7d5656491504cac76baa83c9722"
+          "sha256": "8ddd2d8f54e5ed059778305afd1ab0ceeb941df1e1d3fd3f91b90bcd84d0e4ce"
         },
         {
           "path": "evidence/trust12/registered-central-closure/compiled-consumer-v1.json",
-          "sha256": "32c470f3eb2275b676899f8647b6a406d6bbbb73cc2e424727958628ce449cf6"
+          "sha256": "130d36d30c04d1979a6d59bd587fde40a018f276c1ce3b707eaddbe69155180d"
         },
         {
           "path": "evidence/trust12/runtime-link/primitive-source-controls-checkpoint-v1.json",
@@ -697,7 +697,7 @@
         },
         {
           "path": "evidence/trust12/input-seal.json",
-          "sha256": "38e2fd23397c4c801316bee98eca8c9830e2fee98eeda4136037e93ff107adcc"
+          "sha256": "f9398278e0cbfd5127012289accdd9dc9d7b73ae55132d7c609f61eb6e4ad957"
         }
       ],
       "fullRefinementComplete": false,
@@ -831,7 +831,7 @@
       },
       {
         "path": "evidence/trust12/obligation-ledger.json",
-        "sha256": "d8f544a1712a27e9f91663d446b62c1902560fd89d7e0343f7029d96402ed25b"
+        "sha256": "61d64ace2b98f757bbaf4f0c89b57b141fa1f02da97ae8c451efa50bd5215cc0"
       },
       {
         "path": "evidence/trust12/runtime-identity.json",
@@ -863,11 +863,11 @@
       },
       {
         "path": "evidence/trust12/formal-build-replay.json",
-        "sha256": "9a251a006272029664ddb50d8398c2dc011065151195c3dde5ef6317c54b7078"
+        "sha256": "a438e93b17371a4a9e8054a9deab1d27b76e4e01d477d77e570bda9043d2b011"
       },
       {
         "path": "evidence/trust12/model-results.json",
-        "sha256": "9dd096aed9fb49c59fc11ba3b2c341f31ce2c06a29c58c20e8b21587572e5414"
+        "sha256": "9541f8dae426040c67c085a6e4d00d937629395e5296ce144d1af08702f4949d"
       },
       {
         "path": "evidence/trust12/model-preservation-audit.md",
@@ -1019,19 +1019,19 @@
       },
       {
         "path": "evidence/trust12/registered-central-closure/closure-v1.json",
-        "sha256": "1968e8903b780698355158d6f12c86b139e64bd978eb7de786517d95a161afcb"
+        "sha256": "00f7d745c5a126349c6d5ba2fcebbdf1199a02c2159da8171743618697261ae2"
       },
       {
         "path": "evidence/trust12/registered-central-closure/positive-v1.json",
-        "sha256": "4c27df5d58453e4925f87615252afd60237dd1c9d1e180da24fc945e9bd1f260"
+        "sha256": "185a527bc76ddfdc4cb69d5efe9b946dca0b7a5fddcbc049fd9f9cf28f6bc2f9"
       },
       {
         "path": "evidence/trust12/registered-central-closure/negative-v1.json",
-        "sha256": "262f07747f58921410832d307fbeb5cfda3cf7d5656491504cac76baa83c9722"
+        "sha256": "8ddd2d8f54e5ed059778305afd1ab0ceeb941df1e1d3fd3f91b90bcd84d0e4ce"
       },
       {
         "path": "evidence/trust12/registered-central-closure/compiled-consumer-v1.json",
-        "sha256": "32c470f3eb2275b676899f8647b6a406d6bbbb73cc2e424727958628ce449cf6"
+        "sha256": "130d36d30c04d1979a6d59bd587fde40a018f276c1ce3b707eaddbe69155180d"
       },
       {
         "path": "evidence/trust12/runtime-link/primitive-source-controls-checkpoint-v1.json",
@@ -1051,7 +1051,7 @@
       },
       {
         "path": "evidence/trust12/input-seal.json",
-        "sha256": "38e2fd23397c4c801316bee98eca8c9830e2fee98eeda4136037e93ff107adcc"
+        "sha256": "f9398278e0cbfd5127012289accdd9dc9d7b73ae55132d7c609f61eb6e4ad957"
       }
     ],
     "fullRefinementComplete": false,
