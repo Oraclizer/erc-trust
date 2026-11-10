@@ -1,6 +1,7 @@
 <div align="center">
   <picture>
-    <source media="(max-width: 900px)" srcset="docs/assets/erc-trust-banner-mobile.svg">
+    <source media="(max-width: 505px), (min-width: 768px) and (max-width: 801px)" srcset="docs/assets/erc-trust-banner-mobile.svg">
+    <source media="(max-width: 1121px)" srcset="docs/assets/erc-trust-banner-medium.svg">
     <img src="docs/assets/erc-trust-banner.svg" alt="ERC-TRUST: Typed Regulatory Uniformity for Security Tokens" width="860">
   </picture>
 
